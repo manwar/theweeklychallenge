@@ -1,15 +1,9 @@
 ---
 title: Contact
-featured_image: "images/notebook.jpg"
-omit_header_text: true
-description: We'd love to hear from you
+featured_image: "images/contact.jpg"
+description: "We'd love to hear from you. Please use the form below to join the team or share your ideas with us."
 type: page
 menu:
   main: {}
-
 ---
-
-
-This is an example of a custom shortcode that you can put right into your content. You will need to add a form action to the the shortcode to make it work. Check out [Formspree](https://formspree.io/) for a simple, free form service. 
-
-{{< form-contact action="https://example.com"  >}}
+{{< form-contact action="https://formspree.io/mohammad.anwar@yahoo.com" method="POST" >}}
