@@ -1,6 +1,6 @@
 ---
 title: "Team"
-date: 2018-07-14T16:19:08+06:00
-description : "This is meta description"
+date: 2019-03-25T10:10:00+00:00
+description : "Perl Weekly Challenge (PWC) Team"
 ---
 
