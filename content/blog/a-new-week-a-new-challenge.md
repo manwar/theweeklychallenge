@@ -1,17 +1,14 @@
 ---
 title: "A New Week a New Challenge"
-date: 2019-03-01T10:00:00+00:00
-description : "This is meta description"
+date: 2019-03-22T10:00:00+00:00
+description : "Introductory Challenge"
 type: post
-image: images/blog/post-3.jpg
+image: images/blog/pwc-base.png
 author: Mohammad S Anwar
-tags: ["perl", "challenge"]
+tags: ["Perl5", "Perl6", "challenge"]
 ---
+## Introduction
 
-Welcome to the first challenge of "Perl Weekly Challenge" event. As promised, we would start with simple one and gradually move on difficult challenges. I am thinking for having 2 challenges every week, one for beginners and another for experienced members. What do you think?
+Welcome to the first task of the **"Perl Weekly Challenge"** event. Every Monday, we are going to propose 2 challenges, one aimed at Beginners and another for Experts. However you are free to choose the challenge you fancy. You can even attempt to solve both. As you know the choice of languages are Perl5 and Perl6. You can solve one challenge in Perl5 and other in Perl6, if you like. Please send us your solution by 6pm (UK time) Sunday 31 March 2019. The winner will be declared in the weekly blog the very next day.
 
-
-> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas alias ut totam labore, rerum soluta harum vitae pariatur, optio, ad dolore, nihil eligendi nesciunt repellat esse provident sapiente. Repellendus, minus!
-
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis expedita repellendus laboriosam aliquid. Neque doloribus ea, id reprehenderit alias saepe debitis eligendi molestias odit, nesciunt rem. Dolorem saepe, provident dolore nesciunt laudantium nostrum enim natus veritatis harum maxime et iure ratione, nulla. Minus excepturi commodi tempore voluptate. Blanditiis similique dolor asperiores ex excepturi perspiciatis, dolores id esse. Voluptate beatae nesciunt cum esse ratione officiis necessitatibus blanditiis ea, laboriosam fugit vero maxime? Voluptatum illo dolorum autem pariatur quisquam. Voluptates soluta culpa necessitatibus veritatis tempora incidunt doloribus placeat repellat et facilis eum sapiente fugit numquam aut, laboriosam aspernatur, esse, magnam excepturi repudiandae amet voluptas nulla quidem. Veritatis nisi consequuntur saepe qui quisquam dignissimos assumenda, iusto odio. Dignissimos reprehenderit esse iusto cupiditate nisi enim, animi similique itaque, perspiciatis error qui. Aperiam, architecto provident.
-
+**COMING SOON**
