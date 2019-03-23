@@ -1,0 +1,22 @@
+{{ if .Site.Data.faq.enable }}
+{{ "<!-- FAQ Section Start -->" | safeHTML }}
+<section id="faq">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                {{ with .Site.Data.faq.title }}<h2 class="subtitle text-center">{{ . }}</h2>{{ end }}
+            </div>
+            {{ range $index, $element:= .Site.Data.faq.questions }}
+            <div class="col-md-6 col-sm-12">
+                {{ $delay := mul $index 300 }}
+                <div class="team-member wow fadeInLeft" data-wow-duration="500ms" data-wow-delay="{{ $delay }}ms">
+                    {{ with .question }}<h3 class="team_name">{{ . }}</h3>{{ end }}
+                    {{ with .answer }}<p class="team_designation">{{ . }}</p>{{ end }}
+                </div>
+            </div>
+            {{ end }}
+        </div>
+    </div>
+</section>
+{{ "<!-- FAQ Section End -->" | safeHTML }}
+{{ end }}
