@@ -15,4 +15,4 @@ Welcome to the first task of the **"Perl Weekly Challenge"** event. Every Monday
 ### Challenge #2
 > Write one-liner to solve **FizzBuzz** problem and print number 1-20. However, any number divisible by **3** should be replaced by the word fizz and any divisible by **5** by the word buzz. Numbers divisible by **both** become fizz buzz.
 
-This challenge was proposed by **@oneandoneis2** as DM on Twitter.
+This challenge was proposed by **@oneandoneis2** as DM on Twitter. Last date to submit the solution **6 pm (UK Time) Sunday 31st March 2019**.
