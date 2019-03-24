@@ -1,6 +1,6 @@
 ---
 title: "A New Week a New Challenge"
-date: 2019-03-24T02:00:00+00:00
+date: 2019-03-24T22:00:00+00:00
 description : "Perl Weekly Challenge - 001"
 type: post
 image: images/blog/pwc-base.png
