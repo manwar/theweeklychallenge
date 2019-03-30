@@ -22,7 +22,7 @@
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Tags</title>
+    <title>Proposed Solution for Challenge - 001</title>
     <link rel="icon" href="https://perlweeklychallenge.org/images/favicon.ico">
 
     
@@ -101,80 +101,122 @@
 </section>
 
 
-<!-- Global Page Section Start -->
 <section class="global-page-header">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="block">
-                    <h2>Tags</h2>
-                    <ol class="breadcrumb list-inline text-center">
-                        <li class="list-inline-item">
-                            <a href="https://perlweeklychallenge.org/">
-                                <i class="ion-ios-home"></i>
-                                Home &nbsp; &nbsp;/
-                            </a>
-                        </li>
-                        <li class="active list-inline-item">Tags</li>
-                    </ol>
+                    <h2>Proposed Solution for Challenge - 001</h2>
+                    <div class="portfolio-meta">
+                        <span>Thursday, Mar 28, 2019</span>|
+                        <span> Tags:
+                            Perl5
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-<!-- Global Page Section End -->
 
-<section id="blog-full-width">
+<section class="single-post">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 
-                <article class="wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">
-
-                    <div class="blog-post-image">
-                        <a href="https://perlweeklychallenge.org/tags/perl5/">
-                             
-                        </a>
-                    </div>
-                    <div class="blog-content">
-                        <h2 class="blogpost-title">
-                            <a href="https://perlweeklychallenge.org/tags/perl5/">Perl5</a>
-                        </h2>
-                        <div class="blog-meta">
-                            <span>Thursday, Mar 28, 2019</span>
-                            
-                            
-                        </div>
-                        <p style="text-align: justify">
-                            
-                        </p>
-                        <a href="https://perlweeklychallenge.org/tags/perl5/" class="btn btn-dafault btn-details hvr-bounce-to-right">Continue Reading</a>
-                    </div>
-                </article>
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://perlweeklychallenge.org/images/team/philippe_bruhat.jpg">
+                </div>
                 
-                <article class="wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">
+                <div style="text-align: justify" class="post-content">
+                    
 
-                    <div class="blog-post-image">
-                        <a href="https://perlweeklychallenge.org/tags/perl6/">
-                             
-                        </a>
-                    </div>
-                    <div class="blog-content">
-                        <h2 class="blogpost-title">
-                            <a href="https://perlweeklychallenge.org/tags/perl6/">Perl6</a>
-                        </h2>
-                        <div class="blog-meta">
-                            <span>Sunday, Mar 24, 2019</span>
-                            
-                            
-                        </div>
-                        <p style="text-align: justify">
-                            
-                        </p>
-                        <a href="https://perlweeklychallenge.org/tags/perl6/" class="btn btn-dafault btn-details hvr-bounce-to-right">Continue Reading</a>
-                    </div>
-                </article>
-                
+<p>This is actually as we received in response to the challenge by Philippe Bruhat. Highly recommended.</p>
+
+<h1 id="challenge-1">Challenge #1</h1>
+
+<p>Write a script to replace the character ‘e’ with ‘E’ in the string ‘Perl Weekly Challenge’. Also print the number of times the character ‘e’ found in the string.</p>
+
+<pre><code>    $ perl -E '$_=shift;say y/e/E/;say' 'Perl Weekly Challenge'
+    5
+    PErl WEEkly ChallEngE
+</code></pre>
+
+<p>Historical note: <code>y///c</code> is called &ldquo;Abigail&rsquo;s length horror&rdquo; by golfers and obfuscators (couldn&rsquo;t trace where the term came from). It saves one character over <code>length</code> in a golf setting, and can be written as <code>y&gt;&gt;&gt;c</code> (pick some confusing character depending on context) or <code>y cccccccccccc</code> in an obfuscated setting.</p>
+
+<p>I had written my first attempt with -e, but as a wink to the challenge, I replaced it with -E. Having used a golfer trick, the best I could do was to shorten <code>print</code> to <code>say</code>. :-)</p>
+
+<h1 id="challenge-2">Challenge #2</h1>
+
+<p>Write one-liner to solve FizzBuzz problem and print number 1-20. However, any number divisible by 3 should be replaced by the word fizz and any divisible by 5 by the word buzz. Numbers divisible by both become fizz buzz.</p>
+
+<p>This one works by modifying the string until what&rsquo;s we&rsquo;re left with is the expected result:</p>
+
+<pre><code>    perl -E '
+      say for map {
+        s/\d+/$&amp;%5?$&amp;:&quot;$&amp; buzz&quot;/e;
+        s/\d+/$&amp;%3?$&amp;:&quot;fizz$&amp;&quot;/e;
+        y/0-9//d if /\D/;
+        s/^ //;
+        $_;
+      } 1 .. 20
+    '
+</code></pre>
+
+<p>Same idea, but with a list, and each step being handled individually by a map expression:</p>
+
+<pre><code>   perl -E '
+     say for
+      map @$_ &gt; 1 ? join( $&quot;, splice @$_, 0, -1 ) : @$_,
+      map [ $_-&gt;[-1] % 3 ? @$_ : ( fizz =&gt; @$_ ) ],
+      map [ $_ % 5      ? $_  : ( buzz =&gt; $_ ) ],
+      1 .. 20
+   '
+</code></pre>
+
+<p>This one is the one I actually wanted to avoid writing: the simple enumeration of all possible case:</p>
+
+<pre><code>   perl -E '
+     say for map
+      $_ % 5 ? $_ % 3 ? $_
+        : &quot;fizz&quot;
+        : $_ % 3 ? &quot;buzz&quot;
+        : &quot;fizz buzz&quot;,
+     1 .. 20
+   '
+</code></pre>
+
+<p>And then I realized, the four cases can be seen as the four values of a two bit vector, and use that to index the array of all possible values:</p>
+
+<pre><code>   perl -E '
+     say for map
+      [ &quot;fizz buzz&quot; =&gt; buzz =&gt; fizz =&gt; $_ ]
+      -&gt;[ !!( $_ % 3 ) + !!( $_ % 5 ) * 2 ],
+      1 .. 20
+   '
+</code></pre>
+
+<p>We can shorten it a bit by using ! instead of !! and moving the values around:</p>
+
+<pre><code>  perl -E '
+    say for map
+     [ $_ =&gt; fizz =&gt; buzz =&gt; &quot;fizz buzz&quot; ]
+     -&gt;[ !( $_ % 3 ) + !( $_ % 5 ) * 2 ],
+     1 .. 20
+  '
+</code></pre>
+
+<p>Using the fact that a number is divisible by 5 if it ends with 0 or 5:</p>
+
+<pre><code>   perl -E '
+     say for map
+      [ $_ =&gt; fizz =&gt; buzz =&gt; &quot;fizz buzz&quot; ]
+      -&gt;[ !( $_ % 3 ) + /[50]$/ * 2 ],
+      1 .. 20
+   '
+</code></pre>
+
+                </div>
             </div>
         </div>
     </div>
