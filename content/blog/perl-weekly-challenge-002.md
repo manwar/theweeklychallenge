@@ -17,6 +17,6 @@ Last but not the least if you have any suggestions for future challenges then pl
 > Write a script or one-liner to remove leading zeros from positive numbers.
 
 ### Challenge #2
-> Write a script that can convert integers to and from a base35 representation, using the characters 0-9 and A-Y.
+> Write a script that can convert integers to and from a base35 representation, using the characters 0-9 and A-Y. **Dave Jacoby** came up with nice description about [base35](https://gist.github.com/jacoby/764bb4e8a5d3a819b5fbfa497fcb3454), in case you needed some background.
 
 Last date to submit the solution **6 pm (UK Time) Sunday 7th April 2019**.
