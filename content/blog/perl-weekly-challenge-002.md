@@ -14,7 +14,7 @@ Our aim is to engage the Perl community in sharing knowledge. You may find some 
 Last but not the least if you have any suggestions for future challenges then please do share with us. Good luck and have fun.
 
 ### Challenge #1
-> Write a script or one-liner to remove leading zeros from positive numbers.
+> Write a script or one-liner to remove leading zeros from positive integers.
 
 ### Challenge #2
 > Write a script that can convert numbers to and from a base35 representation, using the characters 0-9 and A-Y.
