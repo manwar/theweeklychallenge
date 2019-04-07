@@ -1,6 +1,6 @@
 ---
 title: "Perl Weekly Challenge - 003"
-date: 2019-04-07T23:55:55+00:00
+date: 2019-04-07T22:00:00+00:00
 description: "Perl Weekly Challenge - 003"
 type: post
 image: images/blog/pwc-base.svg
