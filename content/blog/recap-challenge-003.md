@@ -46,11 +46,9 @@ This [solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/c
 
 Here is [one](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-003/khalid/perl5/ch-2.pl) by **Khalid** displays the tree beautifully.
 
-There is one member, **Arne Sommer**, who is one those members, I always eagerly wait for the blog. His writing skill is brilliant.
-
 ## Blogs
 
-Following blogs have been reported last week. Each blog is a text book in itself as it teaches you so many things. I enjoyed reading each and every blog. Please do read them when you get time.
+Following blogs have been reported last week. Each blog is a text book in itself as it teaches you so many things. I enjoyed reading each and every blog. Please do read them when you get time. There is one member, **Arne Sommer**, who is one those members, I always eagerly wait for the blog. His writing skill is brilliant.
 
 ### Adam Russell
 https://adamcrussell.livejournal.com/948.html
