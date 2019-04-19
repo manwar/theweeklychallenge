@@ -1,5 +1,6 @@
 $(function() {
     $("#pwc_summary_1_30").click();
+    $("#pwc_leaders").click();
     $("#pwc_current").click();
 });
 
@@ -69,6 +70,23 @@ $("#pwc_summary_61_90").click(function() {
     xobj.send(null);
 
     $('#pwc-members-spinner').hide();
+});
+
+$("#pwc_leaders").click(function() {
+    $('#pwc-leaders-spinner').show();
+
+    var xobj = new XMLHttpRequest();
+    xobj.overrideMimeType("application/json");
+    xobj.open('GET', 'pwc-leaders.json', true);
+    xobj.onreadystatechange = function () {
+        if (xobj.readyState == 4 && xobj.status == "200") {
+            var response = JSON.parse(xobj.responseText);
+            $('#pwc_leaders_stats').highcharts(response);
+        }
+    };
+    xobj.send(null);
+
+    $('#pwc-leaders-spinner').hide();
 });
 
 $("#pwc_current").click(function() {
