@@ -105,7 +105,7 @@ Scimon built a Perl 6 library to solve the weekly challenge. Please take a look.
 
 ***
 
-> If you want to take a look at the real solutions to the last week challenge then please checkout the official GitHub [repository](https://github.com/manwar/perlweeklychallenge-club).
+> If you want to take a look at the real solutions to the last week challenge then please checkout the official GitHub [repository](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-005).
 
 ***
 
