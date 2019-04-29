@@ -99,6 +99,8 @@ Please check out Mark Senn mathematical explanation behind his solutions. Incred
 
 http://www.khanate.co.uk/blog/2019/04/26/perl-weekly-week-5/
 
+http://www.khanate.co.uk/blog/2019/04/26/perl-weekly-week-5-part-2/
+
 Scimon built a Perl 6 library to solve the weekly challenge. Please take a look.
 
 ***
