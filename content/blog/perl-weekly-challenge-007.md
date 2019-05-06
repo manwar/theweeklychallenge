@@ -54,6 +54,8 @@ However, there's a shortest ladder: ("cold", "cord", "card", "ward", "warm").
 
   2. If any of the input words is the wrong length (i.e., its length is different to a random from the word list) or isn't in the word list, return an empty list.
 
+#### DISCLAIMER: The challenge was proposed by Luis F. Uceta.
+
 ***
 ### Challenge #3
 
