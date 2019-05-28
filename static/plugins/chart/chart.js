@@ -2,7 +2,7 @@ $(function() {
     $("#pwc_summary_1_30").click();
     $("#pwc_leaders").click();
     $("#pwc_current").click();
-    $("#pwc_language_breakdown").click();
+    $("#pwc_language_breakdown_summary").click();
 });
 
 $("#pwc_summary").click(function() {
@@ -258,6 +258,23 @@ $("#pwc_challenge_001").click(function() {
     xobj.send(null);
 
     $('#pwc-challenges-spinner').hide();
+});
+
+$("#pwc_language_breakdown_summary").click(function() {
+    $('#pwc-language-breakdown-spinner').show();
+
+    var xobj = new XMLHttpRequest();
+    xobj.overrideMimeType("application/json");
+    xobj.open('GET', 'pwc-language-breakdown-summary.json', true);
+    xobj.onreadystatechange = function () {
+        if (xobj.readyState == 4 && xobj.status == "200") {
+            var response = JSON.parse(xobj.responseText);
+            $('#pwc_language_breakdown_summary_stats').highcharts(response);
+        }
+    };
+    xobj.send(null);
+
+    $('#pwc-language-breakdown-spinner').hide();
 });
 
 $("#pwc_language_breakdown").click(function() {
