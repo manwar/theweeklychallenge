@@ -22,7 +22,7 @@ Prior to that, I've had other jobs (among others, translator in technical, legal
 
 I must be a kind of serial **"take up your studies again"** activist, since I also followed later an executive MBA curriculum with the Concordia University in Montreal and graduated in 2006.
 
-Almost all my CS career so far has been in the telecommunication industry, working mainly for a tier-one telecommunication operator (mainly in the first of mobile phones). My main area of activity is data munging, data quality and data migration. I'm working very commonly with very large data sets, e.g. comparing data from files containing usually tens and even hundreds of millions of lines. This is one of the reasons I'm very concerned with performance problems, finding fast algorithms, etc.
+Almost all my CS career so far has been in the telecommunication industry, working mainly for a tier-one telecommunication operator (mainly in the field of mobile phones). My main area of activity is data munging, data quality and data migration. I'm working very commonly with very large data sets, e.g. comparing data from files containing usually tens and even hundreds of millions of lines. This is one of the reasons I'm very concerned with performance problems, finding fast algorithms, etc.
 
 ***
 ***
