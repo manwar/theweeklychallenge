@@ -9,7 +9,7 @@ tags: ["Perl5", "Perl6"]
 ---
 Welcome to the weekly series **"Meet The Champion"**.
 
-Today we are talking to the **"Perl Weekly Challenge - 015"** winner **Joelle Maslak**. I hope you are going to enjoy the interview.
+Last week we spoke to **Jaldhar H. Vyas**, the winner of **[Perl Weekly Challenge - 014](/blog/meet-the-champion-014)**. Today we are talking to the **"Perl Weekly Challenge - 015"** winner **Joelle Maslak**. I hope you are going to enjoy the interview.
 
 ***
 ***
