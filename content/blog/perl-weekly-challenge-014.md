@@ -7,7 +7,7 @@ image: images/blog/pwc-base.svg
 author: Mohammad S Anwar
 tags: ["Perl5", "Perl6"]
 ---
-Without any further delay, we would like to announce the winner of **Perl Weekly Challenge - 013** and the name is **Laurent Rosenfeld**. Many congratulations to Laurent. You should soon hear from **Pete Sergeant** about your reward. Please do let us know how you feel about it. For rest of the participants, I would say **Good Luck** for next time. Keep sending in your solutions and share your knowledge with each other.
+Without any further delay, we would like to announce the winner of **Perl Weekly Challenge - 013** and the name is **Laurent Rosenfeld**. Many congratulations to Laurent. You should soon hear from **[Perl Careers](https://perl.careers/)** about your reward. Please do let us know how you feel about it. For rest of the participants, I would say **Good Luck** for next time. Keep sending in your solutions and share your knowledge with each other.
 
 From next week, I am also going to participate in the weekly challenge as I am feeling left out. However I would **NOT** be taking part in the contest. Last but not the least, we have extended the deadline of submitting the solutions to midnight Sunday to give some extra time to the members.
 

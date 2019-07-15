@@ -15,7 +15,7 @@ tags: ["Perl5", "Perl6"]
 ***
 ***
 
-Let me announce the winner of **Perl Weekly Challenge - 016** and the name is **Adam Russell**. Many congratulations to **Adam**. You should soon hear from **Pete Sergeant** about your reward. Please do let us know how you feel about it. For rest of the participants, I would say **Good Luck** for next time. Keep sending in your solutions and share your knowledge with each other.
+Let me announce the winner of **Perl Weekly Challenge - 016** and the name is **Adam Russell**. Many congratulations to **Adam**. You should soon hear from **[Perl Careers](https://perl.careers/)** about your reward. Please do let us know how you feel about it. For rest of the participants, I would say **Good Luck** for next time. Keep sending in your solutions and share your knowledge with each other.
 
 ***
 ***
