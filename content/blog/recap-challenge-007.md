@@ -42,7 +42,7 @@ Arne always solved the challenges using **Perl 6**. His blog is very popular and
 Daniel solution to challenge #1 is readable and easy to follow. For challenge #2, he used Dijkstra algorithm like some other members but very well commented code. [[#1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-007/daniel-mantovani/perl5/ch-1.pl)] [[#2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-007/daniel-mantovani/perl5/ch-2.pl)]
 
 ### Dave Jacoby
-![Dave Jacoby](/images/team/user.jpg)
+![Dave Jacoby](/images/team/dave_jacoby.jpg)
 
 Dave solved the challenge #1 with the help of CPAN module List::Util. However the solution to the challenge #2 has many interesting points e.g. Storable and Graph. Checkout his well designed blog as well. [[#1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-007/dave-jacoby/perl5/ch-1.pl)] [[#2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-007/dave-jacoby/perl5/ch-2.pl)] [[BLOG #1](https://jacoby.github.io//2019/05/06/niven-numbers-in-perl-and-javascript.html)] [[BLOG #2](https://jacoby.github.io//2019/05/06/rethinking-my-ladder-puzzle-code.html)]
 

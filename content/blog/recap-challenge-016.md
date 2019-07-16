@@ -55,7 +55,7 @@ Daniel approached the **Task #1** as pure mathematical problem. For Bitcoin task
 ***
 
 ### Dave Jacoby
-![Dave Jacoby](/images/team/user.jpg)
+![Dave Jacoby](/images/team/dave_jacoby.jpg)
 
 A very interesting take on **Task #1** by Dave.
 [[P5 #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/dave-jacoby/perl5/ch-1.pl)]

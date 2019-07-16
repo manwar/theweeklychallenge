@@ -42,7 +42,7 @@ Athanasius solution for Fahrenheit-Celcius challenge is nicely structured. For t
 Daniel only solved the first challenge Fahrenheit-Celcius challenge this time. His approach is really interesting. [[#1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/daniel-mantovani/perl5/ch-1.pl)]
 
 ### Dave Jacoby
-![Dave Jacoby](/images/team/user.jpg)
+![Dave Jacoby](/images/team/dave_jacoby.jpg)
 
 Dave, as always, came up with full descriptive solution to the Farhenheit-Celcius challenge. He skipped the Identity Matrix challenge, instead solved the optional API challenge. Checkout his blog. [[#1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/dave-jacoby/perl5/ch-1.pl)] [[#3](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/dave-jacoby/perl5/ch-3.pl)] [[BLOG](https://jacoby.github.io//2019/06/04/two-technical-posts-about-temperature-kinda.html)]
 

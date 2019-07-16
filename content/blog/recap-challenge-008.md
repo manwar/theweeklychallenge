@@ -42,7 +42,7 @@ Arne Sommer blog is as usual at its best. Highly recommended. [[BLOG](https://pe
 Daniel is using all the trick in the book to solve the perfect numbers challenge. [[#1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-008/daniel-mantovani/perl5/ch-1.pl)] [[#2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-008/daniel-mantovani/perl5/ch-2.pl)].
 
 ### Dave Jacoby
-![Dave Jacoby](/images/team/user.jpg)
+![Dave Jacoby](/images/team/dave_jacoby.jpg)
 
 Dave again came up with his unique style to solve the challenges. [[#1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-008/dave-jacoby/perl5/ch-1.pl)] [[#2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-008/dave-jacoby/perl5/ch-2.pl)] [[BLOG1](https://jacoby.github.io//2019/05/15/finding-perfect-numbers-in-perl.html)] [[BLOG2](https://jacoby.github.io//2019/05/15/centering-text-in-perl.html)].
 

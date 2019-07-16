@@ -44,7 +44,7 @@ Athanasius solution to Euclid number challenge is focussed on a very complex reg
 Daniel solutions to both Euclid number and Common path challenges are full of complete inline comments to make the code reading fun. [[#1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-012/daniel-mantovani/perl5/ch-1.pl)] [[#2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-012/daniel-mantovani/perl5/ch-2.pl)]
 
 ### Dave Jacoby
-![Dave Jacoby](/images/team/user.jpg)
+![Dave Jacoby](/images/team/dave_jacoby.jpg)
 
 Dave always present the solution like a kids play. He has the ability to make the difficult challenge appears easy. [[#1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-012/dave-jacoby/perl5/ch-1.pl)] [[#2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-012/dave-jacoby/perl5/ch-2.pl)] [[BLOG1](https://jacoby.github.io//2019/06/12/euclid-and-reduce.html)] [[BLOG2](https://jacoby.github.io//2019/06/11/common-paths-and-an-issue-with-postderef.html)]
 

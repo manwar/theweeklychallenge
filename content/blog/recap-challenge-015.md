@@ -39,7 +39,7 @@ I am a big fan of **CPAN**. Every time I see someone use CPAN module to solve th
 Daniel came up with his special sub is_prime(). Please do check out. I have become a fan of him now. [[#1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-015/daniel-mantovani/perl5/ch-1.pl)] [[#2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-015/daniel-mantovani/perl5/ch-2.pl)]
 
 ### Dave Jacoby
-![Dave Jacoby](/images/team/user.jpg)
+![Dave Jacoby](/images/team/dave_jacoby.jpg)
 
 Dave raised a question in the beginning that really made me think again. Is 2 a prime number? [[#1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-015/dave-jacoby/perl5/ch-1.pl)] [[#2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-015/dave-jacoby/perl5/ch-2.pl)] [[#3](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-015/dave-jacoby/perl5/ch-3.pl)] [[BLOG](https://jacoby.github.io/2019/07/01/perl-weekly-challenge-015.html)]
 

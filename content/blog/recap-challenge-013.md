@@ -39,7 +39,7 @@ For the first, Athanasius blogged about his solutions to the Perl Weekly Challen
 I love the comment in the source code. It is so much fun and very informative. [[#1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-013/daniel-mantovani/perl5/ch-1.pl)] [[#2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-013/daniel-mantovani/perl5/ch-2.pl)]
 
 ### Dave Jacoby
-![Dave Jacoby](/images/team/user.jpg)
+![Dave Jacoby](/images/team/dave_jacoby.jpg)
 
 Dave literaly wrote this blog while attending the keynote by Sawyer X at TPCiP. You can't afford to miss his blog. [[#1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-013/dave-jacoby/perl5/ch-1.pl)] [[#2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-013/dave-jacoby/perl5/ch-2.pl)] [[BLOG](https://jacoby.github.io//2019/06/19/yeah-about-challenge-13.html)]
 

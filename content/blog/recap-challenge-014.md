@@ -41,7 +41,7 @@ I love the way Athanasius play with regex. He is so good at it. His Van Eck's so
 I like the way Daniel explains the nitty-gritty through the comment. It makes code reading so fun. [[#1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-014/daniel-mantovani/perl5/ch-1.pl)] [[#2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-014/daniel-mantovani/perl5/ch-1.pl)]
 
 ### Dave Jacoby
-![Dave Jacoby](/images/team/user.jpg)
+![Dave Jacoby](/images/team/dave_jacoby.jpg)
 
 Dave made is so simple with the use of list  (array) to solve the Van Eck's sequence challenge. [[#1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-014/dave-jacoby/perl5/ch-1.pl)] [[#2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-014/dave-jacoby/perl5/ch-2.pl)]
 
