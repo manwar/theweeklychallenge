@@ -98,7 +98,7 @@ Check out current [team](/team) members.
 
 > For example:  **jdbc:mysql://user:password@localhost:3306/pwc?profile=true#h1**
 
->>       scheme:   jdbc:mysql
+>>       scheme:   jdbc
 >>       userinfo: user:password
 >>       host:     localhost
 >>       port:     3306
