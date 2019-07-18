@@ -96,7 +96,7 @@ Check out current [team](/team) members.
 
 >> **scheme:[//[userinfo@]host[:port]]path[?query][#fragment]**
 
-> For example:  **jdbc:mysql://user:password@localhost:3306/pwc?profile=true#h1**
+> For example:  **jdbc://user:password@localhost:3306/pwc?profile=true#h1**
 
 >>       scheme:   jdbc
 >>       userinfo: user:password
