@@ -29,7 +29,7 @@ Last but not the least, keep contributing to the weekly challenge, making sure w
 ***
 ***
 
-Watch this space for Damian's blog about **Perl Weekly Challenge**. Damian picked up the **Vigenere Cipher** task of [Perl Weekly Challenge - 015](/blog/perl-weekly-challenge-015). The best part of the blog was history of **Vigenere Cipher**.
+Watch this space for Damian's [blog](http://blogs.perl.org/users/damian_conway/2019/07/vigenere-vs-vigenere.html) about **Perl Weekly Challenge**. Damian picked up the **Vigenere Cipher** task of [Perl Weekly Challenge - 015](/blog/perl-weekly-challenge-015). The best part of the blog was history of **Vigenere Cipher**.
 
 ***
 ***
