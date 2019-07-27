@@ -43,7 +43,7 @@ Some notable solutions that caught our attention. The recursion subroutine of **
     }
 ```
 
-Another interesting Perl trick we found in **Joelle Maslak**'s [solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/joelle-maslak/perl5/ch-1.pl). Note the last two lines of the subroutine which was an implementation of a [pure Perl tail call optimization](https://www.perlmonks.org/?node_id=161611). The [`goto &NAMED_SUBROUTINE`](https://perldoc.perl.org/functions/goto.html) form immediately exists the current subroutine and calls the named subroutine with new values of [`@_`](https://perldoc.perl.org/perlvar.html#@_).
+Another interesting Perl trick we found in **Joelle Maslak**'s [solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/joelle-maslak/perl5/ch-1.pl). Note the last two lines of the subroutine which was an implementation of a [pure Perl tail call optimization](https://www.perlmonks.org/?node_id=161611). The [`goto &NAMED_SUBROUTINE`](https://perldoc.perl.org/functions/goto.html) form immediately exits the current subroutine and calls the named subroutine with new values of [`@_`](https://perldoc.perl.org/perlvar.html#@_).
 
 ```perl
     sub up_arrow($m, $num_arrows, $n) {
@@ -91,7 +91,7 @@ Some **CPAN** modules used to parse the URL from the submitted answers includes 
 
 We believed this was the first time where three participants submitted their solutions through the implementation of a parser. **Adam Russell** [done this](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-017/adam-russell/perl5) through [`Parse::Yapp`](https://metacpan.org/pod/Parse::Yapp). **E. Choroba** took an [alternative way](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/e-choroba/perl5/ch-2.pl) using [`Marpa::R2`](https://metacpan.org/pod/Marpa::R2). And lastly, **Joelle Maslak** [solved this](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/joelle-maslak/perl5/ch-2.pl) using [`Parse::RecDescent`](https://metacpan.org/pod/Parse::RecDescent).
 
-It may have seemed over-engineered, but we love to see creative and alternative solutions and tricks using Perl for every weekly challenge.
+It may seemed over-engineered, but we love to see creative and alternative solutions and tricks using Perl for every weekly challenge.
 
 If you're interested in parsing in Perl, **Adam Russell** [recommended](https://adamcrussell.livejournal.com/5707.html) that you should start with this book, [Pro Perl Parsing](https://www.apress.com/us/book/9781590595046).
 
@@ -103,7 +103,7 @@ Compare to last week, we've more submissions this week for **Perl 5** ([Adam Rus
 
 If you want to learn how to use [OAuth](https://en.wikipedia.org/wiki/OAuth) with Perl, go through all the submitted answers to learn how it was done.
 
-In our [previous challenge](https://perlweeklychallenge.org/blog/review-challenge-015/), **Neil Bowers** created a new **CPAN** module to solve this task. And this week, it was **Jaldhar H. Vyas** turn to [create](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/jaldhar-h-vyas/perl5/ch-3.pl) a whole **CPAN** module, `WWW::Bhagavadgita` (he will upload to **CPAN** later) as part of his solution. Similarly for Perl 6, **Randy Lauen** have created a [Perl 6 package](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/randy-lauen/perl6/BhagavadGita.pm6) to solve this solution. Comparing Perl 5 with `Moo` and Perl 6 solution, it made us wonder if Perl 6 would be a good replacement or successor for web development these days?
+In our [previous challenge](https://perlweeklychallenge.org/blog/review-challenge-015/), **Neil Bowers** created a new **CPAN** module to solve this task. And this week, it was **Jaldhar H. Vyas** turn to [create](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/jaldhar-h-vyas/perl5/ch-3.pl) a whole **CPAN** module, `WWW::Bhagavadgita` (he will upload to **CPAN** later) as part of his solution. Similarly for **Perl 6**, **Randy Lauen** have created a [Perl 6 package](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/randy-lauen/perl6/BhagavadGita.pm6) to solve this solution. Comparing **Perl 5** with `Moo` and **Perl 6** solution, it made us wonder if **Perl 6** would be a good replacement or successor for web development these days?
 
 And for those who haven't try this optional task, feel free to give it a shot, either in **Perl 5** or **Perl 6**.
 
@@ -119,11 +119,11 @@ Read how he optimized the **Task #1** using different strategies in both **Perl 
 
 (2) [Ackerman, URL and Perl 6](https://perl6.eu/ackerman-url.html) by **Arne Sommer**.
 
-The usual step-by-step code in **Perl 6**. As what the he demonstrated, **Perl 6** grammar is definitely a better choice than regular expression for parsing.
+The usual step-by-step code in **Perl 6**. As what he demonstrated, **Perl 6** grammar is definitely a better choice than regular expression for parsing.
 
 (3) [Perl Weekly Challenge 017 Parsing with Parse::Yapp and using the Bhagavad Gita API](https://adamcrussell.livejournal.com/5707.html) by **Adam Russell**.
 
-If you're interesting in parsing with Perl, read how he solved the **Task #2** using a parser. The visualization of the grammar was a nice touch to the submitted solution.
+If you're interested in parsing with Perl, read how he solved the **Task #2** using a parser. The visualization of the grammar was a nice touch to the submitted solution.
 
 (4) [Thoughts on Perl Weekly Challenge 17](https://jacoby.github.io/2019/07/16/thoughts-on-perl-weekly-challenge-17.html) by **Dave Jacoby**.
 
