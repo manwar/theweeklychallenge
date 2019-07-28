@@ -198,6 +198,16 @@ Kevin attempted to solve the tricky task this time. With the help of **Perl6** m
 
 ***
 
+### Mark Senn
+![Mark Senn](/images/team/mark_senn.jpg)
+
+Welcome back Mark after a short break. Glad that you managed to blog about your solutions as well.
+[[P6 #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/mark-senn/perl6/ch-1.p6)]
+[[P6 #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/mark-senn/perl6/ch-2.p6)]
+[[BLOG #1](https://engineering.purdue.edu/~mark/pwc-018.pdf)]
+
+***
+
 ### Martin Barth
 ![Martin Barth](/images/team/user.jpg)
 
