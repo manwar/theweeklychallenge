@@ -344,6 +344,7 @@ Roger showed his **Perl6** for the first time. I was pleasantly surprised to see
 [[P5 #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-019/roger-bell-west/perl5/ch-2.pl)]
 [[P6 #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-019/roger-bell-west/perl6/ch-1.p6)]
 [[P6 #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-019/roger-bell-west/perl6/ch-2.p6)]
+[[BLOG #1](https://blog.firedrake.org/archive/2019/08/Perl_Weekly_Challenge_19.html)]
 
 ***
 
