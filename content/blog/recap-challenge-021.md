@@ -77,6 +77,14 @@ Watch this space for Damian's [blog](http://blogs.perl.org/users/damian_conway/2
 
 ***
 
+### Duncan C. White
+![Duncan C. White](/images/team/duncan_white.jpg)
+
+[[P5 #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-021/duncan-c-white/perl5/ch-1.pl)]
+[[P5 #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-021/duncan-c-white/perl5/ch-2.pl)]
+
+***
+
 ### E. Choroba
 ![E. Choroba](/images/team/e-choroba.jpg)
 
