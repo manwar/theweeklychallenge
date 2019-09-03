@@ -37,15 +37,13 @@ Last week we spoke to **Ruben Westerberg**, the winner of **[Perl Weekly Challen
 
 **Mohammad:** What do you like the most about **"Perl Weekly Challenge"**?
 
-**Kian-Meng:** I do enjoy [code reading](https://en.wikipedia.org/wiki/Code_Reading) and PWC allows me to read and review different solutions by numerous participants from various
-backgrounds. It allows me to tap into the knowledge, ideas, and coding styles of these participants. Furthermore, I can write more to improve my writing skill.
+**Kian-Meng:** I do enjoy [code reading](https://en.wikipedia.org/wiki/Code_Reading) and PWC allows me to read and review different solutions by numerous participants from various backgrounds. It allows me to tap into the knowledge, ideas, and coding styles of these participants. Furthermore, I can write more to improve my writing skill.
 
 ***
 
 **Mohammad:** Is there any thing you would like to change?
 
-**Kian-Meng:** More challenges that can show case certain features of Perl
-programming language itself or CPAN modules, be it Perl 5 or Perl 6.
+**Kian-Meng:** More challenges that can show case certain features of Perl programming language itself or CPAN modules, be it Perl 5 or Perl 6.
 
 ***
 
@@ -57,17 +55,13 @@ programming language itself or CPAN modules, be it Perl 5 or Perl 6.
 
 **Mohammad:** Do you checkout others solutions and who is your favourite?
 
-**Kian-Meng:** Yeah but mostly on Perl 5 solutions since I'm writing a weekly
-review for each challenge. No particular favourite but solutions by
-participants who have been mentioned (you know who you are) in the weekly
-review are worth looking into.
+**Kian-Meng:** Yeah but mostly on Perl 5 solutions since I'm writing a weekly review for each challenge. No particular favourite but solutions by participants who have been mentioned (you know who you are) in the weekly review are worth looking into.
 
 ***
 
 **Mohammad:** What do you suggest someone just started the weekly challenge?
 
-**Kian-Meng:** Just start. Pick a task, solve it, and submit your answer. Do it
-every week.
+**Kian-Meng:** Just start. Pick a task, solve it, and submit your answer. Do it every week.
 
 ***
 
