@@ -19,7 +19,7 @@ Last week we spoke to **Kian-Meng Ang**, the winner of **[Perl Weekly Challenge 
 
 **Mohammad:** Tell us about your technical background?
 
-**Athanasius:** Learned some programming at school, first on an HP-65 calculator and then using Fortran IV on punch cards! Later taught myself BASICA on an IBM-XT. Did a BA in Philosophy of Religion at the University of Queensland. Later, came back to study (this time at Griffith University) as a mature age student and earned a BInfTech. Work experience in multimedia, mostly in C++, also some Java.
+**Athanasius:** Learned some programming at school, first on an HP-65 calculator and then using Fortran IV on punch cards! Later taught myself BASICA on an IBM PC-XT. Did a BA in Philosophy of Religion at the University of Queensland. Later, came back to study (this time at Griffith University) as a mature age student and earned a BInfTech. Work experience in multimedia, mostly in C++, also some Java.
 
 ***
 
