@@ -142,6 +142,14 @@ In continuation to his earlier [blog](http://blogs.perl.org/users/damian_conway/
 
 ***
 
+### Mark Senn
+![Mark Senn](/images/team/mark_senn.jpg)
+
+[[P6 #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-026/mark-senn/perl6/ch-1.p6)]
+[[P6 #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-026/mark-senn/perl6/ch-2.p6)]
+
+***
+
 ### Markus Holzer
 ![Markus Holzer](/images/team/user.jpg)
 
