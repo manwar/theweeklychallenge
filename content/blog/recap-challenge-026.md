@@ -78,6 +78,14 @@ In continuation to his earlier [blog](http://blogs.perl.org/users/damian_conway/
 
 ***
 
+### Colin Crain
+![Colin Crain](/images/team/user.jpg)
+
+[[P5 #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-026/colin-crain/perl5/ch-1.pl)]
+[[P5 #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-026/colin-crain/perl5/ch-2.pl)]
+
+***
+
 ### Daniel Mantovani
 ![Daniel Mantonvani](/images/team/daniel_mantovani.jpg)
 
