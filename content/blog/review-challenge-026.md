@@ -1,9 +1,9 @@
 ---
 title: "Kian-Meng Ang Weekly Review: Challenge - 026"
-date: 2019-09-26T00:03:00+00:00
+date: 2019-09-29T00:03:00+00:00
 description: "Kian-Meng Ang Weekly Review: Challenge - #026."
 type: post
-image: images/blog/blog-header-15.jpg
+image: images/blog/blog-header-20.jpg
 author: Kian-Meng Ang
 tags: ["Perl5", "Perl6"]
 ---
@@ -14,18 +14,15 @@ Feel free to [submit a merge request or open a ticket](https://github.com/manwar
 
 For a quick overview, go through the [original tasks](/blog/perl-weekly-challenge-026/) and [recap](/blog/recap-challenge-026/) of the weekly challenge.
 
-
 ***
 ### Task #1
 ***
 
 **CPAN** modules used: [`Const::Fast`](https://metacpan.org/pod/Const::Fast), [`Getopt::Long`](https://metacpan.org/pod/Getopt::Long), [`List::Util`](https://metacpan.org/pod/List::Util), [`Test::More`](https://metacpan.org/pod/Test::More), [`feature`](https://metacpan.org/pod/feature), [`strict`](https://metacpan.org/pod/strict), [`warnings`](https://metacpan.org/pod/warnings)
 
-As with past challenges, simple task will lead to diverse solution. Sometimes
-straight forward task is harder if we want to do thing differently.
+As with past challenges, simple task will lead to diverse solution. Sometimes straight forward task is harder if we want to do thing differently.
 
-Let's start with participants with simple and naive approach. No one-liner or
-fancy approach. [Lubos Kolouch](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-026/lubos-kolouch/perl5/ch-1.pl) took such approach and it's a good solution to use as baseline for our comparison.
+Let's start with participants with simple and naive approach. No one-liner or fancy approach. [Lubos Kolouch](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-026/lubos-kolouch/perl5/ch-1.pl) took such approach and it's a good solution to use as baseline for our comparison.
 
 [Duane Powell](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-026/duane-powell/perl5/ch-1.pl) took used regex substitution and count approach to solve this task. Similarly for [Daniel Mantovani](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-026/daniel-mantovani/perl5/ch-1.pl) but with a shorter one-liner version and [E. Choroba](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-026/e-choroba/perl5/ch-1.pl) with test cases.
 
@@ -54,7 +51,7 @@ Both [Adam Russell](https://github.com/manwar/perlweeklychallenge-club/blob/mast
 
 **CPAN** modules used: [`Const::Fast`](https://metacpan.org/pod/Const::Fast), [`Data::Types`](https://metacpan.org/pod/Data::Types), [`Getopt::Long`](https://metacpan.org/pod/Getopt::Long), [`List::Util`](https://metacpan.org/pod/List::Util), [`Math::Trig`](https://metacpan.org/pod/Math::Trig), [`Test::More`](https://metacpan.org/pod/Test::More), [`constant`](https://metacpan.org/pod/constant), [`feature`](https://metacpan.org/pod/feature), [`strict`](https://metacpan.org/pod/strict), [`utf8`](https://metacpan.org/pod/utf8), [`warnings`](https://metacpan.org/pod/warnings)
 
-We can generally divided the submitted solutions into two groups, those who used [`Math::Trig`](https://metacpan.org/pod/Math::Trig) CPAN module to do the degree to radian or vice versa conversion and those who don't.
+We can generally divided the submitted solutions into two groups, those who used [`Math::Trig`](https://metacpan.org/pod/Math::Trig) **CPAN** module to do the degree to radian or vice versa conversion and those who don't.
 
 For this task, start with the solution by [Daniel Mantovani](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-026/daniel-mantovani/perl5/ch-2.pl) and [Joelle Maslak](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-026/joelle-maslak/perl5/ch-2.pl). The former have good written comment to let you have an overview of the problem and solution and the later served as a good comparison. Both solutions were just a top to bottom plain script with no subroutine. This was followed by solution [Roger Bell West](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-026/roger-bell-west/perl5/ch-2.pl) which shared similar coding style but at a very condense code.
 
@@ -64,34 +61,28 @@ Even further refinement, look no further at the solution by [Laurent Rosenfeld](
 
 Some interesting stuff that caught our attention.
 
-This was the first time we notice that organiser [MANWAR](https://metacpan.org/author/MANWAR)'s CPAN module, [`Data::Types`](https://metacpan.org/pod/Data::Types) was used by a participant as observed in the solution by [Athanasius](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-026/athanasius/perl5/ch-2.pl). Good that some participants tried to use different CPAN modules to solve the task.
+This was the first time we notice that organiser [MANWAR](https://metacpan.org/author/MANWAR)'s **CPAN** module, [`Data::Types`](https://metacpan.org/pod/Data::Types) was used by a participant as observed in the solution by [Athanasius](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-026/athanasius/perl5/ch-2.pl). Good that some participants tried to use different **CPAN** modules to solve the task.
 
-Sometimes it's nice to the explicit about what subroutines being imported when using a CPAN module as observed in the code by [Andrezgz](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-026/andrezgz/perl5/ch-2.pl).
+Sometimes it's nice to the explicit about what subroutines being imported when using a **CPAN** module as observed in the code by [Andrezgz](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-026/andrezgz/perl5/ch-2.pl).
 
 ```perl
 use Math::Trig qw/rad2deg deg2rad/;
 ```
 
 ***
-### See Also
+### SEE ALSO
 ***
 
-(1) [Stones and Jewels](http://donaldh.wtf/2019/09/stones-and-jewels/) by Donald Hunter
+(1) [Perl Weekly Challenge 026](https://adamcrussell.livejournal.com/9318.html) by **Adam Russell**
 
+(2) [String Angling with Perl 6](https://perl6.eu/string-angling.html) by **Arne Sommer**
 
-(2) [String Angling with Perl 6](https://perl6.eu/string-angling.html) by Arne Sommer
+(3) [Stones and Jewels](http://donaldh.wtf/2019/09/stones-and-jewels/) by **Donald Hunter**
 
+(4) [Perl Weekly Challenge 026: Stones and Jewels; Mean of Angles](http://blogs.perl.org/users/e_choroba/2019/09/perl-weekly-challenge-026-stones-and-jewels-mean-of-angles.html) by **E. Choroba**
 
-(3) [Perl Weekly Challenge 026](https://adamcrussell.livejournal.com/9318.html) by Adam Russell
+(5) [Perl Weekly Challenge: Week 26](https://www.braincells.com/perl/2019/09/perl_weekly_challenge_week_26.html) by **Jaldhar H. Vyas**
 
+(6) [Perl Weekly Challenge 26: Common Letters and Mean Angles](http://blogs.perl.org/users/laurent_r/2019/09/perl-weekly-challenge-26-common-letters-and-mean-angles.html) by **Laurent Rosenfeld**
 
-(4) [Perl Weekly Challenge 26: Common Letters and Mean Angles](http://blogs.perl.org/users/laurent_r/2019/09/perl-weekly-challenge-26-common-letters-and-mean-angles.html) by Laurent Rosenfeld
-
-
-(5) [Perl Weekly Challenge: Week 26](https://www.braincells.com/perl/2019/09/perl_weekly_challenge_week_26.html) by Jaldhar H. Vyas
-
-
-(6) [Perl Weekly Challenge 26](https://blog.firedrake.org/archive/2019/09/Perl_Weekly_Challenge_26.html) by Roger Bell West
-
-
-(7) [Perl Weekly Challenge 026: Stones and Jewels; Mean of Angles](http://blogs.perl.org/users/e_choroba/2019/09/perl-weekly-challenge-026-stones-and-jewels-mean-of-angles.html) by E. Choroba
+(7) [Perl Weekly Challenge 26](https://blog.firedrake.org/archive/2019/09/Perl_Weekly_Challenge_26.html) by **Roger Bell_West**
