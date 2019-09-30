@@ -15,7 +15,7 @@ tags: ["Perl5", "Perl6"]
 ***
 ***
 
-The [**Hacktoberfest**](https://hacktoberfest.digitalocean.com/) fever is already gone viral. I am convinced you must have heard of the contest by now. If you are **Perl Weekly Chllange** regular then you need not worry as doing just the weekly challenge in the month of **October** is enough to cross the line.
+The [**Hacktoberfest**](https://hacktoberfest.digitalocean.com/) fever is already gone viral. I am convinced you must have heard of the contest by now. If you are **Perl Weekly Challenge** regulars then you need not worry as doing just the weekly challenge in the month of **October** is enough to cross the line.
 
 I have written a [**blog**](http://blogs.perl.org/users/mohammad_s_anwar/2019/09/hacktoberfest-with-perl-weekly-challenge.html) with suggestions/tips.
 
