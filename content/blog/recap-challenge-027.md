@@ -23,7 +23,7 @@ Last but not the least, keep contributing to the weekly challenge, making sure w
 
 ## Centurion Club
 
-1) Laurent Rosenfeld (**328**)
+1) Laurent Rosenfeld (**330**)
 
 2) Joelle Maslak (**282**)
 
@@ -39,7 +39,7 @@ Last but not the least, keep contributing to the weekly challenge, making sure w
 
 8) E. Choroba (**136**)
 
-9) Kian-Meng Ang (**134**)
+9) Kian-Meng Ang (**136**)
 
 10) Scimon Proctor (**114**)
 
