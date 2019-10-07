@@ -140,7 +140,7 @@ Watch this space for **Damian**'s magical blog.
 ***
 
 ### Kivanc Yazan
-![Kivanc Yazan](/images/team/user.jpg)
+![Kivanc Yazan](/images/team/kivanc.jpg)
 
 [[P5 #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-028/kivanc-yazan/perl5/ch-1.pl)]
 [[P5 #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-028/kivanc-yazan/perl5/ch-2.pl)]
