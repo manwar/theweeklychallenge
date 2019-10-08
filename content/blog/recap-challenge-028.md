@@ -75,7 +75,7 @@ Watch this space for **Damian**'s magical blog.
 ***
 
 ### Andrezgz
-![Andrezgz](/images/team/user.jpg)
+![Andrezgz](/images/team/andrezgz.jpg)
 
 [[P5 #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-028/andrezgz/perl5/ch-1.pl)]
 [[P5 #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-028/andrezgz/perl5/ch-2.pl)]
