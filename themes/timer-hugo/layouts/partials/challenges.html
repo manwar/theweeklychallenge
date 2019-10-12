@@ -1,0 +1,25 @@
+{{ if .Site.Data.challenges.enable }}
+{{ "<!-- Challenges Section Start -->" | safeHTML }}
+<section id="challenges">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                {{ with .Site.Data.challenges.title }}<h2 class="subtitle text-center">{{ . }}</h2>{{ end }}
+            </div>
+            {{ range $index, $element:= .Site.Data.challenges.members }}
+            <div class="col-md-2 col-sm-6">
+                {{ $delay := mul $index 100 }}
+                <div class="team-member wow fadeInLeft" data-wow-duration="500ms" data-wow-delay="{{ $delay }}ms">
+                    <p class="social-icons">
+                        {{ with .url }}<a href="{{ . }}">{{ end }}
+                        <img src="/images/blog/PWC_thumb.png"></a>
+                        {{ with .name }}<h3 class="team_name">{{ . }}</h3>{{ end }}
+                    </p>
+                </div>
+            </div>
+            {{ end }}
+        </div>
+    </div>
+</section>
+{{ "<!-- Challenges Section End -->" | safeHTML }}
+{{ end }}
