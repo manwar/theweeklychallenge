@@ -3,7 +3,7 @@ title: "RECAP - Perl Weekly Challenge - 028"
 date: 2019-10-06T10:00:00+00:00
 description: "My personal take on the Challenge #028."
 type: post
-image: images/blog/blog-wk-28.jpg
+image: images/blog/recap-challenge-028.jpg
 author: Mohammad S Anwar
 tags: ["Perl5", "Perl6"]
 ---

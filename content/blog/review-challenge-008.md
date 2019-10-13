@@ -3,9 +3,9 @@ title: "Kian-Meng Ang Weekly Review: Challenge - 008"
 date: 2019-05-22T10:00:00+00:00
 description: "Kian-Meng Ang Review Challenge #008."
 type: post
-image: images/blog/blog-header-2.jpg
+image: images/blog/p5-review-challenge-008.jpg
 author: Kian-Meng Ang
-tags: ["Perl5", "Perl6"]
+tags: ["Perl5"]
 ---
 
 Follow up on this week review of the Perl Weekly Challenge #008 of answers submitted by all the participants. Read the [full question list](https://perlweeklychallenge.org/blog/perl-weekly-challenge-008/) and the [recap of the challenge](https://perlweeklychallenge.org/blog/recap-challenge-008/) to have an overview before we proceed with our review.

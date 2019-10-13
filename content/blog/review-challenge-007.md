@@ -3,9 +3,9 @@ title: "Weekly Review: Perl Weekly Challenge - 007"
 date: 2019-05-13T16:00:00+00:00
 description: "Kian-Meng Ang Review Challenge #007."
 type: post
-image: images/blog/blog-header-1.jpg
+image: images/blog/p5-review-challenge-007.jpg
 author: Kian-Meng Ang
-tags: ["Perl5", "Perl6"]
+tags: ["Perl5"]
 ---
 Below is the write-up review (only covers Perl 5) of the Perl Weekly Challenge #007 of all the submitted answers. You can read the [original questions](/blog/perl-weekly-challenge-007/) first to understand the details of these two challenges.
 

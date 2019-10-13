@@ -3,9 +3,9 @@ title: "Kian-Meng Ang Weekly Review: Challenge - 025"
 date: 2019-09-22T00:00:00+00:00
 description: "Kian-Meng Ang Weekly Review: Challenge - #025."
 type: post
-image: images/blog/blog-header-19.jpg
+image: images/blog/p5-review-challenge-025.jpg
 author: Kian-Meng Ang
-tags: ["Perl5", "Perl6"]
+tags: ["Perl5"]
 ---
 ***
 Continues from [previous week](/blog/review-challenge-024/).
