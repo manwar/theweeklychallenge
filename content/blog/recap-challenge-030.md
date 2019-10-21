@@ -257,7 +257,7 @@ Watch this space for **Damian**'s magical blog.
 ***
 
 ### Maxim Kolodyazhny
-![Maxim Kolodyazhny](/images/team/user.jpg)
+![Maxim Kolodyazhny](/images/team/maxim_kolodyazhny.jpg)
 
 [[P5 #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/maxim-kolodyazhny/perl5/ch-1.pl)]
 [[P5 #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/maxim-kolodyazhny/perl5/ch-2.pl)]
