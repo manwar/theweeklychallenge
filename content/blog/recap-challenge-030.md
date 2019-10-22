@@ -344,7 +344,7 @@ Watch this space for **Damian**'s magical blog.
 ***
 
 ### Kevin Colyer
-![Kevin Colyer](/images/team/user.jpg)
+![Kevin Colyer](/images/team/kevin_colyer.jpg)
 
 [[P6 #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/kevin-colyer/perl6/ch-1.p6)]
 [[P6 #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/kevin-colyer/perl6/ch-2.p6)]
