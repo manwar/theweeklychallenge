@@ -5,12 +5,12 @@ description: "Damian Conway's Blog."
 type: post
 image: images/blog/damian-corner.jpg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl6"]
 ---
 
 Damian Conway wrote a blog in the last week of **May 2019** and confessed that he has been quietly playing at home with **"Perl Weekly Challenge"**. With this started the regular blog by him picking weekly challenge and presenting his views.
 
-I didn't want to loose the track of all his great work, so I decided to put together his blog dealing with various challenges in one place. It would be a great read for anyone interested in the detailed analysis.
+I didn't want to loose the track of all his great work, so I decided to put together all his blogs dealing with various challenges in one place. It would be a great read for anyone interested in the detailed analysis.
 
 ---
 ---
