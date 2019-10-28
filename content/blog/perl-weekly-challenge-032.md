@@ -49,7 +49,7 @@ If you missed any past reviews then please checkout the [**collection**](/p5-rev
 
 Please checkout **Perl6** solutions review of the [**"Perl Weekly Challenge - 030"**](/blog/p6-review-challenge-030) by **Laurent Rosenfeld**.
 
-**Laurent** also reviewd [**"Perl Weekly Challenge - 003"**](/blog/p6-review-challenge-003) and [**Perl Weekly Challenge - 014**](/blog/p6-review-challenge-014).
+**Laurent** also reviewed **Perl6** solutions of [**"Perl Weekly Challenge - 003"**](/blog/p6-review-challenge-003) and [**"Perl Weekly Challenge - 014"**](/blog/p6-review-challenge-014).
 
 If you missed any past reviews then please checkout the [**collection**](/p6-reviews).
 
