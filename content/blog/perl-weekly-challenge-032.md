@@ -73,9 +73,9 @@ I would like to thank every member of the team for their valuable suggestions. P
 ***
 ***
 
-1) **Tyle Limkemann**, am experienced hacker from **Arizona, USA**.
+1) **Tyle Limkemann**, an experienced hacker from **Arizona, USA**.
 
-2) **Javier Luque**, an experienced hacker from **Sevenoaks** with 16 years of experience.
+2) **Javier Luque** from **Sevenoaks** with 16 years of experience.
 
 Check out current [**team**](/team) members.
 
