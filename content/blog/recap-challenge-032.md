@@ -81,7 +81,7 @@ Last but not the least, keep contributing to the weekly challenge, making sure w
 
 9) Kian-Meng Ang (**146**)
 
-10) Roger Bell_West (**130**)
+10) Roger Bell_West (**132**)
 
 11) Scimon Proctor (**126**)
 
@@ -257,6 +257,7 @@ Checkout the masterpiece collection of [**blogs**](https://perlweeklychallenge.o
 
 [[P5 #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/roger-bell-west/perl5/ch-1.pl)]
 [[P5 #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/roger-bell-west/perl5/ch-2.pl)]
+[[BLOG #1](https://blog.firedrake.org/archive/2019/11/Perl_Weekly_Challenge_32.html)]
 
 ***
 
