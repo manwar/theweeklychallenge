@@ -8,7 +8,7 @@ author: Mohammad S Anwar
 tags: ["C++", "Python", "Postscript"]
 ---
 
-As you know, **Perl Weekly Challenge**, primarily focus on **Perl** and **Raku**. During the **Week #018**, we received the solution to [**"Perl Weekly Challenge - 018"**](/blog/perl-weekly-challenge-018) by **Oretis Zekai** in **Python**. It was a pleasant surprise to receive solution in something other than **Perl** and **Raku**. Ever since regular team members also started contributing in other languages like **C++** and **Postscript**.
+As you know, **Perl Weekly Challenge**, primarily focus on **Perl** and **Raku**. During the **Week #018**, we received the solution to [**"Perl Weekly Challenge - 018"**](/blog/perl-we$ekly-challenge-018) by **Oretis Zekai** in **Python**. It was a pleasant surprise to receive solution in something other than **Perl** and **Raku**. Ever since regular team members also started contributing in other languages like **C++**, **Postscript** and **HTML**.
 
 Please find below guest contributions.
 
@@ -33,6 +33,11 @@ Please find below guest contributions.
 ##### 1) **Adam Russell** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/adam-russell/cxx/ch-1.cxx) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/adam-russell/cxx/ch-2.cxx) in **C++**.
 
 ##### 2) **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/lubos-kolouch/python/ch_1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/lubos-kolouch/python/ch_2.py) in **Python**.
+----
+----
+#### [Perl Weekly Challenge - 28](/blog/perl-weekly-challenge-028)
+----
+##### 1) **Dave Jacoby** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-028/dave-jacoby/html/ch-2.html) in **HTML**.
 ----
 ----
 #### [Perl Weekly Challenge - 27](/blog/perl-weekly-challenge-027)
