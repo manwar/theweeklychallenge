@@ -79,7 +79,7 @@ I would like to thank every member of the team for their valuable suggestions. P
 
 Check out current [**team**](/team) members.
 
-Please find out [**How to contribute?**](http://localhost:1313/blog/how-to-contribute), if you have any doubts.
+Please find out [**How to contribute?**](/blog/how-to-contribute), if you have any doubts.
 
 ***
 ***
