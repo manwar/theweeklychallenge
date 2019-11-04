@@ -16,41 +16,41 @@ Please find below guest contributions.
 ----
 #### [Perl Weekly Challenge - 33](/blog/perl-weekly-challenge-033)
 ----
-##### 1) **Oretis Zekai** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/orestis-zekai/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/orestis-zekai/python/ch-2.py) in **Python**.
+##### **Oretis Zekai** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/orestis-zekai/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/orestis-zekai/python/ch-2.py) in **Python**.
 
-##### 2) **Roger Bell_West** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/roger-bell-west/postscript/ch-2.ps) in **Postscript**.
+##### **Roger Bell_West** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/roger-bell-west/postscript/ch-2.ps) in **Postscript**.
 ----
 ----
 #### [Perl Weekly Challenge - 32](/blog/perl-weekly-challenge-032)
 ----
-##### 1) **Adam Russell** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/adam-russell/cxx/ch-1.cxx) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/adam-russell/cxx/ch-2.cxx) in **C++**.
+##### **Adam Russell** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/adam-russell/cxx/ch-1.cxx) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/adam-russell/cxx/ch-2.cxx) in **C++**.
 
-##### 2) **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/ulrich-rieke/cpp/ch-1.cpp) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/ulrich-rieke/cpp/ch-2.cpp) in **C++**.
+##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/ulrich-rieke/cpp/ch-1.cpp) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/ulrich-rieke/cpp/ch-2.cpp) in **C++**.
 ----
 ----
 #### [Perl Weekly Challenge - 31](/blog/perl-weekly-challenge-031)
 ----
-##### 1) **Adam Russell** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/adam-russell/cxx/ch-1.cxx) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/adam-russell/cxx/ch-2.cxx) in **C++**.
+##### **Adam Russell** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/adam-russell/cxx/ch-1.cxx) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/adam-russell/cxx/ch-2.cxx) in **C++**.
 
-##### 2) **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/lubos-kolouch/python/ch_1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/lubos-kolouch/python/ch_2.py) in **Python**.
+##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/lubos-kolouch/python/ch_1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/lubos-kolouch/python/ch_2.py) in **Python**.
 ----
 ----
 #### [Perl Weekly Challenge - 28](/blog/perl-weekly-challenge-028)
 ----
-##### 1) **Dave Jacoby** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-028/dave-jacoby/html/ch-2.html) in **HTML**.
+##### **Dave Jacoby** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-028/dave-jacoby/html/ch-2.html) in **HTML**.
 ----
 ----
 #### [Perl Weekly Challenge - 27](/blog/perl-weekly-challenge-027)
 ----
-##### 1) **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/lubos-kolouch/python/ch27_1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/lubos-kolouch/python/ch27_2.py) in **Python**.
+##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/lubos-kolouch/python/ch27_1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/lubos-kolouch/python/ch27_2.py) in **Python**.
 ----
 ----
 #### [Perl Weekly Challenge - 23](/blog/perl-weekly-challenge-023)
 ----
-##### 1) **Roger Bell_West** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-023/roger-bell-west/postscript/ch-2.ps) in **Postscript**.
+##### **Roger Bell_West** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-023/roger-bell-west/postscript/ch-2.ps) in **Postscript**.
 ----
 ----
 #### [Perl Weekly Challenge - 18](/blog/perl-weekly-challenge-018)
 ----
-##### 1) **Oretis Zekai** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/orestis-zekai/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/orestis-zekai/python/ch-2.py) in **Python**.
+##### **Oretis Zekai** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/orestis-zekai/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/orestis-zekai/python/ch-2.py) in **Python**.
 ----
