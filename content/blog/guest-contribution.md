@@ -5,7 +5,7 @@ description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
 author: Mohammad S Anwar
-tags: ["C++", "Python", "Postscript"]
+tags: ["C++", "Python", "Postscript", "HTML"]
 ---
 
 As you know, **Perl Weekly Challenge**, primarily focus on **Perl** and **Raku**. During the **Week #018**, we received the solution to [**"Perl Weekly Challenge - 018"**](/blog/perl-we$ekly-challenge-018) by **Oretis Zekai** in **Python**. It was a pleasant surprise to receive solution in something other than **Perl** and **Raku**. Ever since regular team members also started contributing in other languages like **C++**, **Postscript** and **HTML**.

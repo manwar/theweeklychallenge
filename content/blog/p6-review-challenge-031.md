@@ -96,6 +96,23 @@ which outputs the following:
 
 ## Alternative Solutions
 
+[Adam Russell](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/adam-russell/perl6/ch-1.p6) has been participating to the challenge in Perl 5 since the very beginning, but is participating to the challenge in Perl 6 / Raku for the first time (if I'm not wrong). His solution uses a `try` block with an embedded `CATCH` block:
+
+```Perl6
+try {
+    my $x = 9;
+    my $y = 0;
+    say $x / $y;
+    CATCH {
+        default {
+            say "caught an error: " ~ .^name;
+        }
+    }
+}
+```
+
+Note also that Adam Russell also suggested a solution in C++.
+
 [Arne Sommer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/arne-sommer/perl6/ch-1.p6) used a `try` [statement prefix](https://docs.perl6.org/language/statement-prefixes#index-entry-try_(statement_prefix)-try) to catch any error in the division.
 
 ``` Perl6
@@ -380,6 +397,19 @@ It turns out that I was wrong and that there are some ways to dynamically create
 
 ## Alternative Solutions
 
+[Adam Russell](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/adam-russell/perl6/ch-2.p6) has been participating to the challenge in Perl 5 since the very beginning, but is participating to the challenge in Perl 6 / Raku for the first time (if I'm not wrong). His very imaginative solution creates a variable name by concatenating `"\$"` with the first argument passed to the script, then creates on the fly a `Temp.pm6` file containing a module printing out newly created variable, runs the module (with `require` to import the module at run time) and finally deletes the `Temp.pm6` file.
+
+``` Perl6
+my $variable = "\$" ~ @*ARGS[0];
+my $value = @*ARGS[1];
+spurt "Temp.pm6", "unit module Temp; my $variable = $value; say \"The value of \\$variable is $variable.\"";
+use lib ".";
+require Temp;
+unlink "Temp.pm6";
+```
+
+See also his quite clever C++ implementation using macros to create dynamically a variable.
+
 [Arne Sommer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/arne-sommer/perl6/ch-2.p6) also thought that it is not possible to create a variable dynamically in Raku, but argued that it is possible to access an already existing one with the `::()` operator:
 
 ``` Perl6
@@ -582,6 +612,8 @@ sub MAIN (Str $variable) {
 ## SEE ALSO
 
 Three blog posts this time:
+
+* Adam Russell: https://adamcrussell.livejournal.com/10620.html;
 
 * Arne Sommer: https://raku-musings.com/dynamic-zero.html;
 

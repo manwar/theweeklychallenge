@@ -240,6 +240,22 @@ Houston, we've had a problem here: Attempt to divide by zero when coercing Ratio
 
 <h2 id="alternative-solutions">Alternative Solutions</h2>
 
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/adam-russell/perl6/ch-1.p6">Adam Russell</a> has been participating to the challenge in Perl 5 since the very beginning, but is participating to the challenge in Perl 6 / Raku for the first time (if I&rsquo;m not wrong). His solution uses a <code>try</code> block with an embedded <code>CATCH</code> block:</p>
+
+<pre><code class="language-Perl6">try {
+    my $x = 9;
+    my $y = 0;
+    say $x / $y;
+    CATCH {
+        default {
+            say &quot;caught an error: &quot; ~ .^name;
+        }
+    }
+}
+</code></pre>
+
+<p>Note also that Adam Russell also suggested a solution in C++.</p>
+
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/arne-sommer/perl6/ch-1.p6">Arne Sommer</a> used a <code>try</code> <a href="https://docs.perl6.org/language/statement-prefixes#index-entry-try_(statement_prefix)-try">statement prefix</a> to catch any error in the division.</p>
 
 <pre><code class="language-Perl6">unit sub MAIN (Numeric $a = 10, Numeric $b = 0);
@@ -515,6 +531,18 @@ The item is called foo and its value is bar
 
 <h2 id="alternative-solutions-1">Alternative Solutions</h2>
 
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/adam-russell/perl6/ch-2.p6">Adam Russell</a> has been participating to the challenge in Perl 5 since the very beginning, but is participating to the challenge in Perl 6 / Raku for the first time (if I&rsquo;m not wrong). His very imaginative solution creates a variable name by concatenating <code>&quot;\$&quot;</code> with the first argument passed to the script, then creates on the fly a <code>Temp.pm6</code> file containing a module printing out newly created variable, runs the module (with <code>require</code> to import the module at run time) and finally deletes the <code>Temp.pm6</code> file.</p>
+
+<pre><code class="language-Perl6">my $variable = &quot;\$&quot; ~ @*ARGS[0];
+my $value = @*ARGS[1];
+spurt &quot;Temp.pm6&quot;, &quot;unit module Temp; my $variable = $value; say \&quot;The value of \\$variable is $variable.\&quot;&quot;;
+use lib &quot;.&quot;;
+require Temp;
+unlink &quot;Temp.pm6&quot;;
+</code></pre>
+
+<p>See also his quite clever C++ implementation using macros to create dynamically a variable.</p>
+
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/arne-sommer/perl6/ch-2.p6">Arne Sommer</a> also thought that it is not possible to create a variable dynamically in Raku, but argued that it is possible to access an already existing one with the <code>::()</code> operator:</p>
 
 <pre><code class="language-Perl6">unit sub MAIN ($name = '$a');
@@ -707,6 +735,8 @@ put &quot;&quot;;
 <p>Three blog posts this time:</p>
 
 <ul>
+<li><p>Adam Russell: <a href="https://adamcrussell.livejournal.com/10620.html">https://adamcrussell.livejournal.com/10620.html</a>;</p></li>
+
 <li><p>Arne Sommer: <a href="https://raku-musings.com/dynamic-zero.html">https://raku-musings.com/dynamic-zero.html</a>;</p></li>
 
 <li><p>Jaldhar H. Vyas: <a href="https://www.braincells.com/perl/2019/10/perl_weekly_challenge_week_31.html">https://www.braincells.com/perl/2019/10/perl_weekly_challenge_week_31.html</a>;</p></li>

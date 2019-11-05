@@ -111,17 +111,6 @@ Checkout the masterpiece collection of [**blogs**](https://perlweeklychallenge.o
 ***
 ***
 
-### Adam Russell
-![Adam Russell](/images/team/adam_russell.jpg)
-
-[[P5 #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/adam-russell/perl5/ch-1.pl)]
-[[P5 #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/adam-russell/perl5/ch-2.pl)]
-[[P6 #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/adam-russell/perl6/ch-1.p6)]
-[[P6 #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/adam-russell/perl6/ch-2.p6)]
-[[BLOG #1](https://adamcrussell.livejournal.com/10620.html)]
-
-***
-
 ### Andrezgz
 ![Andrezgz](/images/team/andrezgz.jpg)
 
@@ -331,6 +320,17 @@ Checkout the masterpiece collection of [**blogs**](https://perlweeklychallenge.o
 # Perl 5 and Perl 6 Solutions
 
 ***
+***
+
+### Adam Russell
+![Adam Russell](/images/team/adam_russell.jpg)
+
+[[P5 #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/adam-russell/perl5/ch-1.pl)]
+[[P5 #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/adam-russell/perl5/ch-2.pl)]
+[[P6 #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/adam-russell/perl6/ch-1.p6)]
+[[P6 #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/adam-russell/perl6/ch-2.p6)]
+[[BLOG #1](https://adamcrussell.livejournal.com/10620.html)]
+
 ***
 
 ### Athanasius
