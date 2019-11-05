@@ -102,7 +102,9 @@ Please do share your creative solutions in other languages.
 ***
 ***
 
-##### Count instances
+#### Count instances
+
+***
 
 Create a script that either reads standard input or one or more files specified on the command-line. Count the number of times and then print a summary, sorted by the count of each entry.
 
@@ -136,7 +138,9 @@ For extra credit, add a -csv option to your script, which would generate:
 ***
 ***
 
->  ASCII bar chart
+####  ASCII bar chart
+
+***
 
 Write a function that takes a hashref where the keys are labels and the values are integer or floating point values. Generate a bar graph of the data and display it to stdout.
 
