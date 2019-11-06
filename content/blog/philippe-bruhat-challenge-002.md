@@ -2,7 +2,7 @@
 title: "Proposed Solution for Challenge - 002"
 date: 2019-04-08T18:00:00+00:00
 type: post
-image: images/team/philippe_bruhat.jpg
+image: images/blog/book_pwc_002.jpg
 author: Philippe Bruhat (BooK)
 tags: ["Perl5"]
 ---

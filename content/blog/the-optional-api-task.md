@@ -3,7 +3,7 @@ title: "Perl Weekly Challenge - Optional API Task"
 date: 2019-07-16T00:00:00+00:00
 description: "Review of optional API task."
 type: post
-image: images/blog/blog-header-10.jpg
+image: images/blog/optional-api-task.jpg
 author: Mohammad S Anwar
 tags: ["Perl5", "Perl6"]
 ---
