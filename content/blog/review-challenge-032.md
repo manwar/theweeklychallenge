@@ -26,7 +26,7 @@ Additional feedback to the our Perl Weekly Challenge's [**Twitter account**](htt
 
 **CPAN** modules used: [`Const::Fast`](https://metacpan.org/pod/Const::Fast), [`Data::Dumper`](https://metacpan.org/pod/Data::Dumper), [`English`](https://metacpan.org/pod/English), [`Getopt::Long`](https://metacpan.org/pod/Getopt::Long), [`Getopt::Std`](https://metacpan.org/pod/Getopt::Std), [`List::Util`](https://metacpan.org/pod/List::Util), [`Modern::Perl`](https://metacpan.org/pod/Modern::Perl), [`Term::Size::Perl`](https://metacpan.org/pod/Term::Size::Perl), [`Text::CSV_XS`](https://metacpan.org/pod/Text::CSV_XS), [`feature`](https://metacpan.org/pod/feature), [`open`](https://metacpan.org/pod/open), [`strict`](https://metacpan.org/pod/strict), [`warnings`](https://metacpan.org/pod/warnings)
 
-A rather common (there is even a [**FAQ**](https://perldoc.pl/perlfaq6#How-can-I-print-out-a-word-frequency-or-line-frequency-summary), link via [**E. Chroba**](http://blogs.perl.org/users/e_choroba/2019/11/perl-weekly-challenge-032-frequency-table-ascii-bar-chart.html)) task to demonstrate **Perl**'s text manipulation capabilities. Common approach used by most participants can be break down into several steps consists of read each line from standard input, clean up each line, count the frequency of the word, sort the frequency count, and lastly show the result in both normal and CSV output. The solution by [**Adam Russell**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/adam-russell/perl5/ch-1.pl) and [**Dave Cross**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/dave-cross/perl5/ch-1.pl) demonstrated this succinctly with no dependencies on **CPAN** modules or special features. And yes, start reading these solutions first before you proceed with other.
+A rather common (there is even a [**FAQ**](https://perldoc.pl/perlfaq6#How-can-I-print-out-a-word-frequency-or-line-frequency-summary), link via [**E. Choroba**](http://blogs.perl.org/users/e_choroba/2019/11/perl-weekly-challenge-032-frequency-table-ascii-bar-chart.html)) task to demonstrate **Perl**'s text manipulation capabilities. Common approach used by most participants can be break down into several steps consists of read each line from standard input, clean up each line, count the frequency of the word, sort the frequency count, and lastly show the result in both normal and CSV output. The solution by [**Adam Russell**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/adam-russell/perl5/ch-1.pl) and [**Dave Cross**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/dave-cross/perl5/ch-1.pl) demonstrated this succinctly with no dependencies on **CPAN** modules or special features. And yes, start reading these solutions first before you proceed with other.
 
 Beside that, there were other solutions in one-liner that can quickly show the approach to solve this task as shown below.
 
@@ -132,15 +132,15 @@ The more advance and Object-Oriented approach was seen in [**E. Choroba**](https
         my $max = max(values %$data);
 
         my $sort = {labels      => \&_by_key,
-                  values      => \&_by_value,
-                  labels_desc => \&_by_key_desc,
-                  values_desc => \&_by_value_desc}->{$sort_by};
+                    values      => \&_by_value,
+                    labels_desc => \&_by_key_desc,
+                    values_desc => \&_by_value_desc}->{$sort_by};
 
         for my $key (sort { $self->$sort } keys %$data) {
-          printf '%' . $self->_max_length . "s%s%s\n",
-              $key,
-              $self->separator,
-              '#' x ($self->_bar_width / $max * $data->{$key});
+            printf '%' . $self->_max_length . "s%s%s\n",
+                $key,
+                $self->separator,
+                '#' x ($self->_bar_width / $max * $data->{$key});
         }
     }
 
