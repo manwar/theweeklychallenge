@@ -176,7 +176,7 @@
 
 <p><strong>CPAN</strong> modules used: <a href="https://metacpan.org/pod/Const::Fast"><code>Const::Fast</code></a>, <a href="https://metacpan.org/pod/Data::Dumper"><code>Data::Dumper</code></a>, <a href="https://metacpan.org/pod/English"><code>English</code></a>, <a href="https://metacpan.org/pod/Getopt::Long"><code>Getopt::Long</code></a>, <a href="https://metacpan.org/pod/Getopt::Std"><code>Getopt::Std</code></a>, <a href="https://metacpan.org/pod/List::Util"><code>List::Util</code></a>, <a href="https://metacpan.org/pod/Modern::Perl"><code>Modern::Perl</code></a>, <a href="https://metacpan.org/pod/Term::Size::Perl"><code>Term::Size::Perl</code></a>, <a href="https://metacpan.org/pod/Text::CSV_XS"><code>Text::CSV_XS</code></a>, <a href="https://metacpan.org/pod/feature"><code>feature</code></a>, <a href="https://metacpan.org/pod/open"><code>open</code></a>, <a href="https://metacpan.org/pod/strict"><code>strict</code></a>, <a href="https://metacpan.org/pod/warnings"><code>warnings</code></a></p>
 
-<p>A rather common (there is even a <a href="https://perldoc.pl/perlfaq6#How-can-I-print-out-a-word-frequency-or-line-frequency-summary"><strong>FAQ</strong></a>, link via <a href="http://blogs.perl.org/users/e_choroba/2019/11/perl-weekly-challenge-032-frequency-table-ascii-bar-chart.html"><strong>E. Chroba</strong></a>) task to demonstrate <strong>Perl</strong>&rsquo;s text manipulation capabilities. Common approach used by most participants can be break down into several steps consists of read each line from standard input, clean up each line, count the frequency of the word, sort the frequency count, and lastly show the result in both normal and CSV output. The solution by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/adam-russell/perl5/ch-1.pl"><strong>Adam Russell</strong></a> and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/dave-cross/perl5/ch-1.pl"><strong>Dave Cross</strong></a> demonstrated this succinctly with no dependencies on <strong>CPAN</strong> modules or special features. And yes, start reading these solutions first before you proceed with other.</p>
+<p>A rather common (there is even a <a href="https://perldoc.pl/perlfaq6#How-can-I-print-out-a-word-frequency-or-line-frequency-summary"><strong>FAQ</strong></a>, link via <a href="http://blogs.perl.org/users/e_choroba/2019/11/perl-weekly-challenge-032-frequency-table-ascii-bar-chart.html"><strong>E. Choroba</strong></a>) task to demonstrate <strong>Perl</strong>&rsquo;s text manipulation capabilities. Common approach used by most participants can be break down into several steps consists of read each line from standard input, clean up each line, count the frequency of the word, sort the frequency count, and lastly show the result in both normal and CSV output. The solution by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/adam-russell/perl5/ch-1.pl"><strong>Adam Russell</strong></a> and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/dave-cross/perl5/ch-1.pl"><strong>Dave Cross</strong></a> demonstrated this succinctly with no dependencies on <strong>CPAN</strong> modules or special features. And yes, start reading these solutions first before you proceed with other.</p>
 
 <p>Beside that, there were other solutions in one-liner that can quickly show the approach to solve this task as shown below.</p>
 
@@ -294,15 +294,15 @@ printf(&quot;%10s | %s \n&quot;,
     my $max = max(values %$data);
 
     my $sort = {labels      =&gt; \&amp;_by_key,
-              values      =&gt; \&amp;_by_value,
-              labels_desc =&gt; \&amp;_by_key_desc,
-              values_desc =&gt; \&amp;_by_value_desc}-&gt;{$sort_by};
+                values      =&gt; \&amp;_by_value,
+                labels_desc =&gt; \&amp;_by_key_desc,
+                values_desc =&gt; \&amp;_by_value_desc}-&gt;{$sort_by};
 
     for my $key (sort { $self-&gt;$sort } keys %$data) {
-      printf '%' . $self-&gt;_max_length . &quot;s%s%s\n&quot;,
-          $key,
-          $self-&gt;separator,
-          '#' x ($self-&gt;_bar_width / $max * $data-&gt;{$key});
+        printf '%' . $self-&gt;_max_length . &quot;s%s%s\n&quot;,
+            $key,
+            $self-&gt;separator,
+            '#' x ($self-&gt;_bar_width / $max * $data-&gt;{$key});
     }
 }
 </code></pre>
