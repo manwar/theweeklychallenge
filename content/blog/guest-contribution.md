@@ -1,14 +1,14 @@
 ---
 title: "Perl Weekly Challenge - Guest Contributions"
-date: 2019-11-05T00:00:00+00:00
+date: 2019-11-10T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
 author: Mohammad S Anwar
-tags: ["C++", "Python", "Postscript", "HTML"]
+tags: ["C++", "Python", "Postscript", "Rust", "HTML"]
 ---
 
-As you know, **Perl Weekly Challenge**, primarily focus on **Perl** and **Raku**. During the **Week #018**, we received the solution to [**"Perl Weekly Challenge - 018"**](/blog/perl-we$ekly-challenge-018) by **Oretis Zekai** in **Python**. It was a pleasant surprise to receive solution in something other than **Perl** and **Raku**. Ever since regular team members also started contributing in other languages like **C++**, **Postscript** and **HTML**.
+As you know, **Perl Weekly Challenge**, primarily focus on **Perl** and **Raku**. During the **Week #018**, we received the solution to [**"Perl Weekly Challenge - 018"**](/blog/perl-we$ekly-challenge-018) by **Oretis Zekai** in **Python**. It was a pleasant surprise to receive solution in something other than **Perl** and **Raku**. Ever since regular team members also started contributing in other languages like **C++**, **Postscript**, **Rust** and **HTML**.
 
 Please find below guest contributions.
 
@@ -17,6 +17,8 @@ Please find below guest contributions.
 #### [Perl Weekly Challenge - 33](/blog/perl-weekly-challenge-033)
 ----
 ##### **Oretis Zekai** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/orestis-zekai/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/orestis-zekai/python/ch-2.py) in **Python**.
+
+##### **Rage311** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/rage311/rust/ch-1.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/rage311/rust/ch-2.rs) in **Rust**.
 
 ##### **Roger Bell_West** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/roger-bell-west/postscript/ch-2.ps) in **Postscript**.
 
