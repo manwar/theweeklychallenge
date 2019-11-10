@@ -5,7 +5,7 @@ description: "My personal take on the Challenge #012."
 type: post
 image: images/blog/recap-challenge-012.jpg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 I was little late in releasing the weekly challenge last time. If I remember correctly it was around 4am Monday morning. Still, by 9am (UK time), I had first solution as PR by none other than the **Scimon Procotor** himself. And within the next hour, he submitted the solution to the second challenge. By lunch time, I had one more member **Ozzy** submitted solution to the first challenge.
 

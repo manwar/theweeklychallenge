@@ -5,7 +5,7 @@ description: "My personal take on the Challenge #010."
 type: post
 image: images/blog/recap-challenge-010.jpg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 I noticed few members came back after a short break. Welcome back. It is always nice to see you taking part in the weekly challenge. I hope to see you again and again. I would like to this opportunity to welcome new members. I hope you are having fun with the challenges. The moto of the weekly challenge is to have fun solving the challenges and learn from others. It feels nice when I hear positive feedbacks from the members. If you have any suggestions, please share with us. Enjoy the solutions and learn from each other.
 

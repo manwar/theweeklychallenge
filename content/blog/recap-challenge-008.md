@@ -5,7 +5,7 @@ description: "My personal take on the Challenge #008."
 type: post
 image: images/blog/recap-challenge-008.jpg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 The **Challenge - 008** participation was same as the **Challenge - 007** in terms of number of members participated. However this time we received more than solution with the introduction of the optional third API challenge. As a matter of fact, **Joelle Maslak** care to answer the third challenge. She solved the third challenge in **Perl5** and **Perl6**.
 

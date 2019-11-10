@@ -5,7 +5,7 @@ description: "My personal take on the Challenge #004."
 type: post
 image: images/blog/recap-challenge-004.jpg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 For the first time ever, I published RECAP blog before the weekly challenge. It is the sign that things are settling down. Members are using Pull Request more frequently to submit the solutions. Last Sunday, when I made the Challenge 004 public, I couple of people responded in no time.
 

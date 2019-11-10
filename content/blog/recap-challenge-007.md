@@ -5,7 +5,7 @@ description: "My personal take on the Challenge #007."
 type: post
 image: images/blog/recap-challenge-007.jpg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 Last week was better than the previous week. I noticed big rush on Saturday and Sunday always. As we are getting into 8th week, members are getting the hang of it, which is nice.
 

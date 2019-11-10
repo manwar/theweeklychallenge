@@ -5,7 +5,7 @@ description: "My personal take on the Challenge #009."
 type: post
 image: images/blog/recap-challenge-009.jpg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 I would like to this opportunity to thank one of the respected member **Kian-Meng Ang** for the help in reviewing **Perl 5** challenges every week. Checkout her last [review](https://perlweeklychallenge.org/blog/review-challenge-008/) if you haven't seen already. Ever since I started reviewing the challenges, I am looking for volunteer to do the same for **Perl 6**. I know it is weekly commitment and can be tiresome. If we can create team of reviewers for each languages then it would be even more fun. I feel guilty every week not talking about **Perl 6** magical solutions.
 

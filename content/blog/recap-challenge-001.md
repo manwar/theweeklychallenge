@@ -5,7 +5,7 @@ description: "My personal take on the launch week."
 type: post
 image: images/blog/recap-challenge-001.jpg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 Welcome to the first weekly recap of **"Perl Weekly Challenge"**.
 

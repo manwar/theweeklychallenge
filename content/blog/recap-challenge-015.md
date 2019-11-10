@@ -5,7 +5,7 @@ description: "My personal take on the Challenge #015."
 type: post
 image: images/blog/recap-challenge-015.jpg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 Let me welcome, **Veesh Goldman**, after a short break. He is the first member of the team. It is always nice to see member coming back after short break.
 

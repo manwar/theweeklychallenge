@@ -5,10 +5,10 @@ description: "Laurent Rosenfeld Weekly Review: Challenge - #017."
 type: post
 image: images/blog/p6-review-challenge-017.jpg
 author: Laurent Rosenfeld
-tags: ["Perl6"]
+tags: ["Raku"]
 ---
 ***
-# Perl6 Solutions Weekly Review
+# Raku Solutions Weekly Review
 ***
 
 ## Task #1: Parsing URLs With a Perl 6 Grammar

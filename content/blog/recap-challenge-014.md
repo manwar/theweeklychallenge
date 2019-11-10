@@ -5,7 +5,7 @@ description: "My personal take on the Challenge #014."
 type: post
 image: images/blog/recap-challenge-014.jpg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 Last week, **Dave Jacoby** sent us the first solution in **Perl5** as Pull Request [[#294](https://github.com/manwar/perlweeklychallenge-club/pull/294)]. Then came a new member, 95th member, **Robert Van Dam". Being a first timer, it didn't stop him in taking API challenge either.
 

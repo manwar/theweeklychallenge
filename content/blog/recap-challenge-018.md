@@ -5,7 +5,7 @@ description: "My personal take on the Challenge #018."
 type: post
 image: images/blog/recap-challenge-018.jpg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 ***
 ***
@@ -32,7 +32,7 @@ Watch this space for Damian's [blog](http://blogs.perl.org/users/damian_conway/2
 ***
 ***
 
-# Perl 5 Solutions
+# Perl Solutions
 
 ***
 ***
@@ -157,7 +157,7 @@ Yozen just managed to submit solution to the Priority Queues even though being v
 ***
 ***
 
-# Perl 6 Solutions
+# Raku Solutions
 
 ***
 ***
@@ -260,7 +260,7 @@ Veesh, just managed to submit solution to Task #1, even while he was not well.
 ***
 ***
 
-# Perl 5 and Perl 6 Solutions
+# Perl and Raku Solutions
 
 ***
 ***

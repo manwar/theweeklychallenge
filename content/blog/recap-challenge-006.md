@@ -5,7 +5,7 @@ description: "My personal take on the Challenge #006."
 type: post
 image: images/blog/recap-challenge-006.jpg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 Last week was not very active in terms of number of participations. Having said that the quality of the solutions is always on the top. Some went for the kill, you can't afford to miss it. Enjoy the code.
 

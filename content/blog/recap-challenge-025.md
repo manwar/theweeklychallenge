@@ -5,7 +5,7 @@ description: "My personal take on the Challenge #025."
 type: post
 image: images/blog/recap-challenge-025.jpg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 ***
 ***
@@ -54,7 +54,7 @@ Watch this space for **Damian** specially crafted blog.
 ***
 ***
 
-# Perl 5 Solutions
+# Perl Solutions
 
 ***
 ***
@@ -117,7 +117,7 @@ Watch this space for **Damian** specially crafted blog.
 ***
 ***
 
-# Perl 6 Solutions
+# Raku Solutions
 
 ***
 ***
@@ -155,7 +155,7 @@ Watch this space for **Damian** specially crafted blog.
 ***
 ***
 
-# Perl 5 and Perl 6 Solutions
+# Perl and Raku Solutions
 
 ***
 ***

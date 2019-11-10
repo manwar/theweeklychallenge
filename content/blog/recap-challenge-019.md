@@ -5,7 +5,7 @@ description: "My personal take on the Challenge #019."
 type: post
 image: images/blog/recap-challenge-019.jpg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 ***
 ***
@@ -32,7 +32,7 @@ Watch this space for Damian's [blog](http://blogs.perl.org/users/damian_conway/2
 ***
 ***
 
-# Perl 5 Solutions
+# Perl Solutions
 
 ***
 ***
@@ -201,7 +201,7 @@ Walt shared his hack with other members i.e. deal with 31 days month starts on F
 ***
 ***
 
-# Perl 6 Solutions
+# Raku Solutions
 
 ***
 ***
@@ -274,7 +274,7 @@ Scimon seems to have abondoned **Perl5** as we don't see him playing with **Perl
 ***
 ***
 
-# Perl 5 and Perl 6 Solutions
+# Perl and Raku Solutions
 
 ***
 ***

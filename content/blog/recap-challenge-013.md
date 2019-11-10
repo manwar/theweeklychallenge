@@ -5,7 +5,7 @@ description: "My personal take on the Challenge #013."
 type: post
 image: images/blog/recap-challenge-013.jpg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 This week, **Joelle Maslak** sent us the first solution in **Perl6** as Pull Request [[#265](https://github.com/manwar/perlweeklychallenge-club/pull/265)]. Then came **Scimon Proctor**, again in **Perl6** as Pull Request [[#266](https://github.com/manwar/perlweeklychallenge-club/pull/266)]. **Kevin Colyer** submitted the next in **Perl6** as Github [gist](https://gist.github.com/kevincolyer/ed14f10c2da13d0d7367c25bf5aadb0d). By now, I started thinking where are all #Perl5 hackers. I didn't have to wait longer, **Pete Houston** sent us the solution in **Perl5** by email. Finally we had our first complete solution in **Perl5** by **Dave Jacoby** as Pull Request [[#271](https://github.com/manwar/perlweeklychallenge-club/pull/271)]. Chart started looking balanced.
 

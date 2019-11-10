@@ -5,7 +5,7 @@ description: "My personal take on the Challenge #017."
 type: post
 image: images/blog/recap-challenge-017.jpg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 ***
 ***
@@ -34,7 +34,7 @@ Watch this space for Damian's [blog](http://blogs.perl.org/users/damian_conway/2
 ***
 ***
 
-# Perl 5 Solutions
+# Perl Solutions
 
 ***
 ***
@@ -162,7 +162,7 @@ Yozen dedicates a blog for each task and I am loving it. You get to learn so muc
 ***
 ***
 
-# Perl 6 Solutions
+# Raku Solutions
 
 ***
 ***
@@ -228,7 +228,7 @@ Scimon is always lightning fast in submitting the solution in **Perl6**.
 ***
 ***
 
-# Perl 5 and Perl 6 Solutions
+# Perl and Raku Solutions
 
 ***
 ***

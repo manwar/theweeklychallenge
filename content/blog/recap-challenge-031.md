@@ -5,7 +5,7 @@ description: "My personal take on the Challenge #031."
 type: post
 image: images/blog/recap-challenge-031.jpg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 ***
 ***
@@ -106,7 +106,7 @@ Checkout the masterpiece collection of [**blogs**](https://perlweeklychallenge.o
 ***
 ***
 
-# Perl 5 Solutions
+# Perl Solutions
 
 ***
 ***
@@ -255,7 +255,7 @@ Checkout the masterpiece collection of [**blogs**](https://perlweeklychallenge.o
 ***
 ***
 
-# Perl 6 Solutions
+# Raku Solutions
 
 ***
 ***
@@ -317,7 +317,7 @@ Checkout the masterpiece collection of [**blogs**](https://perlweeklychallenge.o
 ***
 ***
 
-# Perl 5 and Perl 6 Solutions
+# Perl and Raku Solutions
 
 ***
 ***

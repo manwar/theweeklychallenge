@@ -5,7 +5,7 @@ description: "My personal take on the Challenge #011."
 type: post
 image: images/blog/recap-challenge-011.jpg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 I noticed members taking on the optional API challenge more regularly. Before only handfull members bother taking the challenge. I am also happy to see familiar faces coming back to the weekly challenge after short break. I hope they continue with it and enlighten us.
 

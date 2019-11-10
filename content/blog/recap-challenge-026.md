@@ -5,7 +5,7 @@ description: "My personal take on the Challenge #026."
 type: post
 image: images/blog/recap-challenge-026.jpg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 ***
 ***
@@ -56,7 +56,7 @@ In continuation to his earlier [blog](http://blogs.perl.org/users/damian_conway/
 ***
 ***
 
-# Perl 5 Solutions
+# Perl Solutions
 
 ***
 ***
@@ -136,7 +136,7 @@ In continuation to his earlier [blog](http://blogs.perl.org/users/damian_conway/
 ***
 ***
 
-# Perl 6 Solutions
+# Raku Solutions
 
 ***
 ***
@@ -199,7 +199,7 @@ In continuation to his earlier [blog](http://blogs.perl.org/users/damian_conway/
 ***
 ***
 
-# Perl 5 and Perl 6 Solutions
+# Perl and Raku Solutions
 
 ***
 ***

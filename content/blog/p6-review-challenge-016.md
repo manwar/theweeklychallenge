@@ -5,10 +5,10 @@ description: "Laurent Rosenfeld Weekly Review: Challenge - #016."
 type: post
 image: images/blog/p6-review-challenge-016.jpg
 author: Laurent Rosenfeld
-tags: ["Perl6"]
+tags: ["Raku"]
 ---
 ***
-# Perl6 Solutions Weekly Review
+# Raku Solutions Weekly Review
 ***
 
 ## Task #1: The Largest Share in the Pythagoras Pie

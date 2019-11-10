@@ -5,7 +5,7 @@ description: "My personal take on the Challenge #023."
 type: post
 image: images/blog/recap-challenge-023.jpg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 ***
 ***
@@ -34,7 +34,7 @@ I would like to thank **Damian** on behalf of the entire team of **Perl Weekly C
 ***
 ***
 
-# Perl 5 Solutions
+# Perl Solutions
 
 ***
 ***
@@ -142,7 +142,7 @@ I would like to thank **Damian** on behalf of the entire team of **Perl Weekly C
 ***
 ***
 
-# Perl 6 Solutions
+# Raku Solutions
 
 ***
 ***
@@ -182,7 +182,7 @@ I would like to thank **Damian** on behalf of the entire team of **Perl Weekly C
 ***
 ***
 
-# Perl 5 and Perl 6 Solutions
+# Perl and Raku Solutions
 
 ***
 ***

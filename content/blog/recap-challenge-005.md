@@ -5,7 +5,7 @@ description: "My personal take on the Challenge #005."
 type: post
 image: images/blog/recap-challenge-005.jpg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 I would like to talk about **blog** written by some members this week. In the past, I went into the details of **Perl 5** solutions mainly. Lets change the trend this time.
 

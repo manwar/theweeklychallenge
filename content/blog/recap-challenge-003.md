@@ -5,7 +5,7 @@ description: "My personal take on the Challenge #003."
 type: post
 image: images/blog/recap-challenge-003.jpg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 Every week, I release the challenge by email first and then on Twitter. I wait for about 30 minutes to get the first response to the challenge. I also look at the Google Analytics Realtime Chart to see how many users are reading the new challenge page and from which part of the world.
 

@@ -5,7 +5,7 @@ description: "My personal take on the Challenge #016."
 type: post
 image: images/blog/recap-challenge-016.jpg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 ***
 ***
@@ -22,7 +22,7 @@ Last but not the least, keep contributing to the weekly challenge, making sure w
 ***
 ***
 
-# Perl 5 Solutions
+# Perl Solutions
 
 ***
 ***
@@ -145,7 +145,7 @@ Yozen is one of my favourite member. I simply love his solution, specially blog.
 ***
 ***
 
-# Perl 6 Solutions
+# Raku Solutions
 
 ***
 ***
@@ -194,7 +194,7 @@ Scimon is one of member who has been participating the weekly challenge since th
 ***
 ***
 
-# Perl 5 and Perl 6 Solutions
+# Perl and Raku Solutions
 
 ***
 ***

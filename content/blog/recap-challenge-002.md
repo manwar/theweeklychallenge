@@ -5,7 +5,7 @@ description: "My personal take on the Challenge #002."
 type: post
 image: images/blog/recap-challenge-002.jpg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 I noticed the timing of releasing the weekly challenge is not helping anyone in UK timezone as I released around mid-night. So if somebody who lives in other side where it is day they get to try the challenge first. I realised within few hours of making the challenge public, I starts getting feedback but none from UK member. It is only when it is Monday morning, I see reactions from them. I am not saying anything wrong in this. Just sharing my point of view. I remember during the launch week, **Simon Proctor** nailed it with lightning fast response. However in the second week, **Joelle Maslak** was really quick and beat Simon Proctor. I got confused when I announced Simon Proctor was the first person to submit the solution. Simon correctly pointed out to me that Joelle Maslak actually did it before him.
 
