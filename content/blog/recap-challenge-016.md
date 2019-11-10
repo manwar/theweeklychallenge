@@ -31,8 +31,8 @@ Last but not the least, keep contributing to the weekly challenge, making sure w
 ![Adam Russell](/images/team/adam_russell.jpg)
 
 Adam used simple **do/while loop** for the **Task #1** very efficiently. For Bitcoin task, he went full on with **pack**.
-[[P5 #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/adam-russell/perl5/ch-1.pl)]
-[[P5 #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/adam-russell/perl5/ch-2.pl)]
+[[PERL #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/adam-russell/perl5/ch-1.pl)]
+[[PERL #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/adam-russell/perl5/ch-2.pl)]
 [[BLOG #1](https://adamcrussell.livejournal.com/5613.html)]
 
 ***
@@ -41,7 +41,7 @@ Adam used simple **do/while loop** for the **Task #1** very efficiently. For Bit
 ![Andrezgz](/images/team/user.jpg)
 
 Andrezgz solution to the **Task #1** is simple and precise.
-[[P5 #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/andrezgz/perl5/ch-1.pl)]
+[[PERL #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/andrezgz/perl5/ch-1.pl)]
 
 ***
 
@@ -49,8 +49,8 @@ Andrezgz solution to the **Task #1** is simple and precise.
 ![Daniel Mantovani](/images/team/daniel_mantovani.jpg)
 
 Daniel approached the **Task #1** as pure mathematical problem. For Bitcoin task, inline comments are really handy.
-[[P5 #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/daniel-mantovani/perl5/ch-1.pl)]
-[[P5 #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/daniel-mantovani/perl5/ch-2.pl)]
+[[PERL #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/daniel-mantovani/perl5/ch-1.pl)]
+[[PERL #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/daniel-mantovani/perl5/ch-2.pl)]
 
 ***
 
@@ -58,7 +58,7 @@ Daniel approached the **Task #1** as pure mathematical problem. For Bitcoin task
 ![Dave Jacoby](/images/team/dave_jacoby.jpg)
 
 A very interesting take on **Task #1** by Dave.
-[[P5 #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/dave-jacoby/perl5/ch-1.pl)]
+[[PERL #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/dave-jacoby/perl5/ch-1.pl)]
 
 ***
 
@@ -66,7 +66,7 @@ A very interesting take on **Task #1** by Dave.
 ![Duane Powell](/images/team/duane-powell.jpg)
 
 Duane solution to the **Task #1** is very practical.
-[[P5 #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/duane-powell/perl5/ch-1.pl)]
+[[PERL #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/duane-powell/perl5/ch-1.pl)]
 
 ***
 
@@ -74,8 +74,8 @@ Duane solution to the **Task #1** is very practical.
 ![Duncan C. White](/images/team/duncan_white.jpg)
 
 Duncan's solution is always fun to read as it is full of notes.
-[[P5 #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/duncan-c-white/perl5/ch-1.pl)]
-[[P5 #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/duncan-c-white/perl5/ch-2.pl)]
+[[PERL #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/duncan-c-white/perl5/ch-1.pl)]
+[[PERL #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/duncan-c-white/perl5/ch-2.pl)]
 
 ***
 
@@ -83,8 +83,8 @@ Duncan's solution is always fun to read as it is full of notes.
 ![E. Choroba](/images/team/e-choroba.jpg)
 
 Choroba blog is very educational. You certainly don't want to miss.
-[[P5 #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/e-choroba/perl5/ch-1.pl)]
-[[P5 #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/e-choroba/perl5/ch-2.pl)]
+[[PERL #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/e-choroba/perl5/ch-1.pl)]
+[[PERL #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/e-choroba/perl5/ch-2.pl)]
 [[BLOG #1](http://blogs.perl.org/users/e_choroba/2019/07/perl-weekly-challenge-016-pythagoras-pie-puzzle-and-bitcoin-address-validation.html)]
 
 ***
@@ -93,7 +93,7 @@ Choroba blog is very educational. You certainly don't want to miss.
 ![Kian-Meng Ang](/images/team/user.jpg)
 
 Our **Perl5 Reviewer** managed to submit solution to the **Task #1** just in time. Please check out.
-[[P5 #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/kian-meng-ang/perl5/ch-1.pl)]
+[[PERL #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/kian-meng-ang/perl5/ch-1.pl)]
 
 ***
 
@@ -101,8 +101,8 @@ Our **Perl5 Reviewer** managed to submit solution to the **Task #1** just in tim
 ![Lubos Kolouch](/images/team/lubos_kolouch.jpg)
 
 Lubos used the webservice to validate the Bitcoin address, which is very different to others and unique.
-[[P5 #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/lubos-kolouch/perl5/ch-1.pl)]
-[[P5 #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/lubos-kolouch/perl5/ch-2.pl)]
+[[PERL #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/lubos-kolouch/perl5/ch-1.pl)]
+[[PERL #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/lubos-kolouch/perl5/ch-2.pl)]
 
 ***
 
@@ -110,8 +110,8 @@ Lubos used the webservice to validate the Bitcoin address, which is very differe
 ![Roger Bell West](/images/team/user.jpg)
 
 Roger was the first member who nailed the Bitcoin task first. You must check his solution.
-[[P5 #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/roger-bell-west/perl5/ch-1.pl)]
-[[P5 #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/roger-bell-west/perl5/ch-2.pl)]
+[[PERL #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/roger-bell-west/perl5/ch-1.pl)]
+[[PERL #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/roger-bell-west/perl5/ch-2.pl)]
 
 ***
 
@@ -119,8 +119,8 @@ Roger was the first member who nailed the Bitcoin task first. You must check his
 ![Steven Wilson](/images/team/user.jpg)
 
 Steven provided a complete solution to the Bitcoin task. I liked it.
-[[P5 #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/steven-wilson/perl5/ch-1.pl)]
-[[P5 #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/steven-wilson/perl5/ch-2.pl)]
+[[PERL #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/steven-wilson/perl5/ch-1.pl)]
+[[PERL #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/steven-wilson/perl5/ch-2.pl)]
 
 ***
 
@@ -128,7 +128,7 @@ Steven provided a complete solution to the Bitcoin task. I liked it.
 ![Veesh Goldman](/images/team/veesh_goldman.jpg)
 
 Veesh only managed to submit solution to the **Task #1**. However, for the first time, he even blogged about it.
-[[P5 #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/veesh-goldman/perl5/ch-01.pl)]
+[[PERL #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/veesh-goldman/perl5/ch-01.pl)]
 [[BLOG #1](http://blogs.perl.org/users/veesh/2019/07/pizza-party-for-100.html)]
 
 ***
@@ -137,8 +137,8 @@ Veesh only managed to submit solution to the **Task #1**. However, for the first
 ![Yozen Hernandez](/images/team/user.jpg)
 
 Yozen is one of my favourite member. I simply love his solution, specially blog.
-[[P5 #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/yozen-hernandez/perl5/ch-1.pl)]
-[[P5 #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/yozen-hernandez/perl5/ch-2.pl)]
+[[PERL #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/yozen-hernandez/perl5/ch-1.pl)]
+[[PERL #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/yozen-hernandez/perl5/ch-2.pl)]
 [[BLOG #1](https://yzhernand.github.io/posts/perl-weekly-challenge-16-1/)]
 [[BLOG #2](https://yzhernand.github.io/posts/perl-weekly-challenge-16-2/)]
 
@@ -154,42 +154,42 @@ Yozen is one of my favourite member. I simply love his solution, specially blog.
 ![Arne Sommer](/images/team/arne-sommer.jpg)
 
 I have become a big fan of Arne now. I love reading his blog, although he talks about **Perl6** mostly but I can still follow it.
-[[P6 #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/arne-sommer/perl6/ch-1.p6)]
-[[P6 #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/arne-sommer/perl6/ch-2.p6)]
+[[RAKU #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/arne-sommer/perl6/ch-1.p6)]
+[[RAKU #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/arne-sommer/perl6/ch-2.p6)]
 [[BLOG #1](https://perl6.eu/pythagoras-bitcoin.html)]
 
 ### Francis Whittle
 ![Francis Whittle](/images/team/user.jpg)
 
 Francis is one few regulars whose solution is always full magics.
-[[P6 #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/fjwhittle/perl6/ch-1.p6)]
-[[P6 #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/fjwhittle/perl6/ch-2.p6)]
+[[RAKU #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/fjwhittle/perl6/ch-1.p6)]
+[[RAKU #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/fjwhittle/perl6/ch-2.p6)]
 
 ### Kevin Colyer
 ![Kevin Colyer](/images/team/user.jpg)
 
 Kevin, being new the team, is progressing very fast. I loved his solutions.
-[[P6 #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/kevin-colyer/perl6/ch-1.p6)]
-[[P6 #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/kevin-colyer/perl6/ch-2.p6)]
+[[RAKU #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/kevin-colyer/perl6/ch-1.p6)]
+[[RAKU #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/kevin-colyer/perl6/ch-2.p6)]
 
 ### Noud
 ![Noud](/images/team/user.jpg)
 
 Noud is also relatively new to team. I like how he plays with the language.
-[[P6 #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/noud/perl6/ch-1.p6)]
-[[P6 #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/noud/perl6/ch-2.p6)]
+[[RAKU #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/noud/perl6/ch-1.p6)]
+[[RAKU #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/noud/perl6/ch-2.p6)]
 
 ### Ozzy
 ![Ozzy](/images/team/user.jpg)
 
 Ozzy is a veteran, this time he only attempted **Task #1**.
-[[P6 #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/ozzy/perl6/ch-1.p6)]
+[[RAKU #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/ozzy/perl6/ch-1.p6)]
 
 ### Scimon Proctor
 ![Scimon Proctor](/images/team/simon_proctor.jpg)
 
 Scimon is one of member who has been participating the weekly challenge since the beginning. Check out his code.
-[[P6 #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/simon-proctor/perl6/ch-1.p6)]
+[[RAKU #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/simon-proctor/perl6/ch-1.p6)]
 
 ***
 ***
@@ -203,45 +203,45 @@ Scimon is one of member who has been participating the weekly challenge since th
 ![Athanasius](/images/team/athanasius.jpg)
 
 I have high regards for Athanasius because of his command in both **Perl5** and **Perl6**.
-[[P5 #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/athanasius/perl5/ch-1.pl)]
-[[P5 #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/athanasius/perl5/ch-2.pl)]
-[[P6 #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/athanasius/perl6/ch-1.p6)]
-[[P6 #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/athanasius/perl6/ch-2.p6)]
+[[PERL #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/athanasius/perl5/ch-1.pl)]
+[[PERL #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/athanasius/perl5/ch-2.pl)]
+[[RAKU #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/athanasius/perl6/ch-1.p6)]
+[[RAKU #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/athanasius/perl6/ch-2.p6)]
 [[BLOG #1](http://blogs.perl.org/users/athanasius/2019/07/perl-weekly-challenge-016.html)]
 
 ### Feng Chang
 ![Feng Chang](/images/team/user.jpg)
 
 Feng, being new to the team, always comes up with cool solution specially in **Perl6**.
-[[P5 #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/feng-chang/perl5/ch-1.pl)]
-[[P5 #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/feng-chang/perl5/ch-2.pl)]
-[[P6 #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/feng-chang/perl6/ch-1.p6)]
-[[P6 #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/feng-chang/perl6/ch-2.p6)]
+[[PERL #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/feng-chang/perl5/ch-1.pl)]
+[[PERL #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/feng-chang/perl5/ch-2.pl)]
+[[RAKU #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/feng-chang/perl6/ch-1.p6)]
+[[RAKU #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/feng-chang/perl6/ch-2.p6)]
 
 ### Jaldhar H. Vyas
 ![Jaldhar H. Vyas](/images/team/jaldhar_vyas.jpg)
 
 Jaldhar managed to submit only one solution as he was travelling mostly.
-[[P5 #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/jaldhar-h-vyas/perl5/ch-1.pl)]
-[[P6 #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/jaldhar-h-vyas/perl6/ch-1.p6)]
+[[PERL #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/jaldhar-h-vyas/perl5/ch-1.pl)]
+[[RAKU #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/jaldhar-h-vyas/perl6/ch-1.p6)]
 
 ### Joelle Maslak
 ![Joelle Maslak](/images/team/joelle_maslak.jpg)
 
 Joelle is always super cool with both **Perl5** and **Perl6**. I love how she tranforms **Perl5** solutions into **Perl6**.
-[[P5 #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/joelle-maslak/perl5/ch-1.pl)]
-[[P5 #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/joelle-maslak/perl5/ch-2.pl)]
-[[P6 #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/joelle-maslak/perl6/ch-1.p6)]
-[[P6 #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/joelle-maslak/perl6/ch-2.p6)]
+[[PERL #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/joelle-maslak/perl5/ch-1.pl)]
+[[PERL #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/joelle-maslak/perl5/ch-2.pl)]
+[[RAKU #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/joelle-maslak/perl6/ch-1.p6)]
+[[RAKU #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/joelle-maslak/perl6/ch-2.p6)]
 
 ### Laurent Rosenfeld
 ![Laurent Rosenfeld](/images/team/laurent_rosenfeld.jpg)
 
 Sometimes, I wonder, how he manages to process so many different ideas at a time. Highly Recommended his blog.
-[[P5 #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/laurent-rosenfeld/perl5/ch-1.pl)]
-[[P5 #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/laurent-rosenfeld/perl5/ch-2.pl)]
-[[P6 #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/laurent-rosenfeld/perl6/ch-1.p6)]
-[[P6 #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/laurent-rosenfeld/perl6/ch-2.p6)]
+[[PERL #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/laurent-rosenfeld/perl5/ch-1.pl)]
+[[PERL #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/laurent-rosenfeld/perl5/ch-2.pl)]
+[[RAKU #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/laurent-rosenfeld/perl6/ch-1.p6)]
+[[RAKU #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/laurent-rosenfeld/perl6/ch-2.p6)]
 [[BLOG #1](http://blogs.perl.org/users/laurent_r/2019/07/-perl-weekly-challenge-16-pythagoras-pie.html)]
 [[BLOG #2](http://blogs.perl.org/users/laurent_r/2019/07/perl-weekly-challenge-16-bitcoin-addresses.html)]
 
@@ -249,10 +249,10 @@ Sometimes, I wonder, how he manages to process so many different ideas at a time
 ![Ruben Westerberg](/images/team/user.jpg)
 
 Like others, Ruben is also very smart hacker. Checkout his code.
-[[P5 #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/ruben-westerberg/perl5/ch-1.pl)]
-[[P5 #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/ruben-westerberg/perl5/ch-2.pl)]
-[[P6 #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/ruben-westerberg/perl6/ch-1.p6)]
-[[P6 #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/ruben-westerberg/perl6/ch-2.p6)]
+[[PERL #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/ruben-westerberg/perl5/ch-1.pl)]
+[[PERL #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/ruben-westerberg/perl5/ch-2.pl)]
+[[RAKU #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/ruben-westerberg/perl6/ch-1.p6)]
+[[RAKU #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/ruben-westerberg/perl6/ch-2.p6)]
 
 ***
 ***
