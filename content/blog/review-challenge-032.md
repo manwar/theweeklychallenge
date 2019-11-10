@@ -132,15 +132,15 @@ The more advance and Object-Oriented approach was seen in [**E. Choroba**](https
         my $max = max(values %$data);
 
         my $sort = {labels      => \&_by_key,
-                  values      => \&_by_value,
-                  labels_desc => \&_by_key_desc,
-                  values_desc => \&_by_value_desc}->{$sort_by};
+                    values      => \&_by_value,
+                    labels_desc => \&_by_key_desc,
+                    values_desc => \&_by_value_desc}->{$sort_by};
 
         for my $key (sort { $self->$sort } keys %$data) {
-          printf '%' . $self->_max_length . "s%s%s\n",
-              $key,
-              $self->separator,
-              '#' x ($self->_bar_width / $max * $data->{$key});
+            printf '%' . $self->_max_length . "s%s%s\n",
+                $key,
+                $self->separator,
+                '#' x ($self->_bar_width / $max * $data->{$key});
         }
     }
 
