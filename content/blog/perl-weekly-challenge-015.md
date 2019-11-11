@@ -5,7 +5,7 @@ description: "Perl Weekly Challenge - 015"
 type: post
 image: images/blog/pwc-base.svg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 Let me announce the winner of **Perl Weekly Challenge - 014** and the name is **Jaldhar H. Vyas**. Many congratulations to **Jaldhar**. You should soon hear from **[Perl Careers](https://perl.careers/)** about your reward. Please do let us know how you feel about it. For rest of the participants, I would say **Good Luck** for next time. Keep sending in your solutions and share your knowledge with each other.
 
@@ -26,19 +26,19 @@ Good luck for the weekly challenge and enjoy.
 
 ### NEW MEMBERS
 
-1) Robert Van Dam, experienced perl5 hacker.
+1) Robert Van Dam, experienced Perl hacker.
 
 2) Walt Mankowski, lives in the Philadelphia area and ran the Philadelphia Perl Mongers for many years. He has been using Perl since 1995 and he has attended all but 2 of the YAPC/TPC conferences held in North America. He loves Perl of course, but also program in Python, C and C++, Matlab, and he has even done COBOL back in the day.
 
-3) Roger Bell West, experienced Perl5 hacker. We both worked on Tusker project for a consultancy firm Torrington in London many years ago.
+3) Roger Bell West, experienced Perl hacker. We both worked on Tusker project for a consultancy firm Torrington in London many years ago.
 
-4) Duane Powell, experienced Perl5 hacker from Dallas, Texas, USA.  He has been using perl 5 for systems administration and file wrangling for the computer animation industry since 1999.
+4) Duane Powell, experienced Perl hacker from Dallas, Texas, USA.  He has been using Perl for systems administration and file wrangling for the computer animation industry since 1999.
 
-5) Shaun Pearce, experienced Perl5 hacker from South Africa. He has been a programmer for 10 years. Mostly C, but perl for freeradius and python for server management.
+5) Shaun Pearce, experienced Perl hacker from South Africa. He has been a programmer for 10 years. Mostly C, but Perl for freeradius and Python for server management.
 
-6) Noud, Dutch, just started learning Perl 6. These challenges will be a great opportunity to learn Perl 6 quick. Fluent in several other languages, including Dutch.
+6) Noud, Dutch, just started learning Raku. These challenges will be a great opportunity to learn Raku quick. Fluent in several other languages, including Dutch.
 
-7) Nikhil Prasanna, experienced Perl5 hacker.
+7) Nikhil Prasanna, experienced Perl hacker.
 
 Check out other [team](/team) members.
 

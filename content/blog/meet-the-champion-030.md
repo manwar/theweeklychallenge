@@ -5,7 +5,7 @@ description: "Get to know about Kevin Colyer."
 type: post
 image: images/blog/meet-the-champion.jpg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 
 ---
@@ -28,7 +28,7 @@ Today we are talking to the **[Perl Weekly Challenge - 030](/blog/perl-weekly-ch
 
 ---
 
-**Mohammad:** How/When did you start using **Perl5**?
+**Mohammad:** How/When did you start using **Perl**/**Raku**?
 
 **Kevin:** I never could get my head around **Perl 5** at first. I looked at the listings in magazines and couldn't make head nor tail of much **Perl**. What were those functions operating on? The concept of a default variable was a hard one to learn due to its absence! However, I came across one of the early **Perl6 Advent** calendars and was stunned by some of the concepts, like the **reduction operator, map, grep** etc. **Raku**, was well, glacially slow then. So I looked into **Perl5** instead, which was somewhat swifter!
 

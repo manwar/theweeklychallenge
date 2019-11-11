@@ -5,7 +5,7 @@ description: "Perl Weekly Challenge - 009"
 type: post
 image: images/blog/pwc-base.svg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 The best part of **Perl Weekly Challenge** is that you are **free** to take a break for as long as you want. Even then you are encourged to take a look at others [solution](https://github.com/manwar/perlweeklychallenge-club) and enjoy. I personally recommend you should read the blog by the elite members. They are invaluable source of knowledge. Thanks to all the members for participating and blogging about it. Enjoy the challenge.
 
@@ -25,9 +25,9 @@ I would like to thank everyone for your valuable suggestions. Please do share yo
 
 ### NEW MEMBERS
 
-1. Pavel Starikov, Perl 5 hacker and Russian student from MEPhi university (Moscow).
+1. Pavel Starikov, Perl hacker and Russian student from MEPhi university (Moscow).
 
-2. Yozen Hernandez, Perl 5 hacker and currently doing PhD in Bioinformatics from Boston University.
+2. Yozen Hernandez, Perl hacker and currently doing PhD in Bioinformatics from Boston University.
 
 ***
 

@@ -5,7 +5,7 @@ description: "Get to know about Yet Ebreo."
 type: post
 image: images/blog/meet-the-champion.jpg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 ***
 ***
@@ -25,9 +25,9 @@ Today we are talking to the **[Perl Weekly Challenge - 025](/blog/perl-weekly-ch
 
 ***
 
-**Mohammad:** How/When did you start using **Perl5**/**Perl6**?
+**Mohammad:** How/When did you start using **Perl**/**Raku**?
 
-**Yet Ebreo:** I never knew about **Perl5** until I got my first job. That was in the year **2010**, when I learned about **Perl5**'s regex, it felt like I can do any data extraction (and analysis) jobs. I was already amazed with its speed and I haven't even discovered the plethora of modules in **CPAN** back then. And as for **Perl6**, I only learned it when I joined **Perl Weekly Challenge**.
+**Yet Ebreo:** I never knew about **Perl** until I got my first job. That was in the year **2010**, when I learned about **Perl5**'s regex, it felt like I can do any data extraction (and analysis) jobs. I was already amazed with its speed and I haven't even discovered the plethora of modules in **CPAN** back then. And as for **Perl6**, I only learned it when I joined **Perl Weekly Challenge**.
 
 ***
 

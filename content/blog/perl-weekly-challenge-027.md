@@ -5,7 +5,7 @@ description: "Perl Weekly Challenge - 027"
 type: post
 image: images/blog/pwc-base.svg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 ***
 ***
@@ -30,22 +30,22 @@ Here is the recap of last week [challenge](/blog/recap-challenge-026).
 ***
 ***
 
-## PERL5 REVIEW
+## PERL REVIEW
 
 ***
 ***
 
-Please checkout **Perl5** solutions review of the [Perl Weekly Challenge - 025](/blog/review-challenge-025) by **Kian-Meng Ang**.
+Please checkout **Perl** solutions review of the [Perl Weekly Challenge - 025](/blog/review-challenge-025) by **Kian-Meng Ang**.
 
 ***
 ***
 
-## PERL6 REVIEW
+## RAKU REVIEW
 
 ***
 ***
 
-Please checkout **Perl6** solutions review of the **Perl Weekly Challenge - 025** by **Laurent Rosenfeld**.
+Please checkout **Raku** solutions review of the **Perl Weekly Challenge - 025** by **Laurent Rosenfeld**.
 
 1) [Longest Pokémon Sequence](https://github.com/LaurentRosenfeld/Perl-6-Miscellaneous/blob/master/Challenges-in-Perl6/Longest-Pokemon-sequence.md)
 
@@ -71,7 +71,7 @@ I would like to thank everyone for their valuable suggestions. Please do share y
 ***
 ***
 
-[Markus Holzer](https://www.perlmonks.org/?node_id=241598), an experienced **Perl5** hacker from **Germany** joined the team.
+[Markus Holzer](https://www.perlmonks.org/?node_id=241598), an experienced **Perl** hacker from **Germany** joined the team.
 
 Check out current [team](/team) members.
 

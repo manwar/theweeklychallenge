@@ -5,7 +5,7 @@ description: "Perl Weekly Challenge - 008"
 type: post
 image: images/blog/pwc-base.svg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 **Perl Weekly Challenge** has been very innovative with so many unique solutions. Thanks to all the members for participating and blogging about it. Keep the momentum up. Good luck with this week challenge, I am sure you will find it fun and enjoyable.
 

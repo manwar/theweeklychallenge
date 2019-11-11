@@ -5,7 +5,7 @@ description: "Get to know about Kian-Meng Ang."
 type: post
 image: images/blog/meet-the-champion.jpg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 ***
 ***
@@ -23,7 +23,7 @@ Last week we spoke to **Ruben Westerberg**, the winner of **[Perl Weekly Challen
 
 ***
 
-**Mohammad:** How/When did you start using **Perl5**/**Perl6**?
+**Mohammad:** How/When did you start using **Perl**/**Raku**?
 
 **Kian-Meng:** Since April 2016, when I was switching away from doing PHP to something else and in an unforeseen coincident, ended up as a web developer doing Perl.
 

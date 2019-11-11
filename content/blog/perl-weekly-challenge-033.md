@@ -5,7 +5,7 @@ description: "Perl Weekly Challenge - 033"
 type: post
 image: images/blog/pwc-base.svg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 ***
 ***
@@ -30,24 +30,24 @@ Here is the recap of last week [**"Perl Weekly Challenge - 032"**](/blog/recap-c
 ***
 ***
 
-## PERL5 REVIEW
+## PERL REVIEW
 
 ***
 ***
 
-Please checkout **Perl5** solutions review of the [**"Perl Weekly Challenge - 031"**](/blog/review-challenge-031) by **Kian-Meng Ang**.
+Please checkout **Perl** solutions review of the [**"Perl Weekly Challenge - 031"**](/blog/review-challenge-031) by **Kian-Meng Ang**.
 
 If you missed any past reviews then please checkout the [**collection**](/p5-reviews).
 
 ***
 ***
 
-## PERL6 REVIEW
+## RAKU REVIEW
 
 ***
 ***
 
-Please checkout **Perl6** solutions review of the [**"Perl Weekly Challenge - 031"**](/blog/p6-review-challenge-031) by **Laurent Rosenfeld**.
+Please checkout **Raku** solutions review of the [**"Perl Weekly Challenge - 031"**](/blog/p6-review-challenge-031) by **Laurent Rosenfeld**.
 
 If you missed any past reviews then please checkout the [**collection**](/p6-reviews).
 
@@ -71,9 +71,9 @@ I would like to thank every member of the team for their valuable suggestions. P
 ***
 ***
 
-1) **Fabrizzio Poggi**, Peon Fortran programmer, learning Perl just to have fun and to gain versatile powers.
+1) **Fabrizzio Poggi**, Peon Fortran programmer, learning **Perl** just to have fun and to gain versatile powers.
 
-2) **Ryan Thompson**, an experienced Perl 5 hacker since 1996 (5.003), and other languages (especially C) since the mid-80s. Perl6/Raku just for fun since Pugs.
+2) **Ryan Thompson**, an experienced **Perl** hacker since 1996 (5.003), and other languages (especially C) since the mid-80s. **Raku** just for fun since Pugs.
 
 3) **Giuseppe Di Terlizzi**, Just Another Perl Hacker (since 2007) and IT Security Consultant from Rome (Italy).
 

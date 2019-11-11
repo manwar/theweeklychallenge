@@ -5,7 +5,7 @@ description: "Get to know about Adam Russell."
 type: post
 image: images/blog/meet-the-champion.jpg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 ***
 ***
@@ -23,7 +23,7 @@ Last week we spoke to **Joelle Maslak**, the winner of **[Perl Weekly Challenge 
 
 ***
 
-**Mohammad:** How/When did you start using **Perl5**/**Perl6**?
+**Mohammad:** How/When did you start using **Perl**/**Raku**?
 
 **Adam:** I first started using Perl at my first job in the late 90s at a Tier II ISP that sold dial up and broad band connections that also had a significant web development and hosting component. I started using Perl to do dynamic web pages with CGI, as was very common at the time. I also used Perl as a shell script replacement and system programming language.
 

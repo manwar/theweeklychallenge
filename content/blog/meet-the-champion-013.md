@@ -5,7 +5,7 @@ description: "Get to know about Laurent Rosenfeld."
 type: post
 image: images/blog/meet-the-champion.jpg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 Welcome to the weekly series **"Meet The Champion"**.
 
@@ -27,11 +27,11 @@ Almost all my CS career so far has been in the telecommunication industry, worki
 ***
 ***
 
-**Mohammad:** How/When did you start using Perl5/Perl6?
+**Mohammad:** How/When did you start using Perl/Raku?
 
 **Laurent:** I have been using Perl 5 one-liners for quick jobs since the late 1990s, but I really started to use Perl 5 as a programming language for real programs in 2003 in the context of a data migration project. But my job led me to use Perl 5 almost daily only around 2010.
 
-I started to get occasionally interested with Perl 6 in 2012-13, but I really took up learning it seriously in early 2014. Later that year, I started to first translate and then write tutorials on Perl 6 in French. By the end of 2015, I had translated or written tutorials representing in total about 250 to 300 full-size (A4) pages. And in February 2016, I started to write the **"Think Perl 6"** book, which I completed by the end of that year and was published by O'Reilly in May 2017.
+I started to get occasionally interested with Raku in 2012-13, but I really took up learning it seriously in early 2014. Later that year, I started to first translate and then write tutorials on Perl 6 in French. By the end of 2015, I had translated or written tutorials representing in total about 250 to 300 full-size (A4) pages. And in February 2016, I started to write the **"Think Perl 6"** book, which I completed by the end of that year and was published by O'Reilly in May 2017.
 
 ***
 ***

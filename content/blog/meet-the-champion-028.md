@@ -5,7 +5,7 @@ description: "Get to know about Andrezgz."
 type: post
 image: images/blog/meet-the-champion.jpg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 ***
 ***
@@ -25,7 +25,7 @@ Today we are talking to the **[Perl Weekly Challenge - 028](/blog/perl-weekly-ch
 
 ***
 
-**Mohammad:** How/When did you start using **Perl5**/**Perl6**?
+**Mohammad:** How/When did you start using **Perl**/**Raku**?
 
 **Andrezgz:** I've heard about **Perl5** around 2006. My first job ever was being a junior tester and I've got involved with the code when I advanced in my career. I began to solve some minor problems, after a close examination of the changes when tests failed. In the last 10 years my interest and knowledge on it kept increasing. I love analyzing performance issues and giving recommendations to clarify the code and improve its maintainability.
 

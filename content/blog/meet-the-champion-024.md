@@ -5,7 +5,7 @@ description: "Get to know about Lubos Kolouch."
 type: post
 image: images/blog/meet-the-champion.jpg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 ***
 ***
@@ -31,7 +31,7 @@ I am now responsible to lead IT for EMEA part of a global company and I don't ha
 
 ***
 
-**Mohammad:** How/When did you start using **Perl5**/**Perl6**?
+**Mohammad:** How/When did you start using **Perl**/**Raku**?
 
 **Lubos:** I learned Perl back in **1999/2000** when I started to learn **Linux**. I needed to automate some parts of the deployment and also - I admit it was not so honest - to help me play an online game (I had a bug in the script and they caught me and banned me by the way).
 

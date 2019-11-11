@@ -5,7 +5,7 @@ description: "Perl Weekly Challenge - 030"
 type: post
 image: images/blog/pwc-base.svg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 ***
 ***
@@ -30,24 +30,24 @@ Here is the recap of last week [**"Perl Weekly Challenge - 029"**](/blog/recap-c
 ***
 ***
 
-## PERL5 REVIEW
+## PERL REVIEW
 
 ***
 ***
 
-Please checkout **Perl5** solutions review of the [**"Perl Weekly Challenge - 028"**](/blog/review-challenge-028) by **Kian-Meng Ang**.
+Please checkout **Perl** solutions review of the [**"Perl Weekly Challenge - 028"**](/blog/review-challenge-028) by **Kian-Meng Ang**.
 
 If you missed any past reviews then please checkout the [**collection**](/p5-reviews).
 
 ***
 ***
 
-## PERL6 REVIEW
+## RAKU REVIEW
 
 ***
 ***
 
-Please checkout **Perl6** solutions review of the [**"Perl Weekly Challenge - 028"**](/blog/p6-review-challenge-028) by **Laurent Rosenfeld**.
+Please checkout **Raku** solutions review of the [**"Perl Weekly Challenge - 028"**](/blog/p6-review-challenge-028) by **Laurent Rosenfeld**.
 
 **Laurent** has kindly reviewed past week challenges [**"Perl Weekly Challenge - 006"**](/blog/p6-review-challenge-006), [**"Perl Weekly Challenge - 007"**](/blog/p6-review-challenge-007) and [**"Perl Weekly Challenge - 008"**](/blog/p6-review-challenge-008) as well.
 
@@ -73,11 +73,11 @@ I would like to thank every member of the team for their valuable suggestions. P
 ***
 ***
 
-1) **Nazareno Delucca**, **Perl5** hacker from **Argentina**. Used **Python** and **PHP** in the past.
+1) **Nazareno Delucca**, **Perl** hacker from **Argentina**. Used **Python** and **PHP** in the past.
 
-2) **Rage311**, an experienced **Perl5** hacker from **United States**.
+2) **Rage311**, an experienced **Perl** hacker from **United States**.
 
-3) **Burkhard Nickels**, an experienced **Perl5** hacker from **Germany**.
+3) **Burkhard Nickels**, an experienced **Perl** hacker from **Germany**.
 
 Check out current [**team**](/team) members.
 

@@ -5,7 +5,7 @@ description: "Get to know about Arne Sommmer."
 type: post
 image: images/blog/meet-the-champion.jpg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 ***
 ***
@@ -23,7 +23,7 @@ Last week we spoke to **E. Choroba**, the winner of **[Perl Weekly Challenge - 0
 
 ***
 
-**Mohammad:** How/When did you start using **Perl5**/**Perl6**?
+**Mohammad:** How/When did you start using **Perl**/**Raku**?
 
 **Arne:** I actually started with Perl 3 in 1989. I wrote a lot of shell scripts in my early days at the University, but was frustrated by the syntax. Perl stood out as the prefect scripting "glue language", and I was hooked. I still am.
 

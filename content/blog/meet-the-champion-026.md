@@ -5,7 +5,7 @@ description: "Get to know about Roger Bell_West."
 type: post
 image: images/blog/meet-the-champion.jpg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 ***
 ***
@@ -25,7 +25,7 @@ Today we are talking to the **[Perl Weekly Challenge - 026](/blog/perl-weekly-ch
 
 ***
 
-**Mohammad:** How/When did you start using **Perl5**/**Perl6**?
+**Mohammad:** How/When did you start using **Perl**/**Raku**?
 
 **Roger:** In **1998-1999**, I'd been noodling around with **Awk** and **Rexx** because **C** was never a good match for the way I think, and my boss at the time suggested I pick up some **Perl** too. I remember objecting strongly to sigils (why do I need a special character in front of each variable to tell me it's a variable?) but otherwise it was an excellent fit for me. I still tend to write small command-line programs in the **Unix** tradition, to do one thing well and then exit, so **Perl5** with its relatively short startup time continues to be my language of choice.
 

@@ -5,7 +5,7 @@ description: "Perl Weekly Challenge - 006"
 type: post
 image: images/blog/pwc-base.svg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 **Perl Weekly Challenge** introduced me to so many genious around the globe. It would be unfair to name a few. You know who I am talking about. The main objective of the project was to introduce **Perl** to more people and allow sharing the magic of **Perl**. In the last 5 weeks, I can say that I have personally learnt a lot from many greats.
 

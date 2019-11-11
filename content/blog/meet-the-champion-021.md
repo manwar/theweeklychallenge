@@ -5,7 +5,7 @@ description: "Get to know about Ruben Westerberg."
 type: post
 image: images/blog/meet-the-champion.jpg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 ***
 ***
@@ -25,7 +25,7 @@ Education wise I have a Bachelors in Microelectronic Engineering (Hon) and part 
 
 ***
 
-**Mohammad:** How/When did you start using **Perl5**/**Perl6**?
+**Mohammad:** How/When did you start using **Perl**/**Raku**?
 
 **Ruben:** I would say not very long ago. Around 12 months. I’ve used Javascript( node) a fair bit in the backend, which can be a real memory hog. Python is all the rage but the idea of indents in code being semantically significant is not for me! I wanted a relatively good execution speed, low memory usage, lots of features for less key strokes and have the ability choose a paradigm instead of being forced into one. Perl seems to fit the bill very nicely. Perl6 is like being in kid in a candy store most of the time.
 

@@ -5,7 +5,7 @@ description: "Perl Weekly Challenge - 005"
 type: post
 image: images/blog/pwc-base.svg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 The best part of the **Perl Weekly Challenge** is reading the blog by the members. Personally, I like the journey of an idea to final solution. If you look at closely all the blogs, every member has unique style. They all think differently but ends up with the same result. I have become fan of few in the last few weeks. Don't get me wrong, reading code is fascinating but boring. If you read the story behind each approach is amazingly blockbuster.
 

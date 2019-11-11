@@ -5,7 +5,7 @@ description: "Perl Weekly Challenge - 014"
 type: post
 image: images/blog/pwc-base.svg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 Without any further delay, we would like to announce the winner of **Perl Weekly Challenge - 013** and the name is **Laurent Rosenfeld**. Many congratulations to Laurent. You should soon hear from **[Perl Careers](https://perl.careers/)** about your reward. Please do let us know how you feel about it. For rest of the participants, I would say **Good Luck** for next time. Keep sending in your solutions and share your knowledge with each other.
 
@@ -30,7 +30,7 @@ Good luck for the weekly challenge and enjoy.
 
 ### NEW MEMBERS
 
-1) Lubos Kolouch, experienced perl hacker from Czech Republic.
+1) Lubos Kolouch, experienced Perl hacker from Czech Republic.
 
 Check out other [team](/team) members.
 

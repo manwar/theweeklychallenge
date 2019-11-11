@@ -5,7 +5,7 @@ description: "Perl Weekly Challenge - 025"
 type: post
 image: images/blog/pwc-base.svg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 ***
 ***
@@ -30,22 +30,22 @@ Here is the recap of last week [challenge](/blog/recap-challenge-024).
 ***
 ***
 
-## PERL5 REVIEW
+## PERL REVIEW
 
 ***
 ***
 
-Please checkout **Perl5** solutions review of the [Perl Weekly Challenge - 023](/blog/review-challenge-023) by **Kian-Meng Ang**.
+Please checkout **Perl** solutions review of the [Perl Weekly Challenge - 023](/blog/review-challenge-023) by **Kian-Meng Ang**.
 
 ***
 ***
 
-## PERL6 REVIEW
+## RAKU REVIEW
 
 ***
 ***
 
-Please checkout **Perl6** solutions review of the **Perl Weekly Challenge - 023** by **Laurent Rosenfeld**.
+Please checkout **Raku** solutions review of the **Perl Weekly Challenge - 023** by **Laurent Rosenfeld**.
 
 1) [Prime Factor Decomposition](https://github.com/LaurentRosenfeld/Perl-6-Miscellaneous/blob/master/Challenges-in-Perl6/Prime-factorization.md)
 
@@ -85,7 +85,7 @@ I would like to thank everyone for their valuable suggestions. Please do share y
 ***
 ***
 
-1) **Mike Accardo**, an experienced **Perl5**/**Perl6** hacker.
+1) **Mike Accardo**, an experienced **Perl**/**Raku** hacker.
 
 Check out current [team](/team) members.
 
@@ -97,7 +97,7 @@ Check out current [team](/team) members.
 ***
 ***
 
-Watch this space for contributions in language other than **Perl5** and **Perl6**.
+Watch this space for contributions in language other than **Perl** and **Raku**.
 
 ***
 ***

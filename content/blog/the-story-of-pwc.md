@@ -5,7 +5,7 @@ description: "Perl Weekly Challenge - Story so far."
 type: post
 image: images/blog/thank-you.png
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 We are now **3 months old** and growing fast every week with the support of wider Perl Community.
 

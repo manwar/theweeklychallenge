@@ -5,7 +5,7 @@ description: "Get to know about Jaldhar H. Vyas."
 type: post
 image: images/blog/meet-the-champion.jpg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 Welcome to the weekly series **"Meet The Champion"**.
 
@@ -25,7 +25,7 @@ Then I went to university and while typing up a research paper I discovered ther
 ***
 ***
 
-**Mohammad:** How/When did you start using Perl5/Perl6?
+**Mohammad:** How/When did you start using Perl/Raku?
 
 **Jaldhar:** At this point the dot-com era had started and suddenly anyone warm body with a modicum of knowledge about the Internet could get a job for a large amount of money.  On a whim I answered an ad for a new ISP in town and got hired first as tech support and then as a programmer.
 

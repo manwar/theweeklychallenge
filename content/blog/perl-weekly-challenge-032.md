@@ -5,7 +5,7 @@ description: "Perl Weekly Challenge - 032"
 type: post
 image: images/blog/pwc-base.svg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 ***
 ***
@@ -30,26 +30,26 @@ Here is the recap of last week [**"Perl Weekly Challenge - 031"**](/blog/recap-c
 ***
 ***
 
-## PERL5 REVIEW
+## PERL REVIEW
 
 ***
 ***
 
-Please checkout **Perl5** solutions review of the [**"Perl Weekly Challenge - 030"**](/blog/review-challenge-030) by **Kian-Meng Ang**.
+Please checkout **Perl** solutions review of the [**"Perl Weekly Challenge - 030"**](/blog/review-challenge-030) by **Kian-Meng Ang**.
 
 If you missed any past reviews then please checkout the [**collection**](/p5-reviews).
 
 ***
 ***
 
-## PERL6 REVIEW
+## RAKU REVIEW
 
 ***
 ***
 
-Please checkout **Perl6** solutions review of the [**"Perl Weekly Challenge - 030"**](/blog/p6-review-challenge-030) by **Laurent Rosenfeld**.
+Please checkout **Raku** solutions review of the [**"Perl Weekly Challenge - 030"**](/blog/p6-review-challenge-030) by **Laurent Rosenfeld**.
 
-**Laurent** also reviewed **Perl6** solutions of [**"Perl Weekly Challenge - 003"**](/blog/p6-review-challenge-003) and [**"Perl Weekly Challenge - 014"**](/blog/p6-review-challenge-014).
+**Laurent** also reviewed **raku** solutions of [**"Perl Weekly Challenge - 003"**](/blog/p6-review-challenge-003) and [**"Perl Weekly Challenge - 014"**](/blog/p6-review-challenge-014).
 
 If you missed any past reviews then please checkout the [**collection**](/p6-reviews).
 

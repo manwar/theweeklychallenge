@@ -5,7 +5,7 @@ description: "Get to know about Duncan C. White."
 type: post
 image: images/blog/meet-the-champion.jpg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 ***
 ***
@@ -23,7 +23,7 @@ Last week we spoke to **Arne Sommer**, the winner of **[Perl Weekly Challenge - 
 
 ***
 
-**Mohammad:** How/When did you start using **Perl5**/**Perl6**?
+**Mohammad:** How/When did you start using **Perl**/**Raku**?
 
 **Duncan:** I leapt aboard the Perl train back in Perl 4 days, around 1992 or so, and was very glad when Perl 5 came along, massively improving Perl, and enabling CPAN modules to dynamically load C libraries.  Before that, I remember how Tk support required the tkperl "Perl+Tk" executable, and Oracle query support required oraperl.
 

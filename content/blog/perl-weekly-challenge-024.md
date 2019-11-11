@@ -5,7 +5,7 @@ description: "Perl Weekly Challenge - 024"
 type: post
 image: images/blog/pwc-base.svg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 ***
 ***
@@ -30,22 +30,22 @@ Here is the recap of last week [challenge](/blog/recap-challenge-023).
 ***
 ***
 
-## PERL5 REVIEW
+## PERL REVIEW
 
 ***
 ***
 
-Please checkout **Perl5** solutions review of the [Perl Weekly Challenge - 022](/blog/review-challenge-022) by **Kian-Meng Ang**.
+Please checkout **Perl** solutions review of the [Perl Weekly Challenge - 022](/blog/review-challenge-022) by **Kian-Meng Ang**.
 
 ***
 ***
 
-## PERL6 REVIEW
+## RAKU REVIEW
 
 ***
 ***
 
-Please checkout **Perl6** solutions review of the **Perl Weekly Challenge - 022** by **Laurent Rosenfeld**.
+Please checkout **Raku** solutions review of the **Perl Weekly Challenge - 022** by **Laurent Rosenfeld**.
 
 ### Challenge #022
 
@@ -89,7 +89,7 @@ I would like to thank everyone for their valuable suggestions. Please do share y
 ***
 ***
 
-1) **Bruno Ramos**, an experienced **Perl5** hacker from **Luxembourg**.
+1) **Bruno Ramos**, an experienced **Perl** hacker from **Luxembourg**.
 
 2) **Colin Crain**, learned **Perl4** around 25 years ago, then put in his **10,000** hours in **Perl5**.
 

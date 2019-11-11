@@ -5,7 +5,7 @@ description: "Review of optional API task."
 type: post
 image: images/blog/optional-api-task.jpg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 ***
 ***

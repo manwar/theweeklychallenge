@@ -5,7 +5,7 @@ description: "Get to know about Dave Jacoby."
 type: post
 image: images/blog/meet-the-champion.jpg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 
 ---
@@ -30,7 +30,7 @@ My job search in writing was utterly unsuccessful, so I went back and received a
 
 ---
 
-**Mohammad:** How/When did you start using **Perl5**?
+**Mohammad:** How/When did you start using **Perl**/**Raku**?
 
 **Dave:** I worked during my CS with the a campus computer department. I was at first a static web guy, with a second responsibility of being the librarian for the documentation library. I would guess this was about **Perl 5.004** or so. During one summer, I took a directed study and wrote a **CGI** web system for maintaining the library, with links from the **ISBN** to **Amazon** (and I think **O'Reilly**?), back-ending to a flat-file database, where I used pipes as separators, because text about books commonly has commas.
 

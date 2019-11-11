@@ -5,7 +5,7 @@ description: "Perl Weekly Challenge - 026"
 type: post
 image: images/blog/pwc-base.svg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 ***
 ***
@@ -30,22 +30,22 @@ Here is the recap of last week [challenge](/blog/recap-challenge-025).
 ***
 ***
 
-## PERL5 REVIEW
+## PERL REVIEW
 
 ***
 ***
 
-Please checkout **Perl5** solutions review of the [Perl Weekly Challenge - 024](/blog/review-challenge-024) by **Kian-Meng Ang**.
+Please checkout **Perl** solutions review of the [Perl Weekly Challenge - 024](/blog/review-challenge-024) by **Kian-Meng Ang**.
 
 ***
 ***
 
-## PERL6 REVIEW
+## RAKU REVIEW
 
 ***
 ***
 
-Please checkout **Perl6** solutions review of the **Perl Weekly Challenge - 024** by **Laurent Rosenfeld**.
+Please checkout **Raku** solutions review of the **Perl Weekly Challenge - 024** by **Laurent Rosenfeld**.
 
 1) [Inverted Index](https://github.com/LaurentRosenfeld/Perl-6-Miscellaneous/blob/master/Challenges-in-Perl6/Inverted-index.md)
 
@@ -91,7 +91,7 @@ None joined last week. Check out current [team](/team) members.
 ***
 ***
 
-Watch this space for contributions in language other than **Perl5** and **Perl6**.
+Watch this space for contributions in language other than **Perl** and **Raku**.
 
 ***
 ***

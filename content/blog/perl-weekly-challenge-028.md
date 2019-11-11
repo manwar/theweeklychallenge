@@ -5,7 +5,7 @@ description: "Perl Weekly Challenge - 028"
 type: post
 image: images/blog/pwc-base.svg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 ***
 ***
@@ -32,22 +32,22 @@ Here is the recap of last week [**Perl Weekly Challenge - 027**](/blog/recap-cha
 ***
 ***
 
-## PERL5 REVIEW
+## PERL REVIEW
 
 ***
 ***
 
-Please checkout **Perl5** solutions review of the [**Perl Weekly Challenge - 026**](/blog/review-challenge-026) by **Kian-Meng Ang**.
+Please checkout **Perl** solutions review of the [**Perl Weekly Challenge - 026**](/blog/review-challenge-026) by **Kian-Meng Ang**.
 
 ***
 ***
 
-## PERL6 REVIEW
+## RAKU REVIEW
 
 ***
 ***
 
-Please checkout **Perl6** solutions review of the **Perl Weekly Challenge - 026** by **Laurent Rosenfeld**.
+Please checkout **Raku** solutions review of the **Perl Weekly Challenge - 026** by **Laurent Rosenfeld**.
 
 1) [**Common Letter Count**](https://github.com/LaurentRosenfeld/Perl-6-Miscellaneous/blob/master/Challenges-in-Perl6/common-letter-count.md)
 
@@ -71,7 +71,7 @@ I would like to thank every member of the team for their valuable suggestions. P
 ***
 ***
 
-**Trenton Langer**, an experienced **Perl5** hacker from **Boise, United States** joined the team.
+**Trenton Langer**, an experienced **Perl** hacker from **Boise, United States** joined the team.
 
 Check out current [**team**](/team) members.
 

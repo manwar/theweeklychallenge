@@ -5,7 +5,7 @@ description: "Kian-Meng Ang Review Challenge #007."
 type: post
 image: images/blog/p5-review-challenge-007.jpg
 author: Kian-Meng Ang
-tags: ["Perl5"]
+tags: ["Perl"]
 ---
 Below is the write-up review (only covers Perl 5) of the Perl Weekly Challenge #007 of all the submitted answers. You can read the [original questions](/blog/perl-weekly-challenge-007/) first to understand the details of these two challenges.
 

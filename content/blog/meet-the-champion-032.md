@@ -5,7 +5,7 @@ description: "Get to know about Prajith P."
 type: post
 image: images/blog/meet-the-champion.jpg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 ---
 ---
@@ -25,7 +25,7 @@ Today we are talking to the **[Perl Weekly Challenge - 032](/blog/perl-weekly-ch
 
 ---
 
-**Mohammad:** How/When did you start using **Perl5**?
+**Mohammad:** How/When did you start using **Perl**/**Raku**?
 
 **Prajith:** I started using **Perl5** as a shell script replacement and later I came to know about **Dancer** and **Mojolicious** web frameworks. I was very much interested in creating web applications, so thought to give a try with **Dancer** as it is easy to learn when compared with **Mojolicious**. Now, I'm more into **AWS automation**'s so have been using **Perl5** heavily at work.
 

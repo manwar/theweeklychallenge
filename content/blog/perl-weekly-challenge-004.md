@@ -5,7 +5,7 @@ description: "Perl Weekly Challenge - 004"
 type: post
 image: images/blog/pwc-base.svg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 I noticed last week, less participation than the previous week. Why? Honestly speaking I have no clue. Could it be the questions were too tricky for the challenge? The week before, I received the feedback that the questions were too easy and simple. So I went for little trickier one this time. It seems that I have to balance it somehow.
 

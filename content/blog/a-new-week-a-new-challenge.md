@@ -5,9 +5,9 @@ description : "Perl Weekly Challenge - 001"
 type: post
 image: images/blog/pwc-base.svg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
-Welcome to the first task of the **"Perl Weekly Challenge"** event. Every Monday, we are going to propose 2 challenges, one aimed at Beginners and another for Experts. However you are free to choose the challenge you fancy. You can even attempt to solve both. As you know the choice of languages are Perl5 and Perl6. You can solve one challenge in Perl5 and other in Perl6, if you like.
+Welcome to the first task of the **"Perl Weekly Challenge"** event. Every Monday, we are going to propose 2 challenges, one aimed at Beginners and another for Experts. However you are free to choose the challenge you fancy. You can even attempt to solve both. As you know the choice of languages are Perl and Raku. You can solve one challenge in Perl and other in Raku, if you like.
 
 ### Challenge #1
 > Write a script to replace the character **'e'** with **'E'** in the string **'Perl Weekly Challenge'**. Also print the number of times the character **'e'** is found in the string.

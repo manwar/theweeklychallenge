@@ -5,7 +5,7 @@ description: "Perl Weekly Challenge - 012"
 type: post
 image: images/blog/pwc-base.svg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 With every week, the team is growing and participation is also growing. I also love the fact that members even taking on optional API challenge regularly now. I hope, you are having fun solving weekly challenges as much as I am.
 
@@ -28,11 +28,11 @@ Good luck for the weekly challenge and enjoy.
 
 ### NEW MEMBERS
 
-1. Matthew Persico, Perl 5 hacker from New York, USA.
+1. Matthew Persico, Perl hacker from New York, USA.
 
-2. Aaron Sherman, Perl 5 / Perl 6 hacker from Somerville, MA.
+2. Aaron Sherman, Perl / Raku hacker from Somerville, MA.
 
-3. Feng Chang, perl hacker from Beijing, China since 1999.
+3. Feng Chang, Perl hacker from Beijing, China since 1999.
 
 ***
 

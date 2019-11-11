@@ -5,7 +5,7 @@ description: "Instructions how to contribute to Perl Weekly Challenge."
 type: post
 image: images/blog/how-to-contribute.jpg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 ---
 ---
