@@ -5,7 +5,7 @@ description: "Perl Weekly Challenge - 021"
 type: post
 image: images/blog/pwc-base.svg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 ***
 ***
@@ -77,7 +77,7 @@ None joined last week.
 ***
 ***
 
-> Write a script to calculate the value of **e**, also known as **Euler's number** and **Napier's constant**. Please checkout wiki [page](https://en.wikipedia.org/wiki/E_(mathematical_constant)) for more information. 
+> Write a script to calculate the value of **e**, also known as **Euler's number** and **Napier's constant**. Please checkout wiki [page](https://en.wikipedia.org/wiki/E_(mathematical_constant)) for more information.
 
 ***
 ***

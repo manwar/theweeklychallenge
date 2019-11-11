@@ -5,7 +5,7 @@ description: "Get to know about Scimon Proctor."
 type: post
 image: images/blog/meet-the-champion.jpg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 ***
 ***
@@ -25,7 +25,7 @@ Today we are talking to the **[Perl Weekly Challenge - 027](/blog/perl-weekly-ch
 
 ***
 
-**Mohammad:** How/When did you start using **Perl5**/**Perl6**?
+**Mohammad:** How/When did you start using **Perl**/**Raku**?
 
 **Scimon:** After the said dropping out I did a few things. Started a game shop (**Black Lion Games** in **Edinburgh**, still going strong with my old business partner doing a great job), worked for a bank and then later worked in a book store. I ended up running the computer books department and also managing the back end systems they had. It was here I read **"Learning Perl 5"** (this would be **2001** I guess). I fell in love, **Perl5** just spoke to me on some level. It was high enough level to get things done but still powerful. I loved it.
 

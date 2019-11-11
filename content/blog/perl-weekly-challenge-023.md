@@ -5,7 +5,7 @@ description: "Perl Weekly Challenge - 023"
 type: post
 image: images/blog/pwc-base.svg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 ***
 ***
@@ -30,22 +30,22 @@ Here is the recap of last week [challenge](/blog/recap-challenge-022).
 ***
 ***
 
-## PERL5 REVIEW
+## PERL REVIEW
 
 ***
 ***
 
-Please checkout Perl5 solutions review of the [Perl Weekly Challenge - 021](/blog/review-challenge-021) by **Kian-Meng Ang**.
+Please checkout Perl solutions review of the [Perl Weekly Challenge - 021](/blog/review-challenge-021) by **Kian-Meng Ang**.
 
 ***
 ***
 
-## PERL6 REVIEW
+## RAKU REVIEW
 
 ***
 ***
 
-Please checkout Perl6 solutions review of the **Perl Weekly Challenge - 021** by **Laurent Rosenfeld**.
+Please checkout Raku solutions review of the **Perl Weekly Challenge - 021** by **Laurent Rosenfeld**.
 
 ### Challenge #021
 
@@ -87,9 +87,9 @@ I would like to thank everyone for their valuable suggestions. Please do share y
 ***
 ***
 
-1) **Yet Ebreo**, an experienced **Perl5/Perl6** hacker from Philippines.
+1) **Yet Ebreo**, an experienced **Perl/Raku** hacker from Philippines.
 
-2) **Kiran Kumar**, an experienced **Perl5** hacker from Bangalore, India. He has been using Perl since 1999.
+2) **Kiran Kumar**, an experienced **Perl** hacker from Bangalore, India. He has been using Perl since 1999.
 
 Check out current [team](/team) members.
 

@@ -5,7 +5,7 @@ description: "Kian-Meng Ang Weekly Review: Challenge - #009."
 type: post
 image: images/blog/p5-review-challenge-009.jpg
 author: Kian-Meng Ang
-tags: ["Perl5"]
+tags: ["Perl"]
 ---
 
 Continues from [previous post](/blog/review-challenge-008). Follow up on this week review of Perl Weekly Challenge #009 answers submitted by all the participants. Read the [full question list](/blog/perl-weekly-challenge-009) and the [recap of the challenge](/blog/recap-challenge-009/) to have an overview before we proceed with our review.

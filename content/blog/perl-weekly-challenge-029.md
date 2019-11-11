@@ -5,7 +5,7 @@ description: "Perl Weekly Challenge - 029"
 type: post
 image: images/blog/pwc-base.svg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 ***
 ***
@@ -30,22 +30,22 @@ Here is the recap of last week [**Perl Weekly Challenge - 028**](/blog/recap-cha
 ***
 ***
 
-## PERL5 REVIEW
+## PERL REVIEW
 
 ***
 ***
 
-Please checkout **Perl5** solutions review of the [**Perl Weekly Challenge - 027**](/blog/review-challenge-027) by **Kian-Meng Ang**.
+Please checkout **Perl** solutions review of the [**Perl Weekly Challenge - 027**](/blog/review-challenge-027) by **Kian-Meng Ang**.
 
 ***
 ***
 
-## PERL6 REVIEW
+## RAKU REVIEW
 
 ***
 ***
 
-Please checkout **Perl6** solutions review of the **Perl Weekly Challenge - 027** by **Laurent Rosenfeld**.
+Please checkout **Raku** solutions review of the **Perl Weekly Challenge - 027** by **Laurent Rosenfeld**.
 
 1) [**Intersection of Two Straight Lines**](https://github.com/LaurentRosenfeld/Perl-6-Miscellaneous/blob/master/Challenges-in-Perl6/Intersection-point.md)
 
@@ -77,11 +77,11 @@ I would like to thank every member of the team for their valuable suggestions. P
 ***
 ***
 
-1) **Ulrich Rieke**, an experienced **Perl6** hacker from **Germany** joined the team and regard himself as a hobby programmer who once started with **C++** and then moved to **Perl**.
+1) **Ulrich Rieke**, an experienced **Raku** hacker from **Germany** joined the team and regard himself as a hobby programmer who once started with **C++** and then moved to **Perl**.
 
-2) **Julien Fiegehenn**, an experienced **Perl5** hacker from **Germany**, currently working in **London**. He is also **Mentor** to new Perl developers.
+2) **Julien Fiegehenn**, an experienced **Perl** hacker from **Germany**, currently working in **London**. He is also **Mentor** to new Perl developers.
 
-3) **Lars Thegler**, an experienced **Perl5** hacker.
+3) **Lars Thegler**, an experienced **Perl** hacker.
 
 Check out current [**team**](/team) members.
 

@@ -5,7 +5,7 @@ description: "Kian-Meng Ang Weekly Review: Challenge - #032."
 type: post
 image: images/blog/p5-review-challenge-032.jpg
 author: Kian-Meng Ang
-tags: ["Perl5", "Perl6"]
+tags: ["Perl"]
 ---
 ***
 ***

@@ -5,7 +5,7 @@ description: "Get to know about Mark Senn."
 type: post
 image: images/blog/meet-the-champion.jpg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 ---
 ---
@@ -25,9 +25,9 @@ Today we are talking to the **[Perl Weekly Challenge - 031](/blog/perl-weekly-ch
 
 ---
 
-**Mohammad:** How/When did you start using **Perl5**?
+**Mohammad:** How/When did you start using **Perl**?
 
-**Mark:** Learned of **Perl 4** somehow. Continued with **Perl 5** when it came out. Started using **Perl 6** after it came out. My favorite programming language is **Raku**. (Wolfram Language (the programming language used in the Mathematica technical computing environment) is a close second.)
+**Mark:** Learned of **Perl 4** somehow. Continued with **Perl 5** when it came out. Started using **Raku** after it came out. My favorite programming language is **Raku**. (Wolfram Language (the programming language used in the Mathematica technical computing environment) is a close second.)
 
 ---
 

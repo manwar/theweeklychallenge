@@ -5,7 +5,7 @@ description: "Perl Weekly Challenge - 010"
 type: post
 image: images/blog/pwc-base.svg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 I came to know about one secret player of **Perl Weekly Challenge** just few days ago. Any guesses? He is the **Damian Conway**. He doesn't need any introduction. My first encounter with him was when I bought his book **Perl Best Practices**. I have been a big fan of him since then. Checkout his [blog](http://blogs.perl.org/users/damian_conway/2019/05/why-i-love-perl-6.html). I would also like to mention another newly joined member **Yozen Hernandez**. He blogged first time ever that too about his solution to the **Perl Weekly Challenge**. In his [blog](https://yzhernand.github.io/posts/perl-weekly-challenge-9/) he wrote something very nice and sweet at the end.
 
@@ -32,11 +32,11 @@ Good luck for the weekly challenge and enjoy.
 
 ### NEW MEMBERS
 
-1. Pete Sergeant, Perl 5 programmer for over 20 years. Currently working as a recruiter for Perl developers.
+1. Pete Sergeant, Perl programmer for over 20 years. Currently working as a recruiter for Perl developers.
 
-2. Daniel Mita, an experienced Perl 6 hacker.
+2. Daniel Mita, an experienced Raku hacker.
 
-3. Mano Chandar, Perl 5 Hacker from Chennai, TamilNadu, India with 6+ years of experience in Perl Programming.
+3. Mano Chandar, Perl Hacker from Chennai, TamilNadu, India with 6+ years of experience in Perl Programming.
 
 With the addition of above new members, we now have **85** members.
 

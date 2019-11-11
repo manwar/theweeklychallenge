@@ -5,7 +5,7 @@ description: "Perl Weekly Challenge - 031"
 type: post
 image: images/blog/pwc-base.svg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 ***
 ***
@@ -30,24 +30,24 @@ Here is the recap of last week [**"Perl Weekly Challenge - 030"**](/blog/recap-c
 ***
 ***
 
-## PERL5 REVIEW
+## PERL REVIEW
 
 ***
 ***
 
-Please checkout **Perl5** solutions review of the [**"Perl Weekly Challenge - 029"**](/blog/review-challenge-029) by **Kian-Meng Ang**.
+Please checkout **Perl** solutions review of the [**"Perl Weekly Challenge - 029"**](/blog/review-challenge-029) by **Kian-Meng Ang**.
 
 If you missed any past reviews then please checkout the [**collection**](/p5-reviews).
 
 ***
 ***
 
-## PERL6 REVIEW
+## RAKU REVIEW
 
 ***
 ***
 
-Please checkout **Perl6** solutions review of the [**"Perl Weekly Challenge - 029"**](/blog/p6-review-challenge-029) by **Laurent Rosenfeld**.
+Please checkout **Raku** solutions review of the [**"Perl Weekly Challenge - 029"**](/blog/p6-review-challenge-029) by **Laurent Rosenfeld**.
 
 **Laurent** also reviewd **Task #2** of [**"Perl Weekly Challenge - 006"**](/blog/recap-challenge-006), you can now checkout the [**review**](/blog/p6-review-challenge-006)
 
@@ -73,7 +73,7 @@ I would like to thank every member of the team for their valuable suggestions. P
 ***
 ***
 
-1) **Darren Bottin**, **JAPH** from Wellington, **New Zealand**. Started with **Perl 5**, circa 2005.
+1) **Darren Bottin**, **JAPH** from Wellington, **New Zealand**. Started with **Perl**, circa 2005.
 
 2) **Vyacheslav Volgarev**, a student from **Russia**.
 

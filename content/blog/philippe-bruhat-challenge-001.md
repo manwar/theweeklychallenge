@@ -4,7 +4,7 @@ date: 2019-03-28T10:00:00+00:00
 type: post
 image: images/blog/book_pwc_001.jpg
 author: Philippe Bruhat (BooK)
-tags: ["Perl5"]
+tags: ["Perl"]
 ---
 This is actually as we received in response to the challenge by Philippe Bruhat. Highly recommended.
 

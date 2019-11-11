@@ -5,7 +5,7 @@ description: "Get to know about E. Choroba."
 type: post
 image: images/blog/meet-the-champion.jpg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 ***
 ***
@@ -23,7 +23,7 @@ Last week we spoke to **Yozen Hernandez**, the winner of **[Perl Weekly Challeng
 
 ***
 
-**Mohammad:** How/When did you start using **Perl5**/**Perl6**?
+**Mohammad:** How/When did you start using **Perl**/**Raku**?
 
 **Choroba:** I started using Perl at university in the late 90's. We used it for natural language processing, later I even taught it to graduates. I installed Rakudo when it was officially released for the first time, but haven't used it beyond occasional experiments since.
 

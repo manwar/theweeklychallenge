@@ -5,7 +5,7 @@ description: "Get to know about Athanasius."
 type: post
 image: images/blog/meet-the-champion.jpg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 ***
 ***
@@ -23,7 +23,7 @@ Last week we spoke to **Kian-Meng Ang**, the winner of **[Perl Weekly Challenge 
 
 ***
 
-**Mohammad:** How/When did you start using **Perl5**/**Perl6**?
+**Mohammad:** How/When did you start using **Perl**/**Raku**?
 
 **Athanasius:** Around the year 2000 my team lead introduced me to AWK as a handy text extraction tool for some reports we were writing. Then I heard about Perl as a superior alternative to AWK. I bought the Camel Book (I remember, its cover proudly advertised that it was up-to-date with Perl 5.6!) and found it to be one of those rare computer texts that are not only informative but also fun to read. Looking back, I realise now that the "Perl" scripts I was writing then were really C programmes dressed up as Perl. But hey, that's one of the Perl language's biggest strengths! Its DWIM philosophy allows the newbie to be productive from the outset and learn the more Perlish ways of doing things at his own pace.
 

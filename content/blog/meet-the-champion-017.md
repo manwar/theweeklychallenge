@@ -5,7 +5,7 @@ description: "Get to know about Yozen Hernandez."
 type: post
 image: images/blog/meet-the-champion.jpg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 ***
 ***
@@ -29,7 +29,7 @@ Eventually I got into a PhD program in Boston University and worked under [Dr Ga
 
 ***
 
-**Mohammad:** How/When did you start using **Perl5**/**Perl6**?
+**Mohammad:** How/When did you start using **Perl**/**Raku**?
 
 **Yozen:** The **Quantitative Biology** program at **Hunter College, CUNY**, had a Perl 5 course as part of the curriculum. Having started programming in C++, I fell in love with Perl and what it could do.
 

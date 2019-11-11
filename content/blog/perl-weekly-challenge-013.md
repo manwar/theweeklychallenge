@@ -5,19 +5,17 @@ description: "Perl Weekly Challenge - 013"
 type: post
 image: images/blog/pwc-base.svg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 Couple of weeks ago, I tweet below about a surprise for all registered members.
 
 ![PWC 012 Tweet](/images/blog/pwc-012-001.png)
 
-It is now time to annouce the surprise. Few weeks ago, **Peter Sergeant** of [PerlCareers](https://perl.careers/) contacted me by email and offered to sponsor the weekly challenge to make it more attractive. He offered the winner of weekly challenge **$50** Amazon Voucher. We, Peter and I, worked out the formalities and other related issues. All registered members who contribute to the weekly challenge for the week will go into the ballot box. To increase your chance to be the winner, just contribute more solutions i.e. in Perl5 and in Perl6. You could even blog about your solutions. For every solutions we receive before the deadline, we would put one entry in the ballot box. So for example, if a member submits solutions to all the three challenges in Perl5 and Perl6 with blog, then we would put 7 entries for the member.
+It is now time to annouce the surprise. Few weeks ago, **Peter Sergeant** of [PerlCareers](https://perl.careers/) contacted me by email and offered to sponsor the weekly challenge to make it more attractive. He offered the winner of weekly challenge **$50** Amazon Voucher. We, Peter and I, worked out the formalities and other related issues. All registered members who contribute to the weekly challenge for the week will go into the ballot box. To increase your chance to be the winner, just contribute more solutions i.e. in Perl and in Raku. You could even blog about your solutions. For every solutions we receive before the deadline, we would put one entry in the ballot box. So for example, if a member submits solutions to all the three challenges in Perl and Raku with blog, then we would put 7 entries for the member.
 
 From next week onwward, just minute before the launch of the weekly challenge, I will pick one winner randomly from the ballot box. This gives member some more time to submit the solutions past the actual deadline (6 pm UK time). The winner name would then be announce with the release of weekly challenge. I will email the winner **$50** Amazon voucher code shortly after the release of the challenge. Please make sure, we have your valid email address, just in case. In return we would love to receive the acknowledgement of the Amazon voucher.
 
-We will have our first winner with the release of [**Perl Weekly Challenge #014**]. This makes the [**Perl Weekly Challenge #013**] contender for the first competitve weekly challenge.
-
-Good luck and all the very best for the weekly challenge.
+We will have our first winner with the release of [**Perl Weekly Challenge #014**]. This makes the [**Perl Weekly Challenge #013**] contender for the first competitve weekly challengeRakuod luck and all the very best for the weekly challenge.
 
 ***
 
@@ -38,9 +36,9 @@ Good luck for the weekly challenge and enjoy.
 
 ### NEW MEMBERS
 
-1. Rakesh Kumar Shardiwal, an experience Perl5 hacker from Gurgaon, Haryana, India.
+1. Rakesh Kumar Shardiwal, an experience Perl hacker from Gurgaon, Haryana, India.
 
-2. Joe Tym, an experience Perl5 hacker from London, UK since 2005.
+2. Joe Tym, an experience Perl hacker from London, UK since 2005.
 
 Check out other [team](/team) members.
 

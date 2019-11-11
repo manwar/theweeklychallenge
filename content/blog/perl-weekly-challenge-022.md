@@ -5,7 +5,7 @@ description: "Perl Weekly Challenge - 022"
 type: post
 image: images/blog/pwc-base.svg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 ***
 ***
@@ -30,7 +30,7 @@ Here is the recap of last week [challenge](/blog/recap-challenge-021).
 ***
 ***
 
-## PERL5 REVIEW
+## PERL REVIEW
 
 ***
 ***
@@ -40,7 +40,7 @@ Please checkout the [Perl Weekly Challenge - 020](/blog/review-challenge-020) re
 ***
 ***
 
-## PERL6 REVIEW
+## RAKU REVIEW
 
 ***
 ***
@@ -71,9 +71,9 @@ I would like to thank everyone for their valuable suggestions. Please do share y
 ***
 ***
 
-1) **Hauke Dämpfling**, an experienced Perl5 hacker.
+1) **Hauke Dämpfling**, an experienced Perl hacker.
 
-2) **Peter Scott**, an experienced Perl5 hacker.
+2) **Peter Scott**, an experienced Perl hacker.
 
 Check out current [team](/team) members.
 

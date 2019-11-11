@@ -5,7 +5,7 @@ description: "Get to know about Joelle Maslak."
 type: post
 image: images/blog/meet-the-champion.jpg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 Welcome to the weekly series **"Meet The Champion"**.
 
@@ -21,7 +21,7 @@ Last week we spoke to **Jaldhar H. Vyas**, the winner of **[Perl Weekly Challeng
 ***
 ***
 
-**Mohammad:** How/When did you start using Perl5/Perl6?
+**Mohammad:** How/When did you start using Perl/Raku?
 
 **Joelle:** I started using Perl 4, not 5, in 1995 or 1996 - at that time, the distributon I used of Slackware included only Perl 4. At the time, I wrote some basic CGI in Perl 4 and then Perl 5. However, after taking a job with a dotcom company, I had to actually fill in my gaps in my knowledge and learn to use Perl 5 fairly well!
 

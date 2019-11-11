@@ -5,7 +5,7 @@ description: "Perl Weekly Challenge - 016"
 type: post
 image: images/blog/pwc-base.svg
 author: Mohammad S Anwar
-tags: ["Perl5", "Perl6"]
+tags: ["Perl", "Raku"]
 ---
 Let me announce the winner of **Perl Weekly Challenge - 015** and the name is **Joelle Maslak**. Many congratulations to **Joelle**. You should soon hear from **[Perl Careers](https://perl.careers/)** about your reward. Please do let us know how you feel about it. For rest of the participants, I would say **Good Luck** for next time. Keep sending in your solutions and share your knowledge with each other.
 
@@ -26,7 +26,7 @@ Good luck for the weekly challenge and enjoy.
 
 ### NEW MEMBERS
 
-1) Simon Miner, Perl5 hacker, Software engineer and educator from Boston, MA, USA. He has used Perl for over 20 years, mostly for web development.
+1) Simon Miner, Perl hacker, Software engineer and educator from Boston, MA, USA. He has used Perl for over 20 years, mostly for web development.
 
 Check out other [team](/team) members.
 
