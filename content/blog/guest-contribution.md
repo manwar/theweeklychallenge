@@ -1,6 +1,6 @@
 ---
 title: "Perl Weekly Challenge - Guest Contributions"
-date: 2019-11-10T00:00:00+00:00
+date: 2019-11-17T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -12,6 +12,11 @@ As you know, **Perl Weekly Challenge**, primarily focus on **Perl** and **Raku**
 
 Please find below guest contributions.
 
+----
+----
+#### [Perl Weekly Challenge - 34](/blog/perl-weekly-challenge-034)
+----
+##### **Adam Russell** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/adam-russell/cxx/ch-1.cxx) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/adam-russell/cxx/ch-2.cxx) in **C++**.
 ----
 ----
 #### [Perl Weekly Challenge - 33](/blog/perl-weekly-challenge-033)
