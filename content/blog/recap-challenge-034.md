@@ -33,7 +33,7 @@ Last but not the least, keep contributing to the weekly challenge, making sure w
 
 #### 2) Joelle Maslak (**330**)
 
-#### 3) Jaldhar H. Vyas (**310**)
+#### 3) Jaldhar H. Vyas (**312**)
 
 #### 4) Ruben Westerberg (**260**)
 
@@ -209,6 +209,7 @@ Checkout the masterpiece collection of [**blogs**](https://perlweeklychallenge.o
 ### Jaldhar H. Vyas
 ![Jaldhar H. Vyas](/images/team/jaldhar_vyas.jpg)
 
+[[PERL #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/jaldhar-h-vyas/perl5/ch-1.pl)]
 [[PERL #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/jaldhar-h-vyas/perl5/ch-2.pl)]
 [[RAKU #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/jaldhar-h-vyas/perl6/ch-1.p6)]
 [[RAKU #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/jaldhar-h-vyas/perl6/ch-2.p6)]
