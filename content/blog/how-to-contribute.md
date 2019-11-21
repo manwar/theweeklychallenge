@@ -187,7 +187,7 @@ Add script like **ch-1.p6** or **ch-2.p6** or **ch-1.sh** or **ch-2.sh**
    $ git commit
 ```
 
-10) Now push the newly created branh **branch-for-challenge-005**
+10) Now push the newly created branch **branch-for-challenge-005**
 
 ```
    $ git push -u origin branch-for-challenge-005
