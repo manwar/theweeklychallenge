@@ -307,7 +307,7 @@ sub MAIN(Str $word, Str $file where *.IO.r = '/usr/share/dict/words') {
 }
 ```
 
-[Ruben Westerberg]() wrote an [anagram module](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-005/ruben-westerberg/perl6/anagram.pm6) implementing a `findAnangrams` (sic) subroutine:
+[Ruben Westerberg](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-005/ruben-westerberg/perl6/ch-1.p6) wrote an [anagram module](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-005/ruben-westerberg/perl6/anagram.pm6) implementing a `findAnangrams` (sic) subroutine:
 
 ``` Perl6
 unit module anagram;
@@ -359,7 +359,7 @@ say "Anagrams: ",findAnangrams(@letters,@word-list).join: ' ';
 
 This probably works well, but, although the idea of creating a module for anagrams is probably good, I have the feeling that this implementation is a bit over-engineered. My solution held in 7 code lines.
 
-[Simon Proctor]() also wrote an [Anagrams module](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-005/simon-proctor/perl6/lib/Anagrams.pm6):
+[Simon Proctor](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-005/simon-proctor/perl6/ch-1.p6) also wrote an [Anagrams module](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-005/simon-proctor/perl6/lib/Anagrams.pm6):
 
 ``` Perl6
 unit package Anagrams;
