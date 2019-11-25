@@ -114,6 +114,13 @@ Checkout the masterpiece collection of [**blogs**](https://perlweeklychallenge.o
 
 ***
 
+### Duane Powell
+![Duane Powell](/images/team/duane-powell.jpg)
+
+[[PERL #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-035/duane-powell/perl5/ch-1.pl)]
+[[PERL #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-035/duane-powell/perl5/ch-2.pl)]
+
+***
 ### E. Choroba
 ![E. Choroba](/images/team/e-choroba.jpg)
 
