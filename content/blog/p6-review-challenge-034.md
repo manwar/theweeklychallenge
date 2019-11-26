@@ -69,7 +69,7 @@ This program produces the following output:
 
 ## Alternative Solutions
 
-Maybe it's me missing out something, but I'm a bit disappointed by several of the solutions, which is quite surprising for such a simple challenge. Several solutions just don't really fit the bill. And it seems I'm the only one who thought about using slices as l-values (.
+Maybe it's me missing out something, but I'm a bit disappointed by several of the solutions, which is quite surprising for such a simple challenge. Several solutions just don't really fit the bill.
 
 [Arne Sommer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/arne-sommer/perl6/ch-1.p6) provided a few nice examples of array slices, plus one example of a hash slice. Please run Arne's code to understand anything that isn't obvious to you.
 
@@ -87,7 +87,25 @@ say %values<zero>;
 say %values<zero VI nine>;
 ```
 
-[Kevin Colyer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/kevin-colyer/perl6/ch-1.p6) contributed a quite long script, but I'm not quite sure he understood the task, as I fail to see any array or hash slice in his program, which seems to demonstrate complex data structure, such as hashes of hashes, but not slices.
+[Kevin Colyer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/kevin-colyer/perl6/ch-1.p6) contributed a quite long script, implementing an adventure game and demonstrating both topics of week # 34 challenge, dispatch tables and hash slices. I originally did not see the hash slices and mistakenly reported that. Kevin, please excuse me for this initial error. Kevin's script has two hash slices on his dispatch table, on lines 228 and 235;
+
+``` Perl6
+    # NOTE dispatch tables AND hash slices!
+    if $thing eq "bubblyflask" {
+        %dispatch{"n","north", "e","east","s","south","w","west"} = (&east, &east, &south, &south, &west, &west, &north, &north);
+        %flags<confused>=True;
+        return increase_score(1) ~ "The bubbly liquid tastes of melon and treacle and it goes straight to your head in seconds. You feel dizzy and confused, yet pleasantly happy.";
+    }
+    if $thing eq "fizzyflask" {
+        %dispatch{"n","north", "e","east","s","south","w","west"} = (&north, &north, &east, &east, &south, &south, &west, &west);
+        %flags<confused>=False;
+        return increase_score(1) ~ "The vile taste of the fizzy liquid sobers you right up. The room swims back into focus.";
+    }
+```
+
+Also note that Kevin's script is the only one besides mine which uses hash slices as *l-values* (i.e. on the left-hand side of an assignment).
+
+Again, sorry, Kevin, for this initial mistake.
 
 [Simon Proctor](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/simon-proctor/perl6/ch-1.p6) suggested a quite interesting program that illustrates various relatively advanced features of Raku including, but only marginally, slices, so that the slice features are a bit blurred by the other features. I extracted from his code two examples illustrating the slice feature:
 
