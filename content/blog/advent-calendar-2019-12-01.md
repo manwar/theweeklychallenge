@@ -1,12 +1,14 @@
 ---
 title: "Advent Calendar - December 1, 2019"
-date: 2019-11-27T00:00:00+00:00
+date: 2019-11-28T00:00:00+00:00
 description: "Plan for 2020."
 type: post
 image: images/blog/2019-12-01.jpg
 author: Laurent Rosenfeld
 tags: ["Perl", "Raku"]
 ---
+
+[**Advent Calendar 2019**](/blog/advent-calendar-2019)
 ***
 
 The gift is presented by [**Laurent Rosenfeld**](https://perlweeklychallenge.org/blog/meet-the-champion-013). Today he is talking about his solutions to **Task #2: Word Ladder** of [**"The Weekly Challenge - 007"**](/blog/perl-weekly-challenge-007).
@@ -265,7 +267,7 @@ Printing out intermediate results shows that there are other shortest ladders be
     warm worm corm cord cold
     warm ward card cord cold
 
-There is one caveat: it should be noted that I have initialized the __$max variable__ to twice the length of the input words. In a way, this is a bug because there are certainly some (probably very rare) pairs of four-letter words for which the shortest ladder contains more than 8 words, but I have kept it this way as a trade-off because the program runs so dramatically faster with a relatively low value for $max. If we needed to make sure that we don't miss any shortest ladder, we could run it the way it is now (so that it is fairly fast most of the time) and, when no ladder is found, run it again with a much larger initial value of __$max__. According to this site, the longest shortest ladder (with words of **six letters**) has **50 steps**.
+There is one caveat: it should be noted that I have initialized the __$max__ variable to twice the length of the input words. In a way, this is a bug because there are certainly some (probably very rare) pairs of **four-letters** words for which the shortest ladder contains more than **8 words**, but I have kept it this way as a trade-off because the program runs so dramatically faster with a relatively low value for **$max**. If we needed to make sure that we don't miss any shortest ladder, we could run it the way it is now (so that it is fairly fast most of the time) and, when no ladder is found, run it again with a much larger initial value of **$max**. According to this site, the longest shortest ladder (with words of **six letters**) has **50 steps**.
 
 As a conclusion to the Perl implementation of word ladders, I should say that, although it seems to work properly (subject to the caveat just above), I'm not really fully satisfied with this solution: I think it should be possible to make something simpler (and perhaps faster), but I don't have the time at the moment to investigate further.
 
@@ -303,7 +305,7 @@ sub retrieve (%hash, $file) is export {
 }
 ```
 
-As an example, the first few lines of the **word_store_4** file look like this:
+As an example, the first few lines of the [**word_store_4**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-007/laurent-rosenfeld/perl6/word_store_4) file look like this:
 
     yawl | bawl pawl wawl yawn yawp yaws yowl
     pled | fled bled pied plea peed gled pleb plod sled
@@ -393,3 +395,4 @@ Running the script with the words **"warm"** and **"cold"** produces the followi
 
 ***
 ***
+[**Advent Calendar 2019**](/blog/advent-calendar-2019)
