@@ -1,17 +1,22 @@
 ---
 title: "Perl Weekly Challenge - Guest Contributions"
-date: 2019-11-17T00:00:00+00:00
+date: 2019-11-29T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
 author: Mohammad S Anwar
-tags: ["C++", "Python", "Postscript", "Rust", "HTML"]
+tags: ["C++", "Haskell", "Python", "Postscript", "Rust", "HTML"]
 ---
 
-As you know, **Perl Weekly Challenge**, primarily focus on **Perl** and **Raku**. During the **Week #018**, we received the solution to [**"Perl Weekly Challenge - 018"**](/blog/perl-we$ekly-challenge-018) by **Oretis Zekai** in **Python**. It was a pleasant surprise to receive solution in something other than **Perl** and **Raku**. Ever since regular team members also started contributing in other languages like **C++**, **Postscript**, **Rust** and **HTML**.
+As you know, **Perl Weekly Challenge**, primarily focus on **Perl** and **Raku**. During the **Week #018**, we received the solution to [**"Perl Weekly Challenge - 018"**](/blog/perl-we$ekly-challenge-018) by **Oretis Zekai** in **Python**. It was a pleasant surprise to receive solution in something other than **Perl** and **Raku**. Ever since regular team members also started contributing in other languages like **C++**, **Haskell**, **Postscript**, **Rust** and **HTML**.
 
 Please find below guest contributions.
 
+----
+----
+#### [Perl Weekly Challenge - 36](/blog/perl-weekly-challenge-036)
+----
+##### **Ulrich Rieke** shared solutions to [**Task 2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-036/ulrich-rieke/haskell/ch-2.hs) in **Haskell**.
 ----
 ----
 #### [Perl Weekly Challenge - 34](/blog/perl-weekly-challenge-034)
