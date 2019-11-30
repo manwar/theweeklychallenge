@@ -1,7 +1,7 @@
 ---
 title: "Advent Calendar - December 1, 2019"
 date: 2019-11-28T00:00:00+00:00
-description: "Plan for 2020."
+description: "Advent Calendar - December 1, 2019."
 type: post
 image: images/blog/2019-12-01.jpg
 author: Laurent Rosenfeld
@@ -395,4 +395,6 @@ Running the script with the words **"warm"** and **"cold"** produces the followi
 
 ***
 ***
+If you have any suggestion then please do share with us <perlweeklychallenge@yahoo.com>.
+
 [**Advent Calendar 2019**](/blog/advent-calendar-2019)
