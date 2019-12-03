@@ -42,11 +42,11 @@ is_deeply
 done_testing();
 ```
 
-It works, but we aren’t done yet. Try using a larger **$n**, e.g. **99**. On my machine, it takes about **1.3 seconds**, and it gives the warning
+It works, but we aren’t done yet. Try using a larger **$n**, e.g. **99**. On my machine, it takes about **1.3 seconds**, and it gives the warning twice.
 
     Deep recursion on subroutine "main::F" at ...
 
-twice. Using even larger **$n**’s slows the program rapidly and the number of the warnings grows.
+Using even larger **$n**’s slows the program rapidly and the number of the warnings grows.
 
 If we analyse the flow of the program, we’ll see that we’re counting the function many times with the same argument. We can speed up our code by caching the return value for each argument. There’s even a core module (**since 5.8**) to do that for us: **Memoize**. Adding the following two lines makes the program finish in under **0.07 seconds**:
 
