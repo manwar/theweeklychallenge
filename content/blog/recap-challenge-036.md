@@ -43,7 +43,7 @@ Last but not the least, please try solving task in a new language and challenge 
 
 #### 7) Athanasius (**208**)
 
-#### 8) E. Choroba (**188**)
+#### 8) E. Choroba (**190**)
 
 #### 9) Roger Bell_West (**168**)
 
@@ -134,6 +134,7 @@ Checkout the masterpiece collection of [**blogs**](https://perlweeklychallenge.o
 
 [[PERL #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-036/e-choroba/perl5/ch-1.pl)]
 [[PERL #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-036/e-choroba/perl5/ch-2.pl)]
+[[BLOG #1](http://blogs.perl.org/users/e_choroba/2019/12/perl-weekly-challenge-036-vin-validation-and-the-knapsack-problem.html)]
 
 ***
 
