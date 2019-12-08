@@ -5,10 +5,10 @@ description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
 author: Mohammad S Anwar
-tags: ["C++", "Go", "Haskell", "Python", "Postscript", "Rust", "HTML"]
+tags: ["C++", "Go", "Haskell", "Javascript", "Python", "Postscript", "Rust", "HTML"]
 ---
 
-As you know, **Perl Weekly Challenge**, primarily focus on **Perl** and **Raku**. During the **Week #018**, we received the solution to [**"Perl Weekly Challenge - 018"**](/blog/perl-we$ekly-challenge-018) by **Oretis Zekai** in **Python**. It was a pleasant surprise to receive solution in something other than **Perl** and **Raku**. Ever since regular team members also started contributing in other languages like **C++**, **Go**, **Haskell**, **Postscript**, **Rust** and **HTML**.
+As you know, **Perl Weekly Challenge**, primarily focus on **Perl** and **Raku**. During the **Week #018**, we received the solution to [**"Perl Weekly Challenge - 018"**](/blog/perl-we$ekly-challenge-018) by **Oretis Zekai** in **Python**. It was a pleasant surprise to receive solution in something other than **Perl** and **Raku**. Ever since regular team members also started contributing in other languages like **C++**, **Go**, **Haskell**, **Javascript**, **Postscript**, **Rust** and **HTML**.
 
 Please find below guest contributions.
 
@@ -17,6 +17,7 @@ Please find below guest contributions.
 #### [Perl Weekly Challenge - 37](/blog/perl-weekly-challenge-037)
 ----
 ##### **Daniel Mita** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/daniel-mita/go/ch-1.go) in **Go**.
+##### **Daniel Mita** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/daniel-mita/js/ch-1.js) in **Javascript**.
 ##### **Duncan C. White** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/duncan-c-white/postscript/ch-1.ps) in **Postscript**.
 ----
 ----
