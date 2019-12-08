@@ -1,6 +1,6 @@
 ---
 title: "Perl Weekly Challenge - Guest Contributions"
-date: 2019-12-07T00:00:00+00:00
+date: 2019-12-08T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -17,6 +17,7 @@ Please find below guest contributions.
 #### [Perl Weekly Challenge - 37](/blog/perl-weekly-challenge-037)
 ----
 ##### **Daniel Mita** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/daniel-mita/go/ch-1.go) in **Go**.
+##### **Duncan C. White** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/duncan-c-white/postscript/ch-1.ps) in **Postscript**.
 ----
 ----
 #### [Perl Weekly Challenge - 36](/blog/perl-weekly-challenge-036)
