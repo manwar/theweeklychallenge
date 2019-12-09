@@ -246,7 +246,7 @@ Checkout the masterpiece collection of [**blogs**](https://perlweeklychallenge.o
 ***
 
 ### Javier Luque
-![Javier Luque](/images/team/user.jpg)
+![Javier Luque](/images/team/javier_luque.jpg)
 
 [[PERL #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/javier-luque/perl5/ch-1.pl)]
 [[PERL #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/javier-luque/perl5/ch-2.pl)]
