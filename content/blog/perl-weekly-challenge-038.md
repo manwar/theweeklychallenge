@@ -105,7 +105,7 @@ Create a script to accept a **7 digits** number, where the first number can only
 
 ## RULES
 
-1) If **1st** digit is **1**, then append **20** otherwise **19** to the **2nd** and **3rd** digits to make it **4-digits** year.
+1) If **1st** digit is **1**, then prepend **20** otherwise **19** to the **2nd** and **3rd** digits to make it **4-digits** year.
 
 2) The **4th** and **5th** digits together should be a valid month.
 
