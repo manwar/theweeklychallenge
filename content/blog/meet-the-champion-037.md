@@ -55,7 +55,7 @@ I try to learn something new every week and this week I learned about the **poly
 
 **Mohammad:** Do you checkout others solutions and who is your favourite?
 
-**Javier:** I don't really have the time to check other people's solutions but I read the recap when **Laurent Rosenfeld** and **Kian-Meng Ang** posts them. Then you have these **"AHA"** moments and realize you could have solved the problem a whole different way. I like those moments as they help you grow as a person and developer.
+**Javier:** I don't really have the time to check other people's solutions but I read the recap when [**Laurent Rosenfeld**](/p6-reviews) and [**Kian-Meng Ang**](/p5-reviews) posts them. Then you have these **"AHA"** moments and realize you could have solved the problem a whole different way. I like those moments as they help you grow as a person and developer.
 
 ---
 
