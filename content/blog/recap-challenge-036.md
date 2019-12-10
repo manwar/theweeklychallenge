@@ -267,6 +267,7 @@ Checkout the masterpiece collection of [**blogs**](https://perlweeklychallenge.o
 [[PERL #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-036/roger-bell-west/perl5/ch-2.pl)]
 [[RAKU #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-036/roger-bell-west/perl6/ch-1.p6)]
 [[RAKU #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-036/roger-bell-west/perl6/ch-2.p6)]
+[[BLOG #1](https://blog.firedrake.org/archive/2019/12/Perl_Weekly_Challenge_36__VINs_and_Knapsacks.html)]
 
 ***
 
