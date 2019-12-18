@@ -1,6 +1,6 @@
 ---
 title: "Advent Calendar - December 11, 2019"
-date: 2019-12-10T00:00:00+00:00
+date: 2019-12-11T00:00:00+00:00
 description: "Advent Calendar - December 11, 2019"
 type: post
 image: images/blog/2019-12-11.jpg
