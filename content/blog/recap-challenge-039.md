@@ -134,7 +134,7 @@ for words() {
 
 #### 9) Roger Bell_West (**200**)
 
-#### 10) Kian-Meng Ang (**158**)
+#### 10) Kian-Meng Ang (**160**)
 
 #### 11) Andrezgz (**152**)
 
