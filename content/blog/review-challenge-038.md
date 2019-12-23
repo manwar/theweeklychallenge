@@ -1,32 +1,35 @@
 ---
 title: "Kian-Meng Ang Weekly Review: Challenge - 038"
-date: 2019-12-19T03:00:00+00:00
+date: 2019-12-22T00:00:00+00:00
 description: "Kian-Meng Ang Weekly Review: Challenge - #038."
 type: post
-image: images/blog/blog-header-15.jpg
+image: images/blog/p5-review-challenge-037.jpg
 author: Kian-Meng Ang
-tags: ["Perl5", "Perl6"]
+tags: ["Perl"]
 ---
 ***
-Continues from [previous week](/blog/review-challenge-037/).
+***
+Continues from [**previous week**](/blog/review-challenge-037/).
 
-Feel free to [submit a merge request or open a ticket](https://github.com/manwar/perlweeklychallenge) if you found any issues with this post. We highly appreciate and welcome your feedback.
+Feel free to [**submit a merge request or open a ticket**](https://github.com/manwar/perlweeklychallenge) if you found any issues with this post. We highly appreciate and welcome your feedback.
 
-For a quick overview, go through the [original tasks](/blog/perl-weekly-challenge-038/) and [recap](/blog/recap-challenge-038/) of the weekly challenge.
+For a quick overview, go through the [**original tasks**](/blog/perl-weekly-challenge-038/) and [**recap**](/blog/recap-challenge-038/) of the weekly challenge.
 
-Additional feedback to the our Perl Weekly Challenge’s [Twitter account](https://twitter.com/perlwchallenge?lang=en) is much appreciated.
+Additional feedback to the our Perl Weekly Challenge’s [**Twitter account**](https://twitter.com/perlwchallenge?lang=en) is much appreciated.
 
 ***
-### Task #1
+***
+## Task #1
+***
 ***
 
 **CPAN** modules used: [`Carp`](https://metacpan.org/pod/Carp), [`Date::Calc`](https://metacpan.org/pod/Date::Calc), [`Date::Manip`](https://metacpan.org/pod/Date::Manip), [`DateTime`](https://metacpan.org/pod/DateTime), [`POSIX`](https://metacpan.org/pod/POSIX), [`Test::Exception`](https://metacpan.org/pod/Test::Exception), [`Test::More`](https://metacpan.org/pod/Test::More), [`Time::Local`](https://metacpan.org/pod/Time::Local), [`Time::Piece`](https://metacpan.org/pod/Time::Piece), [`Try::Tiny`](https://metacpan.org/pod/Try::Tiny), [`boolean`](https://metacpan.org/pod/boolean), [`feature`](https://metacpan.org/pod/feature), [`strict`](https://metacpan.org/pod/strict), [`utf8`](https://metacpan.org/pod/utf8), [`warnings`](https://metacpan.org/pod/warnings)
 
 Another week, another date related challenge.
 
-For this task, we observed there were two approaches in validating the 7-digits date, either using a regex or non-regex at all. Almost everyone took the former approach but some participant have put in extra effort to ensure the readability of the code, especially the regex. Yes, you can write readable and maintainable code in Perl, regardless its notorious reputation of [looking like line noise](https://www.perl.com/pub/2000/01/10PerlMyths.html/#Perl_looks_like_line_noise).
+For this task, we observed there were two approaches in validating the **7-digits date**, either using a **regex** or **non-regex** at all. Almost everyone took the former approach but some participant have put in extra effort to ensure the readability of the code, especially the regex. Yes, you can write readable and maintainable code in **Perl**, regardless its notorious reputation of [**looking like line noise**](https://www.perl.com/pub/2000/01/10PerlMyths.html/#Perl_looks_like_line_noise).
 
-First, look at the submission by [Adam Russell](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/adam-russell/perl5/ch-1.pl). It's a straightforward approach to validate the 7-digits date. But it didn't tell us much on what being extracted or matched from the regex without checking back the requirement.
+First, look at the submission by [**Adam Russell**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/adam-russell/perl5/ch-1.pl). It's a straightforward approach to validate the **7-digits** date. But it didn't tell us much on what being extracted or matched from the regex without checking back the requirement.
 
 ```perl
 sub is_valid{
@@ -38,7 +41,7 @@ sub is_valid{
 
 Now, compare to these code submissions.
 
-By [Javier Luque](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/javier-luque/perl5/ch-1.pl).
+By [**Javier Luque**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/javier-luque/perl5/ch-1.pl).
 
 ```perl
 # Regex to test date format
@@ -53,7 +56,7 @@ return "Invalid date format"
     /x;
 ```
 
-By [Dave Jacoby](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/dave-jacoby/perl5/ch-1.pl).
+By [**Dave Jacoby**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/dave-jacoby/perl5/ch-1.pl).
 
 ```perl
 my ( $century, $year, $month, $day ) = $string =~ m{
@@ -65,7 +68,7 @@ my ( $century, $year, $month, $day ) = $string =~ m{
     $         # end of string
 }mx;
 ```
-By [Andrezgz](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/andrezgz/perl5/ch-1.pl).
+By [**Andrezgz**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/andrezgz/perl5/ch-1.pl).
 
 ```perl
 die 'invalid 7-digits date'.$/
@@ -77,7 +80,7 @@ die 'invalid 7-digits date'.$/
     $/x;
 ```
 
-By [Ryan Thompson](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/ryan-thompson/perl5/ch-1.pl). Yes, we do agree, the regex is the real star.
+By [**Ryan Thompson**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/ryan-thompson/perl5/ch-1.pl). Yes, we do agree, the regex is the real star.
 
 ```perl
 # This regex is the real star of the show
@@ -89,7 +92,7 @@ $ARGV[0] =~ /^
 $/x or die "usage: $0 Cyymmdd";
 ```
 
-How about non-regex solution, as usual, [E. Choroba](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/e-choroba/perl5/ch-1.pl) surprised us with his submission by not using any regex at all. Compare his solution to the above mentioned regex examples, which is more readable and understandable at a quick glance?
+How about non-regex solution, as usual, [**E. Choroba**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/e-choroba/perl5/ch-1.pl) surprised us with his submission by not using any regex at all. Compare his solution to the above mentioned regex examples, which is more readable and understandable at a quick glance?
 
 ```perl
 sub validate {
@@ -107,19 +110,21 @@ sub validate {
 }
 ```
 
-So what have we learned here from these submissions. You can write good and readable regex with good comment, split regex into multiple lines with the help of `\x` modifier, named captured variables, and good code indentation. The submission by [Ryan Thompson](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/ryan-thompson/perl5/ch-1.pl) was a good example of this.
+So what have we learned here from these submissions. You can write good and readable regex with good comment, split regex into multiple lines with the help of `\x` modifier, named captured variables, and good code indentation. The submission by [**Ryan Thompson**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/ryan-thompson/perl5/ch-1.pl) was a good example of this.
 
 ***
-### Task #2
+***
+## Task #2
+***
 ***
 
 **CPAN** modules used: [`Algorithm::Combinatorics`](https://metacpan.org/pod/Algorithm::Combinatorics), [`Data::Dumper`](https://metacpan.org/pod/Data::Dumper), [`File::Slurp`](https://metacpan.org/pod/File::Slurp), [`File::Slurper`](https://metacpan.org/pod/File::Slurper), [`Getopt::Long`](https://metacpan.org/pod/Getopt::Long), [`LWP::Simple`](https://metacpan.org/pod/LWP::Simple), [`List::Util`](https://metacpan.org/pod/List::Util), [`Math::Combinatorics`](https://metacpan.org/pod/Math::Combinatorics), [`Memoize`](https://metacpan.org/pod/Memoize), [`Readonly`](https://metacpan.org/pod/Readonly), [`autodie`](https://metacpan.org/pod/autodie), [`constant`](https://metacpan.org/pod/constant), [`enum`](https://metacpan.org/pod/enum), [`feature`](https://metacpan.org/pod/feature), [`strict`](https://metacpan.org/pod/strict), [`utf8`](https://metacpan.org/pod/utf8), [`warnings`](https://metacpan.org/pod/warnings)
 
-While the question did not explain it explicitly, the task is like a [Scrabble](https://en.wikipedia.org/wiki/Scrabble) game.
+While the question did not explain it explicitly, the task is like a [**Scrabble**](https://en.wikipedia.org/wiki/Scrabble) game.
 
 Let's us compare how participants initialize the character value/point/score and frequency/count.
 
-By [Ruben Westerberg](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/ruben-westerberg/perl5/ch-2.pl) which have the shortest code.
+By [**Ruben Westerberg**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/ruben-westerberg/perl5/ch-2.pl) which have the shortest code.
 
 ```perl
 my @l=split "", "AGISUXZEJLRVYFDPWBNTOHMCKQ";
@@ -127,7 +132,7 @@ my @c=(8,3,5,7,5,2,5,9,3,3,3,3,5,3,3,5,5,5,4,5,3,3,4,4,2,2);
 my @v=((1)x7, (2)x6,(3)x4,(4)x2,(5)x5,(10)x2);
 ```
 
-By [Ryan Thompson](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/ryan-thompson/perl5/ch-2.pl). Notice the for loop used to initialize the tile.
+By [**Ryan Thompson**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/ryan-thompson/perl5/ch-2.pl). Notice the for loop used to initialize the tile.
 
 ```perl
 # Point values for each tile, as given in the challenge description:
@@ -150,7 +155,7 @@ my @bag = shuffle map { my ($l, $count) = split //; ($l) x $count }
         K2 Q2 >;
 ```
 
-By [Andrezgz](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/andrezgz/perl5/ch-2.pl). Similar to [Ruben Westerberg](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/ruben-westerberg/perl5/ch-2.pl) but more readable.
+By [**Andrezgz**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/andrezgz/perl5/ch-2.pl). Similar to [**Ruben Westerberg**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/ruben-westerberg/perl5/ch-2.pl) but more readable.
 
 ```perl
 # Points for each tile
@@ -175,7 +180,7 @@ my @lot = (
 );
 ```
 
-By [E. Choroba](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/e-choroba/perl5/ch-2.pl). A rather elegant way of initializing the score and count of character tiles.
+By [**E. Choroba**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/e-choroba/perl5/ch-2.pl). A rather elegant way of initializing the score and count of character tiles.
 
 ```perl
 my %tile = (
@@ -191,24 +196,21 @@ my @all = shuffle(map +($_) x $tile{$_}[NUMBER], keys %tile);
 ```
 
 ***
-### See Also
+***
+## SEE ALSO
+***
 ***
 
-(1) [Perl Weekly Challenge – 038](https://perlchallenges.wordpress.com/2019/12/10/perl-weekly-challenge-038/) by Javier Luque
+(1) [**Perl Weekly Challenge 038**](https://adamcrussell.livejournal.com/12987.html) by **Adam Russell**
 
+(2) [**Datefinder General, A Raku Wordgame**](https://raku-musings.com/date-word.html) by **Arne Sommer**
 
-(2) [Datefinder General, A Raku Wordgame](https://raku-musings.com/date-word.html) by Arne Sommer
+(3) [**Perl Weekly Challenge #38**](http://217.229.26.129:81/www/Perl/PWC/20191215_38/ch-1.html) by **Burkhard Nickels**
 
+(4) [**Words and Dates: Which is more fun?**](https://jacoby.github.io/2019/12/10/words-and-dates-which-is-more-fun.html) by **Dave Jacoby**
 
-(3) [Perl Weekly Challenge 038](https://adamcrussell.livejournal.com/12987.html) by Adam Russell
+(5) [**Perl Weekly Challenge 038: Date Finder and Word Game**](http://blogs.perl.org/users/e_choroba/2019/12/perl-weekly-challenge-038-date-finder-and-word-game.html) by **E. Choroba**
 
+(6) [**Perl Weekly Challenge – 038**](https://perlchallenges.wordpress.com/2019/12/10/perl-weekly-challenge-038/) by **Javier Luque**
 
-(4) [Words and Dates: Which is more fun?](https://jacoby.github.io/2019/12/10/words-and-dates-which-is-more-fun.html) by Dave Jacoby
-
-
-(5) [Perl Weekly Challenge #38](http://217.229.26.129:81/www/Perl/PWC/20191215_38/ch-1.html) by Burkhard Nickels
-
-
-(6) [Perl Weekly Challenge 38: Date Finder and Word Game](http://blogs.perl.org/users/laurent_r/2019/12/perl-weekly-challenge-38-date-finder-and-word-game.html) by Laurent Rosenfeld
-
-(7) [Perl Weekly Challenge 038: Date Finder and Word Game](http://blogs.perl.org/users/e_choroba/2019/12/perl-weekly-challenge-038-date-finder-and-word-game.html) by E. Choroba
+(7) [**Perl Weekly Challenge 38: Date Finder and Word Game**](http://blogs.perl.org/users/laurent_r/2019/12/perl-weekly-challenge-38-date-finder-and-word-game.html) by **Laurent Rosenfeld**
