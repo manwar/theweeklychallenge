@@ -3,7 +3,7 @@ title: "Kian-Meng Ang Weekly Review: Challenge - 038"
 date: 2019-12-22T00:00:00+00:00
 description: "Kian-Meng Ang Weekly Review: Challenge - #038."
 type: post
-image: images/blog/p5-review-challenge-037.jpg
+image: images/blog/p5-review-challenge-038.jpg
 author: Kian-Meng Ang
 tags: ["Perl"]
 ---
