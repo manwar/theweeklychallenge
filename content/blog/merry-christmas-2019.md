@@ -32,7 +32,7 @@ One of the achievements of the **"Perl Weekly Challenge"** was able to attract t
 
 ## Kian-Meng Ang
 
-**Kian-Meng** has been reviewing the **Perl** contributions since **Week 007**. We have had many positive responses by the **Champions** appreciating the work done every week. I would like to take this opportunity to say big **THANK YOU** for the hard work and commitments.
+**Kian-Meng** has been reviewing the **Perl** contributions since [**Perl Weekly Challenge - 007**](/blog/perl-weekly-challenge-007). We have had many positive responses by the [**Champions**](/champions) appreciating the work done every week. I would like to take this opportunity to say big **THANK YOU** for the hard work and commitments.
 
 Please checkout the [**contributions**](/p5-reviews).
 
