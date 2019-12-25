@@ -10,7 +10,7 @@ tags: ["Perl", "Raku"]
 
 Today **December 25, 2019**, we completed **9 months** of weekly challenges. The **Year 2019** will remain very special to all of us associated with **"Perl Weekly Challenge"**. We just celebrated [**Advent Calendar**](/blog/advent-calendar-2019) for the first time. It was fun revisiting some of the great contributions by fellow members.
 
-I would like to take this opportunity to thank our sole sponsor, **Peter Sergeant** of [**PerlCareers**](https://perl.careers). We are looking for more sponsors in the **Year 2020**. Any *contributions* would be highly appreciated.
+I would like to take this opportunity to **THANK** our sole sponsor, **Peter Sergeant** of [**PerlCareers**](https://perl.careers). We are looking for more sponsors in the **Year 2020**. Any *contributions* would be highly appreciated.
 
 ***
 ![Perl Careers](/images/blog/sponsor.jpg)
