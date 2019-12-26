@@ -97,4 +97,4 @@ As of today, we have had contributions in Perl (**1633**), Raku (**980**) and Bl
 
 <br>
 ***
-Last but not the least, I would like to **THANK YOU** to each and every member of the team for the contributions and encouragement. I wish you all all **Merry Christmas & Happy New Year**.
+Last but not the least, I would like to **THANK YOU** to each and every member of the team for the contributions and encouragement. I wish you all **Merry Christmas & Happy New Year**.
