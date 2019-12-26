@@ -84,7 +84,7 @@ For more information about their contributions, please checkout the [**blog**](/
 
 We created **Centurion Club** where anyone who scores **100+** gets the membership. As of today, following members are in the club in order of score:
 
-**Lauurent Rosenfeld**, **Joelle Maslak**, **Jaldhar H. Vyas**, **Ruben Westerberg**, **Adam Russell**, **Arne Sommer**, **Athanasius**, **E. Choroba**, **Roger Bell_West**, **Kian-Meng Ang**, **Andrezgz**, **Scimon Proctor**, **Duncan C. White**, **Dave Jacoby**, **Steven Wilson**, **Yet Ebreo** and **Kevin Colyer**.
+**Laurent Rosenfeld**, **Joelle Maslak**, **Jaldhar H. Vyas**, **Ruben Westerberg**, **Adam Russell**, **Arne Sommer**, **Athanasius**, **E. Choroba**, **Roger Bell_West**, **Kian-Meng Ang**, **Andrezgz**, **Scimon Proctor**, **Duncan C. White**, **Dave Jacoby**, **Steven Wilson**, **Yet Ebreo** and **Kevin Colyer**.
 
 Please checkout the [**CHART**](/chart/) for more information.
 
