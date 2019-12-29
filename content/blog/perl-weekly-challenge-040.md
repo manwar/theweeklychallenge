@@ -15,7 +15,7 @@ tags: ["Perl", "Raku"]
 ***
 ***
 
-With great pleasure, we announce **Colin Crane** as the winner of [**"Perl Weekly Challenge - 039"**](/blog/perl-weekly-challenge-039). Congratulations **Colin**, you should soon hear from **[Perl Careers](https://perl.careers/)** about your reward. For rest of the participants, I would say **Good Luck** for next time. Keep sending in your solutions and share your knowledge with each other.
+With great pleasure, we announce **Colin Crain** as the winner of [**"Perl Weekly Challenge - 039"**](/blog/perl-weekly-challenge-039). Congratulations **Colin**, you should soon hear from **[Perl Careers](https://perl.careers/)** about your reward. For rest of the participants, I would say **Good Luck** for next time. Keep sending in your solutions and share your knowledge with each other.
 
 ***
 ***
