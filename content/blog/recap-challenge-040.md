@@ -55,7 +55,7 @@ Thanks **Ryan Thompson** for the second consecutive [**blog**](http://www.ry.ca/
 
 #### 9) Roger Bell_West (**208**)
 
-#### 10) Kian-Meng Ang (**160**)
+#### 10) Kian-Meng Ang (**162**)
 
 #### 11) Andrezgz (**156**)
 
