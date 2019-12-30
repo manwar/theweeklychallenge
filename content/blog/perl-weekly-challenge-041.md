@@ -35,7 +35,7 @@ Here is the recap of last week [**"Perl Weekly Challenge - 040"**](/blog/recap-c
 ***
 ***
 
-Please checkout **Perl** solutions review of the [**"Perl Weekly Challenge - 039"**](/blog/p6-review-challenge-039) by **Kian-Meng Ang**.
+Please checkout **Perl** solutions review of the [**"Perl Weekly Challenge - 039"**](/blog/p5-review-challenge-039) by **Kian-Meng Ang**.
 
 If you missed any past reviews then please checkout the [**collection**](/p5-reviews).
 
