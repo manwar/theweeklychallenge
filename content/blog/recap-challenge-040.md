@@ -159,6 +159,13 @@ Checkout the masterpiece collection of [**blogs**](https://perlweeklychallenge.o
 
 ***
 
+### Peter Scott
+![Peter Scott](/images/team/user.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-040/peter-scott/perl5/ch-1.sh)]
+
+***
+
 ### Saif Ahmed
 ![Saif Ahmed](/images/team/user.jpg)
 
