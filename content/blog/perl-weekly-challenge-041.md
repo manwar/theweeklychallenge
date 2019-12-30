@@ -15,7 +15,7 @@ tags: ["Perl", "Raku"]
 ***
 ***
 
-With great pleasure, we announce **Noud** as the winner of [**"Perl Weekly Challenge - 040"**](/blog/perl-weekly-challenge-040). Congratulations **Noud**, you should soon hear from **[Perl Careers](https://perl.careers/)** about your reward. For rest of the participants, I would say **Good Luck** for next time. Keep sending in your solutions and share your knowledge with each other.
+With great pleasure, we announce **Noud Aldenhoven** as the winner of [**"Perl Weekly Challenge - 040"**](/blog/perl-weekly-challenge-040). Congratulations **Noud**, you should soon hear from **[Perl Careers](https://perl.careers/)** about your reward. For rest of the participants, I would say **Good Luck** for next time. Keep sending in your solutions and share your knowledge with each other.
 
 ***
 ***
