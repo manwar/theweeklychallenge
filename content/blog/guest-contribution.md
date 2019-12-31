@@ -19,6 +19,8 @@ Please find below guest contributions.
 
 ##### **Kivanc Yazan** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-041/kivanc-yazan/python3/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-041/kivanc-yazan/python3/ch-2.py) in **Python**.
 
+##### **Wanderdoc** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-041/wanderdoc/R/ch-1.R) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-041/wanderdoc/R/ch-2.R) in **R**.
+
 ----
 ----
 #### [Perl Weekly Challenge - 040](/blog/perl-weekly-challenge-040)
