@@ -15,9 +15,9 @@ tags: ["Perl", "Raku"]
 
 ##### Just submit Pull Request to [**GitHub repository**](https://github.com/manwar/perlweeklychallenge-club) with your solutions.
 
-First find out the latest challenge folder, more likely the highest numbered folder is the latest challenge folder e.g. challenge-002. If you are an existing member, you would probably find a folder by your name. For example, if your name is "Joe Blog" then there would be a folder called "joe-blog". Under your named folder, you would find a file **README**. Depending on your choice of language, you should create a folder here e.g. **perl5** for **Perl** and **perl6** for **Raku**. Inside each of these folders you can save your solutions. If it is perl5 script for challenge 1 then call it **ch-1.pl**. Similarly if it is perl script for challenge 2 then call it **ch-2.pl**. For **Raku** solutions, call it **ch-1.p6** and **ch-2.p6** respectively. And if you are writing one-liner then call it **ch-1.sh** or **ch-2.sh**. If you are contributing for the first time, please create your named folder as described above. Also let us know what name you would like us to use?
+First find out the latest challenge folder, more likely the highest numbered folder is the latest challenge folder e.g. challenge-002. If you are an existing member, you would probably find a folder by your name. For example, if your name is "Joe Blog" then there would be a folder called "joe-blog". Under your named folder, you would find a file **README**. Depending on your choice of language, you should create a folder here e.g. **perl** for **Perl** and **raku** for **Raku**. Please keep everything lowercase. Inside each of these folders you can save your solutions. If it is perl script for **Task #1** then call it **ch-1.pl**. Similarly if it is perl script for **Task #2** then call it **ch-2.pl**. For **Raku** solutions, call it **ch-1.p6** and **ch-2.p6** respectively. And if you are writing one-liner then call it **ch-1.sh** or **ch-2.sh**. If you are contributing for the first time, please create your named folder as described above. Also let us know what name you would like us to use?
 
-In case you have created a blog about your solutions, then create a file called **blog.txt** and add the link to it.
+In case you have created a blog about your solutions, then create a file called **blog.txt** and save the link in the file.
 
 ---
 ---
@@ -61,18 +61,19 @@ Let us assume you want to submit solutions for **Challenge 002** and your Github
    Solution by Joe Blog.
 ```
 
-7) If you want to submit **Perl** solutions then you should create a folder **perl5** (if not already created). Similarly if you want to submit **Raku** solutions then you should create a folder **perl6** (if not already created).
+7) If you want to submit **Perl** solutions then you should create a folder **perl** (if not already created). Similarly if you want to submit **Raku** solutions then you should create a folder **raku** (if not already created).
 
 8) Change into your relevant folder depending on your choice.
 ```
-   $ cd perl5
+   $ cd perl
 ```
 or
+
 ```
-   $ cd perl6
+   $ cd raku
 ```
 
-9) Now you are ready to add your solutions. If it is for the first challenge then create a file named **ch-1.pl** or **ch-1.p6** or **ch-1.sh**. Similarly, if it is for the second challenge then create a file named **ch-2.pl** or **ch-2.p6** or **ch-2.sh**.
+9) Now you are ready to add your solutions. If it is for the **Task #1** then create a file named **ch-1.pl** or **ch-1.p6** or **ch-1.sh**. Similarly, if it is for the **Task #2** then create a file named **ch-2.pl** or **ch-2.p6** or **ch-2.sh**.
 
 10) Once you are happy with your solutions, you should **add** it to the repository. First go back to **root** of the repository and then fire the command below:
 ```
@@ -163,8 +164,8 @@ If you see similar output as above then you have setup **upstream** correctly. Y
 ```
    $ cd challenge-005/joe-blog
    $ echo "URL to the blog" > blog.txt
-   $ mkdir perl5
-   $ cd perl5
+   $ mkdir perl
+   $ cd perl
 ```
 
 Add script like **ch-1.pl** or **ch-2.pl** or **ch-1.sh** or **ch-2.sh**
@@ -172,8 +173,8 @@ Add script like **ch-1.pl** or **ch-2.pl** or **ch-1.sh** or **ch-2.sh**
 Or if its **Raku** solutions then follow this:
 
 ```
-   $ mkdir perl6
-   $ cd perl6
+   $ mkdir raku
+   $ cd raku
 ```
 
 Add script like **ch-1.p6** or **ch-2.p6** or **ch-1.sh** or **ch-2.sh**
