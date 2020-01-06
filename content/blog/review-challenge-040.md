@@ -15,7 +15,7 @@ Feel free to [**submit a merge request or open a ticket**](https://github.com/ma
 
 For a quick overview, go through the [**original tasks**](/blog/perl-weekly-challenge-040/) and [**recap**](/blog/recap-challenge-040/) of the weekly challenge.
 
-Additional feedback to the our Perl Weekly Challenge’s [**Twitter account**](https://twitter.com/perlwchallenge?lang=en) is much appreciated.
+Additional feedback to our Perl Weekly Challenge’s [**Twitter account**](https://twitter.com/perlwchallenge?lang=en) is much appreciated.
 
 ***
 ***
