@@ -110,12 +110,6 @@ Checkout the masterpiece collection of [**blogs**](https://perlweeklychallenge.o
 
 ***
 
-### Duane Powell
-![Duane Powell](/images/team/duane-powell.jpg)
-
-
-***
-
 ### Duncan C. White
 ![Duncan C. White](/images/team/duncan_white.jpg)
 
@@ -312,7 +306,6 @@ Checkout the masterpiece collection of [**blogs**](https://perlweeklychallenge.o
 [[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-041/ulrich-rieke/perl6/ch-1.p6)]
 [[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-041/ulrich-rieke/perl6/ch-2.p6)]
 
-***
 ***
 ***
 
