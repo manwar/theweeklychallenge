@@ -1,6 +1,6 @@
 ---
 title: "Perl Weekly Challenge - Guest Contributions"
-date: 2020-01-02T14:50:00+00:00
+date: 2020-01-06T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -11,6 +11,13 @@ tags: ["C++", "Go", "Haskell", "Javascript", "Python", "Postscript", "R", "Rust"
 As you know, **Perl Weekly Challenge**, primarily focus on **Perl** and **Raku**. During the **Week #018**, we received the solution to [**"Perl Weekly Challenge - 018"**](/blog/perl-we$ekly-challenge-018) by **Oretis Zekai** in **Python**. It was a pleasant surprise to receive solution in something other than **Perl** and **Raku**. Ever since regular team members also started contributing in other languages like **C++**, **Go**, **Haskell**, **Javascript**, **Postscript**, **R**, **Rust** and **HTML**.
 
 Please find below guest contributions.
+
+----
+----
+#### [Perl Weekly Challenge - 042](/blog/perl-weekly-challenge-042)
+----
+
+##### **Kivanc Yazan** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/kivanc-yazan/python3/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/kivanc-yazan/python3/ch-2.py) in **Python**.
 
 ----
 ----
