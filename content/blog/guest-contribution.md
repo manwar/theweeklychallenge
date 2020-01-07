@@ -1,6 +1,6 @@
 ---
 title: "Perl Weekly Challenge - Guest Contributions"
-date: 2020-01-06T00:00:00+00:00
+date: 2020-01-07T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -18,6 +18,8 @@ Please find below guest contributions.
 ----
 
 ##### **Kivanc Yazan** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/kivanc-yazan/python3/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/kivanc-yazan/python3/ch-2.py) in **Python**.
+
+##### **Wanderdoc** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/wanderdoc/R/ch-1.R) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/wanderdoc/R/ch-2.R) in **R**.
 
 ----
 ----
