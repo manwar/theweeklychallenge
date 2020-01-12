@@ -2,29 +2,55 @@
 {{ "<!-- Challenges Section Start -->" | safeHTML }}
 <section id="challenges">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                {{ with .Site.Data.challenges.title }}<h2 class="subtitle text-center">{{ . }}</h2>{{ end }}
-            </div>
-            {{ range $index, $element:= .Site.Data.challenges.members }}
-            <div class="col-md-2 col-sm-6">
-                {{ $delay := mul $index 100 }}
-                <div class="team-member wow fadeInLeft" data-wow-duration="500ms" data-wow-delay="{{ $delay }}ms">
-                    <p class="social-icons">
-                        {{ with .url }}<a href="{{ . }}">{{ end }}
-                        <img src="/images/blog/pwc-base.png" style="width:150px">
-                        {{ with .date }}
-                        <div style="position: absolute; bottom: 0; color: #f1f1f1; width: 150px; padding: 20px; text-align: center;">
-                        {{ . }}
-                        </div>
-                        {{ end }}
-                        </a>
-                        {{ with .name }}<h3 class="team_name">{{ . }}</h3>{{ end }}
-                    </p>
-                </div>
-            </div>
-            {{ end }}
-        </div>
+        <table class="pwc-list">
+            <tr class="pwc-list-row">
+                <th class="pwc-center">Week</th>
+                <th class="pwc-center">Date</th>
+                <th>Challenges</th>
+                <th colspan=3 class="pwc-center">Reviews</th>
+            </tr>
+
+            {{ range .Site.Data.challenges.members }}
+            <tr class="pwc-list-row">
+                <td style="overflow: hidden">
+                    <a class="pwc-week" href="/blog/perl-weekly-challenge-{{ .week }}">
+                       {{ .week }}
+                    </a>
+                </td>
+                <td class="pwc-date pwc-right">{{ .date }}</td>
+                <td>
+                    <ul class="pwc-numbered">
+                    {{- range $index, $element := .tasks }}
+                        <li>
+                            <span class="pwc-num">{{ add $index 1 }}.</span>
+                            {{ . }}
+                        </li>
+                    {{- end }}
+                    </ul>
+                </td>
+                {{- $fmt  := printf "/blog/%%s-challenge-%s" .week    }}
+                {{- $recap:= $.Site.GetPage (printf $fmt "recap")     }}
+                {{- $perl5:= $.Site.GetPage (printf $fmt "review")    }}
+                {{- $raku := $.Site.GetPage (printf $fmt "p6-review") }}
+                <td class="review">
+                {{- with $recap }}
+                    <a href="{{ .RelPermalink }}">Recap</a>
+                {{- end }}
+                </td>
+                <td class="review">
+                {{- with $perl5 }}
+                    <a href="{{ .RelPermalink }}">Perl</a>
+                {{- end }}
+                </td>
+                <td class="review">
+                {{- with $raku }}
+                    <a href="{{ .RelPermalink }}">Raku</a>
+                {{- end }}
+                </td>
+            </tr>
+            {{ end -}}
+
+        </table>
     </div>
 </section>
 {{ "<!-- Challenges Section End -->" | safeHTML }}
