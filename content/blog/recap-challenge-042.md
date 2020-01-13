@@ -15,7 +15,7 @@ tags: ["Perl", "Raku"]
 ***
 ***
 
-Last week, few members came back after a short break, **Jaldhar H. Vyas**, **Alicia Bielsa** and **Fabrizio Poggi**, and shared solutions with us. We welcome both of them. We also had new member joining the team, **Cristina Heredia** from **Madrid**. We now have **141 members** in the team.
+Last week, few members came back after a short break, **Jaldhar H. Vyas**, **Alicia Bielsa** and **Fabrizio Poggi**, and shared solutions with us. We welcome all of them. We also had new member joining the team, **Cristina Heredia** from **Madrid**. We now have **141 members** in the team.
 
 **Ryan Thompson** recently offered to re-design the [**Challenges**](/challenges) page. He has completed first round of layout changes. He is still working on **pagination** to make it easier to navigate. **Team PWC** would like to say a big **THANK YOU** to **Ryan Thompson** for helping us.
 
