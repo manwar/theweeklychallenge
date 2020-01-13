@@ -31,7 +31,7 @@ We have seens lots of movement in the club ranking last week. **Jaldhar H. Vyas*
 
 -
 
-#### 1) Laurent Rosenfeld (**522**)
+#### 1) Laurent Rosenfeld (**524**)
 
 #### 2) Jaldhar H. Vyas (**336**)
 
