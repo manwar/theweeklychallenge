@@ -85,6 +85,8 @@ Please find out [**How to contribute?**](/blog/how-to-contribute), if you have a
 ***
 ***
 
+**Burkhard Nickels** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-043/burkhard-nickels/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-043/burkhard-nickels/python/ch-2.py) in **Python**.
+
 Please find out [**past solutions**](/blog/guest-contribution) by respected **guests**. Please do share your creative solutions in other languages.
 
 ***
