@@ -355,16 +355,15 @@ for (0..$top){
     print "dec: $_ -> oct: ". $holder++ . "\n";
     $holder+=2 if 8 == substr $holder, -1;
 }
-```**
+```
 
 ***
 
 ## Peter Scott
 
-**Peter** is a man of few words. You know why i say that, checkout his solution.
+**Peter** is a man of few words. You know why I say that, checkout his solution.
 
 ```perl
-
 perl -E 'say sprintf "Decimal %d = Octal %o", $_, $_ for 0 .. 50'
 ```
 

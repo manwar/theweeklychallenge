@@ -63,7 +63,7 @@ Many challengers used the same [base](https://docs.raku.org/routine/base) method
 say "Decimal $_ = Octal { $_.base(8) }" for ^51;
 ```
 
-[Daniel Muta]'https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/daniel-mita/raku/ch-1.sh) did it in the form of a one-liner:
+[Daniel Mita]'https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/daniel-mita/raku/ch-1.sh) did it in the form of a one-liner:
 
 ``` Perl6
 raku -e '.base(8).say for ^51'
