@@ -184,6 +184,14 @@ Checkout the masterpiece collection of [**blogs**](https://perlweeklychallenge.o
 
 ***
 
+### Luca Ferrari
+![Luca Ferrari](/images/team/user.jpg)
+
+[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-043/luca-ferrari/raku/ch-1.p6)]
+[[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-043/luca-ferrari/raku/ch-2.p6)]
+
+***
+
 ### Markus Holzer
 ![Markus Holzer](/images/team/markus-holzer.jpg)
 

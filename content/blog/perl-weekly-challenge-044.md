@@ -73,7 +73,7 @@ I would like to thank every member of the team for their valuable suggestions. P
 ***
 ***
 
-Check out current [**team**](/team) members.
+Last week, **Luca Ferrari**, an experienced **Raku** hacker joined the team. Check out current [**team**](/team) members.
 
 Please find out [**How to contribute?**](/blog/how-to-contribute), if you have any doubts.
 
