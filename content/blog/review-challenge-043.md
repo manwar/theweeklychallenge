@@ -1,9 +1,9 @@
 ---
 title: "Ryan Thompson › Perl Weekly Review: Challenge - 043"
-date: 2020-01-24T00:00:00+00:00
+date: 2020-01-25T00:00:00+00:00
 description: "Ryan Thompson › Perl Weekly Review: Challenge - #043"
 type: post
-image: http://www.ry.ca/wp-content/uploads/2020/01/image.png
+image: images/blog/p5-review-challenge-043.jpg
 author: Ryan Thompson
 tags: ["Perl"]
 ---
@@ -20,12 +20,9 @@ Additional feedback to our Perl Weekly Challenge’s [Twitter account](https://t
 
 # Task #1 - Olympic Rings
 
-The task here was to fill in the numbers 1, 2, 3, 4, and 6 into the spaces
-within the intersecting Olympic rings, such that the numbers in each ring sum
-to 11. (See the diagram.)
+The task here was to fill in the numbers 1, 2, 3, 4, and 6 into the spaces within the intersecting Olympic rings, such that the numbers in each ring sum to 11. (See the diagram.)
 
-The problem can be solved easily enough by hand, yet still presents an
-interesting programming challenge that can be tackled in many different ways.
+The problem can be solved easily enough by hand, yet still presents an interesting programming challenge that can be tackled in many different ways.
 
 ## Adam Russell
 
@@ -36,23 +33,23 @@ The Prolog clause is as follows:
 ```prolog
 member(X,[X|T]).
 member(X,[H|T]) :- member(X,T).
-colors(Red, Green, Black, Yellow, Blue) :-  
-    member(Blue, [1,2,3,4,6]), 
-    member(Yellow, [1,2,3,4,6]), 
-    member(Green, [1,2,3,4,6]), 
-    member(Red, [1,2,3,4,6]), 
-    member(Black, [1,2,3,4,6]), 
+colors(Red, Green, Black, Yellow, Blue) :-
+    member(Blue, [1,2,3,4,6]),
+    member(Yellow, [1,2,3,4,6]),
+    member(Green, [1,2,3,4,6]),
+    member(Red, [1,2,3,4,6]),
+    member(Black, [1,2,3,4,6]),
     R = 11, R is 9 + Red,
     G = 11, G is 5 + Red + Green,
     B = 11, B is 8 + Blue,
     Y = 11, Y is 7 + Blue + Yellow,
-    Bl = 11, Bl is Green + Yellow + Black. 
+    Bl = 11, Bl is Green + Yellow + Black.
 ```
 
 And that clause (stored in `$prolog`) is called in Perl like so:
 
 ```perl
-$prolog = new AI::Prolog($prolog); 
+$prolog = new AI::Prolog($prolog);
 $prolog->query("colors(Red, Green, Black, Yellow, Blue).");
 ```
 
@@ -74,25 +71,24 @@ my %hRingsComposition = (
 );
 ```
 
-Alicia's algorithm is efficient. It takes advantage of the fact that there is only one solution, and it can be found by simply looking for a ring with only one unknown, and filling in that unknown from one of the available values,
-repeating until the problem is solved. Here is the main loop:
+Alicia's algorithm is efficient. It takes advantage of the fact that there is only one solution, and it can be found by simply looking for a ring with only one unknown, and filling in that unknown from one of the available values, repeating until the problem is solved. Here is the main loop:
 
 ```perl
 my $countAvailableNumbers = scalar @aAvailableNumbers;
 while ( $countAvailableNumbers ){
     foreach my $ringColor (keys %hRingsComposition){
-       
+
         my $singleEmptyValue = findSingleEmptyValue($ringColor);
         if ($singleEmptyValue){
-           
-            my $currentRingSum = getCurrentRingSum($ringColor);   
+
+            my $currentRingSum = getCurrentRingSum($ringColor);
             my $difference =  $TOTALSUM - $currentRingSum;
             if (checkValueAvailability($difference)){
                 $hColorValue{$singleEmptyValue} =$difference;
             } else {
                 die "ERROR: Value  '$difference' not available, imposible to resolve\n";
             }
-        }       
+        }
     }
     $countAvailableNumbers = scalar @aAvailableNumbers;
 }
@@ -153,11 +149,11 @@ sub numbers {
     my $nr = () = join("",@win) =~ /x/g;  # How many x are in window
     print "($i) Win(", join("/",@win), ") Nrx $nr\n" if $DEBUG;
     if($nr == 1) {                     # Only if 1 value is missing, determine next value
-      if($win[1] eq 'x') { $a[$i] = 11 - $win[0] - $win[2]; } 
+      if($win[1] eq 'x') { $a[$i] = 11 - $win[0] - $win[2]; }
       elsif($win[0] eq 'x') { $a[$i-1] = 11 - $win[1] - $win[2]; }
       elsif($win[2] eq 'x') { $a[$i+1] = 11 - $win[1] - $win[0]; }
     }
-  } 
+  }
 }
 ```
 
@@ -215,7 +211,7 @@ sub validate {
   my $valide;
   for (my $j = 0; $j < @values; $j++) {
     if (@values[$j] == $valor) {
-      $valide = "KO";   
+      $valide = "KO";
     }
     else {
       $valide = "OK";
@@ -226,7 +222,7 @@ sub validate {
     print "The number $valor is one of the given.";
   }
   else {
-    print "The number $valor isn't one of the given.";  
+    print "The number $valor isn't one of the given.";
   }
 }
 ```
@@ -272,7 +268,7 @@ while (my @perm = $c->next_permutation) {
   next unless blue($perm[4])                    == $eleven;
 
   # a solution found if we made it here
-  say join(',',@perm); 
+  say join(',',@perm);
 }
 ```
 
@@ -381,7 +377,7 @@ while (my $p = $iter->next) {
 The (short) nested loops that figure out the red-green and blue-yellow intersections provide a good summary of Laurent's approach:
 
 ```perl
-my @ring_sequences = ( [qw <red green>], [qw <blue yellow>] );
+my @ring_sequences = ( [qw <red green>], [qw <blue yellow>]
 my @black_vals;
 
 for my $seq_ref (@ring_sequences) {
@@ -437,7 +433,7 @@ sub solve {
   my ($c, $y)=@_;
   my $j=build($c,$y);
   my $s=@$c;
-  my $row;  
+  my $row;
   for my $p (0..$s-1) {
     my $v=$j->[$p][$p];
     my $prow=$j->[$p];
@@ -472,17 +468,17 @@ sub solve {
     my $check = check_sol(\%sol);
     return %sol if $check eq 'solved';
     return      if $check eq 'impossible';
- 
+
     # Get list of numbers still available
     my %solR = reverse %sol; # keys <-> values
     my @rem  = grep { not exists $solR{$_} } @avail;
- 
+
     my $spot = first { $sol{$_} == 0 } @order_try;
     for my $num (@rem) {
         my %new = solve(%sol, $spot => $num);
         return %new if keys %new; # Pass back solution
     }
- 
+
     return;
 }
 ```
@@ -504,8 +500,8 @@ sub displayRings{
         RedGrn %s    GrnBlk %s     BlkYel %s      YelBlu %s
                GREEN %s                  YELLOW %s\n",
                @list[0,4,8,1,3,5,7,2,6]
-        );  
-  
+        );
+
 }
 ```
 
@@ -528,7 +524,7 @@ while (my $i = $iter->next())
      @var{@col2search} = @$i;
 
      next unless ( all { is_valid($_) } @olympic );
-     print join(' => ', $_, $var{$_}), $/ for @col2search; 
+     print join(' => ', $_, $var{$_}), $/ for @col2search;
 }
 ```
 
@@ -581,16 +577,16 @@ Another difference in solutions is whether they output the results in base 10, o
 ```perl
 sub self_describing{
     my($i) = @_;
-    my @digits = split(//, $i); 
+    my @digits = split(//, $i);
     for my $x (0 .. @digits - 1){
         my $count = 0;
         for my $j (0 .. @digits - 1){
             $count++ if($digits[$j] == $x);
-            return false if($count > $digits[$x]); 
+            return false if($count > $digits[$x]);
         }
-        return false if($count != $digits[$x]); 
-    }   
-    return true; 
+        return false if($count != $digits[$x]);
+    }
+    return true;
 }
 ```
 
@@ -649,7 +645,7 @@ sub verify_str {
       $is_sdn = 0;
       return $is_sdn;
     }
-    $i++; 
+    $i++;
   }
   return $is_sdn;
 }
@@ -662,9 +658,9 @@ sub convert {
   my ($b,$n,$erg) = @_;
   my $d = int($n / $b);
   my $r = $n % $b;
-  if($r > 15) { 
+  if($r > 15) {
     # print "Value > 15: $r $C[$r]\n";
-    $r = $C[$r]; 
+    $r = $C[$r];
   }
   elsif($r > 9) { $r = sprintf("%x", $r); }
   unshift(@$erg,$r);
@@ -718,7 +714,7 @@ my $valor;
 for (my $b = 7; $b <= 10; $b++) {
   $valor = ($b - 4) * $b**($b - 1) + 2 * $b ** ($b-2) + $b**($b-3) + $b**3;
 
-  $converted = cnv($valor,10 => $b); 
+  $converted = cnv($valor,10 => $b);
   print "Base is $b, and the result is $converted\n";
 }
 ```
@@ -787,22 +783,22 @@ Dave's variable names made me smile. I used to work with someone who also used `
 
 ```perl
 sub SDN {
-  my $n    = shift; 
+  my $n    = shift;
   my $base = shift;
- 
+
   my @n = split(//,$n);                       # Split $n into separate digits
   return 0 unless (scalar @n == $base);       # A SND is the same length as its base
 
   my %count;
   $count{$_} = 0 foreach (0 .. scalar(@n)-1); # Init a counter to all 0's
-  $count{$_}++   foreach (@n);                # Count the occurance of each digit 
+  $count{$_}++   foreach (@n);                # Count the occurance of each digit
 
   # Determine if $n "describes" itself by comparing
   # the count to the digit found at index $i
   my $i = 0;
   foreach (0 .. scalar(@n)-1) {
     return 0 if ($count{$_} != $n[$i]); # not a SDN, exit
-    $i++; 
+    $i++;
   }
   return 1; # All digits matched the counts, this is an SDN
 }
@@ -939,12 +935,12 @@ Laurent's solution hard-codes the invalid bases, uses the numeric base ≥ 7 for
 ```perl
 sub find_self_descriptive {
     my $b = shift;
-    return "No self-descriptive number for base $b" 
+    return "No self-descriptive number for base $b"
         if $b < 4 or $b == 6;
     if ($b == 4 or $b == 5) {
         return check_all_cases ($b);
     }
-    my $dec_num = ($b - 4) * $b ** ($b - 1) 
+    my $dec_num = ($b - 4) * $b ** ($b - 1)
         + 2 * $b ** ($b - 2) + $b ** ($b - 3) + $b ** 3;
     my $base_num = to_base_b ($dec_num, $b);
     return "Number in base $b: $base_num; decimal: $dec_num";
@@ -1044,7 +1040,7 @@ NO: 3545200
 ^CStopping Search
 Found Self Describing Numbers:
 3211000
-[weekly/rjt] challenge-043/⋯/perl %> 
+[weekly/rjt] challenge-043/⋯/perl %>
 ```
 
 Here is the main loop, and the `$SIG{INT}` handler:
