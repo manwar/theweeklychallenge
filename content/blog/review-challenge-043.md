@@ -3,7 +3,7 @@ title: "Ryan Thompson › Perl Weekly Review: Challenge - 043"
 date: 2020-01-25T00:00:00+00:00
 description: "Ryan Thompson › Perl Weekly Review: Challenge - #043"
 type: post
-image: images/blog/p5-review-challenge-043.jpg
+image: http://www.ry.ca/wp-content/uploads/2020/01/image.png
 author: Ryan Thompson
 tags: ["Perl"]
 ---
