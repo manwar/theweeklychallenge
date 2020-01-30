@@ -97,7 +97,7 @@ Please find out [**past solutions**](/blog/guest-contribution) by respected **gu
 
 ### Square Secret Code
 
-The squate secret code mechanism first removes any space from the original message. Then it lays down the message in a row of 8 columns. The coded message is then obtained by reading down the columns going left to right.
+The square secret code mechanism first removes any space from the original message. Then it lays down the message in a row of 8 columns. The coded message is then obtained by reading down the columns going left to right.
 
 For example, the message is **"The quick brown fox jumps over the lazy dog"**.
 
