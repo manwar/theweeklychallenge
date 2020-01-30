@@ -25,7 +25,7 @@ The highlight of last week contribution was [**Prolog**](https://github.com/manw
 ***
 ***
 
-Welcom **Colin Crane** to the **Centurion Club**. **Ruben Westerberg** moved up to **rank #2**. **Scimon Proctor** moved up to **rank #11**. **Javier Luque** moved up to **rank #15**. **Ryan Thompson** moved up to **rank #16**. **Duane Powell** moved up to **rank #18**.
+Welcom **Colin Crane** to the **Centurion Club**. **Ruben Westerberg** moved up to **rank #2**. **Scimon Proctor** moved up to **rank #11**. **Javier Luque** moved up to **rank #15**. **Ryan Thompson** moved up to **rank #16**. **Kevin Colyer** moved up to **rank #18**. **Duane Powell** moved up to **rank #19**.
 
 #### 1) Laurent Rosenfeld (**546**)
 
@@ -61,9 +61,9 @@ Welcom **Colin Crane** to the **Centurion Club**. **Ruben Westerberg** moved up 
 
 #### 17) Steven Wilson (**128**)
 
-#### 18) Duane Powell (**116**)
+#### 18) Kevin Colyer (**120**)
 
-#### 19) Kevin Colyer (**116**)
+#### 19) Duane Powell (**116**)
 
 #### 20) Yet Ebreo (**114**)
 
@@ -229,6 +229,14 @@ Checkout the masterpiece collection of [**blogs**](https://perlweeklychallenge.o
 
 [[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/jokraft/raku/ch-1.p6)]
 [[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/jokraft/raku/ch-2.p6)]
+
+***
+
+### Kevin Colyer
+![Kevin Colyer](/images/team/kevin_colyer.jpg)
+
+[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/kevin-colyer/raku/ch-1.p6)]
+[[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/kevin-colyer/raku/ch-2.p6)]
 
 ***
 
