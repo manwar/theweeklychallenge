@@ -1,6 +1,6 @@
 ---
 title: "Perl Weekly Challenge - Guest Contributions"
-date: 2020-01-29T00:00:00+00:00
+date: 2020-01-30T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -14,6 +14,13 @@ Please find below guest contributions.
 
 ----
 ----
+#### [Perl Weekly Challenge - 045](/blog/perl-weekly-challenge-045)
+----
+
+##### **Rage311** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/rage311/rust/ch-1.rs) in **Rust**.
+
+----
+----
 #### [Perl Weekly Challenge - 044](/blog/perl-weekly-challenge-044)
 ----
 
@@ -21,7 +28,6 @@ Please find below guest contributions.
 
 ----
 ----
-
 #### [Perl Weekly Challenge - 043](/blog/perl-weekly-challenge-043)
 ----
 
