@@ -8,7 +8,7 @@ author: Mohammad S Anwar
 tags: ["C++", "Go", "Haskell", "Javascript", "Python", "Postscript", "Prolog", "R", "Rust", "HTML"]
 ---
 
-As you know, **Perl Weekly Challenge**, primarily focus on **Perl** and **Raku**. During the **Week #018**, we received the solution to [**"Perl Weekly Challenge - 018"**](/blog/perl-we$ekly-challenge-018) by **Oretis Zekai** in **Python**. It was a pleasant surprise to receive solution in something other than **Perl** and **Raku**. Ever since regular team members also started contributing in other languages like **C++**, **Go**, **Haskell**, **Javascript**, **Postscript**, **R**, **Rust** and **HTML**.
+As you know, **Perl Weekly Challenge**, primarily focus on **Perl** and **Raku**. During the **Week #018**, we received the solution to [**"Perl Weekly Challenge - 018"**](/blog/perl-we$ekly-challenge-018) by **Orestis Zekai** in **Python**. It was a pleasant surprise to receive solution in something other than **Perl** and **Raku**. Ever since regular team members also started contributing in other languages like **C++**, **Go**, **Haskell**, **Javascript**, **Postscript**, **Prolog**, **R**, **Rust** and **HTML**.
 
 Please find below guest contributions.
 
@@ -16,6 +16,8 @@ Please find below guest contributions.
 ----
 #### [Perl Weekly Challenge - 045](/blog/perl-weekly-challenge-045)
 ----
+
+##### **Orestis Zekai** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/orestis-zekai/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/orestis-zekai/python/ch-2.py) in **Python**.
 
 ##### **Rage311** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/rage311/rust/ch-1.rs) in **Rust**.
 
@@ -104,7 +106,7 @@ Please find below guest contributions.
 
 ##### **Adam Russell** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/adam-russell/cxx/ch-1.cxx) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/adam-russell/cxx/ch-2.cxx) in **C++**.
 
-##### **Oretis Zekai** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/orestis-zekai/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/orestis-zekai/python/ch-2.py) in **Python**.
+##### **Orestis Zekai** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/orestis-zekai/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/orestis-zekai/python/ch-2.py) in **Python**.
 
 ##### **Rage311** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/rage311/rust/ch-1.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/rage311/rust/ch-2.rs) in **Rust**.
 
@@ -156,6 +158,6 @@ Please find below guest contributions.
 #### [Perl Weekly Challenge - 018](/blog/perl-weekly-challenge-018)
 ----
 
-##### **Oretis Zekai** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/orestis-zekai/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/orestis-zekai/python/ch-2.py) in **Python**.
+##### **Orestis Zekai** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/orestis-zekai/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/orestis-zekai/python/ch-2.py) in **Python**.
 
 ----
