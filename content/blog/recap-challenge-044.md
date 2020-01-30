@@ -25,7 +25,7 @@ The highlight of last week contribution was [**Prolog**](https://github.com/manw
 ***
 ***
 
-Welcom **Colin Crane** to the **Centurion Club**. **Ruben Westerberg** moved up to **rank #2**. **Scimon Proctor** moved up to **rank #11**. **Javier Luque** moved up to **rank #15**. **Ryan Thompson** moved up to **rank #16**. **Kevin Colyer** moved up to **rank #18**. **Duane Powell** moved up to **rank #19**.
+Welcome **Colin Crane** to the **Centurion Club**. **Ruben Westerberg** moved up to **rank #2**. **Scimon Proctor** moved up to **rank #11**. **Javier Luque** moved up to **rank #15**. **Ryan Thompson** moved up to **rank #16**. **Kevin Colyer** moved up to **rank #18**. **Duane Powell** moved up to **rank #19**.
 
 #### 1) Laurent Rosenfeld (**546**)
 
