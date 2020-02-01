@@ -5,6 +5,7 @@ description: "Ryan Thompson › Perl Weekly Review: Challenge - #044"
 type: post
 author: Ryan Thompson
 tags: ["Perl"]
+image: images/blog/p5-review-challenge-044.jpg
 ---
 
 Continues from [previous week](/blog/review-challenge-043/).
