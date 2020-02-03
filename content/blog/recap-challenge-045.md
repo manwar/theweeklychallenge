@@ -29,7 +29,7 @@ Last but not the least, **Luca Ferrari** blogged first time about his [**contrib
 ***
 ***
 
-Welcome **Noud Aldenhove** to the **Centurion Club**. We now have **23 members** in the club. **Jaldhar H. Vyas** moved up to the **rank #2**. **Duane Powell** moved up to the **rank #18**.
+Welcome **Noud Aldenhoven** to the **Centurion Club**. We now have **23 members** in the club. **Jaldhar H. Vyas** moved up to the **rank #2**. **Duane Powell** moved up to the **rank #18**.
 
 #### 1) Laurent Rosenfeld (**556**)
 
