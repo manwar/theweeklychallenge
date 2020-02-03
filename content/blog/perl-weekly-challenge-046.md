@@ -17,7 +17,7 @@ tags: ["Perl", "Raku"]
 
 Apology to all team members, the **Weekly Challenge** is still not on the track. Things have improved but there is still a lot to do. I am pleasantly suprised by the offer of help by all the team members. **Ryan Thompson** offered to do **Perl Reviews**, which is a big help. I will now have one less thing to worry about every week. Thanks **Ryan Thompson**.
 
-**Saif Ahmed** created a very hand tool [**EZPWC**](https://github.com/saiftynet/EZPWC). This is going to help you streamline the process to submitting solutions to **Weekly Challenge**. Please do provide your feedback/suggestions.
+**Saif Ahmed** created a very hand tool [**EZPWC**](https://github.com/saiftynet/EZPWC). This is going to help you streamline the process of submitting solutions to **Weekly Challenge**. Please do provide your feedback/suggestions.
 
 I know, I haven't forgotten about the monthly winner. It is time to pick our first winner of year 2020. We declare **Wanderdoc** as our first monthly winner for the month **January 2020**. Congratulations **Wanderdoc**, keep contributing and inspiring us.
 
