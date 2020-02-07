@@ -244,6 +244,14 @@ Checkout the masterpiece collection of [**blogs**](https://perlweeklychallenge.o
 
 ***
 
+### Kevin Colyer
+![Kevin Colyer](/images/team/kevin_colyer.jpg)
+
+[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/kevin-colyer/raku/ch-1.p6)]
+[[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/kevin-colyer/raku/ch-2.p6)]
+
+***
+
 ### Luca Ferrari
 ![Luca Ferrari](/images/team/luca-ferrari.jpg)
 
