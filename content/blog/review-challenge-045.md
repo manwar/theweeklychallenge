@@ -1,10 +1,11 @@
 ---
 author: "Ryan Thompson"
-date: 2020-02-06T21:50:43
+date: 2020-02-08T00:00:00
 description: "Ryan Thompson › Perl Weekly Review: Challenge - #045"
 tags: ["perl"]
 title: "Ryan Thompson › Perl Weekly Review: Challenge - #045"
 type: post
+image: images/blog/p5-review-challenge-045.jpg
 ---
 
 Welcome to the Perl review for Week 045 of the Weekly Challenge! For a quick overview, go through the [original tasks](/blog/perl-weekly-challenge-045/) and [recap](/blog/recap-challenge-045/) of the weekly challenge.
@@ -78,7 +79,7 @@ This method is maybe a little less obvious, but lead to some concise solutions.
 
 ***
 
-If my plain English descriptions don't make complete sense yet, don't worry; there will be plenty of code examples of both methods below. 
+If my plain English descriptions don't make complete sense yet, don't worry; there will be plenty of code examples of both methods below.
 
 ## Adam Russell
 
@@ -94,12 +95,12 @@ sub encode{
     my @characters = split(//, lc($message));
     for my $i (0 .. @characters){
        $buckets[$i % SQUARE_SIZE] = [] if !$buckets[$i % SQUARE_SIZE];
-       push @{$buckets[$i % SQUARE_SIZE]}, $characters[$i] if $characters[$i];  
-    } 
+       push @{$buckets[$i % SQUARE_SIZE]}, $characters[$i] if $characters[$i];
+    }
     for my $bucket (@buckets){
         $encoded .= join("", @{$bucket}) . " ";
-    }  
-    return $encoded; 
+    }
+    return $encoded;
 }
 ```
 
@@ -964,7 +965,7 @@ print read_text($0);
 
 By the way, if you haven't already switched over to `File::Slurper` from `File::Slurp`, I encourage you to do so, as `::Slurper` fixes a lot of the problems in `::Slurp`, especially around the API and handling of encoding.
 
-**Blog** › [Square Dumper with Raku](https://raku-musings.com/square-dumper.html)  
+**Blog** › [Square Dumper with Raku](https://raku-musings.com/square-dumper.html)
 
 ## Burkhard Nickels
 
@@ -1116,7 +1117,7 @@ while( <$fh> )
 [E. Choroba's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/e-choroba/perl/ch-2.pl) is another Perl hacker who submitted a full quine:
 
 ```perl
-$_=q!print'$_=q*'.$_.'*;';s/\52/\41/g;print!;print'$_=q!'.$_.'!;';s/\52/\41/g;print 
+$_=q!print'$_=q*'.$_.'*;';s/\52/\41/g;print!;print'$_=q!'.$_.'!;';s/\52/\41/g;print
 ```
 
 This one again uses the trick of quoting operators to embed a copy of the source, and munging those quoting characters so they are escaped or output as needed. You might think `tr/*/!/` would work, but it would transmute its own arguments in the quoted code, which is why the character codes in `s/\52/\42/g` are necessary.

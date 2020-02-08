@@ -1,10 +1,11 @@
 ---
 author: Ryan Thompson
-date: 2020-02-06T00:22:54
+date: 2020-02-08T00:00:00
 description: "Ryan Thompson › Raku Weekly Review: Challenge - #045"
 tags: ["raku"]
 title: "Ryan Thompson › Raku Weekly Review: Challenge - #045"
 type: post
+image: images/blog/p6-review-challenge-045.jpg
 ---
 
 Welcome to the Raku review for Week 045 of the Weekly Challenge! For a quick overview, go through the [original tasks](/blog/perl-weekly-challenge-045/) and [recap](/blog/recap-challenge-045/) of the weekly challenge.
@@ -80,7 +81,7 @@ For this method, you first split the plaintext into a list of chars with `.comb`
 
 ***
 
-If my plain English descriptions don't make complete sense yet, don't worry; there will be plenty of code examples below. 
+If my plain English descriptions don't make complete sense yet, don't worry; there will be plenty of code examples below.
 
 
 ## Arne Sommer
@@ -108,7 +109,7 @@ say "";
 
 Arne's loops allow him to scan over `@a` 8 characters at a time, shifting the starting position from 0 to 7, so he scans each column.
 
-**Blog** › [Square Dumper with Raku](https://raku-musings.com/square-dumper.html)  
+**Blog** › [Square Dumper with Raku](https://raku-musings.com/square-dumper.html)
 
 ## Burkhard Nickels
 
@@ -400,7 +401,7 @@ sub convertString( Str $str is copy ) {
 ```
 
 At this point, we have the characters in the right order, but each column needs to now be separated by spaces:
-    
+
 ```raku
     my $lastwordlen = @strings[$len - 1].chars ;
     my @cycle ;
