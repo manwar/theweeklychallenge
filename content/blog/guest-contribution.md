@@ -25,6 +25,8 @@ Please find below guest contributions.
 
 ##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/ulrich-rieke/cpp/ch-1.cpp) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/ulrich-rieke/cpp/ch-2.cpp) in **C++**.
 
+##### **User Person** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/user-person/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/user-person/python/ch-2.py) in **Python**.
+
 ----
 ----
 #### [Perl Weekly Challenge - 045](/blog/perl-weekly-challenge-045)
