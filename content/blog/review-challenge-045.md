@@ -588,6 +588,34 @@ print "$code\n";
 
 The use of `unpack` is a good way to partition the string. Nazareno then splits the row strings to character arrays to simplify the following task of repeatedly peeling off the first character of each string.
 
+## Peter Scott
+
+[Peter Scott's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/peter-scott/perl/ch-1.sh) came as the following one-liner:
+
+```bash
+perl -E '$_ = lc shift; tr/a-z//cd; @x = split //; $c=7; while (@x){ for ($i = 0; $i <= $#x; $i += $c) { print splice @x, $i, 1} $c--; print " "} say ""' "The quick brown fox jumps over the lazy dog"
+```
+
+Adding some whitespace back in, we can see it is similar to the `split`-and-loop method, but is the only solution this week to use `splice`:
+
+```perl
+$_ = lc shift;
+tr/a-z//cd;
+@x = split //;
+$c = 7;
+while (@x) {
+    for ($i = 0; $i <= $#x; $i += $c) {
+        print splice @x, $i, 1
+    }
+    $c--;
+    print " "
+}
+```
+
+`splice @x, $i, 1` is `$x[$i]` with the side effect of removing it from `@x`. Because the element is removed and the others shift positions, Peter compensates by decrementing `$c` after every column, since the interval between columns decreases by one.
+
+Although `splice` will be slower, the effect is small (about 15% on a 60-character input string, increasing with length), and I do appreciate the alternative loop conditionals, here, compared to a purely arithmetic-indexed approach.
+
 ## Rage311
 
 [Rage311's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/rage311/perl/ch-1.pl) uses the `split`/modulo method, and is beautifully concise:
