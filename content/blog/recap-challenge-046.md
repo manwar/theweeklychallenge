@@ -33,6 +33,8 @@ I also noticed familiar faces back in action. We welcome you again and hope you 
 
 #### **Kevin Colyer** moved up to the **rank #17**.
 
+#### **Colin Crain** moved up to the **rank #20**.
+
 ***
 
 #### 1) Laurent Rosenfeld (**566**)
@@ -73,9 +75,9 @@ I also noticed familiar faces back in action. We welcome you again and hope you 
 
 #### 19) Duane Powell (**124**)
 
-#### 20) Yet Ebreo (**114**)
+#### 20) Colin Crane (**116**)
 
-#### 21) Colin Crane (**112**)
+#### 21) Yet Ebreo (**114**)
 
 #### 22) Burkhard Nickels (**108**)
 
@@ -288,6 +290,14 @@ Checkout the masterpiece collection of [**blogs**](https://perlweeklychallenge.o
 # PERL & RAKU SOLUTIONS
 
 ***
+***
+
+### Colin Crain
+![Colin Crain](/images/team/user.jpg)
+
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/colin-crain/perl/ch-2.pl)]
+[[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/colin-crain/raku/ch-2.p6)]
+
 ***
 
 ### Jaldhar H. Vyas
