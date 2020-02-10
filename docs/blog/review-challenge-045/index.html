@@ -706,6 +706,32 @@ print &quot;$code\n&quot;;
 
 <p>The use of <code>unpack</code> is a good way to partition the string. Nazareno then splits the row strings to character arrays to simplify the following task of repeatedly peeling off the first character of each string.</p>
 
+<h2 id="peter-scott">Peter Scott</h2>
+
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/peter-scott/perl/ch-1.sh">Peter Scott&rsquo;s solution</a> came as the following one-liner:</p>
+
+<pre><code class="language-bash">perl -E '$_ = lc shift; tr/a-z//cd; @x = split //; $c=7; while (@x){ for ($i = 0; $i &lt;= $#x; $i += $c) { print splice @x, $i, 1} $c--; print &quot; &quot;} say &quot;&quot;' &quot;The quick brown fox jumps over the lazy dog&quot;
+</code></pre>
+
+<p>Adding some whitespace back in, we can see it is similar to the <code>split</code>-and-loop method, but is the only solution this week to use <code>splice</code>:</p>
+
+<pre><code class="language-perl">$_ = lc shift;
+tr/a-z//cd;
+@x = split //;
+$c = 7;
+while (@x) {
+    for ($i = 0; $i &lt;= $#x; $i += $c) {
+        print splice @x, $i, 1
+    }
+    $c--;
+    print &quot; &quot;
+}
+</code></pre>
+
+<p><code>splice @x, $i, 1</code> is <code>$x[$i]</code> with the side effect of removing it from <code>@x</code>. Because the element is removed and the others shift positions, Peter compensates by decrementing <code>$c</code> after every column, since the interval between columns decreases by one.</p>
+
+<p>Although <code>splice</code> will be slower, the effect is small (about 15% on a 60-character input string, increasing with length), and I do appreciate the alternative loop conditionals, here, compared to a purely arithmetic-indexed approach.</p>
+
 <h2 id="rage311">Rage311</h2>
 
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/rage311/perl/ch-1.pl">Rage311&rsquo;s solution</a> uses the <code>split</code>/modulo method, and is beautifully concise:</p>
