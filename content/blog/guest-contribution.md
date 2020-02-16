@@ -1,6 +1,6 @@
 ---
 title: "Perl Weekly Challenge - Guest Contributions"
-date: 2020-02-10T00:00:00+00:00
+date: 2020-02-16T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -16,6 +16,8 @@ Please find below guest contributions.
 ----
 #### [Perl Weekly Challenge - 047](/blog/perl-weekly-challenge-047)
 ----
+
+##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-047/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-047/lubos-kolouch/python/ch-2.py) in **Python**.
 
 ##### **Orestis Zekai** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-047/orestis-zekai/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-047/orestis-zekai/python/ch-2.py) in **Python**.
 
