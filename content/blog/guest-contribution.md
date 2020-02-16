@@ -17,6 +17,8 @@ Please find below guest contributions.
 #### [Perl Weekly Challenge - 047](/blog/perl-weekly-challenge-047)
 ----
 
+##### **Duncan C. White** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-047/duncan-c-white/postscript/ch-2.ps) in **Postscript**.
+
 ##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-047/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-047/lubos-kolouch/python/ch-2.py) in **Python**.
 
 ##### **Orestis Zekai** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-047/orestis-zekai/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-047/orestis-zekai/python/ch-2.py) in **Python**.
