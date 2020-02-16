@@ -21,6 +21,8 @@ Please find below guest contributions.
 
 ##### **Orestis Zekai** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-047/orestis-zekai/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-047/orestis-zekai/python/ch-2.py) in **Python**.
 
+##### **Ulrich Rieke** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-047/ulrich-rieke/haskell/ch-2.hs) in **Haskell**.
+
 ----
 ----
 #### [Perl Weekly Challenge - 046](/blog/perl-weekly-challenge-046)
