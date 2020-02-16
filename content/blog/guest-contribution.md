@@ -52,7 +52,9 @@ Please find below guest contributions.
 #### [Perl Weekly Challenge - 044](/blog/perl-weekly-challenge-044)
 ----
 
-##### **Darren Bottin** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/darren-bottin/prolog/ch-1.pro) **Prolog**.
+##### **Darren Bottin** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/darren-bottin/prolog/ch-1.pro) in **Prolog**.
+
+##### **Jaldhar H. Vyas** shared solutions to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/jaldhar-h-vyas/c%2B%2B/ch-2.cpp) in **C++**.
 
 ----
 ----
