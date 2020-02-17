@@ -544,7 +544,7 @@ print join "", @decoded;
 
 ```perl
 my @r = map y/ //dr, @_;
-join '',   map { reduce { $_->{$a} <=> $_->{$b} ? $a : $b } keys %$_ }
+join '',   map { reduce { $_->{$a} > $_->{$b} ? $a : $b } keys %$_ }
    reverse map { { frequency map chop, @r } } 1..length $r[0];
 ```
 
