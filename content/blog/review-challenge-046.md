@@ -1,10 +1,10 @@
 ---
 author:       Ryan Thompson
-date:         2020-02-10T06:56:46
+date:         2020-02-17T00:00:00
 description:  "Ryan Thompson › Perl Weekly Review: Challenge - #046"
 tags:         ["perl"]
 title:        "Ryan Thompson › Perl Weekly Review: Challenge - #046"
-image:        http://www.ry.ca/wp-content/uploads/2020/02/flip_500.png
+image:        /images/blog/flip_500.png
 type:         post
 ---
 
