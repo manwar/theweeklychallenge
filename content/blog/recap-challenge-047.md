@@ -323,8 +323,11 @@ Checkout the masterpiece collection of [**blogs**](https://perlweeklychallenge.o
 ### Jaldhar H. Vyas
 ![Jaldhar H. Vyas](/images/team/jaldhar_vyas.jpg)
 
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-047/jaldhar-h-vyas/perl/ch-1.pl)]
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-047/jaldhar-h-vyas/perl/ch-2.pl)]
+[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-047/jaldhar-h-vyas/raku/ch-1.p6)]
 [[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-047/jaldhar-h-vyas/raku/ch-2.p6)]
+[[**BLOG #1**](https://www.braincells.com/perl/2020/02/perl_weekly_challenge_week_47.html)]
 
 ***
 
