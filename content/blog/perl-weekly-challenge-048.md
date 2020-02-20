@@ -21,6 +21,8 @@ This week, there is a slight delay in **Raku** reviews by **Ryan Thompson**. Hop
 
 Last but not the least, I woud like to thank each and every member for their support and encouragement.
 
+##### [2020-02-20]: Raku Review is now [public](/blog/p6-review-challenge-046).
+
 ***
 ***
 
@@ -51,7 +53,7 @@ If you missed any past reviews then please checkout the [**collection**](/p5-rev
 ***
 ***
 
-**Raku** review will be available in few days, sorry.
+Please checkout **Raku** solutions review of the [**"Perl Weekly Challenge - 046"**](/blog/p6-review-challenge-046) by **Ryan Thompson**.
 
 If you missed any past reviews then please checkout the [**collection**](/p6-reviews).
 
