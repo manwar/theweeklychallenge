@@ -1,10 +1,10 @@
 ---
 author:       Ryan Thompson
-date:         2020-02-19T20:59:13
+date:         2020-02-20T00:00:00
 description:  "Ryan Thompson › Raku Weekly Review: Challenge - #046"
 tags:         ["raku"]
 title:        "Ryan Thompson › Raku Weekly Review: Challenge - #046"
-image:        http://www.ry.ca/wp-content/uploads/2020/02/flip_500.png
+image:        /images/blog/flip_500.png
 type:         post
 ---
 
