@@ -144,7 +144,6 @@ use Date::Tiny;
 
 my $date = Date::Tiny->new(year => 2000, month => 1, day => 1);
 
-# Date cannot be higher than 31; thus year must be lower than 2300
 while ($date->year <= 2299) {
     my $date_as_str = sprintf("%02d%02d%04d", $date->month, $date->day, $date->year);
     if ($date_as_str eq reverse($date_as_str)) {
@@ -257,7 +256,7 @@ use Date;
 sub MAIN() {
     my $fmt  = { sprintf "%02d%02d%04d", .month, .day, .year };
     my $date = Date.new(2000, 1, 1, formatter => $fmt);
-    while $date.year <= 2999 {
+    while $date.year <= 2299 {
         my $date_as_str = $date.Str;
         if $date_as_str eq $date_as_str.flip {
             say "$date_as_str is a Palindrome date.";
@@ -281,7 +280,7 @@ use v6;
 sub MAIN() {
     my $fmt  = { sprintf "%02d%02d%04d", .month, .day, .year };
     my $date = Date.new(2000, 1, 1, formatter => $fmt);
-    while $date.year <= 2999 {
+    while $date.year <= 2299 {
         my $date_as_str = $date.Str;
         if $date_as_str eq $date_as_str.flip {
             say "$date_as_str is a Palindrome date.";
@@ -303,7 +302,7 @@ use v6;
 sub MAIN() {
     my $fmt  = { sprintf "%02d%02d%04d", .month, .day, .year };
     my $date = Date.new(2000, 1, 1, formatter => $fmt);
-    while $date.year <= 2999 {
+    while $date.year <= 2299 {
         my $date-as-str = $date.Str;
         if $date-as-str eq $date-as-str.flip {
             say "$date-as-str is a Palindrome date.";
@@ -331,7 +330,7 @@ use v6;
 sub MAIN() {
     my $fmt  = { sprintf "%02d%02d%04d", .month, .day, .year };
     my $date = Date.new(2000, 1, 1, formatter => $fmt);
-    while $date.year <= 2999 {
+    while $date.year <= 2299 {
         my $date-as-str = $date.Str;
         if $date-as-str eq $date-as-str.flip {
             say "$date-as-str is a Palindrome date.";
