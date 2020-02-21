@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="The Weekly Challenge - Perl & Raku"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://perlweeklychallenge.org/"/>
+    <meta property="og:image"       content="https://perlweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="You do not have to be an expert."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://perlweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="How I solved task in Raku.">
+    <meta name="author" content="Perl Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.55.0-DEV" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My first date with Raku</title>
+    <link rel="icon" href="https://perlweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/css/main.css">
+</head>
+
+<body>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://perlweeklychallenge.org/">
+                        <img src="https://perlweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navgation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>My first date with Raku</h2>
+                    <div class="portfolio-meta">
+                        <span>Friday, Feb 21, 2020</span>|
+                        <span> Tags:
+                            Perl, Raku
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://perlweeklychallenge.org/images/blog/perl-loves-raku.png">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    
+
+<p>Ever since I started the Perl Weekly challenge i.e. <strong>25th March 2019</strong>, I have been planning to take part in the weekly challenge. Because of lack of time, I couldn&rsquo;t take part in the past. In the <strong>Week #046</strong>, I finally took the plunge and contributed <strong>Perl</strong> solutions to the <a href="/blog/perl-weekly-challenge-046"><strong>Perl Weekly Challenge - 046</strong></a>.</p>
+
+<h3 id="challenge-046-task-1">Challenge #046 (Task #1)</h3>
+
+<pre><code class="language-perl">#!/usr/bin/perl
+
+use strict;
+use warnings;
+
+my @messages = (
+    'P + 2 l ! a t o',
+    '1 e 8 0 R $ 4 u',
+    '5 - r ] + a &gt; /',
+    'P x w l b 3 k \\',
+    '2 e 3 5 R 8 y u',
+    '&lt; ! r ^ ( ) k 0'
+);
+
+my $table = [];
+foreach my $message (@messages) {
+    my $column = 0;
+    foreach my $char (split /\s/, $message) {
+        $table-&gt;[$column++]-&gt;{$char}++;
+    }
+}
+
+map { print [ sort { $_-&gt;{$b} &lt;=&gt; $_-&gt;{$a} } keys %$_ ]-&gt;[0] } @$table;
+</code></pre>
+
+<hr />
+
+<h3 id="challenge-046-task-2">Challenge #046 (Task #2)</h3>
+
+<pre><code class="language-perl">#!/usr/bin/perl
+
+use strict;
+use warnings;
+
+my @rooms = map { 1 } (0..500);
+foreach my $employee (2 .. 500) {
+    my $room_number = $employee;
+    while ($room_number &lt;= 500) {
+        $rooms[ $room_number ] = ($rooms [ $room_number ]) ? 0 : 1;
+        $room_number += $employee;
+    }
+}
+
+map { print &quot;$_\n&quot; if $rooms[$_] } (1..500);
+</code></pre>
+
+<hr />
+
+<p><strong>Ryan Thompson</strong>, member of <strong>Team PWC</strong>, who reviews <strong>Perl</strong> and <strong>Raku</strong> solutions every week. This is what he said about my first contributions.</p>
+
+<blockquote>
+<p>Mohammad, creator of the Perl Weekly Challenge, has finally entered the fray with a solution of his own! It may be a bit strange to welcome you to your own challenge, Mohammad, but I’m going to do it anyway. Welcome. :-)</p>
+</blockquote>
+
+<p>Please checkout the <a href="/blog/review-challenge-046"><strong>reviews</strong></a> in detail.</p>
+
+<hr />
+
+<p>I must admit, I was relieved to see my name in the contributors list. I am also now listed formally as member of <strong>&ldquo;Team PWC&rdquo;</strong> having contributed to the weekly challenge.</p>
+
+<p><img src="/images/blog/team-pwc.png" alt="Team PWC" /></p>
+
+<hr />
+
+<p>The following <strong>Week #047</strong>, I contributed just one solution in <strong>Perl</strong> for <strong>Task #2</strong>.</p>
+
+<h3 id="challenge-047-task-2">Challenge #047 (Task #2)</h3>
+
+<pre><code class="language-perl">#!/usr/bin/perl
+
+use strict;
+use warnings;
+
+my $start = 99;
+my $count = 0;
+
+while ($count &lt;= 20) {
+    $start++;
+
+    my ($d1, $d2, $d3) = split //, $start;
+    my $divisor = sprintf(&quot;%d%d&quot;, $d1, $d3);
+
+    if ($start % $divisor != 0) {
+        next;
+    }
+    else {
+        $count++;
+        print sprintf(&quot;%d / %d\n&quot;, $start, $divisor);
+    }
+}
+</code></pre>
+
+<hr />
+
+<p>If you noticed, so far my contributions are only in <strong>Perl</strong>. Doing <strong>Perl</strong> challanges was not a big deal, finding time to do the challange was a big deal, which I happen to succeed.</p>
+
+<h2 id="what-next">What next?</h2>
+
+<p>The title of my blog is <strong>&ldquo;My first date with Raku&rdquo;</strong> and I haven&rsquo;t talked about it yet. Well, here comes the climax. This <strong>Week #048</strong>, I had little extra time to do the weekly challenge. I did it in <strong>Perl</strong> first for obvious reason.</p>
+
+<h3 id="challenge-048-task-1">Challenge #048 (Task #1)</h3>
+
+<pre><code class="language-perl">#!/usr/bin/perl
+
+use strict;
+use warnings;
+
+my @people = (1 ..50);
+while (scalar(@people) &gt; 1) {
+    my $sword = shift @people;
+    shift @people;
+    push @people, $sword;
+}
+
+print &quot;Survivor is at position $people[0]\n&quot;;
+</code></pre>
+
+<hr />
+
+<h3 id="challenge-048-task-2">Challenge #048 (Task #2)</h3>
+
+<pre><code class="language-perl">#!/usr/bin/perl
+
+use strict;
+use warnings;
+use Date::Tiny;
+
+my $date = Date::Tiny-&gt;new(year =&gt; 2000, month =&gt; 1, day =&gt; 1);
+
+# Date cannot be higher than 31; thus year must be lower than 2300
+while ($date-&gt;year &lt;= 2299) {
+    my $date_as_str = sprintf(&quot;%02d%02d%04d&quot;, $date-&gt;month, $date-&gt;day, $date-&gt;year);
+    if ($date_as_str eq reverse($date_as_str)) {
+        print &quot;$date_as_str is a Palindrome date.\n&quot;;
+    }
+    my $datetime = $date-&gt;DateTime-&gt;add(days =&gt; 1);
+    $date = Date::Tiny-&gt;new(year =&gt; $datetime-&gt;year, month =&gt; $datetime-&gt;month, day =&gt; $datetime-&gt;day);
+}
+
+END {
+    my $time = time - $^T;
+    my $mm   = $time / 60;
+    my $ss   = $time % 60;
+    my $hh   = $mm / 60;
+    $mm = $mm % 60;
+
+    print sprintf(&quot;The program ran for %02d:%02d:%02d.\n&quot;, $hh, $mm, $ss);
+}
+</code></pre>
+
+<hr />
+
+<p>I shared it with my fellow <strong>&ldquo;Team PWC&rdquo;</strong> members on Twitter.</p>
+
+<p><img src="/images/blog/pwc-048-t1.png" alt="Challenge #048" /></p>
+
+<p>Having done both task in <strong>Perl</strong>, I thought why not do it in <strong>Raku</strong> as well?</p>
+
+<p>I thought I could easily translate my <strong>Perl</strong> solution into <strong>Raku</strong>.</p>
+
+<p>Easy, right? No, it wasn&rsquo;t easy as my brain isn&rsquo;t trained to do it so.</p>
+
+<p>So I started with <strong>Task #1</strong>. This is what I got in my first attempt.</p>
+
+<pre><code class="language-perl6">#!/usr/bin/env perl6
+
+use v6;
+
+my @people = (1..50);
+while (@people.elems &gt; 1) {
+    my $sword = @people.shift;
+    @people.shift;
+    @people.push($sword);
+}
+
+say &quot;Survivor is at position @people[0]&quot;;
+</code></pre>
+
+<p>Do you see any issues? No, hang on, this is <strong>Raku</strong>, so everything has to be in <strong>MAIN()</strong>.</p>
+
+<p>So this is what I have now:</p>
+
+<pre><code class="language-perl6">#!/usr/bin/env perl6
+
+use v6;
+
+sub MAIN() {
+    my @people = (1..50);
+    while (@people.elems &gt; 1) {
+        my $sword = @people.shift;
+        @people.shift;
+        @people.push($sword);
+    }
+
+    say &quot;Survivor is at position @people[0]&quot;;
+}
+</code></pre>
+
+<p>Is it all good now?</p>
+
+<p>Technically yes, it does the job. But hang on, it still doesn&rsquo;t look like <strong>Raku</strong> code.</p>
+
+<p>Lets get rid off extra parenthesis this time.</p>
+
+<pre><code class="language-perl6">#!/usr/bin/env perl6
+
+use v6;
+
+sub MAIN() {
+    my @people = 1..50;
+    while @people.elems &gt; 1 {
+        my $sword = @people.shift;
+        @people.shift;
+        @people.push($sword);
+    }
+
+    say &quot;Survivor is at position @people[0]&quot;;
+}
+</code></pre>
+
+<p>Now it looks like <strong>Raku</strong> code.</p>
+
+<p>What did I learn from this exercise?</p>
+
+<p>I have read a lot about list manipulation in <strong>Raku</strong> but never got the opportunity to actually use it. While doing this task, I got to used it. Now, I think I will remember how to play with list in <strong>Raku</strong>.</p>
+
+<p>Having done the <strong>Task #1</strong> in <strong>Raku</strong>, I thought why not do the <strong>Task #2</strong> as well. Whatever little I learnt during <strong>Task #1</strong>, I now have this for <strong>Task #2</strong>.</p>
+
+<p>Since the task was related to <strong>Date</strong>, I looked into the <a href="https://docs.raku.org/type/Date"><strong>documentation</strong></a> first.</p>
+
+<pre><code class="language-perl6">#!/usr/bin/env perl6
+
+use v6;
+
+use Date;
+
+sub MAIN() {
+    my $fmt  = { sprintf &quot;%02d%02d%04d&quot;, .month, .day, .year };
+    my $date = Date.new(2000, 1, 1, formatter =&gt; $fmt);
+    while $date.year &lt;= 2999 {
+        my $date_as_str = $date.Str;
+        if $date_as_str eq $date_as_str.flip {
+            say &quot;$date_as_str is a Palindrome date.&quot;;
+        }
+        $date.later(days =&gt; 1);
+    }
+}
+</code></pre>
+
+<p>Do you see any issue in the code?</p>
+
+<p>First run, gave a nice warning <strong>Date</strong> is a built-in module, no need to import. It was <strong>humiliating</strong>.</p>
+
+<p><strong>Scimon Proctor</strong>, pointed out that <em>$date.later()</em> returns new <strong>Date</strong> object, so I have to catch the return value.</p>
+
+<pre><code class="language-perl6">#!/usr/bin/env perl6
+
+use v6;
+
+sub MAIN() {
+    my $fmt  = { sprintf &quot;%02d%02d%04d&quot;, .month, .day, .year };
+    my $date = Date.new(2000, 1, 1, formatter =&gt; $fmt);
+    while $date.year &lt;= 2999 {
+        my $date_as_str = $date.Str;
+        if $date_as_str eq $date_as_str.flip {
+            say &quot;$date_as_str is a Palindrome date.&quot;;
+        }
+        $date = $date.later(days =&gt; 1);
+    }
+}
+</code></pre>
+
+<p>All good? No, still something missing.</p>
+
+<p>If you noticed, I named the variable <strong>&rdquo;$date_as_str&rdquo;</strong> which is <strong>Perlish</strong>. So I changed it to <strong>&rdquo;$date-as-str&rdquo;</strong>, more like <strong>Raku</strong>.</p>
+
+<pre><code class="language-perl6">#!/usr/bin/env perl6
+
+use v6;
+
+sub MAIN() {
+    my $fmt  = { sprintf &quot;%02d%02d%04d&quot;, .month, .day, .year };
+    my $date = Date.new(2000, 1, 1, formatter =&gt; $fmt);
+    while $date.year &lt;= 2999 {
+        my $date-as-str = $date.Str;
+        if $date-as-str eq $date-as-str.flip {
+            say &quot;$date-as-str is a Palindrome date.&quot;;
+        }
+        $date = $date.later(days =&gt; 1);
+    }
+}
+</code></pre>
+
+<p>Now it looks proper <strong>Raku</strong> code.</p>
+
+<p>What did I learn this time?</p>
+
+<p>Well, I learnt how to use Date class.</p>
+
+<p>After sharing the code on Twitter, <strong>Elizabeth Mattijsen</strong>, suggested I could use <strong>++$date</strong> instead of doing <strong>$date.later()</strong>.</p>
+
+<p>Here is the final version as of today.</p>
+
+<pre><code class="language-perl6">#!/usr/bin/env perl6
+
+use v6;
+
+sub MAIN() {
+    my $fmt  = { sprintf &quot;%02d%02d%04d&quot;, .month, .day, .year };
+    my $date = Date.new(2000, 1, 1, formatter =&gt; $fmt);
+    while $date.year &lt;= 2999 {
+        my $date-as-str = $date.Str;
+        if $date-as-str eq $date-as-str.flip {
+            say &quot;$date-as-str is a Palindrome date.&quot;;
+        }
+        ++$date;
+    }
+}
+</code></pre>
+
+<hr />
+
+<p>So for the first time, I have solved both tasks in <strong>Perl</strong> and <strong>Raku</strong>. To make it complete, I wrote this blog as well.</p>
+
+<p>I may not be able to do this every week but it gave me confidence to at least give it a try.</p>
+
+<p>Thanks for reading my story, talk to you soon with another story.</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="/contact" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        <script>document.write(new Date().getFullYear())</script>
+                    </span> PerlWeeklyChallenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.nomtimes.co.uk/site/shop.do?cref=PerlBooks" title="Free Perl Books" target="_blank">
+                            <img src="/images/NomTimes.jpg" style="width:22px; height: 18px;" alt=""/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://perlweeklychallenge.org/plugins/jQurey/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://perlweeklychallenge.org/plugins/form-validation/jquery.form.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://perlweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://perlweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://perlweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/chart/chart.js"></script>
+<!-- wow js -->
+<script src="https://perlweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://perlweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://perlweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://perlweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-136524905-1', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+
+</html>
+
