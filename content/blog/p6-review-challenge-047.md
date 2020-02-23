@@ -5,6 +5,7 @@ description:  "Ryan Thompson › Raku Weekly Review: Challenge - #047"
 tags:         ["raku"]
 title:        "Ryan Thompson › Raku Weekly Review: Challenge - #047"
 type:         post
+image:        images/blog/p6-review-challenge-047.jpg
 ---
 
 Continues from [previous week](/blog/p6-review-challenge-046/).
