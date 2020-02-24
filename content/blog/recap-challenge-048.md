@@ -49,8 +49,6 @@ We have had new members joining the **Team PWC** last week, [**Jen Guerra**](htt
 ***
 ***
 
-#### **Dave Jacoby** moved up to the **rank #14**.
-
 #### **Noud Aldenhoven** moved up to the **rank #21**.
 
 ***
@@ -81,9 +79,9 @@ We have had new members joining the **Team PWC** last week, [**Jen Guerra**](htt
 
 #### 13) Javier Luque (**180**)
 
-#### 14) Dave Jacoby (**166**)
+#### 14) Duncan C. White (**168**)
 
-#### 15) Duncan C. White (**164**)
+#### 15) Dave Jacoby (**166**)
 
 #### 16) Kian-Meng Ang (**162**)
 
@@ -163,6 +161,14 @@ Checkout the masterpiece collection of [**blogs**](https://perlweeklychallenge.o
 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/duane-powell/perl/ch-1.pl)]
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/duane-powell/perl/ch-2.pl)]
+
+***
+
+### Duncan C. White
+![Duncan C. White](/images/team/duncan_white.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/duncan-c-white/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/duncan-c-white/perl/ch-2.pl)]
 
 ***
 
