@@ -155,6 +155,12 @@
 
 <p>Welcome to the Raku review for Week 047 of the Weekly Challenge! For a quick overview, go through the <a href="/blog/perl-weekly-challenge-047/">original tasks</a> and <a href="/blog/recap-challenge-047/">recap</a> of the weekly challenge.</p>
 
+<h2 id="updates">Updates</h2>
+
+<p><strong>2020-Feb-24</strong> › <a href="#arne-sommer1">Arne Sommer</a> sent me the source code for his <code>Number::Roman</code> library, which I&rsquo;ve now reviewed.</p>
+
+<p><strong>2020-Feb-24</strong> › Review added for <a href="#laurent-rosenfeld2">Laurent Rosenfeld&rsquo;s second solution</a>. Sorry I missed it!</p>
+
 <h2 id="getting-in-touch">Getting in Touch</h2>
 
 <p><a href="mailto:rjt@cpan.org"><img src="http://ry.ca/misc/Email.svg" height="50" width="50"> Email</a> › Email me (Ryan) with any feedback about this review.</p>
@@ -173,7 +179,7 @@
 
 <h3 id="task-2-task2"><a href="#task2">Task 2</a></h3>
 
-<p>[ <a href="#alicia-bielsa2">Alicia Bielsa</a>  | <a href="#arne-sommer2">Arne Sommer</a>  | <a href="#athanasius2">Athanasius</a>  | <a href="#colin-crain2">Colin Crain</a>  | <a href="#jaldhar-h-vyas2">Jaldhar H. Vyas</a>  | <a href="#javier-luque2">Javier Luque</a>  | <a href="#kevin-colyer2">Kevin Colyer</a>  | <a href="#luca-ferrari2">Luca Ferrari</a>  | <a href="#mark-anderson2">Mark Anderson</a>  | <a href="#markus-holzer2">Markus Holzer</a>  | <a href="#noud2">Noud Aldenhoven</a>  | <a href="#ruben-westerberg2">Ruben Westerberg</a>  | <a href="#ryan-thompson2">Ryan Thompson</a>  | <a href="#simon-proctor2">Simon Proctor</a>  | <a href="#ulrich-rieke2">Ulrich Rieke</a>  ]</p>
+<p>[ <a href="#alicia-bielsa2">Alicia Bielsa</a>  | <a href="#arne-sommer2">Arne Sommer</a>  | <a href="#athanasius2">Athanasius</a>  | <a href="#colin-crain2">Colin Crain</a>  | <a href="#jaldhar-h-vyas2">Jaldhar H. Vyas</a>  | <a href="#javier-luque2">Javier Luque</a>  | <a href="#kevin-colyer2">Kevin Colyer</a> | <a href="#laurent-rosenfeld2">Laurent Rosenfeld</a> | <a href="#luca-ferrari2">Luca Ferrari</a>  | <a href="#mark-anderson2">Mark Anderson</a>  | <a href="#markus-holzer2">Markus Holzer</a>  | <a href="#noud2">Noud Aldenhoven</a>  | <a href="#ruben-westerberg2">Ruben Westerberg</a>  | <a href="#ryan-thompson2">Ryan Thompson</a>  | <a href="#simon-proctor2">Simon Proctor</a>  | <a href="#ulrich-rieke2">Ulrich Rieke</a>  ]</p>
 
 <h3 id="blogs-blogs"><a href="#blogs">Blogs</a></h3>
 
@@ -197,7 +203,39 @@ XI
 
 <h2 id="arne-sommer1">Arne Sommer</h2>
 
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/arne-sommer/raku/ch-1.p6">Arne Sommer&rsquo;s solution</a> uses a modified version of his Roman number code from Week 10, which Arne has put into a <code>Number::Roman</code> library (not included with his submission). Here is the main logic:</p>
+<p><strong>2020-Feb-24:</strong> Arne sent me the source code for his <code>Number::Roman</code> library. I will add my thoughts, below.</p>
+
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/arne-sommer/raku/ch-1.p6">Arne Sommer&rsquo;s solution</a> uses a modified version of his Roman number code from Week 10, which Arne has put into a <code>Number::Roman</code> library <del>(not included with his submission)</del> now available on <a href="https://raku-musings.com/roman-gap.html">Arne&rsquo;s blog</a>.</p>
+
+<p>The library itself uses <code>MONKEY-TYPING</code> pragma, which allows one to <a href="https://docs.raku.org/syntax/augment"><code>augment</code></a> existing classes. This can be dangerous, so the Raku docs recommend against it. I&rsquo;m confident Arne knows this. Still, it allows Arne to build a convenient class whereby any <code>Int</code> can be converted <code>from-roman</code>, and any <code>Str</code> can be converted <code>to-roman</code>, with <code>base</code> support as well:</p>
+
+<pre><code class="language-raku">use MONKEY-TYPING;
+augment class Int {
+    method roman {
+        return to-roman(self);
+    }
+
+    multi method base(&quot;r&quot;) {
+        return self.roman;
+    }
+}
+
+augment class Str {
+    method from-roman {
+        return from-roman(self);
+    }
+
+    multi method parse-base(&quot;r&quot;) {
+        return self.from-roman;
+    }
+}
+</code></pre>
+
+<p>Arne has also included a full OO implementation that has <code>add</code>, <code>sub</code>, <code>mul</code> and <code>div</code> methods. There are also more examples and variations. I can&rsquo;t show it all here, but it&rsquo;s available on his blog.</p>
+
+<hr />
+
+<p>Back to the ch-1 solution, here is the main logic:</p>
 
 <pre><code class="language-raku">use Number::Roman :to, :from;
 unit sub MAIN (Str $first, Str $operator, Str $second);
@@ -859,6 +897,17 @@ while ($p &lt; 20) {
 
 <pre><code class="language-raku">@gapful[^20]&gt;&gt;.say;
 </code></pre>
+
+<h2 id="laurent-rosenfeld2">Laurent Rosenfeld</h2>
+
+<p><strong>2020-Feb-24:</strong> I missed this solution of Laurent&rsquo;s during the original review. My apologies, Laurent!</p>
+
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-047/laurent-rosenfeld/raku/ch-2.sh">Laurent Rosenfeld&rsquo;s solution</a> is a one-liner:</p>
+
+<pre><code class="language-sh">perl6 -e 'say (grep { $_ %% .comb[0,*-1].join}, 100..*)[0..19];'
+</code></pre>
+
+<p>This is a compact example of the lazy sequence we&rsquo;ve seen before, with both the concise <code>comb[0,*-1]</code> syntax and use of the divisibility (<code>%%</code>) operator.</p>
 
 <h2 id="luca-ferrari2">Luca Ferrari</h2>
 
