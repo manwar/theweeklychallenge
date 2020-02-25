@@ -12,6 +12,12 @@ Continues from [previous week](/blog/p6-review-challenge-046/).
 
 Welcome to the Raku review for Week 047 of the Weekly Challenge! For a quick overview, go through the [original tasks](/blog/perl-weekly-challenge-047/) and [recap](/blog/recap-challenge-047/) of the weekly challenge.
 
+## Updates
+
+**2020-Feb-24** › [Arne Sommer](#arne-sommer1) sent me the source code for his `Number::Roman` library, which I've now reviewed.
+
+**2020-Feb-24** › Review added for [Laurent Rosenfeld's second solution](#laurent-rosenfeld2). Sorry I missed it!
+
 ## Getting in Touch
 
 <a href="mailto:rjt@cpan.org"><img src="http://ry.ca/misc/Email.svg" height="50" width="50"> Email</a> › Email me (Ryan) with any feedback about this review.
@@ -30,7 +36,7 @@ We'd greatly appreciate any feedback you'd like to give.
 
 ### [Task 2](#task2)
 
-[ [Alicia Bielsa](#alicia-bielsa2)  | [Arne Sommer](#arne-sommer2)  | [Athanasius](#athanasius2)  | [Colin Crain](#colin-crain2)  | [Jaldhar H. Vyas](#jaldhar-h-vyas2)  | [Javier Luque](#javier-luque2)  | [Kevin Colyer](#kevin-colyer2)  | [Luca Ferrari](#luca-ferrari2)  | [Mark Anderson](#mark-anderson2)  | [Markus Holzer](#markus-holzer2)  | [Noud Aldenhoven](#noud2)  | [Ruben Westerberg](#ruben-westerberg2)  | [Ryan Thompson](#ryan-thompson2)  | [Simon Proctor](#simon-proctor2)  | [Ulrich Rieke](#ulrich-rieke2)  ]
+[ [Alicia Bielsa](#alicia-bielsa2)  | [Arne Sommer](#arne-sommer2)  | [Athanasius](#athanasius2)  | [Colin Crain](#colin-crain2)  | [Jaldhar H. Vyas](#jaldhar-h-vyas2)  | [Javier Luque](#javier-luque2)  | [Kevin Colyer](#kevin-colyer2) | [Laurent Rosenfeld](#laurent-rosenfeld2) | [Luca Ferrari](#luca-ferrari2)  | [Mark Anderson](#mark-anderson2)  | [Markus Holzer](#markus-holzer2)  | [Noud Aldenhoven](#noud2)  | [Ruben Westerberg](#ruben-westerberg2)  | [Ryan Thompson](#ryan-thompson2)  | [Simon Proctor](#simon-proctor2)  | [Ulrich Rieke](#ulrich-rieke2)  ]
 
 ### [Blogs](#blogs)
 
@@ -56,7 +62,40 @@ A few people used modules, several re-used their solutions from [Week 010](/blog
 
 ## Arne Sommer {#arne-sommer1}
 
-[Arne Sommer's solution](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/arne-sommer/raku/ch-1.p6) uses a modified version of his Roman number code from Week 10, which Arne has put into a `Number::Roman` library (not included with his submission). Here is the main logic:
+**2020-Feb-24:** Arne sent me the source code for his `Number::Roman` library. I will add my thoughts, below.
+
+[Arne Sommer's solution](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/arne-sommer/raku/ch-1.p6) uses a modified version of his Roman number code from Week 10, which Arne has put into a `Number::Roman` library ~~(not included with his submission)~~ now available on [Arne's blog](https://raku-musings.com/roman-gap.html).
+
+The library itself uses `MONKEY-TYPING` pragma, which allows one to [`augment`](https://docs.raku.org/syntax/augment) existing classes. This can be dangerous, so the Raku docs recommend against it. I'm confident Arne knows this. Still, it allows Arne to build a convenient class whereby any `Int` can be converted `from-roman`, and any `Str` can be converted `to-roman`, with `base` support as well:
+
+```raku
+use MONKEY-TYPING;
+augment class Int {
+    method roman {
+        return to-roman(self);
+    }
+
+    multi method base("r") {
+        return self.roman;
+    }
+}
+
+augment class Str {
+    method from-roman {
+        return from-roman(self);
+    }
+
+    multi method parse-base("r") {
+        return self.from-roman;
+    }
+}
+```
+
+Arne has also included a full OO implementation that has `add`, `sub`, `mul` and `div` methods. There are also more examples and variations. I can't show it all here, but it's available on his blog.
+
+***
+
+Back to the ch-1 solution, here is the main logic:
 
 ```raku
 use Number::Roman :to, :from;
@@ -754,6 +793,18 @@ As with Arne's solution, printing the first 20 elements is now easy:
 ```raku
 @gapful[^20]>>.say;
 ```
+
+## Laurent Rosenfeld {#laurent-rosenfeld2}
+
+**2020-Feb-24:** I missed this solution of Laurent's during the original review. My apologies, Laurent!
+
+[Laurent Rosenfeld's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-047/laurent-rosenfeld/raku/ch-2.sh) is a one-liner:
+
+```sh
+perl6 -e 'say (grep { $_ %% .comb[0,*-1].join}, 100..*)[0..19];'
+```
+
+This is a compact example of the lazy sequence we've seen before, with both the concise `comb[0,*-1]` syntax and use of the divisibility (`%%`) operator.
 
 ## Luca Ferrari {#luca-ferrari2}
 
