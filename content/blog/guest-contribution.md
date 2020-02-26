@@ -17,6 +17,8 @@ Please find below guest contributions.
 #### [Perl Weekly Challenge - 049](/blog/perl-weekly-challenge-049)
 ----
 
+##### **Jonas Berlin** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-049/xkr47/rust/ch-1.rs) in **Rust**.
+
 ##### **Orestis Zekai** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-049/orestis-zekai/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-049/orestis-zekai/python/ch-2.py) in **Python**.
 
 ----
@@ -24,7 +26,7 @@ Please find below guest contributions.
 #### [Perl Weekly Challenge - 048](/blog/perl-weekly-challenge-048)
 ----
 
-##### **Jonas Berlin** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/xkr47/rust/ch-1.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/xkr47/rust/ch-2.rs) in **Rust**.
+##### **Jonas Berlin** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/xkr47/rust/ch-1.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/xkr47/rust/ch-2.rs) in **Rust**.
 
 ##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/lubos-kolouch/python/ch-2.py) in **Python**.
 
@@ -82,7 +84,7 @@ Please find below guest contributions.
 
 ##### **Darren Bottin** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/darren-bottin/prolog/ch-1.pro) in **Prolog**.
 
-##### **Jaldhar H. Vyas** shared solutions to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/jaldhar-h-vyas/c%2B%2B/ch-2.cpp) in **C++**.
+##### **Jaldhar H. Vyas** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/jaldhar-h-vyas/c%2B%2B/ch-2.cpp) in **C++**.
 
 ----
 ----
@@ -133,9 +135,9 @@ Please find below guest contributions.
 #### [Perl Weekly Challenge - 037](/blog/perl-weekly-challenge-037)
 ----
 
-##### **Daniel Mita** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/daniel-mita/go/ch-1.go) in **Go**.
+##### **Daniel Mita** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/daniel-mita/go/ch-1.go) in **Go**.
 
-##### **Daniel Mita** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/daniel-mita/js/ch-1.js) in **Javascript**.
+##### **Daniel Mita** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/daniel-mita/js/ch-1.js) in **Javascript**.
 
 ##### **Duncan C. White** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/duncan-c-white/postscript/ch-1.ps) in **Postscript**.
 
@@ -146,7 +148,7 @@ Please find below guest contributions.
 
 ##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-036/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-036/lubos-kolouch/python/ch-2.py) in **Python**.
 
-##### **Ulrich Rieke** shared solutions to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-036/ulrich-rieke/haskell/ch-2.hs) in **Haskell**.
+##### **Ulrich Rieke** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-036/ulrich-rieke/haskell/ch-2.hs) in **Haskell**.
 
 ----
 ----
