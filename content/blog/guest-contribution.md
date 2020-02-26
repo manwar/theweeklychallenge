@@ -8,7 +8,7 @@ author: Mohammad S Anwar
 tags: ["C++", "Go", "Haskell", "Javascript", "Python", "Postscript", "Prolog", "R", "Rust", "HTML"]
 ---
 
-As you know, **Perl Weekly Challenge**, primarily focus on **Perl** and **Raku**. During the **Week #018**, we received the solution to [**"Perl Weekly Challenge - 018"**](/blog/perl-we$ekly-challenge-018) by **Orestis Zekai** in **Python**. It was a pleasant surprise to receive solution in something other than **Perl** and **Raku**. Ever since regular team members also started contributing in other languages like **C++**, **Go**, **Haskell**, **Javascript**, **Postscript**, **Prolog**, **R**, **Rust** and **HTML**.
+As you know, **"Perl Weekly Challenge"**, primarily focus on **Perl** and **Raku**. During the **Week #018**, we received the solution to **["Perl Weekly Challenge - 018"](/blog/perl-we$ekly-challenge-018)** by **Orestis Zekai** in **Python**. It was a pleasant surprise to receive solution in something other than **Perl** and **Raku**. Ever since regular team members also started contributing in other languages like **C++**, **Go**, **Haskell**, **Javascript**, **Postscript**, **Prolog**, **R**, **Rust** and **HTML**.
 
 Please find below guest contributions.
 
