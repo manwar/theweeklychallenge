@@ -16,7 +16,7 @@
 
     <meta name="description" content="Laurent Rosenfeld Weekly Review: Challenge - #042.">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.55.0-DEV" />
+    <meta name="generator" content="Hugo 0.66.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -149,36 +149,22 @@
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
-                    
-
-<hr />
-
+                    <hr>
 <h1 id="raku-solutions-weekly-review">Raku Solutions Weekly Review</h1>
-
-<hr />
-
+<hr>
 <h2 id="task-1-octal-numbers">Task #1: Octal Numbers</h2>
-
 <p>This is derived in part from my <a href="http://blogs.perl.org/users/laurent_r/2020/01/perl-weekly-challenge-42-octal-numbers-and-balanced-parentheses.html">blog post</a> made in answer to the <a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-042/">Week 42 of the Perl Weekly Challenge</a> organized by  <a href="http://blogs.perl.org/users/mohammad_s_anwar/">Mohammad S. Anwar</a> as well as answers made by others to the same challenge.</p>
-
 <p>The challenge reads as follows:</p>
-
 <p><em>Write a script to print decimal number 0 to 50 in Octal Number System.</em></p>
-
 <p><em>For example:</em></p>
-
 <pre><code>Decimal 0 = Octal 0
 Decimal 1 = Octal 1
 Decimal 2 = Octal 2
 [ ... ]
 </code></pre>
-
 <h2 id="my-solution">My solution</h2>
-
 <p>Raku has a <a href="https://docs.raku.org/routine/base">base</a> method to convert a number into a string representation in any base between 2 and 36.</p>
-
 <p>With this, it is so easy that we can use a one-liner:</p>
-
 <pre><code>$ perl6 -e 'say &quot;Decimal: $_ \t=  Octal &quot;, .base(8) for 0..50;'
 Decimal: 0      =  Octal 0
 Decimal: 1      =  Octal 1
@@ -198,87 +184,47 @@ Decimal: 48     =  Octal 60
 Decimal: 49     =  Octal 61
 Decimal: 50     =  Octal 62
 </code></pre>
-
 <h2 id="alternative-solutions">Alternative Solutions</h2>
-
-<h3 id="using-the-base-method">Using the <code>base</code>method</h3>
-
+<h3 id="using-the-basemethod">Using the <code>base</code>method</h3>
 <p>Many challengers used the same <a href="https://docs.raku.org/routine/base">base</a> method as I did, as follows:</p>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/arne-sommer/raku/ch-1.p6">Arne Sommer</a>:</p>
-
-<pre><code class="language-Perl6">say &quot;Decimal $_ = Octal { $_.base(8) }&quot; for ^51;
-</code></pre>
-
-<p>[Daniel Mita]&lsquo;<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/daniel-mita/raku/ch-1.sh)">https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/daniel-mita/raku/ch-1.sh)</a> did it in the form of a one-liner:</p>
-
-<pre><code class="language-Perl6">raku -e '.base(8).say for ^51'
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/markus-holzer/raku/ch-1.p6">Markus Holzer</a>:</p>
-
-<pre><code class="language-Perl6">.base(8).say for ^51
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/simon-proctor/raku/ch-1.p6">Simon Proctor</a>:</p>
-
-<pre><code class="language-Perl6">for $start-val..$end-val -&gt; \val {
+<pre><code class="language-Perl6" data-lang="Perl6">say &quot;Decimal $_ = Octal { $_.base(8) }&quot; for ^51;
+</code></pre><p>[Daniel Mita]&lsquo;<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/daniel-mita/raku/ch-1.sh">https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/daniel-mita/raku/ch-1.sh</a>) did it in the form of a one-liner:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">raku -e '.base(8).say for ^51'
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/markus-holzer/raku/ch-1.p6">Markus Holzer</a>:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">.base(8).say for ^51
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/simon-proctor/raku/ch-1.p6">Simon Proctor</a>:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">for $start-val..$end-val -&gt; \val {
     say &quot;Decimal {val} = Octal {val.base(8)}&quot;;
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/ulrich-rieke/raku/ch-1.p6">Ulrich Rieke</a>:</p>
-
-<pre><code class="language-Perl6">for (1..50) -&gt; $i {
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/ulrich-rieke/raku/ch-1.p6">Ulrich Rieke</a>:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">for (1..50) -&gt; $i {
   say &quot;Decimal $i = Octal &quot; ~ $i.base(8).Str ;
 }
-</code></pre>
-
-<h3 id="using-a-format-string">Using a Format String</h3>
-
+</code></pre><h3 id="using-a-format-string">Using a Format String</h3>
 <p>Many other challengers used the <code>%o</code> option of the <code>printf</code>, <code>sprintf</code>, and <code>fmt</code> routines (which I also used in my Perl 5 solution):</p>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/burkhard-nickels/raku/ch-1.p6">Burkhard Nickels</a>:</p>
-
-<pre><code class="language-Perl6">for (0 .. 50) {
+<pre><code class="language-Perl6" data-lang="Perl6">for (0 .. 50) {
     printf(&quot;Decimal: %d - Octal: %o\n&quot;,$_,$_);
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/noud/raku/ch-1.p6">Noud Aldenhoven</a></p>
-
-<pre><code class="language-Perl6">say $_.fmt(&quot;Decimal $_ = Octal %o&quot;) for ^51;
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/jaldhar-h-vyas/raku/ch-1.sh">Jaldhar H. Vyas</a> came back to the challenge after a pause. Welcome back, Jaldhar. He wrote a Raku one-liner along the same lines:</p>
-
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/noud/raku/ch-1.p6">Noud Aldenhoven</a></p>
+<pre><code class="language-Perl6" data-lang="Perl6">say $_.fmt(&quot;Decimal $_ = Octal %o&quot;) for ^51;
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/jaldhar-h-vyas/raku/ch-1.sh">Jaldhar H. Vyas</a> came back to the challenge after a pause. Welcome back, Jaldhar. He wrote a Raku one-liner along the same lines:</p>
 <pre><code>perl6 -e '[0 .. 50].map({ printf(&quot;Decimal %d = Octal %o\n&quot;, $_, $_) });'
 </code></pre>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/javier-luque/raku/ch-1.p6">Javier Luque</a> used a format string (<code>%o</code>option) to do the job:</p>
-
-<pre><code class="language-Perl6">sub to-octal(Int $i) {
+<pre><code class="language-Perl6" data-lang="Perl6">sub to-octal(Int $i) {
     return sprintf('%o', $i);
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/roger-bell-west/raku/ch-1.p6">Roger Bell West</a> also used a format string:</p>
-
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/roger-bell-west/raku/ch-1.p6">Roger Bell West</a> also used a format string:</p>
 <p>for (0..50) {
-  printf(&lsquo;Decimal %d = Octal %o&rsquo; ~ &ldquo;\n&rdquo;,$<em>,$</em>);
+printf(&lsquo;Decimal %d = Octal %o&rsquo; ~ &ldquo;\n&rdquo;,$_,$_);
 }</p>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/ryan-thompson/raku/ch-1.p6">Ryan Thompson</a> also used a format string:</p>
-
-<pre><code class="language-Perl6">say (0..50).fmt('Decimal %1$2d = Octal %2o', &quot;\n&quot;);
-</code></pre>
-
-<h3 id="doing-it-the-hard-way">Doing it the Hard Way</h3>
-
+<pre><code class="language-Perl6" data-lang="Perl6">say (0..50).fmt('Decimal %1$2d = Octal %2o', &quot;\n&quot;);
+</code></pre><h3 id="doing-it-the-hard-way">Doing it the Hard Way</h3>
 <p>Two challengers decided to implement a full conversion algorithm:</p>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/kevin-colyer/raku/ch-1.p6">Kevin Colyer</a> knows that there are easier ways to do it, but decided to roll his own version, perhaps for the fun of the exercise. He did it in the old assembly language (or C hacker) way:</p>
-
-<pre><code class="language-Perl6">sub dec-to-oct(Int $n is copy) returns Str {
+<pre><code class="language-Perl6" data-lang="Perl6">sub dec-to-oct(Int $n is copy) returns Str {
     return &quot;0&quot; if $n==0;
     my Str $o = &quot;&quot;;
     while $n&gt;0 {
@@ -289,13 +235,9 @@ Decimal: 50     =  Octal 62
 }
 
 say &quot;Decimal $_ = Octal {dec-to-oct($_)} is sprintf conversion {sprintf &quot;%o&quot;, $_}&quot; for ^51;
-</code></pre>
-
-<p>Just in case you don&rsquo;t know or don&rsquo;t remember (I didn&rsquo;t and had to look it up), <code>+&amp;</code> is the numeric bitwise <code>AND</code> operator, and <code>+&gt;</code> is the integer bit shift to the right.</p>
-
+</code></pre><p>Just in case you don&rsquo;t know or don&rsquo;t remember (I didn&rsquo;t and had to look it up), <code>+&amp;</code> is the numeric bitwise <code>AND</code> operator, and <code>+&gt;</code> is the integer bit shift to the right.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/colin-crain/raku/ch-1.p6">Colin Crain</a> used the standard CS integer division and remainder to compute octal numbers. Even though this is not required in the task, Colin even expanded the definition domain to Z (inclluding negative integers):</p>
-
-<pre><code class="language-Perl6">sub MAIN () {
+<pre><code class="language-Perl6" data-lang="Perl6">sub MAIN () {
 
     for -50 .. 50 {
         printf &quot;Decimal %3d = Octal %3d\n&quot;, $_, octal($_) ;
@@ -315,39 +257,24 @@ sub octal ( $dec is copy ){
     $out = $sign ~ $out;
     return $out ?? $out !! 0;  ## needs to output 0 for 0
 }
-</code></pre>
-
-<p>Colin provides a long comment explaining his algorithm, please follow the link if you want further explanations.</p>
-
-<hr />
-
+</code></pre><p>Colin provides a long comment explaining his algorithm, please follow the link if you want further explanations.</p>
+<hr>
 <h2 id="task-2-balanced-parentheses">Task #2: Balanced Parentheses</h2>
-
-<hr />
-
+<hr>
 <p>This is derived in part from my <a href="http://blogs.perl.org/users/laurent_r/2020/01/perl-weekly-challenge-42-octal-numbers-and-balanced-parentheses.html">blog post</a> made in answer to the <a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-042/">Week 42 of the Perl Weekly Challenge</a> organized by  <a href="http://blogs.perl.org/users/mohammad_s_anwar/">Mohammad S. Anwar</a> as well as answers made by others to the same challenge.</p>
-
 <p>The challenge reads as follows:</p>
-
 <p><em>Write a script to generate a string with random number of ( and ) brackets. Then make the script validate the string if it has balanced brackets.</em></p>
-
 <p><em>For example:</em></p>
-
 <pre><code>() - OK
 (()) - OK
 )( - NOT OK
 ())() - NOT OK
 </code></pre>
-
 <p>Well, I have a slight problem with this task requirement. A script generating a random number of random brackets will almost never generate balanced brackets, except when the maximal number of brackets is really small (say 2 or 4). So, I changed the task to writing a script that checks that strings passed to it have properly balanced parentheses.</p>
-
 <h2 id="my-solutions">My Solutions</h2>
-
 <h3 id="balanced-parentheses-using-a-grammar">Balanced Parentheses Using a Grammar</h3>
-
 <p>I admit that this may be slight technological overkill, but seeing such a task leads me immediately to use grammars, which are naturally capable to manage such tasks, since their rules can easily be called recursively to parse any number of nested parentheses. So, this is my first solution:</p>
-
-<pre><code class="language-Perl6">use v6;
+<pre><code class="language-Perl6" data-lang="Perl6">use v6;
 
 grammar Parens {
     token TOP { \s* &lt;paren-expr&gt;+ \s* }
@@ -360,12 +287,8 @@ for &quot;()&quot;, &quot;(  )&quot;, &quot;(())&quot;, &quot;( ( ))&quot;, &quo
     &quot;((( ( ()))))&quot;,  &quot;()()()()&quot;, &quot;(())(())&quot; -&gt; $expr {
     say &quot;$expr - &quot;, Parens.parse($expr) ?? &quot;OK&quot; !! &quot;NOT OK&quot;;
 }
-</code></pre>
-
-<p>The <code>TOP</code> token is any strictly positive number of <code>paren-expr</code>. A <code>paren-expr</code> is either a <code>paren-pair</code> or an opening parenthesis, followed by, recursively, another <code>paren-expr</code>, followed by a closing parenthesis. Note that this could most probably have been made simpler (only two tokens instead of three) if we had decided to remove all spaces of the string before parsing.</p>
-
+</code></pre><p>The <code>TOP</code> token is any strictly positive number of <code>paren-expr</code>. A <code>paren-expr</code> is either a <code>paren-pair</code> or an opening parenthesis, followed by, recursively, another <code>paren-expr</code>, followed by a closing parenthesis. Note that this could most probably have been made simpler (only two tokens instead of three) if we had decided to remove all spaces of the string before parsing.</p>
 <p>This script displays the following output:</p>
-
 <pre><code>$ perl6 parens.p6
 () - OK
 (  ) - OK
@@ -377,12 +300,9 @@ for &quot;()&quot;, &quot;(  )&quot;, &quot;(())&quot;, &quot;( ( ))&quot;, &quo
 ()()()() - OK
 (())(()) - OK
 </code></pre>
-
 <h3 id="balanced-parentheses-using-a-stack">Balanced Parentheses Using a Stack</h3>
-
 <p>As I said, using grammars for such a simple task might be considered over-engineering. We had recently a challenge about reverse Polish notation that led us to use a stack. Recursion and stacks are intimately related. We could use a stack to perform the same task: push to the stack if we get a <code>(</code>, and pop from the stack if we get a <code>)</code>, unless the stack is empty; and, at the end, check that the stack is empty. Some people might think that this approach is conceptually simpler than a grammar. But I tend to think this is wrong. Except for a small typo, my grammar approach worked the first time I tested it. Not only is the stack code below significantly longer, but I had to debug the stack approach below for about 15 minutes before it got right:</p>
-
-<pre><code class="language-Perl6">use v6;
+<pre><code class="language-Perl6" data-lang="Perl6">use v6;
 
 sub check-parens (Str $expr) {
     my @stack;
@@ -402,10 +322,7 @@ for &quot;()&quot;, &quot;(  )&quot;, &quot;(())&quot;, &quot;( ( ))&quot;, &quo
     &quot;((( ( ()))))&quot;,  &quot;()()()()&quot;, &quot;(())(())&quot; {
         check-parens($_)
 }
-</code></pre>
-
-<p>This is the output:</p>
-
+</code></pre><p>This is the output:</p>
 <pre><code>$ perl6 parens.p6
 (): OK
 (  ): OK
@@ -417,12 +334,9 @@ for &quot;()&quot;, &quot;(  )&quot;, &quot;(())&quot;, &quot;( ( ))&quot;, &quo
 ()()()(): OK
 (())(()): OK
 </code></pre>
-
 <h3 id="replacing-the-stack-by-a-counter">Replacing the Stack by a Counter</h3>
-
 <p>In fact, we don&rsquo;t really need a stack, as we can use a simple counter starting at 0, which we increment when we get an opening parenthesis, and decrement when we get a closing parenthesis. If we get a closing parenthesis when the counter is 0, or if the counter is not 0 at the end of the parsing, then the parens are not properly balanced. The <code>check-parens</code> subroutine is rewritten as follows:</p>
-
-<pre><code class="language-Perl6">sub check-parens (Str $expr) {
+<pre><code class="language-Perl6" data-lang="Perl6">sub check-parens (Str $expr) {
     my $count;
     my $s = $expr;
     $s ~~ s:g/\s+//; # remove spaces;
@@ -436,15 +350,10 @@ for &quot;()&quot;, &quot;(  )&quot;, &quot;(())&quot;, &quot;( ( ))&quot;, &quo
     }
     say &quot;$expr: &quot;, $count ?? &quot;NOT OK&quot; !! &quot;OK&quot;;
 }
-</code></pre>
-
-<p>The output is the same as before.</p>
-
+</code></pre><p>The output is the same as before.</p>
 <h2 id="alternative-solutions-1">Alternative Solutions</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/arne-sommer/raku/ch-2.p6">Arne Sommer</a> suggested a solution in which the most important element is a counter that is incremented for an opening parenthesis and decremented for a closing parenthesis, much along the idea of my last solution above:</p>
-
-<pre><code class="language-Perl6">sub is-balanced ($brackets)
+<pre><code class="language-Perl6" data-lang="Perl6">sub is-balanced ($brackets)
 {
   return False if $brackets.chars % 2; # An odd number
   return False if $brackets.substr(0,  1) eq ')';
@@ -463,11 +372,8 @@ for &quot;()&quot;, &quot;(  )&quot;, &quot;(())&quot;, &quot;( ( ))&quot;, &quo
 
   return $count == 0;
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/daniel-mita/raku/ch-2.p6">Daniel Mita</a> used a counter much in the same way as my last solution:</p>
-
-<pre><code class="language-Perl6">my $count = 0;
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/daniel-mita/raku/ch-2.p6">Daniel Mita</a> used a counter much in the same way as my last solution:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">my $count = 0;
 
 for roll &lt;( )&gt;: (^$parens).pick {
   .say;
@@ -480,11 +386,8 @@ if $count {
 }
 
 'balanced'.say;
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/kevin-colyer/raku/ch-2.p6">Kevin Colyer</a> also used a counter (<code>$open</code>):</p>
-
-<pre><code class="language-Perl6">sub match-brackets(Str $t) {
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/kevin-colyer/raku/ch-2.p6">Kevin Colyer</a> also used a counter (<code>$open</code>):</p>
+<pre><code class="language-Perl6" data-lang="Perl6">sub match-brackets(Str $t) {
     # can never match condition
     return False if $t.chars &lt; 2;
 
@@ -501,11 +404,8 @@ if $count {
     }
     return $open == 0 ?? True !! False ;
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/noud/raku/ch-2.p6">Noud Aldenhoven</a> also used a counter:</p>
-
-<pre><code class="language-Perl6">sub balanced($brackets) {
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/noud/raku/ch-2.p6">Noud Aldenhoven</a> also used a counter:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">sub balanced($brackets) {
     my $c = 0;
     for $brackets.comb() -&gt; $b {
         if ($b === '(') {
@@ -516,11 +416,8 @@ if $count {
     }
     return $c == 0;
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/simon-proctor/raku/ch-2.p6">Simon Proctor</a> also used a counter:</p>
-
-<pre><code class="language-Perl6">sub balanced( Str \brackets ) {
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/simon-proctor/raku/ch-2.p6">Simon Proctor</a> also used a counter:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">sub balanced( Str \brackets ) {
     my @list = brackets.comb(&quot;&quot;);
     my $count = 0;
     for @list -&gt; \bracket {
@@ -536,11 +433,8 @@ if $count {
     }
     return $count == 0;
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/ulrich-rieke/raku/ch-2.p6">Ulrich Rieke</a> implemented two separate counters:</p>
-
-<pre><code class="language-Perl6">sub validateBrackets( Str $term --&gt; Bool) {
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/ulrich-rieke/raku/ch-2.p6">Ulrich Rieke</a> implemented two separate counters:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">sub validateBrackets( Str $term --&gt; Bool) {
   if ( $term ~~ /^ ')' | '(' $/ ) {
       return False ;
   }
@@ -555,13 +449,9 @@ sub countLetter( Str $term , Str $letter --&gt; Int) {
   }
   return $count ;
 }
-</code></pre>
-
-<p>I&rsquo;m afraid Ulrich&rsquo;s code returns the wrong answer for some input strings. For example, it appears it would validate a string such as <code>&quot;())(()&quot;</code>, where as it is improperly balanced (even though it has the same number of opening and closing parentheses), as it starts with one opening parenthesis, followed by two closing parentheses, so that the second closing parentheses has no matching opening parenthesis <em>prior to</em> it..</p>
-
+</code></pre><p>I&rsquo;m afraid Ulrich&rsquo;s code returns the wrong answer for some input strings. For example, it appears it would validate a string such as <code>&quot;())(()&quot;</code>, where as it is improperly balanced (even though it has the same number of opening and closing parentheses), as it starts with one opening parenthesis, followed by two closing parentheses, so that the second closing parentheses has no matching opening parenthesis <em>prior to</em> it..</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/markus-holzer/raku/ch-2.p6">Markus Holzer</a> didn&rsquo;t quite use a grammar, but nonetheless used the grammar main building blocks, named rules (in this case, more precisely, tokens), to solve the problem:</p>
-
-<pre><code class="language-Perl6">sub test-string( $string )
+<pre><code class="language-Perl6" data-lang="Perl6">sub test-string( $string )
 {
     my token opening-brace { \( };
     my token closing-brace { \) };
@@ -570,11 +460,8 @@ sub countLetter( Str $term , Str $letter --&gt; Int) {
     };
     so $string ~~ /^ &lt;balanced-braces&gt; $/;
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/burkhard-nickels/raku/ch-2.p6">Burhhard Nickels</a> used a recursive <code>balanced_brackets</code> subroutine that removes a <code>()</code> pair each time it is called. When all such pairs have been removed (it is no longer found), then we know that the initial string was a properly balanced if there is no opening or closing parenthesis found. Phew, it took me a few minutes to understand the logic of his algorithm (essentially because I had originally missed that the found parentheses pairs are removed from the string and thought that they were just being matched).</p>
-
-<pre><code class="language-Perl6">sub balanced_brackets ($arg) {
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/burkhard-nickels/raku/ch-2.p6">Burhhard Nickels</a> used a recursive <code>balanced_brackets</code> subroutine that removes a <code>()</code> pair each time it is called. When all such pairs have been removed (it is no longer found), then we know that the initial string was a properly balanced if there is no opening or closing parenthesis found. Phew, it took me a few minutes to understand the logic of his algorithm (essentially because I had originally missed that the found parentheses pairs are removed from the string and thought that they were just being matched).</p>
+<pre><code class="language-Perl6" data-lang="Perl6">sub balanced_brackets ($arg) {
     my $str = $arg;  # Cannot assign to a read-only.
     my $found = ($str ~~ s/\(\)//);
     my $ok;
@@ -587,24 +474,14 @@ sub countLetter( Str $term , Str $letter --&gt; Int) {
         else { return 1; }
     }
 }
-</code></pre>
-
-<p>In this case, I would think that a simple loop to remove the parentheses pairs would have been more natural and simpler that a recursive subroutine.</p>
-
+</code></pre><p>In this case, I would think that a simple loop to remove the parentheses pairs would have been more natural and simpler that a recursive subroutine.</p>
 <p>Note also that Burhhard is making a copy of the input parameter, because subroutine parameters are read-only by default. This is perfectly correct, but Raku offers some features making this simpler: you can use some traits (<code>is rw</code> or <code>is copy</code>) in the signature to make a parameter mutable or to make it a copy of the argument passed to the subroutine. So,</p>
-
-<pre><code class="language-Perl6">sub balanced_brackets ($arg) {
+<pre><code class="language-Perl6" data-lang="Perl6">sub balanced_brackets ($arg) {
     my $str = $arg;  # Cannot assign to a read-only.
-</code></pre>
-
-<p>could be replaced by something like:</p>
-
-<pre><code class="language-Perl6">sub balanced_brackets ($str is copy) {
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/colin-crain/raku/ch-2.p6">Colin Crain</a> used essentially the same technique of eliminating progressively all <code>()</code> pairs with a regex substitution:</p>
-
-<pre><code class="language-Perl6">sub validate (Str:D $orig) {
+</code></pre><p>could be replaced by something like:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">sub balanced_brackets ($str is copy) {
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/colin-crain/raku/ch-2.p6">Colin Crain</a> used essentially the same technique of eliminating progressively all <code>()</code> pairs with a regex substitution:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">sub validate (Str:D $orig) {
     my $str = $orig;
     unless $str.chars %% 2 { return &quot;IMBALANCED - odd number of parens&quot;};
 
@@ -612,30 +489,21 @@ sub countLetter( Str $term , Str $letter --&gt; Int) {
 
     return ($str.chars == 0) ?? &quot;PARENS BALANCED&quot; !! &quot;IMBALANCED - $str unmatched&quot;;
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/roger-bell-west/raku/ch-2.p6">Roger Bell West</a> also used the same approach with regex substitutions to eliminate <code>()</code> pairs:</p>
-
-<pre><code class="language-Perl6">while ($s ~~ s:g/\(\)//) {
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/roger-bell-west/raku/ch-2.p6">Roger Bell West</a> also used the same approach with regex substitutions to eliminate <code>()</code> pairs:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">while ($s ~~ s:g/\(\)//) {
 }
 if ($s) {
   say &quot;Invalid: $s&quot;;
 } else {
   say &quot;Valid.&quot;;
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/ryan-thompson/raku/ch-2.p6">Ryan Thompson</a> also used a regex substitution to eliminate <code>()</code> pairs, and did it in a very concise manner:</p>
-
-<pre><code class="language-Perl6">sub balanced( Str $str is copy --&gt; Bool ) {
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/ryan-thompson/raku/ch-2.p6">Ryan Thompson</a> also used a regex substitution to eliminate <code>()</code> pairs, and did it in a very concise manner:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">sub balanced( Str $str is copy --&gt; Bool ) {
     Nil while $str ~~ s:g/'()'//;
     $str.chars == 0
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/jaldhar-h-vyas/raku/ch-2.p6">Jaldhar H. Vyas</a> used a stack, in spirit much similar to my second solution:</p>
-
-<pre><code class="language-Perl6">sub isBalanced(@brackets) {
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/jaldhar-h-vyas/raku/ch-2.p6">Jaldhar H. Vyas</a> used a stack, in spirit much similar to my second solution:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">sub isBalanced(@brackets) {
     my @stack;
     (0 ..^ @brackets.elems).map({
         if @brackets[$_] ~~ '(' {
@@ -649,11 +517,8 @@ if ($s) {
     });
     return @stack.elems == 0;
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/javier-luque/raku/ch-2.p6">Javier Luque</a> used a counter:</p>
-
-<pre><code class="language-Perl6">sub validate-string(Str $word) {
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/javier-luque/raku/ch-2.p6">Javier Luque</a> used a counter:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">sub validate-string(Str $word) {
     my $open_p;
     for $word.comb -&gt; $letter {
         $open_p++ if ($letter eq '(');
@@ -662,11 +527,8 @@ if ($s) {
     }
     return ($open_p == 0);
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/ruben-westerberg/raku/ch-2.p6">Ruben Westerberg</a> built an array <code>@v</code> of counters and then checked that none of the counter was below 0 and that the last one was equal to 0:</p>
-
-<pre><code class="language-Perl6">my $maxLength=@*ARGS[0]//20; #If no max on command line use 20
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/ruben-westerberg/raku/ch-2.p6">Ruben Westerberg</a> built an array <code>@v</code> of counters and then checked that none of the counter was below 0 and that the last one was equal to 0:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">my $maxLength=@*ARGS[0]//20; #If no max on command line use 20
 while 1 {
     my $str=&quot;&quot;;
     #make a random length string of upto $maxLength long
@@ -680,30 +542,30 @@ while 1 {
     }
     say &quot;unbalanced: $str&quot;;
 }
-</code></pre>
-
-<h2 id="see-also">SEE ALSO</h2>
-
+</code></pre><h2 id="see-also">SEE ALSO</h2>
 <p>Not less than six blog posts (besides mine) this time:</p>
-
 <ul>
-<li><p>Arne Sommer: <a href="https://raku-musings.com/octal-brace.html">https://raku-musings.com/octal-brace.html</a>;</p></li>
-
-<li><p>Burkhard Nickels: <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/burkhard-nickels/perl/ch-2.pod">https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/burkhard-nickels/perl/ch-2.pod</a>;</p></li>
-
-<li><p>Jaldhar M. Vyas: <a href="https://www.braincells.com/perl/2020/01/perl_weekly_challenge_week_42.html">https://www.braincells.com/perl/2020/01/perl_weekly_challenge_week_42.html</a>;</p></li>
-
-<li><p>Javier Luque: <a href="https://perlchallenges.wordpress.com/2020/01/06/perl-weekly-challenge-042/">https://perlchallenges.wordpress.com/2020/01/06/perl-weekly-challenge-042/</a>;</p></li>
-
-<li><p>Ryan J. Thompson: <a href="http://www.ry.ca/2020/01/octal-representation/">http://www.ry.ca/2020/01/octal-representation/</a>.</p></li>
-
-<li><p>Ryan J. Thompson: <a href="http://www.ry.ca/2020/01/balanced-parentheses/">http://www.ry.ca/2020/01/balanced-parentheses/</a>.</p></li>
+<li>
+<p>Arne Sommer: <a href="https://raku-musings.com/octal-brace.html;">https://raku-musings.com/octal-brace.html;</a></p>
+</li>
+<li>
+<p>Burkhard Nickels: <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/burkhard-nickels/perl/ch-2.pod;">https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/burkhard-nickels/perl/ch-2.pod;</a></p>
+</li>
+<li>
+<p>Jaldhar M. Vyas: <a href="https://www.braincells.com/perl/2020/01/perl_weekly_challenge_week_42.html;">https://www.braincells.com/perl/2020/01/perl_weekly_challenge_week_42.html;</a></p>
+</li>
+<li>
+<p>Javier Luque: <a href="https://perlchallenges.wordpress.com/2020/01/06/perl-weekly-challenge-042/;">https://perlchallenges.wordpress.com/2020/01/06/perl-weekly-challenge-042/;</a></p>
+</li>
+<li>
+<p>Ryan J. Thompson: <a href="http://www.ry.ca/2020/01/octal-representation/">http://www.ry.ca/2020/01/octal-representation/</a>.</p>
+</li>
+<li>
+<p>Ryan J. Thompson: <a href="http://www.ry.ca/2020/01/balanced-parentheses/">http://www.ry.ca/2020/01/balanced-parentheses/</a>.</p>
+</li>
 </ul>
-
 <h2 id="wrapping-up">Wrapping up</h2>
-
 <p>Please let me know if I forgot any of the challengers or if you think my explanation of your code misses something important (send me an e-mail or just raise an issue against this GitHub page).</p>
-
 <p>If you want to participate to the Perl Weekly Challenge, please connect to <a href="https://perlweeklychallenge.org/">this site</a>.</p>
 
                 </div>

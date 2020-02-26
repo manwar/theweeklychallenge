@@ -16,7 +16,7 @@
 
     <meta name="description" content="Advent Calendar - December 20, 2019">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.55.0-DEV" />
+    <meta name="generator" content="Hugo 0.66.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -149,196 +149,155 @@
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
-                    
-
-<p><a href="/blog/advent-calendar-2019"><strong>Advent Calendar 2019</strong></a></p>
-
-<hr />
-
-<p>The gift is presented by <a href="/blog/meet-the-champion-026"><strong>Roger Bell_West</strong></a>. Today he is talking about his solutions to <strong>Task #2: Word Game</strong> of <a href="/blog/perl-weekly-challenge-038"><strong>&ldquo;The Weekly Challenge - 038&rdquo;</strong></a>.</p>
-
-<h4 id="lets-assume-we-have-tiles-as-listed-below-with-an-alphabet-a-z-printed-on-them-each-tile-has-a-value-e-g-a-1-point-b-4-points-etc-you-are-allowed-to-draw-7-tiles-from-the-lot-randomly-then-try-to-form-a-word-using-the-7-tiles-with-maximum-points-altogether-you-don-t-have-to-use-all-the-7-tiles-to-make-a-word-you-should-try-to-use-as-many-tiles-as-possible-to-get-the-maximum-points">Lets assume we have tiles as listed below, with an alphabet (A..Z) printed on them. Each tile has a value, e.g. A (1 point), B (4 points) etc. You are allowed to draw 7 tiles from the lot randomly. Then try to form a word using the 7 tiles with maximum points altogether. You don’t have to use all the 7 tiles to make a word. You should try to use as many tiles as possible to get the maximum points.</h4>
-
-<hr />
-
+                    <p><a href="/blog/advent-calendar-2019"><strong>Advent Calendar 2019</strong></a></p>
+<hr>
+<p>The gift is presented by <a href="/blog/meet-the-champion-026"><strong>Roger Bell_West</strong></a>. Today he is talking about his solutions to <strong>Task #2: Word Game** of </strong>&ldquo;The Weekly Challenge - 038&rdquo;**<a href="/blog/perl-weekly-challenge-038"></a>.</p>
+<h4 id="lets-assume-we-have-tiles-as-listed-below-with-an-alphabet-az-printed-on-them-each-tile-has-a-value-eg-a-1-point-b-4-points-etc-you-are-allowed-to-draw-7-tiles-from-the-lot-randomly-then-try-to-form-a-word-using-the-7-tiles-with-maximum-points-altogether-you-dont-have-to-use-all-the-7-tiles-to-make-a-word-you-should-try-to-use-as-many-tiles-as-possible-to-get-the-maximum-points">Lets assume we have tiles as listed below, with an alphabet (A..Z) printed on them. Each tile has a value, e.g. A (1 point), B (4 points) etc. You are allowed to draw 7 tiles from the lot randomly. Then try to form a word using the 7 tiles with maximum points altogether. You don’t have to use all the 7 tiles to make a word. You should try to use as many tiles as possible to get the maximum points.</h4>
+<hr>
 <p>The word game problem gives a series of tile counts and values (e.g. 8 A tiles worth 1 point each); the problem is to draw 7 at random, then make the highest-scoring word out of them (not necessarily using all of them).</p>
-
 <h2 id="perl-solution">PERL SOLUTION</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $l<span style="color:#f92672">=</span><span style="color:#ae81ff">7</span>;
 
-<pre><code class="language-perl">    my $l=7;
-
-    my %tilecount=(
-        A =&gt; 8,
-        G =&gt; 3,
-        I =&gt; 5,
-        S =&gt; 7,
-        U =&gt; 5,
-        X =&gt; 2,
-        Z =&gt; 5,
-        E =&gt; 9,
-        J =&gt; 3,
-        L =&gt; 3,
-        R =&gt; 3,
-        V =&gt; 3,
-        Y =&gt; 5,
-        F =&gt; 3,
-        D =&gt; 3,
-        P =&gt; 5,
-        W =&gt; 5,
-        B =&gt; 5,
-        N =&gt; 4,
-        T =&gt; 5,
-        O =&gt; 3,
-        H =&gt; 3,
-        M =&gt; 4,
-        C =&gt; 4,
-        K =&gt; 2,
-        Q =&gt; 2,
+    <span style="color:#66d9ef">my</span> %tilecount<span style="color:#f92672">=</span>(
+        A <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">8</span>,
+        G <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>,
+        I <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5</span>,
+        S <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">7</span>,
+        U <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5</span>,
+        X <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>,
+        Z <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5</span>,
+        E <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">9</span>,
+        J <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>,
+        L <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>,
+        R <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>,
+        V <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>,
+        Y <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5</span>,
+        F <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>,
+        D <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>,
+        P <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5</span>,
+        W <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5</span>,
+        B <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5</span>,
+        N <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">4</span>,
+        T <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5</span>,
+        O <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>,
+        H <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>,
+        M <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">4</span>,
+        C <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">4</span>,
+        K <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>,
+        Q <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>,
     );
 
-    my %tilevalue=(
-        A =&gt; 1,
-        G =&gt; 1,
-        I =&gt; 1,
-        S =&gt; 1,
-        U =&gt; 1,
-        X =&gt; 1,
-        Z =&gt; 1,
-        E =&gt; 2,
-        J =&gt; 2,
-        L =&gt; 2,
-        R =&gt; 2,
-        V =&gt; 2,
-        Y =&gt; 2,
-        F =&gt; 3,
-        D =&gt; 3,
-        P =&gt; 3,
-        W =&gt; 3,
-        B =&gt; 4,
-        N =&gt; 4,
-        T =&gt; 5,
-        O =&gt; 5,
-        H =&gt; 5,
-        M =&gt; 5,
-        C =&gt; 5,
-        K =&gt; 10,
-        Q =&gt; 10,
+    <span style="color:#66d9ef">my</span> %tilevalue<span style="color:#f92672">=</span>(
+        A <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>,
+        G <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>,
+        I <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>,
+        S <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>,
+        U <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>,
+        X <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>,
+        Z <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>,
+        E <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>,
+        J <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>,
+        L <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>,
+        R <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>,
+        V <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>,
+        Y <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>,
+        F <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>,
+        D <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>,
+        P <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>,
+        W <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>,
+        B <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">4</span>,
+        N <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">4</span>,
+        T <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5</span>,
+        O <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5</span>,
+        H <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5</span>,
+        M <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5</span>,
+        C <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5</span>,
+        K <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">10</span>,
+        Q <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">10</span>,
     );
-</code></pre>
-
-<p>For the draw, we turn the <strong>%tilecount hash</strong> into a single long list, shuffle it, and throw away all but the first 7 entries. (shuffle is from <strong>List::Util</strong>)</p>
-
-<pre><code class="language-perl">    my @bag=shuffle map {($_) x $tilecount{$_}} keys %tilecount;
+</code></pre></div><p>For the draw, we turn the <strong>%tilecount hash</strong> into a single long list, shuffle it, and throw away all but the first 7 entries. (shuffle is from <strong>List::Util</strong>)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> @bag<span style="color:#f92672">=</span>shuffle map {($_) x $tilecount{$_}} keys %tilecount;
     splice @bag,$l;
-</code></pre>
-
-<p>Load a candidate word list. (I used a copy of <a href="https://en.wikipedia.org/wiki/Collins_Scrabble_Words"><strong>SOWPODS</strong></a> I have hanging around, which is my standard reference for word validation problems.) We ignore anything longer than <strong>7 characters</strong>.</p>
-
-<pre><code class="language-perl">    my %w;
-    open I,'&lt;','wordlist';
-    while (&lt;I&gt;) {
+</code></pre></div><p>Load a candidate word list. (I used a copy of <a href="https://en.wikipedia.org/wiki/Collins_Scrabble_Words"><strong>SOWPODS</strong></a> I have hanging around, which is my standard reference for word validation problems.) We ignore anything longer than <strong>7 characters</strong>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> %w;
+    open I,<span style="color:#e6db74">&#39;&lt;&#39;</span>,<span style="color:#e6db74">&#39;wordlist&#39;</span>;
+    <span style="color:#66d9ef">while</span> (<span style="color:#e6db74">&lt;I&gt;</span>) {
         chomp;
-        if (length($_)&lt;=$l) {
-            $w{uc($_)}=1;
+        <span style="color:#66d9ef">if</span> (length($_)<span style="color:#f92672">&lt;=</span>$l) {
+            $w{uc($_)}<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
         }
     }
     close I;
-</code></pre>
-
-<p>Set up the accumulators for tracking high-scoring words.</p>
-
-<pre><code class="language-perl">    my $maxscore=0;
-    my @maxcandidate;
-    my %tried;
-</code></pre>
-
-<p>Set up the variables for my permutation generator (I&rsquo;ll be using the <strong>Steinhaus-Johnson-Trotter algorithm</strong> with <strong>Even</strong>&rsquo;s optimisation). <strong>@permute</strong> contains a set of indices into <strong>@bag</strong>.</p>
-
+</code></pre></div><p>Set up the accumulators for tracking high-scoring words.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $maxscore<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">my</span> @maxcandidate;
+    <span style="color:#66d9ef">my</span> %tried;
+</code></pre></div><p>Set up the variables for my permutation generator (I&rsquo;ll be using the <strong>Steinhaus-Johnson-Trotter algorithm</strong> with <strong>Even</strong>&lsquo;s optimisation). <strong>@permute</strong> contains a set of indices into <strong>@bag</strong>.</p>
 <p>(There&rsquo;s an obvious alternative approach to the problem, which I&rsquo;ll come back to at the end, but let&rsquo;s stick with the permuter for now.)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> @permute<span style="color:#f92672">=</span>(<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#bag);
+    <span style="color:#66d9ef">my</span> @dir<span style="color:#f92672">=</span>(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) x @permute;
+    $dir[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
 
-<pre><code class="language-perl">    my @permute=(0..$#bag);
-    my @dir=(-1) x @permute;
-    $dir[0]=0;
-
-    while (1) {
-</code></pre>
-
-<p>For each permutation, we build a list <strong>@candidate</strong> consisting of the letters in order. Then we try to validate that as a word. (We also skip over any words we&rsquo;ve seen before, since they may appear multiple times as different candidates get shortened; for example, the permutations <strong>ABCDEFG</strong> and <strong>ABCGEFD</strong> would both produce <strong>ABC</strong> if no longer candidate were valid.)</p>
-
-<pre><code class="language-perl">    my @candidate=map {$bag[$_]} @permute;
-    while (@candidate) {
-        my $candidate=join('',@candidate);
-        if (exists $tried{$candidate}) {
-            last;
+    <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
+</code></pre></div><p>For each permutation, we build a list <strong>@candidate</strong> consisting of the letters in order. Then we try to validate that as a word. (We also skip over any words we&rsquo;ve seen before, since they may appear multiple times as different candidates get shortened; for example, the permutations <strong>ABCDEFG</strong> and <strong>ABCGEFD</strong> would both produce <strong>ABC</strong> if no longer candidate were valid.)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> @candidate<span style="color:#f92672">=</span>map {$bag[$_]} @permute;
+    <span style="color:#66d9ef">while</span> (@candidate) {
+        <span style="color:#66d9ef">my</span> $candidate<span style="color:#f92672">=</span>join(<span style="color:#e6db74">&#39;&#39;</span>,@candidate);
+        <span style="color:#66d9ef">if</span> (exists $tried{$candidate}) {
+            <span style="color:#66d9ef">last</span>;
         }
-        $tried{$candidate}=1;
-        if (exists $w{$candidate}) {
-</code></pre>
-
-<p>If so, we calculate the score, and in a two-stage trick of my own ensure that @maxcandidate contains all of the <strong>highest-scoring</strong> words.</p>
-
-<pre><code class="language-perl">            my $score=sum(map {$tilevalue{$_}} @candidate);
-            if ($score &gt; $maxscore) {
-                @maxcandidate=();
-                $maxscore=$score;
+        $tried{$candidate}<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">if</span> (exists $w{$candidate}) {
+</code></pre></div><p>If so, we calculate the score, and in a two-stage trick of my own ensure that @maxcandidate contains all of the <strong>highest-scoring</strong> words.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">            <span style="color:#66d9ef">my</span> $score<span style="color:#f92672">=</span>sum(map {$tilevalue{$_}} @candidate);
+            <span style="color:#66d9ef">if</span> ($score <span style="color:#f92672">&gt;</span> $maxscore) {
+                @maxcandidate<span style="color:#f92672">=</span>();
+                $maxscore<span style="color:#f92672">=</span>$score;
             }
-            if ($score == $maxscore) {
+            <span style="color:#66d9ef">if</span> ($score <span style="color:#f92672">==</span> $maxscore) {
                 push @maxcandidate,$candidate;
             }
-</code></pre>
-
-<p>If that was a valid word, we don&rsquo;t need to look at any shorter words in this permutation; if <strong>ABJURER</strong> is valid, then whether or not <strong>ABJURE</strong> is valid it won&rsquo;t score as many points. (This optimisation wouldn&rsquo;t be true if some letters had negative values. Which might be an interesting variant to Scrabble…)</p>
-
-<pre><code class="language-perl">            last;
+</code></pre></div><p>If that was a valid word, we don&rsquo;t need to look at any shorter words in this permutation; if <strong>ABJURER</strong> is valid, then whether or not <strong>ABJURE</strong> is valid it won&rsquo;t score as many points. (This optimisation wouldn&rsquo;t be true if some letters had negative values. Which might be an interesting variant to Scrabble…)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">            <span style="color:#66d9ef">last</span>;
         }
-</code></pre>
-
-<p>This next bit is the permuter. There are various <strong>CPAN</strong> modules that will do this (most obviously <strong>Algorithm::Permute</strong>), but I felt like writing my own.</p>
-
-<pre><code class="language-perl">        my %find=map {$permute[$_] =&gt; $_} (0..$#permute);
-        my $m=$#permute;
-        while ($m&gt;=0) {
-            my $pos=$find{$m};
-            unless ($dir[$pos]==0) {
-                if ($m &gt; $permute[$pos+$dir[$pos]]) {
-                    my $n=$pos+$dir[$pos];
-                    my $nn=$n+$dir[$pos];
-                    ($permute[$n],$permute[$pos])=($permute[$pos],$permute[$n]);
-                    ($dir[$n],$dir[$pos])=($dir[$pos],$dir[$n]);
-                    if ($n==0 || $n==$#permute || $permute[$nn] &gt; $m) {
-                        $dir[$n]=0;
+</code></pre></div><p>This next bit is the permuter. There are various <strong>CPAN</strong> modules that will do this (most obviously <strong>Algorithm::Permute</strong>), but I felt like writing my own.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">        <span style="color:#66d9ef">my</span> %find<span style="color:#f92672">=</span>map {$permute[$_] <span style="color:#f92672">=&gt;</span> $_} (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#permute);
+        <span style="color:#66d9ef">my</span> $m<span style="color:#f92672">=</span>$#permute;
+        <span style="color:#66d9ef">while</span> ($m<span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">0</span>) {
+            <span style="color:#66d9ef">my</span> $pos<span style="color:#f92672">=</span>$find{$m};
+            <span style="color:#66d9ef">unless</span> ($dir[$pos]<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>) {
+                <span style="color:#66d9ef">if</span> ($m <span style="color:#f92672">&gt;</span> $permute[$pos<span style="color:#f92672">+</span>$dir[$pos]]) {
+                    <span style="color:#66d9ef">my</span> $n<span style="color:#f92672">=</span>$pos<span style="color:#f92672">+</span>$dir[$pos];
+                    <span style="color:#66d9ef">my</span> $nn<span style="color:#f92672">=</span>$n<span style="color:#f92672">+</span>$dir[$pos];
+                    ($permute[$n],$permute[$pos])<span style="color:#f92672">=</span>($permute[$pos],$permute[$n]);
+                    ($dir[$n],$dir[$pos])<span style="color:#f92672">=</span>($dir[$pos],$dir[$n]);
+                    <span style="color:#66d9ef">if</span> ($n<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> $n<span style="color:#f92672">==</span>$#permute <span style="color:#f92672">||</span> $permute[$nn] <span style="color:#f92672">&gt;</span> $m) {
+                        $dir[$n]<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
                     }
-                    foreach my $i (0..$#permute) {
-                        if ($i==$n) {
-                            next;
+                    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#permute) {
+                        <span style="color:#66d9ef">if</span> ($i<span style="color:#f92672">==</span>$n) {
+                            <span style="color:#66d9ef">next</span>;
                         }
-                        if ($permute[$i]&gt;$m) {
-                            $dir[$i]=($i&lt;$n)?1:-1;
+                        <span style="color:#66d9ef">if</span> ($permute[$i]<span style="color:#f92672">&gt;</span>$m) {
+                            $dir[$i]<span style="color:#f92672">=</span>($i<span style="color:#f92672">&lt;</span>$n)?<span style="color:#ae81ff">1</span>:<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
                         }
                     }
-                    last;
+                    <span style="color:#66d9ef">last</span>;
                 }
             }
-            $m--;
+            $m<span style="color:#f92672">--</span>;
         }
 
-        if ($m&lt;0) {
-            last;
+        <span style="color:#66d9ef">if</span> ($m<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">0</span>) {
+            <span style="color:#66d9ef">last</span>;
         }
     }
-</code></pre>
-
-<p>Finally, output the list of tiles and the highest scoring words.</p>
-
-<pre><code class="language-perl">    print join('',sort @bag),&quot;\n&quot;;
-    print &quot;$maxscore: &quot;,join(' ',sort @maxcandidate),&quot;\n&quot;;
-</code></pre>
-
-<h2 id="raku-solution">RAKU SOLUTION</h2>
-
+</code></pre></div><p>Finally, output the list of tiles and the highest scoring words.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">print</span> join(<span style="color:#e6db74">&#39;&#39;</span>,sort @bag),<span style="color:#e6db74">&#34;\n&#34;</span>;
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$maxscore: &#34;</span>,join(<span style="color:#e6db74">&#39; &#39;</span>,sort @maxcandidate),<span style="color:#e6db74">&#34;\n&#34;</span>;
+</code></pre></div><h2 id="raku-solution">RAKU SOLUTION</h2>
 <p><strong>Raku</strong> is a bit different, because there are useful built-in language features:</p>
-
-<pre><code class="language-perl6">    my $tilecount=(
+<pre><code class="language-perl6" data-lang="perl6">    my $tilecount=(
         'A' =&gt; 8,
         'G' =&gt; 3,
         'I' =&gt; 5,
@@ -396,11 +355,8 @@
         'Q' =&gt; 10,
     );
 
-</code></pre>
-
-<p>The <strong>grab</strong> method on a <strong>BagHash</strong> gives me a series of weighted random picks, without replacement. This is a really handy thing to have; lots of code I write does things a bit like this.</p>
-
-<pre><code class="language-perl6">    my @bag=$tilecount.grab($l);
+</code></pre><p>The <strong>grab</strong> method on a <strong>BagHash</strong> gives me a series of weighted random picks, without replacement. This is a really handy thing to have; lots of code I write does things a bit like this.</p>
+<pre><code class="language-perl6" data-lang="perl6">    my @bag=$tilecount.grab($l);
 
     my %w;
     my $fh=open :r,'wordlist';
@@ -410,11 +366,8 @@
         }
     }
     close $fh;
-</code></pre>
-
-<p>Similarly, all that permuting algorithm can be replaced with another core feature:</p>
-
-<pre><code class="language-perl6">
+</code></pre><p>Similarly, all that permuting algorithm can be replaced with another core feature:</p>
+<pre><code class="language-perl6" data-lang="perl6">
     my $maxscore=0;
     my @maxcandidate;
     my %tried;
@@ -444,58 +397,41 @@
 
     print join('',sort @bag),&quot;\n&quot;;
     print &quot;$maxscore: &quot;,join(' ',sort @maxcandidate),&quot;\n&quot;;
-</code></pre>
-
-<p>Which is less fun to write than the <strong>SJT permuter</strong> above but also less effort. (Now, if only the startup, loading up all these features that are nice to have but most of which a given program won&rsquo;t use, weren&rsquo;t so slow…)</p>
-
+</code></pre><p>Which is less fun to write than the <strong>SJT permuter</strong> above but also less effort. (Now, if only the startup, loading up all these features that are nice to have but most of which a given program won&rsquo;t use, weren&rsquo;t so slow…)</p>
 <h2 id="addendum">ADDENDUM</h2>
-
 <p>The alternative approach is to read each word from the dictionary, see if it can be constructed with the available tiles, and if so score it. I wrote this in <strong>Perl</strong> for the blog post, to see how the performance differed. After constructing the bag:</p>
-
-<pre><code class="language-perl">open I,'&lt;','wordlist';
-while (&lt;I&gt;) {
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">open I,<span style="color:#e6db74">&#39;&lt;&#39;</span>,<span style="color:#e6db74">&#39;wordlist&#39;</span>;
+<span style="color:#66d9ef">while</span> (<span style="color:#e6db74">&lt;I&gt;</span>) {
   chomp;
-  if (length($_)&lt;=$l) {
-    my $candidate=uc($_);
-    my @candidate=split '',$candidate;
-</code></pre>
-
-<p><strong>%l</strong> holds letter counts. We add one to a value each time the letter occurs in the word, then subtract one each time it occurs in the bag. If any value is positive at the end, it occurred more in the word than it did in the bag, so it&rsquo;s not a word we can make. (This could possibly be optimised a bit by precalculating the hash with the bag values subtracted.)</p>
-
-<pre><code class="language-perl">    my %l;
-    map {$l{$_}++} @candidate;
-    map {$l{$_}--} @bag;
-    if (max(values %l) &gt; 0) {
-      next;
+  <span style="color:#66d9ef">if</span> (length($_)<span style="color:#f92672">&lt;=</span>$l) {
+    <span style="color:#66d9ef">my</span> $candidate<span style="color:#f92672">=</span>uc($_);
+    <span style="color:#66d9ef">my</span> @candidate<span style="color:#f92672">=</span>split <span style="color:#e6db74">&#39;&#39;</span>,$candidate;
+</code></pre></div><p><strong>%l</strong> holds letter counts. We add one to a value each time the letter occurs in the word, then subtract one each time it occurs in the bag. If any value is positive at the end, it occurred more in the word than it did in the bag, so it&rsquo;s not a word we can make. (This could possibly be optimised a bit by precalculating the hash with the bag values subtracted.)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> %l;
+    map {$l{$_}<span style="color:#f92672">++</span>} @candidate;
+    map {$l{$_}<span style="color:#f92672">--</span>} @bag;
+    <span style="color:#66d9ef">if</span> (max(values %l) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
+      <span style="color:#66d9ef">next</span>;
     }
-</code></pre>
-
-<p>At this point we have a word that can be constructed from the available tiles, so just as before we score it.</p>
-
-<pre><code class="language-perl">
-    my $score=sum(map {$tilevalue{$_}} @candidate);
-    if ($score &gt; $maxscore) {
-      @maxcandidate=();
-      $maxscore=$score;
+</code></pre></div><p>At this point we have a word that can be constructed from the available tiles, so just as before we score it.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">
+    <span style="color:#66d9ef">my</span> $score<span style="color:#f92672">=</span>sum(map {$tilevalue{$_}} @candidate);
+    <span style="color:#66d9ef">if</span> ($score <span style="color:#f92672">&gt;</span> $maxscore) {
+      @maxcandidate<span style="color:#f92672">=</span>();
+      $maxscore<span style="color:#f92672">=</span>$score;
     }
-    if ($score == $maxscore) {
+    <span style="color:#66d9ef">if</span> ($score <span style="color:#f92672">==</span> $maxscore) {
       push @maxcandidate,$candidate;
     }
   }
 }
 close I;
-print join('',sort @bag),&quot;\n&quot;;
-print &quot;$maxscore: &quot;,join(' ',sort @maxcandidate),&quot;\n&quot;;
-</code></pre>
-
-<p>To test it, I used <strong>parallel(1)</strong> to run <strong>800 instances</strong> (thus 8 at a time on my 8-core desktop, a new one being invoked whenever the previous one had finished). This variant took about <strong>34 seconds</strong> to complete all <strong>800</strong>; my original permuter code took about <strong>14</strong>. I suspect that this is because my original code can skip score calculations on many words (see <strong>ABJURE/ABJURER</strong> above); to achieve this with the variant code would require the word list to be ordered appropriately with <strong>ABJURER</strong> before <strong>ABJURE</strong>, which would take time to set up.</p>
-
+<span style="color:#66d9ef">print</span> join(<span style="color:#e6db74">&#39;&#39;</span>,sort @bag),<span style="color:#e6db74">&#34;\n&#34;</span>;
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$maxscore: &#34;</span>,join(<span style="color:#e6db74">&#39; &#39;</span>,sort @maxcandidate),<span style="color:#e6db74">&#34;\n&#34;</span>;
+</code></pre></div><p>To test it, I used <strong>parallel(1)</strong> to run <strong>800 instances</strong> (thus 8 at a time on my 8-core desktop, a new one being invoked whenever the previous one had finished). This variant took about <strong>34 seconds</strong> to complete all <strong>800</strong>; my original permuter code took about <strong>14</strong>. I suspect that this is because my original code can skip score calculations on many words (see <strong>ABJURE/ABJURER</strong> above); to achieve this with the variant code would require the word list to be ordered appropriately with <strong>ABJURER</strong> before <strong>ABJURE</strong>, which would take time to set up.</p>
 <p>The downside, of course, is that I have to hold the valid word list in memory. But <strong>SOWPODS</strong> is <strong>2.6 megabytes</strong>, which isn&rsquo;t a problem for any vaguely non-antique machine.</p>
-
-<hr />
-
+<hr>
 <p>If you have any suggestion then please do share with us <a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a>.</p>
-
 <p><a href="/blog/advent-calendar-2019"><strong>Advent Calendar 2019</strong></a></p>
 
                 </div>

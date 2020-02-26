@@ -16,7 +16,7 @@
 
     <meta name="description" content="The Weekly Challenge that includes Perl and Raku programming.">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.55.0-DEV" />
+    <meta name="generator" content="Hugo 0.66.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -149,29 +149,17 @@
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
-                    
-
-<p>This is actually as we received in response to the challenge by Philippe Bruhat. Highly recommended.</p>
-
+                    <p>This is actually as we received in response to the challenge by Philippe Bruhat. Highly recommended.</p>
 <h1 id="challenge-1">Challenge #1</h1>
-
 <p>Write a script to replace the character ‘e’ with ‘E’ in the string ‘Perl Weekly Challenge’. Also print the number of times the character ‘e’ found in the string.</p>
-
 <pre><code>    $ perl -E '$_=shift;say y/e/E/;say' 'Perl Weekly Challenge'
     5
     PErl WEEkly ChallEngE
-</code></pre>
-
-<p>Historical note: <code>y///c</code> is called &ldquo;Abigail&rsquo;s length horror&rdquo; by golfers and obfuscators (couldn&rsquo;t trace where the term came from). It saves one character over <code>length</code> in a golf setting, and can be written as <code>y&gt;&gt;&gt;c</code> (pick some confusing character depending on context) or <code>y cccccccccccc</code> in an obfuscated setting.</p>
-
+</code></pre><p>Historical note: <code>y///c</code> is called &ldquo;Abigail&rsquo;s length horror&rdquo; by golfers and obfuscators (couldn&rsquo;t trace where the term came from). It saves one character over <code>length</code> in a golf setting, and can be written as <code>y&gt;&gt;&gt;c</code> (pick some confusing character depending on context) or <code>y cccccccccccc</code> in an obfuscated setting.</p>
 <p>I had written my first attempt with -e, but as a wink to the challenge, I replaced it with -E. Having used a golfer trick, the best I could do was to shorten <code>print</code> to <code>say</code>. :-)</p>
-
 <h1 id="challenge-2">Challenge #2</h1>
-
 <p>Write one-liner to solve FizzBuzz problem and print number 1-20. However, any number divisible by 3 should be replaced by the word fizz and any divisible by 5 by the word buzz. Numbers divisible by both become fizz buzz.</p>
-
 <p>This one works by modifying the string until what&rsquo;s we&rsquo;re left with is the expected result:</p>
-
 <pre><code>    perl -E '
       say for map {
         s/\d+/$&amp;%5?$&amp;:&quot;$&amp; buzz&quot;/e;
@@ -181,10 +169,7 @@
         $_;
       } 1 .. 20
     '
-</code></pre>
-
-<p>Same idea, but with a list, and each step being handled individually by a map expression:</p>
-
+</code></pre><p>Same idea, but with a list, and each step being handled individually by a map expression:</p>
 <pre><code>   perl -E '
      say for
       map @$_ &gt; 1 ? join( $&quot;, splice @$_, 0, -1 ) : @$_,
@@ -192,10 +177,7 @@
       map [ $_ % 5      ? $_  : ( buzz =&gt; $_ ) ],
       1 .. 20
    '
-</code></pre>
-
-<p>This one is the one I actually wanted to avoid writing: the simple enumeration of all possible case:</p>
-
+</code></pre><p>This one is the one I actually wanted to avoid writing: the simple enumeration of all possible case:</p>
 <pre><code>   perl -E '
      say for map
       $_ % 5 ? $_ % 3 ? $_
@@ -204,30 +186,21 @@
         : &quot;fizz buzz&quot;,
      1 .. 20
    '
-</code></pre>
-
-<p>And then I realized, the four cases can be seen as the four values of a two bit vector, and use that to index the array of all possible values:</p>
-
+</code></pre><p>And then I realized, the four cases can be seen as the four values of a two bit vector, and use that to index the array of all possible values:</p>
 <pre><code>   perl -E '
      say for map
       [ &quot;fizz buzz&quot; =&gt; buzz =&gt; fizz =&gt; $_ ]
       -&gt;[ !!( $_ % 3 ) + !!( $_ % 5 ) * 2 ],
       1 .. 20
    '
-</code></pre>
-
-<p>We can shorten it a bit by using ! instead of !! and moving the values around:</p>
-
+</code></pre><p>We can shorten it a bit by using ! instead of !! and moving the values around:</p>
 <pre><code>  perl -E '
     say for map
      [ $_ =&gt; fizz =&gt; buzz =&gt; &quot;fizz buzz&quot; ]
      -&gt;[ !( $_ % 3 ) + !( $_ % 5 ) * 2 ],
      1 .. 20
   '
-</code></pre>
-
-<p>Using the fact that a number is divisible by 5 if it ends with 0 or 5:</p>
-
+</code></pre><p>Using the fact that a number is divisible by 5 if it ends with 0 or 5:</p>
 <pre><code>   perl -E '
      say for map
       [ $_ =&gt; fizz =&gt; buzz =&gt; &quot;fizz buzz&quot; ]
@@ -235,7 +208,6 @@
       1 .. 20
    '
 </code></pre>
-
                 </div>
             </div>
         </div>

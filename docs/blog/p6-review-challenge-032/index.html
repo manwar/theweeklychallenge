@@ -16,7 +16,7 @@
 
     <meta name="description" content="Laurent Rosenfeld Weekly Review: Challenge - #032.">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.55.0-DEV" />
+    <meta name="generator" content="Hugo 0.66.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -149,24 +149,14 @@
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
-                    
-
-<hr />
-
+                    <hr>
 <h1 id="raku-solutions-weekly-review">Raku Solutions Weekly Review</h1>
-
-<hr />
-
+<hr>
 <h2 id="task-1-word-histogram">Task #1: Word Histogram</h2>
-
 <p>This is derived in part from my <a href="http://blogs.perl.org/users/laurent_r/2019/10/perl-weekly-challenge-30-word-histogram-and-ascii-bar-chart.html">blog post</a> made in answer to the <a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-032/">Week 32 of the Perl Weekly Challenge</a> organized by  <a href="http://blogs.perl.org/users/mohammad_s_anwar/">Mohammad S. Anwar</a> as well as answers made by others to the same challenge.</p>
-
 <p>The challenge reads as follows:</p>
-
 <p><em>Create a script that either reads standard input or one or more files specified on the command-line. Count the number of times and then print a summary, sorted by the count of each entry.</em></p>
-
 <p><em>So with the following input in file example.txt:</em></p>
-
 <pre><code>apple
 banana
 apple
@@ -174,30 +164,21 @@ cherry
 cherry
 apple
 </code></pre>
-
 <p><em>the script would display something like:</em></p>
-
 <pre><code>apple     3
 cherry    2
 banana    1
 </code></pre>
-
 <p><em>For extra credit, add a -csv option to your script, which would generate:</em></p>
-
 <pre><code>apple,3
 cherry,2
 banana,1
 </code></pre>
-
 <p>In other words, we&rsquo;re supposed to make an histogram reporting the frequency of various words in the input, which can be one or several files.</p>
-
 <h2 id="my-solutions">My Solutions</h2>
-
 <p>A simple solution might be to use a hash, as we would do in Perl 5, to store the word counters. In Raku (aka Perl 6), however, we can do slightly better and use a <code>Bag</code> to directly assign frequencies when reading the input files.</p>
-
 <p>Sorting the histogram can also be made simpler than it would be in Perl 5: if the code block (or subroutine) passed to the <code>sort</code> built-in function  accepts only one parameter, then the code block (or subroutine) is not a comparison block (or subroutine), but a code object implementing the transformation to be applied to the items to be sorted before using the default <code>cmp</code> comparison routine. Here, the <code>{$histo{$_}}</code> code block passed to the <code>sort</code>function takes only one parameter,; this means that <code>sort</code> should apply the standard <code>cmp</code> comparison function to the values associated with the keys that we want to sort. In addition, the default <code>cmp</code> comparison routine and <code>sort</code> built-in function are clever enough to see that they are comparing integers and should therefore apply a numeric sort to the data. Furthermore, this is also more efficient as the transformed values are not recomputed for each comparison, but cached, which means that we get the performance benefit of the the Schwartzian Transform in Perl 5 without having to implement it ourselves (although this performance advantage is probably secondary here, unless our input files have a very large number of different words).</p>
-
-<pre><code class="language-Perl6">use v6;
+<pre><code class="language-Perl6" data-lang="Perl6">use v6;
 
 sub MAIN (*@files) {
     my $histo = @files.map({.IO.lines}).Bag;
@@ -205,52 +186,33 @@ sub MAIN (*@files) {
         printf &quot;%-20s%d\n&quot;, $key, $histo{$key};
     }
 }
-</code></pre>
-
-<p>With a  <code>word_test.txt</code> input file containing the sample input data:</p>
-
+</code></pre><p>With a  <code>word_test.txt</code> input file containing the sample input data:</p>
 <pre><code>apple
 banana
 apple
 cherry
 cherry
 apple
-</code></pre>
-
-<p>We obtain the following  the word counters:</p>
-
+</code></pre><p>We obtain the following  the word counters:</p>
 <pre><code>apple     3
 cherry    2
 banana    1
-</code></pre>
-
-<p>If you prefer another syntax, the <code>histo</code> assignment at the beginning could also be written as follows:</p>
-
-<pre><code class="language-Perl6">    my $histo = (map {.IO.lines}, @files).Bag;
-</code></pre>
-
-<p>This program correctly takes into account the files passed as a parameter. For example, passing twice the same <code>word_test.txt</code> input file yields counters that are twice the original ones.:</p>
-
+</code></pre><p>If you prefer another syntax, the <code>histo</code> assignment at the beginning could also be written as follows:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">    my $histo = (map {.IO.lines}, @files).Bag;
+</code></pre><p>This program correctly takes into account the files passed as a parameter. For example, passing twice the same <code>word_test.txt</code> input file yields counters that are twice the original ones.:</p>
 <pre><code>$ perl6 word_histo.p6 word_test.txt word_test.txt
 apple               6
 cherry              4
 banana              2
 </code></pre>
-
 <p>Note that there is (in Perl 6.d) a new <code>IO.CatHandle</code> class for seamlessly gathering input from multiple files, but this did not appear to be necessary here.</p>
-
 <h3 id="extra-credit-csv-option">Extra Credit: CSV Option</h3>
-
 <p>For the extra credit, we could just try to add an optional parameter (with a default value), a  Boolean flag to decide whether we want CSV output, and then change the <code>printf</code> formatting string according to its value:</p>
-
 <pre><code>sub MAIN (Int $csv = 0, *@files) { # ...
 </code></pre>
-
 <p>but that does not really work as expected when no CSV flag argument is passed to the program. It appears that an optional parameter cannot be put before a mandatory one. Changing the order of the arguments does not help, because an optional parameter cannot be put after variadic parameters.</p>
-
 <p>We will therefore use two multi <code>MAIN</code> subroutines to handle cases where a Boolean flag is passed and those where there is no such flag. These <code>MAIN</code> subroutines will populate a <code>$*format</code> dynamic scope variable and then call the same <code>readfiles</code> subroutine:</p>
-
-<pre><code class="language-Perl6">    use v6;
+<pre><code class="language-Perl6" data-lang="Perl6">    use v6;
     subset file of Str where *.IO.f;
 
     multi sub MAIN (Int $csv, *@files where all(@files) ~~ file) {
@@ -267,10 +229,7 @@ banana              2
             printf $*format, $key, $histo{$key};
         }
     }
-</code></pre>
-
-<p>This can be tested with or without a CSV flag:</p>
-
+</code></pre><p>This can be tested with or without a CSV flag:</p>
 <pre><code>$ perl6 word_histo2.p6 word_test.txt word_test.txt
 apple               6
 cherry              4
@@ -286,12 +245,9 @@ apple               6
 cherry              4
 banana              2
 </code></pre>
-
 <h3 id="using-named-parameters">Using Named Parameters</h3>
-
 <p>So, now, this works properly, but we may still have a slight problem if the name of the file passed as an argument is a plain integer: this would become ambiguous, and the Moar virtual machine might not be able to tell correctly an integer from a file. This can be solved with <em>named arguments</em> for the Boolean CSV flag, which will also make it possible to write shorter and simpler code:</p>
-
-<pre><code class="language-Perl6">use v6;
+<pre><code class="language-Perl6" data-lang="Perl6">use v6;
 subset file of Str where *.IO.f;
 
 sub MAIN (Bool :$csv, *@files where all(@files) ~~ file) {
@@ -302,10 +258,7 @@ sub MAIN (Bool :$csv, *@files where all(@files) ~~ file) {
     }
 
 }
-</code></pre>
-
-<p>Now, we need to pass a <code>--csv</code> argument when calling the program at the CLI in order to activate the CSV format:</p>
-
+</code></pre><p>Now, we need to pass a <code>--csv</code> argument when calling the program at the CLI in order to activate the CSV format:</p>
 <pre><code>$ perl6 word_histo2.p6 word_test.txt word_test.txt
 apple               6
 cherry              4
@@ -316,12 +269,9 @@ apple,9
 cherry,6
 banana,3
 </code></pre>
-
 <h2 id="alternative-solutions">Alternative Solutions</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/arne-sommer/perl6/ch-1.p6">Arne Sommer</a> submitted a seemingly somewhat complex solution, but much of the complexity comes from Arne&rsquo;s care to output a nicely formatted output. Looking closely at his code, you&rsquo;ll find that most of the challenge work is actually done in the <code>line-counter</code> subroutine arguments, which do store the word counts into an anonymous <code>Bag</code> passed to the subroutine:</p>
-
-<pre><code class="language-Perl6">multi sub MAIN ($file where $file.IO.f &amp;&amp; $file.IO.r, :$csv = False)
+<pre><code class="language-Perl6" data-lang="Perl6">multi sub MAIN ($file where $file.IO.f &amp;&amp; $file.IO.r, :$csv = False)
 {
   line-counter($file.IO.lines.Bag, $csv);
 }
@@ -339,29 +289,20 @@ sub line-counter (%input, $csv)
       !! &quot;{ $_ }{ &quot; &quot; x ($max - .chars) } { %input{$_} }&quot;;
   }
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/kevin-colyer/perl6/ch-1.p6">Kevin Colyer</a> made a much shorter solution also using a <code>Bag</code>:</p>
-
-<pre><code class="language-Perl6">sub MAIN($file where *.IO.f = &quot;test.txt&quot;, Bool :$csv = False) {
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/kevin-colyer/perl6/ch-1.p6">Kevin Colyer</a> made a much shorter solution also using a <code>Bag</code>:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">sub MAIN($file where *.IO.f = &quot;test.txt&quot;, Bool :$csv = False) {
     my $bag=Bag.new($file.IO.slurp.lines&gt;&gt;.trim);
     my $delim=$csv ?? &quot;,&quot; !! &quot;\t&quot;;
     say $_.antipairs.fmt(&quot;%s$delim%s&quot;) for $bag.invert.sort.reverse;
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/markus-holzer/perl6/ch-1-and-2.pl6">Markus Holzer</a> took advantage of the fact that the two tasks of this weekly challenge were related to provide a single solution for both.  This makes it a bit difficult for me report the part related to this challenge and the part related to the other. Let me just say that he also used a <code>Bag</code> to store the word counters and quote only the part of his code relating directly to this task:</p>
-
-<pre><code class="language-Perl6">    my @words   = @files
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/markus-holzer/perl6/ch-1-and-2.pl6">Markus Holzer</a> took advantage of the fact that the two tasks of this weekly challenge were related to provide a single solution for both.  This makes it a bit difficult for me report the part related to this challenge and the part related to the other. Let me just say that he also used a <code>Bag</code> to store the word counters and quote only the part of his code relating directly to this task:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">    my @words   = @files
                   ?? @files.map( |*.IO.lines )
                   !! |$*ARGFILES.lines;
 
     my $weights = Bag.new( @words );
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/noud/perl6/ch-1.p6">Noud</a> used a plain <code>%word_count</code> hash to store the word frequencies:</p>
-
-<pre><code class="language-Perl6">sub MAIN(*@files, Bool :$csv) {
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/noud/perl6/ch-1.p6">Noud</a> used a plain <code>%word_count</code> hash to store the word frequencies:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">sub MAIN(*@files, Bool :$csv) {
     my %word_count;
     for @files -&gt; $file {
         for $file.IO.words -&gt; $word {
@@ -373,11 +314,8 @@ sub line-counter (%input, $csv)
         say &quot;$word$infix$count&quot;;
     }
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/adam-russell/perl6/ch-1.p6">Adam Russell</a> also used a plain hash to record the word counters:</p>
-
-<pre><code class="language-Perl6">sub MAIN{
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/adam-russell/perl6/ch-1.p6">Adam Russell</a> also used a plain hash to record the word counters:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">sub MAIN{
     my %word_counts;
     for $*IN.lines -&gt; $line {
         $line.chomp;
@@ -387,13 +325,9 @@ sub line-counter (%input, $csv)
         say $pair.key ~ &quot;\t&quot; ~ $pair.value;
     }
 }
-</code></pre>
-
-<p>Note that Adam Russell also provided a <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/adam-russell/cxx/ch-1.cxx">C++ implementation</a>.</p>
-
+</code></pre><p>Note that Adam Russell also provided a <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/adam-russell/cxx/ch-1.cxx">C++ implementation</a>.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/jaldhar-h-vyas/perl6/ch-1.p6">Jaldhar H. Vyas</a> also used a hash (<code>%totals</code>) to store the histogram:</p>
-
-<pre><code class="language-Perl6">    my %totals;
+<pre><code class="language-Perl6" data-lang="Perl6">    my %totals;
 
     if @files.elems {
         for @files -&gt; $file {
@@ -402,11 +336,8 @@ sub line-counter (%input, $csv)
     } else {
         $*IN.lines.map({ %totals{$_}++; });
     }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/javier-luque/perl6/ch-1.p6">Javier Luque</a> also stored his word counters in a hash (<code>%counts</code>):</p>
-
-<pre><code class="language-Perl6">    my %counts;
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/javier-luque/perl6/ch-1.p6">Javier Luque</a> also stored his word counters in a hash (<code>%counts</code>):</p>
+<pre><code class="language-Perl6" data-lang="Perl6">    my %counts;
 
     # Increment the counts hash for each line
     for $*IN.lines() -&gt; $line {
@@ -420,11 +351,8 @@ sub line-counter (%input, $csv)
             &quot;%-10s %d\n&quot;.printf($item, %counts{$item});
         }
     }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/ruben-westerberg/perl6/ch-1.p6">Ruben Westerberg</a> also used a hash to store the counters:</p>
-
-<pre><code class="language-Perl6">sub MAIN(*@files,:$vsort=False) {
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/ruben-westerberg/perl6/ch-1.p6">Ruben Westerberg</a> also used a hash to store the counters:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">sub MAIN(*@files,:$vsort=False) {
     my %data;
 
     for @files {
@@ -435,13 +363,9 @@ sub line-counter (%input, $csv)
     histogram(%data,$vsort,False);
     histogram(%data,$vsort,True);
 }
-</code></pre>
-
-<p>Note that, like Markus Holzer, Ruben also provided <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/ruben-westerberg/perl6/ch-1_and_2.p6">a solution combining task 1 and task 2</a> of this weekly challenge. Please follow the link if you want to know more.</p>
-
+</code></pre><p>Note that, like Markus Holzer, Ruben also provided <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/ruben-westerberg/perl6/ch-1_and_2.p6">a solution combining task 1 and task 2</a> of this weekly challenge. Please follow the link if you want to know more.</p>
 <p><a href="https://perlweeklychallenge.org/blog/recap-challenge-032/">Ryan Thompson</a>, a new participant to the Raku/Perl 6 challenge (welcome, Ryan!), also used a <code>%count</code> hash to store the counters.</p>
-
-<pre><code class="language-Perl6"># Bit of a hack. Normal preference would be MAIN(Bool :$csv) or Getopt::Long
+<pre><code class="language-Perl6" data-lang="Perl6"># Bit of a hack. Normal preference would be MAIN(Bool :$csv) or Getopt::Long
 my $csv = (@*ARGS[0] and @*ARGS[0] eq '-csv') ?? @*ARGS.shift !! False;
 
 my %count;
@@ -452,16 +376,10 @@ my $int_width = %count.values.race.map({.chars}).max;
 my $fmt = $csv ?? &quot;%s,%s\n&quot; !! &quot;%-{$key_width}s %{$int_width}d\n&quot;;
 
 $fmt.printf(.key, .value) for %count.sort: { .value, .key };
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/simon-proctor/perl6/ch-1.p6">Simon Proctor</a> used a <code>BagHash</code> rather than a <code>Bag</code>. A <code>BagHash</code> is very similar to a <code>Bag</code>, but with the difference that it is a mutable data structure, so that it can be populated progressively with individual items, pretty much like a hash, whereas a <code>Bag</code> essentially has to be populated in one shot at the time it is being constructed. His program has three <code>Main</code> subroutines, two of which use new <code>IO::CatHandle</code> type to manage multiple files and pass it to a <code>read-files</code> subroutine:</p>
-
-<pre><code class="language-Perl6">    read-files( IO::CatHandle.new( $*IN ), $csv );
-</code></pre>
-
-<p>And its <code>read-files</code> subroutine looks like this:</p>
-
-<pre><code class="language-Perl6">sub read-files( IO::CatHandle $files, $csv ) {
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/simon-proctor/perl6/ch-1.p6">Simon Proctor</a> used a <code>BagHash</code> rather than a <code>Bag</code>. A <code>BagHash</code> is very similar to a <code>Bag</code>, but with the difference that it is a mutable data structure, so that it can be populated progressively with individual items, pretty much like a hash, whereas a <code>Bag</code> essentially has to be populated in one shot at the time it is being constructed. His program has three <code>Main</code> subroutines, two of which use new <code>IO::CatHandle</code> type to manage multiple files and pass it to a <code>read-files</code> subroutine:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">    read-files( IO::CatHandle.new( $*IN ), $csv );
+</code></pre><p>And its <code>read-files</code> subroutine looks like this:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">sub read-files( IO::CatHandle $files, $csv ) {
     my %results := BagHash.new();
     %results{$_}++ for $files.lines;
     my $k-dist = %results.keys.map( *.codes ).max;
@@ -469,11 +387,8 @@ $fmt.printf(.key, .value) for %count.sort: { .value, .key };
     my $fmt = $csv ?? '&quot;%s&quot;,%d' !! &quot;% -{$k-dist+2}s%{$v-dist+2}d&quot;;
     .say for %results.sort( *.value &lt;=&gt; *.value ).reverse.map( { sprintf($fmt,$_.key,$_.value) } );
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/athanasius/perl6/ch-1.p6">Athanasius</a> created a <code>read-data</code> subroutine to store the input words into a <code>@data</code> array, and read back the <code>@data</code> array to populate a <code>%count</code> hash, and finally sorted the hash to print out the results. The program is quite long, I will only show here the part when the hash is populated, sorted and printed out:</p>
-
-<pre><code class="language-Perl6">    my UInt %count;
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/athanasius/perl6/ch-1.p6">Athanasius</a> created a <code>read-data</code> subroutine to store the input words into a <code>@data</code> array, and read back the <code>@data</code> array to populate a <code>%count</code> hash, and finally sorted the hash to print out the results. The program is quite long, I will only show here the part when the hash is populated, sorted and printed out:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">    my UInt %count;
     ++%count{$_} for @data;
 
     # Sort keys by count: highest count first, equal counts in lexicographi-
@@ -489,13 +404,9 @@ $fmt.printf(.key, .value) for %count.sort: { .value, .key };
     my Str $delimiter = $csv ?? ',' !! &quot;\t&quot;;
 
     &quot;%s%s%d\n&quot;.printf: $_, $delimiter, %count{$_} for @keys;
-</code></pre>
-
-<p>Note that Athanasius is using the Perl 5 documentation on <code>sort</code>. As mentioned earlier, the Raku <code>cmp</code> built-in function is &ldquo;clever&rdquo; and can decide by itself whether to perform numeric or lexicographic comparison, based on the data type. This can make the code a bit simpler.</p>
-
+</code></pre><p>Note that Athanasius is using the Perl 5 documentation on <code>sort</code>. As mentioned earlier, the Raku <code>cmp</code> built-in function is &ldquo;clever&rdquo; and can decide by itself whether to perform numeric or lexicographic comparison, based on the data type. This can make the code a bit simpler.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/joelle-maslak/perl6/ch-1.p6">Joelle Maslak</a> did something similar: she stored all the input words into a <code>@words</code> array and then populated a <code>$bag</code> <code>Bag</code> structure:</p>
-
-<pre><code class="language-Perl6">sub MAIN(+@filenames, Bool :$csv) {
+<pre><code class="language-Perl6" data-lang="Perl6">sub MAIN(+@filenames, Bool :$csv) {
     # Assumption: no line is blank.
     # Assumption: Files will fit into RAM simultaniously
 
@@ -514,44 +425,27 @@ $fmt.printf(.key, .value) for %count.sort: { .value, .key };
         say $sorted.map( { &quot;{$_.key}\t{$_.value}&quot; } ).join(&quot;\n&quot;);
     }
 }
-</code></pre>
-
-<hr />
-
-<hr />
-
+</code></pre><hr>
+<hr>
 <h2 id="task-2-ascii-bar-chart">Task #2: ASCII Bar Chart</h2>
-
-<hr />
-
-<hr />
-
+<hr>
+<hr>
 <p>This is derived in part from my <a href="http://blogs.perl.org/users/laurent_r/2019/10/perl-weekly-challenge-30-word-histogram-and-ascii-bar-chart.html">blog post</a> made in answer to the <a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-032/">Week 32 of the Perl Weekly Challenge</a> organized by  <a href="http://blogs.perl.org/users/mohammad_s_anwar/">Mohammad S. Anwar</a> as well as answers made by others to the same challenge.</p>
-
 <p>The challenge reads as follows:</p>
-
 <p><em>Write a function that takes a hashref where the keys are labels and the values are integer or floating point values. Generate a bar graph of the data and display it to stdout.</em></p>
-
 <p><em>The input could be something like:</em></p>
-
 <pre><code>$data = { apple =&gt; 3, cherry =&gt; 2, banana =&gt; 1 };
 generate_bar_graph($data);
 </code></pre>
-
 <p><em>And would then generate something like this:</em></p>
-
 <pre><code> apple | ############
 cherry | ########
 banana | ####
 </code></pre>
-
 <p><em>If you fancy then please try this as well: (a) the function could let you specify whether the chart should be ordered by (1) the labels, or (2) the values.</em></p>
-
 <p>There is really nothing complicated in generating the bars of the chart: we just need to use the <code>x</code> string repetition operator with the fruit values. However, I would like to standardize somehow the size of output, irrespective of the absolute values.  For this, the program loops over the hash a first time to collect the minimum and maximum values, and  computes a scaling factor as <code>10 / ($max - $min)</code>, and then uses that <code>$scale_factor</code> for standardizing the length of the bars, so that the bar graph has about the same size for values of 4, 6, and 9 as for values of 40, 60 and 90. The hard coded value of 10 arbitrarily chosen here simply means that the spread between the smallest and the largest value will be represented by 10 units (concretely, 10 <code>#</code> characters). I could have chosen another value, but I wanted the bar graphs to keep relatively small to make sure they remain correctly formatted within the limited page width of this blog post.</p>
-
 <p>This could lead to the following approach:</p>
-
-<pre><code class="language-Perl6">use v6;
+<pre><code class="language-Perl6" data-lang="Perl6">use v6;
 
 sub generate_chart (%data) {
     my ($max, $min);
@@ -567,24 +461,17 @@ sub generate_chart (%data) {
 }
 my $data = { apple =&gt; 3, cherry =&gt; 6, banana =&gt; 1, pear =&gt; 4 };
 generate_chart $data;
-</code></pre>
-
-<p>Note that, compared too Perl 5, Raku has no real difference between hashes and hash references in most cases.</p>
-
+</code></pre><p>Note that, compared too Perl 5, Raku has no real difference between hashes and hash references in most cases.</p>
 <p>This produces the following output:</p>
-
 <pre><code>$ perl6 ascii_chart.p6
          cherry | ############
            pear | ########
           apple | ######
          banana | ##
 </code></pre>
-
 <h4 id="ordering-the-bar-chart-in-accordance-with-labels-or-values">Ordering the Bar Chart in Accordance with Labels or Values</h4>
-
 <p>We will use anonymous code references as the first argument to the <code>sort</code> built-in function.</p>
-
-<pre><code class="language-Perl6">use v6;
+<pre><code class="language-Perl6" data-lang="Perl6">use v6;
 
 sub generate_chart (%data) {
     my ($max, $min);
@@ -605,10 +492,7 @@ sub MAIN (Str $*sort-type) {
     my $data = { apple =&gt; 3, cherry =&gt; 6, banana =&gt; 1, pear =&gt; 4 };
     generate_chart $data;
 }
-</code></pre>
-
-<p>This works as expected:</p>
-
+</code></pre><p>This works as expected:</p>
 <pre><code>$ perl6 ascii_chart2.p6 val
          cherry | ############
            pear | ########
@@ -621,12 +505,9 @@ $ perl6 ascii_chart2.p6 lab
          cherry | ############
            pear | ########
 </code></pre>
-
 <h2 id="alternative-solutions-1">Alternative Solutions</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/arne-sommer/perl6/ch-2.p6">Arne Sommer</a> wrote a <code>generate_bar_graph</code> subroutine doing the sort according to the labels or the values in a <code>if ... else</code> conditional statement and storing the result in an array of keys, and then using this array to output the result:</p>
-
-<pre><code class="language-Perl6">sub generate_bar_graph ($data, $sort)
+<pre><code class="language-Perl6" data-lang="Perl6">sub generate_bar_graph ($data, $sort)
 {
   my $max = %($data).keys&gt;&gt;.chars.max;
   my @keys = %($data).keys;
@@ -644,11 +525,8 @@ $ perl6 ascii_chart2.p6 lab
     say &quot;{ &quot; &quot; x ($max - $label.chars) }$label | { &quot;#&quot; x 4 * %($data){$label} }&quot;;
   }
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/noud/perl6/ch-2.p6">Noud</a> similarly wrote a <code>generate_bar_graph</code> subroutine which populates a temporary array of sorted keys:</p>
-
-<pre><code class="language-Perl6">sub generate_bar_graph(%data, $sort-on=&quot;value&quot;) {
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/noud/perl6/ch-2.p6">Noud</a> similarly wrote a <code>generate_bar_graph</code> subroutine which populates a temporary array of sorted keys:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">sub generate_bar_graph(%data, $sort-on=&quot;value&quot;) {
     my $vmin = %data.values.min - 1;
     my $vmax = %data.values.max;
     constant $width = 79;
@@ -667,13 +545,9 @@ $ perl6 ascii_chart2.p6 lab
         say &quot;$word:\t&quot; ~ &quot;#&quot; x $times;
     }
 }
-</code></pre>
-
-<p>Note that, like me, Noud is computing a scaling factor to standardize the bar graph width.</p>
-
+</code></pre><p>Note that, like me, Noud is computing a scaling factor to standardize the bar graph width.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/jaldhar-h-vyas/perl6/ch-2.p6">Jaldhar H. Vyas</a> also wrote a <code>generate_bar_graph</code> subroutine that populates an array of sorted keys:</p>
-
-<pre><code class="language-Perl6">sub generate_bar_graph(%data, Bool $bylabels = False) {
+<pre><code class="language-Perl6" data-lang="Perl6">sub generate_bar_graph(%data, Bool $bylabels = False) {
     constant $SCALE = 4;
 
     my @labels = %data.keys.sort({ %data{$^b} &lt;=&gt; %data{$^a} });
@@ -696,11 +570,8 @@ $ perl6 ascii_chart2.p6 lab
 
     return $bar_graph;
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/kevin-colyer/perl6/ch-2.p6">Kevin Colyer</a> also wrote a <code>generate_bar_graph</code> subroutine which similarly populates an array with sorted keys:</p>
-
-<pre><code class="language-Perl6">sub generate_bar_graph(%data, Bool :$sortByLabel=False, Bool :$sortDescending=False, Int :$graphWidth=20) {
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/kevin-colyer/perl6/ch-2.p6">Kevin Colyer</a> also wrote a <code>generate_bar_graph</code> subroutine which similarly populates an array with sorted keys:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">sub generate_bar_graph(%data, Bool :$sortByLabel=False, Bool :$sortDescending=False, Int :$graphWidth=20) {
     my $lableWidth=[max] %data.keys&gt;&gt;.chars;
     my $max=1+[max] %data.values;
     my $min=[min] %data.values;
@@ -715,21 +586,12 @@ $ perl6 ascii_chart2.p6 lab
         say sprintf(&quot;%{$lableWidth}s | &quot;, $key ) ~ &quot;#&quot; x $value*$multiplier;
     };
 };
-</code></pre>
-
-<p>I especially like the simple way Kevin&rsquo;s program is doing the sort by passing <code>*.key</code> or <code>*.value</code> to the <code>sort</code> built-in function:</p>
-
-<pre><code class="language-Perl6">my @sorted = $sortByLabel==True ?? %data.sort(*.key) !! %data.sort(*.value);
-</code></pre>
-
-<p>although comparing <code>$sortByLabel</code> to <code>True</code> isn&rsquo;t really needed, as the <code>?? ... !!</code> operator coerces a Boolean evaluation and this should work the same way:</p>
-
-<pre><code class="language-Perl6">my @sorted = $sortByLabel ?? %data.sort(*.key) !! %data.sort(*.value);
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/javier-luque/perl6/ch-2.p6">Javier Luque</a> also wrote a <code>generate_bar_graph</code> subroutine, which creates a <code>$sort_func</code> code object to sort according to values or names, depending on the input parameter:</p>
-
-<pre><code class="language-Perl6">sub generate_bar_graph (%data, %params) {
+</code></pre><p>I especially like the simple way Kevin&rsquo;s program is doing the sort by passing <code>*.key</code> or <code>*.value</code> to the <code>sort</code> built-in function:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">my @sorted = $sortByLabel==True ?? %data.sort(*.key) !! %data.sort(*.value);
+</code></pre><p>although comparing <code>$sortByLabel</code> to <code>True</code> isn&rsquo;t really needed, as the <code>?? ... !!</code> operator coerces a Boolean evaluation and this should work the same way:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">my @sorted = $sortByLabel ?? %data.sort(*.key) !! %data.sort(*.value);
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/javier-luque/perl6/ch-2.p6">Javier Luque</a> also wrote a <code>generate_bar_graph</code> subroutine, which creates a <code>$sort_func</code> code object to sort according to values or names, depending on the input parameter:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">sub generate_bar_graph (%data, %params) {
     my $sort_func;
 
     # Sorting function - just 2 for now
@@ -748,11 +610,8 @@ $ perl6 ascii_chart2.p6 lab
         &quot;%10s | %s \n&quot;.printf($key, '#' x (4 * %data.{$key}));
     }
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/markus-holzer/perl6/ch-1-and-2.pl6">Markus Holzer</a> used a nice <code>$format</code> string and <code>&amp;sorter</code> subroutine to achieve the desired result:</p>
-
-<pre><code class="language-Perl6">    my $lngst   = max $weights.keys.map( *.chars );
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/markus-holzer/perl6/ch-1-and-2.pl6">Markus Holzer</a> used a nice <code>$format</code> string and <code>&amp;sorter</code> subroutine to achieve the desired result:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">    my $lngst   = max $weights.keys.map( *.chars );
     my $format  = $csv   ?? &quot;%s, %s&quot;           !!
                   $graph ?? &quot;%{$lngst}s | %s &quot; !!
                   &quot;%-{$lngst}s %s &quot;             ;
@@ -765,11 +624,8 @@ $ perl6 ascii_chart2.p6 lab
         .sort( &amp;sorter )
         .map({ .key =&gt; $graph ?? &quot;#&quot; x .value !! .value })
         .map({ sprintf $format, .key, .value });
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/simon-proctor/perl6/ch-2.p6">Simon Proctor</a> made a fairly long program that I&rsquo;ll quote only in part:</p>
-
-<pre><code class="language-Perl6">sub draw-graph( %data, SortType $sort-type, SortDir $sort-dir ) {
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/simon-proctor/perl6/ch-2.p6">Simon Proctor</a> made a fairly long program that I&rsquo;ll quote only in part:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">sub draw-graph( %data, SortType $sort-type, SortDir $sort-dir ) {
     my $k-width = %data.keys.map(*.codes).max;
     my $max-val = %data.values.max;
     my $screen-width = get-screen-width();
@@ -817,11 +673,8 @@ sub parse-csv( Str $line ) {
     }
     die &quot;Lazy CSV parser didn't work on $line&quot;;
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/athanasius/perl6/ch-2.p6">Athanasius</a> also wrote a lengthy program from which I&rsquo;ll only quote a small part:</p>
-
-<pre><code class="language-Perl6">    my Str @keys = %data.keys;
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/athanasius/perl6/ch-2.p6">Athanasius</a> also wrote a lengthy program from which I&rsquo;ll only quote a small part:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">    my Str @keys = %data.keys;
 
     if $by-values   # Order by values
     {
@@ -847,16 +700,10 @@ sub parse-csv( Str $line ) {
     }
 
     return $graph;
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/adam-russell/perl6/ch-2.p6">Adam Russell</a> used the interesting <a href="https://docs.perl6.org/routine/term:%3C%3E">term</a> feature of Raku that I did not know about to populate a constant:</p>
-
-<pre><code class="language-Perl6">sub term:&lt;MAX-LENGTH&gt; { 10 };
-</code></pre>
-
-<p>Otherwise, his program sorts the data to find the min/max values in order to scale the bar graph (using the <code>min</code> and <code>max</code> built-in functions might be more efficient, but it probably doesn&rsquo;t matter very much unless the data is very large):</p>
-
-<pre><code class="language-Perl6">sub MAIN($input) {
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/adam-russell/perl6/ch-2.p6">Adam Russell</a> used the interesting <a href="https://docs.perl6.org/routine/term:%3C%3E">term</a> feature of Raku that I did not know about to populate a constant:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">sub term:&lt;MAX-LENGTH&gt; { 10 };
+</code></pre><p>Otherwise, his program sorts the data to find the min/max values in order to scale the bar graph (using the <code>min</code> and <code>max</code> built-in functions might be more efficient, but it probably doesn&rsquo;t matter very much unless the data is very large):</p>
+<pre><code class="language-Perl6" data-lang="Perl6">sub MAIN($input) {
     my %data = from-json $input;
     my @sorted = %data.sort(*.value);
     my $min = @sorted[0].value;
@@ -866,11 +713,8 @@ sub parse-csv( Str $line ) {
         say &quot;#&quot; x ($pair.value - $min + 1) / ($max  - $min) * MAX-LENGTH;
     }
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/joelle-maslak/perl6/ch-2.p6">Joelle Maslak</a> scaled the graph according to the spread between the min  and max values:</p>
-
-<pre><code class="language-Perl6">    my $spread    = $max-value - $min-value;            # How far apart are max and min?
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/joelle-maslak/perl6/ch-2.p6">Joelle Maslak</a> scaled the graph according to the spread between the min  and max values:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">    my $spread    = $max-value - $min-value;            # How far apart are max and min?
     my $max-bar   = $screen-width - $max-len - 4;       # How big the bar can be, we don't use last column
     my $unit-size = $max-bar ?? ($spread / $max-bar) !! 0;  # What a '#' represents
 
@@ -880,11 +724,8 @@ sub parse-csv( Str $line ) {
 
         say $ele[0].fmt(&quot;%-{$max-len}s&quot;) ~ &quot; | &quot; ~ &quot;#&quot; x $hashes;
     }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/ruben-westerberg/perl6/ch-2.p6">Ruben Westerberg</a> wrote a <code>histogram</code> subroutine that sorts the keys of the hash and then sorts them again if the <code>$valueSort</code> parameter is <code>True</code>.</p>
-
-<pre><code class="language-Perl6">sub histogram(%h,$valueSort,$chart) {
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/ruben-westerberg/perl6/ch-2.p6">Ruben Westerberg</a> wrote a <code>histogram</code> subroutine that sorts the keys of the hash and then sorts them again if the <code>$valueSort</code> parameter is <code>True</code>.</p>
+<pre><code class="language-Perl6" data-lang="Perl6">sub histogram(%h,$valueSort,$chart) {
     my @keys=%h.keys.sort;#(*.chars &lt; *.chars);
     my $maxKeyLength=@keys&gt;&gt;.chars.max;
     put &quot;&quot;;
@@ -897,32 +738,27 @@ sub parse-csv( Str $line ) {
         printf(&quot;%&quot;~$maxKeyLength~&quot;s| %s\n&quot;,$_,$v);
     }
 }
-</code></pre>
-
-<hr />
-
-<hr />
-
+</code></pre><hr>
+<hr>
 <h2 id="see-also">SEE ALSO</h2>
-
-<hr />
-
-<hr />
-
+<hr>
+<hr>
 <p>Four blog posts this time:</p>
-
 <ul>
-<li><p>Arne Sommer: <a href="https://raku-musings.com/instance-bar.html">https://raku-musings.com/instance-bar.html</a>;</p></li>
-
-<li><p>Adam Russell: <a href="https://adamcrussell.livejournal.com/10802.html">https://adamcrussell.livejournal.com/10802.html</a>;</p></li>
-
-<li><p>Jaldhar H. Vyas: <a href="https://www.braincells.com/perl/2019/11/perl_weekly_challenge_week_32.html">https://www.braincells.com/perl/2019/11/perl_weekly_challenge_week_32.html</a>;</p></li>
-
-<li><p>Javier Luque: <a href="https://perlchallenges.wordpress.com/2019/10/31/perl-weekly-challenge-032/">https://perlchallenges.wordpress.com/2019/10/31/perl-weekly-challenge-032/</a>;</p></li>
+<li>
+<p>Arne Sommer: <a href="https://raku-musings.com/instance-bar.html;">https://raku-musings.com/instance-bar.html;</a></p>
+</li>
+<li>
+<p>Adam Russell: <a href="https://adamcrussell.livejournal.com/10802.html;">https://adamcrussell.livejournal.com/10802.html;</a></p>
+</li>
+<li>
+<p>Jaldhar H. Vyas: <a href="https://www.braincells.com/perl/2019/11/perl_weekly_challenge_week_32.html;">https://www.braincells.com/perl/2019/11/perl_weekly_challenge_week_32.html;</a></p>
+</li>
+<li>
+<p>Javier Luque: <a href="https://perlchallenges.wordpress.com/2019/10/31/perl-weekly-challenge-032/;">https://perlchallenges.wordpress.com/2019/10/31/perl-weekly-challenge-032/;</a></p>
+</li>
 </ul>
-
 <h2 id="wrapping-up">Wrapping up</h2>
-
 <p>Please let me know if I forgot any of the challengers or if you think my explanation of your code misses something important (send me an e-mail or just raise an issue against this GitHub page).</p>
 
                 </div>

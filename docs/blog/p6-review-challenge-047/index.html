@@ -16,7 +16,7 @@
 
     <meta name="description" content="Ryan Thompson › Raku Weekly Review: Challenge - #047">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.55.0-DEV" />
+    <meta name="generator" content="Hugo 0.66.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -149,67 +149,36 @@
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
-                    
-
-<p>Continues from <a href="/blog/p6-review-challenge-046/">previous week</a>.</p>
-
+                    <p>Continues from <a href="/blog/p6-review-challenge-046/">previous week</a>.</p>
 <p>Welcome to the Raku review for Week 047 of the Weekly Challenge! For a quick overview, go through the <a href="/blog/perl-weekly-challenge-047/">original tasks</a> and <a href="/blog/recap-challenge-047/">recap</a> of the weekly challenge.</p>
-
 <h2 id="updates">Updates</h2>
-
 <p><strong>2020-Feb-24</strong> › <a href="#arne-sommer1">Arne Sommer</a> sent me the source code for his <code>Number::Roman</code> library, which I&rsquo;ve now reviewed.</p>
-
 <p><strong>2020-Feb-24</strong> › Review added for <a href="#laurent-rosenfeld2">Laurent Rosenfeld&rsquo;s second solution</a>. Sorry I missed it!</p>
-
 <h2 id="getting-in-touch">Getting in Touch</h2>
-
 <p><a href="mailto:rjt@cpan.org"><img src="http://ry.ca/misc/Email.svg" height="50" width="50"> Email</a> › Email me (Ryan) with any feedback about this review.</p>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge"><img src="http://ry.ca/misc/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request for any issues you may find with this page.</p>
-
 <p><a href="https://twitter.com/perlwchallenge"><img src="http://ry.ca/misc/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!</p>
-
 <p>We&rsquo;d greatly appreciate any feedback you&rsquo;d like to give.</p>
-
 <h2 id="table-of-contents">Table of Contents</h2>
-
-<h3 id="task-1-task1"><a href="#task1">Task 1</a></h3>
-
+<h3 id="task-1task1"><a href="#task1">Task 1</a></h3>
 <p>[ <a href="#arne-sommer1">Arne Sommer</a>  | <a href="#jaldhar-h-vyas1">Jaldhar H. Vyas</a>  | <a href="#javier-luque1">Javier Luque</a>  | <a href="#kevin-colyer1">Kevin Colyer</a>  | <a href="#laurent-rosenfeld1">Laurent Rosenfeld</a>  | <a href="#luca-ferrari1">Luca Ferrari</a>  | <a href="#mark-anderson1">Mark Anderson</a>  | <a href="#markus-holzer1">Markus Holzer</a>  | <a href="#noud1">Noud Aldenhoven</a>  | <a href="#ruben-westerberg1">Ruben Westerberg</a>  | <a href="#simon-proctor1">Simon Proctor</a>  | <a href="#ulrich-rieke1">Ulrich Rieke</a>  ]</p>
-
-<h3 id="task-2-task2"><a href="#task2">Task 2</a></h3>
-
+<h3 id="task-2task2"><a href="#task2">Task 2</a></h3>
 <p>[ <a href="#alicia-bielsa2">Alicia Bielsa</a>  | <a href="#arne-sommer2">Arne Sommer</a>  | <a href="#athanasius2">Athanasius</a>  | <a href="#colin-crain2">Colin Crain</a>  | <a href="#jaldhar-h-vyas2">Jaldhar H. Vyas</a>  | <a href="#javier-luque2">Javier Luque</a>  | <a href="#kevin-colyer2">Kevin Colyer</a> | <a href="#laurent-rosenfeld2">Laurent Rosenfeld</a> | <a href="#luca-ferrari2">Luca Ferrari</a>  | <a href="#mark-anderson2">Mark Anderson</a>  | <a href="#markus-holzer2">Markus Holzer</a>  | <a href="#noud2">Noud Aldenhoven</a>  | <a href="#ruben-westerberg2">Ruben Westerberg</a>  | <a href="#ryan-thompson2">Ryan Thompson</a>  | <a href="#simon-proctor2">Simon Proctor</a>  | <a href="#ulrich-rieke2">Ulrich Rieke</a>  ]</p>
-
-<h3 id="blogs-blogs"><a href="#blogs">Blogs</a></h3>
-
-<hr />
-
-<hr />
-
+<h3 id="blogsblogs"><a href="#blogs">Blogs</a></h3>
+<hr>
+<hr>
 <h1 id="task1">Task #1 - Roman Calculator</h1>
-
 <p>The first task is to write a script that accepts two Roman numbers and an arithmetic operator. It should then calculate the result and return it as another Roman number. For example:</p>
-
 <pre><code>perl ch-1.pl V + VI
 XI
-</code></pre>
-
-<p>The Raku solutions for this task, while lengthy at an average of 66 lines, are still shorter than the Perl solutions by about <sup>1</sup>&frasl;<sub>3</sub>. This is a very crude metric, but it feels about right, combined with my own sense of expressiveness in the Raku solutions.</p>
-
+</code></pre><p>The Raku solutions for this task, while lengthy at an average of 66 lines, are still shorter than the Perl solutions by about 1/3. This is a very crude metric, but it feels about right, combined with my own sense of expressiveness in the Raku solutions.</p>
 <p>A few people used modules, several re-used their solutions from <a href="/blog/p6-review-challenge-010/">Week 010</a>, while the rest wrote all new Roman number routines.</p>
-
-<hr />
-
+<hr>
 <h2 id="arne-sommer1">Arne Sommer</h2>
-
 <p><strong>2020-Feb-24:</strong> Arne sent me the source code for his <code>Number::Roman</code> library. I will add my thoughts, below.</p>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/arne-sommer/raku/ch-1.p6">Arne Sommer&rsquo;s solution</a> uses a modified version of his Roman number code from Week 10, which Arne has put into a <code>Number::Roman</code> library <del>(not included with his submission)</del> now available on <a href="https://raku-musings.com/roman-gap.html">Arne&rsquo;s blog</a>.</p>
-
 <p>The library itself uses <code>MONKEY-TYPING</code> pragma, which allows one to <a href="https://docs.raku.org/syntax/augment"><code>augment</code></a> existing classes. This can be dangerous, so the Raku docs recommend against it. I&rsquo;m confident Arne knows this. Still, it allows Arne to build a convenient class whereby any <code>Int</code> can be converted <code>from-roman</code>, and any <code>Str</code> can be converted <code>to-roman</code>, with <code>base</code> support as well:</p>
-
-<pre><code class="language-raku">use MONKEY-TYPING;
+<pre><code class="language-raku" data-lang="raku">use MONKEY-TYPING;
 augment class Int {
     method roman {
         return to-roman(self);
@@ -229,15 +198,10 @@ augment class Str {
         return self.from-roman;
     }
 }
-</code></pre>
-
-<p>Arne has also included a full OO implementation that has <code>add</code>, <code>sub</code>, <code>mul</code> and <code>div</code> methods. There are also more examples and variations. I can&rsquo;t show it all here, but it&rsquo;s available on his blog.</p>
-
-<hr />
-
+</code></pre><p>Arne has also included a full OO implementation that has <code>add</code>, <code>sub</code>, <code>mul</code> and <code>div</code> methods. There are also more examples and variations. I can&rsquo;t show it all here, but it&rsquo;s available on his blog.</p>
+<hr>
 <p>Back to the ch-1 solution, here is the main logic:</p>
-
-<pre><code class="language-raku">use Number::Roman :to, :from;
+<pre><code class="language-raku" data-lang="raku">use Number::Roman :to, :from;
 unit sub MAIN (Str $first, Str $operator, Str $second);
 my $f = from-roman($first);
 my $s = from-roman($second);
@@ -249,26 +213,17 @@ given $operator
   when '*' { say to-roman($f * $s) };
   when '/' { say to-roman(Int($f) / Int($s)) };
 }
-</code></pre>
-
-<p><code>given ... when</code> is a good choice here. Arne also provides some other solutions, such as one using <code>multi MAIN</code> subs instead, which I&rsquo;ll just show the signatures of:</p>
-
-<pre><code class="language-raku">multi MAIN (Str $first, &quot;+&quot;, Str $second);
+</code></pre><p><code>given ... when</code> is a good choice here. Arne also provides some other solutions, such as one using <code>multi MAIN</code> subs instead, which I&rsquo;ll just show the signatures of:</p>
+<pre><code class="language-raku" data-lang="raku">multi MAIN (Str $first, &quot;+&quot;, Str $second);
 multi MAIN (Str $first, &quot;-&quot;, Str $second);
 multi MAIN (Str $first, '*', Str $second);
 multi MAIN (Str $first, 'x', Str $second);
 multi MAIN (Str $first, &quot;/&quot;, Str $second);
-</code></pre>
-
-<p>Arne&rsquo;s blog does have a code listing for <code>Number::Roman</code>, which I would highly suggest reading, as he discusses several interesting aspects of this challenge and his solution.</p>
-
+</code></pre><p>Arne&rsquo;s blog does have a code listing for <code>Number::Roman</code>, which I would highly suggest reading, as he discusses several interesting aspects of this challenge and his solution.</p>
 <p><strong>Blog</strong> › <a href="https://raku-musings.com/roman-gap.html">The Roman Gap with Raku</a></p>
-
 <h2 id="jaldhar-h-vyas1">Jaldhar H. Vyas</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/jaldhar-h-vyas/raku/ch-1.p6">Jaldhar H. Vyas&rsquo;s solution</a> seems to mirror his Perl solution, whereby numbers go through a multi-step process of <code>unprefix</code>, <code>reorder</code> and <code>normalize</code> steps:</p>
-
-<pre><code class="language-raku">sub unprefix(Str $num) {
+<pre><code class="language-raku" data-lang="raku">sub unprefix(Str $num) {
     my $unprefixed = $num;
     my @from = qw/ CM    CD   XC    XL   IX    IV   /;
     my @to =   qw/ DCCCC CCCC LXXXX XXXX VIIII IIII /;
@@ -292,11 +247,8 @@ sub normalize(Str $num) {
     }
     return $normalized;
 }
-</code></pre>
-
-<p>The <code>MAIN</code> sub accepts the two numbers and an <code>$op</code>, <code>+</code> or <code>-</code>. Pay close attention to how Jaldhar implements the operations:</p>
-
-<pre><code class="language-raku">multi sub MAIN(
+</code></pre><p>The <code>MAIN</code> sub accepts the two numbers and an <code>$op</code>, <code>+</code> or <code>-</code>. Pay close attention to how Jaldhar implements the operations:</p>
+<pre><code class="language-raku" data-lang="raku">multi sub MAIN(
     Str $num1, #= Number in Roman numerals
     Str $op where { /\+/ || /\-/ }, #= Arithmetic operation (+ or -)
     Str $num2, #= Number in Roman numerals
@@ -312,19 +264,12 @@ sub normalize(Str $num) {
         say normalize($un1);
     }
 }
-</code></pre>
-
-<p>These operations are very interesting, in that they don&rsquo;t actually convert the Roman numbers to Arabic at any point! I believe Jaldhar is the only one to do it this way in this challenge.</p>
-
+</code></pre><p>These operations are very interesting, in that they don&rsquo;t actually convert the Roman numbers to Arabic at any point! I believe Jaldhar is the only one to do it this way in this challenge.</p>
 <p>For example, with the addition operator, Jaldhar simply concatenates the two Roman numbers before passing them through his normalization process. This works because his lower level subs are, by design, extremely permissive in what they accept, and the <code>normalize</code> sub ensures the answer is put in proper Roman form.</p>
-
 <p>Similarly, the subtraction operator works by expanding the numbers and removing common substrings.</p>
-
 <h2 id="javier-luque1">Javier Luque</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/javier-luque/raku/ch-1.p6">Javier Luque&rsquo;s solution</a> uses a dispatch table to implement the operations:</p>
-
-<pre><code class="language-raku">sub MAIN($equation) {
+<pre><code class="language-raku" data-lang="raku">sub MAIN($equation) {
     my %operators = (
         '+' =&gt; -&gt; $a , $b { rtoa($a) + rtoa($b) },
         '-' =&gt; -&gt; $a , $b { rtoa($a) - rtoa($b) },
@@ -337,11 +282,8 @@ sub normalize(Str $num) {
         say &quot;Invalid input&quot;;
     }
 }
-</code></pre>
-
-<p>Then, citing inspiration from the <a href="https://examples.p6c.dev/index.html">Perl 6 Examples</a> site, Javier uses a <code>multi</code> sub, <code>rtoa</code>, to convert from Roman to Arabic, shown here, in part:</p>
-
-<pre><code class="language-raku"># Inspired by:
+</code></pre><p>Then, citing inspiration from the <a href="https://examples.p6c.dev/index.html">Perl 6 Examples</a> site, Javier uses a <code>multi</code> sub, <code>rtoa</code>, to convert from Roman to Arabic, shown here, in part:</p>
+<pre><code class="language-raku" data-lang="raku"># Inspired by:
 # https://examples.p6c.dev/categories/euler/prob089-andreoss.html
 multi rtoa() { 0 }
 multi rtoa(Str $r where $r.chars &gt; 1 ) {
@@ -353,11 +295,8 @@ multi rtoa('V',      |a) { 5   + rtoa(|a) }
 ...
 multi rtoa('C', 'M', |a) { 900 + rtoa(|a) }
 multi rtoa('M',      |a) { 1000 + rtoa(|a) }
-</code></pre>
-
-<p>The corresponding <code>ator</code> sub uses <code>given ... when</code>:</p>
-
-<pre><code class="language-raku">sub ator(Int $n) returns Str {
+</code></pre><p>The corresponding <code>ator</code> sub uses <code>given ... when</code>:</p>
+<pre><code class="language-raku" data-lang="raku">sub ator(Int $n) returns Str {
     given $n {
         when $n &gt;= 1000 { 'M'  ~ ator($n- 1000) }
         when $n &gt;= 900  { 'CM' ~ ator($n - 900) }
@@ -367,15 +306,10 @@ multi rtoa('M',      |a) { 1000 + rtoa(|a) }
         default        { '' }
     }
 }
-</code></pre>
-
-<p><strong>Blog</strong> › <a href="https://perlchallenges.wordpress.com/2020/02/10/perl-weekly-challenge-047/">047 – Perl Weekly Challenge</a></p>
-
+</code></pre><p><strong>Blog</strong> › <a href="https://perlchallenges.wordpress.com/2020/02/10/perl-weekly-challenge-047/">047 – Perl Weekly Challenge</a></p>
 <h2 id="kevin-colyer1">Kevin Colyer</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/kevin-colyer/raku/ch-1.p6">Kevin Colyer&rsquo;s solution</a> has <code>toRoman</code> and <code>fromRoman</code> subs that use arrays, and iterate over them pairwise. Here is the <code>toRoman</code> sub::</p>
-
-<pre><code class="language-raku">sub toRoman($i is copy) {
+<pre><code class="language-raku" data-lang="raku">sub toRoman($i is copy) {
 
     my @t=[1000 , &quot;M&quot;, 900 , &quot;CM&quot;, 500 , &quot;D&quot;, 400 , &quot;CD&quot;, 100 , &quot;C&quot;, 90 ,
         &quot;XC&quot;, 50 , &quot;L&quot;, 40 , &quot;XL&quot;, 10 , &quot;X&quot;, 9 , &quot;IX&quot;, 5 , &quot;V&quot;, 4 , &quot;IV&quot;, 1 , &quot;I&quot;];
@@ -392,13 +326,9 @@ multi rtoa('M',      |a) { 1000 + rtoa(|a) }
     }
     return $rn;
 }
-</code></pre>
-
-<p>Here, Kevin opportunistically subtracts the maximum value possible each time through the loop, and appends the Roman numeral to the result string.</p>
-
+</code></pre><p>Here, Kevin opportunistically subtracts the maximum value possible each time through the loop, and appends the Roman numeral to the result string.</p>
 <p>Kevin&rsquo;s main logic uses a <code>given ... when</code> block to handle the four basic arithmetic operators:</p>
-
-<pre><code class="language-raku">#| Roman Numberal Calculator - Numeral1 +-/* Numeral2 (/ and * require quoting)
+<pre><code class="language-raku" data-lang="raku">#| Roman Numberal Calculator - Numeral1 +-/* Numeral2 (/ and * require quoting)
 sub MAIN(Str $numeral1, Str $operation, Str $numeral2) {
     my $n1=fromRoman($numeral1);
     my $n2=fromRoman($numeral2);
@@ -410,13 +340,9 @@ sub MAIN(Str $numeral1, Str $operation, Str $numeral2) {
         default { say &quot;Unknown operation '$operation'&quot; }
     }
 }
-</code></pre>
-
-<h2 id="laurent-rosenfeld1">Laurent Rosenfeld</h2>
-
+</code></pre><h2 id="laurent-rosenfeld1">Laurent Rosenfeld</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/laurent-rosenfeld/raku/ch-1.p6">Laurent Rosenfeld&rsquo;s solution</a> reuses the <code>from-roman</code> and <code>to-roman</code> code from his Week 10 solution. It wasn&rsquo;t reviewed at that time, though, so I&rsquo;ll highlight the <code>from-roman</code> sub here:</p>
-
-<pre><code class="language-raku">subset Roman-str of Str where $_ ~~ /^&lt;[IVXLCDMivxlcdm]&gt;+$/;
+<pre><code class="language-raku" data-lang="raku">subset Roman-str of Str where $_ ~~ /^&lt;[IVXLCDMivxlcdm]&gt;+$/;
 my %rom-tab = &lt; I 1   V 5   X 10   L 50   C 100  D 500  M 1000
                IV 4  IX 9   XL 40  XC 90  CD 400   CM 900 &gt;;
 my @ordered_romans = reverse sort { %rom-tab{$_} }, keys %rom-tab;
@@ -432,13 +358,9 @@ sub from-roman (Roman-str $roman) {
     }
     return $numeric;
 }
-</code></pre>
-
-<p>I really like the use of the <code>Roman-str</code> subset here, serving as argument validation. The sub itself <code>comb</code>s over the input string, and if the next letter is larger (i.e., it has a larger value as a Roman numeral), then the current letter must be subtracted. Otherwise, it is added. Laurent&rsquo;s logic is to <em>always</em> add the number, and then subtract it twice if the next letter is larger.</p>
-
+</code></pre><p>I really like the use of the <code>Roman-str</code> subset here, serving as argument validation. The sub itself <code>comb</code>s over the input string, and if the next letter is larger (i.e., it has a larger value as a Roman numeral), then the current letter must be subtracted. Otherwise, it is added. Laurent&rsquo;s logic is to <em>always</em> add the number, and then subtract it twice if the next letter is larger.</p>
 <p>Laurent&rsquo;s main logic uses string <code>EVAL</code>, after validating the input, and supports any expression with at least two terms:</p>
-
-<pre><code class="language-raku">my @input;
+<pre><code class="language-raku" data-lang="raku">my @input;
 for @*ARGS {
     push @input, $_ if /&lt;[-+*\/]&gt;/;
     push @input, from-roman $_ if m:i/&lt;[ivxlcdm]&gt;+/;
@@ -446,15 +368,10 @@ for @*ARGS {
 die &quot;Need at least three parameters&quot; if @input &lt; 3; # we need at least 1 operator and two operands
 my $result = EVAL join ' ', @input;
 say &quot;@*ARGS[] = &quot;, to-roman $result;
-</code></pre>
-
-<p><strong>Blog</strong> › <a href="http://blogs.perl.org/users/laurent_r/2020/02/perl-weekly-challenge-47-roman-calculator-and-gapful-numbers.html">Roman Calculator and Gapful Numbers</a></p>
-
+</code></pre><p><strong>Blog</strong> › <a href="http://blogs.perl.org/users/laurent_r/2020/02/perl-weekly-challenge-47-roman-calculator-and-gapful-numbers.html">Roman Calculator and Gapful Numbers</a></p>
 <h2 id="luca-ferrari1">Luca Ferrari</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/luca-ferrari/raku/ch-1.p6">Luca Ferrari&rsquo;s solution</a> has an interesting approach in his <code>convert-roman-to-arabic</code> sub:</p>
-
-<pre><code class="language-raku">my %roman-to-arabic = :I(1), :V(5), :X(10), :L(50), :C(100), :D(500), :M(1000);
+<pre><code class="language-raku" data-lang="raku">my %roman-to-arabic = :I(1), :V(5), :X(10), :L(50), :C(100), :D(500), :M(1000);
 # Function to convert a roman number into an arabic one.
 sub convert-roman-to-arabic( Str:D $roman  ) {
     my @arabic-digits = $roman.uc.comb.reverse.map: {
@@ -466,13 +383,9 @@ sub convert-roman-to-arabic( Str:D $roman  ) {
     };
     return [+] @arabic-digits;
 }
-</code></pre>
-
-<p>Luca first reverses the string&rsquo;s character array, then finds the value of each letter. If that value is less than the previous one, that means we&rsquo;re in a subtractive part of the number (like <code>IX</code>), so Luca flips the sign. The result is the sum of all of these values.</p>
-
+</code></pre><p>Luca first reverses the string&rsquo;s character array, then finds the value of each letter. If that value is less than the previous one, that means we&rsquo;re in a subtractive part of the number (like <code>IX</code>), so Luca flips the sign. The result is the sum of all of these values.</p>
 <p>The main logic uses a <code>do given ... when</code> block to feed the <code>$result</code>, which is then converted back to a Roman number with <code>convert-arabic-to-roman</code>.</p>
-
-<pre><code class="language-raku">die &quot;Usage: $*PROGRAM &lt;operand&gt; &lt;operator&gt; &lt;operand&gt;&quot; if @*ARGS.elems != 3;
+<pre><code class="language-raku" data-lang="raku">die &quot;Usage: $*PROGRAM &lt;operand&gt; &lt;operator&gt; &lt;operand&gt;&quot; if @*ARGS.elems != 3;
 my $operand-a = convert-roman-to-arabic( @*ARGS[0] );
 my $operand-b = convert-roman-to-arabic( @*ARGS[2] );
 my $result = do given @*ARGS[1].trim {
@@ -482,15 +395,10 @@ my $result = do given @*ARGS[1].trim {
     when '*' { $operand-a * $operand-b; }
 };
 say convert-arabic-to-roman( $result );
-</code></pre>
-
-<p><strong>Blog</strong> › <a href="https://fluca1978.github.io/2020/02/10/PerlWeeklyChallenge47.html#task1">Roman Number Calculator and Gapful Numbers</a></p>
-
+</code></pre><p><strong>Blog</strong> › <a href="https://fluca1978.github.io/2020/02/10/PerlWeeklyChallenge47.html#task1">Roman Number Calculator and Gapful Numbers</a></p>
 <h2 id="mark-anderson1">Mark Anderson</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/mark-anderson/raku/ch-1.p6">Mark Anderson&rsquo;s solution</a> provides two classes, that use grammars to assist with conversion. I&rsquo;ll show one of the classes here, but the other works similarly:</p>
-
-<pre><code class="language-raku">grammar Roman2Arabic {
+<pre><code class="language-raku" data-lang="raku">grammar Roman2Arabic {
     token TOP {
         :my $*Arabic;
         &lt;Thousands&gt;? &lt;Hundreds&gt;? &lt;Tens&gt;? &lt;Ones&gt;?
@@ -530,11 +438,8 @@ class Roman2ArabicActions {
         $*Arabic += %lookup{ $/ };
     }
 }
-</code></pre>
-
-<p>There is also a calculator class that does all of the work of parsing and processing the operations:</p>
-
-<pre><code class="language-raku">grammar Calculator {
+</code></pre><p>There is also a calculator class that does all of the work of parsing and processing the operations:</p>
+<pre><code class="language-raku" data-lang="raku">grammar Calculator {
     rule  TOP      {
         :my @*Arabics;
         :my $*Answer;
@@ -566,20 +471,13 @@ class CalculatorActions {
         $*Operator = $/;
     }
 }
-</code></pre>
-
-<p>After all that, the main logic is one statement:</p>
-
-<pre><code class="language-raku">sub MAIN(*@args) {
+</code></pre><p>After all that, the main logic is one statement:</p>
+<pre><code class="language-raku" data-lang="raku">sub MAIN(*@args) {
     Calculator.parse(@args.Str, :actions(CalculatorActions)).made.say;
 }
-</code></pre>
-
-<h2 id="markus-holzer1">Markus Holzer</h2>
-
+</code></pre><h2 id="markus-holzer1">Markus Holzer</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/markus-holzer/raku/ch-1.p6">Markus Holzer&rsquo;s solution</a> implements additive Roman numbers only, meaning 9 = <code>VIIII</code>. The short length of Markus&rsquo; solution really underscores how much more code is required to support the subtractive numbers:</p>
-
-<pre><code class="language-raku">subset Roman of Str where * ~~ / ^ M* D* C * L* X* V* I* $ /;
+<pre><code class="language-raku" data-lang="raku">subset Roman of Str where * ~~ / ^ M* D* C * L* X* V* I* $ /;
 my @r = :M(1000), :D(500), :C(100), :L(50), :X(10), :V(5), :I(1);
 my %r = @r.Hash;
 sub r2d( $r is copy ) {
@@ -593,21 +491,14 @@ sub d2r( $d is copy ) {
          $d -= $n;
     }
 }
-</code></pre>
-
-<p>Markus also uses a <code>multi</code> main sub to parse the arithmetic operators.</p>
-
-<pre><code class="language-raku">multi sub MAIN(Roman $n, '+', Roman $m) { say d2r( $n.&amp;r2d + $m.&amp;r2d ) }
+</code></pre><p>Markus also uses a <code>multi</code> main sub to parse the arithmetic operators.</p>
+<pre><code class="language-raku" data-lang="raku">multi sub MAIN(Roman $n, '+', Roman $m) { say d2r( $n.&amp;r2d + $m.&amp;r2d ) }
 multi sub MAIN(Roman $n, '-', Roman $m) { say d2r( $n.&amp;r2d - $m.&amp;r2d ) }
 multi sub MAIN(Roman $n, &quot;×&quot;, Roman $m) { say d2r( $n.&amp;r2d × $m.&amp;r2d ) }
 multi sub MAIN(Roman $n, '÷', Roman $m) { say d2r( ($n.&amp;r2d ÷ $m.&amp;r2d).Int ) }
-</code></pre>
-
-<h2 id="noud1">Noud Aldenhoven</h2>
-
+</code></pre><h2 id="noud1">Noud Aldenhoven</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/noud/raku/ch-1.p6">Noud Aldenhoven&rsquo;s solution</a> defines a <code>@roman-symbols</code> array that can then be iterated over pairwise:</p>
-
-<pre><code class="language-raku">my @roman-symbols = [
+<pre><code class="language-raku" data-lang="raku">my @roman-symbols = [
     1_000, &quot;M&quot;,
     900, &quot;CM&quot;,
     500, &quot;D&quot;,
@@ -623,31 +514,21 @@ sub to-roman($i) {
     }
     return '';
 }
-</code></pre>
-
-<p>The <code>%operators</code> are a dispatch table:</p>
-
-<pre><code class="language-raku">my %operators =
+</code></pre><p>The <code>%operators</code> are a dispatch table:</p>
+<pre><code class="language-raku" data-lang="raku">my %operators =
     '+' =&gt; { $_[0] + $_[1] },
     '*' =&gt; { $_[0] * $_[1] },
     '-' =&gt; { $_[0] - $_[1] },
     '/' =&gt; { Int($_[0] / $_[1]) },
     '%' =&gt; { $_[0] % $_[1] },
 ;
-</code></pre>
-
-<p>And the <code>MAIN</code> sub is then just a single statement:</p>
-
-<pre><code class="language-raku">sub MAIN($a, $op, $b) {
+</code></pre><p>And the <code>MAIN</code> sub is then just a single statement:</p>
+<pre><code class="language-raku" data-lang="raku">sub MAIN($a, $op, $b) {
     say to-roman(%operators{$op}((from-roman($a), from-roman($b))));
 }
-</code></pre>
-
-<h2 id="ruben-westerberg1">Ruben Westerberg</h2>
-
+</code></pre><h2 id="ruben-westerberg1">Ruben Westerberg</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/ruben-westerberg/raku/ch-1.p6">Ruben Westerberg&rsquo;s solution</a> is an interesting one. The <code>romanToDecimal</code> sub is relatively standard, but <code>decimalToRoman</code> is interesting:</p>
-
-<pre><code class="language-raku">sub decimalToRoman ($input) {
+<pre><code class="language-raku" data-lang="raku">sub decimalToRoman ($input) {
     my @digits=$input.comb;
     my @p=&lt;I X C M&gt;;
     my @h=&lt;V L D&gt;;
@@ -680,13 +561,9 @@ sub to-roman($i) {
         |@out;
     }
 }
-</code></pre>
-
-<p>Ruben is using <code>.kv</code> to split the decimal number into key/value pairs, so <code>@digits - $^k - 1</code> is the power of 10. He then makes a distinction between <code>@p</code> (the powers, i.e., 1, 10, 100, and 1000), and <code>@h</code> (half of a power, i.e., 5, 50, and 500).</p>
-
+</code></pre><p>Ruben is using <code>.kv</code> to split the decimal number into key/value pairs, so <code>@digits - $^k - 1</code> is the power of 10. He then makes a distinction between <code>@p</code> (the powers, i.e., 1, 10, 100, and 1000), and <code>@h</code> (half of a power, i.e., 5, 50, and 500).</p>
 <p>Ruben&rsquo;s main logic uses <code>given ... when</code> for the operators, and also accepts either Roman or Arabic numbers in the input, which is one of those &ldquo;why not&rdquo; features, given it is so easy to implement:</p>
-
-<pre><code class="language-raku">sub MAIN(Str $operand1,Str $operator,Str $operand2){
+<pre><code class="language-raku" data-lang="raku">sub MAIN(Str $operand1,Str $operator,Str $operand2){
     #convert to decimal
     my ($o1,$o2)=($operand1,$operand2).map({
         when /&lt;[MDCLXVI]&gt;/ {romanToDecimal($_)};
@@ -704,13 +581,9 @@ sub to-roman($i) {
     };
     put decimalToRoman($result);
 }
-</code></pre>
-
-<h2 id="simon-proctor1">Simon Proctor</h2>
-
+</code></pre><h2 id="simon-proctor1">Simon Proctor</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/simon-proctor/raku/ch-1.p6">Simon Proctor&rsquo;s solution</a> appears to be partially influenced by his Week 10 solution, but the <code>from-roman</code> sub has been significantly modified:</p>
-
-<pre><code class="language-raku">subset RomanStr of Str where * ~~ /^ &lt;[M C D X L V I]&gt;+ $/;
+<pre><code class="language-raku" data-lang="raku">subset RomanStr of Str where * ~~ /^ &lt;[M C D X L V I]&gt;+ $/;
 
 sub from-roman( RomanStr $roman is copy ) {
     my %roman-map = (:1000M, :900CM, :500D, :400CD, :100C, :90XC,
@@ -724,12 +597,8 @@ sub from-roman( RomanStr $roman is copy ) {
     }
     $out;
 }
-</code></pre>
-
-<p>Simon&rsquo;s used the method of defining all possible Roman numerals <em>and their valid pairs,</em> and then matching them in descending order. This is a concise and effective algorithm.</p>
-
+</code></pre><p>Simon&rsquo;s used the method of defining all possible Roman numerals <em>and their valid pairs,</em> and then matching them in descending order. This is a concise and effective algorithm.</p>
 <p>What is perhaps most insightful about Simon&rsquo;s solution is his handling of <code>MAIN</code>. Often with programs like this that accept commandline input, you won&rsquo;t know if you&rsquo;ll be given a single string, like <code>&quot;VII + X&quot;</code>, or whether each argument will be separated, like <code>&quot;VII&quot;, &quot;+&quot;, &quot;X&quot;</code>, so handling both is <a href="https://en.wikipedia.org/wiki/Robustness_principle">permissive</a> and often the most sensible thing to do. Here&rsquo;s Simon&rsquo;s approach:</p>
-
 <pre><code>subset RomanStr of Str where * ~~ /^ &lt;[M C D X L V I]&gt;+ $/;
 subset RomanInt of Int where 0 &lt; * &lt; 3001;
 subset Operator of Str where * ~~ /^ ( &quot;*&quot; | &quot;+&quot; | &quot;-&quot; | &quot;/&quot; ) $ /;
@@ -743,17 +612,11 @@ multi sub MAIN (
 ) {
     MAIN( $0.Str, $1.Str, $2.Str );
 }
-</code></pre>
-
-<p>I admit to not taking advantage of Raku&rsquo;s more advanced signature features enough in my own code, so I love seeing examples like this that remind me of their potential.</p>
-
+</code></pre><p>I admit to not taking advantage of Raku&rsquo;s more advanced signature features enough in my own code, so I love seeing examples like this that remind me of their potential.</p>
 <h2 id="ulrich-rieke1">Ulrich Rieke</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/ulrich-rieke/raku/ch-1.p6">Ulrich Rieke&rsquo;s solution</a> uses <a href="https://github.com/drforr/perl6-slang-roman"><code>Slang::Roman</code></a> for access to the <code>to-roman</code> function.</p>
-
 <p>The <code>MAIN</code> logic uses <code>given ... when</code> to perform the arithmetic operations:</p>
-
-<pre><code class="language-raku">sub MAIN( Str $entry ) {
+<pre><code class="language-raku" data-lang="raku">sub MAIN( Str $entry ) {
     if  $entry ~~ /^^(&lt;[IVXLCM]&gt;+) \s+ (&lt;[\+\-\/\*]&gt;) \s+  (&lt;[IVXLCM]&gt;+)$$/ {
         my $first_operand = romanToArab( ~$0 ) ;
         my $second_operand = romanToArab( ~$2 ) ;
@@ -770,33 +633,19 @@ multi sub MAIN (
         say &quot;erroneous entry!&quot; ;
     }
 }
-</code></pre>
-
-<hr />
-
-<hr />
-
+</code></pre><hr>
+<hr>
 <h1 id="task2">Task #2 - Gapful Numbers</h1>
-
 <p>The Gapful numbers are defined by <a href="https://oeis.org/A108343">OEIS sequence A108343</a></p>
-
 <p>This task had us write a script to print the first 20 Gapful numbers. Gapful numbers are numbers, 100 or greater, that are divisible by the concatenation of their first and last digits. So, for example, 100 is a gapful number because 100 is divisible by 10. 102 is not, because 101 is not divisible by 12.</p>
-
-<hr />
-
+<hr>
 <p>The solutions for task #2 were all broadly similar, in that they fetch the first and last digit using features like <code>comb</code>, <code>substr</code>, or a regex, and then check for divisibility using the modulo (<code>%</code>) or divisibility (<code>%%</code>) operators.</p>
-
 <p>Most solutions simply used a basic loop, while some created a lazy infinite sequence.</p>
-
-<hr />
-
+<hr>
 <h2 id="alicia-bielsa2">Alicia Bielsa</h2>
-
 <p>Alicia Bielsa has been a Perl contributor to the Challenge since Week 4. <a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/alicia-bielsa/raku/ch-2.p6">Her solution</a> here is her first Raku solution submitted for the challenge!</p>
-
 <p>The solution uses a slice of <code>$currentNumber.comb</code> to get the first (<code>0</code>) and last (<code>*-1</code>) digits. Those are concatenated together and then the modulo (<code>%</code>) operator checks for divisibility.</p>
-
-<pre><code class="language-raku">sub MAIN () {
+<pre><code class="language-raku" data-lang="raku">sub MAIN () {
     my $totalGapfulNumbers = 20;
     my $totalGapfulNumbersFound = 0;
     my $currentNumber = 100;
@@ -810,46 +659,28 @@ multi sub MAIN (
         $currentNumber++;
     }
 }
-</code></pre>
-
-<p>Congratulations on your first Raku submission, Alicia. I very much hope we&rsquo;ll see more.</p>
-
+</code></pre><p>Congratulations on your first Raku submission, Alicia. I very much hope we&rsquo;ll see more.</p>
 <h2 id="arne-sommer2">Arne Sommer</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/arne-sommer/raku/ch-2.p6">Arne Sommer&rsquo;s solution</a> first defines a lazy <code>$gapful</code> list, using <code>substr</code> and the <code>%%</code> divisibility operator to <code>grep</code> for gapful numbers. The following line simply takes the first 20 terms and prints them.</p>
-
-<pre><code class="language-raku">my $gapful := (100 .. *).grep( { $_ %% ( .substr(0,1) ~ .substr(*-1,1) ) });
+<pre><code class="language-raku" data-lang="raku">my $gapful := (100 .. *).grep( { $_ %% ( .substr(0,1) ~ .substr(*-1,1) ) });
 say &quot;First 20 Gapful numbers: { $gapful[^20].join(',') }.&quot;;
-</code></pre>
-
-<p><strong>Blog</strong> › <a href="https://raku-musings.com/roman-gap.html">The Roman Gap with Raku</a></p>
-
+</code></pre><p><strong>Blog</strong> › <a href="https://raku-musings.com/roman-gap.html">The Roman Gap with Raku</a></p>
 <h2 id="athanasius2">Athanasius</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/athanasius/raku/ch-2.p6">Athanasius&rsquo;s solution</a> loops and uses a combination of <code>split</code> and modulo to get the first and last digits. Athanasius also uses the modulo operator to check for divisibility:</p>
-
-<pre><code class="language-raku">while $count &lt; TARGET {
+<pre><code class="language-raku" data-lang="raku">while $count &lt; TARGET {
     my UInt $div = ($num.split('', :skip-empty))[0] * 10 + $num % 10;
     if $num++ % $div == 0 {
         @gapfuls.push: $num - 1;
         ++$count;
     }
 }
-</code></pre>
-
-<h2 id="colin-crain2">Colin Crain</h2>
-
+</code></pre><h2 id="colin-crain2">Colin Crain</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/colin-crain/raku/ch-2.p6">Colin Crain&rsquo;s solution</a> also defines a lazy list, but uses <code>.comb.head</code> and <code>.comb.tail</code> to get the first and last digits:</p>
-
-<pre><code class="language-raku">my @o2 = (100..*).grep({ $_ %% (.comb.head ~ .comb.tail) });
+<pre><code class="language-raku" data-lang="raku">my @o2 = (100..*).grep({ $_ %% (.comb.head ~ .comb.tail) });
 say @o2[$_] for (0..19);
-</code></pre>
-
-<h2 id="jaldhar-h-vyas2">Jaldhar H. Vyas</h2>
-
+</code></pre><h2 id="jaldhar-h-vyas2">Jaldhar H. Vyas</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/jaldhar-h-vyas/raku/ch-2.p6">Jaldhar H. Vyas&rsquo;s solution</a> uses an intermediate <code>@digits</code> array, and then passes the first and last elements of that to <code>.join</code> before checking for divisibility with <code>%%</code>. Interestingly, the whole thing works within one <code>gather ... take</code> block:</p>
-
-<pre><code class="language-raku">
+<pre><code class="language-raku" data-lang="raku">
 #!/usr/bin/perl6
 (gather {
     for (100 .. Inf) -&gt; $number {
@@ -859,13 +690,9 @@ say @o2[$_] for (0..19);
         }
     }
 })[0 .. 19].join(', ').say;
-</code></pre>
-
-<h2 id="javier-luque2">Javier Luque</h2>
-
+</code></pre><h2 id="javier-luque2">Javier Luque</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/javier-luque/raku/ch-2.p6">Javier Luque&rsquo;s solution</a> uses a regex to pull out the first and last digits, and <code>%%</code> to check for divisibility:</p>
-
-<pre><code class="language-raku">
+<pre><code class="language-raku" data-lang="raku">
 # Test: perl6 ch-2.p6
 my $n = 100;
 my $p = 0;
@@ -879,41 +706,23 @@ while ($p &lt; 20) {
     }
     $n++;
 }
-</code></pre>
-
-<p><strong>Blog</strong> › <a href="https://perlchallenges.wordpress.com/2020/02/10/perl-weekly-challenge-047/">047 – Perl Weekly Challenge</a></p>
-
+</code></pre><p><strong>Blog</strong> › <a href="https://perlchallenges.wordpress.com/2020/02/10/perl-weekly-challenge-047/">047 – Perl Weekly Challenge</a></p>
 <h2 id="kevin-colyer2">Kevin Colyer</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/kevin-colyer/raku/ch-2.p6">Kevin Colyer&rsquo;s solution</a> makes a lazy list using <code>substr</code> and <code>%%</code>:</p>
-
-<pre><code class="language-raku">my @gapful = (100...Inf)
+<pre><code class="language-raku" data-lang="raku">my @gapful = (100...Inf)
     .grep: {
         $_ %% ( $_.substr( 0, 1 ) * 10 + $_.substr( *-1, 1 ) )
     };
-</code></pre>
-
-<p>As with Arne&rsquo;s solution, printing the first 20 elements is now easy:</p>
-
-<pre><code class="language-raku">@gapful[^20]&gt;&gt;.say;
-</code></pre>
-
-<h2 id="laurent-rosenfeld2">Laurent Rosenfeld</h2>
-
+</code></pre><p>As with Arne&rsquo;s solution, printing the first 20 elements is now easy:</p>
+<pre><code class="language-raku" data-lang="raku">@gapful[^20]&gt;&gt;.say;
+</code></pre><h2 id="laurent-rosenfeld2">Laurent Rosenfeld</h2>
 <p><strong>2020-Feb-24:</strong> I missed this solution of Laurent&rsquo;s during the original review. My apologies, Laurent!</p>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-047/laurent-rosenfeld/raku/ch-2.sh">Laurent Rosenfeld&rsquo;s solution</a> is a one-liner:</p>
-
-<pre><code class="language-sh">perl6 -e 'say (grep { $_ %% .comb[0,*-1].join}, 100..*)[0..19];'
-</code></pre>
-
-<p>This is a compact example of the lazy sequence we&rsquo;ve seen before, with both the concise <code>comb[0,*-1]</code> syntax and use of the divisibility (<code>%%</code>) operator.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">perl6 -e <span style="color:#e6db74">&#39;say (grep { $_ %% .comb[0,*-1].join}, 100..*)[0..19];&#39;</span>
+</code></pre></div><p>This is a compact example of the lazy sequence we&rsquo;ve seen before, with both the concise <code>comb[0,*-1]</code> syntax and use of the divisibility (<code>%%</code>) operator.</p>
 <h2 id="luca-ferrari2">Luca Ferrari</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/luca-ferrari/raku/ch-2.p6">Luca Ferrari&rsquo;s solution</a> uses a regex with named captures:</p>
-
-<pre><code class="language-raku">my @found;
+<pre><code class="language-raku" data-lang="raku">my @found;
 for 100 .. Inf {
     $_ ~~ / ^ $&lt;first&gt;=\d \d+ $&lt;last&gt;=\d $ /;
     my $divisor = ( $/&lt;first&gt; ~ $/&lt;last&gt; ).Int;
@@ -922,15 +731,10 @@ for 100 .. Inf {
 }
 &quot;Here it is what I found, first $limit Gapful Numbers:\n&quot;.say;
 @found.sort.join( &quot;\n\t&quot; ).say;
-</code></pre>
-
-<p><strong>Blog</strong> › <a href="https://fluca1978.github.io/2020/02/10/PerlWeeklyChallenge47.html#task2">Roman Number Calculator and Gapful Numbers</a></p>
-
+</code></pre><p><strong>Blog</strong> › <a href="https://fluca1978.github.io/2020/02/10/PerlWeeklyChallenge47.html#task2">Roman Number Calculator and Gapful Numbers</a></p>
 <h2 id="mark-anderson2">Mark Anderson</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/mark-anderson/raku/ch-2.p6">Mark Anderson&rsquo;s solution</a> uses a regex with numbered captures:</p>
-
-<pre><code class="language-raku">for (100 .. Inf) -&gt; $dividend {
+<pre><code class="language-raku" data-lang="raku">for (100 .. Inf) -&gt; $dividend {
     state $count;
     $dividend ~~ /^ (\d) \d+ (\d) $/;
     my $divisor = $0 ~ $1;
@@ -940,84 +744,47 @@ for 100 .. Inf {
     }
     last if $count == 20;
 }
-</code></pre>
-
-<h2 id="markus-holzer2">Markus Holzer</h2>
-
+</code></pre><h2 id="markus-holzer2">Markus Holzer</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/markus-holzer/raku/ch-2.p6">Markus Holzer&rsquo;s solution</a> is the most concise yet, <code>.say</code>ing the first 20 elements of a lazy sequence that uses a slice of <code>comb</code> to get the digits:</p>
-
-<pre><code class="language-raku">.say for (100..*).grep({ $_ %% $_.comb[0,*-1].join })[^20]
-</code></pre>
-
-<h2 id="noud2">Noud Aldenhoven</h2>
-
+<pre><code class="language-raku" data-lang="raku">.say for (100..*).grep({ $_ %% $_.comb[0,*-1].join })[^20]
+</code></pre><h2 id="noud2">Noud Aldenhoven</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/noud/raku/ch-2.p6">Noud Aldenhoven&rsquo;s solution</a> uses a lazy sequence as well, with more explicit coercion:</p>
-
-<pre><code class="language-raku">my @gapful = (100..Inf).grep({
+<pre><code class="language-raku" data-lang="raku">my @gapful = (100..Inf).grep({
     $_ % Int(Str($_).comb[0] ~ Str($_).comb[*-1]) == 0
 });
 @gapful[^20].say;
-</code></pre>
-
-<h2 id="ruben-westerberg2">Ruben Westerberg</h2>
-
+</code></pre><h2 id="ruben-westerberg2">Ruben Westerberg</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/ruben-westerberg/raku/ch-2.p6">Ruben Westerberg&rsquo;s solution</a> also uses a lazy list, but with a <code>comb</code> slice:</p>
-
-<pre><code class="language-raku">my $gapful=(100..Inf).grep({$_%% .comb[0,*-1].join.Int});
+<pre><code class="language-raku" data-lang="raku">my $gapful=(100..Inf).grep({$_%% .comb[0,*-1].join.Int});
 put $gapful[0..19];
-</code></pre>
-
-<h2 id="ryan-thompson2">Ryan Thompson</h2>
-
+</code></pre><h2 id="ryan-thompson2">Ryan Thompson</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/ryan-thompson/raku/ch-2.p6">My solution</a> uses a lazy sequence, too, but I decided to split <code>is-gapful</code> into its own sub, for maximum utility and perhaps slightly better readability:</p>
-
-<pre><code class="language-raku">my @gapful = (100..∞).grep: &amp;is-gapful;
+<pre><code class="language-raku" data-lang="raku">my @gapful = (100..∞).grep: &amp;is-gapful;
 say @gapful[^20];
 sub is-gapful( Int \n ) { n ≥ 100 and n %% n.comb[0,*-1].join }
-</code></pre>
-
-<p><strong>Blog</strong> › <a href="http://www.ry.ca/2020/02/gapful-numbers/">Gapful Numbers</a></p>
-
+</code></pre><p><strong>Blog</strong> › <a href="http://www.ry.ca/2020/02/gapful-numbers/">Gapful Numbers</a></p>
 <h2 id="simon-proctor2">Simon Proctor</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/simon-proctor/raku/ch-2.p6">Simon Proctor&rsquo;s solution</a> finds the first <code>$count</code> gapful numbers in the following single statement:</p>
-
-<pre><code class="language-raku">.say for (100..*).grep( { $^a %% $^a.comb[0,*-1].join.Int } )[^$count]
-</code></pre>
-
-<h2 id="ulrich-rieke2">Ulrich Rieke</h2>
-
+<pre><code class="language-raku" data-lang="raku">.say for (100..*).grep( { $^a %% $^a.comb[0,*-1].join.Int } )[^$count]
+</code></pre><h2 id="ulrich-rieke2">Ulrich Rieke</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/ulrich-rieke/raku/ch-2.p6">Ulrich Rieke&rsquo;s solution</a> also breaks <code>isGapful</code> into its own sub, and then uses a lazy sequence to print the first 20 gapful numbers:</p>
-
-<pre><code class="language-raku">sub isGapful( Int $num is copy --&gt; Bool ) {
+<pre><code class="language-raku" data-lang="raku">sub isGapful( Int $num is copy --&gt; Bool ) {
   my $first = $num.Str.comb.Array.shift ;
   my $last = $num.Str.comb.Array.pop ;
   my $divisor = ( $first ~ $last ).Int ;
   return $num %% $divisor ;
 }
 say (100, 101 ... *).grep( { isGapful( $_ ) } )[^20] ;
-</code></pre>
-
-<p><code>$first = $num.Str.comb.Array.shift</code> goes through a couple of explicit coercions in order to get the first element (and <code>$last</code> is similar). Something like <code>$first = $num.comb.tail</code> would also be semantically equivalent, here.</p>
-
-<hr />
-
-<hr />
-
+</code></pre><p><code>$first = $num.Str.comb.Array.shift</code> goes through a couple of explicit coercions in order to get the first element (and <code>$last</code> is similar). Something like <code>$first = $num.comb.tail</code> would also be semantically equivalent, here.</p>
+<hr>
+<hr>
 <h2 id="blogs">See Also</h2>
-
 <h3 id="blogs-this-week">Blogs this week:</h3>
-
 <p><strong>Arne Sommer</strong> › <a href="https://raku-musings.com/roman-gap.html">The Roman Gap with Raku</a></p>
-
 <p><strong>Dave Jacoby</strong> › <a href="https://jacoby.github.io/2020/02/12/counting-from-100-is-the-fun-part.html">Counting from 100 is the Fun Part</a></p>
-
 <p><strong>Javier Luque</strong> › <a href="https://perlchallenges.wordpress.com/2020/02/10/perl-weekly-challenge-047/">047 – Perl Weekly Challenge</a></p>
-
 <p><strong>Laurent Rosenfeld</strong> › <a href="http://blogs.perl.org/users/laurent_r/2020/02/perl-weekly-challenge-47-roman-calculator-and-gapful-numbers.html">Roman Calculator and Gapful Numbers</a></p>
-
 <p><strong>Luca Ferrari</strong> › <a href="https://fluca1978.github.io/2020/02/10/PerlWeeklyChallenge47.html">Roman Number Calculator and Gapful Numbers</a></p>
-
 <p><strong>Ryan Thompson</strong> › <a href="http://www.ry.ca/2020/02/gapful-numbers/">Gapful Numbers</a></p>
 
                 </div>

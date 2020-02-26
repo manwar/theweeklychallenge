@@ -16,7 +16,7 @@
 
     <meta name="description" content="Laurent Rosenfeld Weekly Review: Challenge - #031.">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.55.0-DEV" />
+    <meta name="generator" content="Hugo 0.66.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -149,27 +149,16 @@
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
-                    
-
-<hr />
-
+                    <hr>
 <h1 id="raku-solutions-weekly-review">Raku Solutions Weekly Review</h1>
-
-<hr />
-
+<hr>
 <h2 id="task-1-illegal-division-by-zero">Task #1: Illegal Division by Zero</h2>
-
 <p>This is derived in part from my <a href="http://blogs.perl.org/users/laurent_r/2019/10/perl-weekly-challenge-31-illegal-division-by-zero-and-dynamic-variables.html">blog post</a> made in answer to the <a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-031/">Week 31 of the Perl Weekly Challenge</a> organized by  <a href="http://blogs.perl.org/users/mohammad_s_anwar/">Mohammad S. Anwar</a> as well as answers made by others to the same challenge.</p>
-
 <p>The challenge reads as follows:</p>
-
 <p><em>Create a function to check divide by zero error without checking if the denominator is zero.</em></p>
-
 <h2 id="my-solution">My Solution</h2>
-
 <p>Perl 6/Raku has very rich <a href="https://docs.perl6.org/language/exceptions">error handling features</a>, most notably the <a href="https://docs.perl6.org/type/Exception">Exception class</a>. Without going into all the lengthy details, let us say that it&rsquo;s possible to handle exceptional circumstances by supplying a <code>CATCH</code> block. To solve the challenge can be as simple as this:</p>
-
-<pre><code class="language-Perl6">use v6;
+<pre><code class="language-Perl6" data-lang="Perl6">use v6;
 
 sub MAIN (Numeric $numerator, Numeric $denominator) {
     say &quot;Result of division is: &quot;, $numerator / $denominator;
@@ -178,22 +167,16 @@ sub MAIN (Numeric $numerator, Numeric $denominator) {
         exit;
     }
 }
-</code></pre>
-
-<p>Using this script first with legal parameters and then with an illegal 0 denominator produces the following output:</p>
-
+</code></pre><p>Using this script first with legal parameters and then with an illegal 0 denominator produces the following output:</p>
 <pre><code>$ perl6 try-catch.p6  8 4
 Result of division is: 2
 
 $ perl6 try-catch.p6  8 0
 Something went wrong here: Attempt to divide by zero when coercing Rational to Str
 </code></pre>
-
 <p>An exception object is usually contained in the <code>$!</code> special variable, but a <code>CATCH</code> block topicalizes the exception object, meaning that it becomes available in the <code>$_</code> topical variable (hence the <code>.Str</code> syntax above is sufficient to obtain the description of the exception).</p>
-
 <p>Although it is not really needed here, it may sometimes be useful to define the scope of the <code>CATCH</code> block by enclosing it in a <code>try</code> block, for example:</p>
-
-<pre><code class="language-Perl6">use v6;
+<pre><code class="language-Perl6" data-lang="Perl6">use v6;
 
 sub MAIN (Numeric $numerator, Numeric $denominator) {
     try {
@@ -204,44 +187,32 @@ sub MAIN (Numeric $numerator, Numeric $denominator) {
         }
     }
 }
-</code></pre>
-
-<p>Actually, defining a <code>try</code> block (it doesn&rsquo;t really have to be a block, a simple statement will also work) creates an implicit <code>CATCH</code> block, and this may be used to contain the exception:</p>
-
-<pre><code class="language-Perl6">use v6;
+</code></pre><p>Actually, defining a <code>try</code> block (it doesn&rsquo;t really have to be a block, a simple statement will also work) creates an implicit <code>CATCH</code> block, and this may be used to contain the exception:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">use v6;
 
 sub MAIN (Numeric $numerator, Numeric $denominator) {
     try {
         say &quot;Result of division is: &quot;, $numerator / $denominator;
     }
 }
-</code></pre>
-
-<p>The above program does not die and doesn&rsquo;t print anything but exits normally (with the successful exit code, 0, on Unix-like systems) when you pass a zero value for the denominator. We&rsquo;re in effect silencing the exception. Even if you don&rsquo;t want to abort the program when encountering such an error, you might still prefer to tell the user that something went wrong with a message containing the description of the caught exception:</p>
-
-<pre><code class="language-Perl6">use v6;
+</code></pre><p>The above program does not die and doesn&rsquo;t print anything but exits normally (with the successful exit code, 0, on Unix-like systems) when you pass a zero value for the denominator. We&rsquo;re in effect silencing the exception. Even if you don&rsquo;t want to abort the program when encountering such an error, you might still prefer to tell the user that something went wrong with a message containing the description of the caught exception:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">use v6;
 
 sub MAIN (Numeric $numerator, Numeric $denominator) {
     try {
         say &quot;Result of division is: &quot;, $numerator / $denominator;
     } or say &quot;Houston, we've had a problem here: &quot;,  $!.Str;
 }
-</code></pre>
-
-<p>which outputs the following:</p>
-
+</code></pre><p>which outputs the following:</p>
 <pre><code>$ perl6 try-catch.p6  8 4
 Result of division is: 2
 
 $ perl6 try-catch.p6  8 0
 Houston, we've had a problem here: Attempt to divide by zero when coercing Rational to Str
 </code></pre>
-
 <h2 id="alternative-solutions">Alternative Solutions</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/adam-russell/perl6/ch-1.p6">Adam Russell</a> has been participating to the challenge in Perl 5 since the very beginning, but is participating to the challenge in Perl 6 / Raku for the first time (if I&rsquo;m not wrong). His solution uses a <code>try</code> block with an embedded <code>CATCH</code> block:</p>
-
-<pre><code class="language-Perl6">try {
+<pre><code class="language-Perl6" data-lang="Perl6">try {
     my $x = 9;
     my $y = 0;
     say $x / $y;
@@ -251,32 +222,22 @@ Houston, we've had a problem here: Attempt to divide by zero when coercing Ratio
         }
     }
 }
-</code></pre>
-
-<p>Note also that Adam Russell also suggested a solution in C++.</p>
-
+</code></pre><p>Note also that Adam Russell also suggested a solution in C++.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/arne-sommer/perl6/ch-1.p6">Arne Sommer</a> used a <code>try</code> <a href="https://docs.perl6.org/language/statement-prefixes#index-entry-try_(statement_prefix)-try">statement prefix</a> to catch any error in the division.</p>
-
-<pre><code class="language-Perl6">unit sub MAIN (Numeric $a = 10, Numeric $b = 0);
+<pre><code class="language-Perl6" data-lang="Perl6">unit sub MAIN (Numeric $a = 10, Numeric $b = 0);
 my $c = $a / $b;
 try say &quot;a/b = $c&quot;;
 say &quot;Division by zero detected.&quot; if $!;
-</code></pre>
-
-<p>Arne&rsquo;s program works well in its own context. However, this may be nitpicking, but the error detected by <code>try</code> could be something else than a division by zero, for example a non-numerical argument to the division. Consider this test under the REPL:</p>
-
+</code></pre><p>Arne&rsquo;s program works well in its own context. However, this may be nitpicking, but the error detected by <code>try</code> could be something else than a division by zero, for example a non-numerical argument to the division. Consider this test under the REPL:</p>
 <pre><code>&gt; try say 10 / &quot;b&quot;;
 Nil
 &gt; say $!
 Cannot convert string to number: base-10 number must begin with valid digits or '.' in '&lt;HERE&gt;b' (indicated by &lt;HERE&gt;)
   in block &lt;unit&gt; at &lt;unknown file&gt; line 2
 </code></pre>
-
 <p>The fact that <code>$!</code> is populated doesn&rsquo;t necessarily mean that the problem was a division by zero. So, it might be wise to check the content of <code>$_</code>.</p>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/kevin-colyer/perl6/ch-1.p6">Kevin Colyer</a> use a <code>try</code> block, but apparently did not succeed to get an exception with a simple division by zero such as <code>my $c = 1/0;</code> computation and therefore had to use a trick such as <code>&quot;{$a/$b}&quot;</code>:</p>
-
-<pre><code class="language-Perl6">sub Is_DivByZero($a,$b){
+<pre><code class="language-Perl6" data-lang="Perl6">sub Is_DivByZero($a,$b){
     my Bool $result=False;
     my $misc;
     try {    $misc= &quot;{$a/$b}&quot; ; } ; # NOTE why does $misc = $a/$b not throw an exception! ????????????
@@ -286,13 +247,9 @@ Cannot convert string to number: base-10 number must begin with valid digits or 
     }
     return $result;
 }
-</code></pre>
-
-<p>Let me try to answer Kevin&rsquo;s interrogation. I have read in the past somewhere in the documentation an explanation about why <code>my $c = 1/0;</code> doesn&rsquo;t throw an exception immediately, but only when one tries to use <code>$c</code> is used, but can no longer find it right now. Let me try to explain what I understood at the time. From what I remember, the idea is that there is no reason to throw an exception just because you compute an illegal value, but that the exception should be raised only when you try to use that illegal value. The <code>my $c = 1/0;</code> leads only to a <a href="https://docs.perl6.org/type/Failure">Failure</a>, i.e. a <em>soft</em> or <em>unthrown</em> exception.  In other words, we could say that <code>my $c = 1/0</code> sort of throws a lazy exception that doesn&rsquo;t become real until you use that <code>$c</code> illegal value. I can understand the idea behind this, although I&rsquo;m not entirely convinced that it is better to postpone the moment the exception is raised, but so it is. Anyway, the idea here is that Kevin gets the exception only when he tries to convert the result of the division by zero computation into a string.</p>
-
+</code></pre><p>Let me try to answer Kevin&rsquo;s interrogation. I have read in the past somewhere in the documentation an explanation about why <code>my $c = 1/0;</code> doesn&rsquo;t throw an exception immediately, but only when one tries to use <code>$c</code> is used, but can no longer find it right now. Let me try to explain what I understood at the time. From what I remember, the idea is that there is no reason to throw an exception just because you compute an illegal value, but that the exception should be raised only when you try to use that illegal value. The <code>my $c = 1/0;</code> leads only to a <a href="https://docs.perl6.org/type/Failure">Failure</a>, i.e. a <em>soft</em> or <em>unthrown</em> exception.  In other words, we could say that <code>my $c = 1/0</code> sort of throws a lazy exception that doesn&rsquo;t become real until you use that <code>$c</code> illegal value. I can understand the idea behind this, although I&rsquo;m not entirely convinced that it is better to postpone the moment the exception is raised, but so it is. Anyway, the idea here is that Kevin gets the exception only when he tries to convert the result of the division by zero computation into a string.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/mark-senn/perl6/ch-1.p6">Mark Senn</a> provided three possible solutions:</p>
-
-<pre><code class="language-Perl6">sub div1($a, $b) {
+<pre><code class="language-Perl6" data-lang="Perl6">sub div1($a, $b) {
     my $c = $a / $b;
     return $c  //  Inf;
 }
@@ -339,19 +296,12 @@ sub MAIN() {
     }
     ''.say;
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/markus-holzer/perl6/ch-1.p6">Markus Holzer</a> suggested a two-line script:</p>
-
-<pre><code class="language-Perl6">say &quot;Division by zero&quot; without try ( 1/0 ).Str;
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/markus-holzer/perl6/ch-1.p6">Markus Holzer</a> suggested a two-line script:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">say &quot;Division by zero&quot; without try ( 1/0 ).Str;
 say &quot;Division is okay&quot; with try ( 1/1 ).Str;
-</code></pre>
-
-<p>The first line outputs a &ldquo;Division by zero&rdquo; error and the second one doesn&rsquo;t, as expected. But I still don&rsquo;t really understand what Markus tried to prove with that.</p>
-
+</code></pre><p>The first line outputs a &ldquo;Division by zero&rdquo; error and the second one doesn&rsquo;t, as expected. But I still don&rsquo;t really understand what Markus tried to prove with that.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/noud/perl6/ch-1.p6">Noud</a> suggested a <a href="https://en.wikipedia.org/wiki/Stereographic_projection">stereographic projection</a> (on a complex sphere) where a division by zero is not an error (a division by zero produces the North Pole of the complex sphere). Please follow the link to understand Noud&rsquo;s idea.</p>
-
-<pre><code class="language-Perl6">sub infix:&lt;%/&gt;($x, $y) {
+<pre><code class="language-Perl6" data-lang="Perl6">sub infix:&lt;%/&gt;($x, $y) {
     my $z = Complex.new($x * $y / ($x**2 + $y**2), $x**2 / ($x**2 + $y**2));
     if ($z === i) {
         # If z is the north pole, the inverse stereographic projection is
@@ -362,28 +312,19 @@ say &quot;Division is okay&quot; with try ( 1/1 ).Str;
         $z.re / (1 - $z.im);
     }
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/simon-proctor/perl6/ch-1.p6">Simon Proctor</a> suggested a <code>safe-division</code> subroutine:</p>
-
-<pre><code class="language-Perl6">sub safe-division( Numeric $nu, Numeric $de ) {
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/simon-proctor/perl6/ch-1.p6">Simon Proctor</a> suggested a <code>safe-division</code> subroutine:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">sub safe-division( Numeric $nu, Numeric $de ) {
     try {
         ($nu/$de).Str();
         return True;
     }
     return False;
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/tyler-limkemann/perl6/ch-1.p6">Tyler Limkemann</a>, a new member of the team, suggested this very simple solution:</p>
-
-<pre><code class="language-Perl6">CATCH { default { &quot;can't divide by 0!&quot;.say } }
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/tyler-limkemann/perl6/ch-1.p6">Tyler Limkemann</a>, a new member of the team, suggested this very simple solution:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">CATCH { default { &quot;can't divide by 0!&quot;.say } }
 (1/0).say;
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/athanasius/perl6/ch-1.p6">Athanasius</a> provided, as usual, a somewhat verbose solution using a <code>try</code>block:</p>
-
-<pre><code class="language-Perl6">my Real constant $DEFAULT-DIVIDEND = 1;
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/athanasius/perl6/ch-1.p6">Athanasius</a> provided, as usual, a somewhat verbose solution using a <code>try</code>block:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">my Real constant $DEFAULT-DIVIDEND = 1;
 my Real constant $DEFAULT-DIVISOR  = 0;
 
 sub MAIN
@@ -413,11 +354,8 @@ sub MAIN
 
     &quot;\nNormal exit&quot;.say;
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/jaldhar-h-vyas/perl6/ch-1.p6">Jaldhar H. Vyas</a> created a <code>isDividedByZero</code> subroutine to handle exception conditions with a <code>CATCH</code> block:</p>
-
-<pre><code class="language-Perl6">sub isDividedByZero($numerator, $denominator) {
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/jaldhar-h-vyas/perl6/ch-1.p6">Jaldhar H. Vyas</a> created a <code>isDividedByZero</code> subroutine to handle exception conditions with a <code>CATCH</code> block:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">sub isDividedByZero($numerator, $denominator) {
         ($numerator / $denominator).grep({});
         CATCH {
             default {
@@ -426,11 +364,8 @@ sub MAIN
         }
     return False;
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/javier-luque/perl6/ch-1.p6">Javier Luque</a>, another new member of the team, used a <code>try</code> block with an embedded <code>CATCH</code> block:</p>
-
-<pre><code class="language-Perl6">sub divide-by-zero-check(Str $statement) {
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/javier-luque/perl6/ch-1.p6">Javier Luque</a>, another new member of the team, used a <code>try</code> block with an embedded <code>CATCH</code> block:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">sub divide-by-zero-check(Str $statement) {
     try {
         my $answer = Rat($statement);
         say $answer;
@@ -439,11 +374,8 @@ sub MAIN
         }
     }
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/joelle-maslak/perl6/ch-1.p6">Joelle Maslak</a> used a <code>CATCH</code> block specifying the <code>X::Numeric::DivideByZero</code> exception, so that her program will pick only that error and no other:</p>
-
-<pre><code class="language-Perl6">sub MAIN($numerator, $denominator) {
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/joelle-maslak/perl6/ch-1.p6">Joelle Maslak</a> used a <code>CATCH</code> block specifying the <code>X::Numeric::DivideByZero</code> exception, so that her program will pick only that error and no other:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">sub MAIN($numerator, $denominator) {
     if test-for-div-by-zero($numerator, $denominator) {
         say &quot;Denominator is zero&quot;;
     } else {
@@ -459,11 +391,8 @@ sub test-for-div-by-zero($numerator, $denominator) {
         }
     }
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/ruben-westerberg/perl6/ch-1.p6">Ruben Westerberg</a> used a <code>try</code> statement prefix and tested the value of the <code>$!</code> error variable populated by <code>try</code> when it catches an exception:</p>
-
-<pre><code class="language-Perl6">my $numerator=@*ARGS[0]//1;
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/ruben-westerberg/perl6/ch-1.p6">Ruben Westerberg</a> used a <code>try</code> statement prefix and tested the value of the <code>$!</code> error variable populated by <code>try</code> when it catches an exception:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">my $numerator=@*ARGS[0]//1;
 my $denominator=@*ARGS[1]//0;
 my $result;
 
@@ -471,11 +400,8 @@ try $result=($numerator/$denominator).Str;
 
 put &quot;Division ok: $numerator/$denominator = $result&quot; unless $!;
 put &quot;Division failed: Divide by zero&quot; if $!;
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/yet-ebreo/perl6/ch-1.p6">Yet Ebreo</a> created a <code>div_zero_check</code> subroutine using a <code>try</code> block and testing the <code>$!</code> error variable (pretty much like like Ruben):</p>
-
-<pre><code class="language-Perl6">sub div_zero_check ($n, $d) {
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/yet-ebreo/perl6/ch-1.p6">Yet Ebreo</a> created a <code>div_zero_check</code> subroutine using a <code>try</code> block and testing the <code>$!</code> error variable (pretty much like like Ruben):</p>
+<pre><code class="language-Perl6" data-lang="Perl6">sub div_zero_check ($n, $d) {
     my $r;
     try {
         $r = $n / $d;
@@ -484,67 +410,48 @@ put &quot;Division failed: Divide by zero&quot; if $!;
     }
     $! &amp;&amp; say &quot;Division by zero detected&quot;;
 }
-</code></pre>
-
-<h2 id="task-2-dynamic-variable-name">Task #2: Dynamic Variable Name</h2>
-
+</code></pre><h2 id="task-2-dynamic-variable-name">Task #2: Dynamic Variable Name</h2>
 <p>This is derived in part from my <a href="http://blogs.perl.org/users/laurent_r/2019/10/perl-weekly-challenge-31-illegal-division-by-zero-and-dynamic-variables.html">blog post</a> made in answer to the <a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-031/">Week 31 of the Perl Weekly Challenge</a> organized by  <a href="http://blogs.perl.org/users/mohammad_s_anwar/">Mohammad S. Anwar</a> as well as answers made by others to the same challenge.</p>
-
 <p>The challenge reads as follows:</p>
-
 <p><em>Create a script to demonstrate creating dynamic variable name, assign a value to the variable and finally print the variable. The variable name would be passed as command line argument.</em></p>
-
 <p>There are some scripting languages (such as various Unix shells or the VMS equivalent, the DCL language) where it is possible to dynamically create variable names. This is sometimes useful, but it tends to mess up the script&rsquo;s name space. It seems that it can also be done in PHP (but, then, it is PHP, if you see what I mean).</p>
-
 <p>It is <em>possible</em> but strongly discouraged to do it in Perl 5 using symbolic references. If you want to know why it is considered to be bad to do it in Perl 5, please read Mark-Jason Dominus&rsquo;s article in three installments on the subject:</p>
-
 <ul>
-<li><p><a href="https://perl.plover.com/varvarname.html">Why it&rsquo;s stupid to `use a variable as a variable name&rsquo;</a>;</p></li>
-
-<li><p><a href="https://perl.plover.com/varvarname2.html">A More Direct Explanation of the Problem</a>;</p></li>
-
-<li><p><a href="https://perl.plover.com/varvarname3.html">What if I&rsquo;m Really Careful?</a>.</p></li>
+<li>
+<p><a href="https://perl.plover.com/varvarname.html">Why it&rsquo;s stupid to `use a variable as a variable name&rsquo;</a>;</p>
+</li>
+<li>
+<p><a href="https://perl.plover.com/varvarname2.html">A More Direct Explanation of the Problem</a>;</p>
+</li>
+<li>
+<p><a href="https://perl.plover.com/varvarname3.html">What if I&rsquo;m Really Careful?</a>.</p>
+</li>
 </ul>
-
 <p>The solution to avoid symbolic references in Perl 5 is to use a hash. Please read my other blog post linked above if you want to know more.</p>
-
 <h2 id="my-solution-1">My Solution</h2>
-
 <p>My first reaction is that I did not think that there is anything like symbolic references in Perl 6/Raku and that it was possible to create a variable dynamically. So, it seemed that it was not possible to literally &ldquo;demonstrate creating dynamic variable name&rdquo; in Perl 6/Raku. What we can do, however, is, like in P5, to use a hash:</p>
-
-<pre><code class="language-Perl6">use v6;
+<pre><code class="language-Perl6" data-lang="Perl6">use v6;
 
 sub MAIN (Str $name, Str $value) {
     my %hash = $name =&gt; $value;
     say &quot;The item is called $name and its value is %hash{$name}&quot;;
 }
-</code></pre>
-
-<p>This program displays the name of the item and its value:</p>
-
+</code></pre><p>This program displays the name of the item and its value:</p>
 <pre><code>$ perl6 sym_ref.p6 foo bar
 The item is called foo and its value is bar
 </code></pre>
-
 <p>It turns out that I was wrong and that there are some ways to dynamically create variables in Perl6/Raku, as several of the alternative solutions below will show. So, it can be done, but I very much doubt it is a good idea, as I tend to think that the reasons outlined by Mark Jason Dominus on the context of Perl 6 also apply to Perl6/Raku.</p>
-
 <h2 id="alternative-solutions-1">Alternative Solutions</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/adam-russell/perl6/ch-2.p6">Adam Russell</a> has been participating to the challenge in Perl 5 since the very beginning, but is participating to the challenge in Perl 6 / Raku for the first time (if I&rsquo;m not wrong). His very imaginative solution creates a variable name by concatenating <code>&quot;\$&quot;</code> with the first argument passed to the script, then creates on the fly a <code>Temp.pm6</code> file containing a module printing out newly created variable, runs the module (with <code>require</code> to import the module at run time) and finally deletes the <code>Temp.pm6</code> file.</p>
-
-<pre><code class="language-Perl6">my $variable = &quot;\$&quot; ~ @*ARGS[0];
+<pre><code class="language-Perl6" data-lang="Perl6">my $variable = &quot;\$&quot; ~ @*ARGS[0];
 my $value = @*ARGS[1];
 spurt &quot;Temp.pm6&quot;, &quot;unit module Temp; my $variable = $value; say \&quot;The value of \\$variable is $variable.\&quot;&quot;;
 use lib &quot;.&quot;;
 require Temp;
 unlink &quot;Temp.pm6&quot;;
-</code></pre>
-
-<p>See also his quite clever C++ implementation using macros to create dynamically a variable.</p>
-
+</code></pre><p>See also his quite clever C++ implementation using macros to create dynamically a variable.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/arne-sommer/perl6/ch-2.p6">Arne Sommer</a> also thought that it is not possible to create a variable dynamically in Raku, but argued that it is possible to access an already existing one with the <code>::()</code> operator:</p>
-
-<pre><code class="language-Perl6">unit sub MAIN ($name = '$a');
+<pre><code class="language-Perl6" data-lang="Perl6">unit sub MAIN ($name = '$a');
 
 my $a = 12;
 my $b = 15;
@@ -553,24 +460,17 @@ my $d = 26;
 my $e = 99;
 
 say &quot;The value of $name: &quot; ~ ::($name);
-</code></pre>
-
-<p>So, after all, I was wrong: there appears to exist something like <a href="https://docs.perl6.org/language/packages#Interpolating_into_names">symbolic references</a> in Raku, or, at least, it is possible to interpolate strings as variable names.</p>
-
+</code></pre><p>So, after all, I was wrong: there appears to exist something like <a href="https://docs.perl6.org/language/packages#Interpolating_into_names">symbolic references</a> in Raku, or, at least, it is possible to interpolate strings as variable names.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/kevin-colyer/perl6/ch-2.p6">Kevin Colyer</a> used essentially the same technique as Arne:</p>
-
-<pre><code class="language-Perl6">sub MAIN($name='test'){
+<pre><code class="language-Perl6" data-lang="Perl6">sub MAIN($name='test'){
     # From http://rosettacode.org/wiki/Dynamic_variable_names#Perl_6
     my $var=$name;
     say &quot;variable named $var is {$::('var')}&quot;;
     $::('var')=137;
     say &quot;variable named $var is {$::('var')}&quot;;
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/mark-senn/perl6/ch-2.p6">Mark Senn</a> tried various ways to implement indirect names or symbolic references, and finally used a hash:</p>
-
-<pre><code class="language-Perl6">sub MAIN($name, $value)
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/mark-senn/perl6/ch-2.p6">Mark Senn</a> tried various ways to implement indirect names or symbolic references, and finally used a hash:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">sub MAIN($name, $value)
 {
     say &quot;$name    $value&quot;;
 
@@ -593,38 +493,25 @@ say &quot;The value of $name: &quot; ~ ::($name);
     %hash{$name} = $value;
     %hash{$name}.say;
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/markus-holzer/perl6/ch-2.p6">Markus Holzer</a> created a <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/markus-holzer/perl6/lib/VariableFactory.pm6">VariableFactory</a> class:</p>
-
-<pre><code class="language-Perl6">class VariableFactory { * }
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/markus-holzer/perl6/ch-2.p6">Markus Holzer</a> created a <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/markus-holzer/perl6/lib/VariableFactory.pm6">VariableFactory</a> class:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">class VariableFactory { * }
 sub EXPORT( $var-name )
 {
     $var-name
         ?? %( '$*' ~ $var-name =&gt; 42 )
         !! %();
 }
-</code></pre>
-
-<p>and used it in his program:</p>
-
-<pre><code class="language-Perl6">INIT use VariableFactory ( @*ARGS[0] );
+</code></pre><p>and used it in his program:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">INIT use VariableFactory ( @*ARGS[0] );
 sub MAIN( $var-name ) { say ::( '$*' ~ $var-name ) }
-</code></pre>
-
-<p>Markus&rsquo;s program creates the variable name through concatenation of the <code>'$*'</code> and <code>$var-name</code> components within the <code>::( ... )</code> construct, but I must admit that I don&rsquo;t fully understand the syntax. Well, no, it&rsquo;s not really the syntax that puzzles me, it&rsquo;s quite simple, after all, it is rather the fact that I have some difficulty to see actual use cases for such a contrived construct.</p>
-
+</code></pre><p>Markus&rsquo;s program creates the variable name through concatenation of the <code>'$*'</code> and <code>$var-name</code> components within the <code>::( ... )</code> construct, but I must admit that I don&rsquo;t fully understand the syntax. Well, no, it&rsquo;s not really the syntax that puzzles me, it&rsquo;s quite simple, after all, it is rather the fact that I have some difficulty to see actual use cases for such a contrived construct.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/noud/perl6/ch-2.p6">Noud</a> made something similar, although quite simpler, but I also have some difficulty understanding how this could be useful:</p>
-
-<pre><code class="language-Perl6">sub MAIN($name, $value) {
+<pre><code class="language-Perl6" data-lang="Perl6">sub MAIN($name, $value) {
     GLOBAL::{'$' ~ $name} = $value;
     say '$' ~ $name ~ &quot; = &quot; ~ GLOBAL::{'$' ~ $name};
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/tyler-limkemann/perl6/ch-2.p6">Tyler Limkemann</a> created a <code>Contextualizer</code> class using <code>nqp</code> (not quite Perl), a lower-level subset of the Perl 6 syntax.</p>
-
-<pre><code class="language-Perl6">use MONKEY;
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/tyler-limkemann/perl6/ch-2.p6">Tyler Limkemann</a> created a <code>Contextualizer</code> class using <code>nqp</code> (not quite Perl), a lower-level subset of the Perl 6 syntax.</p>
+<pre><code class="language-Perl6" data-lang="Perl6">use MONKEY;
 use nqp;
 
 class Contextualizer {
@@ -642,11 +529,8 @@ sub MAIN(Str $s) {
   $compiler.eval(&quot;my \${$s.uc} = ':)'&quot;, :outer_ctx($*MAIN_CTX), :interactive(1));
   $compiler.eval(&quot;\${$s.uc}.say&quot;, :outer_ctx($*MAIN_CTX), :interactive(1));
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/athanasius/perl6/ch-2.p6">Athanasius</a> used the <code>EVAL</code> built-in routine which makes it possible to execute a string containing valid Perl 6/ Raku code:</p>
-
-<pre><code class="language-Perl6">use MONKEY-SEE-NO-EVAL;
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/athanasius/perl6/ch-2.p6">Athanasius</a> used the <code>EVAL</code> built-in routine which makes it possible to execute a string containing valid Perl 6/ Raku code:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">use MONKEY-SEE-NO-EVAL;
 my Real constant $VALUE = 42;
 
 sub MAIN(Str:D $variable-name)
@@ -659,13 +543,9 @@ sub MAIN(Str:D $variable-name)
     # a &quot;Variable ... is not declared&quot; error in the say statement
     EVAL $expression;
 }
-</code></pre>
-
-<p>Note that <code>EVAL</code> is considered to be a dangerous function and therefore requires the <code>use MONKEY-SEE-NO-EVAL;</code> pragma to be activated.</p>
-
+</code></pre><p>Note that <code>EVAL</code> is considered to be a dangerous function and therefore requires the <code>use MONKEY-SEE-NO-EVAL;</code> pragma to be activated.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/joelle-maslak/perl6/ch-2.p6">Joelle Maslak</a> also used the <code>EVAL</code> built-in routine:</p>
-
-<pre><code class="language-Perl6">use MONKEY-SEE-NO-EVAL;
+<pre><code class="language-Perl6" data-lang="Perl6">use MONKEY-SEE-NO-EVAL;
 
 # Note all sorts of bad things can still be done with this code - like a
 # user might pass in the name of an existing variable, might start a
@@ -676,11 +556,8 @@ sub MAIN(Str:D $var-name, $value) {
     EVAL(&quot;my \$OUR::$var-name = { $value.perl }&quot;);
     EVAL(&quot;say '\$$var-name is set to: ' ~ \$OUR::$var-name&quot;);
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/ruben-westerberg/perl6/ch-2.p6">Ruben Westerberg</a> also  the <code>EVAL</code> built-in routine:</p>
-
-<pre><code class="language-Perl6">use MONKEY-SEE-NO-EVAL;
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/ruben-westerberg/perl6/ch-2.p6">Ruben Westerberg</a> also  the <code>EVAL</code> built-in routine:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">use MONKEY-SEE-NO-EVAL;
 my $name=@*ARGS[0]//&quot;var&quot;~1000.rand.Int;
 my $value=@*ARGS[1]//1.rand;
 {
@@ -701,21 +578,15 @@ put &quot;&quot;;
     put &quot;Variable name: $name Value: %h{$name}&quot;;
 
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/jaldhar-h-vyas/perl6/ch-2.p6">Jaldhar H. Vyas</a> suggested this quite simple solution:</p>
-
-<pre><code class="language-Perl6">sub MAIN( Str $var ) {
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/jaldhar-h-vyas/perl6/ch-2.p6">Jaldhar H. Vyas</a> suggested this quite simple solution:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">sub MAIN( Str $var ) {
     my $newvar = $var;
     $($newvar) = 42;
 
     say &quot;$var = &quot;, $($newvar);
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/javier-luque/perl6/ch-2.p6">Javier Luque</a> used the <code>GLOBAL</code> name space to perform the task:</p>
-
-<pre><code class="language-Perl6">sub MAIN (Str $variable) {
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/javier-luque/perl6/ch-2.p6">Javier Luque</a> used the <code>GLOBAL</code> name space to perform the task:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">sub MAIN (Str $variable) {
     # Randomly populate the random value
     my $random_value = (0..^9).roll(12).join;
     GLOBAL::{'$' ~ $variable} = $random_value;
@@ -727,24 +598,23 @@ put &quot;&quot;;
     # test like this: perl6 ch2.p6 test
     say 'Variable test is: ' ~ $*test if ($variable eq 'test');
 }
-</code></pre>
-
-<h2 id="see-also">SEE ALSO</h2>
-
+</code></pre><h2 id="see-also">SEE ALSO</h2>
 <p>Three blog posts this time:</p>
-
 <ul>
-<li><p>Adam Russell: <a href="https://adamcrussell.livejournal.com/10620.html">https://adamcrussell.livejournal.com/10620.html</a>;</p></li>
-
-<li><p>Arne Sommer: <a href="https://raku-musings.com/dynamic-zero.html">https://raku-musings.com/dynamic-zero.html</a>;</p></li>
-
-<li><p>Jaldhar H. Vyas: <a href="https://www.braincells.com/perl/2019/10/perl_weekly_challenge_week_31.html">https://www.braincells.com/perl/2019/10/perl_weekly_challenge_week_31.html</a>;</p></li>
-
-<li><p>Javier Luque: <a href="https://perlchallenges.wordpress.com/2019/10/24/perl-weekly-challenge-031/">https://perlchallenges.wordpress.com/2019/10/24/perl-weekly-challenge-031/</a>.</p></li>
+<li>
+<p>Adam Russell: <a href="https://adamcrussell.livejournal.com/10620.html;">https://adamcrussell.livejournal.com/10620.html;</a></p>
+</li>
+<li>
+<p>Arne Sommer: <a href="https://raku-musings.com/dynamic-zero.html;">https://raku-musings.com/dynamic-zero.html;</a></p>
+</li>
+<li>
+<p>Jaldhar H. Vyas: <a href="https://www.braincells.com/perl/2019/10/perl_weekly_challenge_week_31.html;">https://www.braincells.com/perl/2019/10/perl_weekly_challenge_week_31.html;</a></p>
+</li>
+<li>
+<p>Javier Luque: <a href="https://perlchallenges.wordpress.com/2019/10/24/perl-weekly-challenge-031/">https://perlchallenges.wordpress.com/2019/10/24/perl-weekly-challenge-031/</a>.</p>
+</li>
 </ul>
-
 <h2 id="wrapping-up">Wrapping up</h2>
-
 <p>Please let me know if I forgot any of the challengers or if you think my explanation of your code misses something important (send me an e-mail or just raise an issue against this GitHub page).</p>
 
                 </div>

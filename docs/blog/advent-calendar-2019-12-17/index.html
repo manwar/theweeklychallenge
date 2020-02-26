@@ -16,7 +16,7 @@
 
     <meta name="description" content="Advent Calendar - December 17, 2019">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.55.0-DEV" />
+    <meta name="generator" content="Hugo 0.66.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -149,163 +149,139 @@
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
-                    
-
-<p><a href="/blog/advent-calendar-2019"><strong>Advent Calendar 2019</strong></a></p>
-
-<hr />
-
-<p>The gift is presented by <a href="/blog/meet-the-champion-023"><strong>Athanasius</strong></a>. Today he is talking about his solutions to <strong>Task #2: Bitcoin Validation</strong> of <a href="/blog/perl-weekly-challenge-016"><strong>&ldquo;The Weekly Challenge - 016&rdquo;</strong></a>.</p>
-
-<h4 id="write-a-script-to-validate-a-given-bitcoin-address-most-bitcoin-addresses-are-34-characters-they-consist-of-random-digits-and-uppercase-and-lowercase-letters-with-the-exception-that-the-uppercase-letter-o-uppercase-letter-i-lowercase-letter-l-and-the-number-0-are-never-used-to-prevent-visual-ambiguity-a-bitcoin-address-encodes-25-bytes-the-last-four-bytes-are-a-checksum-check-they-are-the-first-four-bytes-of-a-double-sha-256-digest-of-the-previous-21-bytes-for-more-information-please-refer-wiki-page-https-en-bitcoin-it-wiki-address">Write a script to validate a given bitcoin address. Most Bitcoin addresses are 34 characters. They consist of random digits and uppercase and lowercase letters, with the exception that the uppercase letter “O”, uppercase letter “I”, lowercase letter “l”, and the number “0” are never used to prevent visual ambiguity. A bitcoin address encodes 25 bytes. The last four bytes are a checksum check. They are the first four bytes of a double SHA-256 digest of the previous 21 bytes. For more information, please refer <a href="https://en.bitcoin.it/wiki/Address">wiki page</a>.</h4>
-
-<hr />
-
+                    <p><a href="/blog/advent-calendar-2019"><strong>Advent Calendar 2019</strong></a></p>
+<hr>
+<p>The gift is presented by <a href="/blog/meet-the-champion-023"><strong>Athanasius</strong></a>. Today he is talking about his solutions to <strong>Task #2: Bitcoin Validation** of </strong>&ldquo;The Weekly Challenge - 016&rdquo;**<a href="/blog/perl-weekly-challenge-016"></a>.</p>
+<h4 id="write-a-script-to-validate-a-given-bitcoin-address-most-bitcoin-addresses-are-34-characters-they-consist-of-random-digits-and-uppercase-and-lowercase-letters-with-the-exception-that-the-uppercase-letter-o-uppercase-letter-i-lowercase-letter-l-and-the-number-0-are-never-used-to-prevent-visual-ambiguity-a-bitcoin-address-encodes-25-bytes-the-last-four-bytes-are-a-checksum-check-they-are-the-first-four-bytes-of-a-double-sha-256-digest-of-the-previous-21-bytes-for-more-information-please-refer-wiki-pagehttpsenbitcoinitwikiaddress">Write a script to validate a given bitcoin address. Most Bitcoin addresses are 34 characters. They consist of random digits and uppercase and lowercase letters, with the exception that the uppercase letter “O”, uppercase letter “I”, lowercase letter “l”, and the number “0” are never used to prevent visual ambiguity. A bitcoin address encodes 25 bytes. The last four bytes are a checksum check. They are the first four bytes of a double SHA-256 digest of the previous 21 bytes. For more information, please refer <a href="https://en.bitcoin.it/wiki/Address">wiki page</a>.</h4>
+<hr>
 <p>Prior to this task I knew nothing about <strong>Bitcoin</strong>; now, I still don’t know much! But I found a useful introduction, <a href="https://learnmeabitcoin.com/"><strong>Learn Me a Bitcoin</strong></a>, which explains the technology basics quite well. (But not the rationale behind the technology. I now understand what Bitcoin mining is, but not why it’s needed; and I know how the difficulty is adjusted to keep the average mining time around 10 minutes, but not why that target is important in the first place.)</p>
-
 <p>From this <a href="https://allprivatekeys.com/bitcoin-address-format"><strong>site</strong></a> it appears that valid Bitcoin addresses can take 3 forms:</p>
-
 <h5 id="1-pubkey-hash-p2pkh-address-with-prefix-1">1) Pubkey hash (P2PKH address) with prefix 1</h5>
-
 <h5 id="2-script-hash-p2sh-address-with-prefix-3">2) Script hash (P2SH address) with prefix 3</h5>
-
 <h5 id="3-segwit-mainnet-p2wpkh-address-with-prefix-bc1">3) SegWit mainnet (P2WPKH address) with prefix bc1</h5>
-
 <p>However, for this exercise I’ve assumed that only <strong>P2PKH</strong> and <strong>P2SH</strong> addresses are included. For the record, details of <strong>P2WPKH</strong> (or <strong>Bech32</strong>) validation can be found <a href="https://github.com/bitcoin/bips/blob/master/bip-0173.mediawiki#Bech32"><strong>here</strong></a>.</p>
-
 <h2 id="perl-solution">PERL SOLUTION</h2>
-
 <p>CPAN’s <a href="https://metacpan.org/pod/Digest::SHA"><strong>Digest::SHA</strong></a> module has a nice OO interface and supports many SHA variants including <strong>SHA-256</strong>. For decoding <strong>Base58</strong> using the <strong>Bitcoin alphabet</strong>, module <a href="https://metacpan.org/pod/Crypt::Misc"><strong>Crypt::Misc</strong></a> has the <strong>function decode_b58b()</strong>. After that, it’s just a question of applied logic.</p>
-
 <p>The trickiest part for me was the code to verify the checksum, which required disentangling all the different encodings. The details are given in the comments to <strong>function validate_checksum()</strong>, below:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> Const::Fast;
+<span style="color:#66d9ef">use</span> Crypt::Misc <span style="color:#e6db74">qw( decode_b58b )</span>;
+<span style="color:#66d9ef">use</span> Digest::SHA;
 
-<pre><code class="language-perl">use strict;
-use warnings;
-use Const::Fast;
-use Crypt::Misc qw( decode_b58b );
-use Digest::SHA;
-
-const my $DEFAULT_ADDR  =&gt; '1BvBMSEYstWetqTFn5Au4m4GFg7xJaNVN2';
-const my %ADDR_FORMATS  =&gt; (1   =&gt; 'P2PKH', 3 =&gt; 'P2SH',
-                            bc1 =&gt; 'Bech32');
-const my $INVALID_CHARS =&gt;  qr{([^1-9A-HJ-NP-Za-km-z])};
-const my $MAX_CHARS     =&gt;  35;
-const my $MIN_CHARS     =&gt;  26;
-const my $SHA_ALGORITHM =&gt; 256;
-const my $TAB           =&gt; '  ';
+const <span style="color:#66d9ef">my</span> $DEFAULT_ADDR  <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;1BvBMSEYstWetqTFn5Au4m4GFg7xJaNVN2&#39;</span>;
+const <span style="color:#66d9ef">my</span> %ADDR_FORMATS  <span style="color:#f92672">=&gt;</span> (<span style="color:#ae81ff">1</span>   <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;P2PKH&#39;</span>, <span style="color:#ae81ff">3</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;P2SH&#39;</span>,
+                            bc1 <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Bech32&#39;</span>);
+const <span style="color:#66d9ef">my</span> $INVALID_CHARS <span style="color:#f92672">=&gt;</span>  <span style="color:#e6db74">qr{([^1-9A-HJ-NP-Za-km-z])}</span>;
+const <span style="color:#66d9ef">my</span> $MAX_CHARS     <span style="color:#f92672">=&gt;</span>  <span style="color:#ae81ff">35</span>;
+const <span style="color:#66d9ef">my</span> $MIN_CHARS     <span style="color:#f92672">=&gt;</span>  <span style="color:#ae81ff">26</span>;
+const <span style="color:#66d9ef">my</span> $SHA_ALGORITHM <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">256</span>;
+const <span style="color:#66d9ef">my</span> $TAB           <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;  &#39;</span>;
 
 MAIN:
 {
-    my $address = $ARGV[0] // $DEFAULT_ADDR;
+    <span style="color:#66d9ef">my</span> $address <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">0</span>] <span style="color:#e6db74">//</span> $DEFAULT_ADDR;
 
-    print &quot;\nBitcoin address: \&quot;$address\&quot;\n&quot;;
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\nBitcoin address: \&#34;$address\&#34;\n&#34;</span>;
 
-    if (my $error = validate_format($address, \my $format))
+    <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">my</span> $error <span style="color:#f92672">=</span> validate_format($address, <span style="color:#f92672">\</span><span style="color:#66d9ef">my</span> $format))
     {
-        print &quot;${TAB}Format validation FAILED: $error\n&quot;;
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;${TAB}Format validation FAILED: $error\n&#34;</span>;
     }
-    elsif ($format eq 'Bech32')
+    <span style="color:#66d9ef">elsif</span> ($format <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;Bech32&#39;</span>)
     {
-        print &quot;${TAB}Bech32 format not currently supported\n&quot;;
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;${TAB}Bech32 format not currently supported\n&#34;</span>;
     }
-    else
+    <span style="color:#66d9ef">else</span>
     {
-        print &quot;${TAB}Format is \&quot;$format\&quot;\n&quot;;
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;${TAB}Format is \&#34;$format\&#34;\n&#34;</span>;
 
-        if ($error = validate_chars($address))
+        <span style="color:#66d9ef">if</span> ($error <span style="color:#f92672">=</span> validate_chars($address))
         {
-            print &quot;${TAB}Character validation FAILED: $error\n&quot;;
+            <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;${TAB}Character validation FAILED: $error\n&#34;</span>;
         }
-        elsif (validate_checksum($address))
+        <span style="color:#66d9ef">elsif</span> (validate_checksum($address))
         {
-            print &quot;${TAB}Checksum validation PASSED\n&quot;;
+            <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;${TAB}Checksum validation PASSED\n&#34;</span>;
         }
-        else
+        <span style="color:#66d9ef">else</span>
         {
-            print &quot;${TAB}Checksum validation FAILED\n&quot;;
+            <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;${TAB}Checksum validation FAILED\n&#34;</span>;
         }
     }
 }
 
-sub validate_format
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">validate_format</span>
 {
-    my ($address, $format) = @_;
-    my  $error;
+    <span style="color:#66d9ef">my</span> ($address, $format) <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">my</span>  $error;
 
-    for my $prefix (keys %ADDR_FORMATS)
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $prefix (keys %ADDR_FORMATS)
     {
-        if ($address =~ qr/^$prefix/)
+        <span style="color:#66d9ef">if</span> ($address <span style="color:#f92672">=~</span> <span style="color:#e6db74">qr/^$prefix/</span>)
         {
-            $$format = $ADDR_FORMATS{$prefix};
-            last;
+            $$format <span style="color:#f92672">=</span> $ADDR_FORMATS{$prefix};
+            <span style="color:#66d9ef">last</span>;
         }
     }
 
-    unless (defined $$format)
+    <span style="color:#66d9ef">unless</span> (defined $$format)
     {
-        my $len = substr($address, 0, 1) eq 'b' ?
-                  substr($address, 1, 1) eq 'c' ? 3 : 2 : 1;
-        $error  = 'invalid prefix &quot;' . substr($address, 0, $len) .
-                  '&quot;, unknown format';
+        <span style="color:#66d9ef">my</span> $len <span style="color:#f92672">=</span> substr($address, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>) <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;b&#39;</span> ?
+                  substr($address, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>) <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;c&#39;</span> ? <span style="color:#ae81ff">3</span> : <span style="color:#ae81ff">2</span> : <span style="color:#ae81ff">1</span>;
+        $error  <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;invalid prefix &#34;&#39;</span> <span style="color:#f92672">.</span> substr($address, <span style="color:#ae81ff">0</span>, $len) <span style="color:#f92672">.</span>
+                  <span style="color:#e6db74">&#39;&#34;, unknown format&#39;</span>;
     }
 
-    return $error;
+    <span style="color:#66d9ef">return</span> $error;
 }
 
-sub validate_chars
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">validate_chars</span>
 {
-    my ($address) = @_;
-    my  $chars    = length $address;
-    my  $error;
+    <span style="color:#66d9ef">my</span> ($address) <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">my</span>  $chars    <span style="color:#f92672">=</span> length $address;
+    <span style="color:#66d9ef">my</span>  $error;
 
-    if    ($chars &lt; $MIN_CHARS)
+    <span style="color:#66d9ef">if</span>    ($chars <span style="color:#f92672">&lt;</span> $MIN_CHARS)
     {
-        $error = &quot;invalid length $chars (minimum is $MIN_CHARS)&quot;;
+        $error <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;invalid length $chars (minimum is $MIN_CHARS)&#34;</span>;
     }
-    elsif ($chars &gt; $MAX_CHARS)
+    <span style="color:#66d9ef">elsif</span> ($chars <span style="color:#f92672">&gt;</span> $MAX_CHARS)
     {
-        $error = &quot;invalid length $chars (maximum is $MAX_CHARS)&quot;;
+        $error <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;invalid length $chars (maximum is $MAX_CHARS)&#34;</span>;
     }
-    elsif ($address =~ $INVALID_CHARS)
+    <span style="color:#66d9ef">elsif</span> ($address <span style="color:#f92672">=~</span> $INVALID_CHARS)
     {
-        $error = &quot;invalid character \&quot;$1\&quot;&quot;;
+        $error <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;invalid character \&#34;$1\&#34;&#34;</span>;
     }
 
-    return $error;
+    <span style="color:#66d9ef">return</span> $error;
 }
 
-sub validate_checksum
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">validate_checksum</span>
 {
-    my ($address)  = @_;
-    my  $rawdata   = decode_b58b($address);      # Base58 to bytes
-    my  $hexdata   = unpack 'H*', $rawdata;      # Bytes  to hex
-    my  $checksum1 = substr  $hexdata, -8;       # Checksum 1 in hex
-    my  $payload   = substr  $hexdata,  0, -8;   # Payload in hex
-    my  $sha_obj   = Digest::SHA-&gt;new($SHA_ALGORITHM);
-        $sha_obj-&gt;add(pack 'H*', $payload);      # Hex to bytes
-    my  $digest1   = $sha_obj-&gt;hexdigest;        # 1st digest in hex
-        $sha_obj-&gt;add(pack 'H*', $digest1);      # hex to bytes
-    my  $digest2   = $sha_obj-&gt;hexdigest;        # 2nd digest in hex
-    my  $checksum2 = substr  $digest2,  0,  8;   # Checksum 2 in hex
+    <span style="color:#66d9ef">my</span> ($address)  <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">my</span>  $rawdata   <span style="color:#f92672">=</span> decode_b58b($address);      <span style="color:#75715e"># Base58 to bytes</span>
+    <span style="color:#66d9ef">my</span>  $hexdata   <span style="color:#f92672">=</span> unpack <span style="color:#e6db74">&#39;H*&#39;</span>, $rawdata;      <span style="color:#75715e"># Bytes  to hex</span>
+    <span style="color:#66d9ef">my</span>  $checksum1 <span style="color:#f92672">=</span> substr  $hexdata, <span style="color:#f92672">-</span><span style="color:#ae81ff">8</span>;       <span style="color:#75715e"># Checksum 1 in hex</span>
+    <span style="color:#66d9ef">my</span>  $payload   <span style="color:#f92672">=</span> substr  $hexdata,  <span style="color:#ae81ff">0</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">8</span>;   <span style="color:#75715e"># Payload in hex</span>
+    <span style="color:#66d9ef">my</span>  $sha_obj   <span style="color:#f92672">=</span> Digest::SHA<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>($SHA_ALGORITHM);
+        $sha_obj<span style="color:#f92672">-&gt;</span>add(pack <span style="color:#e6db74">&#39;H*&#39;</span>, $payload);      <span style="color:#75715e"># Hex to bytes</span>
+    <span style="color:#66d9ef">my</span>  $digest1   <span style="color:#f92672">=</span> $sha_obj<span style="color:#f92672">-&gt;</span>hexdigest;        <span style="color:#75715e"># 1st digest in hex</span>
+        $sha_obj<span style="color:#f92672">-&gt;</span>add(pack <span style="color:#e6db74">&#39;H*&#39;</span>, $digest1);      <span style="color:#75715e"># hex to bytes</span>
+    <span style="color:#66d9ef">my</span>  $digest2   <span style="color:#f92672">=</span> $sha_obj<span style="color:#f92672">-&gt;</span>hexdigest;        <span style="color:#75715e"># 2nd digest in hex</span>
+    <span style="color:#66d9ef">my</span>  $checksum2 <span style="color:#f92672">=</span> substr  $digest2,  <span style="color:#ae81ff">0</span>,  <span style="color:#ae81ff">8</span>;   <span style="color:#75715e"># Checksum 2 in hex</span>
 
-    return $checksum1 eq $checksum2;             # Compare checksums
+    <span style="color:#66d9ef">return</span> $checksum1 <span style="color:#f92672">eq</span> $checksum2;             <span style="color:#75715e"># Compare checksums</span>
 }
-</code></pre>
-
-<h2 id="raku-solution">RAKU SOLUTION</h2>
-
+</code></pre></div><h2 id="raku-solution">RAKU SOLUTION</h2>
 <p>I was surprised to find that pack and unpack are still considered experimental in <strong>Raku</strong>. Fortunately, the functionality I needed was available. I found <a href="https://modules.perl6.org/dist/Digest::SHA256::Native:cpan:BDUGGAN"><strong>Digest::SHA256::Native</strong></a> as a replacement for <strong>Perl</strong>’s <strong>Digest::SHA</strong>, but had to re-use the <strong>Perl</strong> module <strong>Crypt::Misc</strong> here.</p>
-
 <p>Note: I created <strong>$decode_b58b</strong> as an alias for <strong>Crypt::Misc::decode_b58b</strong> only to keep Comma happy! This worked (it removed the error message), but I couldn’t find any way to make Comma happy with the call to pack, which is a function only and so can’t be called as a method.</p>
-
 <p>As usual, my approach to <strong>Raku</strong> coding is to use functional-style method calls and explicity-declared variable types wherever possible. This is overkill for a script like this, but it helps me to learn. <strong>Blob[uint8]</strong> was a type I hadn’t come across before. Note also the regex:</p>
-
 <pre><code>rx{ ( &lt;-[1..9A..HJ..NP..Za..km..z]&gt; ) }
 </code></pre>
-
 <p>which uses a negated character class <strong>(&lt;-[&hellip;]&gt;)</strong> to match any character outside the allowed Bitcoin address alphabet.</p>
-
-<pre><code class="language-perl6">use v6;
+<pre><code class="language-perl6" data-lang="perl6">use v6;
 use experimental :pack;
 use Crypt::Misc:from&lt;Perl5&gt; &lt;decode_b58b&gt;;
 use Digest::SHA256::Native;
@@ -414,12 +390,8 @@ sub validate-checksum(Str:D $address)
 
     return $hex-checksum1 eq $hex-checksum2;
 }
-</code></pre>
-
-<hr />
-
+</code></pre><hr>
 <p>If you have any suggestion then please do share with us <a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a>.</p>
-
 <p><a href="/blog/advent-calendar-2019"><strong>Advent Calendar 2019</strong></a></p>
 
                 </div>

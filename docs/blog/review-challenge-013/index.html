@@ -16,7 +16,7 @@
 
     <meta name="description" content="Kian-Meng Ang Weekly Review: Challenge - #013.">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.55.0-DEV" />
+    <meta name="generator" content="Hugo 0.66.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -149,175 +149,104 @@
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
-                    
-
-<p>Continues from <a href="/blog/review-challenge-012">previous post</a>.</p>
-
+                    <p>Continues from <a href="/blog/review-challenge-012">previous post</a>.</p>
 <p>Feel free to <a href="https://github.com/manwar/perlweeklychallenge/">submit a merge request or open a ticket</a> if you found any issues with this post. Feedback are very much appreciated and welcome.</p>
-
 <p>Read the <a href="/blog/perl-weekly-challenge-013/">original questions</a> and <a href="/blog/recap-challenge-013/">recap</a> of the weekly challenge first to have a quick overview.</p>
-
-<hr />
-
+<hr>
 <h2 id="challenge-1">Challenge #1</h2>
-
-<hr />
-
+<hr>
 <p>In this challenge, there are three approaches to generate all the last Fridays for a year. We can either (1) count forward from first Friday of the year, (2) count backward from last Friday of the year, or (3) count backward from the last day of each month. Read <a href="https://perl6.eu/hofstadter-friday.html">Arne Sommer&rsquo;s post</a> if you want a step-by-step walk through on how he solve this challenge using all three ways. Most of the submitted answers fall within these three strategies but with a slight variations.</p>
-
 <p>Laurent Rosenfeld took another approach of counting forward by <a href="http://blogs.perl.org/users/laurent_r/2019/06/perl-weekly-challenge-13-fridays-and-mutually-recursive-subroutines.html">checking through the last ten-plus days of each month</a>.</p>
-
 <p>Adam Russell <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-013/adam-russell/perl5/ch-1.pl">did the same</a> as well but without using any external CPAN modules. He did the day of the week calculation manually using the <a href="https://en.wikipedia.org/wiki/Determination_of_the_day_of_the_week#Sakamoto's_methods">Tomohiko Sakamoto&rsquo;s algorithm</a>.</p>
-
 <p>Another variation was seen on Joelle Maslak&rsquo;s <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-013/joelle-maslak/perl5/ch-1.pl">solution</a> which check the last Friday by adding a week to a Friday to see if the month changes. Ruben Westerberg used a <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-013/ruben-westerberg/perl5/ch-1.pl">similar way</a> detect last Friday but counting each month forward instead.</p>
-
 <p>Notable <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-013/jaldhar-h-vyas/perl5/ch-1.pl">submission</a> by Jaldhar H Vyas to make sure the calculation works for <a href="https://en.wikipedia.org/wiki/Gregorian_calendar">Gregorian calendar</a> starting from year 1753. Also, kudos to <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-013/daniel-mantovani/perl5/ch-1.pl">Daniel Mantovani</a> for commenting his code well which made it easy for us to code reading.</p>
-
 <p>In this challenge, we observed that different participants use different CPAN modules related to date or time manipulation as shown in the list below.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">
+    <span style="color:#66d9ef">use</span> Date::Calc <span style="color:#e6db74">qw/check_date Day_of_Week/</span>;
+    <span style="color:#66d9ef">use</span> Date::Manip;
+    <span style="color:#66d9ef">use</span> DateTime;
+    <span style="color:#66d9ef">use</span> DateTime::Duration;
+    <span style="color:#66d9ef">use</span> POSIX <span style="color:#e6db74">qw(mktime strftime)</span>;
+    <span style="color:#66d9ef">use</span> Time::Local;
+    <span style="color:#66d9ef">use</span> Time::Local <span style="color:#e6db74">qw/timegm_nocheck/</span> ;
+    <span style="color:#66d9ef">use</span> Time::Local <span style="color:#e6db74">qw;
+</span><span style="color:#e6db74">    use Time::Piece;</span>
+    <span style="color:#66d9ef">use</span> Time::Seconds;
 
-<pre><code class="language-perl">
-    use Date::Calc qw/check_date Day_of_Week/;
-    use Date::Manip;
-    use DateTime;
-    use DateTime::Duration;
-    use POSIX qw(mktime strftime);
-    use Time::Local;
-    use Time::Local qw/timegm_nocheck/ ;
-    use Time::Local qw;
-    use Time::Piece;
-    use Time::Seconds;
-
-</code></pre>
-
-<p>Within this list, <a href="https://metacpan.org/release/DateTime"><code>DateTime</code></a> is the only CPAN module recommended by <a href="https://metacpan.org/pod/Task::Kensho#Task::Kensho::Dates:-Date-Modules"><code>Task::Kensho::Dates</code></a> and that the reason <a href="http://blogs.perl.org/users/athanasius/2019/06/perl-weekly-challenge-013.html">justified its usage</a> by Athanasius. As Dave Jacoby <a href="https://jacoby.github.io//2019/06/19/yeah-about-challenge-13.html">suggested</a>, every one should buy <a href="https://blog.urth.org/">Dave Rolsky</a> (the primary author of <a href="https://metacpan.org/release/DateTime"><code>DateTime</code></a> CPAN module) a pizza at least once or you can <a href="https://metacpan.org/author/DROLSKY">make a donation</a> (there is a donate button in the page) to him.</p>
-
-<hr />
-
+</code></pre></div><p>Within this list, <a href="https://metacpan.org/release/DateTime"><code>DateTime</code></a> is the only CPAN module recommended by <a href="https://metacpan.org/pod/Task::Kensho#Task::Kensho::Dates:-Date-Modules"><code>Task::Kensho::Dates</code></a> and that the reason <a href="http://blogs.perl.org/users/athanasius/2019/06/perl-weekly-challenge-013.html">justified its usage</a> by Athanasius. As Dave Jacoby <a href="https://jacoby.github.io//2019/06/19/yeah-about-challenge-13.html">suggested</a>, every one should buy <a href="https://blog.urth.org/">Dave Rolsky</a> (the primary author of <a href="https://metacpan.org/release/DateTime"><code>DateTime</code></a> CPAN module) a pizza at least once or you can <a href="https://metacpan.org/author/DROLSKY">make a donation</a> (there is a donate button in the page) to him.</p>
+<hr>
 <h2 id="challenge-2">Challenge #2</h2>
-
-<hr />
-
+<hr>
 <p>The general consensus that this was a straight forward question where you just need to apply the mathematical definition of formulae of <a href="https://en.wikipedia.org/wiki/Hofstadter_sequence#Hofstadter_Female_and_Male_sequences">Hofstadter Female and Male sequences</a>. E. Choroba gave a <a href="http://blogs.perl.org/users/e_choroba/2019/06/perl-weekly-challenge-013-last-fridays-and-hofstadter-female-and-male-sequences.html">good justification</a> of using the <a href="https://metacpan.org/pod/Function::Parameters"><code>Function::Parameters</code></a> CPAN module to match the subroutine method signature to the definition of the mathematical formulae as shown below. The <a href="https://en.wikipedia.org/wiki/Hofstadter_sequence#Hofstadter_Female_and_Male_sequences">mathematical formulae</a>.</p>
-
 <pre><code>    F(0) = 1, M(0) = 0, and
     F(n) = n-M(F(n-1)), n &gt; 0
     M(n) = n-F(M(n-1)), n &gt; 0
-</code></pre>
-
-<p>Equivalent <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-013/e-choroba/perl5/ch-2.pl">Perl&rsquo;s code</a> by E.Choroba.</p>
-
-<pre><code class="language-perl">    fun F ($n) { $n ? $n - M(F($n - 1)) : 1 }
-    fun M ($n) { $n ? $n - F(M($n - 1)) : 0 }
-</code></pre>
-
-<p>And for comparison, equivalent <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-013/laurent-rosenfeld/perl5/ch-2.pl">Perl&rsquo;s code</a> by Laurent Rosenfeld without using <a href="https://metacpan.org/pod/Function::Parameters"><code>Function::Parameters</code></a> CPAN module.</p>
-
-<pre><code class="language-perl">    sub female {
-        my $n = shift;
-        return 1 if $n == 0;   # base case
-        return $n - male (female ($n - 1));
+</code></pre><p>Equivalent <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-013/e-choroba/perl5/ch-2.pl">Perl&rsquo;s code</a> by E.Choroba.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    fun F ($n) { $n ? $n <span style="color:#f92672">-</span> M(F($n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)) : <span style="color:#ae81ff">1</span> }
+    fun M ($n) { $n ? $n <span style="color:#f92672">-</span> F(M($n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)) : <span style="color:#ae81ff">0</span> }
+</code></pre></div><p>And for comparison, equivalent <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-013/laurent-rosenfeld/perl5/ch-2.pl">Perl&rsquo;s code</a> by Laurent Rosenfeld without using <a href="https://metacpan.org/pod/Function::Parameters"><code>Function::Parameters</code></a> CPAN module.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">female</span> {
+        <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> shift;
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> $n <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;   <span style="color:#75715e"># base case</span>
+        <span style="color:#66d9ef">return</span> $n <span style="color:#f92672">-</span> male (female ($n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>));
     }
 
-    sub male {
-        my $n = shift;
-        return 0 if $n == 0;   #base case
-        return $n - female (male ($n - 1));
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">male</span> {
+        <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> shift;
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $n <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;   <span style="color:#75715e">#base case</span>
+        <span style="color:#66d9ef">return</span> $n <span style="color:#f92672">-</span> female (male ($n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>));
     }
-</code></pre>
-
-<p>Since there were repeated calculations, hence this challenge was a good problem to fully utilize the caching mechanism. Lubos Kolouch submitted a solution that implemented a manual caching through <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-013/lubos-kolouch/perl5/ch-2.pl">saving the calculated result in a global hash</a>.</p>
-
+</code></pre></div><p>Since there were repeated calculations, hence this challenge was a good problem to fully utilize the caching mechanism. Lubos Kolouch submitted a solution that implemented a manual caching through <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-013/lubos-kolouch/perl5/ch-2.pl">saving the calculated result in a global hash</a>.</p>
 <p>Similarly but on different approach, Yozen Hernandez&rsquo;s solution <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-013/yozen-hernandez/perl5/ch-2.pl">stored the cached result</a> within the subroutine by declaring the hash as <a href="https://perldoc.perl.org/functions/state.html"><code>state</code></a> variable.</p>
-
 <p>What about those who want a caching solution that came with the core distribution? In Perl, the <a href="https://perldoc.perl.org/Memoize.html"><code>Memoize</code></a> is the go-to CPAN module for adding caching ability to a <a href="http://blogs.perl.org/users/e_choroba/2019/06/perl-weekly-challenge-013-last-fridays-and-hofstadter-female-and-male-sequences.html">pure subroutine (returned result depends on input value with no side effects)</a>. In fact, this was the most common used caching strategy for this challenge as seen in the solution of <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-013/gustavo-chaves/perl5/ch-2.pl">Gustavo Chaves</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-013/athanasius/perl5/ch-2.pl">Athanasius</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-013/laurent-rosenfeld/perl5/ch-2a.pl">Laurent Rosenfeld</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-013/guillermo-ramos/perl5/ch-2.pl">Guillermo Ramos</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-013/duncan-c-white/perl5/ch-2.pl">Duncan C White</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-013/e-choroba/perl5/ch-2.pl">E Choroba</a>, and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-013/joelle-maslak/perl5/ch-2.pl">Joelle Maslak</a>.</p>
-
 <p>If you notice that some participants use <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-013/daniel-mantovani/perl5/ch-2.pl"><code>M()</code></a> or <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-013/dave-jacoby/perl5/ch-2.pl"><code>mm()</code></a> as subroutine name instead of <code>m</code>. Simply because <code>m//</code> is a match operator in Perl. Steven Wilson also <a href="http://tilde.town/~wlsn/pwc013.html">encountered this problem</a> as well.</p>
-
 <p>On a side note, if we were going to pick a solution and print it as a poster, E.Choroba&rsquo;s <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-013/e-choroba/perl5/ch-2.pl">solution for the challenge #2</a> (without the comment) would be in our consideration.</p>
-
-<hr />
-
+<hr>
 <h2 id="challenge-3">Challenge #3</h2>
-
-<hr />
-
+<hr>
 <p>There was an issue with obtaining the API key. You need to submit your credit card details first before you can get the API key. While some participants found this extra registration step quite hassle, some found it quite <a href="http://blogs.perl.org/users/athanasius/2019/06/perl-weekly-challenge-013.html">discouraging</a> for participating in this challenge. Nevertheless, for future challenges, perhaps we should prefer more publicly and accessible APIs instead of those locked behind a paywall.</p>
-
 <p>There were four participants for this week. Aside from the usual suspects, both <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-013/guillermo%20-ramos/perl5/ch-3.pl">Guillermo Ramos</a> and <a href="https://neilb.org/2019/06/20/words-api.html">Neil Bowers</a> participated for the first time. If we use nested or chained ternary operator as a replacement for if/else statement, it would looks the code done by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-013/guillermo%20-ramos/perl5/ch-3.pl">Guillermo Ramos</a> as shown below. While it&rsquo;s against the conventional wisdom, it did reduce the syntax clutter of if/else statement, provided that you indent the code properly.</p>
-
-<pre><code class="language-perl">    print $frequency &gt; 5 ? &quot;frequently used&quot;
-        : $frequency &gt; 3 ? &quot;occasionally used&quot;
-        : $frequency &gt; 1 ? &quot;rarely used&quot;
-        : &quot;never used&quot;;
-</code></pre>
-
-<p>We&rsquo;ve been waiting for someone to turn the third challenge into a CPAN module. And finally, Neil Bowers have answered our call by making his solution into a full fledged CPAN module, <a href="https://metacpan.org/pod/WebService::WordsAPI"><code>WebService::WordsAPI</code></a>. Two things we noticed at how he coded the CPAN module. First, he took a minimalist approach by using just the bare minimum <a href="https://metacpan.org/pod/Moo"><code>Moo</code></a> and <a href="https://metacpan.org/pod/HTTP::Tiny"><code>HTTP::Tiny</code></a> CPAN modules. Second, based on his chosen CPAN modules, he made the module more extensible. For example, we can <a href="https://metacpan.org/release/WebService-WordsAPI/source/lib/WebService/WordsAPI.pm#L12">override the default HTTP client</a> with any HTTP clients that share the same interfaces with <a href="https://metacpan.org/pod/HTTP::Tiny"><code>HTTP::Tiny</code></a>. Hence, we just <a href="https://metacpan.org/release/WebService-WordsAPI/source/lib/WebService/WordsAPI.pm#L12">load the external dependencies</a> on demand as shown below.</p>
-
-<pre><code class="language-perl">    has ua =&gt; (
-        is      =&gt; 'ro',
-        default =&gt; sub {
-                       require HTTP::Tiny;
-                       require IO::Socket::SSL;
-                       return HTTP::Tiny-&gt;new;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">print</span> $frequency <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">5</span> ? <span style="color:#e6db74">&#34;frequently used&#34;</span>
+        : $frequency <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">3</span> ? <span style="color:#e6db74">&#34;occasionally used&#34;</span>
+        : $frequency <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> ? <span style="color:#e6db74">&#34;rarely used&#34;</span>
+        : <span style="color:#e6db74">&#34;never used&#34;</span>;
+</code></pre></div><p>We&rsquo;ve been waiting for someone to turn the third challenge into a CPAN module. And finally, Neil Bowers have answered our call by making his solution into a full fledged CPAN module, <a href="https://metacpan.org/pod/WebService::WordsAPI"><code>WebService::WordsAPI</code></a>. Two things we noticed at how he coded the CPAN module. First, he took a minimalist approach by using just the bare minimum <a href="https://metacpan.org/pod/Moo"><code>Moo</code></a> and <a href="https://metacpan.org/pod/HTTP::Tiny"><code>HTTP::Tiny</code></a> CPAN modules. Second, based on his chosen CPAN modules, he made the module more extensible. For example, we can <a href="https://metacpan.org/release/WebService-WordsAPI/source/lib/WebService/WordsAPI.pm#L12">override the default HTTP client</a> with any HTTP clients that share the same interfaces with <a href="https://metacpan.org/pod/HTTP::Tiny"><code>HTTP::Tiny</code></a>. Hence, we just <a href="https://metacpan.org/release/WebService-WordsAPI/source/lib/WebService/WordsAPI.pm#L12">load the external dependencies</a> on demand as shown below.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    has ua <span style="color:#f92672">=&gt;</span> (
+        is      <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;ro&#39;</span>,
+        default <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> {
+                       <span style="color:#66d9ef">require</span> HTTP::Tiny;
+                       <span style="color:#66d9ef">require</span> IO::Socket::SSL;
+                       <span style="color:#66d9ef">return</span> HTTP::Tiny<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
                    },
     );
-</code></pre>
-
-<p>Next, this CPAN module also allows <a href="https://metacpan.org/release/WebService-WordsAPI/source/lib/WebService/WordsAPI.pm#L26">switching of returned values</a> between a Perl structure or a JSON string, which was a nice feature provided for any CPAN module &ldquo;consumers&rdquo;. In short, for any developers who like to create a web service API related CPAN module, the 0.01 release of <a href="https://metacpan.org/pod/WebService::WordsAPI"><code>WebService::WordsAPI</code></a> is a $good fundamental reference point. Off course, there are other approaches as well and we hope to see some in coming challenges.</p>
-
+</code></pre></div><p>Next, this CPAN module also allows <a href="https://metacpan.org/release/WebService-WordsAPI/source/lib/WebService/WordsAPI.pm#L26">switching of returned values</a> between a Perl structure or a JSON string, which was a nice feature provided for any CPAN module &ldquo;consumers&rdquo;. In short, for any developers who like to create a web service API related CPAN module, the 0.01 release of <a href="https://metacpan.org/pod/WebService::WordsAPI"><code>WebService::WordsAPI</code></a> is a $good fundamental reference point. Off course, there are other approaches as well and we hope to see some in coming challenges.</p>
 <p>For those who like to see Perl 6 solution, Joelle Maslak&rsquo;s <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-013/joelle-maslak/perl5/ch-3.pl">submission</a> is a good place to start.</p>
-
-<hr />
-
+<hr>
 <h2 id="blog-posts">Blog Posts</h2>
-
-<hr />
-
+<hr>
 <p>They said, the more the merrier. We have quite a number of participants blogged about this week challenges. If you like to have more insights on how they arrived at their solutions, do read up on their thoughts and approaches. While you at it, share out or retweet their blog posts as well.</p>
-
 <p>(1) <a href="https://perl6.eu/hofstadter-friday.html">Hofstadter, Friday and Perl 6</a> by Arne Sommer.</p>
-
 <p>Perl 6 solutions in a line-by-line walk through manner. Very detailed implementation of different strategies to find all last Friday of a month within a year.</p>
-
 <p>(2) <a href="https://adamcrussell.livejournal.com/4730.html">Perl Weekly Challenge 013</a> by Adamn Russell.</p>
-
 <p>See how he implemented Tomohiko Sakamoto&rsquo;s algorithm to determine the day of the week.</p>
-
 <p>(3) <a href="https://jacoby.github.io//2019/06/19/yeah-about-challenge-13.html">Yeah, about Challenge 13</a> by Dave Jacoby.</p>
-
 <p>As usual, some personal notes mixed with technical solutions.</p>
-
 <p>(4) <a href="http://blogs.perl.org/users/athanasius/2019/06/perl-weekly-challenge-013.html">Perl Weekly Challenge #013</a> by Athanasius.</p>
-
 <p>Perl 5 and 6 solutions and discussions. Read this in addition to Laurent Rosenfeld.</p>
-
 <p>(5) <a href="http://blogs.perl.org/users/laurent_r/2019/06/perl-weekly-challenge-13-fridays-and-mutually-recursive-subroutines.html">Perl Weekly Challenge # 13: Fridays and Mutually Recursive Subroutines</a> by Laurent Rosenfeld.</p>
-
 <p>In addition to the Perl 5 and Perl 6 comparison, you can read about the benchmark result of using and not using
 <a href="https://perldoc.perl.org/Memoize.html"><code>Memoize</code></a> module.</p>
-
 <p>(6) <a href="https://www.braincells.com/perl/2019/06/perl_weekly_challenge_week_13.html">Perl Weekly Challenge: Week 13</a> by Jaldhar H. Vyas.</p>
-
 <p>One of the participant that focus on the leap year calculation as well as Perl 5 and Perl 6 solutions.</p>
-
 <p>(7) <a href="https://neilb.org/2019/06/20/words-api.html">An interface to WordsAPI</a> by Neil Bowers.</p>
-
 <p>If you want to create a new CPAN module, start with his blog post.</p>
-
 <p>(8) <a href="https://yzhernand.github.io/posts/perl-weekly-challenge-13/">Perl Weekly Challenge 13: Last Friday of the month / Mutually recursive methods</a> by Yozen Hernandez.</p>
-
 <p>If you want to understand why and how he used <code>$,</code> or also known as the <a href="https://perlmaven.com/output-field-separator-and-list-separator">output field separator</a> and <a href="https://perldoc.perl.org/functions/state.html"><code>state</code></a> variable to cache calculated result.</p>
-
 <p>(9) <a href="http://www.khanate.co.uk/blog/2019/06/19/perl-weekly-challenge-13/">Perl Weekly Challenge 13</a> by Simon Proctor.</p>
-
 <p>Discussion on Perl 6 solution to the challenge #2.</p>
-
 <p>(10) <a href="http://tilde.town/~wlsn/pwc013.html">Fridays and Mutually Recursive methods</a> by Steven Wilson.</p>
-
 <p><strong>&ldquo;Come with me now on a journey through time and space as I workout how to solve this week&rsquo;s challenges&rdquo;</strong>. He said it better himself. All jokes aside,follow his thoughts on how he solved both challenges. Recommended reading for this week.</p>
-
 <p>(11) <a href="http://blogs.perl.org/users/e_choroba/2019/06/perl-weekly-challenge-013-last-fridays-and-hofstadter-female-and-male-sequences.html">Perl Weekly Challenge 013: Last Fridays and Hofstadter Female and Male Sequences</a> by E.Choroba.</p>
-
 <p>Read his insights, especially on challenge #2 on solving both challenges. Another recommended reading of the week.</p>
 
                 </div>

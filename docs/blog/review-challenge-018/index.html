@@ -16,7 +16,7 @@
 
     <meta name="description" content="Kian-Meng Ang Weekly Review: Challenge - #018.">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.55.0-DEV" />
+    <meta name="generator" content="Hugo 0.66.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -149,99 +149,52 @@
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
-                    
-
-<hr />
-
+                    <hr>
 <p>Continues from <a href="/blog/review-challenge-017/">previous week</a>.</p>
-
 <p>Feel free to <a href="https://github.com/manwar/perlweeklychallenge">submit a merge request or open a ticket</a> if you found any issues with this post. We highly appreciate and welcome your feedback.</p>
-
 <p>For a quick overview, go through the <a href="/blog/perl-weekly-challenge-018/">original tasks</a> and <a href="/blog/recap-challenge-018/">recap</a> of the weekly challenge.</p>
-
-<hr />
-
+<hr>
 <h3 id="task-1">Task #1</h3>
-
-<hr />
-
-<p>If you need to have a quick overview how to solve the challenge, read the submitted solutions by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/mark-anderson/perl5/ch-1.pl">Mark Anderson</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/jaime/perl5/ch-1.pl">Jamie</a>, and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/e-choroba/perl5/ch-1.pl">E. Choroba</a> (read his <a href="http://blogs.perl.org/users/e_choroba/2019/07/perl-weekly-challenge-0181-longest-common-substring.html">detailed blog post</a> on this). These solutions were short and easily understood due to the brevity and clarity of the code. Read <strong>Mark Senn</strong>&rsquo;s <a href="https://engineering.purdue.edu/~mark/pwc-018.pdf">post</a> on different dimensions in coding.</p>
-
+<hr>
+<p>If you need to have a quick overview how to solve the challenge, read the submitted solutions by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/mark-anderson/perl5/ch-1.pl">Mark Anderson</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/jaime/perl5/ch-1.pl">Jamie</a>, and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/e-choroba/perl5/ch-1.pl">E. Choroba</a> (read his <a href="http://blogs.perl.org/users/e_choroba/2019/07/perl-weekly-challenge-0181-longest-common-substring.html">detailed blog post</a> on this). These solutions were short and easily understood due to the brevity and clarity of the code. Read <strong>Mark Senn</strong>&lsquo;s <a href="https://engineering.purdue.edu/~mark/pwc-018.pdf">post</a> on different dimensions in coding.</p>
 <p>There were a few strategies used by participants to tackle this <a href="https://en.wikipedia.org/wiki/Longest_common_substring_problem">longest common substring problem</a>. No participant use this but <a href="https://metacpan.org/pod/String::LCSS"><code>String::LCSS</code></a> and <a href="https://metacpan.org/pod/String::LCSS_XS"><code>String::LCSS_XS</code></a> are the CPAN modules that can be used to solve this.</p>
-
 <p>The common approach was generating substrings, count, filter, and find the highest occurrences. The main difference was the implementation of these steps. For example, <strong>Athanasius</strong> stored the list of substrings as set using the <a href="https://metacpan.org/pod/Set::Scalar"><code>Set::Scalar</code></a> CPAN module. Likewise, <strong>Joelle Maslak</strong> <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/joelle-maslak/perl5/ch-1.pl">solved it</a> by finding the intersection of all substrings within an array.</p>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/adam-russell/perl5/ch-1.pl">Adam Russell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/e-choroba/perl5/ch-1a.pl">E. Choroba</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/roger-bell-west/perl5/ch-1.pl">Roger Bell West</a> (inspired by the <a href="https://en.wikipedia.org/wiki/Longest_common_substring_problem">pseudocode</a>) solved the task using the recommended suffix tree algorithm by building a generalized suffix tree. <strong>Adam Russell</strong> went a step further by implementing the suffix array data structure as an <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/adam-russell/perl5/SuffixArray.pm">external Perl module</a>. <strong>Ruben Westerberg</strong>&rsquo;s <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/ruben-westerberg/perl5/ch-1.pl">solution</a> was rather different and unique.</p>
-
-<hr />
-
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/adam-russell/perl5/ch-1.pl">Adam Russell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/e-choroba/perl5/ch-1a.pl">E. Choroba</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/roger-bell-west/perl5/ch-1.pl">Roger Bell West</a> (inspired by the <a href="https://en.wikipedia.org/wiki/Longest_common_substring_problem">pseudocode</a>) solved the task using the recommended suffix tree algorithm by building a generalized suffix tree. <strong>Adam Russell</strong> went a step further by implementing the suffix array data structure as an <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/adam-russell/perl5/SuffixArray.pm">external Perl module</a>. <strong>Ruben Westerberg</strong>&lsquo;s <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/ruben-westerberg/perl5/ch-1.pl">solution</a> was rather different and unique.</p>
+<hr>
 <h3 id="task-2">Task #2</h3>
-
-<hr />
-
+<hr>
 <p>If we remembered correctly, the first task where we have a clear defined problem. Basically, participant needs to fill up the implementation details of a list of method definitions. Even <strong>Duncan C. White</strong> <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/duncan-c-white/perl5/ch-2.pl">agreed</a> with that.</p>
-
 <p>Now, for some submitted solutions that caught our attention for this task.</p>
-
 <p>Instead of just plain hash to store and group the queue item by priority, <strong>Duane Powel</strong> opted for a <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/duane-powell/perl5/ch-2.pl">nested hash references</a> data structure. <strong>Adam Russell</strong> did <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/adam-russell/perl5/PriorityQueue.pm">something similar</a> but with the help of <a href="https://metacpan.org/pod/Class::Struct"><code>Class::Struct</code></a> CPAN module. There was another way, more abstract approach that use the <a href="https://metacpan.org/pod/List::Priority"><code>List::Priority</code></a> CPAN module as seen in <strong>Athanasius</strong>&rsquo; <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/athanasius/perl5/MyPriorityQueue.pm">solution</a>. <strong>Jaldhar H. Vyas</strong> <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/jaldhar-h-vyas/perl5/ch-2.pl">went a step further</a> to create almost a CPAN module. He even wrote details documentation in POD in his answer!</p>
-
 <p>Instead of creating a Perl module, <strong>Laurent Rosenfeld</strong> used <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/laurent-rosenfeld/perl5/ch-2.pl">anonymous subroutines</a> to implement the interfaces in a functional programming manner. This was rather distinctive among all solutions. <strong>Lubos Kolouch</strong> did something similar, so was <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/andrezgz/perl5/ch-2.pl">Andrezgz</a>, but with a <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/lubos-kolouch/perl5/ch-2.pl">very comprehensive test coverage and cases</a>. Another participant with <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/yozen-hernandez/perl5/ch-2.pl">good test coverage</a> was <strong>Yozen Hernandez</strong>.</p>
-
 <p>The most <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/e-choroba/perl5/ch-2.pl">comprehensive solution</a> submitted this week belongs to <strong>E. Choroba</strong>. There were two implementations either an array or a heap data structure, a benchmark (array is faster, see result below), and test coverage.</p>
-
-<pre><code class="language-perl">           Rate  heap array
-    heap  120/s    --  -56%
-    array 272/s  126%    --
-</code></pre>
-
-<p>Where <strong>Jaldhar H. Vyas</strong> used <a href="https://metacpan.org/pod/Moo"><code>Moo</code></a>, <strong>Joelle Maslak</strong> used <a href="https://metacpan.org/pod/Moose"><code>Moose</code></a> to <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/joelle-maslak/perl5/lib/PriorityQueue.pm">create</a> a Perl module. The used of <a href="https://metacpan.org/pod/Test2::V0"><code>Test2::V0</code></a> CPAN module was the first we seen so far in all challenges.</p>
-
-<hr />
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">           Rate  heap array
+    heap  <span style="color:#ae81ff">120</span><span style="color:#f92672">/</span>s    <span style="color:#f92672">--</span>  <span style="color:#f92672">-</span><span style="color:#ae81ff">56</span>%
+    array <span style="color:#ae81ff">272</span><span style="color:#f92672">/</span>s  <span style="color:#ae81ff">126</span>%    <span style="color:#960050;background-color:#1e0010">--</span>
+</code></pre></div><p>Where <strong>Jaldhar H. Vyas</strong> used <a href="https://metacpan.org/pod/Moo"><code>Moo</code></a>, <strong>Joelle Maslak</strong> used <a href="https://metacpan.org/pod/Moose"><code>Moose</code></a> to <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/joelle-maslak/perl5/lib/PriorityQueue.pm">create</a> a Perl module. The used of <a href="https://metacpan.org/pod/Test2::V0"><code>Test2::V0</code></a> CPAN module was the first we seen so far in all challenges.</p>
+<hr>
 <h3 id="task-3">Task #3</h3>
-
-<hr />
-
+<hr>
 <p>Slow week but at least there were submissions to this task this time. For <strong>Perl 5</strong>, we have the usual <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/joelle-maslak/perl5/ch-3.pl">Joelle Maslak</a> and for <strong>Perl 6</strong>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/randy-lauen/perl6/ch-3.p6">Randy Lauen</a> and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/joelle-maslak/perl6/ch-3.p6">Joelle Maslak</a>.</p>
-
 <p>After so many weeks of <a href="https://perlweeklychallenge.org/blog/the-optional-api-task/">reviewing</a> this optional <strong>Task #3</strong>, we observed that <strong>Perl 6</strong> solutions were definitely more structure due to a consistent Object-Oriented (OO) support in <strong>Perl 6</strong> and <a href="https://cro.services/docs/reference/cro-http-client"><code>Cro::HTTP::Client</code></a> module.</p>
-
 <p>For those who haven&rsquo;t try this tasks before, do give it a shot.</p>
-
-<hr />
-
+<hr>
 <h3 id="blog-posts">Blog Posts</h3>
-
-<hr />
-
+<hr>
 <p>Regular posts by some of the participants.</p>
-
 <p>(1) <a href="https://perl6.eu/substring-queues.html">Substrings and Queues with Perl 6</a> by <strong>Arne Sommer</strong></p>
-
 <p>The usual step-by-step walk through in <strong>Perl 6</strong>.</p>
-
 <p>(2) <a href="https://engineering.purdue.edu/~mark/pwc-018.pdf">Perl Weekly Challenge - 018</a> by <strong>Mark Senn</strong></p>
-
 <p><strong>Mark Senn</strong> is back for this challenge and a good write-up on different coding dimensions. Recommended read.</p>
-
 <p>(3) <a href="https://adamcrussell.livejournal.com/6109.html">Perl Weekly Challenge 018</a> by <strong>Adam Russell</strong></p>
-
 <p>Read how he approached the challenge using Perl modules.</p>
-
 <p>(4) <a href="http://blogs.perl.org/users/laurent_r/2019/07/perl-weekly-challenge-18-longest-common-substrings-priority-queues-and-a-functional-object-system.html">Perl Weekly Challenge # 18: Longest Common Substrings, Priority Queues, and a Functional Object System</a> by <strong>Laurent Rosenfeld</strong></p>
-
 <p>Very detailed notes on how he tackled the problems and why he picked functional approach. Recommended read.</p>
-
 <p>(5) <a href="https://blog.firedrake.org/archive/2019/07/Perl_Weekly_Challenge_18.html">Perl Weekly Challenge 18</a> by <strong>Roger Bell West</strong></p>
-
 <p>Read how he translated the pseudocode for <strong>Task #1</strong> into Perl and the problems encountered.</p>
-
 <p>(6) <a href="http://blogs.perl.org/users/e_choroba/2019/07/perl-weekly-challenge-0181-longest-common-substring.html">Perl Weekly Challenge 018/1: Longest Common Substring</a> by <strong>E. Choroba</strong></p>
-
 <p>He have outdid himself this time, especially the generating and visualizing the suffix tree. Recommended read.</p>
-
 <p>(7) <a href="http://blogs.perl.org/users/e_choroba/2019/07/perl-weekly-challenge-0182-priority-queue.html">Perl Weekly Challenge 018/2: Priority Queue</a> by <strong>E. Choroba</strong></p>
-
 <p>A discussion on binary heap for <strong>Task #2</strong>. Also another recommended read.</p>
 
                 </div>

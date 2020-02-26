@@ -16,7 +16,7 @@
 
     <meta name="description" content="Laurent Rosenfeld Weekly Review: Challenge - #006.">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.55.0-DEV" />
+    <meta name="generator" content="Hugo 0.66.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -149,51 +149,29 @@
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
-                    
-
-<hr />
-
+                    <hr>
 <h1 id="raku-solutions-weekly-review">Raku Solutions Weekly Review</h1>
-
-<hr />
-
+<hr>
 <h2 id="task-1-compact-number-ranges">Task #1: Compact Number Ranges</h2>
-
 <p>This is derived in part from my <a href="http://blogs.perl.org/users/laurent_r/2019/05/perl-weekly-challenge-6-compact-number-ranges.html">blog post</a> made in answer to the <a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-006/">Week 6 of the Perl Weekly Challenge</a> organized by  <a href="http://blogs.perl.org/users/mohammad_s_anwar/">Mohammad S. Anwar</a> as well as answers made by others to the same challenge.</p>
-
 <p>The challenge reads as follows:</p>
-
 <p><em>Create a script which takes a list of numbers from command line and print the same in the compact form. For example, if you pass “1,2,3,4,9,10,14,15,16” then it should print the compact form like “1-4,9,10,14-16”.</em></p>
-
 <p>In the input example provided with the question, the numbers are sorted in ascending order, but there is no reason to limit ourselves to such a case. The question is then the following: if the input is not in ascending order, are we supposed to keep the order provided and compact the sub-ranges, or are we supposed to reorder the numbers and compact the ranges over the sorted data? In other words, if the input data is &ldquo;1,2,3,4,9,10,14,15,16,5,6,7&rdquo;, are we supposed to display:</p>
-
 <pre><code>1-4,9,10,14-16,5-7
 </code></pre>
-
 <p>or:</p>
-
 <pre><code>1-7,9,10,14-16?
 </code></pre>
-
 <p>I chose the first interpretation, but there wouldn&rsquo;t be much code to change to follow the second interpretation (for example, we could just sort the number list before we start)..</p>
-
 <p>I will suppose that the input data is correct (i.e. a list of space-separated numbers) and not try to validate the input.</p>
-
 <p>The Perl Weekly Challenge covers both Perl 5 and Perl 6. I truly love both languages and, over the 6+ months that the challenge has existed, I have always provided solutions in both languages. In the case of this challenge, I have worked on the Perl 5 solution before the Perl 6 solution, and there are a few things that I found on the problem when working on the P5 solution that I want to briefly report before showing my P6 solution.</p>
-
 <p>First, my initial P5 solution worked correctly, but wasn&rsquo;t entirely compliant with the specification: when there are only two consecutive numbers (such as 9,10 in the examples above), the required output is &ldquo;9,10&rdquo; and my original P5 solution was producing &ldquo;9-10.&rdquo; To me, this is also correct, but this does not fully satisfy the requirement. As it turned out, modifying the program to comply with the specification made the code significantly less natural and more complicated. I felt that the program was now a bit too complicated for such a simple task. In brief, I found that a bit clumsy.</p>
-
 <p>So I tried a P5 recursive approach. The resulting program was slightly more concise, but only by a thin margin (and probably a bit less easy to understand). I also tried a functional programming approach, some form of a &ldquo;lispy&rdquo; data flow or data pipeline solution using chained <code>map</code> and <code>grep</code> routines, but wasn&rsquo;t able to come up with something that would truly look better.</p>
-
 <p>Let&rsquo;s see what we can do in Perl 6.</p>
-
 <h2 id="my-solutions">My Solutions</h2>
-
 <p>Initially, I did not see any way of doing this that would be very different from the P5 version.</p>
-
 <p>This is a Perl 6 adaptation of the corrected P5 version:</p>
-
-<pre><code class="language-Perl6">use v6;
+<pre><code class="language-Perl6" data-lang="Perl6">use v6;
 sub compare ($prev, $start) {
     return $prev &gt; $start + 1 ?? &quot;$start-$prev&quot;
         !! $prev &gt; $start     ?? &quot;$start,$prev&quot;
@@ -213,23 +191,15 @@ for @input -&gt; $num {
 }
 $output ~= compare $prev_val, $start_val;
 say $output;
-</code></pre>
-
-<p>With no argument passed to the script, it uses the default array and prints out:</p>
-
+</code></pre><p>With no argument passed to the script, it uses the default array and prints out:</p>
 <pre><code>$ perl6 num_range.p6
 1-4,9,10,14-16,3-6,4-7,9,9
 </code></pre>
-
 <p>Note that I also thought about using <code>given ... when</code> statements in the <code>compare</code> subroutine, but I ended up feeling that it made the code longer and less expressive for this kind of case. The <code>given ... when</code> &ldquo;switch&rdquo; statement is nice when implicitly using the smart match operator, for example to check the topic against a value, a regex or a type, but using it in a purely procedural fashion as it would be the case here gave me the unpleasant impression of going back in time by several decades and writing C, Pascal, or Ada code in Perl 6. It&rsquo;s probably just a personal bias.</p>
-
 <p>The recursive approach in P6 would essentially look like the P5 recursive version, except for the fact that using dynamic scope variables might simplify the passing of arguments between successive recursive calls. Not very interesting.</p>
-
 <p>Then I thought again about one of my pet subjects: why not try a functional programming approach? Perl 6 provides the <code>gather ... take</code> control flow statement, which can be thought as a generalized version of <code>map</code>, <code>grep</code>, and <code>return</code>: it is sort of a <code>map</code> in which you can also filter items (as in a <code>grep</code>), or sort of a <code>grep</code> in which you can also map various elements to something else. And you can return the data to the <code>gather</code> statement at the point you choose.</p>
-
 <p>Here we go:</p>
-
-<pre><code class="language-Perl6">use v6;
+<pre><code class="language-Perl6" data-lang="Perl6">use v6;
 sub get($start, $prev) {
     take $prev &gt; $start + 1 ?? &quot;$start-$prev&quot;
         !! $prev &gt; $start     ?? &quot;$start,$prev&quot;
@@ -248,15 +218,10 @@ my @result = gather {
     get $start, $prev;
 }
 say @result.join(&quot;,&quot;);
-</code></pre>
-
-<p>That may not be perfect, but I&rsquo;m much more satisfied with this than with all my previous versions, be it P5 or P6.</p>
-
+</code></pre><p>That may not be perfect, but I&rsquo;m much more satisfied with this than with all my previous versions, be it P5 or P6.</p>
 <h1 id="alternative-solutions">Alternative Solutions</h1>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-006/arne-sommer/perl6/ch-1.p6">Arne Sommer</a>&rsquo;s main loop is as follows:</p>
-
-<pre><code class="language-Perl6">while @values
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-006/arne-sommer/perl6/ch-1.p6">Arne Sommer</a>&lsquo;s main loop is as follows:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">while @values
 {
   my $next = @values.shift;
   if $next == @current[* -1] + 1
@@ -275,11 +240,8 @@ sub fix-it (@list)
   return &quot;@list[0],@list[1]&quot;   if @list.elems == 2;
   return &quot;@list[0]-@list[*-1]&quot; if @list.elems  &gt; 2;
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-006/jaldhar-h-vyas/perl6/ch-1.p6">Jaldhar H. Vyas</a> made two nested <code>while</code> loops, which is unlikely to be optimal, but that probablly doesn&rsquo;t matter with a small or even medium input dataset:</p>
-
-<pre><code class="language-Perl6">while ($current &lt;= $lastelem) {
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-006/jaldhar-h-vyas/perl6/ch-1.p6">Jaldhar H. Vyas</a> made two nested <code>while</code> loops, which is unlikely to be optimal, but that probablly doesn&rsquo;t matter with a small or even medium input dataset:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">while ($current &lt;= $lastelem) {
     $start = $current;
 
     while ($current &lt; $lastelem &amp;&amp;
@@ -295,11 +257,8 @@ sub fix-it (@list)
 
     $current++;
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-006/joelle-maslak/perl6/ch-1.p6">Joelle Maslack</a> first sorted the input arguments, and then used a <code>for</code> loop to go through the values:</p>
-
-<pre><code class="language-Perl6">for @*ARGS.sort( { $^a &lt;=&gt; $^b } ) -&gt; Int() $num {
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-006/joelle-maslak/perl6/ch-1.p6">Joelle Maslack</a> first sorted the input arguments, and then used a <code>for</code> loop to go through the values:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">for @*ARGS.sort( { $^a &lt;=&gt; $^b } ) -&gt; Int() $num {
     if ! defined $run {
         $run = Pair.new($num, $num);
     } else {
@@ -313,13 +272,9 @@ sub fix-it (@list)
     $run.freeze;
 }
 @runs.append($run) if defined $run;
-</code></pre>
-
-<p>Note that the Pair <code>freeze</code> method is now deprecated (as of 6.d language version), but it probably wasn&rsquo;t when Joelle wrote it several months ago. Instead, you may now create a new <code>Pair</code>, with a <a href="https://docs.perl6.org/language/glossary#decont">decontainerized</a> key/value.</p>
-
+</code></pre><p>Note that the Pair <code>freeze</code> method is now deprecated (as of 6.d language version), but it probably wasn&rsquo;t when Joelle wrote it several months ago. Instead, you may now create a new <code>Pair</code>, with a <a href="https://docs.perl6.org/language/glossary#decont">decontainerized</a> key/value.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-006/ozzy/perl6/ch-1.p6">Ozzy</a> used two successive <code>for</code> loops to go through the input data:</p>
-
-<pre><code class="language-Perl6">for @numbers -&gt; $n {
+<pre><code class="language-Perl6" data-lang="Perl6">for @numbers -&gt; $n {
     my $i = @output.elems;
     if $i == 0 || $n &gt; @output[$i-1].max+1 { @output[$i] = Range.new($n.Int, $n.Int); }
     elsif $n == @output[$i-1].max+1 { @output[$i-1] = Range.new( @output[$i-1].min, $n.Int ); };
@@ -337,32 +292,21 @@ for 0..(@output.elems-1) -&gt; $i {
     if $i &lt; @output.elems-1 { print ', '; }
     else { say '.'; }
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-006/ruben-westerberg/perl6/ch-1.p6">Ruben Westerberg</a> first joined the input numbers into a CSV string, and immediately thereafter splitted the string on commas and stored the result in a bag (presumably to remove duplicates). I fail to see why this was necessary, as I have the feeling that he could have worked directly on the input numbers. This being said, Ruben&rsquo;s code is the most compact solution:</p>
-
-<pre><code class="language-Perl6">my $string= @*ARGS ?? @*ARGS.join(&quot;,&quot;)!! prompt &quot;Enter numbers: &quot;;
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-006/ruben-westerberg/perl6/ch-1.p6">Ruben Westerberg</a> first joined the input numbers into a CSV string, and immediately thereafter splitted the string on commas and stored the result in a bag (presumably to remove duplicates). I fail to see why this was necessary, as I have the feeling that he could have worked directly on the input numbers. This being said, Ruben&rsquo;s code is the most compact solution:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">my $string= @*ARGS ?? @*ARGS.join(&quot;,&quot;)!! prompt &quot;Enter numbers: &quot;;
 my $a=$string.split(&quot;,&quot;,:skip-empty)&gt;&gt;.trim.grep({!/^$/})&gt;&gt;.Int.Bag;
 my @r1=$a.keys.sort;
 my @diff=@r1.rotate &gt;&gt;-&lt;&lt; @r1;
 my @p=(0,|map {|($^k,$k+1) if abs($^v) &gt; 1}, @diff.kv);
 @p.pop;
 say join &quot;,&quot;, map {@r1[$^a]==@r1[$^b]??@r1[$^a]!!&quot;@r1[$^a]-@r1[$^b]&quot;}, @p;
-</code></pre>
-
-<p>I like very much concise solutions, but the downside here is that Ruben&rsquo;s solution may be a bit too terse and somewhat difficult to follow.</p>
-
+</code></pre><p>I like very much concise solutions, but the downside here is that Ruben&rsquo;s solution may be a bit too terse and somewhat difficult to follow.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-006/simon-proctor/perl6/ch-1.p6">Simon Proctor</a> took an diametrically opposite approach and wrote a fairly  verbose (and somewhat over-engineered, IMHO) approach. Simon created a <code>GrowableRange</code> class, with five method definitions such as:</p>
-
-<pre><code class="language-Perl6">    method next() { $!max + 1 }
+<pre><code class="language-Perl6" data-lang="Perl6">    method next() { $!max + 1 }
     method grow() { $!max++; return self }
-</code></pre>
-
-<p>These methods basically do almost nothing and this is typically what I don&rsquo;t like very much with object-oriented programming pushed to the extreme. Anyone has the right to play with language features and have some fun using and even possibly abusing them (and I must confess that I also do that from time to time), but, frankly, this is kind of overkill, and, in my view, this is not really the Perl spirit.</p>
-
+</code></pre><p>These methods basically do almost nothing and this is typically what I don&rsquo;t like very much with object-oriented programming pushed to the extreme. Anyone has the right to play with language features and have some fun using and even possibly abusing them (and I must confess that I also do that from time to time), but, frankly, this is kind of overkill, and, in my view, this is not really the Perl spirit.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-006/tim-smith/perl6/ch-1.p6">Tim Smith</a> provided a simple and easy to understand solution:</p>
-
-<pre><code class="language-Perl6">my @vals = @*ARGS».comb(/\d+/).Seq.flat».Int.sort.unique
+<pre><code class="language-Perl6" data-lang="Perl6">my @vals = @*ARGS».comb(/\d+/).Seq.flat».Int.sort.unique
     or die &quot;Usage: {$?FILE.IO.basename} 1 2,3 4/5/6 '7 8 9'&quot;;
 my @groups;
 
@@ -376,46 +320,25 @@ for @vals -&gt; $n {
 }
 # Display the groups
 put @groups.map(*.unique.join('-')).join(',');
-</code></pre>
-
-<h2 id="task-2-ramanujan-s-constant">Task #2: Ramanujan&rsquo;s Constant</h2>
-
+</code></pre><h2 id="task-2-ramanujans-constant">Task #2: Ramanujan&rsquo;s Constant</h2>
 <p>This is derived in part from my <a href="http://blogs.perl.org/users/laurent_r/2019/05/perl-weekly-challenge-6-ramanujans-constant.html">blog post</a> made in answer to the <a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-006/">Week 06 of the Perl Weekly Challenge</a> organized by  <a href="http://blogs.perl.org/users/mohammad_s_anwar/">Mohammad S. Anwar</a> as well as answers made by others to the same challenge.</p>
-
 <p>The challenge reads as follows:</p>
-
 <p><em>Create a script to calculate Ramanujan’s constant with at least 32 digits of precision. Find out more about it here (Wikipedia link).</em></p>
-
 <h2 id="my-solutions-1">My Solutions</h2>
-
 <p>The Wikipedia link provided in the question concerning this challenge was apparently changed some time after the challenge was initially posted.</p>
-
 <p>The original link, posted on Monday, April 29, 2019, was pointing to the <a href="https://en.wikipedia.org/wiki/Landau%E2%80%93Ramanujan_constant">Landau-Ramanujan Constant</a>, which relates to the sum of two squares theorem.</p>
-
 <p>Then, two days later, on May 1, 2019, I noticed that the link had changed and pointed towards this other <a href="https://en.wikipedia.org/wiki/Heegner_number#Almost_integers_and_Ramanujan's_constant">Wikipedia page about Ramanujan&rsquo;s constant</a>, which refers to irrational (well, in this case, actually transcendental) numbers that almost look like integers.</p>
-
 <p>I guess that my good friend Mohammad Anwar got carried away when writing the challenge because it related to one of his most famous fellow citizens, Indian mathematician <a href="https://en.wikipedia.org/wiki/Srinivasa_Ramanujan">Srinivasa Ramanujan (1887-1920)</a>. If you&rsquo;ve never heard about Ramanujan or don&rsquo;t know much about him, please visit the Wikipedia article just mentioned and search further on the Internet; he is, despite a limited access to other mathematicians of the time for a large part of his very short life, one of the greatest mathematicians of the early twentieth century.</p>
-
 <p>Here, I&rsquo;ll cover only the updated challenge, please refer to my other blog post linked above if you want to find out more about the Landau-Ramanujan Constant.</p>
-
 <p>What has become known as the Ramanujan Constant in the recent period is a number that is an &ldquo;almost integer&rdquo; and has in fact little to do with mathematician Srinivasa Ramanujan.</p>
-
 <p>This number is the following one:</p>
-
-<p><img src="/images/Ramanujan_3.gif" alt="" /></p>
-
+<p><img src="/images/Ramanujan_3.gif" alt=""></p>
 <p>As you can see, there are twelve 9 digits after the decimal point, so that this number, which is built from a formula involving exponentials on one algebraic and two transcendental numbers, almost looks like an integer (when rounded to less than 12 digits after the decimal point).</p>
-
 <p>The number in question had been discovered by mathematician Charles Hermitte in 1859, more than 25 years before Ramanujan’s birth.</p>
-
 <p>The reason why it has become known as Ramanujan’s constant is that, in 1975, &ldquo;recreational mathematics&rdquo; columnist Martin Gardner published in <em>Scientific American</em> an April fool article where he claimed that said number, calculated from algebraic and transcendental numbers, was in fact an integer, and further claimed that Ramanujan has already discovered that in the early twentieth century. This was just a joke, as this number is transcendental, but is an impressively close approximation of an integer. At the time, computers were not able to compute this number with enough accuracy to disprove Gardner&rsquo;s assertion. Following that, people have started to call this number Ramanujan’s constant (Ramanujan worked on a number of similar numbers and probably also on this one, but there is no evidence that he discovered anything significantly new on that specific number).</p>
-
 <p>The <a href="https://en.wikipedia.org/wiki/Heegner_number#Almost_integers_and_Ramanujan's_constant">Wikipedia page on Ramanujan&rsquo;s constant</a> and the formula given earlier in this post show that the integer part of this constant is equal to <code>640_320 ** 3 + 744</code> (i.e. 262537412640768744). The Wikipedia article further explains that the difference between this number and Ramanujan&rsquo;s constant is given by:</p>
-
-<p><img src="/images/Ramanujan_4.gif" alt="" /></p>
-
+<p><img src="/images/Ramanujan_4.gif" alt=""></p>
 <p>So we just need to apply this approximate formula. Let&rsquo;s do it under the Rakudo REPL:</p>
-
 <pre><code>&gt; my $a = 640_320 ** 3 + 744; # $a is the integer approximation of R's constant
 262537412640768744
 &gt; my $r-constant = $a - 196844 / $a;
@@ -423,16 +346,11 @@ put @groups.map(*.unique.join('-')).join(',');
 &gt; say $r-constant.fmt(&quot;%.33s&quot;);
 262537412640768743.99999999999925
 </code></pre>
-
 <p>Note that we are a bit lucky: the value obtained for <code>$r-constant</code> has an accuracy of 33 digits, and we only need 32. Using the <code>FatRat</code> type (instead of the implicit <code>Rat</code> type used above) does not improve accuracy, it is the math formula that is an approximation of Ramanujan’s constant.</p>
-
 <h2 id="alternative-solutions-1">Alternative Solutions</h2>
-
 <p>Only five challengers contributed to this challenge (in addition to me).</p>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-006/arne-sommer/perl6/ch-2.p6">Arne Sommer</a> suggested the following program:</p>
-
-<pre><code class="language-Perl6">sub FatRatRoot (Int $int where $int &gt; 0, :$precision = 10)
+<pre><code class="language-Perl6" data-lang="Perl6">sub FatRatRoot (Int $int where $int &gt; 0, :$precision = 10)
 {
   my @x =
     FatRat.new(1, 1),
@@ -441,36 +359,19 @@ put @groups.map(*.unique.join('-')).join(',');
   return @x[$precision];
 }
 say $e ** ($pi * FatRatRoot(163));
-</code></pre>
-
-<p>I wasn&rsquo;t able to run it, because <code>$e</code> and <code>$pi</code> are not declared. Changing the last code line to this:</p>
-
-<pre><code class="language-Perl6">say e ** (pi * FatRatRoot(163));
-</code></pre>
-
-<p>makes the program runnable, but still doesn&rsquo;t really produce any result with a 32-digit accuracy:</p>
-
+</code></pre><p>I wasn&rsquo;t able to run it, because <code>$e</code> and <code>$pi</code> are not declared. Changing the last code line to this:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">say e ** (pi * FatRatRoot(163));
+</code></pre><p>makes the program runnable, but still doesn&rsquo;t really produce any result with a 32-digit accuracy:</p>
 <pre><code>2.625374126407677e+17
 </code></pre>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-006/jaldhar-h-vyas/perl6/ch-2.p6">Jaldhar H. Vyas</a> started by trying essentially the same formula as the one just above:</p>
-
-<pre><code class="language-Perl6">constant RAMANUJAN = 𝑒 ** (π * sqrt(163));
-</code></pre>
-
-<p>but found out that doesn&rsquo;t work and produces the same floating point approximation as Arne&rsquo;s program above. So Jaldhar admits that he decided to cheat a little bit and reuse his Perl 5 program:</p>
-
-<pre><code class="language-Perl6">shell('../perl5/ch-2.pl');
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-006/joelle-maslak/perl6/ch-2.p6">Joelle Maslak</a> used the same approximation formula as my solution and also obtained 33 accurate digits (262537412640768743.999999999999250):</p>
-
-<pre><code class="language-Perl6">say (640320³ + 744 - 196844.FatRat/(640320³ + 744)).Str.substr(0,34);
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-006/ruben-westerberg/perl6/ch-2.p6">Ruben Westerberg</a> implemented a <code>FatRat</code> factorial subroutine, a <code>FatRat</code> square root subroutine using the Newton-Raphson method, and a <code>FatRat</code> Taylor series exponential subroutine, and also hard-coded pi to 100 digits. Having done all this, he was able to write a version the original formula producing an accurate result:</p>
-
-<pre><code class="language-Perl6">my $bigPi=FatRat.new(31415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679,10**100);
+<pre><code class="language-Perl6" data-lang="Perl6">constant RAMANUJAN = 𝑒 ** (π * sqrt(163));
+</code></pre><p>but found out that doesn&rsquo;t work and produces the same floating point approximation as Arne&rsquo;s program above. So Jaldhar admits that he decided to cheat a little bit and reuse his Perl 5 program:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">shell('../perl5/ch-2.pl');
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-006/joelle-maslak/perl6/ch-2.p6">Joelle Maslak</a> used the same approximation formula as my solution and also obtained 33 accurate digits (262537412640768743.999999999999250):</p>
+<pre><code class="language-Perl6" data-lang="Perl6">say (640320³ + 744 - 196844.FatRat/(640320³ + 744)).Str.substr(0,34);
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-006/ruben-westerberg/perl6/ch-2.p6">Ruben Westerberg</a> implemented a <code>FatRat</code> factorial subroutine, a <code>FatRat</code> square root subroutine using the Newton-Raphson method, and a <code>FatRat</code> Taylor series exponential subroutine, and also hard-coded pi to 100 digits. Having done all this, he was able to write a version the original formula producing an accurate result:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">my $bigPi=FatRat.new(31415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679,10**100);
 
 sub factorial($n) {
     constant @f= (1.FatRat, |[\*] 1.FatRat..*);
@@ -495,10 +396,7 @@ sub newton-sqrt($val, $target, $repeat){
     $guess;
 }
 say taylor-e($bigPi*newton-sqrt(10,163,6)).Str.substr(0,50);
-</code></pre>
-
-<p>which produces the right result after slightly more than 130 iterations:</p>
-
+</code></pre><p>which produces the right result after slightly more than 130 iterations:</p>
 <pre><code>Iteration 132: 262537412640768743.9999999999990867965865161656471
 Iteration 133: 262537412640768743.9999999999992013528229697101850
 Iteration 134: 262537412640768743.9999999999992356420435776175716
@@ -509,10 +407,8 @@ Iteration 138: 262537412640768743.9999999999992499693206922282684
 Iteration 139: 262537412640768743.9999999999992500430922335835121
 Iteration 140: 262537412640768743.9999999999992500642273428172645
 </code></pre>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-006/tim-smith/perl6/ch-2.p6">Tim Smith</a> used the same approximation as Joelle Maslak and myself:</p>
-
-<pre><code class="language-Perl6">
+<pre><code class="language-Perl6" data-lang="Perl6">
 # Ramanujan's constant is _almost_ this integer ...
 my $r = 640_320 ** 3 + 744;
 
@@ -521,18 +417,11 @@ my $r = 640_320 ** 3 + 744;
 $r += FatRat.new: -196_844, $r;
 
 put substr($r, 0, 33);
-</code></pre>
-
-<h2 id="see-also">SEE ALSO</h2>
-
+</code></pre><h2 id="see-also">SEE ALSO</h2>
 <p>Only one blog post (besides mine) this time, as far as I can say from Mohammad&rsquo;s recap and from his GitHub repository:</p>
-
 <p>Arne Sommer: <a href="https://perl6.eu/int-erval.html">https://perl6.eu/int-erval.html</a>.</p>
-
 <h2 id="wrapping-up">Wrapping up</h2>
-
 <p>Please let me know if I forgot any of the challengers or if you think my explanation of your code misses something important (send me an e-mail or just raise an issue against this GitHub page).</p>
-
 <p>If you want to participate to the Perl Weekly Challenge, please connect to <a href="https://perlweeklychallenge.org/">this site</a>.</p>
 
                 </div>

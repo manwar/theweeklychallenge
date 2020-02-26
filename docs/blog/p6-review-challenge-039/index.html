@@ -16,7 +16,7 @@
 
     <meta name="description" content="Laurent Rosenfeld Weekly Review: Challenge - #039.">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.55.0-DEV" />
+    <meta name="generator" content="Hugo 0.66.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -149,24 +149,14 @@
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
-                    
-
-<hr />
-
+                    <hr>
 <h1 id="raku-solutions-weekly-review">Raku Solutions Weekly Review</h1>
-
-<hr />
-
+<hr>
 <h2 id="task-1-guest-house">Task #1: Guest House</h2>
-
 <p>This is derived in part from my <a href="http://blogs.perl.org/users/laurent_r/2019/12/perl-weekly-challenge-39-guest-house-and-reverse-polish-notation.html">blog post</a> made in answer to the <a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-039/">Week 39 of the Perl Weekly Challenge</a> organized by  <a href="http://blogs.perl.org/users/mohammad_s_anwar/">Mohammad S. Anwar</a> as well as answers made by others to the same challenge.</p>
-
 <p>The challenge reads as follows:</p>
-
 <p><em>A guest house had a policy that the light remain ON as long as the at least one guest is in the house. There is guest book which tracks all guest in/out time. Write a script to find out how long in minutes the light were ON.</em></p>
-
 <p><em>The guest book looks as follows:</em></p>
-
 <pre><code>1) Alex    IN: 09:10 OUT: 09:45
 2) Arnold  IN: 09:15 OUT: 09:33
 3) Bob     IN: 09:22 OUT: 09:55
@@ -177,23 +167,15 @@
 8) Neil    IN: 10:01 OUT: 10:19
 9) Chris   IN: 10:10 OUT: 11:00
 </code></pre>
-
 <h2 id="my-solution">My Solution</h2>
-
 <p>First, although the input data provided with the task spans over only 2 hours, I&rsquo;ll make the computation over a full day, from 00:00 to 23:59. One of the reasons for doing so is that I wanted to add a guest staying over more than two hours, in order to test the case where someone is in the guest house for more than two adjacent hours. Also, I did not want the guests to be male only. So, I added one female guest:</p>
-
 <pre><code>10) Liz    IN: 12:07 OUT: 17:05
 </code></pre>
-
 <p>I can think of several ways to solve this task. I decided to create a hash of arrays covering every minute in the 00:00-23:59 range. It could have been an array of arrays, but I originally started with 09:00-11:00 range provided in the task, and that led to an array with empty slots, which I did not like too much because this is likely to generate warnings or require some special care to avoid such warnings (or runtime errors). The program then parses the input data and sets each minute in the presence ranges with 1. Populating the whole range with zeros before starting isn&rsquo;t strictly necessary, but it makes other things easier, as it is possible at the end to just add values without having to first check for definedness.</p>
-
 <p>We don&rsquo;t care about the guests&rsquo; names, so when reading the input data, we only look at the time intervals.</p>
-
 <p>Note that there is a slight ambiguity in the task description. If one guest arrives at 10:10 and leaves at 10:11, I consider that the light has to be on for 2 minutes, even though it may be argued that, by a simple subtraction, the guest staid only 1 minute. It is a matter of interpretation.</p>
-
 <p>There is no <code>DATA</code> section in Raku programming language as in Perl 5. Raku should have much more feature-rich capabilities using <code>pod</code> (plain old documentation) sections, but these are not implemented yet. We could use the <a href="https://docs.raku.org/syntax/heredocs%20:to">heredocs</a> feature, but since TIMTOWTDI, we will simply use a multi-line string variable within standard double quote marks.</p>
-
-<pre><code class="language-Perl6">use v6;
+<pre><code class="language-Perl6" data-lang="Perl6">use v6;
 
 my $input =
    &quot;1) Alex    IN: 09:10 OUT: 09:45
@@ -230,103 +212,83 @@ for keys %hm -&gt; $hour {
     $total_on += sum %hm{$hour};
 }
 say &quot;Total time on: $total_on minutes.&quot;;
-</code></pre>
-
-<p>With the original input data set, the result was 111 seconds. With my modified data set, I obtain the following output:</p>
-
+</code></pre><p>With the original input data set, the result was 111 seconds. With my modified data set, I obtain the following output:</p>
 <pre><code>$ perl6 guesthouse.p6
 Total time on: 410 minutes.
 </code></pre>
-
 <h2 id="alternative-solutions">Alternative Solutions</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-039/arne-sommer/perl6/ch-1.p6">Arne Sommer</a> used his own <a href="https://github.com/arnesom/p6-time-repeat/blob/master/lib/Time/Repeat.pm6">Time::Repeat::HHMM</a> Raku module. His implementation seems to rely on the fact that all time entries are on the same day, that they are all given in chronological order, and, it seems to me, that they all overlap (no gap between them). But Arne made several other implementations without these limitations, which you can read in his <a href="https://raku-musings.com/reverse-guest.html">blog post</a>.</p>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-039/daniel-mita/perl6/ch-1.p6">Daniel Mita</a> wrote a rather long program recording in the <code>%present</code> <a href="https://docs.raku.org/type/SetHash">SetHash</a> the number of guests present for any minute between 9:00 and 11:00, and incrementing the <code>$light-duration</code> variable for any minute where there is at least one guest.</p>
-
 <p><a href="https://perlweeklychallenge.org/blog/recap-challenge-039/">Fernando Correa de Olievera</a> provided the following solution using massively <code>multi</code> functions::</p>
-
-<pre><code class="language-Perl">sub to-min(Str $str) {
-    do given $str.comb(/\d+/) {
-       60*.[0] + .[1]
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl" data-lang="Perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">to</span>-min(Str $str) {
+    <span style="color:#66d9ef">do</span> given $str<span style="color:#f92672">.</span>comb(<span style="color:#e6db74">/\d+/</span>) {
+       <span style="color:#ae81ff">60</span><span style="color:#f92672">*.</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+</span> <span style="color:#f92672">.</span>[<span style="color:#ae81ff">1</span>]
     }
 }
-proto calc(Int $count,  Int $prev, @in,               @out --&gt; Int) {*}
-multi calc(0,           Int,       [],                []   --&gt; 0)   {}
-multi calc(Int,         Int,       [],                [])           { die &quot;Finished with guest inside house&quot; }
-multi calc(0,           Int $prev, [Int $in, *@in],   @out where $in &lt;= *.head)        { calc 1, $in, @in, @out }
-multi calc(Int $count,  Int $prev, [Int $in, *@in],   @out where $in &lt;= *.head)        { $in  - $prev + calc $count + 1, $in,  @in, @out }
-multi calc(Int $count,  Int $prev, @in (Int $in, *@), [Int $out where $in &gt; *, *@out]) { $out - $prev + calc $count - 1, $out, @in, @out }
-multi calc(Int $count,  Int $prev, [],                [Int $out, *@out])               { $out - $prev + calc $count - 1, $out, [],  @out }
+proto calc(Int $count,  Int $prev, @in,               @out <span style="color:#f92672">--&gt;</span> Int) {<span style="color:#f92672">*</span>}
+multi calc(<span style="color:#ae81ff">0</span>,           Int,       <span style="color:#f92672">[]</span>,                <span style="color:#f92672">[]</span>   <span style="color:#f92672">--&gt;</span> <span style="color:#ae81ff">0</span>)   {}
+multi calc(Int,         Int,       <span style="color:#f92672">[]</span>,                <span style="color:#f92672">[]</span>)           { die <span style="color:#e6db74">&#34;Finished with guest inside house&#34;</span> }
+multi calc(<span style="color:#ae81ff">0</span>,           Int $prev, [Int $in, <span style="color:#f92672">*</span>@in],   @out where $in <span style="color:#f92672">&lt;=</span> <span style="color:#f92672">*.</span>head)        { calc <span style="color:#ae81ff">1</span>, $in, @in, @out }
+multi calc(Int $count,  Int $prev, [Int $in, <span style="color:#f92672">*</span>@in],   @out where $in <span style="color:#f92672">&lt;=</span> <span style="color:#f92672">*.</span>head)        { $in  <span style="color:#f92672">-</span> $prev <span style="color:#f92672">+</span> calc $count <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, $in,  @in, @out }
+multi calc(Int $count,  Int $prev, @in (Int $in, <span style="color:#f92672">*</span>@), [Int $out where $in <span style="color:#f92672">&gt;</span> <span style="color:#f92672">*</span>, <span style="color:#f92672">*</span>@out]) { $out <span style="color:#f92672">-</span> $prev <span style="color:#f92672">+</span> calc $count <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, $out, @in, @out }
+multi calc(Int $count,  Int $prev, <span style="color:#f92672">[]</span>,                [Int $out, <span style="color:#f92672">*</span>@out])               { $out <span style="color:#f92672">-</span> $prev <span style="color:#f92672">+</span> calc $count <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, $out, <span style="color:#f92672">[]</span>,  @out }
 
-my (@in, @out) := ([[],[]], |lines).reduce: -&gt; (@in, @out), $_ {
-   my ($in, $out) = .comb(/\d+&quot;:&quot;\d+/);
-   [ |@in, to-min $in, ], [ |@out, to-min $out ]
+<span style="color:#66d9ef">my</span> (@in, @out) :<span style="color:#f92672">=</span> ([<span style="color:#f92672">[]</span>,<span style="color:#f92672">[]</span>], <span style="color:#f92672">|</span>lines)<span style="color:#f92672">.</span>reduce: <span style="color:#f92672">-&gt;</span> (@in, @out), $_ {
+   <span style="color:#66d9ef">my</span> ($in, $out) <span style="color:#f92672">=</span> <span style="color:#f92672">.</span>comb(<span style="color:#e6db74">/\d+&#34;:&#34;\d+/</span>);
+   [ <span style="color:#f92672">|</span>@in, to<span style="color:#f92672">-</span>min $in, ], [ <span style="color:#f92672">|</span>@out, to<span style="color:#f92672">-</span>min $out ]
 }
-say calc 0, 0, @in.sort, @out.sort
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-039/kevin-colyer/perl6/ch-1.p6">Kevin Colyer</a> also used a <a href="https://docs.raku.org/type/SetHash">SetHash</a> to keep track of guests&rsquo; presence for every minute in the interval between the arrival of the first guest and the departure of the last one. The number of items in the SetHash then represents the total number of minutes the light is on. Kevin&rsquo;s code is quite short:</p>
-
-<pre><code class="language-Perl">my %minutes is SetHash;
-for $housemates.lines -&gt; $l {
-        # parse list to get times
-        $l ~~ / (\d\d) \: (\d\d) .+ (\d\d) \: (\d\d) /;
-        my ($ih,$im,$oh,$om) = |$/;
-        # add the time range to the set
-        %minutes{$_}++ for ($ih*60+$im)..($oh*60+$om-1);
+say calc <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, @in<span style="color:#f92672">.</span>sort, @out<span style="color:#f92672">.</span>sort
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-039/kevin-colyer/perl6/ch-1.p6">Kevin Colyer</a> also used a <a href="https://docs.raku.org/type/SetHash">SetHash</a> to keep track of guests&rsquo; presence for every minute in the interval between the arrival of the first guest and the departure of the last one. The number of items in the SetHash then represents the total number of minutes the light is on. Kevin&rsquo;s code is quite short:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl" data-lang="Perl"><span style="color:#66d9ef">my</span> %minutes is SetHash;
+<span style="color:#66d9ef">for</span> $housemates<span style="color:#f92672">.</span>lines <span style="color:#f92672">-&gt;</span> $l {
+        <span style="color:#75715e"># parse list to get times</span>
+        $l <span style="color:#f92672">~~</span> <span style="color:#e6db74">/ (\d\d) \: (\d\d) .+ (\d\d) \: (\d\d) /</span>;
+        <span style="color:#66d9ef">my</span> ($ih,$im,$oh,$om) <span style="color:#f92672">=</span> <span style="color:#f92672">|</span>$/;
+        <span style="color:#75715e"># add the time range to the set</span>
+        %minutes{$_}<span style="color:#f92672">++</span> <span style="color:#66d9ef">for</span> ($ih<span style="color:#f92672">*</span><span style="color:#ae81ff">60</span><span style="color:#f92672">+</span>$im)<span style="color:#f92672">..</span>($oh<span style="color:#f92672">*</span><span style="color:#ae81ff">60</span><span style="color:#f92672">+</span>$om<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
 }
-# count the elements
-say %minutes.elems ~ &quot; minutes the lights were on&quot;;
-</code></pre>
+<span style="color:#75715e"># count the elements</span>
+say %minutes<span style="color:#f92672">.</span>elems <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34; minutes the lights were on&#34;</span>;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-039/noud/perl6/ch-1.p6">Noud</a> used, just like me, a 24-hour clock. Instead of counting the number of minutes the light were on, he counted the minutes where the light are off (which is, I believe, equivalent):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl" data-lang="Perl"><span style="color:#66d9ef">for</span> <span style="color:#e6db74">&#39;guestbook.txt&#39;</span><span style="color:#f92672">.</span>IO<span style="color:#f92672">.</span>lines <span style="color:#f92672">-&gt;</span> $line {
+    <span style="color:#66d9ef">my</span> $rs <span style="color:#f92672">=</span> $line <span style="color:#f92672">~~</span> <span style="color:#e6db74">/(\d+)\:(\d+)\D+(\d+)\:(\d+)/</span>;
+    <span style="color:#66d9ef">my</span> $start <span style="color:#f92672">=</span> <span style="color:#ae81ff">60</span> <span style="color:#f92672">*</span> Int($rs[<span style="color:#ae81ff">0</span>]) <span style="color:#f92672">+</span> Int($rs[<span style="color:#ae81ff">1</span>]);
+    <span style="color:#66d9ef">my</span> $end <span style="color:#f92672">=</span> <span style="color:#ae81ff">60</span> <span style="color:#f92672">*</span> Int($rs[<span style="color:#ae81ff">2</span>]) <span style="color:#f92672">+</span> Int($rs[<span style="color:#ae81ff">3</span>]);
 
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-039/noud/perl6/ch-1.p6">Noud</a> used, just like me, a 24-hour clock. Instead of counting the number of minutes the light were on, he counted the minutes where the light are off (which is, I believe, equivalent):</p>
-
-<pre><code class="language-Perl">for 'guestbook.txt'.IO.lines -&gt; $line {
-    my $rs = $line ~~ /(\d+)\:(\d+)\D+(\d+)\:(\d+)/;
-    my $start = 60 * Int($rs[0]) + Int($rs[1]);
-    my $end = 60 * Int($rs[2]) + Int($rs[3]);
-
-    if ($time &lt; $start) {
-        $time_off += $start - $time;
+    <span style="color:#66d9ef">if</span> ($time <span style="color:#f92672">&lt;</span> $start) {
+        $time_off <span style="color:#f92672">+=</span> $start <span style="color:#f92672">-</span> $time;
     }
 
-    $time = $end;
-    $time_last = 24 * 60 - $end;
+    $time <span style="color:#f92672">=</span> $end;
+    $time_last <span style="color:#f92672">=</span> <span style="color:#ae81ff">24</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">60</span> <span style="color:#f92672">-</span> $end;
 }
 
-$time_off += $time_last;
-my $time_on = 24 * 60 - $time_off;
+$time_off <span style="color:#f92672">+=</span> $time_last;
+<span style="color:#66d9ef">my</span> $time_on <span style="color:#f92672">=</span> <span style="color:#ae81ff">24</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">60</span> <span style="color:#f92672">-</span> $time_off;
 
-say &quot;The light was on for $time_on minutes&quot;;
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-039/ulrich-rieke/perl6/ch-1.p6">Ulrich Rieke</a> explains his program with the following comment: “The basic idea is to read in the file, to convert the access( IN ) and the departure times to minutes and to add a tag whether we move in( &ldquo;i&rdquo; ) or out (&ldquo;o&rdquo;). If we then order the times by minutes we can keep a count of people inside and determine the number of minutes that elapsed between first person arriving and last person leaving.“ This is the main part of Ulrich&rsquo;s program:</p>
-
-<pre><code class="language-Perl">my @times = readFile( $filename ) ;
-my @orderedTimes = orderByTime( @times ) ;
-my $starttime = @orderedTimes[0] ;
-my $people_Inside = 0 ;
-my $minutes_On ;
-for @orderedTimes -&gt; $time {
-    if ($time.substr( *-1 , 1 ) eq &quot;i&quot; ) {
-        $people_Inside++ ;
+say <span style="color:#e6db74">&#34;The light was on for $time_on minutes&#34;</span>;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-039/ulrich-rieke/perl6/ch-1.p6">Ulrich Rieke</a> explains his program with the following comment: “The basic idea is to read in the file, to convert the access( IN ) and the departure times to minutes and to add a tag whether we move in( &ldquo;i&rdquo; ) or out (&ldquo;o&rdquo;). If we then order the times by minutes we can keep a count of people inside and determine the number of minutes that elapsed between first person arriving and last person leaving.“ This is the main part of Ulrich&rsquo;s program:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl" data-lang="Perl"><span style="color:#66d9ef">my</span> @times <span style="color:#f92672">=</span> readFile( $filename ) ;
+<span style="color:#66d9ef">my</span> @orderedTimes <span style="color:#f92672">=</span> orderByTime( @times ) ;
+<span style="color:#66d9ef">my</span> $starttime <span style="color:#f92672">=</span> @orderedTimes[<span style="color:#ae81ff">0</span>] ;
+<span style="color:#66d9ef">my</span> $people_Inside <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> ;
+<span style="color:#66d9ef">my</span> $minutes_On ;
+<span style="color:#66d9ef">for</span> @orderedTimes <span style="color:#f92672">-&gt;</span> $time {
+    <span style="color:#66d9ef">if</span> ($time<span style="color:#f92672">.</span>substr( <span style="color:#f92672">*-</span><span style="color:#ae81ff">1</span> , <span style="color:#ae81ff">1</span> ) <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#34;i&#34;</span> ) {
+        $people_Inside<span style="color:#f92672">++</span> ;
     }
-    else {
-        $people_Inside-- ;
-        if ( $people_Inside == 0 ) {
-            $minutes_On = $time.substr(0 , $time.chars - 1 ).Int -
-                $starttime.substr(0 , $starttime.chars - 1 ).Int ;
-            last ;
+    <span style="color:#66d9ef">else</span> {
+        $people_Inside<span style="color:#f92672">--</span> ;
+        <span style="color:#66d9ef">if</span> ( $people_Inside <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> ) {
+            $minutes_On <span style="color:#f92672">=</span> $time<span style="color:#f92672">.</span>substr(<span style="color:#ae81ff">0</span> , $time<span style="color:#f92672">.</span>chars <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> )<span style="color:#f92672">.</span>Int <span style="color:#f92672">-</span>
+                $starttime<span style="color:#f92672">.</span>substr(<span style="color:#ae81ff">0</span> , $starttime<span style="color:#f92672">.</span>chars <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> )<span style="color:#f92672">.</span>Int ;
+            <span style="color:#66d9ef">last</span> ;
         }
     }
 }
-say (&quot;Longest time lights on is &quot; ~ $minutes_On.Str ~ &quot; minutes!&quot;) ;
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-039/javier-luque/perl6/ch-1.p6">Javier Luque</a> used a <code>%time-on</code> hash to record each minute during which there is at least one guest (pretty much the same basic algorithm as the one I used, but with some implementation differences here and there):</p>
-
-<pre><code class="language-Perl6"># Calculate the minutes lights were on
+say (<span style="color:#e6db74">&#34;Longest time lights on is &#34;</span> <span style="color:#f92672">~</span> $minutes_On<span style="color:#f92672">.</span>Str <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34; minutes!&#34;</span>) ;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-039/javier-luque/perl6/ch-1.p6">Javier Luque</a> used a <code>%time-on</code> hash to record each minute during which there is at least one guest (pretty much the same basic algorithm as the one I used, but with some implementation differences here and there):</p>
+<pre><code class="language-Perl6" data-lang="Perl6"># Calculate the minutes lights were on
 sub calculate-lights-on {
     my %time_on; # Sample in minutes
     my $time_re = /\d\d\:\d\d/;
@@ -344,133 +306,103 @@ sub calculate-lights-on {
 
     return %time_on.elems;
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-039/roger-bell-west/perl6/ch-1.p6">Roger Bell West</a> used an <code>%ev</code> hash to record the arrival and departure times. His program then reads again the hash (sorted by keys) and keeps track of periods where the light is on, using the <code>$laston</code> variable to know where the light was last switched on and the <code>ontime</code> variable to accumulate the duration light is on.</p>
-
-<pre><code class="language-Perl">for $fh.lines {
-  my @e=($_ ~~ m:g/(IN|OUT) ':' \s* (\d+) ':' (\d+)/);
-  while (@e) {
-    my @match=@e.shift.values;
-    my $delta=(@match.shift eq 'IN')??1!!-1;
-    my $t=(60*@match.shift)+@match.shift;
-    %ev{$t}+=$delta;
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-039/roger-bell-west/perl6/ch-1.p6">Roger Bell West</a> used an <code>%ev</code> hash to record the arrival and departure times. His program then reads again the hash (sorted by keys) and keeps track of periods where the light is on, using the <code>$laston</code> variable to know where the light was last switched on and the <code>ontime</code> variable to accumulate the duration light is on.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl" data-lang="Perl"><span style="color:#66d9ef">for</span> $fh<span style="color:#f92672">.</span>lines {
+  <span style="color:#66d9ef">my</span> @e<span style="color:#f92672">=</span>($_ <span style="color:#f92672">~~</span> m:g<span style="color:#e6db74">/(IN|OUT) &#39;:&#39; \s* (\d+) &#39;:&#39; (\d+)/</span>);
+  <span style="color:#66d9ef">while</span> (@e) {
+    <span style="color:#66d9ef">my</span> @match<span style="color:#f92672">=</span>@e<span style="color:#f92672">.</span>shift<span style="color:#f92672">.</span>values;
+    <span style="color:#66d9ef">my</span> $delta<span style="color:#f92672">=</span>(@match<span style="color:#f92672">.</span>shift <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;IN&#39;</span>)??<span style="color:#ae81ff">1</span><span style="color:#f92672">!!-</span><span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">my</span> $t<span style="color:#f92672">=</span>(<span style="color:#ae81ff">60</span><span style="color:#f92672">*</span>@match<span style="color:#f92672">.</span>shift)<span style="color:#f92672">+</span>@match<span style="color:#f92672">.</span>shift;
+    %ev{$t}<span style="color:#f92672">+=</span>$delta;
   }
 }
 
-my $ontime=0;
-my $occ=0;
-my $laston=0;
-for (%ev.keys.sort({$^a &lt;=&gt; $^b})) -&gt; $t {
-  my $lastocc=$occ;
-  $occ+=%ev{$t};
-  if ($lastocc==0 &amp;&amp; $occ&gt;0) {
-    $laston=$t;
-  } elsif ($lastocc&gt;0 &amp;&amp; $occ==0) {
-    $ontime+=($t-$laston);
+<span style="color:#66d9ef">my</span> $ontime<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+<span style="color:#66d9ef">my</span> $occ<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+<span style="color:#66d9ef">my</span> $laston<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+<span style="color:#66d9ef">for</span> (%ev<span style="color:#f92672">.</span>keys<span style="color:#f92672">.</span>sort({$<span style="color:#960050;background-color:#1e0010">^</span>a <span style="color:#e6db74">&lt;=&gt;</span> $<span style="color:#960050;background-color:#1e0010">^</span>b})) <span style="color:#f92672">-&gt;</span> $t {
+  <span style="color:#66d9ef">my</span> $lastocc<span style="color:#f92672">=</span>$occ;
+  $occ<span style="color:#f92672">+=</span>%ev{$t};
+  <span style="color:#66d9ef">if</span> ($lastocc<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> $occ<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span>) {
+    $laston<span style="color:#f92672">=</span>$t;
+  } <span style="color:#66d9ef">elsif</span> ($lastocc<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> $occ<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>) {
+    $ontime<span style="color:#f92672">+=</span>($t<span style="color:#f92672">-</span>$laston);
   }
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-039/ruben-westerberg/perl6/ch-1.p6">Ruben Westerberg</a> made the most concise program:</p>
-
-<pre><code class="language-Perl">my @times=DATA().map({ |(for (m:g/(\d**2)\:(\d**2)/) {$_[0]*60+$_[1]*1 });});
-put sprintf &quot;Lights on for %d minutes&quot;, @times.max-@times.min;
-</code></pre>
-
-<p>But Ruben&rsquo;s program works only because there is no period with no guest between the first arrival and the last departure in the data provided with the task, since it does essentially a simple time subtraction between these two events. If there was a period with no guest, it would be overlooked.</p>
-
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-039/ruben-westerberg/perl6/ch-1.p6">Ruben Westerberg</a> made the most concise program:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl" data-lang="Perl"><span style="color:#66d9ef">my</span> @times<span style="color:#f92672">=</span>DATA()<span style="color:#f92672">.</span>map({ <span style="color:#f92672">|</span>(<span style="color:#66d9ef">for</span> (m:g<span style="color:#e6db74">/(\d**2)\:(\d**2)/</span>) {$_[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">*</span><span style="color:#ae81ff">60</span><span style="color:#f92672">+</span>$_[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">*</span><span style="color:#ae81ff">1</span> });});
+put sprintf <span style="color:#e6db74">&#34;Lights on for %d minutes&#34;</span>, @times<span style="color:#f92672">.</span>max<span style="color:#f92672">-</span>@times<span style="color:#f92672">.</span>min;
+</code></pre></div><p>But Ruben&rsquo;s program works only because there is no period with no guest between the first arrival and the last departure in the data provided with the task, since it does essentially a simple time subtraction between these two events. If there was a period with no guest, it would be overlooked.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-039/ryan-thompson/perl6/ch-1.p6">Ryan Thompson</a> created a grammar to parse each input line:</p>
-
-<pre><code class="language-Perl">grammar TimeData {
-    rule  TOP   { &lt;num&gt; &quot;)&quot; &lt;who&gt; &quot;IN:&quot; &lt;time&gt; &quot;OUT:&quot; &lt;time&gt; }
-    token num   { \d+   }
-    token who   { \w+   }
-    token hh    { 0\d | 1 &lt;[012]&gt; }
-    token mm    { &lt;[0..5]&gt; \d     }
-    token time  { &lt;hh&gt; &quot;:&quot; &lt;mm&gt;   }
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl" data-lang="Perl">grammar TimeData {
+    rule  TOP   { <span style="color:#e6db74">&lt;num&gt;</span> <span style="color:#e6db74">&#34;)&#34;</span> <span style="color:#e6db74">&lt;who&gt;</span> <span style="color:#e6db74">&#34;IN:&#34;</span> <span style="color:#e6db74">&lt;time&gt;</span> <span style="color:#e6db74">&#34;OUT:&#34;</span> <span style="color:#e6db74">&lt;time&gt;</span> }
+    token num   { <span style="color:#f92672">\</span>d<span style="color:#f92672">+</span>   }
+    token who   { <span style="color:#f92672">\</span>w<span style="color:#f92672">+</span>   }
+    token hh    { <span style="color:#ae81ff">0</span><span style="color:#f92672">\</span>d <span style="color:#f92672">|</span> <span style="color:#ae81ff">1</span> <span style="color:#e6db74">&lt;[012]&gt;</span> }
+    token mm    { <span style="color:#e6db74">&lt;[0..5]&gt;</span> <span style="color:#f92672">\</span>d     }
+    token time  { <span style="color:#e6db74">&lt;hh&gt;</span> <span style="color:#e6db74">&#34;:&#34;</span> <span style="color:#e6db74">&lt;mm&gt;</span>   }
 }
-</code></pre>
+</code></pre></div><p>Ryan&rsquo;s main code then parses the input line and populates an <code>%on</code> <a href="https://docs.raku.org/type/SetHash">SetHash</a> with each minute a guest is present. At the end, the number of minutes the light was on is simply the number of items in the SetHash:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl" data-lang="Perl">
+<span style="color:#66d9ef">my</span> %on is SetHash; <span style="color:#75715e"># Minutes when the light was on</span>
+<span style="color:#66d9ef">for</span> (DATA()<span style="color:#f92672">.</span>lines) {
+    <span style="color:#66d9ef">my</span> $parse <span style="color:#f92672">=</span> TimeData<span style="color:#f92672">.</span>parse($_) <span style="color:#f92672">or</span> <span style="color:#66d9ef">next</span>;
+    <span style="color:#66d9ef">my</span> ($in, $out) <span style="color:#f92672">=</span> $parse<span style="color:#e6db74">&lt;time&gt;</span><span style="color:#f92672">.</span>list;
 
-<p>Ryan&rsquo;s main code then parses the input line and populates an <code>%on</code> <a href="https://docs.raku.org/type/SetHash">SetHash</a> with each minute a guest is present. At the end, the number of minutes the light was on is simply the number of items in the SetHash:</p>
-
-<pre><code class="language-Perl">
-my %on is SetHash; # Minutes when the light was on
-for (DATA().lines) {
-    my $parse = TimeData.parse($_) or next;
-    my ($in, $out) = $parse&lt;time&gt;.list;
-
-    %on{ minutes($in) .. minutes($out) }»++;
+    %on{ minutes($in) <span style="color:#f92672">..</span> minutes($out) }<span style="color:#960050;background-color:#1e0010">»</span><span style="color:#f92672">++</span>;
 }
-say %on.elems;
-</code></pre>
-
-<h2 id="task-2-reverse-polish-notation">Task #2: Reverse Polish Notation</h2>
-
+say %on<span style="color:#f92672">.</span>elems;
+</code></pre></div><h2 id="task-2-reverse-polish-notation">Task #2: Reverse Polish Notation</h2>
 <p>This is derived in part from my <a href="http://blogs.perl.org/users/laurent_r/2019/12/perl-weekly-challenge-39-guest-house-and-reverse-polish-notation.html">blog post</a> made in answer to the <a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-039/">Week 39 of the Perl Weekly Challenge</a> organized by  <a href="http://blogs.perl.org/users/mohammad_s_anwar/">Mohammad S. Anwar</a> as well as answers made by others to the same challenge.</p>
-
 <p>The challenge reads as follows:</p>
-
 <p><em>Write a script to demonstrate Reverse Polish notation (RPN). Checkout the <a href="https://en.wikipedia.org/wiki/Reverse_Polish_notation">wiki page</a> for more information about RPN.</em></p>
-
 <p>This task reminds me of the Hewlett-Packard pocket calculators during my teen years in the 1970s. To tell the truth, I had bought at the time a Texas Instruments programmable calculator using standard infix notation (which is where I wrote my first “computer” programs), but a friend of mine had a much more powerful HP hand-held calculator using RPN. The most important difference was that my friend&rsquo;s HP calculator could save programs for later use, while my more basic (and much cheaper) TI calculator would lose everything when switched off. My friend&rsquo;s HP pocket calculator could also host significantly longer programs. So we worked quite a bit on his calculator for studying assignments and, although I never became as fluent as my friend with RPN, I understood quite well at the time how to use it, and I&rsquo;m pretty sure I could still use one today (at least for simple computations, but not for programming).</p>
-
 <h2 id="my-solutions">My Solutions</h2>
-
 <p>Anyway, the point about RPN, which is also known as <em>postfix notation</em>, is that you first state the operands and then only the operators. If it is a binary operator (the most common case), you just pick up the last two previous operands. For example, to add numbers 7 and 11, instead of typing something like <code>7 + 11 =</code>, you would type <code>7, 11 +</code>. RPN is a bit counter-intuitive at first, but it is quite efficient because it avoids using parentheses for specifying operation precedence. As a result, RPN supposedly requires less typing than usual infix notation (although you have to hit the <code>enter</code> key between operands and operators quite often with an HP RPN calculator, so that I have never been fully convinced that the typing gain is really significant). The following Wikipedia example shows the difference. The following infix notation expression:</p>
-
 <pre><code>((15 ÷ (7 − (1 + 1))) × 3) − (2 + (1 + 1))
 </code></pre>
-
 <p>can be written as follows in RPN:</p>
-
 <pre><code>15 7 1 1 + − ÷ 3 × 2 1 1 + + − =
 </code></pre>
-
 <p>The essential idea for processing RPN notation is a stack (a last-in first-out data or LIFO structure): when you read an operand, you just push it onto a stack. And when you read a binary operator, you just pop two values from the stack, apply the operator to them and push the result back onto the stack. We need to be cautious about something for operators which are not commutative such as subtraction or division: the first operand that we pop from the stack has to be the second operand in the operation, and the second popped operand will be the the first one in the operation.</p>
-
 <p>The code for the operations is stored in a dispatch table, i.e. a hash where the keys are the operators and the values are code references to short subroutines performing the arithmetic operations. Note that I encountered unexpected difficulties because some of the RPN expressions that I copied from the Wikipedia page contain special Unicode characters for subtraction, multiplication and division. This was especially tricky for the subtraction operator, since the common ASCII dash or hyphen and the Unicode minus sign really look similar on the screen of my text editor, but they are different. To fix this, I only needed to add entries with those special characters in the dispatch table.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl" data-lang="Perl"><span style="color:#66d9ef">use</span> v6;
+<span style="color:#66d9ef">use</span> Test;
 
-<pre><code class="language-Perl">use v6;
-use Test;
-
-my %operations = (
-    '+' =&gt; { $^a + $^b; },
-    '-' =&gt; { $^a - $^b; }, # hyphen
-    '−' =&gt; { $^a - $^b; }, # dash
-    'x' =&gt; { $^a * $^b; },
-    '*' =&gt; { $^a * $^b; },
-    '×' =&gt; { $^a * $^b; },
-    '/' =&gt; { $^a / $^b; },
-    '÷' =&gt; { $^a / $^b; },
+<span style="color:#66d9ef">my</span> %operations <span style="color:#f92672">=</span> (
+    <span style="color:#e6db74">&#39;+&#39;</span> <span style="color:#f92672">=&gt;</span> { $<span style="color:#960050;background-color:#1e0010">^</span>a <span style="color:#f92672">+</span> $<span style="color:#960050;background-color:#1e0010">^</span>b; },
+    <span style="color:#e6db74">&#39;-&#39;</span> <span style="color:#f92672">=&gt;</span> { $<span style="color:#960050;background-color:#1e0010">^</span>a <span style="color:#f92672">-</span> $<span style="color:#960050;background-color:#1e0010">^</span>b; }, <span style="color:#75715e"># hyphen</span>
+    <span style="color:#e6db74">&#39;−&#39;</span> <span style="color:#f92672">=&gt;</span> { $<span style="color:#960050;background-color:#1e0010">^</span>a <span style="color:#f92672">-</span> $<span style="color:#960050;background-color:#1e0010">^</span>b; }, <span style="color:#75715e"># dash</span>
+    <span style="color:#e6db74">&#39;x&#39;</span> <span style="color:#f92672">=&gt;</span> { $<span style="color:#960050;background-color:#1e0010">^</span>a <span style="color:#f92672">*</span> $<span style="color:#960050;background-color:#1e0010">^</span>b; },
+    <span style="color:#e6db74">&#39;*&#39;</span> <span style="color:#f92672">=&gt;</span> { $<span style="color:#960050;background-color:#1e0010">^</span>a <span style="color:#f92672">*</span> $<span style="color:#960050;background-color:#1e0010">^</span>b; },
+    <span style="color:#e6db74">&#39;×&#39;</span> <span style="color:#f92672">=&gt;</span> { $<span style="color:#960050;background-color:#1e0010">^</span>a <span style="color:#f92672">*</span> $<span style="color:#960050;background-color:#1e0010">^</span>b; },
+    <span style="color:#e6db74">&#39;/&#39;</span> <span style="color:#f92672">=&gt;</span> { $<span style="color:#960050;background-color:#1e0010">^</span>a <span style="color:#f92672">/</span> $<span style="color:#960050;background-color:#1e0010">^</span>b; },
+    <span style="color:#e6db74">&#39;÷&#39;</span> <span style="color:#f92672">=&gt;</span> { $<span style="color:#960050;background-color:#1e0010">^</span>a <span style="color:#f92672">/</span> $<span style="color:#960050;background-color:#1e0010">^</span>b; },
 );
 
-sub parse_operation (Str $expr) {
-    my @stack;
-    for $expr.split(/\s+/) -&gt; $token {
-        if $token ~~ /^ \d+ $/ {
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">parse_operation</span> (Str $expr) {
+    <span style="color:#66d9ef">my</span> @stack;
+    <span style="color:#66d9ef">for</span> $expr<span style="color:#f92672">.</span>split(<span style="color:#e6db74">/\s+/</span>) <span style="color:#f92672">-&gt;</span> $token {
+        <span style="color:#66d9ef">if</span> $token <span style="color:#f92672">~~</span> <span style="color:#e6db74">/^ \d+ $/</span> {
             push @stack, $token ;
-        } elsif (%operations{$token}:exists) {
-            return &quot;Invalid RPN expression&quot; if @stack.elems &lt; 2;
-            my $op2 = pop @stack;
-            my $op1 = pop @stack;
+        } <span style="color:#66d9ef">elsif</span> (%operations{$token}:exists) {
+            <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Invalid RPN expression&#34;</span> <span style="color:#66d9ef">if</span> @stack<span style="color:#f92672">.</span>elems <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">2</span>;
+            <span style="color:#66d9ef">my</span> $op2 <span style="color:#f92672">=</span> pop @stack;
+            <span style="color:#66d9ef">my</span> $op1 <span style="color:#f92672">=</span> pop @stack;
             push @stack, %operations{$token}($op1, $op2);
-        } else {
-            die &quot;Invalid token $token.&quot;;
+        } <span style="color:#66d9ef">else</span> {
+            die <span style="color:#e6db74">&#34;Invalid token $token.&#34;</span>;
         }
     }
-    return @stack[0]
+    <span style="color:#66d9ef">return</span> @stack[<span style="color:#ae81ff">0</span>]
 }
-plan 5;
-is parse_operation(&quot;1 2 +&quot;), 3, &quot;2 operands&quot;;
-is parse_operation(&quot;1 2 + 4 ×&quot;), 12, &quot;3 operands, a Unicode multiplication operator&quot;;
-is parse_operation(&quot;1 2 + 4 * 5 + 3 -&quot;), 14, &quot;5 operands&quot;;
-is parse_operation(&quot;3 4 5 x -&quot;), -17, &quot;Start with 3 operands and then two operators&quot;;
-is parse_operation(&quot;15 7 1 1 + − ÷ 3 × 2 1 1 + + −&quot;), 5, &quot;8 operands, 4 Unicode operators&quot;;
-</code></pre>
-
-<p>Running this program produces the following output:</p>
-
+plan <span style="color:#ae81ff">5</span>;
+is parse_operation(<span style="color:#e6db74">&#34;1 2 +&#34;</span>), <span style="color:#ae81ff">3</span>, <span style="color:#e6db74">&#34;2 operands&#34;</span>;
+is parse_operation(<span style="color:#e6db74">&#34;1 2 + 4 ×&#34;</span>), <span style="color:#ae81ff">12</span>, <span style="color:#e6db74">&#34;3 operands, a Unicode multiplication operator&#34;</span>;
+is parse_operation(<span style="color:#e6db74">&#34;1 2 + 4 * 5 + 3 -&#34;</span>), <span style="color:#ae81ff">14</span>, <span style="color:#e6db74">&#34;5 operands&#34;</span>;
+is parse_operation(<span style="color:#e6db74">&#34;3 4 5 x -&#34;</span>), <span style="color:#f92672">-</span><span style="color:#ae81ff">17</span>, <span style="color:#e6db74">&#34;Start with 3 operands and then two operators&#34;</span>;
+is parse_operation(<span style="color:#e6db74">&#34;15 7 1 1 + − ÷ 3 × 2 1 1 + + −&#34;</span>), <span style="color:#ae81ff">5</span>, <span style="color:#e6db74">&#34;8 operands, 4 Unicode operators&#34;</span>;
+</code></pre></div><p>Running this program produces the following output:</p>
 <pre><code>$ perl6 rpn.p6
 1..5
 ok 1 - 2 operands
@@ -479,10 +411,8 @@ ok 3 - 5 operands
 ok 4 - Start with 3 operands and then two operators
 ok 5 - 8 operands, 4 Unicode operators
 </code></pre>
-
 <p>Using the <code>when</code> &ldquo;switch&rdquo; statement provided by Raku, we can get rid of the dispatch table (or, rather, implement a different type of dispatch table, in the form of a switch statement) and make our code slightly more concise as follows:</p>
-
-<pre><code class="language-perl6">use v6;
+<pre><code class="language-perl6" data-lang="perl6">use v6;
 use Test;
 
 sub perform-op (&amp;op) {
@@ -506,183 +436,159 @@ is parse_operation(&quot;1 2 + 4 ×&quot;), 12, &quot;3 operands, a Unicode mult
 is parse_operation(&quot;1 2 + 4 * 5 + 3 -&quot;), 14, &quot;5 operands&quot;;
 is parse_operation(&quot;3 4 5 x -&quot;), -17, &quot;Start with 3 operands and then two operators&quot;;
 is parse_operation(&quot;15 7 1 1 + − ÷ 3 × 2 1 1 + + −&quot;), 5, &quot;8 operands, 4 Unicode operators&quot;;
-</code></pre>
-
-<p>Note that we&rsquo;re using in the <code>perform-op</code> the <a href="https://docs.raku.org/language/operators#Reversed_operators">R</a> reverse operator, which reverse the arguments of an infix operator. Until now, I had been unable to see any useful use case for this operator, now I&rsquo;ve found one: in this case, it makes it possible to get the two values popped from the stack in the right order for the operation since, as mentioned above, the first operand that we pop from the stack has to be the second operand in the operation (at least for non-commutative operations).</p>
-
+</code></pre><p>Note that we&rsquo;re using in the <code>perform-op</code> the <a href="https://docs.raku.org/language/operators#Reversed_operators">R</a> reverse operator, which reverse the arguments of an infix operator. Until now, I had been unable to see any useful use case for this operator, now I&rsquo;ve found one: in this case, it makes it possible to get the two values popped from the stack in the right order for the operation since, as mentioned above, the first operand that we pop from the stack has to be the second operand in the operation (at least for non-commutative operations).</p>
 <p>This passes all the tests correctly as before.</p>
-
 <h2 id="alternative-solutions-1">Alternative Solutions</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-039/arne-sommer/perl6/ch-2.p6">Arne Sommer</a> created a 90+ code-line program that I will quote here only in part:</p>
-
-<pre><code class="language-Perl">sub calculate ($operator, $verbose)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl" data-lang="Perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">calculate</span> ($operator, $verbose)
 {
-  if @stack.elems &lt; 2
+  <span style="color:#66d9ef">if</span> @stack<span style="color:#f92672">.</span>elems <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">2</span>
   {
-    say &quot;Error. Not enough values on the stack&quot;;
-    return;
+    say <span style="color:#e6db74">&#34;Error. Not enough values on the stack&#34;</span>;
+    <span style="color:#66d9ef">return</span>;
   }
-  my $right = @stack.pop;
-  my $left  = @stack.pop;
-  if $verbose
+  <span style="color:#66d9ef">my</span> $right <span style="color:#f92672">=</span> @stack<span style="color:#f92672">.</span>pop;
+  <span style="color:#66d9ef">my</span> $left  <span style="color:#f92672">=</span> @stack<span style="color:#f92672">.</span>pop;
+  <span style="color:#66d9ef">if</span> $verbose
   {
-    say &quot;: Operator: $operator&quot;;
-    say &quot;: - Stack: { @stack.join(&quot;, &quot;) }&quot;;
-    say &quot;: - Values: $left $right&quot;;
+    say <span style="color:#e6db74">&#34;: Operator: $operator&#34;</span>;
+    say <span style="color:#e6db74">&#34;: - Stack: { @stack.join(&#34;</span>, <span style="color:#e6db74">&#34;) }&#34;</span>;
+    say <span style="color:#e6db74">&#34;: - Values: $left $right&#34;</span>;
   }
-  return $left -  $right if $operator eq &quot;-&quot;;
-  return $left +  $right if $operator eq &quot;+&quot;;
-  return $left /  $right if $operator eq &quot;/&quot;;
-  return $left *  $right if $operator eq &quot;*&quot;;
-  return $left ** $right if $operator eq &quot;^&quot;;
-
-  die &quot;Unknown operator&quot;;
+  <span style="color:#66d9ef">return</span> $left <span style="color:#f92672">-</span>  $right <span style="color:#66d9ef">if</span> $operator <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#34;-&#34;</span>;
+  <span style="color:#66d9ef">return</span> $left <span style="color:#f92672">+</span>  $right <span style="color:#66d9ef">if</span> $operator <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#34;+&#34;</span>;
+  <span style="color:#66d9ef">return</span> $left <span style="color:#e6db74">/  $right if $operator eq &#34;/</span><span style="color:#e6db74">&#34;;
+</span><span style="color:#e6db74">  return $left *  $right if $operator eq &#34;</span><span style="color:#f92672">*</span><span style="color:#e6db74">&#34;;
+</span><span style="color:#e6db74">  return $left ** $right if $operator eq &#34;</span><span style="color:#f92672">^</span><span style="color:#e6db74">&#34;;
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">  die &#34;</span>Unknown operator<span style="color:#960050;background-color:#1e0010">&#34;</span>;
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-039/kevin-colyer/perl6/ch-2.p6">Kevin Colyer</a> also provided a rather lengthy solution. I&rsquo;m quoting here his most important subroutine:</p>
-
-<pre><code class="language-Perl">sub evaluateRPN($input) {
-    say &quot;Postfix expression to evaluate: [$input]&quot;;
-    my @stack;
-    my @in=$input.split: /\s+/;
-    for @in -&gt; $token {
-    #         for each token in the postfix expression:
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-039/kevin-colyer/perl6/ch-2.p6">Kevin Colyer</a> also provided a rather lengthy solution. I&rsquo;m quoting here his most important subroutine:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl" data-lang="Perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">evaluateRPN</span>($input) {
+    say <span style="color:#e6db74">&#34;Postfix expression to evaluate: [$input]&#34;</span>;
+    <span style="color:#66d9ef">my</span> @stack;
+    <span style="color:#66d9ef">my</span> @in<span style="color:#f92672">=</span>$input<span style="color:#f92672">.</span>split: <span style="color:#e6db74">/\s+/</span>;
+    <span style="color:#66d9ef">for</span> @in <span style="color:#f92672">-&gt;</span> $token {
+    <span style="color:#75715e">#         for each token in the postfix expression:</span>
         given $token {
-            #   if token is an operator:
-            #     operand_2 ← pop from the stack
-            #     operand_1 ← pop from the stack
-            #     result ← evaluate token with operand_1 and operand_2
-            #     push result back onto the stack
-            when / (&lt;[+−÷×]&gt;) / {
-                say &quot;! found token operator&quot;;
-                my $op2 = @stack.pop;
-                say &quot; popped $op2&quot;;
-                my $op1 = @stack.pop;
-                say &quot; popped $op1&quot;;
+            <span style="color:#75715e">#   if token is an operator:</span>
+            <span style="color:#75715e">#     operand_2 ← pop from the stack</span>
+            <span style="color:#75715e">#     operand_1 ← pop from the stack</span>
+            <span style="color:#75715e">#     result ← evaluate token with operand_1 and operand_2</span>
+            <span style="color:#75715e">#     push result back onto the stack</span>
+            when <span style="color:#e6db74">/ (&lt;[+−÷×]&gt;) /</span> {
+                say <span style="color:#e6db74">&#34;! found token operator&#34;</span>;
+                <span style="color:#66d9ef">my</span> $op2 <span style="color:#f92672">=</span> @stack<span style="color:#f92672">.</span>pop;
+                say <span style="color:#e6db74">&#34; popped $op2&#34;</span>;
+                <span style="color:#66d9ef">my</span> $op1 <span style="color:#f92672">=</span> @stack<span style="color:#f92672">.</span>pop;
+                say <span style="color:#e6db74">&#34; popped $op1&#34;</span>;
 
-                print &quot;  evaluating $op1 and $op2 with $/&quot;;
-                my $result = 0;
-                $result = $op1 + $op2 if $/ eq '+';
-                $result = $op1 - $op2 if $/ eq '−';
-                $result = $op1 / $op2 if $/ eq '÷';
-                $result = $op1 * $op2 if $/ eq '×';
-                @stack.push: $result;
-                say &quot; result = $result&quot;;
-                say &quot; pushed $result into stack [{@stack}]&quot;;
+                <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;  evaluating $op1 and $op2 with $/&#34;</span>;
+                <span style="color:#66d9ef">my</span> $result <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+                $result <span style="color:#f92672">=</span> $op1 <span style="color:#f92672">+</span> $op2 <span style="color:#66d9ef">if</span> $/ <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;+&#39;</span>;
+                $result <span style="color:#f92672">=</span> $op1 <span style="color:#f92672">-</span> $op2 <span style="color:#66d9ef">if</span> $/ <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;−&#39;</span>;
+                $result <span style="color:#f92672">=</span> $op1 <span style="color:#e6db74">/ $op2 if $/</span> <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;÷&#39;</span>;
+                $result <span style="color:#f92672">=</span> $op1 <span style="color:#f92672">*</span> $op2 <span style="color:#66d9ef">if</span> $/ <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;×&#39;</span>;
+                @stack<span style="color:#f92672">.</span>push: $result;
+                say <span style="color:#e6db74">&#34; result = $result&#34;</span>;
+                say <span style="color:#e6db74">&#34; pushed $result into stack [{@stack}]&#34;</span>;
             }
-            #   else if token is an operand:
-            #     push token onto the stack
-            when /\d+/ {
-                say &quot;! found token operand&quot;;
-                @stack.push: $token;
-                say &quot; pushed $token into stack [{@stack}]&quot;;
+            <span style="color:#75715e">#   else if token is an operand:</span>
+            <span style="color:#75715e">#     push token onto the stack</span>
+            when <span style="color:#e6db74">/\d+/</span> {
+                say <span style="color:#e6db74">&#34;! found token operand&#34;</span>;
+                @stack<span style="color:#f92672">.</span>push: $token;
+                say <span style="color:#e6db74">&#34; pushed $token into stack [{@stack}]&#34;</span>;
             };
         }
     }
-    # result ← pop from the stack
-    say &quot;! end of input&quot;;
-    say &quot; popping {@stack[0]} and returning...\n&quot;;
-    @stack.pop;
+    <span style="color:#75715e"># result ← pop from the stack</span>
+    say <span style="color:#e6db74">&#34;! end of input&#34;</span>;
+    say <span style="color:#e6db74">&#34; popping {@stack[0]} and returning...\n&#34;</span>;
+    @stack<span style="color:#f92672">.</span>pop;
 }
-</code></pre>
-
-<p>Note that the <code>given</code> block isn&rsquo;t necessary before the series of <code>when</code> clauses, since <code>for</code> can topicalize its argument, so that:</p>
-
-<pre><code class="language-Perl6">    for @in -&gt; $token {
+</code></pre></div><p>Note that the <code>given</code> block isn&rsquo;t necessary before the series of <code>when</code> clauses, since <code>for</code> can topicalize its argument, so that:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">    for @in -&gt; $token {
     #         for each token in the postfix expression:
         given $token {
             when ...
-</code></pre>
-
-<p>could be rewritten simply as:</p>
-
+</code></pre><p>could be rewritten simply as:</p>
 <pre><code>    for @in {
         when ...
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-039/noud/perl6/ch-2.p6">Noud</a> used a dispatch table and predictably found a much more concise solution:</p>
-
-<pre><code class="language-Perl">my %operator = (
-    '+' =&gt; {$^a + $^b;},
-    '-' =&gt; {$^a - $^b;},
-    '*' =&gt; {$^a * $^b;},
-    '/' =&gt; {$^a / $^b;},
-    '%' =&gt; {$^a % $^b;},
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-039/noud/perl6/ch-2.p6">Noud</a> used a dispatch table and predictably found a much more concise solution:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl" data-lang="Perl"><span style="color:#66d9ef">my</span> %operator <span style="color:#f92672">=</span> (
+    <span style="color:#e6db74">&#39;+&#39;</span> <span style="color:#f92672">=&gt;</span> {$<span style="color:#960050;background-color:#1e0010">^</span>a <span style="color:#f92672">+</span> $<span style="color:#960050;background-color:#1e0010">^</span>b;},
+    <span style="color:#e6db74">&#39;-&#39;</span> <span style="color:#f92672">=&gt;</span> {$<span style="color:#960050;background-color:#1e0010">^</span>a <span style="color:#f92672">-</span> $<span style="color:#960050;background-color:#1e0010">^</span>b;},
+    <span style="color:#e6db74">&#39;*&#39;</span> <span style="color:#f92672">=&gt;</span> {$<span style="color:#960050;background-color:#1e0010">^</span>a <span style="color:#f92672">*</span> $<span style="color:#960050;background-color:#1e0010">^</span>b;},
+    <span style="color:#e6db74">&#39;/&#39;</span> <span style="color:#f92672">=&gt;</span> {$<span style="color:#960050;background-color:#1e0010">^</span>a <span style="color:#f92672">/</span> $<span style="color:#960050;background-color:#1e0010">^</span>b;},
+    <span style="color:#e6db74">&#39;%&#39;</span> <span style="color:#f92672">=&gt;</span> {$<span style="color:#960050;background-color:#1e0010">^</span>a % <span style="color:#960050;background-color:#1e0010">$^</span>b;},
 );
 
-sub rpn($s) {
-    my @stack = [];
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">rpn</span>($s) {
+    <span style="color:#66d9ef">my</span> @stack <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>;
 
-    for $s.split(/\s+/) -&gt; $a {
-        if (%operator{$a}:exists) {
-            if (@stack.elems &lt; 2) {
-                die &quot;Invalid expression&quot;;
+    <span style="color:#66d9ef">for</span> $s<span style="color:#f92672">.</span>split(<span style="color:#e6db74">/\s+/</span>) <span style="color:#f92672">-&gt;</span> $a {
+        <span style="color:#66d9ef">if</span> (%operator{$a}:exists) {
+            <span style="color:#66d9ef">if</span> (@stack<span style="color:#f92672">.</span>elems <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">2</span>) {
+                die <span style="color:#e6db74">&#34;Invalid expression&#34;</span>;
             }
-            # Don't forget that the last two elements on the stack need to be
-            # reversed in the operation.
-            my $y = @stack.pop();
-            my $x = @stack.pop();
-            @stack.push(%operator{$a}($x, $y));
-        } elsif ($a ~~ /\d+/) {
-            @stack.push(Int($a));
-        } else {
-            die &quot;Unknown operator $a&quot;;
+            <span style="color:#75715e"># Don&#39;t forget that the last two elements on the stack need to be</span>
+            <span style="color:#75715e"># reversed in the operation.</span>
+            <span style="color:#66d9ef">my</span> $y <span style="color:#f92672">=</span> @stack<span style="color:#f92672">.</span>pop();
+            <span style="color:#66d9ef">my</span> $x <span style="color:#f92672">=</span> @stack<span style="color:#f92672">.</span>pop();
+            @stack<span style="color:#f92672">.</span>push(%operator{$a}($x, $y));
+        } <span style="color:#66d9ef">elsif</span> ($a <span style="color:#f92672">~~</span> <span style="color:#e6db74">/\d+/</span>) {
+            @stack<span style="color:#f92672">.</span>push(Int($a));
+        } <span style="color:#66d9ef">else</span> {
+            die <span style="color:#e6db74">&#34;Unknown operator $a&#34;</span>;
         }
     }
 
-    return @stack.pop();
+    <span style="color:#66d9ef">return</span> @stack<span style="color:#f92672">.</span>pop();
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-039/ulrich-rieke/perl6/ch-2.p6">Ulrich Rieke</a> made a very detailed program taking into account the arity and precedence of operators:</p>
-
-<pre><code class="language-Perl">sub toRPN( Str $expression --&gt; Str ) {
-  my Str $rpn ;
-  my @first_order_oper = &lt;* /&gt; ;
-  my @second_order_oper = &lt;- +&gt; ;
-  my token decimal { \d+ } ;
-  my token operand {&lt;[+\-*/]&gt;} ;
-  my regex float {
-      &lt;decimal&gt;?
-      '.'
-      &lt;decimal&gt;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-039/ulrich-rieke/perl6/ch-2.p6">Ulrich Rieke</a> made a very detailed program taking into account the arity and precedence of operators:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl" data-lang="Perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">toRPN</span>( Str $expression --&gt; Str ) {
+  <span style="color:#66d9ef">my</span> Str $rpn ;
+  <span style="color:#66d9ef">my</span> @first_order_oper <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;*</span> <span style="color:#f92672">/&gt;</span> ;
+  <span style="color:#66d9ef">my</span> @second_order_oper <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;-</span> <span style="color:#f92672">+&gt;</span> ;
+  <span style="color:#66d9ef">my</span> token decimal { <span style="color:#f92672">\</span>d<span style="color:#f92672">+</span> } ;
+  <span style="color:#66d9ef">my</span> token operand {<span style="color:#e6db74">&lt;[+\-*/]&gt;</span>} ;
+  <span style="color:#66d9ef">my</span> regex float {
+      <span style="color:#e6db74">&lt;decimal&gt;</span>?
+      <span style="color:#e6db74">&#39;.&#39;</span>
+      <span style="color:#e6db74">&lt;decimal&gt;</span>
   } ;
-  my regex number {
-      &lt;decimal&gt; || &lt;float&gt;
+  <span style="color:#66d9ef">my</span> regex number {
+      <span style="color:#e6db74">&lt;decimal&gt;</span> <span style="color:#f92672">||</span> <span style="color:#e6db74">&lt;float&gt;</span>
   } ;
-  if ( $expression ~~ /(&lt;number&gt;) \s+ (&lt;operand&gt;) \s+ (&lt;number&gt;) (\s+ ( &lt;operand&gt;)
-    \s+ (&lt;number&gt;))?/ ) {
-      if ( $3 ) {
-    if ((~$3[0] (elem) @first_order_oper) &amp;&amp; ( ~$1 (elem)
+  <span style="color:#66d9ef">if</span> ( $expression <span style="color:#f92672">~~</span> <span style="color:#f92672">/</span>(<span style="color:#e6db74">&lt;number&gt;</span>) <span style="color:#f92672">\</span>s<span style="color:#f92672">+</span> (<span style="color:#e6db74">&lt;operand&gt;</span>) <span style="color:#f92672">\</span>s<span style="color:#f92672">+</span> (<span style="color:#e6db74">&lt;number&gt;</span>) (<span style="color:#f92672">\</span>s<span style="color:#f92672">+</span> ( <span style="color:#e6db74">&lt;operand&gt;</span>)
+    <span style="color:#f92672">\</span>s<span style="color:#f92672">+</span> (<span style="color:#e6db74">&lt;number&gt;</span>))?<span style="color:#f92672">/</span> ) {
+      <span style="color:#66d9ef">if</span> ( $3 ) {
+    <span style="color:#66d9ef">if</span> ((<span style="color:#f92672">~</span>$3[<span style="color:#ae81ff">0</span>] (elem) @first_order_oper) <span style="color:#f92672">&amp;&amp;</span> ( <span style="color:#f92672">~</span>$1 (elem)
           @second_order_oper) ) {
-        $rpn = ~$2 ~ &quot; &quot; ~ ~$3[1] ~ &quot; &quot; ~ ~$3[0] ~ &quot; &quot; ~ ~$0 ~
-          &quot; &quot; ~ ~$1 ;
+        $rpn <span style="color:#f92672">=</span> <span style="color:#f92672">~</span>$2 <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34; &#34;</span> <span style="color:#f92672">~</span> <span style="color:#f92672">~</span>$3[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34; &#34;</span> <span style="color:#f92672">~</span> <span style="color:#f92672">~</span>$3[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34; &#34;</span> <span style="color:#f92672">~</span> <span style="color:#f92672">~</span>$0 <span style="color:#f92672">~</span>
+          <span style="color:#e6db74">&#34; &#34;</span> <span style="color:#f92672">~</span> <span style="color:#f92672">~</span>$1 ;
     }
-    if ((~$3[0] (elem) @second_order_oper) &amp;&amp; ( ~$1 (elem)
+    <span style="color:#66d9ef">if</span> ((<span style="color:#f92672">~</span>$3[<span style="color:#ae81ff">0</span>] (elem) @second_order_oper) <span style="color:#f92672">&amp;&amp;</span> ( <span style="color:#f92672">~</span>$1 (elem)
           @first_order_oper)) {
-        $rpn = ~$0 ~ &quot; &quot; ~ ~$2 ~ &quot; &quot; ~ ~$1 ~ &quot; &quot; ~ ~$3[1] ~ &quot; &quot;
-          ~ ~$3[0] ;
+        $rpn <span style="color:#f92672">=</span> <span style="color:#f92672">~</span>$0 <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34; &#34;</span> <span style="color:#f92672">~</span> <span style="color:#f92672">~</span>$2 <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34; &#34;</span> <span style="color:#f92672">~</span> <span style="color:#f92672">~</span>$1 <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34; &#34;</span> <span style="color:#f92672">~</span> <span style="color:#f92672">~</span>$3[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34; &#34;</span>
+          <span style="color:#f92672">~</span> <span style="color:#f92672">~</span>$3[<span style="color:#ae81ff">0</span>] ;
     }
-    if ( hasSameOrder( ~$1 , ~$3[0] )) {
-        $rpn = ~$0 ~ &quot; &quot; ~ ~$2 ~ &quot; &quot; ~ ~$1 ~ ~ &quot; &quot; ~$3[1] ~ &quot; &quot; ~ ~$3[0] ;
+    <span style="color:#66d9ef">if</span> ( hasSameOrder( <span style="color:#f92672">~</span>$1 , <span style="color:#f92672">~</span>$3[<span style="color:#ae81ff">0</span>] )) {
+        $rpn <span style="color:#f92672">=</span> <span style="color:#f92672">~</span>$0 <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34; &#34;</span> <span style="color:#f92672">~</span> <span style="color:#f92672">~</span>$2 <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34; &#34;</span> <span style="color:#f92672">~</span> <span style="color:#f92672">~</span>$1 <span style="color:#f92672">~</span> <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34; &#34;</span> <span style="color:#f92672">~</span>$3[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34; &#34;</span> <span style="color:#f92672">~</span> <span style="color:#f92672">~</span>$3[<span style="color:#ae81ff">0</span>] ;
     }
       }
-      else { #no second operator of whatever same or different precedence
-    $rpn = ~$0 ~ &quot; &quot; ~ ~$2 ~ &quot; &quot; ~ ~$1 ;
+      <span style="color:#66d9ef">else</span> { <span style="color:#75715e">#no second operator of whatever same or different precedence</span>
+    $rpn <span style="color:#f92672">=</span> <span style="color:#f92672">~</span>$0 <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34; &#34;</span> <span style="color:#f92672">~</span> <span style="color:#f92672">~</span>$2 <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34; &#34;</span> <span style="color:#f92672">~</span> <span style="color:#f92672">~</span>$1 ;
       }
   }
-  else {
-      $rpn = &quot;Not tested in this basic version or wrong format!&quot; ;
+  <span style="color:#66d9ef">else</span> {
+      $rpn <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Not tested in this basic version or wrong format!&#34;</span> ;
   }
-  return $rpn ;
+  <span style="color:#66d9ef">return</span> $rpn ;
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-039/javier-luque/perl6/ch-2.p6">Javier Luque</a> used a dispatch table and made a fairly concise program despite using various Unicode encoding of the operators:</p>
-
-<pre><code class="language-Perl6">sub evaluate-stack(@tokens) {
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-039/javier-luque/perl6/ch-2.p6">Javier Luque</a> used a dispatch table and made a fairly concise program despite using various Unicode encoding of the operators:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">sub evaluate-stack(@tokens) {
     my @stack;
 
     # Some utf-8 friendly operations
@@ -714,21 +620,18 @@ sub add(@s)      { return @s.pop + @s.pop }
 sub subtract(@s) { return - @s.pop + @s.pop }
 sub multiply(@s) { return @s.pop * @s.pop }
 sub divide(@s)   { return (1 / @s.pop) * @s.pop }
-</code></pre>
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-039/roger-bell-west/perl6/ch-2.p6">Roger Bell West</a> also created a <code>%op</code>  dispatch table and created for the operators a series of small subroutines, of which we give only two examples, <code>add</code> and <code>sub</code>. The main <code>for</code> loop scans the individual arguments passed to the program, pushes numerical arguments onto the stack, and applies the subroutines defined in the <code>%op</code> hash for the operators.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl" data-lang="Perl"><span style="color:#66d9ef">my</span> @stack<span style="color:#f92672">=</span>();
 
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-039/roger-bell-west/perl6/ch-2.p6">Roger Bell West</a> also created a <code>%op</code>  dispatch table and created for the operators a series of small subroutines, of which we give only two examples, <code>add</code> and <code>sub</code>. The main <code>for</code> loop scans the individual arguments passed to the program, pushes numerical arguments onto the stack, and applies the subroutines defined in the <code>%op</code> hash for the operators.</p>
-
-<pre><code class="language-Perl">my @stack=();
-
-my %op=(
-  add =&gt; &amp;add,
-  '+' =&gt; &amp;add,
-  sub =&gt; &amp;sub,
-  '-' =&gt; &amp;sub,
+<span style="color:#66d9ef">my</span> %op<span style="color:#f92672">=</span>(
+  add <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">&amp;</span>add,
+  <span style="color:#e6db74">&#39;+&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">&amp;</span>add,
+  <span style="color:#66d9ef">sub</span> =&gt; &amp;sub,
+  &#39;-&#39; =&gt; &amp;sub,
   mul =&gt; &amp;mul,
-  '*' =&gt; &amp;mul,
+  &#39;*&#39; =&gt; &amp;mul,
   div =&gt; &amp;div,
-  '/' =&gt; &amp;div,
+  &#39;/&#39; =&gt; &amp;div,
   neg =&gt; &amp;neg,
   dup =&gt; &amp;dup,
   pop =&gt; &amp;pop,
@@ -736,65 +639,56 @@ my %op=(
     );
 
 for @*ARGS -&gt; $p {
-  if (%op{$p}:exists) {
-    %op{$p}.();
-  } elsif ($p ~~ /^&lt;[.0..9]&gt;+$/) {
+  <span style="color:#66d9ef">if</span> (%op{$p}:exists) {
+    %op{$p}<span style="color:#f92672">.</span>();
+  } <span style="color:#66d9ef">elsif</span> ($p <span style="color:#f92672">~~</span> <span style="color:#e6db74">/^&lt;[.0..9]&gt;+$/</span>) {
     push @stack,$p;
-  } else {
-    die &quot;Unknown input $p\n&quot;;
+  } <span style="color:#66d9ef">else</span> {
+    die <span style="color:#e6db74">&#34;Unknown input $p\n&#34;</span>;
   }
-  say join(' ',@stack);
+  say join(<span style="color:#e6db74">&#39; &#39;</span>,@stack);
 }
 
-sub add {
-  push @stack,(@stack.pop) + (@stack.pop);
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">add</span> {
+  push @stack,(@stack<span style="color:#f92672">.</span>pop) <span style="color:#f92672">+</span> (@stack<span style="color:#f92672">.</span>pop);
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-039/ruben-westerberg/perl6/ch-2.p6">Ruben Westerberg</a> implemented a dispatch table under the form of a switch statement with a series of <code>when</code> clauses:</p>
-
-<pre><code class="language-Perl">my $expression=@*ARGS[0]//&quot;15 7 1 1 + - / 3 * 2 1 1 + + -&quot;;
-my @stack;
-$expression ~~ s:g/\s+/ /;
-put &quot;Input expression: $expression&quot;;
-for $expression.comb: /\S+/ {
-    die &quot;Error in input expression&quot; if ! /^&lt;[\-\+]&gt;?\d+(\.\d+)*$/ &amp;&amp; !/^&lt;[\+\-\*\/]&gt;$/;
-    when $_ eq &quot;+&quot; {
-        push(@stack, pop(@stack)+ pop(@stack));
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-039/ruben-westerberg/perl6/ch-2.p6">Ruben Westerberg</a> implemented a dispatch table under the form of a switch statement with a series of <code>when</code> clauses:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl" data-lang="Perl"><span style="color:#66d9ef">my</span> $expression<span style="color:#f92672">=</span>@<span style="color:#960050;background-color:#1e0010">*</span>ARGS[<span style="color:#ae81ff">0</span>]<span style="color:#e6db74">//</span><span style="color:#e6db74">&#34;15 7 1 1 + - / 3 * 2 1 1 + + -&#34;</span>;
+<span style="color:#66d9ef">my</span> @stack;
+$expression <span style="color:#f92672">~~</span> s:g<span style="color:#e6db74">/\s+/</span> <span style="color:#f92672">/</span>;
+put <span style="color:#e6db74">&#34;Input expression: $expression&#34;</span>;
+<span style="color:#66d9ef">for</span> $expression<span style="color:#f92672">.</span>comb: <span style="color:#e6db74">/\S+/</span> {
+    die <span style="color:#e6db74">&#34;Error in input expression&#34;</span> <span style="color:#66d9ef">if</span> <span style="color:#f92672">!</span> <span style="color:#e6db74">/^&lt;[\-\+]&gt;?\d+(\.\d+)*$/</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span><span style="color:#e6db74">/^&lt;[\+\-\*\/]&gt;$/</span>;
+    when $_ <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#34;+&#34;</span> {
+        push(@stack, pop(@stack)<span style="color:#f92672">+</span> pop(@stack));
     }
-    when $_  eq &quot;-&quot; {
-        push(@stack, pop(@stack)-pop(@stack));
+    when $_  <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#34;-&#34;</span> {
+        push(@stack, pop(@stack)<span style="color:#f92672">-</span>pop(@stack));
     }
-    when $_ eq &quot;*&quot; {
-    push(@stack, pop(@stack)*pop(@stack));
+    when $_ <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#34;*&#34;</span> {
+    push(@stack, pop(@stack)<span style="color:#f92672">*</span>pop(@stack));
     }
-    when $_ eq &quot;/&quot; {
-        push(@stack, pop(@stack)/pop(@stack));
+    when $_ <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#34;/&#34;</span> {
+        push(@stack, pop(@stack)<span style="color:#f92672">/</span>pop(@stack));
     }
     default {
         push @stack, $_;
     }
 }
-put &quot;Result: @stack[]&quot;;
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-039/ryan-thompson/perl6/ch-2.p6">Ryan Thompson</a> created a dispatch table (or rather a subroutine returning a dispatch table, more on this below) and his <code>MAIN</code> loop doing the bulk of the work is very simple:</p>
-
-<pre><code class="language-Perl">sub MAIN( Str $rpn-expr ) {
-    for $rpn-expr.words -&gt; $tok {
-        if $tok.Numeric { @stack.push( $tok ) }
-        else {
-            die &quot;Unknown operator ｢$tok｣&quot; if %op{$tok}:!exists;
-            %op{$tok}.()
+put <span style="color:#e6db74">&#34;Result: @stack[]&#34;</span>;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-039/ryan-thompson/perl6/ch-2.p6">Ryan Thompson</a> created a dispatch table (or rather a subroutine returning a dispatch table, more on this below) and his <code>MAIN</code> loop doing the bulk of the work is very simple:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl" data-lang="Perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>( Str $rpn-expr ) {
+    <span style="color:#66d9ef">for</span> $rpn<span style="color:#f92672">-</span>expr<span style="color:#f92672">.</span>words <span style="color:#f92672">-&gt;</span> $tok {
+        <span style="color:#66d9ef">if</span> $tok<span style="color:#f92672">.</span>Numeric { @stack<span style="color:#f92672">.</span>push( $tok ) }
+        <span style="color:#66d9ef">else</span> {
+            die <span style="color:#e6db74">&#34;Unknown operator ｢$tok｣&#34;</span> <span style="color:#66d9ef">if</span> %op{$tok}:<span style="color:#f92672">!</span>exists;
+            %op{$tok}<span style="color:#f92672">.</span>()
         }
     }
-    say |@stack;
+    say <span style="color:#f92672">|</span>@stack;
 }
-</code></pre>
-
-<p>His <code>gen-op-dispatch</code> that returns the dispatch table is quite interesting:</p>
-
-<pre><code class="language-Perl6">sub gen-op-dispatch( --&gt; Hash ) {
+</code></pre></div><p>His <code>gen-op-dispatch</code> that returns the dispatch table is quite interesting:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">sub gen-op-dispatch( --&gt; Hash ) {
     my Code %op = (
        '+'  =&gt; op-gen( { $^a + $^b } ); # Binary
        '-'  =&gt; op-gen( { $^a - $^b } );
@@ -823,11 +717,8 @@ put &quot;Result: @stack[]&quot;;
 
     return %op;
 }
-</code></pre>
-
-<p>It first defines a few basic operators as a simple <code>%op</code> hash. Then it adds the Unicode aliases of these operators. One very interesting thing is the way the program uses junctions as hash keys to define operators&rsquo; aliases in just one statement. These hash assignments use the following <code>op-gen</code> subroutine:</p>
-
-<pre><code class="language-Perl6">#| Generate an operator and return a Code object that can be added to %op
+</code></pre><p>It first defines a few basic operators as a simple <code>%op</code> hash. Then it adds the Unicode aliases of these operators. One very interesting thing is the way the program uses junctions as hash keys to define operators&rsquo; aliases in just one statement. These hash assignments use the following <code>op-gen</code> subroutine:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">#| Generate an operator and return a Code object that can be added to %op
 #  We introspect &amp;code.arity to know how many @operands to pop off the @stack
 sub op-gen( &amp;code --&gt; Code ) {
     sub () {
@@ -837,10 +728,7 @@ sub op-gen( &amp;code --&gt; Code ) {
         @stack.push: |code( |@operands );
     }
 }
-</code></pre>
-
-<p>Observe how the <code>op-gen</code> subroutine, which returns an anonymous subroutine, checks that there are enough items on the stack for the arity (number of expected arguments) of the operator. Also, <code>push</code>ing the value popped from the stack into the <code>@operands</code> puts the popped arguments back into the right order for non-commutative operations such as subtraction or division. Finally, I love the way Ryan even introduced support for user-defined variables, meaning that his RPN implementation can almost be used as a (very basic) programming language. For example, <a href="http://www.ry.ca/2019/12/reverse-polish-notation/">Ryan&rsquo;s blog</a> shows a way to compute <a href="https://en.wikipedia.org/wiki/Triangular_number">triangular numbers</a> (the 3rd, 4th, and 5th ones in the examples below):</p>
-
+</code></pre><p>Observe how the <code>op-gen</code> subroutine, which returns an anonymous subroutine, checks that there are enough items on the stack for the arity (number of expected arguments) of the operator. Also, <code>push</code>ing the value popped from the stack into the <code>@operands</code> puts the popped arguments back into the right order for non-commutative operations such as subtraction or division. Finally, I love the way Ryan even introduced support for user-defined variables, meaning that his RPN implementation can almost be used as a (very basic) programming language. For example, <a href="http://www.ry.ca/2019/12/reverse-polish-notation/">Ryan&rsquo;s blog</a> shows a way to compute <a href="https://en.wikipedia.org/wiki/Triangular_number">triangular numbers</a> (the 3rd, 4th, and 5th ones in the examples below):</p>
 <pre><code>$ perl6 ryan_rpn.p6 '3 n= 2 n n 1 + * /'
 6
 
@@ -850,23 +738,21 @@ $ perl6 ryan_rpn.p6 '4 n= 2 n n 1 + * /'
 $ perl6 ryan_rpn.p6 '5 n= 2 n n 1 + * /'
 15
 </code></pre>
-
 <p>I am impressed. Ryan&rsquo;s program is quite a beautiful clockwork.</p>
-
 <h2 id="see-also">SEE ALSO</h2>
-
 <p>Three blog posts (besides mine) this time:</p>
-
 <ul>
-<li><p>Arne Sommer: <a href="https://raku-musings.com/reverse-guest.html">https://raku-musings.com/reverse-guest.html</a>;</p></li>
-
-<li><p>Javier Luque: <a href="https://perlchallenges.wordpress.com/2019/12/16/perl-weekly-challenge-039/">https://perlchallenges.wordpress.com/2019/12/16/perl-weekly-challenge-039/</a>;</p></li>
-
-<li><p>Ryan Thompson: <a href="http://www.ry.ca/2019/12/reverse-polish-notation/">http://www.ry.ca/2019/12/reverse-polish-notation/</a>; it seems that this is the first time that Ryan is blogging about the Perl Weekly Challenge. I really hope that he will continue to do so, as this is really an interesting blog post with a lot of innovative ideas.</p></li>
+<li>
+<p>Arne Sommer: <a href="https://raku-musings.com/reverse-guest.html;">https://raku-musings.com/reverse-guest.html;</a></p>
+</li>
+<li>
+<p>Javier Luque: <a href="https://perlchallenges.wordpress.com/2019/12/16/perl-weekly-challenge-039/;">https://perlchallenges.wordpress.com/2019/12/16/perl-weekly-challenge-039/;</a></p>
+</li>
+<li>
+<p>Ryan Thompson: <a href="http://www.ry.ca/2019/12/reverse-polish-notation/;">http://www.ry.ca/2019/12/reverse-polish-notation/;</a> it seems that this is the first time that Ryan is blogging about the Perl Weekly Challenge. I really hope that he will continue to do so, as this is really an interesting blog post with a lot of innovative ideas.</p>
+</li>
 </ul>
-
 <h2 id="wrapping-up">Wrapping up</h2>
-
 <p>Please let me know if I forgot any of the challengers or if you think my explanation of your code misses something important (send me an e-mail or just raise an issue against this GitHub page).</p>
 
                 </div>

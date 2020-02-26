@@ -16,7 +16,7 @@
 
     <meta name="description" content="Laurent Rosenfeld Weekly Review: Challenge - #007.">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.55.0-DEV" />
+    <meta name="generator" content="Hugo 0.66.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -149,32 +149,18 @@
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
-                    
-
-<hr />
-
+                    <hr>
 <h1 id="raku-solutions-weekly-review">Raku Solutions Weekly Review</h1>
-
-<hr />
-
+<hr>
 <h2 id="task-1-niven-or-harshad-numbers">Task #1: Niven (or Harshad) Numbers</h2>
-
 <p>This is derived in part from my <a href="http://blogs.perl.org/users/laurent_r/2019/05/perl-weekly-challenge-7-niven-numbers-and-word-ladders.html">blog post</a> made in answer to the <a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-007/">Week 7 of the Perl Weekly Challenge</a> organized by  <a href="http://blogs.perl.org/users/mohammad_s_anwar/">Mohammad S. Anwar</a> as well as answers made by others to the same challenge.</p>
-
 <p>The challenge reads as follows:</p>
-
 <p><em>Print all the Niven numbers from 0 to 50 inclusive, each on their own line. A Niven number is a non-negative number that is divisible by the sum of its digits.</em></p>
-
 <p>A <a href="https://en.wikipedia.org/wiki/Harshad_number">Niven number or harshad number</a> is a strictly positive integer that can be evenly divided by the sum of its digits. Note that this property depends on the number base in which the number is expressed (the divisibility property is intrinsic to a pair of numbers, but the sum of digits of a given number depends on the number base in which the number is expressed). Here we will consider only numbers in the common base 10.</p>
-
 <p>Please also note that 0 cannot be a divisor of a number. Therefore, 0 cannot really be a Niven number. We&rsquo;ll start at 1 to avoid problems.</p>
-
 <p>This is an easy challenge, but I thought it was interesting to include it in this blog series because of the diversity of solutions suggested by the various challengers. Really, there is more than one way to do it..</p>
-
 <h2 id="my-solution">My solution</h2>
-
 <p>For a simple problem like this, I can&rsquo;t resist doing in with a Perl 6 one-liner:</p>
-
 <p>​    $ perl6 -e &lsquo;for 1..50 -&gt; $num { my $sum = [+] $num.comb; say $num if $num %% $sum}&rsquo;
 ​    1
 ​    2
@@ -199,30 +185,20 @@
 ​    45
 ​    48
 ​    50</p>
-
 <p>As it turns out, I&rsquo;m afraid I was a bit sloppy here (because I simply translated to P6 my original P5 one-liner, instead of taking full advantage of Perl 6 expressive syntax): in Perl 6, the one-liner could be much more concise, as we will see in other challengers&rsquo; solutions below.</p>
-
 <p>And it you prefer a real script, this is one way it could be done, using a <code>gather/take</code> block:</p>
-
-<pre><code class="language-Perl6">use v6;
+<pre><code class="language-Perl6" data-lang="Perl6">use v6;
 .say for gather {
     for 1..50 -&gt; $num {
         my $sum = [+] $num.comb;
         take $num if $num %% $sum
     }
 }
-</code></pre>
-
-<h2 id="alternative-solutions">Alternative Solutions</h2>
-
+</code></pre><h2 id="alternative-solutions">Alternative Solutions</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-007/arne-sommer/perl6/ch-1.p6">Arne Sommer</a> provided a script that could have been a Perl 6 one-liner and is significantly more concise than my own one-liner:</p>
-
-<pre><code class="language-Perl6">.say if $_ %% $_.comb.sum for 0 .. 50;
-</code></pre>
-
-<p>Arne also provided a solution creating a lazy infinite list of Niven numbers and printing out those up to 50:</p>
-
-<pre><code class="language-Perl6">unit sub MAIN (Int $limit where $limit &gt; 0 = 50);
+<pre><code class="language-Perl6" data-lang="Perl6">.say if $_ %% $_.comb.sum for 0 .. 50;
+</code></pre><p>Arne also provided a solution creating a lazy infinite list of Niven numbers and printing out those up to 50:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">unit sub MAIN (Int $limit where $limit &gt; 0 = 50);
 my $niven := gather
 {
   for 0..Inf
@@ -231,51 +207,29 @@ my $niven := gather
   }
 }
 .say for $niven[^$limit];
-</code></pre>
-
-<p>This program is sort of slightly wrong, though, as it does not print the Niven numbers up to 50, as required in the challenge specification, but the first 50 Niven numbers (up to 153). But Arne knows that, and  that&rsquo;s really secondary: it would be no big deal to change the last code line to make it satisfy the requirement.</p>
-
+</code></pre><p>This program is sort of slightly wrong, though, as it does not print the Niven numbers up to 50, as required in the challenge specification, but the first 50 Niven numbers (up to 153). But Arne knows that, and  that&rsquo;s really secondary: it would be no big deal to change the last code line to make it satisfy the requirement.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-007/finley/perl6/ch-1.p6">Finley</a> provided a script, but the real code to compute Niven&rsquo;s number holds in one single line, even slightly shorter than Arne&rsquo;s solution:</p>
-
-<pre><code class="language-Perl6">.say if ($_ %% [+] .comb) for 0..50;
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-007/fjwhittle/perl6/ch-1.p6">Francis J. Whittle</a> also provided a script that could be a simple Perl 6 one-liner:</p>
-
-<pre><code class="language-Perl6">.put for (0..50).grep: { $_ %% [+] .comb };
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-007/jo-christian-oterhals/perl6/ch-1.p6">Jo-Christian Oterhals</a>&rsquo;s script is the most concise so far and could also become a simple one-liner:</p>
-
-<pre><code class="language-Perl6">.say if $_ %% [+] .comb for 0..50;
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-007/ruben-westerberg/perl6/ch-1.p6">Ruben Westerberg</a> also provided a script that could boil down to a one-liner:</p>
-
-<pre><code class="language-Perl6">say join &quot;\n&quot;, (0..50) .grep({($_ &gt; 0) &amp;&amp; $_ %% (.Str.comb&gt;&gt;.Int .sum)});
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-007/jaldhar-h-vyas/perl6/ch-1.p6">Jaldhar H. Vyas</a> dedicated his script to the memory of his father,  Dr. Harshad V. Vyas (remember that the Niven numbers are commonly called the Harshad Numbers). His script is significantly longer than all those seen so far (but still fairly short):</p>
-
-<pre><code class="language-Perl6">for 1 .. 50 -&gt; $number {
+<pre><code class="language-Perl6" data-lang="Perl6">.say if ($_ %% [+] .comb) for 0..50;
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-007/fjwhittle/perl6/ch-1.p6">Francis J. Whittle</a> also provided a script that could be a simple Perl 6 one-liner:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">.put for (0..50).grep: { $_ %% [+] .comb };
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-007/jo-christian-oterhals/perl6/ch-1.p6">Jo-Christian Oterhals</a>&lsquo;s script is the most concise so far and could also become a simple one-liner:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">.say if $_ %% [+] .comb for 0..50;
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-007/ruben-westerberg/perl6/ch-1.p6">Ruben Westerberg</a> also provided a script that could boil down to a one-liner:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">say join &quot;\n&quot;, (0..50) .grep({($_ &gt; 0) &amp;&amp; $_ %% (.Str.comb&gt;&gt;.Int .sum)});
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-007/jaldhar-h-vyas/perl6/ch-1.p6">Jaldhar H. Vyas</a> dedicated his script to the memory of his father,  Dr. Harshad V. Vyas (remember that the Niven numbers are commonly called the Harshad Numbers). His script is significantly longer than all those seen so far (but still fairly short):</p>
+<pre><code class="language-Perl6" data-lang="Perl6">for 1 .. 50 -&gt; $number {
     if $number % $number.comb.sum == 0 {
         say $number;
     }
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-007/joelle-maslak/perl6/ch-1.p6">Joelle Maslak</a> also wrote a fairly short full-fledged script:</p>
-
-<pre><code class="language-Perl6">sub MAIN(UInt:D $max = 50) {
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-007/joelle-maslak/perl6/ch-1.p6">Joelle Maslak</a> also wrote a fairly short full-fledged script:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">sub MAIN(UInt:D $max = 50) {
     for 0..$max -&gt; $i {
         say $i if $i %% [+] $i.comb;
     }
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-007/ozzy/perl6/ch-1.p6">Ozzy</a> made the most complicated solution so far:</p>
-
-<pre><code class="language-Perl6">sub SumDigits ( Int $x is copy ) {
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-007/ozzy/perl6/ch-1.p6">Ozzy</a> made the most complicated solution so far:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">sub SumDigits ( Int $x is copy ) {
     my $sum=0;
     while $x != 0 {
         $sum += $x mod 10;
@@ -288,11 +242,8 @@ sub MAIN {
         say $x if $x %% SumDigits($x);
     }
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-007/simon-proctor/perl6/ch-1.p6">Simon Proctor</a> also somewhat over-engineered it (in my humble view) with multi subroutines :</p>
-
-<pre><code class="language-Perl6">multi sub is-niven( 0 ) { False }
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-007/simon-proctor/perl6/ch-1.p6">Simon Proctor</a> also somewhat over-engineered it (in my humble view) with multi subroutines :</p>
+<pre><code class="language-Perl6" data-lang="Perl6">multi sub is-niven( 0 ) { False }
 
 multi sub is-niven( Int $num where * &gt; 0 ) {
     $num %% [+] $num.comb;
@@ -300,20 +251,12 @@ multi sub is-niven( Int $num where * &gt; 0 ) {
 sub MAIN( UInt() $max=50 ) {
     .say if is-niven($_) for 0..$max;
 }
-</code></pre>
-
-<h2 id="see-also">SEE ALSO</h2>
-
+</code></pre><h2 id="see-also">SEE ALSO</h2>
 <p>Only two blog posts this time:</p>
-
 <p>Arne Sommer: <a href="https://perl6.eu/niven-ladder.html">https://perl6.eu/niven-ladder.html</a></p>
-
 <p>Jo-Christian Oterhals: <a href="https://medium.com/@jcoterhals/perl-6-small-stuff-19-a-challenge-of-niven-numbers-and-word-ladders-ed33dcd2b45b">https://medium.com/@jcoterhals/perl-6-small-stuff-19-a-challenge-of-niven-numbers-and-word-ladders-ed33dcd2b45b</a></p>
-
 <h2 id="wrapping-up">Wrapping up</h2>
-
 <p>Please let me know if I forgot any of the challengers or if you think my explanation of your code misses something important (you can just raise an issue against this GitHub page).</p>
-
 <p>If you want to participate to the Perl Weekly Challenge, please connect to <a href="https://perlweeklychallenge.org/">this site</a>.</p>
 
                 </div>

@@ -16,7 +16,7 @@
 
     <meta name="description" content="Kian-Meng Ang Weekly Review: Challenge - #014.">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.55.0-DEV" />
+    <meta name="generator" content="Hugo 0.66.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -149,53 +149,31 @@
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
-                    
-
-<p>Continues from <a href="/blog/review-challenge-013">previous post</a>.</p>
-
+                    <p>Continues from <a href="/blog/review-challenge-013">previous post</a>.</p>
 <p>Feel free to <a href="https://github.com/manwar/perlweeklychallenge">submit a merge request or open a ticket</a> if you found any issues with this post. Feedback are very much appreciated and welcome. For a quick overview, read the <a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-014/">original questions</a> and <a href="https://perlweeklychallenge.org/blog/recap-challenge-014/">recap</a> of the weekly challenge.</p>
-
-<hr />
-
+<hr>
 <h3 id="challenge-1">Challenge #1</h3>
-
-<hr />
-
+<hr>
 <p>Some participants found that it&rsquo;s quite vogue to understand the <a href="https://en.wikipedia.org/wiki/Van_Eck%27s_sequence">Van Eck&rsquo;s sequence</a> but managed to understand it through <a href="https://oeis.org/A181391">OEIS</a> and <a href="https://www.youtube.com/watch?v=etMJxB-igrc">Numberphile&rsquo;s video</a>.</p>
-
 <p>The general solution was to loop and generate the sequence but at the same time, cached the calculation (Joelle Maslak&rsquo;s solution have <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-014/joelle-maslak/perl5/ch-1.pl">implemented two caches</a>).</p>
-
 <p>In Rob Van Dam&rsquo;s <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-014/rob-van-dam/perl5/ch-1.pl">solution</a>, he did a comparison between a cached and non-cached version. Using his <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-014/rob-van-dam/perl5/ch-1.pl">solution</a> as example, to generate 100000 sequence of numbers, the cached version took around 0.5 seconds while the non-cached ran for 9-plus minutes. Gustavo Chaves did something similar but comparing an <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-014/gustavo-chaves/perl5/ch-1.pl">iterative</a> and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-014/gustavo-chaves/perl5/ch-1-recursive.pl">recursive</a> approach. Surprisingly, the recursive version even with memoization, is <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-014/gustavo-chaves/perl5/README.pod">33 times slow</a>.</p>
-
 <p>Some interesting stuff while reviewing this first challenge. Jaime Corchado used an <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-014/jaime/perl5/ch-1.pl">unorthodox way</a> of looping a sequence as shown below. Reading through the documentation on <a href="https://perldoc.perl.org/functions/continue.html"><code>continue</code></a>, it seemed that <code>continue</code> behaves like a flow control statement if it&rsquo;s followed by a code block. In this case, the <code>continue</code> code block will be executed before the next iteration, which was used to increment the <code>$m</code> variable. This is similar to the finally block in the try-catch-finally constructs in some other programming languages.</p>
-
-<pre><code class="language-perl">    my $m = 1; # the distance between matching entries.
-    for my $am (@ecks) {
-        if ($an == $am) {
-        $a1 = $m;
-        last; # only update with most recent entry.
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $m <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; <span style="color:#75715e"># the distance between matching entries.</span>
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $am (@ecks) {
+        <span style="color:#66d9ef">if</span> ($an <span style="color:#f92672">==</span> $am) {
+        $a1 <span style="color:#f92672">=</span> $m;
+        <span style="color:#66d9ef">last</span>; <span style="color:#75715e"># only update with most recent entry.</span>
         }
-    } continue { $m++; }
-</code></pre>
-
-<p>We also noticed that more comments in the code submissions, which was quite helpful to let us know how they arrived at their solutions. Mesmerizingly, Steve Wilson&rsquo;s <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-014/steven-wilson/perl5/ch-1.pl">submitted answer</a> read like pseudocode or normal English.</p>
-
+    } <span style="color:#66d9ef">continue</span> { $m<span style="color:#f92672">++</span>; }
+</code></pre></div><p>We also noticed that more comments in the code submissions, which was quite helpful to let us know how they arrived at their solutions. Mesmerizingly, Steve Wilson&rsquo;s <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-014/steven-wilson/perl5/ch-1.pl">submitted answer</a> read like pseudocode or normal English.</p>
 <p>Both <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-014/gustavo-chaves/perl5/ch-1.pl">Gustavo Chaves</a> and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-014/e-choroba/perl5/ch-1.pl">E. Choroba</a> (the only solution that used iterator and test case) have the cleanest solutions so far.</p>
-
-<hr />
-
+<hr>
 <h3 id="challenge-2">Challenge #2</h3>
-
-<hr />
-
+<hr>
 <p>Probably one of the most interesting questions of all the challenges.</p>
-
-<p><a href="https://en.wikiquote.org/wiki/Jamie_Zawinski">Jamie Zawinski</a> once <a href="http://regex.info/blog/2006-09-15/247">said</a>, &ldquo;Some people, when confronted with a problem, think &ldquo;I know, I&rsquo;ll use regular expressions.&rdquo; Now they have two problems.&ldquo;. Jaime Corchado, coincidentally shares the same first name, decided to <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-014/jaime/perl5/ch-2.pl">solve this challenge</a> using a very long regex that matches every combination of the postal abbreviations. We&rsquo;re not sure how he generated the regex but this was definitely a quirky approach.</p>
-
+<p><a href="https://en.wikiquote.org/wiki/Jamie_Zawinski">Jamie Zawinski</a> once <a href="http://regex.info/blog/2006-09-15/247">said</a>, &ldquo;Some people, when confronted with a problem, think &ldquo;I know, I&rsquo;ll use regular expressions.&rdquo; Now they have two problems.&quot;. Jaime Corchado, coincidentally shares the same first name, decided to <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-014/jaime/perl5/ch-2.pl">solve this challenge</a> using a very long regex that matches every combination of the postal abbreviations. We&rsquo;re not sure how he generated the regex but this was definitely a quirky approach.</p>
 <p>Gustavo Chaves used a <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-014/gustavo-chaves/perl5/ch-2.pl">brilliant way</a> to obtain the list of U.S. state codes through the <a href="https://metacpan.org/pod/Locale::US"><code>Locale::US</code></a> CPAN module. That approach definitely shorten the code and reduce some &ldquo;noise&rdquo; within the code. Also, this is a good example where a CPAN module really helps in solving the problem. And for those who are interested, please help to create a similar locale CPAN module of your country.</p>
-
 <p>Again, the <a href="http://neilb.org/2019/06/26/state-code-anagrams.html">cleanest solution</a> went to Neil Bowers.</p>
-
 <pre><code>use File::Slurper qw/ read_lines /;
 
 my @states = read_lines('state-codes.txt');
@@ -206,61 +184,33 @@ my @words  = grep { /^($re)+$/ }
 
 print $words[0], &quot;\n&quot;;
 </code></pre>
-
-<hr />
-
+<hr>
 <h3 id="challenge-3">Challenge #3</h3>
-
-<hr />
-
+<hr>
 <p>Out of the five participants, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-014/rob-van-dam/perl5/ch-3.pl">Rob Van Dam</a>, and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-014/lubos-kolouch/perl5/ch-3.pl">Lubos Kolouch</a> were the newcomer to this challenge this week. Initially we thought Francis White submitted <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-014/fjwhittle/perl6/ch-3.p6">his solution</a> (Perl 6) for the first time, little we know that he already <a href="https://github.com/fjwhittle/perlweeklychallenge-club/blob/master/challenge-012/fjwhittle/perl6/ch-3.p6">did the challenge in week 12</a> but we missed it. Hence, starting from this week, for this challenge, we will look into both Perl 5 and Perl 6 solutions.</p>
-
 <p>The HTTP client CPAN modules used by the participant this week were <a href="https://metacpan.org/pod/HTTP::Tiny"><code>HTTP::Tiny</code></a>, <a href="https://metacpan.org/pod/WWW::Mechanize"><code>WWW::Mechanize</code></a>, <a href="https://metacpan.org/pod/Furl"><code>Furl</code></a>, <a href="https://metacpan.org/pod/Mojo::UserAgent"><code>Mojo::UserAgent</code></a>, and <a href="https://cro.services/"><code>Cro::HTTP::Client</code></a> (Perl 6). Only the <code>WWW::Mechanize</code> module which is more specialized HTTP client or a manual web browser. While we have many modules that can be used for this challenge, the <code>Mojo::UserAgent</code> is definitely the go-to module for modern and API related web service.</p>
-
 <p>We were wondering which participant will try to emulate or simulate autocompletion at the console and Joelle Maslak did not failed us. The use of <a href="https://metacpan.org/pod/Term::Choose"><code>Term::Choice</code></a> CPAN module for <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-014/joelle-maslak/perl5/ch-3.pl">selecting different cities</a> was a nice touch. This is one of a good reason for the third challenge. We can always discover new and interesting CPAN modules to prettify our output that fit the particular challenge. Similarly for Perl 6 solution, the <a href="https://modules.perl6.org/dist/Terminal::Table:cpan:ALOREN"><code>Terminal::Table</code></a> module was used to prettify the output.</p>
-
-<hr />
-
+<hr>
 <h3 id="blog-posts">Blog Posts</h3>
-
-<hr />
-
+<hr>
 <p>Some blog posts on this week challenge by the regular participants.</p>
-
 <p>(1) <a href="http://donaldh.wtf/2019/06/postal-words/">Postal Words</a> by Donald Hunter.</p>
-
 <p>A write-up on the step-by-step approach to solve challenge #2.</p>
-
 <p>(2) <a href="https://adamcrussell.livejournal.com/4974.html">Perl Weekly Challenge 014</a> by Adam Russell.</p>
-
 <p>Read how he solved the challenge using classic Perl idioms.</p>
-
 <p>(3) <a href="https://jacoby.github.io//2019/06/24/drink-coffee-blog-on-challenge-014.html">Drink Coffee, Blog on Challenge 014</a> by Dave Jacoby.</p>
-
 <p>A person who can multitask by solving the challenges while watching Last Week Tonight with John Oliver.</p>
-
 <p>(4) <a href="http://blogs.perl.org/users/athanasius/2019/06/perl-weekly-challenge-014.html">Perl Weekly Challenge #014</a> by Athanasius.</p>
-
 <p>A comparison of Perl 5 and Perl 6 answers as well as benchmark for for challenge #2. Surprisingly, Perl 6 solutions seemed way slower.</p>
-
 <p>(5) <a href="http://blogs.perl.org/users/laurent_r/2019/06/perl-weekly-challenge-14-van-ecks-sequence-and-us-states.html">Perl Weekly Challenge # 14: Van Eck&rsquo;s Sequence and US States</a> by Laurent Rosenfeld Another comparison of Perl 5 and Perl 6.</p>
-
 <p>As usual, detailed write-up on how he solved the problem.</p>
-
 <p>(6) <a href="http://neilb.org/2019/06/26/state-code-anagrams.html">Longest anagram of US state codes</a> by Neil Bowers.</p>
-
 <p>If you want to see the cleanest solution to challenge #2, read this. Recommendation read of the week.</p>
-
 <p>(7) <a href="https://rage.powered.ninja/2019/06/30/hashed-up-sequencing.html">Hashed up Sequencing – Perl weekly challenge, week 14</a> by Francis Whittle.</p>
-
 <p>Read how he solved the challenge while battling with Fedora installation and struggling with <code>Cro::Http::Client</code> module. Definitely a recommendation read of the week.</p>
-
 <p>(8) <a href="http://tilde.town/~wlsn/pwc014.html">Perl Weekly Challenge Week 014</a> by Steven Wilson.</p>
-
 <p>Read his attack plans on solving both challenges.</p>
-
 <p>(9) <a href="http://blogs.perl.org/users/e_choroba/2019/06/perl-weekly-challenge-014-van-eck-and-the-us-states.html">Perl Weekly Challenge 014: Van Eck and the US States</a> by E. Choroba.</p>
-
 <p>Due to the changes to challenge #2, he have created two solutions to both requirements. Learn how he use iterator to solve challenge #1. Another recommended read of the week.</p>
 
                 </div>

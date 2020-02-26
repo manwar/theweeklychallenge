@@ -16,7 +16,7 @@
 
     <meta name="description" content="Kian-Meng Ang Weekly Review: Challenge - #029.">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.55.0-DEV" />
+    <meta name="generator" content="Hugo 0.66.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -149,85 +149,48 @@
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
-                    
-
-<hr />
-
+                    <hr>
 <p>Continues from <a href="/blog/review-challenge-028/">previous week</a>.</p>
-
 <p>Feel free to <a href="https://github.com/manwar/perlweeklychallenge">submit a merge request or open a ticket</a> if you found any issues with this post. We highly appreciate and welcome your feedback.</p>
-
 <p>For a quick overview, go through the <a href="/blog/perl-weekly-challenge-029/">original tasks</a> and <a href="/blog/recap-challenge-029/">recap</a> of the weekly challenge.</p>
-
-<hr />
-
+<hr>
 <h2 id="task-1">Task #1</h2>
-
-<hr />
-
+<hr>
 <p><strong>CPAN</strong> modules used: <a href="https://metacpan.org/pod/Data::Dumper"><code>Data::Dumper</code></a>, <a href="https://metacpan.org/pod/Function::Parameters"><code>Function::Parameters</code></a>, <a href="https://metacpan.org/pod/Inline"><code>Inline</code></a>, <a href="https://metacpan.org/pod/JSON"><code>JSON</code></a>, <a href="https://metacpan.org/pod/List::Util"><code>List::Util</code></a>, <a href="https://metacpan.org/pod/Modern::Perl"><code>Modern::Perl</code></a>, <a href="https://metacpan.org/pod/Parse::RecDescent"><code>Parse::RecDescent</code></a>, <a href="https://metacpan.org/pod/Test::Deep"><code>Test::Deep</code></a>, <a href="https://metacpan.org/pod/Test::More"><code>Test::More</code></a>, <a href="https://metacpan.org/pod/Text::Glob::Expand"><code>Text::Glob::Expand</code></a>, <a href="https://metacpan.org/pod/feature"><code>feature</code></a>, <a href="https://metacpan.org/pod/lib"><code>lib</code></a>, <a href="https://metacpan.org/pod/strict"><code>strict</code></a>, <a href="https://metacpan.org/pod/utf8"><code>utf8</code></a>, <a href="https://metacpan.org/pod/warnings"><code>warnings</code></a></p>
-
 <p>For a good write-up of the problem, read the explanation of the problem at <a href="https://rosettacode.org/wiki/Brace_expansion"><strong>Rosetta Code</strong></a>.</p>
-
 <p>Let&rsquo;s start with the shortest and simplest solution. Look into the submission by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/ulrich-rieke/perl5/ch-1.pl"><strong>Ulrich Rieke</strong></a>. The solution works as provided there is no whitespace within the curly braces. Note that curly braces was not passed to the Perl script as it have already parsed by the shell.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">  <span style="color:#75715e">#!/usr/bin/perl ;</span>
+  <span style="color:#66d9ef">use</span> strict ;
+  <span style="color:#66d9ef">use</span> warnings ;
 
-<pre><code class="language-perl">  #!/usr/bin/perl ;
-  use strict ;
-  use warnings ;
-
-  #works only if there is no whitespace within the expansion bracket!
-  my $howoften = @ARGV - 2 ;
-  for my $i (1..$howoften) {
-    print &quot;$ARGV[0] $ARGV[ $i ] $ARGV[-1]\n&quot; ;
+  <span style="color:#75715e">#works only if there is no whitespace within the expansion bracket!</span>
+  <span style="color:#66d9ef">my</span> $howoften <span style="color:#f92672">=</span> @ARGV <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span> ;
+  <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$howoften) {
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$ARGV[0] $ARGV[ $i ] $ARGV[-1]\n&#34;</span> ;
   }
-</code></pre>
-
-<p>The next group of solution resort to using regex to parse and expand values within the curly braces. And it should wworks (quick glance of the code but we did not test each and every one) with spaces between items within the curly braces. <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/adam-russell/perl5/ch-1.pl"><strong>Adam Russell</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/dave-cross/perl5/ch-1.pl"><strong>Dave Cross</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/laurent-rosenfeld/perl5/ch-1.pl"><strong>Laurent Rosenfeld</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/prajith-p/perl5/ch-1.pl"><strong>Prajith P</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/rage311/perl5/ch-1.pl"><strong>Rage311</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/lars-thegler/perl5/ch-1.pl"><strong>Lars Thegler</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/jaldhar-h-vyas/perl5/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/steven-wilson/perl5/ch-1.pl"><strong>Steven Wilson</strong></a> and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/yet-ebreo/perl5/ch-1.pl"><strong>Yet Ebreo</strong></a>.</p>
-
+</code></pre></div><p>The next group of solution resort to using regex to parse and expand values within the curly braces. And it should wworks (quick glance of the code but we did not test each and every one) with spaces between items within the curly braces. <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/adam-russell/perl5/ch-1.pl"><strong>Adam Russell</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/dave-cross/perl5/ch-1.pl"><strong>Dave Cross</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/laurent-rosenfeld/perl5/ch-1.pl"><strong>Laurent Rosenfeld</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/prajith-p/perl5/ch-1.pl"><strong>Prajith P</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/rage311/perl5/ch-1.pl"><strong>Rage311</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/lars-thegler/perl5/ch-1.pl"><strong>Lars Thegler</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/jaldhar-h-vyas/perl5/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/steven-wilson/perl5/ch-1.pl"><strong>Steven Wilson</strong></a> and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/yet-ebreo/perl5/ch-1.pl"><strong>Yet Ebreo</strong></a>.</p>
 <p>Only two participants, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/duane-powell/perl5/ch-1.pl"><strong>Duane Powell</strong></a> and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/lubos-kolouch/perl5/ch-1.pl"><strong>Lubos Kolouch</strong></a> decided to use <code>Text::Glob::Expand</code> to solve this. Similarly, the solution by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/e-choroba/perl5/ch-1.pl"><strong>E. Choroba</strong></a> works in similar manner but using <code>glob</code> function instead. Coming from <strong>E. Choroba</strong>, the test cases were always comprehensive. While optional, we do encourage participants to submit their test cases or output result together with their solution.</p>
-
 <p>For more complex or unique approach, look into the solution by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/colin-crain/perl5/ch-1.pl"><strong>Colin Crain</strong></a> which supports nested braces, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/andrezgz/perl5/ch-1.pl"><strong>Andrezgz</strong></a> which can handle numerical and alphabet range, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/duncan-c-white/perl5/ch-1.pl"><strong>Duncan C. White</strong></a> which manages the brace expansion using a state machine, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/kivanc-yazan/perl5/ch-1.pl"><strong>Kivanc Yazan</strong></a> which can work with blank input and nested braces, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/roger-bell-west/perl5/ch-1.pl"><strong>Roger Bell_West</strong></a> which should work correctly with nested braces and lastly <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/joelle-maslak/perl5/ch-1.pl"><strong>Joelle Maslak</strong></a> which demonstrated that <code>Parse:RecDescent</code> <strong>CPAN</strong> module was as good as <strong>Grammar</strong> in <strong>Raku</strong>.</p>
-
 <p>Special mentioned of the submission by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/burkhard-nickels/perl5/ch-1.pl"><strong>Burkhard Nickels</strong></a>. His submission, by far, was probably the most comprehensive submissions we&rsquo;ve seen. Everything (solution for <strong>Task #1</strong> and <strong>Task #2</strong>, blog, comments) have been combined together within one <strong>Perl</strong> script. There were were six variations of handing the brace expansions. Furthermore, some solutions were a combination of both <strong>Task #1</strong> and <strong>Task #2</strong>.</p>
-
-<hr />
-
+<hr>
 <h2 id="task-2">Task #2</h2>
-
-<hr />
-
+<hr>
 <p><strong>CPAN</strong> modules used: <a href="https://metacpan.org/pod/Benchmark"><code>Benchmark</code></a>, <a href="https://metacpan.org/pod/FFI::Platypus"><code>FFI::Platypus</code></a>, <a href="https://metacpan.org/pod/FFI::Raw"><code>FFI::Raw</code></a>, <a href="https://metacpan.org/pod/Function::Parameters"><code>Function::Parameters</code></a>, <a href="https://metacpan.org/pod/Inline"><code>Inline</code></a>, <a href="https://metacpan.org/pod/Memoize"><code>Memoize</code></a>, <a href="https://metacpan.org/pod/Modern::Perl"><code>Modern::Perl</code></a>, <a href="https://metacpan.org/pod/Test::More"><code>Test::More</code></a>, <a href="https://metacpan.org/pod/constant"><code>constant</code></a>, <a href="https://metacpan.org/pod/feature"><code>feature</code></a>, <a href="https://metacpan.org/pod/lib"><code>lib</code></a>, <a href="https://metacpan.org/pod/strict"><code>strict</code></a>, <a href="https://metacpan.org/pod/warnings"><code>warnings</code></a></p>
-
 <p>The most common approach was to use the <code>Inline</code> <strong>CPAN</strong> module which allows writing <strong>Perl</strong> subroutines in other programming languages, or for this case <strong>C</strong>. This was used by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/duane-powell/perl5/ch-2.pl"><strong>Duane Powell</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/dave-jacoby/perl5/ch-2.pl"><strong>Dave Jacoby</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/dave-cross/perl5/ch-2.pl"><strong>Dave Cross</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/ruben-westerberg/perl5/ch-2.pl"><strong>Ruben Westerberg</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/burkhard-nickels/perl5/ch-2.pl"><strong>Burkhard Nickels</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/lars-thegler/perl5/ch-2.pl"><strong>Lars Thegler</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/kivanc-yazan/perl5/ch-2.pl"><strong>Kivanc Yazan</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/lubos-kolouch/perl5/ch-2.pl"><strong>Lubos Kolouch</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/yet-ebreo/perl5/ch-2.pl"><strong>Yet Ebreo</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/duncan-c-white/perl5/ch-2.pl"><strong>Duncan C. White</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/andrezgz/perl5/ch-2.pl"><strong>Andrezgz</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/colin-crain/perl5/ch-2.pl"><strong>Colin Crain</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/e-choroba/perl5/ch-2.pl"><strong>E. Choroba</strong></a> and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/joelle-maslak/perl5/ch-2.pl"><strong>Joelle Maslak</strong></a>. In short, almost everyone use this way as it&rsquo;s the easiest and quickest way to integrate external programming languages into <strong>Perl</strong>.</p>
-
 <p>For those using Perl binding approach through a low-level Foreign Function Interface (<strong>FFI</strong>), <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/rage311/perl5/ch-2.pl"><strong>Rage311</strong></a> picked the <code>FFI::Platypus</code> <strong>CPAN</strong> module while <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/roger-bell-west/perl5/ch-2.pl">Roger Bell West</a> ended up with <code>FFI::Raw</code> <strong>CPAN</strong> module.</p>
-
 <p>Another approach was through <a href="https://en.wikipedia.org/wiki/SWIG">Simplified Wrapper and Interface Generator (<strong>SWIG</strong>)</a> which was observed in the solution by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/adam-russell/perl5/ch-2.pl"><strong>Adam Russell</strong></a> and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/jaldhar-h-vyas/perl5/ch-2.pl"><strong>Jaldhar H Vyas</strong></a>. Simplicity compare to <a href="https://perldoc.perl.org/perlxstut.html">XS</a> was why both participant picked this approach.</p>
-
 <p>Again, for different approaches used for this task, look no further other than the solutions by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/burkhard-nickels/perl5/ch-2.pl"><strong>Burkhard Nickels</strong></a>.</p>
-
-<hr />
-
+<hr>
 <h3 id="see-also">SEE ALSO</h3>
-
-<hr />
-
+<hr>
 <p>(1) <a href="https://perl6.eu/bracen-c.html"><strong>Bracen C with Perl 6</strong></a> by <strong>Arne Sommer</strong></p>
-
 <p>(2) <a href="https://adamcrussell.livejournal.com/10141.html"><strong>Perl Weekly Challenge 029</strong></a> by <strong>Adam Russell</strong></p>
-
 <p>(3) <a href="https://jacoby.github.io/2019/10/08/code-reuse-and-perl-weekly-challenge-29.html"><strong>Code “Reuse” and Perl Weekly Challenge #29</strong></a> by <strong>Dave Jacoby</strong></p>
-
 <p>(4) <a href="http://blogs.perl.org/users/laurent_r/2019/10/perl-weekly-challenge-29-brace-expansion-and-calling-c-code.html"><strong>Perl Weekly Challenge 29: Brace Expansion and Calling C Code</strong></a> by <strong>Laurent Rosenfeld</strong></p>
-
 <p>(5) <a href="https://www.braincells.com/perl/2019/10/perl_weekly_challenge_week_29.html"><strong>Perl Weekly Challenge: Week 29</strong></a> by <strong>Jaldhar H Vyas</strong></p>
-
 <p>(6) <a href="https://blog.firedrake.org/archive/2019/10/Perl_Weekly_Challenge_29.html"><strong>RogerBW&rsquo;s Blog: Perl Weekly Challenge 29</strong></a> by <strong>Roger Bell_West</strong></p>
-
 <p>(7) <a href="https://doomtrain14.github.io/pwc/2019/10/13/pwc_brace_expansion.html"><strong>Perl Weekly Challenge W029 - Brace Expansion</strong></a> by <strong>Yet Ebreo</strong></p>
-
 <p>(8) <a href="https://doomtrain14.github.io/pwc/2019/10/13/pwc_calling_c.html"><strong>Perl Weekly Challenge W029 - Calling C</strong></a> by <strong>Yet Ebreo</strong></p>
-
 <p>(9) <a href="http://blogs.perl.org/users/e_choroba/2019/10/perl-weekly-challenge-029-brace-expansion-and-calling-a-c-function.html"><strong>Perl Weekly Challenge 029: Brace expansion and calling a C function</strong></a> by <strong>E Choroba</strong></p>
 
                 </div>

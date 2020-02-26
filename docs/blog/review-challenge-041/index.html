@@ -16,7 +16,7 @@
 
     <meta name="description" content="Perl Weekly Review: Challenge - 041.">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.55.0-DEV" />
+    <meta name="generator" content="Hugo 0.66.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -149,1418 +149,1221 @@
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
-                    
-
-<hr />
-
-<hr />
-
+                    <hr>
+<hr>
 <p>Continues from <a href="/blog/review-challenge-040/"><strong>previous week</strong></a>.</p>
-
 <p>Feel free to <a href="https://github.com/manwar/perlweeklychallenge"><strong>submit a merge request or open a ticket</strong></a> if you found any issues with this post. We highly appreciate and welcome your feedback.</p>
-
 <p>For a quick overview, go through the <a href="/blog/perl-weekly-challenge-041/"><strong>original tasks</strong></a> and <a href="/blog/recap-challenge-041/"><strong>recap</strong></a> of the weekly challenge.</p>
-
 <p>Additional feedback to our Perl Weekly Challenge’s <a href="https://twitter.com/perlwchallenge?lang=en"><strong>Twitter account</strong></a> is much appreciated.</p>
-
-<hr />
-
-<hr />
-
+<hr>
+<hr>
 <h2 id="task-1">Task #1</h2>
-
-<hr />
-
-<hr />
-
+<hr>
+<hr>
 <h3 id="write-a-script-to-display-attractive-number-between-1-and-50">Write a script to display <strong>attractive number</strong> between 1 and 50.</h3>
-
 <blockquote>
 <p>A number is an <em>attractive number</em> if the number of its prime factors is also prime number.</p>
 </blockquote>
-
 <p>The number <strong>20</strong> is an <strong>attractive number</strong>, whose prime factors are <strong>2</strong>, <strong>2</strong> and <strong>5</strong>. The total prime factors is <strong>3</strong> which is also a <strong>prime number</strong>.</p>
-
-<hr />
-
+<hr>
 <h2 id="adam-russell">Adam Russell</h2>
+<p>I noticed the use of <strong>redo</strong> in <strong>Adam</strong>&lsquo;s work of brilliance.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
 
-<p>I noticed the use of <strong>redo</strong> in <strong>Adam</strong>&rsquo;s work of brilliance.</p>
-
-<pre><code class="language-perl">use strict;
-use warnings;
-
-sub prime_factor{
-    my $x = shift(@_);
-    my @factors;
-    for (my $y = 2; $y &lt;= $x; $y++){
-        next if $x % $y;
-        $x /= $y;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">prime_factor</span>{
+    <span style="color:#66d9ef">my</span> $x <span style="color:#f92672">=</span> shift(@_);
+    <span style="color:#66d9ef">my</span> @factors;
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $y <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>; $y <span style="color:#f92672">&lt;=</span> $x; $y<span style="color:#f92672">++</span>){
+        <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $x % <span style="color:#960050;background-color:#1e0010">$</span>y;
+        $x <span style="color:#f92672">/=</span> $y;
         push @factors, $y;
-        redo;
+        <span style="color:#66d9ef">redo</span>;
     }
-    return @factors;
+    <span style="color:#66d9ef">return</span> @factors;
 }
 
 MAIN:{
-    for my $n (1 .. 50){
-        my @factors = prime_factor($n);
-        print &quot;$n (&quot; . join(&quot;, &quot; , @factors) . &quot;)\n&quot; if(prime_factor(scalar @factors) == 1);
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $n (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">50</span>){
+        <span style="color:#66d9ef">my</span> @factors <span style="color:#f92672">=</span> prime_factor($n);
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$n (&#34;</span> <span style="color:#f92672">.</span> join(<span style="color:#e6db74">&#34;, &#34;</span> , @factors) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;)\n&#34;</span> <span style="color:#66d9ef">if</span>(prime_factor(scalar @factors) <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>);
     }
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="andrezgz">Andrezgz</h2>
-
 <p><strong>Andrezgz</strong> definition of method <strong>is_prime()</strong> is the main attraction of the solution.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/perl</span>
 
-<pre><code class="language-perl">#!/usr/bin/perl
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
 
-use strict;
-use warnings;
+<span style="color:#66d9ef">my</span> $upto <span style="color:#f92672">=</span> shift <span style="color:#f92672">||</span> <span style="color:#ae81ff">50</span>;
 
-my $upto = shift || 50;
-
-foreach (1 .. $upto){
-    print $_ . ' ' if is_prime( scalar prime_decomp($_) );
+<span style="color:#66d9ef">foreach</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $upto){
+    <span style="color:#66d9ef">print</span> $_ <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39; &#39;</span> <span style="color:#66d9ef">if</span> is_prime( scalar prime_decomp($_) );
 }
 
 
-sub prime_decomp {
-    my $n = shift;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">prime_decomp</span> {
+    <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> shift;
 
-    my @prime_decomp;
+    <span style="color:#66d9ef">my</span> @prime_decomp;
 
-    foreach my $prime ( prime_factors($n) ){
-        do {
-            $n /= $prime;
+    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $prime ( prime_factors($n) ){
+        <span style="color:#66d9ef">do</span> {
+            $n <span style="color:#f92672">/=</span> $prime;
             push @prime_decomp, $prime;
-        } while ($n % $prime == 0);
+        } <span style="color:#66d9ef">while</span> ($n % <span style="color:#960050;background-color:#1e0010">$</span>prime <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>);
     }
 
-    return @prime_decomp;
+    <span style="color:#66d9ef">return</span> @prime_decomp;
 }
 
 
-sub prime_factors {
-    my $n = shift;
-    return if $n &lt;= 1;
-    my @r = grep {$n % $_ == 0 &amp;&amp; is_prime($_)} (2 .. $n/2); #get prime divisors
-    return @r ? @r : ($n); # number is prime if no prime divisors were found
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">prime_factors</span> {
+    <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> shift;
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">if</span> $n <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">my</span> @r <span style="color:#f92672">=</span> grep {$n % <span style="color:#960050;background-color:#1e0010">$</span>_ <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> is_prime($_)} (<span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> $n<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>); <span style="color:#75715e">#get prime divisors</span>
+    <span style="color:#66d9ef">return</span> @r ? @r : ($n); <span style="color:#75715e"># number is prime if no prime divisors were found</span>
 }
 
-sub is_prime {
-    my $n = shift;
-    return if $n &lt;= 1;
-    #every composite number has a prime factor less than or equal to its square root.
-    return 1 == grep {$n % $_ == 0} (1 .. sqrt $n);
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_prime</span> {
+    <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> shift;
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">if</span> $n <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#75715e">#every composite number has a prime factor less than or equal to its square root.</span>
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">==</span> grep {$n % <span style="color:#960050;background-color:#1e0010">$</span>_ <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>} (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> sqrt $n);
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="burkhard-nickels">Burkhard Nickels</h2>
-
 <p><strong>Burkhard</strong> didn&rsquo;t hesitate to go full on with his solution.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $res <span style="color:#f92672">=</span> calculate_primes(<span style="color:#ae81ff">50</span>);
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Prime Numbers: &#34;</span>, Dumper($res), <span style="color:#e6db74">&#34;\n&#34;</span>;
 
-<pre><code class="language-perl">my $res = calculate_primes(50);
-print &quot;Prime Numbers: &quot;, Dumper($res), &quot;\n&quot;;
+<span style="color:#66d9ef">my</span> @numbers <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">50</span>);
+<span style="color:#66d9ef">my</span> @primes <span style="color:#f92672">=</span> (<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">13</span>, <span style="color:#ae81ff">17</span>, <span style="color:#ae81ff">19</span>, <span style="color:#ae81ff">23</span>, <span style="color:#ae81ff">29</span>, <span style="color:#ae81ff">31</span>, <span style="color:#ae81ff">37</span>, <span style="color:#ae81ff">41</span>, <span style="color:#ae81ff">43</span>, <span style="color:#ae81ff">47</span>, <span style="color:#ae81ff">53</span>);
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Prime Numbers: &#34;</span>, Dumper(<span style="color:#f92672">\</span>@primes), <span style="color:#e6db74">&#34;\n&#34;</span>;
 
-my @numbers = (1 .. 50);
-my @primes = (2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53);
-print &quot;Prime Numbers: &quot;, Dumper(\@primes), &quot;\n&quot;;
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Attractive Numbers:\n&#34;</span>;
 
-print &quot;Attractive Numbers:\n&quot;;
-
-foreach my $nbr (1 .. 50) {
-    my @res;
-    my %tree;
-    my ($x,$y) = (-1,0);
-    print &quot;TEST $nbr ---&gt; \n&quot;;
-    nr_recursive($nbr,\@res,$x,\$y,\%tree);
-    # print &quot;Ergebnis: &quot;, Dumper(\@res), &quot;\n&quot;;
-    $Data::Dumper::Indent=1;
-    # print &quot;Ergebnis: &quot;, Dumper(\%tree), &quot;\n&quot;;
-    my $flat = flatten(\%tree);
-    # print &quot;Flat: &quot;, Dumper($flat), &quot;\n&quot;;
+<span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $nbr (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">50</span>) {
+    <span style="color:#66d9ef">my</span> @res;
+    <span style="color:#66d9ef">my</span> %tree;
+    <span style="color:#66d9ef">my</span> ($x,$y) <span style="color:#f92672">=</span> (<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>);
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;TEST $nbr ---&gt; \n&#34;</span>;
+    nr_recursive($nbr,<span style="color:#f92672">\</span>@res,$x,<span style="color:#f92672">\</span>$y,<span style="color:#f92672">\</span>%tree);
+    <span style="color:#75715e"># print &#34;Ergebnis: &#34;, Dumper(\@res), &#34;\n&#34;;</span>
+    $Data::Dumper::Indent<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
+    <span style="color:#75715e"># print &#34;Ergebnis: &#34;, Dumper(\%tree), &#34;\n&#34;;</span>
+    <span style="color:#66d9ef">my</span> $flat <span style="color:#f92672">=</span> flatten(<span style="color:#f92672">\</span>%tree);
+    <span style="color:#75715e"># print &#34;Flat: &#34;, Dumper($flat), &#34;\n&#34;;</span>
     is_attractive_number($flat);
-    print &quot;\n&quot;;
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
 }
 
-sub is_attractive_number {
-    my ($flat) = @_;
-    foreach my $k (keys %$flat) {
-        my $attr_nbr = 1;
-        my @tmp = split(/\./,$k);
-        foreach my $i (@tmp) {
-            if( ! is_prime($i) ) { $attr_nbr = 0; }
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_attractive_number</span> {
+    <span style="color:#66d9ef">my</span> ($flat) <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $k (keys %$flat) {
+        <span style="color:#66d9ef">my</span> $attr_nbr <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">my</span> @tmp <span style="color:#f92672">=</span> split(<span style="color:#e6db74">/\./</span>,$k);
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i (@tmp) {
+            <span style="color:#66d9ef">if</span>( <span style="color:#f92672">!</span> is_prime($i) ) { $attr_nbr <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; }
         }
-        if($attr_nbr) {
-            print &quot;   $k =&gt; $flat-&gt;{$k} Attractive Number&quot;;
-            if( is_prime($flat-&gt;{$k}) ) {
-                print &quot;(Number Factors $flat-&gt;{$k} is Prime)\n&quot;;
-            } else { print &quot;\n&quot;; }
+        <span style="color:#66d9ef">if</span>($attr_nbr) {
+            <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;   $k =&gt; $flat-&gt;{$k} Attractive Number&#34;</span>;
+            <span style="color:#66d9ef">if</span>( is_prime($flat<span style="color:#f92672">-&gt;</span>{$k}) ) {
+                <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;(Number Factors $flat-&gt;{$k} is Prime)\n&#34;</span>;
+            } <span style="color:#66d9ef">else</span> { <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\n&#34;</span>; }
         }
-        else {
-            # print &quot;$k =&gt; $flat-&gt;{$k}\n&quot;;
+        <span style="color:#66d9ef">else</span> {
+            <span style="color:#75715e"># print &#34;$k =&gt; $flat-&gt;{$k}\n&#34;;</span>
         }
     }
 }
 
-sub nr_recursive {
-    my ($number,$res,$x,$y,$tree) = @_;
-    $x++;
-    # my $space = &quot; &quot; x ($x * 2);
-    # print &quot;$space X+($x/$$y)\n&quot;;
-    # print &quot;$space IN: $number ($x/$y)\n&quot;;
-    my $loop;
-    if($x == 0) { $loop = $number-1; }
-    else { $loop = $number; }
-    my $found_count=0;
-    foreach my $j ((2 .. $loop)) {
-        # print &quot;$space LO: $number ($x/$y)\n&quot;;
-        my $div = $number/$j;         # Division with every whole number.
-        my $nr  = int($div);
-        my $rst = $number%$j;
-        # print &quot;$space - $j ($div,$nr,$rst)\n&quot;;
-        if( ! $rst ) {           # Result is whole number
-            $found_count++;
-            # print &quot;$space =&gt; $j ($x/$$y - Next $nr)\n&quot;;
-            $res-&gt;[$$y][$x] = $j;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">nr_recursive</span> {
+    <span style="color:#66d9ef">my</span> ($number,$res,$x,$y,$tree) <span style="color:#f92672">=</span> @_;
+    $x<span style="color:#f92672">++</span>;
+    <span style="color:#75715e"># my $space = &#34; &#34; x ($x * 2);</span>
+    <span style="color:#75715e"># print &#34;$space X+($x/$$y)\n&#34;;</span>
+    <span style="color:#75715e"># print &#34;$space IN: $number ($x/$y)\n&#34;;</span>
+    <span style="color:#66d9ef">my</span> $loop;
+    <span style="color:#66d9ef">if</span>($x <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) { $loop <span style="color:#f92672">=</span> $number<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>; }
+    <span style="color:#66d9ef">else</span> { $loop <span style="color:#f92672">=</span> $number; }
+    <span style="color:#66d9ef">my</span> $found_count<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $j ((<span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> $loop)) {
+        <span style="color:#75715e"># print &#34;$space LO: $number ($x/$y)\n&#34;;</span>
+        <span style="color:#66d9ef">my</span> $div <span style="color:#f92672">=</span> $number<span style="color:#f92672">/</span>$j;         <span style="color:#75715e"># Division with every whole number.</span>
+        <span style="color:#66d9ef">my</span> $nr  <span style="color:#f92672">=</span> int($div);
+        <span style="color:#66d9ef">my</span> $rst <span style="color:#f92672">=</span> $number%$j;
+        <span style="color:#75715e"># print &#34;$space - $j ($div,$nr,$rst)\n&#34;;</span>
+        <span style="color:#66d9ef">if</span>( <span style="color:#f92672">!</span> $rst ) {           <span style="color:#75715e"># Result is whole number</span>
+            $found_count<span style="color:#f92672">++</span>;
+            <span style="color:#75715e"># print &#34;$space =&gt; $j ($x/$$y - Next $nr)\n&#34;;</span>
+            $res<span style="color:#f92672">-&gt;</span>[$$y][$x] <span style="color:#f92672">=</span> $j;
 
-            if($nr == 1) { $tree-&gt;{$j} = $x+1; }
-            else { $tree-&gt;{$j} = {}; }
+            <span style="color:#66d9ef">if</span>($nr <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>) { $tree<span style="color:#f92672">-&gt;</span>{$j} <span style="color:#f92672">=</span> $x<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>; }
+            <span style="color:#66d9ef">else</span> { $tree<span style="color:#f92672">-&gt;</span>{$j} <span style="color:#f92672">=</span> {}; }
 
-            if($$y &gt; 0) {
-                foreach my $k (0 .. $x-1) {
-                    $res-&gt;[$$y][$k] = $res-&gt;[$$y-1][$k];
-                    # print &quot;$space =&gt; $res-&gt;[$$y-1][$k] ($k/$$y)\n&quot;;
+            <span style="color:#66d9ef">if</span>($$y <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
+                <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $k (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $x<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
+                    $res<span style="color:#f92672">-&gt;</span>[$$y][$k] <span style="color:#f92672">=</span> $res<span style="color:#f92672">-&gt;</span>[$$y<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][$k];
+                    <span style="color:#75715e"># print &#34;$space =&gt; $res-&gt;[$$y-1][$k] ($k/$$y)\n&#34;;</span>
                 }
-                # $$y++; print &quot;$space Y+($x/$$y)\n&quot;;
+                <span style="color:#75715e"># $$y++; print &#34;$space Y+($x/$$y)\n&#34;;</span>
             }
 
-            nr_recursive($nr,$res,$x,$y,$tree-&gt;{$j});
-            # if($found_count &gt; 1) {
-            #   $$y++; print &quot;$space Y+($x/$$y)\n&quot;;
-            # }
-            $$y = $#$res + 1; # print &quot;$space Y+($x/$$y)\n&quot;;
+            nr_recursive($nr,$res,$x,$y,$tree<span style="color:#f92672">-&gt;</span>{$j});
+            <span style="color:#75715e"># if($found_count &gt; 1) {</span>
+            <span style="color:#75715e">#   $$y++; print &#34;$space Y+($x/$$y)\n&#34;;</span>
+            <span style="color:#75715e"># }</span>
+            $$y <span style="color:#f92672">=</span> $#$res <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>; <span style="color:#75715e"># print &#34;$space Y+($x/$$y)\n&#34;;</span>
         }
     }
-    $x--; # print &quot;$space X-($x/$$y)\n&quot;;
+    $x<span style="color:#f92672">--</span>; <span style="color:#75715e"># print &#34;$space X-($x/$$y)\n&#34;;</span>
 }
 
-sub is_prime {
-    my ($nr) = @_;
-    my $prime=1;
-    foreach my $j ((2 .. $nr-1)) { # Not dividing by 1 or the same number
-        my $div = $nr/$j;           # Division with every whole number.
-        my $nr  = int($div);
-        my $rst = $nr%$j;
-        if( ! $rst ) {             # If no Rest
-            $prime=0;              # it is NO prime number
-            last;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_prime</span> {
+    <span style="color:#66d9ef">my</span> ($nr) <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">my</span> $prime<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $j ((<span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> $nr<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)) { <span style="color:#75715e"># Not dividing by 1 or the same number</span>
+        <span style="color:#66d9ef">my</span> $div <span style="color:#f92672">=</span> $nr<span style="color:#f92672">/</span>$j;           <span style="color:#75715e"># Division with every whole number.</span>
+        <span style="color:#66d9ef">my</span> $nr  <span style="color:#f92672">=</span> int($div);
+        <span style="color:#66d9ef">my</span> $rst <span style="color:#f92672">=</span> $nr%$j;
+        <span style="color:#66d9ef">if</span>( <span style="color:#f92672">!</span> $rst ) {             <span style="color:#75715e"># If no Rest</span>
+            $prime<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;              <span style="color:#75715e"># it is NO prime number</span>
+            <span style="color:#66d9ef">last</span>;
         }
     }
-    return $prime;
+    <span style="color:#66d9ef">return</span> $prime;
 }
 
-sub calculate_primes {
-    my ($max) = @_;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">calculate_primes</span> {
+    <span style="color:#66d9ef">my</span> ($max) <span style="color:#f92672">=</span> @_;
 
-    my @result;
-    my $prime=1;
-    foreach my $i ((2 .. $max)) {
-        foreach my $j ((2 .. $i)) {
-            my $div = $i/$j;         # Division with every whole number.
-            my $nr  = int($div);
-            my $rst = $i%$j;
-            if( ! $rst and $i!=$j) { # If no Rest and not devided by same.
-                $prime=0;            # it is NO prime number
-                last;
+    <span style="color:#66d9ef">my</span> @result;
+    <span style="color:#66d9ef">my</span> $prime<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i ((<span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> $max)) {
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $j ((<span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> $i)) {
+            <span style="color:#66d9ef">my</span> $div <span style="color:#f92672">=</span> $i<span style="color:#f92672">/</span>$j;         <span style="color:#75715e"># Division with every whole number.</span>
+            <span style="color:#66d9ef">my</span> $nr  <span style="color:#f92672">=</span> int($div);
+            <span style="color:#66d9ef">my</span> $rst <span style="color:#f92672">=</span> $i%$j;
+            <span style="color:#66d9ef">if</span>( <span style="color:#f92672">!</span> $rst <span style="color:#f92672">and</span> $i<span style="color:#f92672">!=</span>$j) { <span style="color:#75715e"># If no Rest and not devided by same.</span>
+                $prime<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;            <span style="color:#75715e"># it is NO prime number</span>
+                <span style="color:#66d9ef">last</span>;
             }
         }
-        if($prime) { push(@result,$i); } # Prime Number
-        else { $prime=1; }
+        <span style="color:#66d9ef">if</span>($prime) { push(@result,$i); } <span style="color:#75715e"># Prime Number</span>
+        <span style="color:#66d9ef">else</span> { $prime<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>; }
     }
-    return \@result;
+    <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@result;
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="colin-crain">Colin Crain</h2>
+<p><strong>Colin</strong>&lsquo;s own creation <strong>decompose()</strong> is really fun to read.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">&#34;:5.26&#34;</span>;
 
-<p><strong>Colin</strong>&rsquo;s own creation <strong>decompose()</strong> is really fun to read.</p>
+<span style="color:#66d9ef">my</span> $max <span style="color:#f92672">=</span> shift @ARGV <span style="color:#e6db74">//</span> <span style="color:#ae81ff">50</span>;
 
-<pre><code class="language-perl">use warnings;
-use strict;
-use feature &quot;:5.26&quot;;
+<span style="color:#66d9ef">my</span> @primes <span style="color:#f92672">=</span> make_prime_list($max);
+<span style="color:#66d9ef">my</span> %primehash <span style="color:#f92672">=</span> map { $_ <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> } @primes;
 
-my $max = shift @ARGV // 50;
-
-my @primes = make_prime_list($max);
-my %primehash = map { $_ =&gt; 1 } @primes;
-
-for (2..$max) {
-    my @decomp = decompose($_, \@primes);
-    printf &quot;%-4d--&gt; %-20s  %s\n&quot;, $_, (join ', ', @decomp),
-            (exists $primehash{(scalar @decomp)}) ? &quot;$_ is attractive&quot; : &quot;&quot; ;
+<span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">2</span><span style="color:#f92672">..</span>$max) {
+    <span style="color:#66d9ef">my</span> @decomp <span style="color:#f92672">=</span> decompose($_, <span style="color:#f92672">\</span>@primes);
+    printf <span style="color:#e6db74">&#34;%-4d--&gt; %-20s  %s\n&#34;</span>, $_, (join <span style="color:#e6db74">&#39;, &#39;</span>, @decomp),
+            (exists $primehash{(scalar @decomp)}) ? <span style="color:#e6db74">&#34;$_ is attractive&#34;</span> : <span style="color:#e6db74">&#34;&#34;</span> ;
 }
 
-sub make_prime_list {
-## creates a list of all primes less than or equal to a given number
-    my $max = shift;
-    my @output = (2);
-    CANDIDATE: for(  my $candidate = 3;  $candidate &lt;= $max;  $candidate += 2  ) {
-        my $sqrt_candidate = sqrt( $candidate );
-        for(  my $test = 3; $test &lt;= $sqrt_candidate; $test += 2  ) {
-            next CANDIDATE if $candidate % $test == 0;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">make_prime_list</span> {
+<span style="color:#75715e">## creates a list of all primes less than or equal to a given number</span>
+    <span style="color:#66d9ef">my</span> $max <span style="color:#f92672">=</span> shift;
+    <span style="color:#66d9ef">my</span> @output <span style="color:#f92672">=</span> (<span style="color:#ae81ff">2</span>);
+    CANDIDATE: <span style="color:#66d9ef">for</span>(  <span style="color:#66d9ef">my</span> $candidate <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>;  $candidate <span style="color:#f92672">&lt;=</span> $max;  $candidate <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span>  ) {
+        <span style="color:#66d9ef">my</span> $sqrt_candidate <span style="color:#f92672">=</span> sqrt( $candidate );
+        <span style="color:#66d9ef">for</span>(  <span style="color:#66d9ef">my</span> $test <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>; $test <span style="color:#f92672">&lt;=</span> $sqrt_candidate; $test <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span>  ) {
+            <span style="color:#66d9ef">next</span> CANDIDATE <span style="color:#66d9ef">if</span> $candidate % <span style="color:#960050;background-color:#1e0010">$</span>test <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
         }
         push @output, $candidate;
     }
-    return @output;
+    <span style="color:#66d9ef">return</span> @output;
 }
 
-sub decompose {
-## given a number and a list of primes less than n/2,
-## returns an array list of prime decomposition factors of the number
-    my ($num, $primes) = @_;
-    my @decomp;
-    my @primelist = $primes-&gt;@*;
-    my $prime = shift @primelist;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">decompose</span> {
+<span style="color:#75715e">## given a number and a list of primes less than n/2,</span>
+<span style="color:#75715e">## returns an array list of prime decomposition factors of the number</span>
+    <span style="color:#66d9ef">my</span> ($num, $primes) <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">my</span> @decomp;
+    <span style="color:#66d9ef">my</span> @primelist <span style="color:#f92672">=</span> $primes<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+    my $prime <span style="color:#f92672">=</span> shift @primelist;
 
-    while ( $prime &lt;= $num ) {
-        while ($num % $prime == 0) {
-            $num = $num / $prime;
+    <span style="color:#66d9ef">while</span> ( $prime <span style="color:#f92672">&lt;=</span> $num ) {
+        <span style="color:#66d9ef">while</span> ($num % <span style="color:#960050;background-color:#1e0010">$</span>prime <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+            $num <span style="color:#f92672">=</span> $num <span style="color:#f92672">/</span> $prime;
             push @decomp, $prime;
         }
-        last if scalar @primelist == 0;
-        $prime = shift @primelist;
+        <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> scalar @primelist <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+        $prime <span style="color:#f92672">=</span> shift @primelist;
     }
-    return @decomp;
+    <span style="color:#66d9ef">return</span> @decomp;
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="duncan-c-white">Duncan C. White</h2>
-
 <p><strong>Duncan</strong> invented his own library <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-041/duncan-c-white/perl5/MakePrimes.pm"><strong>MakePrimes</strong></a> and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-041/duncan-c-white/perl5/PrimeFactors.pm"><strong>PrimeFactors</strong></a> to solve the task. Highly Recommended.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.10</span>;  <span style="color:#75715e"># to get &#34;say&#34;</span>
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> Function::Parameters;
 
-<pre><code class="language-perl">use v5.10;  # to get &quot;say&quot;
-use strict;
-use warnings;
-use Function::Parameters;
+<span style="color:#66d9ef">use</span> lib <span style="color:#e6db74">qw(.)</span>;  <span style="color:#75715e"># I hate this!</span>
+<span style="color:#66d9ef">use</span> MakePrimes;
+<span style="color:#66d9ef">use</span> PrimeFactors;
 
-use lib qw(.);  # I hate this!
-use MakePrimes;
-use PrimeFactors;
+die <span style="color:#e6db74">&#34;Usage: ch-1.pl [N//50]\n&#34;</span> <span style="color:#66d9ef">if</span> @ARGV<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">1</span>;
 
-die &quot;Usage: ch-1.pl [N//50]\n&quot; if @ARGV&gt;1;
+<span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> shift <span style="color:#e6db74">//</span> <span style="color:#ae81ff">50</span>;
 
-my $n = shift // 50;
+<span style="color:#66d9ef">my</span> @primes <span style="color:#f92672">=</span> primes_upto( $n );
+<span style="color:#66d9ef">my</span> %isprime <span style="color:#f92672">=</span> map { $_ <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> } @primes;
 
-my @primes = primes_upto( $n );
-my %isprime = map { $_ =&gt; 1 } @primes;
-
-foreach my $x (2..$n)
+<span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $x (<span style="color:#ae81ff">2</span><span style="color:#f92672">..</span>$n)
 {
-    my @factors = prime_factors( $x, @primes );
-    my $nf = @factors;
-    next unless $isprime{$nf};
-    say &quot;$x is an attractive number, factors are: &quot;, join(',',@factors),
-        &quot;, number factors $nf is prime&quot;;
+    <span style="color:#66d9ef">my</span> @factors <span style="color:#f92672">=</span> prime_factors( $x, @primes );
+    <span style="color:#66d9ef">my</span> $nf <span style="color:#f92672">=</span> @factors;
+    <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> $isprime{$nf};
+    say <span style="color:#e6db74">&#34;$x is an attractive number, factors are: &#34;</span>, join(<span style="color:#e6db74">&#39;,&#39;</span>,@factors),
+        <span style="color:#e6db74">&#34;, number factors $nf is prime&#34;</span>;
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="e-choroba">E. Choroba</h2>
-
 <p><strong>Choroba</strong>, once again took the help from <strong>CPAN</strong> module <strong>Math::Prime::Util</strong>. The end result is nice and clean solution.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#! /usr/bin/perl</span>
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">qw{ say }</span>;
 
-<pre><code class="language-perl">#! /usr/bin/perl
-use warnings;
-use strict;
-use feature qw{ say };
+<span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">qw{ factor is_prime }</span>;
 
-use Math::Prime::Util qw{ factor is_prime };
-
-sub is_attractive {
-    my ($n) = @_;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_attractive</span> {
+    <span style="color:#66d9ef">my</span> ($n) <span style="color:#f92672">=</span> @_;
     is_prime(factor($n))
 }
 
-say for grep is_attractive($_), 1 .. 50;
-</code></pre>
-
-<hr />
-
+say <span style="color:#66d9ef">for</span> grep is_attractive($_), <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">50</span>;
+</code></pre></div><hr>
 <h2 id="javier-luque">Javier Luque</h2>
-
 <p><strong>Javier</strong> also followed the same path as <strong>Choroba</strong>.</p>
-
-<pre><code class="language-perl">#!/usr/bin/perl
-# Test: ./ch-1.pl
-use strict;
-use warnings;
-use Math::Prime::Util qw /factor is_prime/;
-use feature qw /say/;
-
-for my $i (1..50) {
-    my @factors = factor($i);
-    say $i if (is_prime(scalar(@factors)));
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/perl</span>
+<span style="color:#75715e"># Test: ./ch-1.pl</span>
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">qw /factor </span>is_prime<span style="color:#f92672">/</span>;
+<span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">qw /say/;
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">for </span><span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">50</span>) {
+    <span style="color:#66d9ef">my</span> @factors <span style="color:#f92672">=</span> factor($i);
+    say $i <span style="color:#66d9ef">if</span> (is_prime(scalar(@factors)));
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="laurent-rosenfeld">Laurent Rosenfeld</h2>
-
 <p><strong>Laurent</strong> came up with his own implementation of the method <strong>prime_factors()</strong>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/perl</span>
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">qw/say/</span>;
+<span style="color:#66d9ef">use</span> constant PRIMES <span style="color:#f92672">=&gt;</span> (<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">7</span>);
 
-<pre><code class="language-perl">#!/usr/bin/perl
-use strict;
-use warnings;
-use feature qw/say/;
-use constant PRIMES =&gt; (2, 3, 5, 7);
-
-sub prime_factors {
-    my $num = shift;
-    my $origin_num = $num;
-    my @factors;
-    for my $div (PRIMES) {
-        while ($num % $div == 0) {
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">prime_factors</span> {
+    <span style="color:#66d9ef">my</span> $num <span style="color:#f92672">=</span> shift;
+    <span style="color:#66d9ef">my</span> $origin_num <span style="color:#f92672">=</span> $num;
+    <span style="color:#66d9ef">my</span> @factors;
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $div (PRIMES) {
+        <span style="color:#66d9ef">while</span> ($num % <span style="color:#960050;background-color:#1e0010">$</span>div <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
             push @factors, $div;
-            $num /= $div;
+            $num <span style="color:#f92672">/=</span> $div;
         }
-        return @factors if $num == 1;
+        <span style="color:#66d9ef">return</span> @factors <span style="color:#66d9ef">if</span> $num <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>;
     }
-    push @factors, $num unless $num == $origin_num;
-    return @factors;
+    push @factors, $num <span style="color:#66d9ef">unless</span> $num <span style="color:#f92672">==</span> $origin_num;
+    <span style="color:#66d9ef">return</span> @factors;
 }
 
-my %primes = map { $_ =&gt; 1 } PRIMES;
-say &quot;$_: &quot;, join &quot; &quot;, prime_factors($_) for
-grep exists $primes{scalar prime_factors($_)}, 1..50;
-</code></pre>
-
-<hr />
-
+<span style="color:#66d9ef">my</span> %primes <span style="color:#f92672">=</span> map { $_ <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> } PRIMES;
+say <span style="color:#e6db74">&#34;$_: &#34;</span>, join <span style="color:#e6db74">&#34; &#34;</span>, prime_factors($_) <span style="color:#66d9ef">for</span>
+grep exists $primes{scalar prime_factors($_)}, <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">50</span>;
+</code></pre></div><hr>
 <h2 id="lubos-kolouch">Lubos Kolouch</h2>
-
 <p><strong>Lubos</strong> introduced me to the method <strong>count_prime_factors()</strong> from the <strong>CPAN</strong> module <strong>Math::Factor::XS</strong>. The power of <strong>CPAN</strong> makes the solution looks nice and clean.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> Math::Factor::XS <span style="color:#e6db74">qw/count_prime_factors/</span>;
+<span style="color:#66d9ef">use</span> Math::Prime::XS <span style="color:#e6db74">qw/is_prime/</span>;
 
-<pre><code class="language-perl">use strict;
-use warnings;
-use Math::Factor::XS qw/count_prime_factors/;
-use Math::Prime::XS qw/is_prime/;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_attractive</span> {
+    <span style="color:#66d9ef">my</span> $what <span style="color:#f92672">=</span> shift;
 
-sub is_attractive {
-    my $what = shift;
-
-    return is_prime(count_prime_factors($what));
+    <span style="color:#66d9ef">return</span> is_prime(count_prime_factors($what));
 }
 
-# TESTS
+<span style="color:#75715e"># TESTS</span>
 
-use Test::More;
+<span style="color:#66d9ef">use</span> Test::More;
 
-is(is_attractive(20),1);
-is(is_attractive(23),'');
-is(is_attractive(28),1);
-is(is_attractive(256),'');
+is(is_attractive(<span style="color:#ae81ff">20</span>),<span style="color:#ae81ff">1</span>);
+is(is_attractive(<span style="color:#ae81ff">23</span>),<span style="color:#e6db74">&#39;&#39;</span>);
+is(is_attractive(<span style="color:#ae81ff">28</span>),<span style="color:#ae81ff">1</span>);
+is(is_attractive(<span style="color:#ae81ff">256</span>),<span style="color:#e6db74">&#39;&#39;</span>);
 
 done_testing;
-</code></pre>
-
-<hr />
-
-<h2 id="roger-bell-west">Roger Bell_West</h2>
-
+</code></pre></div><hr>
+<h2 id="roger-bell_west">Roger Bell_West</h2>
 <p>Like many members, <strong>Roger</strong> also took the help of <strong>CPAN</strong> module <strong>Math::Prime::Util</strong>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#! /usr/bin/perl</span>
 
-<pre><code class="language-perl">#! /usr/bin/perl
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
 
-use strict;
-use warnings;
+<span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">qw(factor is_prime)</span>;
 
-use Math::Prime::Util qw(factor is_prime);
-
-foreach my $c (1..50) {
-  if (is_prime(scalar factor($c))) {
-    print &quot;$c\n&quot;;
+<span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $c (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">50</span>) {
+  <span style="color:#66d9ef">if</span> (is_prime(scalar factor($c))) {
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$c\n&#34;</span>;
   }
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="ruben-westerberg">Ruben Westerberg</h2>
-
 <p><strong>Ruben</strong> took the pain and defined his own method <strong>prime()</strong>, which reminded me of my early days.</p>
-
-<pre><code class="language-perl">#!/usr/bin/env perl
-use strict;
-use warnings;
-for (1..50) {
-    my @a=primeFactors($_);
-    print &quot;Attractive number $_: prime factors @a\n&quot; if (prime(scalar @a));
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">50</span>) {
+    <span style="color:#66d9ef">my</span> @a<span style="color:#f92672">=</span>primeFactors($_);
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Attractive number $_: prime factors @a\n&#34;</span> <span style="color:#66d9ef">if</span> (prime(scalar @a));
 }
-sub prime {
-    my $n=shift;
-    if ($n &lt;= 3 ) {
-        return $n &gt; 1;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">prime</span> {
+    <span style="color:#66d9ef">my</span> $n<span style="color:#f92672">=</span>shift;
+    <span style="color:#66d9ef">if</span> ($n <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">3</span> ) {
+        <span style="color:#66d9ef">return</span> $n <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>;
     }
-    elsif ($n % 2 == 0 or $n % 3 ==0 ) {
-        return 0;
+    <span style="color:#66d9ef">elsif</span> ($n % 2 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">or</span> $n % 3 <span style="color:#f92672">==</span><span style="color:#ae81ff">0</span> ) {
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
     }
-    my $i=5;
-    while ($i**2 &lt;= $n) {
-        if ( $n % $i ==0 or $n % ($i+2) == 0 ) {
-                return 0;
+    <span style="color:#66d9ef">my</span> $i<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>;
+    <span style="color:#66d9ef">while</span> ($i<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">&lt;=</span> $n) {
+        <span style="color:#66d9ef">if</span> ( $n % <span style="color:#960050;background-color:#1e0010">$</span>i <span style="color:#f92672">==</span><span style="color:#ae81ff">0</span> <span style="color:#f92672">or</span> $n % <span style="color:#960050;background-color:#1e0010">($</span>i<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> ) {
+                <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
         }
-        $i+=6;
+        $i<span style="color:#f92672">+=</span><span style="color:#ae81ff">6</span>;
     }
-    return 1;
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
 }
 
-sub primeFactors {
-    my @factors;
-    my $i=shift;
-    for (1..$i/2) {
-        if ($i%$_ == 0 and prime $_ ) {
-            my $b=$i/$_;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">primeFactors</span> {
+    <span style="color:#66d9ef">my</span> @factors;
+    <span style="color:#66d9ef">my</span> $i<span style="color:#f92672">=</span>shift;
+    <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$i<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>) {
+        <span style="color:#66d9ef">if</span> ($i%$_ <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">and</span> prime $_ ) {
+            <span style="color:#66d9ef">my</span> $b<span style="color:#f92672">=</span>$i<span style="color:#f92672">/</span>$_;
             push @factors, $_;
-            if (prime $b) {
+            <span style="color:#66d9ef">if</span> (prime $b) {
                 push @factors, $b;
             }
-            else {
+            <span style="color:#66d9ef">else</span> {
                 push @factors, primeFactors($b);
             }
-            last;
+            <span style="color:#66d9ef">last</span>;
         }
     }
     @factors;
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="ryan-thompson">Ryan Thompson</h2>
-
 <p>The main attractioon of <strong>Ryan</strong> solution was the introduction of <strong>Wilson Theorem</strong>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
 
-<pre><code class="language-perl">#!/usr/bin/env perl
+<span style="color:#66d9ef">use</span> <span style="color:#ae81ff">5.010</span>;
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">no</span> warnings <span style="color:#e6db74">&#39;uninitialized&#39;</span>;
 
-use 5.010;
-use warnings;
-use strict;
-no warnings 'uninitialized';
+<span style="color:#75715e"># Here is how I&#39;d normally tackle this problem:</span>
+<span style="color:#75715e"># use Math::Prime::Util &#39;:all&#39;;</span>
+<span style="color:#75715e"># say for grep { is_prime( factor($_) ) } 1..50;</span>
 
-# Here is how I'd normally tackle this problem:
-# use Math::Prime::Util ':all';
-# say for grep { is_prime( factor($_) ) } 1..50;
+<span style="color:#66d9ef">my</span> @primes50   <span style="color:#f92672">=</span> primes_to(<span style="color:#ae81ff">50</span>);
+<span style="color:#66d9ef">my</span> %primes50   <span style="color:#f92672">=</span> map  { $_ <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> } @primes50;
+<span style="color:#66d9ef">my</span> @attractive <span style="color:#f92672">=</span> grep { $primes50{ prime_div_mult($_) } } <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">50</span>;
 
-my @primes50   = primes_to(50);
-my %primes50   = map  { $_ =&gt; 1 } @primes50;
-my @attractive = grep { $primes50{ prime_div_mult($_) } } 1..50;
+say <span style="color:#66d9ef">for</span> @attractive;
 
-say for @attractive;
-
-# Check our results against https://oeis.org/A063989
-if ($ARGV[0] eq '--test') {
-    use Test::More;
-    my @oeis = (4, 6, 8, 9, 10, 12, 14, 15, 18, 20, 21, 22, 25, 26, 27, 28,
-                30, 32, 33, 34, 35, 38, 39, 42, 44, 45, 46, 48, 49, 50);
-    is_deeply \@attractive, \@oeis, &quot;Matches published sequence&quot;;
+<span style="color:#75715e"># Check our results against https://oeis.org/A063989</span>
+<span style="color:#66d9ef">if</span> ($ARGV[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;--test&#39;</span>) {
+    <span style="color:#66d9ef">use</span> Test::More;
+    <span style="color:#66d9ef">my</span> @oeis <span style="color:#f92672">=</span> (<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">14</span>, <span style="color:#ae81ff">15</span>, <span style="color:#ae81ff">18</span>, <span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">21</span>, <span style="color:#ae81ff">22</span>, <span style="color:#ae81ff">25</span>, <span style="color:#ae81ff">26</span>, <span style="color:#ae81ff">27</span>, <span style="color:#ae81ff">28</span>,
+                <span style="color:#ae81ff">30</span>, <span style="color:#ae81ff">32</span>, <span style="color:#ae81ff">33</span>, <span style="color:#ae81ff">34</span>, <span style="color:#ae81ff">35</span>, <span style="color:#ae81ff">38</span>, <span style="color:#ae81ff">39</span>, <span style="color:#ae81ff">42</span>, <span style="color:#ae81ff">44</span>, <span style="color:#ae81ff">45</span>, <span style="color:#ae81ff">46</span>, <span style="color:#ae81ff">48</span>, <span style="color:#ae81ff">49</span>, <span style="color:#ae81ff">50</span>);
+    is_deeply <span style="color:#f92672">\</span>@attractive, <span style="color:#f92672">\</span>@oeis, <span style="color:#e6db74">&#34;Matches published sequence&#34;</span>;
     done_testing;
 }
 
-# Unmodified Wilson's theorem is terrible, unless you only need tiny primes!
-# Please, I beg you, use Math::Prime::Util or similar in any real code. :-)
-# N is prime iff (N - 1)! % N == 0
-sub primes_to {
-    use bigint;
-    my $N = shift;
-    my $fac = 1;
-    my @r;
-    for my $n (2..$N) {
-        $fac *= $n - 1;
+<span style="color:#75715e"># Unmodified Wilson&#39;s theorem is terrible, unless you only need tiny primes!</span>
+<span style="color:#75715e"># Please, I beg you, use Math::Prime::Util or similar in any real code. :-)</span>
+<span style="color:#75715e"># N is prime iff (N - 1)! % N == 0</span>
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">primes_to</span> {
+    <span style="color:#66d9ef">use</span> bigint;
+    <span style="color:#66d9ef">my</span> $N <span style="color:#f92672">=</span> shift;
+    <span style="color:#66d9ef">my</span> $fac <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">my</span> @r;
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $n (<span style="color:#ae81ff">2</span><span style="color:#f92672">..</span>$N) {
+        $fac <span style="color:#f92672">*=</span> $n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
 
-        push @r, $n unless ($fac + 1) % $n;
+        push @r, $n <span style="color:#66d9ef">unless</span> ($fac <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) % <span style="color:#960050;background-color:#1e0010">$</span>n;
     }
 
     @r;
 }
 
-# Get prime divisors in multiplicity (e.g., 48 = 2, 2, 2, 2, 3)
-sub prime_div_mult {
-    my $n = shift;
-    my @div;
-    for my $div (@primes50) {
-        last if $div &gt; $n;
-        while ($n % $div == 0) {
-            $n /= $div;
+<span style="color:#75715e"># Get prime divisors in multiplicity (e.g., 48 = 2, 2, 2, 2, 3)</span>
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">prime_div_mult</span> {
+    <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> shift;
+    <span style="color:#66d9ef">my</span> @div;
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $div (@primes50) {
+        <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $div <span style="color:#f92672">&gt;</span> $n;
+        <span style="color:#66d9ef">while</span> ($n % <span style="color:#960050;background-color:#1e0010">$</span>div <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+            $n <span style="color:#f92672">/=</span> $div;
             push @div, $div;
         }
     }
 
     @div;
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="saif-ahmed">Saif Ahmed</h2>
-
 <p><strong>Saif</strong> made good use of <strong>dispatch table</strong>. The best part of the solution is the centralisation of core functions.</p>
-
-<pre><code class="language-perl">initialise();
-getAttractive(20,&quot;method2&quot;);
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">initialise();
+getAttractive(<span style="color:#ae81ff">20</span>,<span style="color:#e6db74">&#34;method2&#34;</span>);
 benchmark();
 
-sub getAttractive{                     # gets attractive numbers
-    my $n=shift;                       # how many to get
-    $method=shift //&quot;method1&quot;;         # which method to use or use method1
-    print &quot;Using $method the first $n attractive numbers are:-\n&quot;;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">getAttractive</span>{                     <span style="color:#75715e"># gets attractive numbers</span>
+    <span style="color:#66d9ef">my</span> $n<span style="color:#f92672">=</span>shift;                       <span style="color:#75715e"># how many to get</span>
+    $method<span style="color:#f92672">=</span>shift <span style="color:#e6db74">//</span><span style="color:#e6db74">&#34;method1&#34;</span>;         <span style="color:#75715e"># which method to use or use method1</span>
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Using $method the first $n attractive numbers are:-\n&#34;</span>;
 
-    my $candidate=0;                   # number to test for attractiveness
+    <span style="color:#66d9ef">my</span> $candidate<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;                   <span style="color:#75715e"># number to test for attractiveness</span>
 
-    while ($n--) {
-                                       # increment $candidate until attractive found
-        while (!${$method}{isAttractive}-&gt;(++$Candidate)){};
-                                       # display attarctive numbers and factors
-        print &quot;$Candidate is attractive; Factors are &quot;,
-               (join &quot;,&quot;,(defined ${$method}{factors})    ?   # if a cache of factors exists
-                     @{${$method}{factors}  -&gt;[$Candidate]} : # retrieve from cache or
-                     @{${$method}{factorise}-&gt;($Candidate)} ),# just factorise again
-                      &quot;\n&quot;;
+    <span style="color:#66d9ef">while</span> ($n<span style="color:#f92672">--</span>) {
+                                       <span style="color:#75715e"># increment $candidate until attractive found</span>
+        <span style="color:#66d9ef">while</span> (<span style="color:#f92672">!</span>${$method}{isAttractive}<span style="color:#f92672">-&gt;</span>(<span style="color:#f92672">++</span>$Candidate)){};
+                                       <span style="color:#75715e"># display attarctive numbers and factors</span>
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$Candidate is attractive; Factors are &#34;</span>,
+               (join <span style="color:#e6db74">&#34;,&#34;</span>,(defined ${$method}{factors})    ?   <span style="color:#75715e"># if a cache of factors exists</span>
+                     @{${$method}{factors}  <span style="color:#f92672">-&gt;</span>[$Candidate]} : <span style="color:#75715e"># retrieve from cache or</span>
+                     @{${$method}{factorise}<span style="color:#f92672">-&gt;</span>($Candidate)} ),<span style="color:#75715e"># just factorise again</span>
+                      <span style="color:#e6db74">&#34;\n&#34;</span>;
     }
 }
 
 
-sub initialise{
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">initialise</span>{
 
-# Method1 caches nothing. The factorise function return the list of factors, or
-# just the number itself if it is prime
+<span style="color:#75715e"># Method1 caches nothing. The factorise function return the list of factors, or</span>
+<span style="color:#75715e"># just the number itself if it is prime</span>
 
-    %method1=(                    # &quot;our&quot; used to make it available
-                                      # outsibe the initialise subroutine
-       factorise=&gt;sub {
-           my $wn=$number=shift;      # the number to test is loaded
-           my @factorsList=();        # the aray of factors found
-           my $test=2;                # start search with 2 as a factor
-           my $limit=sqrt($wn+1);        # continue to a reasonable limit
-           while ($test &lt; $limit){    # until limit passed
-             if  ($wn % $test){       # if not a factor (i.e. $wn % $test is not zero
-                 $test++;             # test next number
-                 $test++ unless $test==3;  # ensure that after 2 only odd numbers are tested
+    %method1<span style="color:#f92672">=</span>(                    <span style="color:#75715e"># &#34;our&#34; used to make it available</span>
+                                      <span style="color:#75715e"># outsibe the initialise subroutine</span>
+       factorise<span style="color:#f92672">=&gt;</span><span style="color:#66d9ef">sub</span> {
+           <span style="color:#66d9ef">my</span> $wn<span style="color:#f92672">=</span>$number<span style="color:#f92672">=</span>shift;      <span style="color:#75715e"># the number to test is loaded</span>
+           <span style="color:#66d9ef">my</span> @factorsList<span style="color:#f92672">=</span>();        <span style="color:#75715e"># the aray of factors found</span>
+           <span style="color:#66d9ef">my</span> $test<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>;                <span style="color:#75715e"># start search with 2 as a factor</span>
+           <span style="color:#66d9ef">my</span> $limit<span style="color:#f92672">=</span>sqrt($wn<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>);        <span style="color:#75715e"># continue to a reasonable limit</span>
+           <span style="color:#66d9ef">while</span> ($test <span style="color:#f92672">&lt;</span> $limit){    <span style="color:#75715e"># until limit passed</span>
+             <span style="color:#66d9ef">if</span>  ($wn % <span style="color:#960050;background-color:#1e0010">$</span>test){       <span style="color:#75715e"># if not a factor (i.e. $wn % $test is not zero</span>
+                 $test<span style="color:#f92672">++</span>;             <span style="color:#75715e"># test next number</span>
+                 $test<span style="color:#f92672">++</span> <span style="color:#66d9ef">unless</span> $test<span style="color:#f92672">==</span><span style="color:#ae81ff">3</span>;  <span style="color:#75715e"># ensure that after 2 only odd numbers are tested</span>
              }
-             else{                    # factor found
-              push @factorsList,$test;# store factor in our list
-              $wn=$wn/$test;          # and factorise the rest...
-              $limit=sqrt($wn+1)      # ...resetting limit accordingly
+             <span style="color:#66d9ef">else</span>{                    <span style="color:#75715e"># factor found</span>
+              push @factorsList,$test;<span style="color:#75715e"># store factor in our list</span>
+              $wn<span style="color:#f92672">=</span>$wn<span style="color:#f92672">/</span>$test;          <span style="color:#75715e"># and factorise the rest...</span>
+              $limit<span style="color:#f92672">=</span>sqrt($wn<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)      <span style="color:#75715e"># ...resetting limit accordingly</span>
              }
            }
-          return [@factorsList,$wn];  # return all factors found (including the last prime)
+          <span style="color:#66d9ef">return</span> [@factorsList,$wn];  <span style="color:#75715e"># return all factors found (including the last prime)</span>
       },
 
-      isPrime=&gt;sub{                   # all methods retun the number if no factors are found
-        my $t=shift;
-        return 0 if $t&lt;2;             # 0 and 1 are not prime numbers
-        return $method1{ numberOfFactors}-&gt;($t)==1?1:0;
+      isPrime<span style="color:#f92672">=&gt;</span>sub{                   <span style="color:#75715e"># all methods retun the number if no factors are found</span>
+        <span style="color:#66d9ef">my</span> $t<span style="color:#f92672">=</span>shift;
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $t<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">2</span>;             <span style="color:#75715e"># 0 and 1 are not prime numbers</span>
+        <span style="color:#66d9ef">return</span> $method1{ numberOfFactors}<span style="color:#f92672">-&gt;</span>($t)<span style="color:#f92672">==</span><span style="color:#ae81ff">1</span>?<span style="color:#ae81ff">1</span>:<span style="color:#ae81ff">0</span>;
       },
 
-      numberOfFactors=&gt;sub{           # list of factors obtained by factorise
-        my $t=shift;
-        return scalar @{$method1{factorise}-&gt;($t)};
+      numberOfFactors<span style="color:#f92672">=&gt;</span>sub{           <span style="color:#75715e"># list of factors obtained by factorise</span>
+        <span style="color:#66d9ef">my</span> $t<span style="color:#f92672">=</span>shift;
+        <span style="color:#66d9ef">return</span> scalar @{$method1{factorise}<span style="color:#f92672">-&gt;</span>($t)};
         },
 
-      isAttractive=&gt;sub {             # tests that numberOfFactors() isPrime()
-            my $t=shift;
-            return $method1{isPrime}-&gt;( $method1{numberOfFactors}-&gt;( $t ) );
+      isAttractive<span style="color:#f92672">=&gt;</span><span style="color:#66d9ef">sub</span> {             <span style="color:#75715e"># tests that numberOfFactors() isPrime()</span>
+            <span style="color:#66d9ef">my</span> $t<span style="color:#f92672">=</span>shift;
+            <span style="color:#66d9ef">return</span> $method1{isPrime}<span style="color:#f92672">-&gt;</span>( $method1{numberOfFactors}<span style="color:#f92672">-&gt;</span>( $t ) );
         },
 
     );
 
-# Method 2 caches the factors.  Because the factors of previously tested numbers are
-# retained only the smallest factor is required, and it merely retrieves the rest
-# from the cache
+<span style="color:#75715e"># Method 2 caches the factors.  Because the factors of previously tested numbers are</span>
+<span style="color:#75715e"># retained only the smallest factor is required, and it merely retrieves the rest</span>
+<span style="color:#75715e"># from the cache</span>
 
-    %method2=(
-       factorise=&gt;sub {
-           my $number=shift;           # the number to test is loaded
-                                       # if number already has ached factors, retieve from cache
-           return  $method2{factors}-&gt;[$number] if (defined $method2{factors}-&gt;[$number]) ;
-           my $test=2; $limit=sqrt($number+1);  # as before start with 2 and set limits
-           while (($test &lt; $limit)&amp;&amp;($number % $test)){
-                 $test++;
-                 $test++ unless $test==3;
+    %method2<span style="color:#f92672">=</span>(
+       factorise<span style="color:#f92672">=&gt;</span><span style="color:#66d9ef">sub</span> {
+           <span style="color:#66d9ef">my</span> $number<span style="color:#f92672">=</span>shift;           <span style="color:#75715e"># the number to test is loaded</span>
+                                       <span style="color:#75715e"># if number already has ached factors, retieve from cache</span>
+           <span style="color:#66d9ef">return</span>  $method2{factors}<span style="color:#f92672">-&gt;</span>[$number] <span style="color:#66d9ef">if</span> (defined $method2{factors}<span style="color:#f92672">-&gt;</span>[$number]) ;
+           <span style="color:#66d9ef">my</span> $test<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>; $limit<span style="color:#f92672">=</span>sqrt($number<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>);  <span style="color:#75715e"># as before start with 2 and set limits</span>
+           <span style="color:#66d9ef">while</span> (($test <span style="color:#f92672">&lt;</span> $limit)<span style="color:#f92672">&amp;&amp;</span>($number % <span style="color:#960050;background-color:#1e0010">$</span>test)){
+                 $test<span style="color:#f92672">++</span>;
+                 $test<span style="color:#f92672">++</span> <span style="color:#66d9ef">unless</span> $test<span style="color:#f92672">==</span><span style="color:#ae81ff">3</span>;
            }
-           if ($test&lt;$limit){           # found the smallest prime factor.
-                                        # Because of caching, all the other factors have
-                                        # already been found, no need to search.
-               $method2{factors}-&gt;[$number]=  [$test,@{$method2{factors}-&gt;[$number/$test]}]
+           <span style="color:#66d9ef">if</span> ($test<span style="color:#f92672">&lt;</span>$limit){           <span style="color:#75715e"># found the smallest prime factor.</span>
+                                        <span style="color:#75715e"># Because of caching, all the other factors have</span>
+                                        <span style="color:#75715e"># already been found, no need to search.</span>
+               $method2{factors}<span style="color:#f92672">-&gt;</span>[$number]<span style="color:#f92672">=</span>  [$test,@{$method2{factors}<span style="color:#f92672">-&gt;</span>[$number<span style="color:#f92672">/</span>$test]}]
            }
-           else{                        #otherwise this is a prime number, store in cache
-               $method2{factors}-&gt;[$number]=  [$number];
+           <span style="color:#66d9ef">else</span>{                        <span style="color:#75715e">#otherwise this is a prime number, store in cache</span>
+               $method2{factors}<span style="color:#f92672">-&gt;</span>[$number]<span style="color:#f92672">=</span>  [$number];
            }
-           return  $method2{factors}-&gt;[$number];
+           <span style="color:#66d9ef">return</span>  $method2{factors}<span style="color:#f92672">-&gt;</span>[$number];
         },
 
-      isPrime=&gt;sub{
-        my $t=shift;
-        return 0 if $t&lt;2;
-        return $method2{numberOfFactors}-&gt;($t)==1?1:0;
+      isPrime<span style="color:#f92672">=&gt;</span>sub{
+        <span style="color:#66d9ef">my</span> $t<span style="color:#f92672">=</span>shift;
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $t<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">2</span>;
+        <span style="color:#66d9ef">return</span> $method2{numberOfFactors}<span style="color:#f92672">-&gt;</span>($t)<span style="color:#f92672">==</span><span style="color:#ae81ff">1</span>?<span style="color:#ae81ff">1</span>:<span style="color:#ae81ff">0</span>;
       },
 
-      numberOfFactors=&gt;sub{              # retrieve from cache
-        my $t=shift;
-        return scalar @{$method2{factors}-&gt;[$t]};
+      numberOfFactors<span style="color:#f92672">=&gt;</span>sub{              <span style="color:#75715e"># retrieve from cache</span>
+        <span style="color:#66d9ef">my</span> $t<span style="color:#f92672">=</span>shift;
+        <span style="color:#66d9ef">return</span> scalar @{$method2{factors}<span style="color:#f92672">-&gt;</span>[$t]};
         },
 
-       isAttractive=&gt;sub{                # tests that numberOfFactors() isPrime()
-            my $t=shift;
-            return $method2{isPrime}-&gt;( $method2{numberOfFactors}-&gt;( $t ) );
+       isAttractive<span style="color:#f92672">=&gt;</span>sub{                <span style="color:#75715e"># tests that numberOfFactors() isPrime()</span>
+            <span style="color:#66d9ef">my</span> $t<span style="color:#f92672">=</span>shift;
+            <span style="color:#66d9ef">return</span> $method2{isPrime}<span style="color:#f92672">-&gt;</span>( $method2{numberOfFactors}<span style="color:#f92672">-&gt;</span>( $t ) );
         },
 
-      factors=&gt;[],                       # cache of factors
+      factors<span style="color:#f92672">=&gt;[]</span>,                       <span style="color:#75715e"># cache of factors</span>
     );
 
 
-# Method 3 caches factors and primes.
-# the primes cache is a hash, with each prime stored as key, with next key as its value
-# e.g 2=&gt;3,3=&gt;5,5=&gt;7,7=&gt;11,11=&gt;-1,largest=&gt;11. this allows quick retrieval of the next
-# found poetntial prime factor.
+<span style="color:#75715e"># Method 3 caches factors and primes.</span>
+<span style="color:#75715e"># the primes cache is a hash, with each prime stored as key, with next key as its value</span>
+<span style="color:#75715e"># e.g 2=&gt;3,3=&gt;5,5=&gt;7,7=&gt;11,11=&gt;-1,largest=&gt;11. this allows quick retrieval of the next</span>
+<span style="color:#75715e"># found poetntial prime factor.</span>
 
-   %method3=(
-       factorise=&gt;sub{
-           my $number=shift;
-           return  $method3{factors}-&gt;[$number] if (defined $method3{factors}-&gt;[$number]) ;
-           my $test=2; my $limit=sqrt($number+1);
-           while (($test &lt; $limit)&amp;&amp;($number % $test)){
-                 $test=$method3{primes}-&gt;{$test};        # test larger and larger primes
+   %method3<span style="color:#f92672">=</span>(
+       factorise<span style="color:#f92672">=&gt;</span>sub{
+           <span style="color:#66d9ef">my</span> $number<span style="color:#f92672">=</span>shift;
+           <span style="color:#66d9ef">return</span>  $method3{factors}<span style="color:#f92672">-&gt;</span>[$number] <span style="color:#66d9ef">if</span> (defined $method3{factors}<span style="color:#f92672">-&gt;</span>[$number]) ;
+           <span style="color:#66d9ef">my</span> $test<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>; <span style="color:#66d9ef">my</span> $limit<span style="color:#f92672">=</span>sqrt($number<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>);
+           <span style="color:#66d9ef">while</span> (($test <span style="color:#f92672">&lt;</span> $limit)<span style="color:#f92672">&amp;&amp;</span>($number % <span style="color:#960050;background-color:#1e0010">$</span>test)){
+                 $test<span style="color:#f92672">=</span>$method3{primes}<span style="color:#f92672">-&gt;</span>{$test};        <span style="color:#75715e"># test larger and larger primes</span>
            }
-           if (($number % $test)||($number/$test ==1)){   # no old prime factor found
-                   # number must be a new prime larger than one previously encountered
-                   # this is stored in a hash, replacing previous largest prime
-                   # this method of setting multiple values in a hash is not possible with &quot;strict&quot;
-               @method3{primes}-&gt;{$number,$method3{primes}-&gt;{&quot;largest&quot;},{&quot;largest&quot;} }=(-1,$number,$number);
-               $method3{factors}-&gt;[$number]= [$number];
+           <span style="color:#66d9ef">if</span> (($number % <span style="color:#960050;background-color:#1e0010">$</span>test)<span style="color:#f92672">||</span>($number<span style="color:#f92672">/</span>$test <span style="color:#f92672">==</span><span style="color:#ae81ff">1</span>)){   <span style="color:#75715e"># no old prime factor found</span>
+                   <span style="color:#75715e"># number must be a new prime larger than one previously encountered</span>
+                   <span style="color:#75715e"># this is stored in a hash, replacing previous largest prime</span>
+                   <span style="color:#75715e"># this method of setting multiple values in a hash is not possible with &#34;strict&#34;</span>
+               @method3{primes}<span style="color:#f92672">-&gt;</span>{$number,$method3{primes}<span style="color:#f92672">-&gt;</span>{<span style="color:#e6db74">&#34;largest&#34;</span>},{<span style="color:#e6db74">&#34;largest&#34;</span>} }<span style="color:#f92672">=</span>(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,$number,$number);
+               $method3{factors}<span style="color:#f92672">-&gt;</span>[$number]<span style="color:#f92672">=</span> [$number];
            }
-           else{
-               $method3{factors}-&gt;[$number]=[$test,@{$method3{factors}-&gt;[$number/$test]}];
+           <span style="color:#66d9ef">else</span>{
+               $method3{factors}<span style="color:#f92672">-&gt;</span>[$number]<span style="color:#f92672">=</span>[$test,@{$method3{factors}<span style="color:#f92672">-&gt;</span>[$number<span style="color:#f92672">/</span>$test]}];
            }
-           return $method3{factors}-&gt;[$number];
+           <span style="color:#66d9ef">return</span> $method3{factors}<span style="color:#f92672">-&gt;</span>[$number];
        },
 
-      isPrime=&gt;sub{                                     # check primes from the hash cache
-        my $t=shift;
-        return 0 if $t&lt;2;
-        return defined $method3{primes}-&gt;{$t}?1:0;
+      isPrime<span style="color:#f92672">=&gt;</span>sub{                                     <span style="color:#75715e"># check primes from the hash cache</span>
+        <span style="color:#66d9ef">my</span> $t<span style="color:#f92672">=</span>shift;
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $t<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">2</span>;
+        <span style="color:#66d9ef">return</span> defined $method3{primes}<span style="color:#f92672">-&gt;</span>{$t}?<span style="color:#ae81ff">1</span>:<span style="color:#ae81ff">0</span>;
       },
 
-      numberOfFactors=&gt;sub{
-        my $t=shift;
-        return scalar @{$method3{factors}-&gt;[$t]};        # check factors from the cache array
+      numberOfFactors<span style="color:#f92672">=&gt;</span>sub{
+        <span style="color:#66d9ef">my</span> $t<span style="color:#f92672">=</span>shift;
+        <span style="color:#66d9ef">return</span> scalar @{$method3{factors}<span style="color:#f92672">-&gt;</span>[$t]};        <span style="color:#75715e"># check factors from the cache array</span>
         },
 
-       isAttractive=&gt;sub{                # tests that numberOfFactors() isPrime()
-            my $t=shift;
-            return $method3{isPrime}-&gt;( $method3{numberOfFactors}-&gt;( $t ) );
+       isAttractive<span style="color:#f92672">=&gt;</span>sub{                <span style="color:#75715e"># tests that numberOfFactors() isPrime()</span>
+            <span style="color:#66d9ef">my</span> $t<span style="color:#f92672">=</span>shift;
+            <span style="color:#66d9ef">return</span> $method3{isPrime}<span style="color:#f92672">-&gt;</span>( $method3{numberOfFactors}<span style="color:#f92672">-&gt;</span>( $t ) );
         },
 
-      primes =&gt;{2=&gt;3,3=&gt;5,5=&gt;7,7=&gt;11,11=&gt;-1,largest=&gt;11},
-      factors=&gt;[],
+      primes <span style="color:#f92672">=&gt;</span>{<span style="color:#ae81ff">2</span><span style="color:#f92672">=&gt;</span><span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">3</span><span style="color:#f92672">=&gt;</span><span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">5</span><span style="color:#f92672">=&gt;</span><span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">7</span><span style="color:#f92672">=&gt;</span><span style="color:#ae81ff">11</span>,<span style="color:#ae81ff">11</span><span style="color:#f92672">=&gt;-</span><span style="color:#ae81ff">1</span>,largest<span style="color:#f92672">=&gt;</span><span style="color:#ae81ff">11</span>},
+      factors<span style="color:#f92672">=&gt;[]</span>,
     );
 
-    for my $method (&quot;method2&quot;,&quot;method3&quot;){
-        for (1..100){
-          ${$method}{factorise}-&gt;($_)
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $method (<span style="color:#e6db74">&#34;method2&#34;</span>,<span style="color:#e6db74">&#34;method3&#34;</span>){
+        <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">100</span>){
+          ${$method}{factorise}<span style="color:#f92672">-&gt;</span>($_)
         }
     }
 }
 
-# This routine benchmarks the three methods twice, demonstrating the
-# effectiveness of caching at first and subsequent passes.
-sub benchmark{
-    use Time::HiRes qw ( time);
-    my $start;
-    for (1,2){
-        print &quot;Benchmark pass $_\n&quot;;
-        for my $end (1000,10000,100000){
+<span style="color:#75715e"># This routine benchmarks the three methods twice, demonstrating the</span>
+<span style="color:#75715e"># effectiveness of caching at first and subsequent passes.</span>
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">benchmark</span>{
+    <span style="color:#66d9ef">use</span> Time::HiRes <span style="color:#e6db74">qw ( </span>time);
+    <span style="color:#66d9ef">my</span> $start;
+    <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>){
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Benchmark pass $_\n&#34;</span>;
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $end (<span style="color:#ae81ff">1000</span>,<span style="color:#ae81ff">10000</span>,<span style="color:#ae81ff">100000</span>){
 
-            for my $method (1..3){
-                $start=time();
-                for (1..$end){
-                  ${&quot;method$method&quot;}{factorise}-&gt;($_)
+            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $method (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">3</span>){
+                $start<span style="color:#f92672">=</span>time();
+                <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$end){
+                  ${<span style="color:#e6db74">&#34;method$method&#34;</span>}{factorise}<span style="color:#f92672">-&gt;</span>($_)
                 }
-                ${&quot;duration$method&quot;}= int (1000*(time()-$start));
+                ${<span style="color:#e6db74">&#34;duration$method&#34;</span>}<span style="color:#f92672">=</span> int (<span style="color:#ae81ff">1000</span><span style="color:#f92672">*</span>(time()<span style="color:#f92672">-</span>$start));
             }
-            print &quot;With $end factorisations: Method1 $duration1 ms   Method2 $duration2 ms  Method3 $duration3 ms \n&quot;;
+            <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;With $end factorisations: Method1 $duration1 ms   Method2 $duration2 ms  Method3 $duration3 ms \n&#34;</span>;
         }
     }
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="ulrich-rieke">Ulrich Rieke</h2>
-
 <p><strong>Ulrich</strong> setup his own helper methods <strong>isPrime()</strong>, <strong>isAttractive()</strong> and <strong>primeFactors()</strong>. With the helper methods, the end result looks elegant.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/perl ;</span>
+<span style="color:#66d9ef">use</span> strict ;
+<span style="color:#66d9ef">use</span> warnings ;
 
-<pre><code class="language-perl">#!/usr/bin/perl ;
-use strict ;
-use warnings ;
-
-sub isPrime {
-  my $number = shift ;
-  if ( $number == 1 ) {
-      return 0 ;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">isPrime</span> {
+  <span style="color:#66d9ef">my</span> $number <span style="color:#f92672">=</span> shift ;
+  <span style="color:#66d9ef">if</span> ( $number <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> ) {
+      <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> ;
   }
-  if ( $number == 2 ) {
-      return 1 ;
+  <span style="color:#66d9ef">if</span> ( $number <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span> ) {
+      <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> ;
   }
-  for ( my $i = 2 ; $i &lt; int ( $number / 2 + 1 ) ; $i++ ) {
-      if ( $number % $i == 0 ) {
-    return 0 ;
-    last ;
+  <span style="color:#66d9ef">for</span> ( <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> ; $i <span style="color:#f92672">&lt;</span> int ( $number <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> ) ; $i<span style="color:#f92672">++</span> ) {
+      <span style="color:#66d9ef">if</span> ( $number % <span style="color:#960050;background-color:#1e0010">$</span>i <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> ) {
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> ;
+    <span style="color:#66d9ef">last</span> ;
       }
   }
-  return 1 ;
+  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> ;
 }
 
-sub isAttractive {
-  my $number = shift ;
-  my @primeFactors = primeFactors( $number ) ;
-  return isPrime( scalar @primeFactors ) ;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">isAttractive</span> {
+  <span style="color:#66d9ef">my</span> $number <span style="color:#f92672">=</span> shift ;
+  <span style="color:#66d9ef">my</span> @primeFactors <span style="color:#f92672">=</span> primeFactors( $number ) ;
+  <span style="color:#66d9ef">return</span> isPrime( scalar @primeFactors ) ;
 }
 
-sub primeFactors {
-  my $num = shift ;
-  if ( $num == 1 ) {
-      return ( ) ;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">primeFactors</span> {
+  <span style="color:#66d9ef">my</span> $num <span style="color:#f92672">=</span> shift ;
+  <span style="color:#66d9ef">if</span> ( $num <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> ) {
+      <span style="color:#66d9ef">return</span> ( ) ;
   }
-  my $current = 2 ;
-  my @primeFactors ;
-  while ( $num != 1 ) {
-      if ( $num % $current == 0 ) {
+  <span style="color:#66d9ef">my</span> $current <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> ;
+  <span style="color:#66d9ef">my</span> @primeFactors ;
+  <span style="color:#66d9ef">while</span> ( $num <span style="color:#f92672">!=</span> <span style="color:#ae81ff">1</span> ) {
+      <span style="color:#66d9ef">if</span> ( $num % <span style="color:#960050;background-color:#1e0010">$</span>current <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> ) {
     push @primeFactors , $current ;
-    $num /= $current ;
+    $num <span style="color:#f92672">/=</span> $current ;
       }
-      else {
-    do {
-        $current++ ;
-    } while ( not isPrime( $current ) ) ;
+      <span style="color:#66d9ef">else</span> {
+    <span style="color:#66d9ef">do</span> {
+        $current<span style="color:#f92672">++</span> ;
+    } <span style="color:#66d9ef">while</span> ( <span style="color:#f92672">not</span> isPrime( $current ) ) ;
       }
   }
-  return @primeFactors ;
+  <span style="color:#66d9ef">return</span> @primeFactors ;
 }
 
-my @attractives = grep { isAttractive( $_ ) } (1..50) ;
-foreach my $num ( @attractives ) {
-  print &quot;$num &quot; ;
+<span style="color:#66d9ef">my</span> @attractives <span style="color:#f92672">=</span> grep { isAttractive( $_ ) } (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">50</span>) ;
+<span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $num ( @attractives ) {
+  <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$num &#34;</span> ;
 }
-print &quot;\n&quot; ;
-</code></pre>
-
-<hr />
-
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\n&#34;</span> ;
+</code></pre></div><hr>
 <h2 id="walt-mankowski">Walt Mankowski</h2>
-
 <p><strong>Walt</strong> used the <strong>Sieve of Eratosthenes</strong> to find the primes. He is the only member who used this hack, very interesting.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">qw(:5.30)</span>;
+<span style="color:#66d9ef">use</span> experimental <span style="color:#e6db74">qw(signatures)</span>;
 
-<pre><code class="language-perl">#!/usr/bin/env perl
-use strict;
-use warnings;
-use feature qw(:5.30);
-use experimental qw(signatures);
+<span style="color:#66d9ef">my</span> $N <span style="color:#f92672">=</span> <span style="color:#ae81ff">50</span>;
 
-my $N = 50;
-
-# Find the primes up to $n using the Sieve of Eratosthenes
-sub primes_up_to($n) {
-    my %primes = map { $_ =&gt; 1 } 2..$n;
-    for my $i (2..sqrt($n)) {
-        if (defined $primes{$i}) {
-            for (my $j = $i**2; $j &lt;= $n; $j += $i) {
+<span style="color:#75715e"># Find the primes up to $n using the Sieve of Eratosthenes</span>
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">primes_up_to</span>($n) {
+    <span style="color:#66d9ef">my</span> %primes <span style="color:#f92672">=</span> map { $_ <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> } <span style="color:#ae81ff">2</span><span style="color:#f92672">..</span>$n;
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">2</span><span style="color:#f92672">..</span>sqrt($n)) {
+        <span style="color:#66d9ef">if</span> (defined $primes{$i}) {
+            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $j <span style="color:#f92672">=</span> $i<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>; $j <span style="color:#f92672">&lt;=</span> $n; $j <span style="color:#f92672">+=</span> $i) {
                 delete $primes{$j};
             }
         }
     }
-    return %primes;
+    <span style="color:#66d9ef">return</span> %primes;
 }
 
-sub prime_factors($n, %primes) {
-    my @factors;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">prime_factors</span>($n, %primes) {
+    <span style="color:#66d9ef">my</span> @factors;
 
-    for my $i (sort { $a&lt;=&gt;$b } keys %primes) {
-        last if $i &gt; $n;
-        while ($n % $i == 0) {
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (sort { $a<span style="color:#e6db74">&lt;=&gt;</span>$b } keys %primes) {
+        <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $i <span style="color:#f92672">&gt;</span> $n;
+        <span style="color:#66d9ef">while</span> ($n % <span style="color:#960050;background-color:#1e0010">$</span>i <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
             push @factors, $i;
-            $n /= $i;
+            $n <span style="color:#f92672">/=</span> $i;
         }
     }
-    return @factors;
+    <span style="color:#66d9ef">return</span> @factors;
 }
 
-my %primes = primes_up_to($N);
-for my $i (1..$N) {
-    say $i if defined $primes{scalar prime_factors($i, %primes)};
+<span style="color:#66d9ef">my</span> %primes <span style="color:#f92672">=</span> primes_up_to($N);
+<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$N) {
+    say $i <span style="color:#66d9ef">if</span> defined $primes{scalar prime_factors($i, %primes)};
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="wanderdoc">Wanderdoc</h2>
-
 <p><strong>Wanderdoc</strong> home grown <strong>is_prime()</strong> is really cool and on top of <strong>print_attactive()</strong> was like icing on the cake.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings FATAL <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">qw(all)</span>;
 
-<pre><code class="language-perl">use strict;
-use warnings FATAL =&gt; qw(all);
+<span style="color:#66d9ef">my</span> $N <span style="color:#f92672">=</span> shift <span style="color:#f92672">||</span> <span style="color:#ae81ff">50</span>; <span style="color:#75715e"># or die &#34;How much is the number?\n&#34;;</span>
 
-my $N = shift || 50; # or die &quot;How much is the number?\n&quot;;
-
-for ( 1 .. $N )
+<span style="color:#66d9ef">for</span> ( <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $N )
 {
      print_attractive($_);
 }
 
-sub print_attractive
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">print_attractive</span>
 {
-     my $n = $_[0];
+     <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>];
 
-     my $n_orig = $n;
-     my $counter = 0;
+     <span style="color:#66d9ef">my</span> $n_orig <span style="color:#f92672">=</span> $n;
+     <span style="color:#66d9ef">my</span> $counter <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
 
-     my @factors;
+     <span style="color:#66d9ef">my</span> @factors;
 
-     # Old nice one-liner for prime factorization:
-     # perl -le &quot;$x = shift; for $k (2 .. $x/2) {$x%$k or (print $k and $x /= $k and redo) }&quot;
+     <span style="color:#75715e"># Old nice one-liner for prime factorization:</span>
+     <span style="color:#75715e"># perl -le &#34;$x = shift; for $k (2 .. $x/2) {$x%$k or (print $k and $x /= $k and redo) }&#34;</span>
 
 
-     for my $k ( 2 .. $n/2 )
+     <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $k ( <span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> $n<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span> )
      {
-          0 == $n % $k and
-               $factors[$counter++] = $k and
-               $n /= $k and redo;
+          <span style="color:#ae81ff">0</span> <span style="color:#f92672">==</span> $n % <span style="color:#960050;background-color:#1e0010">$</span>k <span style="color:#f92672">and</span>
+               $factors[$counter<span style="color:#f92672">++</span>] <span style="color:#f92672">=</span> $k <span style="color:#f92672">and</span>
+               $n <span style="color:#f92672">/=</span> $k <span style="color:#f92672">and</span> <span style="color:#66d9ef">redo</span>;
      }
-     print join(&quot; &quot;, $n_orig, '=', join(' * ',@factors)), $/ if is_prime($counter);
+     <span style="color:#66d9ef">print</span> join(<span style="color:#e6db74">&#34; &#34;</span>, $n_orig, <span style="color:#e6db74">&#39;=&#39;</span>, join(<span style="color:#e6db74">&#39; * &#39;</span>,@factors)), $/ <span style="color:#66d9ef">if</span> is_prime($counter);
 }
 
-sub is_prime
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_prime</span>
 {
-     my $n = $_[0];
-     if ($n &lt;= 3) {return $n &gt; 1 ? 1 : 0;}
-     elsif (0 == $n % 2 or 0 == $n % 3) {return 0;}
+     <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>];
+     <span style="color:#66d9ef">if</span> ($n <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">3</span>) {<span style="color:#66d9ef">return</span> $n <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> ? <span style="color:#ae81ff">1</span> : <span style="color:#ae81ff">0</span>;}
+     <span style="color:#66d9ef">elsif</span> (<span style="color:#ae81ff">0</span> <span style="color:#f92672">==</span> $n % 2 <span style="color:#f92672">or</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">==</span> $n % 3) {<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;}
 
-     else
+     <span style="color:#66d9ef">else</span>
      {
-          my $i = 5;
-          while ( $i * $i &lt;= $n )
+          <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>;
+          <span style="color:#66d9ef">while</span> ( $i <span style="color:#f92672">*</span> $i <span style="color:#f92672">&lt;=</span> $n )
           {
-               if ( 0 == $n % $i or 0 == $n % ($i + 2))
+               <span style="color:#66d9ef">if</span> ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">==</span> $n % <span style="color:#960050;background-color:#1e0010">$</span>i <span style="color:#f92672">or</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">==</span> $n % <span style="color:#960050;background-color:#1e0010">($</span>i <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>))
                {
-                    return 0;
+                    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
                }
-               $i += 6;
+               $i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">6</span>;
           }
      }
-    return 1;
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
 }
-</code></pre>
-
-<hr />
-
-<hr />
-
+</code></pre></div><hr>
+<hr>
 <h2 id="task-2">Task #2</h2>
-
-<hr />
-
-<hr />
-
-<h3 id="write-a-script-to-display-first-20-leonardo-numbers-please-checkout-wiki-page-https-en-wikipedia-org-wiki-leonardo-number-for-more-information">Write a script to display first 20 <strong>Leonardo Numbers</strong>. Please checkout <a href="https://en.wikipedia.org/wiki/Leonardo_number">wiki page</a> for more information.</h3>
-
+<hr>
+<hr>
+<h3 id="write-a-script-to-display-first-20-leonardo-numbers-please-checkout-wiki-pagehttpsenwikipediaorgwikileonardo_number-for-more-information">Write a script to display first 20 <strong>Leonardo Numbers</strong>. Please checkout <a href="https://en.wikipedia.org/wiki/Leonardo_number">wiki page</a> for more information.</h3>
 <p>For example:</p>
-
-<h5 id="l-0-1">L(0) = 1</h5>
-
-<h5 id="l-1-1">L(1) = 1</h5>
-
-<h5 id="l-2-l-0-l-1-1-3">L(2) = L(0) + L(1) + 1 = 3</h5>
-
-<h5 id="l-3-l-1-l-2-1-5">L(3) = L(1) + L(2) + 1 = 5</h5>
-
+<h5 id="l0--1">L(0) = 1</h5>
+<h5 id="l1--1">L(1) = 1</h5>
+<h5 id="l2--l0--l1--1--3">L(2) = L(0) + L(1) + 1 = 3</h5>
+<h5 id="l3--l1--l2--1--5">L(3) = L(1) + L(2) + 1 = 5</h5>
 <p>and so on.</p>
-
-<hr />
-
+<hr>
 <h2 id="adam-russell-1">Adam Russell</h2>
-
 <p><strong>Adam</strong> tried to keep it simple and very well presented end result.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> constant NUMBERS <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">20</span>;
 
-<pre><code class="language-perl">use strict;
-use warnings;
-use constant NUMBERS =&gt; 20;
-
-my $numbers = NUMBERS;
-my @leonardo = (1, 1);
-while($numbers){
-    if((NUMBERS - $numbers) &lt; 2){
-        print &quot;L(&quot; . (NUMBERS - $numbers) . &quot;) = &quot; . $leonardo[-1] . &quot;\n&quot;;
+<span style="color:#66d9ef">my</span> $numbers <span style="color:#f92672">=</span> NUMBERS;
+<span style="color:#66d9ef">my</span> @leonardo <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>);
+<span style="color:#66d9ef">while</span>($numbers){
+    <span style="color:#66d9ef">if</span>((NUMBERS <span style="color:#f92672">-</span> $numbers) <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">2</span>){
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;L(&#34;</span> <span style="color:#f92672">.</span> (NUMBERS <span style="color:#f92672">-</span> $numbers) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;) = &#34;</span> <span style="color:#f92672">.</span> $leonardo[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
     }
-    else{
-        my $leonardo = $leonardo[-1] + $leonardo[-2] + 1;
-        print &quot;L(&quot; . (NUMBERS - $numbers) . &quot;) = $leonardo\n&quot;;
+    <span style="color:#66d9ef">else</span>{
+        <span style="color:#66d9ef">my</span> $leonardo <span style="color:#f92672">=</span> $leonardo[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> $leonardo[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;L(&#34;</span> <span style="color:#f92672">.</span> (NUMBERS <span style="color:#f92672">-</span> $numbers) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;) = $leonardo\n&#34;</span>;
         push @leonardo, $leonardo;
     }
-    $numbers--;
+    $numbers<span style="color:#f92672">--</span>;
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="andrezgz-1">Andrezgz</h2>
-
 <p><strong>Andrezgz</strong> kept it simple and easy to read.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/perl</span>
 
-<pre><code class="language-perl">#!/usr/bin/perl
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> Memoize;
 
-use strict;
-use warnings;
-use Memoize;
+memoize(<span style="color:#e6db74">&#39;leo&#39;</span>);
 
-memoize('leo');
+<span style="color:#66d9ef">my</span> $upto <span style="color:#f92672">=</span> shift <span style="color:#f92672">||</span> <span style="color:#ae81ff">20</span>;
+<span style="color:#66d9ef">print</span> leo($_)<span style="color:#f92672">.</span><span style="color:#e6db74">&#39; &#39;</span> <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#f92672">--</span>$upto);
 
-my $upto = shift || 20;
-print leo($_).' ' for (0 .. --$upto);
-
-sub leo {
-    my $n = shift;
-    return $n &lt;= 1 ? 1 : leo($n-1) + leo($n-2) + 1;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">leo</span> {
+    <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> shift;
+    <span style="color:#66d9ef">return</span> $n <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">1</span> ? <span style="color:#ae81ff">1</span> : leo($n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span> leo($n<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="burkhard-nickels-1">Burkhard Nickels</h2>
-
 <p><strong>Burkhard</strong> also took the <strong>recursive</strong> route.</p>
-
-<pre><code class="language-perl">print &quot;Function leonardo1() with recursive function call ...\n&quot;;
-foreach my $i (0 .. $max) {
-    my $cnt = 0;
-    my $nr = leonardo1($i,\$cnt);
-    print &quot;L($i) = $nr ($cnt)\n&quot;;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Function leonardo1() with recursive function call ...\n&#34;</span>;
+<span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $max) {
+    <span style="color:#66d9ef">my</span> $cnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">my</span> $nr <span style="color:#f92672">=</span> leonardo1($i,<span style="color:#f92672">\</span>$cnt);
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;L($i) = $nr ($cnt)\n&#34;</span>;
 }
 
-sub leonardo1 {
-    my ($nr,$cnt) = @_;
-    $$cnt++;
-    if( $nr == 0 or $nr == 1 ) { return 1; }
-    else {
-        return leonardo1($nr-1,$cnt) + leonardo1($nr-2,$cnt) + 1;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">leonardo1</span> {
+    <span style="color:#66d9ef">my</span> ($nr,$cnt) <span style="color:#f92672">=</span> @_;
+    $$cnt<span style="color:#f92672">++</span>;
+    <span style="color:#66d9ef">if</span>( $nr <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">or</span> $nr <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> ) { <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>; }
+    <span style="color:#66d9ef">else</span> {
+        <span style="color:#66d9ef">return</span> leonardo1($nr<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,$cnt) <span style="color:#f92672">+</span> leonardo1($nr<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>,$cnt) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
     }
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="colin-crain-1">Colin Crain</h2>
-
 <p><strong>Colin</strong> presented the result nicely laid out.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">&#34;:5.26&#34;</span>;
 
-<pre><code class="language-perl">use warnings;
-use strict;
-use feature &quot;:5.26&quot;;
+<span style="color:#66d9ef">my</span> $quan <span style="color:#f92672">=</span> shift @ARGV <span style="color:#e6db74">//</span> <span style="color:#ae81ff">20</span>;
 
-my $quan = shift @ARGV // 20;
+say <span style="color:#e6db74">&#34;the first $quan Leonardo numbers:&#34;</span>;
+say <span style="color:#e6db74">&#34;&#34;</span>;
+say <span style="color:#e6db74">&#34;index  |  number&#34;</span>;
+say <span style="color:#e6db74">&#34;-------+--------&#34;</span>;
 
-say &quot;the first $quan Leonardo numbers:&quot;;
-say &quot;&quot;;
-say &quot;index  |  number&quot;;
-say &quot;-------+--------&quot;;
-
-my $i;
-printf &quot;%-2d        %d\n&quot;, ++$i, $_ for make_leonardo($quan)-&gt;@*;
+<span style="color:#66d9ef">my</span> $i;
+printf <span style="color:#e6db74">&#34;%-2d        %d\n&#34;</span>, <span style="color:#f92672">++</span>$i, $_ <span style="color:#66d9ef">for</span> make_leonardo($quan)<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
 
 sub make_leonardo {
-##  construct a list of the first n Leonardo numbers
-##  requires no recursion if we have the growing list to refer to
-    my $quan  = shift;
-    my $list  = [1];
-    push $list-&gt;@*, 1 if $quan &gt; 1;                         ## now [1,1]
-    while ( scalar $list-&gt;@* &lt;= $quan-1 ) {
-        push $list-&gt;@*, $list-&gt;[-1] + $list-&gt;[-2] + 1;      ## sum last two elements + 1
+<span style="color:#75715e">##  construct a list of the first n Leonardo numbers</span>
+<span style="color:#75715e">##  requires no recursion if we have the growing list to refer to</span>
+    <span style="color:#66d9ef">my</span> $quan  <span style="color:#f92672">=</span> shift;
+    <span style="color:#66d9ef">my</span> $list  <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>];
+    push $list<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> $quan <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>;                         <span style="color:#75715e">## now [1,1]</span>
+    <span style="color:#66d9ef">while</span> ( scalar $list<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">&lt;=</span> <span style="color:#960050;background-color:#1e0010">$</span>quan<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> ) {
+        push $list<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, $list<span style="color:#f92672">-&gt;</span>[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> $list<span style="color:#f92672">-&gt;</span>[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;      <span style="color:#75715e">## sum last two elements + 1</span>
     }
-    return $list;
+    <span style="color:#66d9ef">return</span> $list;
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="duncan-c-white-1">Duncan C. White</h2>
-
 <p><strong>Duncan</strong> kept it simple without any noise.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.10</span>;  <span style="color:#75715e"># to get &#34;say&#34;</span>
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#75715e">#use Data::Dumper;</span>
 
-<pre><code class="language-perl">use v5.10;  # to get &quot;say&quot;
-use strict;
-use warnings;
-#use Data::Dumper;
+die <span style="color:#e6db74">&#34;Usage: ch-2.pl [N//20]\n&#34;</span> <span style="color:#66d9ef">if</span> @ARGV<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">1</span>;
+<span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> shift <span style="color:#e6db74">//</span> <span style="color:#ae81ff">20</span>;
 
-die &quot;Usage: ch-2.pl [N//20]\n&quot; if @ARGV&gt;1;
-my $n = shift // 20;
+<span style="color:#66d9ef">my</span> %l;
+$l{<span style="color:#ae81ff">0</span>} <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+$l{<span style="color:#ae81ff">1</span>} <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+say <span style="color:#e6db74">&#34;leonardo(0) = $l{0}&#34;</span>;
+say <span style="color:#e6db74">&#34;leonardo(1) = $l{1}&#34;</span>;
 
-my %l;
-$l{0} = 1;
-$l{1} = 1;
-say &quot;leonardo(0) = $l{0}&quot;;
-say &quot;leonardo(1) = $l{1}&quot;;
-
-foreach my $i (2..$n-1)
+<span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">2</span><span style="color:#f92672">..</span>$n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
 {
-    $l{$i} = $l{$i-2} + $l{$i-1} + 1;
-    say &quot;leonardo($i) = $l{$i}&quot;;
+    $l{$i} <span style="color:#f92672">=</span> $l{$i<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>} <span style="color:#f92672">+</span> $l{$i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>} <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+    say <span style="color:#e6db74">&#34;leonardo($i) = $l{$i}&#34;</span>;
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="e-choroba-1">E. Choroba</h2>
-
 <p><strong>Choroba</strong> blown me away with his hack of <strong>shift</strong> at the end.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#! /usr/bin/perl</span>
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">qw{ say }</span>;
 
-<pre><code class="language-perl">#! /usr/bin/perl
-use warnings;
-use strict;
-use feature qw{ say };
-
-my @last2 = (1, 1);
-for my $n (0 .. 20) {
-    say &quot;L($n) = &quot;, $last2[0];
-    push @last2, $last2[0] + $last2[1] + 1;
+<span style="color:#66d9ef">my</span> @last2 <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>);
+<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $n (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">20</span>) {
+    say <span style="color:#e6db74">&#34;L($n) = &#34;</span>, $last2[<span style="color:#ae81ff">0</span>];
+    push @last2, $last2[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+</span> $last2[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
     shift @last2;
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="javier-luque-1">Javier Luque</h2>
-
 <p><strong>Javier</strong> made use of <strong>recursive</strong> function.</p>
-
-<pre><code class="language-perl">#!/usr/bin/perl
-# test: ./ch-2.pl
-use strict;
-use warnings;
-use feature qw /say/;
-
-for my $i (1..20) {
-    say &quot;L($i) = &quot; . leonardo($i);
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/perl</span>
+<span style="color:#75715e"># test: ./ch-2.pl</span>
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">qw /say/;
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">for </span><span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">20</span>) {
+    say <span style="color:#e6db74">&#34;L($i) = &#34;</span> <span style="color:#f92672">.</span> leonardo($i);
 }
 
-# Leonardo
-sub leonardo {
-    my $n = shift;
-    return 1 if ($n == 0 or $n == 1);
+<span style="color:#75715e"># Leonardo</span>
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">leonardo</span> {
+    <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> shift;
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> ($n <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">or</span> $n <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>);
 
-    # Recursive
-    return (
-        leonardo($n-1) +  # l(n-1)
-        leonardo($n-2) +  # l(n-2)
-        1                 # 1
+    <span style="color:#75715e"># Recursive</span>
+    <span style="color:#66d9ef">return</span> (
+        leonardo($n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span>  <span style="color:#75715e"># l(n-1)</span>
+        leonardo($n<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>) <span style="color:#f92672">+</span>  <span style="color:#75715e"># l(n-2)</span>
+        <span style="color:#ae81ff">1</span>                 <span style="color:#75715e"># 1</span>
     );
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="laurent-rosenfeld-1">Laurent Rosenfeld</h2>
-
 <p><strong>Laurent</strong> didn&rsquo;t blink once before getting the desired result.</p>
-
-<pre><code class="language-perl">use strict;
-use warnings;
-use feature qw /say/;
-
-my @leonardo = (1, 1);
-for my $i (1..18) {
-    push @leonardo, $leonardo[-1] + $leonardo[-2] + 1;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">qw /say/;
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">my </span>@leonardo <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>);
+<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">18</span>) {
+    push @leonardo, $leonardo[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> $leonardo[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
 }
-say &quot;@leonardo&quot;;
-</code></pre>
-
-<hr />
-
+say <span style="color:#e6db74">&#34;@leonardo&#34;</span>;
+</code></pre></div><hr>
 <h2 id="lubos-kolouch-1">Lubos Kolouch</h2>
-
 <p>It can&rsquo;t be any simpler than this, thanks <strong>Lubos</strong>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> Data::Dumper;
 
-<pre><code class="language-perl">use strict;
-use warnings;
-use Data::Dumper;
+<span style="color:#66d9ef">my</span> @l <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>);
 
-my @l = (1,1);
-
-for (2..19) {
-    $l[$_] = $l[$_-2] + $l[$_-1]+1;
+<span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">2</span><span style="color:#f92672">..</span><span style="color:#ae81ff">19</span>) {
+    $l[$_] <span style="color:#f92672">=</span> $l[$_<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>] <span style="color:#f92672">+</span> $l[$_<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>;
 }
 
 warn Dumper @l;
-</code></pre>
-
-<hr />
-
-<h2 id="roger-bell-west-1">Roger Bell_West</h2>
-
+</code></pre></div><hr>
+<h2 id="roger-bell_west-1">Roger Bell_West</h2>
 <p><strong>Roger</strong> followed the easy path. However while printing the result, he used the <strong>negative index</strong> hack, very smart.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#! /usr/bin/perl</span>
 
-<pre><code class="language-perl">#! /usr/bin/perl
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
 
-use strict;
-use warnings;
+<span style="color:#66d9ef">my</span> @stack;
 
-my @stack;
-
-foreach my $i (0..19) {
-  if ($i&lt;2) {
-    push @stack,1;
-  } else {
-    push @stack,1+$stack[-1]+$stack[-2];
+<span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">19</span>) {
+  <span style="color:#66d9ef">if</span> ($i<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">2</span>) {
+    push @stack,<span style="color:#ae81ff">1</span>;
+  } <span style="color:#66d9ef">else</span> {
+    push @stack,<span style="color:#ae81ff">1</span><span style="color:#f92672">+</span>$stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">+</span>$stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>];
     shift @stack;
   }
-  print $stack[-1],&quot;\n&quot;;
+  <span style="color:#66d9ef">print</span> $stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>],<span style="color:#e6db74">&#34;\n&#34;</span>;
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="ruben-westerberg-1">Ruben Westerberg</h2>
-
 <p><strong>Ruben</strong> made use of <strong>state</strong> to cache the result. I wonder if it is any better than <strong>Memoize</strong>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.26</span>;
 
-<pre><code class="language-perl">#!/usr/bin/env perl
-use strict;
-use warnings;
-use v5.26;
+<span style="color:#66d9ef">print</span> map { <span style="color:#e6db74">&#34;n: $_ l: &#34;</span><span style="color:#f92672">.</span>l($_)<span style="color:#f92672">.</span><span style="color:#e6db74">&#34;\n&#34;</span>} <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">19</span>;
 
-print map { &quot;n: $_ l: &quot;.l($_).&quot;\n&quot;} 0..19;
-
-sub l {
-    my $i=shift;
-    state @cache=(1,1);
-    push @cache, $cache[-1]+$cache[-2]+1 while(! defined($cache[$i]));
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">l</span> {
+    <span style="color:#66d9ef">my</span> $i<span style="color:#f92672">=</span>shift;
+    state @cache<span style="color:#f92672">=</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>);
+    push @cache, $cache[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">+</span>$cache[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>]<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span> <span style="color:#66d9ef">while</span>(<span style="color:#f92672">!</span> defined($cache[$i]));
     $cache[$i];
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="ryan-thompson-1">Ryan Thompson</h2>
-
 <p><strong>Ryan</strong> showed how the use of <strong>Memoize</strong> can be so powerful. Highly Recommended.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> <span style="color:#ae81ff">5.010</span>;
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> Memoize; <span style="color:#75715e"># This is a core module</span>
 
-<pre><code class="language-perl">use 5.010;
-use warnings;
-use strict;
-use Memoize; # This is a core module
-
-# Use core Perl module &quot;Memoize&quot; to store results of previous calls
-# Note this is the exact same code as leo_no_memo, apart from the memoize call
-sub leo_memoize {
-    my $n = shift;
-    return 1 if $n &lt; 2;
-    1 + leo_memoize($n - 1) + leo_memoize($n - 2);
+<span style="color:#75715e"># Use core Perl module &#34;Memoize&#34; to store results of previous calls</span>
+<span style="color:#75715e"># Note this is the exact same code as leo_no_memo, apart from the memoize call</span>
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">leo_memoize</span> {
+    <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> shift;
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> $n <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">2</span>;
+    <span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> leo_memoize($n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span> leo_memoize($n <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>);
 }
-memoize 'leo_memoize';
+memoize <span style="color:#e6db74">&#39;leo_memoize&#39;</span>;
 
-# In this case doing memoization ourselves is really easy, and turns out
-# to be a surprising 777% faster than Memoize, so it's my preference.
+<span style="color:#75715e"># In this case doing memoization ourselves is really easy, and turns out</span>
+<span style="color:#75715e"># to be a surprising 777% faster than Memoize, so it&#39;s my preference.</span>
 {
-    my @leo = (1, 1);
-    sub leo_my_memo {
-        my $n = shift;
-        $leo[$n] //= 1 + leo_my_memo($n - 1) + leo_my_memo($n - 2);
+    <span style="color:#66d9ef">my</span> @leo <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>);
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">leo_my_memo</span> {
+        <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> shift;
+        $leo[$n] <span style="color:#e6db74">//</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> leo_my_memo($n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span> leo_my_memo($n <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>);
     }
 }
 
-# Building up the list iteratively is also a good solution
-sub leo_to_n {
-    my @r = (1, 1);
-    push @r, $r[-1] + $r[-2] + 1 for 2..$_[0];
+<span style="color:#75715e"># Building up the list iteratively is also a good solution</span>
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">leo_to_n</span> {
+    <span style="color:#66d9ef">my</span> @r <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>);
+    push @r, $r[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> $r[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">..</span>$_[<span style="color:#ae81ff">0</span>];
     @r;
 }
 
-say for leo_to_n(20);
-</code></pre>
-
-<hr />
-
+say <span style="color:#66d9ef">for</span> leo_to_n(<span style="color:#ae81ff">20</span>);
+</code></pre></div><hr>
 <h2 id="saif-ahmed-1">Saif Ahmed</h2>
-
 <p><strong>Saif</strong> never hesitates caching whereever to speed up the performance. I simply love his work.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">&#39;say&#39;</span>;
 
-<pre><code class="language-perl">use strict;
-use warnings;
-use feature 'say';
+<span style="color:#75715e"># hash containing known Leornado numbers.  It is prepopulated with</span>
+<span style="color:#75715e"># L(0) and L(1), but more added as discovered by L().</span>
+<span style="color:#66d9ef">my</span> %leonardos<span style="color:#f92672">=</span>(<span style="color:#ae81ff">0</span><span style="color:#f92672">=&gt;</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span><span style="color:#f92672">=&gt;</span><span style="color:#ae81ff">1</span>,);
 
-# hash containing known Leornado numbers.  It is prepopulated with
-# L(0) and L(1), but more added as discovered by L().
-my %leonardos=(0=&gt;1,1=&gt;1,);
+<span style="color:#75715e"># Golden ratio numbers required for the closedForm() method</span>
+<span style="color:#66d9ef">my</span> $gr1<span style="color:#f92672">=</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">+</span>sqrt(<span style="color:#ae81ff">5</span>))<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>;
+<span style="color:#66d9ef">my</span> $gr2<span style="color:#f92672">=</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">-</span>sqrt(<span style="color:#ae81ff">5</span>))<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>;
 
-# Golden ratio numbers required for the closedForm() method
-my $gr1=(1+sqrt(5))/2;
-my $gr2=(1-sqrt(5))/2;
+say  <span style="color:#e6db74">&#34;$_) &#34;</span>, L($_)  <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">20</span>);  <span style="color:#75715e"># find the first 21 leonardo numbers</span>
 
-say  &quot;$_) &quot;, L($_)  for (0..20);  # find the first 21 leonardo numbers
-
-# This subroutines uses no caching and rapidly slowss after about
-# 25 retrievals.
-sub l{
-  my $ln=shift;
-  return $ln &lt; 2?1:l($ln-2)+l($ln-1)+1;
+<span style="color:#75715e"># This subroutines uses no caching and rapidly slowss after about</span>
+<span style="color:#75715e"># 25 retrievals.</span>
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">l</span>{
+  <span style="color:#66d9ef">my</span> $ln<span style="color:#f92672">=</span>shift;
+  <span style="color:#66d9ef">return</span> $ln <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">2</span>?<span style="color:#ae81ff">1</span>:l($ln<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>)<span style="color:#f92672">+</span>l($ln<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>;
 }
 
-#  This retrieves Leonardo numbers from cache where needed
-sub L{
-  my $ln=shift;
+<span style="color:#75715e">#  This retrieves Leonardo numbers from cache where needed</span>
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">L</span>{
+  <span style="color:#66d9ef">my</span> $ln<span style="color:#f92672">=</span>shift;
 
-  # find and store L(N) in the hash, if it does not exist already
-  unless (exists  $leonardos{$ln}) {
-      $leonardos{$ln}=L($ln-2)+L($ln-1)+1
+  <span style="color:#75715e"># find and store L(N) in the hash, if it does not exist already</span>
+  <span style="color:#66d9ef">unless</span> (exists  $leonardos{$ln}) {
+      $leonardos{$ln}<span style="color:#f92672">=</span>L($ln<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>)<span style="color:#f92672">+</span>L($ln<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>
   };
-   #return stored L(N)
-  return $leonardos{$ln};
+   <span style="color:#75715e">#return stored L(N)</span>
+  <span style="color:#66d9ef">return</span> $leonardos{$ln};
 }
 
-# This is a closed form function that requires no recursion
-# see https://en.wikipedia.org/wiki/Leonardo_number
-sub closedForm{
-    my $ln=shift;
-    return 2*($gr1**($ln+1)-$gr2**($ln+1))/($gr1-$gr2) -1;
+<span style="color:#75715e"># This is a closed form function that requires no recursion</span>
+<span style="color:#75715e"># see https://en.wikipedia.org/wiki/Leonardo_number</span>
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">closedForm</span>{
+    <span style="color:#66d9ef">my</span> $ln<span style="color:#f92672">=</span>shift;
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>($gr1<span style="color:#f92672">**</span>($ln<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">-</span>$gr2<span style="color:#f92672">**</span>($ln<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>))<span style="color:#f92672">/</span>($gr1<span style="color:#f92672">-</span>$gr2) <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="steven-wilson">Steven Wilson</h2>
-
 <p><strong>Steven</strong> kept it sweet and simple.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">e strict;
+<span style="color:#66d9ef">use</span> warnings;
 
-<pre><code class="language-perl">e strict;
-use warnings;
+<span style="color:#66d9ef">my</span> @leonardo_numbers <span style="color:#f92672">=</span> ( <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span> );
+<span style="color:#66d9ef">my</span> $counter <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;
 
-my @leonardo_numbers = ( 1, 1 );
-my $counter = 2;
-
-while ( $counter &lt; 20 ) {
-    $leonardo_numbers[$counter] =
-        $leonardo_numbers[ $counter - 1 ] +
-        $leonardo_numbers[ $counter - 2 ] +
-        1;
-    $counter++;
+<span style="color:#66d9ef">while</span> ( $counter <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">20</span> ) {
+    $leonardo_numbers[$counter] <span style="color:#f92672">=</span>
+        $leonardo_numbers[ $counter <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ] <span style="color:#f92672">+</span>
+        $leonardo_numbers[ $counter <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span> ] <span style="color:#f92672">+</span>
+        <span style="color:#ae81ff">1</span>;
+    $counter<span style="color:#f92672">++</span>;
 }
 
-print join &quot; &quot;, @leonardo_numbers, &quot;\n&quot;;``
-***
+<span style="color:#66d9ef">print</span> join <span style="color:#e6db74">&#34; &#34;</span>, @leonardo_numbers, <span style="color:#e6db74">&#34;\n&#34;</span>;<span style="color:#e6db74">``</span>
+<span style="color:#f92672">***</span>
 
-## Ulrich Rieke
+<span style="color:#75715e">## Ulrich Rieke</span>
 
-**Ulrich** made good use of **negative** index. Clean Hack.
+<span style="color:#f92672">**</span>Ulrich<span style="color:#f92672">**</span> made good <span style="color:#66d9ef">use</span> of <span style="color:#f92672">**</span>negative<span style="color:#f92672">**</span> index<span style="color:#f92672">.</span> Clean Hack<span style="color:#f92672">.</span>
 
-```perl
-#!/usr/bin/perl ;
-use strict ;
-use warnings ;
+<span style="color:#e6db74">``</span><span style="color:#960050;background-color:#1e0010">`</span>perl
+<span style="color:#75715e">#!/usr/bin/perl ;</span>
+<span style="color:#66d9ef">use</span> strict ;
+<span style="color:#66d9ef">use</span> warnings ;
 
-my @leonardos = ( 1 , 1 ) ;
-while ( (scalar @leonardos ) &lt; 20 ) {
-  push @leonardos , $leonardos[-1] + $leonardos[-2] + 1 ;
+<span style="color:#66d9ef">my</span> @leonardos <span style="color:#f92672">=</span> ( <span style="color:#ae81ff">1</span> , <span style="color:#ae81ff">1</span> ) ;
+<span style="color:#66d9ef">while</span> ( (scalar @leonardos ) <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">20</span> ) {
+  push @leonardos , $leonardos[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> $leonardos[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> ;
 }
-for my $num ( @leonardos ) {
-  print &quot;$num &quot; ;
+<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $num ( @leonardos ) {
+  <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$num &#34;</span> ;
 }
-print &quot;\n&quot; ;
-</code></pre>
-
-<hr />
-
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\n&#34;</span> ;
+</code></pre></div><hr>
 <h2 id="walt-mankowski-1">Walt Mankowski</h2>
-
 <p><strong>Walt</strong> made good use <strong>swapping</strong>, very nice hack.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">qw(:5.30)</span>;
+<span style="color:#66d9ef">use</span> experimental <span style="color:#e6db74">qw(signatures)</span>;
 
-<pre><code class="language-perl">#!/usr/bin/env perl
-use strict;
-use warnings;
-use feature qw(:5.30);
-use experimental qw(signatures);
+<span style="color:#66d9ef">my</span> $N <span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span>;
+<span style="color:#66d9ef">my</span> ($l1, $l2) <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>);
 
-my $N = 20;
-my ($l1, $l2) = (1, 1);
-
-for my $i (0..$N-1) {
-    if ($i &lt; 2) {
-        say &quot;L($i) = 1&quot;;
-    } else {
-        ($l1, $l2) = ($l2, $l1 + $l2 + 1);
-        say &quot;L($i) = $l2&quot;;
+<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$N<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
+    <span style="color:#66d9ef">if</span> ($i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">2</span>) {
+        say <span style="color:#e6db74">&#34;L($i) = 1&#34;</span>;
+    } <span style="color:#66d9ef">else</span> {
+        ($l1, $l2) <span style="color:#f92672">=</span> ($l2, $l1 <span style="color:#f92672">+</span> $l2 <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>);
+        say <span style="color:#e6db74">&#34;L($i) = $l2&#34;</span>;
     }
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="wanderdoc-1">Wanderdoc</h2>
-
 <p><strong>Wanderdoc</strong> exploited the <strong>Fibonacci series</strong> to get the desired result.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!perl</span>
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings FATAL <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">qw(all)</span>;
 
-<pre><code class="language-perl">#!perl
-use strict;
-use warnings FATAL =&gt; qw(all);
+<span style="color:#66d9ef">my</span> $fn <span style="color:#f92672">=</span> shift <span style="color:#f92672">||</span> <span style="color:#ae81ff">20</span>; <span style="color:#75715e">#  or die &#34;How much numbers?\n&#34;;</span>
+<span style="color:#66d9ef">print</span> join(<span style="color:#e6db74">&#34; &#34;</span>, map <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> fib($_ <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">20</span>), $/;
 
-my $fn = shift || 20; #  or die &quot;How much numbers?\n&quot;;
-print join(&quot; &quot;, map 2 * fib($_ + 1) - 1, 0 .. 20), $/;
-
-sub fib
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">fib</span>
 {
-     my $n = shift;
-     my $x = 0;
-     my $y = 1;
+     <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> shift;
+     <span style="color:#66d9ef">my</span> $x <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+     <span style="color:#66d9ef">my</span> $y <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
 
-     my $m = 0;
-     while ( $m &lt; $n )
+     <span style="color:#66d9ef">my</span> $m <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+     <span style="color:#66d9ef">while</span> ( $m <span style="color:#f92672">&lt;</span> $n )
      {
-          ($x, $y) = ($y, $x + $y);
-          $m++;
+          ($x, $y) <span style="color:#f92672">=</span> ($y, $x <span style="color:#f92672">+</span> $y);
+          $m<span style="color:#f92672">++</span>;
 
      }
 
-     return $x;
+     <span style="color:#66d9ef">return</span> $x;
 }
-</code></pre>
-
-<hr />
-
-<hr />
-
+</code></pre></div><hr>
+<hr>
 <h2 id="see-also">SEE ALSO</h2>
-
-<hr />
-
-<hr />
-
+<hr>
+<hr>
 <p>(1) <a href="https://adamcrussell.livejournal.com/14043.html"><strong>Perl Weekly Challenge 041</strong></a> by <strong>Adam Russell</strong></p>
-
 <p>(2) <a href="https://perlchallenges.wordpress.com/2019/12/30/perl-weekly-challenge-041/"><strong>PERL WEEKLY CHALLENGE – 041</strong></a> by <strong>Javier Luque</strong></p>
-
 <p>(3) <a href="http://blogs.perl.org/users/laurent_r/2020/01/perl-weekly-challenge-41-attractive-numbers-and-leonardo-numbers.html"><strong>Perl Weekly Challenge 41: Attractive Numbers and Leonardo Numbers</strong></a> by <strong>Laurent Rosenfeld</strong></p>
-
 <p>(4) <a href="http://www.ry.ca/2020/01/attractive-numbers/"><strong>Attractive Numbers</strong></a> by <strong>Ryan Thompson</strong></p>
-
 <p>(5) <a href="http://www.ry.ca/2020/01/leonardo-numbers/"><strong>Leonardo Numbers</strong></a> by <strong>Ryan Thompson</strong></p>
 
                 </div>

@@ -16,7 +16,7 @@
 
     <meta name="description" content="Kian-Meng Ang Weekly Review: Challenge - #032.">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.55.0-DEV" />
+    <meta name="generator" content="Hugo 0.66.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -149,56 +149,31 @@
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
-                    
-
-<hr />
-
-<hr />
-
+                    <hr>
+<hr>
 <p>Continues from <a href="/blog/review-challenge-031/"><strong>previous week</strong></a>.</p>
-
 <p>Feel free to <a href="https://github.com/manwar/perlweeklychallenge"><strong>submit a merge request or open a ticket</strong></a> if you found any issues with this post. We highly appreciate and welcome your feedback.</p>
-
 <p>For a quick overview, go through the <a href="/blog/perl-weekly-challenge-032/"><strong>original tasks</strong></a> and <a href="/blog/recap-challenge-032/"><strong>recap</strong></a> of the weekly challenge.</p>
-
 <p>Additional feedback to the our Perl Weekly Challenge&rsquo;s <a href="https://twitter.com/perlwchallenge?lang=en"><strong>Twitter account</strong></a> is much appreciated.</p>
-
-<hr />
-
-<hr />
-
+<hr>
+<hr>
 <h2 id="task-1">Task #1</h2>
-
-<hr />
-
-<hr />
-
+<hr>
+<hr>
 <p><strong>CPAN</strong> modules used: <a href="https://metacpan.org/pod/Const::Fast"><code>Const::Fast</code></a>, <a href="https://metacpan.org/pod/Data::Dumper"><code>Data::Dumper</code></a>, <a href="https://metacpan.org/pod/English"><code>English</code></a>, <a href="https://metacpan.org/pod/Getopt::Long"><code>Getopt::Long</code></a>, <a href="https://metacpan.org/pod/Getopt::Std"><code>Getopt::Std</code></a>, <a href="https://metacpan.org/pod/List::Util"><code>List::Util</code></a>, <a href="https://metacpan.org/pod/Modern::Perl"><code>Modern::Perl</code></a>, <a href="https://metacpan.org/pod/Term::Size::Perl"><code>Term::Size::Perl</code></a>, <a href="https://metacpan.org/pod/Text::CSV_XS"><code>Text::CSV_XS</code></a>, <a href="https://metacpan.org/pod/feature"><code>feature</code></a>, <a href="https://metacpan.org/pod/open"><code>open</code></a>, <a href="https://metacpan.org/pod/strict"><code>strict</code></a>, <a href="https://metacpan.org/pod/warnings"><code>warnings</code></a></p>
-
-<p>A rather common (there is even a <a href="https://perldoc.pl/perlfaq6#How-can-I-print-out-a-word-frequency-or-line-frequency-summary"><strong>FAQ</strong></a>, link via <a href="http://blogs.perl.org/users/e_choroba/2019/11/perl-weekly-challenge-032-frequency-table-ascii-bar-chart.html"><strong>E. Choroba</strong></a>) task to demonstrate <strong>Perl</strong>&rsquo;s text manipulation capabilities. Common approach used by most participants can be break down into several steps consists of read each line from standard input, clean up each line, count the frequency of the word, sort the frequency count, and lastly show the result in both normal and CSV output. The solution by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/adam-russell/perl5/ch-1.pl"><strong>Adam Russell</strong></a> and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/dave-cross/perl5/ch-1.pl"><strong>Dave Cross</strong></a> demonstrated this succinctly with no dependencies on <strong>CPAN</strong> modules or special features. And yes, start reading these solutions first before you proceed with other.</p>
-
+<p>A rather common (there is even a <a href="https://perldoc.pl/perlfaq6#How-can-I-print-out-a-word-frequency-or-line-frequency-summary"><strong>FAQ</strong></a>, link via <a href="http://blogs.perl.org/users/e_choroba/2019/11/perl-weekly-challenge-032-frequency-table-ascii-bar-chart.html"><strong>E. Choroba</strong></a>) task to demonstrate <strong>Perl</strong>&lsquo;s text manipulation capabilities. Common approach used by most participants can be break down into several steps consists of read each line from standard input, clean up each line, count the frequency of the word, sort the frequency count, and lastly show the result in both normal and CSV output. The solution by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/adam-russell/perl5/ch-1.pl"><strong>Adam Russell</strong></a> and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/dave-cross/perl5/ch-1.pl"><strong>Dave Cross</strong></a> demonstrated this succinctly with no dependencies on <strong>CPAN</strong> modules or special features. And yes, start reading these solutions first before you proceed with other.</p>
 <p>Beside that, there were other solutions in one-liner that can quickly show the approach to solve this task as shown below.</p>
-
 <p>In <a href="http://blogs.perl.org/users/e_choroba/2019/11/perl-weekly-challenge-032-frequency-table-ascii-bar-chart.html"><strong>Bash</strong></a> by <strong>E. Choroba</strong>. Yes, using Unix pipe which demonstrated core concepts of <a href="https://en.wikipedia.org/wiki/Unix_philosophy"><strong>Unix philosophy</strong></a> of writing one program to do one thing very well and make sure all can work together through text streams.</p>
-
 <pre><code>$ cat &quot;$@&quot; | sort | uniq -c | sort -n
 </code></pre>
-
 <p>In <a href="http://46.91.236.80:81/www/Perl/PWC/20191028_32/pwc32.html"><strong>Perl</strong></a> by <strong>Burkhard Nickels</strong>.</p>
-
 <pre><code>$ perl -lne '$sum{$_}++; END { foreach( sort { $sum{$b} &lt;=&gt; $sum{$a} } keys %sum ) { print &quot;$i\t$sum{$i}&quot;; } }' example.txt
 </code></pre>
-
 <p>Unfortunately, we don&rsquo;t live in the perfect world. There is always this issue of <a href="https://en.wikipedia.org/wiki/Garbage_in,_garbage_out"><strong>garbage in, garbage out (GIGO)</strong></a> during text processing. Hence, we noticed different defensive measurements to handle possible edge cases were used by participants. And it showed that, to a certain extend, to handle numerous edges cases, <strong>Bash</strong> script may not be a convenient or suitable choice compare to <strong>Perl</strong> script.</p>
-
 <p>For examples, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/anton-fedotov/perl5/ch-1.pl"><strong>Anton Fedotov</strong></a> (UTF-8 support in both input and output), <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/duane-powell/perl5/ch-1.pl"><strong>Duane Powell</strong></a> (non-alphabet characters removal and multiple words within a line support), <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/dave-jacoby/perl5/ch-1.pl"><strong>Dave Jacoby</strong></a> (accept source from file or <a href="https://en.wikipedia.org/wiki/Standard_streams#Standard_input_(stdin)"><strong>Standard Input (stdin)</strong></a>), <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/laurent-rosenfeld/perl5/ch-1.pl"><strong>Laurent Rosenfeld</strong></a> (skip empty line), <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/prajith-p/perl5/ch-1.pl"><strong>Prajith P</strong></a> (another way to skip empty line without regex and multiple source files support), <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/e-choroba/perl5/ch-1.pl"><strong>E. Choroba</strong></a> (alternative UTF-8 support), and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/athanasius/perl5/ch-1.pl"><strong>Athanasius</strong></a> (check input for different OS).</p>
-
 <p>If you&rsquo;re new to <strong>Perl</strong> or favour to be more explicit, look into the solution by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/jaldhar-h-vyas/perl5/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a> which used <code>English</code> <strong>CPAN</strong> module which avoid the use of ugly <a href="https://perldoc.perl.org/perlvar.html"><strong>punctuation variables</strong></a>. <strong>Ovid</strong> wrote a <a href="http://blogs.perl.org/users/ovid/2016/05/why-i-try-to-avoid-perls-punctuation-variables.html"><strong>blog post</strong></a> on this subject as well. For comparison, we can see the differences of those submissions which used punctuation variables like <code>$!</code> or <code>$ERRNO</code> (<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/anton-fedotov/perl5/ch-1.pl"><strong>Anton Fedotov</strong></a>), <code>$~</code> or <code>$FORMAT_NAME</code> (<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/fabrizio-poggi/perl5/ch-1.pl"><strong>Fabrizio Poggi</strong></a>), <code>&lt;&gt;</code> or <code>ARGV</code> (<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/rage311/perl5/ch-1.pl"><strong>Rage311</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/roger-bell-west/perl5/ch-1.pl"><strong>Roger Bell_West</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/andrezgz/perl5/ch-1.pl"><strong>Andrezgz</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/e-choroba/perl5/ch-1.pl"><strong>E. Choroba</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/ryan-thompson/perl5/ch-1.pl"><strong>Ryan Thompson</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/duncan-c-white/perl5/ch-1.pl"><strong>Duncan C. White</strong></a>), <code>$|</code> or <code>$OUTPUT_AUTOFLUSH</code> (<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/athanasius/perl5/ch-1.pl"><strong>Athanasius</strong></a>), and <code>$^O</code> or <code>$OSNAME</code> (<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/athanasius/perl5/ch-1.pl"><strong>Athanasius</strong></a>).</p>
-
 <p>Another good comparison of <strong>explicit</strong> vs. <strong>implicit</strong> coding style was on reading a file by line and count the word frequency.</p>
-
 <p>By <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/dave-cross/perl5/ch-1.pl"><strong>Dave Cross</strong></a> which was quite common style among all participants.</p>
-
 <pre><code>my %count;
 
 while (&lt;&gt;) {
@@ -206,15 +181,11 @@ while (&lt;&gt;) {
     $count{$_}++;
 }
 </code></pre>
-
 <p>By <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/andrezgz/perl5/ch-1.pl"><strong>Andrezgz</strong></a> which was short and dense code.</p>
-
 <pre><code>my %entries;
 chomp, $entries{$_}++ while (&lt;&gt;); # count instances
 </code></pre>
-
 <p>By <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/steven-wilson/perl5/ch-1.pl"><strong>Steven Wilson</strong></a> which was more explicit.</p>
-
 <pre><code>for my $file (@ARGV) {
     open my $fh, '&lt;', $file or die &quot;Can't open &lt; $file: $!&quot;;
     while ( !eof $fh ) {
@@ -224,29 +195,17 @@ chomp, $entries{$_}++ while (&lt;&gt;); # count instances
     }
 }
 </code></pre>
-
 <p>For submission with heavy used of <strong>CPAN</strong> modules but still short and simple, the solution by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/e-choroba/perl5/ch-1.pl"><strong>E. Choroba</strong></a> was a good example to show case this.</p>
-
 <p>Lastly, once you&rsquo;ve familiarized yourself with all the submitted solutions of this task, read the answer by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/burkhard-nickels/perl5/ch-1.pl"><strong>Burkhard Nickels</strong></a>. <strong>Burkhard</strong> have submitted a comprehensive solution with numerous features for this task.</p>
-
-<hr />
-
-<hr />
-
+<hr>
+<hr>
 <h3 id="task-2">Task #2</h3>
-
-<hr />
-
-<hr />
-
+<hr>
+<hr>
 <p><strong>CPAN</strong> modules used: <a href="https://metacpan.org/pod/Const::Fast"><code>Const::Fast</code></a>, <a href="https://metacpan.org/pod/Data::Dumper"><code>Data::Dumper</code></a>, <a href="https://metacpan.org/pod/Function::Parameters"><code>Function::Parameters</code></a>, <a href="https://metacpan.org/pod/Getopt::Long"><code>Getopt::Long</code></a>, <a href="https://metacpan.org/pod/Getopt::Std"><code>Getopt::Std</code></a>, <a href="https://metacpan.org/pod/JSON::PP"><code>JSON::PP</code></a>, <a href="https://metacpan.org/pod/List::Util"><code>List::Util</code></a>, <a href="https://metacpan.org/pod/Math::Round"><code>Math::Round</code></a>, <a href="https://metacpan.org/pod/Modern::Perl"><code>Modern::Perl</code></a>, <a href="https://metacpan.org/pod/Moo"><code>Moo</code></a>, <a href="https://metacpan.org/pod/Term::ReadKey"><code>Term::ReadKey</code></a>, <a href="https://metacpan.org/pod/Term::Size::Perl"><code>Term::Size::Perl</code></a>, <a href="https://metacpan.org/pod/Types::Standard"><code>Types::Standard</code></a>, <a href="https://metacpan.org/pod/autodie"><code>autodie</code></a>, <a href="https://metacpan.org/pod/constant"><code>constant</code></a>, <a href="https://metacpan.org/pod/experimental"><code>experimental</code></a>, <a href="https://metacpan.org/pod/feature"><code>feature</code></a>, <a href="https://metacpan.org/pod/namespace::clean"><code>namespace::clean</code></a>, <a href="https://metacpan.org/pod/strict"><code>strict</code></a>, <a href="https://metacpan.org/pod/utf8"><code>utf8</code></a>, <a href="https://metacpan.org/pod/warnings"><code>warnings</code></a></p>
-
 <p>Another rather straightforward task where we need to sort the list of item by name or values and generate a histogram graph at the console. Due to similarity of this task with previous task, some participants decided to reuse and extend the existing code in <strong>Task #1</strong>.</p>
-
 <p>For implementing different sorting strategies, we&rsquo;ve observed different approaches.</p>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/duane-powell/perl5/ch-2.pl"><strong>Duane Powell</strong></a> used a simple if-else to sort the output.</p>
-
 <pre><code># sort and print lines
 if ($by_label) {
     # sort by key
@@ -256,11 +215,8 @@ if ($by_label) {
     generate_bar($_[0],$_,$format) foreach (sort {$_[0]-&gt;{$a} &lt;=&gt; $_[0]-&gt;{$b}} (keys %{$_[0]}));
 }
 </code></pre>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/lars-balker/perl5/ch-2.pl"><strong>Lars Balker</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/javier-luque/perl5/ch-2.pl"><strong>Javier Luque</strong></a> and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/giuseppe-terlizzi/perl5/ch-2.pl"><strong>Giuseppe Terlizzi</strong></a> used similar approach but with anonymous sorting subroutine.</p>
-
 <p>For <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/lars-balker/perl5/ch-2.pl"><strong>Lars Balker</strong></a> where the if-else have been replaced with ternary operations and anonymous subroutines.</p>
-
 <pre><code>my $sort = $order_by_label
     ? sub { $a cmp $b }
     : sub { $data-&gt;{$b} &lt;=&gt; $data-&gt;{$a} || $a cmp $b };
@@ -270,9 +226,7 @@ for my $word (sort $sort keys %$data) {
         &quot;#&quot; x int($hashes * $pct);
 }
 </code></pre>
-
 <p>For <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/javier-luque/perl5/ch-2.pl"><strong>Javier Luque</strong></a> with flexibility to add more sorting fields.</p>
-
 <pre><code># Sorting function - just 2 for now
 $sort_func = sub { $data-&gt;{$::b} &lt;=&gt; $data-&gt;{$::a} }
     if ($params-&gt;{order_by} eq 'size');
@@ -285,9 +239,7 @@ printf(&quot;%10s | %s \n&quot;,
     $key, '#' x int(scalar($data-&gt;{$key}) * 4));
 }
 </code></pre>
-
 <p>The more advance and Object-Oriented approach was seen in <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/e-choroba/perl5/ch-2.pl"><strong>E. Choroba</strong></a>. Instead of if-else statement, a hash was used as a lookup table to delegate to different sorting strategy subroutines.</p>
-
 <pre><code>method generate (SortBy $sort_by = 'keys') {
     my $data = $self-&gt;data;
     my $max = max(values %$data);
@@ -305,36 +257,21 @@ printf(&quot;%10s | %s \n&quot;,
     }
 }
 </code></pre>
-
 <p>Another thing we&rsquo;ve noticed where participants have put extra effort in scaling the histogram due to different range of values (<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/ndelucca/perl5/ch-2.pl"><strong>Nazareno Delucca</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/lars-balker/perl5/ch-2.pl"><strong>Lars Balker</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/adam-russell/perl5/ch-2.pl"><strong>Adam Russell</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/athanasius/perl5/ch-2.pl"><strong>Athanasius</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/laurent-rosenfeld/perl5/ch-2.pl"><strong>Laurent Rosenfeld</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/prajith-p/perl5/ch-2.pl"><strong>Prajith P</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/lars-thegler/perl5/ch-2.pl"><strong>Lars Thegler</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/ulrich-rieke/perl5/ch-2.pl"><strong>Ulrich Rieke</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/jaldhar-h-vyas/perl5/ch-2.pl"><strong>Jaldhar H Vyas</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/roger-bell-west/perl5/ch-2.pl"><strong>Roger Bell_West</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/ryan-thompson/perl5/ch-2.pl"><strong>Ryan Thompson</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/duncan-c-white/perl5/ch-2.pl"><strong>Duncan C. White</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/andrezgz/perl5/ch-2.pl"><strong>Andrezgz</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/giuseppe-terlizzi/perl5/ch-2.pl"><strong>Giuseppe Terlizzi</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/colin-crain/perl5/ch-2.pl"><strong>Colin Crain</strong></a>, and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/joelle-maslak/perl5/ch-2.pl"><strong>Joelle Maslak</strong></a>), floating numbers (<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/ulrich-rieke/perl5/ch-2.pl"><strong>Ulrich Rieke</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/colin-crain/perl5/ch-2.pl"><strong>Colin Crain</strong></a>, and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/joelle-maslak/perl5/ch-2.pl"><strong>Joelle Maslak</strong></a>), and terminal width (<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/burkhard-nickels/perl5/ch-2.pl"><strong>Burkhard Nickels</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/roger-bell-west/perl5/ch-2.pl"><strong>Roger Bell_West</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/ryan-thompson/perl5/ch-2.pl"><strong>Ryan Thompson</strong></a>, and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/joelle-maslak/perl5/ch-2.pl"><strong>Joelle Maslak</strong></a>).</p>
-
-<hr />
-
-<hr />
-
+<hr>
+<hr>
 <h2 id="see-also">SEE ALSO</h2>
-
-<hr />
-
-<hr />
-
+<hr>
+<hr>
 <p>(1) <a href="https://adamcrussell.livejournal.com/10802.html"><strong>Perl Weekly Challenge 032</strong></a> by <strong>Adam Russell</strong></p>
-
 <p>(2) <a href="https://raku-musings.com/instance-bar.html"><strong>The Raku Instance Bar</strong></a> by <strong>Arne Sommer</strong></p>
-
 <p>(3) <a href="http://46.91.236.80:81/www/Perl/PWC/20191028_32/pwc32.html"><strong>Perl Weekly Challenge #32, Number of occurences and bar chart</strong></a> by <strong>Burkhard Nickels</strong></p>
-
 <p>(4) <a href="http://blogs.perl.org/users/e_choroba/2019/11/perl-weekly-challenge-032-frequency-table-ascii-bar-chart.html"><strong>Perl Weekly Challenge 032: Frequency Table &amp; ASCII Bar Chart</strong></a> by <strong>E. Choroba</strong></p>
-
 <p>(5) <a href="https://www.braincells.com/perl/2019/11/perl_weekly_challenge_week_32.html"><strong>Perl Weekly Challenge: Week 32</strong></a> by <strong>Jaldhar H. Vyas</strong></p>
-
 <p>(6) <a href="https://perlchallenges.wordpress.com/2019/10/31/perl-weekly-challenge-032/"><strong>Perl Weekly Challenge - 32</strong></a> by <strong>Javier Luque</strong></p>
-
 <p>(7) <a href="http://blogs.perl.org/users/laurent_r/2019/10/perl-weekly-challenge-30-word-histogram-and-ascii-bar-chart.html"><strong>Perl Weekly Challenge 32: Word Histogram and ASCII Bar Chart</strong></a> by <strong>Laurent Rosenfeld</strong></p>
-
 <p>(8) <a href="https://blog.firedrake.org/archive/2019/11/Perl_Weekly_Challenge_32.html"><strong>RogerBW&rsquo;s Blog: Perl Weekly Challenge 32</strong></a> by <strong>Roger Bell_West</strong></p>
-
-<hr />
+<hr>
 
                 </div>
             </div>

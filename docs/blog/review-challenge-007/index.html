@@ -16,7 +16,7 @@
 
     <meta name="description" content="Kian-Meng Ang Review Challenge #007.">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.55.0-DEV" />
+    <meta name="generator" content="Hugo 0.66.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -149,22 +149,13 @@
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
-                    
-
-<p>Below is the write-up review (only covers Perl 5) of the Perl Weekly Challenge #007 of all the submitted answers. You can read the <a href="/blog/perl-weekly-challenge-007/">original questions</a> first to understand the details of these two challenges.</p>
-
-<hr />
-
+                    <p>Below is the write-up review (only covers Perl 5) of the Perl Weekly Challenge #007 of all the submitted answers. You can read the <a href="/blog/perl-weekly-challenge-007/">original questions</a> first to understand the details of these two challenges.</p>
+<hr>
 <h2 id="challenge-1">Challenge #1</h2>
-
-<hr />
-
+<hr>
 <p>If we read the question carefully, there are several steps to solve this problem. First, to find all niven number from 0 to 50 inclusively. Second, to find the sum of its digits of this range of number. Third, print all the niven number on their own line.</p>
-
 <p>For first step, as 0 is not a niven number since it can be divided by zero, some solutions will skip this number and count the range from 1 instead. Participants who took such approach are <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-007/gustavo-chaves/perl5/ch-1.pl">Gustavo Chaves</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-007/joelle-maslak/perl5/ch-1.pl">Joelle Maslak</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-007/andrezgz/perl5/ch-1.pl">Andrezgz</a>, and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-007/dave-jacoby/perl5/ch-1.pl">Dave Jacoby</a>. The alternative approach is to check for the value of zero and skip it in the loop (<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-007/athanasius/perl5/ch-1.pl">Athanasius</a> and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-007/alicia-bielsa/perl5/ch-1.pl">Alicia Bielsa</a>) or treat the number as boolean value (<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-007/ruben-westerberg/perl5/ch-1.pl">Ruben Westerberg</a> and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-007/maxim-nechaev/perl5/ch-1.pl">Maxim Nechaev</a>).</p>
-
 <p>The second step is to calculate the sum of its digits. There are two approach, calculate the sum of all the digits in the array using <strong>sum</strong> function of the module <a href="https://metacpan.org/pod/List::Util">List::Util</a> (<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-007/gustavo-chaves/perl5/ch-1.pl">Gustavo Chaves</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-007/maxim-nechaev/perl5/ch-1.pl">Maxim Nechaev</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-007/andrezgz/perl5/ch-1.pl">Andrezgz</a>, and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-007/dave-jacoby/perl5/ch-1.pl">Dave Jacoby</a>) or without using external module (<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-007/ruben-westerberg/perl5/ch-1.pl">Ruben Westerberg</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-007/athanasius/perl5/ch-1.pl">Athanasius</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-007/joelle-maslak/perl5/ch-1.pl">Joelle Maslak</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-007/adam-russell/perl5/ch-1.pl">Adam Russell</a>, and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-007/alicia-bielsa/perl5/ch-1.pl">Alicia Bielsa</a>). Main difference is solution that uses <a href="https://metacpan.org/pod/List::Util">List::Util</a> are shorter compare to those without. Special mention of Adam Russell&rsquo;s solution which <a href="https://adamcrussell.livejournal.com/2336.html">binary summation</a> to calculate the total sum.</p>
-
 <pre><code>do{
     my @digits = split(//,$i);
     my $digit_sum = unpack(&quot;%32C*&quot;, pack(&quot;C*&quot;, @digits));
@@ -175,21 +166,13 @@
     $i++;
 } while($count &amp;lt; NIVEN_COUNT);
 </code></pre>
-
 <p>And lastly, the third step is to print these number, &ldquo;each on their own line&rdquo;. There are two camps of people here. Those who <a href="https://perldoc.perl.org/functions/say.html">say</a>  (or <a href="https://perldoc.perl.org/CORE.html">CORE::say</a>) it out (<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-007/gustavo-chaves/perl5/ch-1.pl">Gustavo Chaves</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-007/joelle-maslak/perl5/ch-1.pl">Joelle Maslak</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-007/andrezgz/perl5/ch-1.pl">Andrezgz</a>, and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-007/dave-jacoby/perl5/ch-1.pl">Dave Jacoby</a>) or those who <a href="https://perldoc.perl.org/functions/print.html">print</a> newline <strong>\n</strong> explicitly (<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-007/ruben-westerberg/perl5/ch-1.pl">Ruben Westerberg</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-007/athanasius/perl5/ch-1.pl">Athanasius</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-007/maxim-nechaev/perl5/ch-1.pl">Maxim Nechaev</a>, and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-007/alicia-bielsa/perl5/ch-1.pl">Alicia Bielsa</a>).</p>
-
 <p>Looking through all the solutions, you will notice developers have different coding personalities or styles and motivation. The solution by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-007/ruben-westerberg/perl5/ch-1.pl">Ruben Westerberg</a> which uses only essential core features with minimal dependencies was done so so it can fit into one-liner is a good example of his chosen approach.</p>
-
-<hr />
-
+<hr>
 <h2 id="challenge-2">Challenge #2</h2>
-
-<hr />
-
+<hr>
 <p>This question was quite complicated and the number of submission was lower compare to first question. Basically the solution can be divided into two steps. First, obtain and filter the necessary dictionary words. Second, build a graph and find the shortest ladder between two words using <a href="https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm">Dijkstra&rsquo;s algorithm</a>.</p>
-
 <p>For the first step, Gustavo Chaves&rsquo; <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-007/gustavo-chaves/perl5/ch-2.pl">solution</a> caught my attention because how clean and readable on preparing the necessary word list for generating the graph. How he generates the word list remind me of <a href="https://en.wikipedia.org/wiki/Pipeline_(Unix)">Unix pipeline</a>. Each function filters the necessary word list from the previous function.</p>
-
 <pre><code>my ($source, $target) = map {lc} @ARGV;
 
 my $length = length $source;
@@ -203,9 +186,7 @@ my @words =
 
 my @ladder = first_shortest_ladder($source, $target, \@words);
 </code></pre>
-
 <p>For the second step that build the graph from the word list and find the shortest path between two words, Maxim Nechaev provided us with the shortest and cleanest <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-007/maxim-nechaev/perl5/ch-2.pl">solution</a>. This was achieved by using <a href="https://metacpan.org/pod/Graph::Undirected">Graph::Undirected</a> and <a href="https://metacpan.org/pod/Algorithm::Combinatorics">Algorithm::Combinatorics</a> to implement <a href="https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm">Dijkstra&rsquo;s algorithm</a>.</p>
-
 <pre><code>sub find_shortest_ladder
 {
     my ($word1, $word2, $words) = @_;
@@ -226,9 +207,7 @@ my @ladder = first_shortest_ladder($source, $target, \@words);
     return $g-&amp;gt;SP_Dijkstra($word1, $word2);
 }
 </code></pre>
-
 <p>Related blog posts to this week challenges by the usual suspect.</p>
-
 <ol>
 <li>Laurent Rosenfeld&rsquo;s <a href="http://blogs.perl.org/users/laurent_r/2019/05/perl-weekly-challenge-7-niven-numbers-and-word-ladders.html">post</a> on both Perl 5 and 6 solutions.</li>
 <li>Arne Sommer&rsquo;s <a href="https://perl6.eu/niven-ladder.html">post</a> on step-by-step solutions using Perl 6.</li>

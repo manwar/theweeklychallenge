@@ -16,7 +16,7 @@
 
     <meta name="description" content="Laurent Rosenfeld Weekly Review: Challenge - #018.">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.55.0-DEV" />
+    <meta name="generator" content="Hugo 0.66.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -149,30 +149,17 @@
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
-                    
-
-<hr />
-
+                    <hr>
 <h1 id="raku-solutions-weekly-review">Raku Solutions Weekly Review</h1>
-
-<hr />
-
+<hr>
 <h2 id="task-1-longest-common-substrings">Task #1: Longest Common Substrings</h2>
-
 <p>This is derived from my <a href="http://blogs.perl.org/users/laurent_r/2019/07/perl-weekly-challenge-18-longest-common-substrings-priority-queues-and-a-functional-object-system.html">blog post</a> made in answer to the <a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-018/">Week 18 of the Perl Weekly Challenge</a> organized by  <a href="http://blogs.perl.org/users/mohammad_s_anwar/">Mohammad S. Anwar</a> as well as answers made by others to the same challenge.</p>
-
 <p>The challenge reads as follows:</p>
-
 <p><em>Write a script that takes 2 or more strings as command line parameters and print the longest common substring. For example, the longest common substring of the strings “ABABC”, “BABCA” and “ABCBA” is string “ABC” of length 3. Other common substrings are “A”, “AB”, “B”, “BA”, “BC” and “C”. Please check this <a href="https://en.wikipedia.org/wiki/Longest_common_substring_problem">wiki page</a> for details.</em></p>
-
 <p>I can see at least two ways to tackle the problem (to simplify, let&rsquo;s say, for the time being, between two strings). One is to have two nested loops, one on the letters of the first string and the second one on the letters of the second string, and to store the substrings (or, possibly, the longest so far). The other is to generate all the substrings of each word and then to compare them. I used the first approach for solving the challenge in Perl 5 and the second one in Perl 6 (because P6 has some functionalities making the second approach easy and interesting, and probably quite efficient). Since this blog is about Perl 6, I&rsquo;ll detail only the second approach.</p>
-
 <p>Note that the program below will consider only extended ASCII strings for simplicity. A couple of very minor changes might be needed for dealing properly with full Unicode strings.</p>
-
 <h2 id="my-solution">My Solution</h2>
-
 <p>To generate all the substrings of a given string, we could use the regex engine with the <code>:exhaustive</code> adverb, to get all the overlapping matches. For example, consider this Perl 6 one-liner:</p>
-
 <pre><code>$ perl6 -e 'say ~$_ for sort &quot;ABC&quot; ~~ m:exhaustive/.+/
 A
 AB
@@ -181,49 +168,34 @@ B
 BC
 C
 </code></pre>
-
 <p>So this seems to be dead simple.</p>
-
 <p>But I&rsquo;ll rather use the <code>rotor</code> built-in subroutine, which isn&rsquo;t mentioned very often although it is very powerful and expressive, because I wanted to use the opportunity experiment a bit with it.</p>
-
 <p>These are two examples using <code>rotor</code> under the REPL:</p>
-
 <pre><code>&gt; 'abcd'.comb.rotor(1);
 ((a) (b) (c) (d))
 &gt; 'abcd'.comb.rotor(2);
 ((a b) (c d))
 </code></pre>
-
 <p>In these examples, <code>rotor</code> groups the elements of the invocant into groups of 1 and 2 elements. We&rsquo;re a long way from generating all the substrings of a given string. But we can do better:</p>
-
 <pre><code>&gt; say 'abcd'.comb.rotor($_) for 1..4;;
 ((a) (b) (c) (d))
 ((a b) (c d))
 ((a b c))
 ((a b c d))
 </code></pre>
-
 <p>This is already much better, but we&rsquo;re still missing some of the desired substrings such as <code>bc</code> and <code>bcd</code>.</p>
-
 <p>The <code>rotor</code> method can take as parameter a key-value pair, whose value (the second item) specifies a gap between the various matches:</p>
-
 <pre><code>&gt; (1..10).rotor(2 =&gt; 1)
 ((1 2) (4 5) (7 8))
 </code></pre>
-
 <p>As you can see, we obtain pairs of values, with a gap of 1 between the pairs (item 3, 6 and 9 are omitted from the list). Now, the gap can also be negative and, in that case, we get all successive pairs from the range:</p>
-
 <pre><code>&gt; (1..10).rotor(2 =&gt; -1)
 ((1 2) (2 3) (3 4) (4 5) (5 6) (6 7) (7 8) (8 9) (9 10))
 </code></pre>
-
 <p>The <code>rotor</code> subroutine can in fact do much more than that (check the <a href="https://docs.perl6.org/routine/rotor">rotor documentation</a>), but I&rsquo;ve basically shown the features that we&rsquo;ll use here.</p>
-
 <p>The other Perl 6 functionality that we will use here is the the <code>Set</code> type and the associated intersection (<code>∩</code> or <code>(&amp;)</code>) operator. This operator does exactly what set intersection does in the mathematical set theory: it returns the elements that are common to the two sets.</p>
-
 <p>We can now code the largest common substring in Perl 6:</p>
-
-<pre><code class="language-perl6">use v6;
+<pre><code class="language-perl6" data-lang="perl6">use v6;
 use Test;
 
 sub substrings (Str $in) {
@@ -248,98 +220,56 @@ multi MAIN () {
     @words = 'abcde' xx 5;
     cmp-ok largest-substring(@words), 'eq', 'abcde', &quot;Testing identical strings&quot;;
 }
-</code></pre>
-
-<p>Launching the program with no argument to run the tests produces this:</p>
-
+</code></pre><p>Launching the program with no argument to run the tests produces this:</p>
 <pre><code>$ perl6  substrings.p6
 1..2
 ok 1 - Testing 3 strings
 ok 2 - Testing identical strings
 </code></pre>
-
 <p>And with three strings, we get the longest substring:</p>
-
 <pre><code>perl6  substrings.p6 ABABCTO BABCTO ABCTBA
 ABCT
 </code></pre>
-
 <p>My solution returns only one longest substring, even when there are two (or more) distinct longest substrings. After all, the challenge specification said &ldquo;print the longest common substring,&rdquo; not &ldquo;print the longest common substrings.&rdquo; Anyway, the program would require just one additional code line to return several longest substrings if needed.</p>
-
 <h2 id="alternative-solutions">Alternative Solutions</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/arne-sommer/perl6/ch-1.p6">Arne Sommer</a> decided to generate all possible substrings from each input string and then to incrementally build the set of common substrings using the <code>∩</code> set intersection operator (and find the longest common substring at the end). So, something quite similar to what I did above, except that, to generate all the substrings, he manually implemented two nested loops on the letter sequences of a given string.</p>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/mark-senn/perl6/ch-1.p6">Mark Senn</a> also used nested loops to find all the substrings of each of the input strings and stored them in an array <code>@set</code> of sets (well actually of <code>SetHash</code> objects). That&rsquo;s a nice idea, but the true beauty of Mark&rsquo;s solution lies in the way he uses the set intersection operator within the reduction metaoperator and sorts the result by substring length to find the LCS and print it, all in one single code line:</p>
-
-<pre><code class="language-perl6">([(&amp;)] @set).keys.sort({.chars}).tail.say;
-</code></pre>
-
-<p>I am really impressed. Congratulations, Mark, very good job! One possible minor improvement, though:  you didn&rsquo;t really need to sort the substrings and could have used the <a href="https://docs.perl6.org/routine/max">max</a> function, for example <code>.max({.chars})</code>, which should presumably be more efficient.</p>
-
+<pre><code class="language-perl6" data-lang="perl6">([(&amp;)] @set).keys.sort({.chars}).tail.say;
+</code></pre><p>I am really impressed. Congratulations, Mark, very good job! One possible minor improvement, though:  you didn&rsquo;t really need to sort the substrings and could have used the <a href="https://docs.perl6.org/routine/max">max</a> function, for example <code>.max({.chars})</code>, which should presumably be more efficient.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/simon-proctor/perl6/ch-1.p6">Simon Proctor</a> also wrote a subroutine to generate all substrings of a given string. And he also cleverly thought about using the set intersection operator within the reduction metaoperator to find all the common substrings. Simon&rsquo;s final step is a bit more complex than Mark&rsquo;s, because his program finds all the longest common substrings when there is more than one:</p>
-
-<pre><code class="language-perl6">    my @word-subs = @words.map( &amp;all-substrings );
+<pre><code class="language-perl6" data-lang="perl6">    my @word-subs = @words.map( &amp;all-substrings );
     .say for ([(&amp;)] @word-subs).keys.sort( { $^b.codes &lt;=&gt; $^a.codes } ).grep( { state $len = $_.codes; $_.codes == $len });
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/joelle-maslak/perl6/ch-1.p6">Joelle Maslak</a> also used a subroutine to find all substrings of a given string, and she also used the magical <code>[∩]</code> combination of the set intersection operator and reduction metaoperator to find all common substrings. And she also made sure to display several longest substrings when there is more than 1. Clearly one of the best contributions on this challenge.</p>
-
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/joelle-maslak/perl6/ch-1.p6">Joelle Maslak</a> also used a subroutine to find all substrings of a given string, and she also used the magical <code>[∩]</code> combination of the set intersection operator and reduction metaoperator to find all common substrings. And she also made sure to display several longest substrings when there is more than 1. Clearly one of the best contributions on this challenge.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/athanasius/perl6/ch-1.p6">Athanasius</a> also wrote a subroutine to generate all substrings of a given string, using two nested loops. He also populated an array of sets, but he performed the intersection in a <code>for</code> loop.</p>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/veesh-goldman/perl6/ch-1.p6">Veesh Goldman</a> also reduced the intersection operator, but with a different syntax. He is the only one who used a regex with the <code>:ex</code> or <code>:exhaustive</code> adverb. Veesh is clearly the winner in terms of the most concise syntax:</p>
-
-<pre><code class="language-perl6">sub MAIN ( *@strings where .elems &gt; 1 ) {
+<pre><code class="language-perl6" data-lang="perl6">sub MAIN ( *@strings where .elems &gt; 1 ) {
   @strings.map( { m:ex/.+/&gt;&gt;.Str } ).reduce( { $^a ∩ $^b } ).keys.max(*.chars).say
 }
-</code></pre>
-
-<p>And also certainly one of the best and most perl-sixish solutions, IMHO. I wish Veesh took part more often to the Perl 6 part of the challenge.</p>
-
+</code></pre><p>And also certainly one of the best and most perl-sixish solutions, IMHO. I wish Veesh took part more often to the Perl 6 part of the challenge.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/fjwhittle/perl6/ch-1.p6">Francis Whittle</a> also wrote a subroutine to generate all substrings of a given string, but he used the <code>hyper</code> method to accelerate his nested loops:</p>
-
-<pre><code class="language-perl6">sub all-substrings(Str $in) {
+<pre><code class="language-perl6" data-lang="perl6">sub all-substrings(Str $in) {
   gather for (^($in.chars - 1)).hyper -&gt; $i {
     for (1..^$in.chars).hyper -&gt; $j {
       take $in.substr($i..$j) if $i &lt;= $j;
     }
   }
 }
-</code></pre>
-
-<p>This is quite clever, and I must admit that don&rsquo;t think about this easy possible performance enhancement most of the time. His <code>MAIN</code> code is also original, interesting and worth looking at.</p>
-
+</code></pre><p>This is quite clever, and I must admit that don&rsquo;t think about this easy possible performance enhancement most of the time. His <code>MAIN</code> code is also original, interesting and worth looking at.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/noud/perl6/ch-1.p6">Noud</a> used two nested loops to find the longest substring or substrings between two strings. Noud&rsquo;s solution also covers the case where there are several longest substrings. The only problem is that the challenge said &ldquo;2 or more strings&rdquo; and Noud&rsquo;s solution can process only two input strings. And, as we&rsquo;ll see below, an LCS subroutine between two strings cannot properly find a LCS between 3 input strings.</p>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/ruben-westerberg/perl6/ch-1.p6">Ruben Westerberg</a>&rsquo;s solution suffers of the same syndrome: it can process only two input strings.</p>
-
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/ruben-westerberg/perl6/ch-1.p6">Ruben Westerberg</a>&lsquo;s solution suffers of the same syndrome: it can process only two input strings.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/ozzy/perl6/ch-2.p6">Ozzy</a> orighinally implemented two nested loops to find the LCS between two strings. But this solution also can process only two input strings. However, he implemented <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/ozzy/perl6/ch-2a.p6">another solution</a> which uses three nested <code>for</code>loops to find all the substrings of the input words (two or more) and then uses the intersection operator to find trhe common substrings. This second solution displays all the longest common substrings when there is more than one.</p>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/feng-chang/perl6/ch-1.p6">Fench Chang</a> interestingly created an infix <code>LCS</code> operator. The good thing about creating such an operator is that you can then use it within the reduction operator <code>[]</code> to process more than two input strings. I&rsquo;m afraid, though, that this approach will fail on some input strings. Suppose for example that you want to compare 3 strings, <em>ABCDEFUVWXY</em>,  <em>ABCDEFGHUVWX</em> and <em>ABUVWXY</em>. If I understand correctly, Feng&rsquo;s program first looks for the LCS between the first two strings, and finds <em>ABCDEF</em>; then, the script looks for the LCS between <em>ABCDEF</em> and <em>ABUVWXY</em>, and finds <em>AB</em>. But, in reality, <em>UVWX</em> was a longer substring common to the three input strings. Well, after having written the preceding sentences, I decided that I should better test to check. So, I copied Feng&rsquo;s <code>LCS</code> infix operator definition and tested it with the input strings of my example just above:</p>
-
-<pre><code class="language-perl6">say [LCS] &lt;ABCDEFUVWXY ABCDEFGHUVWX ABUVWXY&gt;.flat;
-</code></pre>
-
-<p>and the program displayed &ldquo;AB&rdquo;. So it seems that my analysis is correct.</p>
-
+<pre><code class="language-perl6" data-lang="perl6">say [LCS] &lt;ABCDEFUVWXY ABCDEFGHUVWX ABUVWXY&gt;.flat;
+</code></pre><p>and the program displayed &ldquo;AB&rdquo;. So it seems that my analysis is correct.</p>
 <h2 id="enter-damian-conway">Enter Damian Conway</h2>
-
 <p>Damian Conway did not take part to the challenge, but wrote <a href="http://blogs.perl.org/users/damian_conway/2019/07/chopping-substrings.html">Chopping substrings</a>, a blog post, that says everything you&rsquo;ve ever wanted to know about the subject, and probably even more than that.</p>
-
 <p>I will not try to summarize Damian&rsquo;s master piece, you should really follow the link and read it, but I will only highlight a few points.</p>
-
 <p>First, Damian says that the &ldquo;best practice&rdquo; solution for LCS is a relatively complex technique known as <a href="https://en.wikipedia.org/wiki/Generalized_suffix_tree">suffix tree</a>, but we can get very reasonable performance for strings up to hundreds of thousands of characters long using a much simpler approach.</p>
-
 <p>The idea is to get sets of all substrings of each input word and then find the intersection of those sets. Damian further notes that there can be several longest substrings and insists on finding them all.</p>
-
 <p>His first solution uses a regex with the <code>:ex</code> (exhaustive) adverb to find all the substrings and the <code>∩</code> set intersection operator, together with the reduction metaoperator, to find all the common substrings:</p>
-
-<pre><code class="language-perl6">keys [∩] @strings».match(/.+/, :ex)».Str
-</code></pre>
-
-<p>We could then use the builtin <code>max</code> function (as I did in my solution), but that returns only one longest substring, whereas Damian wants to find them all (when there is more than one LCS). So he decided to augment the <code>max</code> function so that it takes a new adverb, <code>:all</code> to indicate that we want all the maxima, not just one:</p>
-
-<pre><code class="language-perl6"># &quot;Exhaustive&quot; maximal...
+<pre><code class="language-perl6" data-lang="perl6">keys [∩] @strings».match(/.+/, :ex)».Str
+</code></pre><p>We could then use the builtin <code>max</code> function (as I did in my solution), but that returns only one longest substring, whereas Damian wants to find them all (when there is more than one LCS). So he decided to augment the <code>max</code> function so that it takes a new adverb, <code>:all</code> to indicate that we want all the maxima, not just one:</p>
+<pre><code class="language-perl6" data-lang="perl6"># &quot;Exhaustive&quot; maximal...
 multi max (:&amp;by = {$_}, :$all!, *@list) {
     # Find the maximal value...
     my $max = max my @values = @list.map: &amp;by;
@@ -347,38 +277,28 @@ multi max (:&amp;by = {$_}, :$all!, *@list) {
     # Extract and return all values matching the maximal...
     @list[ @values.kv.map: {$^index unless $^value cmp $max} ];
 }
-</code></pre>
-
-<p>So, with this revised version of <code>max</code>, finding the longest common substring<em>s</em> now looks like this:</p>
-
-<pre><code class="language-perl6">max :all, :by{.chars}, keys [∩] @strings».match(/.+/, :ex)».Str
-</code></pre>
-
-<p>So, problem nicely solved! Except that this won&rsquo;t work when some bioinformaticist will try to compare DNA strands with 10,000 bases (or more). Finding all the substrings of a 10,000-letter string becomes highly unpractical. Damian goes on saying that it would be much easier if we knew what the length of the longest substring(s) was, because the number of possible substring would be much smaller. Of course, we don&rsquo;t know this length, but it can be found with a binary search algorithm. And this new algorithm scales incredibly better. I&rsquo;ll not describe further Damian&rsquo;s findings (and his additional optimization), as it would be much better for you to read directly what Damian wrote. So, please, follow <a href="http://blogs.perl.org/users/damian_conway/2019/07/chopping-substrings.html">the link</a>.</p>
-
+</code></pre><p>So, with this revised version of <code>max</code>, finding the longest common substring<em>s</em> now looks like this:</p>
+<pre><code class="language-perl6" data-lang="perl6">max :all, :by{.chars}, keys [∩] @strings».match(/.+/, :ex)».Str
+</code></pre><p>So, problem nicely solved! Except that this won&rsquo;t work when some bioinformaticist will try to compare DNA strands with 10,000 bases (or more). Finding all the substrings of a 10,000-letter string becomes highly unpractical. Damian goes on saying that it would be much easier if we knew what the length of the longest substring(s) was, because the number of possible substring would be much smaller. Of course, we don&rsquo;t know this length, but it can be found with a binary search algorithm. And this new algorithm scales incredibly better. I&rsquo;ll not describe further Damian&rsquo;s findings (and his additional optimization), as it would be much better for you to read directly what Damian wrote. So, please, follow <a href="http://blogs.perl.org/users/damian_conway/2019/07/chopping-substrings.html">the link</a>.</p>
 <h2 id="task-2-priority-queues-and-binary-heaps">Task #2: Priority Queues and Binary Heaps</h2>
-
 <p>This is derived from my <a href="http://blogs.perl.org/users/laurent_r/2019/07/perl-weekly-challenge-18-priority-queues-and-binary-heaps-in-perl-6.html">blog post</a> made in answer to the <a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-018/">Week 18 of the Perl Weekly Challenge</a> organized by  <a href="http://blogs.perl.org/users/mohammad_s_anwar/">Mohammad S. Anwar</a> as well as answers made by others to the same challenge.</p>
-
 <p>The challenge reads as follows:</p>
-
 <p><em>Write a script to implement Priority Queue. It is like regular queue except each element has a priority associated with it. In a priority queue, an element with high priority is served before an element with low priority. Please check this wiki page for more information. It should serve the following operations:</em></p>
-
 <ul>
-<li><p><strong>is_empty</strong>: check whether the queue has no elements.</p></li>
-
-<li><p><strong>insert_with_priority</strong>: add an element to the queue with an associated priority.</p></li>
-
-<li><p><strong>pull_highest_priority_element</strong>: remove the element from the queue that has the highest priority, and return it. If two elements have the same priority, then return element added first.</p></li>
+<li>
+<p><strong>is_empty</strong>: check whether the queue has no elements.</p>
+</li>
+<li>
+<p><strong>insert_with_priority</strong>: add an element to the queue with an associated priority.</p>
+</li>
+<li>
+<p><strong>pull_highest_priority_element</strong>: remove the element from the queue that has the highest priority, and return it. If two elements have the same priority, then return element added first.</p>
+</li>
 </ul>
-
 <h2 id="my-solutions">My solutions</h2>
-
 <p>There are numerous ways to design simple priority queues (at least when performance is not an issue, for instance if the data set isn&rsquo;t very large). For example, it might be sufficient to maintain an array of arrays (AoA), where each of the arrays is a pair containing the item and associated priority. Or an array of hashes (AoH) based on the same idea. This means that each time we want to pull the highest priority element, we need to traverse the whole data structure to find the item with the highest priority. This may be quite slow when there are many items, but this may not matter if our data structure only has a few dozen items.</p>
-
 <p>Another way is to build a hash of arrays (HoA), where the hash keys are the priorities and the hash values are references to arrays. When the number of priorities is relatively small (compared to the number of items in the queues), this tends to be more efficient, but note that we still need to traverse the keys of the hash until we find the highest priority. An AoA with the index being the priority and the sub-hashes the item might be more efficient (because the priorities remain sorted), but this requires the priorities to be relatively small positive integers. We still have to traverse the top data structure until we find the first non-empty sub-array. This could be done as follows:</p>
-
-<pre><code class="language-perl6">use v6;
+<pre><code class="language-perl6" data-lang="perl6">use v6;
 
 sub new-queue {
     my @queue;  # an AoA
@@ -415,12 +335,8 @@ for 1..20 -&gt; $num {
     say pull-prio;
 }
 say &quot;Empty queue&quot; if is-empty();
-</code></pre>
-
-<p>We&rsquo;re using functional programming to implement a pseudo-object system, in which the <code>new-queue</code> subroutine is acting as an object constructor, although it is implemented as a function factory. The <code>@queue</code> object is limited to the scope of the <code>new-queue</code> constructor, but the three methods returned to the caller are closures that can access to the content of their shared object, <code>@queue</code>. The tests insert 20 numerical items (numbers between 1 and 20) with a priority of 10 (highest) for numbers evenly divided by 10, of 5 for numbers evenly divided by 5 (but not by 10), of 3 for numbers evenly divided by 3 (but not by 5), etc.</p>
-
+</code></pre><p>We&rsquo;re using functional programming to implement a pseudo-object system, in which the <code>new-queue</code> subroutine is acting as an object constructor, although it is implemented as a function factory. The <code>@queue</code> object is limited to the scope of the <code>new-queue</code> constructor, but the three methods returned to the caller are closures that can access to the content of their shared object, <code>@queue</code>. The tests insert 20 numerical items (numbers between 1 and 20) with a priority of 10 (highest) for numbers evenly divided by 10, of 5 for numbers evenly divided by 5 (but not by 10), of 3 for numbers evenly divided by 3 (but not by 5), etc.</p>
 <p>This script displays the following output:</p>
-
 <pre><code>$ perl6  queues.p6
 10
 20
@@ -444,29 +360,23 @@ say &quot;Empty queue&quot; if is-empty();
 19
 Empty queue
 </code></pre>
-
 <p>Another possibility is to use a heap, a data structure that usually has better performance (when it matters). This what we will look into now.</p>
-
 <h3 id="background-on-binary-heaps">Background on Binary Heaps</h3>
-
 <p>A binary heap is a binary tree that keeps a partial order: each
 node has a value less than its parent and larger than
 either of its two children; there is no specific order imposed
 between siblings. (You may also do it the other way
 around: you can design heaps in which any node has a value
 larger than its parent, you basically only need to reverse the comparison.)</p>
-
 <p>Because there is no order between siblings, it is not possible
 to find a particular element without potentially searching the
 whole heap. Therefore, a heap is not very good if you need
 random access to specific nodes. But if you&rsquo;re interested
 in always finding the largest (or smallest) item, then a heap is a
 very efficient data structure.</p>
-
 <p>Heaps are used for solving a number of computer science problems, and also serve
 as the basis for an efficient and very popular sorting technique
 called heap sort.</p>
-
 <p>For a human, it is useful to represent a heap in a tree-like
 form. But a computer can store a heap as a simple array (not
 even a nested array). For this, the index of an element is
@@ -476,35 +386,26 @@ indexes are about double its index; conversely, the parent
 of a node is located at about half its index. If the heap
 starts at index 0, the exact formulas for a node with index
 <code>$n</code> are commonly as follows:</p>
-
 <ul>
 <li>Parent: <code>int( ($n-1)/2 )</code></li>
 <li>Left child: <code>2*$n + 1</code></li>
 <li>Right child: <code>2*$n + 2</code></li>
 </ul>
-
 <p>The root node is at index 0. Its children are at positions
 1 and 2. The children of 1 are 3 and 4 and the children of
 2 are 5 and 6. The children of 3 are 7 and 8, and so on.</p>
-
 <p>Suppose we build a heap (in ascending order) from an array of all letters between <code>a</code> and <code>v</code> provided in any pseudo-random order, for example:</p>
-
 <pre><code>my @input =  &lt;m t f l s j p o b h v k n q g r i a d u e c&gt;;
 </code></pre>
-
 <p>The resulting <code>@heap</code> might be something like this:</p>
-
 <pre><code>[a b g d c k j l f h e m n q p t r o i u s v]
 </code></pre>
-
 <p>We will see below on how to build such a heap from an unordered array, but let&rsquo;s concentrate for now on the heap properties.</p>
-
 <p>The order in the <code>@heap</code> above may not be immediately obvious, but <code>a</code> is the smallest letter, and its two children, <code>b</code> and <code>g</code>, are larger than <code>a</code>.
 The children of <code>b</code> are <code>d</code> and <code>c</code> and are larger than their parent <code>b</code>. Similarly, the children of <code>g</code> are <code>k</code> and <code>j</code> and are larger than
 their parent. And so on. But it is rather inconvenient to manually check that we have a valid heap. So, we may want to write a helper subroutine
 to display the heap in a slightly more graphical way:</p>
-
-<pre><code class="language-perl6">    sub print-heap (@heap) {
+<pre><code class="language-perl6" data-lang="perl6">    sub print-heap (@heap) {
         my $start = 0;
         my $end = 0;
         my $last = @heap.end;
@@ -518,56 +419,38 @@ to display the heap in a slightly more graphical way:</p>
             $end = $last if $end &gt; $last;
         }
     }
-</code></pre>
-
-<p>This subroutine will not be used in the final code, but it proved to be very useful for debugging purposes.</p>
-
+</code></pre><p>This subroutine will not be used in the final code, but it proved to be very useful for debugging purposes.</p>
 <p>If we pass the letter heap as an argument to this subroutine, it will be displayed in the following format:</p>
-
 <pre><code>(a)
 (b g)
 (d c k j)
 (l f h e m n q p)
 (t r o i u s v)
 </code></pre>
-
 <p>With a little bit of reformatting we can now see its structure in a tree-like format:</p>
-
 <pre><code>                (a)
         (b              g)
     (d       c      k        j)
   (l  f    h  e   m  n     q   p)
 (t r o i  u s v ...)
 </code></pre>
-
 <p>And from that, we can now easily draw the tree:</p>
-
-<p><img src="./heap.png" alt="alt text" title="The heap represented in a tree form" /></p>
-
+<p><img src="./heap.png" alt="alt text" title="The heap represented in a tree form"></p>
 <p>The important thing to notice is that there is no particular order between siblings, but children are always larger than their parent.</p>
-
 <h3 id="how-to-build-a-binary-heap">How to build a Binary Heap</h3>
-
-<p>Since we&rsquo;ll be dealing later with integers (priorities) in descending order, we will abandon our ascending order letter heap. Let&rsquo;s suppose we have this heap example taken from the implementation section of the Wikipedia page on heaps: <a href="https://en.wikipedia.org/wiki/Heap_(data_structure">https://en.wikipedia.org/wiki/Heap_(data_structure</a>)</p>
-
+<p>Since we&rsquo;ll be dealing later with integers (priorities) in descending order, we will abandon our ascending order letter heap. Let&rsquo;s suppose we have this heap example taken from the implementation section of the Wikipedia page on heaps: <a href="https://en.wikipedia.org/wiki/Heap_(data_structure)">https://en.wikipedia.org/wiki/Heap_(data_structure)</a></p>
 <pre><code>my @heap = 100, 19, 36, 17, 12, 25, 5, 9, 15, 6, 11;
 </code></pre>
-
 <p>For the time being, we will consider it is a global variable accessible anywhere in the file.</p>
-
 <p>Our <code>print-heap</code> helper subroutine would display it as:</p>
-
 <pre><code>(100)
 (19 36)
 (17 12 25 5)
 (9 15 6 11)
 </code></pre>
-
 <p>We can see it&rsquo;s a valid heap (the children are always smaller than their parent).</p>
-
 <p>Let&rsquo;s now add a new item, say 45, at the end of this array (for example with the <code>push</code> function). Of course, this item is not at its right place and the array is no longer a valid heap, but we can now use the following subroutine to move items around in order to obtain again a valid heap:</p>
-
-<pre><code class="language-perl6">sub add-in-heap ($index is rw) {
+<pre><code class="language-perl6" data-lang="perl6">sub add-in-heap ($index is rw) {
     my $index-val = @heap[$index];
     while ($index) {
         my $parent-idx = Int( ($index - 1) /2);
@@ -578,45 +461,29 @@ to display the heap in a slightly more graphical way:</p>
     }
     @heap[$index] = $index-val;
 }
-</code></pre>
-
-<p>The parameter passed is the index of the item that has just been added at the end of the array (11 in this example). This subroutine looks at the value of the parent of this new item. If the parent is larger than the new item, then we&rsquo;re done: the new array happens to be a valid heap (which is not the case in our example). If not, then we move the parent value to the position where we&rsquo;ve just added the new element. Then we change the index of interest to the parent and iterate this way until either the elements are in the right place (the parent value is larger than the current index value) or the index become 0 (we&rsquo;ve reached the root node). At this point, the loop ends and we can put the value we&rsquo;ve added in the right place. If you think about it in terms of the binary tree shown above, we&rsquo;re really exploring the single path from the added element to the root (although we may not have to go all the way up to the root), the rest of the heap remains untouched.</p>
-
+</code></pre><p>The parameter passed is the index of the item that has just been added at the end of the array (11 in this example). This subroutine looks at the value of the parent of this new item. If the parent is larger than the new item, then we&rsquo;re done: the new array happens to be a valid heap (which is not the case in our example). If not, then we move the parent value to the position where we&rsquo;ve just added the new element. Then we change the index of interest to the parent and iterate this way until either the elements are in the right place (the parent value is larger than the current index value) or the index become 0 (we&rsquo;ve reached the root node). At this point, the loop ends and we can put the value we&rsquo;ve added in the right place. If you think about it in terms of the binary tree shown above, we&rsquo;re really exploring the single path from the added element to the root (although we may not have to go all the way up to the root), the rest of the heap remains untouched.</p>
 <p>Note that this subroutine is not designed to do anything special when fed with duplicate values. Here, duplicates will he handled gracefully and returned in the correct order. So, that&rsquo;s OK, it works fine, but we&rsquo;ll have to do something special about it when we will implement priority queues (if we had two priorities with the same value in the heap, we would be unable to predict the order in which items having the same priority will be pulled).</p>
-
 <p>This subroutine will move around items from parent to child from the end to the beginning of the array (or at least until the new added value finds its right place), so that we get a new valid heap:</p>
-
 <pre><code>[100 19 45 17 12 36 5 9 15 6 11 25]
 </code></pre>
-
 <p>Using the <code>print-heap</code> helper subroutine to display the new heap outputs this:</p>
-
 <pre><code>(100)
 (19 45)
 (17 12 36 5)
 (9 15 6 11 25)
 </code></pre>
-
 <p>I&rsquo;ll leave it to you to draw the tree to check that it is a proper heap.</p>
-
 <p>We now know how to add an item to a existing heap, we can of course use that subroutine to add an item to an empty heap, and we can use that subroutine repeatedly to place each item in its proper place in order to create a heap from an input list in any order:</p>
-
 <pre><code>for @array.keys -&gt; $i {
     my $idx = $i;
     add-in-heap $idx;
 }
 </code></pre>
-
 <p>At the end of this loop, the <code>@array</code> will have been turned into a heap.</p>
-
 <h3 id="removing-one-element-from-the-heap">Removing One Element from the Heap</h3>
-
 <p>If we&rsquo;re looking for the largest element, it will be the root of the tree, i.e. the first item of the array.</p>
-
 <p>Now, if we want to use this data structure to manage a priority queue, we will need at some point to delete the value in the root node and to reorganize the array so that it becomes again a legitimate heap. When we remove <code>(100)</code> from the above array, we have to choose the largest item between the two children, i.e. 45 in our example, and promote it as a new root node. And we can then propagate similarly the needed changes until the end of the array.</p>
-
 <p>But the thermometer outside my house now shows 43.6 °C (in the shade), and it is more than 37°C inside. So, I&rsquo;ll be a bit lazy for a moment and, rather than writing such a new subroutine (which should be done if you want to be efficient and will be done below), I&rsquo;ll consider the array with the root node removed as an array in no particular order and use the code already written (the <code>add-in-heap</code> subroutine) to build a new heap from it:</p>
-
 <pre><code>sub take-from-heap {
     my $result = shift @heap;
     for @heap.keys -&gt; $i {
@@ -626,9 +493,7 @@ to display the heap in a slightly more graphical way:</p>
     return $result;
 }
 </code></pre>
-
 <p>If we run that subroutine on our existing heap, it will return the largest item (the root node, i.e. <code>100</code>) to the caller and reorganize the rest of the array into a new heap:</p>
-
 <pre><code>[45 36 17 15 25 5 9 12 6 11 19]
 
 (45)
@@ -636,10 +501,8 @@ to display the heap in a slightly more graphical way:</p>
 (15 25 5 9)
 (12 6 11 19)
 </code></pre>
-
 <p>OK, this works, but reconstructing the full heap each time we remove an item is somewhat inefficient, which goes against the very purpose of heaps. What should a proper <code>take-from-heap</code> subroutine do?  Take a look again at the binary tree displayed above. If we take off the root node value (<code>a</code>), we should replace it by <code>b</code> which is larger than <code>g</code>. It should be clear that we won&rsquo;t need to change anything in the <code>g</code> sub-tree. And we can recursively replace <code>b</code> by <code>c</code>, and then <code>c</code> by <code>e</code> and finally <code>e</code> by <code>v</code>. Nothing else needs to be changed. So basically we have to move up one step each of the nodes on the path of the smallest nodes in the <code>b</code> sub-tree. And, by the way, it is thanks to the fact that, whether we add a new item or remove an item from the heap, we only need to traverse one single path through the heap that insertion and deletion operations have a <em>0(log n)</em> complexity and are therefore fairly fast. Implementing the ideas just described is not too difficult, but, for each visited node, we need to take into account three possible cases: this node may have 0, 1 or 2 children.</p>
-
-<pre><code class="language-perl6">sub take-from-heap {
+<pre><code class="language-perl6" data-lang="perl6">sub take-from-heap {
     my $result = @heap[0];
     my $index = 0;
     loop {
@@ -666,24 +529,16 @@ to display the heap in a slightly more graphical way:</p>
     }
     return $result;
 }
-</code></pre>
-
-<p>If we run this new subroutine on our previous heap, we obtain this new heap:</p>
-
+</code></pre><p>If we run this new subroutine on our previous heap, we obtain this new heap:</p>
 <pre><code>[45 19 36 17 12 25 5 9 15 6 11]
 (45)
 (19 36)
 (17 12 25 5)
 (9 15 6 11)
 </code></pre>
-
 <p>Note that this is not the same heap as the one obtained before (same data but not in the same order), but this is another valid heap for such data. Using this subroutine repeatedly, we&rsquo;ll get the nodes in the same order: 45, 36, 25, 19, 17 etc.  For example, let&rsquo;s run the new <code>take-from-heap</code> 10 times on our original heap and print out each time the removed first item and the resulting heap:</p>
-
-<pre><code class="language-perl6">say &quot;First item = &quot;, take-from-heap, &quot;; Heap: &quot;, @heap for 1..10;
-</code></pre>
-
-<p>We can see that we have a valid heap at each iteration and pull the values in the right order:</p>
-
+<pre><code class="language-perl6" data-lang="perl6">say &quot;First item = &quot;, take-from-heap, &quot;; Heap: &quot;, @heap for 1..10;
+</code></pre><p>We can see that we have a valid heap at each iteration and pull the values in the right order:</p>
 <pre><code>First item = 100; Heap: [45 19 36 17 12 25 5 9 15 6 11]
 First item = 45; Heap: [36 19 25 17 12 5 9 15 6 11]
 First item = 36; Heap: [25 19 9 17 12 5 15 6 11]
@@ -695,21 +550,14 @@ First item = 11; Heap: [15 6 9 5]
 First item = 15; Heap: [9 6 5]
 First item = 9; Heap: [6 5]
 </code></pre>
-
 <p>So, it seems that we have a working algorithm to manage heaps. Let&rsquo;s turn now to priority queues.</p>
-
 <h3 id="a-priority-queue-as-a-heap">A Priority Queue as a Heap</h3>
-
 <p>Basically, we want to manage our priorities with a heap, and each priority will be associated with an array containing the individual items in the order in which they were inserted. To give you immediately an idea of the data structure, the queue will look like this at a certain point during the execution of the tests in the script below:</p>
-
 <pre><code>[[10 [10 20]] [5 [5 15]] [2 [2 4 8 14 16]] [1 [1 7 11 13 17 19]] [3 [3 6 9 12 18]]]
 </code></pre>
-
 <p>The first item in the queue displayed above, <code>[10 [10 20]]</code>, is the data structure for priority 10, which contains two elements, 10 and 20. The next one (<code>[5 [5 15]]</code>)  is for priority 5. And so on.</p>
-
 <p>When we are inserting elements (item and priority), we first call <code>insert_with_prio</code> to check whether there is already an array for the given priority. If it already exists, we just add the item to the array of elements associated with this priority. If there no array with such priority, then we call <code>add-to-queue</code> to add a priority data structure into the heap (and reorganize the heap as we&rsquo;ve done before). Similarly, when we call <code>pull_highest_prio</code>, we just pick up and return the first element from the data array of the first priority item. In the event that the data array of a given priority becomes empty, then we call <code>take-from-heap</code> to remove the priority data structure from the heap (and reorganize the heap as we&rsquo;ve done before).</p>
-
-<pre><code class="language-perl6">use v6;
+<pre><code class="language-perl6" data-lang="perl6">use v6;
 sub new-queue {
     my @queue;  # an AoA
     sub is_empty {
@@ -785,10 +633,7 @@ for 1..20 -&gt; $num {
     say pull-prio;
 }
 say &quot;Empty queue&quot; if is-empty();
-</code></pre>
-
-<p>This program displays more or less the same as our previous implementation:</p>
-
+</code></pre><p>This program displays more or less the same as our previous implementation:</p>
 <pre><code>$ perl6  heap_queue.p6
 10
 20
@@ -812,9 +657,7 @@ say &quot;Empty queue&quot; if is-empty();
 19
 Empty queue
 </code></pre>
-
 <p>Adding some additional print statements shows how the priority queue is evolving when we pull elements from it:</p>
-
 <pre><code>[[10 [10 20]] [5 [5 15]] [2 [2 4 8 14 16]] [1 [1 7 11 13 17 19]] [3 [3 6 9 12 18]]]
 
 [ ... lines omitted for brevity ...]
@@ -833,55 +676,30 @@ Pulled 17; New queue: [[1 [19]]]
 Pulled 19; New queue: []
 Empty queue
 </code></pre>
-
 <p>The code is quite long and is certainly not worth the effort if we&rsquo;re going to manage only 20 data elements and 5 priorities, as in our test cases above. But with much larger datasets and wider ranges of priority, it should be more efficient than our other implementation. If we&rsquo;re going to use many priority queues, the code of the <code>add-to-queue</code> and <code>take-from-heap</code> subroutines could be stored separately in a module, making the <code>new-queue</code> code much smaller and more manageable.</p>
-
 <p>Note that the <code>insert_with_prio</code> subroutine is traversing sequentially the heap to figure out whether the priority data structure already exists in the heap. Depending on the number of priorities, this might become time consuming.  It would be easy to add and maintain a hash keeping track of the existing priorities and their position in the heap, to avoid sequential search. I did not do it because I considered this to be an implementation detail that may be or may not be useful depending on the exact circumstances. I would probably do it if I were to write a heap priority library for a CPAN module.</p>
-
 <h2 id="alternative-solutions-1">Alternative Solutions</h2>
-
 <p>Several of the challengers used the <code>sort</code> built-in function to find the highest priority element in an array or hash. Let me remind them that Perl 6 has built-in <code>min</code> and <code>max</code> routines to do the job more efficiently (they have an O(<em>n</em>) complexity).</p>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/arne-sommer/perl6/ch-2.p6">Arne Sommer</a> used a <code>PriorityQueue</code> Perl 6 module, which he wrote for the purpose of the challenge. This module is a nice and concise OOP package that maintains a <code>%!queue</code> attribute, which is implemented as a hash of arrays: the hash as one item per priority and each such item if an array of tasks to be run. When pulling the highest priority element, the hash entry for that priority is deleted if the corresponding array becomes empty, so that each existing hash priority entry always have at least one task lined up (there is never an empty array). One possible improvement might be to maintain an additional scalar attribute recording the maximal priority within the queue, as Joelle Maslak&rsquo;s solution does (see below), so that the <code>pull_highest_priority_element</code> method does not have to scan the keys of <code>%!queue</code> to find the highest priority (which would be useful only if the number of priorities can become large). For some reason, Arne&rsquo;s module did not make it into the Github repository, please check <a href="https://perl6.eu/substring-queues.html">his blog</a> to see the details.</p>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/feng-chang/perl6/ch-2.p6">Feng Chang</a> took an OOP approach and created two classes, <code>task</code> and  <code>PriorityQueue</code>. The former is very simple and implements objects with two attributes, a priority and a task ID (and no method). The latter is using two data structures, an array of priorities and a hash of arrays for the tasks, and does all the work. It can be noted that the <code>add-new-task</code> method implements a binary search algorithm on the priority array, to speed up the search.</p>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/martin-barth/perl6/ch-2.p6">Martin Barth</a> also wrote a <code>PriorityQueue</code> class, with a nested <code>Item</code> class. Martin uses an array of items which he keeps sorted by priority (by inserting new items in the right place). His <code>!find-pos</code> private method also implements a binary search algorithm (with a recursive approach).</p>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/noud/perl6/ch-2.p6">Noud</a>&rsquo;s <code>PriorityQueue</code> class uses an ordered array of arrays.</p>
-
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/noud/perl6/ch-2.p6">Noud</a>&lsquo;s <code>PriorityQueue</code> class uses an ordered array of arrays.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/fjwhittle/perl6/ch-2.p6">Francis J. Whittle</a> also took an OOP approach and created a <code>Priority-Queue</code> class, with a hash of arrays attribute. Francis&rsquo;s code is really concise: only 13 code lines for the <code>Priority-Queue</code> class definition.</p>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/kevin-colyer/perl6/ch-2.p6">Kevin Colyer</a> also took an OOP approach and created a <code>PriorityQueue</code> class, with an <code>$!lol</code> array of arrays data structure. Kevin&rsquo;s class also has a <code>$.items</code> counter of tasks.</p>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/randy-lauen/perl6/ch-2.p6">Randy Lauen</a> wrote a <code>ÜberNaïvePriorityQueue</code> class implementing an array of hashes. Any new item is just simply pushed at the end of the <code>@!elements</code>. His <code>pull-highest-priority-element</code> uses the <code>maxpair</code> and <code>first</code> built-in routines to find the highest priority item. Perhaps a &ldquo;naive&rdquo; solution, but a very concise one: his class definition has 15 code lines (excluding empty lines and comments).</p>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/simon-proctor/perl6/ch-2.p6">Simon Proctor</a>&rsquo;s solution defines two roles, a <code>SingleQueue</code> role implementing an array or items, and a <code>OrderedQueue</code> role implementing a hash of <code>SingleQueue</code> objects. Quite an interesting solution, although I wonder why Simon chose to use roles rather than classes. It seems to me that his roles are really classes (in spirit) and that you could just replace the two occurrences of the word <code>role</code> by the word <code>class</code> and get exactly the same functionality.</p>
-
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/simon-proctor/perl6/ch-2.p6">Simon Proctor</a>&lsquo;s solution defines two roles, a <code>SingleQueue</code> role implementing an array or items, and a <code>OrderedQueue</code> role implementing a hash of <code>SingleQueue</code> objects. Quite an interesting solution, although I wonder why Simon chose to use roles rather than classes. It seems to me that his roles are really classes (in spirit) and that you could just replace the two occurrences of the word <code>role</code> by the word <code>class</code> and get exactly the same functionality.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/athanasius/perl6/ch-2.p6">Athanasius</a> defines a <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/athanasius/perl6/MyPriorityQueue.pm6">MyPriorityQueue</a> class in a separate module. This module in turn uses the Perl 6 <a href="https://github.com/FCO/Heap">Heap module</a>, which provides <code>push</code> and <code>pop</code> operations.</p>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/jaldhar-h-vyas/perl6/ch-2.p6">Jaldhar H. Vyas</a> created a <code>Data::PriorityQueue</code> with a nested <code>Element</code> class. Jaldhar&rsquo;s queue is an array of <code>Element</code> objects ordered by priority and creation order. The hard work is done in the <code>insert_with_priority</code> method, which has to find the right place where to insert any new element.</p>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/joelle-maslak/perl6/ch-2.p6">Joelle Maslak</a> defined a <code>Priority-Queue</code> class with a hash of arrays attribute. Her class also has a <code>$!max</code> scalar attribute, which keeps track of the highest priority in the data structure and makes it possible to pull the highest priority element without having to traverse the keys of the hash. Quite clever!</p>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/mark-senn/perl6/ch-2.p6">Mark Senn</a>  is one of the only two persons (well, three including myself) who did not use OOP. He implemented two parallel arrays, <code>@priority</code> and <code>@value</code>. Mark`s code is quite simple and relatively short.</p>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/ruben-westerberg/perl6/ch-2.p6">Ruben Westerberg</a> also did not use OOP. He created a hash of arrays.</p>
-
 <h2 id="see-also">SEE ALSO</h2>
-
 <p>Not too many blogs this time:</p>
-
 <p>Arne Sommer: <a href="https://perl6.eu/substring-queues.html">https://perl6.eu/substring-queues.html</a></p>
-
 <p>Mark Senn: <a href="https://engineering.purdue.edu/~mark/pwc-018.pdf">https://engineering.purdue.edu/~mark/pwc-018.pdf</a>. Besides his explanations on the algorithm he used, I like Mark&rsquo;s introduction on code brevity.</p>
-
 <p>Damian Conway: <a href="http://blogs.perl.org/users/damian_conway/2019/07/chopping-substrings.html">http://blogs.perl.org/users/damian_conway/2019/07/chopping-substrings.html</a></p>
-
 <h2 id="wrapping-up">Wrapping up</h2>
-
 <p>Please let me know if I forgot any of the challengers or if you think my explanation of your code misses something important.</p>
-
 <p>If you want to participate to the Perl Weekly Challenge, please connect to <a href="https://perlweeklychallenge.org/">this site</a>.</p>
 
                 </div>

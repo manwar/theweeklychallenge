@@ -16,7 +16,7 @@
 
     <meta name="description" content="Laurent Rosenfeld Weekly Review: Challenge - #016.">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.55.0-DEV" />
+    <meta name="generator" content="Hugo 0.66.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -149,34 +149,19 @@
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
-                    
-
-<hr />
-
+                    <hr>
 <h1 id="raku-solutions-weekly-review">Raku Solutions Weekly Review</h1>
-
-<hr />
-
+<hr>
 <h2 id="task-1-the-largest-share-in-the-pythagoras-pie">Task #1: The Largest Share in the Pythagoras Pie</h2>
-
 <p>This is derived from my <a href="http://blogs.perl.org/users/laurent_r/2019/07/-perl-weekly-challenge-16-pythagoras-pie.html">blog post</a> made in answer to the <a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-016/">Week 22 of the Perl Weekly Challenge</a> organized by  <a href="http://blogs.perl.org/users/mohammad_s_anwar/">Mohammad S. Anwar</a> as well as answers made by others to the same challenge.</p>
-
 <p>The challenge reads as follows:</p>
-
 <p><em>At a party a pie is to be shared by 100 guests. The first guest gets 1% of the pie, the second guest gets 2% of the remaining pie, the third gets 3% of the remaining pie, the fourth gets 4% and so on.</em></p>
-
 <p><em>Write a script that figures out which guest gets the largest piece of pie. (Challenge proposed by Jo Christian Oterhals)</em></p>
-
 <p>The first guest gets 1% of the whole pie. The second guest gets 2% of 99%, i.e. 1.98%. And so on: each guest gets in turn a larger share of what is left of the pie, but, at the same time, what is left of the pie gets smaller and smaller. So, intuitively, there must be a point where the share sizes start diminishing. If there was a 101st guest, she would get nothing, since the 100th guest took everything that is left (in fact a very tiny share).</p>
-
 <p>This so-called Pythagoras pie has nothing to do with the famous ancient Greek mathematician. The name of this puzzle apparently comes the Dutch <em>Pythagoras</em> magazine in which it was first published.</p>
-
 <h2 id="my-solutions">My solutions</h2>
-
-<h3 id="using-a-one-liner-script-to-display-each-guest-s-share-of-the-pie">Using a One-Liner Script to Display Each Guest&rsquo;s Share of the Pie</h3>
-
+<h3 id="using-a-one-liner-script-to-display-each-guests-share-of-the-pie">Using a One-Liner Script to Display Each Guest&rsquo;s Share of the Pie</h3>
 <p>It is quite easy to write a Perl 6 one-liner to display the share of each guest. Given that the share become really minuscule after a while, I only tried to print the shares only for the first 50 guests. In the following one-liner script, <code>$p</code> represents each guest and <code>$r</code> the fraction of the pie that remains at any given point. We display the guest number, what remains of the pie and the share taken by the guest:</p>
-
 <pre><code>$ perl6 -e 'my $r = 1; for 1..50 -&gt; $p {printf &quot;%i\t%0.10f\t%0.10f\n&quot;, $p, $r, $r*$p*.01; $r -=  $r*$p*.01;}'
 1       1.0000000000    0.0100000000
 2       0.9900000000    0.0198000000
@@ -205,36 +190,24 @@
 25      0.0376176733    0.0094044183
 (Rest of the output omitted for brevity)
 </code></pre>
-
 <p>Using the (full <code>1..100</code>range) data series in a spreadsheet (Libre Office Calc), we can create a graph and visualize how the shares grow relatively fast at the beginning and then quickly shrink and become really tiny:</p>
-
-<p><img src="./Pie-graph.jpg" alt="alt text" title="Pie share for each guest" /></p>
-
+<p><img src="./Pie-graph.jpg" alt="alt text" title="Pie share for each guest"></p>
 <p>So, looking at the one-liner output (or at the graph), it turns out that the 10th guest gets the largest share of the pie (6.28%). Problem solved!</p>
-
 <p>But we&rsquo;re cheating a little bit with this one-liner. The challenge says: <em>Write a script that figures out which guest gets the largest piece of pie.</em> Our one-liner displays the share of each guest and it is the human person reading the output that really figures out which share is the largest.</p>
-
 <p>We could still do it with a one-liner:</p>
-
 <pre><code>$ perl6 -e 'my $r = 1; my @a; for 1..50 -&gt; $p {push @a, $r*$p*.01; $r -=  $r*$p*.01}; my $m = max @a;
     for @a.kv -&gt; $k, $v {say &quot;{$k+1}: $v&quot; if $v == $m;}'
 10 0.06281565095552947
 </code></pre>
-
 <p>or possibly slightly better, computing the maximum during iteration:</p>
-
 <pre><code>$ perl6 -e 'my $r = 1; my @m = 0, 0; for 1..15 -&gt; $p {my $t = $r*$p*.01; @m = $p, $t if $t &gt; @m[1]; $r -=  $t};
     say join &quot; &quot;, @m;'
 10 0.06281565095552947
 </code></pre>
-
 <p>But I&rsquo;m afraid this is now becoming a little bit too hairy. It will be cleaner to write real scripts. We&rsquo;ll come back to one-liners later.</p>
-
 <h3 id="real-scripts-for-finding-the-largest-share">Real Scripts for Finding the Largest Share</h3>
-
 <p>Since we&rsquo;ve already done it with one-liner, writing a full-fledged script in Perl 6 is not complicated:</p>
-
-<pre><code class="language-Perl6">use v6;
+<pre><code class="language-Perl6" data-lang="Perl6">use v6;
 
 constant $share-fact = 0.01;
 my $rest-of-the-pie = 1;
@@ -245,59 +218,39 @@ for 1..100 -&gt; $guest-nr {
     $rest-of-the-pie -= $share;
 }
 say &quot;Lucky guest: $max-guest \tLargest share: $max-sh&quot;;
-</code></pre>
-
-<p>This procedural iterative solution prints the following output:</p>
-
+</code></pre><p>This procedural iterative solution prints the following output:</p>
 <pre><code>$ perl pythagoras_pie.pl
 Lucky guest: 10         Largest share: 0.0628156509555295
 </code></pre>
-
 <p>But we can do something much more concise in Perl 6 using the sequence operator, a pinch of functional programming and some built-in functions:</p>
-
-<pre><code class="language-Perl6">use v6;
+<pre><code class="language-Perl6" data-lang="Perl6">use v6;
 
 my $rest = 1;
 my @shares = map { my $sh = $rest * $_; $rest -= $sh; $sh}, (0, .01 ... 1);
 say  map { $_, @shares[$_] }, @shares.keys.max({@shares[$_]});
-</code></pre>
-
-<p>which prints out:</p>
-
+</code></pre><p>which prints out:</p>
 <pre><code>((10 0.06281565095552947))
 </code></pre>
-
 <p>We start with the sequence operator <code>...</code> to build a list of 101 relative shares and use a <code>map</code> statement to build <code>@shares</code>, the list of final shares of the original pie. Then we use the <code>max</code> routine to find the index of the largest value, and finally print the index and the value. Note that we started the original sequence with 0, although this is useless for the computations, because this makes it possible to use the array index as a rank (otherwise, the script would have printed 9, instead of 10, for the rank of the lucky guest).</p>
-
 <p>Since we know from the output of two of the one-liners above that only one guest gets the largest share, we don&rsquo;t really bother to find several largest shares. But it would take only one more code line to do so:</p>
-
-<pre><code class="language-Perl6">my $rest = 1;
+<pre><code class="language-Perl6" data-lang="Perl6">my $rest = 1;
 my @shares = map { my $sh = $rest * $_; $rest -= $sh; $sh}, (0, .01 ... 1);
 my $max = @shares.keys.max({@shares[$_]});
 say map { $_, @shares[$_] }, grep {@shares[$_] == @shares[$max]}, 1..100;
-</code></pre>
-
-<p>Another approach is to build directly the <code>@shares</code> array with the sequence operator and a generator (i.e. a code block to generate the next item from the previous one):</p>
-
-<pre><code class="language-Perl6">use v6;
+</code></pre><p>Another approach is to build directly the <code>@shares</code> array with the sequence operator and a generator (i.e. a code block to generate the next item from the previous one):</p>
+<pre><code class="language-Perl6" data-lang="Perl6">use v6;
 
 my ($rest, $a) = 1, .01;
 my @shares =  0, .01, -&gt; $b {$rest -= $b; $a += .01; $rest * $a} ... *;
 say  map {$_, @shares[$_]}, @shares[0..100].keys.max({@shares[$_]});
-</code></pre>
-
-<p>Now that the code has become more compact, we could possibly use again a Perl 6 one-liner:</p>
-
+</code></pre><p>Now that the code has become more compact, we could possibly use again a Perl 6 one-liner:</p>
 <pre><code>$ perl6 -e 'my ($r, $a) = 1, .01; my @sh = 0, .01, -&gt; $b {$r -= $b; $a += .01; $r * $a} ... *;
     say map {$_, @sh[$_]}, @sh[0..100].keys.max({@sh[$_]});'
 ((10 0.06281565095552947))
 </code></pre>
-
 <h2 id="alternative-solutions">Alternative Solutions</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/arne-sommer/perl6/ch-1.p6">Arne Sommer</a> constructed a lazy infinite list of Pythagoras pie shares using the <code>gather ... take</code> construct:</p>
-
-<pre><code class="language-perl6">my $pythagoras-pie := gather
+<pre><code class="language-perl6" data-lang="perl6">my $pythagoras-pie := gather
 {
   my $remainder = 100;
   my $position  = 1;
@@ -309,47 +262,27 @@ say  map {$_, @shares[$_]}, @shares[0..100].keys.max({@shares[$_]});
     take $part;
   }
 }
-</code></pre>
-
-<p>It is then <del>a share of a pie</del> a piece of cake to find the largest part with the <code>max</code> built-in routine (limiting the values to the <code>0..100</code>, since the <code>max</code> routine doesn&rsquo;t work too well on an infinite list. I really like this imaginative approach.</p>
-
+</code></pre><p>It is then <del>a share of a pie</del> a piece of cake to find the largest part with the <code>max</code> built-in routine (limiting the values to the <code>0..100</code>, since the <code>max</code> routine doesn&rsquo;t work too well on an infinite list. I really like this imaginative approach.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/fjwhittle/perl6/ch-1.p6">Francis J. Whittle</a> used <code>FatRat</code> numbers to get accurate computation. He computed the slices is a nice functional way:</p>
-
-<pre><code class="language-Perl6"># my $guests = 100;
+<pre><code class="language-Perl6" data-lang="Perl6"># my $guests = 100;
 my @slices = (0..$guests).map: -&gt; $n is copy {
   $n *= $pie / $guests;
   $pie -= $n;
   $n * 100; # As a percentage.
 };
-</code></pre>
-
-<p>It is then again a piece of cake to find the largest share.</p>
-
+</code></pre><p>It is then again a piece of cake to find the largest share.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/simon-proctor/perl6/ch-1.p6">Simon Proctor</a> also used <code>FatRat</code> numbers for a better accuracy. His program uses a <code>for</code> loop to compute iteratively the shares and to keep record of the largest share so far. <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/kevin-colyer/perl6/ch-1.p6">Kevin Colyer</a> used essentially the same algorithm. His solution also keeps track of the <code>$fattestGuest</code> and the <code>$biggestSlice</code> on the fly while computing the slices. <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/athanasius/perl6/ch-1.p6">Athanasius</a> also used the same iterative approach, except that he decided to use <code>Real</code> numbers for the shares and remainders.</p>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/noud/perl6/ch-1.p6">Noud</a> took a very different, more mathematical-oriented and probably more efficient approach. Noting that a person <em>n</em> gets <code>99 / 100 * 98 / 100 * ... * (99 - n + 1) / 100 * n / 100</code>, which is equal to <code>99! / (100 - n)! * n / 100^n</code>, Noud first implements a <code>!</code> factorial operator and then computes the shares in just one line:</p>
-
-<pre><code class="language-Perl6">sub postfix:&lt;!&gt;(Int $n) { [*] 1..$n };
+<pre><code class="language-Perl6" data-lang="Perl6">sub postfix:&lt;!&gt;(Int $n) { [*] 1..$n };
 my @pieces = (1..100).map(-&gt; Int \n { 99! / (100 - n)! * n / 100**n });
-</code></pre>
-
-<p>Finding then the lucky guest is then fairly easy:</p>
-
-<pre><code class="language-Perl6">    my $person_no = @pieces.maxpairs()[0].key + 1;
-</code></pre>
-
-<p>To me, Noud&rsquo;s solution is undoubtedly one of the best ones.</p>
-
+</code></pre><p>Finding then the lucky guest is then fairly easy:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">    my $person_no = @pieces.maxpairs()[0].key + 1;
+</code></pre><p>To me, Noud&rsquo;s solution is undoubtedly one of the best ones.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/ozzy/perl6/ch-1.p6">Ozzy</a> took yet another very different approach. He wrote two mutually recursive subroutines to compute the share and the remainder at any step and then used them to build two lazy infinite lists of shares and remainders. Finally, his script traverses the list of shares to find the largest one.</p>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/feng-chang/perl6/ch-1.p6">Fench Chang</a> wrote a very simple <code>for</code> loop to populate a <code>@share</code> array and then used chained built-in method invocations to find the largest share:</p>
-
-<pre><code class="language-Perl6">@share.pairs.max(*.value).key.say;
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/jaldhar-h-vyas/perl6/ch-1.p6">Jaldhar M. Vyas</a> used a <code>map</code> and chained methods to produce the result is just one (multiline) statement, and then another code line to print the result:</p>
-
-<pre><code class="language-Perl6">my ($topguest, $topshare) = (1 .. 100)
+<pre><code class="language-Perl6" data-lang="Perl6">@share.pairs.max(*.value).key.say;
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/jaldhar-h-vyas/perl6/ch-1.p6">Jaldhar M. Vyas</a> used a <code>map</code> and chained methods to produce the result is just one (multiline) statement, and then another code line to print the result:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">my ($topguest, $topshare) = (1 .. 100)
     .map({
         state $pie = 100.0;
         my $share = $pie * ($_ * 0.01);
@@ -360,11 +293,8 @@ my @pieces = (1..100).map(-&gt; Int \n { 99! / (100 - n)! * n / 100**n });
     .kv;
 
 say &quot;Guest $topguest gets &quot;, sprintf(&quot;%0.2f&quot;, $topshare), '% of the pie.';
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/joelle-maslak/perl6/ch-1.p6">Joelle Maslak</a> also took another very different (and quite unusual) approach: she wrote two subroutines, <code>firsts</code> and <code>seconds</code>, which, given an array of arrays (AoA), return respectively a list of the first and of the second elements of each nested array. Her program then uses the <code>seconds</code> subroutine to incrementally build a <code>@slices</code> AoA, where its nested arrays contain a pair of values, i.e.  the guest number and the allocated share, using the sum of the previously allocated shares. Quite a surprising method! Then, the program uses the <code>max</code> built-in method on the list of shares (i.e. the return value of <code>seconds</code> on the <code>@shares</code> AoA) to find the size of the largest share. And finally, it uses a <code>grep</code>  on the list of guests (produced by the <code>firsts</code> subroutine on the <code>@shares</code> AoA) to find all the guests (in fact, only one) who received that largest share. This is both a bit contrived and fairly clever, in fact so clever that I can&rsquo;t resist quoting the whole program:</p>
-
-<pre><code class="language-Perl6">my @slices;
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/joelle-maslak/perl6/ch-1.p6">Joelle Maslak</a> also took another very different (and quite unusual) approach: she wrote two subroutines, <code>firsts</code> and <code>seconds</code>, which, given an array of arrays (AoA), return respectively a list of the first and of the second elements of each nested array. Her program then uses the <code>seconds</code> subroutine to incrementally build a <code>@slices</code> AoA, where its nested arrays contain a pair of values, i.e.  the guest number and the allocated share, using the sum of the previously allocated shares. Quite a surprising method! Then, the program uses the <code>max</code> built-in method on the list of shares (i.e. the return value of <code>seconds</code> on the <code>@shares</code> AoA) to find the size of the largest share. And finally, it uses a <code>grep</code>  on the list of guests (produced by the <code>firsts</code> subroutine on the <code>@shares</code> AoA) to find all the guests (in fact, only one) who received that largest share. This is both a bit contrived and fairly clever, in fact so clever that I can&rsquo;t resist quoting the whole program:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">my @slices;
 for 1..100 -&gt; $i {
     @slices.push: @( $i, ( FatRat(1) - seconds(@slices).sum ) * $i / 100 );
 }
@@ -377,21 +307,13 @@ say &quot;Slice size: { ($max * 100).fmt('%.2f') }% of the pie&quot;;
 
 sub firsts(@array)  { return @array.map( { $_[0] } ) }
 sub seconds(@array) { return @array.map( { $_[1] } ) }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/ruben-westerberg/perl6/ch-1.p6">Ruben Westerberg</a> made a <code>for</code> loop to compute the shares and apparently decided to exit the loop and print the guest number as soon as the share starts to decrease. Fair enough, it works, but I&rsquo;m only half convinced, because you would need first to explain and demonstrate that the shares increase progressively, reach a maximal value and then steadily decrease. Having said that, I want to congratulate Ruben for having written a Perl 5 and a Perl 6 scripts that are absolutely identical (except for the boiler-plate pragmas at the beginning). Who was it who said that P5 and P6 are completely different languages?</p>
-
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/ruben-westerberg/perl6/ch-1.p6">Ruben Westerberg</a> made a <code>for</code> loop to compute the shares and apparently decided to exit the loop and print the guest number as soon as the share starts to decrease. Fair enough, it works, but I&rsquo;m only half convinced, because you would need first to explain and demonstrate that the shares increase progressively, reach a maximal value and then steadily decrease. Having said that, I want to congratulate Ruben for having written a Perl 5 and a Perl 6 scripts that are absolutely identical (except for the boiler-plate pragmas at the beginning). Who was it who said that P5 and P6 are completely different languages?</p>
 <h2 id="enter-damian-conway">Enter Damian Conway</h2>
-
 <p>Damian Conway did not participate to the challenge, but instead wrote <a href="http://blogs.perl.org/users/damian_conway/2019/07/six-slices-of-pie.html">a blog post</a> in which he suggests 6 different ways to solve it. As usual, you should really read entirely his masterful post, but I want to highlight just a few gems.</p>
-
 <p>First, Damian suggest a typically imperative C-like solution with a <code>for</code> loop that computes each share in turn and keeps track of the largest share. Besides being a bit gawky, this solution suffers, in Damian&rsquo;s words, of relying on a &ldquo;significant unwarranted assumption,&rdquo; namely that &ldquo;there actually was a single optimal place in the queue.&rdquo;  There could be two or more, and the script identifies only the first person that gets the largest share. We know by now that there is only one optimal place in the queue (10), but Damian claims he did not know when he wrote it. Damian continue saying that having to manually find the largest share is a red flag, since Perl 6 has a &ldquo;built-in <code>max</code> function that can do that for us. Though, of course, what we really need is a <code>max</code> function that returns all the places where the maximum is found, not just the first. Well&hellip; Perl 6 has that too: <code>maxpairs</code>.&rdquo;</p>
-
 <p>Yet another red flag in the code, in Damian&rsquo;s view, is the need to add comments documenting the various numbers representing percentages. (e.g. 1.00 and $N/100). There ought to be a way to have the code itself make that obvious.</p>
-
 <p>So this is Damian&rsquo;s second solution with all this improvements:</p>
-
-<pre><code class="language-Perl6"># Add a percentage operator...
+<pre><code class="language-Perl6" data-lang="Perl6"># Add a percentage operator...
 sub postfix:&lt;%&gt; (Numeric $x) { $x / 100 }
 
 # Start with 100% of the pie, and no shares yet...
@@ -406,57 +328,42 @@ for 1..100 -&gt; $N {
 
 # Finally, report the share(s) with maximal values...
 say %share.maxpairs;
-</code></pre>
-
-<p>Notice how this script create a <code>%</code> postfix operator that divides its argument by 100, thus making the rest of the code clearer, without having to comment that these numbers represent percentage.</p>
-
+</code></pre><p>Notice how this script create a <code>%</code> postfix operator that divides its argument by 100, thus making the rest of the code clearer, without having to comment that these numbers represent percentage.</p>
 <p>But Damian isn&rsquo;t satisfied when he sees a hash being populated and then used <em>only once</em>, and in that case, he often prefers to use <code>gather/take</code>. So, he would like to use something along these lines:</p>
-
-<pre><code class="language-Perl6"># Attention: code not working
+<pre><code class="language-Perl6" data-lang="Perl6"># Attention: code not working
 say maxpairs gather for 1..100 -&gt; $N {
     state $pie = 100%;
     $pie -=  my $share = $pie * $N%;
     take $N =&gt; $share;
 }
-</code></pre>
-
-<p>But that wouldn&rsquo;t work, because the <code>maxpairs</code> built-in is defined only as a method, not as a function. So Damian proceeds with writing a new <code>maxpairs</code> function, well, not one, but actually three multi functions doing almost the same, but with different types of input parameters (lists of pairs, hashes, general lists, etc.) that he wants to use in the rest of his post. I won&rsquo;t go in to the details.</p>
-
+</code></pre><p>But that wouldn&rsquo;t work, because the <code>maxpairs</code> built-in is defined only as a method, not as a function. So Damian proceeds with writing a new <code>maxpairs</code> function, well, not one, but actually three multi functions doing almost the same, but with different types of input parameters (lists of pairs, hashes, general lists, etc.) that he wants to use in the rest of his post. I won&rsquo;t go in to the details.</p>
 <p>Let me just point out, though, that it is possible to use the built-in <code>maxpairs</code> method with <code>gather/take</code> with just a little bit of syntax tweak;</p>
-
-<pre><code class="language-Perl6">sub postfix:&lt;%&gt; (Numeric $x) { $x / 100 };
+<pre><code class="language-Perl6" data-lang="Perl6">sub postfix:&lt;%&gt; (Numeric $x) { $x / 100 };
 (gather for 1..100 -&gt; $N {
     state $pie = 100%;
     $pie -=  my $share = $pie * $N%;
     take $N =&gt; $share;
 }).Hash.maxpairs.say;
-</code></pre>
-
-<p>This program outputs:</p>
-
+</code></pre><p>This program outputs:</p>
 <pre><code>(10 =&gt; 0.06281565095552947)
 </code></pre>
-
 <p>Damian then covers several other solutions (sequential pie, functional pie, mathematical pie, and even visual pie showing a graph of the shares, using the <code>SVG</code> and <code>SVG.Plot</code> Perl 6 modules).</p>
-
 <p>I will not try to summarize all that, you should really read <a href="http://blogs.perl.org/users/damian_conway/2019/07/six-slices-of-pie.html">Damian&rsquo;s post</a>, you&rsquo;ll for sure learn a lot from it.</p>
-
 <h2 id="see-also">See Also</h2>
-
 <p>Three blog posts on the Pythagoras pie:</p>
-
 <ul>
-<li><p>Arne Sommer: <a href="https://perl6.eu/pythagoras-bitcoin.html">https://perl6.eu/pythagoras-bitcoin.html</a>.</p></li>
-
-<li><p>Athanasius: <a href="http://blogs.perl.org/users/athanasius/2019/07/perl-weekly-challenge-016.html">http://blogs.perl.org/users/athanasius/2019/07/perl-weekly-challenge-016.html</a>. Athanasius observes that if the 100th guest got only one single atom of carbon-12 (not seeing how a piece of the pie could be smaller than a single atom), then the original pie must have a mass of <em>at least</em> 21.4 billion metric tons. Oh boy, that was quite a party! I would add that the 10th guest probably had quite some problems finishing his or her share (1.34 billion tons).</p></li>
-
-<li><p>Damian Conway: <a href="http://blogs.perl.org/users/damian_conway/2019/07/six-slices-of-pie.html">http://blogs.perl.org/users/damian_conway/2019/07/six-slices-of-pie.html</a>.</p></li>
+<li>
+<p>Arne Sommer: <a href="https://perl6.eu/pythagoras-bitcoin.html">https://perl6.eu/pythagoras-bitcoin.html</a>.</p>
+</li>
+<li>
+<p>Athanasius: <a href="http://blogs.perl.org/users/athanasius/2019/07/perl-weekly-challenge-016.html">http://blogs.perl.org/users/athanasius/2019/07/perl-weekly-challenge-016.html</a>. Athanasius observes that if the 100th guest got only one single atom of carbon-12 (not seeing how a piece of the pie could be smaller than a single atom), then the original pie must have a mass of <em>at least</em> 21.4 billion metric tons. Oh boy, that was quite a party! I would add that the 10th guest probably had quite some problems finishing his or her share (1.34 billion tons).</p>
+</li>
+<li>
+<p>Damian Conway: <a href="http://blogs.perl.org/users/damian_conway/2019/07/six-slices-of-pie.html">http://blogs.perl.org/users/damian_conway/2019/07/six-slices-of-pie.html</a>.</p>
+</li>
 </ul>
-
 <h2 id="wrapping-up">Wrapping up</h2>
-
 <p>Please let me know if I forgot any of the challengers or if you think my explanation of your code misses something important.</p>
-
 <p>If you want to participate to the Perl Weekly Challenge, please connect to <a href="https://perlweeklychallenge.org/">this site</a>.</p>
 
                 </div>

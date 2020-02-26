@@ -16,7 +16,7 @@
 
     <meta name="description" content="How I solved task in Raku.">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.55.0-DEV" />
+    <meta name="generator" content="Hugo 0.66.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -149,176 +149,136 @@
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
-                    
-
-<p>Ever since I started the Perl Weekly challenge i.e. <strong>25th March 2019</strong>, I have been planning to take part in the weekly challenge. Because of lack of time, I couldn&rsquo;t take part in the past. In the <strong>Week #046</strong>, I finally took the plunge and contributed <strong>Perl</strong> solutions to the <a href="/blog/perl-weekly-challenge-046"><strong>Perl Weekly Challenge - 046</strong></a>.</p>
-
+                    <p>Ever since I started the Perl Weekly challenge i.e. <strong>25th March 2019</strong>, I have been planning to take part in the weekly challenge. Because of lack of time, I couldn&rsquo;t take part in the past. In the <strong>Week #046</strong>, I finally took the plunge and contributed <strong>Perl</strong> solutions to the <a href="/blog/perl-weekly-challenge-046"><strong>Perl Weekly Challenge - 046</strong></a>.</p>
 <h3 id="challenge-046-task-1">Challenge #046 (Task #1)</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/perl</span>
 
-<pre><code class="language-perl">#!/usr/bin/perl
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
 
-use strict;
-use warnings;
-
-my @messages = (
-    'P + 2 l ! a t o',
-    '1 e 8 0 R $ 4 u',
-    '5 - r ] + a &gt; /',
-    'P x w l b 3 k \\',
-    '2 e 3 5 R 8 y u',
-    '&lt; ! r ^ ( ) k 0'
+<span style="color:#66d9ef">my</span> @messages <span style="color:#f92672">=</span> (
+    <span style="color:#e6db74">&#39;P + 2 l ! a t o&#39;</span>,
+    <span style="color:#e6db74">&#39;1 e 8 0 R $ 4 u&#39;</span>,
+    <span style="color:#e6db74">&#39;5 - r ] + a &gt; /&#39;</span>,
+    <span style="color:#e6db74">&#39;P x w l b 3 k \\&#39;</span>,
+    <span style="color:#e6db74">&#39;2 e 3 5 R 8 y u&#39;</span>,
+    <span style="color:#e6db74">&#39;&lt; ! r ^ ( ) k 0&#39;</span>
 );
 
-my $table = [];
-foreach my $message (@messages) {
-    my $column = 0;
-    foreach my $char (split /\s/, $message) {
-        $table-&gt;[$column++]-&gt;{$char}++;
+<span style="color:#66d9ef">my</span> $table <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>;
+<span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $message (@messages) {
+    <span style="color:#66d9ef">my</span> $column <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $char (split <span style="color:#e6db74">/\s/</span>, $message) {
+        $table<span style="color:#f92672">-&gt;</span>[$column<span style="color:#f92672">++</span>]<span style="color:#f92672">-&gt;</span>{$char}<span style="color:#f92672">++</span>;
     }
 }
 
-map { print [ sort { $_-&gt;{$b} &lt;=&gt; $_-&gt;{$a} } keys %$_ ]-&gt;[0] } @$table;
-</code></pre>
-
-<hr />
-
+map { <span style="color:#66d9ef">print</span> [ sort { $_<span style="color:#f92672">-&gt;</span>{$b} <span style="color:#e6db74">&lt;=&gt;</span> $_<span style="color:#f92672">-&gt;</span>{$a} } keys %$_ ]<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] } @$table;
+</code></pre></div><hr>
 <h3 id="challenge-046-task-2">Challenge #046 (Task #2)</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/perl</span>
 
-<pre><code class="language-perl">#!/usr/bin/perl
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
 
-use strict;
-use warnings;
-
-my @rooms = map { 1 } (0..500);
-foreach my $employee (2 .. 500) {
-    my $room_number = $employee;
-    while ($room_number &lt;= 500) {
-        $rooms[ $room_number ] = ($rooms [ $room_number ]) ? 0 : 1;
-        $room_number += $employee;
+<span style="color:#66d9ef">my</span> @rooms <span style="color:#f92672">=</span> map { <span style="color:#ae81ff">1</span> } (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">500</span>);
+<span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $employee (<span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">500</span>) {
+    <span style="color:#66d9ef">my</span> $room_number <span style="color:#f92672">=</span> $employee;
+    <span style="color:#66d9ef">while</span> ($room_number <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">500</span>) {
+        $rooms[ $room_number ] <span style="color:#f92672">=</span> ($rooms [ $room_number ]) ? <span style="color:#ae81ff">0</span> : <span style="color:#ae81ff">1</span>;
+        $room_number <span style="color:#f92672">+=</span> $employee;
     }
 }
 
-map { print &quot;$_\n&quot; if $rooms[$_] } (1..500);
-</code></pre>
-
-<hr />
-
+map { <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$_\n&#34;</span> <span style="color:#66d9ef">if</span> $rooms[$_] } (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">500</span>);
+</code></pre></div><hr>
 <p><strong>Ryan Thompson</strong>, member of <strong>Team PWC</strong>, who reviews <strong>Perl</strong> and <strong>Raku</strong> solutions every week. This is what he said about my first contributions.</p>
-
 <blockquote>
 <p>Mohammad, creator of the Perl Weekly Challenge, has finally entered the fray with a solution of his own! It may be a bit strange to welcome you to your own challenge, Mohammad, but I’m going to do it anyway. Welcome. :-)</p>
 </blockquote>
-
 <p>Please checkout the <a href="/blog/review-challenge-046"><strong>reviews</strong></a> in detail.</p>
-
-<hr />
-
+<hr>
 <p>I must admit, I was relieved to see my name in the contributors list. I am also now listed formally as member of <strong>&ldquo;Team PWC&rdquo;</strong> having contributed to the weekly challenge.</p>
-
-<p><img src="/images/blog/team-pwc.png" alt="Team PWC" /></p>
-
-<hr />
-
+<p><img src="/images/blog/team-pwc.png" alt="Team PWC"></p>
+<hr>
 <p>The following <strong>Week #047</strong>, I contributed just one solution in <strong>Perl</strong> for <strong>Task #2</strong>.</p>
-
 <h3 id="challenge-047-task-2">Challenge #047 (Task #2)</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/perl</span>
 
-<pre><code class="language-perl">#!/usr/bin/perl
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
 
-use strict;
-use warnings;
+<span style="color:#66d9ef">my</span> $start <span style="color:#f92672">=</span> <span style="color:#ae81ff">99</span>;
+<span style="color:#66d9ef">my</span> $count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
 
-my $start = 99;
-my $count = 0;
+<span style="color:#66d9ef">while</span> ($count <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">20</span>) {
+    $start<span style="color:#f92672">++</span>;
 
-while ($count &lt;= 20) {
-    $start++;
+    <span style="color:#66d9ef">my</span> ($d1, $d2, $d3) <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, $start;
+    <span style="color:#66d9ef">my</span> $divisor <span style="color:#f92672">=</span> sprintf(<span style="color:#e6db74">&#34;%d%d&#34;</span>, $d1, $d3);
 
-    my ($d1, $d2, $d3) = split //, $start;
-    my $divisor = sprintf(&quot;%d%d&quot;, $d1, $d3);
-
-    if ($start % $divisor != 0) {
-        next;
+    <span style="color:#66d9ef">if</span> ($start % <span style="color:#960050;background-color:#1e0010">$</span>divisor <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>) {
+        <span style="color:#66d9ef">next</span>;
     }
-    else {
-        $count++;
-        print sprintf(&quot;%d / %d\n&quot;, $start, $divisor);
+    <span style="color:#66d9ef">else</span> {
+        $count<span style="color:#f92672">++</span>;
+        <span style="color:#66d9ef">print</span> sprintf(<span style="color:#e6db74">&#34;%d / %d\n&#34;</span>, $start, $divisor);
     }
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <p>If you noticed, so far my contributions are only in <strong>Perl</strong>. Doing <strong>Perl</strong> challanges was not a big deal, finding time to do the challange was a big deal, which I happen to succeed.</p>
-
 <h2 id="what-next">What next?</h2>
-
 <p>The title of my blog is <strong>&ldquo;My first date with Raku&rdquo;</strong> and I haven&rsquo;t talked about it yet. Well, here comes the climax. This <strong>Week #048</strong>, I had little extra time to do the weekly challenge. I did it in <strong>Perl</strong> first for obvious reason.</p>
-
 <h3 id="challenge-048-task-1">Challenge #048 (Task #1)</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/perl</span>
 
-<pre><code class="language-perl">#!/usr/bin/perl
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
 
-use strict;
-use warnings;
-
-my @people = (1 ..50);
-while (scalar(@people) &gt; 1) {
-    my $sword = shift @people;
+<span style="color:#66d9ef">my</span> @people <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span><span style="color:#ae81ff">50</span>);
+<span style="color:#66d9ef">while</span> (scalar(@people) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>) {
+    <span style="color:#66d9ef">my</span> $sword <span style="color:#f92672">=</span> shift @people;
     shift @people;
     push @people, $sword;
 }
 
-print &quot;Survivor is at position $people[0]\n&quot;;
-</code></pre>
-
-<hr />
-
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Survivor is at position $people[0]\n&#34;</span>;
+</code></pre></div><hr>
 <h3 id="challenge-048-task-2">Challenge #048 (Task #2)</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/perl</span>
 
-<pre><code class="language-perl">#!/usr/bin/perl
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> Date::Tiny;
 
-use strict;
-use warnings;
-use Date::Tiny;
+<span style="color:#66d9ef">my</span> $date <span style="color:#f92672">=</span> Date::Tiny<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(year <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2000</span>, month <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>, day <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>);
 
-my $date = Date::Tiny-&gt;new(year =&gt; 2000, month =&gt; 1, day =&gt; 1);
-
-while ($date-&gt;year &lt;= 2299) {
-    my $date_as_str = sprintf(&quot;%02d%02d%04d&quot;, $date-&gt;month, $date-&gt;day, $date-&gt;year);
-    if ($date_as_str eq reverse($date_as_str)) {
-        print &quot;$date_as_str is a Palindrome date.\n&quot;;
+<span style="color:#66d9ef">while</span> ($date<span style="color:#f92672">-&gt;</span>year <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">2299</span>) {
+    <span style="color:#66d9ef">my</span> $date_as_str <span style="color:#f92672">=</span> sprintf(<span style="color:#e6db74">&#34;%02d%02d%04d&#34;</span>, $date<span style="color:#f92672">-&gt;</span>month, $date<span style="color:#f92672">-&gt;</span>day, $date<span style="color:#f92672">-&gt;</span>year);
+    <span style="color:#66d9ef">if</span> ($date_as_str <span style="color:#f92672">eq</span> reverse($date_as_str)) {
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$date_as_str is a Palindrome date.\n&#34;</span>;
     }
-    my $datetime = $date-&gt;DateTime-&gt;add(days =&gt; 1);
-    $date = Date::Tiny-&gt;new(year =&gt; $datetime-&gt;year, month =&gt; $datetime-&gt;month, day =&gt; $datetime-&gt;day);
+    <span style="color:#66d9ef">my</span> $datetime <span style="color:#f92672">=</span> $date<span style="color:#f92672">-&gt;</span>DateTime<span style="color:#f92672">-&gt;</span>add(days <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>);
+    $date <span style="color:#f92672">=</span> Date::Tiny<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(year <span style="color:#f92672">=&gt;</span> $datetime<span style="color:#f92672">-&gt;</span>year, month <span style="color:#f92672">=&gt;</span> $datetime<span style="color:#f92672">-&gt;</span>month, day <span style="color:#f92672">=&gt;</span> $datetime<span style="color:#f92672">-&gt;</span>day);
 }
 
-END {
-    my $time = time - $^T;
-    my $mm   = $time / 60;
-    my $ss   = $time % 60;
-    my $hh   = $mm / 60;
-    $mm = $mm % 60;
+<span style="color:#66d9ef">END</span> {
+    <span style="color:#66d9ef">my</span> $time <span style="color:#f92672">=</span> time <span style="color:#f92672">-</span> $^T;
+    <span style="color:#66d9ef">my</span> $mm   <span style="color:#f92672">=</span> $time <span style="color:#f92672">/</span> <span style="color:#ae81ff">60</span>;
+    <span style="color:#66d9ef">my</span> $ss   <span style="color:#f92672">=</span> $time % 60;
+    <span style="color:#66d9ef">my</span> $hh   <span style="color:#f92672">=</span> $mm <span style="color:#f92672">/</span> <span style="color:#ae81ff">60</span>;
+    $mm <span style="color:#f92672">=</span> $mm % 60;
 
-    print sprintf(&quot;The program ran for %02d:%02d:%02d.\n&quot;, $hh, $mm, $ss);
+    <span style="color:#66d9ef">print</span> sprintf(<span style="color:#e6db74">&#34;The program ran for %02d:%02d:%02d.\n&#34;</span>, $hh, $mm, $ss);
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <p>I shared it with my fellow <strong>&ldquo;Team PWC&rdquo;</strong> members on Twitter.</p>
-
-<p><img src="/images/blog/pwc-048-t1.png" alt="Challenge #048" /></p>
-
+<p><img src="/images/blog/pwc-048-t1.png" alt="Challenge #048"></p>
 <p>Having done both task in <strong>Perl</strong>, I thought why not do it in <strong>Raku</strong> as well?</p>
-
 <p>I thought I could easily translate my <strong>Perl</strong> solution into <strong>Raku</strong>.</p>
-
 <p>Easy, right? No, it wasn&rsquo;t easy as my brain isn&rsquo;t trained to do it so.</p>
-
 <p>So I started with <strong>Task #1</strong>. This is what I got in my first attempt.</p>
-
-<pre><code class="language-perl6">#!/usr/bin/env perl6
+<pre><code class="language-perl6" data-lang="perl6">#!/usr/bin/env perl6
 
 use v6;
 
@@ -330,13 +290,9 @@ while (@people.elems &gt; 1) {
 }
 
 say &quot;Survivor is at position @people[0]&quot;;
-</code></pre>
-
-<p>Do you see any issues? No, hang on, this is <strong>Raku</strong>, so everything has to be in <strong>MAIN()</strong>.</p>
-
+</code></pre><p>Do you see any issues? No, hang on, this is <strong>Raku</strong>, so everything has to be in <strong>MAIN()</strong>.</p>
 <p>So this is what I have now:</p>
-
-<pre><code class="language-perl6">#!/usr/bin/env perl6
+<pre><code class="language-perl6" data-lang="perl6">#!/usr/bin/env perl6
 
 use v6;
 
@@ -350,15 +306,10 @@ sub MAIN() {
 
     say &quot;Survivor is at position @people[0]&quot;;
 }
-</code></pre>
-
-<p>Is it all good now?</p>
-
+</code></pre><p>Is it all good now?</p>
 <p>Technically yes, it does the job. But hang on, it still doesn&rsquo;t look like <strong>Raku</strong> code.</p>
-
 <p>Lets get rid off extra parenthesis this time.</p>
-
-<pre><code class="language-perl6">#!/usr/bin/env perl6
+<pre><code class="language-perl6" data-lang="perl6">#!/usr/bin/env perl6
 
 use v6;
 
@@ -372,19 +323,12 @@ sub MAIN() {
 
     say &quot;Survivor is at position @people[0]&quot;;
 }
-</code></pre>
-
-<p>Now it looks like <strong>Raku</strong> code.</p>
-
+</code></pre><p>Now it looks like <strong>Raku</strong> code.</p>
 <p>What did I learn from this exercise?</p>
-
 <p>I have read a lot about list manipulation in <strong>Raku</strong> but never got the opportunity to actually use it. While doing this task, I got to used it. Now, I think I will remember how to play with list in <strong>Raku</strong>.</p>
-
 <p>Having done the <strong>Task #1</strong> in <strong>Raku</strong>, I thought why not do the <strong>Task #2</strong> as well. Whatever little I learnt during <strong>Task #1</strong>, I now have this for <strong>Task #2</strong>.</p>
-
 <p>Since the task was related to <strong>Date</strong>, I looked into the <a href="https://docs.raku.org/type/Date"><strong>documentation</strong></a> first.</p>
-
-<pre><code class="language-perl6">#!/usr/bin/env perl6
+<pre><code class="language-perl6" data-lang="perl6">#!/usr/bin/env perl6
 
 use v6;
 
@@ -401,15 +345,10 @@ sub MAIN() {
         $date.later(days =&gt; 1);
     }
 }
-</code></pre>
-
-<p>Do you see any issue in the code?</p>
-
+</code></pre><p>Do you see any issue in the code?</p>
 <p>First run, gave a nice warning <strong>Date</strong> is a built-in module, no need to import. It was <strong>humiliating</strong>.</p>
-
 <p><strong>Scimon Proctor</strong>, pointed out that <em>$date.later()</em> returns new <strong>Date</strong> object, so I have to catch the return value.</p>
-
-<pre><code class="language-perl6">#!/usr/bin/env perl6
+<pre><code class="language-perl6" data-lang="perl6">#!/usr/bin/env perl6
 
 use v6;
 
@@ -424,13 +363,9 @@ sub MAIN() {
         $date = $date.later(days =&gt; 1);
     }
 }
-</code></pre>
-
-<p>All good? No, still something missing.</p>
-
-<p>If you noticed, I named the variable <strong>&rdquo;$date_as_str&rdquo;</strong> which is <strong>Perlish</strong>. So I changed it to <strong>&rdquo;$date-as-str&rdquo;</strong>, more like <strong>Raku</strong>.</p>
-
-<pre><code class="language-perl6">#!/usr/bin/env perl6
+</code></pre><p>All good? No, still something missing.</p>
+<p>If you noticed, I named the variable <strong>&ldquo;$date_as_str&rdquo;</strong> which is <strong>Perlish</strong>. So I changed it to <strong>&ldquo;$date-as-str&rdquo;</strong>, more like <strong>Raku</strong>.</p>
+<pre><code class="language-perl6" data-lang="perl6">#!/usr/bin/env perl6
 
 use v6;
 
@@ -445,19 +380,12 @@ sub MAIN() {
         $date = $date.later(days =&gt; 1);
     }
 }
-</code></pre>
-
-<p>Now it looks proper <strong>Raku</strong> code.</p>
-
+</code></pre><p>Now it looks proper <strong>Raku</strong> code.</p>
 <p>What did I learn this time?</p>
-
 <p>Well, I learnt how to use Date class.</p>
-
 <p>After sharing the code on Twitter, <strong>Elizabeth Mattijsen</strong>, suggested I could use <strong>++$date</strong> instead of doing <strong>$date.later()</strong>.</p>
-
 <p>Here is the final version as of today.</p>
-
-<pre><code class="language-perl6">#!/usr/bin/env perl6
+<pre><code class="language-perl6" data-lang="perl6">#!/usr/bin/env perl6
 
 use v6;
 
@@ -472,14 +400,9 @@ sub MAIN() {
         ++$date;
     }
 }
-</code></pre>
-
-<hr />
-
+</code></pre><hr>
 <p>So for the first time, I have solved both tasks in <strong>Perl</strong> and <strong>Raku</strong>. To make it complete, I wrote this blog as well.</p>
-
 <p>I may not be able to do this every week but it gave me confidence to at least give it a try.</p>
-
 <p>Thanks for reading my story, talk to you soon with another story.</p>
 
                 </div>

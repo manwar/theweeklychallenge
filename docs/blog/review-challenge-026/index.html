@@ -16,7 +16,7 @@
 
     <meta name="description" content="Kian-Meng Ang Weekly Review: Challenge - #026.">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.55.0-DEV" />
+    <meta name="generator" content="Hugo 0.66.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -149,90 +149,48 @@
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
-                    
-
-<hr />
-
+                    <hr>
 <p>Continues from <a href="/blog/review-challenge-025/">previous week</a>.</p>
-
 <p>Feel free to <a href="https://github.com/manwar/perlweeklychallenge">submit a merge request or open a ticket</a> if you found any issues with this post. We highly appreciate and welcome your feedback.</p>
-
 <p>For a quick overview, go through the <a href="/blog/perl-weekly-challenge-026/">original tasks</a> and <a href="/blog/recap-challenge-026/">recap</a> of the weekly challenge.</p>
-
-<hr />
-
+<hr>
 <h3 id="task-1">Task #1</h3>
-
-<hr />
-
+<hr>
 <p><strong>CPAN</strong> modules used: <a href="https://metacpan.org/pod/Const::Fast"><code>Const::Fast</code></a>, <a href="https://metacpan.org/pod/Getopt::Long"><code>Getopt::Long</code></a>, <a href="https://metacpan.org/pod/List::Util"><code>List::Util</code></a>, <a href="https://metacpan.org/pod/Test::More"><code>Test::More</code></a>, <a href="https://metacpan.org/pod/feature"><code>feature</code></a>, <a href="https://metacpan.org/pod/strict"><code>strict</code></a>, <a href="https://metacpan.org/pod/warnings"><code>warnings</code></a></p>
-
 <p>As with past challenges, simple task will lead to diverse solution. Sometimes straight forward task is harder if we want to do thing differently.</p>
-
 <p>Let&rsquo;s start with participants with simple and naive approach. No one-liner or fancy approach. <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-026/lubos-kolouch/perl5/ch-1.pl">Lubos Kolouch</a> took such approach and it&rsquo;s a good solution to use as baseline for our comparison.</p>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-026/duane-powell/perl5/ch-1.pl">Duane Powell</a> took used regex substitution and count approach to solve this task. Similarly for <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-026/daniel-mantovani/perl5/ch-1.pl">Daniel Mantovani</a> but with a shorter one-liner version and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-026/e-choroba/perl5/ch-1.pl">E. Choroba</a> with test cases.</p>
-
 <p>Coincidentally, the <a href="https://metacpan.org/pod/List::Util"><code>List::Util</code></a> CPAN module was used by both <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-026/ruben-westerberg/perl5/ch-1.pl">Ruben Westerberg</a> and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-026/e-choroba/perl5/ch-1.pl">E. Choroba</a> to filter out unique characters. However, while the module was added to the later solution, it was not used.</p>
-
 <p>Next, the split-grep-map approach was a common approach to solve this task. Participant who took such approach were <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-026/athanasius/perl5/ch-1.pl">Athanasius</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-026/laurent-rosenfeld/perl5/ch-1.pl">Laurent Rosenfeld</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-026/roger-bell-west/perl5/ch-1.pl">Roger Bell West</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-026/duncan-c-white/perl5/ch-1.pl">Duncan C White</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-026/steven-wilson/perl5/ch-1.pl">Steven Wilson</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-026/colin-crain/perl5/ch-1.pl">Colin Crain</a>, and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-026/joelle-maslak/perl5/ch-1.pl">Joelle Maslak</a>.</p>
-
 <p>On a related note, probably the most fluid comment we&rsquo;ve read in a challenge by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-026/andrezgz/perl5/ch-1.pl">Andrezgz</a>.</p>
-
-<pre><code class="language-perl">print scalar                      # print the number
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">print</span> scalar                      <span style="color:#75715e"># print the number</span>
     grep {
-        $_ =~ /[A-Za-z]/          # of alphabethic case insensitive characters
-        &amp;&amp; index($w2, $_) != -1   # that exist on the second word
-    } split //, $w1;              # from each one of the first wor
-</code></pre>
-
-<p>And kudos to participants (<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-026/lubos-kolouch/perl5/ch-1.pl">Lubos Kolouch</a> and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-026/e-choroba/perl5/ch-1.pl">E. Choroba</a>) who included test cases in their solutions. Good to see some edge cases were tested as well. However, there was no test case to verify case sensitivity of the comparison.</p>
-
+        $_ <span style="color:#f92672">=~</span><span style="color:#e6db74"> /[A-Za-z]/</span>          <span style="color:#75715e"># of alphabethic case insensitive characters</span>
+        <span style="color:#f92672">&amp;&amp;</span> index($w2, $_) <span style="color:#f92672">!=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>   <span style="color:#75715e"># that exist on the second word</span>
+    } split <span style="color:#e6db74">//</span>, $w1;              <span style="color:#75715e"># from each one of the first wor</span>
+</code></pre></div><p>And kudos to participants (<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-026/lubos-kolouch/perl5/ch-1.pl">Lubos Kolouch</a> and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-026/e-choroba/perl5/ch-1.pl">E. Choroba</a>) who included test cases in their solutions. Good to see some edge cases were tested as well. However, there was no test case to verify case sensitivity of the comparison.</p>
 <p>Both <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-026/adam-russell/perl5/ch-1.pl">Adam Russell</a> and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-026/yet-ebreo/perl5/ch-1.pl">Yet Ebreo</a> solutions were the example of polar opposite answer we&rsquo;ve seen in a challenge. The former loves over-engineered a solution and the later preferred to shorten it as much as possible into one-liner. Either way, we welcome the diverse coding styles and approaches as everyone can learn something from it. And this is Perl, <a href="https://en.wikipedia.org/wiki/There%27s_more_than_one_way_to_do_it">TMTOWTDI</a>.</p>
-
-<hr />
-
+<hr>
 <h3 id="task-2">Task #2</h3>
-
-<hr />
-
+<hr>
 <p><strong>CPAN</strong> modules used: <a href="https://metacpan.org/pod/Const::Fast"><code>Const::Fast</code></a>, <a href="https://metacpan.org/pod/Data::Types"><code>Data::Types</code></a>, <a href="https://metacpan.org/pod/Getopt::Long"><code>Getopt::Long</code></a>, <a href="https://metacpan.org/pod/List::Util"><code>List::Util</code></a>, <a href="https://metacpan.org/pod/Math::Trig"><code>Math::Trig</code></a>, <a href="https://metacpan.org/pod/Test::More"><code>Test::More</code></a>, <a href="https://metacpan.org/pod/constant"><code>constant</code></a>, <a href="https://metacpan.org/pod/feature"><code>feature</code></a>, <a href="https://metacpan.org/pod/strict"><code>strict</code></a>, <a href="https://metacpan.org/pod/utf8"><code>utf8</code></a>, <a href="https://metacpan.org/pod/warnings"><code>warnings</code></a></p>
-
 <p>We can generally divided the submitted solutions into two groups, those who used <a href="https://metacpan.org/pod/Math::Trig"><code>Math::Trig</code></a> <strong>CPAN</strong> module to do the degree to radian or vice versa conversion and those who don&rsquo;t.</p>
-
 <p>For this task, start with the solution by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-026/daniel-mantovani/perl5/ch-2.pl">Daniel Mantovani</a> and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-026/joelle-maslak/perl5/ch-2.pl">Joelle Maslak</a>. The former have good written comment to let you have an overview of the problem and solution and the later served as a good comparison. Both solutions were just a top to bottom plain script with no subroutine. This was followed by solution <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-026/roger-bell-west/perl5/ch-2.pl">Roger Bell West</a> which shared similar coding style but at a very condense code.</p>
-
 <p>Next, move to the solution by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-026/jaldhar-h-vyas/perl5/ch-2.pl">Jaldhar H. Vyas</a> and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-026/adam-russell/perl5/ch-2.pl">Adam Russell</a>  where we start to see abstraction being applied here. Subroutines on conversion between radiand and degree were observed in their solutions.</p>
-
 <p>Even further refinement, look no further at the solution by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-026/laurent-rosenfeld/perl5/ch-2.pl">Laurent Rosenfeld</a>, which was simple but comprehensive with full test coverage (likewise for <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-026/steven-wilson/perl5/ch-2.pl">Steven Wilson</a>). Usually, we would recommend this submission as the first solution to read but for demonstrating the possible refactoring process flow, this should come later. Alternatively, the solution by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-026/e-choroba/perl5/ch-2.pl">E. Choroba</a> illustrated the possible way to refine the code.</p>
-
 <p>Some interesting stuff that caught our attention.</p>
-
-<p>This was the first time we notice that organiser <a href="https://metacpan.org/author/MANWAR">MANWAR</a>&rsquo;s <strong>CPAN</strong> module, <a href="https://metacpan.org/pod/Data::Types"><code>Data::Types</code></a> was used by a participant as observed in the solution by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-026/athanasius/perl5/ch-2.pl">Athanasius</a>. Good that some participants tried to use different <strong>CPAN</strong> modules to solve the task.</p>
-
+<p>This was the first time we notice that organiser <a href="https://metacpan.org/author/MANWAR">MANWAR</a>&lsquo;s <strong>CPAN</strong> module, <a href="https://metacpan.org/pod/Data::Types"><code>Data::Types</code></a> was used by a participant as observed in the solution by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-026/athanasius/perl5/ch-2.pl">Athanasius</a>. Good that some participants tried to use different <strong>CPAN</strong> modules to solve the task.</p>
 <p>Sometimes it&rsquo;s nice to the explicit about what subroutines being imported when using a <strong>CPAN</strong> module as observed in the code by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-026/andrezgz/perl5/ch-2.pl">Andrezgz</a>.</p>
-
-<pre><code class="language-perl">use Math::Trig qw/rad2deg deg2rad/;
-</code></pre>
-
-<hr />
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> Math::Trig <span style="color:#e6db74">qw/rad2deg deg2rad/</span>;
+</code></pre></div><hr>
 <h3 id="see-also">SEE ALSO</h3>
-
-<hr />
-
+<hr>
 <p>(1) <a href="https://adamcrussell.livejournal.com/9318.html">Perl Weekly Challenge 026</a> by <strong>Adam Russell</strong></p>
-
 <p>(2) <a href="https://perl6.eu/string-angling.html">String Angling with Perl 6</a> by <strong>Arne Sommer</strong></p>
-
 <p>(3) <a href="http://donaldh.wtf/2019/09/stones-and-jewels/">Stones and Jewels</a> by <strong>Donald Hunter</strong></p>
-
 <p>(4) <a href="http://blogs.perl.org/users/e_choroba/2019/09/perl-weekly-challenge-026-stones-and-jewels-mean-of-angles.html">Perl Weekly Challenge 026: Stones and Jewels; Mean of Angles</a> by <strong>E. Choroba</strong></p>
-
 <p>(5) <a href="https://www.braincells.com/perl/2019/09/perl_weekly_challenge_week_26.html">Perl Weekly Challenge: Week 26</a> by <strong>Jaldhar H. Vyas</strong></p>
-
 <p>(6) <a href="http://blogs.perl.org/users/laurent_r/2019/09/perl-weekly-challenge-26-common-letters-and-mean-angles.html">Perl Weekly Challenge 26: Common Letters and Mean Angles</a> by <strong>Laurent Rosenfeld</strong></p>
-
 <p>(7) <a href="https://blog.firedrake.org/archive/2019/09/Perl_Weekly_Challenge_26.html">Perl Weekly Challenge 26</a> by <strong>Roger Bell_West</strong></p>
 
                 </div>

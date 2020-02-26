@@ -16,7 +16,7 @@
 
     <meta name="description" content="Advent Calendar - December 19, 2019">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.55.0-DEV" />
+    <meta name="generator" content="Hugo 0.66.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -149,23 +149,14 @@
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
-                    
-
-<p><a href="/blog/advent-calendar-2019"><strong>Advent Calendar 2019</strong></a></p>
-
-<hr />
-
-<p>The gift is presented by <strong>Khalid</strong>. Today he is talking about his solutions to <strong>Task #1: Strip leading zeros</strong> of <a href="/blog/perl-weekly-challenge-002"><strong>&ldquo;The Weekly Challenge - 002&rdquo;</strong></a>.</p>
-
+                    <p><a href="/blog/advent-calendar-2019"><strong>Advent Calendar 2019</strong></a></p>
+<hr>
+<p>The gift is presented by <strong>Khalid**. Today he is talking about his solutions to <strong>Task #1: Strip leading zeros** of </strong>&ldquo;The Weekly Challenge - 002&rdquo;</strong><a href="/blog/perl-weekly-challenge-002"></a>.</p>
 <h4 id="write-a-script-or-one-liner-to-remove-leading-zeros-from-positive-numbers">Write a script or one-liner to remove leading zeros from positive numbers.</h4>
-
-<hr />
-
+<hr>
 <h1 id="this-solution-uses-raku-grammer">This solution uses Raku Grammer</h1>
-
 <p>At first here is the code :</p>
-
-<pre><code class="language-perl6">grammar Grammer {
+<pre><code class="language-perl6" data-lang="perl6">grammar Grammer {
     token TOP {&lt;sign&gt;? &lt;int&gt; &lt;decimal&gt;?}
     token decimal {&lt;dot&gt;&lt;digit&gt;?}
     token int {&lt;zeros&gt;? &lt;digit&gt;?}
@@ -177,30 +168,17 @@
 my $match = Grammer.parse(@*ARGS[0]);
 my $number =  ($match&lt;int&gt;&lt;digit&gt; // '')  ~ ($match&lt;decimal&gt; // '');
 say $number;
-</code></pre>
-
-<p>at the first line we simply creat a <strong>Grammer</strong> with name &lsquo;Grammer&rsquo; which is a <strong>Class</strong> that have methods (<strong>rules</strong>, <strong>tokens</strong> and <strong>regexes</strong>) as <a href="https://docs.raku.org/language/grammars"><strong>documented here</strong></a>.</p>
-
-<h2 id="let-s-get-the-zeros-token-first">Let&rsquo;s get the zeros token first:</h2>
-
+</code></pre><p>at the first line we simply creat a <strong>Grammer</strong> with name &lsquo;Grammer&rsquo; which is a <strong>Class</strong> that have methods (<strong>rules</strong>, <strong>tokens</strong> and <strong>regexes</strong>) as <a href="https://docs.raku.org/language/grammars"><strong>documented here</strong></a>.</p>
+<h2 id="lets-get-the-zeros-token-first">Let&rsquo;s get the zeros token first:</h2>
 <h4 id="0-matches-any-number-of-zeros-in-the-input"><code>0+</code> matches any number of Zeros in the input</h4>
-
-<h4 id="dot-token-matches-only"><code>dot</code> token : matches only <code>.</code></h4>
-
-<h4 id="digit-token-matches-any-number-of-digit-characters"><code>digit</code> token : matches any number of digit characters</h4>
-
-<h4 id="int-token-uses-zeros-token-and-digit-token-to-match-the-first-part-of-the-number-incase-it-is-decimal"><code>int</code> token : uses zeros token and digit token to match the first part of the number incase it is decimal.</h4>
-
+<h4 id="dot-token--matches-only-"><code>dot</code> token : matches only <code>.</code></h4>
+<h4 id="digit-token--matches-any-number-of-digit-characters"><code>digit</code> token : matches any number of digit characters</h4>
+<h4 id="int-token--uses-zeros-token-and-digit-token-to-match-the-first-part-of-the-number-incase-it-is-decimal"><code>int</code> token : uses zeros token and digit token to match the first part of the number incase it is decimal.</h4>
 <p>and I made it&rsquo;s parts optional using <strong><code>?</code></strong> as the first part may not contain zeros or digits input ex: <strong>.53</strong>, <strong>1.52</strong></p>
-
-<h4 id="decimal-token-matches-a-dot-followed-by-any-number-of-digit-characters"><code>decimal</code> token : matches a dot <code>.</code> followed by any number of digit characters</h4>
-
+<h4 id="decimal-token--matches-a-dot--followed-by-any-number-of-digit-characters"><code>decimal</code> token : matches a dot <code>.</code> followed by any number of digit characters</h4>
 <p>and putting them together in the main <strong><code>TOP</code></strong> token gives us the full number.</p>
-
-<hr />
-
+<hr>
 <p>If you have any suggestion then please do share with us <a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a>.</p>
-
 <p><a href="/blog/advent-calendar-2019"><strong>Advent Calendar 2019</strong></a></p>
 
                 </div>

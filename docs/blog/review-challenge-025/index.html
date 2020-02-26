@@ -16,7 +16,7 @@
 
     <meta name="description" content="Kian-Meng Ang Weekly Review: Challenge - #025.">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.55.0-DEV" />
+    <meta name="generator" content="Hugo 0.66.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -149,135 +149,113 @@
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
-                    
-
-<hr />
-
+                    <hr>
 <p>Continues from <a href="/blog/review-challenge-024/">previous week</a>.</p>
-
 <p>Feel free to <a href="https://github.com/manwar/perlweeklychallenge">submit a merge request or open a ticket</a> if you found any issues with this post. We highly appreciate and welcome your feedback.</p>
-
 <p>For a quick overview, go through the <a href="/blog/perl-weekly-challenge-025/">original tasks</a> and <a href="/blog/recap-challenge-025/">recap</a> of the weekly challenge.</p>
-
-<hr />
-
+<hr>
 <h3 id="task-1">Task #1</h3>
-
-<hr />
-
+<hr>
 <p><strong>CPAN</strong> modules used: <a href="https://metacpan.org/pod/Const::Fast"><code>Const::Fast</code></a>, <a href="https://metacpan.org/pod/Graph"><code>Graph</code></a>, <a href="https://metacpan.org/pod/List::MoreUtils"><code>List::MoreUtils</code></a>, <a href="https://metacpan.org/pod/List::Util"><code>List::Util</code></a>, <a href="https://metacpan.org/pod/Memoize"><code>Memoize</code></a>, <a href="https://metacpan.org/pod/Modern::Perl"><code>Modern::Perl</code></a>, <a href="https://metacpan.org/pod/Parallel::WorkUnit"><code>Parallel::WorkUnit</code></a>, <a href="https://metacpan.org/pod/Storable"><code>Storable</code></a>, <a href="https://metacpan.org/pod/constant"><code>constant</code></a>, <a href="https://metacpan.org/pod/feature"><code>feature</code></a>, <a href="https://metacpan.org/pod/strict"><code>strict</code></a>, <a href="https://metacpan.org/pod/utf8"><code>utf8</code></a>, <a href="https://metacpan.org/pod/warnings"><code>warnings</code></a></p>
-
 <p>Out of curiosity, of all submitted solutions, which participant have the fastest implementation?</p>
-
 <p>Before we answer that, a simple benchmark was conducted using the <code>time</code> command through <strong>Perl v5.28.1</strong> in <strong>Ubuntu 19.04</strong> as shown below.</p>
-
-<pre><code class="language-bash">$ time perl ch-1.pl
-</code></pre>
-
-<p>The results ranked by the execution time.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ time perl ch-1.pl
+</code></pre></div><p>The results ranked by the execution time.</p>
 <ol>
-<li><p><strong>Adam Russell</strong>: real 0m0.772s, user 0m0.713s, sys 0m0.040s</p></li>
-
-<li><p><strong>Yet Ebreo</strong>: real 0m5.163s, user 0m5.127s, sys 0m0.020s</p></li>
-
-<li><p><strong>Andrezgz</strong>: real 0m5.367s, user 0m5.360s, sys 0m0.000s</p></li>
-
-<li><p><strong>E. Choroba</strong>: real 0m8.269s, user 0m8.248s, sys 0m0.008s</p></li>
-
-<li><p><strong>Joelle Maslak</strong>: real 0m11.575s, user 0m38.341s, sys 0m0.286s</p></li>
-
-<li><p><strong>Guillermo Ramos</strong>: real 0m15.314s, user 0m15.029s, sys 0m0.280s</p></li>
-
-<li><p><strong>Colin Crain</strong>: real 0m25.039s, user 0m25.011s, sys 0m0.004s</p></li>
-
-<li><p><strong>Laurent Rosenfeld</strong>: real 0m50.939s, user 0m50.788s, sys 0m0.064s</p></li>
-
-<li><p><strong>Jaldhar H. Vyas</strong>: real 1m6.381s, user 1m6.241s, sys 0m0.053s</p></li>
-
-<li><p><strong>Athanasius</strong>: real 1m54.845s, user 1m54.437s, sys 0m0.264s</p></li>
-
-<li><p><strong>Ruben Westerberg</strong>: real 2m44.981s, user 2m44.287s, sys 0m0.452s</p></li>
-
-<li><p><strong>Duane Powell</strong>: real 4m17.133s, user 4m14.221s, sys 0m2.451s</p></li>
-
-<li><p><strong>Lars Balker</strong>: real 4m49.408s, user 4m48.077s, sys 0m0.384s</p></li>
-
-<li><p><strong>Roger Bell West</strong>: real 8m17.638s, user 8m15.932s, sys 0m0.484s</p></li>
+<li>
+<p><strong>Adam Russell</strong>: real 0m0.772s, user 0m0.713s, sys 0m0.040s</p>
+</li>
+<li>
+<p><strong>Yet Ebreo</strong>: real 0m5.163s, user 0m5.127s, sys 0m0.020s</p>
+</li>
+<li>
+<p><strong>Andrezgz</strong>: real 0m5.367s, user 0m5.360s, sys 0m0.000s</p>
+</li>
+<li>
+<p><strong>E. Choroba</strong>: real 0m8.269s, user 0m8.248s, sys 0m0.008s</p>
+</li>
+<li>
+<p><strong>Joelle Maslak</strong>: real 0m11.575s, user 0m38.341s, sys 0m0.286s</p>
+</li>
+<li>
+<p><strong>Guillermo Ramos</strong>: real 0m15.314s, user 0m15.029s, sys 0m0.280s</p>
+</li>
+<li>
+<p><strong>Colin Crain</strong>: real 0m25.039s, user 0m25.011s, sys 0m0.004s</p>
+</li>
+<li>
+<p><strong>Laurent Rosenfeld</strong>: real 0m50.939s, user 0m50.788s, sys 0m0.064s</p>
+</li>
+<li>
+<p><strong>Jaldhar H. Vyas</strong>: real 1m6.381s, user 1m6.241s, sys 0m0.053s</p>
+</li>
+<li>
+<p><strong>Athanasius</strong>: real 1m54.845s, user 1m54.437s, sys 0m0.264s</p>
+</li>
+<li>
+<p><strong>Ruben Westerberg</strong>: real 2m44.981s, user 2m44.287s, sys 0m0.452s</p>
+</li>
+<li>
+<p><strong>Duane Powell</strong>: real 4m17.133s, user 4m14.221s, sys 0m2.451s</p>
+</li>
+<li>
+<p><strong>Lars Balker</strong>: real 4m49.408s, user 4m48.077s, sys 0m0.384s</p>
+</li>
+<li>
+<p><strong>Roger Bell West</strong>: real 8m17.638s, user 8m15.932s, sys 0m0.484s</p>
+</li>
 </ol>
-
-<p>From the result above, <strong>Adam Russell</strong>&rsquo;s <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-025/adam-russell/perl5/ch-1.pl">solution</a> yielded the best result by implementing <a href="https://en.wikipedia.org/wiki/Floyd%E2%80%93Warshall_algorithm">Floyd-Warshall All Pairs Shortest Path algorithm</a> through the <a href="https://metacpan.org/pod/Graph"><code>Graph</code></a> <strong>CPAN</strong> module. Read his <a href="https://adamcrussell.livejournal.com/9171.html">blog</a> for further details.</p>
-
+<p>From the result above, <strong>Adam Russell</strong>&lsquo;s <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-025/adam-russell/perl5/ch-1.pl">solution</a> yielded the best result by implementing <a href="https://en.wikipedia.org/wiki/Floyd%E2%80%93Warshall_algorithm">Floyd-Warshall All Pairs Shortest Path algorithm</a> through the <a href="https://metacpan.org/pod/Graph"><code>Graph</code></a> <strong>CPAN</strong> module. Read his <a href="https://adamcrussell.livejournal.com/9171.html">blog</a> for further details.</p>
 <p>Special mention of <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-025/joelle-maslak/perl5/ch-1.pl">solution</a> by <strong>Joelle Maslak</strong> which used <a href="https://metacpan.org/pod/Parallel::WorkUnit"><code>Parallel::WorkUnit</code></a> <strong>CPAN</strong> module to find the solution in a parallel manner. Note that the <strong>CPAN</strong> module was written by <strong>Joelle</strong> as well.</p>
-
 <p>For those who are curious about the number of combinations available, you can check the output of the <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-025/athanasius/perl5/ch-1.pl">solution</a> by <strong>Athanasius</strong>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl ch-1.pl
 
-<pre><code class="language-bash">$ perl ch-1.pl
+  There are <span style="color:#ae81ff">70</span> different Pokémon names
+   1:     <span style="color:#ae81ff">64</span>
+   2:    <span style="color:#ae81ff">153</span>
+   3:    <span style="color:#ae81ff">414</span>
+   4:   <span style="color:#ae81ff">1025</span>
+   5:   <span style="color:#ae81ff">2433</span>
+   6:   <span style="color:#ae81ff">5529</span>
+   7:  <span style="color:#ae81ff">11964</span>
+   8:  <span style="color:#ae81ff">24270</span>
+   9:  <span style="color:#ae81ff">46046</span>
+  10:  <span style="color:#ae81ff">81197</span>
+  11: <span style="color:#ae81ff">131728</span>
+  12: <span style="color:#ae81ff">194642</span>
+  13: <span style="color:#ae81ff">260203</span>
+  14: <span style="color:#ae81ff">311684</span>
+  15: <span style="color:#ae81ff">331912</span>
+  16: <span style="color:#ae81ff">310198</span>
+  17: <span style="color:#ae81ff">249704</span>
+  18: <span style="color:#ae81ff">169904</span>
+  19:  <span style="color:#ae81ff">96066</span>
+  20:  <span style="color:#ae81ff">43676</span>
+  21:  <span style="color:#ae81ff">15128</span>
+  22:   <span style="color:#ae81ff">3648</span>
+  23:    <span style="color:#ae81ff">416</span>
 
-  There are 70 different Pokémon names
-   1:     64
-   2:    153
-   3:    414
-   4:   1025
-   5:   2433
-   6:   5529
-   7:  11964
-   8:  24270
-   9:  46046
-  10:  81197
-  11: 131728
-  12: 194642
-  13: 260203
-  14: 311684
-  15: 331912
-  16: 310198
-  17: 249704
-  18: 169904
-  19:  96066
-  20:  43676
-  21:  15128
-  22:   3648
-  23:    416
-
-  The longest sequences of the 70 given Pokémon names contain 23 elements; e.g.:
+  The longest sequences of the <span style="color:#ae81ff">70</span> given Pokémon names contain <span style="color:#ae81ff">23</span> elements; e.g.:
 
   machamp, petilil, loudred, darmanitan, nosepass, seaking, girafarig, gabite, exe
   ggcute, emboar, relicanth, heatmor, registeel, landorus, simisear, rufflet, trap
   inch, haxorus, scrafty, yamask, kricketune, emolga, audino
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h3 id="task-2">Task #2</h3>
-
-<hr />
-
+<hr>
 <p><strong>CPAN</strong> modules used: <a href="https://metacpan.org/pod/Class::Enum"><code>Class::Enum</code></a>, <a href="https://metacpan.org/pod/Data::Dumper"><code>Data::Dumper</code></a>, <a href="https://metacpan.org/pod/Getopt::Long"><code>Getopt::Long</code></a>, <a href="https://metacpan.org/pod/Modern::Perl"><code>Modern::Perl</code></a>, <a href="https://metacpan.org/pod/Moo"><code>Moo</code></a>, <a href="https://metacpan.org/pod/Test::More"><code>Test::More</code></a>, <a href="https://metacpan.org/pod/autodie"><code>autodie</code></a>, <a href="https://metacpan.org/pod/constant"><code>constant</code></a>, <a href="https://metacpan.org/pod/feature"><code>feature</code></a>, <a href="https://metacpan.org/pod/integer"><code>integer</code></a>, <a href="https://metacpan.org/pod/strict"><code>strict</code></a>, <a href="https://metacpan.org/pod/warnings"><code>warnings</code></a></p>
-
-<p>Start with this <a href="https://www.youtube.com/watch?v=WwAYU1GFyQo">YouTube video</a> (via <a href="https://adamcrussell.livejournal.com/8913.html">Adam Russell</a>) to get an overview of the <strong>Chaocipher</strong>, the playing card cipher. For further understanding, look at <strong>Adam Russell</strong>&rsquo;s <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-025/adam-russell/perl5/ch-2.pl">solution</a>, which was based on the simulation playing card of the cipher.</p>
-
+<p>Start with this <a href="https://www.youtube.com/watch?v=WwAYU1GFyQo">YouTube video</a> (via <a href="https://adamcrussell.livejournal.com/8913.html">Adam Russell</a>) to get an overview of the <strong>Chaocipher</strong>, the playing card cipher. For further understanding, look at <strong>Adam Russell</strong>&lsquo;s <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-025/adam-russell/perl5/ch-2.pl">solution</a>, which was based on the simulation playing card of the cipher.</p>
 <p>Once you&rsquo;ve understood the fundamental concept of <strong>Chaocipher</strong>, start with the solution by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-025/andrezgz/perl5/ch-2.pl">Andrezgz</a> which was well-written clean code, readable and easy to grasp the implementation details. Similarly, read the solution by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-025/laurent-rosenfeld/perl5/ch-2.pl">Laurent Rosenfeld</a> as well, slightly difference but with test cases. Next, move the solution by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-025/e-choroba/perl5/ch-2.pl">E. Choroba</a> if you&rsquo;re looking for an Object-Oriented (OO) approach. Now, if you are looking for working console program of the cipher, read the solution by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-025/joelle-maslak/perl5/ch-2.pl">Joelle Maslak</a>. And lastly, go through all other submitted solutions. Compare and contrast.</p>
-
 <p>That is the code reading sequence we will recommend for anyone who look at this task for the first time. However, your mileage may vary (YMMV).</p>
-
-<hr />
-
+<hr>
 <h3 id="see-also">SEE ALSO</h3>
-
-<hr />
-
+<hr>
 <p>(1) <a href="https://perl6.eu/pokemon-chiao.html">Pokemon Chiao, Perl 6</a> by <strong>Arne Sommer</strong></p>
-
 <p>(2) <a href="https://adamcrussell.livejournal.com/9171.html">Pokemon Name Ladder</a> by <strong>Adam Russell</strong></p>
-
 <p>(3) <a href="https://adamcrussell.livejournal.com/8913.html">Chaocipher Card Simulation</a> by <strong>Adam Russell</strong></p>
-
 <p>(4) <a href="http://blogs.perl.org/users/laurent_r/2019/09/perl-weekly-challenge-25-pokemon-sequence-and-chaocipher.html">Perl Weekly Challenge 25: Pokémon Sequence and Chaocipher</a> by <strong>Laurent Rosenfeld</strong></p>
-
 <p>(5) <a href="https://blog.firedrake.org/archive/2019/09/Perl_Weekly_Challenge_25.html">RogerBW&rsquo;s Blog: Perl Weekly Challenge 25</a> by <strong>Roger Bell West</strong></p>
-
 <p>(6) <a href="http://blogs.perl.org/users/yet_ebreo/2019/09/perl-weekly-challenge-w025---pokemon-nameschaocipher.html">Perl Weekly Challenge W025 - Longest Pokemon Sequence, Chaocipher</a> by <strong>Yet Ebreo</strong></p>
-
 <p>(7) <a href="http://blogs.perl.org/users/e_choroba/2019/09/perl-weekly-challenge-025-pokemon-sequence-and-chaocipher.html">Perl Weekly Challenge 025: Pokemon Sequence and Chaocipher</a> by <strong>E. Choroba</strong></p>
 
                 </div>

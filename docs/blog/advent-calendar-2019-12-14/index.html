@@ -16,7 +16,7 @@
 
     <meta name="description" content="Advent Calendar - December 14, 2019">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.55.0-DEV" />
+    <meta name="generator" content="Hugo 0.66.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -149,20 +149,12 @@
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
-                    
-
-<p><a href="/blog/advent-calendar-2019"><strong>Advent Calendar 2019</strong></a></p>
-
-<hr />
-
-<p>The gift is presented by <a href="/blog/meet-the-champion-027"><strong>Scimon Proctor</strong></a>. Today he is talking about his solutions to <strong>Task #2: Pascal Triangle</strong> of <a href="/blog/perl-weekly-challenge-003"><strong>&ldquo;The Weekly Challenge - 003&rdquo;</strong></a>.</p>
-
-<h4 id="create-a-script-that-generates-pascal-triangle-accept-number-of-rows-from-the-command-line-the-pascal-triangle-should-have-at-least-3-rows-for-more-information-about-pascal-triangle-check-this-wikipedia-page-https-en-wikipedia-org-wiki-pascal-27s-triangle">Create a script that generates Pascal Triangle. Accept number of rows from the command line. The Pascal Triangle should have at least 3 rows. For more information about Pascal Triangle, check this <a href="https://en.wikipedia.org/wiki/Pascal%27s_triangle"><strong>wikipedia page</strong></a>.</h4>
-
-<hr />
-
+                    <p><a href="/blog/advent-calendar-2019"><strong>Advent Calendar 2019</strong></a></p>
+<hr>
+<p>The gift is presented by <a href="/blog/meet-the-champion-027"><strong>Scimon Proctor</strong></a>. Today he is talking about his solutions to <strong>Task #2: Pascal Triangle** of </strong>&ldquo;The Weekly Challenge - 003&rdquo;**<a href="/blog/perl-weekly-challenge-003"></a>.</p>
+<h4 id="create-a-script-that-generates-pascal-triangle-accept-number-of-rows-from-the-command-line-the-pascal-triangle-should-have-at-least-3-rows-for-more-information-about-pascal-triangle-check-this-wikipedia-pagehttpsenwikipediaorgwikipascal27s_triangle">Create a script that generates Pascal Triangle. Accept number of rows from the command line. The Pascal Triangle should have at least 3 rows. For more information about Pascal Triangle, check this <a href="https://en.wikipedia.org/wiki/Pascal%27s_triangle"><strong>wikipedia page</strong></a>.</h4>
+<hr>
 <p>So Pascal&rsquo;s Triangle is pretty and I decided I wanted to get it nicely laid out like so:</p>
-
 <pre><code>                   1
                  1   1
                1   2   1
@@ -174,10 +166,8 @@
    1   8   28  56  70  56  28  8   1
  1   9   36  84 126 126  84  36  9   1
 </code></pre>
-
 <p>So this challenge has two parts. Generating the numbers for the triangle and then laying it out. In this case I didn&rsquo;t read the article too much but had a neat idea. For a given row (eg <strong>[1,2,1]</strong> you can generate the next row by implementing doing the following):</p>
-
-<pre><code class="language-perl6"># Here's our row
+<pre><code class="language-perl6" data-lang="perl6"># Here's our row
 my @row = [1,2,1];
 # Make a copy with a 0 at the start
 my @row1 = [0, |@row]; # [0,1,2,1] (| breaks the array down so it doesn't get added as a single object in this case)
@@ -191,21 +181,14 @@ my @row3 = [
     @row1[2] + @row2[2], # 2 + 1 = 3
     @row1[3] + @row2[3], # 1 + 0 = 1
 ];
-</code></pre>
-
-<p>So&hellip; that&rsquo;s a thing but it&rsquo;s a bit unwieldy if only there was some kind of way to simplify this. Oh yes, the <a href="https://docs.perl6.org/language/operators#index-entry-Z_%28zip_metaoperator%29"><strong>Zip metaoperator</strong></a> <strong>Z</strong>. Place a <strong>Z</strong> between two lists and it will default to applying the <strong>,</strong> operator to each item in turn to make a new list of lists :</p>
-
+</code></pre><p>So&hellip; that&rsquo;s a thing but it&rsquo;s a bit unwieldy if only there was some kind of way to simplify this. Oh yes, the <a href="https://docs.perl6.org/language/operators#index-entry-Z_%28zip_metaoperator%29"><strong>Zip metaoperator</strong></a> <strong>Z</strong>. Place a <strong>Z</strong> between two lists and it will default to applying the <strong>,</strong> operator to each item in turn to make a new list of lists :</p>
 <pre><code>(0, 1, 2, 1) Z (1, 2, 1, 0) =&gt; ((0,1), (1,2), (2,1), (1,0))
 </code></pre>
-
 <p>But you can give <strong>Z</strong> and inline operator to apply list for instance <strong>+</strong> giving you :</p>
-
 <pre><code>0,1,2,1) Z+ (1,2,1,0) =&gt; (1, 3, 3, 1)
 </code></pre>
-
 <p>Which looks very nice. So if we just wanted our script to out lists of lists that make up Pascal&rsquo;s Triangle we could to this :</p>
-
-<pre><code class="language-perl6"> Note the challenge says we need at least 3 lines so we catch that here.
+<pre><code class="language-perl6" data-lang="perl6"> Note the challenge says we need at least 3 lines so we catch that here.
 multi sub MAIN( Int() $lines is copy where * &gt; 2 ) {
     # Set up the initial state.
     # Decrement lines.
@@ -222,10 +205,7 @@ multi sub MAIN( Int() $lines is copy where * &gt; 2 ) {
 
     @out.say;
 }
-</code></pre>
-
-<p>And that works but&hellip; well I wanted it pretty. The simple thought would be to join each row with spaces and then join the lot with newlines but just doing that you end up with :</p>
-
+</code></pre><p>And that works but&hellip; well I wanted it pretty. The simple thought would be to join each row with spaces and then join the lot with newlines but just doing that you end up with :</p>
 <pre><code>1
 1 1
 1 2 1
@@ -237,20 +217,14 @@ multi sub MAIN( Int() $lines is copy where * &gt; 2 ) {
 1 8 28 56 70 56 28 8 1
 1 9 36 84 126 126 84 36 9 1
 </code></pre>
-
 <p>Which is&hellip;. a bit meh.</p>
-
 <p>Of course you could make those lines up then find the length of the last line and left pad all the other by half that amount.</p>
-
-<pre><code class="language-perl6">@out = @out.map( { $_.join(&quot; &quot;) } );
+<pre><code class="language-perl6" data-lang="perl6">@out = @out.map( { $_.join(&quot; &quot;) } );
 
 my $len = @out[*-1].codes;
 
 @out.map( { ( &quot; &quot; x ( ($len - $_.codes) div 2) ) ~ &quot;$_&quot; } ).join(&quot;\n&quot;).say;
-</code></pre>
-
-<p>And that&rsquo;s a bit nicer :</p>
-
+</code></pre><p>And that&rsquo;s a bit nicer :</p>
 <pre><code>                   1
                  1   1
                1   2   1
@@ -262,20 +236,15 @@ my $len = @out[*-1].codes;
    1   8   28  56  70  56  28  8   1
  1   9   36  84 126 126  84  36  9   1
 </code></pre>
-
 <p>But it falls apart when larger numbers get added. So we need to pad our output based on the length of the biggers number. Here&rsquo;s what I came up with :</p>
-
-<pre><code class="language-perl6">sub pad( Str $val, Int $len ) {
+<pre><code class="language-perl6" data-lang="perl6">sub pad( Str $val, Int $len ) {
     my $diff = $len - $val.codes;
     my $rpad = &quot; &quot; x ( ( $diff div 2 ) + 1 );
     my $lpad = &quot; &quot; x ( ( $diff div 2 ) + ( $diff % 2 ) );
     return &quot;{$lpad}{$val}{$rpad}&quot;;
 }
-</code></pre>
-
-<p>Pass in the number to pad and the length of the largest number and it returns the number all laiud out nicely. With that here&rsquo;s my final code :</p>
-
-<pre><code class="language-perl6">sub pad( Str $val, Int $len ) {
+</code></pre><p>Pass in the number to pad and the length of the largest number and it returns the number all laiud out nicely. With that here&rsquo;s my final code :</p>
+<pre><code class="language-perl6" data-lang="perl6">sub pad( Str $val, Int $len ) {
     my $diff = $len - $val.codes;
     my $rpad = &quot; &quot; x ( ( $diff div 2 ) + 1 );
     my $lpad = &quot; &quot; x ( ( $diff div 2 ) + ( $diff % 2 ) );
@@ -307,14 +276,9 @@ multi sub MAIN( Int() $lines is copy where * &gt; 2 ) {
 multi sub MAIN($) {
     note &quot;Please input a number of lines that must be at least 3&quot;;
 }
-</code></pre>
-
-<p>And that seems to do the trick which is fun. (This is the code used to make the triangle at the top).</p>
-
-<hr />
-
+</code></pre><p>And that seems to do the trick which is fun. (This is the code used to make the triangle at the top).</p>
+<hr>
 <p>If you have any suggestion then please do share with us <a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a>.</p>
-
 <p><a href="/blog/advent-calendar-2019"><strong>Advent Calendar 2019</strong></a></p>
 
                 </div>

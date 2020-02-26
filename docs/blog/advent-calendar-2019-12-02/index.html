@@ -16,7 +16,7 @@
 
     <meta name="description" content="Advent Calendar - December 2, 2019">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.55.0-DEV" />
+    <meta name="generator" content="Hugo 0.66.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -149,203 +149,157 @@
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
-                    
-
-<p><a href="/blog/advent-calendar-2019"><strong>Advent Calendar 2019</strong></a></p>
-
-<hr />
-
-<p>The gift is presented by <a href="https://perlweeklychallenge.org/blog/meet-the-champion-029"><strong>Dave Jacoby</strong></a>. Today he is talking about his solutions to <strong>Task #2: Ranking in Perl</strong> of <a href="/blog/perl-weekly-challenge-009"><strong>&ldquo;The Weekly Challenge - 009&rdquo;</strong></a>.</p>
-
+                    <p><a href="/blog/advent-calendar-2019"><strong>Advent Calendar 2019</strong></a></p>
+<hr>
+<p>The gift is presented by <a href="https://perlweeklychallenge.org/blog/meet-the-champion-029"><strong>Dave Jacoby</strong></a>. Today he is talking about his solutions to <strong>Task #2: Ranking in Perl** of </strong>&ldquo;The Weekly Challenge - 009&rdquo;**<a href="/blog/perl-weekly-challenge-009"></a>.</p>
 <h5 id="1-standard-ranking-1224-items-that-compare-equal-receive-the-same-ranking-number-and-then-a-gap-is-left-in-the-ranking-numbers">1. Standard Ranking (1224): Items that compare equal receive the same ranking number, and then a gap is left in the ranking numbers.</h5>
-
 <h5 id="2-modified-ranking-1334-it-is-done-by-leaving-the-gaps-in-the-ranking-numbers-before-the-sets-of-equal-ranking-items">2. Modified Ranking (1334): It is done by leaving the gaps in the ranking numbers before the sets of equal-ranking items.</h5>
-
-<h5 id="3-dense-ranking-1223-items-that-compare-equally-receive-the-same-ranking-number-and-the-next-item-s-receive-the-immediately-following-ranking-number">3. Dense Ranking    (1223): Items that compare equally receive the same ranking number, and the next item(s) receive the immediately following ranking number.</h5>
-
-<hr />
-
+<h5 id="3-dense-ranking----1223-items-that-compare-equally-receive-the-same-ranking-number-and-the-next-items-receive-the-immediately-following-ranking-number">3. Dense Ranking    (1223): Items that compare equally receive the same ranking number, and the next item(s) receive the immediately following ranking number.</h5>
+<hr>
 <p>Munging data structures like this is much closer to the kind of thing I do with Perl than playing with numbers, so this is my home.
 Please find below the code with detailed comments.</p>
+<hr>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
 
-<hr />
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> utf8;
+<span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">qw{ postderef say signatures state switch }</span>;
+<span style="color:#66d9ef">no</span> warnings <span style="color:#e6db74">qw{ experimental::postderef experimental::smartmatch experimental::signatures }</span>;
 
-<pre><code class="language-perl">#!/usr/bin/env perl
+<span style="color:#75715e"># Perl personalities and assigned numbers to make the ranking</span>
+<span style="color:#75715e"># turn out right. These are funny numbers; I value you all!</span>
 
-use strict;
-use warnings;
-use utf8;
-use feature qw{ postderef say signatures state switch };
-no warnings qw{ experimental::postderef experimental::smartmatch experimental::signatures };
-
-# Perl personalities and assigned numbers to make the ranking
-# turn out right. These are funny numbers; I value you all!
-
-my @data;
-push @data, [ 'timtoady',    100 ];
-push @data, [ 'merlyn',      90 ];
-push @data, [ 'gnat',        90 ];
-push @data, [ 'briandfoy',   80 ];
-push @data, [ 'gabor',       70 ];
-push @data, [ 'cpan_author', 70 ];
-push @data, [ 'ovid',        70 ];
-push @data, [ 'jacoby',      60 ];
+<span style="color:#66d9ef">my</span> @data;
+push @data, [ <span style="color:#e6db74">&#39;timtoady&#39;</span>,    <span style="color:#ae81ff">100</span> ];
+push @data, [ <span style="color:#e6db74">&#39;merlyn&#39;</span>,      <span style="color:#ae81ff">90</span> ];
+push @data, [ <span style="color:#e6db74">&#39;gnat&#39;</span>,        <span style="color:#ae81ff">90</span> ];
+push @data, [ <span style="color:#e6db74">&#39;briandfoy&#39;</span>,   <span style="color:#ae81ff">80</span> ];
+push @data, [ <span style="color:#e6db74">&#39;gabor&#39;</span>,       <span style="color:#ae81ff">70</span> ];
+push @data, [ <span style="color:#e6db74">&#39;cpan_author&#39;</span>, <span style="color:#ae81ff">70</span> ];
+push @data, [ <span style="color:#e6db74">&#39;ovid&#39;</span>,        <span style="color:#ae81ff">70</span> ];
+push @data, [ <span style="color:#e6db74">&#39;jacoby&#39;</span>,      <span style="color:#ae81ff">60</span> ];
 
 standard(@data);
 modified(@data);
 dense(@data);
 
-# 1223
-sub dense(@array) {
-    # I went with dense() first, because I deemed it the simplest.
-    # The highest ranking group gets 1, followed by 2, then 3, etc.
+<span style="color:#75715e"># 1223</span>
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">dense</span>(@array) {
+    <span style="color:#75715e"># I went with dense() first, because I deemed it the simplest.</span>
+    <span style="color:#75715e"># The highest ranking group gets 1, followed by 2, then 3, etc.</span>
 
-    # I think there are two funky bits with this code: derefs and sorts.
+    <span style="color:#75715e"># I think there are two funky bits with this code: derefs and sorts.</span>
 
-    # We would do push @{ $ranking-&gt;{ $n }, $_ } before, but now we append
-    # -&gt;@* to the back of the variable to indicate that it's to be treated
-    # as an array. It's stable as of 5.24, but I turn off warnings for it
-    # to be careful.
-    # https://www.effectiveperlprogramming.com/2014/09/use-postfix-dereferencing/
+    <span style="color:#75715e"># We would do push @{ $ranking-&gt;{ $n }, $_ } before, but now we append</span>
+    <span style="color:#75715e"># -&gt;@* to the back of the variable to indicate that it&#39;s to be treated</span>
+    <span style="color:#75715e"># as an array. It&#39;s stable as of 5.24, but I turn off warnings for it</span>
+    <span style="color:#75715e"># to be careful.</span>
+    <span style="color:#75715e"># https://www.effectiveperlprogramming.com/2014/09/use-postfix-dereferencing/</span>
 
-    # then there's sort, which has two operators involved.
-    # &lt;=&gt; is the Spaceship operator, and it does numeric comparison.
-    # cmp does stringwise comparison. Within sort, you have $a and $b
-    # (which is why you shouldn't use them anywhere else), and the
-    # comparison operators return -1, 0 or 1, depending on position.
+    <span style="color:#75715e"># then there&#39;s sort, which has two operators involved.</span>
+    <span style="color:#75715e"># &lt;=&gt; is the Spaceship operator, and it does numeric comparison.</span>
+    <span style="color:#75715e"># cmp does stringwise comparison. Within sort, you have $a and $b</span>
+    <span style="color:#75715e"># (which is why you shouldn&#39;t use them anywhere else), and the</span>
+    <span style="color:#75715e"># comparison operators return -1, 0 or 1, depending on position.</span>
 
-    # in `sort { $b &lt;=&gt; $a } keys $ranking-&gt;%*`, the keys are numeric
-    # values &lt; 100, and we want 100 -&gt; first, 90 -&gt; 2nd and so forth.
-    # That COULD be `reverse sort { $a &lt;=&gt; $b }`, but why?
-    # I specify numeric sort because it defaults to string sort,
-    # which means `say join ',', (sort 1..100)[0..5]` gets you
-    # `1,10,100,11,12,13`
+    <span style="color:#75715e"># in `sort { $b &lt;=&gt; $a } keys $ranking-&gt;%*`, the keys are numeric</span>
+    <span style="color:#75715e"># values &lt; 100, and we want 100 -&gt; first, 90 -&gt; 2nd and so forth.</span>
+    <span style="color:#75715e"># That COULD be `reverse sort { $a &lt;=&gt; $b }`, but why?</span>
+    <span style="color:#75715e"># I specify numeric sort because it defaults to string sort,</span>
+    <span style="color:#75715e"># which means `say join &#39;,&#39;, (sort 1..100)[0..5]` gets you</span>
+    <span style="color:#75715e"># `1,10,100,11,12,13`</span>
 
-    # `sort { $a cmp $b }` could have just been `sort`, though.
+    <span style="color:#75715e"># `sort { $a cmp $b }` could have just been `sort`, though.</span>
 
-    # and now, watch the $rank variable, because that's the real difference
-    # between these three. here, we start at 1 and add 1 each time we go
-    # through the outer loop
+    <span style="color:#75715e"># and now, watch the $rank variable, because that&#39;s the real difference</span>
+    <span style="color:#75715e"># between these three. here, we start at 1 and add 1 each time we go</span>
+    <span style="color:#75715e"># through the outer loop</span>
 
-    say 'DENSE';
-    my $ranking;
-    map { push $ranking-&gt;{ $_-&gt;[1] }-&gt;@*, $_ } @array;
-    my $rank = 1;
-    for my $k ( sort { $b &lt;=&gt; $a } keys $ranking-&gt;%* ) {
-        my $l = $ranking-&gt;{$k};
-        for my $name ( sort { $a cmp $b } map { $_-&gt;[0] } $l-&gt;@* ) {
-            say join ') ', $rank, $name;
+    say <span style="color:#e6db74">&#39;DENSE&#39;</span>;
+    <span style="color:#66d9ef">my</span> $ranking;
+    map { push $ranking<span style="color:#f92672">-&gt;</span>{ $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] }<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, $_ } @array;
+    <span style="color:#66d9ef">my</span> $rank <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $k ( sort { $b <span style="color:#e6db74">&lt;=&gt;</span> $a } keys $ranking<span style="color:#f92672">-&gt;</span>%<span style="color:#960050;background-color:#1e0010">*</span> ) {
+        <span style="color:#66d9ef">my</span> $l <span style="color:#f92672">=</span> $ranking<span style="color:#f92672">-&gt;</span>{$k};
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $name ( sort { $a <span style="color:#f92672">cmp</span> $b } map { $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] } $l<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> ) {
+            say join <span style="color:#e6db74">&#39;) &#39;</span>, $rank, $name;
         }
-        $rank++;
+        $rank<span style="color:#f92672">++</span>;
     }
-    say '';
+    say <span style="color:#e6db74">&#39;&#39;</span>;
 }
 
-# 1224
-sub standard(@array) {
-    say 'STANDARD';
-    my $done = 0;
-    my $ranking;
-    map { push $ranking-&gt;{ $_-&gt;[1] }-&gt;@*, $_ } @array;
-    my $rank = 1;
-    for my $k ( sort { $b &lt;=&gt; $a } keys $ranking-&gt;%* ) {
-        my $l = $ranking-&gt;{$k};
-        for my $name ( sort { $a cmp $b } map { $_-&gt;[0] } $l-&gt;@* ) {
-            say join ') ', $rank, $name;
+<span style="color:#75715e"># 1224</span>
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">standard</span>(@array) {
+    say <span style="color:#e6db74">&#39;STANDARD&#39;</span>;
+    <span style="color:#66d9ef">my</span> $done <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">my</span> $ranking;
+    map { push $ranking<span style="color:#f92672">-&gt;</span>{ $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] }<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, $_ } @array;
+    <span style="color:#66d9ef">my</span> $rank <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $k ( sort { $b <span style="color:#e6db74">&lt;=&gt;</span> $a } keys $ranking<span style="color:#f92672">-&gt;</span>%<span style="color:#960050;background-color:#1e0010">*</span> ) {
+        <span style="color:#66d9ef">my</span> $l <span style="color:#f92672">=</span> $ranking<span style="color:#f92672">-&gt;</span>{$k};
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $name ( sort { $a <span style="color:#f92672">cmp</span> $b } map { $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] } $l<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> ) {
+            say join <span style="color:#e6db74">&#39;) &#39;</span>, $rank, $name;
         }
-        # instead of plain iterating, we're adding the number of
-        # elements in the just-handled arrayref
-        $rank += scalar $l-&gt;@*;
-    }
-    say '';
+        <span style="color:#75715e"># instead of plain iterating, we&#39;re adding the number of</span>
+        <span style="color:#75715e"># elements in the just-handled arrayref</span>
+        $rank <span style="color:#f92672">+=</span> scalar $l<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+    <span style="color:#960050;background-color:#1e0010">}</span>
+    say <span style="color:#e6db74">&#39;&#39;</span>;
 }
 
-# 1334
-sub modified(@array) {
-    say 'MODIFIED';
-    my $ranking;
-    map { push $ranking-&gt;{ $_-&gt;[1] }-&gt;@*, $_ } @array;
-    my $rank = 0;
-    for my $k ( sort { $b &lt;=&gt; $a } keys $ranking-&gt;%* ) {
-        my $l = $ranking-&gt;{$k};
-        # and here, we start with 0 and add the element count first,
-        # which means we'd start with a two-way tie for second, not first,
-        # if there were two equal-value entries at the top.
-        $rank += scalar $l-&gt;@*;
-        for my $name ( sort { $a cmp $b } map { $_-&gt;[0] } $l-&gt;@* ) {
-            say join ') ', $rank, $name;
+<span style="color:#75715e"># 1334</span>
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">modified</span>(@array) {
+    say <span style="color:#e6db74">&#39;MODIFIED&#39;</span>;
+    <span style="color:#66d9ef">my</span> $ranking;
+    map { push $ranking<span style="color:#f92672">-&gt;</span>{ $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] }<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, $_ } @array;
+    <span style="color:#66d9ef">my</span> $rank <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $k ( sort { $b <span style="color:#e6db74">&lt;=&gt;</span> $a } keys $ranking<span style="color:#f92672">-&gt;</span>%<span style="color:#960050;background-color:#1e0010">*</span> ) {
+        <span style="color:#66d9ef">my</span> $l <span style="color:#f92672">=</span> $ranking<span style="color:#f92672">-&gt;</span>{$k};
+        <span style="color:#75715e"># and here, we start with 0 and add the element count first,</span>
+        <span style="color:#75715e"># which means we&#39;d start with a two-way tie for second, not first,</span>
+        <span style="color:#75715e"># if there were two equal-value entries at the top.</span>
+        $rank <span style="color:#f92672">+=</span> scalar $l<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+        for <span style="color:#66d9ef">my</span> $name ( sort { $a <span style="color:#f92672">cmp</span> $b } map { $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] } $l<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> ) {
+            say join <span style="color:#e6db74">&#39;) &#39;</span>, $rank, $name;
         }
     }
-    say '';
+    say <span style="color:#e6db74">&#39;&#39;</span>;
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h4 id="standard">STANDARD</h4>
-
 <h5 id="1-timtoady">1) timtoady</h5>
-
 <h5 id="2-gnat">2) gnat</h5>
-
 <h5 id="2-merlyn">2) merlyn</h5>
-
 <h5 id="4-briandfoy">4) briandfoy</h5>
-
-<h5 id="5-cpan-author">5) cpan_author</h5>
-
+<h5 id="5-cpan_author">5) cpan_author</h5>
 <h5 id="5-gabor">5) gabor</h5>
-
 <h5 id="5-ovid">5) ovid</h5>
-
 <h5 id="8-jacoby">8) jacoby</h5>
-
-<hr />
-
+<hr>
 <h4 id="modified">MODIFIED</h4>
-
 <h5 id="1-timtoady-1">1) timtoady</h5>
-
 <h5 id="3-gnat">3) gnat</h5>
-
 <h5 id="3-merlyn">3) merlyn</h5>
-
 <h5 id="4-briandfoy-1">4) briandfoy</h5>
-
-<h5 id="7-cpan-author">7) cpan_author</h5>
-
+<h5 id="7-cpan_author">7) cpan_author</h5>
 <h5 id="7-gabor">7) gabor</h5>
-
 <h5 id="7-ovid">7) ovid</h5>
-
 <h5 id="8-jacoby-1">8) jacoby</h5>
-
-<hr />
-
+<hr>
 <h4 id="dense">DENSE</h4>
-
 <h5 id="1-timtoady-2">1) timtoady</h5>
-
 <h5 id="2-gnat-1">2) gnat</h5>
-
 <h5 id="2-merlyn-1">2) merlyn</h5>
-
 <h5 id="3-briandfoy">3) briandfoy</h5>
-
-<h5 id="4-cpan-author">4) cpan_author</h5>
-
+<h5 id="4-cpan_author">4) cpan_author</h5>
 <h5 id="4-gabor">4) gabor</h5>
-
 <h5 id="4-ovid">4) ovid</h5>
-
 <h5 id="5-jacoby">5) jacoby</h5>
-
-<hr />
-
-<hr />
-
+<hr>
+<hr>
 <p>If you have any suggestion then please do share with us <a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a>.</p>
-
 <p><a href="/blog/advent-calendar-2019"><strong>Advent Calendar 2019</strong></a></p>
 
                 </div>

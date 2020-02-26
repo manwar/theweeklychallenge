@@ -16,7 +16,7 @@
 
     <meta name="description" content="Kian-Meng Ang Weekly Review: Challenge - #033.">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.55.0-DEV" />
+    <meta name="generator" content="Hugo 0.66.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -149,95 +149,50 @@
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
-                    
-
-<hr />
-
-<hr />
-
+                    <hr>
+<hr>
 <p>Continues from <a href="/blog/review-challenge-032/"><strong>previous week</strong></a>.</p>
-
 <p>Feel free to <a href="https://github.com/manwar/perlweeklychallenge"><strong>submit a merge request or open a ticket</strong></a> if you found any issues with this post. We highly appreciate and welcome your feedback.</p>
-
 <p>For a quick overview, go through the <a href="/blog/perl-weekly-challenge-033/"><strong>original tasks</strong></a> and <a href="/blog/recap-challenge-033/"><strong>recap</strong></a> of the weekly challenge.</p>
-
 <p>Additional feedback to the our Perl Weekly Challenge&rsquo;s <a href="https://twitter.com/perlwchallenge?lang=en"><strong>Twitter account</strong></a> is much appreciated.</p>
-
-<hr />
-
-<hr />
-
+<hr>
+<hr>
 <h2 id="task-1">Task #1</h2>
-
-<hr />
-
-<hr />
-
+<hr>
+<hr>
 <p><strong>CPAN</strong> modules used: <a href="https://metacpan.org/pod/Const::Fast"><code>Const::Fast</code></a>, <a href="https://metacpan.org/pod/Data::Dumper"><code>Data::Dumper</code></a>, <a href="https://metacpan.org/pod/English"><code>English</code></a>, <a href="https://metacpan.org/pod/Getopt::Long"><code>Getopt::Long</code></a>, <a href="https://metacpan.org/pod/IO::All"><code>IO::All</code></a>, <a href="https://metacpan.org/pod/List::Util"><code>List::Util</code></a>, <a href="https://metacpan.org/pod/Modern::Perl"><code>Modern::Perl</code></a>, <a href="https://metacpan.org/pod/Mojo::File"><code>Mojo::File</code></a>, <a href="https://metacpan.org/pod/feature"><code>feature</code></a>, <a href="https://metacpan.org/pod/strict"><code>strict</code></a>, <a href="https://metacpan.org/pod/utf8"><code>utf8</code></a>, <a href="https://metacpan.org/pod/warnings"><code>warnings</code></a></p>
-
 <p>This was similar to last week challenge but at different granularity, counting character instead of word. Hence, those participants who&rsquo;ve submitted their solutions last week will only need to tweak their answer a bit. Is there anything we can learn or observe for this week challenge? <strong>Yes</strong>, and quite a few things. This week we will compare similar approach between two or more participants which either share similar approach in solving the task or totally using the opposite way.</p>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/fabrizio-poggi/perl5/ch-1.pl"><strong>Fabrizio Poggi</strong></a> and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/dave-cross/perl5/ch-1.pl"><strong>Dave Cross</strong></a> showed us the opposite way of solving the problem through either hard-coded or dynamic way. A simple example of not using a loop against a loop. The submission by <strong>Fabrizio</strong> can be further refactored using the range of alphabet characters <code>a..z</code> as found in solution by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/duane-powell/perl5/ch-1.pl"><strong>Duane Powell</strong></a>.</p>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/duncan-c-white/perl5/ch-1.pl"><strong>Duncan C. White</strong></a> and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/e-choroba/perl5/ch-1.pl"><strong>E. Choroba</strong></a> have similar approach which use double <code>while</code> loop to split and count the frequency of character. The different was the coding style.</p>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/andrezgz/perl5/ch-1.pl"><strong>Andrezgz</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/colin-crain/perl5/ch-1.pl"><strong>Colin Crain</strong></a>, and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/bwva/perl5/ch-1.pl"><strong>Bwva</strong></a> took the same approach of finding all characters in a line from a file, splitting it into an array of characters, and lowercase it before counting the frequency. Again, subtle differences in the personal coding style between them.</p>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/adam-russell/perl5/ch-1.pl"><strong>Adam Russell</strong></a> and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/ndelucca/perl5/ch-1.pl"><strong>Nazareno Delucca</strong></a> also have a similar approach but the latter did it in a more dense and shorter version using <a href="https://perldoc.perl.org/functions/map.html"><code>map</code></a> function.</p>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/steven-wilson/perl5/ch-1.pl"><strong>Steven Wilson</strong></a> and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/burkhard-nickels/perl5/ch-1.pl"><strong>Burkhard Nickels</strong></a>. Between a solution that was written in an explicit manner against a implicit Perl one-liner. For maintainable code, the former is a better approach. <a href="http://blogs.perl.org/users/laurent_r/2019/11/perl-weekly-challenge-33-count-letters-and-multiplication-tables.html"><strong>Laurent Rosenfeld</strong></a> also have a few one-liner examples.</p>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/mark-anderson/perl5/ch-1.pl"><strong>Mark Anderson</strong></a> and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/burkhard-nickels/perl5/ch-1.pl"><strong>Burkhard Nickels</strong></a> on using different <strong>CPAN</strong> modules to read the input file. <code>Mojo::File</code> and <code>IO::All</code>, which is the better choice or we just stick to <code>&lt;&gt;</code> then?</p>
-
 <p>Some rather unique approach we noticed. The use of <a href="https://perldoc.perl.org/functions/getc.html"><code>getc</code></a> by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/javier-luque/perl5/ch-1.pl"><strong>Javier Luque</strong></a> to read the next character of a file handler. And the use of <a href="https://perldoc.perl.org/perluniprops.html#Properties-accessible-through-%5cp%7b%7d-and-%5cP%7b%7d"><code>\P{Alpha}</code></a> by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/joelle-maslak/perl5/ch-1.pl"><strong>Joelle Maslak</strong></a> and <a href="https://perldoc.perl.org/perluniprops.html#Properties-accessible-through-%5cp%7b%7d-and-%5cP%7b%7d"><code>\p{XPosixLower}</code></a> that matches the full range of Unicode or non-English characters that are considered as alphabetic.</p>
-
-<hr />
-
-<hr />
-
+<hr>
+<hr>
 <h2 id="task-2">Task #2</h2>
-
-<hr />
-
-<hr />
-
+<hr>
+<hr>
 <p><strong>CPAN</strong> modules used: <a href="https://metacpan.org/pod/Const::Fast"><code>Const::Fast</code></a>, <a href="https://metacpan.org/pod/Data::Dumper"><code>Data::Dumper</code></a>, <a href="https://metacpan.org/pod/Getopt::Long"><code>Getopt::Long</code></a>, <a href="https://metacpan.org/pod/Modern::Perl"><code>Modern::Perl</code></a>, <a href="https://metacpan.org/pod/PDL"><code>PDL</code></a>, <a href="https://metacpan.org/pod/PDL::NiceSlice"><code>PDL::NiceSlice</code></a>, <a href="https://metacpan.org/pod/Perl6::Form"><code>Perl6::Form</code></a>, <a href="https://metacpan.org/pod/feature"><code>feature</code></a>, <a href="https://metacpan.org/pod/open"><code>open</code></a>, <a href="https://metacpan.org/pod/strict"><code>strict</code></a>, <a href="https://metacpan.org/pod/utf8"><code>utf8</code></a>, <a href="https://metacpan.org/pod/warnings"><code>warnings</code></a></p>
-
 <p>We&rsquo;ve something similar and quite humourous in the past challenges, just show the result as it. And this week, that solution came from <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/lubos-kolouch/perl5/ch-2.pl"><strong>Lubos Kolouch</strong></a>. We can understand the difficulty of calculating, formatting, and displaying the multiplication table for this task.</p>
-
 <p>For code readability (subjective view) and density, we found the solution by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/duncan-c-white/perl5/ch-2.pl"><strong>Duncan C. White</strong></a> and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/e-choroba/perl5/ch-2.pl"><strong>E. Choroba</strong></a> were easier to follow compare to others.</p>
-
 <p>Instead of <a href="https://perldoc.perl.org/functions/printf.html"><code>printf</code></a> function to format the layout of the table, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/adam-russell/perl5/ch-2.pl"><strong>Adam Russell</strong></a> opted for alternative solution using the <code>Perl6::Form</code> <strong>CPAN</strong> module.</p>
-
 <p>Look into the submission by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/burkhard-nickels/perl5/ch-2.pl"><strong>Burkhard Nickels</strong></a> where he tried different approaches to generate the table. We love the use of <code>PDL</code> and <code>PDL::NiceSlice</code> CPAN module as well as his write-up on comparing different alternative ways in generating the multiplication table.</p>
-
-<hr />
-
-<hr />
-
+<hr>
+<hr>
 <h2 id="see-also">SEE ALSO</h2>
-
-<hr />
-
-<hr />
-
+<hr>
+<hr>
 <p>(1) <a href="https://adamcrussell.livejournal.com/11383.html"><strong>Perl Weekly Challenge 033</strong></a> by <strong>Adam Russell</strong></p>
-
 <p>(2) <a href="https://raku-musings.com/add-mul.html"><strong>Addition and Multiplication with Raku</strong></a> by <strong>Arne Sommer</strong></p>
-
 <p>(3) <a href="http://46.91.236.80:81/www/Perl/PWC/20191108_33/pwc33.html"><strong>Perl Weekly Challenge #33 Task #1: Count letters</strong></a> by <strong>Burkhard Nickels</strong></p>
-
 <p>(4) <a href="http://blogs.perl.org/users/e_choroba/2019/11/perl-weekly-challenge-033-count-letters-formatted-multiplication-table.html"><strong>Perl Weekly Challenge 033: Count Letters &amp; Formatted Multiplication Table</strong></a> by <strong>E. Choroba</strong></p>
-
 <p>(5) <a href="https://www.braincells.com/perl/2019/11/perl_weekly_challenge_week_33.html"><strong>Perl Weekly Challenge: Week 33</strong></a> by <strong>Jaldhar H. Vyas</strong></p>
-
 <p>(6) <a href="https://perlchallenges.wordpress.com/2019/11/05/perl-weekly-challenge-033/"><strong>Perl Weekly Challenge – 033</strong></a> by <strong>Javier Luque</strong></p>
-
 <p>(7) <a href="http://blogs.perl.org/users/laurent_r/2019/11/perl-weekly-challenge-33-count-letters-and-multiplication-tables.html"><strong>Perl Weekly Challenge 33: Count letters and Multiplication Tables</strong></a> by <strong>Laurent Rosenfeld</strong></p>
-
 <p>(8) <a href="https://blog.firedrake.org/archive/2019/11/Perl_Weekly_Challenge_33.html"><strong>RogerBW&rsquo;s Blog: Perl Weekly Challenge 33</strong></a> by <strong>Roger Bell_West</strong></p>
-
-<hr />
+<hr>
 
                 </div>
             </div>

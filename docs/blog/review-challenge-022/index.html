@@ -16,7 +16,7 @@
 
     <meta name="description" content="Kian-Meng Ang Weekly Review: Challenge - #022.">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.55.0-DEV" />
+    <meta name="generator" content="Hugo 0.66.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -149,55 +149,31 @@
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
-                    
-
-<hr />
-
+                    <hr>
 <p>Continues from <a href="/blog/review-challenge-021/">previous week</a>.</p>
-
 <p>Feel free to <a href="https://github.com/manwar/perlweeklychallenge">submit a merge request or open a ticket</a> if you found any issues with this post. We highly appreciate and welcome your feedback.</p>
-
 <p>For a quick overview, go through the <a href="/blog/perl-weekly-challenge-022/">original tasks</a> and <a href="/blog/recap-challenge-022/">recap</a> of the weekly challenge.</p>
-
-<hr />
-
+<hr>
 <h3 id="task-1">Task #1</h3>
-
-<hr />
-
+<hr>
 <p><strong>CPAN</strong> modules used: <a href="https://metacpan.org/pod/Const::Fast"><code>Const::Fast</code></a>, <a href="https://metacpan.org/pod/Function::Parameters"><code>Function::Parameters</code></a>, <a href="https://metacpan.org/pod/LWP::UserAgent"><code>LWP::UserAgent</code></a>, <a href="https://metacpan.org/pod/List::Util"><code>List::Util</code></a>, <a href="https://metacpan.org/pod/Math::Primality"><code>Math::Primality</code></a>, <a href="https://metacpan.org/pod/Math::Prime::Util"><code>Math::Prime::Util</code></a>, <a href="https://metacpan.org/pod/Memoize"><code>Memoize</code></a>, <a href="https://metacpan.org/pod/Modern::Perl"><code>Modern::Perl</code></a>, <a href="https://metacpan.org/pod/autodie"><code>autodie</code></a>, <a href="https://metacpan.org/pod/boolean"><code>boolean</code></a>, <a href="https://metacpan.org/pod/constant"><code>constant</code></a>, <a href="https://metacpan.org/pod/feature"><code>feature</code></a>, <a href="https://metacpan.org/pod/lib"><code>lib</code></a>, <a href="https://metacpan.org/pod/strict"><code>strict</code></a>, <a href="https://metacpan.org/pod/utf8"><code>utf8</code></a>, <a href="https://metacpan.org/pod/warnings"><code>warnings</code></a></p>
-
 <p>We have yet another question related to <a href="https://en.wikipedia.org/wiki/Prime_number">prime number</a>, therefore most participants will reuse back their solution from previous challenge. For this time, we need to generate a series of <a href="https://en.wikipedia.org/wiki/Sexy_prime">sexy primes</a>.</p>
-
 <p>Two common approaches used by particpants to generate the series either through addition or subtraction of difference of 6 between two prime numbers.</p>
-
 <p>Participants whose solution belongs to the former group were <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-022/duane-powell/perl5/ch-1.pl">Duane Powell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-022/athanasius/perl5/ch-1.pl">Athanasius</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-022/daniel-mantovani/perl5/ch-1.pl">Daniel Mantovani</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-022/laurent-rosenfeld/perl5/ch-1.pl">Laurent Rosenfeld</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-022/jaldhar-h-vyas/perl5/ch-1.pl">Jaldhar H Vyas</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-022/roger-bell-west/perl5/ch-1.pl">Roger Bell West</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-022/guillermo-ramos/perl5/ch-1.pl">Guillermo Ramos</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-022/kian-meng-ang/perl5/ch-1.pl">Kian Meng Ang</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-022/randy-lauen/perl5/ch-1.pl">Randy Lauen</a></p>
-
 <p>For the later group, see the solution by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-022/adam-russell/perl5/ch-1.pl">Adam Russell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-022/ruben-westerberg/perl5/ch-1.pl">Ruben Westerberg</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-022/yet-ebreo/perl5/ch-1.pl">Yet Ebreo</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-022/duncan-c-white/perl5/ch-1.pl">Duncan C White</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-022/steven-wilson/perl5/ch-1.pl">Steven Wilson</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-022/andrezgz/perl5/ch-1.pl">Andrezgz</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-022/e-choroba/perl5/ch-1.pl">E. Choroba</a>, and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-022/joelle-maslak/perl5/ch-1.pl">Joelle Maslak</a></p>
-
 <p>One quick way we learned about checking for primality as discovered by <strong>Daniel Mantovani</strong> was to use <a href="https://iluxonchik.github.io/regular-expression-check-if-number-is-prime/">regex</a> as<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-022/daniel-mantovani/perl5/ch-1.pl">shown</a> below.</p>
-
 <pre><code>sub is_prime {
     return ( 7 x shift ) !~ /^(77+)\1+$/;
 }
 </code></pre>
-
-<p>For those who use <a href="https://metacpan.org/pod/Math::Prime::Util"><code>Math::Prime::Util</code></a>, <strong>CPAN</strong> module, <strong>Randy Lauen</strong> <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-022/randy-lauen/perl5/ch-1.pl">demonstrated</a> a better way to use the <strong>CPAN</strong> correctly and effectively through built-in iterator function. Similar but without use of any <strong>CPAN</strong> modules, see <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-022/e-choroba/perl5/ch-1.pl"><strong>E Choroba</strong>&rsquo;s</a> solution.</p>
-
+<p>For those who use <a href="https://metacpan.org/pod/Math::Prime::Util"><code>Math::Prime::Util</code></a>, <strong>CPAN</strong> module, <strong>Randy Lauen</strong> <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-022/randy-lauen/perl5/ch-1.pl">demonstrated</a> a better way to use the <strong>CPAN</strong> correctly and effectively through built-in iterator function. Similar but without use of any <strong>CPAN</strong> modules, see <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-022/e-choroba/perl5/ch-1.pl"><strong>E Choroba</strong>&lsquo;s</a> solution.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-022/yet-ebreo/perl5/ch-1.pl">Yet Ebreo</a> decided to upheld the Perl way of writing obfuscated code by shorten his code into two lines.</p>
-
-<hr />
-
+<hr>
 <h3 id="task-2">Task #2</h3>
-
-<hr />
-
+<hr>
 <p><strong>CPAN</strong> modules used: <a href="https://metacpan.org/pod/Const::Fast"><code>Const::Fast</code></a>, <a href="https://metacpan.org/pod/Data::Dumper"><code>Data::Dumper</code></a>, <a href="https://metacpan.org/pod/English"><code>English</code></a>, <a href="https://metacpan.org/pod/Getopt::Long"><code>Getopt::Long</code></a>, <a href="https://metacpan.org/pod/List::Util"><code>List::Util</code></a>, <a href="https://metacpan.org/pod/Modern::Perl"><code>Modern::Perl</code></a>, <a href="https://metacpan.org/pod/Moose"><code>Moose</code></a>, <a href="https://metacpan.org/pod/Test"><code>Test</code></a>, <a href="https://metacpan.org/pod/Test::More"><code>Test::More</code></a>, <a href="https://metacpan.org/pod/autodie"><code>autodie</code></a>, <a href="https://metacpan.org/pod/bignum"><code>bignum</code></a>, <a href="https://metacpan.org/pod/bytes"><code>bytes</code></a>, <a href="https://metacpan.org/pod/constant"><code>constant</code></a>, <a href="https://metacpan.org/pod/feature"><code>feature</code></a>, <a href="https://metacpan.org/pod/lib"><code>lib</code></a>, <a href="https://metacpan.org/pod/strict"><code>strict</code></a>, <a href="https://metacpan.org/pod/warnings"><code>warnings</code></a></p>
-
-<p>For those who don&rsquo;t know <a href="https://en.wikipedia.org/wiki/Lempel%E2%80%93Ziv%E2%80%93Welch">how LZW compression works</a>, you can start with <strong>Duane Powell</strong>&rsquo;s <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-022/duane-powell/perl5/ch-2.pl">solution</a>. It&rsquo;s well commented and structured. If you prefer more concise but still readable code, look into <strong>E. Choroba</strong>&rsquo;s <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-022/e-choroba/perl5/ch-2.pl">solution</a>. <strong>Laurent Rosenfeld</strong> <a href="http://blogs.perl.org/users/laurent_r/2019/08/perl-weekly-challenge-22-sexy-prime-pairs-and-compression-algorithm.html">wrote a good post</a> on this task as well.</p>
-
+<p>For those who don&rsquo;t know <a href="https://en.wikipedia.org/wiki/Lempel%E2%80%93Ziv%E2%80%93Welch">how LZW compression works</a>, you can start with <strong>Duane Powell</strong>&lsquo;s <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-022/duane-powell/perl5/ch-2.pl">solution</a>. It&rsquo;s well commented and structured. If you prefer more concise but still readable code, look into <strong>E. Choroba</strong>&lsquo;s <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-022/e-choroba/perl5/ch-2.pl">solution</a>. <strong>Laurent Rosenfeld</strong> <a href="http://blogs.perl.org/users/laurent_r/2019/08/perl-weekly-challenge-22-sexy-prime-pairs-and-compression-algorithm.html">wrote a good post</a> on this task as well.</p>
 <p>Again, <strong>Randy Lauen</strong> <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-022/randy-lauen/perl5/ch-2.pl">surprised us</a> with the extra effort of writing test case to verify his solution in a nicely formatted layout.</p>
-
 <pre><code>$ wget http://corpus.canterbury.ac.nz/resources/cantrbry.tar.gz
 $ tar zxvf cantrbry.tar.gz
 $ perl test-lzw.pl .
@@ -221,37 +197,21 @@ $ perl test-lzw.pl .
 | xargs.1         | 4227    | 3584       | 84.8%  |
 +-----------------+---------+------------+--------+
 </code></pre>
-
 <p><strong>Joelle Maslak</strong> submitted probably the most comprehensive <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-022/joelle-maslak/perl5/ch-2.pl">solution</a> for this task at bit-level (likewise for <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-022/guillermo-ramos/perl5/ch-2.pl">Guillermo Ramos</a>).</p>
-
-<hr />
-
+<hr>
 <h3 id="task-3">Task #3</h3>
-
-<hr />
-
+<hr>
 <p><strong>CPAN</strong> modules used: None</p>
-
 <p>There was none submission for this challenge. Again, for those who haven&rsquo;t try this task before, do give it a shot.</p>
-
-<hr />
-
+<hr>
 <h3 id="see-also">SEE ALSO</h3>
-
-<hr />
-
+<hr>
 <p>(1) <a href="https://perl6.eu/prime-lzw.html">Sexy Primes, LZW and Perl 6</a> by <strong>Arne Sommer</strong></p>
-
 <p>(2) <a href="https://engineering.purdue.edu/~mark/pwc-022-1.pdf">Perl Weekly Challenge - 022, Task #1</a> by <strong>Mark Senn</strong></p>
-
 <p>(3) <a href="https://adamcrussell.livejournal.com/7521.html">Perl Weekly Challenge 022</a> by <strong>Adam Russell</strong></p>
-
 <p>(4) <a href="http://blogs.perl.org/users/laurent_r/2019/08/perl-weekly-challenge-22-sexy-prime-pairs-and-compression-algorithm.html">Perl Weekly Challenge # 22: Sexy Prime Pairs and Compression Algorithm</a> by <strong>Laurent Rosenfeld</strong></p>
-
 <p>(5) <a href="https://www.braincells.com/perl/2019/08/perl_weekly_challenge_week_22.html">Perl Weekly Challenge: Week 22</a> by <strong>Jaldhar H Vyas</strong></p>
-
 <p>(6) <a href="https://blog.firedrake.org/archive/2019/08/Perl_Weekly_Challenge_22.html">RogerBW&rsquo;s Blog: Perl Weekly Challenge 22</a> by <strong>Roger Bell West</strong></p>
-
 <p>(7) <a href="http://blogs.perl.org/users/yet_ebreo/2019/08/perl-weekly-challenge-w022.html">Perl Weekly Challenge W022 - Sexy Primes</a> by <strong>Yet Ebreo</strong></p>
 
                 </div>

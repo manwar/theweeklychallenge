@@ -16,7 +16,7 @@
 
     <meta name="description" content="Laurent Rosenfeld Weekly Review: Challenge - #017.">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.55.0-DEV" />
+    <meta name="generator" content="Hugo 0.66.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -149,27 +149,16 @@
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
-                    
-
-<hr />
-
+                    <hr>
 <h1 id="raku-solutions-weekly-review">Raku Solutions Weekly Review</h1>
-
-<hr />
-
+<hr>
 <h2 id="task-1-parsing-urls-with-a-perl-6-grammar">Task #1: Parsing URLs With a Perl 6 Grammar</h2>
-
 <p>This is derived from my <a href="http://blogs.perl.org/users/laurent_r/2019/07/-perl-weekly-challenge.html">blog post</a> made in answer to the <a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-017/">Week 17 of the Perl Weekly Challenge</a> organized by  <a href="http://blogs.perl.org/users/mohammad_s_anwar/">Mohammad S. Anwar</a> as well as answers made by others to the same challenge.</p>
-
 <p>The challenge reads as follows:</p>
-
 <p><em>Create a script to parse URL and print the components of URL. According to Wiki page, the URL syntax is as below:</em></p>
-
 <pre><code>scheme:[//[userinfo@]host[:port]]path[?query][#fragment]
 </code></pre>
-
 <p><em>For example: jdbc:mysql://user:password@localhost:3306/pwc?profile=true#h1</em></p>
-
 <pre><code>scheme:   jdbc:mysql
 userinfo: user:password
 host:     localhost
@@ -178,37 +167,24 @@ path:     /pwc
 query:    profile=true
 fragment: h1
 </code></pre>
-
 <h2 id="my-solution">My Solution</h2>
-
 <p>It is quite possible to use regexes to solve this challenge (and that&rsquo;s what I did for my solution in Perl 5), but, in my humble opinion, the right way to parse a URL is of course to write a grammar, and this is great fun in Perl 6.</p>
-
 <p>I can&rsquo;t explain  in detail how this works (as this would take many pages), but let me try to give an idea. First, we define a grammar, with a number of rules, regexes, or tokens. When we use a grammar with the <code>parse</code> method on a string, the parse method calls by default the TOP rule (or token) and tries to match this rule:</p>
-
 <pre><code>rule TOP {
     &lt;scheme&gt; '//' &lt;authority&gt;? &lt;path&gt; [ '?' &lt;query&gt; ]? &lt;fragment&gt;?
 }
 </code></pre>
-
 <p>This rules looks for a <code>&lt;scheme&gt;</code> component, followed by <code>//</code>, followed by an optional <code>&lt;authority&gt;</code> component, followed by a <code>&lt;path&gt;</code>component, etc. A <code>&lt;scheme&gt;</code> component is defined by the <code>scheme</code> token:</p>
-
 <pre><code>token scheme { \w+ [ ':' \w+]? ':'}
 </code></pre>
-
 <p>which is composed of a group of alphanumerical characters, followed by an optional colon and another group of alphanumerical characters, and ending with a colon.</p>
-
 <p>Similarly, the optional <code>&lt;authority&gt;</code> component, if it exists, is defined by the <code>authority</code> token:</p>
-
 <pre><code>token authority { [&lt;userinfo&gt; '@']? &lt;host&gt; [':' &lt;port&gt;]? }
 </code></pre>
-
 <p>An <code>authority</code> component is itself composed of an optional <code>&lt;userinfo&gt;</code>and <code>@</code>, followed by a <code>&lt;host&gt;</code>, followed by an optional colon and a <code>&lt;port&gt;</code>. As you probably guessed by now, these three sub-components will be defined in other tokens, and so on.</p>
-
 <p>In the end, if the string is successfully parsed, the result is stored into the <code>$/</code> match object. We can then lookup for the various components with a hash-like syntax on the match object. So for example, the <code>&lt;scheme&gt;</code> component can be found in <code>$/&lt;scheme&gt;</code> or, in the code below, in <code>$match&lt;scheme&gt;</code>, since I assigned the parse result (the match object) to the <code>$match</code> variable.</p>
-
 <p>Now the full code of the program:</p>
-
-<pre><code class="language-Perl6">use v6;
+<pre><code class="language-Perl6" data-lang="Perl6">use v6;
 # use Grammar::Tracer;
 
 grammar URL {
@@ -264,10 +240,7 @@ for ('jdbc:mysql://user:password@localhost:3306/pwc?profile=true#h1',
         say &quot;Not matched $url-string&quot;;
     }
 }
-</code></pre>
-
-<p>And this is the output with our five test URLs:</p>
-
+</code></pre><p>And this is the output with our five test URLs:</p>
 <pre><code>$ perl6  parse_url.p6
 Matched jdbc:mysql://user:password@localhost:3306/pwc?profile=true#h1:
     scheme         :         jdbc:mysql:
@@ -295,16 +268,11 @@ Matched https://metacpan.org/pod/Test::More:
     host           :         metacpan.org
     path           :         /pod/Test::More
 </code></pre>
-
 <p>Undoubtedly, many more tests would be needed, as URLs can take many forms and we tested only a few cases.</p>
-
 <h2 id="alternative-solutions">Alternative Solutions</h2>
-
 <p>Since most solutions used regexes or grammars to perform the bulk of the work, it seems interesting to quote these grammars (except when they are too long) to provide a ground for comparisons.</p>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/arne-sommer/perl6/ch-2.p6">Arne Sommer</a> used a regex to parse URLs:</p>
-
-<pre><code class="language-Perl6">if $url ~~
+<pre><code class="language-Perl6" data-lang="Perl6">if $url ~~
   /^
     (&lt;[a..z]&gt;&lt;[a..z 0..9 + . : \-]&gt;*)\: # $0 scheme
     [\/\/                               # //
@@ -318,23 +286,16 @@ Matched https://metacpan.org/pod/Test::More:
     [\#(.*)]?                           # $7 fragment (optional)
   $/
 { # ...
-</code></pre>
-
-<p>Note that I almost missed that Arne also wrote a <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/arne-sommer/perl6/url-parse-grammar">grammar-based solution</a>.</p>
-
+</code></pre><p>Note that I almost missed that Arne also wrote a <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/arne-sommer/perl6/url-parse-grammar">grammar-based solution</a>.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/noud/perl6/ch-2.p6">Noud</a> also used a regex to parse the input. I can&rsquo;t resist showing his very compact <code>parse</code> subroutine:</p>
-
-<pre><code class="language-Perl6">sub parse($url) {
+<pre><code class="language-Perl6" data-lang="Perl6">sub parse($url) {
     my @keys = &lt;scheme userinfo host port path query fragment&gt;;
     my $reg = / (\w+\:\w+)\:\/\/(\w+\:.+)\@(\w+)\:(\d+)(\/\w+)\?(.+)\#(\w+)$ /;
 
     return Hash.new(@keys Z ($url ~~ $reg).values);
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/fjwhittle/perl6/ch-2.p6">Francis J. Whittle</a> created a full-fledged OOP program with three classes: <code>URL</code>, <code>URL::UserInfo</code>, and <code>A::URLish</code>.  Parsing itself is done with the <code>G::URLish</code> grammar:</p>
-
-<pre><code class="language-Perl6">grammar G::URLish {
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/fjwhittle/perl6/ch-2.p6">Francis J. Whittle</a> created a full-fledged OOP program with three classes: <code>URL</code>, <code>URL::UserInfo</code>, and <code>A::URLish</code>.  Parsing itself is done with the <code>G::URLish</code> grammar:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">grammar G::URLish {
   regex TOP {
     ^ &lt;scheme&gt; &lt; : :// &gt;
     &lt;userinfo&gt;?
@@ -367,13 +328,9 @@ Matched https://metacpan.org/pod/Test::More:
   token national        { &lt;[{ } | \[ \] \\ ^ ~]&gt;                                     }
   token punctuation     { &lt;[&lt; &gt;]&gt;                                                    }
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/kevin-colyer/perl6/ch-2.p6">Kevin Colyer</a> created a <code>URL</code> grammar to parse the input. Kevin also wrote a voluminous test suite. And he used an actions class with a <code>TOP</code> method to populate a hash with the various components of the URL.</p>
-
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/kevin-colyer/perl6/ch-2.p6">Kevin Colyer</a> created a <code>URL</code> grammar to parse the input. Kevin also wrote a voluminous test suite. And he used an actions class with a <code>TOP</code> method to populate a hash with the various components of the URL.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/ozzy/perl6/ch-2.p6">Ozzy</a> used a quite concise grammar:</p>
-
-<pre><code class="language-Perl6">grammar G {
+<pre><code class="language-Perl6" data-lang="Perl6">grammar G {
     regex TOP { ^ &lt;scheme&gt; ':' ['//' &lt;authority&gt;]? &lt;path&gt; ['?' &lt;query&gt;]? ['#' &lt;fragment&gt;]? $ }
     token scheme    { &lt;+alpha-[_]&gt; &lt;[\w \+ \. \-]&gt;+          }
     token authority { [&lt;userinfo&gt; '@']? &lt;host&gt; [':' &lt;port&gt;]? }
@@ -386,11 +343,8 @@ Matched https://metacpan.org/pod/Test::More:
     token query     { &lt;[=\w]&gt;+      }
     token fragment  { \w+           }
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/feng-chang/perl6/ch-2.p6">Feng Chang</a> also created a <code>URL</code> grammar:</p>
-
-<pre><code class="language-perl6">grammar URL {
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/feng-chang/perl6/ch-2.p6">Feng Chang</a> also created a <code>URL</code> grammar:</p>
+<pre><code class="language-perl6" data-lang="perl6">grammar URL {
     token TOP { ^
         &lt;scheme&gt; ':'
         [ '//'
@@ -417,11 +371,8 @@ Matched https://metacpan.org/pod/Test::More:
     token     fragment { &lt;id&gt; }
     token           id { &lt;[a..zA..Z]&gt; &lt;[-+.a..zA..Z0..9]&gt;* }
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/jaldhar-h-vyas/perl6/ch-2.p6">Jaldhar H. Vyas</a> also created a <code>URL</code> grammar:</p>
-
-<pre><code class="language-Perl6">grammar URL {
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/jaldhar-h-vyas/perl6/ch-2.p6">Jaldhar H. Vyas</a> also created a <code>URL</code> grammar:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">grammar URL {
     token TOP {
         &lt;Scheme&gt; ':'
         [
@@ -451,13 +402,9 @@ Matched https://metacpan.org/pod/Test::More:
     token Unreserved { &lt;[ A..Z a..z 0..9 \- . _ \~ ]&gt; }
     token UserinfoChar { &lt;Unreserved&gt; | &lt;PctEncoded&gt; | &lt;SubDelim&gt; | ':' }
 }
-</code></pre>
-
-<p>Jaldhar used an actions class with one method to display each of the URL components.</p>
-
+</code></pre><p>Jaldhar used an actions class with one method to display each of the URL components.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/joelle-maslak/perl6/ch-2.p6">Joelle Maslak</a> also defined a <code>URL</code> grammar. I like the way she used character class &ldquo;subtractions&rdquo; to define several of her tokens (for example <code>username</code>, <code>password</code>, etc.), leading to a fairly concise grammar:</p>
-
-<pre><code class="language-Perl6">grammar URL {
+<pre><code class="language-Perl6" data-lang="Perl6">grammar URL {
     token TOP      {
         ^ &lt;scheme&gt; ':'
         [
@@ -478,11 +425,8 @@ Matched https://metacpan.org/pod/Test::More:
     token query    { &lt;[ \S ] - [ \# ]&gt;* }
     token fragment { \S* }
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/ruben-westerberg/perl6/ch-2.p6">Ruben Westerberg</a> defined a relatively compact <code>URI</code> grammar:</p>
-
-<pre><code class="language-Perl6">grammar URI {
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/ruben-westerberg/perl6/ch-2.p6">Ruben Westerberg</a> defined a relatively compact <code>URI</code> grammar:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">grammar URI {
     token TOP {&lt;scheme&gt;\:&lt;authority&gt;?&lt;path&gt;[\?&lt;query&gt;]?[\#&lt;fragment&gt;]?};##|&lt;authority&gt;};
     token scheme { :i(&lt;alpha&gt;[&lt;[\-\.\+] + alnum&gt;]*)};
     token path { (\/[&lt;alnum&gt;\/?]*)+};
@@ -497,22 +441,13 @@ Matched https://metacpan.org/pod/Test::More:
     token qval {&lt;alnum&gt;+};
     token fragment { (&lt;alnum&gt;+)};
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/athanasius/perl6/ch-2.p6">Athanasius</a> took a very different path compared to other challengers and used a Perl 5 module from the CPAN: <code>URI::Split</code>. He otherwise used regexes for validating components presumably not properly checked by the module (scheme and authority).</p>
-
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/athanasius/perl6/ch-2.p6">Athanasius</a> took a very different path compared to other challengers and used a Perl 5 module from the CPAN: <code>URI::Split</code>. He otherwise used regexes for validating components presumably not properly checked by the module (scheme and authority).</p>
 <h2 id="see-also">SEE ALSO</h2>
-
 <p>Only two blogs this time:</p>
-
 <p>Arne Sommer: <a href="https://perl6.eu/ackerman-url.html">https://perl6.eu/ackerman-url.html</a></p>
-
 <p>Jaldar H. Vyas: <a href="https://www.braincells.com/perl/2019/07/perl_weekly_challenge_week_17.html">https://www.braincells.com/perl/2019/07/perl_weekly_challenge_week_17.html</a></p>
-
 <h2 id="wrapping-up">Wrapping up</h2>
-
 <p>Please let me know if I forgot any of the challengers or if you think my explanation of your code misses something important.</p>
-
 <p>If you want to participate to the Perl Weekly Challenge, please connect to <a href="https://perlweeklychallenge.org/">this site</a>.</p>
 
                 </div>

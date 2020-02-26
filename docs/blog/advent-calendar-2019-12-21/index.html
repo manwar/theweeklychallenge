@@ -16,7 +16,7 @@
 
     <meta name="description" content="Advent Calendar - December 21, 2019">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.55.0-DEV" />
+    <meta name="generator" content="Hugo 0.66.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -149,72 +149,60 @@
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
-                    
-
-<p><a href="/blog/advent-calendar-2019"><strong>Advent Calendar 2019</strong></a></p>
-
-<hr />
-
-<p>The gift is presented by <strong>Gustavo Chaves</strong>. Today he is talking about his solutions to <strong>Task #1: Base35 Representation</strong> of <a href="/blog/perl-weekly-challenge-002"><strong>&ldquo;The Weekly Challenge - 002&rdquo;</strong></a>.</p>
-
+                    <p><a href="/blog/advent-calendar-2019"><strong>Advent Calendar 2019</strong></a></p>
+<hr>
+<p>The gift is presented by <strong>Gustavo Chaves**. Today he is talking about his solutions to <strong>Task #1: Base35 Representation** of </strong>&ldquo;The Weekly Challenge - 002&rdquo;</strong><a href="/blog/perl-weekly-challenge-002"></a>.</p>
 <h4 id="write-a-script-that-can-convert-numbers-to-and-from-a-base35-representation-using-the-characters-0-9-and-a-y">Write a script that can convert numbers to and from a base35 representation, using the characters 0-9 and A-Y.</h4>
-
-<hr />
-
+<hr>
 <p>I cannot do it as a <strong>one-liner</strong> this time, but it was still fun. While trying to solve it I realized that it wouldn&rsquo;t be much harder to implement a general solution to convert from any base to any base between <strong>2</strong> and <strong>36</strong>.</p>
-
 <p>This is my solution:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
 
-<pre><code class="language-perl">#!/usr/bin/env perl
+<span style="color:#66d9ef">use</span> <span style="color:#ae81ff">5.026</span>;
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> integer;
+<span style="color:#66d9ef">use</span> warnings;
 
-use 5.026;
-use strict;
-use integer;
-use warnings;
+<span style="color:#66d9ef">my</span> $usage <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Usage: $0 FROM_BASE TO_BASE NUMBER\n\nError&#34;</span>;
 
-my $usage = &quot;Usage: $0 FROM_BASE TO_BASE NUMBER\n\nError&quot;;
+die <span style="color:#e6db74">&#34;$usage: invalid number of arguments\n&#34;</span>
+    <span style="color:#66d9ef">unless</span> @ARGV <span style="color:#f92672">==</span> <span style="color:#ae81ff">3</span>;
 
-die &quot;$usage: invalid number of arguments\n&quot;
-    unless @ARGV == 3;
+<span style="color:#66d9ef">my</span> @digits <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#39;0&#39;</span> <span style="color:#f92672">..</span> <span style="color:#e6db74">&#39;9&#39;</span>, <span style="color:#e6db74">&#39;A&#39;</span> <span style="color:#f92672">..</span> <span style="color:#e6db74">&#39;Z&#39;</span>);
+<span style="color:#66d9ef">my</span> %digits <span style="color:#f92672">=</span> map {$digits[$_] <span style="color:#f92672">=&gt;</span> $_} <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> @digits<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
 
-my @digits = ('0' .. '9', 'A' .. 'Z');
-my %digits = map {$digits[$_] =&gt; $_} 0 .. @digits-1;
+<span style="color:#66d9ef">my</span> ($from_base, $to_base, $number) <span style="color:#f92672">=</span> @ARGV;
 
-my ($from_base, $to_base, $number) = @ARGV;
+die <span style="color:#e6db74">&#34;$usage: FROM_BASE must be between 2 and @digits\n&#34;</span>
+    <span style="color:#66d9ef">if</span> $from_base <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">||</span> $from_base <span style="color:#f92672">&gt;</span> @digits;
 
-die &quot;$usage: FROM_BASE must be between 2 and @digits\n&quot;
-    if $from_base &lt; 2 || $from_base &gt; @digits;
+die <span style="color:#e6db74">&#34;$usage: TO_BASE must be between 2 and @digits\n&#34;</span>
+    <span style="color:#66d9ef">if</span> $to_base <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">||</span> $to_base <span style="color:#f92672">&gt;</span> @digits;
 
-die &quot;$usage: TO_BASE must be between 2 and @digits\n&quot;
-    if $to_base &lt; 2 || $to_base &gt; @digits;
-
-sub from_base {
-    my ($base, $string) = @_;
-    my $n = 0;
-    $string =~ s/^0+//;
-    foreach my $char (reverse split //, $string) {
-        die &quot;$usage: Invalid char in NUMBER: '$char'\n&quot;
-            if $digits{$char} &gt;= $base;
-        $n *= $base;
-        $n += $digits{$char};
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">from_base</span> {
+    <span style="color:#66d9ef">my</span> ($base, $string) <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    $string <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/^0+//</span>;
+    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $char (reverse split <span style="color:#e6db74">//</span>, $string) {
+        die <span style="color:#e6db74">&#34;$usage: Invalid char in NUMBER: &#39;$char&#39;\n&#34;</span>
+            <span style="color:#66d9ef">if</span> $digits{$char} <span style="color:#f92672">&gt;=</span> $base;
+        $n <span style="color:#f92672">*=</span> $base;
+        $n <span style="color:#f92672">+=</span> $digits{$char};
     }
-    return $n;
+    <span style="color:#66d9ef">return</span> $n;
 }
 
-sub to_base {
-    my ($base, $n) = @_;
-    my $string = '';
-    for (my $i = $n; $i; $i /= $base) {
-        $string .= $digits[$i % $base];
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">to_base</span> {
+    <span style="color:#66d9ef">my</span> ($base, $n) <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">my</span> $string <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> $n; $i; $i <span style="color:#f92672">/=</span> $base) {
+        $string <span style="color:#f92672">.=</span> $digits[$i % <span style="color:#960050;background-color:#1e0010">$</span>base];
     }
-    return length $string ? reverse $string : '0';
+    <span style="color:#66d9ef">return</span> length $string ? reverse $string : <span style="color:#e6db74">&#39;0&#39;</span>;
 }
 
 say to_base($to_base, from_base($from_base, $number));
-</code></pre>
-
-<p>And this is how it works:</p>
-
+</code></pre></div><p>And this is how it works:</p>
 <pre><code>$ ./ch-1.pl 35 10 GUSTAVO
 61183826754
 
@@ -236,11 +224,8 @@ $ ./ch-1.pl 3 2 12112022222001210211021
 $ ./ch-1.pl 2 36 000100101011101100011101010110010011
 GUSTAVO
 </code></pre>
-
-<hr />
-
+<hr>
 <p>If you have any suggestion then please do share with us <a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a>.</p>
-
 <p><a href="/blog/advent-calendar-2019"><strong>Advent Calendar 2019</strong></a></p>
 
                 </div>

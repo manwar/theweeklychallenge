@@ -16,7 +16,7 @@
 
     <meta name="description" content="Ryan Thompson › Perl Weekly Review: Challenge - #044">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.55.0-DEV" />
+    <meta name="generator" content="Hugo 0.66.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -149,687 +149,518 @@
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
-                    
-
-<p>Continues from <a href="/blog/review-challenge-043/">previous week</a>.</p>
-
+                    <p>Continues from <a href="/blog/review-challenge-043/">previous week</a>.</p>
 <p>Feel free to <a href="https://github.com/manwar/perlweeklychallenge">submit a merge request or open a ticket</a> if you found any issues with this post. We highly appreciate and welcome your feedback. You can also <a href="http://ry.ca/contact">contact me (Ryan) directly</a>, with any feedback on this review.</p>
-
 <p>For a quick overview, go through the <a href="/blog/perl-weekly-challenge-044/">original tasks</a> and <a href="/blog/recap-challenge-044/">recap</a> of the weekly challenge.</p>
-
 <p>Additional feedback to our Perl Weekly Challenge’s <a href="https://twitter.com/perlwchallenge?lang=en">Twitter account</a> is much appreciated.</p>
-
-<h1 id="task-1-only-100-please">Task #1 - Only 100, Please!</h1>
-
+<h1 id="task-1---only-100-please">Task #1 - Only 100, Please!</h1>
 <p><em>You are given a string “123456789”. Write a script that would insert ”+” or ”-” in between digits so that when you evaluate, the result should be 100.</em></p>
-
 <p>There are either eleven or twelve possible expressions that equal 100:</p>
-
 <pre><code>100 == +1+2+3-4+5+6+78+9    100 == +12+3-4+5+67+8+9
 100 == +1+2+34-5+67-8+9     100 == +12-3-4+5-6+7+89
 100 == +1+23-4+5+6+78-9     100 == +123+4-5+67-89
 100 == +1+23-4+56+7+8+9     100 == +123-4-5-6-7+8-9
 100 == -1+2-3+4+5+6+78+9    100 == +123+45-67+8-9
 100 == +12+3+4+5-6-7+89     100 == +123-45-67+89
-</code></pre>
-
-<p>The description says, &ldquo;in between digits,&rdquo; though, so the canonical answer is probably eleven expressions. A few people (including me) probably knew this but opted to allow a leading negative anyway.</p>
-
+</code></pre><p>The description says, &ldquo;in between digits,&rdquo; though, so the canonical answer is probably eleven expressions. A few people (including me) probably knew this but opted to allow a leading negative anyway.</p>
 <p>Some other solutions chose to allow for more operators than just + or -. This greatly expands the search space, but produces some interesting results.</p>
-
 <p>Without further ado, here are the submissions:</p>
-
 <h2 id="adam-russell">Adam Russell</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/adam-russell/perl/ch-1.pl">Adam&rsquo;s solution</a> uses <a href="https://metacpan.org/pod/AI::Genetic">AI::Genetic</a> to solve this problem with, yes, you read that right: a genetic algorithm (GA). <code>AI::Genetic</code> is pure-perl with no non-core dependencies, so if you are looking for a way to dip your toe into GAs, this might be a place to start.</p>
-
 <p>Here&rsquo;s a look at Adam&rsquo;s fitness function:</p>
-
-<pre><code class="language-perl">sub fitness{
-    my($genes) = @_;
-    my $s = NUMBERS;
-    my $total = 0;
-    my @operands = ($total);
-    for my $gene (@{$genes}){
-        if(my($i) = $gene-&gt;() =~ m/get_([1-4])/){
-            return (-1 * NUMBERS) if(@operands == 2);
-            return (-1 * NUMBERS) if(length($s) &lt; $i);
-            push @operands, $gene-&gt;($s);
-            $s = substr($s, $i);
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">fitness</span>{
+    <span style="color:#66d9ef">my</span>($genes) <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">my</span> $s <span style="color:#f92672">=</span> NUMBERS;
+    <span style="color:#66d9ef">my</span> $total <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">my</span> @operands <span style="color:#f92672">=</span> ($total);
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $gene (@{$genes}){
+        <span style="color:#66d9ef">if</span>(<span style="color:#66d9ef">my</span>($i) <span style="color:#f92672">=</span> $gene<span style="color:#f92672">-&gt;</span>() <span style="color:#f92672">=~</span> <span style="color:#e6db74">m/get_([1-4])/</span>){
+            <span style="color:#66d9ef">return</span> (<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">*</span> NUMBERS) <span style="color:#66d9ef">if</span>(@operands <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span>);
+            <span style="color:#66d9ef">return</span> (<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">*</span> NUMBERS) <span style="color:#66d9ef">if</span>(length($s) <span style="color:#f92672">&lt;</span> $i);
+            push @operands, $gene<span style="color:#f92672">-&gt;</span>($s);
+            $s <span style="color:#f92672">=</span> substr($s, $i);
         }
-        if($gene-&gt;() =~ m/add/){
-            return (-1 * NUMBERS) if(@operands != 2);
-            $total = add(@operands);
-            @operands = ($total);
+        <span style="color:#66d9ef">if</span>($gene<span style="color:#f92672">-&gt;</span>() <span style="color:#f92672">=~</span> <span style="color:#e6db74">m/add/</span>){
+            <span style="color:#66d9ef">return</span> (<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">*</span> NUMBERS) <span style="color:#66d9ef">if</span>(@operands <span style="color:#f92672">!=</span> <span style="color:#ae81ff">2</span>);
+            $total <span style="color:#f92672">=</span> add(@operands);
+            @operands <span style="color:#f92672">=</span> ($total);
         }
-        if($gene-&gt;() =~ m/subtract/){
-            return (-1 * NUMBERS) if(@operands != 2);
-            $total = subtract(@operands);
-            @operands = ($total);
+        <span style="color:#66d9ef">if</span>($gene<span style="color:#f92672">-&gt;</span>() <span style="color:#f92672">=~</span> <span style="color:#e6db74">m/subtract/</span>){
+            <span style="color:#66d9ef">return</span> (<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">*</span> NUMBERS) <span style="color:#66d9ef">if</span>(@operands <span style="color:#f92672">!=</span> <span style="color:#ae81ff">2</span>);
+            $total <span style="color:#f92672">=</span> subtract(@operands);
+            @operands <span style="color:#f92672">=</span> ($total);
         }
     }
-    return 100 - $total if $total &gt; 100;
-    return $total - 100;
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">100</span> <span style="color:#f92672">-</span> $total <span style="color:#66d9ef">if</span> $total <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">100</span>;
+    <span style="color:#66d9ef">return</span> $total <span style="color:#f92672">-</span> <span style="color:#ae81ff">100</span>;
 }
-</code></pre>
-
-<p><a href="https://en.wikipedia.org/wiki/Genetic_algorithm">Genetic algorithms</a> are a very large topic inside the even larger topic of artificial intelligence, but essentially, this <code>fitness()</code> function returns a number based on how close the expression comes to the target value, 100. The higher the value <code>fitness()</code> returns, the more likely it is to reproduce and pass on some of its properties (genes).</p>
-
+</code></pre></div><p><a href="https://en.wikipedia.org/wiki/Genetic_algorithm">Genetic algorithms</a> are a very large topic inside the even larger topic of artificial intelligence, but essentially, this <code>fitness()</code> function returns a number based on how close the expression comes to the target value, 100. The higher the value <code>fitness()</code> returns, the more likely it is to reproduce and pass on some of its properties (genes).</p>
 <p>Thus, without needing to come up with any problem-specific algorithm, Adam&rsquo;s GA code will slowly, over many generations, inch its way toward a solution. By &ldquo;slowly,&rdquo; I mean it took 45 seconds and 1,050,000 total individuals considered, to find one solution. It&rsquo;s certainly an interesting way to solve this particular problem! I like Adam&rsquo;s outside-the-box thinking on this one (and challenge #2).</p>
-
 <p><strong>Adam&rsquo;s Blog</strong> › <a href="https://adamcrussell.livejournal.com/15036.html">Evolving more code with AI::Genetic</a></p>
-
 <h2 id="alicia-bielsa">Alicia Bielsa</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/alicia-bielsa/perl/ch-1.pl">Alicia&rsquo;s solution</a> takes a constructive approach, iteratively adding to an <code>@aResults</code> array containing numbers and operators (+ or -). Once that is done, she loops through again to calculate the result and print it, if it equals 100:</p>
-
-<pre><code class="language-perl">foreach my $matchIndex ( 0..$#aMatches ){
-    my $match = $aMatches[$matchIndex];
-    if ($match eq '+'){
-        $previousFlagSum = $currentFlagSum;
-        $currentFlagSum = 1;
-    } elsif ($match eq '-'){
-       $previousFlagSum = $currentFlagSum;
-        $currentFlagSum = 0;
-    } else {
-        $currentNumber .= $match ;
-        unless ($matchIndex == $#aMatches ){
-            next;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $matchIndex ( <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#aMatches ){
+    <span style="color:#66d9ef">my</span> $match <span style="color:#f92672">=</span> $aMatches[$matchIndex];
+    <span style="color:#66d9ef">if</span> ($match <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;+&#39;</span>){
+        $previousFlagSum <span style="color:#f92672">=</span> $currentFlagSum;
+        $currentFlagSum <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+    } <span style="color:#66d9ef">elsif</span> ($match <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;-&#39;</span>){
+       $previousFlagSum <span style="color:#f92672">=</span> $currentFlagSum;
+        $currentFlagSum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    } <span style="color:#66d9ef">else</span> {
+        $currentNumber <span style="color:#f92672">.=</span> $match ;
+        <span style="color:#66d9ef">unless</span> ($matchIndex <span style="color:#f92672">==</span> $#aMatches ){
+            <span style="color:#66d9ef">next</span>;
         }
     }
-    $previousNumber = $currentNumber ;
-    $currentNumber = 0;
+    $previousNumber <span style="color:#f92672">=</span> $currentNumber ;
+    $currentNumber <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
 
-    next unless (defined $previousFlagSum );
-    if ( $previousFlagSum  ){
-        $total += $previousNumber;
-    } else {
-        $total -= $previousNumber;
+    <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> (defined $previousFlagSum );
+    <span style="color:#66d9ef">if</span> ( $previousFlagSum  ){
+        $total <span style="color:#f92672">+=</span> $previousNumber;
+    } <span style="color:#66d9ef">else</span> {
+        $total <span style="color:#f92672">-=</span> $previousNumber;
     }
-</code></pre>
-
-<h2 id="andrezgz">Andrezgz</h2>
-
+</code></pre></div><h2 id="andrezgz">Andrezgz</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/andrezgz/perl/ch-1.pl">Andrezgz&rsquo;s solution</a> searches all 3⁸ possible ways to insert +, -, or the empty string between each digit, in a unique way:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @digits <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, <span style="color:#e6db74">&#39;123456789&#39;</span>;
+<span style="color:#66d9ef">my</span> $initial <span style="color:#f92672">=</span> shift @digits;
+<span style="color:#66d9ef">my</span> @values <span style="color:#f92672">=</span> ( <span style="color:#e6db74">&#39;&#39;</span> , <span style="color:#e6db74">&#39; + &#39;</span> , <span style="color:#e6db74">&#39; - &#39;</span> );
 
-<pre><code class="language-perl">my @digits = split //, '123456789';
-my $initial = shift @digits;
-my @values = ( '' , ' + ' , ' - ' );
-
-foreach my $n (0 .. (3**8)-1) {
-    my $equation = $initial;
-    my @combination = split //, sprintf &quot;%08d&quot;, to_base3($n);
-    $equation .= $values[ $combination[$_] ] . $digits[$_] for (0 .. @digits - 1);
-    print &quot;$equation\n&quot; if (eval $equation == 100);
+<span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $n (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> (<span style="color:#ae81ff">3</span><span style="color:#f92672">**</span><span style="color:#ae81ff">8</span>)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
+    <span style="color:#66d9ef">my</span> $equation <span style="color:#f92672">=</span> $initial;
+    <span style="color:#66d9ef">my</span> @combination <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, sprintf <span style="color:#e6db74">&#34;%08d&#34;</span>, to_base3($n);
+    $equation <span style="color:#f92672">.=</span> $values[ $combination[$_] ] <span style="color:#f92672">.</span> $digits[$_] <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> @digits <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>);
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$equation\n&#34;</span> <span style="color:#66d9ef">if</span> (eval $equation <span style="color:#f92672">==</span> <span style="color:#ae81ff">100</span>);
 }
-</code></pre>
-
-<p>Note that <code>@combination</code> is a base 3 number, and the <code>$equation</code> is built up by inserting a value from <code>@digits = ('', '+', '-')</code>:</p>
-
+</code></pre></div><p>Note that <code>@combination</code> is a base 3 number, and the <code>$equation</code> is built up by inserting a value from <code>@digits = ('', '+', '-')</code>:</p>
 <p>It&rsquo;s a clever way to think about the problem.</p>
-
 <h2 id="cheok-yin-fung">Cheok-Yin Fung</h2>
-
 <p><strong>New member</strong> <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/cheok-yin-fung/perl/ch-1.pl">Cheok-Yin Fung&rsquo;s solution</a> uses a variant of the base-3 method, using some interesting modulo arithmetic to set each &ldquo;digit&rdquo;:</p>
-
-<pre><code class="language-perl">my @poweroft = (6561,2187, 729, 243, 81, 27, 9, 3, 1);
-for my $i (1..6560) {
-    my @ooo = (0,0,0,0,0,0,0,0);    # 0 -&gt; conjuction , 1 -&gt; plus , 2 -&gt; minus
-    for my $j (0..7) {
-        $ooo[$j] = int($i % $poweroft[$j]) / int($poweroft[$j+1]) ;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @poweroft <span style="color:#f92672">=</span> (<span style="color:#ae81ff">6561</span>,<span style="color:#ae81ff">2187</span>, <span style="color:#ae81ff">729</span>, <span style="color:#ae81ff">243</span>, <span style="color:#ae81ff">81</span>, <span style="color:#ae81ff">27</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1</span>);
+<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">6560</span>) {
+    <span style="color:#66d9ef">my</span> @ooo <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>);    <span style="color:#75715e"># 0 -&gt; conjuction , 1 -&gt; plus , 2 -&gt; minus</span>
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $j (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">7</span>) {
+        $ooo[$j] <span style="color:#f92672">=</span> int($i % <span style="color:#960050;background-color:#1e0010">$</span>poweroft[$j]) <span style="color:#f92672">/</span> int($poweroft[$j<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]) ;
     }
-    ...
+    <span style="color:#f92672">...</span>
 }
-</code></pre>
-
-<p>The <code>int($i % $poweroft[$j]) / int($poweroft[$j+1])</code> expression ensures that each digit of <code>@ooo</code> will be in the range 0..2. Then, Cheok-Yin Fung assembles the result, conjoining objects when necessary:</p>
-
-<pre><code class="language-perl">    my @objects = (1,0,0,0,0,0,0,0,0);
-    my $objectindex = 0;
-    for my $j (0..7) {
-        if ($ooo[$j] == 0) {
-            $objects[$objectindex] = $objects[$objectindex]*10 + $digits[$j+1];
-        } else {$objectindex++; $objects[$objectindex] = $digits[$j+1];}
+</code></pre></div><p>The <code>int($i % $poweroft[$j]) / int($poweroft[$j+1])</code> expression ensures that each digit of <code>@ooo</code> will be in the range 0..2. Then, Cheok-Yin Fung assembles the result, conjoining objects when necessary:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> @objects <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>);
+    <span style="color:#66d9ef">my</span> $objectindex <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $j (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">7</span>) {
+        <span style="color:#66d9ef">if</span> ($ooo[$j] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+            $objects[$objectindex] <span style="color:#f92672">=</span> $objects[$objectindex]<span style="color:#f92672">*</span><span style="color:#ae81ff">10</span> <span style="color:#f92672">+</span> $digits[$j<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>];
+        } <span style="color:#66d9ef">else</span> {$objectindex<span style="color:#f92672">++</span>; $objects[$objectindex] <span style="color:#f92672">=</span> $digits[$j<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>];}
     }
 
-    my $result = $objects[0];
-    $objectindex = 0;
+    <span style="color:#66d9ef">my</span> $result <span style="color:#f92672">=</span> $objects[<span style="color:#ae81ff">0</span>];
+    $objectindex <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
 
-    for my $j (0..7) {
-        if ($ooo[$j] == 1) {$objectindex++; $result += $objects[$objectindex]; }
-        if ($ooo[$j] == 2) {$objectindex++; $result -= $objects[$objectindex]; }
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $j (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">7</span>) {
+        <span style="color:#66d9ef">if</span> ($ooo[$j] <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>) {$objectindex<span style="color:#f92672">++</span>; $result <span style="color:#f92672">+=</span> $objects[$objectindex]; }
+        <span style="color:#66d9ef">if</span> ($ooo[$j] <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span>) {$objectindex<span style="color:#f92672">++</span>; $result <span style="color:#f92672">-=</span> $objects[$objectindex]; }
     }
-</code></pre>
-
-<p>From here, they need only check if <code>$result == 100</code> and print out the expression if so. The program finds all solutions.</p>
-
+</code></pre></div><p>From here, they need only check if <code>$result == 100</code> and print out the expression if so. The program finds all solutions.</p>
 <p>Please join me in welcoming <strong>Cheok-Yin Fung</strong> to our team! If this week is any indication, they are sure to send some interesting solutions going forward.</p>
-
 <h2 id="colin-crain">Colin Crain</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/colin-crain/perl/ch-1.pl">Colin&rsquo;s solution</a> builds up the expressions in a novel way:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @list <span style="color:#f92672">=</span> ( <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">9</span> );
+<span style="color:#66d9ef">my</span> @equations <span style="color:#f92672">=</span> shift @list;
+<span style="color:#66d9ef">my</span> $idx <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
 
-<pre><code class="language-perl">my @list = ( 1..9 );
-my @equations = shift @list;
-my $idx = 0;
-
-for my $new ( @list ){
-    while (my $target = splice @equations, $idx, 1){
-        for (' + ', ' - ', ''){
-            splice @equations, $idx, 0, $target . $_ . $new;
-            $idx++;
+<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $new ( @list ){
+    <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">my</span> $target <span style="color:#f92672">=</span> splice @equations, $idx, <span style="color:#ae81ff">1</span>){
+        <span style="color:#66d9ef">for</span> (<span style="color:#e6db74">&#39; + &#39;</span>, <span style="color:#e6db74">&#39; - &#39;</span>, <span style="color:#e6db74">&#39;&#39;</span>){
+            splice @equations, $idx, <span style="color:#ae81ff">0</span>, $target <span style="color:#f92672">.</span> $_ <span style="color:#f92672">.</span> $new;
+            $idx<span style="color:#f92672">++</span>;
         }
     }
-    $idx = 0;
+    $idx <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
 }
-</code></pre>
-
-<p>The top-level loop <code>$new</code> essentially adds new digits to the expression. The middle <code>while</code> loop removes the <code>$idx</code>-th equation from <code>@equation</code>, and the inner <code>for</code> loop replaces that with three more equations, for each of the three operations: addition, subtraction, and concatenation.</p>
-
+</code></pre></div><p>The top-level loop <code>$new</code> essentially adds new digits to the expression. The middle <code>while</code> loop removes the <code>$idx</code>-th equation from <code>@equation</code>, and the inner <code>for</code> loop replaces that with three more equations, for each of the three operations: addition, subtraction, and concatenation.</p>
 <p>After this loop, <code>@equations</code> contains all 3⁸ = 6,561 possible equations, and from there it is a simple matter of <code>eval</code>-ing each one and printing out the ones that equal 100.</p>
-
 <h2 id="daniel-mantovani">Daniel Mantovani</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/daniel-mantovani/perl/ch-1.pl">Daniel&rsquo;s solution</a> does something very similar to Andrezgz&rsquo;s. His version of the <code>to_base3()</code> sub is named <code>ter()</code>, which returns a list of digits:</p>
-
-<pre><code class="language-perl">sub ter {
-  my @m;
-  my $n = shift;
-  while ($n) {
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">ter</span> {
+  <span style="color:#66d9ef">my</span> @m;
+  <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> shift;
+  <span style="color:#66d9ef">while</span> ($n) {
     push @m, $n % 3;
-    $n = int($n/3);
+    $n <span style="color:#f92672">=</span> int($n<span style="color:#f92672">/</span><span style="color:#ae81ff">3</span>);
   }
-  return @m;
+  <span style="color:#66d9ef">return</span> @m;
 }
-</code></pre>
-
-<p>The core logic is the <code>modify_string()</code> function:</p>
-
-<pre><code class="language-perl">sub modify_string {
-    my ($in, $mod) = @_;
-    my @mods = ter($mod);
-    # if @m vector has more than needed elements, return undef
-    return undef if length($in) &lt; @mods + 1;
-    my $result = '';
-    for my $d (split '', $in) {
-        # undefs at the end mean empty inter-digit appends
-        my $m = (shift @mods) // 0;
-        # just peek what to insert according to $m
-        $result .= $d . ('', ' + ', ' - ')[$m];
+</code></pre></div><p>The core logic is the <code>modify_string()</code> function:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">modify_string</span> {
+    <span style="color:#66d9ef">my</span> ($in, $mod) <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">my</span> @mods <span style="color:#f92672">=</span> ter($mod);
+    <span style="color:#75715e"># if @m vector has more than needed elements, return undef</span>
+    <span style="color:#66d9ef">return</span> undef <span style="color:#66d9ef">if</span> length($in) <span style="color:#f92672">&lt;</span> @mods <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">my</span> $result <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $d (split <span style="color:#e6db74">&#39;&#39;</span>, $in) {
+        <span style="color:#75715e"># undefs at the end mean empty inter-digit appends</span>
+        <span style="color:#66d9ef">my</span> $m <span style="color:#f92672">=</span> (shift @mods) <span style="color:#e6db74">//</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#75715e"># just peek what to insert according to $m</span>
+        $result <span style="color:#f92672">.=</span> $d <span style="color:#f92672">.</span> (<span style="color:#e6db74">&#39;&#39;</span>, <span style="color:#e6db74">&#39; + &#39;</span>, <span style="color:#e6db74">&#39; - &#39;</span>)[$m];
     }
-    return $result;
+    <span style="color:#66d9ef">return</span> $result;
 }
-</code></pre>
-
-<p>Daniel&rsquo;s extensive internal documentation reads very much like a blog, so his solution is worth a look if you would like to know more.</p>
-
+</code></pre></div><p>Daniel&rsquo;s extensive internal documentation reads very much like a blog, so his solution is worth a look if you would like to know more.</p>
 <h2 id="darren-bottin">Darren Bottin</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/darren-bottin/perl/ch-1.pl">Darren&rsquo;s solution</a> is another that considers a leading negative sign to be acceptable, and thus produces twelve solutions.</p>
-
 <p>Darren iterates over combinations using a <code>@combination</code> array that counts up in base-3, where each element maps to <code>@symbols</code>, to get the various groupings of characters, as well as handle the addition and subtraction:</p>
-
-<pre><code class="language-perl">my @symbols =( &quot;,&quot;, '', &quot;,-&quot;); # Split, Join, Negate
-my @combination = ( 1,(0) x 8); # Skip over the join option for the first digit
-my $solutions_found=0;
-while(1) {
-    my $blend='';
-    for my $blend_dig (0..8) {
-        $blend .= $symbols[$combination[$blend_dig]].$numarray[$blend_dig];
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @symbols <span style="color:#f92672">=</span>( <span style="color:#e6db74">&#34;,&#34;</span>, <span style="color:#e6db74">&#39;&#39;</span>, <span style="color:#e6db74">&#34;,-&#34;</span>); <span style="color:#75715e"># Split, Join, Negate</span>
+<span style="color:#66d9ef">my</span> @combination <span style="color:#f92672">=</span> ( <span style="color:#ae81ff">1</span>,(<span style="color:#ae81ff">0</span>) x <span style="color:#ae81ff">8</span>); <span style="color:#75715e"># Skip over the join option for the first digit</span>
+<span style="color:#66d9ef">my</span> $solutions_found<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+<span style="color:#66d9ef">while</span>(<span style="color:#ae81ff">1</span>) {
+    <span style="color:#66d9ef">my</span> $blend<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;&#39;</span>;
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $blend_dig (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">8</span>) {
+        $blend <span style="color:#f92672">.=</span> $symbols[$combination[$blend_dig]]<span style="color:#f92672">.</span>$numarray[$blend_dig];
     }
-    ...
+    <span style="color:#f92672">...</span>
 }
-</code></pre>
-
-<p>The <code>@symbols</code> correspond to:
-  * <code>$symbols[0]</code> › Split here, numbers will be added.
-  * <code>$symbols[1]</code> › Do not split here.
-  * <code>$symbols[2]</code> › Split here, second number will be subtracted.</p>
-
+</code></pre></div><p>The <code>@symbols</code> correspond to:</p>
+<ul>
+<li><code>$symbols[0]</code> › Split here, numbers will be added.</li>
+<li><code>$symbols[1]</code> › Do not split here.</li>
+<li><code>$symbols[2]</code> › Split here, second number will be subtracted.</li>
+</ul>
 <p>The <code>next_combination()</code> sub demonstrates how to write your own incrementer:</p>
-
-<pre><code class="language-perl">sub next_combination() {
-    # warn &quot;NEXT COMB&quot;;
-    my $digit =8;
-    my $dval = $combination[$digit]++;
-    while ( $digit&gt;=0 and $dval &gt;= 2 ) { # carry left
-        $combination[$digit]=0;
-        $digit--;
-        $dval = $combination[$digit]++;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">next_combination</span>() {
+    <span style="color:#75715e"># warn &#34;NEXT COMB&#34;;</span>
+    <span style="color:#66d9ef">my</span> $digit <span style="color:#f92672">=</span><span style="color:#ae81ff">8</span>;
+    <span style="color:#66d9ef">my</span> $dval <span style="color:#f92672">=</span> $combination[$digit]<span style="color:#f92672">++</span>;
+    <span style="color:#66d9ef">while</span> ( $digit<span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">0</span> <span style="color:#f92672">and</span> $dval <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">2</span> ) { <span style="color:#75715e"># carry left</span>
+        $combination[$digit]<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+        $digit<span style="color:#f92672">--</span>;
+        $dval <span style="color:#f92672">=</span> $combination[$digit]<span style="color:#f92672">++</span>;
     }
-    return $digit;
+    <span style="color:#66d9ef">return</span> $digit;
 }
-</code></pre>
-
-<h3 id="prolog">Prolog</h3>
-
+</code></pre></div><h3 id="prolog">Prolog</h3>
 <p>Darren also submitted a second <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/darren-bottin/prolog/ch-1.pro">solution in Prolog</a>, shown here in part:</p>
-
-<pre><code class="language-prolog">perm_sum( X, [X],  ['+',X]). % Running total, Item, Backtrace
-perm_sum(-X, [X],  ['-',X]).
-perm_sum(XS, [X|L],['+',X|BT]) :-  perm_sum(LS,L,BT), XS is LS+X.
-perm_sum(XS, [X|L],['-',X|BT]) :-  perm_sum(LS,L,BT), XS is LS-X.
-bond_comb([],X,X).
-bond_comb([X|XL],Y,[X|Z]) :- bond_comb(XL,Y,Z).  % single
-bond_comb([X1,X2|XL],Y,Z) :- X12 is X1*10 + X2,
-    bond_comb([X12|XL],Y,Z).         % combine digits
-</code></pre>
-
-<p>Darren considers a leading - to be allowed, so his script outputs twelve cases. The <code>perm_sum</code> and <code>bond_comb</code> clauses are what do most of the work. Clauses for both <code>+</code> and <code>-</code> ensure that the implicit recursion will branch for both values. Similarly, the <code>bond_comb</code> clauses handle the combining of digits into larger numbers, or not.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-prolog" data-lang="prolog"><span style="color:#a6e22e">perm_sum</span>( X, [X],  [<span style="color:#e6db74">&#39;+&#39;</span>,X]). <span style="color:#75715e">% Running total, Item, Backtrace</span>
+<span style="color:#a6e22e">perm_sum</span>(<span style="color:#f92672">-</span>X, [X],  [<span style="color:#e6db74">&#39;-&#39;</span>,X]).
+<span style="color:#a6e22e">perm_sum</span>(XS, [X|L],[<span style="color:#e6db74">&#39;+&#39;</span>,X|BT]) :-  <span style="color:#a6e22e">perm_sum</span>(LS,L,BT), XS <span style="color:#f92672">is</span> LS<span style="color:#f92672">+</span>X.
+<span style="color:#a6e22e">perm_sum</span>(XS, [X|L],[<span style="color:#e6db74">&#39;-&#39;</span>,X|BT]) :-  <span style="color:#a6e22e">perm_sum</span>(LS,L,BT), XS <span style="color:#f92672">is</span> LS<span style="color:#f92672">-</span>X.
+<span style="color:#a6e22e">bond_comb</span>([],X,X).
+<span style="color:#a6e22e">bond_comb</span>([X|XL],Y,[X|Z]) :- <span style="color:#a6e22e">bond_comb</span>(XL,Y,Z).  <span style="color:#75715e">% single</span>
+<span style="color:#a6e22e">bond_comb</span>([X1,X2|XL],Y,Z) :- X12 <span style="color:#f92672">is</span> X1<span style="color:#f92672">*</span><span style="color:#ae81ff">10</span> <span style="color:#f92672">+</span> X2,
+    <span style="color:#a6e22e">bond_comb</span>([X12|XL],Y,Z).         <span style="color:#75715e">% combine digits</span>
+</code></pre></div><p>Darren considers a leading - to be allowed, so his script outputs twelve cases. The <code>perm_sum</code> and <code>bond_comb</code> clauses are what do most of the work. Clauses for both <code>+</code> and <code>-</code> ensure that the implicit recursion will branch for both values. Similarly, the <code>bond_comb</code> clauses handle the combining of digits into larger numbers, or not.</p>
 <h2 id="dave-jacoby">Dave Jacoby</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/dave-jacoby/perl/ch-1.pl">Dave&rsquo;s solution</a> is implemented with a 9-nested loop, which considers every permutation of splits and operators. He uses string <code>eval</code> to obtain the result of each expression. I will omit some of the middle loops, here:</p>
-
-<pre><code class="language-perl">my @vals = ('',' + ',' - ');
-for my $i (@vals) {
-    for my $j (@vals) {
-        for my $k (@vals)
-            ...
-                for my $q (@vals) {
-                    my $string = join '','1',$i,'2',$j,'3',$l,'4',$m,'5',$n,'6',$o,'7',$p,'8',$q,'9';
-                    my $resp = eval $string;
-                    next unless $resp == 100;
-                    say qq{$resp = $string};
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @vals <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#39;&#39;</span>,<span style="color:#e6db74">&#39; + &#39;</span>,<span style="color:#e6db74">&#39; - &#39;</span>);
+<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (@vals) {
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $j (@vals) {
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $k (@vals)
+            <span style="color:#f92672">...</span>
+                <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $q (@vals) {
+                    <span style="color:#66d9ef">my</span> $string <span style="color:#f92672">=</span> join <span style="color:#e6db74">&#39;&#39;</span>,<span style="color:#e6db74">&#39;1&#39;</span>,$i,<span style="color:#e6db74">&#39;2&#39;</span>,$j,<span style="color:#e6db74">&#39;3&#39;</span>,$l,<span style="color:#e6db74">&#39;4&#39;</span>,$m,<span style="color:#e6db74">&#39;5&#39;</span>,$n,<span style="color:#e6db74">&#39;6&#39;</span>,$o,<span style="color:#e6db74">&#39;7&#39;</span>,$p,<span style="color:#e6db74">&#39;8&#39;</span>,$q,<span style="color:#e6db74">&#39;9&#39;</span>;
+                    <span style="color:#66d9ef">my</span> $resp <span style="color:#f92672">=</span> eval $string;
+                    <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> $resp <span style="color:#f92672">==</span> <span style="color:#ae81ff">100</span>;
+                    say <span style="color:#e6db74">qq{$resp = $string}</span>;
                 }
-            ...
+            <span style="color:#f92672">...</span>
         }
     }
 }
-</code></pre>
-
-<p>Each loop variable <code>$i</code> .. <code>$q</code> will be one of <code>@vals</code>, to either join, add, or subtract.</p>
-
+</code></pre></div><p>Each loop variable <code>$i</code> .. <code>$q</code> will be one of <code>@vals</code>, to either join, add, or subtract.</p>
 <p>There&rsquo;s a funny little bug: Dave&rsquo;s script actually outputs each correct solution three times. Can you spot why? Hint (<a href="https://rot13.com/">ROT13</a>): gur svk jbhyq znxr gur cebtenz zber rssvpvrag. Answer: x vf abg hfrq.</p>
-
 <h2 id="dave-jacoby-2">Dave Jacoby #2</h2>
-
 <p>Dave submitted a <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/dave-jacoby/perl/ch-1a.pl">second, revised solution</a>, which I found worthy of highlighting on its own. Here, Dave uses recursion to perform a search of all possible expressions:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $vals<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">=</span> <span style="color:#960050;background-color:#1e0010">(</span> <span style="color:#960050;background-color:#1e0010">&#39;</span> <span style="color:#960050;background-color:#1e0010">+</span> <span style="color:#960050;background-color:#1e0010">&#39;</span>, <span style="color:#e6db74">&#39; - &#39;</span>, <span style="color:#e6db74">&#39;&#39;</span> );
+<span style="color:#66d9ef">my</span> $source<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">=</span> <span style="color:#960050;background-color:#1e0010">(</span> 1, <span style="color:#e6db74">&#39;&#39;</span>, <span style="color:#ae81ff">2</span>, <span style="color:#e6db74">&#39;&#39;</span>, <span style="color:#ae81ff">3</span>, <span style="color:#e6db74">&#39;&#39;</span>, <span style="color:#ae81ff">4</span>, <span style="color:#e6db74">&#39;&#39;</span>, <span style="color:#ae81ff">5</span>, <span style="color:#e6db74">&#39;&#39;</span>, <span style="color:#ae81ff">6</span>, <span style="color:#e6db74">&#39;&#39;</span>, <span style="color:#ae81ff">7</span>, <span style="color:#e6db74">&#39;&#39;</span>, <span style="color:#ae81ff">8</span>, <span style="color:#e6db74">&#39;&#39;</span>, <span style="color:#ae81ff">9</span> );
 
-<pre><code class="language-perl">my $vals-&gt;@* = ( ' + ', ' - ', '' );
-my $source-&gt;@* = ( 1, '', 2, '', 3, '', 4, '', 5, '', 6, '', 7, '', 8, '', 9 );
-
-sub challenge ( $source, $vals, $index ) {
-    # check to see if this is correct
-    if ( $index &gt;= scalar $source-&gt;@* ) {
-        my $string = join '', $source-&gt;@*;
-        my $result = eval $string;
-        say qq{  $result = $string } if $result == 100;
-        return;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">challenge</span> ( $source, $vals, $index ) {
+    <span style="color:#75715e"># check to see if this is correct</span>
+    <span style="color:#66d9ef">if</span> ( $index <span style="color:#f92672">&gt;=</span> scalar $source<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> ) {
+        <span style="color:#66d9ef">my</span> $string <span style="color:#f92672">=</span> join <span style="color:#e6db74">&#39;&#39;</span>, $source<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+        my $result <span style="color:#f92672">=</span> eval $string;
+        say <span style="color:#e6db74">qq{  $result = $string }</span> <span style="color:#66d9ef">if</span> $result <span style="color:#f92672">==</span> <span style="color:#ae81ff">100</span>;
+        <span style="color:#66d9ef">return</span>;
     }
 
-    # recursively add to the array
-    my $next-&gt;@* = map { $_ } $source-&gt;@*;
-    for my $v ( $vals-&gt;@* ) {
-        $next-&gt;[$index] = $v;
-        challenge( $next, $vals, $index + 2 );
+    <span style="color:#75715e"># recursively add to the array</span>
+    <span style="color:#66d9ef">my</span> $next<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">=</span> map { $_ } $source<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+    for <span style="color:#66d9ef">my</span> $v ( $vals<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> ) {
+        $next<span style="color:#f92672">-&gt;</span>[$index] <span style="color:#f92672">=</span> $v;
+        challenge( $next, $vals, $index <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span> );
     }
-    return;
+    <span style="color:#66d9ef">return</span>;
 }
-</code></pre>
-
-<h2 id="duane-powell">Duane Powell</h2>
-
+</code></pre></div><h2 id="duane-powell">Duane Powell</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/duane-powell/perl/ch-1.pl">Duane&rsquo;s solution</a> uses <a href="https://metacpan.org/pod/Math::BaseCalc">Math::BaseCalc</a> to convert numbers between bases, and by now I bet you can guess why.</p>
-
 <p>Duane iterates from 0..3⁸-1, converting that to a base-3 number, which he then uses to interleave operators (or the empty string) between each digit. Actually, his code is easily configurable to use different operators, and different target sum and input number, so these are just the defaults.</p>
-
-<pre><code class="language-perl">my %operator = (
-    0 =&gt; '',
-    1 =&gt; '+',
-    2 =&gt; '-',
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> %operator <span style="color:#f92672">=</span> (
+    <span style="color:#ae81ff">0</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;&#39;</span>,
+    <span style="color:#ae81ff">1</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;+&#39;</span>,
+    <span style="color:#ae81ff">2</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;-&#39;</span>,
 );
 
-my $comb = 3 ** ((scalar @n) -1);  # 6561 combinations for 123456789
-my $calc = new Math::BaseCalc(digits =&gt; [0,1,2]);
-foreach (0 .. $comb-1) { # zero indexed
-    my @op = split(//,sprintf &quot;%08d&quot;, $calc-&gt;to_base($_));
-    my $e;
-    # zipper together the two arrays (@n and @op) building str $e, for example 1+2+3+4+5+6+7+8+9
-    foreach my $n (@n) {
-        if (scalar @op) {
-            my $op = pop @op;
-            $e .= $n . $operator{$op};
+<span style="color:#66d9ef">my</span> $comb <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">**</span> ((scalar @n) <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);  <span style="color:#75715e"># 6561 combinations for 123456789</span>
+<span style="color:#66d9ef">my</span> $calc <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Math::BaseCalc(digits <span style="color:#f92672">=&gt;</span> [<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>]);
+<span style="color:#66d9ef">foreach</span> (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $comb<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) { <span style="color:#75715e"># zero indexed</span>
+    <span style="color:#66d9ef">my</span> @op <span style="color:#f92672">=</span> split(<span style="color:#e6db74">//</span>,sprintf <span style="color:#e6db74">&#34;%08d&#34;</span>, $calc<span style="color:#f92672">-&gt;</span>to_base($_));
+    <span style="color:#66d9ef">my</span> $e;
+    <span style="color:#75715e"># zipper together the two arrays (@n and @op) building str $e, for example 1+2+3+4+5+6+7+8+9</span>
+    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $n (@n) {
+        <span style="color:#66d9ef">if</span> (scalar @op) {
+            <span style="color:#66d9ef">my</span> $op <span style="color:#f92672">=</span> pop @op;
+            $e <span style="color:#f92672">.=</span> $n <span style="color:#f92672">.</span> $operator{$op};
         }
-        else {
-            $e .= $n;
+        <span style="color:#66d9ef">else</span> {
+            $e <span style="color:#f92672">.=</span> $n;
         }
     }
-    my $s = eval $e;
-    say &quot;$e = $sum&quot; if ( $s == $sum );
+    <span style="color:#66d9ef">my</span> $s <span style="color:#f92672">=</span> eval $e;
+    say <span style="color:#e6db74">&#34;$e = $sum&#34;</span> <span style="color:#66d9ef">if</span> ( $s <span style="color:#f92672">==</span> $sum );
 }
-</code></pre>
-
-<h2 id="duncan-c-white">Duncan C. White</h2>
-
+</code></pre></div><h2 id="duncan-c-white">Duncan C. White</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/duncan-c-white/perl/ch-1.pl">Duncan&rsquo;s solution</a> is recursive, too. He uses <a href="https://metacpan.org/pod/Function::Parameters">Function::Parameters</a> instead of the <a href="https://perldoc.perl.org/feature.html#The-'signatures'-feature">experimental <code>signatures</code> feature</a>, but they both produce very similar looking code:</p>
-
-<pre><code class="language-perl">fun mutate( $str, $ip, $nleft, $goal )
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">fun mutate( $str, $ip, $nleft, $goal )
 {
-    foreach my $a (@ch) # @ch = ('', '+', '-')
+    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $a (@ch) <span style="color:#75715e"># @ch = (&#39;&#39;, &#39;+&#39;, &#39;-&#39;)</span>
     {
-        my $s2 = $str;
-        substr( $s2, $ip, 0, $a );
-        my $ip2 = $ip+1+length($a);
-        if( $nleft&gt;1 )
+        <span style="color:#66d9ef">my</span> $s2 <span style="color:#f92672">=</span> $str;
+        substr( $s2, $ip, <span style="color:#ae81ff">0</span>, $a );
+        <span style="color:#66d9ef">my</span> $ip2 <span style="color:#f92672">=</span> $ip<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span><span style="color:#f92672">+</span>length($a);
+        <span style="color:#66d9ef">if</span>( $nleft<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">1</span> )
         {
-            mutate( $s2, $ip2, $nleft-1, $goal );
+            mutate( $s2, $ip2, $nleft<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, $goal );
         }
-        if( $nleft==1 )
+        <span style="color:#66d9ef">if</span>( $nleft<span style="color:#f92672">==</span><span style="color:#ae81ff">1</span> )
         {
-            my $n = eval $s2;
-            say &quot;FOUND $s2&quot; if $n==$goal;
+            <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> eval $s2;
+            say <span style="color:#e6db74">&#34;FOUND $s2&#34;</span> <span style="color:#66d9ef">if</span> $n<span style="color:#f92672">==</span>$goal;
         }
     }
 }
-</code></pre>
-
-<p>Here, <code>$ip</code> is short for &ldquo;insertion point&rdquo;. The <code>mutate()</code> function inserts an operator at each possible position, in every possible permutation.</p>
-
+</code></pre></div><p>Here, <code>$ip</code> is short for &ldquo;insertion point&rdquo;. The <code>mutate()</code> function inserts an operator at each possible position, in every possible permutation.</p>
 <h2 id="e-choroba">E. Choroba</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/e-choroba/perl/ch-1.pl">Choroba&rsquo;s solution</a> this week combines a few short subroutines. The top-level <code>while (1) { ... }</code> loop sums up the intention nicely:</p>
-
-<pre><code class="language-perl">while (1) {
-    my $expression = apply(\@mask);
-    say $expression if 100 == evaluate($expression);
-    last unless grep $_ != MINUS, @mask;
-    increment(\@mask);
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
+    <span style="color:#66d9ef">my</span> $expression <span style="color:#f92672">=</span> apply(<span style="color:#f92672">\</span>@mask);
+    say $expression <span style="color:#66d9ef">if</span> <span style="color:#ae81ff">100</span> <span style="color:#f92672">==</span> evaluate($expression);
+    <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">unless</span> grep $_ <span style="color:#f92672">!=</span> MINUS, @mask;
+    increment(<span style="color:#f92672">\</span>@mask);
 }
-</code></pre>
-
-<p><code>@mask</code> corresponds to the base-3 number we&rsquo;ve seen in other solutions. The <code>increment()</code> sub, which computes the next <code>@mask</code>, is particularly elegant:</p>
-
-<pre><code class="language-perl">sub increment {
-    my ($mask) = @_;
-    my $i = $#$mask;
-    $mask-&gt;[$i--] = NOTHING while $mask-&gt;[$i] == MINUS;
-    ++$mask-&gt;[$i];
+</code></pre></div><p><code>@mask</code> corresponds to the base-3 number we&rsquo;ve seen in other solutions. The <code>increment()</code> sub, which computes the next <code>@mask</code>, is particularly elegant:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">increment</span> {
+    <span style="color:#66d9ef">my</span> ($mask) <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> $#$mask;
+    $mask<span style="color:#f92672">-&gt;</span>[$i<span style="color:#f92672">--</span>] <span style="color:#f92672">=</span> NOTHING <span style="color:#66d9ef">while</span> $mask<span style="color:#f92672">-&gt;</span>[$i] <span style="color:#f92672">==</span> MINUS;
+    <span style="color:#f92672">++</span>$mask<span style="color:#f92672">-&gt;</span>[$i];
 }
-</code></pre>
-
-<p>The <code>apply()</code> sub then takes that <code>@mask</code> and interleaves the operators with the digits accordingly:</p>
-
-<pre><code class="language-perl">sub apply {
-    my ($mask) = @_;
-    return $digits[0]
-        . join &quot;&quot;,
-          map $op{ $mask-&gt;[$_-1] } . $digits[$_],
-          1 .. $#digits
+</code></pre></div><p>The <code>apply()</code> sub then takes that <code>@mask</code> and interleaves the operators with the digits accordingly:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">apply</span> {
+    <span style="color:#66d9ef">my</span> ($mask) <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">return</span> $digits[<span style="color:#ae81ff">0</span>]
+        <span style="color:#f92672">.</span> join <span style="color:#e6db74">&#34;&#34;</span>,
+          map $op{ $mask<span style="color:#f92672">-&gt;</span>[$_<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] } <span style="color:#f92672">.</span> $digits[$_],
+          <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $#digits
 }
-</code></pre>
-
-<p>And finally <code>evaluate()</code> uses a regex to split the expression into its terms and then simply sums them up:</p>
-
-<pre><code class="language-perl">sub evaluate {
-    my ($expression) = @_;
-    my @terms = $expression =~ /[-+]?[0-9]+/g;
-    return sum(@terms)
+</code></pre></div><p>And finally <code>evaluate()</code> uses a regex to split the expression into its terms and then simply sums them up:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">evaluate</span> {
+    <span style="color:#66d9ef">my</span> ($expression) <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">my</span> @terms <span style="color:#f92672">=</span> $expression <span style="color:#f92672">=~</span><span style="color:#e6db74"> /[-+]?[0-9]+/g</span>;
+    <span style="color:#66d9ef">return</span> sum(@terms)
 }
-</code></pre>
-
-<p><strong>Choroba&rsquo;s Blog</strong> › <a href="http://blogs.perl.org/users/e_choroba/2020/01/perl-weekly-challenge-044-one-hundred-two-hundred.html">One Hundred, Two Hundred</a></p>
-
+</code></pre></div><p><strong>Choroba&rsquo;s Blog</strong> › <a href="http://blogs.perl.org/users/e_choroba/2020/01/perl-weekly-challenge-044-one-hundred-two-hundred.html">One Hundred, Two Hundred</a></p>
 <h2 id="fabrizio-poggi">Fabrizio Poggi</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/fabrizio-poggi/perl/ch-2.pl">Fabrizio&rsquo;s solution</a> seems to be a <a href="https://en.wikipedia.org/wiki/Stochastic_optimization">stochastic algorithm</a>, iterating randomly to hopefully find a solution sooner. The following generates a random symbol:</p>
-
-<pre><code class="language-perl">sub ex {
-    my $sign = int(rand(3));
-    if($sign == 0) {
-        my $sym = &quot;+&quot;;
-        return $sym;
-    } else {
-        if ($sign == 1) {
-            my $sym = &quot;-&quot;;
-            return $sym;
-        } else {
-            if ($sign == 2) {
-                my $sym = &quot;&quot;;
-                return $sym;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">ex</span> {
+    <span style="color:#66d9ef">my</span> $sign <span style="color:#f92672">=</span> int(rand(<span style="color:#ae81ff">3</span>));
+    <span style="color:#66d9ef">if</span>($sign <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+        <span style="color:#66d9ef">my</span> $sym <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;+&#34;</span>;
+        <span style="color:#66d9ef">return</span> $sym;
+    } <span style="color:#66d9ef">else</span> {
+        <span style="color:#66d9ef">if</span> ($sign <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>) {
+            <span style="color:#66d9ef">my</span> $sym <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;-&#34;</span>;
+            <span style="color:#66d9ef">return</span> $sym;
+        } <span style="color:#66d9ef">else</span> {
+            <span style="color:#66d9ef">if</span> ($sign <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span>) {
+                <span style="color:#66d9ef">my</span> $sym <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
+                <span style="color:#66d9ef">return</span> $sym;
             }
         }
     }
 }
-</code></pre>
-
-<p>I might have replaced the above with something like <code>sub ex { ('', '-', '+')[rand 3] }</code>, but the above works just as well.</p>
-
+</code></pre></div><p>I might have replaced the above with something like <code>sub ex { ('', '-', '+')[rand 3] }</code>, but the above works just as well.</p>
 <p>Fabrizio then loops until a random expression equals 100:</p>
-
-<pre><code class="language-perl">while (1) {
-    $sum = 1 . ex() . 2 . ex() . 3 . ex() . 4 . ex() . 5
-             . ex() . 6 . ex() . 7 . ex() . 8 . ex() . 9;
-    $val = eval ($sum);
-    last if ($val == 100);
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
+    $sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">.</span> ex() <span style="color:#f92672">.</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">.</span> ex() <span style="color:#f92672">.</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">.</span> ex() <span style="color:#f92672">.</span> <span style="color:#ae81ff">4</span> <span style="color:#f92672">.</span> ex() <span style="color:#f92672">.</span> <span style="color:#ae81ff">5</span>
+             <span style="color:#f92672">.</span> ex() <span style="color:#f92672">.</span> <span style="color:#ae81ff">6</span> <span style="color:#f92672">.</span> ex() <span style="color:#f92672">.</span> <span style="color:#ae81ff">7</span> <span style="color:#f92672">.</span> ex() <span style="color:#f92672">.</span> <span style="color:#ae81ff">8</span> <span style="color:#f92672">.</span> ex() <span style="color:#f92672">.</span> <span style="color:#ae81ff">9</span>;
+    $val <span style="color:#f92672">=</span> eval ($sum);
+    <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> ($val <span style="color:#f92672">==</span> <span style="color:#ae81ff">100</span>);
 }
-</code></pre>
-
-<p>I love stochastic algorithms. Under the right circumstances, they can move an intractable problem right off the critical execution path. They can give you better best- and average-case performance. The tradeoff, though, is that the worst-case performance is unbounded, due to the loss of determinism.</p>
-
+</code></pre></div><p>I love stochastic algorithms. Under the right circumstances, they can move an intractable problem right off the critical execution path. They can give you better best- and average-case performance. The tradeoff, though, is that the worst-case performance is unbounded, due to the loss of determinism.</p>
 <p>To illustrate this, I ran Fabrizio&rsquo;s code 10,000 times. The average case took 600 iterations, the minimum took just a <em>single</em> lucky iteration, while the worst case was 7,353.</p>
-
 <h2 id="javier-luque">Javier Luque</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/javier-luque/perl/ch-1.pl">Javier&rsquo;s solution</a> is recursive:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">check_numbers</span> {
+    <span style="color:#66d9ef">my</span> ($n, $nums, $goal) <span style="color:#f92672">=</span> @_;
 
-<pre><code class="language-perl">sub check_numbers {
-    my ($n, $nums, $goal) = @_;
-
-    if ($nums) {
-        my ($n2, $new_numbers) = split('', $nums, 2);
-        check_numbers($n . '+' . $n2, $new_numbers, $goal);
-        check_numbers($n . '-' . $n2, $new_numbers, $goal);
-        check_numbers($n . $n2, $new_numbers, $goal);
-    } else {
-        my $total = eval $n;
-        say $n if ($total == $goal)
+    <span style="color:#66d9ef">if</span> ($nums) {
+        <span style="color:#66d9ef">my</span> ($n2, $new_numbers) <span style="color:#f92672">=</span> split(<span style="color:#e6db74">&#39;&#39;</span>, $nums, <span style="color:#ae81ff">2</span>);
+        check_numbers($n <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;+&#39;</span> <span style="color:#f92672">.</span> $n2, $new_numbers, $goal);
+        check_numbers($n <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;-&#39;</span> <span style="color:#f92672">.</span> $n2, $new_numbers, $goal);
+        check_numbers($n <span style="color:#f92672">.</span> $n2, $new_numbers, $goal);
+    } <span style="color:#66d9ef">else</span> {
+        <span style="color:#66d9ef">my</span> $total <span style="color:#f92672">=</span> eval $n;
+        say $n <span style="color:#66d9ef">if</span> ($total <span style="color:#f92672">==</span> $goal)
     }
 }
-</code></pre>
-
-<p><code>$nums</code> is the string containing the remaining digits. Javier uses <code>split</code> with a limit (3rd argument) to partition <code>$nums</code> into <code>$n2</code> and <code>$new_numbers</code>. Thus, he is paring off one digit at a time, and then recursing once for each operation: addition, subtraction, and concatenation.</p>
-
+</code></pre></div><p><code>$nums</code> is the string containing the remaining digits. Javier uses <code>split</code> with a limit (3rd argument) to partition <code>$nums</code> into <code>$n2</code> and <code>$new_numbers</code>. Thus, he is paring off one digit at a time, and then recursing once for each operation: addition, subtraction, and concatenation.</p>
 <p>When <code>$nums</code> is empty (boolean false), the base case is triggered, and a simple check of whether <code>eval $n</code> is equal to the <code>$goal</code> amount determines whether the equation is printed or not.</p>
-
 <p><strong>Blog</strong> › <a href="https://perlchallenges.wordpress.com/2020/01/21/perl-weekly-challenge-044/">Perl Weekly Challenge – 044</a></p>
-
 <h2 id="laurent-rosenfeld">Laurent Rosenfeld</h2>
-
 <p>Laurent submitted four solutions to challenge #1 this week, covering two fundamentally different approaches. I will look at the &ldquo;final forms&rdquo; of each:</p>
-
 <h3 id="recursive">Recursive</h3>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/laurent-rosenfeld/perl/ch-1a.pl">Laurent&rsquo;s 1a solution</a> is defined recursively, building up expressions by <code>chop</code>ping off the last digit and recursing on each possible operation: addition, subtraction, or concatenation:</p>
-
-<pre><code class="language-perl">sub combine {
-    my ($combined, $source) = @_;
-    if ($source eq &quot;&quot;) {
-        say $combined if eval $combined == 100;
-        return;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">combine</span> {
+    <span style="color:#66d9ef">my</span> ($combined, $source) <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">if</span> ($source <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#34;&#34;</span>) {
+        say $combined <span style="color:#66d9ef">if</span> eval $combined <span style="color:#f92672">==</span> <span style="color:#ae81ff">100</span>;
+        <span style="color:#66d9ef">return</span>;
     }
-    my $operand = chop $source;
-    for my $op ('+', '-', '') {
-        combine (&quot;$combined$op$operand&quot;, $source);
+    <span style="color:#66d9ef">my</span> $operand <span style="color:#f92672">=</span> chop $source;
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $op (<span style="color:#e6db74">&#39;+&#39;</span>, <span style="color:#e6db74">&#39;-&#39;</span>, <span style="color:#e6db74">&#39;&#39;</span>) {
+        combine (<span style="color:#e6db74">&#34;$combined$op$operand&#34;</span>, $source);
     }
 }
-my $source = reverse &quot;123456789&quot;;
-my $combined = chop $source;
+<span style="color:#66d9ef">my</span> $source <span style="color:#f92672">=</span> reverse <span style="color:#e6db74">&#34;123456789&#34;</span>;
+<span style="color:#66d9ef">my</span> $combined <span style="color:#f92672">=</span> chop $source;
 combine ($combined, $source);
-</code></pre>
-
-<h3 id="glob">Glob</h3>
-
+</code></pre></div><h3 id="glob">Glob</h3>
 <p>Laurent then had the insight that he could solve this problem with <code>glob</code>. <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/laurent-rosenfeld/perl/ch-1c.sh">His 1c solution</a> is an impressive one-liner:</p>
-
-<pre><code class="language-perl">say for grep { 100 == eval } glob join &quot;{+,-,}&quot;, 1..9;
-</code></pre>
-
-<p>Notice that the <code>join</code> inserts the string <code>{+,-,}</code> between each digit, so <code>glob</code> can then generate all 3⁸ expressions. That&rsquo;s all there is to see. After that, it&rsquo;s a trivial matter of printing the expressions that <code>eval</code> to 100. I&rsquo;m a huge fan of this solution.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">say <span style="color:#66d9ef">for</span> grep { <span style="color:#ae81ff">100</span> <span style="color:#f92672">==</span> eval } glob join <span style="color:#e6db74">&#34;{+,-,}&#34;</span>, <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">9</span>;
+</code></pre></div><p>Notice that the <code>join</code> inserts the string <code>{+,-,}</code> between each digit, so <code>glob</code> can then generate all 3⁸ expressions. That&rsquo;s all there is to see. After that, it&rsquo;s a trivial matter of printing the expressions that <code>eval</code> to 100. I&rsquo;m a huge fan of this solution.</p>
 <p><strong>Laurent&rsquo;s Blog</strong> › <a href="http://blogs.perl.org/users/laurent_r/2020/01/perl-weekly-challenge-44-only-100-please-and-make-it-200.html">Only 100, Please and Make it 200</a></p>
-
 <h2 id="peter-scott">Peter Scott</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/peter-scott/perl/ch-1.pl">Peter&rsquo;s solution</a> is another that iterates through all base-3 numbers and maps those to operators. Where Peter&rsquo;s solution differs, is in his use of <a href="https://metacpan.org/pod/List::MoreUtils">List::MoreUtils</a>&rsquo; <code>mesh()</code>:</p>
-
-<pre><code class="language-perl">while ( 1 )
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">while</span> ( <span style="color:#ae81ff">1</span> )
 {
-  my @ops = ternary( $n );
-  my @interleave = ( map { $operators[$_] } @ops, 0 ); # Mesh wants same sizes
-  my @formula = mesh @digits, @interleave;
-  my $expr = join '', @formula;
-  my $res = eval $expr;
-  say &quot;$expr = $res&quot; and exit if $res == 100;
-  $n++;
+  <span style="color:#66d9ef">my</span> @ops <span style="color:#f92672">=</span> ternary( $n );
+  <span style="color:#66d9ef">my</span> @interleave <span style="color:#f92672">=</span> ( map { $operators[$_] } @ops, <span style="color:#ae81ff">0</span> ); <span style="color:#75715e"># Mesh wants same sizes</span>
+  <span style="color:#66d9ef">my</span> @formula <span style="color:#f92672">=</span> mesh @digits, @interleave;
+  <span style="color:#66d9ef">my</span> $expr <span style="color:#f92672">=</span> join <span style="color:#e6db74">&#39;&#39;</span>, @formula;
+  <span style="color:#66d9ef">my</span> $res <span style="color:#f92672">=</span> eval $expr;
+  say <span style="color:#e6db74">&#34;$expr = $res&#34;</span> <span style="color:#f92672">and</span> exit <span style="color:#66d9ef">if</span> $res <span style="color:#f92672">==</span> <span style="color:#ae81ff">100</span>;
+  $n<span style="color:#f92672">++</span>;
 }
-</code></pre>
-
-<p>While Peter&rsquo;s code exits after finding the first solution, it will output all eleven if one simply removes the <code>and exit</code> from the penultimate line in the above block.</p>
-
+</code></pre></div><p>While Peter&rsquo;s code exits after finding the first solution, it will output all eleven if one simply removes the <code>and exit</code> from the penultimate line in the above block.</p>
 <p><code>mesh</code> helps Peter produce some clean, easily understood code. I like it.</p>
-
 <h2 id="roger-bell-west">Roger Bell West</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/roger-bell-west/perl/ch-1.pl">Roger&rsquo;s solution</a> is another that iterates in base-3, in the <code>@si</code> array in this case:</p>
-
-<pre><code class="language-perl">my @base=(1..9);
-my @sv=('','-','+');
-my $maxdepth=8;
-my @si=(0) x $maxdepth;
-while (1) {
-  my $str=join('',map {$base[$_].$sv[$si[$_]]} (0..$maxdepth-1)).$base[$maxdepth];
-  my $tot=eval($str);
-  if ($tot == 100) {
-    print &quot;$str\n&quot;;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @base<span style="color:#f92672">=</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">9</span>);
+<span style="color:#66d9ef">my</span> @sv<span style="color:#f92672">=</span>(<span style="color:#e6db74">&#39;&#39;</span>,<span style="color:#e6db74">&#39;-&#39;</span>,<span style="color:#e6db74">&#39;+&#39;</span>);
+<span style="color:#66d9ef">my</span> $maxdepth<span style="color:#f92672">=</span><span style="color:#ae81ff">8</span>;
+<span style="color:#66d9ef">my</span> @si<span style="color:#f92672">=</span>(<span style="color:#ae81ff">0</span>) x $maxdepth;
+<span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
+  <span style="color:#66d9ef">my</span> $str<span style="color:#f92672">=</span>join(<span style="color:#e6db74">&#39;&#39;</span>,map {$base[$_]<span style="color:#f92672">.</span>$sv[$si[$_]]} (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$maxdepth<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>))<span style="color:#f92672">.</span>$base[$maxdepth];
+  <span style="color:#66d9ef">my</span> $tot<span style="color:#f92672">=</span>eval($str);
+  <span style="color:#66d9ef">if</span> ($tot <span style="color:#f92672">==</span> <span style="color:#ae81ff">100</span>) {
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$str\n&#34;</span>;
   }
-  my $i=0;
-  while ($i &lt; $maxdepth) {
-    $si[$i]++;
-    if ($si[$i] &lt;= $#sv) {
-      last;
+  <span style="color:#66d9ef">my</span> $i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+  <span style="color:#66d9ef">while</span> ($i <span style="color:#f92672">&lt;</span> $maxdepth) {
+    $si[$i]<span style="color:#f92672">++</span>;
+    <span style="color:#66d9ef">if</span> ($si[$i] <span style="color:#f92672">&lt;=</span> $#sv) {
+      <span style="color:#66d9ef">last</span>;
     }
-    $si[$i]=0;
-    $i++;
+    $si[$i]<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+    $i<span style="color:#f92672">++</span>;
   }
-  if ($i &gt;= $maxdepth) {
-    last;
+  <span style="color:#66d9ef">if</span> ($i <span style="color:#f92672">&gt;=</span> $maxdepth) {
+    <span style="color:#66d9ef">last</span>;
   }
 }
-</code></pre>
-
-<p>Roger&rsquo;s code is easily understood. The <code>while</code> loop does everything. The expression is composed by pairing a digit with an operator (<code>@sv</code>), and incrementing in base-3 to set up the next iteration.</p>
-
+</code></pre></div><p>Roger&rsquo;s code is easily understood. The <code>while</code> loop does everything. The expression is composed by pairing a digit with an operator (<code>@sv</code>), and incrementing in base-3 to set up the next iteration.</p>
 <h2 id="ruben-westerberg">Ruben Westerberg</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/ruben-westerberg/perl/ch-1.pl">Ruben&rsquo;s solution</a> is still another take on base-3 iteration, with his own <code>baseToDec()</code> and <code>decToBase()</code> subs, which he was able to re-use from last week&rsquo;s challenge. Here is his main loop:</p>
-
-<pre><code class="language-perl">while ($i&lt;$limit) {
-    my $num=sprintf &quot;%08s0&quot;,decToBase(3,$i++);
-    my @ops=map {tr/120/+-/d;$_}  split &quot;&quot;,$num;
-    my $exp= join &quot;&quot;,map {$digits[$_],$ops[$_]} 0..8;
-    my $sum=eval $exp;
-    print &quot;sum: $sum from: $exp\n&quot; if $sum==100;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">while</span> ($i<span style="color:#f92672">&lt;</span>$limit) {
+    <span style="color:#66d9ef">my</span> $num<span style="color:#f92672">=</span>sprintf <span style="color:#e6db74">&#34;%08s0&#34;</span>,decToBase(<span style="color:#ae81ff">3</span>,$i<span style="color:#f92672">++</span>);
+    <span style="color:#66d9ef">my</span> @ops<span style="color:#f92672">=</span>map {tr<span style="color:#e6db74">/120/</span><span style="color:#f92672">+-/</span>d;$_}  split <span style="color:#e6db74">&#34;&#34;</span>,$num;
+    <span style="color:#66d9ef">my</span> $exp<span style="color:#f92672">=</span> join <span style="color:#e6db74">&#34;&#34;</span>,map {$digits[$_],$ops[$_]} <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">8</span>;
+    <span style="color:#66d9ef">my</span> $sum<span style="color:#f92672">=</span>eval $exp;
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;sum: $sum from: $exp\n&#34;</span> <span style="color:#66d9ef">if</span> $sum<span style="color:#f92672">==</span><span style="color:#ae81ff">100</span>;
 }
-</code></pre>
-
-<p>I like the use of <code>tr//d</code> to replace the base-3 numbers with their corresponding operators. Ruben uses string <code>eval</code> to get the result, which is safe, because the
+</code></pre></div><p>I like the use of <code>tr//d</code> to replace the base-3 numbers with their corresponding operators. Ruben uses string <code>eval</code> to get the result, which is safe, because the
 string is entirely composed by his program, and could be proven to be safe if so desired.</p>
-
 <h2 id="ryan-thompson">Ryan Thompson</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/ryan-thompson/perl/ch-1.pl">My solution</a> is recursive, but divides up the recursive step a little differently:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">sum_split</span> {
+    <span style="color:#66d9ef">my</span> %o <span style="color:#f92672">=</span> @_;
 
-<pre><code class="language-perl">sub sum_split {
-    my %o = @_;
-
-    if (0 == length $o{num}) {
-        my $sum = eval $o{exp} // return;
-        say &quot;$sum == $o{exp}&quot; if $sum == $o{sum};
-        return
+    <span style="color:#66d9ef">if</span> (<span style="color:#ae81ff">0</span> <span style="color:#f92672">==</span> length $o{num}) {
+        <span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> eval $o{exp} <span style="color:#e6db74">//</span> <span style="color:#66d9ef">return</span>;
+        say <span style="color:#e6db74">&#34;$sum == $o{exp}&#34;</span> <span style="color:#66d9ef">if</span> $sum <span style="color:#f92672">==</span> $o{sum};
+        <span style="color:#66d9ef">return</span>
     }
 
-    # Partition $num and recurse
-    for (1..length $o{num}) {
-        my ($l, $r) = unpack &quot;A$_ A*&quot;, $o{num};
-        my @cur_ops = length($o{exp}) &gt; 0 ? @ops : @prefix_ops;
-        sum_split(%o, num =&gt; $r, exp =&gt; &quot;$o{exp}$_$l&quot;) for @cur_ops;
+    <span style="color:#75715e"># Partition $num and recurse</span>
+    <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>length $o{num}) {
+        <span style="color:#66d9ef">my</span> ($l, $r) <span style="color:#f92672">=</span> unpack <span style="color:#e6db74">&#34;A$_ A*&#34;</span>, $o{num};
+        <span style="color:#66d9ef">my</span> @cur_ops <span style="color:#f92672">=</span> length($o{exp}) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> ? @ops : @prefix_ops;
+        sum_split(%o, num <span style="color:#f92672">=&gt;</span> $r, exp <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;$o{exp}$_$l&#34;</span>) <span style="color:#66d9ef">for</span> @cur_ops;
     }
 }
-</code></pre>
-
-<p>Instead of essentially writing a base-3 counter as many did, my recursion step recurses on every 2-partition of the remaining string, using <code>unpack</code>. For example, 123 =&gt; (1:23, 12:3, 123:). From there, I then insert every operator. The base case uses string <code>eval</code> to get the result and outputs it if it equals the target.</p>
-
+</code></pre></div><p>Instead of essentially writing a base-3 counter as many did, my recursion step recurses on every 2-partition of the remaining string, using <code>unpack</code>. For example, 123 =&gt; (1:23, 12:3, 123:). From there, I then insert every operator. The base case uses string <code>eval</code> to get the result and outputs it if it equals the target.</p>
 <p><code>@cur_ops</code> was necessary because I chose to allow the negative prefix. Allowing the negative prefix also means my program needed to check more solutions. I wanted to generalize the problem a bit, but I could have saved some complexity by sticking with the literal problem description.</p>
-
 <p>I also did some experimentation with more operators, including the outrageous set <code>@ops = qw( + - * / % &gt;&gt; &lt;&lt; &amp; | )</code>. That took a few minutes to run, since the number of permutations jumps to a few hundred million. There were <a href="http://ry.ca/misc/all_ops.txt">22,675 solutions</a> (573KiB), like the following:</p>
-
 <pre><code>100 = +1 + 2 + 3 / 4 &lt;&lt; 5 | 6 &amp; 78 - 9
-</code></pre>
-
-<p>Can you place parentheses in that expression and have it still <code>eval</code> to 100? I may have spent over an hour trying that with various examples from the output.</p>
-
+</code></pre><p>Can you place parentheses in that expression and have it still <code>eval</code> to 100? I may have spent over an hour trying that with various examples from the output.</p>
 <p><strong>My Blog</strong> › <a href="http://www.ry.ca/2020/01/only-100-please/">Only 100, Please</a></p>
-
 <h2 id="saif-ahmed">Saif Ahmed</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/saiftynet/perl/ch-1.pl">Saif&rsquo;s solution</a> is another recursive one. Saif uses the replacement form of <code>substr</code> to insert the operator into the string:</p>
-
-<pre><code class="language-perl">sub tryInsert{
-    my ($str,$target,$marker)=@_;
-    $marker //=1;         # $marker identifies the first insertion point
-                          # further attempts ar from this point to the
-                          # postion before the last character in the string
-    foreach my $pos ($marker..((length $str)-1)){
-        foreach my $operator(qw{+ -}){
-          my $temp=$str;                      # put in a temporary string
-          substr $temp,$pos,0,$operator;      # insert the operator
-          print $temp.&quot;\n&quot;                    # print the reulting string
-             if   eval (&quot;$temp&quot;)==$target;    # only if the result is our $target
-          tryInsert($temp,$target,$pos+2);    # recurse with new insertion point
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">tryInsert</span>{
+    <span style="color:#66d9ef">my</span> ($str,$target,$marker)<span style="color:#f92672">=</span>@_;
+    $marker <span style="color:#e6db74">//</span><span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;         <span style="color:#75715e"># $marker identifies the first insertion point</span>
+                          <span style="color:#75715e"># further attempts ar from this point to the</span>
+                          <span style="color:#75715e"># postion before the last character in the string</span>
+    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $pos ($marker<span style="color:#f92672">..</span>((length $str)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)){
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $operator(<span style="color:#e6db74">qw{+ -}</span>){
+          <span style="color:#66d9ef">my</span> $temp<span style="color:#f92672">=</span>$str;                      <span style="color:#75715e"># put in a temporary string</span>
+          substr $temp,$pos,<span style="color:#ae81ff">0</span>,$operator;      <span style="color:#75715e"># insert the operator</span>
+          <span style="color:#66d9ef">print</span> $temp<span style="color:#f92672">.</span><span style="color:#e6db74">&#34;\n&#34;</span>                    <span style="color:#75715e"># print the reulting string</span>
+             <span style="color:#66d9ef">if</span>   eval (<span style="color:#e6db74">&#34;$temp&#34;</span>)<span style="color:#f92672">==</span>$target;    <span style="color:#75715e"># only if the result is our $target</span>
+          tryInsert($temp,$target,$pos<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>);    <span style="color:#75715e"># recurse with new insertion point</span>
         }
     }
 }
-</code></pre>
-
-<p>Saif&rsquo;s solution is concise, and efficient. Nice.</p>
-
+</code></pre></div><p>Saif&rsquo;s solution is concise, and efficient. Nice.</p>
 <h2 id="wanderdoc">wanderdoc</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/wanderdoc/perl/ch-1.pl">wanderdoc&rsquo;s solution</a> goes back to the iterative approach we&rsquo;ve seen, with the help of two CPAN modules:</p>
-
 <ul>
 <li><a href="https://metacpan.org/pod/Algorithm::Combinatorics">Algorithm::Combinatorics</a> › <code>variations_with_repetition()</code></li>
 <li><a href="https://metacpan.org/pod/List::MoreUtils">List::MoreUtils</a> › <code>zip()</code></li>
 </ul>
-
 <p>The core module <a href="https://perldoc.perl.org/Scalar/Util.html">Scalar::Util</a> is also used, for the <code>looks_like_number()</code> function. Now let&rsquo;s see how wanderdoc puts it all together:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @operators <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#39;+&#39;</span>, <span style="color:#e6db74">&#39;-&#39;</span>, <span style="color:#e6db74">&#39;&#39;</span>);
+<span style="color:#66d9ef">my</span> $string <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;123456789&#34;</span>;
+<span style="color:#66d9ef">my</span> @array <span style="color:#f92672">=</span> split(<span style="color:#e6db74">//</span>,$string);
+<span style="color:#66d9ef">my</span> $iter <span style="color:#f92672">=</span> variations_with_repetition( [@operators], $#array);
+<span style="color:#66d9ef">my</span> %uniq;
+<span style="color:#66d9ef">while</span> ( <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> $iter<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">next</span> ) {
+     <span style="color:#66d9ef">my</span> @z <span style="color:#f92672">=</span> zip(@array, @$c);
+     pop @z; <span style="color:#75715e"># undef.</span>
+     <span style="color:#66d9ef">my</span> $formula <span style="color:#f92672">=</span> join(<span style="color:#e6db74">&#39;&#39;</span>,@z);
+     $uniq{ $formula }<span style="color:#f92672">++</span>;
+     <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $uniq{ $formula } <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>;
 
-<pre><code class="language-perl">my @operators = ('+', '-', '');
-my $string = &quot;123456789&quot;;
-my @array = split(//,$string);
-my $iter = variations_with_repetition( [@operators], $#array);
-my %uniq;
-while ( my $c = $iter-&gt;next ) {
-     my @z = zip(@array, @$c);
-     pop @z; # undef.
-     my $formula = join('',@z);
-     $uniq{ $formula }++;
-     next if $uniq{ $formula } &gt; 1;
-
-     my $sum = eval $formula;
-     unless ( looks_like_number($sum) ) {
-          print $@, $/;
-          die &quot;Sum is ${sum}: Something went wrong.&quot;;
+     <span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> eval $formula;
+     <span style="color:#66d9ef">unless</span> ( looks_like_number($sum) ) {
+          <span style="color:#66d9ef">print</span> $@, $/;
+          die <span style="color:#e6db74">&#34;Sum is ${sum}: Something went wrong.&#34;</span>;
      }
 
-     next unless 100 == $sum;
-     print &quot;${formula} = ${sum}$/&quot;;
+     <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> <span style="color:#ae81ff">100</span> <span style="color:#f92672">==</span> $sum;
+     <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;${formula} = ${sum}$/&#34;</span>;
 }
-</code></pre>
-
-<p><code>$iter</code> is an iterator that now spits out a <code>$string</code> length - 1 sized array of operators, like so:</p>
-
+</code></pre></div><p><code>$iter</code> is an iterator that now spits out a <code>$string</code> length - 1 sized array of operators, like so:</p>
 <pre><code>+ + + + + + + +
 + + + + + + + -
 + + + + + + +
@@ -837,422 +668,315 @@ while ( my $c = $iter-&gt;next ) {
 + + + + + + - -
 + + + + + + -
 (etc.)
-</code></pre>
-
-<p>All that needs to be done is to <code>zip()</code> them together to interleave the operators into the <code>@array</code> of digits, and then string-<code>eval</code> the result.</p>
-
-<hr />
-
-<h1 id="task-2-make-it-200">Task #2 - Make it 200</h1>
-
+</code></pre><p>All that needs to be done is to <code>zip()</code> them together to interleave the operators into the <code>@array</code> of digits, and then string-<code>eval</code> the result.</p>
+<hr>
+<h1 id="task-2---make-it-200">Task #2 - Make it 200</h1>
 <p><em>You have only $1 left at the start of the week. You have been given an opportunity to make it $200. The rule is simple with every move you can either double what you have or add another $1. Write a script to help you get $200 with the smallest number of moves.</em></p>
-
 <p>This week&rsquo;s second challenge in some respects was easier than the first, since there is an extremely elegant and efficient greedy algorithm to find the optimal path: instead of starting with $1, we start with $200 and work our way backwards. Whenever we have an even number, divide by 2, otherwise, subtract 1. This guarantees we will find the shortest path, which can simply be returned in reverse order. See <a href="http://www.ry.ca/2020/01/make-it-200/">my blog</a> for some informal discussion on why this works.</p>
-
 <p>While many people did implement the above algorithm, there were some excellent alternative solutions as well. For instance, many people simply brute-forced the small search space.</p>
-
 <h2 id="adam-russell-1">Adam Russell</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/adam-russell/perl/ch-2.pl">Adam&rsquo;s solution</a> again uses <code>AI::Genetic</code>. See my discussion of his challenge #1 solution for a bit more background, or check out <a href="https://adamcrussell.livejournal.com/14635.html">Adam&rsquo;s blog</a>. Here&rsquo;s the fitness function:</p>
-
-<pre><code class="language-perl">sub fitness{
-    my($genes) = @_;
-    my $total = 1;
-    my $count_no_op = 1;
-    for my $gene (@{$genes}){
-        $total = $gene-&gt;($total);
-        $count_no_op++ if $gene-&gt;() =~ m/no/;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">fitness</span>{
+    <span style="color:#66d9ef">my</span>($genes) <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">my</span> $total <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">my</span> $count_no_op <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $gene (@{$genes}){
+        $total <span style="color:#f92672">=</span> $gene<span style="color:#f92672">-&gt;</span>($total);
+        $count_no_op<span style="color:#f92672">++</span> <span style="color:#66d9ef">if</span> $gene<span style="color:#f92672">-&gt;</span>() <span style="color:#f92672">=~</span> <span style="color:#e6db74">m/no/</span>;
     }
-    return 200 - $total if $total &gt;= 200;
-    return ($total - 200) * $count_no_op;
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">200</span> <span style="color:#f92672">-</span> $total <span style="color:#66d9ef">if</span> $total <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">200</span>;
+    <span style="color:#66d9ef">return</span> ($total <span style="color:#f92672">-</span> <span style="color:#ae81ff">200</span>) <span style="color:#f92672">*</span> $count_no_op;
 }
-</code></pre>
-
-<p>The fitness function is much simpler this time. Here, it just returns the negative distance from 200, but multiplied by a count of the no-ops, to penalize individuals with genes turned off. While the challenge #1 GA took around 45 seconds to run on my system, this one took just 600ms.</p>
-
+</code></pre></div><p>The fitness function is much simpler this time. Here, it just returns the negative distance from 200, but multiplied by a count of the no-ops, to penalize individuals with genes turned off. While the challenge #1 GA took around 45 seconds to run on my system, this one took just 600ms.</p>
 <p>The way Adam&rsquo;s program produces an <em>optimal</em> solution bears some explanation: Adam sets up 9 genes which can each take on either <code>no_op</code>, <code>add_one</code>, or <code>double</code>:</p>
-
-<pre><code class="language-perl">my $genes = [];
-for (0 .. 8){
-    push @{$genes}, [\&amp;add_one, \&amp;double, \&amp;no_op],
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $genes <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>;
+<span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">8</span>){
+    push @{$genes}, [<span style="color:#f92672">\&amp;</span>add_one, <span style="color:#f92672">\&amp;</span>double, <span style="color:#f92672">\&amp;</span>no_op],
 }
-</code></pre>
-
-<p>This means his program will, regardless of how much evolution takes place, never consider solutions with more than 9 operations. And we know that the optimal solution takes exactly 9 operations.</p>
-
+</code></pre></div><p>This means his program will, regardless of how much evolution takes place, never consider solutions with more than 9 operations. And we know that the optimal solution takes exactly 9 operations.</p>
 <p><strong>Adam&rsquo;s Blog</strong> › <a href="https://adamcrussell.livejournal.com/14635.html">Evolving code with AI::Genetic</a></p>
-
 <h2 id="alicia-bielsa-1">Alicia Bielsa</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/alicia-bielsa/perl/ch-2.pl">Alicia&rsquo;s solution</a> uses the greedy algorithm to make short work of the problem:</p>
-
-<pre><code class="language-perl">my $objective = 200;
-while ($objective &gt; 1 ) {
-    if ($objective % 2 == 0){
-        push (@aMoves, 'double');
-        $objective = $objective / 2;
-    } else {
-        push (@aMoves, 'add 1');
-        $objective = $objective - 1;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $objective <span style="color:#f92672">=</span> <span style="color:#ae81ff">200</span>;
+<span style="color:#66d9ef">while</span> ($objective <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> ) {
+    <span style="color:#66d9ef">if</span> ($objective % 2 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>){
+        push (@aMoves, <span style="color:#e6db74">&#39;double&#39;</span>);
+        $objective <span style="color:#f92672">=</span> $objective <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>;
+    } <span style="color:#66d9ef">else</span> {
+        push (@aMoves, <span style="color:#e6db74">&#39;add 1&#39;</span>);
+        $objective <span style="color:#f92672">=</span> $objective <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
     }
 }
-</code></pre>
-
-<p>She then works through <code>reverse(@aMoves)</code> to pretty-print the results:</p>
-
-<pre><code class="language-perl">my $amountMoney = 1;
-foreach my $move (reverse(@aMoves)){
-    if ($move eq 'double'){
-        print &quot;Double $amountMoney &quot;;
-        $amountMoney = $amountMoney * 2 ;
-        print &quot;= $amountMoney\n&quot;;
-    } else {
-        print &quot;Add 1 to $amountMoney &quot;;
-        $amountMoney = $amountMoney + 1 ;
-        print &quot;= $amountMoney\n&quot;;
+</code></pre></div><p>She then works through <code>reverse(@aMoves)</code> to pretty-print the results:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $amountMoney <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+<span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $move (reverse(@aMoves)){
+    <span style="color:#66d9ef">if</span> ($move <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;double&#39;</span>){
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Double $amountMoney &#34;</span>;
+        $amountMoney <span style="color:#f92672">=</span> $amountMoney <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span> ;
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;= $amountMoney\n&#34;</span>;
+    } <span style="color:#66d9ef">else</span> {
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Add 1 to $amountMoney &#34;</span>;
+        $amountMoney <span style="color:#f92672">=</span> $amountMoney <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> ;
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;= $amountMoney\n&#34;</span>;
     }
 }
-</code></pre>
-
-<h2 id="andrezgz-1">Andrezgz</h2>
-
+</code></pre></div><h2 id="andrezgz-1">Andrezgz</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/andrezgz/perl/ch-2.pl">Andrezgz&rsquo;s solution</a> works through the search space by looping through every 10-bit number, mapping the 0s and 1s to <code>+ 1</code> and <code>* 2</code>, and finally string-<code>eval</code>-ing each operation. With that, Andrezgz then returns the first set of <code>@ops</code> that evaluates to 200.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> constant MOVES_LIMIT <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">10</span>; <span style="color:#75715e"># upper bound of moves to check</span>
 
-<pre><code class="language-perl">use constant MOVES_LIMIT =&gt; 10; # upper bound of moves to check
+<span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $n ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> (<span style="color:#ae81ff">2</span> <span style="color:#f92672">**</span> MOVES_LIMIT)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> ) {
+    <span style="color:#66d9ef">my</span> @ops <span style="color:#f92672">=</span> map { $_ ? <span style="color:#e6db74">&#39;+ 1&#39;</span> : <span style="color:#e6db74">&#39;* 2&#39;</span>} split <span style="color:#e6db74">//</span>, sprintf(<span style="color:#e6db74">&#34;%b&#34;</span>, $n);
+    <span style="color:#66d9ef">my</span> $value <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+    $value <span style="color:#f92672">=</span> eval($value <span style="color:#f92672">.</span> $_) <span style="color:#66d9ef">for</span> (@ops);
 
-foreach my $n ( 0 .. (2 ** MOVES_LIMIT)-1 ) {
-    my @ops = map { $_ ? '+ 1' : '* 2'} split //, sprintf(&quot;%b&quot;, $n);
-    my $value = 1;
-    $value = eval($value . $_) for (@ops);
-
-    if ($value == 200) {
-        @solution = @ops;
-        last;
+    <span style="color:#66d9ef">if</span> ($value <span style="color:#f92672">==</span> <span style="color:#ae81ff">200</span>) {
+        @solution <span style="color:#f92672">=</span> @ops;
+        <span style="color:#66d9ef">last</span>;
     }
 }
-</code></pre>
-
-<p>This does find the shortest path, partly due to the choice of <code>MOVES_LIMIT =&gt; 10</code>, which is very close to the optimal solution length of 9.</p>
-
+</code></pre></div><p>This does find the shortest path, partly due to the choice of <code>MOVES_LIMIT =&gt; 10</code>, which is very close to the optimal solution length of 9.</p>
 <h2 id="cheok-yin-fung-1">Cheok-Yin Fung</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/cheok-yin-fung/perl/ch-2.pl">Cheok-Yin Fung&rsquo;s solution</a> loops from 3..200, storing previous results in <code>@t</code>. For each number, they consider whether dividing by 2 or subtracting 1 would lead to a shorter sequence, by looking at the previous term in the sequence.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @t <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>);
 
-<pre><code class="language-perl">my @t = (0, 0, 1);
-
-for my $k (3..200) {
-    if ($k % 2 == 0) {$t[$k] = 1+ &amp;min( $t[$k/2] , $t[$k-1])}
-        else {$t[$k] = $t[$k-1]+1;}
+<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $k (<span style="color:#ae81ff">3</span><span style="color:#f92672">..</span><span style="color:#ae81ff">200</span>) {
+    <span style="color:#66d9ef">if</span> ($k % 2 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {$t[$k] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">+</span> <span style="color:#f92672">&amp;</span>min( $t[$k<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>] , $t[$k<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>])}
+        <span style="color:#66d9ef">else</span> {$t[$k] <span style="color:#f92672">=</span> $t[$k<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>;}
 }
 
-print $t[200], &quot;\n&quot;;
-</code></pre>
-
-<p>This solution outputs the optimal number of operations. With a little bit of bookkeeping, it could output the sequence itself as well.</p>
-
+<span style="color:#66d9ef">print</span> $t[<span style="color:#ae81ff">200</span>], <span style="color:#e6db74">&#34;\n&#34;</span>;
+</code></pre></div><p>This solution outputs the optimal number of operations. With a little bit of bookkeeping, it could output the sequence itself as well.</p>
 <p>Both this solution and Cheok-Yin Fung&rsquo;s solution for challenge #1 strike me as being quite analytical, which I appreciate.</p>
-
 <h2 id="colin-crain-1">Colin Crain</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/colin-crain/perl/ch-2.pl">Colin&rsquo;s solution</a> uses the greedy approach, succinctly:</p>
-
-<pre><code class="language-perl">while ( $value != 1) {
-    if ($value % 2 == 0){
-        $value /= 2;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">while</span> ( $value <span style="color:#f92672">!=</span> <span style="color:#ae81ff">1</span>) {
+    <span style="color:#66d9ef">if</span> ($value % 2 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>){
+        $value <span style="color:#f92672">/=</span> <span style="color:#ae81ff">2</span>;
     }
-    else {
-        $value -= 1;
+    <span style="color:#66d9ef">else</span> {
+        $value <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1</span>;
     }
-    unshift @steps, $value;         ## we build the array of steps from back to front
-                                    ## so there is no need to reverse it later
+    unshift @steps, $value;         <span style="color:#75715e">## we build the array of steps from back to front</span>
+                                    <span style="color:#75715e">## so there is no need to reverse it later</span>
 }
-</code></pre>
-
-<p>Colin&rsquo;s extended comments contain a lot of interesting analysis on his own journey toward proving that the greedy solution produces optimal results.</p>
-
+</code></pre></div><p>Colin&rsquo;s extended comments contain a lot of interesting analysis on his own journey toward proving that the greedy solution produces optimal results.</p>
 <h2 id="cristina-heredia">Cristina Heredia</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/cristian-heredia/perl/ch-2.pl">Cristina&rsquo;s solution</a> uses the greedy method, but splits the problem into two subs, which call each other to reduce <code>$number</code> as quickly as possible. The code to output the solution is also included in the <code>remove()</code> sub:</p>
-
-<pre><code class="language-perl">sub divide {
-    while (($number %2 )==0) {
-        $number = $number / 2;
-        unshift @moves, 'double ';
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">divide</span> {
+    <span style="color:#66d9ef">while</span> (($number %2 )<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>) {
+        $number <span style="color:#f92672">=</span> $number <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>;
+        unshift @moves, <span style="color:#e6db74">&#39;double &#39;</span>;
     }
     remove();
 }
 
-sub remove {
-    $number --;
-    unshift @moves, '+1$ ';
-    if ($number == 1 or $number == 0) {
-        print &quot;The moves that you have to do are: \n&quot;;
-        $total = @moves;
-        print &quot;$total\n&quot;;
-        print 'And they are: ';
-        foreach (my $i = 0; $i &lt; @moves; $i++) {
-            print &quot;@moves[$i]&quot;;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">remove</span> {
+    $number <span style="color:#f92672">--</span>;
+    unshift @moves, <span style="color:#e6db74">&#39;+1$ &#39;</span>;
+    <span style="color:#66d9ef">if</span> ($number <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">or</span> $number <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;The moves that you have to do are: \n&#34;</span>;
+        $total <span style="color:#f92672">=</span> @moves;
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$total\n&#34;</span>;
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39;And they are: &#39;</span>;
+        <span style="color:#66d9ef">foreach</span> (<span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; $i <span style="color:#f92672">&lt;</span> @moves; $i<span style="color:#f92672">++</span>) {
+            <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;@moves[$i]&#34;</span>;
         }
     }
-    else {
+    <span style="color:#66d9ef">else</span> {
         divide();
     }
 }
-</code></pre>
-
-<p>Cristina is one of a few people who take advantage of <code>unshift</code> to insert the moves at the beginning of the array, which saves having to do a <code>reverse</code> later. Efficiency-wise, it&rsquo;s not going to make any real difference here, but it does make for slightly cleaner code.</p>
-
+</code></pre></div><p>Cristina is one of a few people who take advantage of <code>unshift</code> to insert the moves at the beginning of the array, which saves having to do a <code>reverse</code> later. Efficiency-wise, it&rsquo;s not going to make any real difference here, but it does make for slightly cleaner code.</p>
 <h2 id="daniel-mantovani-1">Daniel Mantovani</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/daniel-mantovani/perl/ch-2.pl">Daniel&rsquo;s solution</a> takes the greedy approach, appending a plain-English sentence to <code>@steps</code> for each operation:</p>
-
-<pre><code class="language-perl">while ($target &gt; 1) {
-    if ($target % 2) {
-        push @steps, sprintf('Add $1 to $%i (new total $%i)', $target-1, $target);
-        $target--;
-    } else {
-        push @steps, sprintf('Multiply $%i by 2 (new total $%i)', $target / 2, $target);
-        $target /= 2;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">while</span> ($target <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>) {
+    <span style="color:#66d9ef">if</span> ($target % 2) {
+        push @steps, sprintf(<span style="color:#e6db74">&#39;Add $1 to $%i (new total $%i)&#39;</span>, $target<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, $target);
+        $target<span style="color:#f92672">--</span>;
+    } <span style="color:#66d9ef">else</span> {
+        push @steps, sprintf(<span style="color:#e6db74">&#39;Multiply $%i by 2 (new total $%i)&#39;</span>, $target <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>, $target);
+        $target <span style="color:#f92672">/=</span> <span style="color:#ae81ff">2</span>;
     }
 }
-</code></pre>
-
-<p>Daniel then outputs <code>@steps</code>:</p>
-
-<pre><code class="language-perl">for my $i (1..@steps) {
-    say &quot;Step #$i: &quot;, pop @steps;
+</code></pre></div><p>Daniel then outputs <code>@steps</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>@steps) {
+    say <span style="color:#e6db74">&#34;Step #$i: &#34;</span>, pop @steps;
 }
-</code></pre>
-
-<h2 id="dave-jacoby-1">Dave Jacoby</h2>
-
+</code></pre></div><h2 id="dave-jacoby-1">Dave Jacoby</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/dave-jacoby/perl/ch-2.pl">Dave&rsquo;s solution</a> sets up a queue in <code>@array</code> to do a breadth-first search (BFS) of the search space:</p>
-
-<pre><code class="language-perl">my @array = (1);
-for my $i (@array) {
-    my $check = decode($i);
-    if ( $check == 200 ) {
-        say join &quot;\t&quot;, $check, $i, scalar @array;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @array <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>);
+<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (@array) {
+    <span style="color:#66d9ef">my</span> $check <span style="color:#f92672">=</span> decode($i);
+    <span style="color:#66d9ef">if</span> ( $check <span style="color:#f92672">==</span> <span style="color:#ae81ff">200</span> ) {
+        say join <span style="color:#e6db74">&#34;\t&#34;</span>, $check, $i, scalar @array;
         exit;
     }
 
-    if ( $check &gt; 200 ) {
-        next;
+    <span style="color:#66d9ef">if</span> ( $check <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">200</span> ) {
+        <span style="color:#66d9ef">next</span>;
     }
-    push @array, $i . 'p';
-    push @array, $i . 'd';
+    push @array, $i <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;p&#39;</span>;
+    push @array, $i <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;d&#39;</span>;
 }
-</code></pre>
-
-<p>The <code>decode()</code> sub takes a string like <code>1dppd</code> and returns 8, since (((1 * 2) + 1) + 1) * 2 = 8:</p>
-
-<pre><code class="language-perl">sub decode ( $sample ) {
-    my ( $i, @list ) = split m//, $sample;
-    for my $l (@list) {
-        $i += 1 if $l eq 'p';
-        $i *= 2 if $l eq 'd';
+</code></pre></div><p>The <code>decode()</code> sub takes a string like <code>1dppd</code> and returns 8, since (((1 * 2) + 1) + 1) * 2 = 8:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">decode</span> ( $sample ) {
+    <span style="color:#66d9ef">my</span> ( $i, @list ) <span style="color:#f92672">=</span> split <span style="color:#e6db74">m//</span>, $sample;
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $l (@list) {
+        $i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> $l <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;p&#39;</span>;
+        $i <span style="color:#f92672">*=</span> <span style="color:#ae81ff">2</span> <span style="color:#66d9ef">if</span> $l <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;d&#39;</span>;
     }
-    return $i;
+    <span style="color:#66d9ef">return</span> $i;
 }
-</code></pre>
-
-<p>While you might be aware that adding or removing elements within the loop body is expressly discouraged in the <a href="https://perldoc.perl.org/perlsyn.html#Foreach-Loops">Perl documentation</a> for hopefully obvious reasons, the full truth is a bit more nuanced. Since Dave is only ever appending to the end of <code>@array</code>, ahead of the current index, Perl never has any reason to get confused, so this works as a sort of sneaky queue.</p>
-
+</code></pre></div><p>While you might be aware that adding or removing elements within the loop body is expressly discouraged in the <a href="https://perldoc.perl.org/perlsyn.html#Foreach-Loops">Perl documentation</a> for hopefully obvious reasons, the full truth is a bit more nuanced. Since Dave is only ever appending to the end of <code>@array</code>, ahead of the current index, Perl never has any reason to get confused, so this works as a sort of sneaky queue.</p>
 <h2 id="duane-powell-1">Duane Powell</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/duane-powell/perl/ch-2.pl">Duane&rsquo;s solution</a> is another greedy implementation:</p>
-
-<pre><code class="language-perl">my @solution;
-my $goal = 200;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @solution;
+<span style="color:#66d9ef">my</span> $goal <span style="color:#f92672">=</span> <span style="color:#ae81ff">200</span>;
 push @solution, $goal;
-while ($goal &gt; 1) {
-    # if odd number deduct 1 making it even, otherwise divide by 2
-    $goal = ($goal % 2) ? $goal-1 : $goal/2;
-    # push this step into the solution set
+<span style="color:#66d9ef">while</span> ($goal <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>) {
+    <span style="color:#75715e"># if odd number deduct 1 making it even, otherwise divide by 2</span>
+    $goal <span style="color:#f92672">=</span> ($goal % 2) ? $goal<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> : $goal<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>;
+    <span style="color:#75715e"># push this step into the solution set</span>
     push @solution, $goal;
 }
-say join(',',reverse(@solution));
-</code></pre>
-
-<p>Duane&rsquo;s solution is concise, and outputs a minimalistic array of intermediate numbers (1,2,3,6,12,24,25,50,100,200), since anyone looking at that list can easily see whether each number is doubled or incremented.</p>
-
+say join(<span style="color:#e6db74">&#39;,&#39;</span>,reverse(@solution));
+</code></pre></div><p>Duane&rsquo;s solution is concise, and outputs a minimalistic array of intermediate numbers (1,2,3,6,12,24,25,50,100,200), since anyone looking at that list can easily see whether each number is doubled or incremented.</p>
 <h2 id="duncan-c-white-1">Duncan C. White</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/duncan-c-white/perl/ch-2.pl">Duncan C. White&rsquo;s solution</a> exhaustively searches by maintaining a list of all possible sequences, which he builds up one character at a time, ensuring the shortest solution will be found first:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">fun search( $initial, $goal ) {
+    <span style="color:#66d9ef">my</span> $seq <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
+    <span style="color:#66d9ef">my</span> @todo <span style="color:#f92672">=</span> ( [$initial, <span style="color:#e6db74">&#34;&#34;</span>] );
+    <span style="color:#66d9ef">for</span>(;;) {
+        <span style="color:#75715e"># Build a new list of todo pairs, twice as long as the old one.</span>
+        <span style="color:#75715e"># stopping if we hit $goal</span>
+        <span style="color:#66d9ef">my</span> @newtodo;
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $pair (@todo) {
+            <span style="color:#66d9ef">my</span>( $currvalue, $currseq ) <span style="color:#f92672">=</span> @$pair;
+            <span style="color:#66d9ef">return</span> $currseq <span style="color:#66d9ef">if</span> $currvalue <span style="color:#f92672">==</span> $goal;
 
-<pre><code class="language-perl">fun search( $initial, $goal ) {
-    my $seq = &quot;&quot;;
-    my @todo = ( [$initial, &quot;&quot;] );
-    for(;;) {
-        # Build a new list of todo pairs, twice as long as the old one.
-        # stopping if we hit $goal
-        my @newtodo;
-        foreach my $pair (@todo) {
-            my( $currvalue, $currseq ) = @$pair;
-            return $currseq if $currvalue == $goal;
-
-            push @newtodo, [ 2 * $currvalue, $currseq.&quot;d&quot; ];
-            push @newtodo, [ $currvalue + 1, $currseq.&quot;i&quot; ];
+            push @newtodo, [ <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $currvalue, $currseq<span style="color:#f92672">.</span><span style="color:#e6db74">&#34;d&#34;</span> ];
+            push @newtodo, [ $currvalue <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, $currseq<span style="color:#f92672">.</span><span style="color:#e6db74">&#34;i&#34;</span> ];
         }
-        @todo = @newtodo;
+        @todo <span style="color:#f92672">=</span> @newtodo;
     }
 }
-</code></pre>
-
-<p>It&rsquo;s an interesting way to iterate.</p>
-
+</code></pre></div><p>It&rsquo;s an interesting way to iterate.</p>
 <h2 id="e-choroba-1">E. Choroba</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/e-choroba/perl/ch-2.pl">Choroba&rsquo;s solution</a> searches with the help of a <code>%possibilities</code> hash to map seen values to the sequences of numbers:</p>
-
-<pre><code class="language-perl">my %possibilities = (1 =&gt; []);
-while (! exists $possibilities{200}) {
-    for my $p (keys %possibilities) {
-        $possibilities{ $_ } ||= [ @{ $possibilities{$p} }, $p ]
-            for $p + 1, $p * 2;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> %possibilities <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">[]</span>);
+<span style="color:#66d9ef">while</span> (<span style="color:#f92672">!</span> exists $possibilities{<span style="color:#ae81ff">200</span>}) {
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $p (keys %possibilities) {
+        $possibilities{ $_ } <span style="color:#f92672">||=</span> [ @{ $possibilities{$p} }, $p ]
+            <span style="color:#66d9ef">for</span> $p <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, $p <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span>;
     }
 }
 
-my @moves = @{ $possibilities{200} };
-say scalar @moves, &quot;: @moves&quot;;
-</code></pre>
-
-<p>Starting from the degenerate case of <code>1 =&gt; []</code>, Choroba expands on that by looping over all known solutions and adding 1 and multiplying by 2, and adding those results to <code>%possibilities</code>. As soon as <code>$possibilities{200}</code> exists, that expression must be the shortest, since it was checked for on every move.</p>
-
+<span style="color:#66d9ef">my</span> @moves <span style="color:#f92672">=</span> @{ $possibilities{<span style="color:#ae81ff">200</span>} };
+say scalar @moves, <span style="color:#e6db74">&#34;: @moves&#34;</span>;
+</code></pre></div><p>Starting from the degenerate case of <code>1 =&gt; []</code>, Choroba expands on that by looping over all known solutions and adding 1 and multiplying by 2, and adding those results to <code>%possibilities</code>. As soon as <code>$possibilities{200}</code> exists, that expression must be the shortest, since it was checked for on every move.</p>
 <p><strong>Choroba&rsquo;s Blog</strong> › <a href="http://blogs.perl.org/users/e_choroba/2020/01/perl-weekly-challenge-044-one-hundred-two-hundred.html">One Hundred, Two Hundred</a></p>
-
 <h2 id="fabrizio-poggi-1">Fabrizio Poggi</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/fabrizio-poggi/perl/ch-2.pl">Fabrizio&rsquo;s solution</a> is another greedy implementation:</p>
-
-<pre><code class="language-perl">push @array, $number;
-do {
-    if ($number % 2) {
-        $result = $number-1;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">push @array, $number;
+<span style="color:#66d9ef">do</span> {
+    <span style="color:#66d9ef">if</span> ($number % 2) {
+        $result <span style="color:#f92672">=</span> $number<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
         push @array, $result;
-        $number = $result/2;
+        $number <span style="color:#f92672">=</span> $result<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>;
         push @array, $number;
-    } else {
-        $number = $number/2;
+    } <span style="color:#66d9ef">else</span> {
+        $number <span style="color:#f92672">=</span> $number<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>;
         push @array, $number;
     }
-} while($number &gt; 1);
+} <span style="color:#66d9ef">while</span>($number <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>);
 
-@array = reverse@array;
-print &quot;@array\n&quot;;
-</code></pre>
-
-<p>This code conveys its intentions well, and does the task it was designed to do.</p>
-
+@array <span style="color:#f92672">=</span> reverse@array;
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;@array\n&#34;</span>;
+</code></pre></div><p>This code conveys its intentions well, and does the task it was designed to do.</p>
 <h2 id="javier-luque-1">Javier Luque</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/javier-luque/perl/ch-2.pl">Javier&rsquo;s solution</a> recursively explores all sequences of incrementing or doubling, up to an arbitrarily defined maximum length:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">add_or_double</span> {
+    <span style="color:#66d9ef">my</span> ($cash, $steps, $solution) <span style="color:#f92672">=</span> @_;
+    $steps<span style="color:#f92672">++</span>;
+    <span style="color:#66d9ef">return</span> undef <span style="color:#66d9ef">if</span> $steps <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">15</span>; <span style="color:#75715e"># Let&#39;s not recurse past 15</span>
 
-<pre><code class="language-perl">sub add_or_double {
-    my ($cash, $steps, $solution) = @_;
-    $steps++;
-    return undef if $steps &gt; 15; # Let's not recurse past 15
-
-    if ($cash == 200) {
-        if ($min_steps &gt; $steps) {
-            $min_steps = $steps;
-            $min_solution = $solution;
+    <span style="color:#66d9ef">if</span> ($cash <span style="color:#f92672">==</span> <span style="color:#ae81ff">200</span>) {
+        <span style="color:#66d9ef">if</span> ($min_steps <span style="color:#f92672">&gt;</span> $steps) {
+            $min_steps <span style="color:#f92672">=</span> $steps;
+            $min_solution <span style="color:#f92672">=</span> $solution;
         }
     }
-    add_or_double($cash * 2, $steps, $solution . 'd') if $cash * 2 &lt;= 200;
-    add_or_double($cash + 1, $steps, $solution . 'a') if $cash + 1 &lt;= 200;
+    add_or_double($cash <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span>, $steps, $solution <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;d&#39;</span>) <span style="color:#66d9ef">if</span> $cash <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">200</span>;
+    add_or_double($cash <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, $steps, $solution <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;a&#39;</span>) <span style="color:#66d9ef">if</span> $cash <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">200</span>;
 }
-</code></pre>
-
-<p>The base case (<code>$cash == 200</code>) looks at whether the current solution is shorter than the previous best solution, and replaces the best solution if so.</p>
-
+</code></pre></div><p>The base case (<code>$cash == 200</code>) looks at whether the current solution is shorter than the previous best solution, and replaces the best solution if so.</p>
 <p>The recursive step simply calls <code>add_or_double()</code> with the cash either doubled or incremented, with a bit of housekeeping to manage the sequence, and to avoid going over the goal amount.</p>
-
 <p><strong>Blog</strong> › <a href="https://perlchallenges.wordpress.com/2020/01/21/perl-weekly-challenge-044/">Perl Weekly Challenge – 044</a></p>
-
 <h2 id="laurent-rosenfeld-1">Laurent Rosenfeld</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/laurent-rosenfeld/perl/ch-2.pl">Laurent&rsquo;s solution</a> works by starting at $1, attempting to increment between 0 and 30 times, greedily multiplying by 2 until it exceeds half the target, and then incrementing the rest of the way:</p>
-
-<pre><code class="language-perl">for my $incr (0..30) {
-    last if $incr &gt; $min_ops;
-    my $current_val = START_VAL;
-    my @steps = ( START_VAL );
-    for my $add (1..$incr) {
-        push @steps, &quot;+1&quot;;
-        $current_val++;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $incr (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">30</span>) {
+    <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $incr <span style="color:#f92672">&gt;</span> $min_ops;
+    <span style="color:#66d9ef">my</span> $current_val <span style="color:#f92672">=</span> START_VAL;
+    <span style="color:#66d9ef">my</span> @steps <span style="color:#f92672">=</span> ( START_VAL );
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $add (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$incr) {
+        push @steps, <span style="color:#e6db74">&#34;+1&#34;</span>;
+        $current_val<span style="color:#f92672">++</span>;
     }
-    while ($current_val &lt;= HALF_TARGET) {
-        push @steps, &quot;*2&quot;;
-        $current_val *= 2;
+    <span style="color:#66d9ef">while</span> ($current_val <span style="color:#f92672">&lt;=</span> HALF_TARGET) {
+        push @steps, <span style="color:#e6db74">&#34;*2&#34;</span>;
+        $current_val <span style="color:#f92672">*=</span> <span style="color:#ae81ff">2</span>;
     }
-    while ($current_val &lt; TARGET) {
-        push @steps, &quot;+1&quot;;
-        $current_val++;
+    <span style="color:#66d9ef">while</span> ($current_val <span style="color:#f92672">&lt;</span> TARGET) {
+        push @steps, <span style="color:#e6db74">&#34;+1&#34;</span>;
+        $current_val<span style="color:#f92672">++</span>;
     }
-    my $nb_steps = scalar @steps;
-    next if $nb_steps &gt;= $min_ops;
-    $min_ops = $nb_steps;
-    $best_so_far = $incr;
-    $good_combinations{$incr} = [@steps];
+    <span style="color:#66d9ef">my</span> $nb_steps <span style="color:#f92672">=</span> scalar @steps;
+    <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $nb_steps <span style="color:#f92672">&gt;=</span> $min_ops;
+    $min_ops <span style="color:#f92672">=</span> $nb_steps;
+    $best_so_far <span style="color:#f92672">=</span> $incr;
+    $good_combinations{$incr} <span style="color:#f92672">=</span> [@steps];
 }
-</code></pre>
-
-<p>This leads to a solution with 16 steps: <code>1 +1 +1 *2 *2 *2 *2 *2 *2 +1 +1 +1 +1 +1 +1 +1 +1</code>, which is higher than the optimal 9-step solution. Had Laurent kept going, I&rsquo;m certain he would have quickly found an optimal algorithm.</p>
-
+</code></pre></div><p>This leads to a solution with 16 steps: <code>1 +1 +1 *2 *2 *2 *2 *2 *2 +1 +1 +1 +1 +1 +1 +1 +1</code>, which is higher than the optimal 9-step solution. Had Laurent kept going, I&rsquo;m certain he would have quickly found an optimal algorithm.</p>
 <p><strong>Laurent&rsquo;s Blog</strong> › <a href="http://blogs.perl.org/users/laurent_r/2020/01/perl-weekly-challenge-44-only-100-please-and-make-it-200.html">Only 100, Please and Make it 200</a></p>
-
 <h2 id="roger-bell-west-1">Roger Bell West</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/roger-bell-west/perl/ch-2.pl">Roger&rsquo;s solution</a> uses a queue to implement a breadth-first search:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @seq<span style="color:#f92672">=</span>([<span style="color:#ae81ff">1</span>,<span style="color:#f92672">[]</span>]);
+<span style="color:#66d9ef">my</span> $goal<span style="color:#f92672">=</span><span style="color:#ae81ff">200</span>;
 
-<pre><code class="language-perl">my @seq=([1,[]]);
-my $goal=200;
-
-while (1) {
-  my $s=shift @seq;
-  if ($s-&gt;[0] == $goal) {
-    print join(', ',map {['double','add 1']-&gt;[$_]} @{$s-&gt;[1]}),&quot;\n&quot;;
-    last;
+<span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
+  <span style="color:#66d9ef">my</span> $s<span style="color:#f92672">=</span>shift @seq;
+  <span style="color:#66d9ef">if</span> ($s<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">==</span> $goal) {
+    <span style="color:#66d9ef">print</span> join(<span style="color:#e6db74">&#39;, &#39;</span>,map {[<span style="color:#e6db74">&#39;double&#39;</span>,<span style="color:#e6db74">&#39;add 1&#39;</span>]<span style="color:#f92672">-&gt;</span>[$_]} @{$s<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]}),<span style="color:#e6db74">&#34;\n&#34;</span>;
+    <span style="color:#66d9ef">last</span>;
   }
-  push @seq,[$s-&gt;[0]*2,[@{$s-&gt;[1]},0]];
-  push @seq,[$s-&gt;[0]+1,[@{$s-&gt;[1]},1]];
+  push @seq,[$s<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">*</span><span style="color:#ae81ff">2</span>,[@{$s<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]},<span style="color:#ae81ff">0</span>]];
+  push @seq,[$s<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>,[@{$s<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]},<span style="color:#ae81ff">1</span>]];
 }
-</code></pre>
-
-<p>Roger uses the familiar <code>while</code>/<code>shift</code> approach to implementing the queue, and uses an array of arrays to do some housekeeping, storing both the sequence and its value in each queue element, which avoids the need to do any parsing or extra computation later.</p>
-
+</code></pre></div><p>Roger uses the familiar <code>while</code>/<code>shift</code> approach to implementing the queue, and uses an array of arrays to do some housekeeping, storing both the sequence and its value in each queue element, which avoids the need to do any parsing or extra computation later.</p>
 <h2 id="ruben-westerberg-1">Ruben Westerberg</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/ruben-westerberg/perl/ch-2.pl">Ruben&rsquo;s solution</a> uses the greedy method, building up the reversed sequence in <code>@moves</code>:</p>
-
-<pre><code class="language-perl">my $target=200;
-my @moves;
-my $d=$target;
-while ($d!=1) {
-    if ($d%2==0) {
-        push @moves, &quot;Double&quot;;
-        $d/=2;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $target<span style="color:#f92672">=</span><span style="color:#ae81ff">200</span>;
+<span style="color:#66d9ef">my</span> @moves;
+<span style="color:#66d9ef">my</span> $d<span style="color:#f92672">=</span>$target;
+<span style="color:#66d9ef">while</span> ($d<span style="color:#f92672">!=</span><span style="color:#ae81ff">1</span>) {
+    <span style="color:#66d9ef">if</span> ($d%2<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>) {
+        push @moves, <span style="color:#e6db74">&#34;Double&#34;</span>;
+        $d<span style="color:#f92672">/=</span><span style="color:#ae81ff">2</span>;
     }
-    else {
-        push @moves, &quot;Add 1&quot;;
-        $d-=1;
+    <span style="color:#66d9ef">else</span> {
+        push @moves, <span style="color:#e6db74">&#34;Add 1&#34;</span>;
+        $d<span style="color:#f92672">-=</span><span style="color:#ae81ff">1</span>;
     }
 }
-</code></pre>
-
-<p>The results are then pretty-printed with the following code:</p>
-
-<pre><code class="language-perl">my $t=1;
-printf &quot;Start: \t\t%3d\n&quot;,$t;
-for (reverse @moves) {
-    $t+=1 if /^A/;
-    $t*=2 if /^D/;
-    printf &quot;Move:\t%s:\t%3d\n&quot;,$_, $t;
+</code></pre></div><p>The results are then pretty-printed with the following code:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $t<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
+printf <span style="color:#e6db74">&#34;Start: \t\t%3d\n&#34;</span>,$t;
+<span style="color:#66d9ef">for</span> (reverse @moves) {
+    $t<span style="color:#f92672">+=</span><span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> <span style="color:#e6db74">/^A/</span>;
+    $t<span style="color:#f92672">*=</span><span style="color:#ae81ff">2</span> <span style="color:#66d9ef">if</span> <span style="color:#e6db74">/^D/</span>;
+    printf <span style="color:#e6db74">&#34;Move:\t%s:\t%3d\n&#34;</span>,$_, $t;
 }
-</code></pre>
-
-<pre><code>Start:            1
+</code></pre></div><pre><code>Start:            1
 Move:   Double:   2
 Move:   Add 1:    3
 Move:   Double:   6
@@ -1262,127 +986,95 @@ Move:   Add 1:   25
 Move:   Double:  50
 Move:   Double: 100
 Move:   Double: 200
-</code></pre>
-
-<h2 id="ryan-thompson-1">Ryan Thompson</h2>
-
+</code></pre><h2 id="ryan-thompson-1">Ryan Thompson</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/ryan-thompson/perl/ch-2.pl">My solution</a> uses the greedy method, but then I also wrote a recursive method, to search all possible solutions of <em>n</em> moves or less. First, here&rsquo;s the greedy one:</p>
-
-<pre><code class="language-perl">sub double_or_plus( $start, $end ) {
-    my @path = $end;
-    while ($end != $start) {
-        $end = $end % 2 ? $end - 1 : $end / 2;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">double_or_plus</span>( $start, $end ) {
+    <span style="color:#66d9ef">my</span> @path <span style="color:#f92672">=</span> $end;
+    <span style="color:#66d9ef">while</span> ($end <span style="color:#f92672">!=</span> $start) {
+        $end <span style="color:#f92672">=</span> $end % 2 ? $end <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> : $end <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>;
         unshift @path, $end;
     }
     @path;
 }
-</code></pre>
+</code></pre></div><p>And here&rsquo;s the exhaustive recursive one (both of these use the <code>signatures</code> feature, and <code>exhaustive()</code> uses <code>current_sub</code> as well):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">exhaustive</span>( $start, $end, $max_path ) {
+    <span style="color:#66d9ef">my</span> @shortest <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>) x ($max_path <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>);
 
-<p>And here&rsquo;s the exhaustive recursive one (both of these use the <code>signatures</code> feature, and <code>exhaustive()</code> uses <code>current_sub</code> as well):</p>
-
-<pre><code class="language-perl">sub exhaustive( $start, $end, $max_path ) {
-    my @shortest = (0) x ($max_path + 1);
-
-    sub ( $start, $end, @path ) {
+    <span style="color:#66d9ef">sub</span> ( $start, $end, @path ) {
         push @path, $start;
 
-        return if @path &gt; @shortest or $start &gt;  $end;
-        @shortest = @path and return if $start == $end;
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">if</span> @path <span style="color:#f92672">&gt;</span> @shortest <span style="color:#f92672">or</span> $start <span style="color:#f92672">&gt;</span>  $end;
+        @shortest <span style="color:#f92672">=</span> @path <span style="color:#f92672">and</span> <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">if</span> $start <span style="color:#f92672">==</span> $end;
 
-        __SUB__-&gt;($start + 1, $end, @path);
-        __SUB__-&gt;($start * 2, $end, @path);
-    }-&gt;($start, $end);
+        __SUB__<span style="color:#f92672">-&gt;</span>($start <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, $end, @path);
+        __SUB__<span style="color:#f92672">-&gt;</span>($start <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span>, $end, @path);
+    }<span style="color:#f92672">-&gt;</span>($start, $end);
 
     @shortest;
 }
-</code></pre>
-
-<p>My blog has an informal justification for why the greedy method will always be optimal. I wrote the exhaustive one mainly for fun, but also so I could say I validated the greedy results for every value past <code>$end = 100_000</code>.</p>
-
+</code></pre></div><p>My blog has an informal justification for why the greedy method will always be optimal. I wrote the exhaustive one mainly for fun, but also so I could say I validated the greedy results for every value past <code>$end = 100_000</code>.</p>
 <p><strong>My Blog</strong> › <a href="http://www.ry.ca/2020/01/make-it-200/">Make it 200</a></p>
-
 <h2 id="saif-ahmed-1">Saif Ahmed</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/saiftynet/perl/ch-2.pl">Saif&rsquo;s solution</a> traverses the search space iteratively, effectively doubling the length of <code>@options</code> each time:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">doubleOrAdd</span>{        <span style="color:#75715e"># this routine takes starting value and final target</span>
+  <span style="color:#66d9ef">my</span> ($start,$target)<span style="color:#f92672">=</span>@_;
 
-<pre><code class="language-perl">sub doubleOrAdd{        # this routine takes starting value and final target
-  my ($start,$target)=@_;
+  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Number out of bounds\n&#34;</span>         <span style="color:#75715e"># too big takes too long and</span>
+         <span style="color:#66d9ef">if</span> $target<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">100000</span> <span style="color:#f92672">or</span> $target<span style="color:#f92672">&lt;</span>$start;   <span style="color:#75715e"># can&#39;t be smaller than $target</span>
 
-  return print &quot;Number out of bounds\n&quot;         # too big takes too long and
-         if $target&gt;100000 or $target&lt;$start;   # can't be smaller than $target
+  <span style="color:#66d9ef">my</span> @options<span style="color:#f92672">=</span>(<span style="color:#e6db74">&#34;$start&#34;</span>);                       <span style="color:#75715e"># initialise list of operations,</span>
+  <span style="color:#66d9ef">my</span> $found<span style="color:#f92672">=</span>($start<span style="color:#f92672">==</span>$target);                  <span style="color:#75715e"># do we already have goal?</span>
 
-  my @options=(&quot;$start&quot;);                       # initialise list of operations,
-  my $found=($start==$target);                  # do we already have goal?
+  <span style="color:#66d9ef">while</span> (<span style="color:#f92672">!</span> $found){
+      @options <span style="color:#f92672">=</span> map {(<span style="color:#e6db74">&#34;($_+1)&#34;</span>,<span style="color:#e6db74">&#34;($_*2)&#34;</span>)} @options; <span style="color:#75715e"># add the two possible ops</span>
+      <span style="color:#66d9ef">foreach</span>  <span style="color:#66d9ef">my</span> $answer ( @options ) {      <span style="color:#75715e"># test each of the sequences</span>
+        <span style="color:#66d9ef">if</span> ( eval(<span style="color:#e6db74">&#34;$answer&#34;</span>)<span style="color:#f92672">==</span>$target) {      <span style="color:#75715e"># against our target</span>
+            <span style="color:#75715e"># number of moves is count of open brackets,remove these.</span>
+            <span style="color:#66d9ef">print</span> $answer<span style="color:#f92672">=~</span><span style="color:#e6db74">s/\(//g</span>,<span style="color:#e6db74">&#34; moves required\n&#34;</span>;
 
-  while (! $found){
-      @options = map {(&quot;($_+1)&quot;,&quot;($_*2)&quot;)} @options; # add the two possible ops
-      foreach  my $answer ( @options ) {      # test each of the sequences
-        if ( eval(&quot;$answer&quot;)==$target) {      # against our target
-            # number of moves is count of open brackets,remove these.
-            print $answer=~s/\(//g,&quot; moves required\n&quot;;
+            $answer<span style="color:#f92672">=~</span><span style="color:#e6db74">s/^(\d+)/Start with \$$1,\n/</span>;   <span style="color:#75715e"># the starting number is 1st number</span>
+            $answer<span style="color:#f92672">=~</span><span style="color:#e6db74">s/\+1\)/ add 1,\n/g</span>;            <span style="color:#75715e"># make the result human</span>
+            $answer<span style="color:#f92672">=~</span><span style="color:#e6db74">s/\*2\)/ double it,\n/g</span>;        <span style="color:#75715e"># readable:</span>
 
-            $answer=~s/^(\d+)/Start with \$$1,\n/;   # the starting number is 1st number
-            $answer=~s/\+1\)/ add 1,\n/g;            # make the result human
-            $answer=~s/\*2\)/ double it,\n/g;        # readable:
-
-            print $answer;
-            $found=1;last;                           # stop looking
+            <span style="color:#66d9ef">print</span> $answer;
+            $found<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;<span style="color:#66d9ef">last</span>;                           <span style="color:#75715e"># stop looking</span>
         };
       };
     }
-    print &quot; Now you have \$$target!&quot;;                # declare discovery
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34; Now you have \$$target!&#34;</span>;                <span style="color:#75715e"># declare discovery</span>
 }
-</code></pre>
-
-<p>What I find most interesting is the way Saif builds up the pretty-printed output. When an answer is found, Saif will have a string like <code>(((((((((1+1)+1)*2)*2)*2)+1)*2)*2)*2)</code>, which the three substitution regexes pull apart and turn into plain English.</p>
-
+</code></pre></div><p>What I find most interesting is the way Saif builds up the pretty-printed output. When an answer is found, Saif will have a string like <code>(((((((((1+1)+1)*2)*2)*2)+1)*2)*2)*2)</code>, which the three substitution regexes pull apart and turn into plain English.</p>
 <h2 id="wanderdoc-1">Wanderdoc</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/wanderdoc/perl/ch-2.pl">Wanderdoc&rsquo;s solution</a> is another greedy implementation, kept nice and straightforward:</p>
-
-<pre><code class="language-perl">while ( $START &gt;= 1 )
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">while</span> ( $START <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">1</span> )
 {
      push @steps, [$START, $GOAL];
-     if ( $START % 2 == 0 )
+     <span style="color:#66d9ef">if</span> ( $START % 2 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> )
      {
-          $START /= 2;
+          $START <span style="color:#f92672">/=</span> <span style="color:#ae81ff">2</span>;
      }
-     else
+     <span style="color:#66d9ef">else</span>
      {
-          $START -= 1;
+          $START <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1</span>;
      }
 }
-</code></pre>
-
-<p>wanderdoc&rsquo;s output step iterates over <code>reverse @steps</code> and prints a 3-column output of the step number, current value, and goal (always 200):</p>
-
-<pre><code class="language-perl">my $counter = 0;
-for my $step ( reverse @steps )
+</code></pre></div><p>wanderdoc&rsquo;s output step iterates over <code>reverse @steps</code> and prints a 3-column output of the step number, current value, and goal (always 200):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $counter <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $step ( reverse @steps )
 {
-     print join(&quot;\t&quot;, $counter, @$step[0,1] ), $/;
-     $counter++;
+     <span style="color:#66d9ef">print</span> join(<span style="color:#e6db74">&#34;\t&#34;</span>, $counter, @$step[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>] ), $/;
+     $counter<span style="color:#f92672">++</span>;
 }
 
-</code></pre>
-
-<hr />
-
-<hr />
-
+</code></pre></div><hr>
+<hr>
 <h2 id="see-also">SEE ALSO</h2>
-
-<hr />
-
+<hr>
 <h3 id="blogs-this-week">Blogs this week:</h3>
-
 <p>(1) <strong>Adam Russell</strong> › <a href="https://adamcrussell.livejournal.com/15036.html">Challenge 1</a> | <a href="https://adamcrussell.livejournal.com/14635.html">Challenge 2</a></p>
-
 <p>(2) <strong>E. Choroba</strong> › <a href="http://blogs.perl.org/users/e_choroba/2020/01/perl-weekly-challenge-044-one-hundred-two-hundred.html">One Hundred, Two Hundred</a></p>
-
 <p>(3) <strong>Javier Luque</strong> › <a href="https://perlchallenges.wordpress.com/2020/01/21/perl-weekly-challenge-044/">Perl Weekly Challenge - 044</a></p>
-
 <p>(4) <strong>Laurent Rosenfeld</strong> › <a href="http://blogs.perl.org/users/laurent_r/2020/01/perl-weekly-challenge-44-only-100-please-and-make-it-200.html">Only 100, Please, and Make it $200</a></p>
-
 <p>(5) <strong>Ryan Thompson</strong> › <a href="http://www.ry.ca/2020/01/only-100-please/">Only 100 please</a> | <a href="http://www.ry.ca/2020/01/make-it-200/">Make it 200</a></p>
 
                 </div>

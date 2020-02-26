@@ -16,7 +16,7 @@
 
     <meta name="description" content="Laurent Rosenfeld Weekly Review: Challenge - #034.">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.55.0-DEV" />
+    <meta name="generator" content="Hugo 0.66.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -149,28 +149,16 @@
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
-                    
-
-<hr />
-
+                    <hr>
 <h1 id="raku-solutions-weekly-review">Raku Solutions Weekly Review</h1>
-
-<hr />
-
+<hr>
 <h2 id="task-1-array-and-hash-slices">Task #1: Array and Hash Slices</h2>
-
 <p>This is derived in part from my <a href="http://blogs.perl.org/users/laurent_r/2019/11/perl-weekly-challenge-34-array-and-hash-slices-and-dispatch-tables.html">blog post</a> made in answer to the <a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-034/">Week 34 of the Perl Weekly Challenge</a> organized by  <a href="http://blogs.perl.org/users/mohammad_s_anwar/">Mohammad S. Anwar</a> as well as answers made by others to the same challenge.</p>
-
 <p>The challenge, contributed by Dave Cross,  reads as follows:</p>
-
 <p><em>Write a program that demonstrates using hash slices and/or array slices.</em></p>
-
 <p>Slices are a way to access several values of an array or of a hash in one statement, by using multiple subscripts or keys.</p>
-
 <h2 id="my-solutions">My solutions</h2>
-
 <p>If you have an <code>@array</code> containing for example some successive integers, you can obtain several values from it with the following syntax: <code>@array[3, 7, 2]</code> or even <code>@array[2..7]</code>. This is an example under the REPL:</p>
-
 <pre><code>&gt; my @array = 0..10;
 [0 1 2 3 4 5 6 7 8 9 10]
 &gt; say @array[3, 7, 3]
@@ -178,10 +166,8 @@
 &gt; say @array[2..7]
 (2 3 4 5 6 7)
 </code></pre>
-
 <p>And you can do just about the same with a hash to obtain a bunch of values. Array and hash slices may also be used as <em>l-values</em>, i.e. on the left-hand side of an assignment, to populate a new array or a new hash.</p>
-
-<pre><code class="language-Perl6">use v6;
+<pre><code class="language-Perl6" data-lang="Perl6">use v6;
 
 my @array = 0..10;
 my $count = 0;
@@ -201,10 +187,7 @@ my @keys = qw/c d e/;
 my %new-hash;
 %new-hash{@keys} = %hash{@keys};
 say &quot;New hash: &quot;, %new-hash;
-</code></pre>
-
-<p>This program produces the following output:</p>
-
+</code></pre><p>This program produces the following output:</p>
 <pre><code>$ perl6 hash_slices.p6
 Array slice :  3 4 5 6 7
 Hash slice 1: 2 4 3
@@ -213,14 +196,10 @@ Hash slice 3: 2 3 4
 New array: [1 2 6 7]
 New hash: {c =&gt; 3, d =&gt; 4, e =&gt; 5}
 </code></pre>
-
 <h2 id="alternative-solutions">Alternative Solutions</h2>
-
 <p>Maybe it&rsquo;s me missing out something, but I&rsquo;m a bit disappointed by several of the solutions, which is quite surprising for such a simple challenge. Several solutions just don&rsquo;t really fit the bill.</p>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/arne-sommer/perl6/ch-1.p6">Arne Sommer</a> provided a few nice examples of array slices, plus one example of a hash slice. Please run Arne&rsquo;s code to understand anything that isn&rsquo;t obvious to you.</p>
-
-<pre><code class="language-Perl6">my @values = &lt;zero one twice thrice four fifth VI seventh acht nine X&gt;;
+<pre><code class="language-Perl6" data-lang="Perl6">my @values = &lt;zero one twice thrice four fifth VI seventh acht nine X&gt;;
 
 say @values[0 .. 10];
 say @values[0 .. 12];
@@ -231,11 +210,8 @@ my %values = @values.antipairs;
 
 say %values&lt;zero&gt;;
 say %values&lt;zero VI nine&gt;;
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/kevin-colyer/perl6/ch-1.p6">Kevin Colyer</a> contributed a quite long script, implementing an adventure game and demonstrating both topics of week # 34 challenge, dispatch tables and hash slices. I originally did not see the hash slices and mistakenly reported that. Kevin, please excuse me for this initial error. Kevin&rsquo;s script has two hash slices on his dispatch table, on lines 228 and 235;</p>
-
-<pre><code class="language-Perl6">    # NOTE dispatch tables AND hash slices!
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/kevin-colyer/perl6/ch-1.p6">Kevin Colyer</a> contributed a quite long script, implementing an adventure game and demonstrating both topics of week # 34 challenge, dispatch tables and hash slices. I originally did not see the hash slices and mistakenly reported that. Kevin, please excuse me for this initial error. Kevin&rsquo;s script has two hash slices on his dispatch table, on lines 228 and 235;</p>
+<pre><code class="language-Perl6" data-lang="Perl6">    # NOTE dispatch tables AND hash slices!
     if $thing eq &quot;bubblyflask&quot; {
         %dispatch{&quot;n&quot;,&quot;north&quot;, &quot;e&quot;,&quot;east&quot;,&quot;s&quot;,&quot;south&quot;,&quot;w&quot;,&quot;west&quot;} = (&amp;east, &amp;east, &amp;south, &amp;south, &amp;west, &amp;west, &amp;north, &amp;north);
         %flags&lt;confused&gt;=True;
@@ -246,24 +222,16 @@ say %values&lt;zero VI nine&gt;;
         %flags&lt;confused&gt;=False;
         return increase_score(1) ~ &quot;The vile taste of the fizzy liquid sobers you right up. The room swims back into focus.&quot;;
     }
-</code></pre>
-
-<p>Also note that Kevin&rsquo;s script is the only one besides mine which uses hash slices as <em>l-values</em> (i.e. on the left-hand side of an assignment).</p>
-
+</code></pre><p>Also note that Kevin&rsquo;s script is the only one besides mine which uses hash slices as <em>l-values</em> (i.e. on the left-hand side of an assignment).</p>
 <p>Again, sorry, Kevin, for this initial mistake.</p>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/simon-proctor/perl6/ch-1.p6">Simon Proctor</a> suggested a quite interesting program that illustrates various relatively advanced features of Raku including, but only marginally, slices, so that the slice features are a bit blurred by the other features. I extracted from his code two examples illustrating the slice feature:</p>
-
-<pre><code class="language-Perl6"># Making an array from a Sequence using a slice (^100 is the Range 0..100)
+<pre><code class="language-Perl6" data-lang="Perl6"># Making an array from a Sequence using a slice (^100 is the Range 0..100)
 my @fibto100 = (1,1,*+*...*)[^100];
 
 # Use a simple slice to get the first 5 Fibonacci numbers
 say &quot;First five Fibonacci numbers {@fibto100[^5].join(&quot;,&quot;)}&quot;;
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/ulrich-rieke/perl6/ch-1.p6">Ulrich Rieke</a> also wrote a program that doesn&rsquo;t really convince me in terms of really illustrating hash slices: using <code>grep</code> and <code>:delete</code> is a good way to filter items of a hash, but that has little to do with slices.  His array slice example is much more convincing:</p>
-
-<pre><code class="language-Perl6">#...and of array slices :
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/ulrich-rieke/perl6/ch-1.p6">Ulrich Rieke</a> also wrote a program that doesn&rsquo;t really convince me in terms of really illustrating hash slices: using <code>grep</code> and <code>:delete</code> is a good way to filter items of a hash, but that has little to do with slices.  His array slice example is much more convincing:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">#...and of array slices :
 my @random_DNA_bases  ;
 for (1..63 ) {
   @random_DNA_bases.push( &lt;A C T G&gt;.pick( 1 )) ;
@@ -271,11 +239,8 @@ for (1..63 ) {
 my @tripletstarts = @random_DNA_bases[0,3,6...*] ;
 say &quot;...and the corresponding triplet starts:&quot; ;
 @tripletstarts.say ;
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/jaldhar-h-vyas/perl6/ch-1.p6">Jaldhar H. Vyas</a> implemented a recursive binary search algorithm that convincingly uses array slices to provide the arguments to the recursive subroutine calls:</p>
-
-<pre><code class="language-Perl6">sub binarySearch(@haystack,  $needle) {
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/jaldhar-h-vyas/perl6/ch-1.p6">Jaldhar H. Vyas</a> implemented a recursive binary search algorithm that convincingly uses array slices to provide the arguments to the recursive subroutine calls:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">sub binarySearch(@haystack,  $needle) {
     if @haystack.elems {
         my $mid = (@haystack.elems / 2).Int;
 
@@ -291,11 +256,8 @@ say &quot;...and the corresponding triplet starts:&quot; ;
     }
     return False;
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/noud/perl6/ch-1.p6">Noud</a> provided a program demonstrating simple hash slices and various array slices:</p>
-
-<pre><code class="language-Perl6"># Hash slices
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/noud/perl6/ch-1.p6">Noud</a> provided a program demonstrating simple hash slices and various array slices:</p>
+<pre><code class="language-Perl6" data-lang="Perl6"># Hash slices
 #
 # The idea behind hash slices is that you can assign multiple keys at the same
 # time with a hash slice.
@@ -322,31 +284,22 @@ say @a[0..Inf-1];
 say @a[0..*-1];
 say @a[0..^*-1];
 say @a[0..^*/2];
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/javier-luque/perl6/ch-1.p6">Javier Luque</a> made a very simple program illustrating well the central feature of array and hash slices:</p>
-
-<pre><code class="language-Perl6">sub MAIN () {
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/javier-luque/perl6/ch-1.p6">Javier Luque</a> made a very simple program illustrating well the central feature of array and hash slices:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">sub MAIN () {
     my @array = (0..Inf);
     my %hash = ( a =&gt; 1, b =&gt; 2, c =&gt; 3, d =&gt; 4 );
     say 'Array slice: ' ~ @array[0..5];
     say 'Hash slice: ' ~ %hash{'a','b'};
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/roger-bell-west/perl6/ch-1.p6">Roger Bell West</a> suggested a program illustrating array slices:</p>
-
-<pre><code class="language-Perl6">my @data=map {rand}, (1..10);
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/roger-bell-west/perl6/ch-1.p6">Roger Bell West</a> suggested a program illustrating array slices:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">my @data=map {rand}, (1..10);
 my @ma=map {sum(@data[$_-1..$_+1])/3}, (1..@data.end-1);
 unshift @ma,NaN;
 push @ma,NaN;
 my @out=map {[@data[$_],@ma[$_]]}, (0..@data.end);
 say @out.perl;
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/ruben-westerberg/perl6/ch-1.p6">Ruben Westerberg</a> made a simple no-frills program illustrating very well array and hash slices:</p>
-
-<pre><code class="language-Perl6">#Demonstate array and hash slicing
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/ruben-westerberg/perl6/ch-1.p6">Ruben Westerberg</a> made a simple no-frills program illustrating very well array and hash slices:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">#Demonstate array and hash slicing
 my @array=(0,1,2,3,4,5,6,7,8,9);
 my %hash=(a=&gt;0, b=&gt;1, c=&gt;2, e=&gt;3);
 say &quot;Original Array: \n&quot;, @array;
@@ -363,36 +316,21 @@ say %hash{qw&lt;a b&gt;}:kv.hash;
 
 say 'Slicing hash in to value array %hash{qw&lt;a b&gt;}: ';
 say %hash{qw&lt;a b&gt;};
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/steven-wilson/perl6/ch-1.p6">Steven Wilson</a>, a new member of the challengers team, also provided a simple program illustrating array slices:</p>
-
-<pre><code class="language-Perl6">my @numbers = &lt;10 20 30 40 50 60 70 80 90&gt;;
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/steven-wilson/perl6/ch-1.p6">Steven Wilson</a>, a new member of the challengers team, also provided a simple program illustrating array slices:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">my @numbers = &lt;10 20 30 40 50 60 70 80 90&gt;;
 my ( $first_number, $last_number ) = @numbers[0, *-1];
 put &quot;First 4 numbers in the array are: @numbers[0 .. 3]&quot;;
-</code></pre>
-
-<h2 id="task-2-dispatch-tables">Task #2: Dispatch Tables</h2>
-
+</code></pre><h2 id="task-2-dispatch-tables">Task #2: Dispatch Tables</h2>
 <p>This is derived in part from my <a href="http://blogs.perl.org/users/laurent_r/2019/11/perl-weekly-challenge-34-array-and-hash-slices-and-dispatch-tables.html">blog post</a> made in answer to the <a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-034/">Week 34 of the Perl Weekly Challenge</a> organized by  <a href="http://blogs.perl.org/users/mohammad_s_anwar/">Mohammad S. Anwar</a> as well as answers made by others to the same challenge.</p>
-
 <p>The challenge, contributed by Dave Cross,  reads as follows:</p>
-
 <p><em>Write a program that demonstrates a dispatch table.</em></p>
-
 <p>A dispatch table is a table (e.g. an array or more commonly a hash) of subroutine references or other code objects.</p>
-
 <h2 id="my-solution">My Solution</h2>
-
 <p>For this task, we want to do a bit more than simply demonstrate the syntax: we will try to do something (moderately) useful with it.</p>
-
 <p>Suppose we have a text file and want to feed each word from the file into 26 files (one per letter of the alphabet) depending on the first letter of the word. This could be done with a monstrous <code>if ... elsif ... else</code> or <code>given ... when</code> construct, or we could use a dispatch table, in this case a hash containing for each letter a code reference printing the word into the proper file. As we will see, this produces much shorter and simpler code. We will even use a dynamic dispatch table, i.e. only create the hash entries (and files) that are needed with the input file.</p>
-
 <p>we first write a <code>function_builder</code> subroutine that acts as a function factory. It receives a letter as a parameter, creates a file name for that letter, opens the corresponding file in write mode, and it returns an anonymous code block (actually a closure) that writes its argument to the file handle. This anonymous code block will be stored into the dispatch table.</p>
-
 <p>In the <code>MAIN</code> subroutine , the program reads the words of the input file, fold them to lower case, and finds the first character of each such word. To avoid file name problems with special characters, we only keep words starting with a letter. If the dispatch table has no entry yet for this letter, the program calls <code>function_builder</code> subroutine to open the proper file and stores the code reference returned by that subroutine in the dispatch table. Finally, the program calls the code reference stored in the dispatch table for word&rsquo;s first letter.</p>
-
-<pre><code class="language-Perl6">use v6;
+<pre><code class="language-Perl6" data-lang="Perl6">use v6;
 
 sub function_builder (Str $letter) {
     my $file_name = &quot;letter_$letter.txt&quot;;
@@ -409,10 +347,7 @@ multi sub MAIN (Str $file where *.IO.f) {
         %dispatch{$letter}($word);
     }
 }
-</code></pre>
-
-<p>Running the program and passing it the <code>hash_slices.p6</code> file (the <a href="https://github.com/LaurentRosenfeld/Perl-6-Miscellaneous/blob/master/Challenges-in-Perl6/Array-and-hash-slices.md">script</a> of task # 1 of this week) produced the following files in the default directory:</p>
-
+</code></pre><p>Running the program and passing it the <code>hash_slices.p6</code> file (the <a href="https://github.com/LaurentRosenfeld/Perl-6-Miscellaneous/blob/master/Challenges-in-Perl6/Array-and-hash-slices.md">script</a> of task # 1 of this week) produced the following files in the default directory:</p>
 <pre><code>-rwxr-xr-x  1 Laurent Aucun       5 11 nov.  18:26  letter_u.txt
 -rwxr-xr-x  1 Laurent Aucun       5 11 nov.  18:26  letter_v.txt
 -rwxr-xr-x  1 Laurent Aucun       3 11 nov.  18:26  letter_c.txt
@@ -426,23 +361,17 @@ multi sub MAIN (Str $file where *.IO.f) {
 -rwxr-xr-x  1 Laurent Aucun       8 11 nov.  18:26  letter_d.txt
 -rwxr-xr-x  1 Laurent Aucun      22 11 nov.  18:26  letter_a.txt
 </code></pre>
-
 <p>This is the file generated for letter &ldquo;a&rdquo;:</p>
-
 <pre><code>$ cat letter_a.txt
 array
 a
 array:
 as
 </code></pre>
-
 <h2 id="alternative-solutions-1">Alternative Solutions</h2>
-
 <p>My initial idea, when I started to consider this challenge, was to implement some form of an arithmetic calculator. I&rsquo;m happy that I chose something else, as not less than three challengers chose to implement such an arithmetic calculator.</p>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/arne-sommer/perl6/ch-2.p6">Arne Sommer</a> implemented a program with a user interface in which the user is prompted to enter a command and the program executes the subroutine associated with that command in a <code>%dispatch</code> hash:</p>
-
-<pre><code class="language-Perl6">my $value = 0;
+<pre><code class="language-Perl6" data-lang="Perl6">my $value = 0;
 my %dispatch =
 (
   q      =&gt; &amp;last,
@@ -486,11 +415,8 @@ sub help
 {
   say &quot;Please consult a doctor.&quot;;
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/kevin-colyer/perl6/ch-2.p6">Kevfin Colyer</a> also implemented a user interface for a game in which the user is prompted to enter a command and the program executes the subroutine associated with that command in a <code>%dispatch</code> hash:</p>
-
-<pre><code class="language-Perl6">my %dispatch =
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/kevin-colyer/perl6/ch-2.p6">Kevfin Colyer</a> also implemented a user interface for a game in which the user is prompted to enter a command and the program executes the subroutine associated with that command in a <code>%dispatch</code> hash:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">my %dispatch =
     debug =&gt; &amp;_debug,
     test =&gt; &amp;_test,
 
@@ -520,22 +446,16 @@ sub help
     drop =&gt; &amp;drop,
     drink =&gt; &amp;drink,
 ;
-</code></pre>
-
-<p>Kevin then provides the code for all the subroutines listed in the dispatch table. I&rsquo;ll quote only a few of them:</p>
-
-<pre><code class="language-Perl6">sub score($v,$a,$n) { &quot;You have scored {%flags&lt;score&gt;} out of a possible {%flags&lt;max_score&gt;} points.&quot; };
+</code></pre><p>Kevin then provides the code for all the subroutines listed in the dispatch table. I&rsquo;ll quote only a few of them:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">sub score($v,$a,$n) { &quot;You have scored {%flags&lt;score&gt;} out of a possible {%flags&lt;max_score&gt;} points.&quot; };
 
 sub _debug($v,$a,$n) { %flags&lt;_debug&gt;= $n~~ &quot;on&quot; ?? True !! False; &quot;debug on: &quot; ~ %flags&lt;_debug&gt; };
 
 sub _test($v,$a,$n) { &quot;testing here!&quot; };
 
 sub _savegame($v,$a,$n) {my $f= &quot;save.game&quot;; $f.IO.spurt: { flags =&gt; %flags, objects =&gt; %objects, rooms =&gt; %rooms }.perl; &quot;Saved to file [$f]&quot; };
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/noud/perl6/ch-2.p6">Noud</a> suggested a simple <code>%dispatch</code> table with three items:</p>
-
-<pre><code class="language-Perl6">sub hello() {
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/noud/perl6/ch-2.p6">Noud</a> suggested a simple <code>%dispatch</code> table with three items:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">sub hello() {
     &quot;Hello&quot;;
 }
 sub fib($n) {
@@ -554,11 +474,8 @@ my %dispatch = (
 );
 say %dispatch{&quot;hello&quot;}() ~ &quot; &quot; ~ %dispatch{&quot;world&quot;}();
 say %dispatch{&quot;fib&quot;}(20);
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/simon-proctor/perl6/ch-2.p6">Simon Proctor</a> contributed a program that can be launched with two parameters, an action and an integer value. As you might have guessed, the authorized actions are stored in a <code>%commands</code> dispatch table. His program then performs action required by the first argument on the second argument:</p>
-
-<pre><code class="language-Perl6"># Possible actions
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/simon-proctor/perl6/ch-2.p6">Simon Proctor</a> contributed a program that can be launched with two parameters, an action and an integer value. As you might have guessed, the authorized actions are stored in a <code>%commands</code> dispatch table. His program then performs action required by the first argument on the second argument:</p>
+<pre><code class="language-Perl6" data-lang="Perl6"># Possible actions
 sub doubler ( Int $x ) { $x * 2 }
 sub halver ( Int $x ) { $x / 2 }
 sub squarer ( Int $x ) { $x * $x }
@@ -586,11 +503,8 @@ multi sub MAIN(
 ) {
     say &quot;{$command}( {$value} ) =&gt; {%commands{$command}($value)}&quot;;
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/ulrich-rieke/perl6/ch-2.p6">Ulrich Rieke</a> provided a program with a user interface in which the user is prompted to enter a code for an arithmetic operation and two numbers. The program then uses a <code>%dispatcher</code> table to perform the requested operation:</p>
-
-<pre><code class="language-Perl6">#demonstrating the use of a dispatcher, without much of input validation
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/ulrich-rieke/perl6/ch-2.p6">Ulrich Rieke</a> provided a program with a user interface in which the user is prompted to enter a code for an arithmetic operation and two numbers. The program then uses a <code>%dispatcher</code> table to perform the requested operation:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">#demonstrating the use of a dispatcher, without much of input validation
 
 sub add( Numeric $a , Numeric $b ) {
   return $a + $b ;
@@ -645,13 +559,9 @@ if (+$choice == 4 ) {
       say &quot;The result is {%dispatcher{'4'}(+@numbers[0] , +@numbers[1]) }!&quot; ;
   }
 }
-</code></pre>
-
-<p>Note that since the user is prompted to enter an integer code for the arithmetic operation, this is a case where the dispatch table could have been implemented as a simple array instead of a hash.</p>
-
+</code></pre><p>Note that since the user is prompted to enter an integer code for the arithmetic operation, this is a case where the dispatch table could have been implemented as a simple array instead of a hash.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/javier-luque/perl6/ch-2.p6">Javier Luque</a> also used a dispatch table to implement arithmetic operations:</p>
-
-<pre><code class="language-Perl6">sub MAIN () {
+<pre><code class="language-Perl6" data-lang="Perl6">sub MAIN () {
     my %dispatch_table = (
         '+' =&gt; &amp;add,
         '-' =&gt; &amp;subtract,
@@ -669,13 +579,9 @@ if (+$choice == 4 ) {
 
 sub add(Num() $a, Num() $b)      { return ($a + $b); }
 sub subtract(Num() $a, Num() $b) { return ($a - $b); }
-</code></pre>
-
-<p>Note that Javier is the only challenger who used an anonymous subroutine reference and an anonymous code block defined directly in the dispatch table (for the multiplication and the division), although Ruben Westerberg did something vaguely similar. This is an interesting syntax, as it tends to make the code simpler and more concise (at least when the subroutine is simple enough).</p>
-
+</code></pre><p>Note that Javier is the only challenger who used an anonymous subroutine reference and an anonymous code block defined directly in the dispatch table (for the multiplication and the division), although Ruben Westerberg did something vaguely similar. This is an interesting syntax, as it tends to make the code simpler and more concise (at least when the subroutine is simple enough).</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/roger-bell-west/perl6/ch-2.p6">Roger Bell West</a> also implemented an arithmetic calculator, but in the form of a stack machine. His dispatch table looks like this:</p>
-
-<pre><code class="language-Perl6">my %op=(
+<pre><code class="language-Perl6" data-lang="Perl6">my %op=(
   add =&gt; &amp;add,
   '+' =&gt; &amp;add,
   sub =&gt; &amp;sub,
@@ -689,11 +595,8 @@ sub subtract(Num() $a, Num() $b) { return ($a - $b); }
   pop =&gt; &amp;pop,
   exch =&gt; &amp;exch,
     );
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/jaldhar-h-vyas/perl6/ch-2.p6">Jaldhar H. Vyas</a> implemented a rock, paper, and scissors game simulation:</p>
-
-<pre><code class="language-Perl6">my @choices = ( &amp;chose_paper, &amp;chose_scissors, &amp;chose_rock );
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/jaldhar-h-vyas/perl6/ch-2.p6">Jaldhar H. Vyas</a> implemented a rock, paper, and scissors game simulation:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">my @choices = ( &amp;chose_paper, &amp;chose_scissors, &amp;chose_rock );
 
 my @outcomes = (
     (    &amp;draw,              &amp;scissors_loss,     &amp;paper_win,    ),
@@ -754,31 +657,22 @@ sub MAIN() {
 
     @outcomes[$achoice][$bchoice]();
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/ruben-westerberg/perl6/ch-2.p6">Ruben Westerberg</a> implemented an array of 10 anonymous subroutines called randomly:</p>
-
-<pre><code class="language-Perl6">my @dispatch= (1..10).map( { my $i=$_;sub { templateSub($i)}});
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/ruben-westerberg/perl6/ch-2.p6">Ruben Westerberg</a> implemented an array of 10 anonymous subroutines called randomly:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">my @dispatch= (1..10).map( { my $i=$_;sub { templateSub($i)}});
 
 @dispatch[@dispatch.elems.rand.Int]() for @dispatch;
 
 sub templateSub($i) {
     put &quot;Hello from function $i&quot;;
 }
-</code></pre>
-
-<h2 id="see-also">SEE ALSO</h2>
-
+</code></pre><h2 id="see-also">SEE ALSO</h2>
 <p>Three blog posts this time:</p>
-
 <ul>
-<li>Arne Sommer: <a href="https://raku-musings.com/sliced-dispatch.html">https://raku-musings.com/sliced-dispatch.html</a>;</li>
-<li>Jaldhar H. Vyas: <a href="https://www.braincells.com/perl/2019/11/perl_weekly_challenge_week_34.html">https://www.braincells.com/perl/2019/11/perl_weekly_challenge_week_34.html</a>;</li>
+<li>Arne Sommer: <a href="https://raku-musings.com/sliced-dispatch.html;">https://raku-musings.com/sliced-dispatch.html;</a></li>
+<li>Jaldhar H. Vyas: <a href="https://www.braincells.com/perl/2019/11/perl_weekly_challenge_week_34.html;">https://www.braincells.com/perl/2019/11/perl_weekly_challenge_week_34.html;</a></li>
 <li>Javier Luque: <a href="https://perlchallenges.wordpress.com/2019/11/11/perl-weekly-challenge-034/">https://perlchallenges.wordpress.com/2019/11/11/perl-weekly-challenge-034/</a></li>
 </ul>
-
 <h2 id="wrapping-up">Wrapping up</h2>
-
 <p>Please let me know if I forgot any of the challengers or if you think my explanation of your code misses something important (send me an e-mail or just raise an issue against this GitHub page).</p>
 
                 </div>

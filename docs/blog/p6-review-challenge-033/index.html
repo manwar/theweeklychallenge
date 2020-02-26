@@ -16,7 +16,7 @@
 
     <meta name="description" content="Laurent Rosenfeld Weekly Review: Challenge - #033.">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.55.0-DEV" />
+    <meta name="generator" content="Hugo 0.66.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -149,29 +149,17 @@
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
-                    
-
-<hr />
-
+                    <hr>
 <h1 id="raku-solutions-weekly-review">Raku Solutions Weekly Review</h1>
-
-<hr />
-
+<hr>
 <h2 id="task-1-letter-count">Task #1: Letter Count</h2>
-
 <p>This is derived in part from my <a href="http://blogs.perl.org/users/laurent_r/2019/11/perl-weekly-challenge-33-count-letters-and-multiplication-tables.html">blog post</a> made in answer to the <a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-033/">Week 33 of the Perl Weekly Challenge</a> organized by  <a href="http://blogs.perl.org/users/mohammad_s_anwar/">Mohammad S. Anwar</a> as well as answers made by others to the same challenge.</p>
-
 <p>The challenge reads as follows:</p>
-
 <p><em>Create a script that accepts one or more files specified on the command-line and count the number of times letters appeared in the files.</em></p>
-
 <p><em>So with the following input file sample.txt:</em></p>
-
 <pre><code>The quick brown fox jumps over the lazy dog.
 </code></pre>
-
 <p><em>the script would display something like:</em></p>
-
 <pre><code>a: 1
 b: 1
 c: 1
@@ -199,23 +187,16 @@ x: 1
 y: 1
 z: 1
 </code></pre>
-
 <p>This is not specified explicitly, but from the example, we gather that what is desired here is a case-insensitive letter count (in the example, both &ldquo;T&rdquo; and &ldquo;t&rdquo; count as &ldquo;t&rdquo;). So we will apply the <code>lc</code> (lower case) built-in function to the input.</p>
-
 <h2 id="my-solution">My Solution</h2>
-
 <p>When solving the same task in Perl 5 for the weekly challenge, we used a hash as an histogram, i.e. as a collection of counters. We could do the same in Raku (formerly known as Perl 6). In Raku, however, we can also use a <code>Bag</code>, named <code>$histo</code>, rather than a hash, to easily implement an histogram. With just a little bit of work, we&rsquo;re able to populate the bag in just one statement, without any explicit loop (otherwise, we would have had to use a <code>BagHash</code> instead, since a <code>bag</code> is not mutable and therefore needs to be populated in one single step). Also, if a letter does not exist in the <code>$histo</code> bag, the bag will report 0, so that, contrary to the hash solution, we don&rsquo;t need any special code to avoid an <code>undefined</code> warning for such an edge case. All this makes the code much more concise than its Perl 5 counterpart.</p>
-
-<pre><code class="language-Perl6">use v6;
+<pre><code class="language-Perl6" data-lang="Perl6">use v6;
 
 sub MAIN (*@files) {
     my $histo = (map {.IO.comb».lc}, @files).Bag;
     say &quot;$_ : &quot;, $histo{$_} for 'a'..'z';
 }
-</code></pre>
-
-<p>Used with one input file, the program displays the following:</p>
-
+</code></pre><p>Used with one input file, the program displays the following:</p>
 <pre><code>$ perl6 histo_let.p6 intersection.pl
 a : 96
 b : 46
@@ -232,9 +213,7 @@ k : 0
 y : 31
 z : 0
 </code></pre>
-
 <p>And it works similarly with several input files:</p>
-
 <pre><code>$ ./perl6 histo_let.p6 intersection.pl histo*
 a : 199
 b : 154
@@ -251,33 +230,22 @@ k : 11
 y : 68
 z : 9
 </code></pre>
-
 <p>Note that we&rsquo;re not trying to filter alphabetical characters when populating the <code>$histo</code> bag: we&rsquo;re simply printing out only the bag entries for the <code>'a'..'z'</code> range.</p>
-
 <h2 id="alternative-approaches">Alternative Approaches</h2>
-
 <p>Not less than 17 solutions were submitted for this task, which is probably the largest count so far.</p>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/arne-sommer/perl6/ch-1.p6">Arne Sommer</a> provided a very compact solution, at least in terms of the way of populating a <code>Bag</code> of counters:</p>
-
-<pre><code class="language-Perl6">my %result = $*ARGFILES.comb&gt;&gt;.lc.grep(* ~~ /&lt;:L&gt;/).Bag;
+<pre><code class="language-Perl6" data-lang="Perl6">my %result = $*ARGFILES.comb&gt;&gt;.lc.grep(* ~~ /&lt;:L&gt;/).Bag;
 
 for %result.keys.sort -&gt; $key
 {
   say &quot;$key: %result{$key}&quot;;
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/mark-senn/perl6/ch-1.p6">Mark Senn</a> also suggested a fairly concise solution, using a hash:</p>
-
-<pre><code class="language-Perl6">my %count;
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/mark-senn/perl6/ch-1.p6">Mark Senn</a> also suggested a fairly concise solution, using a hash:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">my %count;
 $*ARGFILES.lines.lc.comb(/&lt;[a..z]&gt;/).map({%count{$_}++});
 %count.keys.sort.map({&quot;$_: %count{$_}&quot;.say});
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/markus-holzer/perl6/ch-1.p6">Markus Holzer</a> also contributed a rather compact solution (even though it does not look so at first glance because of its formatting), holding in just one statement:</p>
-
-<pre><code class="language-Perl6">sub MAIN( *@files )
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/markus-holzer/perl6/ch-1.p6">Markus Holzer</a> also contributed a rather compact solution (even though it does not look so at first glance because of its formatting), holding in just one statement:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">sub MAIN( *@files )
 {
     .say for @files
         .map({ |.IO.lines.lc.comb( /\w/ ) })
@@ -286,21 +254,13 @@ $*ARGFILES.lines.lc.comb(/&lt;[a..z]&gt;/).map({%count{$_}++});
         .map({  &quot;{.key}: {.value}&quot; })
     ;
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/daniel-mita/perl6/ch-1.sh">Daniel Mita</a> made an even more compact solution in the form of a Raku one-liner also using a <code>Bag</code>:</p>
-
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/daniel-mita/perl6/ch-1.sh">Daniel Mita</a> made an even more compact solution in the form of a Raku one-liner also using a <code>Bag</code>:</p>
 <pre><code>perl6 -e '.say for @*ARGS ?? slurp.lc.comb(/&lt;[a..z]&gt;/).Bag.sort !! &quot;give at least 1 filename&quot;'
 </code></pre>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/ryan-thompson/perl6/ch-1.p6">Ryan Thompson</a> also used a <code>Bag</code> and provided perhaps the most concise solution of all:</p>
-
-<pre><code class="language-Perl6">.fmt('%s: %d').say for $*ARGFILES.comb».lc.Bag{'a'..'z'}:p;
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/kevin-colyer/perl6/ch-1.p6">Kevin Colyer</a> went the other way around and provided a comprehensive  solution using a <code>count</code> subroutine to populate a temporary and anonymous <code>BagHash</code> for each input file, and then merging the result into a final <code>BagHash</code>:</p>
-
-<pre><code class="language-Perl6">sub count($text) {
+<pre><code class="language-Perl6" data-lang="Perl6">.fmt('%s: %d').say for $*ARGFILES.comb».lc.Bag{'a'..'z'}:p;
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/kevin-colyer/perl6/ch-1.p6">Kevin Colyer</a> went the other way around and provided a comprehensive  solution using a <code>count</code> subroutine to populate a temporary and anonymous <code>BagHash</code> for each input file, and then merging the result into a final <code>BagHash</code>:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">sub count($text) {
     return BagHash.new( $text.lc.comb.grep: * ~~ / &lt;alpha&gt; / );
 }
 
@@ -313,15 +273,10 @@ multi MAIN(*@files) {
     $bag{&quot;_&quot;}:delete;
     say &quot;$_: {$bag{$_}}&quot; for $bag.keys.collate;
 }
-</code></pre>
-
-<p>Kevin&rsquo;s program iterates over the values of the <code>HashBag</code> returned by the <code>count</code> subroutine to add the values associated with each letter. I suppose it would have been slightly simpler to use the infix <code>(+)</code> (or <code>⊎</code>) <a href="https://docs.perl6.org/language/operators#infix_(+),_infix_%E2%8A%8E">baggy addition operator</a> (see Richard Nutall&rsquo;s solution below for an example of this).</p>
-
+</code></pre><p>Kevin&rsquo;s program iterates over the values of the <code>HashBag</code> returned by the <code>count</code> subroutine to add the values associated with each letter. I suppose it would have been slightly simpler to use the infix <code>(+)</code> (or <code>⊎</code>) <a href="https://docs.perl6.org/language/operators#infix_(+),_infix_%E2%8A%8E">baggy addition operator</a> (see Richard Nutall&rsquo;s solution below for an example of this).</p>
 <p>Note that Kevin also provided a <code>pod</code> outlining the challenge task and an alternate multi <code>MAIN</code> subroutine to run a test suite.</p>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/rnuttall/perl6/ch-1.p6">Richard Nutall</a>, a new member of the Perl Weekly Challenge, used the infix <code>⊎</code> baggy addition operator together with the assignment operator to populate his <code>Bag</code> of counters in just one statement:</p>
-
-<pre><code class="language-Perl6">sub MAIN(*@files) {
+<pre><code class="language-Perl6" data-lang="Perl6">sub MAIN(*@files) {
     #Task 1 - a Test of Bag and Bag addition
     my Bag $counts = bag { 'a' .. 'z' =&gt; 0 };
 
@@ -330,13 +285,9 @@ multi MAIN(*@files) {
 
     say &quot;$_: $counts{$_}&quot;              for 'a' .. 'z';
 }
-</code></pre>
-
-<p>Note that I don&rsquo;t think that the loop to initialize the &lsquo;a&rsquo; to &lsquo;z&rsquo; counters of the bag to 0 is necessary: if a letter isn&rsquo;t available in a bag, its count will be reported to be 0 without any error or warning.</p>
-
+</code></pre><p>Note that I don&rsquo;t think that the loop to initialize the &lsquo;a&rsquo; to &lsquo;z&rsquo; counters of the bag to 0 is necessary: if a letter isn&rsquo;t available in a bag, its count will be reported to be 0 without any error or warning.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/noud/perl6/ch-1.p6">Noud</a> also supplied a comprehensive detailed solution using a hash:</p>
-
-<pre><code class="language-Perl6">sub MAIN(*@files) {
+<pre><code class="language-Perl6" data-lang="Perl6">sub MAIN(*@files) {
     my %letter_count;
     %letter_count&lt;a b c d e f g h i j k l m
                   n o p q r s t u v w x y z&gt; = 0 xx *;
@@ -353,11 +304,8 @@ multi MAIN(*@files) {
         say &quot;$letter: $count&quot;;
     }
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/simon-proctor/perl6/ch-1.p6">Simon Proctor</a> also went for a quite comprehensive program. He created a <code>read-files</code> subroutine to do almost all the work with a <code>Bag</code>, as well as three multi <code>MAIN</code> subroutines to handle various possible arguments passed to the program:</p>
-
-<pre><code class="language-Perl6">multi sub MAIN( Bool :h($help) where so * ) {
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/simon-proctor/perl6/ch-1.p6">Simon Proctor</a> also went for a quite comprehensive program. He created a <code>read-files</code> subroutine to do almost all the work with a <code>Bag</code>, as well as three multi <code>MAIN</code> subroutines to handle various possible arguments passed to the program:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">multi sub MAIN( Bool :h($help) where so * ) {
     say $*USAGE;
 }
 
@@ -377,11 +325,8 @@ sub read-files( IO::CatHandle $files ) {
     my %results := $files.words.map(*.lc.comb()).flat.grep( { $_ ~~ m!&lt;[a..z]&gt;! } ).Bag;
     .say for (&quot;a&quot;..&quot;z&quot;).map( { &quot;{$_} : {%results{$_}}&quot; } );
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/adam-russell/perl6/ch-1.p6">Adam Russell</a> used a hash for storing the counters and a <code>for</code> loop to iterate over the lines of the input:</p>
-
-<pre><code class="language-Perl6">sub MAIN {
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/adam-russell/perl6/ch-1.p6">Adam Russell</a> used a hash for storing the counters and a <code>for</code> loop to iterate over the lines of the input:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">sub MAIN {
     my %letter_count;
     for $*IN.lines() -&gt; $line {
         my @characters = $line.split(&quot;&quot;);
@@ -393,11 +338,8 @@ sub read-files( IO::CatHandle $files ) {
         print &quot;$key: %letter_count{$key}\n&quot;;
     }
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/athanasius/perl6/ch-1.p6">Athanasius</a> is not a challenger from whom I have come to expect very terse programs. As usual, his program, which uses a hash to host the counters, is quite comprehensive:</p>
-
-<pre><code class="language-Perl6">sub MAIN
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/athanasius/perl6/ch-1.p6">Athanasius</a> is not a challenger from whom I have come to expect very terse programs. As usual, his program, which uses a hash to host the counters, is quite comprehensive:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">sub MAIN
 (
     Bool:D :$count = False,         #= Order by letter counts (highest first)
     Bool:D :$help  = False,         #= Print usage details and exit
@@ -427,11 +369,8 @@ sub read-files( IO::CatHandle $files ) {
         &quot;%s: %d\n&quot;.printf: $_, %counts{ $_ } for %counts.keys.sort: &amp;sort-by;
     }
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/jaldhar-h-vyas/perl6/ch-1.p6">Jaldhar H. Vyas</a>  also used a hash to store the counters:</p>
-
-<pre><code class="language-Perl6">sub MAIN(
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/jaldhar-h-vyas/perl6/ch-1.p6">Jaldhar H. Vyas</a>  also used a hash to store the counters:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">sub MAIN(
     *@files
 ) {
     my %totals;
@@ -448,11 +387,8 @@ sub read-files( IO::CatHandle $files ) {
         say &quot;$_: %totals{$_}&quot;;
     });
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/javier-luque/perl6/ch-1.p6">Javier Luque</a> also used a hash for his letter histogram:</p>
-
-<pre><code class="language-Perl6">sub MAIN (*@filenames) {
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/javier-luque/perl6/ch-1.p6">Javier Luque</a> also used a hash for his letter histogram:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">sub MAIN (*@filenames) {
     my %counts;
 
     # Loop through each file
@@ -470,11 +406,8 @@ sub read-files( IO::CatHandle $files ) {
         &quot;%2s %5i\n&quot;.printf($item, %counts{$item});
     }
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/joelle-maslak/perl6/ch-1.p6">Joelle Maslak</a> also used a hash for storing the counters, but the innovative side of her solution is that it is Unicode compliant and that it uses graphemes matching the <code>&lt;alpha&gt;</code> character class to define its letters:</p>
-
-<pre><code class="language-Perl6">sub MAIN(+@filenames) {
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/joelle-maslak/perl6/ch-1.p6">Joelle Maslak</a> also used a hash for storing the counters, but the innovative side of her solution is that it is Unicode compliant and that it uses graphemes matching the <code>&lt;alpha&gt;</code> character class to define its letters:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">sub MAIN(+@filenames) {
     my %letters;
     for @filenames -&gt; $fn {
         my @chars = $fn.IO.lines.comb: /&lt;alpha&gt;/;
@@ -487,11 +420,8 @@ sub read-files( IO::CatHandle $files ) {
         say &quot;$key: {%letters{$key}}&quot;;
     }
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/ruben-westerberg/perl6/ch-1.p6">Ruben Westerberg</a> also used a hash for hosting the counters, and he took special care on the formatting of his output (right-aligning the counters having more than one digit):</p>
-
-<pre><code class="language-Perl6">my %letters;
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/ruben-westerberg/perl6/ch-1.p6">Ruben Westerberg</a> also used a hash for hosting the counters, and he took special care on the formatting of his output (right-aligning the counters having more than one digit):</p>
+<pre><code class="language-Perl6" data-lang="Perl6">my %letters;
 for lines() {
     for $_.split(&quot;&quot;,:skip-empty) {
         %letters{$_}++ if /&lt;[a..zA..Z]&gt;/;
@@ -502,10 +432,7 @@ my $m=max map {chars %letters{$_}}, keys %letters;
 for sort keys %letters {
     printf &quot;%s: %&quot;~$m~&quot;s\n&quot;, $_, %letters{$_};
 }
-</code></pre>
-
-<p>This is a sample of this program output with a relatively large input file:</p>
-
+</code></pre><p>This is a sample of this program output with a relatively large input file:</p>
 <pre><code>B:     1
 E:     1
 S:     1
@@ -517,10 +444,8 @@ d:  5376
 e: 22848
 ... (rest omitted for brevity)
 </code></pre>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/roger-bell-west/perl6/ch-1.p6">Roger Bell West</a> also used a hash for the counters:</p>
-
-<pre><code class="language-Perl6">my %o;
+<pre><code class="language-Perl6" data-lang="Perl6">my %o;
 
 for lines() {
   my $a=lc($_);
@@ -531,11 +456,8 @@ for lines() {
 for sort keys %o -&gt; $k {
   print &quot;$k: %o{$k}\n&quot;;
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/ulrich-rieke/perl6/ch-1.p6">Ulrich Rieke</a> also used a hash for storing the counters:</p>
-
-<pre><code class="language-Perl6">sub MAIN( *@ARGS )  {
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/ulrich-rieke/perl6/ch-1.p6">Ulrich Rieke</a> also used a hash for storing the counters:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">sub MAIN( *@ARGS )  {
   for @ARGS -&gt; $file {
       if $file.IO.e {
     my %lettercount ;
@@ -562,11 +484,8 @@ for sort keys %o -&gt; $k {
       }
   }
 }
-</code></pre>
-
-<p>I must say that I dislike Ulrich&rsquo;s program inconsistent indentation (this may be due to a problem of tabulations and spaces between his editor and the Github format, but it looks quite bad IMHO) and that his code isn&rsquo;t very perlish (or shall we say &ldquo;rakuish&rdquo;?) and sort of looks like C written in Raku. As a minimal attempt to rewrite this fixing the formatting, I would suggest this:</p>
-
-<pre><code class="language-Perl6">use v6;
+</code></pre><p>I must say that I dislike Ulrich&rsquo;s program inconsistent indentation (this may be due to a problem of tabulations and spaces between his editor and the Github format, but it looks quite bad IMHO) and that his code isn&rsquo;t very perlish (or shall we say &ldquo;rakuish&rdquo;?) and sort of looks like C written in Raku. As a minimal attempt to rewrite this fixing the formatting, I would suggest this:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">use v6;
 
 sub MAIN( *@ARGS )  {
     for @ARGS -&gt; $file {
@@ -590,11 +509,8 @@ sub MAIN( *@ARGS )  {
         }
     }
 }
-</code></pre>
-
-<p>And, trying to make it look more idiomatic while still keeping the original logic:</p>
-
-<pre><code class="language-Perl6">use v6;
+</code></pre><p>And, trying to make it look more idiomatic while still keeping the original logic:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">use v6;
 
 sub MAIN( *@ARGS )  {
     my %lettercount;
@@ -606,16 +522,10 @@ sub MAIN( *@ARGS )  {
     }
     say &quot;$_: &quot;, %lettercount{$_}//0 for 'a'..'z';
 }
-</code></pre>
-
-<h2 id="task-2-formatted-multiplication-table">Task #2: Formatted Multiplication Table</h2>
-
+</code></pre><h2 id="task-2-formatted-multiplication-table">Task #2: Formatted Multiplication Table</h2>
 <p>This is derived in part from my <a href="http://blogs.perl.org/users/laurent_r/2019/11/perl-weekly-challenge-33-count-letters-and-multiplication-tables.html">blog post</a> made in answer to the <a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-033/">Week 33 of the Perl Weekly Challenge</a> organized by  <a href="http://blogs.perl.org/users/mohammad_s_anwar/">Mohammad S. Anwar</a> as well as answers made by others to the same challenge.</p>
-
 <p>The challenge reads as follows:</p>
-
 <p><em>Write a script to print 11x11 multiplication table, only the top half triangle.</em></p>
-
 <pre><code>x|   1   2   3   4   5   6   7   8   9  10  11
 ---+--------------------------------------------
 1|   1   2   3   4   5   6   7   8   9  10  11
@@ -630,13 +540,9 @@ sub MAIN( *@ARGS )  {
 10|                                     100 110
 11|                                         121
 </code></pre>
-
 <h2 id="my-solution-1">My Solution</h2>
-
 <h2 id="formatted-multiplication-table-in-raku-perl-6">Formatted Multiplication Table in Raku (Perl 6)</h2>
-
 <p>To obtain the desired format and easily right-align the numbers, the simplest is to use the <code>printf</code> built-in function when needed:</p>
-
 <pre><code>use v6;
 sub MAIN (UInt $max = 11) {
     print-table($max);
@@ -656,9 +562,7 @@ sub print-table ($max) {
     }
 }
 </code></pre>
-
 <p>This script prints out the following:</p>
-
 <pre><code>$ perl6 mult-table.p6
  x |   1   2   3   4   5   6   7   8   9  10  11
 ---|--------------------------------------------
@@ -674,11 +578,8 @@ sub print-table ($max) {
 10 |                                     100 110
 11 |                                         121
 </code></pre>
-
 <p>This is not exactly the output shown in the task description, but this is deliberate, as I think this looks slightly better.</p>
-
 <p>Just in case you want to know, this works equally well when passing a parameter other than 11:</p>
-
 <pre><code>$ perl6 mult-table.p6 20
  x |   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20
 ---|--------------------------------------------------------------------------------
@@ -703,16 +604,11 @@ sub print-table ($max) {
 19 |                                                                         361 380
 20 |                                                                             400
 </code></pre>
-
 <p>Of course, the nice formatting starts to break when passing a parameter higher than 31 (because some results start to exceed 1,000 and to have more than 3 digits), but the initial requirement was just an <code>11*11</code> multiplication table. It would not be difficult to change the script to make it work with larger values (we could even dynamically adapt the formatting strings to the maximal output number), but nobody needs commonly a larger multiplication table.</p>
-
 <h2 id="alternative-solutions">Alternative Solutions</h2>
-
 <p>Again quite a high number of solutions (17) this time.</p>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/arne-sommer/perl6/ch-2.p6">Arne Sommer</a> chose the simple strategy of hard coding the header, and then used two nested <code>for</code>loops for computing the products. He used the built-in <a href="https://docs.perl6.org/routine/fmt#class_Cool">fmt</a> formatting function, which, for numbers, essentially works in the same way as the <code>sprintf</code> function (or <code>printf</code>, except that <code>fmt</code> does not print the result but only returns the formatted string, so you have to add the print statement):</p>
-
-<pre><code class="language-Perl6">say &quot;  x|   1   2   3   4   5   6   7   8   9  10  11&quot;;
+<pre><code class="language-Perl6" data-lang="Perl6">say &quot;  x|   1   2   3   4   5   6   7   8   9  10  11&quot;;
 say &quot;---+--------------------------------------------&quot;;
 
 for 1 .. 11 -&gt; $row
@@ -726,11 +622,8 @@ for 1 .. 11 -&gt; $row
   }
   print &quot;\n&quot;;
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/mark-senn/perl6/ch-2.p6">Mark Senn</a> also hard-coded the printing of the header. He used two <code>for</code> loops for computing the results and the <code>printf</code> function for formatting the products:</p>
-
-<pre><code class="language-Perl6">print q:to/END/;
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/mark-senn/perl6/ch-2.p6">Mark Senn</a> also hard-coded the printing of the header. He used two <code>for</code> loops for computing the results and the <code>printf</code> function for formatting the products:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">print q:to/END/;
   x|   1   2   3   4   5   6   7   8   9  10  11
 ---+--------------------------------------------
 END
@@ -748,11 +641,8 @@ for (1..$n) -&gt; $row
     }
     ''.say;
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/daniel-mita/perl6/ch-2.p6">Daniel Mita</a> also used two <code>for</code> loops for computing the results and used the built-in <a href="https://docs.perl6.org/routine/sprintf">sprintf</a> function to format the output:</p>
-
-<pre><code class="language-Perl6">sub MAIN (
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/daniel-mita/perl6/ch-2.p6">Daniel Mita</a> also used two <code>for</code> loops for computing the results and used the built-in <a href="https://docs.perl6.org/routine/sprintf">sprintf</a> function to format the output:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">sub MAIN (
   Int $max where * &gt; 0 = 11, #= The max number of the multiplication table (defaults to 11)
   --&gt; Nil
 ) {
@@ -777,10 +667,7 @@ for (1..$n) -&gt; $row
     print &quot;\n&quot;;
   }
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/kevin-colyer/perl6/ch-2.p6">Kevin Colyer</a> also used two <code>for</code> loops for computing the results and the <code>sprintf</code> function to format the results:</p>
-
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/kevin-colyer/perl6/ch-2.p6">Kevin Colyer</a> also used two <code>for</code> loops for computing the results and the <code>sprintf</code> function to format the results:</p>
 <pre><code>sub MAIN($table=11) {
 
     # header
@@ -802,11 +689,8 @@ for (1..$n) -&gt; $row
 sub frmt($i, $pad=4, --&gt; Str) {
     return sprintf(&quot;%{$pad}s&quot;,$i);
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/markus-holzer/perl6/ch-2.p6">Markus Holzer</a> created two subroutines, <code>header</code> and <code>line</code>, to manage the various types of output. His program uses a single <code>for</code> loop to run the <code>line</code> subroutine <em>n</em> times, each time with a different multiplier, and the <code>line</code> subroutine uses the range operator to create <em>n</em> multiplicands and store the products in an array. Quite a nice and imaginative solution in my view:</p>
-
-<pre><code class="language-Perl6">sub MAIN( Int $n = 11 )
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/markus-holzer/perl6/ch-2.p6">Markus Holzer</a> created two subroutines, <code>header</code> and <code>line</code>, to manage the various types of output. His program uses a single <code>for</code> loop to run the <code>line</code> subroutine <em>n</em> times, each time with a different multiplier, and the <code>line</code> subroutine uses the range operator to create <em>n</em> multiplicands and store the products in an array. Quite a nice and imaginative solution in my view:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">sub MAIN( Int $n = 11 )
 {
     my $ln = ( $n * $n ).chars + 1;
     my $li = $n.chars + 1;
@@ -828,11 +712,8 @@ sub frmt($i, $pad=4, --&gt; Str) {
         say ( '-' xx $li ).join, &quot;+&quot;, ( '-' xx ( $n * $ln ) ).join;
     }
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/noud/perl6/ch-2.p6">Noud</a> contributed a program that, contrary to my solution, can print out the multiplication tables for any upper value, since it first dynamically calculates the needed gap between numbers.</p>
-
-<pre><code class="language-perl6">sub print_mult_table($size) {
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/noud/perl6/ch-2.p6">Noud</a> contributed a program that, contrary to my solution, can print out the multiplication tables for any upper value, since it first dynamically calculates the needed gap between numbers.</p>
+<pre><code class="language-perl6" data-lang="perl6">sub print_mult_table($size) {
     # Determine the gap between the numbers.
     my $gap = ceiling(log10($size * $size)) + 1;
 
@@ -853,10 +734,7 @@ sub frmt($i, $pad=4, --&gt; Str) {
         print &quot;\n&quot;;
     }
 }
-</code></pre>
-
-<p>As an example, this is the output for multiplication tables up to 33 (which wouldn&rsquo;t work proprely with my solution):</p>
-
+</code></pre><p>As an example, this is the output for multiplication tables up to 33 (which wouldn&rsquo;t work proprely with my solution):</p>
 <pre><code>    x|    1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18   19   20   21   22   23   24   25   26   27   28   29   30   31   32   33
 -----+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
     1|    1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18   19   20   21   22   23   24   25   26   27   28   29   30   31   32   33
@@ -893,12 +771,9 @@ sub frmt($i, $pad=4, --&gt; Str) {
    32|                                                                                                                                                            1024 1056
    33|                                                                                                                                                                 1089
 </code></pre>
-
 <p>In theory, you could use any larger upper range values, but you&rsquo;ll be quickly limited by your screen width.</p>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/ryan-thompson/perl6/ch-2.p6">Ryan Thompson</a> contributed a quite creative solution that can also handle large multipliers, since its <code>$fmt</code> formating string is dynamically adapted to the size of the largest product. His program uses the <code>fmt</code>function for format the output.</p>
-
-<pre><code class="language-Perl6">use v6;
+<pre><code class="language-Perl6" data-lang="Perl6">use v6;
 
 sub MAIN(Int $max = 11) {
     my $w     = ($max*$max).chars;  # Maximum width in table
@@ -912,13 +787,9 @@ sub MAIN(Int $max = 11) {
         ($n,   ' | ', @n.map: { $n &gt; $^m ?? '' !! $n * $^m }).fmt($fmt).say;
     }
 }
-</code></pre>
-
-<p>With an input value of 33, Ryan&rsquo;s program displays almost the same as the output of Noud&rsquo;s program just above.</p>
-
+</code></pre><p>With an input value of 33, Ryan&rsquo;s program displays almost the same as the output of Noud&rsquo;s program just above.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/rnuttall/perl6/ch-2.p6">Richard Nuttall</a> made a fairly concise solution using a <code>for</code> loop and a range, and a single format string for everything:</p>
-
-<pre><code class="language-Perl6">sub MAIN($lim = 11) {
+<pre><code class="language-Perl6" data-lang="Perl6">sub MAIN($lim = 11) {
     my         $fmt = &quot;%3s%1s&quot; ~ &quot;%4s&quot; x $lim ~ &quot;\n&quot;;
     printf     $fmt,  'x', '|',        1..$lim;
     printf     $fmt, '---','+', '----' xx $lim;
@@ -926,11 +797,8 @@ sub MAIN(Int $max = 11) {
         printf $fmt,  $x,  '|', ' ' xx $x-1, ($x..$lim) «*» $x;
     }
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/simon-proctor/perl6/ch-2.p6">Simon Proctor</a> made, as often, a quite verbose solution with several multi <code>MAIN</code> subroutines, as well as a <code>format-row</code>, a <code>get-header</code>, and a <code>get-row</code> subroutines. This is part of his solution:</p>
-
-<pre><code class="language-Perl6">multi sub MAIN(
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/simon-proctor/perl6/ch-2.p6">Simon Proctor</a> made, as often, a quite verbose solution with several multi <code>MAIN</code> subroutines, as well as a <code>format-row</code>, a <code>get-header</code>, and a <code>get-row</code> subroutines. This is part of his solution:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">multi sub MAIN(
     UInt $max = 11 #= Max number to print the table to
 ) {
     my &amp;formater = format-row( $max );
@@ -950,11 +818,8 @@ sub get-header( UInt $max, &amp;formater ) {
     my $max-width = ($max*$max).codes;
     ( &amp;formater( &quot;x&quot;, |(1..$max) ), &quot;-&quot; x ( 3 + $max.codes + ( $max * ($max-width+1) ) ) );
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/adam-russell/perl6/ch-2.p6">Adam Russel</a> also hard-coded the header and otherwise used the <a href="https://github.com/perl6/form">form</a> module to emulate the Perl 5 <code>format</code> fix-width output templating features for the header. For the result lines, his program uses a quite creative solution: it iterates over the <code>1..11</code> range and, for each value, creates an array <code>@a</code> of zeros followed by integers from the values to 11. For example, for <code>$x</code> value equal to 5, it would generate this array: <code>[0 0 0 0 5 6 7 8 9 10 11]</code>. The program then uses two chained <code>map</code> statements that multiply the non-zero integers by the value being used and the zeros by an empty string, so that the result <code>@b</code> array for value 5 is this: <code>[&quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, 25, 30, 35, 40, 45, 50, 55]</code>. Finally, the program uses <code>sprintf</code> to properly format this array.</p>
-
-<pre><code class="language-Perl6">sub print_table11 {
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/adam-russell/perl6/ch-2.p6">Adam Russel</a> also hard-coded the header and otherwise used the <a href="https://github.com/perl6/form">form</a> module to emulate the Perl 5 <code>format</code> fix-width output templating features for the header. For the result lines, his program uses a quite creative solution: it iterates over the <code>1..11</code> range and, for each value, creates an array <code>@a</code> of zeros followed by integers from the values to 11. For example, for <code>$x</code> value equal to 5, it would generate this array: <code>[0 0 0 0 5 6 7 8 9 10 11]</code>. The program then uses two chained <code>map</code> statements that multiply the non-zero integers by the value being used and the zeros by an empty string, so that the result <code>@b</code> array for value 5 is this: <code>[&quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, 25, 30, 35, 40, 45, 50, 55]</code>. Finally, the program uses <code>sprintf</code> to properly format this array.</p>
+<pre><code class="language-Perl6" data-lang="Perl6">sub print_table11 {
     my ($x,$x1,$x2,$x3,$x4,$x5,$x6,$x7,$x8,$x9,$x10,$x11);
     my $header = form
         '    x|   1   2   3   4   5   6   7   8   9   10   11',
@@ -970,11 +835,8 @@ sub get-header( UInt $max, &amp;formater ) {
         say $s;
     }
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/jaldhar-h-vyas/perl6/ch-2.p6">Jaldhar H. Vyas</a> also contributed a quite creative solution. His program uses the <code>X</code> cross operator, chained with a <code>grep</code> and a <code>map</code>, to generate an array <code>@table</code> of all the products to be displayed in the multiplication table. It finally iterates over the multiplier range, picks up the desired array slice with the <code>splice</code> built-in function, format the results with <code>fmt</code> function and finally outputs them with the <code>printf</code> function:</p>
-
-<pre><code class="language-Perl6">constant $N = 11;
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/jaldhar-h-vyas/perl6/ch-2.p6">Jaldhar H. Vyas</a> also contributed a quite creative solution. His program uses the <code>X</code> cross operator, chained with a <code>grep</code> and a <code>map</code>, to generate an array <code>@table</code> of all the products to be displayed in the multiplication table. It finally iterates over the multiplier range, picks up the desired array slice with the <code>splice</code> built-in function, format the results with <code>fmt</code> function and finally outputs them with the <code>printf</code> function:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">constant $N = 11;
 
 say '  x|', (1 .. $N).fmt('% 4s', q{}), &quot;\n&quot;, '---+', ('----' x $N);
 my @table = (1 .. $N X 1 .. $N).grep({ $_[1] &gt;= $_[0]}).map({ $_[0] * $_[1] });
@@ -984,11 +846,8 @@ for (1 .. $N) {
         q{ } x 4 * ($_ - 1),
         @table.splice(0, $N - $_ + 1).fmt('% 4s', q{});
 };
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/athanasius/perl6/ch-2.p6">Athanasius</a> used two straight forward <code>for</code> loops for computing the values and <code>printf</code> for formatting the output:</p>
-
-<pre><code class="language-Perl6"># Print the multipliers
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/athanasius/perl6/ch-2.p6">Athanasius</a> used two straight forward <code>for</code> loops for computing the values and <code>printf</code> for formatting the output:</p>
+<pre><code class="language-Perl6" data-lang="Perl6"># Print the multipliers
 '  x|'.print;
 ' %3d'.printf: $_ for 1 .. $MAX;
     ''.say;
@@ -1006,11 +865,8 @@ for 1 .. $MAX -&gt; UInt $row
    ' %3s' .printf: $row &gt; $_ ?? '' !! $row * $_ for 1 .. $MAX;
         ''.say;
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/javier-luque/perl6/ch-2.p6">Javier Luque</a> created a <code>generate-x-table</code> subroutine looping over the multipliers range and two multi <code>table-content</code> subroutines, one to produce the header and the other to generate and format the results, using the <code>sprintf</code> function:</p>
-
-<pre><code class="language-Perl6"># Generates the multiplication table
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/javier-luque/perl6/ch-2.p6">Javier Luque</a> created a <code>generate-x-table</code> subroutine looping over the multipliers range and two multi <code>table-content</code> subroutines, one to produce the header and the other to generate and format the results, using the <code>sprintf</code> function:</p>
+<pre><code class="language-Perl6" data-lang="Perl6"># Generates the multiplication table
 sub generate-x-table (Int $num) {
     table-content($_, $num).say for (0..$num);
 }
@@ -1033,11 +889,8 @@ multi table-content(Int $current, Int $num) {
 
     return $line;
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/joelle-maslak/perl6/ch-2.p6">Joelle Maslak</a> used two nested <code>for</code> loops to generate the results and the <code>fmt</code> built-in function to format them:</p>
-
-<pre><code class="language-Perl6">sub MAIN(UInt:D $max = 11) {
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/joelle-maslak/perl6/ch-2.p6">Joelle Maslak</a> used two nested <code>for</code> loops to generate the results and the <code>fmt</code> built-in function to format them:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">sub MAIN(UInt:D $max = 11) {
     die &quot;Max must be ≥ 1&quot; if $max &lt; 1;
 
     my $maxlen  = (~ $max).chars;
@@ -1065,11 +918,8 @@ multi table-content(Int $current, Int $num) {
         print &quot;\n&quot;;
     }
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/ruben-westerberg/perl6/ch-2.p6">Ruben Westerberg</a> also used two nested <code>for</code> loops to compute the values, and he used <code>sprintf</code> to format the output:</p>
-
-<pre><code class="language-Perl6">my $limit=@*ARGS[0]//11;
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/ruben-westerberg/perl6/ch-2.p6">Ruben Westerberg</a> also used two nested <code>for</code> loops to compute the values, and he used <code>sprintf</code> to format the output:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">my $limit=@*ARGS[0]//11;
 my $maxWidth=1+(chars $limit**2);
 printRow &quot;&quot;, (1..$limit), $maxWidth;
 put &quot;-&quot; x (($limit+2)*$maxWidth);
@@ -1095,11 +945,8 @@ sub printRow($header, $data, $minWidth) {
     }
     printf &quot;%&quot;~$minWidth~&quot;s|%s\n&quot;,$header,$output;
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/roger-bell-west/perl6/ch-2.p6">Roger Bell West</a> also used two nested <code>for</code> loops and used the <code>printf</code> function to format and output the results:</p>
-
-<pre><code class="language-Perl6">my $n=11;
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/roger-bell-west/perl6/ch-2.p6">Roger Bell West</a> also used two nested <code>for</code> loops and used the <code>printf</code> function to format and output the results:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">my $n=11;
 my $m1=$n.chars+1;
 my $m2=($n*$n).chars+1;
 my $fmt='%' ~ $m1 ~ 's%1s' ~ (('%' ~ $m2 ~ 's') xx $n) ~ &quot;\n&quot;;
@@ -1116,11 +963,8 @@ for 1 .. $n -&gt; $row {
   }
   printf($fmt,@a);
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/ulrich-rieke/perl6/ch-2.p6">Ulrich Rieke</a> also used two nested <code>for</code> loops and used the <code>sprintf</code> function to format the output:</p>
-
-<pre><code class="language-Perl6">sprintf(&quot;%4s&quot; , &quot;x|&quot; ).print ;
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/ulrich-rieke/perl6/ch-2.p6">Ulrich Rieke</a> also used two nested <code>for</code> loops and used the <code>sprintf</code> function to format the output:</p>
+<pre><code class="language-Perl6" data-lang="Perl6">sprintf(&quot;%4s&quot; , &quot;x|&quot; ).print ;
 for (1..11) -&gt; $num {
   sprintf(&quot;%4d&quot; , $num ).print ;
 }
@@ -1136,26 +980,26 @@ for (1..11) -&gt; $num {
   }
   print &quot;\n&quot; ;
 }
-</code></pre>
-
-<h2 id="see-also">SEE ALSO</h2>
-
+</code></pre><h2 id="see-also">SEE ALSO</h2>
 <p>Five blog posts this time:</p>
-
 <ul>
-<li><p>Arne Sommer: <a href="https://raku-musings.com/add-mul.html">https://raku-musings.com/add-mul.html</a>;</p></li>
-
-<li><p>Adam Russell: <a href="https://adamcrussell.livejournal.com/11383.html">https://adamcrussell.livejournal.com/11383.html</a>;</p></li>
-
-<li><p>Jaldhar H. Vyas: <a href="https://www.braincells.com/perl/2019/11/perl_weekly_challenge_week_33.html">https://www.braincells.com/perl/2019/11/perl_weekly_challenge_week_33.html</a>;</p></li>
-
-<li><p>Javier Luque: <a href="https://perlchallenges.wordpress.com/2019/11/05/perl-weekly-challenge-033/">https://perlchallenges.wordpress.com/2019/11/05/perl-weekly-challenge-033/</a>;</p></li>
-
-<li><p>Roger Ball West: <a href="https://blog.firedrake.org/archive/2019/11/Perl_Weekly_Challenge_33.html">https://blog.firedrake.org/archive/2019/11/Perl_Weekly_Challenge_33.html</a>.</p></li>
+<li>
+<p>Arne Sommer: <a href="https://raku-musings.com/add-mul.html;">https://raku-musings.com/add-mul.html;</a></p>
+</li>
+<li>
+<p>Adam Russell: <a href="https://adamcrussell.livejournal.com/11383.html;">https://adamcrussell.livejournal.com/11383.html;</a></p>
+</li>
+<li>
+<p>Jaldhar H. Vyas: <a href="https://www.braincells.com/perl/2019/11/perl_weekly_challenge_week_33.html;">https://www.braincells.com/perl/2019/11/perl_weekly_challenge_week_33.html;</a></p>
+</li>
+<li>
+<p>Javier Luque: <a href="https://perlchallenges.wordpress.com/2019/11/05/perl-weekly-challenge-033/;">https://perlchallenges.wordpress.com/2019/11/05/perl-weekly-challenge-033/;</a></p>
+</li>
+<li>
+<p>Roger Ball West: <a href="https://blog.firedrake.org/archive/2019/11/Perl_Weekly_Challenge_33.html">https://blog.firedrake.org/archive/2019/11/Perl_Weekly_Challenge_33.html</a>.</p>
+</li>
 </ul>
-
 <h2 id="wrapping-up">Wrapping up</h2>
-
 <p>Please let me know if I forgot any of the challengers or if you think my explanation of your code misses something important (send me an e-mail or just raise an issue against this GitHub page).</p>
 
                 </div>

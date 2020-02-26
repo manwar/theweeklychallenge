@@ -16,7 +16,7 @@
 
     <meta name="description" content="Advent Calendar - December 8, 2019">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.55.0-DEV" />
+    <meta name="generator" content="Hugo 0.66.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -149,124 +149,107 @@
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
-                    
-
-<p><a href="/blog/advent-calendar-2019"><strong>Advent Calendar 2019</strong></a></p>
-
-<hr />
-
-<p>The gift is presented by <a href="/blog/meet-the-champion-016"><strong>Adam Russell</strong></a>. Today he is talking about his solutions to <strong>Task #2: Priority Queue</strong> of <a href="/blog/perl-weekly-challenge-018"><strong>&ldquo;The Weekly Challenge - 018&rdquo;</strong></a>.</p>
-
-<h4 id="write-a-script-to-implement-priority-queue-it-is-like-regular-queue-except-each-element-has-a-priority-associated-with-it-in-a-priority-queue-an-element-with-high-priority-is-served-before-an-element-with-low-priority-please-check-this-wiki-page-https-en-wikipedia-org-wiki-priority-queue-for-more-informations-it-should-serve-the-following-operations">Write a script to implement Priority Queue. It is like regular queue except each element has a priority associated with it. In a priority queue, an element with high priority is served before an element with low priority. Please check this <a href="https://en.wikipedia.org/wiki/Priority_queue">wiki page</a> for more informations. It should serve the following operations:</h4>
-
-<p></p>
-
-<h5 id="1-is-empty-check-whether-the-queue-has-no-elements">1) is_empty: check whether the queue has no elements.</h5>
-
-<h5 id="2-insert-with-priority-add-an-element-to-the-queue-with-an-associated-priority">2) insert_with_priority: add an element to the queue with an associated priority.</h5>
-
-<h5 id="3-pull-highest-priority-element-remove-the-element-from-the-queue-that-has-the-highest-priority-and-return-it-if-two-elements-have-the-same-priority-then-return-element-added-first">3) pull_highest_priority_element: remove the element from the queue that has the highest priority, and return it. If two elements have the same priority, then return element added first.</h5>
-
-<p></p>
-
-<hr />
-
-<p><br />
+                    <p><a href="/blog/advent-calendar-2019"><strong>Advent Calendar 2019</strong></a></p>
+<hr>
+<p>The gift is presented by <a href="/blog/meet-the-champion-016"><strong>Adam Russell</strong></a>. Today he is talking about his solutions to <strong>Task #2: Priority Queue** of </strong>&ldquo;The Weekly Challenge - 018&rdquo;**<a href="/blog/perl-weekly-challenge-018"></a>.</p>
+<h4 id="write-a-script-to-implement-priority-queue-it-is-like-regular-queue-except-each-element-has-a-priority-associated-with-it-in-a-priority-queue-an-element-with-high-priority-is-served-before-an-element-with-low-priority-please-check-this-wiki-pagehttpsenwikipediaorgwikipriority_queue-for-more-informations-it-should-serve-the-following-operations">Write a script to implement Priority Queue. It is like regular queue except each element has a priority associated with it. In a priority queue, an element with high priority is served before an element with low priority. Please check this <a href="https://en.wikipedia.org/wiki/Priority_queue">wiki page</a> for more informations. It should serve the following operations:</h4>
+<p>\</p>
+<h5 id="1-is_empty-check-whether-the-queue-has-no-elements">1) is_empty: check whether the queue has no elements.</h5>
+<h5 id="2-insert_with_priority-add-an-element-to-the-queue-with-an-associated-priority">2) insert_with_priority: add an element to the queue with an associated priority.</h5>
+<h5 id="3-pull_highest_priority_element-remove-the-element-from-the-queue-that-has-the-highest-priority-and-return-it-if-two-elements-have-the-same-priority-then-return-element-added-first">3) pull_highest_priority_element: remove the element from the queue that has the highest priority, and return it. If two elements have the same priority, then return element added first.</h5>
+<p>\</p>
+<hr>
+<p><br>
 <strong>PriorityQueue.pm</strong> is doing all the work for the task.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
 
-<pre><code class="language-perl">
-use strict;
-use warnings;
+<span style="color:#66d9ef">package</span> PriorityQueue{
+    <span style="color:#66d9ef">use</span> boolean;
+    <span style="color:#66d9ef">use</span> Class::Struct;
 
-package PriorityQueue{
-    use boolean;
-    use Class::Struct;
-
-    package Node{
-        use Class::Struct;
+    <span style="color:#66d9ef">package</span> Node{
+        <span style="color:#66d9ef">use</span> Class::Struct;
         struct(
-            priority =&gt; q/$/,
-            data =&gt; q/$/
+            priority <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">q/$/</span>,
+            data <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">q/$/</span>
         );
     }
 
-    package Heap{
-        use Class::Struct;
+    <span style="color:#66d9ef">package</span> Heap{
+        <span style="color:#66d9ef">use</span> Class::Struct;
         struct(
-            nodes =&gt; q/@/,
-            length =&gt; q/$/
+            nodes <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">q/@/</span>,
+            length <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">q/$/</span>
         );
     }
     struct(
-        heap =&gt; q/Heap/,
-        length =&gt; q/$/
+        heap <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">q/Heap/</span>,
+        length <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">q/$/</span>
     );
 
-    sub initialize{
-        my($self) = @_;
-        my $heap = new Heap(
-            nodes =&gt; [],
-            length =&gt; 0
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">initialize</span>{
+        <span style="color:#66d9ef">my</span>($self) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> $heap <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Heap(
+            nodes <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">[]</span>,
+            length <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">0</span>
         );
-        $self-&gt;heap($heap);
+        $self<span style="color:#f92672">-&gt;</span>heap($heap);
     }
 
-    sub is_empty{
-        my($self) = @_;
-        return @{$self-&gt;heap()-&gt;nodes()};
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_empty</span>{
+        <span style="color:#66d9ef">my</span>($self) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">return</span> @{$self<span style="color:#f92672">-&gt;</span>heap()<span style="color:#f92672">-&gt;</span>nodes()};
     }
 
-    sub insert_with_priority{
-        my($self, $priority, $data) = @_;
-        my $i = $self-&gt;heap()-&gt;length() + 1;
-        my $j = int($i / 2);
-        while($i &gt; 1 &amp;&amp; $self-&gt;heap()-&gt;nodes()-&gt;[$j]-&gt;priority() &gt; $priority){
-            $self-&gt;heap()-&gt;nodes-&gt;[$i] = $self-&gt;heap()-&gt;nodes()-&gt;[$j];
-            $i = $j;
-            $j = int($j / 2);
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">insert_with_priority</span>{
+        <span style="color:#66d9ef">my</span>($self, $priority, $data) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> $self<span style="color:#f92672">-&gt;</span>heap()<span style="color:#f92672">-&gt;</span>length() <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">my</span> $j <span style="color:#f92672">=</span> int($i <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>);
+        <span style="color:#66d9ef">while</span>($i <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;&amp;</span> $self<span style="color:#f92672">-&gt;</span>heap()<span style="color:#f92672">-&gt;</span>nodes()<span style="color:#f92672">-&gt;</span>[$j]<span style="color:#f92672">-&gt;</span>priority() <span style="color:#f92672">&gt;</span> $priority){
+            $self<span style="color:#f92672">-&gt;</span>heap()<span style="color:#f92672">-&gt;</span>nodes<span style="color:#f92672">-&gt;</span>[$i] <span style="color:#f92672">=</span> $self<span style="color:#f92672">-&gt;</span>heap()<span style="color:#f92672">-&gt;</span>nodes()<span style="color:#f92672">-&gt;</span>[$j];
+            $i <span style="color:#f92672">=</span> $j;
+            $j <span style="color:#f92672">=</span> int($j <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>);
         }
-        $self-&gt;heap()-&gt;nodes()-&gt;[$i] = new Node();
-        $self-&gt;heap()-&gt;nodes()-&gt;[$i]-&gt;priority($priority);
-        $self-&gt;heap()-&gt;nodes()-&gt;[$i]-&gt;data($data);
-        $self-&gt;heap()-&gt;length($self-&gt;heap()-&gt;length + 1);
+        $self<span style="color:#f92672">-&gt;</span>heap()<span style="color:#f92672">-&gt;</span>nodes()<span style="color:#f92672">-&gt;</span>[$i] <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Node();
+        $self<span style="color:#f92672">-&gt;</span>heap()<span style="color:#f92672">-&gt;</span>nodes()<span style="color:#f92672">-&gt;</span>[$i]<span style="color:#f92672">-&gt;</span>priority($priority);
+        $self<span style="color:#f92672">-&gt;</span>heap()<span style="color:#f92672">-&gt;</span>nodes()<span style="color:#f92672">-&gt;</span>[$i]<span style="color:#f92672">-&gt;</span>data($data);
+        $self<span style="color:#f92672">-&gt;</span>heap()<span style="color:#f92672">-&gt;</span>length($self<span style="color:#f92672">-&gt;</span>heap()<span style="color:#f92672">-&gt;</span>length <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>);
     }
 
-    sub pull_highest_priority_element{
-        my($self) = @_;
-        if(!$self-&gt;is_empty()){
-            return undef;
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">pull_highest_priority_element</span>{
+        <span style="color:#66d9ef">my</span>($self) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">if</span>(<span style="color:#f92672">!</span>$self<span style="color:#f92672">-&gt;</span>is_empty()){
+            <span style="color:#66d9ef">return</span> undef;
         }
-        my $data = $self-&gt;heap()-&gt;nodes()-&gt;[1]-&gt;data();
-        $self-&gt;heap()-&gt;nodes()-&gt;[1] = $self-&gt;heap()-&gt;nodes()-&gt;[@{$self-&gt;heap()-&gt;nodes()} + 1];
-        $self-&gt;heap()-&gt;length($self-&gt;heap()-&gt;length() - 1);
-        my $i = 1;
-        while($i != $self-&gt;heap()-&gt;length() + 1){
-            my $k = $self-&gt;heap()-&gt;length + 1 ;
-            my $j = $i * 2;
-            if($j &lt;= $self-&gt;heap()-&gt;length()
-               &amp;&amp;
-              ($self-&gt;heap()-&gt;nodes()-&gt;[$j]-&gt;priority() &lt; $self-&gt;heap()-&gt;nodes-&gt;[$k]-&gt;priority())){
-               $k = $j;
+        <span style="color:#66d9ef">my</span> $data <span style="color:#f92672">=</span> $self<span style="color:#f92672">-&gt;</span>heap()<span style="color:#f92672">-&gt;</span>nodes()<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">-&gt;</span>data();
+        $self<span style="color:#f92672">-&gt;</span>heap()<span style="color:#f92672">-&gt;</span>nodes()<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> $self<span style="color:#f92672">-&gt;</span>heap()<span style="color:#f92672">-&gt;</span>nodes()<span style="color:#f92672">-&gt;</span>[@{$self<span style="color:#f92672">-&gt;</span>heap()<span style="color:#f92672">-&gt;</span>nodes()} <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>];
+        $self<span style="color:#f92672">-&gt;</span>heap()<span style="color:#f92672">-&gt;</span>length($self<span style="color:#f92672">-&gt;</span>heap()<span style="color:#f92672">-&gt;</span>length() <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>);
+        <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">while</span>($i <span style="color:#f92672">!=</span> $self<span style="color:#f92672">-&gt;</span>heap()<span style="color:#f92672">-&gt;</span>length() <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>){
+            <span style="color:#66d9ef">my</span> $k <span style="color:#f92672">=</span> $self<span style="color:#f92672">-&gt;</span>heap()<span style="color:#f92672">-&gt;</span>length <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> ;
+            <span style="color:#66d9ef">my</span> $j <span style="color:#f92672">=</span> $i <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span>;
+            <span style="color:#66d9ef">if</span>($j <span style="color:#f92672">&lt;=</span> $self<span style="color:#f92672">-&gt;</span>heap()<span style="color:#f92672">-&gt;</span>length()
+               <span style="color:#f92672">&amp;&amp;</span>
+              ($self<span style="color:#f92672">-&gt;</span>heap()<span style="color:#f92672">-&gt;</span>nodes()<span style="color:#f92672">-&gt;</span>[$j]<span style="color:#f92672">-&gt;</span>priority() <span style="color:#f92672">&lt;</span> $self<span style="color:#f92672">-&gt;</span>heap()<span style="color:#f92672">-&gt;</span>nodes<span style="color:#f92672">-&gt;</span>[$k]<span style="color:#f92672">-&gt;</span>priority())){
+               $k <span style="color:#f92672">=</span> $j;
             }
-            if($j + 1 &lt;= $self-&gt;heap()-&gt;length()
-               &amp;&amp;
-              ($self-&gt;heap()-&gt;nodes()-&gt;[$j + 1]-&gt;priority() &lt; $self-&gt;heap()-&gt;nodes-&gt;[$k]-&gt;priority())){
-                $k = $j + 1;
+            <span style="color:#66d9ef">if</span>($j <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;=</span> $self<span style="color:#f92672">-&gt;</span>heap()<span style="color:#f92672">-&gt;</span>length()
+               <span style="color:#f92672">&amp;&amp;</span>
+              ($self<span style="color:#f92672">-&gt;</span>heap()<span style="color:#f92672">-&gt;</span>nodes()<span style="color:#f92672">-&gt;</span>[$j <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>]<span style="color:#f92672">-&gt;</span>priority() <span style="color:#f92672">&lt;</span> $self<span style="color:#f92672">-&gt;</span>heap()<span style="color:#f92672">-&gt;</span>nodes<span style="color:#f92672">-&gt;</span>[$k]<span style="color:#f92672">-&gt;</span>priority())){
+                $k <span style="color:#f92672">=</span> $j <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
             }
-            $self-&gt;heap()-&gt;nodes()-&gt;[$i] = $self-&gt;heap()-&gt;nodes()-&gt;[$k];
-            $i = $k;
+            $self<span style="color:#f92672">-&gt;</span>heap()<span style="color:#f92672">-&gt;</span>nodes()<span style="color:#f92672">-&gt;</span>[$i] <span style="color:#f92672">=</span> $self<span style="color:#f92672">-&gt;</span>heap()<span style="color:#f92672">-&gt;</span>nodes()<span style="color:#f92672">-&gt;</span>[$k];
+            $i <span style="color:#f92672">=</span> $k;
         }
-        return $data;
+        <span style="color:#66d9ef">return</span> $data;
     }
     true;
 }
 
-</code></pre>
-
-<p><strong>Node</strong> and <strong>Heap</strong> are packages defined within the <strong>PriorityQueue</strong> package. All packages use <strong>Class::Struct</strong>, even the <strong>PriorityQueue</strong> package. The implementation of a <strong>PriorityQueue</strong> follows the <strong>classic C</strong> style approach which inspired the use of <strong>Class::Struct</strong> to begin with. It turns out <strong>Class::Struct</strong> is quite <strong>versatile</strong> and works with use <strong>overload</strong>.</p>
-
+</code></pre></div><p><strong>Node</strong> and <strong>Heap</strong> are packages defined within the <strong>PriorityQueue</strong> package. All packages use <strong>Class::Struct</strong>, even the <strong>PriorityQueue</strong> package. The implementation of a <strong>PriorityQueue</strong> follows the <strong>classic C</strong> style approach which inspired the use of <strong>Class::Struct</strong> to begin with. It turns out <strong>Class::Struct</strong> is quite <strong>versatile</strong> and works with use <strong>overload</strong>.</p>
 <p>The script <strong>ch-2.pl</strong> looks like below:</p>
-
 <pre><code>use PriorityQueue;
 
 my $pq = new PriorityQueue();
@@ -284,9 +267,7 @@ for(0 .. 6){
     printf(&quot;$data\n&quot;);
 }
 </code></pre>
-
 <h2 id="sample-run">SAMPLE RUN</h2>
-
 <pre><code>$ perl -I. ch-2.pl
 eat pizza
 work on perl weekly challenge
@@ -296,11 +277,8 @@ drink water
 clean dishes
 sleep
 </code></pre>
-
-<hr />
-
+<hr>
 <p>If you have any suggestion then please do share with us <a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a>.</p>
-
 <p><a href="/blog/advent-calendar-2019"><strong>Advent Calendar 2019</strong></a></p>
 
                 </div>

@@ -16,7 +16,7 @@
 
     <meta name="description" content="Kian-Meng Ang Weekly Review: Challenge - #010.">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.55.0-DEV" />
+    <meta name="generator" content="Hugo 0.66.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -149,24 +149,14 @@
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
-                    
-
-<p>Continues from <a href="/blog/review-challenge-009">previous week</a>.</p>
-
+                    <p>Continues from <a href="/blog/review-challenge-009">previous week</a>.</p>
 <p>For a quick overview, read through the <a href="/blog/perl-weekly-challenge-010/">questions</a> and <a href="/blog/recap-challenge-010/">recap</a> of the challenge.</p>
-
-<hr />
-
+<hr>
 <h2 id="challenge-1">Challenge #1</h2>
-
-<hr />
-
+<hr>
 <p>The <a href="https://en.wikipedia.org/wiki/Roman_numerals">Wikipage page</a> have a good introduction and manual calculation of conversion of Arabic numerals to Roman numerals. Read Laurent Rosenfeld&rsquo;s <a href="http://blogs.perl.org/users/laurent_r/2019/05/perl-weekly-challenge-10-roman-numerals-and-jaro-winkler-distance.html">blog post</a> for the finer implementation details.</p>
-
 <p>Most participants uses a hash to map between Arabic and Roman numerals. Since order of the matching roman numerals against the Arabic values is important, we&rsquo;ll need to sort it before any conversion. The only way to skip this was to use array instead of hash and there are three methods used by the participants.</p>
-
 <p>Store the mapping as array of array references. Athanasius uses <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-010/athanasius/perl5/ch-1.pl">this technique</a>.</p>
-
 <pre><code>const my @ROMAN_NUMERALS =&gt;
          (
              # ---Numeral---   Subtractive
@@ -180,15 +170,11 @@
              [  'I',       1,      'IV',          4   ],
          );
 </code></pre>
-
 <p>Store the mapping as two arrays and linked by position in the array. Both <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-010/kivanc-yazan/perl5/ch-1.pl">Kivanc Yazan</a> and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-010/steven-wilson/perl5/ch-1.pl">Steven Wilson</a> uses this approach.</p>
-
 <pre><code>my @decimal = qw/ 1000 900 500 400 100 90 50 40 10  9 5  4 1/;
 my @roman   = qw/    M  CM   D  CD   C XC  L XL  X IX V IV I/;
 </code></pre>
-
 <p>Convert the hash into an array and obtain the value alternately as shown by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-010/joelle-maslak/perl5/ch-1.pl">Joelle Maslak</a>.</p>
-
 <pre><code>my (@conversions) = (
     M  =&gt; 1000,
     CM =&gt; 900,
@@ -209,11 +195,8 @@ while (@conversions) {
     my $r = shift @conversions;
     my $v = shift @conversions;
 </code></pre>
-
 <p>Due to the nature of the question, there were more test code written for this question.</p>
-
 <p>Guillermo Ramos&rsquo; <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-010/guillermo-ramos/perl5/ch-1.pl">approach</a> on round trip testing both encoding and decoding the Roman numerals at the same time was elegantly written. Furthermore, the solution was commented adequately making code reading way easier.</p>
-
 <pre><code># Property:
 #   forall (x : Arabic). x == decode(encode(x))
 sub test {
@@ -225,9 +208,7 @@ sub test {
     print &quot;Test successful\n&quot;;
 }
 </code></pre>
-
 <p>Compare to Guillermo&rsquo;s brute force and round trip testing approach, Steven Wilson took a more <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-010/steven-wilson/perl5/ch-1.pl">streamlined approach</a> by testing a few known results as well as several edge cases.</p>
-
 <pre><code>ok( encode_roman(246) eq &quot;CCXLVI&quot;,     &quot;encode 246 to CCXLVI&quot; );
 ok( encode_roman(39) eq &quot;XXXIX&quot;,       &quot;encode 39 to XXXIX&quot; );
 ok( decode_roman(&quot;CCXLVI&quot;) == 246,     &quot;decode CCXLVI to 246&quot; );
@@ -240,9 +221,7 @@ throws_ok { encode_roman(-1) } qr/Negative numbers/, &quot;test negative number&
 throws_ok { encode_roman(4000) } qr/greater than the largest number/,
     &quot;test greater than largest number&quot;;
 </code></pre>
-
 <p>And E. Choroba combined both round trip and streamline approach in his <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-010/e-choroba/perl5/ch-1.pl">test code</a> as shown below.</p>
-
 <pre><code>my %test = (XXXIX     =&gt; 39,
             CCXLVI    =&gt; 246,
             DCCLXXXIX =&gt; 789,
@@ -267,62 +246,38 @@ for my $roman (keys %test) {
     is to_roman($test{$roman}), $roman;
 }
 </code></pre>
-
 <p>Participants who wrote test cases in their solution including <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-010/alicia-bielsa/perl5/ch-1.pl">Alicia Bielsa</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-010/laurent-rosenfeld/perl5/ch-1.pl">Laurent Rosenfeld</a>, and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-010/joelle-maslak/perl5/ch-1.pl">Joelle Maslak</a>.</p>
-
 <p>The most intriguing, wackiest, longest, and <a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-010/adam-russell/perl5">over-engineered solution</a> went to Adam Russell. Read his <a href="https://adamcrussell.livejournal.com/3640.html">write-up</a> on why and how he tackled the problem by writing a Parser.</p>
-
-<hr />
-
+<hr>
 <h2 id="challenge-2">Challenge #2</h2>
-
-<hr />
-
+<hr>
 <p>Background on the <a href="https://en.wikipedia.org/wiki/Jaro%E2%80%93Winkler_distance">Jaro–Winkler distance</a> and again, <a href="http://blogs.perl.org/users/laurent_r/2019/05/perl-weekly-challenge-10-roman-numerals-and-jaro-winkler-distance.html">good write-up</a> on this challenge by Laurent Rosenfeld. Some interesting tidbits caught my attention while reading all the participant solutions. Using helper function to reduce code complexity and improve readability as <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-010/laurent-rosenfeld/perl5/ch-2.pl">demonstrated</a> by Laurent Rosenfeld. This kind of reminds you of the common <a href="https://en.wikipedia.org/wiki/Macro_(computer_science)">marco helper</a> used in C/C++.</p>
-
 <pre><code>sub max { $_[0] &gt; $_[1] ? $_[0] : $_[1] }
 sub min { $_[0] &gt; $_[1] ? $_[1] : $_[0] }
 ......
 my $dmax = int (max($len1, $len2) / 2) -1;
 </code></pre>
-
 <p>The <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-010/joelle-maslak/perl5/ch-2.pl">use</a> of <a href="https://perldoc.perl.org/functions/fc.html"><code>fc</code> function</a> by Joelle Maslak as shown below, if I understand correctly, is to ensure the calculation of the string distance works even with Unicode string. The <code>fc</code> function (introduced since 5.16) is the way in Perl to case folding for Unicode string. <a href="https://www.w3.org/International/wiki/Case_folding">Case folding</a>, if you wonder, is a way to normalize text for comparison. For more information on this, brian d foy has written about this <a href="https://www.effectiveperlprogramming.com/2012/02/fold-cases-properly/">case folding in Perl</a> with good examples.</p>
-
 <pre><code>    my $s1 = $ARGV[0];
     my $s2 = $ARGV[1];
     my $p  = $ARGV[2] // 0.1;
 
     say jaro_winkler_distance(fc($s1), fc($s2), $p);
 </code></pre>
-
 <p>And lastly, for this week, E. Choroba is the participant that uses a CPAN module, <a href="https://metacpan.org/pod/Text::JaroWinkler"><code>Text::JaroWinkler</code></a> to <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-010/e-choroba/perl5/ch-2.pl">solve this problem</a>.</p>
-
-<hr />
-
+<hr>
 <h2 id="challenge-3">Challenge #3</h2>
-
-<hr />
-
+<hr>
 <p>As usual, Joelle Maslak is the <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-010/joelle-maslak/perl5/ch-3.pl">only participant</a> to this challenge. Perhaps others want to try this question instead?</p>
-
-<hr />
-
+<hr>
 <h2 id="blog-posts">Blog Posts</h2>
-
-<hr />
-
+<hr>
 <p>Blog posts by those who participated.</p>
-
 <p>(1) <a href="http://donaldh.wtf/2019/05/roman-numerals-in-perl-6/">Roman Numerals in Perl 6</a> by <a href="http://donaldh.wtf/about/">Donald Hunter</a>.</p>
-
 <p>(2) <a href="https://perl6.eu/roman.html">Roman Numerals with Perl Ⅵ</a> by <a href="https://bbop.org/">Arne Sommer</a>. Probably the only solution that recognize Roman numerals as actual <a href="https://en.wikipedia.org/wiki/Numerals_in_Unicode#Roman_numerals">Unicode characters</a>.</p>
-
 <p>(3) <a href="https://adamcrussell.livejournal.com/3640.html">Perl Weekly Challenge 010</a> by <a href="https://adamcrussell.livejournal.com/profile">Adam Russell</a>. Read this if you want to understand how he over-engineered the first challenge using <a href="https://metacpan.org/pod/Parse::YYLex">Parse::YYLex</a> with <a href="http://www.cpan.org/modules/by-module/RPC/JAKE/perl5-byacc-patches-0.6.readme">byacc</a>.</p>
-
 <p>(4) <a href="http://blogs.perl.org/users/laurent_r/2019/05/perl-weekly-challenge-10-roman-numerals-and-jaro-winkler-distance.html">Perl Weekly Challenge # 10: Roman Numerals and the Jaro-Winkler Distance</a> by <a href="http://blogs.perl.org/mt/mt-cp.fcgi?__mode=view&amp;id=4694">Laurent-Rosenfeld</a>.</p>
-
 <p>(5) <a href="https://rage.powered.ninja/2019/06/02/obiective-romanos-grammaticam.html">Obiective Romanos grammaticam – Perl weekly challenge, week 10</a> by <a href="https://rage.powered.ninja/">Francis Whittle</a>.</p>
-
 <p>(6) <a href="https://digitalbarbedwire.com/2019/06/01/converting-decimal-to-roman-numbers-in-perl-6/">Converting Decimal to Roman Numbers in Perl 6</a> by <a href="https://digitalbarbedwire.com/about/">Joelle Maslak</a>.</p>
 
                 </div>
