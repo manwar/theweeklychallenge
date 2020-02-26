@@ -64,7 +64,7 @@ Both example ciphers show that each plaintext character appears exactly twice in
 
 ## Alicia Bielsa {#alicia-bielsa1}
 
-[Alicia Bielsa's solution](/challenge-046/alicia-bielsa/perl/ch-1.pl) searches an array of arrays (AoA) for characters that have appeared twice.
+[Alicia Bielsa's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/alicia-bielsa/perl/ch-1.pl) searches an array of arrays (AoA) for characters that have appeared twice.
 
 ```perl
 my @aCharactersRepeated = ();
@@ -96,7 +96,7 @@ Alicia uses `%hCharacters` to store her frequency map, where `$hCharacters{A}{$i
 
 ## Andrezgz {#andrezgz1}
 
-[Andrezgz's solution](/challenge-046/andrezgz/perl/ch-1.pl) stores the messages as an AoA and then decrypts it with the following nested loops:
+[Andrezgz's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/andrezgz/perl/ch-1.pl) stores the messages as an AoA and then decrypts it with the following nested loops:
 
 ```perl
 my $msg_len = scalar @{$msg->[0]};
@@ -123,7 +123,7 @@ PerlRaku
 
 ## Athanasius {#athanasius1}
 
-[Athanasius' solution](/challenge-046/athanasius/perl/ch-1.pl) includes a convenience function to turn a string input with newlines into an AoA:
+[Athanasius' solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/athanasius/perl/ch-1.pl) includes a convenience function to turn a string input with newlines into an AoA:
 
 ```perl
 my $message = 'P + 2 l ! a t o
@@ -155,7 +155,7 @@ for my $char (0 .. $array->[0]->$#*) {
 
 ## Cheok-Yin Fung {#cheok-yin-fung1}
 
-[Cheok-Yin Fung's solution](/challenge-046/cheok-yin-fung/perl/ch-1.pl) handles the frequency analysis with an AoA which maps the column number `$j` and all ASCII ordinals from 33..126, to the number of times they appear:
+[Cheok-Yin Fung's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/cheok-yin-fung/perl/ch-1.pl) handles the frequency analysis with an AoA which maps the column number `$j` and all ASCII ordinals from 33..126, to the number of times they appear:
 
 ```perl
 for my $i (0..$numberoflines-1) {
@@ -199,7 +199,7 @@ If range checking the ordinal is a concern, a simple conditional would suffice, 
 
 ## Cristina Heredia {#cristian-heredia1}
 
-[Cristina Heredia's solution](/challenge-046/cristian-heredia/perl/ch-1.pl) defines an array for each row:
+[Cristina Heredia's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/cristian-heredia/perl/ch-1.pl) defines an array for each row:
 
 ```perl
 my @array1 = ('P',  '+',  '2',  'l',  '!',  'a',  't',  'o' );
@@ -248,7 +248,7 @@ The step of creating `@arrayCharacter` could be avoided by replacing the `push(@
 
 ## Dave Jacoby {#dave-jacoby1}
 
-[Dave Jacoby's solution](/challenge-046/dave-jacoby/perl/ch-1.pl) accepts multi-line strings, and splits those into an AoA called `@ctext`:
+[Dave Jacoby's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/dave-jacoby/perl/ch-1.pl) accepts multi-line strings, and splits those into an AoA called `@ctext`:
 
 ```perl
 my @ctext = map { [ split /\s+/, $_ ] } grep { /\S/ } split m{\n}, $ctext;
@@ -270,7 +270,7 @@ The final answer is then simply `join '', @ptext`.
 
 ## Duane Powell {#duane-powell1}
 
-[Duane Powell's solution](/challenge-046/duane-powell/perl/ch-1.pl) takes the message as a string, splits it into lines, then characters, and increments a HoH (hash of hash) `$data` which maps a column `$p` and `$char` to its count:
+[Duane Powell's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/duane-powell/perl/ch-1.pl) takes the message as a string, splits it into lines, then characters, and increments a HoH (hash of hash) `$data` which maps a column `$p` and `$char` to its count:
 
 ```perl
 my $data = {};
@@ -301,7 +301,7 @@ Duane's solution is decently compact, and very comprehensible.
 
 ## Duncan C. White {#duncan-c-white1}
 
-[Duncan C. White's solution](/challenge-046/duncan-c-white/perl/ch-1.pl) accepts a list of strings on the commandline. The solution is neatly divided into two parts. First up is the frequency collection, which builds up an AoH (array of hashes) in `@freq`:
+[Duncan C. White's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/duncan-c-white/perl/ch-1.pl) accepts a list of strings on the commandline. The solution is neatly divided into two parts. First up is the frequency collection, which builds up an AoH (array of hashes) in `@freq`:
 
 ```perl
 my @freq;    # array of bags
@@ -337,7 +337,7 @@ say $result;
 
 ## E. Choroba {#e-choroba1}
 
-[E. Choroba's solution](/challenge-046/e-choroba/perl/ch-1.pl) works with arrays of strings (rows):
+[E. Choroba's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/e-choroba/perl/ch-1.pl) works with arrays of strings (rows):
 
 ```perl
 my @message_sets = (['Hxl4!', 'ce-lo', 'ze6lg', 'HWlvR', 'q9m#o'],
@@ -366,7 +366,7 @@ print "\n";
 
 ## Jaldhar H. Vyas {#jaldhar-h-vyas1}
 
-[Jaldhar H. Vyas' solution](/challenge-046/jaldhar-h-vyas/perl/ch-1.pl) accepts an AoA for input, and then starts with what amounts to a matrix transposition:
+[Jaldhar H. Vyas' solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/jaldhar-h-vyas/perl/ch-1.pl) accepts an AoA for input, and then starts with what amounts to a matrix transposition:
 
 ```perl
 my @rotated;
@@ -392,7 +392,7 @@ Jaldhar's is a unique solution. Transposing the input makes the second part quit
 
 ## Javier Luque {#javier-luque1}
 
-[Javier Luque's solution](/challenge-046/javier-luque/perl/ch-1.pl) takes a multiline string, splits it, and then builds up a column-wise array:
+[Javier Luque's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/javier-luque/perl/ch-1.pl) takes a multiline string, splits it, and then builds up a column-wise array:
 
 ```perl
 # Initialize the columns hash
@@ -425,7 +425,7 @@ for my $column (@column_hash) {
 
 ## Laurent Rosenfeld {#laurent-rosenfeld1}
 
-[Laurent Rosenfeld's solution](/challenge-046/laurent-rosenfeld/perl/ch-1.pl) accepts a string, splits it into an AoA, and then transposes it to obtain a column-wise matrix:
+[Laurent Rosenfeld's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/laurent-rosenfeld/perl/ch-1.pl) accepts a string, splits it into an AoA, and then transposes it to obtain a column-wise matrix:
 
 ```perl
 my @AoA = map { [ split /\s+/, $_] } split /[\r\n]+/, $garbled;
@@ -453,7 +453,7 @@ say @msg;
 
 **Mohammad,** creator of the Perl Weekly Challenge, has finally entered the fray with a solution of his own! It may be a bit strange to welcome you to your own challenge, Mohammad, but I'm going to do it anyway. Welcome. :-)
 
-[Mohammad S Anwar's solution](/challenge-046/mohammad-anwar/perl/ch-1.pl) accepts an array of strings, and then splits each string on whitespace.  Maintaining a column counter, Mohammad increments the frequency table for each character in turn:
+[Mohammad S Anwar's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/mohammad-anwar/perl/ch-1.pl) accepts an array of strings, and then splits each string on whitespace.  Maintaining a column counter, Mohammad increments the frequency table for each character in turn:
 
 ```perl
 my $table = [];
@@ -475,7 +475,7 @@ Mohammad's solution is concise without getting in the way of comprehension.
 
 ## Rage311 {#rage3111}
 
-[Rage311's solution](/challenge-046/rage311/perl/ch-1.pl) starts with an AoA of the message, and then loops over it to build the frequency map:
+[Rage311's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/rage311/perl/ch-1.pl) starts with an AoA of the message, and then loops over it to build the frequency map:
 
 ```perl
 my @freq;
@@ -494,7 +494,7 @@ Rage311 took full advantage of the AoA input, here, without having to deal with 
 
 ## Roger Bell West {#roger-bell-west1}
 
-[Roger Bell West's solution](/challenge-046/roger-bell-west/perl/ch-1.pl) takes input from STDIN, splitting each line on whiespace and adding it to the `@place` frequency map:
+[Roger Bell West's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/roger-bell-west/perl/ch-1.pl) takes input from STDIN, splitting each line on whiespace and adding it to the `@place` frequency map:
 
 ```perl
 my @place;
@@ -519,7 +519,7 @@ print "\n";
 
 ## Ruben Westerberg {#ruben-westerberg1}
 
-[Ruben Westerberg's solution](/challenge-046/ruben-westerberg/perl/ch-1.pl) accepts an AoA in `@inComming` and loops through it column-wise to build a frequency table for each column in turn, and push each character to the resulting `@decoded` array:
+[Ruben Westerberg's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/ruben-westerberg/perl/ch-1.pl) accepts an AoA in `@inComming` and loops through it column-wise to build a frequency table for each column in turn, and push each character to the resulting `@decoded` array:
 
 ```perl
 my @decoded;
@@ -540,7 +540,7 @@ print join "", @decoded;
 
 ## Ryan Thompson {#ryan-thompson1}
 
-[My solution](/challenge-046/ryan-thompson/perl/ch-1.pl) uses a non-core (yet still extremely popular) module, [`List::MoreUtils`](https://metacpan.org/pod/List::MoreUtils) so I did not have to roll my own `frequency` method yet again. I also use core `List::Util`'s `reduce`. I accept a list of strings as input:
+[My solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/ryan-thompson/perl/ch-1.pl) uses a non-core (yet still extremely popular) module, [`List::MoreUtils`](https://metacpan.org/pod/List::MoreUtils) so I did not have to roll my own `frequency` method yet again. I also use core `List::Util`'s `reduce`. I accept a list of strings as input:
 
 ```perl
 my @r = map y/ //dr, @_;
@@ -556,7 +556,7 @@ Then, we `reduce` over the list of keys, pulling the key that has the maximum va
 
 ## Saif Ahmed {#saiftynet1}
 
-[Saif Ahmed's solution](/challenge-046/saiftynet/perl/ch-1.pl) provides a decoder, but also some other code that explores these messages in more detail.  Here's the decoder, which accepts an ref to an array of strings:
+[Saif Ahmed's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/saiftynet/perl/ch-1.pl) provides a decoder, but also some other code that explores these messages in more detail.  Here's the decoder, which accepts an ref to an array of strings:
 
 ```perl
 sub collector{
@@ -627,7 +627,7 @@ sub tryUntilStable{
 
 ## Ulrich Rieke {#ulrich-rieke1}
 
-[Ulrich Rieke's solution](/challenge-046/ulrich-rieke/perl/ch-1.pl) takes a list of strings and iterates column-wise with the help of `substr`:
+[Ulrich Rieke's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/ulrich-rieke/perl/ch-1.pl) takes a list of strings and iterates column-wise with the help of `substr`:
 
 ```perl
 my $array = shift;
@@ -655,7 +655,7 @@ Ulrich also submitted solutions in [C++](https://github.com/manwar/perlweeklycha
 
 **User Person** is new to the challenge. Welcome!
 
-[User Person's solution](/challenge-046/user-person/perl/ch-1.pl) accepts a multi-line string as input, and then iterates over each character (including `\n`s) as follows:
+[User Person's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/user-person/perl/ch-1.pl) accepts a multi-line string as input, and then iterates over each character (including `\n`s) as follows:
 
 ```perl
 my $message       = $_[0];
@@ -682,7 +682,7 @@ User Person also submitted a solution in [Python](https://github.com/manwar/perl
 
 ## Wanderdoc {#wanderdoc1}
 
-Wanderdoc provided [two solutions](/challenge-046/wanderdoc/perl/ch-1.pl), one that works with arrays, and one that works with strings. Both accept a multi-line string as input; the names refer to the internal logic. Conveniently, these are named `arrays` and `strings`. Here is `arrays`:
+Wanderdoc provided [two solutions](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/wanderdoc/perl/ch-1.pl), one that works with arrays, and one that works with strings. Both accept a multi-line string as input; the names refer to the internal logic. Conveniently, these are named `arrays` and `strings`. Here is `arrays`:
 
 ```perl
 sub arrays {
@@ -762,7 +762,7 @@ Of course, neither of these solutions is necessarily "better" in the context of 
 
 ## Alicia Bielsa {#alicia-bielsa2}
 
-[Alicia Bielsa's solution](/challenge-046/alicia-bielsa/perl/ch-2.pl) does a nested loop to flip the doors, with a `flipStatus` routine to actually toggle a door:
+[Alicia Bielsa's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/alicia-bielsa/perl/ch-2.pl) does a nested loop to flip the doors, with a `flipStatus` routine to actually toggle a door:
 
 ```perl
 my $TOTAL = 500;
@@ -799,7 +799,7 @@ Note that Alicia's `@aRooms` is 500 elements long, meaning indicies 0..499.  The
 
 ## Andrezgz {#andrezgz2}
 
-[Andrezgz's solution](/challenge-046/andrezgz/perl/ch-2.pl) loops, but instead of working with 1-based math, Andrezgz simply adds a dummy room #0 so the numbers line up:
+[Andrezgz's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/andrezgz/perl/ch-2.pl) loops, but instead of working with 1-based math, Andrezgz simply adds a dummy room #0 so the numbers line up:
 
 ```perl
 my @rooms = (-1) x MAX; # all rooms are closed
@@ -816,7 +816,7 @@ Also of note is that instead of toggling between 1 and 0, Andrezgz multiplies by
 
 ## Athanasius {#athanasius2}
 
-[Athanasius' solution](/challenge-046/athanasius/perl/ch-2.pl) uses constants for `$CLOSED` and `$OPEN`, as well as the room count:
+[Athanasius' solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/athanasius/perl/ch-2.pl) uses constants for `$CLOSED` and `$OPEN`, as well as the room count:
 
 ```perl
 use Const::Fast;
@@ -849,7 +849,7 @@ printf "There are %d rooms still open at the end (the square-numbered " .
 
 ## Cheok-Yin Fung {#cheok-yin-fung2}
 
-[Cheok-Yin Fung's solution](/challenge-046/cheok-yin-fung/perl/ch-2.pl) also loops optimally, using a Perlish `for` loop and multiplying by the employee interval, `$i`:
+[Cheok-Yin Fung's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/cheok-yin-fung/perl/ch-2.pl) also loops optimally, using a Perlish `for` loop and multiplying by the employee interval, `$i`:
 
 ```perl
 my @doors;
@@ -874,7 +874,7 @@ Cheok-Yin Fung uses `not` to invert the truth value of each door.
 
 ## Colin Crain {#colin-crain2}
 
-[Colin Crain's solution](/challenge-046/colin-crain/perl/ch-2.pl) uses a nested loop:
+[Colin Crain's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/colin-crain/perl/ch-2.pl) uses a nested loop:
 
 ```perl
 my $SIZE = 500;
@@ -894,7 +894,7 @@ This is the first use of the bitwise exclusive-or (`^`) operator we've seen, but
 
 ## Cristina Heredia {#cristian-heredia2}
 
-[Cristina Heredia's solution](/challenge-046/cristian-heredia/perl/ch-2.pl) uses a nested loop as well:
+[Cristina Heredia's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/cristian-heredia/perl/ch-2.pl) uses a nested loop as well:
 
 ```perl
 #0 is closed
@@ -920,7 +920,7 @@ Cristina makes the optimization in the inner `foreach` loop to only look at ever
 
 ## Dave Jacoby {#dave-jacoby2}
 
-[Dave Jacoby's solution](/challenge-046/dave-jacoby/perl/ch-2.pl) uses a nested loop, as well as the 501-length array, so Dave can enjoy 1-based indicies:
+[Dave Jacoby's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/dave-jacoby/perl/ch-2.pl) uses a nested loop, as well as the 501-length array, so Dave can enjoy 1-based indicies:
 
 ```perl
 my @doors = map { 1 } 0 .. 500;
@@ -935,7 +935,7 @@ This is a nicely concise solution. Dave starts off by initializing all doors to 
 
 ## Duane Powell {#duane-powell2}
 
-[Duane Powell's solution](/challenge-046/duane-powell/perl/ch-2.pl) uses nested loops, too:
+[Duane Powell's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/duane-powell/perl/ch-2.pl) uses nested loops, too:
 
 ```perl
 my @room;
@@ -964,7 +964,7 @@ use constant {
 
 ## Duncan C. White {#duncan-c-white2}
 
-[Duncan C. White's solution](/challenge-046/duncan-c-white/perl/ch-2.pl)
+[Duncan C. White's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/duncan-c-white/perl/ch-2.pl)
 
 ```perl
 # all rooms open initially [we don't use element 0]
@@ -1012,7 +1012,7 @@ Duncan also submitted a solution in [PostScript](https://github.com/manwar/perlw
 
 ## E. Choroba {#e-choroba2}
 
-E. Choroba submitted [three solutions](/challenge-046/e-choroba/perl/). The first is a basic nested loop approach:
+E. Choroba submitted [three solutions](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/e-choroba/perl/). The first is a basic nested loop approach:
 
 ```perl
 my $MAX = 500;
@@ -1045,7 +1045,7 @@ His blog also mentions a simple benchmark he did, showing the first solution too
 
 ## Jaldhar H. Vyas {#jaldhar-h-vyas2}
 
-[Jaldhar H. Vyas' solution](/challenge-046/jaldhar-h-vyas/perl/ch-2.pl) uses a nested loop:
+[Jaldhar H. Vyas' solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/jaldhar-h-vyas/perl/ch-2.pl) uses a nested loop:
 
 ```perl
 my @rooms = (0) x 500;
@@ -1064,7 +1064,7 @@ The `(($j + 1) % ($i + 1) == 0)` conditional translates `$i` and `$j` to 1-based
 
 ## Javier Luque {#javier-luque2}
 
-[Javier Luque's solution](/challenge-046/javier-luque/perl/ch-2.pl) is another nested loop:
+[Javier Luque's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/javier-luque/perl/ch-2.pl) is another nested loop:
 
 ```perl
 my @doors;
@@ -1083,7 +1083,7 @@ Javier tests the divisibility in the inner loop to determine if the `$employee` 
 
 ## Laurent Rosenfeld {#laurent-rosenfeld2}
 
-[Laurent Rosenfeld's solution](/challenge-046/laurent-rosenfeld/perl/ch-2.pl) also uses nested loops, however Laurent uses a `while` inner loop and increments `$door` by `$start` (the employee number) for a more efficient solution:
+[Laurent Rosenfeld's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/laurent-rosenfeld/perl/ch-2.pl) also uses nested loops, however Laurent uses a `while` inner loop and increments `$door` by `$start` (the employee number) for a more efficient solution:
 
 ```perl
 use constant MAX => 50;
@@ -1107,7 +1107,7 @@ Laurent's blog has some interesting analysis on the results, which is definitely
 
 ## Mohammad S Anwar {#mohammad-anwar2}
 
-[Mohammad S Anwar's solution](/challenge-046/mohammad-anwar/perl/ch-2.pl) similarly uses an inner `while` loop so he can increase `$room_number` by the `$employee` number for a significant efficiency advantage:
+[Mohammad S Anwar's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/mohammad-anwar/perl/ch-2.pl) similarly uses an inner `while` loop so he can increase `$room_number` by the `$employee` number for a significant efficiency advantage:
 
 ```perl
 my @rooms = map { 1 } (0..500);
@@ -1123,7 +1123,7 @@ map { print "$_\n" if $rooms[$_] } (1..500);
 
 ## Peter Scott {#peter-scott}
 
-[Peter Scott's solution](/challenge-046/peter-scott/perl/ch-2.sh) is a one-liner:
+[Peter Scott's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/peter-scott/perl/ch-2.sh) is a one-liner:
 
 ```sh
 #!/bin/sh
@@ -1147,7 +1147,7 @@ Peter uses a C-style `for` loop to check every `$e` doors, and also uses XOR (`^
 
 ## Rage311 {#rage3112}
 
-[Rage311's solution](/challenge-046/rage311/perl/ch-2.pl) uses nested loops:
+[Rage311's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/rage311/perl/ch-2.pl) uses nested loops:
 
 ```perl
 my @rooms = (0) x 501;
@@ -1163,7 +1163,7 @@ The by now familiar inner C-style `for` loop and XOR toggle are shown here.
 
 ## Roger Bell West {#roger-bell-west2}
 
-[Roger Bell West's solution](/challenge-046/roger-bell-west/perl/ch-2.pl) is similarly loopy:
+[Roger Bell West's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/roger-bell-west/perl/ch-2.pl) is similarly loopy:
 
 ```perl
 my @rooms = (1) x 500;
@@ -1179,7 +1179,7 @@ Toggling a boolean with `$rooms[$k] = 1 - $rooms[$k]` is an old trick I remember
 
 ## Ruben Westerberg {#ruben-westerberg2}
 
-[Ruben Westerberg's solution](/challenge-046/ruben-westerberg/perl/ch-2.pl) loops, with an inner `while` loop:
+[Ruben Westerberg's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/ruben-westerberg/perl/ch-2.pl) loops, with an inner `while` loop:
 
 ```perl
 my @doors=(0) x 500;
@@ -1198,7 +1198,7 @@ print @doors;
 
 ## Ryan Thompson {#ryan-thompson2}
 
-[My solution](/challenge-046/ryan-thompson/perl/ch-2.pl) comes in two parts. First, simply printing the square numbers:
+[My solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/ryan-thompson/perl/ch-2.pl) comes in two parts. First, simply printing the square numbers:
 
 ```perl
 say join ' ', map { $_ * $_ } 1..int sqrt $doors;
@@ -1219,7 +1219,7 @@ for my $m (1..$doors) {
 
 ## Saif Ahmed {#saiftynet2}
 
-[Saif Ahmed's solution](/challenge-046/saiftynet/perl/ch-2.pl) is also a two-parter. First, a looping solution:
+[Saif Ahmed's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/saiftynet/perl/ch-2.pl) is also a two-parter. First, a looping solution:
 
 ```perl
 my $doorCount=500;
@@ -1248,7 +1248,7 @@ print " ".($cheat++)**2 while $cheat<sqrt($doorCount);
 
 ## Ulrich Rieke {#ulrich-rieke2}
 
-[Ulrich Rieke's solution](/challenge-046/ulrich-rieke/perl/ch-2.pl) uses anonymous arrays to store the door number with its `open` or `closed` status:
+[Ulrich Rieke's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/ulrich-rieke/perl/ch-2.pl) uses anonymous arrays to store the door number with its `open` or `closed` status:
 
 ```perl
 my @doors;
@@ -1289,7 +1289,7 @@ Ulrich also submitted solutions in [C++](https://github.com/manwar/perlweeklycha
 
 ## User Person {#user-person2}
 
-[User Person's solution](/challenge-046/user-person/perl/ch-2.pl) also has its own toggle routine:
+[User Person's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/user-person/perl/ch-2.pl) also has its own toggle routine:
 
 ```perl
 sub change {
@@ -1323,7 +1323,7 @@ User Person also submitted solutions in [Bash](https://github.com/manwar/perlwee
 
 ## Wanderdoc {#wanderdoc2}
 
-[Wanderdoc's solution](/challenge-046/wanderdoc/perl/ch-2.pl) does a deep dive into the performance of the nested loop method versus a more analytical method using factors. But before we get into that, I want to highlight Wanderdoc's refreshingly creative way to avoid 0-based indicies:
+[Wanderdoc's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/wanderdoc/perl/ch-2.pl) does a deep dive into the performance of the nested loop method versus a more analytical method using factors. But before we get into that, I want to highlight Wanderdoc's refreshingly creative way to avoid 0-based indicies:
 
 ```perl
 unshift @hotel, 'Lobby'; # to make the array indices equal to room numbers.
