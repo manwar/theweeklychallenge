@@ -3,7 +3,7 @@ title: "BLOG: The Weekly Challenge #049"
 date: 2020-02-26T00:00:00+00:00
 description: "Blog for the weekly challenge #049."
 type: post
-image: images/blog/blog-challenge-049.jpg
+image: images/blog/weekly-challenge-049.jpg
 author: Mohammad S Anwar
 tags: ["Perl", "Raku"]
 ---
