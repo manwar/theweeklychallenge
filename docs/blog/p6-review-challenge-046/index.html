@@ -41,6 +41,8 @@
     <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
     <!-- hover -->
     <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
     <!-- template main css file -->
     
     <link rel="stylesheet" href="https://perlweeklychallenge.org/css/style.min.css" integrity="" media="screen">
@@ -178,7 +180,7 @@ P x w l b 3 k \
 <p>Both example ciphers show that each plaintext character appears exactly twice in each column, and the other characters appear exactly once. Naturally, some hackers relied on this and printed all characters that appeared twice. Some hackers took a more permissive or general interpretation, and calculated the frequency of each character, printing whichever character appeared most often in each column.</p>
 <hr>
 <h2 id="arne-sommer1">Arne Sommer</h2>
-<p><a href="/challenge-046/arne-sommer/raku/ch-1.p6">Arne Sommer&rsquo;s solution</a> accepts a string of rows separated by spaces, which he then splits to <code>@strings</code> (rows), calculates the <code>$max</code> row length, and iterates over the character indices:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/arne-sommer/raku/ch-1.p6">Arne Sommer&rsquo;s solution</a> accepts a string of rows separated by spaces, which he then splits to <code>@strings</code> (rows), calculates the <code>$max</code> row length, and iterates over the character indices:</p>
 <pre><code class="language-raku" data-lang="raku">$string = 'P+2l!ato 1e80R$4u 5-r]+a&gt;/ Pxwlb3k\ 2e35R8yu &lt;!r^()k0' if $another;
 my @strings = $string.words;
 my $max     = @strings&gt;&gt;.chars.max;
@@ -210,7 +212,7 @@ sub expand ( $current, @strings ) {
 <p>Arne&rsquo;s solutions include some verbose output, which provides good introspection into how they work, so I recommend you try them out for yourself, and read Arne&rsquo;s excellent blog:</p>
 <p><strong>Blog</strong> › <a href="https://raku-musings.com/cryptic-room.html">The Cryptic Raku Room</a></p>
 <h2 id="javier-luque1">Javier Luque</h2>
-<p><a href="/challenge-046/javier-luque/raku/ch-1.p6">Javier Luque&rsquo;s solution</a> accepts a multiline string, gets the length of the first line, and then starts building the frequency table:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/javier-luque/raku/ch-1.p6">Javier Luque&rsquo;s solution</a> accepts a multiline string, gets the length of the first line, and then starts building the frequency table:</p>
 <pre><code class="language-raku" data-lang="raku"># Initialize the columns hash
 my @column_hash;
 my ($first_line) = $message.split(&quot;\n&quot;, 2);
@@ -235,7 +237,7 @@ for (@column_hash) -&gt; %column {
 say $output;
 </code></pre><p><strong>Blog</strong> › <a href="https://perlchallenges.wordpress.com/2020/02/04/perl-weekly-challenge-046/">PERL WEEKLY CHALLENGE – 046 – Perl Weekly Challenge</a></p>
 <h2 id="kevin-colyer1">Kevin Colyer</h2>
-<p><a href="/challenge-046/kevin-colyer/raku/ch-1.p6">Kevin Colyer&rsquo;s solution</a> also accepts a multiline string in <code>$m</code>, taking advantage of Raku&rsquo;s string builtin <code>.lines</code> to split it into <code>@m</code>. (Kevin uses <code>.words</code> as well, since his input has spaces between each character):</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/kevin-colyer/raku/ch-1.p6">Kevin Colyer&rsquo;s solution</a> also accepts a multiline string in <code>$m</code>, taking advantage of Raku&rsquo;s string builtin <code>.lines</code> to split it into <code>@m</code>. (Kevin uses <code>.words</code> as well, since his input has spaces between each character):</p>
 <pre><code class="language-raku" data-lang="raku">my %seen;
 my $unscramble=&quot;&quot;;
 my @m;
@@ -247,7 +249,7 @@ for $m.lines {  @m.push( .words.list ) };
     $unscramble~=%seen.grep( *.value==2)&gt;&gt;.key;
 }
 </code></pre><h2 id="laurent-rosenfeld1">Laurent Rosenfeld</h2>
-<p><a href="/challenge-046/laurent-rosenfeld/raku/ch-1.p6">Laurent Rosenfeld&rsquo;s solution</a> also accepts a multiline string with space-separated characters, but uses a more complex <code>map</code> and <code>split</code> chain to turn it into an array of arrays (AoA), which he then transposes to a column-major representation:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/laurent-rosenfeld/raku/ch-1.p6">Laurent Rosenfeld&rsquo;s solution</a> also accepts a multiline string with space-separated characters, but uses a more complex <code>map</code> and <code>split</code> chain to turn it into an array of arrays (AoA), which he then transposes to a column-major representation:</p>
 <pre><code class="language-raku" data-lang="raku">my @AoA = map { my @a = split /\s+/, $_; @a }, split /&lt;[\r\n]&gt;+/, $garbled;
 my @transposed;
 for (0 .. @AoA.end) -&gt; $i {
@@ -264,7 +266,7 @@ say join &quot;&quot;, @msg;
 </code></pre><p>I like the transposition approach.</p>
 <p><strong>Blog</strong> › <a href="http://blogs.perl.org/users/laurent_r/2020/02/perl-weekly-challenge-46-garbled-message-and-room-open.html">Garbled Message and Room Open</a></p>
 <h2 id="luca-ferrari1">Luca Ferrari</h2>
-<p><a href="/challenge-046/luca-ferrari/raku/ch-1.p6">Luca Ferrari&rsquo;s solution</a> accepts an array of strings with space-separated characters, in <code>@message</code>. Luca turns the input into an AoA, transposed at the same time:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/luca-ferrari/raku/ch-1.p6">Luca Ferrari&rsquo;s solution</a> accepts an array of strings with space-separated characters, in <code>@message</code>. Luca turns the input into an AoA, transposed at the same time:</p>
 <pre><code class="language-raku" data-lang="raku">my @chars;
 my $decoded;
 for @message -&gt; $single-line {
@@ -284,7 +286,7 @@ for @message -&gt; $single-line {
 }
 </code></pre><p><strong>Blog</strong> › <a href="https://fluca1978.github.io/2020/02/03/PerlWeeklyChallened_46.html">Encoded messages and open rooms</a></p>
 <h2 id="mark-anderson1">Mark Anderson</h2>
-<p><a href="/challenge-046/mark-anderson/raku/ch-1.p6">Mark Anderson&rsquo;s solution</a> accepts a multiline string with space-separated characters, and compactly turns that into an AoA:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/mark-anderson/raku/ch-1.p6">Mark Anderson&rsquo;s solution</a> accepts a multiline string with space-separated characters, and compactly turns that into an AoA:</p>
 <pre><code class="language-raku" data-lang="raku">my @AoL;
 my $result;
 for $msg.split(/\n/, :skip-empty) -&gt; $str {
@@ -296,7 +298,7 @@ for $msg.split(/\n/, :skip-empty) -&gt; $str {
     $result ~= $letter;
 }
 </code></pre><h2 id="markus-holzer1">Markus Holzer</h2>
-<p><a href="/challenge-046/markus-holzer/raku/ch-1.p6">Markus Holzer&rsquo;s solution</a> accepts a multi-line string, uses <code>zip</code> to transpose it, and then uses the <code>Bag</code> representation of each column list to make finding the most frequent character very concise thanks to <code>maxpairs</code>, which returns the pair(s) with the maximum value:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/markus-holzer/raku/ch-1.p6">Markus Holzer&rsquo;s solution</a> accepts a multi-line string, uses <code>zip</code> to transpose it, and then uses the <code>Bag</code> representation of each column list to make finding the most frequent character very concise thanks to <code>maxpairs</code>, which returns the pair(s) with the maximum value:</p>
 <pre><code class="language-raku" data-lang="raku">[~] zip(
     $encrypted.lines.map: *.words
 ).map(
@@ -304,7 +306,7 @@ for $msg.split(/\n/, :skip-empty) -&gt; $str {
 );
 </code></pre><p>Impressive.</p>
 <h2 id="noud1">Noud Aldenhoven</h2>
-<p><a href="/challenge-046/noud/raku/ch-1.p6">Noud Aldenhoven&rsquo;s solution</a> accepts an AoA as input, and then <code>decrypt</code> works on a transposed version of that:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/noud/raku/ch-1.p6">Noud Aldenhoven&rsquo;s solution</a> accepts an AoA as input, and then <code>decrypt</code> works on a transposed version of that:</p>
 <pre><code class="language-raku" data-lang="raku">sub decrypt(@a) {
     return [~] ([Z] @a).map({ select-double($_) });
 }
@@ -318,7 +320,7 @@ for $msg.split(/\n/, :skip-empty) -&gt; $str {
 }
 </code></pre><p>This is a nice modular approach to the problem.</p>
 <h2 id="roger-bell-west1">Roger Bell West</h2>
-<p><a href="/challenge-046/roger-bell-west/raku/ch-1.p6">Roger Bell West&rsquo;s solution</a> accepts strings from standard input, and puts those into a column-character frequency map (<code>@place</code>):</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/roger-bell-west/raku/ch-1.p6">Roger Bell West&rsquo;s solution</a> accepts strings from standard input, and puts those into a column-character frequency map (<code>@place</code>):</p>
 <pre><code class="language-raku" data-lang="raku">my @place;
 for lines() {
   .chomp;
@@ -334,7 +336,7 @@ for lines() {
 }
 print &quot;\n&quot;;
 </code></pre><h2 id="ruben-westerberg1">Ruben Westerberg</h2>
-<p><a href="/challenge-046/ruben-westerberg/raku/ch-1.p6">Ruben Westerberg&rsquo;s solution</a> accepts an AoA, and then iterates over each column index. The most frequent character key/value pair is fetched by taking a vertical slice of <code>@inComming</code> as a <code>Bag</code>, and then taking all pairs that appear twice. The <code>key</code> is the character itself, so that&rsquo;s what Ruben <code>push</code>es to the result:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/ruben-westerberg/raku/ch-1.p6">Ruben Westerberg&rsquo;s solution</a> accepts an AoA, and then iterates over each column index. The most frequent character key/value pair is fetched by taking a vertical slice of <code>@inComming</code> as a <code>Bag</code>, and then taking all pairs that appear twice. The <code>key</code> is the character itself, so that&rsquo;s what Ruben <code>push</code>es to the result:</p>
 <pre><code class="language-raku" data-lang="raku">my @decoded;
 for (0..@inComming[0]-1) {
     my $col=@inComming[0..@inComming-1;$_].Bag.grep({$_.value==2});
@@ -343,7 +345,7 @@ for (0..@inComming[0]-1) {
 put @decoded.join: &quot;&quot;;
 </code></pre><p>Ruben has done a great job of producing concise, expressive code that I was able to understand more or less instantly.</p>
 <h2 id="ryan-thompson1">Ryan Thompson</h2>
-<p><a href="/challenge-046/ryan-thompson/raku/ch-1.p6">My solution</a> accepts an array of <code>@strings</code>, splits those into rows, and then maintains a column-character frequency map in <code>@col-count</code>:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/ryan-thompson/raku/ch-1.p6">My solution</a> accepts an array of <code>@strings</code>, splits those into rows, and then maintains a column-character frequency map in <code>@col-count</code>:</p>
 <pre><code class="language-raku" data-lang="raku">my @col-count;
 for @strings».split: ' ' -&gt; $row {
     @col-count[.key]{.value}++ for |$row.pairs;
@@ -352,7 +354,7 @@ for @strings».split: ' ' -&gt; $row {
 <pre><code class="language-raku" data-lang="raku">@col-count».sort(-*.value)».first».key.join;
 </code></pre><p><strong>Blog</strong> › <a href="http://www.ry.ca/2020/02/cryptic-message/">Cryptic Message</a></p>
 <h2 id="simon-proctor1">Simon Proctor</h2>
-<p><a href="/challenge-046/simon-proctor/raku/ch-1.p6">Simon Proctor&rsquo;s solution</a> accepts an AoA in <code>$data</code>, doing the decoding with one statement (I&rsquo;ve added some whitespace):</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/simon-proctor/raku/ch-1.p6">Simon Proctor&rsquo;s solution</a> accepts an AoA in <code>$data</code>, doing the decoding with one statement (I&rsquo;ve added some whitespace):</p>
 <pre><code class="language-raku" data-lang="raku"> zip( $data.List )
 .map( { Bag.new($_) } )
 .map( *.pairs
@@ -363,7 +365,7 @@ for @strings».split: ' ' -&gt; $row {
 </code></pre><p>Here again we see <code>zip</code> being used to transpose the matrix, and the <code>Bag</code> representation to enable <code>sort</code>ing by value. The <code>.first.key</code> is the most frequent character.</p>
 <p>It&rsquo;s important to note that, unlike Perl&rsquo;s <code>cmp</code> (based on C&rsquo;s <code>strcmp</code>) which is a stringwise 3-way comparator, Raku&rsquo;s <code>cmp</code> is generic, so it will compare integers as integers, here.</p>
 <h2 id="ulrich-rieke1">Ulrich Rieke</h2>
-<p><a href="/challenge-046/ulrich-rieke/raku/ch-1.p6">Ulrich Rieke&rsquo;s solution</a> accepts an array of <code>@strings</code>, and then iterates through each column index, building up a <code>%letterfrequency</code> map for the current column:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/ulrich-rieke/raku/ch-1.p6">Ulrich Rieke&rsquo;s solution</a> accepts an array of <code>@strings</code>, and then iterates through each column index, building up a <code>%letterfrequency</code> map for the current column:</p>
 <pre><code class="language-raku" data-lang="raku">my $len = @words[0].chars ;
 my $decoded ;
 for (0..$len - 1 ) -&gt; $i {
@@ -394,7 +396,7 @@ for (0..$len - 1 ) -&gt; $i {
 <p>Of course, neither of these solutions is necessarily &ldquo;better&rdquo; in the context of this challenge. The square numbers solution (2) is the result of analysis and math, while the looping solution (1) is a better showcase of the language features and coding ability. Both skills are tremendously important, and I&rsquo;m quite sure everyone I&rsquo;m reviewing today is capable of either method; it&rsquo;s just a matter of what they decide to submit.</p>
 <hr>
 <h2 id="arne-sommer2">Arne Sommer</h2>
-<p><a href="/challenge-046/arne-sommer/raku/ch-2.p6">Arne Sommer&rsquo;s solution</a> uses nested loops to toggle the doors in <code>@open</code>:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/arne-sommer/raku/ch-2.p6">Arne Sommer&rsquo;s solution</a> uses nested loops to toggle the doors in <code>@open</code>:</p>
 <pre><code class="language-raku" data-lang="raku">my @open;
 for 1 .. 500 -&gt; $employee {
     for ($employee, $employee + $employee ... 500) -&gt; $index {
@@ -405,7 +407,7 @@ say &quot;Open rooms: { (1..500).grep({@open[$_] }).join(',') }.&quot;;
 </code></pre><p>The inner loop will only iterate over every <code>$employee</code>th index.</p>
 <p><strong>Blog</strong> › <a href="https://raku-musings.com/cryptic-room.html">The Cryptic Raku Room</a></p>
 <h2 id="colin-crain2">Colin Crain</h2>
-<p><a href="/challenge-046/colin-crain/raku/ch-2.p6">Colin Crain&rsquo;s solution</a> has an outer loop for each employee, but the inner loop builds a list of <code>@doors</code> that employee will toggle, and then applies it like a mask over <code>@hotel</code> using zip+XOR (<code>Z+^</code>):</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/colin-crain/raku/ch-2.p6">Colin Crain&rsquo;s solution</a> has an outer loop for each employee, but the inner loop builds a list of <code>@doors</code> that employee will toggle, and then applies it like a mask over <code>@hotel</code> using zip+XOR (<code>Z+^</code>):</p>
 <pre><code class="language-raku" data-lang="raku">my @hotel = 0 xx $size;
 for (1..$size) -&gt; $emp {
     my @doors = map { $_ %% $emp ?? 1 !! 0 }, ( 1..$size );
@@ -417,7 +419,7 @@ open:</p>
     printf &quot;room %3s is open\n&quot;, $_+1 if @hotel[$_];
 }
 </code></pre><h2 id="jaldhar-h-vyas2">Jaldhar H. Vyas</h2>
-<p><a href="/challenge-046/jaldhar-h-vyas/raku/ch-2.p6">Jaldhar H. Vyas&rsquo;s solution</a> uses a nested loop to toggle each door <em>iff</em> the employee number, <code>$i</code> divides the room number, <code>$j</code>:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/jaldhar-h-vyas/raku/ch-2.p6">Jaldhar H. Vyas&rsquo;s solution</a> uses a nested loop to toggle each door <em>iff</em> the employee number, <code>$i</code> divides the room number, <code>$j</code>:</p>
 <pre><code class="language-raku" data-lang="raku">constant $end = 500;
 my Bool @rooms[$end];
 for 0 ..^ $end -&gt; $i {
@@ -436,7 +438,7 @@ for 0 ..^ $end -&gt; $i {
 print &quot;\n&quot;;
 
 </code></pre><h2 id="javier-luque2">Javier Luque</h2>
-<p><a href="/challenge-046/javier-luque/raku/ch-2.p6">Javier Luque&rsquo;s solution</a> uses a nested loop as well:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/javier-luque/raku/ch-2.p6">Javier Luque&rsquo;s solution</a> uses a nested loop as well:</p>
 <pre><code class="language-raku" data-lang="raku">my @doors;
 @doors[0 .. 500] = 0;
 for (1 .. 500) -&gt; $employee {
@@ -451,7 +453,7 @@ for (1 .. 500) -&gt; $i {
 }
 </code></pre><p><strong>Blog</strong> › <a href="https://perlchallenges.wordpress.com/2020/02/04/perl-weekly-challenge-046/">046 – Perl Weekly Challenge</a></p>
 <h2 id="kevin-colyer2">Kevin Colyer</h2>
-<p><a href="/challenge-046/kevin-colyer/raku/ch-2.p6">Kevin Colyer&rsquo;s solution</a> does a nested loop as well, but optimizes the inner loop by incrementing <code>$i</code> by the <code>$e</code>mployee number:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/kevin-colyer/raku/ch-2.p6">Kevin Colyer&rsquo;s solution</a> does a nested loop as well, but optimizes the inner loop by incrementing <code>$i</code> by the <code>$e</code>mployee number:</p>
 <pre><code class="language-raku" data-lang="raku">my Int @doors = 1 xx 500;
 for 2..500 -&gt; $e {
     my $i=0;
@@ -463,7 +465,7 @@ for 2..500 -&gt; $e {
 say @doors.sum;
 </code></pre><p>Kevin outputs <code>@doors.sum</code>, which effectively counts how many doors are open.  I modified that line to read <code>@doors.pairs.grep(*.value)».key</code>, and Kevin&rsquo;s code does indeed find the correct doors, though there was never really any doubt.</p>
 <h2 id="laurent-rosenfeld2">Laurent Rosenfeld</h2>
-<p><a href="/challenge-046/laurent-rosenfeld/raku/ch-2.p6">Laurent Rosenfeld&rsquo;s solution</a> does the efficient nested looping method as well:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/laurent-rosenfeld/raku/ch-2.p6">Laurent Rosenfeld&rsquo;s solution</a> does the efficient nested looping method as well:</p>
 <pre><code class="language-raku" data-lang="raku">my @rooms = 1 xx MAX + 1; # (first employee)
 my $start = 1;
 for 2..MAX {
@@ -478,7 +480,7 @@ say join &quot; &quot;, @rooms[1..MAX];
 </code></pre><p>Laurent opted to print a string of 1s and 0s (1 = open, 0 = closed). In his blog, Laurent took the time to do some interesting analysis of this problem.</p>
 <p><strong>Blog</strong> › <a href="http://blogs.perl.org/users/laurent_r/2020/02/perl-weekly-challenge-46-garbled-message-and-room-open.html">Garbled Message and Room Open</a></p>
 <h2 id="luca-ferrari2">Luca Ferrari</h2>
-<p><a href="/challenge-046/luca-ferrari/raku/ch-2.p6">Luca Ferrari&rsquo;s solution</a> stores his door status in a <code>%rooms</code> hash, but the resulting code is similar to array-based nested loop solutions:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/luca-ferrari/raku/ch-2.p6">Luca Ferrari&rsquo;s solution</a> stores his door status in a <code>%rooms</code> hash, but the resulting code is similar to array-based nested loop solutions:</p>
 <pre><code class="language-raku" data-lang="raku">my %rooms = ( 1 .. $room-count).map: * =&gt; False;
 for 1 .. $room-count -&gt; $employee {
     %rooms{ $_ } = ! %rooms{ $_ } if $_ %% $employee for 1 .. $room-count;
@@ -488,7 +490,7 @@ they must be sorted:</p>
 <pre><code class="language-raku" data-lang="raku">say &quot;Room $_ is Open&quot; if %rooms{ $_ } for %rooms.keys.sort: *.Int &lt;=&gt; *.Int;
 </code></pre><p><strong>Blog</strong> › <a href="https://fluca1978.github.io/2020/02/03/PerlWeeklyChallened_46.html">Encoded messages and open rooms</a></p>
 <h2 id="mark-anderson2">Mark Anderson</h2>
-<p><a href="/challenge-046/mark-anderson/raku/ch-2.p6">Mark Anderson&rsquo;s solution</a> has a little fun with control flow in the nested loop:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/mark-anderson/raku/ch-2.p6">Mark Anderson&rsquo;s solution</a> has a little fun with control flow in the nested loop:</p>
 <pre><code class="language-raku" data-lang="raku">my \open = True;
 my @doors = open xx 500;
 for 1 .. 500 -&gt; $emp {
@@ -501,20 +503,20 @@ for 1 .. 500 -&gt; $emp {
 }
 </code></pre><p>Mark also uses a special sequence to loop over <code>$emp</code>th door in the inner loop. Finally, you&rsquo;ll notice the output line is inside the top-level loop; this works because <code>$emp-1</code>'s door will never be toggled once it is <code>$emp</code>'s turn through the loop.</p>
 <h2 id="markus-holzer2">Markus Holzer</h2>
-<p><a href="/challenge-046/markus-holzer/raku/ch-2.p6">Markus Holzer&rsquo;s solution</a> makes note of the fact that only the square numbered doors will be open (check the link for his informal proof). He then offers three ways to generate the list of square numbers below 500:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/markus-holzer/raku/ch-2.p6">Markus Holzer&rsquo;s solution</a> makes note of the fact that only the square numbered doors will be open (check the link for his informal proof). He then offers three ways to generate the list of square numbers below 500:</p>
 <pre><code class="language-raku" data-lang="raku">say &quot;Open rooms: &quot;, ( 1..500 ).grep: *.&amp;is-open;
 sub is-open( $room ) { $room.sqrt.narrow ~~ Int }
 </code></pre><pre><code class="language-raku" data-lang="raku">say &quot;Open rooms: &quot;, (1..500.sqrt.Int).map: * ** 2;
 </code></pre><pre><code class="language-raku" data-lang="raku">say &quot;Open rooms: &quot;, (1..500.sqrt.Int)&gt;&gt;²; # nicest idiom by jnthn
 </code></pre><p><code>jnthn</code>, of course is <a href="http://www.jnthn.net/">Jonathan Worthington</a> (<a href="https://github.com/jnthn">GitHub</a>).</p>
 <h2 id="noud2">Noud Aldenhoven</h2>
-<p><a href="/challenge-046/noud/raku/ch-2.p6">Noud Aldenhoven&rsquo;s solution</a> also prints out a list of square numbers, and also includes an informal proof in the comments of his solution. Here is the code:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/noud/raku/ch-2.p6">Noud Aldenhoven&rsquo;s solution</a> also prints out a list of square numbers, and also includes an informal proof in the comments of his solution. Here is the code:</p>
 <pre><code class="language-raku" data-lang="raku">say &quot;Open rooms:&quot;;
 say $_**2 for 1..(500.sqrt);
 </code></pre><p>Noud&rsquo;s blog contains essentially the same proof, but with better typesetting than you can get in a Raku source file:</p>
 <p><strong>Blog</strong> › <a href="https://www.noudaldenhoven.nl/wordpress/?p=288">Is the room open?</a></p>
 <h2 id="roger-bell-west2">Roger Bell West</h2>
-<p><a href="/challenge-046/roger-bell-west/raku/ch-2.p6">Roger Bell West&rsquo;s solution</a> loops efficiently, thanks to the C-style inner <code>loop</code>, which advances the index by the current employee <code>$n</code>umber:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/roger-bell-west/raku/ch-2.p6">Roger Bell West&rsquo;s solution</a> loops efficiently, thanks to the C-style inner <code>loop</code>, which advances the index by the current employee <code>$n</code>umber:</p>
 <pre><code class="language-raku" data-lang="raku">my @rooms=1 xx 500;
 for 2..500 -&gt; $n {
   loop (my $k=$n-1 ; $k &lt;500 ; $k+=$n) {
@@ -523,7 +525,7 @@ for 2..500 -&gt; $n {
 }
 map {say $_+1}, grep {@rooms[$_]==1}, (0..@rooms.end);
 </code></pre><h2 id="ruben-westerberg2">Ruben Westerberg</h2>
-<p><a href="/challenge-046/ruben-westerberg/raku/ch-2.p6">Ruben Westerberg&rsquo;s solution</a> generates an intermediate <code>@index</code> array, which is essentially a mask of doors to toggle for the current employee (<code>$i</code>):</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/ruben-westerberg/raku/ch-2.p6">Ruben Westerberg&rsquo;s solution</a> generates an intermediate <code>@index</code> array, which is essentially a mask of doors to toggle for the current employee (<code>$i</code>):</p>
 <pre><code class="language-raku" data-lang="raku">my @doors=False xx 500; #doors initally closed
 @doors[$_]=!@doors[$_] for 0..499; #First person opens all
 for (2..500) -&gt; $i {
@@ -533,7 +535,7 @@ for (2..500) -&gt; $i {
 put @doors&gt;&gt;.Num;
 </code></pre><p>Ruben&rsquo;s <code>@doors</code> is an array of <code>Bool</code>s, so he coerces each to a <code>Num</code> in order to output a string of 1s (open) and 0s (closed).</p>
 <h2 id="ryan-thompson2">Ryan Thompson</h2>
-<p><a href="/challenge-046/ryan-thompson/raku/ch-2.p6">My submission</a> includes two solutions. The first is to simply output the square numbers directly:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/ryan-thompson/raku/ch-2.p6">My submission</a> includes two solutions. The first is to simply output the square numbers directly:</p>
 <pre><code class="language-raku" data-lang="raku">say (1..$doors.sqrt.Int) »**» 2;
 </code></pre><p>As justification for the above method, I provided an informal correctness proof in my blog, linked below.</p>
 <p>For completeness, I decided to also submit a looping solution:</p>
@@ -548,7 +550,7 @@ say %doors.grep(*.value)».key».Int.sort;
 say @doors.pairs.grep(*.value)».key;     # &lt;-- Becomes this
 </code></pre><p><strong>Blog</strong> › <a href="http://www.ry.ca/2020/02/500-doors/">Is the Room Open? (500 Doors)</a></p>
 <h2 id="simon-proctor2">Simon Proctor</h2>
-<p><a href="/challenge-046/simon-proctor/raku/ch-2.p6">Simon Proctor&rsquo;s solution</a> loops optimally, thanks to the increment in the <code>while</code> loop:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/simon-proctor/raku/ch-2.p6">Simon Proctor&rsquo;s solution</a> loops optimally, thanks to the increment in the <code>while</code> loop:</p>
 <pre><code class="language-raku" data-lang="raku">my @doors-open = 501 xx False;
 for 1..500 -&gt; $inc {
     my $cur = $inc;
@@ -562,7 +564,7 @@ for 1..500 -&gt; $inc {
     say &quot;$door is Open&quot; if @doors-open[$door];
 }
 </code></pre><h2 id="ulrich-rieke2">Ulrich Rieke</h2>
-<p><a href="/challenge-046/ulrich-rieke/raku/ch-2.p6">Ulrich Rieke&rsquo;s solution</a> begins by
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/ulrich-rieke/raku/ch-2.p6">Ulrich Rieke&rsquo;s solution</a> begins by
 defining a custom <code>flip</code> routine, that returns the opposite of the <code>open</code> or
 <code>closed</code> keyword passed in:</p>
 <pre><code class="language-raku" data-lang="raku">sub flip( $state ) {

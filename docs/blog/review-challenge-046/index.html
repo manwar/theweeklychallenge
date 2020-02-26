@@ -41,6 +41,8 @@
     <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
     <!-- hover -->
     <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
     <!-- template main css file -->
     
     <link rel="stylesheet" href="https://perlweeklychallenge.org/css/style.min.css" integrity="" media="screen">
@@ -178,7 +180,7 @@ P x w l b 3 k \
 <p>Both example ciphers show that each plaintext character appears exactly twice in each column, and the other characters appear exactly once. Naturally, some hackers relied on this and printed all characters that appeared twice. Some hackers took a more permissive or general interpretation, and calculated the frequency of each character, printing whichever character appeared most often in each column.</p>
 <hr>
 <h2 id="alicia-bielsa1">Alicia Bielsa</h2>
-<p><a href="/challenge-046/alicia-bielsa/perl/ch-1.pl">Alicia Bielsa&rsquo;s solution</a> searches an array of arrays (AoA) for characters that have appeared twice.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/alicia-bielsa/perl/ch-1.pl">Alicia Bielsa&rsquo;s solution</a> searches an array of arrays (AoA) for characters that have appeared twice.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @aCharactersRepeated <span style="color:#f92672">=</span> ();
 <span style="color:#66d9ef">my</span> $lengthMessage <span style="color:#f92672">=</span> scalar(@aMessage1);
 <span style="color:#66d9ef">my</span> @aAllMessages <span style="color:#f92672">=</span> (@aMessage1, @aMessage2 ,@aMessage3, @aMessage4, @aMessage5 ,@aMessage6);
@@ -204,7 +206,7 @@ P x w l b 3 k \
 <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
 </code></pre></div><p>Alicia uses <code>%hCharacters</code> to store her frequency map, where <code>$hCharacters{A}{$indexMessage} == $N</code> if <code>'A'</code> appears <code>$N</code> times in column <code>$indexMessage</code>.</p>
 <h2 id="andrezgz1">Andrezgz</h2>
-<p><a href="/challenge-046/andrezgz/perl/ch-1.pl">Andrezgz&rsquo;s solution</a> stores the messages as an AoA and then decrypts it with the following nested loops:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/andrezgz/perl/ch-1.pl">Andrezgz&rsquo;s solution</a> stores the messages as an AoA and then decrypts it with the following nested loops:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $msg_len <span style="color:#f92672">=</span> scalar @{$msg<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]};
 <span style="color:#66d9ef">my</span> @decrypted <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#39;?&#39;</span>) x $msg_len;
 <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> @{$msg}<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
@@ -222,7 +224,7 @@ P??l?a??
 Pe?lRa?u
 PerlRaku
 </code></pre><h2 id="athanasius1">Athanasius</h2>
-<p><a href="/challenge-046/athanasius/perl/ch-1.pl">Athanasius&rsquo; solution</a> includes a convenience function to turn a string input with newlines into an AoA:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/athanasius/perl/ch-1.pl">Athanasius&rsquo; solution</a> includes a convenience function to turn a string input with newlines into an AoA:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $message <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;P + 2 l ! a t o
 </span><span style="color:#e6db74">               1 e 8 0 R $ 4 u
 </span><span style="color:#e6db74">               5 - r ] + a &gt; /
@@ -245,7 +247,7 @@ PerlRaku
     $decrypt <span style="color:#f92672">.=</span> (sort { $opts{$b} <span style="color:#e6db74">&lt;=&gt;</span> $opts{$a} } keys %opts)[<span style="color:#ae81ff">0</span>];
 }
 </code></pre></div><h2 id="cheok-yin-fung1">Cheok-Yin Fung</h2>
-<p><a href="/challenge-046/cheok-yin-fung/perl/ch-1.pl">Cheok-Yin Fung&rsquo;s solution</a> handles the frequency analysis with an AoA which maps the column number <code>$j</code> and all ASCII ordinals from 33..126, to the number of times they appear:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/cheok-yin-fung/perl/ch-1.pl">Cheok-Yin Fung&rsquo;s solution</a> handles the frequency analysis with an AoA which maps the column number <code>$j</code> and all ASCII ordinals from 33..126, to the number of times they appear:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$numberoflines<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
     <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $j (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$msglength<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
         <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $d (<span style="color:#ae81ff">33</span><span style="color:#f92672">..</span><span style="color:#ae81ff">126</span>) {
@@ -274,7 +276,7 @@ $msg <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/\h//g</
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">$charoccurence[$j][ ord( $str[$j] ) ]<span style="color:#f92672">++</span>;
 </code></pre></div><p>If range checking the ordinal is a concern, a simple conditional would suffice, but I would personally rather validate or filter the input instead, in that case.</p>
 <h2 id="cristian-heredia1">Cristina Heredia</h2>
-<p><a href="/challenge-046/cristian-heredia/perl/ch-1.pl">Cristina Heredia&rsquo;s solution</a> defines an array for each row:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/cristian-heredia/perl/ch-1.pl">Cristina Heredia&rsquo;s solution</a> defines an array for each row:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @array1 <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#39;P&#39;</span>,  <span style="color:#e6db74">&#39;+&#39;</span>,  <span style="color:#e6db74">&#39;2&#39;</span>,  <span style="color:#e6db74">&#39;l&#39;</span>,  <span style="color:#e6db74">&#39;!&#39;</span>,  <span style="color:#e6db74">&#39;a&#39;</span>,  <span style="color:#e6db74">&#39;t&#39;</span>,  <span style="color:#e6db74">&#39;o&#39;</span> );
 <span style="color:#66d9ef">my</span> @array2 <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#39;1&#39;</span>,  <span style="color:#e6db74">&#39;e&#39;</span>,  <span style="color:#e6db74">&#39;8&#39;</span>,  <span style="color:#e6db74">&#39;0&#39;</span>,  <span style="color:#e6db74">&#39;R&#39;</span>,  <span style="color:#e6db74">&#39;$&#39;</span>,  <span style="color:#e6db74">&#39;4&#39;</span>,  <span style="color:#e6db74">&#39;u&#39;</span> );
 <span style="color:#66d9ef">my</span> @array3 <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#39;5&#39;</span>,  <span style="color:#e6db74">&#39;-&#39;</span>,  <span style="color:#e6db74">&#39;r&#39;</span>,  <span style="color:#e6db74">&#39;]&#39;</span>,  <span style="color:#e6db74">&#39;+&#39;</span>,  <span style="color:#e6db74">&#39;a&#39;</span>,  <span style="color:#e6db74">&#39;&gt;&#39;</span>,  <span style="color:#e6db74">&#39;/&#39;</span> );
@@ -309,7 +311,7 @@ $msg <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/\h//g</
 }
 </code></pre></div><p>The step of creating <code>@arrayCharacter</code> could be avoided by replacing the <code>push(@arrayCharacter, @array1[$i])</code> lines with <code>$count{$array1[$i]}++</code>. I might also prefer using an AoA instead of the six named arrays, so that the code could handle messages with any number of rows. Apart from these suggestions, however, Cristina&rsquo;s algorithm is sound and the code is easy to follow.</p>
 <h2 id="dave-jacoby1">Dave Jacoby</h2>
-<p><a href="/challenge-046/dave-jacoby/perl/ch-1.pl">Dave Jacoby&rsquo;s solution</a> accepts multi-line strings, and splits those into an AoA called <code>@ctext</code>:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/dave-jacoby/perl/ch-1.pl">Dave Jacoby&rsquo;s solution</a> accepts multi-line strings, and splits those into an AoA called <code>@ctext</code>:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @ctext <span style="color:#f92672">=</span> map { [ split <span style="color:#e6db74">/\s+/</span>, $_ ] } grep { <span style="color:#e6db74">/\S/</span> } split <span style="color:#e6db74">m{\n}</span>, $ctext;
 </code></pre></div><p>From there, he loops through the columns (<code>$i</code>) and increments <code>%col</code> for the corresponding character in each row. After that, he sorts the keys in reverse numerical order and takes the first one (<code>$k</code>):</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> scalar $ctext[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">-</span> 1 ) {
@@ -320,7 +322,7 @@ $msg <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/\h//g</
 }
 </code></pre></div><p>The final answer is then simply <code>join '', @ptext</code>.</p>
 <h2 id="duane-powell1">Duane Powell</h2>
-<p><a href="/challenge-046/duane-powell/perl/ch-1.pl">Duane Powell&rsquo;s solution</a> takes the message as a string, splits it into lines, then characters, and increments a HoH (hash of hash) <code>$data</code> which maps a column <code>$p</code> and <code>$char</code> to its count:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/duane-powell/perl/ch-1.pl">Duane Powell&rsquo;s solution</a> takes the message as a string, splits it into lines, then characters, and increments a HoH (hash of hash) <code>$data</code> which maps a column <code>$p</code> and <code>$char</code> to its count:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $data <span style="color:#f92672">=</span> {};
 <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $line (split(<span style="color:#e6db74">/\n/</span>,$message)) {
     <span style="color:#66d9ef">my</span> $p <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
@@ -341,7 +343,7 @@ $msg <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/\h//g</
 }
 </code></pre></div><p>Duane&rsquo;s solution is decently compact, and very comprehensible.</p>
 <h2 id="duncan-c-white1">Duncan C. White</h2>
-<p><a href="/challenge-046/duncan-c-white/perl/ch-1.pl">Duncan C. White&rsquo;s solution</a> accepts a list of strings on the commandline. The solution is neatly divided into two parts. First up is the frequency collection, which builds up an AoH (array of hashes) in <code>@freq</code>:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/duncan-c-white/perl/ch-1.pl">Duncan C. White&rsquo;s solution</a> accepts a list of strings on the commandline. The solution is neatly divided into two parts. First up is the frequency collection, which builds up an AoH (array of hashes) in <code>@freq</code>:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @freq;    <span style="color:#75715e"># array of bags</span>
 <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $msg (@ARGV) {
     <span style="color:#66d9ef">my</span> @letter <span style="color:#f92672">=</span> split(<span style="color:#e6db74"> //</span>, $msg );
@@ -367,7 +369,7 @@ $msg <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/\h//g</
 }
 say $result;
 </code></pre></div><h2 id="e-choroba1">E. Choroba</h2>
-<p><a href="/challenge-046/e-choroba/perl/ch-1.pl">E. Choroba&rsquo;s solution</a> works with arrays of strings (rows):</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/e-choroba/perl/ch-1.pl">E. Choroba&rsquo;s solution</a> works with arrays of strings (rows):</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @message_sets <span style="color:#f92672">=</span> ([<span style="color:#e6db74">&#39;Hxl4!&#39;</span>, <span style="color:#e6db74">&#39;ce-lo&#39;</span>, <span style="color:#e6db74">&#39;ze6lg&#39;</span>, <span style="color:#e6db74">&#39;HWlvR&#39;</span>, <span style="color:#e6db74">&#39;q9m#o&#39;</span>],
                     [<span style="color:#e6db74">&#39;P+2l!ato&#39;</span>, <span style="color:#e6db74">&#39;1e80R$4u&#39;</span>, <span style="color:#e6db74">&#39;5-r]+a&gt;/&#39;</span>, <span style="color:#e6db74">&#39;Pxwlb3k\\&#39;</span>,
                      <span style="color:#e6db74">&#39;2e35R8yu&#39;</span>, <span style="color:#e6db74">&#39;&lt;!r^()k0&#39;</span>]);
@@ -385,7 +387,7 @@ say $result;
 </code></pre></div><p><a href="https://perldoc.perl.org/List/Util.html"><code>List::Util</code></a>&lsquo;s <code>max</code> helps to find the most frequent character.</p>
 <p><strong>Blog</strong> › <a href="http://blogs.perl.org/users/e_choroba/2020/02/perl-weekly-challenge-046-cryptic-message-is-the-room-open.html">Cryptic Message &amp; Is the Room Open?</a></p>
 <h2 id="jaldhar-h-vyas1">Jaldhar H. Vyas</h2>
-<p><a href="/challenge-046/jaldhar-h-vyas/perl/ch-1.pl">Jaldhar H. Vyas&rsquo; solution</a> accepts an AoA for input, and then starts with what amounts to a matrix transposition:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/jaldhar-h-vyas/perl/ch-1.pl">Jaldhar H. Vyas&rsquo; solution</a> accepts an AoA for input, and then starts with what amounts to a matrix transposition:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @rotated;
 <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> scalar @message <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) {
     <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $j (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> scalar @{$message[$i]} <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) {
@@ -400,7 +402,7 @@ duplicated characters (whitespace mine):</p>
 </code></pre></div><p>The sorted strings are then fed through the regexp <code>/(.)\1/</code> which is a capturing check for two of the same character in a row. <code>$1</code> is the character that was found.</p>
 <p>Jaldhar&rsquo;s is a unique solution. Transposing the input makes the second part quite easy, using the highly optimized regexp engine to find the duplicated character.</p>
 <h2 id="javier-luque1">Javier Luque</h2>
-<p><a href="/challenge-046/javier-luque/perl/ch-1.pl">Javier Luque&rsquo;s solution</a> takes a multiline string, splits it, and then builds up a column-wise array:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/javier-luque/perl/ch-1.pl">Javier Luque&rsquo;s solution</a> takes a multiline string, splits it, and then builds up a column-wise array:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e"># Initialize the columns hash</span>
 <span style="color:#66d9ef">my</span> @column_hash;
 <span style="color:#66d9ef">my</span> ($first_line) <span style="color:#f92672">=</span> split (<span style="color:#e6db74">&#34;\n&#34;</span>, $message, <span style="color:#ae81ff">2</span>);
@@ -423,7 +425,7 @@ $column_hash[$_] <span style="color:#f92672">=</span> {} <span style="color:#66d
 }
 </code></pre></div><p><strong>Blog</strong> › <a href="https://perlchallenges.wordpress.com/2020/02/04/perl-weekly-challenge-046/">046 – Perl Weekly Challenge</a></p>
 <h2 id="laurent-rosenfeld1">Laurent Rosenfeld</h2>
-<p><a href="/challenge-046/laurent-rosenfeld/perl/ch-1.pl">Laurent Rosenfeld&rsquo;s solution</a> accepts a string, splits it into an AoA, and then transposes it to obtain a column-wise matrix:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/laurent-rosenfeld/perl/ch-1.pl">Laurent Rosenfeld&rsquo;s solution</a> accepts a string, splits it into an AoA, and then transposes it to obtain a column-wise matrix:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @AoA <span style="color:#f92672">=</span> map { [ split <span style="color:#e6db74">/\s+/</span>, $_] } split <span style="color:#e6db74">/[\r\n]+/</span>, $garbled;
 <span style="color:#66d9ef">my</span> @transposed;
 <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#AoA) {
@@ -440,7 +442,7 @@ say @msg;
 </code></pre></div><p><strong>Blog</strong> › <a href="http://blogs.perl.org/users/laurent_r/2020/02/perl-weekly-challenge-46-garbled-message-and-room-open.html">Garbled Message and Room Open</a></p>
 <h2 id="mohammad-anwar1">Mohammad S Anwar</h2>
 <p><strong>Mohammad,</strong> creator of the Perl Weekly Challenge, has finally entered the fray with a solution of his own! It may be a bit strange to welcome you to your own challenge, Mohammad, but I&rsquo;m going to do it anyway. Welcome. :-)</p>
-<p><a href="/challenge-046/mohammad-anwar/perl/ch-1.pl">Mohammad S Anwar&rsquo;s solution</a> accepts an array of strings, and then splits each string on whitespace.  Maintaining a column counter, Mohammad increments the frequency table for each character in turn:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/mohammad-anwar/perl/ch-1.pl">Mohammad S Anwar&rsquo;s solution</a> accepts an array of strings, and then splits each string on whitespace.  Maintaining a column counter, Mohammad increments the frequency table for each character in turn:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $table <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>;
 <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $message (@messages) {
     <span style="color:#66d9ef">my</span> $column <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
@@ -452,7 +454,7 @@ say @msg;
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">map { <span style="color:#66d9ef">print</span> [ sort { $_<span style="color:#f92672">-&gt;</span>{$b} <span style="color:#e6db74">&lt;=&gt;</span> $_<span style="color:#f92672">-&gt;</span>{$a} } keys %$_ ]<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] } @$table;
 </code></pre></div><p>Mohammad&rsquo;s solution is concise without getting in the way of comprehension.</p>
 <h2 id="rage3111">Rage311</h2>
-<p><a href="/challenge-046/rage311/perl/ch-1.pl">Rage311&rsquo;s solution</a> starts with an AoA of the message, and then loops over it to build the frequency map:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/rage311/perl/ch-1.pl">Rage311&rsquo;s solution</a> starts with an AoA of the message, and then loops over it to build the frequency map:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @freq;
 <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $col ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#{ $scrambled[<span style="color:#ae81ff">0</span>] } ) {
     $freq[$col]{ $scrambled[$_][$col] }<span style="color:#f92672">++</span> <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#scrambled;
@@ -461,7 +463,7 @@ say @msg;
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">say join <span style="color:#e6db74">&#39;&#39;</span>, map { (sort { $_<span style="color:#f92672">-&gt;</span>{$b} <span style="color:#e6db74">&lt;=&gt;</span> $_<span style="color:#f92672">-&gt;</span>{$a} } keys $_<span style="color:#f92672">-&gt;</span>%<span style="color:#960050;background-color:#1e0010">*</span>)[<span style="color:#ae81ff">0</span>] } @freq;
 </code></pre></div><p>Rage311 took full advantage of the AoA input, here, without having to deal with the intermediate <code>split</code> and storage that other solutions needed to use.</p>
 <h2 id="roger-bell-west1">Roger Bell West</h2>
-<p><a href="/challenge-046/roger-bell-west/perl/ch-1.pl">Roger Bell West&rsquo;s solution</a> takes input from STDIN, splitting each line on whiespace and adding it to the <code>@place</code> frequency map:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/roger-bell-west/perl/ch-1.pl">Roger Bell West&rsquo;s solution</a> takes input from STDIN, splitting each line on whiespace and adding it to the <code>@place</code> frequency map:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @place;
 <span style="color:#66d9ef">while</span> (<span style="color:#f92672">&lt;&gt;</span>) {
     chomp;
@@ -477,7 +479,7 @@ say @msg;
 }
 <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
 </code></pre></div><h2 id="ruben-westerberg1">Ruben Westerberg</h2>
-<p><a href="/challenge-046/ruben-westerberg/perl/ch-1.pl">Ruben Westerberg&rsquo;s solution</a> accepts an AoA in <code>@inComming</code> and loops through it column-wise to build a frequency table for each column in turn, and push each character to the resulting <code>@decoded</code> array:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/ruben-westerberg/perl/ch-1.pl">Ruben Westerberg&rsquo;s solution</a> accepts an AoA in <code>@inComming</code> and loops through it column-wise to build a frequency table for each column in turn, and push each character to the resulting <code>@decoded</code> array:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @decoded;
 <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $c (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>@{$inComming[<span style="color:#ae81ff">0</span>]}<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
     <span style="color:#66d9ef">my</span> @col;
@@ -493,7 +495,7 @@ say @msg;
 }
 <span style="color:#66d9ef">print</span> join <span style="color:#e6db74">&#34;&#34;</span>, @decoded;
 </code></pre></div><h2 id="ryan-thompson1">Ryan Thompson</h2>
-<p><a href="/challenge-046/ryan-thompson/perl/ch-1.pl">My solution</a> uses a non-core (yet still extremely popular) module, <a href="https://metacpan.org/pod/List::MoreUtils"><code>List::MoreUtils</code></a> so I did not have to roll my own <code>frequency</code> method yet again. I also use core <code>List::Util</code>'s <code>reduce</code>. I accept a list of strings as input:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/ryan-thompson/perl/ch-1.pl">My solution</a> uses a non-core (yet still extremely popular) module, <a href="https://metacpan.org/pod/List::MoreUtils"><code>List::MoreUtils</code></a> so I did not have to roll my own <code>frequency</code> method yet again. I also use core <code>List::Util</code>'s <code>reduce</code>. I accept a list of strings as input:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @r <span style="color:#f92672">=</span> map y<span style="color:#e6db74">/ /</span><span style="color:#f92672">/</span>dr, @_;
 join <span style="color:#e6db74">&#39;&#39;</span>,   map { reduce { $_<span style="color:#f92672">-&gt;</span>{$a} <span style="color:#f92672">&gt;</span> $_<span style="color:#f92672">-&gt;</span>{$b} ? $a : $b } keys %$_ }
    reverse map { { frequency map chop, @r } } <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>length $r[<span style="color:#ae81ff">0</span>];
@@ -501,7 +503,7 @@ join <span style="color:#e6db74">&#39;&#39;</span>,   map { reduce { $_<span sty
 <p>Then, we <code>reduce</code> over the list of keys, pulling the key that has the maximum value, which is the most frequent character. Finally, we <code>join</code> together the results.</p>
 <p><strong>Blog</strong> › <a href="http://www.ry.ca/2020/02/cryptic-message/">PWC 046 › Cryptic Message</a></p>
 <h2 id="saiftynet1">Saif Ahmed</h2>
-<p><a href="/challenge-046/saiftynet/perl/ch-1.pl">Saif Ahmed&rsquo;s solution</a> provides a decoder, but also some other code that explores these messages in more detail.  Here&rsquo;s the decoder, which accepts an ref to an array of strings:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/saiftynet/perl/ch-1.pl">Saif Ahmed&rsquo;s solution</a> provides a decoder, but also some other code that explores these messages in more detail.  Here&rsquo;s the decoder, which accepts an ref to an array of strings:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">collector</span>{
     <span style="color:#66d9ef">my</span> $messages<span style="color:#f92672">=</span>shift;                               <span style="color:#75715e"># the list ref of messages</span>
     <span style="color:#66d9ef">my</span> $result<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>;                                    <span style="color:#75715e"># the result to return</span>
@@ -553,7 +555,7 @@ character in each column, and appends that to <code>$result</code>:</p>
     <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\nFinal result:- $result\n&#34;</span>
 }
 </code></pre></div><h2 id="ulrich-rieke1">Ulrich Rieke</h2>
-<p><a href="/challenge-046/ulrich-rieke/perl/ch-1.pl">Ulrich Rieke&rsquo;s solution</a> takes a list of strings and iterates column-wise with the help of <code>substr</code>:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/ulrich-rieke/perl/ch-1.pl">Ulrich Rieke&rsquo;s solution</a> takes a list of strings and iterates column-wise with the help of <code>substr</code>:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $array <span style="color:#f92672">=</span> shift;
 <span style="color:#66d9ef">my</span> $len   <span style="color:#f92672">=</span> length ${$array}[<span style="color:#ae81ff">0</span>];
 <span style="color:#66d9ef">my</span> $decoded;
@@ -571,7 +573,7 @@ character in each column, and appends that to <code>$result</code>:</p>
 <p>Ulrich also submitted solutions in <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/ulrich-rieke/cpp/ch-1.cpp">C++</a> and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/ulrich-rieke/haskell/ch-1.hs">Haskell</a>.</p>
 <h2 id="user-person1">User Person</h2>
 <p><strong>User Person</strong> is new to the challenge. Welcome!</p>
-<p><a href="/challenge-046/user-person/perl/ch-1.pl">User Person&rsquo;s solution</a> accepts a multi-line string as input, and then iterates over each character (including <code>\n</code>s) as follows:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/user-person/perl/ch-1.pl">User Person&rsquo;s solution</a> accepts a multi-line string as input, and then iterates over each character (including <code>\n</code>s) as follows:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $message       <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>];
 $message          <span style="color:#f92672">=~</span> <span style="color:#e6db74">s{ }{}g</span>;
 <span style="color:#66d9ef">my</span> $decodedString <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;_&#39;</span> x index($message,<span style="color:#e6db74">&#34;\n&#34;</span>);
@@ -590,7 +592,7 @@ CHAR_LOOP:
 <h3 id="python">Python</h3>
 <p>User Person also submitted a solution in <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/user-person/python/ch-1.py">Python</a>.</p>
 <h2 id="wanderdoc1">Wanderdoc</h2>
-<p>Wanderdoc provided <a href="/challenge-046/wanderdoc/perl/ch-1.pl">two solutions</a>, one that works with arrays, and one that works with strings. Both accept a multi-line string as input; the names refer to the internal logic. Conveniently, these are named <code>arrays</code> and <code>strings</code>. Here is <code>arrays</code>:</p>
+<p>Wanderdoc provided <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/wanderdoc/perl/ch-1.pl">two solutions</a>, one that works with arrays, and one that works with strings. Both accept a multi-line string as input; the names refer to the internal logic. Conveniently, these are named <code>arrays</code> and <code>strings</code>. Here is <code>arrays</code>:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">arrays</span> {
      <span style="color:#66d9ef">my</span> @strings <span style="color:#f92672">=</span>  map [split(<span style="color:#e6db74">/\s/</span>, $_)], split(<span style="color:#e6db74">/\n/</span>, $message);
      <span style="color:#66d9ef">my</span> $max_idx <span style="color:#f92672">=</span> $#{$strings[<span style="color:#ae81ff">0</span>]};
@@ -639,7 +641,7 @@ CHAR_LOOP:
 <p>Of course, neither of these solutions is necessarily &ldquo;better&rdquo; in the context of this challenge. The square numbers solution (2) is the result of analysis and math, while the looping solution (1) is a better showcase of the language features and coding ability. Both skills are tremendously important, and I&rsquo;m quite sure everyone I&rsquo;m reviewing today is capable of either method; it&rsquo;s just a matter of what they decide to submit.</p>
 <hr>
 <h2 id="alicia-bielsa2">Alicia Bielsa</h2>
-<p><a href="/challenge-046/alicia-bielsa/perl/ch-2.pl">Alicia Bielsa&rsquo;s solution</a> does a nested loop to flip the doors, with a <code>flipStatus</code> routine to actually toggle a door:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/alicia-bielsa/perl/ch-2.pl">Alicia Bielsa&rsquo;s solution</a> does a nested loop to flip the doors, with a <code>flipStatus</code> routine to actually toggle a door:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $TOTAL <span style="color:#f92672">=</span> <span style="color:#ae81ff">500</span>;
 <span style="color:#66d9ef">my</span> @aRooms <span style="color:#f92672">=</span>  (<span style="color:#ae81ff">0</span>) x $TOTAL;
 <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $employee (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$TOTAL){
@@ -666,7 +668,7 @@ CHAR_LOOP:
 }
 </code></pre></div><p>Note that Alicia&rsquo;s <code>@aRooms</code> is 500 elements long, meaning indicies 0..499.  The challenge, however, asks for rooms 1..500. Alicia simply increments <code>$room</code> so the correct number is printed.</p>
 <h2 id="andrezgz2">Andrezgz</h2>
-<p><a href="/challenge-046/andrezgz/perl/ch-2.pl">Andrezgz&rsquo;s solution</a> loops, but instead of working with 1-based math, Andrezgz simply adds a dummy room #0 so the numbers line up:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/andrezgz/perl/ch-2.pl">Andrezgz&rsquo;s solution</a> loops, but instead of working with 1-based math, Andrezgz simply adds a dummy room #0 so the numbers line up:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @rooms <span style="color:#f92672">=</span> (<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) x MAX; <span style="color:#75715e"># all rooms are closed</span>
 unshift @rooms, <span style="color:#ae81ff">0</span>;      <span style="color:#75715e"># add room &#34;0&#34; for simplicity</span>
 <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $e (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> MAX) {
@@ -677,7 +679,7 @@ unshift @rooms, <span style="color:#ae81ff">0</span>;      <span style="color:#7
 <span style="color:#66d9ef">print</span> join <span style="color:#e6db74">&#39;,&#39;</span>, grep { $rooms[$_] <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> } (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> MAX);;
 </code></pre></div><p>Also of note is that instead of toggling between 1 and 0, Andrezgz multiplies by -1 so closed rooms are -1, and open rooms are 1.</p>
 <h2 id="athanasius2">Athanasius</h2>
-<p><a href="/challenge-046/athanasius/perl/ch-2.pl">Athanasius&rsquo; solution</a> uses constants for <code>$CLOSED</code> and <code>$OPEN</code>, as well as the room count:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/athanasius/perl/ch-2.pl">Athanasius&rsquo; solution</a> uses constants for <code>$CLOSED</code> and <code>$OPEN</code>, as well as the room count:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> Const::Fast;
 const <span style="color:#66d9ef">my</span> $CLOSED <span style="color:#f92672">=&gt;</span>   <span style="color:#ae81ff">0</span>;
 const <span style="color:#66d9ef">my</span> $OPEN   <span style="color:#f92672">=&gt;</span>   <span style="color:#ae81ff">1</span>;
@@ -696,7 +698,7 @@ printf <span style="color:#e6db74">&#34;There are %d rooms still open at the end
        <span style="color:#e6db74">&#34;rooms):\n%s\n&#34;</span>, scalar @open,
         join <span style="color:#e6db74">&#39;, &#39;</span>, map { sprintf <span style="color:#e6db74">&#39;%3d&#39;</span>, $_ } @open;
 </code></pre></div><h2 id="cheok-yin-fung2">Cheok-Yin Fung</h2>
-<p><a href="/challenge-046/cheok-yin-fung/perl/ch-2.pl">Cheok-Yin Fung&rsquo;s solution</a> also loops optimally, using a Perlish <code>for</code> loop and multiplying by the employee interval, <code>$i</code>:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/cheok-yin-fung/perl/ch-2.pl">Cheok-Yin Fung&rsquo;s solution</a> also loops optimally, using a Perlish <code>for</code> loop and multiplying by the employee interval, <code>$i</code>:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @doors;
 <span style="color:#66d9ef">my</span> $labor;
 $doors[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;true&#39;</span>; <span style="color:#75715e"># main entrance</span>
@@ -714,7 +716,7 @@ $doors[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span
 }
 </code></pre></div><p>Cheok-Yin Fung uses <code>not</code> to invert the truth value of each door.</p>
 <h2 id="colin-crain2">Colin Crain</h2>
-<p><a href="/challenge-046/colin-crain/perl/ch-2.pl">Colin Crain&rsquo;s solution</a> uses a nested loop:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/colin-crain/perl/ch-2.pl">Colin Crain&rsquo;s solution</a> uses a nested loop:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $SIZE <span style="color:#f92672">=</span> <span style="color:#ae81ff">500</span>;
 <span style="color:#66d9ef">my</span> @hotel <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>) x $SIZE;
 <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $emp (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$SIZE) {
@@ -726,7 +728,7 @@ $doors[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span
 </code></pre></div><p>Colin makes a <code>@doors</code> array for every employee, which is essentially a vector of truth values, which he applies like a mask over <code>@hotel</code> to toggle the doors for the current employee.</p>
 <p>This is the first use of the bitwise exclusive-or (<code>^</code>) operator we&rsquo;ve seen, but it won&rsquo;t be the last. XORing a value with 1 is a common way to toggle a boolean value, especially in assembler and lower-level languages like C. However, it works just as well in Perl.</p>
 <h2 id="cristian-heredia2">Cristina Heredia</h2>
-<p><a href="/challenge-046/cristian-heredia/perl/ch-2.pl">Cristina Heredia&rsquo;s solution</a> uses a nested loop as well:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/cristian-heredia/perl/ch-2.pl">Cristina Heredia&rsquo;s solution</a> uses a nested loop as well:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#0 is closed</span>
 <span style="color:#75715e">#1 is opened</span>
 <span style="color:#66d9ef">foreach</span> (<span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; $i <span style="color:#f92672">&lt;</span> $size; $i<span style="color:#f92672">++</span>) {
@@ -745,7 +747,7 @@ $doors[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span
 }
 </code></pre></div><p>Cristina makes the optimization in the inner <code>foreach</code> loop to only look at every <code>$j</code>th door, so this is an efficient solution. The only thing I would change is using the <code>$</code> sigil to access individual elements, so <code>@rooms[$k]</code> would become <code>$rooms[$k]</code>.</p>
 <h2 id="dave-jacoby2">Dave Jacoby</h2>
-<p><a href="/challenge-046/dave-jacoby/perl/ch-2.pl">Dave Jacoby&rsquo;s solution</a> uses a nested loop, as well as the 501-length array, so Dave can enjoy 1-based indicies:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/dave-jacoby/perl/ch-2.pl">Dave Jacoby&rsquo;s solution</a> uses a nested loop, as well as the 501-length array, so Dave can enjoy 1-based indicies:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @doors <span style="color:#f92672">=</span> map { <span style="color:#ae81ff">1</span> } <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">500</span>;
 <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $e ( <span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">500</span> ) {
     map { $doors[$_] <span style="color:#f92672">=</span> <span style="color:#f92672">!</span>$doors[$_] }
@@ -754,7 +756,7 @@ $doors[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span
 say join <span style="color:#e6db74">&#39; &#39;</span>, grep { $doors[$_] } <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">500</span>;
 </code></pre></div><p>This is a nicely concise solution. Dave starts off by initializing all doors to be open and starting with employee #2, which saves one trip through the loop. After that, he uses <code>!</code> to toggle the individual doors.</p>
 <h2 id="duane-powell2">Duane Powell</h2>
-<p><a href="/challenge-046/duane-powell/perl/ch-2.pl">Duane Powell&rsquo;s solution</a> uses nested loops, too:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/duane-powell/perl/ch-2.pl">Duane Powell&rsquo;s solution</a> uses nested loops, too:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @room;
 $room[$_] <span style="color:#f92672">=</span> CLOSED <span style="color:#66d9ef">foreach</span>(<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> ROOM);
 <span style="color:#75715e"># Toggle doors up to nth $EMPLOYEE</span>
@@ -773,7 +775,7 @@ $room[$_] <span style="color:#f92672">=</span> CLOSED <span style="color:#66d9ef
     CLOSED   <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>,
 };
 </code></pre></div><h2 id="duncan-c-white2">Duncan C. White</h2>
-<p><a href="/challenge-046/duncan-c-white/perl/ch-2.pl">Duncan C. White&rsquo;s solution</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/duncan-c-white/perl/ch-2.pl">Duncan C. White&rsquo;s solution</a></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e"># all rooms open initially [we don&#39;t use element 0]</span>
 <span style="color:#66d9ef">my</span> @roomopen <span style="color:#f92672">=</span> ( <span style="color:#ae81ff">0</span>, (<span style="color:#ae81ff">1</span>) x $n );
 say <span style="color:#e6db74">&#34;naive answer:&#34;</span>;
@@ -804,7 +806,7 @@ say join(<span style="color:#e6db74">&#39;,&#39;</span>, @sq);
 <p>Duncan also submitted a solution in <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/duncan-c-white/postscript/ch-2.ps">PostScript</a>.</p>
 <p><a href="http://www.ry.ca/wp-content/uploads/2020/02/duncan-c-white-046-2.pdf">Here is the output</a> with <code>ps2pdf</code>. Note that <code>-sPAPERSIZE=a4</code> was needed to avoid clipping.</p>
 <h2 id="e-choroba2">E. Choroba</h2>
-<p>E. Choroba submitted <a href="/challenge-046/e-choroba/perl/">three solutions</a>. The first is a basic nested loop approach:</p>
+<p>E. Choroba submitted <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/e-choroba/perl/">three solutions</a>. The first is a basic nested loop approach:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $MAX <span style="color:#f92672">=</span> <span style="color:#ae81ff">500</span>;
 <span style="color:#66d9ef">my</span> @doors <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>) x $MAX;  <span style="color:#75715e"># All closed.</span>
 <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $employee (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $MAX <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) {
@@ -822,7 +824,7 @@ say join <span style="color:#e6db74">&#39; &#39;</span>, map <span style="color:
 </code></pre></div><p>His blog also mentions a simple benchmark he did, showing the first solution took 6.5 seconds to run 200 times, the second took 5.4 seconds, and the third just 0.9 seconds.</p>
 <p><strong>Blog</strong> › <a href="http://blogs.perl.org/users/e_choroba/2020/02/perl-weekly-challenge-046-cryptic-message-is-the-room-open.html">Cryptic Message &amp; Is the Room Open?</a></p>
 <h2 id="jaldhar-h-vyas2">Jaldhar H. Vyas</h2>
-<p><a href="/challenge-046/jaldhar-h-vyas/perl/ch-2.pl">Jaldhar H. Vyas&rsquo; solution</a> uses a nested loop:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/jaldhar-h-vyas/perl/ch-2.pl">Jaldhar H. Vyas&rsquo; solution</a> uses a nested loop:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @rooms <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>) x <span style="color:#ae81ff">500</span>;
 <span style="color:#66d9ef">my</span> $end <span style="color:#f92672">=</span> scalar @rooms <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
 <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $end) {
@@ -834,7 +836,7 @@ say join <span style="color:#e6db74">&#39; &#39;</span>, map <span style="color:
 }
 </code></pre></div><p>The <code>(($j + 1) % ($i + 1) == 0)</code> conditional translates <code>$i</code> and <code>$j</code> to 1-based numbering, and then only toggles the room if the room (<code>$j</code>) is a multiple of the employee number (<code>$i</code>).</p>
 <h2 id="javier-luque2">Javier Luque</h2>
-<p><a href="/challenge-046/javier-luque/perl/ch-2.pl">Javier Luque&rsquo;s solution</a> is another nested loop:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/javier-luque/perl/ch-2.pl">Javier Luque&rsquo;s solution</a> is another nested loop:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @doors;
 $doors[$_] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">500</span>);
 <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $employee (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">500</span>) {
@@ -846,7 +848,7 @@ $doors[$_] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</s
 </code></pre></div><p>Javier tests the divisibility in the inner loop to determine if the <code>$employee</code> should open the current <code>$door</code>.</p>
 <p><strong>Blog</strong> › <a href="https://perlchallenges.wordpress.com/2020/02/04/perl-weekly-challenge-046/">046 – Perl Weekly Challenge</a></p>
 <h2 id="laurent-rosenfeld2">Laurent Rosenfeld</h2>
-<p><a href="/challenge-046/laurent-rosenfeld/perl/ch-2.pl">Laurent Rosenfeld&rsquo;s solution</a> also uses nested loops, however Laurent uses a <code>while</code> inner loop and increments <code>$door</code> by <code>$start</code> (the employee number) for a more efficient solution:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/laurent-rosenfeld/perl/ch-2.pl">Laurent Rosenfeld&rsquo;s solution</a> also uses nested loops, however Laurent uses a <code>while</code> inner loop and increments <code>$door</code> by <code>$start</code> (the employee number) for a more efficient solution:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> constant MAX <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">50</span>;
 <span style="color:#75715e"># 1 =&gt; open, 0 =&gt; closed</span>
 <span style="color:#66d9ef">my</span> @rooms <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>) x (MAX <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>); <span style="color:#75715e"># (first employee)</span>
@@ -863,7 +865,7 @@ say join <span style="color:#e6db74">&#34; &#34;</span>, @rooms[<span style="col
 </code></pre></div><p>Laurent&rsquo;s blog has some interesting analysis on the results, which is definitely worth a read:</p>
 <p><strong>Blog</strong> › <a href="http://blogs.perl.org/users/laurent_r/2020/02/perl-weekly-challenge-46-garbled-message-and-room-open.html">Garbled Message and Room Open</a></p>
 <h2 id="mohammad-anwar2">Mohammad S Anwar</h2>
-<p><a href="/challenge-046/mohammad-anwar/perl/ch-2.pl">Mohammad S Anwar&rsquo;s solution</a> similarly uses an inner <code>while</code> loop so he can increase <code>$room_number</code> by the <code>$employee</code> number for a significant efficiency advantage:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/mohammad-anwar/perl/ch-2.pl">Mohammad S Anwar&rsquo;s solution</a> similarly uses an inner <code>while</code> loop so he can increase <code>$room_number</code> by the <code>$employee</code> number for a significant efficiency advantage:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @rooms <span style="color:#f92672">=</span> map { <span style="color:#ae81ff">1</span> } (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">500</span>);
 <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $employee (<span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">500</span>) {
     <span style="color:#66d9ef">my</span> $room_number <span style="color:#f92672">=</span> $employee;
@@ -874,7 +876,7 @@ say join <span style="color:#e6db74">&#34; &#34;</span>, @rooms[<span style="col
 }
 map { <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$_\n&#34;</span> <span style="color:#66d9ef">if</span> $rooms[$_] } (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">500</span>);
 </code></pre></div><h2 id="peter-scott">Peter Scott</h2>
-<p><a href="/challenge-046/peter-scott/perl/ch-2.sh">Peter Scott&rsquo;s solution</a> is a one-liner:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/peter-scott/perl/ch-2.sh">Peter Scott&rsquo;s solution</a> is a one-liner:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e">#!/bin/sh
 </span><span style="color:#75715e"></span>perl -E <span style="color:#e6db74">&#39;$N=shift; @R=(0)x$N; for $e (1..$N){ for ($r = $e; $r &lt; $N; $r += $e ) { $R[$r-1] ^= 1 } } say for grep { $R[$_-1] } 1..$N&#39;</span> <span style="color:#ae81ff">500</span>
 </code></pre></div><p><code>perltidy</code> sure does come in handy sometimes:</p>
@@ -888,7 +890,7 @@ map { <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;
 say <span style="color:#66d9ef">for</span> grep { $R[ $_ <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ] } <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $N
 </code></pre></div><p>Peter uses a C-style <code>for</code> loop to check every <code>$e</code> doors, and also uses XOR (<code>^</code>) to toggle each door. He also maintains 0-based indexing throughout.</p>
 <h2 id="rage3112">Rage311</h2>
-<p><a href="/challenge-046/rage311/perl/ch-2.pl">Rage311&rsquo;s solution</a> uses nested loops:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/rage311/perl/ch-2.pl">Rage311&rsquo;s solution</a> uses nested loops:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @rooms <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>) x <span style="color:#ae81ff">501</span>;
 <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $emp ( <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">500</span> ) {
     <span style="color:#66d9ef">for</span> ( <span style="color:#66d9ef">my</span> $room <span style="color:#f92672">=</span> $emp ; $room <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">500</span> ; $room <span style="color:#f92672">+=</span> $emp ) {
@@ -898,7 +900,7 @@ say <span style="color:#66d9ef">for</span> grep { $R[ $_ <span style="color:#f92
 say <span style="color:#e6db74">&#39;Open: &#39;</span>, join <span style="color:#e6db74">&#39;,&#39;</span>, grep { $rooms[$_] } <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$#rooms;
 </code></pre></div><p>The by now familiar inner C-style <code>for</code> loop and XOR toggle are shown here.</p>
 <h2 id="roger-bell-west2">Roger Bell West</h2>
-<p><a href="/challenge-046/roger-bell-west/perl/ch-2.pl">Roger Bell West&rsquo;s solution</a> is similarly loopy:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/roger-bell-west/perl/ch-2.pl">Roger Bell West&rsquo;s solution</a> is similarly loopy:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @rooms <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>) x <span style="color:#ae81ff">500</span>;
 <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $n ( <span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">500</span> ) {
     <span style="color:#66d9ef">for</span> ( <span style="color:#66d9ef">my</span> $k <span style="color:#f92672">=</span> $n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ; $k <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">500</span> ; $k <span style="color:#f92672">+=</span> $n ) {
@@ -908,7 +910,7 @@ say <span style="color:#e6db74">&#39;Open: &#39;</span>, join <span style="color
 <span style="color:#66d9ef">print</span> map { $_ <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#34;\n&#34;</span> } grep { $rooms[$_] <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> } ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#rooms );
 </code></pre></div><p>Toggling a boolean with <code>$rooms[$k] = 1 - $rooms[$k]</code> is an old trick I remember using with 808x assembly programming a long time ago. Somehow this challenge turned into a &ldquo;how many different ways can you toggle a boolean&rdquo; challenge!</p>
 <h2 id="ruben-westerberg2">Ruben Westerberg</h2>
-<p><a href="/challenge-046/ruben-westerberg/perl/ch-2.pl">Ruben Westerberg&rsquo;s solution</a> loops, with an inner <code>while</code> loop:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/ruben-westerberg/perl/ch-2.pl">Ruben Westerberg&rsquo;s solution</a> loops, with an inner <code>while</code> loop:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @doors<span style="color:#f92672">=</span>(<span style="color:#ae81ff">0</span>) x <span style="color:#ae81ff">500</span>;
 $doors[$_]<span style="color:#f92672">=</span> $doors[$_]?<span style="color:#ae81ff">0</span>:<span style="color:#ae81ff">1</span> <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">499</span>;
 <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">2</span><span style="color:#f92672">..</span><span style="color:#ae81ff">500</span>) {
@@ -921,7 +923,7 @@ $doors[$_]<span style="color:#f92672">=</span> $doors[$_]?<span style="color:#ae
 <span style="color:#66d9ef">print</span> @doors;
 </code></pre></div><p><code>print @doors</code> outputs a string of 500 1s and 0s, providing a more visual depiction of which doors are open and closed.</p>
 <h2 id="ryan-thompson2">Ryan Thompson</h2>
-<p><a href="/challenge-046/ryan-thompson/perl/ch-2.pl">My solution</a> comes in two parts. First, simply printing the square numbers:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/ryan-thompson/perl/ch-2.pl">My solution</a> comes in two parts. First, simply printing the square numbers:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">say join <span style="color:#e6db74">&#39; &#39;</span>, map { $_ <span style="color:#f92672">*</span> $_ } <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>int sqrt $doors;
 </code></pre></div><p>Since the correctness of this method is perhaps not obvious, I also provide an informal correctness proof at the end of <a href="http://www.ry.ca/2020/02/500-doors/">my blog post</a>.</p>
 <p>I also did a looping solution:</p>
@@ -931,7 +933,7 @@ $doors[$_]<span style="color:#f92672">=</span> $doors[$_]?<span style="color:#ae
 }
 </code></pre></div><p><strong>Blog</strong> › <a href="http://www.ry.ca/2020/02/500-doors/">PWC 046 › Is the Room Open? (500 Doors)</a></p>
 <h2 id="saiftynet2">Saif Ahmed</h2>
-<p><a href="/challenge-046/saiftynet/perl/ch-2.pl">Saif Ahmed&rsquo;s solution</a> is also a two-parter. First, a looping solution:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/saiftynet/perl/ch-2.pl">Saif Ahmed&rsquo;s solution</a> is also a two-parter. First, a looping solution:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $doorCount<span style="color:#f92672">=</span><span style="color:#ae81ff">500</span>;
 <span style="color:#66d9ef">my</span> @doors<span style="color:#f92672">=</span>(<span style="color:#ae81ff">0</span>)x($doorCount<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>);          <span style="color:#75715e"># $doorCount+1 doors</span>
 <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $doorman (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$#doors) {     <span style="color:#75715e"># each of the employees</span>
@@ -951,7 +953,7 @@ $doors[$_]<span style="color:#f92672">=</span> $doors[$_]?<span style="color:#ae
 <span style="color:#66d9ef">my</span> $cheat<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
 <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34; &#34;</span><span style="color:#f92672">.</span>($cheat<span style="color:#f92672">++</span>)<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span> <span style="color:#66d9ef">while</span> $cheat<span style="color:#f92672">&lt;</span>sqrt($doorCount);
 </code></pre></div><h2 id="ulrich-rieke2">Ulrich Rieke</h2>
-<p><a href="/challenge-046/ulrich-rieke/perl/ch-2.pl">Ulrich Rieke&rsquo;s solution</a> uses anonymous arrays to store the door number with its <code>open</code> or <code>closed</code> status:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/ulrich-rieke/perl/ch-2.pl">Ulrich Rieke&rsquo;s solution</a> uses anonymous arrays to store the door number with its <code>open</code> or <code>closed</code> status:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @doors;
 <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i ( <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">500</span> ) {
     push( @doors, [ $i, <span style="color:#e6db74">&#34;open&#34;</span> ] );
@@ -980,7 +982,7 @@ $doors[$_]<span style="color:#f92672">=</span> $doors[$_]?<span style="color:#ae
 </code></pre></div><h3 id="c-and-haskell-1">C++ and Haskell</h3>
 <p>Ulrich also submitted solutions in <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/ulrich-rieke/cpp/ch-2.cpp">C++</a> and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/ulrich-rieke/haskell/ch-2.hs">Haskell</a>.</p>
 <h2 id="user-person2">User Person</h2>
-<p><a href="/challenge-046/user-person/perl/ch-2.pl">User Person&rsquo;s solution</a> also has its own toggle routine:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/user-person/perl/ch-2.pl">User Person&rsquo;s solution</a> also has its own toggle routine:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">change</span> {
     <span style="color:#66d9ef">return</span> $_[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#34;OPENED&#34;</span> ? <span style="color:#e6db74">&#34;CLOSED&#34;</span> : <span style="color:#e6db74">&#34;OPENED&#34;</span>;
 }
@@ -1002,7 +1004,7 @@ ROOM:
 <h3 id="bash-and-python">Bash and Python</h3>
 <p>User Person also submitted solutions in <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/user-person/bash/ch-2.bash">Bash</a> and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/user-person/python/ch-2.py">Python</a>.</p>
 <h2 id="wanderdoc2">Wanderdoc</h2>
-<p><a href="/challenge-046/wanderdoc/perl/ch-2.pl">Wanderdoc&rsquo;s solution</a> does a deep dive into the performance of the nested loop method versus a more analytical method using factors. But before we get into that, I want to highlight Wanderdoc&rsquo;s refreshingly creative way to avoid 0-based indicies:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/wanderdoc/perl/ch-2.pl">Wanderdoc&rsquo;s solution</a> does a deep dive into the performance of the nested loop method versus a more analytical method using factors. But before we get into that, I want to highlight Wanderdoc&rsquo;s refreshingly creative way to avoid 0-based indicies:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">unshift @hotel, <span style="color:#e6db74">&#39;Lobby&#39;</span>; <span style="color:#75715e"># to make the array indices equal to room numbers.</span>
 </code></pre></div><p>Here is the looping method:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> constant {NUM <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">500</span>, OPEN <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>, SWITCH <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>};
