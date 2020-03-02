@@ -175,6 +175,7 @@ Checkout the masterpiece collection of [**blogs**](https://perlweeklychallenge.o
 ![Jen Guerra](/images/team/user.jpg)
 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-049/southpawgeek/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-049/southpawgeek/perl/ch-2.pl)]
 
 ***
 
