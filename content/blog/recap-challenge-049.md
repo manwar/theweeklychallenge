@@ -130,6 +130,13 @@ Checkout the masterpiece collection of [**blogs**](https://perlweeklychallenge.o
 
 ***
 
+### Dave Cross
+![Dave Cross](/images/team/dave_cross.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-049/dave-cross/perl/ch-1.pl)]
+
+***
+
 ### Dave Jacoby
 ![Dave Jacoby](/images/team/dave_jacoby.jpg)
 
