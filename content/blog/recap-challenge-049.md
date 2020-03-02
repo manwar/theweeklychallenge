@@ -276,7 +276,6 @@ Checkout the masterpiece collection of [**blogs**](https://perlweeklychallenge.o
 ![Mark Anderson](/images/team/user.jpg)
 
 [[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-049/mark-anderson/raku/ch-1.p6)]
-[[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-049/mark-anderson/raku/ch-2.p6)]
 
 ***
 
