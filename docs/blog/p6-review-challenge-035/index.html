@@ -16,7 +16,7 @@
 
     <meta name="description" content="Laurent Rosenfeld Weekly Review: Challenge - #035.">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.66.0-DEV" />
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -225,32 +225,32 @@ Z:__..
 ;:_._._.
 </code></pre>
 <p>Of course, if we add those six punctuation symbols to the conversion table, we also don&rsquo;t want to remove them from the input string, so that the code statement to remove non Morse letters will be changed to something like this:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">$input ~~ s:i:g/&lt;-[A..Z0..9\s.,?'!;]&gt;//; # remove non Morse characters
-</code></pre><p>Task # 2 says we should try to recover from from badly formed Morse code. I&rsquo;m sorry, but, IMHO, that&rsquo;s much too vague. I think that my solutions will be able to more or less recover from most small mistakes (at the expense of probably a typo in the output and/or a runtime warning), but there is just no way we will be able to make sense from random bytes. So, where do we draw the line? With our implementation, encoding errors will produce typos and warnings, but the result should still be readable if the number of encoding errors is not too high.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">$input <span style="color:#f92672">~~</span> s:i:g<span style="color:#e6db74">/&lt;-[A..Z0..9\s.,?&#39;!;]&gt;/</span><span style="color:#f92672">/</span>; <span style="color:#75715e"># remove non Morse characters</span>
+</code></pre></div><p>Task # 2 says we should try to recover from from badly formed Morse code. I&rsquo;m sorry, but, IMHO, that&rsquo;s much too vague. I think that my solutions will be able to more or less recover from most small mistakes (at the expense of probably a typo in the output and/or a runtime warning), but there is just no way we will be able to make sense from random bytes. So, where do we draw the line? With our implementation, encoding errors will produce typos and warnings, but the result should still be readable if the number of encoding errors is not too high.</p>
 <p>A final point: the word &ldquo;binary&rdquo; in the very first sentence of the challenge may be interpreted in at least two different ways. From the rest of the task description, I lazily took it to mean that we&rsquo;re supposed to generate strings made up of zeros and ones. It may also be understood that we should generate actual binary values, and several of the challengers bravely interpreted that way.</p>
 <h3 id="my-solution">My Solution</h3>
 <p>The program uses the file containing the Morse codes to populate a hash mapping directly ASCII characters to binary strings (strings made up of zeros and ones).</p>
 <p>After this preliminary step, the hash contains an encoding table like this:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">0 =&gt; 1110111011101110111
-1 =&gt; 10111011101110111
-2 =&gt; 101011101110111
-3 =&gt; 1010101110111
-4 =&gt; 10101010111
-5 =&gt; 101010101
-6 =&gt; 11101010101
-7 =&gt; 1110111010101
-8 =&gt; 111011101110101
-9 =&gt; 11101110111011101
-'A' =&gt; 10111
-'B' =&gt; 111010101
-'C' =&gt; 11101011101
-'D' =&gt; 1110101
-'E' =&gt; 1
-... Lines omitted for brevity ...
-'X' =&gt; 11101010111
-'Y' =&gt; 1110101110111
-'Z' =&gt; 11101110101
-</code></pre><p>So, we no longer care about dots and dashes, we now have a way to convert directly input letters into binary-encoded Morse values representing these letters.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#ae81ff">0</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1110111011101110111</span>
+<span style="color:#ae81ff">1</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">10111011101110111</span>
+<span style="color:#ae81ff">2</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">101011101110111</span>
+<span style="color:#ae81ff">3</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1010101110111</span>
+<span style="color:#ae81ff">4</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">10101010111</span>
+<span style="color:#ae81ff">5</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">101010101</span>
+<span style="color:#ae81ff">6</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">11101010101</span>
+<span style="color:#ae81ff">7</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1110111010101</span>
+<span style="color:#ae81ff">8</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">111011101110101</span>
+<span style="color:#ae81ff">9</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">11101110111011101</span>
+<span style="color:#e6db74">&#39;A&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">10111</span>
+<span style="color:#e6db74">&#39;B&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">111010101</span>
+<span style="color:#e6db74">&#39;C&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">11101011101</span>
+<span style="color:#e6db74">&#39;D&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1110101</span>
+<span style="color:#e6db74">&#39;E&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>
+<span style="color:#f92672">...</span> Lines omitted <span style="color:#66d9ef">for</span> brevity <span style="color:#f92672">...</span>
+<span style="color:#e6db74">&#39;X&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">11101010111</span>
+<span style="color:#e6db74">&#39;Y&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1110101110111</span>
+<span style="color:#e6db74">&#39;Z&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">11101110101</span>
+</code></pre></div><p>So, we no longer care about dots and dashes, we now have a way to convert directly input letters into binary-encoded Morse values representing these letters.</p>
 <p>We then use a <code>to_morse</code> subroutine to convert plain text into binary Morse, and a <code>from_morse</code> to do the conversion the other way around.</p>
 <p>The <code>to_morse</code> subroutine will perform the following tasks:</p>
 <ul>
@@ -327,368 +327,368 @@ Decoded string: ASK NOT WHAT YOUR COUNTRY CAN DO FOR YOU. ASK WHAT YOU CAN DO FO
 </code></pre>
 <h2 id="alternative-solutions">Alternative Solutions</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-035/arne-sommer/perl6/ch-1.p6">Arne Sommers</a> first created a <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-035/arne-sommer/perl6/lib/BinaryMorse2.pm6">BinaryMorse2</a> module providing a <code>%morse</code> letter-to-Morse translation table and a <code>%remorse</code> Morse-to-letter translation table (he used the built-in <code>antipair</code> function for creating the latter, which is probably better than the way I did it with <code>reverse</code>, because I copied it from my Perl 5 code without thinking too much about it). Arne&rsquo;s module also creates a lookup table mapping ASCII letters to binary-encoded Morse code and provides two subroutines, <code>morsify</code> (to turn plain test into binary encoded Morse code) and <code>demorsify</code> (to do the opposite), and it is probably more interesting to quote these, rather than the main code of his program:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">my %binary-morse;
-for %morse.kv -&gt; $char, $value
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> %binary<span style="color:#f92672">-</span>morse;
+<span style="color:#66d9ef">for</span> %morse<span style="color:#f92672">.</span>kv <span style="color:#f92672">-&gt;</span> $char, $value
 {
-  %binary-morse{$char} = $value.comb.map({ $_ eq '.' ?? '1' !! '111' }).join('0');
+  %binary<span style="color:#f92672">-</span>morse{$char} <span style="color:#f92672">=</span> $value<span style="color:#f92672">.</span>comb<span style="color:#f92672">.</span>map({ $_ <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;.&#39;</span> ?? <span style="color:#e6db74">&#39;1&#39;</span> <span style="color:#f92672">!!</span> <span style="color:#e6db74">&#39;111&#39;</span> })<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#39;0&#39;</span>);
 }
 
-our sub morsify (Str $text)
+<span style="color:#66d9ef">our</span> <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">morsify</span> (Str $text)
 {
-  my @words;
+  <span style="color:#66d9ef">my</span> @words;
 
-  for $text.split(/\s+/) -&gt; $word
+  <span style="color:#66d9ef">for</span> $text<span style="color:#f92672">.</span>split(<span style="color:#e6db74">/\s+/</span>) <span style="color:#f92672">-&gt;</span> $word
   {
-    my @new-word;
-    for $word.comb -&gt; $character
+    <span style="color:#66d9ef">my</span> @new<span style="color:#f92672">-</span>word;
+    <span style="color:#66d9ef">for</span> $word<span style="color:#f92672">.</span>comb <span style="color:#f92672">-&gt;</span> $character
     {
-      @new-word.push(%binary-morse{$character} // %binary-morse{$character.uc} // %binary-morse{unknown} );
+      @new<span style="color:#f92672">-</span>word<span style="color:#f92672">.</span>push(%binary<span style="color:#f92672">-</span>morse{$character} <span style="color:#e6db74">//</span> %binary<span style="color:#f92672">-</span>morse{$character<span style="color:#f92672">.</span>uc} <span style="color:#e6db74">//</span> %binary<span style="color:#f92672">-</span>morse{unknown} );
     }
-    @words.push(@new-word.join('000'));
+    @words<span style="color:#f92672">.</span>push(@new<span style="color:#f92672">-</span>word<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#39;000&#39;</span>));
   }
 
-  return @words.join(&quot;0000000&quot;);
+  <span style="color:#66d9ef">return</span> @words<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34;0000000&#34;</span>);
 }
 
-subset BinaryMorse of Str where * ~~ /^&lt;[01]&gt;*$/;
+subset BinaryMorse of Str where <span style="color:#f92672">*</span> <span style="color:#f92672">~~</span> <span style="color:#e6db74">/^&lt;[01]&gt;*$/</span>;
 
-our sub demorsify (BinaryMorse $text)
+<span style="color:#66d9ef">our</span> <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">demorsify</span> (BinaryMorse $text)
 {
-  my @words;
+  <span style="color:#66d9ef">my</span> @words;
 
-  for $text.split(&quot;0000000&quot;) -&gt; $word
+  <span style="color:#66d9ef">for</span> $text<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34;0000000&#34;</span>) <span style="color:#f92672">-&gt;</span> $word
   {
-    my $new-word = &quot;&quot;;
-    for $word.split(&quot;000&quot;) -&gt; $character
+    <span style="color:#66d9ef">my</span> $new<span style="color:#f92672">-</span>word <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
+    <span style="color:#66d9ef">for</span> $word<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34;000&#34;</span>) <span style="color:#f92672">-&gt;</span> $character
     {
-      $new-word ~= %binary-remorse{$character} //unknown;
+      $new<span style="color:#f92672">-</span>word <span style="color:#f92672">~=</span> %binary<span style="color:#f92672">-</span>remorse{$character} <span style="color:#e6db74">//</span>unknown;
     }
-    @words.push($new-word);
+    @words<span style="color:#f92672">.</span>push($new<span style="color:#f92672">-</span>word);
   }
-  return @words.join(&quot; &quot;);
+  <span style="color:#66d9ef">return</span> @words<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34; &#34;</span>);
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-035/daniel-mita/perl6/ch-1.p6">Daniel Mita</a> also created a module, called <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-035/daniel-mita/perl6/Morse.pm6">Morse</a>. His module is object-oriented and includes a grammar to decode binary-encoded Morse code. His translation table converts ASCII characters directly to binary numbers:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">my constant %values = (
-    :A(0b10111),         :B(0b111010101),
-    :C(0b11101011101),   :D(0b1110101),
-    :E(0b1),             :F(0b101011101),
-    :G(0b111011101),     :H(0b1010101),
-    [... lines omitted for brevity ...]
-    :W(0b101110111),     :X(0b11101010111),
-    :Y(0b1110101110111), :Z(0b11101110101),
-    1 =&gt; 0b10111011101110111,
-    2 =&gt; 0b101011101110111,
-    3 =&gt; 0b1010101110111,
-    4 =&gt; 0b10101010111,
-    5 =&gt; 0b101010101,
-    [... lines omitted for brevity ...]
-    ｢-｣ =&gt; 0b111010101010111,
-    ｢_｣ =&gt; 0b10101110111010111,
-    ｢&quot;｣ =&gt; 0b101110101011101, #&quot;
-    ｢$｣ =&gt; 0b10101011101010111,
-    ｢@｣ =&gt; 0b10111011101011101,
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-035/daniel-mita/perl6/ch-1.p6">Daniel Mita</a> also created a module, called <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-035/daniel-mita/perl6/Morse.pm6">Morse</a>. His module is object-oriented and includes a grammar to decode binary-encoded Morse code. His translation table converts ASCII characters directly to binary numbers:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> constant %values <span style="color:#f92672">=</span> (
+    :A(<span style="color:#ae81ff">0b10111</span>),         :B(<span style="color:#ae81ff">0b111010101</span>),
+    :C(<span style="color:#ae81ff">0b11101011101</span>),   :D(<span style="color:#ae81ff">0b1110101</span>),
+    :E(<span style="color:#ae81ff">0b1</span>),             :F(<span style="color:#ae81ff">0b101011101</span>),
+    :G(<span style="color:#ae81ff">0b111011101</span>),     :H(<span style="color:#ae81ff">0b1010101</span>),
+    [<span style="color:#f92672">...</span> lines omitted <span style="color:#66d9ef">for</span> brevity <span style="color:#f92672">...</span>]
+    :W(<span style="color:#ae81ff">0b101110111</span>),     :X(<span style="color:#ae81ff">0b11101010111</span>),
+    :Y(<span style="color:#ae81ff">0b1110101110111</span>), :Z(<span style="color:#ae81ff">0b11101110101</span>),
+    <span style="color:#ae81ff">1</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">0b10111011101110111</span>,
+    <span style="color:#ae81ff">2</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">0b101011101110111</span>,
+    <span style="color:#ae81ff">3</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">0b1010101110111</span>,
+    <span style="color:#ae81ff">4</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">0b10101010111</span>,
+    <span style="color:#ae81ff">5</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">0b101010101</span>,
+    [<span style="color:#f92672">...</span> lines omitted <span style="color:#66d9ef">for</span> brevity <span style="color:#f92672">...</span>]
+    <span style="color:#960050;background-color:#1e0010">｢</span><span style="color:#f92672">-</span><span style="color:#960050;background-color:#1e0010">｣</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">0b111010101010111</span>,
+    <span style="color:#960050;background-color:#1e0010">｢</span>_<span style="color:#960050;background-color:#1e0010">｣</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">0b10101110111010111</span>,
+    <span style="color:#960050;background-color:#1e0010">｢</span><span style="color:#e6db74">&#34;｣ =&gt; 0b101110101011101, #&#34;</span>
+    <span style="color:#960050;background-color:#1e0010">｢</span>$<span style="color:#960050;background-color:#1e0010">｣</span> <span style="color:#960050;background-color:#1e0010">=&gt;</span> 0b10101011101010111,
+    <span style="color:#960050;background-color:#1e0010">｢</span>@<span style="color:#960050;background-color:#1e0010">｣</span> <span style="color:#960050;background-color:#1e0010">=&gt;</span> 0b10111011101011101,
   );
-</code></pre><p>The <code>%chars</code> reverse translation table is built using the built-in <code>antipairs</code> routine. With this translation table, encoding to binary-encoded Morse is relatively easy, so we will rather quote the decoding part, which is much more interesting:</p>
-<pre><code class="language-Perl6" data-lang="Perl6"> grammar Decode {
-    token TOP  { &lt;word&gt;+ % '0' ** 7 }
-    token word { &lt;char&gt;+ % '000' }
-    token char { &lt;mark&gt;+ % '0' }
-    proto token mark {*}
-          token mark:sym&lt;dot&gt;  { '1' }
-          token mark:sym&lt;dash&gt; { '111' }
+</code></pre></div><p>The <code>%chars</code> reverse translation table is built using the built-in <code>antipairs</code> routine. With this translation table, encoding to binary-encoded Morse is relatively easy, so we will rather quote the decoding part, which is much more interesting:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"> grammar Decode {
+    token TOP  { <span style="color:#e6db74">&lt;word&gt;</span><span style="color:#f92672">+</span> % <span style="color:#960050;background-color:#1e0010">&#39;</span>0<span style="color:#e6db74">&#39; ** 7 }
+</span><span style="color:#e6db74">    token word { &lt;char&gt;+ % &#39;</span><span style="color:#ae81ff">000</span><span style="color:#e6db74">&#39; }
+</span><span style="color:#e6db74">    token char { &lt;mark&gt;+ % &#39;</span><span style="color:#ae81ff">0</span><span style="color:#e6db74">&#39; }
+</span><span style="color:#e6db74">    proto token mark {*}
+</span><span style="color:#e6db74">          token mark:sym&lt;dot&gt;  { &#39;</span><span style="color:#ae81ff">1</span><span style="color:#e6db74">&#39; }
+</span><span style="color:#e6db74">          token mark:sym&lt;dash&gt; { &#39;</span><span style="color:#ae81ff">111</span><span style="color:#e6db74">&#39; }
+</span><span style="color:#e6db74">  }
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">  class Decoder {
+</span><span style="color:#e6db74">    method TOP ($/) {
+</span><span style="color:#e6db74">      make $&lt;word&gt;.map(*.made).join(&#39;</span> <span style="color:#e6db74">&#39;);
+</span><span style="color:#e6db74">    }
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">    method word ($/) {
+</span><span style="color:#e6db74">      make $&lt;char&gt;.map(*.made).join;
+</span><span style="color:#e6db74">    }
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">    method char ($/) {
+</span><span style="color:#e6db74">      make %chars{ $/.Str.parse-base(2) }
+</span><span style="color:#e6db74">        or X::Morse::UnknownCharacter.new(
+</span><span style="color:#e6db74">          :payload( $&lt;mark&gt;.map(*.made).join ~ &#39;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&#39; ~ $/ )
+</span><span style="color:#e6db74">        ).throw;
+</span><span style="color:#e6db74">    }
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">    method mark:sym&lt;dot&gt;  ($/) { make &#39;</span><span style="color:#f92672">.</span><span style="color:#e6db74">&#39; }
+</span><span style="color:#e6db74">    method mark:sym&lt;dash&gt; ($/) { make &#39;</span><span style="color:#f92672">-</span><span style="color:#e6db74">&#39; }
+</span><span style="color:#e6db74">  }
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">  #| Decode binary morse code
+</span><span style="color:#e6db74">  sub decode (
+</span><span style="color:#e6db74">    Str $bits where *.comb(/\S/).all eq 1|0, #= A string containing a sequence of 1s and 0s
+</span><span style="color:#e6db74">    --&gt; Str
+</span><span style="color:#e6db74">  ) is export {
+</span><span style="color:#e6db74">    .return with Decode.parse(
+</span><span style="color:#e6db74">      $bits.trans( /\s+/ =&gt; &#39;</span><span style="color:#960050;background-color:#1e0010">&#39;</span> ),
+      :actions(Decoder<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>)
+    )<span style="color:#f92672">.</span>made;
+    X::Morse::InvalidSequence<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span><span style="color:#f92672">.</span>throw;
   }
-
-  class Decoder {
-    method TOP ($/) {
-      make $&lt;word&gt;.map(*.made).join(' ');
-    }
-
-    method word ($/) {
-      make $&lt;char&gt;.map(*.made).join;
-    }
-
-    method char ($/) {
-      make %chars{ $/.Str.parse-base(2) }
-        or X::Morse::UnknownCharacter.new(
-          :payload( $&lt;mark&gt;.map(*.made).join ~ ' | ' ~ $/ )
-        ).throw;
-    }
-
-    method mark:sym&lt;dot&gt;  ($/) { make '.' }
-    method mark:sym&lt;dash&gt; ($/) { make '-' }
-  }
-
-  #| Decode binary morse code
-  sub decode (
-    Str $bits where *.comb(/\S/).all eq 1|0, #= A string containing a sequence of 1s and 0s
-    --&gt; Str
-  ) is export {
-    .return with Decode.parse(
-      $bits.trans( /\s+/ =&gt; '' ),
-      :actions(Decoder.new)
-    ).made;
-    X::Morse::InvalidSequence.new.throw;
-  }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-035/kevin-colyer/perl6/ch-1.p6">Kevin Colyer</a> created a nice Morse translation table that came as a surprise to me:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">my %morse =
-    'A' =&gt;  '•−',
-    'B' =&gt;  '−•••',
-    'C' =&gt;  '−•−•',
-    'D' =&gt;  '−••',
-    'E' =&gt;  '•',
-    'F' =&gt;  '••−•',
-    'G' =&gt;  '−−•',
-    'H' =&gt;  '••••',
-    'I' =&gt;  '••',
-    'J' =&gt;  '•−−−',
-    'K' =&gt;  '−•−',
-    [ ... Lines omitted for brevity ... ]
-    '&quot;' =&gt;  '•−••−•',
-    '@' =&gt;  '•−−•−•',
-    '=' =&gt;  '−•••−',
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-035/kevin-colyer/perl6/ch-1.p6">Kevin Colyer</a> created a nice Morse translation table that came as a surprise to me:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> %morse <span style="color:#f92672">=</span>
+    <span style="color:#e6db74">&#39;A&#39;</span> <span style="color:#f92672">=&gt;</span>  <span style="color:#e6db74">&#39;•−&#39;</span>,
+    <span style="color:#e6db74">&#39;B&#39;</span> <span style="color:#f92672">=&gt;</span>  <span style="color:#e6db74">&#39;−•••&#39;</span>,
+    <span style="color:#e6db74">&#39;C&#39;</span> <span style="color:#f92672">=&gt;</span>  <span style="color:#e6db74">&#39;−•−•&#39;</span>,
+    <span style="color:#e6db74">&#39;D&#39;</span> <span style="color:#f92672">=&gt;</span>  <span style="color:#e6db74">&#39;−••&#39;</span>,
+    <span style="color:#e6db74">&#39;E&#39;</span> <span style="color:#f92672">=&gt;</span>  <span style="color:#e6db74">&#39;•&#39;</span>,
+    <span style="color:#e6db74">&#39;F&#39;</span> <span style="color:#f92672">=&gt;</span>  <span style="color:#e6db74">&#39;••−•&#39;</span>,
+    <span style="color:#e6db74">&#39;G&#39;</span> <span style="color:#f92672">=&gt;</span>  <span style="color:#e6db74">&#39;−−•&#39;</span>,
+    <span style="color:#e6db74">&#39;H&#39;</span> <span style="color:#f92672">=&gt;</span>  <span style="color:#e6db74">&#39;••••&#39;</span>,
+    <span style="color:#e6db74">&#39;I&#39;</span> <span style="color:#f92672">=&gt;</span>  <span style="color:#e6db74">&#39;••&#39;</span>,
+    <span style="color:#e6db74">&#39;J&#39;</span> <span style="color:#f92672">=&gt;</span>  <span style="color:#e6db74">&#39;•−−−&#39;</span>,
+    <span style="color:#e6db74">&#39;K&#39;</span> <span style="color:#f92672">=&gt;</span>  <span style="color:#e6db74">&#39;−•−&#39;</span>,
+    [ <span style="color:#f92672">...</span> Lines omitted <span style="color:#66d9ef">for</span> brevity <span style="color:#f92672">...</span> ]
+    <span style="color:#e6db74">&#39;&#34;&#39;</span> <span style="color:#f92672">=&gt;</span>  <span style="color:#e6db74">&#39;•−••−•&#39;</span>,
+    <span style="color:#e6db74">&#39;@&#39;</span> <span style="color:#f92672">=&gt;</span>  <span style="color:#e6db74">&#39;•−−•−•&#39;</span>,
+    <span style="color:#e6db74">&#39;=&#39;</span> <span style="color:#f92672">=&gt;</span>  <span style="color:#e6db74">&#39;−•••−&#39;</span>,
 ;
-</code></pre><p>This is Kevin&rsquo;s encoding subroutine:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub encodeBinaryMorse($text is copy, :$visualise=False) {
-    $text=filterMorseInput($text);
-    my Str $bm = '';
-    my Str $last='';
-    for $text.comb -&gt; $a {
-        if $a eq ' ' { $bm ~=WG; $last = $a; next }; # Word gap
-        my $dd=%morse{$a};
-        my Str $j = '';
-        $bm ~= CG if $last !eq ' ' and $bm.chars &gt; 0 ; # character gap
-        # encode a single char
-        for $dd.comb -&gt; $i {
-            $j ~= ICG if $j.chars&gt;0 ; # intercharacter gap
-            $j ~= $i eq &quot;•&quot; ?? DOT !! DASH ;
+</code></pre></div><p>This is Kevin&rsquo;s encoding subroutine:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">encodeBinaryMorse</span>($text is copy, :$visualise=False) {
+    $text<span style="color:#f92672">=</span>filterMorseInput($text);
+    <span style="color:#66d9ef">my</span> Str $bm <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
+    <span style="color:#66d9ef">my</span> Str $last<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;&#39;</span>;
+    <span style="color:#66d9ef">for</span> $text<span style="color:#f92672">.</span>comb <span style="color:#f92672">-&gt;</span> $a {
+        <span style="color:#66d9ef">if</span> $a <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39; &#39;</span> { $bm <span style="color:#f92672">~=</span>WG; $last <span style="color:#f92672">=</span> $a; <span style="color:#66d9ef">next</span> }; <span style="color:#75715e"># Word gap</span>
+        <span style="color:#66d9ef">my</span> $dd<span style="color:#f92672">=</span>%morse{$a};
+        <span style="color:#66d9ef">my</span> Str $j <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
+        $bm <span style="color:#f92672">~=</span> CG <span style="color:#66d9ef">if</span> $last <span style="color:#f92672">!</span><span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39; &#39;</span> <span style="color:#f92672">and</span> $bm<span style="color:#f92672">.</span>chars <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> ; <span style="color:#75715e"># character gap</span>
+        <span style="color:#75715e"># encode a single char</span>
+        <span style="color:#66d9ef">for</span> $dd<span style="color:#f92672">.</span>comb <span style="color:#f92672">-&gt;</span> $i {
+            $j <span style="color:#f92672">~=</span> ICG <span style="color:#66d9ef">if</span> $j<span style="color:#f92672">.</span>chars<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span> ; <span style="color:#75715e"># intercharacter gap</span>
+            $j <span style="color:#f92672">~=</span> $i <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#34;•&#34;</span> ?? DOT <span style="color:#f92672">!!</span> DASH ;
         };
-        $bm ~= $j;
-        $last=$a;
+        $bm <span style="color:#f92672">~=</span> $j;
+        $last<span style="color:#f92672">=</span>$a;
     }
-    return $visualise ?? $bm !! $bm.trans([&quot; &quot;,&quot;\n&quot;,&quot;_&quot;] =&gt; '');
+    <span style="color:#66d9ef">return</span> $visualise ?? $bm <span style="color:#f92672">!!</span> $bm<span style="color:#f92672">.</span>trans([<span style="color:#e6db74">&#34; &#34;</span>,<span style="color:#e6db74">&#34;\n&#34;</span>,<span style="color:#e6db74">&#34;_&#34;</span>] <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;&#39;</span>);
 }
 
-sub filterMorseInput ($text) {
-    # upper case and remove non-morse chars.
-    return $text.uc.trans([%morse.keys,&quot; &quot;] =&gt; '', :complement);
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">filterMorseInput</span> ($text) {
+    <span style="color:#75715e"># upper case and remove non-morse chars.</span>
+    <span style="color:#66d9ef">return</span> $text<span style="color:#f92672">.</span>uc<span style="color:#f92672">.</span>trans([%morse<span style="color:#f92672">.</span>keys,<span style="color:#e6db74">&#34; &#34;</span>] <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;&#39;</span>, :complement);
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-035/mark-senn/perl6/ch-1.p6">Mark Senn</a> constructed his translation table as follows (notice the spaces between dots and dashes that are later converted to intra-character gaps):</p>
-<pre><code class="language-Perl6" data-lang="Perl6">my %plain2cipher =
-    a =&gt; '. -',          b =&gt; '- . . .',      c =&gt; '- . - .',
-    d =&gt; '- . .',        e =&gt; '.',            f =&gt; '. . - .',
-    g =&gt; '- - .',        h =&gt; '. . . .',      i =&gt; '. .',
-    [... Lines omitted for breevity... ]
-    8 =&gt; '- - - . .',    9 =&gt; '- - - - .',    0 =&gt; '- - - - -';
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-035/mark-senn/perl6/ch-1.p6">Mark Senn</a> constructed his translation table as follows (notice the spaces between dots and dashes that are later converted to intra-character gaps):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> %plain2cipher <span style="color:#f92672">=</span>
+    a <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;. -&#39;</span>,          b <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;- . . .&#39;</span>,      c <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;- . - .&#39;</span>,
+    d <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;- . .&#39;</span>,        e <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;.&#39;</span>,            f <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;. . - .&#39;</span>,
+    g <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;- - .&#39;</span>,        h <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;. . . .&#39;</span>,      i <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;. .&#39;</span>,
+    [<span style="color:#f92672">...</span> Lines omitted <span style="color:#66d9ef">for</span> breevity<span style="color:#f92672">...</span> ]
+    <span style="color:#ae81ff">8</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;- - - . .&#39;</span>,    <span style="color:#ae81ff">9</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;- - - - .&#39;</span>,    <span style="color:#ae81ff">0</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;- - - - -&#39;</span>;
 
-# Replace %plain2cipher values with corresponding binary values.
-for %plain2cipher.values -&gt; $_ is rw  {
-    s:g/'.'/1/;    # dot
-    s:g/'-'/111/;  # dash
-    s:g/' '/0/;    # intra-character gap
+<span style="color:#75715e"># Replace %plain2cipher values with corresponding binary values.</span>
+<span style="color:#66d9ef">for</span> %plain2cipher<span style="color:#f92672">.</span>values <span style="color:#f92672">-&gt;</span> $_ is rw  {
+    s:g<span style="color:#e6db74">/&#39;.&#39;/</span><span style="color:#ae81ff">1</span><span style="color:#f92672">/</span>;    <span style="color:#75715e"># dot</span>
+    s:g<span style="color:#e6db74">/&#39;-&#39;/</span><span style="color:#ae81ff">111</span><span style="color:#f92672">/</span>;  <span style="color:#75715e"># dash</span>
+    s:g<span style="color:#e6db74">/&#39; &#39;/</span><span style="color:#ae81ff">0</span><span style="color:#f92672">/</span>;    <span style="color:#75715e"># intra-character gap</span>
 }
-</code></pre><p>He then used the <code>invert</code> function to generate the <code>%cipher2plain</code> reverse lookup table. This is Mark&rsquo;s code for decoding a binary-coded Morse code:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">$_ = $ciphertext;
-$plaintext = '';
-my @word = .split(/0000000/);  # word gap
-loop (my $i = 0;  $i &lt; @word.elems;  $i++)  {
-    $_ = @word[$i];
-    my @char = .split(/000/);  # character gap
-    for (@char)  {
-        $plaintext ~= %cipher2plain{$_};
+</code></pre></div><p>He then used the <code>invert</code> function to generate the <code>%cipher2plain</code> reverse lookup table. This is Mark&rsquo;s code for decoding a binary-coded Morse code:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">$_ <span style="color:#f92672">=</span> $ciphertext;
+$plaintext <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
+<span style="color:#66d9ef">my</span> @word <span style="color:#f92672">=</span> <span style="color:#f92672">.</span>split(<span style="color:#e6db74">/0000000/</span>);  <span style="color:#75715e"># word gap</span>
+loop (<span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;  $i <span style="color:#f92672">&lt;</span> @word<span style="color:#f92672">.</span>elems;  $i<span style="color:#f92672">++</span>)  {
+    $_ <span style="color:#f92672">=</span> @word[$i];
+    <span style="color:#66d9ef">my</span> @char <span style="color:#f92672">=</span> <span style="color:#f92672">.</span>split(<span style="color:#e6db74">/000/</span>);  <span style="color:#75715e"># character gap</span>
+    <span style="color:#66d9ef">for</span> (@char)  {
+        $plaintext <span style="color:#f92672">~=</span> %cipher2plain{$_};
     }
-    ($i &lt; @word.elems - 1)  and  $plaintext ~= ' ';
+    ($i <span style="color:#f92672">&lt;</span> @word<span style="color:#f92672">.</span>elems <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)  <span style="color:#f92672">and</span>  $plaintext <span style="color:#f92672">~=</span> <span style="color:#e6db74">&#39; &#39;</span>;
 }
-&quot;plaintext:  $plaintext&quot;.say;
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-035/simon-proctor/perl6/ch-1.p6">Simon Proctor</a> hard-coded his translation table from ASCII letters to binary-encoded Morse codes:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">constant %MORSE-MAP = (
-    A =&gt; '10111',         B =&gt; '111010101',     C =&gt; '11101011101',    D =&gt; '1110101',
-    E =&gt; '1',             F =&gt; '101011101',     G =&gt; '111011101',      H =&gt; '1010101',
-    I =&gt; '101',           J =&gt; '1011101110111', K =&gt; '111010111',      L =&gt; '101110101',
-    [ ... Lines omitted for brevity ...]
-    Y =&gt; '1110101110111', Z =&gt; '11101110101',   ' ' =&gt; '0'
+<span style="color:#e6db74">&#34;plaintext:  $plaintext&#34;</span><span style="color:#f92672">.</span>say;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-035/simon-proctor/perl6/ch-1.p6">Simon Proctor</a> hard-coded his translation table from ASCII letters to binary-encoded Morse codes:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">constant %MORSE<span style="color:#f92672">-</span>MAP <span style="color:#f92672">=</span> (
+    A <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;10111&#39;</span>,         B <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;111010101&#39;</span>,     C <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;11101011101&#39;</span>,    D <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;1110101&#39;</span>,
+    E <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;1&#39;</span>,             F <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;101011101&#39;</span>,     G <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;111011101&#39;</span>,      H <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;1010101&#39;</span>,
+    I <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;101&#39;</span>,           J <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;1011101110111&#39;</span>, K <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;111010111&#39;</span>,      L <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;101110101&#39;</span>,
+    [ <span style="color:#f92672">...</span> Lines omitted <span style="color:#66d9ef">for</span> brevity <span style="color:#f92672">...</span>]
+    Y <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;1110101110111&#39;</span>, Z <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;11101110101&#39;</span>,   <span style="color:#e6db74">&#39; &#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;0&#39;</span>
 );
-</code></pre><p>Simon&rsquo;s code for encoding plain text is quite concise and goes as follows:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">my $input = $*IN.slurp.chomp.uc;
-die &quot;A-Z AND SPACES ONLY STOP PLEASE TRY AGAIN STOP&quot; unless $input ~~ m!^ &lt;[A..Z \  \n \t]&gt;+ $!;
+</code></pre></div><p>Simon&rsquo;s code for encoding plain text is quite concise and goes as follows:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> $input <span style="color:#f92672">=</span> $<span style="color:#960050;background-color:#1e0010">*</span>IN<span style="color:#f92672">.</span>slurp<span style="color:#f92672">.</span>chomp<span style="color:#f92672">.</span>uc;
+die <span style="color:#e6db74">&#34;A-Z AND SPACES ONLY STOP PLEASE TRY AGAIN STOP&#34;</span> <span style="color:#66d9ef">unless</span> $input <span style="color:#f92672">~~</span> <span style="color:#e6db74">m!^ &lt;[A..Z \  \n \t]&gt;+ $!</span>;
 
-my $bin-morse = $input.comb().map( { $_.subst( /\n|\t/, &quot; &quot; ) } ).map( { %MORSE-MAP{$_} } ).join('000');
-$bin-morse = &quot;{'0' x 7 - ( $bin-morse.codes % 7 ) }{$bin-morse}&quot;;
-my @stream = $bin-morse.comb(/. ** {7}/).map( *.parse-base(2) );
-print Blob.new(@stream).decode(&quot;ascii&quot;);
-</code></pre><p>And this is his code pipeline for decoding binary-encoded Morse code:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">    say $*IN
-    .slurp(:bin)
-    .decode(&quot;ascii&quot;)
-    .comb()
-    .map( *.ord )
-    .map( *.base(2) )
-    .map( *.fmt( &quot;%07s&quot; ) )
-    .join(&quot;&quot;)
-    .subst( /^0+/, &quot;&quot; )
-    .split(&quot;0000000&quot;)
-    .map( *.split(&quot;000&quot;).map( { %REVERSE-MORSE-MAP{$_} } ).join(&quot;&quot;) ).join(&quot; &quot;)
+<span style="color:#66d9ef">my</span> $bin<span style="color:#f92672">-</span>morse <span style="color:#f92672">=</span> $input<span style="color:#f92672">.</span>comb()<span style="color:#f92672">.</span>map( { $_<span style="color:#f92672">.</span>subst(<span style="color:#e6db74"> /\n|\t/</span>, <span style="color:#e6db74">&#34; &#34;</span> ) } )<span style="color:#f92672">.</span>map( { %MORSE<span style="color:#f92672">-</span>MAP{$_} } )<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#39;000&#39;</span>);
+$bin<span style="color:#f92672">-</span>morse <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;{&#39;0&#39; x 7 - ( $bin-morse.codes % 7 ) }{$bin-morse}&#34;</span>;
+<span style="color:#66d9ef">my</span> @stream <span style="color:#f92672">=</span> $bin<span style="color:#f92672">-</span>morse<span style="color:#f92672">.</span>comb(<span style="color:#e6db74">/. ** {7}/</span>)<span style="color:#f92672">.</span>map( <span style="color:#f92672">*.</span>parse<span style="color:#f92672">-</span>base(<span style="color:#ae81ff">2</span>) );
+<span style="color:#66d9ef">print</span> Blob<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(@stream)<span style="color:#f92672">.</span>decode(<span style="color:#e6db74">&#34;ascii&#34;</span>);
+</code></pre></div><p>And this is his code pipeline for decoding binary-encoded Morse code:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">    say $<span style="color:#960050;background-color:#1e0010">*</span>IN
+    <span style="color:#f92672">.</span>slurp(:bin)
+    <span style="color:#f92672">.</span>decode(<span style="color:#e6db74">&#34;ascii&#34;</span>)
+    <span style="color:#f92672">.</span>comb()
+    <span style="color:#f92672">.</span>map( <span style="color:#f92672">*.</span>ord )
+    <span style="color:#f92672">.</span>map( <span style="color:#f92672">*.</span>base(<span style="color:#ae81ff">2</span>) )
+    <span style="color:#f92672">.</span>map( <span style="color:#f92672">*.</span>fmt( <span style="color:#e6db74">&#34;%07s&#34;</span> ) )
+    <span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34;&#34;</span>)
+    <span style="color:#f92672">.</span>subst(<span style="color:#e6db74"> /^0+/</span>, <span style="color:#e6db74">&#34;&#34;</span> )
+    <span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34;0000000&#34;</span>)
+    <span style="color:#f92672">.</span>map( <span style="color:#f92672">*.</span>split(<span style="color:#e6db74">&#34;000&#34;</span>)<span style="color:#f92672">.</span>map( { %REVERSE<span style="color:#f92672">-</span>MORSE<span style="color:#f92672">-</span>MAP{$_} } )<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34;&#34;</span>) )<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34; &#34;</span>)
     ;
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-035/jaldhar-h-vyas/perl6/ch-1.p6">Jaldhar H. Vyas</a> also hard-coded his translation table from ASCII letters to binary-encoded Morse strings:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">my %to_morse = (
-    'A' =&gt; '10111',
-    'B' =&gt; '111010101',
-    'C' =&gt; '11101011101',
-    'D' =&gt; '1110101',
-    'E' =&gt; '1',
-    'F' =&gt; '101011101',
-    [ ... Lines omitted for brevity}
-    '9' =&gt; '11101110111011101',
-    '0' =&gt; '1110111011101110111',
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-035/jaldhar-h-vyas/perl6/ch-1.p6">Jaldhar H. Vyas</a> also hard-coded his translation table from ASCII letters to binary-encoded Morse strings:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> %to_morse <span style="color:#f92672">=</span> (
+    <span style="color:#e6db74">&#39;A&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;10111&#39;</span>,
+    <span style="color:#e6db74">&#39;B&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;111010101&#39;</span>,
+    <span style="color:#e6db74">&#39;C&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;11101011101&#39;</span>,
+    <span style="color:#e6db74">&#39;D&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;1110101&#39;</span>,
+    <span style="color:#e6db74">&#39;E&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;1&#39;</span>,
+    <span style="color:#e6db74">&#39;F&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;101011101&#39;</span>,
+    [ <span style="color:#f92672">...</span> Lines omitted <span style="color:#66d9ef">for</span> brevity}
+    <span style="color:#e6db74">&#39;9&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;11101110111011101&#39;</span>,
+    <span style="color:#e6db74">&#39;0&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;1110111011101110111&#39;</span>,
 );
-</code></pre><p>Jaldhar&rsquo;s subroutine for encoding is as follows:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub morse_encode(Str $message) {
-    my @words = split /\W/, $message;
-    for @words &lt;-&gt; $word {
-        my @chars = $word.comb;
-        for @chars &lt;-&gt; $c {
-            if %to_morse{uc $c}:exists {
-                $c = %to_morse{uc $c};
+</code></pre></div><p>Jaldhar&rsquo;s subroutine for encoding is as follows:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">morse_encode</span>(Str $message) {
+    <span style="color:#66d9ef">my</span> @words <span style="color:#f92672">=</span> split <span style="color:#e6db74">/\W/</span>, $message;
+    <span style="color:#66d9ef">for</span> @words <span style="color:#e6db74">&lt;-&gt;</span> $word {
+        <span style="color:#66d9ef">my</span> @chars <span style="color:#f92672">=</span> $word<span style="color:#f92672">.</span>comb;
+        <span style="color:#66d9ef">for</span> @chars <span style="color:#e6db74">&lt;-&gt;</span> $c {
+            <span style="color:#66d9ef">if</span> %to_morse{uc $c}:exists {
+                $c <span style="color:#f92672">=</span> %to_morse{uc $c};
             }
         }
-        $word = @chars.join($CHARACTER_GAP);
+        $word <span style="color:#f92672">=</span> @chars<span style="color:#f92672">.</span>join($CHARACTER_GAP);
     }
-    return @words.join($WORD_GAP);
+    <span style="color:#66d9ef">return</span> @words<span style="color:#f92672">.</span>join($WORD_GAP);
 }
-</code></pre><p>And his decoding subroutine is like so:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub morse_decode(Str $message) {
+</code></pre></div><p>And his decoding subroutine is like so:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">morse_decode</span>(Str $message) {
 
-    my @words = $message.split($WORD_GAP);
-    for @words &lt;-&gt; $word {
-        my @chars = $word.split($CHARACTER_GAP);
-        for @chars &lt;-&gt; $c {
-            if %from_morse{$c}:exists {
-                $c = %from_morse{$c};
+    <span style="color:#66d9ef">my</span> @words <span style="color:#f92672">=</span> $message<span style="color:#f92672">.</span>split($WORD_GAP);
+    <span style="color:#66d9ef">for</span> @words <span style="color:#e6db74">&lt;-&gt;</span> $word {
+        <span style="color:#66d9ef">my</span> @chars <span style="color:#f92672">=</span> $word<span style="color:#f92672">.</span>split($CHARACTER_GAP);
+        <span style="color:#66d9ef">for</span> @chars <span style="color:#e6db74">&lt;-&gt;</span> $c {
+            <span style="color:#66d9ef">if</span> %from_morse{$c}:exists {
+                $c <span style="color:#f92672">=</span> %from_morse{$c};
             }
         }
-        $word = @chars.join;
+        $word <span style="color:#f92672">=</span> @chars<span style="color:#f92672">.</span>join;
     }
-    return @words.join(q{ });
+    <span style="color:#66d9ef">return</span> @words<span style="color:#f92672">.</span>join(<span style="color:#e6db74">q{ }</span>);
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-035/javier-luque/perl6/ch-1.p6">Javier Luque</a> also used a hard-coded lookup table that he apparently created with a Perl 5 script in the course of solving the task in P5:</p>
-<pre><code class="language-Perl6" data-lang="Perl6"># I generated this lookup table using a modified perl5 script
-my %morse = (
-'!' =&gt; '1010111011101',     &quot;'&quot; =&gt; '1011101110111011101',
-'+' =&gt; '1011101011101',     ',' =&gt; '1110111010101110111',
-'-' =&gt; '111010101010111',   '.' =&gt; '10111010111010111',
-'/' =&gt; '1110101010111',     '0' =&gt; '1110111011101110111',
-'1' =&gt; '10111011101110111', '2' =&gt; '101011101110111',
-[ ... Lines omitted for brevity ...]
-'W' =&gt; '101110111',         'X' =&gt; '11101010111',
-'Y' =&gt; '1110101110111',     'Z' =&gt; '11101110101',
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-035/javier-luque/perl6/ch-1.p6">Javier Luque</a> also used a hard-coded lookup table that he apparently created with a Perl 5 script in the course of solving the task in P5:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#75715e"># I generated this lookup table using a modified perl5 script</span>
+<span style="color:#66d9ef">my</span> %morse <span style="color:#f92672">=</span> (
+<span style="color:#e6db74">&#39;!&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;1010111011101&#39;</span>,     <span style="color:#e6db74">&#34;&#39;&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;1011101110111011101&#39;</span>,
+<span style="color:#e6db74">&#39;+&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;1011101011101&#39;</span>,     <span style="color:#e6db74">&#39;,&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;1110111010101110111&#39;</span>,
+<span style="color:#e6db74">&#39;-&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;111010101010111&#39;</span>,   <span style="color:#e6db74">&#39;.&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;10111010111010111&#39;</span>,
+<span style="color:#e6db74">&#39;/&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;1110101010111&#39;</span>,     <span style="color:#e6db74">&#39;0&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;1110111011101110111&#39;</span>,
+<span style="color:#e6db74">&#39;1&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;10111011101110111&#39;</span>, <span style="color:#e6db74">&#39;2&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;101011101110111&#39;</span>,
+[ <span style="color:#f92672">...</span> Lines omitted <span style="color:#66d9ef">for</span> brevity <span style="color:#f92672">...</span>]
+<span style="color:#e6db74">&#39;W&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;101110111&#39;</span>,         <span style="color:#e6db74">&#39;X&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;11101010111&#39;</span>,
+<span style="color:#e6db74">&#39;Y&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;1110101110111&#39;</span>,     <span style="color:#e6db74">&#39;Z&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;11101110101&#39;</span>,
 );
-</code></pre><p>Encoding a plain text message into binary-encoded Morse code is done as follows:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">    my @words = $message.split(rx{\s+});
-    for (0 .. @words.end) -&gt; $i {
-        # Split characters
-        my @chars = @words[$i].comb;
+</code></pre></div><p>Encoding a plain text message into binary-encoded Morse code is done as follows:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">    <span style="color:#66d9ef">my</span> @words <span style="color:#f92672">=</span> $message<span style="color:#f92672">.</span>split(rx{<span style="color:#f92672">\</span>s<span style="color:#f92672">+</span>});
+    <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> @words<span style="color:#f92672">.</span>end) <span style="color:#f92672">-&gt;</span> $i {
+        <span style="color:#75715e"># Split characters</span>
+        <span style="color:#66d9ef">my</span> @chars <span style="color:#f92672">=</span> @words[$i]<span style="color:#f92672">.</span>comb;
 
-        for (0 .. @chars.end) -&gt; $j {
-            # Translate the character
-            $encoded_message ~= %morse{@chars[$j].uc};
+        <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> @chars<span style="color:#f92672">.</span>end) <span style="color:#f92672">-&gt;</span> $j {
+            <span style="color:#75715e"># Translate the character</span>
+            $encoded_message <span style="color:#f92672">~=</span> %morse{@chars[$j]<span style="color:#f92672">.</span>uc};
 
-            # Add the character gap
-            $encoded_message ~= $char_gap
-                unless ($j == @chars.end);
+            <span style="color:#75715e"># Add the character gap</span>
+            $encoded_message <span style="color:#f92672">~=</span> $char_gap
+                <span style="color:#66d9ef">unless</span> ($j <span style="color:#f92672">==</span> @chars<span style="color:#f92672">.</span>end);
         }
-        # Add the word gap
-        $encoded_message ~= $word_gap
-            unless ($i == (@words.end));
+        <span style="color:#75715e"># Add the word gap</span>
+        $encoded_message <span style="color:#f92672">~=</span> $word_gap
+            <span style="color:#66d9ef">unless</span> ($i <span style="color:#f92672">==</span> (@words<span style="color:#f92672">.</span>end));
     }
-</code></pre><p>And this is Javier&rsquo;s loop for decoding:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">    my @words = $message.split($word_gap);
-    for (0 .. @words - 1) -&gt; $i {
-        # Split characters
-        my @chars = @words[$i].split($char_gap);
+</code></pre></div><p>And this is Javier&rsquo;s loop for decoding:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">    <span style="color:#66d9ef">my</span> @words <span style="color:#f92672">=</span> $message<span style="color:#f92672">.</span>split($word_gap);
+    <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> @words <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">-&gt;</span> $i {
+        <span style="color:#75715e"># Split characters</span>
+        <span style="color:#66d9ef">my</span> @chars <span style="color:#f92672">=</span> @words[$i]<span style="color:#f92672">.</span>split($char_gap);
 
-        for (0 .. @chars - 1) -&gt; $j {
-            # Translate the character
-            $decoded_message ~= %morse{@chars[$j]};
+        <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> @chars <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">-&gt;</span> $j {
+            <span style="color:#75715e"># Translate the character</span>
+            $decoded_message <span style="color:#f92672">~=</span> %morse{@chars[$j]};
         }
 
-        # Add the word gap
-        $decoded_message ~= ' '
-            unless ($i == (@words - 1));
+        <span style="color:#75715e"># Add the word gap</span>
+        $decoded_message <span style="color:#f92672">~=</span> <span style="color:#e6db74">&#39; &#39;</span>
+            <span style="color:#66d9ef">unless</span> ($i <span style="color:#f92672">==</span> (@words <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>));
     }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-035/roger-bell-west/perl6/ch-1.p6">Roger Bell West</a> created a <code>%t</code> hash mapping ASCII letters to dots and dashes:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">my %t=(
-  E =&gt; '.',
-  I =&gt; '..',
-  S =&gt; '...',
-  H =&gt; '....',
-  5 =&gt; '.....',
-  4 =&gt; '...._',
-  V =&gt; '..._',
-  [ ... Lines omitted for brevity ...]
-  9 =&gt; '____.',
-  0 =&gt; '_____',
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-035/roger-bell-west/perl6/ch-1.p6">Roger Bell West</a> created a <code>%t</code> hash mapping ASCII letters to dots and dashes:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> %t<span style="color:#f92672">=</span>(
+  E <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;.&#39;</span>,
+  I <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;..&#39;</span>,
+  S <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;...&#39;</span>,
+  H <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;....&#39;</span>,
+  <span style="color:#ae81ff">5</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;.....&#39;</span>,
+  <span style="color:#ae81ff">4</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;...._&#39;</span>,
+  V <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;..._&#39;</span>,
+  [ <span style="color:#f92672">...</span> Lines omitted <span style="color:#66d9ef">for</span> brevity <span style="color:#f92672">...</span>]
+  <span style="color:#ae81ff">9</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;____.&#39;</span>,
+  <span style="color:#ae81ff">0</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;_____&#39;</span>,
 );
-</code></pre><p>And used it to created a <code>%e</code> lookup table mapping ASCII letters to binary-encoded Morse codes:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">my %e;
-for keys %t -&gt; $char {
-  %e{$char}=join('0',map {{'.' =&gt; '1',
-                           '_' =&gt; '111'}.{$_}},
-                     grep /./,
-                     split '',%t{$char});
+</code></pre></div><p>And used it to created a <code>%e</code> lookup table mapping ASCII letters to binary-encoded Morse codes:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> %e;
+<span style="color:#66d9ef">for</span> keys %t <span style="color:#f92672">-&gt;</span> $char {
+  %e{$char}<span style="color:#f92672">=</span>join(<span style="color:#e6db74">&#39;0&#39;</span>,map {{<span style="color:#e6db74">&#39;.&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;1&#39;</span>,
+                           <span style="color:#e6db74">&#39;_&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;111&#39;</span>}<span style="color:#f92672">.</span>{$_}},
+                     grep <span style="color:#e6db74">/./</span>,
+                     split <span style="color:#e6db74">&#39;&#39;</span>,%t{$char});
 }
-</code></pre><p>His encoding code then goes as follows:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">my @in;
-for lines() {
-  .chomp;
-  my $t=uc($_);
-  $t ~~ s:g/[^ $chars]//;
+</code></pre></div><p>His encoding code then goes as follows:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> @in;
+<span style="color:#66d9ef">for</span> lines() {
+  <span style="color:#f92672">.</span>chomp;
+  <span style="color:#66d9ef">my</span> $t<span style="color:#f92672">=</span>uc($_);
+  $t <span style="color:#f92672">~~</span> s:g<span style="color:#e6db74">/[^ $chars]/</span><span style="color:#f92672">/</span>;
   push @in,$t;
 }
 
-my $m=join(' ',@in);
+<span style="color:#66d9ef">my</span> $m<span style="color:#f92672">=</span>join(<span style="color:#e6db74">&#39; &#39;</span>,@in);
 
-my @l;
-for grep /./,split ' ',$m -&gt; $word {
-  my @w;
-  for grep /./,split '',$word -&gt; $char {
+<span style="color:#66d9ef">my</span> @l;
+<span style="color:#66d9ef">for</span> grep <span style="color:#e6db74">/./</span>,split <span style="color:#e6db74">&#39; &#39;</span>,$m <span style="color:#f92672">-&gt;</span> $word {
+  <span style="color:#66d9ef">my</span> @w;
+  <span style="color:#66d9ef">for</span> grep <span style="color:#e6db74">/./</span>,split <span style="color:#e6db74">&#39;&#39;</span>,$word <span style="color:#f92672">-&gt;</span> $char {
     push @w,%e{$char};
   }
-  push @l,join('000',@w);
+  push @l,join(<span style="color:#e6db74">&#39;000&#39;</span>,@w);
 }
-print join('0000000',@l),&quot;\n&quot;;
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-035/ruben-westerberg/perl6/ch-1.p6">Ruben Westerberg</a> constructed his lookup table as follows:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">my %forwardTable=map { (.key=&gt; join(&quot;0&quot;,comb &quot;&quot;,.value))}, (
-    a=&gt;&quot;.-&quot;,
-    b=&gt;&quot;-...&quot;,
-    c=&gt;&quot;-.-.&quot;,
-    d=&gt;&quot;-..&quot;,
-    e=&gt;&quot;.&quot;,
-    [ ... Lines omitted for brevity  ...]
-    9=&gt;&quot;----.&quot;,
-    0=&gt;&quot;-----&quot;,
-    &quot; &quot;=&gt;&quot;&quot;
+<span style="color:#66d9ef">print</span> join(<span style="color:#e6db74">&#39;0000000&#39;</span>,@l),<span style="color:#e6db74">&#34;\n&#34;</span>;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-035/ruben-westerberg/perl6/ch-1.p6">Ruben Westerberg</a> constructed his lookup table as follows:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> %forwardTable<span style="color:#f92672">=</span>map { (<span style="color:#f92672">.</span>key<span style="color:#f92672">=&gt;</span> join(<span style="color:#e6db74">&#34;0&#34;</span>,comb <span style="color:#e6db74">&#34;&#34;</span>,<span style="color:#f92672">.</span>value))}, (
+    a<span style="color:#f92672">=&gt;</span><span style="color:#e6db74">&#34;.-&#34;</span>,
+    b<span style="color:#f92672">=&gt;</span><span style="color:#e6db74">&#34;-...&#34;</span>,
+    c<span style="color:#f92672">=&gt;</span><span style="color:#e6db74">&#34;-.-.&#34;</span>,
+    d<span style="color:#f92672">=&gt;</span><span style="color:#e6db74">&#34;-..&#34;</span>,
+    e<span style="color:#f92672">=&gt;</span><span style="color:#e6db74">&#34;.&#34;</span>,
+    [ <span style="color:#f92672">...</span> Lines omitted <span style="color:#66d9ef">for</span> brevity  <span style="color:#f92672">...</span>]
+    <span style="color:#ae81ff">9</span><span style="color:#f92672">=&gt;</span><span style="color:#e6db74">&#34;----.&#34;</span>,
+    <span style="color:#ae81ff">0</span><span style="color:#f92672">=&gt;</span><span style="color:#e6db74">&#34;-----&#34;</span>,
+    <span style="color:#e6db74">&#34; &#34;</span><span style="color:#f92672">=&gt;</span><span style="color:#e6db74">&#34;&#34;</span>
 );
-</code></pre><p>His encoding subroutine uses a <code>for ... when</code> construct (remember that <code>when</code> needs <code>$_</code> to be populated with the value being tested, <code>for</code> can do that as well as <code>given</code>):</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub encode ($in) {
+</code></pre></div><p>His encoding subroutine uses a <code>for ... when</code> construct (remember that <code>when</code> needs <code>$_</code> to be populated with the value being tested, <code>for</code> can do that as well as <code>given</code>):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">encode</span> ($in) {
 
-    my @codes=map { |($_,&quot;000&quot;) },  %forwardTable{$in.comb(&quot;&quot;)};
-    @codes.pop;
-    my $out=&quot;&quot;;
-    for (map { |(comb &quot;&quot;, $_)}, @codes) {
-        when /\./ {
-            $out~=&quot;1&quot;;
+    <span style="color:#66d9ef">my</span> @codes<span style="color:#f92672">=</span>map { <span style="color:#f92672">|</span>($_,<span style="color:#e6db74">&#34;000&#34;</span>) },  %forwardTable{$in<span style="color:#f92672">.</span>comb(<span style="color:#e6db74">&#34;&#34;</span>)};
+    @codes<span style="color:#f92672">.</span>pop;
+    <span style="color:#66d9ef">my</span> $out<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>;
+    <span style="color:#66d9ef">for</span> (map { <span style="color:#f92672">|</span>(comb <span style="color:#e6db74">&#34;&#34;</span>, $_)}, @codes) {
+        when <span style="color:#e6db74">/\./</span> {
+            $out<span style="color:#f92672">~=</span><span style="color:#e6db74">&#34;1&#34;</span>;
         }
-        when /\-/ {
-            $out~=&quot;111&quot;;
+        when <span style="color:#e6db74">/\-/</span> {
+            $out<span style="color:#f92672">~=</span><span style="color:#e6db74">&#34;111&#34;</span>;
         }
-        when /0/ {
-            $out~=&quot;0&quot;;
+        when <span style="color:#e6db74">/0/</span> {
+            $out<span style="color:#f92672">~=</span><span style="color:#e6db74">&#34;0&#34;</span>;
         }
         default {
         }
     }
     $out;
 }
-</code></pre><h3 id="see-also">SEE ALSO</h3>
+</code></pre></div><h3 id="see-also">SEE ALSO</h3>
 <p>Three blog posts this time:</p>
 <ul>
 <li>

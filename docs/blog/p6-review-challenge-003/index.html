@@ -16,7 +16,7 @@
 
     <meta name="description" content="Laurent Rosenfeld Weekly Review: Challenge - #003.">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.66.0-DEV" />
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -187,21 +187,21 @@
 <p>Here, <code>$primes</code> is an infinite list or prime numbers. Quite obviously, the computer did not calculate and populate an infinite list of primes. It is a <em>lazy</em> list, which means that the program now knows how to calculate any element of the list, but it will actually do so only when required. This is great because we don&rsquo;t need to know in advance how many primes we really need: we just prepare a lazy infinite list, and the program will compute only the primes that are actually needed by the program.</p>
 <h4 id="building-the-hamming-sequence">Building the Hamming Sequence</h4>
 <p>Now, it is easy to go through all the integers between 1 and 100 and find out if they can be divided evenly by any of the primes larger than 5:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">my @prime_numbers = grep {.is-prime}, 5^..Inf;    # we need only primes strictly larger than 5
-my @regulars;
-for (1 .. 100) -&gt; $num {
-    my $is_regular = True;
-    for @prime_numbers -&gt; $prime {
-        last if $prime &gt; $num / 2;
-        if ( $num %% $prime ) {
-            $is_regular = False;
-            last;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> @prime_numbers <span style="color:#f92672">=</span> grep {<span style="color:#f92672">.</span>is<span style="color:#f92672">-</span>prime}, <span style="color:#ae81ff">5</span><span style="color:#f92672">^..</span>Inf;    <span style="color:#75715e"># we need only primes strictly larger than 5</span>
+<span style="color:#66d9ef">my</span> @regulars;
+<span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">100</span>) <span style="color:#f92672">-&gt;</span> $num {
+    <span style="color:#66d9ef">my</span> $is_regular <span style="color:#f92672">=</span> True;
+    <span style="color:#66d9ef">for</span> @prime_numbers <span style="color:#f92672">-&gt;</span> $prime {
+        <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $prime <span style="color:#f92672">&gt;</span> $num <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>;
+        <span style="color:#66d9ef">if</span> ( $num %% <span style="color:#960050;background-color:#1e0010">$</span>prime ) {
+            $is_regular <span style="color:#f92672">=</span> False;
+            <span style="color:#66d9ef">last</span>;
         }
     }
-    push @regulars, $num if $is_regular;
+    push @regulars, $num <span style="color:#66d9ef">if</span> $is_regular;
 }
 say @regulars;
-</code></pre><p>This will print the following Hamming:</p>
+</code></pre></div><p>This will print the following Hamming:</p>
 <pre><code>[1 2 3 4 5 6 8 9 10 12 15 16 18 20 24 25 27 30 32 36 40 45 48 50 54 60 64 72 75 80 81 90 96 100]
 </code></pre>
 <h4 id="producing-directly-the-products-of-the-powers-of-2-3-and-5">Producing Directly the Products of the Powers of 2, 3, and 5</h4>
@@ -215,37 +215,37 @@ say @regulars;
 (a1y a1z a2y a2z b1y b1z b2y b2z c1y c1z c2y c2z)
 </code></pre>
 <p>We can use the cross metaoperator together with the multiplication operator (<code>X*</code>) to generate the products of the various powers of 2, 3 and 5:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">my %powers;
-for 2, 3, 5 -&gt; $n {%powers{$n} = (1, $n, $n**2 ... *);}
-my @hamming_sequence = sort grep { $_ &lt;= 100},
-    (%powers{2}[0..6] X* %powers{3}[0..4] X* %powers{5}[0..2]);
-</code></pre><p>First, we use the sequence (<code>...</code>) to generate three lazy infinite lists of the powers of 2, 3 and 5 (stored in the <code>%powers</code> hash), and, then, we use <code>X*</code> to generate a lazy infinite list of all the products, and finally apply a <code>grep</code> to keep only the 5-smooth numbers smaller than 100 and sort the result.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> %powers;
+<span style="color:#66d9ef">for</span> <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">5</span> <span style="color:#f92672">-&gt;</span> $n {%powers{$n} <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>, $n, $n<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">...</span> <span style="color:#f92672">*</span>);}
+<span style="color:#66d9ef">my</span> @hamming_sequence <span style="color:#f92672">=</span> sort grep { $_ <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">100</span>},
+    (%powers{<span style="color:#ae81ff">2</span>}[<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">6</span>] X<span style="color:#f92672">*</span> %powers{<span style="color:#ae81ff">3</span>}[<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">4</span>] X<span style="color:#f92672">*</span> %powers{<span style="color:#ae81ff">5</span>}[<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">2</span>]);
+</code></pre></div><p>First, we use the sequence (<code>...</code>) to generate three lazy infinite lists of the powers of 2, 3 and 5 (stored in the <code>%powers</code> hash), and, then, we use <code>X*</code> to generate a lazy infinite list of all the products, and finally apply a <code>grep</code> to keep only the 5-smooth numbers smaller than 100 and sort the result.</p>
 <p>We obtain the same Hamming sequence as before.</p>
 <h2 id="alternative-solutions">Alternative Solutions</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-003/arne-sommer/perl6/ch-1.p6">Arne Sommmer</a> used three nested <code>for</code> loops going from zero to infinity to produce 5-smooth numbers and leaving each loop when reaching the <code>$limit</code> passed as a parameter to the program:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub MAIN (Int $limit where $limit &gt; 0)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> (Int $limit where $limit &gt; 0)
 {
-  my SetHash $solution = SetHash;
+  <span style="color:#66d9ef">my</span> SetHash $solution <span style="color:#f92672">=</span> SetHash;
 
-  for 0 .. Inf -&gt; $c
+  <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> Inf <span style="color:#f92672">-&gt;</span> $c
   {
-    last if 5 ** $c &gt; $limit;
+    <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> <span style="color:#ae81ff">5</span> <span style="color:#f92672">**</span> $c <span style="color:#f92672">&gt;</span> $limit;
 
-    for 0 .. Inf -&gt; $b
+    <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> Inf <span style="color:#f92672">-&gt;</span> $b
     {
-      last if 3 ** $b &gt; $limit;
+      <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">**</span> $b <span style="color:#f92672">&gt;</span> $limit;
 
-      for 0 .. Inf -&gt; $a
+      <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> Inf <span style="color:#f92672">-&gt;</span> $a
       {
-         my $value = 2 ** $a * 3 ** $b * 5 ** $c;
-         last if $value &gt; $limit;
-         $solution{$value} = True;
+         <span style="color:#66d9ef">my</span> $value <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">**</span> $a <span style="color:#f92672">*</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">**</span> $b <span style="color:#f92672">*</span> <span style="color:#ae81ff">5</span> <span style="color:#f92672">**</span> $c;
+         <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $value <span style="color:#f92672">&gt;</span> $limit;
+         $solution{$value} <span style="color:#f92672">=</span> True;
       }
     }
   }
-  say $solution.keys.sort.join(&quot; &quot;);
+  say $solution<span style="color:#f92672">.</span>keys<span style="color:#f92672">.</span>sort<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34; &#34;</span>);
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-003/mark-senn/perl6/ch-1.p6">Mark Senn</a> similarly used nested <code>for</code> loops:</p>
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-003/mark-senn/perl6/ch-1.p6">Mark Senn</a> similarly used nested <code>for</code> loops:</p>
 <pre><code>my $m = 2;
 
 # Construct the result.
@@ -262,31 +262,31 @@ for (1..$m) -&gt; $i  {
 # Print the result.
 @r.sort.join(&quot;\n&quot;).say;
 </code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-003/doug-schrag/perl6/ch-1.p6">Doug Schrag</a> used the <code>Z</code> infix zip operator and the <code>XZ+</code> metaoperator to produce the following solution:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub MAIN(Int :$limit = 9) {
-    # Use Slip() to flatten the list just one level
-    my @exponents-list = (^$limit).produce(&amp;grow)
-        .map({ Slip( $_ ?? $_ !! () ) });
-    # 3D coordinates used as powers of the allowable
-    # prime factors
-    for @exponents-list {
-        # @() is used to indicate multiple element in the
-        # argument list to the Z operator (also below)
-        say [*] (2, 3, 5) Z** @($_)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(Int :$limit = 9) {
+    <span style="color:#75715e"># Use Slip() to flatten the list just one level</span>
+    <span style="color:#66d9ef">my</span> @exponents<span style="color:#f92672">-</span>list <span style="color:#f92672">=</span> (<span style="color:#f92672">^</span>$limit)<span style="color:#f92672">.</span>produce(<span style="color:#f92672">&amp;</span>grow)
+        <span style="color:#f92672">.</span>map({ Slip( $_ ?? $_ <span style="color:#f92672">!!</span> () ) });
+    <span style="color:#75715e"># 3D coordinates used as powers of the allowable</span>
+    <span style="color:#75715e"># prime factors</span>
+    <span style="color:#66d9ef">for</span> @exponents<span style="color:#f92672">-</span>list {
+        <span style="color:#75715e"># @() is used to indicate multiple element in the</span>
+        <span style="color:#75715e"># argument list to the Z operator (also below)</span>
+        say [<span style="color:#f92672">*</span>] (<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">5</span>) Z<span style="color:#f92672">**</span> @<span style="color:#960050;background-color:#1e0010">($</span>_)
     }
 }
 
-multi sub grow (Int, Int) { ((0, 0, 0),) }
-multi sub grow (List $a, Int $b --&gt; List()) {
-    # Sequence of integral points in 3D space where sum
-    # of coordinates is the next integer (0, 1, 2 ...)
-    ( @($a) XZ+ (1, 0, 0), (0, 1, 0), (0, 0, 1) )
-        .map(*.List).unique(:with(&amp;[eqv]));
+multi <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">grow</span> (Int, Int) { ((<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>),) }
+multi <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">grow</span> (List $a, Int $b --&gt; List()) {
+    <span style="color:#75715e"># Sequence of integral points in 3D space where sum</span>
+    <span style="color:#75715e"># of coordinates is the next integer (0, 1, 2 ...)</span>
+    ( @<span style="color:#960050;background-color:#1e0010">($</span>a) XZ<span style="color:#f92672">+</span> (<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>), (<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>), (<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>) )
+        <span style="color:#f92672">.</span>map(<span style="color:#f92672">*.</span>List)<span style="color:#f92672">.</span>unique(:with(<span style="color:#f92672">&amp;</span>[eqv]));
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-003/fjwhittle/perl6/ch-1.p6">Francis J. Whittle</a> used a <code>gather/take</code> block to build some iterators generating lists, and promises to allow for concurrent programming. A quite interesting implementation, which may look a bit complicated, but runs very fast even for finding large Hamming numbers:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">subset Count of Int where * &gt;= 0;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-003/fjwhittle/perl6/ch-1.p6">Francis J. Whittle</a> used a <code>gather/take</code> block to build some iterators generating lists, and promises to allow for concurrent programming. A quite interesting implementation, which may look a bit complicated, but runs very fast even for finding large Hamming numbers:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">subset Count of Int where <span style="color:#f92672">*</span> <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>;
 
-#| Script to generate 5-smooth numbers
-unit sub MAIN(
+<span style="color:#75715e">#| Script to generate 5-smooth numbers</span>
+unit <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(
   Count :n(:$count) = 20, #= How many 5-smooth numbers to generate.
   Bool :$timing = False, #= Display timing information with output.
   *@print #= Specific indices to show.
@@ -294,148 +294,148 @@ unit sub MAIN(
 
 # Use a lazy list to generate 5-smooth numbers
 my $smooth5 = gather {
-  # Initialize some iterators.
-  my ($i2, $i3, $i5) := ($smooth5.iterator for ^3);
-  my ($n2, $n3, $n5) := 1 xx 3;
+  <span style="color:#75715e"># Initialize some iterators.</span>
+  <span style="color:#66d9ef">my</span> ($i2, $i3, $i5) :<span style="color:#f92672">=</span> ($smooth5<span style="color:#f92672">.</span>iterator <span style="color:#66d9ef">for</span> <span style="color:#f92672">^</span><span style="color:#ae81ff">3</span>);
+  <span style="color:#66d9ef">my</span> ($n2, $n3, $n5) :<span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> xx <span style="color:#ae81ff">3</span>;
 
-  # Just keep generating.  Does the list become sparse?  I don't know!
+  <span style="color:#75715e"># Just keep generating.  Does the list become sparse?  I don&#39;t know!</span>
   loop {
-    # Minimum of the latest iterations
-    take my $n := ($n2, $n3, $n5).min;
+    <span style="color:#75715e"># Minimum of the latest iterations</span>
+    take <span style="color:#66d9ef">my</span> $n :<span style="color:#f92672">=</span> ($n2, $n3, $n5)<span style="color:#f92672">.</span>min;
 
-    # Advance the iterators that matched.
-    $n2 == $n and $n2 := $i2.pull-one * 2;
-    $n3 == $n and $n3 := $i3.pull-one * 3;
-    $n5 == $n and $n5 := $i5.pull-one * 5;
+    <span style="color:#75715e"># Advance the iterators that matched.</span>
+    $n2 <span style="color:#f92672">==</span> $n <span style="color:#f92672">and</span> $n2 :<span style="color:#f92672">=</span> $i2<span style="color:#f92672">.</span>pull<span style="color:#f92672">-</span>one <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span>;
+    $n3 <span style="color:#f92672">==</span> $n <span style="color:#f92672">and</span> $n3 :<span style="color:#f92672">=</span> $i3<span style="color:#f92672">.</span>pull<span style="color:#f92672">-</span>one <span style="color:#f92672">*</span> <span style="color:#ae81ff">3</span>;
+    $n5 <span style="color:#f92672">==</span> $n <span style="color:#f92672">and</span> $n5 :<span style="color:#f92672">=</span> $i5<span style="color:#f92672">.</span>pull<span style="color:#f92672">-</span>one <span style="color:#f92672">*</span> <span style="color:#ae81ff">5</span>;
   }
 }
 
-if $timing {
-  # This needs to be a discrete block.
+<span style="color:#66d9ef">if</span> $timing {
+  <span style="color:#75715e"># This needs to be a discrete block.</span>
   {
-    Promise.in(1 / 100).then: &amp;?BLOCK;
-    $*ERR.printf(Q:b'\r%6.2fs', (now - INIT now));
+    Promise<span style="color:#f92672">.</span>in(<span style="color:#ae81ff">1</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">100</span>)<span style="color:#f92672">.</span><span style="color:#66d9ef">then</span>: <span style="color:#f92672">&amp;</span>?BLOCK;
+    $<span style="color:#960050;background-color:#1e0010">*</span>ERR<span style="color:#f92672">.</span>printf(Q:b<span style="color:#e6db74">&#39;\r%6.2fs&#39;</span>, (now <span style="color:#f92672">-</span> <span style="color:#66d9ef">INIT</span> now));
   }
 }
 
-$smooth5.[^$count].say if $count;
+$smooth5<span style="color:#f92672">.</span>[<span style="color:#f92672">^</span>$count]<span style="color:#f92672">.</span>say <span style="color:#66d9ef">if</span> $count;
 
-for @print.grep(* ~~ Int).sort -&gt; $n {
-  if $timing {
-    my $result = $smooth5[$n-1];
-    (Q:b'\r%6.2fs %*d: %d').sprintf((now - INIT now), @print.max.chars, $n, $result).say;
-  } else {
-    sprintf('%*d: %d', @print.max.chars, $n, $smooth5[$n-1]).say;
+<span style="color:#66d9ef">for</span> @print<span style="color:#f92672">.</span>grep(<span style="color:#f92672">*</span> <span style="color:#f92672">~~</span> Int)<span style="color:#f92672">.</span>sort <span style="color:#f92672">-&gt;</span> $n {
+  <span style="color:#66d9ef">if</span> $timing {
+    <span style="color:#66d9ef">my</span> $result <span style="color:#f92672">=</span> $smooth5[$n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+    (Q:b<span style="color:#e6db74">&#39;\r%6.2fs %*d: %d&#39;</span>)<span style="color:#f92672">.</span>sprintf((now <span style="color:#f92672">-</span> <span style="color:#66d9ef">INIT</span> now), @print<span style="color:#f92672">.</span>max<span style="color:#f92672">.</span>chars, $n, $result)<span style="color:#f92672">.</span>say;
+  } <span style="color:#66d9ef">else</span> {
+    sprintf(<span style="color:#e6db74">&#39;%*d: %d&#39;</span>, @print<span style="color:#f92672">.</span>max<span style="color:#f92672">.</span>chars, $n, $smooth5[$n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>])<span style="color:#f92672">.</span>say;
   }
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-003/jaldhar-h-vyas/perl6/ch-1.p6">Jaldhar H. Vyas</a> used in input list of consecutive integers  and looked for numbers divisible by numbers other than 2, 3 and 5:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub isSmooth(Int $num) {
-    # get the divisors that _aren't_ multiples of 2, 3, or 5
-    my @divisors = (1 .. $num)
-                   .grep( { $num % $_ == 0 } )
-                   .grep( { ($_ % 2 != 0) &amp;&amp; ($_ % 3 != 0) &amp;&amp; ($_% 5 != 0) } );
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-003/jaldhar-h-vyas/perl6/ch-1.p6">Jaldhar H. Vyas</a> used in input list of consecutive integers  and looked for numbers divisible by numbers other than 2, 3 and 5:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">isSmooth</span>(Int $num) {
+    <span style="color:#75715e"># get the divisors that _aren&#39;t_ multiples of 2, 3, or 5</span>
+    <span style="color:#66d9ef">my</span> @divisors <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $num)
+                   <span style="color:#f92672">.</span>grep( { $num % <span style="color:#960050;background-color:#1e0010">$</span>_ <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> } )
+                   <span style="color:#f92672">.</span>grep( { ($_ % 2 <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>) <span style="color:#f92672">&amp;&amp;</span> ($_ % 3 <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>) <span style="color:#f92672">&amp;&amp;</span> ($_% 5 <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>) } );
 
-    # 1 is always a divisor so the array will always have atleast one member.
-    return @divisors.elems == 1;
+    <span style="color:#75715e"># 1 is always a divisor so the array will always have atleast one member.</span>
+    <span style="color:#66d9ef">return</span> @divisors<span style="color:#f92672">.</span>elems <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>;
 }
 
-multi sub MAIN(
+multi <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(
     Int $max #= search for 5-smooth numbers in the range 1 .. max
     ) {
-    (1 .. $max).grep(&amp;isSmooth).join(' ').say;
+    (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $max)<span style="color:#f92672">.</span>grep(<span style="color:#f92672">&amp;</span>isSmooth)<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#39; &#39;</span>)<span style="color:#f92672">.</span>say;
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-003/james-smith/perl6/ch-1.p6">James Smith</a> used a <code>lazy gather/take</code> block:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">my @hammings = lazy gather {
-  take 1;
-  my $last = 0;
-  while 1 {
-    my $lowest;
-    my $n = 5; my @other = (3,2);
-    for (@hammings) {
-      next if $_*$n &lt;= $last;
-      $lowest = $_*$n unless $lowest &amp;&amp; $lowest &lt; $_*$n;
-      last unless @other;
-      $n = shift @other;
-      redo;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-003/james-smith/perl6/ch-1.p6">James Smith</a> used a <code>lazy gather/take</code> block:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> @hammings <span style="color:#f92672">=</span> lazy gather {
+  take <span style="color:#ae81ff">1</span>;
+  <span style="color:#66d9ef">my</span> $last <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+  <span style="color:#66d9ef">while</span> <span style="color:#ae81ff">1</span> {
+    <span style="color:#66d9ef">my</span> $lowest;
+    <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>; <span style="color:#66d9ef">my</span> @other <span style="color:#f92672">=</span> (<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">2</span>);
+    <span style="color:#66d9ef">for</span> (@hammings) {
+      <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $_<span style="color:#f92672">*</span>$n <span style="color:#f92672">&lt;=</span> $last;
+      $lowest <span style="color:#f92672">=</span> $_<span style="color:#f92672">*</span>$n <span style="color:#66d9ef">unless</span> $lowest <span style="color:#f92672">&amp;&amp;</span> $lowest <span style="color:#f92672">&lt;</span> $_<span style="color:#f92672">*</span>$n;
+      <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">unless</span> @other;
+      $n <span style="color:#f92672">=</span> shift @other;
+      <span style="color:#66d9ef">redo</span>;
     }
     take $lowest;
-    $last = $lowest;
+    $last <span style="color:#f92672">=</span> $lowest;
   }
 }
 
-sub MAIN($n) {
-  say @hammings[$_-1] for 1..$n;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>($n) {
+  say @hammings[$_<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$n;
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-003/joelle-maslak/perl6/ch-1.p6">Joelle Maslak</a> used a <code>divisors</code> subroutine to find the divisors of an integer:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub divisors(Int:D $i --&gt;Array[Int:D]) {
-    if ($i == 0) { return 0; }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-003/joelle-maslak/perl6/ch-1.p6">Joelle Maslak</a> used a <code>divisors</code> subroutine to find the divisors of an integer:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">divisors</span>(Int:D $i --&gt;Array[Int:D]) {
+    <span style="color:#66d9ef">if</span> ($i <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) { <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>; }
 
-    my $sqrt = sqrt($i).Int;
+    <span style="color:#66d9ef">my</span> $sqrt <span style="color:#f92672">=</span> sqrt($i)<span style="color:#f92672">.</span>Int;
 
-    my Int:D @divs = grep { $i %% $^div }, 1..$sqrt;
-    @divs.append: map { Int($i / $^div) }, @divs;
+    <span style="color:#66d9ef">my</span> Int:D @divs <span style="color:#f92672">=</span> grep { $i %% <span style="color:#960050;background-color:#1e0010">$^</span>div }, <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$sqrt;
+    @divs<span style="color:#f92672">.</span>append: map { Int($i <span style="color:#f92672">/</span> $<span style="color:#960050;background-color:#1e0010">^</span>div) }, @divs;
 
-    return @divs;
+    <span style="color:#66d9ef">return</span> @divs;
 }
-</code></pre><p>and then used it to filter the <code>@hamming</code> array of numbers:</p>
+</code></pre></div><p>and then used it to filter the <code>@hamming</code> array of numbers:</p>
 <pre><code>sub MAIN(Int:D $count where * ≥ 0) {
     my @hamming = (1..∞).grep: { divisors($^num).grep( *.is-prime ).Set ⊆ (2,3,5).Set };
     say &quot;Hamming numbers [0..{$count-1}]: &quot; ~ @hamming[^$count].join(&quot;, &quot;);
 }
 </code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-003/nick-logan/perl6/ch-1.p6">Nick Logan</a> wrote a &ldquo;polyglot&rdquo; solution, i.e. voluntarily departed from usual best practices in order to provide a solution that would run on both Perl 5 and Perl 6:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">my @ARGV = do { sub eval { &amp;EVAL(@_) }; eval( (&quot;0&quot; and q|@*ARGS| or q|@ARGV|) ) };
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> @ARGV <span style="color:#f92672">=</span> <span style="color:#66d9ef">do</span> { <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">eval</span> { <span style="color:#f92672">&amp;</span>EVAL(@_) }; eval( (<span style="color:#e6db74">&#34;0&#34;</span> <span style="color:#f92672">and</span> <span style="color:#e6db74">q|@*ARGS|</span> <span style="color:#f92672">or</span> <span style="color:#e6db74">q|@ARGV|</span>) ) };
 
-my $numbers_tried = 0;
-my $numbers_found = 0;
+<span style="color:#66d9ef">my</span> $numbers_tried <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+<span style="color:#66d9ef">my</span> $numbers_found <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
 
-NUMBERS: while ($numbers_found != @ARGV[0]) {
+NUMBERS: <span style="color:#66d9ef">while</span> ($numbers_found <span style="color:#f92672">!=</span> @ARGV[<span style="color:#ae81ff">0</span>]) {
 
-    $numbers_tried++;
-    my $state = $numbers_tried;
-    while ($state != 1) {
-        if ($state % 2 == 0) {
-            $state /= 2;
+    $numbers_tried<span style="color:#f92672">++</span>;
+    <span style="color:#66d9ef">my</span> $state <span style="color:#f92672">=</span> $numbers_tried;
+    <span style="color:#66d9ef">while</span> ($state <span style="color:#f92672">!=</span> <span style="color:#ae81ff">1</span>) {
+        <span style="color:#66d9ef">if</span> ($state % 2 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+            $state <span style="color:#f92672">/=</span> <span style="color:#ae81ff">2</span>;
         }
-        elsif ($state % 3 == 0) {
-            $state /= 3;
+        <span style="color:#66d9ef">elsif</span> ($state % 3 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+            $state <span style="color:#f92672">/=</span> <span style="color:#ae81ff">3</span>;
         }
-        elsif ($state % 5 == 0) {
-            $state /= 5;
+        <span style="color:#66d9ef">elsif</span> ($state % 5 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+            $state <span style="color:#f92672">/=</span> <span style="color:#ae81ff">5</span>;
         }
-        else {
-            next NUMBERS;
+        <span style="color:#66d9ef">else</span> {
+            <span style="color:#66d9ef">next</span> NUMBERS;
         }
     }
-    $numbers_found++;
+    $numbers_found<span style="color:#f92672">++</span>;
 
-    print(&quot;$numbers_tried\n&quot;);
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;$numbers_tried\n&#34;</span>);
 }
-</code></pre><p>Really not an idiomatic Perl 6 solution, but a quite interesting exercise that should give some food for thought to those who claim against all evidence that P5 and P6 are totally different languages. No, P5 and P6 are indeed different languages, but they are very similar in many respects, especially in spirit.</p>
+</code></pre></div><p>Really not an idiomatic Perl 6 solution, but a quite interesting exercise that should give some food for thought to those who claim against all evidence that P5 and P6 are totally different languages. No, P5 and P6 are indeed different languages, but they are very similar in many respects, especially in spirit.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-003/ohmycloud/perl6/ch-2.p6">Ohmy Cloud</a> wrote a solution with three <code>while</code> loops:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub ugly-number(Int $index) {
-    return 0 if $index == 0;
-    my @baselist = [1];
-    my ($min2, $min3, $min5) = 0,0,0;
-    my $curnum = 1;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">ugly</span>-number(Int $index) {
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $index <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">my</span> @baselist <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>];
+    <span style="color:#66d9ef">my</span> ($min2, $min3, $min5) <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">my</span> $curnum <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
 
-    while $curnum &lt; $index {
-        my $minnum = (@baselist[$min2] * 2,  @baselist[$min3] * 3,  @baselist[$min5] * 5).min;
-        @baselist.append($minnum);
+    <span style="color:#66d9ef">while</span> $curnum <span style="color:#f92672">&lt;</span> $index {
+        <span style="color:#66d9ef">my</span> $minnum <span style="color:#f92672">=</span> (@baselist[$min2] <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span>,  @baselist[$min3] <span style="color:#f92672">*</span> <span style="color:#ae81ff">3</span>,  @baselist[$min5] <span style="color:#f92672">*</span> <span style="color:#ae81ff">5</span>)<span style="color:#f92672">.</span>min;
+        @baselist<span style="color:#f92672">.</span>append($minnum);
 
-        while @baselist[$min2] * 2 &lt;= $minnum { $min2 += 1 }
-        while @baselist[$min3] * 3 &lt;= $minnum { $min3 += 1 }
-        while @baselist[$min5] * 5 &lt;= $minnum { $min5 += 1 }
+        <span style="color:#66d9ef">while</span> @baselist[$min2] <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">&lt;=</span> $minnum { $min2 <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span> }
+        <span style="color:#66d9ef">while</span> @baselist[$min3] <span style="color:#f92672">*</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">&lt;=</span> $minnum { $min3 <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span> }
+        <span style="color:#66d9ef">while</span> @baselist[$min5] <span style="color:#f92672">*</span> <span style="color:#ae81ff">5</span> <span style="color:#f92672">&lt;=</span> $minnum { $min5 <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span> }
 
-        $curnum +=1
+        $curnum <span style="color:#f92672">+=</span><span style="color:#ae81ff">1</span>
      }
 
-    return @baselist[*-1]
+    <span style="color:#66d9ef">return</span> @baselist[<span style="color:#f92672">*-</span><span style="color:#ae81ff">1</span>]
 }
 
-sub MAIN(Int $count) {
-    ugly-number($_).say for 1..$count;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(Int $count) {
+    ugly<span style="color:#f92672">-</span>number($_)<span style="color:#f92672">.</span>say <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$count;
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-003/rob4t/perl6/ch-1.p6">rob4t</a> wrote a <code>get-hamming-sequence</code> and a <code>is-hamming-number</code> subroutines to find Hamming numbers. His filtering subroutine looks like this:</p>
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-003/rob4t/perl6/ch-1.p6">rob4t</a> wrote a <code>get-hamming-sequence</code> and a <code>is-hamming-number</code> subroutines to find Hamming numbers. His filtering subroutine looks like this:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl" data-lang="Perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is</span>-hamming-number(PositiveInt $number is copy --&gt; Bool) {
     <span style="color:#66d9ef">return</span> True <span style="color:#66d9ef">if</span> $number <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>;
 
@@ -445,39 +445,39 @@ sub MAIN(Int $count) {
     <span style="color:#66d9ef">return</span> False;
 };
 </code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-003/ruben-westerberg/perl6/ch-1.p6">Ruben Westerberg</a> suggested this solution based on the powers of 60:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">my $powers=(1 ... *) ;
-my $primes=(2,3,5);
-for $powers&lt;&gt; {
-    my $smooth=[];
-    my $t=60**$_;
-        for 1..($t/2) -&gt; $s {
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> $powers<span style="color:#f92672">=</span>(<span style="color:#ae81ff">1</span> <span style="color:#f92672">...</span> <span style="color:#f92672">*</span>) ;
+<span style="color:#66d9ef">my</span> $primes<span style="color:#f92672">=</span>(<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">5</span>);
+<span style="color:#66d9ef">for</span> $powers<span style="color:#f92672">&lt;&gt;</span> {
+    <span style="color:#66d9ef">my</span> $smooth<span style="color:#f92672">=[]</span>;
+    <span style="color:#66d9ef">my</span> $t<span style="color:#f92672">=</span><span style="color:#ae81ff">60</span><span style="color:#f92672">**</span>$_;
+        <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>($t<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>) <span style="color:#f92672">-&gt;</span> $s {
             append $smooth,
-                ((do for $primes&lt;&gt; -&gt; $p {
-                    my $smooth1=$s*$p;
-                    my $val=Int($t/$smooth1);
-                    my $test= ($t%%($smooth1));
-                    ($test &amp;&amp; ($val &gt;= 2)) ?? ($smooth1,$val) !! ();
-                    }).flat);
+                ((<span style="color:#66d9ef">do</span> <span style="color:#66d9ef">for</span> $primes<span style="color:#f92672">&lt;&gt;</span> <span style="color:#f92672">-&gt;</span> $p {
+                    <span style="color:#66d9ef">my</span> $smooth1<span style="color:#f92672">=</span>$s<span style="color:#f92672">*</span>$p;
+                    <span style="color:#66d9ef">my</span> $val<span style="color:#f92672">=</span>Int($t<span style="color:#f92672">/</span>$smooth1);
+                    <span style="color:#66d9ef">my</span> $test<span style="color:#f92672">=</span> ($t%%<span style="color:#960050;background-color:#1e0010">($</span>smooth1));
+                    ($test <span style="color:#f92672">&amp;&amp;</span> ($val <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">2</span>)) ?? ($smooth1,$val) <span style="color:#f92672">!!</span> ();
+                    })<span style="color:#f92672">.</span>flat);
     }
-    say &quot;5-Smooth Numbers for 60^$_: &quot;;
-    say $smooth.Bag.pairs&gt;&gt;.key.sort.join: &quot; &quot;;
-    say &quot;&quot;;
-    sleep 1;
+    say <span style="color:#e6db74">&#34;5-Smooth Numbers for 60^$_: &#34;</span>;
+    say $smooth<span style="color:#f92672">.</span>Bag<span style="color:#f92672">.</span>pairs<span style="color:#f92672">&gt;&gt;.</span>key<span style="color:#f92672">.</span>sort<span style="color:#f92672">.</span>join: <span style="color:#e6db74">&#34; &#34;</span>;
+    say <span style="color:#e6db74">&#34;&#34;</span>;
+    sleep <span style="color:#ae81ff">1</span>;
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-003/simon-proctor/perl6/ch-1.p6">Simon Proctor</a> used a <code>lazy gather/take</code> block and <code>push</code> statements to build the resulting list. His program finally sorts the output values and removes duplicates:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub MAIN(Int() $count) {
-    my @h = lazy gather {
-        my @items = (1);
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-003/simon-proctor/perl6/ch-1.p6">Simon Proctor</a> used a <code>lazy gather/take</code> block and <code>push</code> statements to build the resulting list. His program finally sorts the output values and removes duplicates:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(Int() $count) {
+    <span style="color:#66d9ef">my</span> @h <span style="color:#f92672">=</span> lazy gather {
+        <span style="color:#66d9ef">my</span> @items <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>);
         loop {
-            my $val = @items.shift;
+            <span style="color:#66d9ef">my</span> $val <span style="color:#f92672">=</span> @items<span style="color:#f92672">.</span>shift;
             take $val;
-            @items.push($val*2,$val*3,$val*5);
-            @items = @items.unique.sort( { $^a &lt;=&gt; $^b } );
+            @items<span style="color:#f92672">.</span>push($val<span style="color:#f92672">*</span><span style="color:#ae81ff">2</span>,$val<span style="color:#f92672">*</span><span style="color:#ae81ff">3</span>,$val<span style="color:#f92672">*</span><span style="color:#ae81ff">5</span>);
+            @items <span style="color:#f92672">=</span> @items<span style="color:#f92672">.</span>unique<span style="color:#f92672">.</span>sort( { $<span style="color:#960050;background-color:#1e0010">^</span>a <span style="color:#e6db74">&lt;=&gt;</span> $<span style="color:#960050;background-color:#1e0010">^</span>b } );
         }
     };
-    say @h[0..$count-1]
+    say @h[<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$count<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
 }
-</code></pre><p>I initially wondered, though, why Simon does the chained <code>.unique.sort</code> method invocation within the loop rather than after having completed the loop, but there is a good reason for that: it is (quite obviously) not possible to sort a lazy list.</p>
+</code></pre></div><p>I initially wondered, though, why Simon does the chained <code>.unique.sort</code> method invocation within the loop rather than after having completed the loop, but there is a good reason for that: it is (quite obviously) not possible to sort a lazy list.</p>
 <h2 id="see-also">SEE ALSO</h2>
 <p>Four blog posts on this subject:</p>
 <ul>

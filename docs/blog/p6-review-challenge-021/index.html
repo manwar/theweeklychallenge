@@ -16,7 +16,7 @@
 
     <meta name="description" content="Laurent Rosenfeld Weekly Review: Challenge - #021.">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.66.0-DEV" />
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -172,14 +172,14 @@
 <p>Let&rsquo;s try the formula investigated by Jacob Bernoulli in 1683: <em>e</em> is equal to this limit:</p>
 <p><img src="./Euler1.jpg" alt="alt text" title="Bernoulli's limit formula for e"></p>
 <p>We can just use this formula with a large input number:</p>
-<pre><code class="language-perl6" data-lang="perl6">use v6;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">use</span> v6;
 
-sub eul ($n) { (1 + 1/$n)**$n}
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">eul</span> ($n) { (<span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">/</span>$n)<span style="color:#f92672">**</span>$n}
 
-sub MAIN (Int $n) {
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> (Int $n) {
     say eul $n;
 }
-</code></pre><p>Let&rsquo;s try to run this program with increasing input numbers:</p>
+</code></pre></div><p>Let&rsquo;s try to run this program with increasing input numbers:</p>
 <pre><code>$perl6  euler.p6 5
 2.48832
 
@@ -200,22 +200,22 @@ $perl6  euler.p6 10000
 <p><img src="./Euler2.jpg" alt="alt text" title="Sum of infinite series for e"></p>
 <p>where <code>n!</code> is the factorial of <code>n</code>, i.e. the product of all positive integers between 1 and <code>n</code>.</p>
 <p>For computing this, we will first define a new postfix operator, <code>!</code>, to compute the factorial of any number, and then use it to compute the sum. For this, we will use twice the <code>[...]</code> reduction metaoperator, which reduces a list of values with the given infix operator. For example,</p>
-<pre><code class="language-perl6" data-lang="perl6">say [+] 1, 2, 3, 4;   #  -&gt; 10
-</code></pre><p>is equivalent to:</p>
-<pre><code class="language-perl6" data-lang="perl6">say 1 + 2 + 3 + 4;
-</code></pre><p>i.e. works as if the infix operator (<code>+</code> in this example) was placed between each item of the list to produce an arithmetic expression yielding a single numerical value. This is the perfect functionality for computing both the factorial of an integer and the sum of terms of the formula.</p>
-<pre><code class="language-perl6" data-lang="perl6">use v6;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6">say [<span style="color:#f92672">+</span>] <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>;   <span style="color:#75715e">#  -&gt; 10</span>
+</code></pre></div><p>is equivalent to:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6">say <span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">4</span>;
+</code></pre></div><p>i.e. works as if the infix operator (<code>+</code> in this example) was placed between each item of the list to produce an arithmetic expression yielding a single numerical value. This is the perfect functionality for computing both the factorial of an integer and the sum of terms of the formula.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">use</span> v6;
 
-sub postfix:&lt;!&gt; (Int $n) {   # factorial operator
-    [*] 2..$n;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">postfix</span>:&lt;!&gt; (Int $n) {   <span style="color:#75715e"># factorial operator</span>
+    [<span style="color:#f92672">*</span>] <span style="color:#ae81ff">2</span><span style="color:#f92672">..</span>$n;
 }
-sub eul (Int $n) {
-    [+] map { 1 / $_! }, 0..$n;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">eul</span> (Int $n) {
+    [<span style="color:#f92672">+</span>] map { <span style="color:#ae81ff">1</span> <span style="color:#f92672">/</span> $_<span style="color:#f92672">!</span> }, <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$n;
 }
-sub MAIN (Int $n) {
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> (Int $n) {
     say eul $n;
 }
-</code></pre><p>The version with this new formula converges much faster than the original one:</p>
+</code></pre></div><p>The version with this new formula converges much faster than the original one:</p>
 <pre><code>$ perl6  euler.p6 10
 2.7182818
 
@@ -223,14 +223,14 @@ $ perl6  euler.p6 25
 2.718281828459045
 </code></pre>
 <p>The digits are all accurate, but if we wanted more significant digits, we would need to use <code>FatRat</code> numbers. For example, like so:</p>
-<pre><code class="language-perl6" data-lang="perl6">sub postfix:&lt;!&gt; (Int $n) {   # factorial operator
-    [*] (2..$n).FatRat;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">postfix</span>:&lt;!&gt; (Int $n) {   <span style="color:#75715e"># factorial operator</span>
+    [<span style="color:#f92672">*</span>] (<span style="color:#ae81ff">2</span><span style="color:#f92672">..</span>$n)<span style="color:#f92672">.</span>FatRat;
 }
-</code></pre><p>or, probably better, by making the change in the <code>eul</code> subroutine rather than in the definition of the factorial operator:</p>
-<pre><code class="language-perl6" data-lang="perl6">sub eul (Int $n) {
-    [+] map { 1 / ($_!).FatRat}, 0..$n;
+</code></pre></div><p>or, probably better, by making the change in the <code>eul</code> subroutine rather than in the definition of the factorial operator:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">eul</span> (Int $n) {
+    [<span style="color:#f92672">+</span>] map { <span style="color:#ae81ff">1</span> <span style="color:#f92672">/</span> ($_<span style="color:#f92672">!</span>)<span style="color:#f92672">.</span>FatRat}, <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$n;
 }
-</code></pre><p>With this last change, the script outputs significantly more accurate digits:</p>
+</code></pre></div><p>With this last change, the script outputs significantly more accurate digits:</p>
 <pre><code>perl6 euler.p6 25
 2.7182818284590452353602875
 </code></pre>
@@ -270,16 +270,16 @@ $ perl6  euler.p6 25
 </code></pre>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-021/adam-russell/perl6/ch-1.p6">Adam Russell</a> played with channels presumably to test concurrent or distributed computing in order to boost performance. Looking at his solution, it seemed to me that Adam was using the same sum of infinite series as the previous challengers just above, but I must admit that I originally didn&rsquo;t really understand his method. It became clear to me only afterward when I read his <a href="https://adamcrussell.livejournal.com/6924.html">Implementing a spigot algorithm for the digits of e</a> blog post, so you might probably want to do the same.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-021/kevin-colyer/perl6/ch-1.p6">Kevin Colyer</a> apparently has quite a bit of fun with that and suggested not less than 5 different ways of computing <em>e</em>: the two formulas I gave at the beginning of this post, two continued fractions and even a probabilistic or stochastic computation. I had probably the same  amount of fun reading and trying his solutions as he did writing them, and I think you should really follow the link and read his solutions to enjoy the same fun. This one of his subroutines, for the fun:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub e_continued_fraction($n) {
-    # calculated in reverse order to avoid recursion
-    my $frac=1;
-    my @seq=lazy gather for 1..Inf  -&gt; $a  {take 1; take 2*$a; take 1} ;
-    for (0..^$n).reverse -&gt; $i {
-        $frac=1/(@seq[$i]+$frac);
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">e_continued_fraction</span>($n) {
+    <span style="color:#75715e"># calculated in reverse order to avoid recursion</span>
+    <span style="color:#66d9ef">my</span> $frac<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">my</span> @seq<span style="color:#f92672">=</span>lazy gather <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>Inf  <span style="color:#f92672">-&gt;</span> $a  {take <span style="color:#ae81ff">1</span>; take <span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>$a; take <span style="color:#ae81ff">1</span>} ;
+    <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span><span style="color:#f92672">..^</span>$n)<span style="color:#f92672">.</span>reverse <span style="color:#f92672">-&gt;</span> $i {
+        $frac<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span><span style="color:#f92672">/</span>(@seq[$i]<span style="color:#f92672">+</span>$frac);
     }
-    return $frac+2;
+    <span style="color:#66d9ef">return</span> $frac<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>;
 };
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-021/noud/perl6/ch-1.p6">Noud</a> used the following continued fraction:</p>
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-021/noud/perl6/ch-1.p6">Noud</a> used the following continued fraction:</p>
 <p><img src="./Euler3.jpg" alt="alt text" title="Continued fraction for e"></p>
 <p>and computed it for the first 50 steps (which yields 2.7182818284590455).</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-021/athanasius/perl6/ch-1.p6">Athanasius</a> used yet another, much more recent and apparently significantly  faster, method suggested in Jan. 2004 by Harlan J. Brothers in a paper entitled <a href="http://www.brotherstechnology.com/docs/Improving_Convergence_(CMJ-2004-01).pdf">Improving the Convergence of Newton&rsquo;s Series Approximation for e</a>.</p>

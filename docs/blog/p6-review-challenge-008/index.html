@@ -16,7 +16,7 @@
 
     <meta name="description" content="Laurent Rosenfeld Weekly Review: Challenge - #008.">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.66.0-DEV" />
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -163,30 +163,30 @@
 <h2 id="my-solutions">My Solutions</h2>
 <h3 id="brute-force-approach">Brute Force Approach</h3>
 <p>Let&rsquo;s try brute force approach to grasp the problem. I&rsquo;ll start with my assignment of 1991, i.e. finding the perfect numbers below 10,000:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">use v6;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> v6;
 
-sub divisors (Int $num) {
-    return 1, | grep { $num %% $_ }, 2 .. (1 + ($num / 2).Int);
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">divisors</span> (Int $num) {
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>, <span style="color:#f92672">|</span> grep { $num %% <span style="color:#960050;background-color:#1e0010">$</span>_ }, <span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> ($num <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>)<span style="color:#f92672">.</span>Int);
 }
 
-for 2..10000 -&gt; $num {
-    my @divisors = divisors $num;
-    say &quot;$num: &quot;, @divisors if $num == [+] @divisors;
+<span style="color:#66d9ef">for</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">..</span><span style="color:#ae81ff">10000</span> <span style="color:#f92672">-&gt;</span> $num {
+    <span style="color:#66d9ef">my</span> @divisors <span style="color:#f92672">=</span> divisors $num;
+    say <span style="color:#e6db74">&#34;$num: &#34;</span>, @divisors <span style="color:#66d9ef">if</span> $num <span style="color:#f92672">==</span> [<span style="color:#f92672">+</span>] @divisors;
 }
-</code></pre><p>Easy, nothing complicated. I made a separate <code>divisors</code> subroutine because we may later want to reuse it. If we run that program, we get the following output:</p>
+</code></pre></div><p>Easy, nothing complicated. I made a separate <code>divisors</code> subroutine because we may later want to reuse it. If we run that program, we get the following output:</p>
 <pre><code>6: [1 2 3]
 28: [1 2 4 7 14]
 496: [1 2 4 8 16 31 62 124 248]
 8128: [1 2 4 8 16 32 64 127 254 508 1016 2032 4064]
 </code></pre>
 <p>The <code>divisors</code> subroutine is so short that we could inline it in the main code:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">use v6;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> v6;
 
-for 2..10000 -&gt; $num {
-    my @divisors = 1, | grep { $num %% $_ }, 2 .. (1 + ($num / 2).Int);
-    say &quot;$num: &quot;, @divisors if $num == [+] @divisors;
+<span style="color:#66d9ef">for</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">..</span><span style="color:#ae81ff">10000</span> <span style="color:#f92672">-&gt;</span> $num {
+    <span style="color:#66d9ef">my</span> @divisors <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, <span style="color:#f92672">|</span> grep { $num %% <span style="color:#960050;background-color:#1e0010">$</span>_ }, <span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> ($num <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>)<span style="color:#f92672">.</span>Int);
+    say <span style="color:#e6db74">&#34;$num: &#34;</span>, @divisors <span style="color:#66d9ef">if</span> $num <span style="color:#f92672">==</span> [<span style="color:#f92672">+</span>] @divisors;
 }
-</code></pre><p>Well, if we just want the perfect numbers without willing to print the list of divisors, we could even get rid of the <code>@divisors</code> temporary array and make it short enough for a one-liner:</p>
+</code></pre></div><p>Well, if we just want the perfect numbers without willing to print the list of divisors, we could even get rid of the <code>@divisors</code> temporary array and make it short enough for a one-liner:</p>
 <pre><code>$ perl6 -e 'for 2..10000 -&gt; $num { $num.say if $num == [+] (1, | grep { $num %% $_ }, 2 .. (1 + ($num / 2).Int))};'
 </code></pre>
 <p>So, the code is very short, but I regret to say that both these versions are quite slow: they take bout 25 seconds to run (about ten times more than the Perl 5 equivalent program).</p>
@@ -199,20 +199,20 @@ for 2..10000 -&gt; $num {
 <pre><code>0, 1, 3, 6, 10, 15, 21, 28, 36, 45, 55, 66, 78, 91, 105, ..., 1225, 1275, 1326, 1378,
 </code></pre>
 <p>You start with 0. Add 1 to it to get the next one (1). Add 2 to second one to get the third one (3). Add 3 to the third one (6). And so on. This is interesting because there becoming increasingly sparse and we&rsquo;ll need to check the divisors of much fewer numbers.</p>
-<pre><code class="language-Perl6" data-lang="Perl6">use v6;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> v6;
 
-sub divisors (Int $num) {
-    return 1, | grep { $num %% $_ }, 2 .. (1 + ($num / 2).Int);
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">divisors</span> (Int $num) {
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>, <span style="color:#f92672">|</span> grep { $num %% <span style="color:#960050;background-color:#1e0010">$</span>_ }, <span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> ($num <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>)<span style="color:#f92672">.</span>Int);
 }
-my $triangular-num = 1;
-for 2..200 -&gt; $num {
-    $triangular-num += $num;
-    my $sum-div = [+] divisors $triangular-num;
-    say &quot; $triangular-num : @divisors[]&quot; if $sum-div == $triangular-num;
-    last if $triangular-num &gt; 10000;
+<span style="color:#66d9ef">my</span> $triangular<span style="color:#f92672">-</span>num <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+<span style="color:#66d9ef">for</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">..</span><span style="color:#ae81ff">200</span> <span style="color:#f92672">-&gt;</span> $num {
+    $triangular<span style="color:#f92672">-</span>num <span style="color:#f92672">+=</span> $num;
+    <span style="color:#66d9ef">my</span> $sum<span style="color:#f92672">-</span>div <span style="color:#f92672">=</span> [<span style="color:#f92672">+</span>] divisors $triangular<span style="color:#f92672">-</span>num;
+    say <span style="color:#e6db74">&#34; $triangular-num : @divisors[]&#34;</span> <span style="color:#66d9ef">if</span> $sum<span style="color:#f92672">-</span>div <span style="color:#f92672">==</span> $triangular<span style="color:#f92672">-</span>num;
+    <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $triangular<span style="color:#f92672">-</span>num <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">10000</span>;
 }
-say now -  INIT now;
-</code></pre><p>Now, finding the first four perfect numbers takes about a third of a second:</p>
+say now <span style="color:#f92672">-</span>  <span style="color:#66d9ef">INIT</span> now;
+</code></pre></div><p>Now, finding the first four perfect numbers takes about a third of a second:</p>
 <pre><code>$ perl6 triangular_perfect.p6
 6
 28
@@ -222,45 +222,45 @@ say now -  INIT now;
 </code></pre>
 <h3 id="using-lazy-infinite-sequences">Using Lazy Infinite Sequences</h3>
 <p>One of the difficulties in the code above is to determine the required range for <code>$num</code>. The math is not too difficult to compute that the upper bound should be close the square root of twice the ceiling for perfect numbers (i.e. about 141 for a ceiling of 10,000), but I used an upper bound of 200 to be on the safe side of things. The best would be not to have to compute that upper bound. Here come to the rescue lazy infinite lists. For example, we can generate an infinite list <code>@nums</code> of consecutive integers for <code>$num</code>, and Perl 6 will compute them as and when needed until it reaches the limit for <code>$triangular-num</code>:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">use v6;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> v6;
 
-sub divisors (Int $num) {
-    return 1, | grep { $num %% $_ }, 2 .. (1 + ($num / 2).Int);
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">divisors</span> (Int $num) {
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>, <span style="color:#f92672">|</span> grep { $num %% <span style="color:#960050;background-color:#1e0010">$</span>_ }, <span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> ($num <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>)<span style="color:#f92672">.</span>Int);
 }
-my $triangular-num = 1;
-my @nums = 2 ... *;   # Infinite sequence
-for @nums -&gt; $num {
-    $triangular-num += $num;
-    my $sum-div = [+] divisors $triangular-num;
-    say $triangular-num if $sum-div == $triangular-num;
-    last if $triangular-num &gt; 10000;
+<span style="color:#66d9ef">my</span> $triangular<span style="color:#f92672">-</span>num <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+<span style="color:#66d9ef">my</span> @nums <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">...</span> <span style="color:#f92672">*</span>;   <span style="color:#75715e"># Infinite sequence</span>
+<span style="color:#66d9ef">for</span> @nums <span style="color:#f92672">-&gt;</span> $num {
+    $triangular<span style="color:#f92672">-</span>num <span style="color:#f92672">+=</span> $num;
+    <span style="color:#66d9ef">my</span> $sum<span style="color:#f92672">-</span>div <span style="color:#f92672">=</span> [<span style="color:#f92672">+</span>] divisors $triangular<span style="color:#f92672">-</span>num;
+    say $triangular<span style="color:#f92672">-</span>num <span style="color:#66d9ef">if</span> $sum<span style="color:#f92672">-</span>div <span style="color:#f92672">==</span> $triangular<span style="color:#f92672">-</span>num;
+    <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $triangular<span style="color:#f92672">-</span>num <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">10000</span>;
 }
-say now -  INIT now;
-</code></pre><p>It is more concise and probably more idiomatic to generate directly an infinite sequence of triangular numbers:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">use v6;
+say now <span style="color:#f92672">-</span>  <span style="color:#66d9ef">INIT</span> now;
+</code></pre></div><p>It is more concise and probably more idiomatic to generate directly an infinite sequence of triangular numbers:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> v6;
 
-sub divisors (Int $num) {
-    return 1, | grep { $num %% $_ }, 2 .. (1 + ($num / 2).Int);
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">divisors</span> (Int $num) {
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>, <span style="color:#f92672">|</span> grep { $num %% <span style="color:#960050;background-color:#1e0010">$</span>_ }, <span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> ($num <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>)<span style="color:#f92672">.</span>Int);
 }
-my $num = 1;
-my @triangular-numbers = 1,  * + ++$num ... *;
-for @triangular-numbers -&gt; $triangular-num {
-    last if $triangular-num &gt; 10000;
-    say $triangular-num if $triangular-num == [+] divisors $triangular-num;
+<span style="color:#66d9ef">my</span> $num <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+<span style="color:#66d9ef">my</span> @triangular<span style="color:#f92672">-</span>numbers <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>,  <span style="color:#f92672">*</span> <span style="color:#f92672">+</span> <span style="color:#f92672">++</span>$num <span style="color:#f92672">...</span> <span style="color:#f92672">*</span>;
+<span style="color:#66d9ef">for</span> @triangular<span style="color:#f92672">-</span>numbers <span style="color:#f92672">-&gt;</span> $triangular<span style="color:#f92672">-</span>num {
+    <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $triangular<span style="color:#f92672">-</span>num <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">10000</span>;
+    say $triangular<span style="color:#f92672">-</span>num <span style="color:#66d9ef">if</span> $triangular<span style="color:#f92672">-</span>num <span style="color:#f92672">==</span> [<span style="color:#f92672">+</span>] divisors $triangular<span style="color:#f92672">-</span>num;
 }
-say now -  INIT now;
-</code></pre><p>The key code line here is where the <code>@triangular-numbers</code> is defined. It is an infinite sequence using an explicit generator: each value is created by adding the previous value and a number, <code>$num</code>, which is itself incremented at each step through the process.</p>
+say now <span style="color:#f92672">-</span>  <span style="color:#66d9ef">INIT</span> now;
+</code></pre></div><p>The key code line here is where the <code>@triangular-numbers</code> is defined. It is an infinite sequence using an explicit generator: each value is created by adding the previous value and a number, <code>$num</code>, which is itself incremented at each step through the process.</p>
 <p>Rather than building an infinite list, we could also build a list of the triangular numbers less than 10,000 (thereby making the <code>last</code> statement in the loop unnecessary) by adding a code block saying where the sequence should stop:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">use v6;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> v6;
 
-sub divisors (Int $num) {
-    return 1, | grep { $num %% $_ }, 2 .. (1 + ($num / 2).Int);
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">divisors</span> (Int $num) {
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>, <span style="color:#f92672">|</span> grep { $num %% <span style="color:#960050;background-color:#1e0010">$</span>_ }, <span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> ($num <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>)<span style="color:#f92672">.</span>Int);
 }
-my $num = 1;
-my @triangular-numbers = 1,  * + ++$num ...^ * &gt; 10000 ;
-.say if $_ == [+] divisors $_ for @triangular-numbers;
-say now - INIT now;
-</code></pre><p>This program displays the same four perfect numbers:</p>
+<span style="color:#66d9ef">my</span> $num <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+<span style="color:#66d9ef">my</span> @triangular<span style="color:#f92672">-</span>numbers <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>,  <span style="color:#f92672">*</span> <span style="color:#f92672">+</span> <span style="color:#f92672">++</span>$num <span style="color:#f92672">...^</span> <span style="color:#f92672">*</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">10000</span> ;
+<span style="color:#f92672">.</span>say <span style="color:#66d9ef">if</span> $_ <span style="color:#f92672">==</span> [<span style="color:#f92672">+</span>] divisors $_ <span style="color:#66d9ef">for</span> @triangular<span style="color:#f92672">-</span>numbers;
+say now <span style="color:#f92672">-</span> <span style="color:#66d9ef">INIT</span> now;
+</code></pre></div><p>This program displays the same four perfect numbers:</p>
 <pre><code>$ perl6 triangular_perfect.p6
 1
 6
@@ -278,14 +278,14 @@ say now - INIT now;
 <p>When we wrote our Perl 5 program using Mersenne numbers for answering the Perl 5 part of the challenge, we spent quite a bit of energy trying to make an efficient <code>is_prime</code> subroutine.  We don&rsquo;t need that in Perl 6, since it has a built-in function, <code>is-prime</code>, which uses the very fast Miller-Rabin algorithm to find out whether a number is prime. To tell the truth, the Miller-Rabin algorithm is a probabilistic test, which may in theory report that a composite number is prime, but the probability of occurrence of such an event is so abysmally low that we can just dismiss it for practical purposes.</p>
 <p>The other advantage of P6 is its built-in ability to do integer calculations with arbitrary precision.</p>
 <p>This a Perl 6 program displaying the first 12 perfect numbers in about half a tenth of a second:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">use v6;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> v6;
 
-for grep { is-prime $_ }, 0..300 -&gt; $prime {
-    my $mersenne =  2 ** $prime - 1;
-    say $mersenne * 2 ** ($prime - 1) if is-prime $mersenne;
+<span style="color:#66d9ef">for</span> grep { is<span style="color:#f92672">-</span>prime $_ }, <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">300</span> <span style="color:#f92672">-&gt;</span> $prime {
+    <span style="color:#66d9ef">my</span> $mersenne <span style="color:#f92672">=</span>  <span style="color:#ae81ff">2</span> <span style="color:#f92672">**</span> $prime <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+    say $mersenne <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">**</span> ($prime <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">if</span> is<span style="color:#f92672">-</span>prime $mersenne;
 }
-say &quot;time taken &quot;, now - INIT now;
-</code></pre><p>This displays the following:</p>
+say <span style="color:#e6db74">&#34;time taken &#34;</span>, now <span style="color:#f92672">-</span> <span style="color:#66d9ef">INIT</span> now;
+</code></pre></div><p>This displays the following:</p>
 <pre><code>$ perl6 mersenne_perfect.p6
 6
 28
@@ -308,69 +308,69 @@ time taken: 0.0533907
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-008/ruben-westerberg/perl6/ch-1.p6">Ruben Westerberg</a> also wrote a brute force algorithm similar to my first program above. Ruben&rsquo;s program can find the first <em>four</em> perfect numbers relatively rapidly, but I don&rsquo;t believe that it is able to find the <em>fifth</em> perfect number in a reasonable time.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-008/uzluisf/perl6/ch-1.p6">uzluisf</a> used a <code>pos-proper-divisors</code> subroutine and a <code>is-perfect</code> multi subroutine and then loops over successive integers So, again a brute force attempt. As for the two implementations just above, uzluisf&rsquo;s program easily finds the first <em>four</em> perfect numbers, but is certainly not able to find the <em>fifth</em> one in a reasonable time.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-008/fjwhittle/perl6/ch-1.p6">Francis J. Whittle</a> created a lazy infinite sequence of prime Mersenne numbers and derived from it an infinite lazy sequence of perfect numbers:</p>
-<pre><code class="language-Perl6" data-lang="Perl6"># Mersenne prime generator.
-my \M := (^∞)
-           .grep(*.is-prime)
-           .map(-&gt; $n { 2 ** $n - 1})
-           .grep(*.is-prime);
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#75715e"># Mersenne prime generator.</span>
+<span style="color:#66d9ef">my</span> <span style="color:#f92672">\</span>M :<span style="color:#f92672">=</span> (<span style="color:#f92672">^</span><span style="color:#960050;background-color:#1e0010">∞</span>)
+           <span style="color:#f92672">.</span>grep(<span style="color:#f92672">*.</span>is<span style="color:#f92672">-</span>prime)
+           <span style="color:#f92672">.</span>map(<span style="color:#f92672">-&gt;</span> $n { <span style="color:#ae81ff">2</span> <span style="color:#f92672">**</span> $n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>})
+           <span style="color:#f92672">.</span>grep(<span style="color:#f92672">*.</span>is<span style="color:#f92672">-</span>prime);
 
-# Derive perfect number from Mersenne primes.
-my \P := M.map: -&gt; $q { $q * ($q + 1) div 2 };
+<span style="color:#75715e"># Derive perfect number from Mersenne primes.</span>
+<span style="color:#66d9ef">my</span> <span style="color:#f92672">\</span>P :<span style="color:#f92672">=</span> M<span style="color:#f92672">.</span>map: <span style="color:#f92672">-&gt;</span> $q { $q <span style="color:#f92672">*</span> ($q <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) div <span style="color:#ae81ff">2</span> };
 
-# Compute and present the first 5, one per line.
-P[^5]».put
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-008/jaldhar-h-vyas/perl6/ch-1.p6">Jaldhar H. Vyas</a> used the Mersenne numbers as a source for perfect candidates and then checked manually the divisors to find out whether the candidate is really perfect:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub perfectCandidate(Int $p) {
-    my $q = 2 ** $p - 1;          # Mersenne number
-    return $q * ($q + 1) div 2;   # perfect candidate
+<span style="color:#75715e"># Compute and present the first 5, one per line.</span>
+P[<span style="color:#f92672">^</span><span style="color:#ae81ff">5</span>]<span style="color:#960050;background-color:#1e0010">»</span><span style="color:#f92672">.</span>put
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-008/jaldhar-h-vyas/perl6/ch-1.p6">Jaldhar H. Vyas</a> used the Mersenne numbers as a source for perfect candidates and then checked manually the divisors to find out whether the candidate is really perfect:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">perfectCandidate</span>(Int $p) {
+    <span style="color:#66d9ef">my</span> $q <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">**</span> $p <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;          <span style="color:#75715e"># Mersenne number</span>
+    <span style="color:#66d9ef">return</span> $q <span style="color:#f92672">*</span> ($q <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) div <span style="color:#ae81ff">2</span>;   <span style="color:#75715e"># perfect candidate</span>
 }
-sub isPerfect(Int $number) {
-    my $total = 0;
-    for 1 .. $number -&gt; $i {
-        if $number %% $i {
-            $total += $i;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">isPerfect</span>(Int $number) {
+    <span style="color:#66d9ef">my</span> $total <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $number <span style="color:#f92672">-&gt;</span> $i {
+        <span style="color:#66d9ef">if</span> $number %% <span style="color:#960050;background-color:#1e0010">$</span>i {
+            $total <span style="color:#f92672">+=</span> $i;
         }
     }
 
-    return ($total / 2  == $number);
+    <span style="color:#66d9ef">return</span> ($total <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>  <span style="color:#f92672">==</span> $number);
 }
-</code></pre><p>Checking for primality of the Mersenne numbers (using the <code>is-prime</code> built-in function) would make the program significantly faster than checking if the candidate is perfect, but Jaldar&rsquo;s program does find the first five perfect number in a reasonable time.</p>
+</code></pre></div><p>Checking for primality of the Mersenne numbers (using the <code>is-prime</code> built-in function) would make the program significantly faster than checking if the candidate is perfect, but Jaldar&rsquo;s program does find the first five perfect number in a reasonable time.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-008/joelle-maslak/perl6/ch-1.p6">Joelle Maslak</a> did essentially the same thing as Jaldhar: her program uses a lazy <code>gather</code> to generate a lazy infinite sequence of perfect candidates from the Mersenne numbers and then sums the factors of the candidates to determine whether the candidate is actually perfect:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">my @vals = lazy gather {
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> @vals <span style="color:#f92672">=</span> lazy gather {
     loop {
-        state $p = 1;
-        $p++;
+        state $p <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+        $p<span style="color:#f92672">++</span>;
 
-        my $possible = (2**($p-1))*((2**$p)-1);
-        take $possible if ([+] factors($possible)[0..*-2]) == $possible;
+        <span style="color:#66d9ef">my</span> $possible <span style="color:#f92672">=</span> (<span style="color:#ae81ff">2</span><span style="color:#f92672">**</span>($p<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>))<span style="color:#f92672">*</span>((<span style="color:#ae81ff">2</span><span style="color:#f92672">**</span>$p)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
+        take $possible <span style="color:#66d9ef">if</span> ([<span style="color:#f92672">+</span>] factors($possible)[<span style="color:#ae81ff">0</span><span style="color:#f92672">..*-</span><span style="color:#ae81ff">2</span>]) <span style="color:#f92672">==</span> $possible;
     }
 }
-</code></pre><p>And I can only make the same comment as for Jaldhar: checking for primality of the intermediate Mersenne numbers would have made this program much faster. Joelle&rsquo;s program has this warning:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">if $max &gt; 7 {
-    say &quot;More than 7 perfect numbers may take too long to calculate&quot;;
+</code></pre></div><p>And I can only make the same comment as for Jaldhar: checking for primality of the intermediate Mersenne numbers would have made this program much faster. Joelle&rsquo;s program has this warning:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">if</span> $max <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">7</span> {
+    say <span style="color:#e6db74">&#34;More than 7 perfect numbers may take too long to calculate&#34;</span>;
 }
-</code></pre><p>Indeed. Checking primality of the Mersenne number (as in James Smith&rsquo;s program just below, Ozzy&rsquo;s program immediately thereafter, or my last program above) makes it possible to compute the first 20 perfect number in about ten seconds. This being said, Joelle&rsquo;s program does find the first five perfect number in a reasonable time.</p>
+</code></pre></div><p>Indeed. Checking primality of the Mersenne number (as in James Smith&rsquo;s program just below, Ozzy&rsquo;s program immediately thereafter, or my last program above) makes it possible to compute the first 20 perfect number in about ten seconds. This being said, Joelle&rsquo;s program does find the first five perfect number in a reasonable time.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-008/james-smith/perl6/ch-1.p6">James Smith</a> used the Mersenne numbers and a lazy <code>gather</code> block to generate a lazy infinite sequence of perfect numbers. James&rsquo;s implementation is very concise and very fast:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">my @perfect = lazy gather {
-  my $q = 1;
-  take $q*($q+1)/2 if (++($q+&lt;=1)).is-prime while 1;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> @perfect <span style="color:#f92672">=</span> lazy gather {
+  <span style="color:#66d9ef">my</span> $q <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+  take $q<span style="color:#f92672">*</span>($q<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span> <span style="color:#66d9ef">if</span> (<span style="color:#f92672">++</span>($q<span style="color:#f92672">+&lt;=</span><span style="color:#ae81ff">1</span>))<span style="color:#f92672">.</span>is<span style="color:#f92672">-</span>prime <span style="color:#66d9ef">while</span> <span style="color:#ae81ff">1</span>;
 }
-say @perfect[$_] for 0..19;
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-008/ozzy/perl6/ch-1.p6">Ozzy</a> also used the Mersenne numbers and a primality check in a quite concise program:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">for 1..17 -&gt; $p {
-    my $b = (2**$p -1);
-    say &quot;$p : { 2**($p-1) * $b }&quot; if $b.is-prime;
+say @perfect[$_] <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">19</span>;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-008/ozzy/perl6/ch-1.p6">Ozzy</a> also used the Mersenne numbers and a primality check in a quite concise program:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">17</span> <span style="color:#f92672">-&gt;</span> $p {
+    <span style="color:#66d9ef">my</span> $b <span style="color:#f92672">=</span> (<span style="color:#ae81ff">2</span><span style="color:#f92672">**</span>$p <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
+    say <span style="color:#e6db74">&#34;$p : { 2**($p-1) * $b }&#34;</span> <span style="color:#66d9ef">if</span> $b<span style="color:#f92672">.</span>is<span style="color:#f92672">-</span>prime;
 
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-008/simon-proctor/perl6/ch-1.p6">Simon Proctor</a> also used the Mersenne numbers. He implemented a <code>is-mersine</code> multi subroutine and a <code>perfect-from-prime</code> subroutine</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub perfect-from-prime( Int $p where { $p.is-prime &amp;&amp; is-mersine( $p ) } ) is pure {
-    return (2**($p-1)) * ((2**$p) -1 );
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-008/simon-proctor/perl6/ch-1.p6">Simon Proctor</a> also used the Mersenne numbers. He implemented a <code>is-mersine</code> multi subroutine and a <code>perfect-from-prime</code> subroutine</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">perfect</span>-from-prime( Int $p where { $p<span style="color:#f92672">.</span>is<span style="color:#f92672">-</span>prime <span style="color:#f92672">&amp;&amp;</span> is<span style="color:#f92672">-</span>mersine( $p ) } ) is pure {
+    <span style="color:#66d9ef">return</span> (<span style="color:#ae81ff">2</span><span style="color:#f92672">**</span>($p<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)) <span style="color:#f92672">*</span> ((<span style="color:#ae81ff">2</span><span style="color:#f92672">**</span>$p) <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> );
 }
-multi sub is-mersine( Int $ ) is pure { False; }
-multi sub is-mersine( Int $p where ((2**$p)-1).is-prime ) is pure { True; }
-</code></pre><p>Simon&rsquo;s main code then makes a lazy infinite list of perfect numbers and picks the first five:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">.say for (0..*).grep( *.is-prime ).grep( { is-mersine( $_ ) } ).map( { perfect-from-prime($_) } )[^$x];
-</code></pre><h2 id="see-also">SEE ALSO</h2>
+multi <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is</span>-mersine( Int $ ) is pure { False; }
+multi <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is</span>-mersine( Int $p where ((2**$p)-1).is-prime ) is pure { True; }
+</code></pre></div><p>Simon&rsquo;s main code then makes a lazy infinite list of perfect numbers and picks the first five:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#f92672">.</span>say <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span><span style="color:#f92672">..*</span>)<span style="color:#f92672">.</span>grep( <span style="color:#f92672">*.</span>is<span style="color:#f92672">-</span>prime )<span style="color:#f92672">.</span>grep( { is<span style="color:#f92672">-</span>mersine( $_ ) } )<span style="color:#f92672">.</span>map( { perfect<span style="color:#f92672">-</span>from<span style="color:#f92672">-</span>prime($_) } )[<span style="color:#f92672">^</span>$x];
+</code></pre></div><h2 id="see-also">SEE ALSO</h2>
 <p>Three blog posts this time:</p>
 <ul>
 <li>

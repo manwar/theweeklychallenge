@@ -16,7 +16,7 @@
 
     <meta name="description" content="How I solved task in Raku.">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.66.0-DEV" />
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -280,129 +280,129 @@ map { <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;
 <p>I thought I could easily translate my <strong>Perl</strong> solution into <strong>Raku</strong>.</p>
 <p>Easy, right? No, it wasn&rsquo;t easy as my brain isn&rsquo;t trained to do it so.</p>
 <p>So I started with <strong>Task #1</strong>. This is what I got in my first attempt.</p>
-<pre><code class="language-perl6" data-lang="perl6">#!/usr/bin/env perl6
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#75715e">#!/usr/bin/env perl6</span>
 
-use v6;
+<span style="color:#66d9ef">use</span> v6;
 
-my @people = (1..50);
-while (@people.elems &gt; 1) {
-    my $sword = @people.shift;
-    @people.shift;
-    @people.push($sword);
+<span style="color:#66d9ef">my</span> @people <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">50</span>);
+<span style="color:#66d9ef">while</span> (@people<span style="color:#f92672">.</span>elems <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>) {
+    <span style="color:#66d9ef">my</span> $sword <span style="color:#f92672">=</span> @people<span style="color:#f92672">.</span>shift;
+    @people<span style="color:#f92672">.</span>shift;
+    @people<span style="color:#f92672">.</span>push($sword);
 }
 
-say &quot;Survivor is at position @people[0]&quot;;
-</code></pre><p>Do you see any issues? No, hang on, this is <strong>Raku</strong>, so everything has to be in <strong>MAIN()</strong>.</p>
+say <span style="color:#e6db74">&#34;Survivor is at position @people[0]&#34;</span>;
+</code></pre></div><p>Do you see any issues? No, hang on, this is <strong>Raku</strong>, so everything has to be in <strong>MAIN()</strong>.</p>
 <p>So this is what I have now:</p>
-<pre><code class="language-perl6" data-lang="perl6">#!/usr/bin/env perl6
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#75715e">#!/usr/bin/env perl6</span>
 
-use v6;
+<span style="color:#66d9ef">use</span> v6;
 
-sub MAIN() {
-    my @people = (1..50);
-    while (@people.elems &gt; 1) {
-        my $sword = @people.shift;
-        @people.shift;
-        @people.push($sword);
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>() {
+    <span style="color:#66d9ef">my</span> @people <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">50</span>);
+    <span style="color:#66d9ef">while</span> (@people<span style="color:#f92672">.</span>elems <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>) {
+        <span style="color:#66d9ef">my</span> $sword <span style="color:#f92672">=</span> @people<span style="color:#f92672">.</span>shift;
+        @people<span style="color:#f92672">.</span>shift;
+        @people<span style="color:#f92672">.</span>push($sword);
     }
 
-    say &quot;Survivor is at position @people[0]&quot;;
+    say <span style="color:#e6db74">&#34;Survivor is at position @people[0]&#34;</span>;
 }
-</code></pre><p>Is it all good now?</p>
+</code></pre></div><p>Is it all good now?</p>
 <p>Technically yes, it does the job. But hang on, it still doesn&rsquo;t look like <strong>Raku</strong> code.</p>
 <p>Lets get rid off extra parenthesis this time.</p>
-<pre><code class="language-perl6" data-lang="perl6">#!/usr/bin/env perl6
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#75715e">#!/usr/bin/env perl6</span>
 
-use v6;
+<span style="color:#66d9ef">use</span> v6;
 
-sub MAIN() {
-    my @people = 1..50;
-    while @people.elems &gt; 1 {
-        my $sword = @people.shift;
-        @people.shift;
-        @people.push($sword);
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>() {
+    <span style="color:#66d9ef">my</span> @people <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">50</span>;
+    <span style="color:#66d9ef">while</span> @people<span style="color:#f92672">.</span>elems <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> {
+        <span style="color:#66d9ef">my</span> $sword <span style="color:#f92672">=</span> @people<span style="color:#f92672">.</span>shift;
+        @people<span style="color:#f92672">.</span>shift;
+        @people<span style="color:#f92672">.</span>push($sword);
     }
 
-    say &quot;Survivor is at position @people[0]&quot;;
+    say <span style="color:#e6db74">&#34;Survivor is at position @people[0]&#34;</span>;
 }
-</code></pre><p>Now it looks like <strong>Raku</strong> code.</p>
+</code></pre></div><p>Now it looks like <strong>Raku</strong> code.</p>
 <p>What did I learn from this exercise?</p>
 <p>I have read a lot about list manipulation in <strong>Raku</strong> but never got the opportunity to actually use it. While doing this task, I got to used it. Now, I think I will remember how to play with list in <strong>Raku</strong>.</p>
 <p>Having done the <strong>Task #1</strong> in <strong>Raku</strong>, I thought why not do the <strong>Task #2</strong> as well. Whatever little I learnt during <strong>Task #1</strong>, I now have this for <strong>Task #2</strong>.</p>
 <p>Since the task was related to <strong>Date</strong>, I looked into the <a href="https://docs.raku.org/type/Date"><strong>documentation</strong></a> first.</p>
-<pre><code class="language-perl6" data-lang="perl6">#!/usr/bin/env perl6
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#75715e">#!/usr/bin/env perl6</span>
 
-use v6;
+<span style="color:#66d9ef">use</span> v6;
 
-use Date;
+<span style="color:#66d9ef">use</span> Date;
 
-sub MAIN() {
-    my $fmt  = { sprintf &quot;%02d%02d%04d&quot;, .month, .day, .year };
-    my $date = Date.new(2000, 1, 1, formatter =&gt; $fmt);
-    while $date.year &lt;= 2299 {
-        my $date_as_str = $date.Str;
-        if $date_as_str eq $date_as_str.flip {
-            say &quot;$date_as_str is a Palindrome date.&quot;;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>() {
+    <span style="color:#66d9ef">my</span> $fmt  <span style="color:#f92672">=</span> { sprintf <span style="color:#e6db74">&#34;%02d%02d%04d&#34;</span>, <span style="color:#f92672">.</span>month, <span style="color:#f92672">.</span>day, <span style="color:#f92672">.</span>year };
+    <span style="color:#66d9ef">my</span> $date <span style="color:#f92672">=</span> Date<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(<span style="color:#ae81ff">2000</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, formatter <span style="color:#f92672">=&gt;</span> $fmt);
+    <span style="color:#66d9ef">while</span> $date<span style="color:#f92672">.</span>year <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">2299</span> {
+        <span style="color:#66d9ef">my</span> $date_as_str <span style="color:#f92672">=</span> $date<span style="color:#f92672">.</span>Str;
+        <span style="color:#66d9ef">if</span> $date_as_str <span style="color:#f92672">eq</span> $date_as_str<span style="color:#f92672">.</span>flip {
+            say <span style="color:#e6db74">&#34;$date_as_str is a Palindrome date.&#34;</span>;
         }
-        $date.later(days =&gt; 1);
+        $date<span style="color:#f92672">.</span>later(days <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>);
     }
 }
-</code></pre><p>Do you see any issue in the code?</p>
+</code></pre></div><p>Do you see any issue in the code?</p>
 <p>First run, gave a nice warning <strong>Date</strong> is a built-in module, no need to import. It was <strong>humiliating</strong>.</p>
 <p><strong>Scimon Proctor</strong>, pointed out that <em>$date.later()</em> returns new <strong>Date</strong> object, so I have to catch the return value.</p>
-<pre><code class="language-perl6" data-lang="perl6">#!/usr/bin/env perl6
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#75715e">#!/usr/bin/env perl6</span>
 
-use v6;
+<span style="color:#66d9ef">use</span> v6;
 
-sub MAIN() {
-    my $fmt  = { sprintf &quot;%02d%02d%04d&quot;, .month, .day, .year };
-    my $date = Date.new(2000, 1, 1, formatter =&gt; $fmt);
-    while $date.year &lt;= 2299 {
-        my $date_as_str = $date.Str;
-        if $date_as_str eq $date_as_str.flip {
-            say &quot;$date_as_str is a Palindrome date.&quot;;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>() {
+    <span style="color:#66d9ef">my</span> $fmt  <span style="color:#f92672">=</span> { sprintf <span style="color:#e6db74">&#34;%02d%02d%04d&#34;</span>, <span style="color:#f92672">.</span>month, <span style="color:#f92672">.</span>day, <span style="color:#f92672">.</span>year };
+    <span style="color:#66d9ef">my</span> $date <span style="color:#f92672">=</span> Date<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(<span style="color:#ae81ff">2000</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, formatter <span style="color:#f92672">=&gt;</span> $fmt);
+    <span style="color:#66d9ef">while</span> $date<span style="color:#f92672">.</span>year <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">2299</span> {
+        <span style="color:#66d9ef">my</span> $date_as_str <span style="color:#f92672">=</span> $date<span style="color:#f92672">.</span>Str;
+        <span style="color:#66d9ef">if</span> $date_as_str <span style="color:#f92672">eq</span> $date_as_str<span style="color:#f92672">.</span>flip {
+            say <span style="color:#e6db74">&#34;$date_as_str is a Palindrome date.&#34;</span>;
         }
-        $date = $date.later(days =&gt; 1);
+        $date <span style="color:#f92672">=</span> $date<span style="color:#f92672">.</span>later(days <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>);
     }
 }
-</code></pre><p>All good? No, still something missing.</p>
+</code></pre></div><p>All good? No, still something missing.</p>
 <p>If you noticed, I named the variable <strong>&ldquo;$date_as_str&rdquo;</strong> which is <strong>Perlish</strong>. So I changed it to <strong>&ldquo;$date-as-str&rdquo;</strong>, more like <strong>Raku</strong>.</p>
-<pre><code class="language-perl6" data-lang="perl6">#!/usr/bin/env perl6
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#75715e">#!/usr/bin/env perl6</span>
 
-use v6;
+<span style="color:#66d9ef">use</span> v6;
 
-sub MAIN() {
-    my $fmt  = { sprintf &quot;%02d%02d%04d&quot;, .month, .day, .year };
-    my $date = Date.new(2000, 1, 1, formatter =&gt; $fmt);
-    while $date.year &lt;= 2299 {
-        my $date-as-str = $date.Str;
-        if $date-as-str eq $date-as-str.flip {
-            say &quot;$date-as-str is a Palindrome date.&quot;;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>() {
+    <span style="color:#66d9ef">my</span> $fmt  <span style="color:#f92672">=</span> { sprintf <span style="color:#e6db74">&#34;%02d%02d%04d&#34;</span>, <span style="color:#f92672">.</span>month, <span style="color:#f92672">.</span>day, <span style="color:#f92672">.</span>year };
+    <span style="color:#66d9ef">my</span> $date <span style="color:#f92672">=</span> Date<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(<span style="color:#ae81ff">2000</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, formatter <span style="color:#f92672">=&gt;</span> $fmt);
+    <span style="color:#66d9ef">while</span> $date<span style="color:#f92672">.</span>year <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">2299</span> {
+        <span style="color:#66d9ef">my</span> $date<span style="color:#f92672">-</span>as<span style="color:#f92672">-</span>str <span style="color:#f92672">=</span> $date<span style="color:#f92672">.</span>Str;
+        <span style="color:#66d9ef">if</span> $date<span style="color:#f92672">-</span>as<span style="color:#f92672">-</span>str <span style="color:#f92672">eq</span> $date<span style="color:#f92672">-</span>as<span style="color:#f92672">-</span>str<span style="color:#f92672">.</span>flip {
+            say <span style="color:#e6db74">&#34;$date-as-str is a Palindrome date.&#34;</span>;
         }
-        $date = $date.later(days =&gt; 1);
+        $date <span style="color:#f92672">=</span> $date<span style="color:#f92672">.</span>later(days <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>);
     }
 }
-</code></pre><p>Now it looks proper <strong>Raku</strong> code.</p>
+</code></pre></div><p>Now it looks proper <strong>Raku</strong> code.</p>
 <p>What did I learn this time?</p>
 <p>Well, I learnt how to use Date class.</p>
 <p>After sharing the code on Twitter, <strong>Elizabeth Mattijsen</strong>, suggested I could use <strong>++$date</strong> instead of doing <strong>$date.later()</strong>.</p>
 <p>Here is the final version as of today.</p>
-<pre><code class="language-perl6" data-lang="perl6">#!/usr/bin/env perl6
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#75715e">#!/usr/bin/env perl6</span>
 
-use v6;
+<span style="color:#66d9ef">use</span> v6;
 
-sub MAIN() {
-    my $fmt  = { sprintf &quot;%02d%02d%04d&quot;, .month, .day, .year };
-    my $date = Date.new(2000, 1, 1, formatter =&gt; $fmt);
-    while $date.year &lt;= 2299 {
-        my $date-as-str = $date.Str;
-        if $date-as-str eq $date-as-str.flip {
-            say &quot;$date-as-str is a Palindrome date.&quot;;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>() {
+    <span style="color:#66d9ef">my</span> $fmt  <span style="color:#f92672">=</span> { sprintf <span style="color:#e6db74">&#34;%02d%02d%04d&#34;</span>, <span style="color:#f92672">.</span>month, <span style="color:#f92672">.</span>day, <span style="color:#f92672">.</span>year };
+    <span style="color:#66d9ef">my</span> $date <span style="color:#f92672">=</span> Date<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(<span style="color:#ae81ff">2000</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, formatter <span style="color:#f92672">=&gt;</span> $fmt);
+    <span style="color:#66d9ef">while</span> $date<span style="color:#f92672">.</span>year <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">2299</span> {
+        <span style="color:#66d9ef">my</span> $date<span style="color:#f92672">-</span>as<span style="color:#f92672">-</span>str <span style="color:#f92672">=</span> $date<span style="color:#f92672">.</span>Str;
+        <span style="color:#66d9ef">if</span> $date<span style="color:#f92672">-</span>as<span style="color:#f92672">-</span>str <span style="color:#f92672">eq</span> $date<span style="color:#f92672">-</span>as<span style="color:#f92672">-</span>str<span style="color:#f92672">.</span>flip {
+            say <span style="color:#e6db74">&#34;$date-as-str is a Palindrome date.&#34;</span>;
         }
-        ++$date;
+        <span style="color:#f92672">++</span>$date;
     }
 }
-</code></pre><hr>
+</code></pre></div><hr>
 <p>So for the first time, I have solved both tasks in <strong>Perl</strong> and <strong>Raku</strong>. To make it complete, I wrote this blog as well.</p>
 <p>I may not be able to do this every week but it gave me confidence to at least give it a try.</p>
 <p>Thanks for reading my story, talk to you soon with another story.</p>

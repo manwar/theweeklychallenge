@@ -16,7 +16,7 @@
 
     <meta name="description" content="Advent Calendar - December 6, 2019">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.66.0-DEV" />
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -160,21 +160,21 @@
 <br>
 <br>
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/arne-sommer/perl6/pythagoras-pie-all"><strong>pythagoras-pie-all</strong></a></p>
-<pre><code class="language-perl6" data-lang="perl6">my $pythagoras-pie := gather  # [1]
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">my</span> $pythagoras<span style="color:#f92672">-</span>pie :<span style="color:#f92672">=</span> gather  <span style="color:#75715e"># [1]</span>
 {
-  my $remainder = 100;        # [2]
-  my $position  = 1;          # [3]
-  loop                        # [4]
+  <span style="color:#66d9ef">my</span> $remainder <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>;        <span style="color:#75715e"># [2]</span>
+  <span style="color:#66d9ef">my</span> $position  <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;          <span style="color:#75715e"># [3]</span>
+  loop                        <span style="color:#75715e"># [4]</span>
   {
-    my $part = $remainder * $position / 100; # [5]
-    $remainder -= $part;                     # [6]
-    $position++;                             # [7]
-    take $part;                              # [8]
+    <span style="color:#66d9ef">my</span> $part <span style="color:#f92672">=</span> $remainder <span style="color:#f92672">*</span> $position <span style="color:#f92672">/</span> <span style="color:#ae81ff">100</span>; <span style="color:#75715e"># [5]</span>
+    $remainder <span style="color:#f92672">-=</span> $part;                     <span style="color:#75715e"># [6]</span>
+    $position<span style="color:#f92672">++</span>;                             <span style="color:#75715e"># [7]</span>
+    take $part;                              <span style="color:#75715e"># [8]</span>
   }
 }
 
-say &quot;{ $_ + 1 } -&gt;  $pythagoras-pie[$_]%&quot; for ^100; [9]
-</code></pre><p><br>
+say <span style="color:#e6db74">&#34;{ $_ + 1 } -&gt;  $pythagoras-pie[$_]%&#34;</span> <span style="color:#66d9ef">for</span> <span style="color:#f92672">^</span><span style="color:#ae81ff">100</span>; [<span style="color:#ae81ff">9</span>]
+</code></pre></div><p><br>
 \</p>
 <h3 id="1-we-set-up-the-sequence-with-binding--to-ensure-that-it-stays-lazy-as-evaluating-an-inifinite-list-doesnt-work-out">[1] We set up the sequence with binding (:=) to ensure that it stays lazy (as evaluating an inifinite list doesn&rsquo;t work out).</h3>
 <h3 id="2-the-size-of-the-pie-in--starting-with-100">[2] The size of the pie (in %), starting with 100.</h3>
@@ -221,26 +221,26 @@ But this doesn&rsquo;t tell us the position (or index), and thus which guest.
 <br>
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-016/arne-sommer/perl6/ch-1.p6"><strong>pythagoras-pie</strong></a>
 \</p>
-<pre><code class="language-perl6" data-lang="perl6">my $pythagoras-pie := gather
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">my</span> $pythagoras<span style="color:#f92672">-</span>pie :<span style="color:#f92672">=</span> gather
 {
-  my $remainder = 100;
-  my $position  = 1;
+  <span style="color:#66d9ef">my</span> $remainder <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>;
+  <span style="color:#66d9ef">my</span> $position  <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
   loop
   {
-    my $part = $remainder * $position / 100;
-    $remainder -= $part;
-    $position++;
+    <span style="color:#66d9ef">my</span> $part <span style="color:#f92672">=</span> $remainder <span style="color:#f92672">*</span> $position <span style="color:#f92672">/</span> <span style="color:#ae81ff">100</span>;
+    $remainder <span style="color:#f92672">-=</span> $part;
+    $position<span style="color:#f92672">++</span>;
     take $part;
   }
 }
-\
-my $largest = $pythagoras-pie[^100].max;                          # [1]
+<span style="color:#f92672">\</span>
+<span style="color:#66d9ef">my</span> $largest <span style="color:#f92672">=</span> $pythagoras<span style="color:#f92672">-</span>pie[<span style="color:#f92672">^</span><span style="color:#ae81ff">100</span>]<span style="color:#f92672">.</span>max;                          <span style="color:#75715e"># [1]</span>
 
-for (^100).grep({ $pythagoras-pie[$_] == $largest }) -&gt; $guest    # [2]
+<span style="color:#66d9ef">for</span> (<span style="color:#f92672">^</span><span style="color:#ae81ff">100</span>)<span style="color:#f92672">.</span>grep({ $pythagoras<span style="color:#f92672">-</span>pie[$_] <span style="color:#f92672">==</span> $largest }) <span style="color:#f92672">-&gt;</span> $guest    <span style="color:#75715e"># [2]</span>
 {
-  say &quot;Guest #{ $guest + 1 } got the largest piece of cake ({ $largest }%).&quot;;
-}                # [3]
-</code></pre><p><br>
+  say <span style="color:#e6db74">&#34;Guest #{ $guest + 1 } got the largest piece of cake ({ $largest }%).&#34;</span>;
+}                <span style="color:#75715e"># [3]</span>
+</code></pre></div><p><br>
 \</p>
 <h3 id="1-get-the-highest-value-in-the-first-100-elements-of-the-sequence-we-had-to-get-rid-of-the-infinite-sequence-as-max-obviously-cannot-reach-the-end">[1] Get the highest value in the first 100 elements of the sequence. (We had to get rid of the infinite sequence, as «max» obviously cannot reach the end.)</h3>
 <h3 id="2-iterate-over-the-indeces-0-to-99-select-the-ones-with-grep-where-the-value-in-the-list-is-equal-to-the-highest-value-note-that-this-would-give-all-matches-if-there-had-been-more-than-one-but-there-isnt">[2] Iterate over the indeces (0 to 99), select the ones (with «grep») where the value in the list is equal to the highest value. Note that this would give all matches, if there had been more than one (but there isn&rsquo;t).</h3>

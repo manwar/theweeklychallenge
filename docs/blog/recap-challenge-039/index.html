@@ -16,7 +16,7 @@
 
     <meta name="description" content="My personal take on the Challenge #039.">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.66.0-DEV" />
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -190,47 +190,47 @@
 <hr>
 <p><strong>Fernando Correa de Oliveira</strong> shared solution to <a href="/blog/perl-weekly-challenge-039"><strong>Perl Weekly Challenge - 039</strong></a> as below in <strong>Raku</strong>:</p>
 <h3 id="task-1">Task #1</h3>
-<pre><code class="language-perl6" data-lang="perl6">
-sub to-min(Str $str) {
-    do given $str.comb(/\d+/) {
-       60*.[0] + .[1]
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6">
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">to</span>-min(Str $str) {
+    <span style="color:#66d9ef">do</span> given $str<span style="color:#f92672">.</span>comb(<span style="color:#e6db74">/\d+/</span>) {
+       <span style="color:#ae81ff">60</span><span style="color:#f92672">*.</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+</span> <span style="color:#f92672">.</span>[<span style="color:#ae81ff">1</span>]
     }
 }
 
-proto calc(Int $count,  Int $prev, @in,               @out --&gt; Int) {*}
-multi calc(0,           Int,       [],                []   --&gt; 0)   {}
-multi calc(Int,         Int,       [],                [])           { die &quot;Finished with guest inside house&quot; }
-multi calc(0,           Int $prev, [Int $in, *@in],   @out where $in &lt;= *.head)        { calc 1, $in, @in, @out }
-multi calc(Int $count,  Int $prev, [Int $in, *@in],   @out where $in &lt;= *.head)        { $in  - $prev + calc $count + 1, $in,  @in, @out }
-multi calc(Int $count,  Int $prev, @in (Int $in, *@), [Int $out where $in &gt; *, *@out]) { $out - $prev + calc $count - 1, $out, @in, @out }
-multi calc(Int $count,  Int $prev, [],                [Int $out, *@out])               { $out - $prev + calc $count - 1, $out, [],  @out }
+proto calc(Int $count,  Int $prev, @in,               @out <span style="color:#f92672">--&gt;</span> Int) {<span style="color:#f92672">*</span>}
+multi calc(<span style="color:#ae81ff">0</span>,           Int,       <span style="color:#f92672">[]</span>,                <span style="color:#f92672">[]</span>   <span style="color:#f92672">--&gt;</span> <span style="color:#ae81ff">0</span>)   {}
+multi calc(Int,         Int,       <span style="color:#f92672">[]</span>,                <span style="color:#f92672">[]</span>)           { die <span style="color:#e6db74">&#34;Finished with guest inside house&#34;</span> }
+multi calc(<span style="color:#ae81ff">0</span>,           Int $prev, [Int $in, <span style="color:#f92672">*</span>@in],   @out where $in <span style="color:#f92672">&lt;=</span> <span style="color:#f92672">*.</span>head)        { calc <span style="color:#ae81ff">1</span>, $in, @in, @out }
+multi calc(Int $count,  Int $prev, [Int $in, <span style="color:#f92672">*</span>@in],   @out where $in <span style="color:#f92672">&lt;=</span> <span style="color:#f92672">*.</span>head)        { $in  <span style="color:#f92672">-</span> $prev <span style="color:#f92672">+</span> calc $count <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, $in,  @in, @out }
+multi calc(Int $count,  Int $prev, @in (Int $in, <span style="color:#f92672">*</span>@), [Int $out where $in <span style="color:#f92672">&gt;</span> <span style="color:#f92672">*</span>, <span style="color:#f92672">*</span>@out]) { $out <span style="color:#f92672">-</span> $prev <span style="color:#f92672">+</span> calc $count <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, $out, @in, @out }
+multi calc(Int $count,  Int $prev, <span style="color:#f92672">[]</span>,                [Int $out, <span style="color:#f92672">*</span>@out])               { $out <span style="color:#f92672">-</span> $prev <span style="color:#f92672">+</span> calc $count <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, $out, <span style="color:#f92672">[]</span>,  @out }
 
-my (@in, @out) := ([[],[]], |lines).reduce: -&gt; (@in, @out), $_ {
-   my ($in, $out) = .comb(/\d+&quot;:&quot;\d+/);
-   [ |@in, to-min $in, ], [ |@out, to-min $out ]
+<span style="color:#66d9ef">my</span> (@in, @out) :<span style="color:#f92672">=</span> ([<span style="color:#f92672">[]</span>,<span style="color:#f92672">[]</span>], <span style="color:#f92672">|</span>lines)<span style="color:#f92672">.</span>reduce: <span style="color:#f92672">-&gt;</span> (@in, @out), $_ {
+   <span style="color:#66d9ef">my</span> ($in, $out) <span style="color:#f92672">=</span> <span style="color:#f92672">.</span>comb(<span style="color:#e6db74">/\d+&#34;:&#34;\d+/</span>);
+   [ <span style="color:#f92672">|</span>@in, to<span style="color:#f92672">-</span>min $in, ], [ <span style="color:#f92672">|</span>@out, to<span style="color:#f92672">-</span>min $out ]
 }
 
-say calc 0, 0, @in.sort, @out.sort
+say calc <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, @in<span style="color:#f92672">.</span>sort, @out<span style="color:#f92672">.</span>sort
 
-</code></pre><h3 id="task-2">Task #2</h3>
-<pre><code class="language-perl6" data-lang="perl6">
-multi calc(@mem,                        Int $num) { [ $num, |@mem ]   }
-multi calc([Int() $x, Int() $y, *@mem], &quot;+&quot;     ) { [ $y + $x, |@mem] }
-multi calc([Int() $x, Int() $y, *@mem], &quot;-&quot;     ) { [ $y - $x, |@mem] }
-multi calc([Int() $x, Int() $y, *@mem], &quot;−&quot;     ) { [ $y - $x, |@mem] }
-multi calc([Int() $x, Int() $y, *@mem], &quot;*&quot;     ) { [ $y * $x, |@mem] }
-multi calc([Int() $x, Int() $y, *@mem], &quot;×&quot;     ) { [ $y * $x, |@mem] }
-multi calc([Int() $x, Int() $y, *@mem], &quot;/&quot;     ) { [ $y / $x, |@mem] }
-multi calc([Int() $x, Int() $y, *@mem], &quot;÷&quot;     ) { [ $y / $x, |@mem] }
-multi calc(@mem (Int() $x, *@),         &quot;=&quot;     ) { @mem              }
+</code></pre></div><h3 id="task-2">Task #2</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6">
+multi calc(@mem,                        Int $num) { [ $num, <span style="color:#f92672">|</span>@mem ]   }
+multi calc([Int() $x, Int() $y, <span style="color:#f92672">*</span>@mem], <span style="color:#e6db74">&#34;+&#34;</span>     ) { [ $y <span style="color:#f92672">+</span> $x, <span style="color:#f92672">|</span>@mem] }
+multi calc([Int() $x, Int() $y, <span style="color:#f92672">*</span>@mem], <span style="color:#e6db74">&#34;-&#34;</span>     ) { [ $y <span style="color:#f92672">-</span> $x, <span style="color:#f92672">|</span>@mem] }
+multi calc([Int() $x, Int() $y, <span style="color:#f92672">*</span>@mem], <span style="color:#e6db74">&#34;−&#34;</span>     ) { [ $y <span style="color:#f92672">-</span> $x, <span style="color:#f92672">|</span>@mem] }
+multi calc([Int() $x, Int() $y, <span style="color:#f92672">*</span>@mem], <span style="color:#e6db74">&#34;*&#34;</span>     ) { [ $y <span style="color:#f92672">*</span> $x, <span style="color:#f92672">|</span>@mem] }
+multi calc([Int() $x, Int() $y, <span style="color:#f92672">*</span>@mem], <span style="color:#e6db74">&#34;×&#34;</span>     ) { [ $y <span style="color:#f92672">*</span> $x, <span style="color:#f92672">|</span>@mem] }
+multi calc([Int() $x, Int() $y, <span style="color:#f92672">*</span>@mem], <span style="color:#e6db74">&#34;/&#34;</span>     ) { [ $y <span style="color:#f92672">/</span> $x, <span style="color:#f92672">|</span>@mem] }
+multi calc([Int() $x, Int() $y, <span style="color:#f92672">*</span>@mem], <span style="color:#e6db74">&#34;÷&#34;</span>     ) { [ $y <span style="color:#f92672">/</span> $x, <span style="color:#f92672">|</span>@mem] }
+multi calc(@mem (Int() $x, <span style="color:#f92672">*</span>@),         <span style="color:#e6db74">&#34;=&#34;</span>     ) { @mem              }
 
-my @mem;
-for words() {
-    @mem = calc @mem, .&amp;val;
-    say @mem.head
+<span style="color:#66d9ef">my</span> @mem;
+<span style="color:#66d9ef">for</span> words() {
+    @mem <span style="color:#f92672">=</span> calc @mem, <span style="color:#f92672">.&amp;</span>val;
+    say @mem<span style="color:#f92672">.</span>head
 }
 
-</code></pre><hr>
+</code></pre></div><hr>
 <hr>
 <h2 id="centurion-club">CENTURION CLUB</h2>
 <hr>

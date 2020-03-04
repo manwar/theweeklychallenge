@@ -16,7 +16,7 @@
 
     <meta name="description" content="Laurent Rosenfeld Weekly Review: Challenge - #030.">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.66.0-DEV" />
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -160,12 +160,12 @@
 <p><em>Write a script to list dates for Sunday Christmas between 2019 and 2100. For example, 25 Dec 2022 is Sunday.</em></p>
 <h2 id="my-solutions">My Solutions</h2>
 <p>In Perl 6/Raku, the <code>Date</code> data type offers the built-in methods we need for date computations, including finding day of week.</p>
-<pre><code class="language-Perl6" data-lang="Perl6">use v6;
-for 2019..2100 -&gt; $year {
-    say &quot;Christmas of year $year falls on a Sunday.&quot;
-        if Date.new($year, 12, 25).day-of-week == 7;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> v6;
+<span style="color:#66d9ef">for</span> <span style="color:#ae81ff">2019</span><span style="color:#f92672">..</span><span style="color:#ae81ff">2100</span> <span style="color:#f92672">-&gt;</span> $year {
+    say <span style="color:#e6db74">&#34;Christmas of year $year falls on a Sunday.&#34;</span>
+        <span style="color:#66d9ef">if</span> Date<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>($year, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">25</span>)<span style="color:#f92672">.</span>day<span style="color:#f92672">-</span>of<span style="color:#f92672">-</span>week <span style="color:#f92672">==</span> <span style="color:#ae81ff">7</span>;
 }
-</code></pre><p>which duly prints out:</p>
+</code></pre></div><p>which duly prints out:</p>
 <pre><code>Christmas of year 2022 falls on a Sunday.
 Christmas of year 2033 falls on a Sunday.
 Christmas of year 2039 falls on a Sunday.
@@ -185,57 +185,57 @@ Christmas of year 2095 falls on a Sunday.
 <h2 id="alternative-solutions">Alternative Solutions</h2>
 <p>I did not keep track of the number of contributions for past challenges, but it seems to me that, with 15 solutions, this might be the most successful challenge so far in Perl 6. This may have to do with the fact that the core Perl 6 has all built-in methods to easily solve the task.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/arne-sommer/perl6/ch-1.p6">Arne Sommer</a> suggested a solution quite similar to mine:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">unit sub MAIN (UInt :$from = 2019, UInt :$to = 2100);
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">unit <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> (UInt :$from = 2019, UInt :$to = 2100);
 for $from ... $to -&gt; $year
 {
-  say &quot;25 Dec $year is Sunday.&quot; if Date.new($year, 12, 25).day-of-week == 7;
+  say <span style="color:#e6db74">&#34;25 Dec $year is Sunday.&#34;</span> <span style="color:#66d9ef">if</span> Date<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>($year, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">25</span>)<span style="color:#f92672">.</span>day<span style="color:#f92672">-</span>of<span style="color:#f92672">-</span>week <span style="color:#f92672">==</span> <span style="color:#ae81ff">7</span>;
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/kevin-colyer/perl6/ch-1.p6">Kevin Colyer</a> took essentially the same approach as my one-liner above, but using the <code>==&gt;</code> forward feed operator to chain the statements:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">2019..2100 ==&gt; map { Date.new($_,12,25) } ==&gt; grep { $_.day-of-week==7} ==&gt; map { say $_.yyyy-mm-dd };
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/mark-senn/perl6/ch-1.p6">Mark Senn</a> also used essentially the same idea:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">for (2019..2100) -&gt; $year  {
-    (Date.new(day =&gt;25, month=&gt;12, year=&gt;$year).day-of-week == 7)
-        and  say &quot;25 Dec $year&quot;;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/kevin-colyer/perl6/ch-1.p6">Kevin Colyer</a> took essentially the same approach as my one-liner above, but using the <code>==&gt;</code> forward feed operator to chain the statements:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#ae81ff">2019</span><span style="color:#f92672">..</span><span style="color:#ae81ff">2100</span> <span style="color:#f92672">==&gt;</span> map { Date<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>($_,<span style="color:#ae81ff">12</span>,<span style="color:#ae81ff">25</span>) } <span style="color:#f92672">==&gt;</span> grep { $_<span style="color:#f92672">.</span>day<span style="color:#f92672">-</span>of<span style="color:#f92672">-</span>week<span style="color:#f92672">==</span><span style="color:#ae81ff">7</span>} <span style="color:#f92672">==&gt;</span> map { say $_<span style="color:#f92672">.</span>yyyy<span style="color:#f92672">-</span>mm<span style="color:#f92672">-</span>dd };
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/mark-senn/perl6/ch-1.p6">Mark Senn</a> also used essentially the same idea:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">2019</span><span style="color:#f92672">..</span><span style="color:#ae81ff">2100</span>) <span style="color:#f92672">-&gt;</span> $year  {
+    (Date<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(day <span style="color:#f92672">=&gt;</span><span style="color:#ae81ff">25</span>, month<span style="color:#f92672">=&gt;</span><span style="color:#ae81ff">12</span>, year<span style="color:#f92672">=&gt;</span>$year)<span style="color:#f92672">.</span>day<span style="color:#f92672">-</span>of<span style="color:#f92672">-</span>week <span style="color:#f92672">==</span> <span style="color:#ae81ff">7</span>)
+        <span style="color:#f92672">and</span>  say <span style="color:#e6db74">&#34;25 Dec $year&#34;</span>;
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/noud/perl6/ch-1.p6">Noud</a> worked along the same lines:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">for 2019 .. 2100 -&gt; $year {
-    if (Date.new($year, 12, 25).day-of-week == 7) {
-        $year.say;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/noud/perl6/ch-1.p6">Noud</a> worked along the same lines:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">for</span> <span style="color:#ae81ff">2019</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">2100</span> <span style="color:#f92672">-&gt;</span> $year {
+    <span style="color:#66d9ef">if</span> (Date<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>($year, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">25</span>)<span style="color:#f92672">.</span>day<span style="color:#f92672">-</span>of<span style="color:#f92672">-</span>week <span style="color:#f92672">==</span> <span style="color:#ae81ff">7</span>) {
+        $year<span style="color:#f92672">.</span>say;
     }
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/simon-proctor/perl6/ch-1.p6">Simon Proctor</a>&lsquo;s program is similar to most others seen so far:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">.say for (2019..2100).map( { Date.new( :year($_), :day(25), :month(12) ) } ).grep( *.day-of-week == 7 );
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/athanasius/perl6/ch-1.p6">Athanasius</a> made, as often, a relatively long full-fledged program, but using the same <code>Date</code> methods as other challengers:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">
-my UInt constant $START-YEAR    = 2019;
-my UInt constant $END-YEAR      = 2100;
-my UInt constant $DECEMBER      =   12;
-my UInt constant $CHRISTMAS-DAY =   25;
-my UInt constant $SUNDAY        =    7;
-my Str  constant $FORMAT        = 'Between %d and %d (inclusive), Christmas ' ~
-                                  &quot;Day (%dth December) falls on a\nSunday &quot;   ~
-                                  &quot;in %s, and %s\n&quot;;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/simon-proctor/perl6/ch-1.p6">Simon Proctor</a>&lsquo;s program is similar to most others seen so far:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#f92672">.</span>say <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">2019</span><span style="color:#f92672">..</span><span style="color:#ae81ff">2100</span>)<span style="color:#f92672">.</span>map( { Date<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>( :year($_), :day(<span style="color:#ae81ff">25</span>), :month(<span style="color:#ae81ff">12</span>) ) } )<span style="color:#f92672">.</span>grep( <span style="color:#f92672">*.</span>day<span style="color:#f92672">-</span>of<span style="color:#f92672">-</span>week <span style="color:#f92672">==</span> <span style="color:#ae81ff">7</span> );
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/athanasius/perl6/ch-1.p6">Athanasius</a> made, as often, a relatively long full-fledged program, but using the same <code>Date</code> methods as other challengers:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">
+<span style="color:#66d9ef">my</span> UInt constant $START<span style="color:#f92672">-</span>YEAR    <span style="color:#f92672">=</span> <span style="color:#ae81ff">2019</span>;
+<span style="color:#66d9ef">my</span> UInt constant $END<span style="color:#f92672">-</span>YEAR      <span style="color:#f92672">=</span> <span style="color:#ae81ff">2100</span>;
+<span style="color:#66d9ef">my</span> UInt constant $DECEMBER      <span style="color:#f92672">=</span>   <span style="color:#ae81ff">12</span>;
+<span style="color:#66d9ef">my</span> UInt constant $CHRISTMAS<span style="color:#f92672">-</span>DAY <span style="color:#f92672">=</span>   <span style="color:#ae81ff">25</span>;
+<span style="color:#66d9ef">my</span> UInt constant $SUNDAY        <span style="color:#f92672">=</span>    <span style="color:#ae81ff">7</span>;
+<span style="color:#66d9ef">my</span> Str  constant $FORMAT        <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Between %d and %d (inclusive), Christmas &#39;</span> <span style="color:#f92672">~</span>
+                                  <span style="color:#e6db74">&#34;Day (%dth December) falls on a\nSunday &#34;</span>   <span style="color:#f92672">~</span>
+                                  <span style="color:#e6db74">&#34;in %s, and %s\n&#34;</span>;
 
-sub MAIN()
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>()
 {
-    my UInt @years;
-    for $START-YEAR .. $END-YEAR -&gt; UInt $year
+    <span style="color:#66d9ef">my</span> UInt @years;
+    <span style="color:#66d9ef">for</span> $START<span style="color:#f92672">-</span>YEAR <span style="color:#f92672">..</span> $END<span style="color:#f92672">-</span>YEAR <span style="color:#f92672">-&gt;</span> UInt $year
     {
-        my Date $date = Date.new($year, $DECEMBER, $CHRISTMAS-DAY);
+        <span style="color:#66d9ef">my</span> Date $date <span style="color:#f92672">=</span> Date<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>($year, $DECEMBER, $CHRISTMAS<span style="color:#f92672">-</span>DAY);
 
-        @years.push: $year if $date.day-of-week == $SUNDAY;
+        @years<span style="color:#f92672">.</span>push: $year <span style="color:#66d9ef">if</span> $date<span style="color:#f92672">.</span>day<span style="color:#f92672">-</span>of<span style="color:#f92672">-</span>week <span style="color:#f92672">==</span> $SUNDAY;
     }
-    my UInt $final-year = @years.pop;
-    $FORMAT.printf:
-        $START-YEAR, $END-YEAR, $CHRISTMAS-DAY, @years.join(', '), $final-year;
+    <span style="color:#66d9ef">my</span> UInt $final<span style="color:#f92672">-</span>year <span style="color:#f92672">=</span> @years<span style="color:#f92672">.</span>pop;
+    $FORMAT<span style="color:#f92672">.</span>printf:
+        $START<span style="color:#f92672">-</span>YEAR, $END<span style="color:#f92672">-</span>YEAR, $CHRISTMAS<span style="color:#f92672">-</span>DAY, @years<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#39;, &#39;</span>), $final<span style="color:#f92672">-</span>year;
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/daniel-mita/perl6/ch-1.p6">Daniel Mita</a> planned some extra features, but, when removing them, the gist of his implementation is essentially along the same lines as most others:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">for 2019 .. 2100 -&gt; $year {
-    given Date.new( :$year, :12month, :25day ) {
-      if .day-of-week == 7 { .say }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/daniel-mita/perl6/ch-1.p6">Daniel Mita</a> planned some extra features, but, when removing them, the gist of his implementation is essentially along the same lines as most others:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">for</span> <span style="color:#ae81ff">2019</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">2100</span> <span style="color:#f92672">-&gt;</span> $year {
+    given Date<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>( :$year, :<span style="color:#ae81ff">12</span>month, :<span style="color:#ae81ff">25</span>day ) {
+      <span style="color:#66d9ef">if</span> <span style="color:#f92672">.</span>day<span style="color:#f92672">-</span>of<span style="color:#f92672">-</span>week <span style="color:#f92672">==</span> <span style="color:#ae81ff">7</span> { <span style="color:#f92672">.</span>say }
     }
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/jaldhar-h-vyas/perl6/ch-1.sh">Jaldhar H. Vyas</a> suggested the following one-liner:</p>
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/jaldhar-h-vyas/perl6/ch-1.sh">Jaldhar H. Vyas</a> suggested the following one-liner:</p>
 <pre><code>perl6 -e '&quot;$_-12-25&quot;.say for (2019..2100).grep({Date.new($_,12,25).day-of-week==0;});'
 </code></pre>
 <p>which was apparently influenced by his Perl 5 implementation and doesn&rsquo;t work properly because it compares the return value of the <code>.day-of-week</code> method to 0, whereas it should be compared to 7. I guess it&rsquo;s simply a typo. Making that small change fixes the issue and enables the one-liner to work properly:</p>
@@ -247,43 +247,43 @@ sub MAIN()
 2095-12-25
 </code></pre>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/joelle-maslak/perl6/ch-1.p6">Joelle Maslak</a> also used the same general idea:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub MAIN(:$start = 2019, :$end = 2100) {
-    my $christmasses = ($start..$end).map({ DateTime.new(:25day, :12month, :year($_)) });
-    my $on-sunday = $christmasses.grep: *.day-of-week == 7;
-    say $on-sunday».yyyy-mm-dd.join(&quot;\n&quot;);
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(:$start = 2019, :$end = 2100) {
+    <span style="color:#66d9ef">my</span> $christmasses <span style="color:#f92672">=</span> ($start<span style="color:#f92672">..</span>$end)<span style="color:#f92672">.</span>map({ DateTime<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(:<span style="color:#ae81ff">25</span>day, :<span style="color:#ae81ff">12</span>month, :year($_)) });
+    <span style="color:#66d9ef">my</span> $on<span style="color:#f92672">-</span>sunday <span style="color:#f92672">=</span> $christmasses<span style="color:#f92672">.</span>grep: <span style="color:#f92672">*.</span>day<span style="color:#f92672">-</span>of<span style="color:#f92672">-</span>week <span style="color:#f92672">==</span> <span style="color:#ae81ff">7</span>;
+    say $on<span style="color:#f92672">-</span>sunday<span style="color:#960050;background-color:#1e0010">»</span><span style="color:#f92672">.</span>yyyy<span style="color:#f92672">-</span>mm<span style="color:#f92672">-</span>dd<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34;\n&#34;</span>);
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/markus-holzer/perl6/ch-1.p6">Markus Holzer</a> also used the same feature as others, with just a different syntax:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">constant \SUNDAY = 7;
-.say for
-    ( 2019 .. 2100 )
-    .map(  { DateTime.new( :$^year, month =&gt; 12, day =&gt; 25 ) })
-    .grep( { .day-of-week == SUNDAY })
-    .map(  { .year })
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/markus-holzer/perl6/ch-1.p6">Markus Holzer</a> also used the same feature as others, with just a different syntax:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">constant <span style="color:#f92672">\</span>SUNDAY <span style="color:#f92672">=</span> <span style="color:#ae81ff">7</span>;
+<span style="color:#f92672">.</span>say <span style="color:#66d9ef">for</span>
+    ( <span style="color:#ae81ff">2019</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">2100</span> )
+    <span style="color:#f92672">.</span>map(  { DateTime<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>( :$<span style="color:#960050;background-color:#1e0010">^</span>year, month <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">12</span>, day <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">25</span> ) })
+    <span style="color:#f92672">.</span>grep( { <span style="color:#f92672">.</span>day<span style="color:#f92672">-</span>of<span style="color:#f92672">-</span>week <span style="color:#f92672">==</span> SUNDAY })
+    <span style="color:#f92672">.</span>map(  { <span style="color:#f92672">.</span>year })
 ;
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/roger-bell-west/perl6/ch-1.p6">Roger Bell West</a> made a one-line version of the same:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">map {say &quot;$_&quot;}, grep {Date.new($_,12,25).day-of-week==7}, (2019..2100);
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/ruben-westerberg/perl6/ch-1.p6">Ruben Westerberg</a> made yet another version of essentially the same:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">(2020..2099).map({
-    my $t=Date.new(year=&gt;$_,month=&gt;12,day=&gt;25);
-    $t.day-of-week==7??$t!!|();
-})&gt;&gt;.put;
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/ulrich-rieke/perl6/ch-1.p6">Ulrich Rieke</a> also used the same basic technique:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">my @dates ;
-for (2019..2100) -&gt; $year {
-  my $d = Date.new( $year , 12 , 25 ) ;
-  if ( $d.day-of-week == 7 ) {
-      @dates.push( $d ) ;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/roger-bell-west/perl6/ch-1.p6">Roger Bell West</a> made a one-line version of the same:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">map {say <span style="color:#e6db74">&#34;$_&#34;</span>}, grep {Date<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>($_,<span style="color:#ae81ff">12</span>,<span style="color:#ae81ff">25</span>)<span style="color:#f92672">.</span>day<span style="color:#f92672">-</span>of<span style="color:#f92672">-</span>week<span style="color:#f92672">==</span><span style="color:#ae81ff">7</span>}, (<span style="color:#ae81ff">2019</span><span style="color:#f92672">..</span><span style="color:#ae81ff">2100</span>);
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/ruben-westerberg/perl6/ch-1.p6">Ruben Westerberg</a> made yet another version of essentially the same:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">(<span style="color:#ae81ff">2020</span><span style="color:#f92672">..</span><span style="color:#ae81ff">2099</span>)<span style="color:#f92672">.</span>map({
+    <span style="color:#66d9ef">my</span> $t<span style="color:#f92672">=</span>Date<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(year<span style="color:#f92672">=&gt;</span>$_,month<span style="color:#f92672">=&gt;</span><span style="color:#ae81ff">12</span>,day<span style="color:#f92672">=&gt;</span><span style="color:#ae81ff">25</span>);
+    $t<span style="color:#f92672">.</span>day<span style="color:#f92672">-</span>of<span style="color:#f92672">-</span>week<span style="color:#f92672">==</span><span style="color:#ae81ff">7</span>??$t<span style="color:#f92672">!!|</span>();
+})<span style="color:#f92672">&gt;&gt;.</span>put;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/ulrich-rieke/perl6/ch-1.p6">Ulrich Rieke</a> also used the same basic technique:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> @dates ;
+<span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">2019</span><span style="color:#f92672">..</span><span style="color:#ae81ff">2100</span>) <span style="color:#f92672">-&gt;</span> $year {
+  <span style="color:#66d9ef">my</span> $d <span style="color:#f92672">=</span> Date<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>( $year , <span style="color:#ae81ff">12</span> , <span style="color:#ae81ff">25</span> ) ;
+  <span style="color:#66d9ef">if</span> ( $d<span style="color:#f92672">.</span>day<span style="color:#f92672">-</span>of<span style="color:#f92672">-</span>week <span style="color:#f92672">==</span> <span style="color:#ae81ff">7</span> ) {
+      @dates<span style="color:#f92672">.</span>push( $d ) ;
   }
 }
-@dates.map( { say ~$_ } ) ;
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/yet-ebreo/perl6/ch-1.p6">Yet Ebreo</a> used essentially the same technique as most others:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">for 2019..2100 -&gt; $year {
-    my $date = Date.new($year, 12, 25);
-    if ($date.day-of-week == 7) {
-        say &quot;12/25/$year&quot;
+@dates<span style="color:#f92672">.</span>map( { say <span style="color:#f92672">~</span>$_ } ) ;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/yet-ebreo/perl6/ch-1.p6">Yet Ebreo</a> used essentially the same technique as most others:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">for</span> <span style="color:#ae81ff">2019</span><span style="color:#f92672">..</span><span style="color:#ae81ff">2100</span> <span style="color:#f92672">-&gt;</span> $year {
+    <span style="color:#66d9ef">my</span> $date <span style="color:#f92672">=</span> Date<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>($year, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">25</span>);
+    <span style="color:#66d9ef">if</span> ($date<span style="color:#f92672">.</span>day<span style="color:#f92672">-</span>of<span style="color:#f92672">-</span>week <span style="color:#f92672">==</span> <span style="color:#ae81ff">7</span>) {
+        say <span style="color:#e6db74">&#34;12/25/$year&#34;</span>
     }
 }
-</code></pre><h2 id="task-2-integer-triplets-whose-sum-is-12">Task #2: Integer Triplets Whose Sum is 12</h2>
+</code></pre></div><h2 id="task-2-integer-triplets-whose-sum-is-12">Task #2: Integer Triplets Whose Sum is 12</h2>
 <p>This is derived in part from my <a href="http://blogs.perl.org/users/laurent_r/2019/10/perl-weekly-challenge-30-sunday-christmas-and-triplets.html">blog post</a> made in answer to the <a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-030/">Week 30 of the Perl Weekly Challenge</a> organized by  <a href="http://blogs.perl.org/users/mohammad_s_anwar/">Mohammad S. Anwar</a> as well as answers made by others to the same challenge.</p>
 <p>The challenge reads as follows:</p>
 <p><em>Write a script to print all possible series of 3 numbers, where in each series at least one of the number is even and sum of the three numbers is always 12. For example, 3,4,5.</em></p>
@@ -310,12 +310,12 @@ for (2019..2100) -&gt; $year {
 ...
 </code></pre>
 <p>We can get rid of this problem by keeping only triplets in which the numbers are in (non strict) ascending order:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">use v6;
-for 1..10 X 1..10 X 1..10 -&gt; $triplet {
-    next unless [&lt;=] | $triplet;  # ascending order
-    say $triplet if 12 == [+] $triplet;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> v6;
+<span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">10</span> X <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">10</span> X <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">10</span> <span style="color:#f92672">-&gt;</span> $triplet {
+    <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> [<span style="color:#f92672">&lt;=</span>] <span style="color:#f92672">|</span> $triplet;  <span style="color:#75715e"># ascending order</span>
+    say $triplet <span style="color:#66d9ef">if</span> <span style="color:#ae81ff">12</span> <span style="color:#f92672">==</span> [<span style="color:#f92672">+</span>] $triplet;
 }
-</code></pre><p>which produces the desired result:</p>
+</code></pre></div><p>which produces the desired result:</p>
 <pre><code>$ perl6 triplets.p6
 (1 1 10)
 (1 2 9)
@@ -331,34 +331,34 @@ for 1..10 X 1..10 X 1..10 -&gt; $triplet {
 (4 4 4)
 </code></pre>
 <p>Note that the header of the <code>for</code> loop could be made slightly more concise using the <code>xx</code> sequence repetition operator and the <code>[X]</code> cross operator associated with the reduction meta-operator:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">for [X] (1..10) xx 3 -&gt; $triplet { # ...
-</code></pre><h2 id="alternative-solutions-1">Alternative Solutions</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">for</span> [X] (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">10</span>) xx <span style="color:#ae81ff">3</span> <span style="color:#f92672">-&gt;</span> $triplet { <span style="color:#75715e"># ...</span>
+</code></pre></div><h2 id="alternative-solutions-1">Alternative Solutions</h2>
 <p>This week&rsquo;s challenge was highly successful for Perl6/Raku solutions. The <a href="./Christmas-on-sunday.md">Christmas on Sunday</a> task received 15 solutions, and this Triplets adding to 12 challenge did even better with 16 challengers responding.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/arne-sommer/perl6/ch-2.p6">Arne Sommer</a> used the <a href="https://docs.perl6.org/type/List#routine_combinations">combinations</a> method to generate triplets, filtered them on their sum (equal to 12), and then removed duplicates by storing in a hash the sorted individual triplets:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">my %seen;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> %seen;
 
-for (1 .. 10, 1..10, 1..10).flat.combinations(3).unique(:with(&amp;[eqv])).grep(*.sum == 12)
+<span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">10</span>)<span style="color:#f92672">.</span>flat<span style="color:#f92672">.</span>combinations(<span style="color:#ae81ff">3</span>)<span style="color:#f92672">.</span>unique(:with(<span style="color:#f92672">&amp;</span>[eqv]))<span style="color:#f92672">.</span>grep(<span style="color:#f92672">*.</span>sum <span style="color:#f92672">==</span> <span style="color:#ae81ff">12</span>)
 {
-  my @sorted = $_.sort;
+  <span style="color:#66d9ef">my</span> @sorted <span style="color:#f92672">=</span> $_<span style="color:#f92672">.</span>sort;
 
-  next if %seen{@sorted.Str};
+  <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> %seen{@sorted<span style="color:#f92672">.</span>Str};
   say @sorted;
-  %seen{@sorted.Str} = True;
+  %seen{@sorted<span style="color:#f92672">.</span>Str} <span style="color:#f92672">=</span> True;
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/kevin-colyer/perl6/ch-2.p6">Kevin Colyer</a> used three nested <code>for</code> loops and a separate <code>SumsTwelve</code> subroutine to check the triplets&rsquo; sums:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub SumsTwelve(*@tri) {
-    return True if ( [+] @tri ) == 12; # this will always fullfil condition one of number is even as can only add to twelve is ALL even or TWO odd. sum of all odd or one odd can never an even number!
-    return False;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/kevin-colyer/perl6/ch-2.p6">Kevin Colyer</a> used three nested <code>for</code> loops and a separate <code>SumsTwelve</code> subroutine to check the triplets&rsquo; sums:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">SumsTwelve</span>(*@tri) {
+    <span style="color:#66d9ef">return</span> True <span style="color:#66d9ef">if</span> ( [<span style="color:#f92672">+</span>] @tri ) <span style="color:#f92672">==</span> <span style="color:#ae81ff">12</span>; <span style="color:#75715e"># this will always fullfil condition one of number is even as can only add to twelve is ALL even or TWO odd. sum of all odd or one odd can never an even number!</span>
+    <span style="color:#66d9ef">return</span> False;
 }
 
-for 1..10 -&gt; $a {
-    for 1..11-$a -&gt; $b {
-        for 1..12-$b-$a -&gt; $c {
-            say &quot;$a,$b,$c&quot; if SumsTwelve($a,$b,$c);
+<span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">10</span> <span style="color:#f92672">-&gt;</span> $a {
+    <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">11</span><span style="color:#f92672">-</span>$a <span style="color:#f92672">-&gt;</span> $b {
+        <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">12</span><span style="color:#f92672">-</span>$b<span style="color:#f92672">-</span>$a <span style="color:#f92672">-&gt;</span> $c {
+            say <span style="color:#e6db74">&#34;$a,$b,$c&#34;</span> <span style="color:#66d9ef">if</span> SumsTwelve($a,$b,$c);
         }
     }
 }
-</code></pre><p>Note that Kevin&rsquo;s interpretation of the challenge doesn&rsquo;t not consider (2 1 9), (2 9 1), (1 2 9), (1 9 2), (9 2 1), and (9 1 2) to be duplicates. So he found many more triplets than Arne or me:</p>
+</code></pre></div><p>Note that Kevin&rsquo;s interpretation of the challenge doesn&rsquo;t not consider (2 1 9), (2 9 1), (1 2 9), (1 9 2), (9 2 1), and (9 1 2) to be duplicates. So he found many more triplets than Arne or me:</p>
 <pre><code>1,1,10
 1,2,9
 1,3,8
@@ -416,133 +416,133 @@ for 1..10 -&gt; $a {
 10,1,1
 </code></pre>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/mark-senn/perl6/ch-2.p6">Marl Senn</a> first suggested a Wolfram (formerly known as Mathematica) implementation which you can check by following the link. He then proposed two Perl6/Raku implementations using nested <code>for</code> loops. The first one is this:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">for (1..10) -&gt; $i  {
-    for (1..10) -&gt; $j  {
-        for (1..10) -&gt; $k  {
-            ($i + $j + $k == 12)  and  say &quot;$i,$j,$k&quot;;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">10</span>) <span style="color:#f92672">-&gt;</span> $i  {
+    <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">10</span>) <span style="color:#f92672">-&gt;</span> $j  {
+        <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">10</span>) <span style="color:#f92672">-&gt;</span> $k  {
+            ($i <span style="color:#f92672">+</span> $j <span style="color:#f92672">+</span> $k <span style="color:#f92672">==</span> <span style="color:#ae81ff">12</span>)  <span style="color:#f92672">and</span>  say <span style="color:#e6db74">&#34;$i,$j,$k&#34;</span>;
         }
     }
 }
-</code></pre><p>Just like Kevin, Mark doesn&rsquo;t not consider (2 1 9), (2 9 1), (1 2 9), (1 9 2), (9 2 1), and (9 1 2) to be duplicates.</p>
+</code></pre></div><p>Just like Kevin, Mark doesn&rsquo;t not consider (2 1 9), (2 9 1), (1 2 9), (1 9 2), (9 2 1), and (9 1 2) to be duplicates.</p>
 <p>Mark also provided an optimized version of the same modifying the <code>for</code>loops to reduce the number of unnecessary calculations:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">    for (1..10) -&gt; $i  {
-        for (1..12-$i-1) -&gt; $j  {
-            for (12-$i-$j..10) -&gt; $k  {
-                ($i + $j + $k == 12)  and  say &quot;$i,$j,$k&quot;;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">    <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">10</span>) <span style="color:#f92672">-&gt;</span> $i  {
+        <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">12</span><span style="color:#f92672">-</span>$i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">-&gt;</span> $j  {
+            <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">12</span><span style="color:#f92672">-</span>$i<span style="color:#f92672">-</span>$j<span style="color:#f92672">..</span><span style="color:#ae81ff">10</span>) <span style="color:#f92672">-&gt;</span> $k  {
+                ($i <span style="color:#f92672">+</span> $j <span style="color:#f92672">+</span> $k <span style="color:#f92672">==</span> <span style="color:#ae81ff">12</span>)  <span style="color:#f92672">and</span>  say <span style="color:#e6db74">&#34;$i,$j,$k&#34;</span>;
             }
         }
     }
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/noud/perl6/ch-2.p6">Noud</a> cleverly used <em>two</em> nested <code>for</code> loops combined with the <code>permutations</code> built-in method:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">my $total = 12;
-my @triplets = [];
-for 2, 4 ... $total -&gt; $i {
-    for 1 .. ($total - $i - 1) -&gt; $j {
-        @triplets = [|(@triplets), |([$i, $j, $total - $i - $j].permutations)];
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/noud/perl6/ch-2.p6">Noud</a> cleverly used <em>two</em> nested <code>for</code> loops combined with the <code>permutations</code> built-in method:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> $total <span style="color:#f92672">=</span> <span style="color:#ae81ff">12</span>;
+<span style="color:#66d9ef">my</span> @triplets <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>;
+<span style="color:#66d9ef">for</span> <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">4</span> <span style="color:#f92672">...</span> $total <span style="color:#f92672">-&gt;</span> $i {
+    <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> ($total <span style="color:#f92672">-</span> $i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">-&gt;</span> $j {
+        @triplets <span style="color:#f92672">=</span> [<span style="color:#f92672">|</span>(@triplets), <span style="color:#f92672">|</span>([$i, $j, $total <span style="color:#f92672">-</span> $i <span style="color:#f92672">-</span> $j]<span style="color:#f92672">.</span>permutations)];
     }
 }
 
-# Because we use permutations we have duplicates. Ex. (10, 1, 1) with j &lt;-&gt; k
-# gives (10, 1, 1).
-say @triplets.unique;
-</code></pre><p>It seems to me that there is a problem in this program: the <code>unique</code> method does not remove duplicates from the list, because it apparently doesn&rsquo;t work as expected with sublists (probably because <code>(1, 1, 10) === (1, 1, 10)</code> returns <code>False</code>).</p>
+<span style="color:#75715e"># Because we use permutations we have duplicates. Ex. (10, 1, 1) with j &lt;-&gt; k</span>
+<span style="color:#75715e"># gives (10, 1, 1).</span>
+say @triplets<span style="color:#f92672">.</span>unique;
+</code></pre></div><p>It seems to me that there is a problem in this program: the <code>unique</code> method does not remove duplicates from the list, because it apparently doesn&rsquo;t work as expected with sublists (probably because <code>(1, 1, 10) === (1, 1, 10)</code> returns <code>False</code>).</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/jaldhar-h-vyas/perl6/ch-2.p6">Jaldhar H. Vyas</a> also cleverly used only two nested <code>for</code> loops:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">my %results;
-for (1 .. 10) -&gt; $i {
-    for (1 .. (12 - $i - 1)) -&gt; $j {
-        my $k = 12 - $i - $j;
-        %results{($i, $j, $k).sort.join(q{ })}++;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> %results;
+<span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">10</span>) <span style="color:#f92672">-&gt;</span> $i {
+    <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> (<span style="color:#ae81ff">12</span> <span style="color:#f92672">-</span> $i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)) <span style="color:#f92672">-&gt;</span> $j {
+        <span style="color:#66d9ef">my</span> $k <span style="color:#f92672">=</span> <span style="color:#ae81ff">12</span> <span style="color:#f92672">-</span> $i <span style="color:#f92672">-</span> $j;
+        %results{($i, $j, $k)<span style="color:#f92672">.</span>sort<span style="color:#f92672">.</span>join(<span style="color:#e6db74">q{ }</span>)}<span style="color:#f92672">++</span>;
     }
 }
-.say for %results.keys.sort;
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/roger-bell-west/perl6/ch-2.p6">Roger Bell West</a> also used the same clever technique to have only two nested <code>for</code> loops:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">my $target=12;
-for (0..$target) -&gt; $a {
-  for ($a..$target) -&gt; $b {
-    my $c=$target-$a-$b;
-    if ($c&gt;=$b) {
-      say &quot;$a $b $c&quot;;
+<span style="color:#f92672">.</span>say <span style="color:#66d9ef">for</span> %results<span style="color:#f92672">.</span>keys<span style="color:#f92672">.</span>sort;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/roger-bell-west/perl6/ch-2.p6">Roger Bell West</a> also used the same clever technique to have only two nested <code>for</code> loops:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> $target<span style="color:#f92672">=</span><span style="color:#ae81ff">12</span>;
+<span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$target) <span style="color:#f92672">-&gt;</span> $a {
+  <span style="color:#66d9ef">for</span> ($a<span style="color:#f92672">..</span>$target) <span style="color:#f92672">-&gt;</span> $b {
+    <span style="color:#66d9ef">my</span> $c<span style="color:#f92672">=</span>$target<span style="color:#f92672">-</span>$a<span style="color:#f92672">-</span>$b;
+    <span style="color:#66d9ef">if</span> ($c<span style="color:#f92672">&gt;=</span>$b) {
+      say <span style="color:#e6db74">&#34;$a $b $c&#34;</span>;
     }
   }
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/ruben-westerberg/perl6/ch-2.p6">Ruben Westerberg</a> also managed to use only two nested <code>for</code> loops, but with a slightly different approach:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">my %s;
-for (2,4,6,8,10) {
-    my $e=$_;
-    my $r=12-$e;
-    for 1..$r-1 {
-        my @val=sort($e,$_,$r-$_);
-        %s{@val.join(&quot;,&quot;)}=@val if @val.sum ==12;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/ruben-westerberg/perl6/ch-2.p6">Ruben Westerberg</a> also managed to use only two nested <code>for</code> loops, but with a slightly different approach:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> %s;
+<span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">10</span>) {
+    <span style="color:#66d9ef">my</span> $e<span style="color:#f92672">=</span>$_;
+    <span style="color:#66d9ef">my</span> $r<span style="color:#f92672">=</span><span style="color:#ae81ff">12</span><span style="color:#f92672">-</span>$e;
+    <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$r<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> {
+        <span style="color:#66d9ef">my</span> @val<span style="color:#f92672">=</span>sort($e,$_,$r<span style="color:#f92672">-</span>$_);
+        %s{@val<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34;,&#34;</span>)}<span style="color:#f92672">=</span>@val <span style="color:#66d9ef">if</span> @val<span style="color:#f92672">.</span>sum <span style="color:#f92672">==</span><span style="color:#ae81ff">12</span>;
     }
 }
-for %s.keys.sort {
-    put %s{$_}.join(&quot;,&quot;);
+<span style="color:#66d9ef">for</span> %s<span style="color:#f92672">.</span>keys<span style="color:#f92672">.</span>sort {
+    put %s{$_}<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34;,&#34;</span>);
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/ozzy/perl6/ch-2.p6">Ozzy</a> adopted yet another interpretation of the challenge: for him, all three numbers of a triplet have to be different. He used the <code>combinations</code> method to generate triplets of unique integers adding up to 12 (yielding <code>(0 4 8) (0 5 7) (1 3 8) (1 4 7) (1 5 6) (2 3 7) (2 4 6) (3 4 5)</code>) and then applied the <code>permutations</code> method on each triplet:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">say &quot;Combinations: &quot;, my @c = (^9).combinations(3).grep: { .sum == 12 &amp;&amp; (.first: * %% 2).defined };
-say &quot;Permutations: &quot;, my @p = gather { my @x; for @c -&gt; $l { @x = $l.permutations; .take for @x } };
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/simon-proctor/perl6/ch-2.p6">Simon Proctor</a> had the same interpretation as Ozzy and also used the <code>combinations</code> method to generate triplets of integers in strict ascending order adding up to 12:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">.join(&quot;,&quot;).say for (1..9).combinations(3).grep( { [&lt;] $_ } ).grep( { 12 == [+] $_ } ).grep( { any($_) %% 2 } );
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/athanasius/perl6/ch-2.p6">Athanasius</a> also went for monotonic ascending series of 3 positive numbers summing to 12. He used three nested <code>for</code> loops essentially boiling down to this:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">my UInt constant $SUM = 12;
-for 0 .. $SUM -&gt; UInt $i
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/ozzy/perl6/ch-2.p6">Ozzy</a> adopted yet another interpretation of the challenge: for him, all three numbers of a triplet have to be different. He used the <code>combinations</code> method to generate triplets of unique integers adding up to 12 (yielding <code>(0 4 8) (0 5 7) (1 3 8) (1 4 7) (1 5 6) (2 3 7) (2 4 6) (3 4 5)</code>) and then applied the <code>permutations</code> method on each triplet:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">say <span style="color:#e6db74">&#34;Combinations: &#34;</span>, <span style="color:#66d9ef">my</span> @c <span style="color:#f92672">=</span> (<span style="color:#f92672">^</span><span style="color:#ae81ff">9</span>)<span style="color:#f92672">.</span>combinations(<span style="color:#ae81ff">3</span>)<span style="color:#f92672">.</span>grep: { <span style="color:#f92672">.</span>sum <span style="color:#f92672">==</span> <span style="color:#ae81ff">12</span> <span style="color:#f92672">&amp;&amp;</span> (<span style="color:#f92672">.</span>first: <span style="color:#f92672">*</span> %% 2)<span style="color:#f92672">.</span>defined };
+say <span style="color:#e6db74">&#34;Permutations: &#34;</span>, <span style="color:#66d9ef">my</span> @p <span style="color:#f92672">=</span> gather { <span style="color:#66d9ef">my</span> @x; <span style="color:#66d9ef">for</span> @c <span style="color:#f92672">-&gt;</span> $l { @x <span style="color:#f92672">=</span> $l<span style="color:#f92672">.</span>permutations; <span style="color:#f92672">.</span>take <span style="color:#66d9ef">for</span> @x } };
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/simon-proctor/perl6/ch-2.p6">Simon Proctor</a> had the same interpretation as Ozzy and also used the <code>combinations</code> method to generate triplets of integers in strict ascending order adding up to 12:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34;,&#34;</span>)<span style="color:#f92672">.</span>say <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">9</span>)<span style="color:#f92672">.</span>combinations(<span style="color:#ae81ff">3</span>)<span style="color:#f92672">.</span>grep( { [<span style="color:#f92672">&lt;</span>] $_ } )<span style="color:#f92672">.</span>grep( { <span style="color:#ae81ff">12</span> <span style="color:#f92672">==</span> [<span style="color:#f92672">+</span>] $_ } )<span style="color:#f92672">.</span>grep( { any($_) %% 2 } );
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/athanasius/perl6/ch-2.p6">Athanasius</a> also went for monotonic ascending series of 3 positive numbers summing to 12. He used three nested <code>for</code> loops essentially boiling down to this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> UInt constant $SUM <span style="color:#f92672">=</span> <span style="color:#ae81ff">12</span>;
+<span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $SUM <span style="color:#f92672">-&gt;</span> UInt $i
 {
-    for $i .. $SUM -&gt; UInt $j
+    <span style="color:#66d9ef">for</span> $i <span style="color:#f92672">..</span> $SUM <span style="color:#f92672">-&gt;</span> UInt $j
     {
-        my UInt $subtotal = $i + $j;
+        <span style="color:#66d9ef">my</span> UInt $subtotal <span style="color:#f92672">=</span> $i <span style="color:#f92672">+</span> $j;
 
-        for $j .. $SUM -&gt; UInt $k
+        <span style="color:#66d9ef">for</span> $j <span style="color:#f92672">..</span> $SUM <span style="color:#f92672">-&gt;</span> UInt $k
         {
-            if $subtotal + $k == $SUM
+            <span style="color:#66d9ef">if</span> $subtotal <span style="color:#f92672">+</span> $k <span style="color:#f92672">==</span> $SUM
             {
-                &quot;(%d, %d, %2d)\t&quot;.printf: $i, $j, $k;
+                <span style="color:#e6db74">&#34;(%d, %d, %2d)\t&#34;</span><span style="color:#f92672">.</span>printf: $i, $j, $k;
             }
         }
     }
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/daniel-mita/perl6/ch-2.p6">Daniel Mita</a> considered that (2 1 9) and (2 9 1) are different triplets. His solution uses the <code>[X]</code> cross operator and reduction meta-operator combination to produce the triplets and then prints those whose sum is 12:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">for [X] ( 1..10 ) xx 3 {
-  .fmt('%2u', '|').say when .sum == 12;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/daniel-mita/perl6/ch-2.p6">Daniel Mita</a> considered that (2 1 9) and (2 9 1) are different triplets. His solution uses the <code>[X]</code> cross operator and reduction meta-operator combination to produce the triplets and then prints those whose sum is 12:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">for</span> [X] ( <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">10</span> ) xx <span style="color:#ae81ff">3</span> {
+  <span style="color:#f92672">.</span>fmt(<span style="color:#e6db74">&#39;%2u&#39;</span>, <span style="color:#e6db74">&#39;|&#39;</span>)<span style="color:#f92672">.</span>say when <span style="color:#f92672">.</span>sum <span style="color:#f92672">==</span> <span style="color:#ae81ff">12</span>;
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/joelle-maslak/perl6/ch-2.p6">Joelle Maslak</a> used chained methods in a data pipeline to solve the problem:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">cross((1..9) xx 3)\             # Create a list where each element is a list of
-                                #   3 numbers inclusively between 1 and 9.
-    ».Set                       # Turn those elements into sets
-    .grep( *.elems == 3 )       # Sets flatten duplicates, so we want to be sure
-                                #   there are still 3 elements in the set.
-    .unique                     # We will have duplicate sets, remove the dupes
-    .map( *.keys.list )         # Turn the list back into a list
-    .grep( *.sum == 12 )        # Do the set members add to 12?
-    .map( *.sort )              # Sort the numbers in each set
-    .map( *.join(&quot;,&quot;) )         # Make the sets into comma-deliminated strings
-    .sort                       # Sort the sets of numbers
-    .join(&quot;\n&quot;)                 # Build a string, seperating sets by newlines
-    .say
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/markus-holzer/perl6/ch-2.p6">Markus Holzer</a> wrote his own <code>combinations</code> recursive subroutine generating all possible permutations of two integers in the range 1 to 10. He then used it together with the <code>X</code> cross operator to generate the triplets:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">.say for
-    ( ( 2, 4 ... 10 ) X combinations( 1 .. 10, 2 ) )
-    .map(  { .flat.cache  })
-    .grep( { .sum == 12   })
-    .map(  { .join(&quot;, &quot;)  })
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/joelle-maslak/perl6/ch-2.p6">Joelle Maslak</a> used chained methods in a data pipeline to solve the problem:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">cross((<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">9</span>) xx <span style="color:#ae81ff">3</span>)<span style="color:#f92672">\</span>             <span style="color:#75715e"># Create a list where each element is a list of</span>
+                                <span style="color:#75715e">#   3 numbers inclusively between 1 and 9.</span>
+    <span style="color:#960050;background-color:#1e0010">»</span><span style="color:#f92672">.</span>Set                       <span style="color:#75715e"># Turn those elements into sets</span>
+    <span style="color:#f92672">.</span>grep( <span style="color:#f92672">*.</span>elems <span style="color:#f92672">==</span> <span style="color:#ae81ff">3</span> )       <span style="color:#75715e"># Sets flatten duplicates, so we want to be sure</span>
+                                <span style="color:#75715e">#   there are still 3 elements in the set.</span>
+    <span style="color:#f92672">.</span>unique                     <span style="color:#75715e"># We will have duplicate sets, remove the dupes</span>
+    <span style="color:#f92672">.</span>map( <span style="color:#f92672">*.</span>keys<span style="color:#f92672">.</span>list )         <span style="color:#75715e"># Turn the list back into a list</span>
+    <span style="color:#f92672">.</span>grep( <span style="color:#f92672">*.</span>sum <span style="color:#f92672">==</span> <span style="color:#ae81ff">12</span> )        <span style="color:#75715e"># Do the set members add to 12?</span>
+    <span style="color:#f92672">.</span>map( <span style="color:#f92672">*.</span>sort )              <span style="color:#75715e"># Sort the numbers in each set</span>
+    <span style="color:#f92672">.</span>map( <span style="color:#f92672">*.</span>join(<span style="color:#e6db74">&#34;,&#34;</span>) )         <span style="color:#75715e"># Make the sets into comma-deliminated strings</span>
+    <span style="color:#f92672">.</span>sort                       <span style="color:#75715e"># Sort the sets of numbers</span>
+    <span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34;\n&#34;</span>)                 <span style="color:#75715e"># Build a string, seperating sets by newlines</span>
+    <span style="color:#f92672">.</span>say
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/markus-holzer/perl6/ch-2.p6">Markus Holzer</a> wrote his own <code>combinations</code> recursive subroutine generating all possible permutations of two integers in the range 1 to 10. He then used it together with the <code>X</code> cross operator to generate the triplets:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#f92672">.</span>say <span style="color:#66d9ef">for</span>
+    ( ( <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">4</span> <span style="color:#f92672">...</span> <span style="color:#ae81ff">10</span> ) X combinations( <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">2</span> ) )
+    <span style="color:#f92672">.</span>map(  { <span style="color:#f92672">.</span>flat<span style="color:#f92672">.</span>cache  })
+    <span style="color:#f92672">.</span>grep( { <span style="color:#f92672">.</span>sum <span style="color:#f92672">==</span> <span style="color:#ae81ff">12</span>   })
+    <span style="color:#f92672">.</span>map(  { <span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34;, &#34;</span>)  })
 ;
-sub combinations( @combinatees, $places) { combinations( @combinatees, $places - 1 ) X @combinatees if $places &gt; 0 }
-</code></pre><p>I&rsquo;m not sure Markus&rsquo;s program is correct, though. As an example of the possible issue, it displays both (2, 1, 9) and (2, 9, 1), so Markus presumably considers that these triplets are not duplicates, one of which having to be removed. But, if we take this interpretation, then I would expect to also get (9, 1, 2) and (9, 2, 1), but these two triplets are not in the output of his program.</p>
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">combinations</span>( @combinatees, $places) { combinations( @combinatees, $places <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ) X @combinatees <span style="color:#66d9ef">if</span> $places <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> }
+</code></pre></div><p>I&rsquo;m not sure Markus&rsquo;s program is correct, though. As an example of the possible issue, it displays both (2, 1, 9) and (2, 9, 1), so Markus presumably considers that these triplets are not duplicates, one of which having to be removed. But, if we take this interpretation, then I would expect to also get (9, 1, 2) and (9, 2, 1), but these two triplets are not in the output of his program.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/ulrich-rieke/perl6/ch-2.p6">Ulrich Rieke</a> use three nested <code>for</code> loops to generate the triplets:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">my @triples ;
-for (1..10) -&gt; $a {
-  for (1..10) -&gt; $b {
-      for (1..10) -&gt; $c {
-    my @treble.push($a , $b , $c ) ;
-    @treble .= sort ;
-    @triples.push( @treble ) if ( (([+] @treble) == 12) &amp;&amp;
-          (@treble.grep( { $_ %% 2 } ).elems &gt; 0) ) ;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> @triples ;
+<span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">10</span>) <span style="color:#f92672">-&gt;</span> $a {
+  <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">10</span>) <span style="color:#f92672">-&gt;</span> $b {
+      <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">10</span>) <span style="color:#f92672">-&gt;</span> $c {
+    <span style="color:#66d9ef">my</span> @treble<span style="color:#f92672">.</span>push($a , $b , $c ) ;
+    @treble <span style="color:#f92672">.=</span> sort ;
+    @triples<span style="color:#f92672">.</span>push( @treble ) <span style="color:#66d9ef">if</span> ( (([<span style="color:#f92672">+</span>] @treble) <span style="color:#f92672">==</span> <span style="color:#ae81ff">12</span>) <span style="color:#f92672">&amp;&amp;</span>
+          (@treble<span style="color:#f92672">.</span>grep( { $_ %% 2 } )<span style="color:#f92672">.</span>elems <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) ) ;
     }
   }
 }
-say @triples.unique(:with(&amp;[eqv])) ;
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/yet-ebreo/perl6/ch-2.p6">Yet Ebreo</a> wrote a very concise one-liner solution:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">$_.sum == 12 &amp;&amp; .say for [X] (0 .. 12) xx 3;
-</code></pre><h2 id="see-also">SEE ALSO</h2>
+say @triples<span style="color:#f92672">.</span>unique(:with(<span style="color:#f92672">&amp;</span>[eqv])) ;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/yet-ebreo/perl6/ch-2.p6">Yet Ebreo</a> wrote a very concise one-liner solution:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">$_<span style="color:#f92672">.</span>sum <span style="color:#f92672">==</span> <span style="color:#ae81ff">12</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">.</span>say <span style="color:#66d9ef">for</span> [X] (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">12</span>) xx <span style="color:#ae81ff">3</span>;
+</code></pre></div><h2 id="see-also">SEE ALSO</h2>
 <p>Only three blog posts this time (in addition to mine):</p>
 <ul>
 <li>

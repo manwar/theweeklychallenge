@@ -16,7 +16,7 @@
 
     <meta name="description" content="Laurent Rosenfeld Weekly Review: Challenge - #041.">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.66.0-DEV" />
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -166,26 +166,26 @@
 <p>The Raku programming language has a fast <code>is-prime</code> built-in routine that we can use either to test the number of factors or to build a lazy infinite list of prime numbers.</p>
 <h3 id="using-prime-factorization">Using Prime Factorization</h3>
 <p>We could use the general prime factorization technique described in my <a href="http://blogs.perl.org/users/laurent_r/2019/08/perl-weekly-challenge-23-difference-series-and-prime-factorization.html">blog post about Perl Weekly Challenge # 23</a>, but we can simplify it in the context of this task with the following observation: any non prime number in the range between 1 and 50 will be evenly divided by one of the first four primes: 2, 3, 5, and 7. After we have divided the input number by those four primes as many times as possible, the remaining number will either be 1 or will be a prime that can be added to the list of factors (unless it is the input number itself). So we could simply hard-code the list of the four first primes and test them against the input number (this is what I did in Perl 5). In Raku, we will simply build an infinite list of primes and use it in a similar fashion:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">use v6;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> v6;
 
-my @primes = grep {.is-prime}, 1..*;
+<span style="color:#66d9ef">my</span> @primes <span style="color:#f92672">=</span> grep {<span style="color:#f92672">.</span>is<span style="color:#f92672">-</span>prime}, <span style="color:#ae81ff">1</span><span style="color:#f92672">..*</span>;
 
-sub prime-factors (UInt $num-in) {
-    my @factors;
-    my $num = $num-in;
-    for @primes -&gt; $div {
-        while ($num %% $div) {
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">prime</span>-factors (UInt $num-in) {
+    <span style="color:#66d9ef">my</span> @factors;
+    <span style="color:#66d9ef">my</span> $num <span style="color:#f92672">=</span> $num<span style="color:#f92672">-</span>in;
+    <span style="color:#66d9ef">for</span> @primes <span style="color:#f92672">-&gt;</span> $div {
+        <span style="color:#66d9ef">while</span> ($num %% <span style="color:#960050;background-color:#1e0010">$</span>div) {
             push @factors, $div;
-            $num div= $div;
+            $num div<span style="color:#f92672">=</span> $div;
         }
-        return @factors if $num == 1;
+        <span style="color:#66d9ef">return</span> @factors <span style="color:#66d9ef">if</span> $num <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>;
     }
-    push @factors, $num unless $num == $num-in;
-    return @factors;
+    push @factors, $num <span style="color:#66d9ef">unless</span> $num <span style="color:#f92672">==</span> $num<span style="color:#f92672">-</span>in;
+    <span style="color:#66d9ef">return</span> @factors;
 }
-say &quot;$_: &quot;, prime-factors($_).join(&quot; &quot;) for
-    grep {prime-factors($_).elems.is-prime}, 1..50;
-</code></pre><p>This prints the following output:</p>
+say <span style="color:#e6db74">&#34;$_: &#34;</span>, prime<span style="color:#f92672">-</span>factors($_)<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34; &#34;</span>) <span style="color:#66d9ef">for</span>
+    grep {prime<span style="color:#f92672">-</span>factors($_)<span style="color:#f92672">.</span>elems<span style="color:#f92672">.</span>is<span style="color:#f92672">-</span>prime}, <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">50</span>;
+</code></pre></div><p>This prints the following output:</p>
 <pre><code>$ perl6 attractive_numbers.p6
 4: 2 2
 6: 2 3
@@ -245,293 +245,293 @@ set(aa aab ab aba abb ba bab bb)
 <p>Sets, together with the <code>∪</code> union operator, will solve the other problem, namely that we can provide a single number or range as a parameter to <code>combinations</code>, but we can&rsquo;t specify three numbers such as <code>2, 3, 5</code>.</p>
 <p>Of course, we also need the <code>[*]</code> meta-operator to generate the product and a <code>grep</code> to filter out products that are larger than 50.</p>
 <p>With all this, we can now write our program:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">    use v6;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">    <span style="color:#66d9ef">use</span> v6;
 
-    my @primes = grep {.is-prime}, 1..25;
-    my $set = (grep {$_ &lt;= 50}, map {[*] $_}, (@primes xx 3).flat.combinations: 2..3)
-        ∪ (grep {$_ &lt;= 50}, map {[*] $_}, (@primes[0..4] xx 5).flat.combinations: 5);
-    say $set.keys.sort
-</code></pre><p>Note that we don&rsquo;t need to explicitly coerce the two sequences into <code>Set</code>s, since the <code>∪</code> union operator does that for us. This is the output of the program:</p>
+    <span style="color:#66d9ef">my</span> @primes <span style="color:#f92672">=</span> grep {<span style="color:#f92672">.</span>is<span style="color:#f92672">-</span>prime}, <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">25</span>;
+    <span style="color:#66d9ef">my</span> $set <span style="color:#f92672">=</span> (grep {$_ <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">50</span>}, map {[<span style="color:#f92672">*</span>] $_}, (@primes xx <span style="color:#ae81ff">3</span>)<span style="color:#f92672">.</span>flat<span style="color:#f92672">.</span>combinations: <span style="color:#ae81ff">2</span><span style="color:#f92672">..</span><span style="color:#ae81ff">3</span>)
+        <span style="color:#960050;background-color:#1e0010">∪</span> (grep {$_ <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">50</span>}, map {[<span style="color:#f92672">*</span>] $_}, (@primes[<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">4</span>] xx <span style="color:#ae81ff">5</span>)<span style="color:#f92672">.</span>flat<span style="color:#f92672">.</span>combinations: <span style="color:#ae81ff">5</span>);
+    say $set<span style="color:#f92672">.</span>keys<span style="color:#f92672">.</span>sort
+</code></pre></div><p>Note that we don&rsquo;t need to explicitly coerce the two sequences into <code>Set</code>s, since the <code>∪</code> union operator does that for us. This is the output of the program:</p>
 <pre><code>$  perl6 attractive_numbers_2.p6
 (4 6 8 9 10 12 14 15 18 20 21 22 25 26 27 28 30 32 33 34 35 38 39 42 44 45 46 48 49 50)
 </code></pre>
 <p>This program runs in about 1.3 sec., where as the previous implementation ran in about 0.3 second. Clearly, this is less efficient, and this was to be expected, because we&rsquo;re generating a large number of combinations, most of which turn out to be useless and are then removed from the output either because they are duplicates or because the obtained value exceeds 50. The performance is a bit bad, but it was quite a bit of fun generating a solution holding in much less code lines.</p>
 <h2 id="alternative-solutions">Alternative Solutions</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-041/arne-sommer/perl6/ch-1.p6">Arne Sommers</a> wrote a <code>divisors</code> subroutine doing more or less the same thing as the <code>prime-factors</code> subroutine of my first solution. Finding then the attractive numbers is just a matter of looping over the <code>1..50</code> range and retaining the numbers whose number of factors is prime.</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub divisors (Int $number is copy)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">divisors</span> (Int $number is copy)
 {
-  return (1) if $number == 1;
-  return ($number) if $number.is-prime;
+  <span style="color:#66d9ef">return</span> (<span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">if</span> $number <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>;
+  <span style="color:#66d9ef">return</span> ($number) <span style="color:#66d9ef">if</span> $number<span style="color:#f92672">.</span>is<span style="color:#f92672">-</span>prime;
 
-  my @divisors;
+  <span style="color:#66d9ef">my</span> @divisors;
 
-  for 2 .. ($number -1) -&gt; $candidate
+  <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> ($number <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">-&gt;</span> $candidate
   {
-    next unless $candidate.is-prime;
+    <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> $candidate<span style="color:#f92672">.</span>is<span style="color:#f92672">-</span>prime;
 
-    while ($number %% $candidate)
+    <span style="color:#66d9ef">while</span> ($number %% <span style="color:#960050;background-color:#1e0010">$</span>candidate)
     {
-      @divisors.push: $candidate;
-      $number div= $candidate;
+      @divisors<span style="color:#f92672">.</span>push: $candidate;
+      $number div<span style="color:#f92672">=</span> $candidate;
     }
-    if $number.is-prime
+    <span style="color:#66d9ef">if</span> $number<span style="color:#f92672">.</span>is<span style="color:#f92672">-</span>prime
     {
-      @divisors.push: $number;
-      last;
+      @divisors<span style="color:#f92672">.</span>push: $number;
+      <span style="color:#66d9ef">last</span>;
     }
   }
-  return @divisors;
+  <span style="color:#66d9ef">return</span> @divisors;
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-041/jo-christian-oterhals/perl6/ch-1.p6">Jo Christian Oterhals</a> made a come-back in the Perl Weekly Challenge after an extended absence. Welcome back, Jo Christian. His solution uses the <code>Prime::Factor</code>  module to do the bulk of the work (prime factorization), and his solution is therefore very brief:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">use Prime::Factor;
-for 1..50 {
-  my @p = prime-factors($_);
-  say $_ ~ &quot; / &quot; ~ @p if @p.elems.is-prime;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-041/jo-christian-oterhals/perl6/ch-1.p6">Jo Christian Oterhals</a> made a come-back in the Perl Weekly Challenge after an extended absence. Welcome back, Jo Christian. His solution uses the <code>Prime::Factor</code>  module to do the bulk of the work (prime factorization), and his solution is therefore very brief:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> Prime::Factor;
+<span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">50</span> {
+  <span style="color:#66d9ef">my</span> @p <span style="color:#f92672">=</span> prime<span style="color:#f92672">-</span>factors($_);
+  say $_ <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34; / &#34;</span> <span style="color:#f92672">~</span> @p <span style="color:#66d9ef">if</span> @p<span style="color:#f92672">.</span>elems<span style="color:#f92672">.</span>is<span style="color:#f92672">-</span>prime;
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-041/markus-holzer/perl6/ch-1.p6">Markus Holtzer</a> is also coming back to the Perl Weekly Challenge after a pause. He also used the <code>Prime::Factor</code>  module to do the bulk of the work (prime factorization, and his solution is even more compact:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">use Prime::Factor;
-.say for (2..50).grep( -&gt; $n { is-prime prime-factors( $n ).elems });
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-041/kevin-colyer/perl6/ch-1.p6">Kevin Colyer</a> wrote an <code>attractiveNumber</code> and a <code>factors</code> subroutines and ended up with a fairly verbose program:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub attractiveNumber($n, $verbose=False) {
-    # 0th candidate number not useful
-    # 1st is 2
-    # 2nd is ? not 3 as prime so... start looking for candidates at 4
-    state @aN = 0,2;
-    state $cand=4;
-    say &quot;Seeking {$n}th attractive Number &quot; if $verbose;
-    return @aN[$n] if @aN[$n]; # return the nth attractiveNumber if we have seen it!
-    my $numfactors;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-041/markus-holzer/perl6/ch-1.p6">Markus Holtzer</a> is also coming back to the Perl Weekly Challenge after a pause. He also used the <code>Prime::Factor</code>  module to do the bulk of the work (prime factorization, and his solution is even more compact:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> Prime::Factor;
+<span style="color:#f92672">.</span>say <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">2</span><span style="color:#f92672">..</span><span style="color:#ae81ff">50</span>)<span style="color:#f92672">.</span>grep( <span style="color:#f92672">-&gt;</span> $n { is<span style="color:#f92672">-</span>prime prime<span style="color:#f92672">-</span>factors( $n )<span style="color:#f92672">.</span>elems });
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-041/kevin-colyer/perl6/ch-1.p6">Kevin Colyer</a> wrote an <code>attractiveNumber</code> and a <code>factors</code> subroutines and ended up with a fairly verbose program:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">attractiveNumber</span>($n, $verbose=False) {
+    <span style="color:#75715e"># 0th candidate number not useful</span>
+    <span style="color:#75715e"># 1st is 2</span>
+    <span style="color:#75715e"># 2nd is ? not 3 as prime so... start looking for candidates at 4</span>
+    state @aN <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">2</span>;
+    state $cand<span style="color:#f92672">=</span><span style="color:#ae81ff">4</span>;
+    say <span style="color:#e6db74">&#34;Seeking {$n}th attractive Number &#34;</span> <span style="color:#66d9ef">if</span> $verbose;
+    <span style="color:#66d9ef">return</span> @aN[$n] <span style="color:#66d9ef">if</span> @aN[$n]; <span style="color:#75715e"># return the nth attractiveNumber if we have seen it!</span>
+    <span style="color:#66d9ef">my</span> $numfactors;
     loop {
-        if $cand.is-prime { $cand++; next }
-        print &quot;Selecting $cand ...&quot; if $verbose;
-        $numfactors=factors($cand).elems;
-        last if $numfactors.is-prime; # found attractiveNumber so finish
-        say &quot; has $numfactors factors (NOT prime)&quot; if $verbose;
-        $cand++; # keep looking
+        <span style="color:#66d9ef">if</span> $cand<span style="color:#f92672">.</span>is<span style="color:#f92672">-</span>prime { $cand<span style="color:#f92672">++</span>; <span style="color:#66d9ef">next</span> }
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Selecting $cand ...&#34;</span> <span style="color:#66d9ef">if</span> $verbose;
+        $numfactors<span style="color:#f92672">=</span>factors($cand)<span style="color:#f92672">.</span>elems;
+        <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $numfactors<span style="color:#f92672">.</span>is<span style="color:#f92672">-</span>prime; <span style="color:#75715e"># found attractiveNumber so finish</span>
+        say <span style="color:#e6db74">&#34; has $numfactors factors (NOT prime)&#34;</span> <span style="color:#66d9ef">if</span> $verbose;
+        $cand<span style="color:#f92672">++</span>; <span style="color:#75715e"># keep looking</span>
     }
-    say &quot; has $numfactors factors (prime)&quot; if $verbose;
-    @aN[$n]=$cand;
-    $cand++; # inc for next time
-    return @aN[$n];
+    say <span style="color:#e6db74">&#34; has $numfactors factors (prime)&#34;</span> <span style="color:#66d9ef">if</span> $verbose;
+    @aN[$n]<span style="color:#f92672">=</span>$cand;
+    $cand<span style="color:#f92672">++</span>; <span style="color:#75715e"># inc for next time</span>
+    <span style="color:#66d9ef">return</span> @aN[$n];
 }
 
 
-sub factors(Int $number) {
-    my @factors;
-    my $n = $number;
-    my $i=0;
-    while $n&gt;1 {
-        my $p=@primes[$i];
-        #say &quot;{$i}th prime is  -&gt; $p&quot;;
-        if $n %% $p {
-            @factors.push: $p;
-            $n/=$p;
-            #say &quot;found $p, now n is $n&quot;;
-            next
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">factors</span>(Int $number) {
+    <span style="color:#66d9ef">my</span> @factors;
+    <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> $number;
+    <span style="color:#66d9ef">my</span> $i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">while</span> $n<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">1</span> {
+        <span style="color:#66d9ef">my</span> $p<span style="color:#f92672">=</span>@primes[$i];
+        <span style="color:#75715e">#say &#34;{$i}th prime is  -&gt; $p&#34;;</span>
+        <span style="color:#66d9ef">if</span> $n %% <span style="color:#960050;background-color:#1e0010">$</span>p {
+            @factors<span style="color:#f92672">.</span>push: $p;
+            $n<span style="color:#f92672">/=</span>$p;
+            <span style="color:#75715e">#say &#34;found $p, now n is $n&#34;;</span>
+            <span style="color:#66d9ef">next</span>
         };
-        $i++;
+        $i<span style="color:#f92672">++</span>;
     }
     @factors;
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-041/noud/perl6/ch-1.p6">Noud Aldenhoven</a> reused his recursive <code>decomp</code> subroutine from PWC 23-2 to solve the task:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub decomp(Int $n) {
-    if ($n &gt; 1) {
-        my $prime = (2..Inf).grep({ $n %% $_ })[0];
-        ($prime, |(decomp(($n / $prime).Int)));
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-041/noud/perl6/ch-1.p6">Noud Aldenhoven</a> reused his recursive <code>decomp</code> subroutine from PWC 23-2 to solve the task:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">decomp</span>(Int $n) {
+    <span style="color:#66d9ef">if</span> ($n <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>) {
+        <span style="color:#66d9ef">my</span> $prime <span style="color:#f92672">=</span> (<span style="color:#ae81ff">2</span><span style="color:#f92672">..</span>Inf)<span style="color:#f92672">.</span>grep({ $n %% <span style="color:#960050;background-color:#1e0010">$</span>_ })[<span style="color:#ae81ff">0</span>];
+        ($prime, <span style="color:#f92672">|</span>(decomp(($n <span style="color:#f92672">/</span> $prime)<span style="color:#f92672">.</span>Int)));
     }
 }
 
-sub attractive-number(Int $n) {
-    is-prime(decomp($n).elems);
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">attractive</span>-number(Int $n) {
+    is<span style="color:#f92672">-</span>prime(decomp($n)<span style="color:#f92672">.</span>elems);
 }
-</code></pre><p>Note that his <code>decomp</code> subroutine is clever, but sometimes slightly wrong: it returns only the proper factors for a composite number (for example <code>(2, 2)</code> for the input number 4), but returns the number itself if it is prime. This does not prevent the overall program from displaying the correct result (because 1 is not considered to be prime).</p>
+</code></pre></div><p>Note that his <code>decomp</code> subroutine is clever, but sometimes slightly wrong: it returns only the proper factors for a composite number (for example <code>(2, 2)</code> for the input number 4), but returns the number itself if it is prime. This does not prevent the overall program from displaying the correct result (because 1 is not considered to be prime).</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-041/simon-proctor/perl6/ch-1.p6">Simon Proctor</a> wrote a <code>prime-factors</code>, a <code>smallest-factor</code>, and an <code>attractive-number</code> subroutines to solve the problem. Note that the <code>smallest-factor</code> subroutine uses the experimental <a href="https://docs.raku.org/routine/is%20cached">is-cached</a> trait to avoid recomputing the smallest prime factor of a number for which it has already been computed (it is a form of memoization). I doubt that this will bring any measurable performance enhancement with the small <code>2..50</code> range that we&rsquo;re supposed to explore, but it doesn&rsquo;t cost much to add it (just adding to words to the code, it&rsquo;s not like changing the algorithm of your code) and it might improve quite significantly the performance for a larger input range.</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub attractive-number( Int \n --&gt; Bool ) is pure {
-    prime-factors(n).elems.is-prime;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">attractive</span>-number( Int \n --&gt; Bool ) is pure {
+    prime<span style="color:#f92672">-</span>factors(n)<span style="color:#f92672">.</span>elems<span style="color:#f92672">.</span>is<span style="color:#f92672">-</span>prime;
 }
 
-sub prime-factors( Int $n is copy --&gt; Array ) is pure {
-    my @factors;
-    while ! $n.is-prime {
-        my \s = smallest-factor( $n );
-        @factors.push(s);
-        $n = $n div s;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">prime</span>-factors( Int $n is copy --&gt; Array ) is pure {
+    <span style="color:#66d9ef">my</span> @factors;
+    <span style="color:#66d9ef">while</span> <span style="color:#f92672">!</span> $n<span style="color:#f92672">.</span>is<span style="color:#f92672">-</span>prime {
+        <span style="color:#66d9ef">my</span> <span style="color:#f92672">\</span>s <span style="color:#f92672">=</span> smallest<span style="color:#f92672">-</span>factor( $n );
+        @factors<span style="color:#f92672">.</span>push(s);
+        $n <span style="color:#f92672">=</span> $n div s;
     }
-    @factors.push($n);
-    return @factors;
+    @factors<span style="color:#f92672">.</span>push($n);
+    <span style="color:#66d9ef">return</span> @factors;
 }
 
-sub smallest-factor( Int \n --&gt; Int ) is pure is cached {
-    for (2..(n div 2)).grep(*.is-prime) {
-        return $_ if n %% $_;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">smallest</span>-factor( Int \n --&gt; Int ) is pure is cached {
+    <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">2</span><span style="color:#f92672">..</span>(n div <span style="color:#ae81ff">2</span>))<span style="color:#f92672">.</span>grep(<span style="color:#f92672">*.</span>is<span style="color:#f92672">-</span>prime) {
+        <span style="color:#66d9ef">return</span> $_ <span style="color:#66d9ef">if</span> n %% <span style="color:#960050;background-color:#1e0010">$</span>_;
     }
-    die &quot;Something went wrong&quot;;
+    die <span style="color:#e6db74">&#34;Something went wrong&#34;</span>;
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-041/colin-crain/perl6/ch-1.p6">Colin Crain</a> wrote a <code>make_prime_list</code> and a <code>decompose</code> subroutines to solve the problem. To me, the <code>make_prime_list</code> is somewhat useless here, since the Raku programming language has a <code>is-prime</code> built-in function that uses the much faster <a href="https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test">Miller-Rabin primality test</a> algorithm to find primes, so that this code:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">my @primes   = make_prime_list($max);
-sub make_prime_list ( Int:D $max where {$max &gt; 2} = 50 ) {
-## creates a list of all primes less than or equal to a given number
-    my @output = [2];
-    CANDIDATE: loop (  my $candidate = 3;  $candidate &lt;= $max;  $candidate += 2  ) {
-        my $sqrt_candidate = $candidate.sqrt;
-        loop (  my $test = 3; $test &lt;= $sqrt_candidate; $test += 2  ) {
-            next CANDIDATE if $candidate % $test == 0;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-041/colin-crain/perl6/ch-1.p6">Colin Crain</a> wrote a <code>make_prime_list</code> and a <code>decompose</code> subroutines to solve the problem. To me, the <code>make_prime_list</code> is somewhat useless here, since the Raku programming language has a <code>is-prime</code> built-in function that uses the much faster <a href="https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test">Miller-Rabin primality test</a> algorithm to find primes, so that this code:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> @primes   <span style="color:#f92672">=</span> make_prime_list($max);
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">make_prime_list</span> ( Int:D $max where {$max <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">2</span>} <span style="color:#f92672">=</span> <span style="color:#ae81ff">50</span> ) {
+<span style="color:#75715e">## creates a list of all primes less than or equal to a given number</span>
+    <span style="color:#66d9ef">my</span> @output <span style="color:#f92672">=</span> [<span style="color:#ae81ff">2</span>];
+    CANDIDATE: loop (  <span style="color:#66d9ef">my</span> $candidate <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>;  $candidate <span style="color:#f92672">&lt;=</span> $max;  $candidate <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span>  ) {
+        <span style="color:#66d9ef">my</span> $sqrt_candidate <span style="color:#f92672">=</span> $candidate<span style="color:#f92672">.</span>sqrt;
+        loop (  <span style="color:#66d9ef">my</span> $test <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>; $test <span style="color:#f92672">&lt;=</span> $sqrt_candidate; $test <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span>  ) {
+            <span style="color:#66d9ef">next</span> CANDIDATE <span style="color:#66d9ef">if</span> $candidate % <span style="color:#960050;background-color:#1e0010">$</span>test <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
         }
-        @output.push: $candidate;
+        @output<span style="color:#f92672">.</span>push: $candidate;
     }
-    return @output;
+    <span style="color:#66d9ef">return</span> @output;
 }
-</code></pre><p>could be replaced with something like this:</p>
+</code></pre></div><p>could be replaced with something like this:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl" data-lang="Perl"><span style="color:#66d9ef">my</span> @primes <span style="color:#f92672">=</span> grep {<span style="color:#f92672">.</span>is<span style="color:#f92672">-</span>prime}, <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$max;
 </code></pre></div><p>Otherwise, Colin&rsquo;s code does the prime factorization as follows:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub decompose ( $extnum, @primes) {
-## given a number and a list of primes less than n/2,
-## returns an array list of prime decomposition factors of the number
-    my @decomp;
-    my $num = $extnum;
-    my @primelist = @primes;
-    my $prime = shift @primelist;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">decompose</span> ( $extnum, @primes) {
+<span style="color:#75715e">## given a number and a list of primes less than n/2,</span>
+<span style="color:#75715e">## returns an array list of prime decomposition factors of the number</span>
+    <span style="color:#66d9ef">my</span> @decomp;
+    <span style="color:#66d9ef">my</span> $num <span style="color:#f92672">=</span> $extnum;
+    <span style="color:#66d9ef">my</span> @primelist <span style="color:#f92672">=</span> @primes;
+    <span style="color:#66d9ef">my</span> $prime <span style="color:#f92672">=</span> shift @primelist;
 
-    while ( $prime &lt;= $num ) {
-        while ($num %% $prime) {
-            $num /= $prime;
-            @decomp.push: $prime;
+    <span style="color:#66d9ef">while</span> ( $prime <span style="color:#f92672">&lt;=</span> $num ) {
+        <span style="color:#66d9ef">while</span> ($num %% <span style="color:#960050;background-color:#1e0010">$</span>prime) {
+            $num <span style="color:#f92672">/=</span> $prime;
+            @decomp<span style="color:#f92672">.</span>push: $prime;
         }
-        last unless @primelist.elems;
-        $prime =  @primelist.shift;
+        <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">unless</span> @primelist<span style="color:#f92672">.</span>elems;
+        $prime <span style="color:#f92672">=</span>  @primelist<span style="color:#f92672">.</span>shift;
     }
-    return @decomp;
+    <span style="color:#66d9ef">return</span> @decomp;
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-041/javier-luque/perl6/ch-1.p6">Javier Luque</a> created a <code>factors</code> subroutine to do the bulk of the work:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub factors (Int $n) {
-    my @list;
-    my @prime = grep {.is-prime}, 1..*;
-    my $pos = 0;
-    my $check = $n;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-041/javier-luque/perl6/ch-1.p6">Javier Luque</a> created a <code>factors</code> subroutine to do the bulk of the work:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">factors</span> (Int $n) {
+    <span style="color:#66d9ef">my</span> @list;
+    <span style="color:#66d9ef">my</span> @prime <span style="color:#f92672">=</span> grep {<span style="color:#f92672">.</span>is<span style="color:#f92672">-</span>prime}, <span style="color:#ae81ff">1</span><span style="color:#f92672">..*</span>;
+    <span style="color:#66d9ef">my</span> $pos <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">my</span> $check <span style="color:#f92672">=</span> $n;
 
-    while $check &gt; 1 {
-        my $factor = @prime[$pos];
-        $pos++;
-        next unless $check %% $factor;
+    <span style="color:#66d9ef">while</span> $check <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> {
+        <span style="color:#66d9ef">my</span> $factor <span style="color:#f92672">=</span> @prime[$pos];
+        $pos<span style="color:#f92672">++</span>;
+        <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> $check %% <span style="color:#960050;background-color:#1e0010">$</span>factor;
 
-        $pos = 0;
-        $check /= $factor;
+        $pos <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        $check <span style="color:#f92672">/=</span> $factor;
         push @list, $factor;
     }
 
-    return @list;
+    <span style="color:#66d9ef">return</span> @list;
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-041/roger-bell-west/perl6/ch-1.p6">Roger Bell West</a> used essentially the same technique as most other challengers to perform factorization. Roger&rsquo;s code would be easier to read and understand if he used meaningful variable names, rather than cryptic names such as <code>%pc</code>, <code>$c</code>, <code>$cc</code>, <code>$cn</code>, <code>@ff</code>, <code>$l</code>, etc.</p>
-<pre><code class="language-Perl6" data-lang="Perl6">my $top=50;
-my @factors=grep {is-prime($_)}, (1..$top);
-my %pc=map {$_ =&gt; 1}, @factors;
-for (1..$top) -&gt; $c {
-  my $cc=$c;
-  my $cn=0;
-  my @ff=@factors;
-  while ($cc != 1 &amp;&amp; !(%pc{$c}:exists)) {
-    my $l=@ff[0];
-    while ($cc % @ff[0] == 0) {
-      $cn++;
-      $cc /= @ff[0];
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-041/roger-bell-west/perl6/ch-1.p6">Roger Bell West</a> used essentially the same technique as most other challengers to perform factorization. Roger&rsquo;s code would be easier to read and understand if he used meaningful variable names, rather than cryptic names such as <code>%pc</code>, <code>$c</code>, <code>$cc</code>, <code>$cn</code>, <code>@ff</code>, <code>$l</code>, etc.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> $top<span style="color:#f92672">=</span><span style="color:#ae81ff">50</span>;
+<span style="color:#66d9ef">my</span> @factors<span style="color:#f92672">=</span>grep {is<span style="color:#f92672">-</span>prime($_)}, (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$top);
+<span style="color:#66d9ef">my</span> %pc<span style="color:#f92672">=</span>map {$_ <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>}, @factors;
+<span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$top) <span style="color:#f92672">-&gt;</span> $c {
+  <span style="color:#66d9ef">my</span> $cc<span style="color:#f92672">=</span>$c;
+  <span style="color:#66d9ef">my</span> $cn<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+  <span style="color:#66d9ef">my</span> @ff<span style="color:#f92672">=</span>@factors;
+  <span style="color:#66d9ef">while</span> ($cc <span style="color:#f92672">!=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span>(%pc{$c}:exists)) {
+    <span style="color:#66d9ef">my</span> $l<span style="color:#f92672">=</span>@ff[<span style="color:#ae81ff">0</span>];
+    <span style="color:#66d9ef">while</span> ($cc % <span style="color:#960050;background-color:#1e0010">@</span>ff[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+      $cn<span style="color:#f92672">++</span>;
+      $cc <span style="color:#f92672">/=</span> @ff[<span style="color:#ae81ff">0</span>];
     }
     shift @ff;
   }
-  if (%pc{$c}:exists) {
-    $cn++;
+  <span style="color:#66d9ef">if</span> (%pc{$c}:exists) {
+    $cn<span style="color:#f92672">++</span>;
   }
-  if (%pc{$cn}:exists) {
+  <span style="color:#66d9ef">if</span> (%pc{$cn}:exists) {
     say $c;
   }
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-041/ruben-westerberg/perl6/ch-1.p6">Ruben Westerberg</a> is (if I&rsquo;m not wrong) the only challenger who used a <code>gather/take</code> statement to construct a list of prime factors in his recursive <code>primeFactors</code> subroutine. It is a bit of a surprise to me, because the <code>gather/take</code> is really well fit to the problem.</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub primeFactors($i) {
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-041/ruben-westerberg/perl6/ch-1.p6">Ruben Westerberg</a> is (if I&rsquo;m not wrong) the only challenger who used a <code>gather/take</code> statement to construct a list of prime factors in his recursive <code>primeFactors</code> subroutine. It is a bit of a surprise to me, because the <code>gather/take</code> is really well fit to the problem.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">primeFactors</span>($i) {
     gather {
-        for 1..$i/2 {
-            if ($i%%$_) &amp;&amp; $_.is-prime {
+        <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$i<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span> {
+            <span style="color:#66d9ef">if</span> ($i%%$_) <span style="color:#f92672">&amp;&amp;</span> $_<span style="color:#f92672">.</span>is<span style="color:#f92672">-</span>prime {
                 take $_;
-                given $i/$_ {
-                    if .is-prime {
+                given $i<span style="color:#f92672">/</span>$_ {
+                    <span style="color:#66d9ef">if</span> <span style="color:#f92672">.</span>is<span style="color:#f92672">-</span>prime {
                         take $_;
                     }
-                    else {
-                        take (|primeFactors($_));
+                    <span style="color:#66d9ef">else</span> {
+                        take (<span style="color:#f92672">|</span>primeFactors($_));
                     }
-                    last;
+                    <span style="color:#66d9ef">last</span>;
                 }
             }
         }
     }
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-041/ryan-thompson/perl6/ch-1.p6">Ryan Thompson</a> wrote a <code>divisors</code> method (to find prime factors) that is quite similar to what most other challengers did and returns an array of factors.  The really innovative part, though, in his program is that he added this method to the <code>Int</code> class using the <a href="https://docs.raku.org/syntax/augment">augment declarator</a>:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub MAIN( Int :$max = 50 ) {
-    .say for (1..$max).grep: *.divisors.is-prime;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-041/ryan-thompson/perl6/ch-1.p6">Ryan Thompson</a> wrote a <code>divisors</code> method (to find prime factors) that is quite similar to what most other challengers did and returns an array of factors.  The really innovative part, though, in his program is that he added this method to the <code>Int</code> class using the <a href="https://docs.raku.org/syntax/augment">augment declarator</a>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>( Int :$max = 50 ) {
+    <span style="color:#f92672">.</span>say <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$max)<span style="color:#f92672">.</span>grep: <span style="color:#f92672">*.</span>divisors<span style="color:#f92672">.</span>is<span style="color:#f92672">-</span>prime;
 }
 
-# WARNING: `augment' has global scope
-# https://docs.perl6.org/syntax/augment
-# I'm using it here to demonstrate a unique language feature.
+<span style="color:#75715e"># WARNING: `augment&#39; has global scope</span>
+<span style="color:#75715e"># https://docs.perl6.org/syntax/augment</span>
+<span style="color:#75715e"># I&#39;m using it here to demonstrate a unique language feature.</span>
 
-use MONKEY-TYPING;
+<span style="color:#66d9ef">use</span> MONKEY<span style="color:#f92672">-</span>TYPING;
 
 augment class Int {
     method divisors returns Array {
-        my @div;
-        my $n = self;
-        for (2..self.sqrt).grep: *.is-prime -&gt; $div {
-            while $n % $div == 0 {
-                $n /= $div;
-                @div.push: $div;
+        <span style="color:#66d9ef">my</span> @div;
+        <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> self;
+        <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">2</span><span style="color:#f92672">..</span>self<span style="color:#f92672">.</span>sqrt)<span style="color:#f92672">.</span>grep: <span style="color:#f92672">*.</span>is<span style="color:#f92672">-</span>prime <span style="color:#f92672">-&gt;</span> $div {
+            <span style="color:#66d9ef">while</span> $n % <span style="color:#960050;background-color:#1e0010">$</span>div <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
+                $n <span style="color:#f92672">/=</span> $div;
+                @div<span style="color:#f92672">.</span>push: $div;
             }
         }
         @div;
     }
 }
-</code></pre><p>Note that using the <code>augment</code> is discouraged in the official documentation because, since classes usually have global scope, <code>augment</code> will modify global state, which goes against usually accepted best practices. This is the reason the code must activate the <code>MONKEY-TYPING</code> pragma first. Ryan knows about that problem and even mentions it in his comments. Still, I believe it is very interesting to see how this rather unique feature of Raku works for solving a real problem.</p>
+</code></pre></div><p>Note that using the <code>augment</code> is discouraged in the official documentation because, since classes usually have global scope, <code>augment</code> will modify global state, which goes against usually accepted best practices. This is the reason the code must activate the <code>MONKEY-TYPING</code> pragma first. Ryan knows about that problem and even mentions it in his comments. Still, I believe it is very interesting to see how this rather unique feature of Raku works for solving a real problem.</p>
 <p>In this case, the <code>divisors</code> method could easily be replaced with a subroutine (even keeping the method call syntax in the <code>MAIN</code> subroutine by using the <a href="https://docs.raku.org/language/operators#index-entry-methodop_.&amp;">.&amp; methodop</a>), for example:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub divisors (Int $in) {
-    my @div;
-    my $n = $in;
-    for (2..$in.sqrt).grep: *.is-prime -&gt; $div {
-        while $n % $div == 0 {
-            $n /= $div;
-            @div.push: $div;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">divisors</span> (Int $in) {
+    <span style="color:#66d9ef">my</span> @div;
+    <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> $in;
+    <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">2</span><span style="color:#f92672">..</span>$in<span style="color:#f92672">.</span>sqrt)<span style="color:#f92672">.</span>grep: <span style="color:#f92672">*.</span>is<span style="color:#f92672">-</span>prime <span style="color:#f92672">-&gt;</span> $div {
+        <span style="color:#66d9ef">while</span> $n % <span style="color:#960050;background-color:#1e0010">$</span>div <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
+            $n <span style="color:#f92672">/=</span> $div;
+            @div<span style="color:#f92672">.</span>push: $div;
         }
     }
     @div;
 }
-sub MAIN( Int :$max = 50 ) {
-    .say for (1..$max).grep: *.&amp;divisors.is-prime;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>( Int :$max = 50 ) {
+    <span style="color:#f92672">.</span>say <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$max)<span style="color:#f92672">.</span>grep: <span style="color:#f92672">*.&amp;</span>divisors<span style="color:#f92672">.</span>is<span style="color:#f92672">-</span>prime;
 }
-</code></pre><p>Another alternative might be to subclass the <code>Int</code> class (i.e. create a new class derived from <code>Int</code>) and add the <code>divisors</code> method to this new child class.</p>
+</code></pre></div><p>Another alternative might be to subclass the <code>Int</code> class (i.e. create a new class derived from <code>Int</code>) and add the <code>divisors</code> method to this new child class.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-041/ulrich-rieke/perl6/ch-1.p6">Ulrich Rieke</a> wrote a <code>primeFactors</code> and a <code>isAttractive</code> subroutines to solve the problem. Note the use of the <code>repeat ... until</code> construct, which I know about but almost never use because I just don&rsquo;t think about it.</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub primeFactors( Int $n is copy ) {
-  if ( $n == 1 ) {
-      return ( ) ;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">primeFactors</span>( Int $n is copy ) {
+  <span style="color:#66d9ef">if</span> ( $n <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> ) {
+      <span style="color:#66d9ef">return</span> ( ) ;
   }
-  my @primeFactors ;
-  my $current = 2 ;
-  while ( $n != 1 ) {
-      if ( $n %% $current ) {
-        @primeFactors.push( $current ) ;
-        $n div= $current ;
+  <span style="color:#66d9ef">my</span> @primeFactors ;
+  <span style="color:#66d9ef">my</span> $current <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> ;
+  <span style="color:#66d9ef">while</span> ( $n <span style="color:#f92672">!=</span> <span style="color:#ae81ff">1</span> ) {
+      <span style="color:#66d9ef">if</span> ( $n %% <span style="color:#960050;background-color:#1e0010">$</span>current ) {
+        @primeFactors<span style="color:#f92672">.</span>push( $current ) ;
+        $n div<span style="color:#f92672">=</span> $current ;
       }
-      else {
+      <span style="color:#66d9ef">else</span> {
         repeat {
-          $current++ ;
-        } until $current.is-prime ;
+          $current<span style="color:#f92672">++</span> ;
+        } <span style="color:#66d9ef">until</span> $current<span style="color:#f92672">.</span>is<span style="color:#f92672">-</span>prime ;
       }
   }
-  return @primeFactors ;
+  <span style="color:#66d9ef">return</span> @primeFactors ;
 }
 
-sub isAttractive( Int $n --&gt; Bool ) {
-  my @primeFactors = primeFactors( $n ) ;
-  return @primeFactors.elems.is-prime ;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">isAttractive</span>( Int $n --&gt; Bool ) {
+  <span style="color:#66d9ef">my</span> @primeFactors <span style="color:#f92672">=</span> primeFactors( $n ) ;
+  <span style="color:#66d9ef">return</span> @primeFactors<span style="color:#f92672">.</span>elems<span style="color:#f92672">.</span>is<span style="color:#f92672">-</span>prime ;
 }
 
-.say for (1..50).grep( {isAttractive( $_ ) } ) ;
-</code></pre><h2 id="task-2-leonardo-numbers">Task #2: Leonardo Numbers</h2>
+<span style="color:#f92672">.</span>say <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">50</span>)<span style="color:#f92672">.</span>grep( {isAttractive( $_ ) } ) ;
+</code></pre></div><h2 id="task-2-leonardo-numbers">Task #2: Leonardo Numbers</h2>
 <p>This is derived in part from my <a href="http://blogs.perl.org/users/laurent_r/2020/01/perl-weekly-challenge-41-attractive-numbers-and-leonardo-numbers.html">blog post</a> made in answer to the <a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-041/">Week 41 of the Perl Weekly Challenge</a> organized by  <a href="http://blogs.perl.org/users/mohammad_s_anwar/">Mohammad S. Anwar</a> as well as answers made by others to the same challenge.</p>
 <p>The challenge reads as follows:</p>
 <p><em>Write a script to display first 20 Leonardo Numbers. Please checkout <a href="https://en.wikipedia.org/wiki/Leonardo_number">wiki page</a> for more information.</em></p>
@@ -544,26 +544,26 @@ L(3) = L(1) + L(2) + 1 = 5</p>
 <p>So, basically, Leonardo numbers are very similar to Fibonacci numbers, except that 1 gets added to the sum each time we go from one step to the next.</p>
 <h2 id="my-solutions-1">My Solutions</h2>
 <p>We start with the iterative plain-vanilla approach:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">use v6
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> v6
 
-my @leo = 1, 1;
-push @leo, @leo[*-1] + @leo[*-2] + 1 for 1..18;
+<span style="color:#66d9ef">my</span> @leo <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>;
+push @leo, @leo[<span style="color:#f92672">*-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> @leo[<span style="color:#f92672">*-</span><span style="color:#ae81ff">2</span>] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">18</span>;
 say @leo;
-</code></pre><p>which duly prints:</p>
+</code></pre></div><p>which duly prints:</p>
 <pre><code>[1 1 3 5 9 15 25 41 67 109 177 287 465 753 1219 1973 3193 5167 8361 13529]
 </code></pre>
 <p>Or we could use a recursive approach. But Leonardo numbers have the same problem as Fibonacci numbers with a recursive approach when the searched number becomes relatively large (e.g. 40 or 45): computing them becomes extremely slow (this is not really a problem here, since we&rsquo;ve been requested to compute the first 20 Leonardo numbers, but let&rsquo;s try to make a program that scales well to higher values). To avoid that problem with large input values, we <em>memoize</em> or <em>cache</em> manually our recursion, using the <code>@leo</code> array (for inputs larger than what is requested by the task):</p>
-<pre><code class="language-Perl6" data-lang="Perl6">use v6;
-my @leo = 1, 1;
-sub leonardo (Int $in) {
-    return @leo[$in] if defined @leo[$in];
-    @leo[$in] = [+] 1, leonardo($in - 1), leonardo($in -2);
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> v6;
+<span style="color:#66d9ef">my</span> @leo <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">leonardo</span> (Int $in) {
+    <span style="color:#66d9ef">return</span> @leo[$in] <span style="color:#66d9ef">if</span> defined @leo[$in];
+    @leo[$in] <span style="color:#f92672">=</span> [<span style="color:#f92672">+</span>] <span style="color:#ae81ff">1</span>, leonardo($in <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>), leonardo($in <span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>);
 }
-sub MAIN (Int $input = 19) {
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> (Int $input = 19) {
     leonardo $input;
     say @leo;
 }
-</code></pre><p>Note that this program hard-codes the first two Leonardo numbers in the <code>@leo</code> cache to provide the base case stopping the recursion.</p>
+</code></pre></div><p>Note that this program hard-codes the first two Leonardo numbers in the <code>@leo</code> cache to provide the base case stopping the recursion.</p>
 <p>If we run the program without providing a parameter (i.e. with a default value of 19) we get the same list as before:</p>
 <pre><code>[1 1 3 5 9 15 25 41 67 109 177 287 465 753 1219 1973 3193 5167 8361 13529]
 </code></pre>
@@ -578,24 +578,24 @@ sys     0m0,016s
 <p>Without memoization, the expected execution time would be several millions years (except, of course, that the program would die long before that because of a number of other reasons, including, but not limited to, memory shortage, CPU breakdown, power outages, planned obsolescence, and quite possibly global warming or thermonuclear Armageddon).</p>
 <h2 id="alternative-solutions-1">Alternative Solutions</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-041/arne-sommer/perl6/ch-2.p6">Arne Sommer</a> built an infinite sequence of Leonardo numbers:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">my $leonardo := (1, 1, { $^a + $^b +1 } ... Inf);
-unit sub MAIN ($limit = 20);
-say &quot;$_: $leonardo[$_]&quot; for ^$limit;
-</code></pre><p>I&rsquo;m angry against myself that I did not think about using a sequence, probably because I first solved the task in Perl 5 and then lazily translated the P5 code into Raku. Arne&rsquo;s solution is in my opinion obviously better than mines.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> $leonardo :<span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, { $<span style="color:#960050;background-color:#1e0010">^</span>a <span style="color:#f92672">+</span> $<span style="color:#960050;background-color:#1e0010">^</span>b <span style="color:#f92672">+</span><span style="color:#ae81ff">1</span> } <span style="color:#f92672">...</span> Inf);
+unit <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> <span style="color:#960050;background-color:#1e0010">($</span><span style="color:#a6e22e">limit</span> <span style="color:#960050;background-color:#1e0010">=</span> <span style="color:#960050;background-color:#1e0010">20)</span>;
+say <span style="color:#e6db74">&#34;$_: $leonardo[$_]&#34;</span> <span style="color:#66d9ef">for</span> <span style="color:#f92672">^</span>$limit;
+</code></pre></div><p>I&rsquo;m angry against myself that I did not think about using a sequence, probably because I first solved the task in Perl 5 and then lazily translated the P5 code into Raku. Arne&rsquo;s solution is in my opinion obviously better than mines.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-041/jo-christian-oterhals/perl6/ch-2.p6">Jo Christian Oterhals</a> made a come-back in the Perl Weekly Challenge after an extended absence. Welcome back, Jo Christian. He also built an infinite sequence of Leonardo number and his program is just one code line:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl" data-lang="Perl"><span style="color:#f92672">.</span>say <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#f92672">*</span> <span style="color:#f92672">+</span> <span style="color:#f92672">*</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">...</span> Inf)<span style="color:#f92672">.</span>[<span style="color:#f92672">^</span><span style="color:#ae81ff">20</span>];
 </code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-041/markus-holzer/perl6/ch-2.p6">Markus Holzer</a> is also coming back to the Perl Weekly Challenge after a pause. Welcome back, Markus. His solution is almost exactly the same as Jo Christian&rsquo;s:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl" data-lang="Perl"><span style="color:#f92672">.</span>say <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#f92672">*</span> <span style="color:#f92672">+</span> <span style="color:#f92672">*</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">...</span> <span style="color:#f92672">*</span>)[<span style="color:#f92672">^</span><span style="color:#ae81ff">20</span>];
 </code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-041/javier-luque/perl6/ch-2.p6">Javier Luque</a> also used an infinite sequence:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub MAIN () {
-    my @leonardo = 1, 1, * + * + 1 ... *;
-    say &quot;L($_) = &quot; ~ @leonardo[$_]
-        for (1 .. 20);
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> () {
+    <span style="color:#66d9ef">my</span> @leonardo <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#f92672">*</span> <span style="color:#f92672">+</span> <span style="color:#f92672">*</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">...</span> <span style="color:#f92672">*</span>;
+    say <span style="color:#e6db74">&#34;L($_) = &#34;</span> <span style="color:#f92672">~</span> @leonardo[$_]
+        <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">20</span>);
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-041/ulrich-rieke/perl6/ch-2.p6">Ulrich Rieke</a> also used an infinite sequence:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">my @leonardos = (1 , 1 , 3 , * + * + 1 ...^ *) ;
-.say for @leonardos[^20] ;
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-041/kevin-colyer/perl6/ch-2.p6">Kevin Colyer</a> used multi subroutines to take care of the first two input numbers, and a cached (or memoized) recursive subroutine otherwise:</p>
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-041/ulrich-rieke/perl6/ch-2.p6">Ulrich Rieke</a> also used an infinite sequence:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> @leonardos <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span> , <span style="color:#ae81ff">1</span> , <span style="color:#ae81ff">3</span> , <span style="color:#f92672">*</span> <span style="color:#f92672">+</span> <span style="color:#f92672">*</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">...^</span> <span style="color:#f92672">*</span>) ;
+<span style="color:#f92672">.</span>say <span style="color:#66d9ef">for</span> @leonardos[<span style="color:#f92672">^</span><span style="color:#ae81ff">20</span>] ;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-041/kevin-colyer/perl6/ch-2.p6">Kevin Colyer</a> used multi subroutines to take care of the first two input numbers, and a cached (or memoized) recursive subroutine otherwise:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl" data-lang="Perl"><span style="color:#66d9ef">my</span> @cache;
 multi <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">Leonardo</span>(Int:D $n where * == 0) { <span style="color:#ae81ff">1</span> }
 multi <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">Leonardo</span>(Int:D $n where * == 1) { <span style="color:#ae81ff">1</span> }
@@ -608,66 +608,66 @@ say <span style="color:#e6db74">&#34;$_ -&gt; &#34;</span><span style="color:#f9
 <pre><code>leonardo(n) = 2 * fib(n + 1) - 1
 </code></pre>
 <p>His code is as follows:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">constant @fib = 0, 1, * + * ... *;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">constant @fib <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#f92672">*</span> <span style="color:#f92672">+</span> <span style="color:#f92672">*</span> <span style="color:#f92672">...</span> <span style="color:#f92672">*</span>;
 
-sub leonardo(Int $n) {
-    2 * @fib[$n + 1] - 1;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">leonardo</span>(Int $n) {
+    <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> @fib[$n <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
 }
-say &quot;First 20 Leonardo numbers:&quot;;
-for ^20 -&gt; $n {
-    leonardo($n).say;
+say <span style="color:#e6db74">&#34;First 20 Leonardo numbers:&#34;</span>;
+<span style="color:#66d9ef">for</span> <span style="color:#f92672">^</span><span style="color:#ae81ff">20</span> <span style="color:#f92672">-&gt;</span> $n {
+    leonardo($n)<span style="color:#f92672">.</span>say;
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-041/simon-proctor/perl6/ch-2.p6">Simon Proctor</a> used a cached recursive subroutine:</p>
-<pre><code class="language-Perl6" data-lang="Perl6"># Combining multi subs and cached went badly
-sub L( Int \n --&gt; Int ) is pure is cached {
-    return 1 if n == 0|1;
-    return L(n-2) + L(n-1) + 1;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-041/simon-proctor/perl6/ch-2.p6">Simon Proctor</a> used a cached recursive subroutine:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#75715e"># Combining multi subs and cached went badly</span>
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">L</span>( Int \n --&gt; Int ) is pure is cached {
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> n <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">|</span><span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">return</span> L(n<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>) <span style="color:#f92672">+</span> L(n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-041/colin-crain/perl6/ch-2.p6">Colin Crain</a>&lsquo;s solution starts with a long comment explaining basically that recursion is not needed and that it is possible to compute the Leonardo numbers from the previously computed numbers. Of course, Colin is absolutely right (and my first &ldquo;plain vanilla&rdquo; approach is such an iterative example). The fact that the Fibonacci numbers (whose construction is very similar to the Leonardo numbers) have need abundantly used (and perhaps even sometimes abused) in computer science to illustrate recursion doesn&rsquo;t mean that you have to use recursion, or even that recursion is the best solution. This is Colin&rsquo;s <code>make_leonardo</code> iterative subroutine to build a list of Leonardo numbers:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub make_leonardo ( Int:D $quan where {$quan &gt; 0} ){
-    my @list = [1];                             ## L1 = 1
-    @list.push: 1 if $quan &gt; 1 ;                ## L2 = 1
-    while ( @list.elems &lt;= $quan-1 ) {
-        @list.push: [+] flat @list.tail(2), 1;  ## reduce sum flattened list of last two elems and 1
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-041/colin-crain/perl6/ch-2.p6">Colin Crain</a>&lsquo;s solution starts with a long comment explaining basically that recursion is not needed and that it is possible to compute the Leonardo numbers from the previously computed numbers. Of course, Colin is absolutely right (and my first &ldquo;plain vanilla&rdquo; approach is such an iterative example). The fact that the Fibonacci numbers (whose construction is very similar to the Leonardo numbers) have need abundantly used (and perhaps even sometimes abused) in computer science to illustrate recursion doesn&rsquo;t mean that you have to use recursion, or even that recursion is the best solution. This is Colin&rsquo;s <code>make_leonardo</code> iterative subroutine to build a list of Leonardo numbers:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">make_leonardo</span> ( Int:D $quan where {$quan <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>} ){
+    <span style="color:#66d9ef">my</span> @list <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>];                             <span style="color:#75715e">## L1 = 1</span>
+    @list<span style="color:#f92672">.</span>push: <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> $quan <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> ;                <span style="color:#75715e">## L2 = 1</span>
+    <span style="color:#66d9ef">while</span> ( @list<span style="color:#f92672">.</span>elems <span style="color:#f92672">&lt;=</span> $quan<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> ) {
+        @list<span style="color:#f92672">.</span>push: [<span style="color:#f92672">+</span>] flat @list<span style="color:#f92672">.</span>tail(<span style="color:#ae81ff">2</span>), <span style="color:#ae81ff">1</span>;  <span style="color:#75715e">## reduce sum flattened list of last two elems and 1</span>
     }
-    return @list;
+    <span style="color:#66d9ef">return</span> @list;
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-041/roger-bell-west/perl6/ch-2.p6">Roger Bell West</a>&lsquo;s solution confirms Colin Crain&rsquo;s remarks: he suggested just another iterative approach using a stack:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">my @stack;
-for (0..19) -&gt; $i {
-  if ($i &lt; 2) {
-    push @stack,1;
-  } else {
-    push @stack,1+@stack[@stack.end]+@stack[@stack.end-1];
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-041/roger-bell-west/perl6/ch-2.p6">Roger Bell West</a>&lsquo;s solution confirms Colin Crain&rsquo;s remarks: he suggested just another iterative approach using a stack:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> @stack;
+<span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">19</span>) <span style="color:#f92672">-&gt;</span> $i {
+  <span style="color:#66d9ef">if</span> ($i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">2</span>) {
+    push @stack,<span style="color:#ae81ff">1</span>;
+  } <span style="color:#66d9ef">else</span> {
+    push @stack,<span style="color:#ae81ff">1</span><span style="color:#f92672">+</span>@stack[@stack<span style="color:#f92672">.</span>end]<span style="color:#f92672">+</span>@stack[@stack<span style="color:#f92672">.</span>end<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
     shift @stack;
   }
-  say @stack[@stack.end];
+  say @stack[@stack<span style="color:#f92672">.</span>end];
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-041/ruben-westerberg/perl6/ch-2.p6">Ruben Westerberg</a> used a cached recursive approach:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">*put (0..19).map({ &quot;n: $_ l: &quot;~l($_)}).join(&quot;\n&quot;);
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-041/ruben-westerberg/perl6/ch-2.p6">Ruben Westerberg</a> used a cached recursive approach:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#f92672">*</span>put (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">19</span>)<span style="color:#f92672">.</span>map({ <span style="color:#e6db74">&#34;n: $_ l: &#34;</span><span style="color:#f92672">~</span>l($_)})<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34;\n&#34;</span>);
 
-sub l($i) {
-    state @cache=(1,1);
-    @cache.push(@cache[*-1,*-2].sum+1) while !@cache[$i].defined;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">l</span>($i) {
+    state @cache<span style="color:#f92672">=</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>);
+    @cache<span style="color:#f92672">.</span>push(@cache[<span style="color:#f92672">*-</span><span style="color:#ae81ff">1</span>,<span style="color:#f92672">*-</span><span style="color:#ae81ff">2</span>]<span style="color:#f92672">.</span>sum<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">while</span> <span style="color:#f92672">!</span>@cache[$i]<span style="color:#f92672">.</span>defined;
     @cache[$i];
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-041/ryan-thompson/perl6/ch-2.p6">Ryan Thompson</a> suggested three solutions; a plain recursive approach, a manually memoized recursive version and an infinite sequence solution:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">use experimental :cached;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-041/ryan-thompson/perl6/ch-2.p6">Ryan Thompson</a> suggested three solutions; a plain recursive approach, a manually memoized recursive version and an infinite sequence solution:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> experimental :cached;
 
-# Cached version
-sub leo( Int $n ) is cached { $n &lt; 2 ?? 1 !! 1 + leo($n - 1) + leo($n - 2) }
+<span style="color:#75715e"># Cached version</span>
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">leo</span>( Int $n ) is cached { $n <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">2</span> ?? <span style="color:#ae81ff">1</span> <span style="color:#f92672">!!</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> leo($n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span> leo($n <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>) }
 
-# Manually memoized solution
-sub leo_my_memo( Int $n ) {
-    state @leo = (1, 1);
-    @leo[$n] //= 1 + leo_my_memo($n - 1) + leo_my_memo($n - 2);
+<span style="color:#75715e"># Manually memoized solution</span>
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">leo_my_memo</span>( Int $n ) {
+    state @leo <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>);
+    @leo[$n] <span style="color:#e6db74">//</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> leo_my_memo($n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span> leo_my_memo($n <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>);
 }
 
-# Lazily evaluated version
-my @leo = 1, 1, 1+*+* ... ∞;
+<span style="color:#75715e"># Lazily evaluated version</span>
+<span style="color:#66d9ef">my</span> @leo <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span><span style="color:#f92672">+*+*</span> <span style="color:#f92672">...</span> <span style="color:#960050;background-color:#1e0010">∞</span>;
 
-.say for @leo[0..20];
-</code></pre><hr>
+<span style="color:#f92672">.</span>say <span style="color:#66d9ef">for</span> @leo[<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">20</span>];
+</code></pre></div><hr>
 <hr>
 <h2 id="see-also">SEE ALSO</h2>
 <hr>

@@ -16,7 +16,7 @@
 
     <meta name="description" content="Laurent Rosenfeld Weekly Review: Challenge - #031.">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.66.0-DEV" />
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -160,16 +160,16 @@
 <p><em>Create a function to check divide by zero error without checking if the denominator is zero.</em></p>
 <h2 id="my-solution">My Solution</h2>
 <p>Perl 6/Raku has very rich <a href="https://docs.perl6.org/language/exceptions">error handling features</a>, most notably the <a href="https://docs.perl6.org/type/Exception">Exception class</a>. Without going into all the lengthy details, let us say that it&rsquo;s possible to handle exceptional circumstances by supplying a <code>CATCH</code> block. To solve the challenge can be as simple as this:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">use v6;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> v6;
 
-sub MAIN (Numeric $numerator, Numeric $denominator) {
-    say &quot;Result of division is: &quot;, $numerator / $denominator;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> (Numeric $numerator, Numeric $denominator) {
+    say <span style="color:#e6db74">&#34;Result of division is: &#34;</span>, $numerator <span style="color:#f92672">/</span> $denominator;
     CATCH {
-        say $*ERR: &quot;Something went wrong here: &quot;, .Str;
+        say $<span style="color:#960050;background-color:#1e0010">*</span>ERR: <span style="color:#e6db74">&#34;Something went wrong here: &#34;</span>, <span style="color:#f92672">.</span>Str;
         exit;
     }
 }
-</code></pre><p>Using this script first with legal parameters and then with an illegal 0 denominator produces the following output:</p>
+</code></pre></div><p>Using this script first with legal parameters and then with an illegal 0 denominator produces the following output:</p>
 <pre><code>$ perl6 try-catch.p6  8 4
 Result of division is: 2
 
@@ -178,34 +178,34 @@ Something went wrong here: Attempt to divide by zero when coercing Rational to S
 </code></pre>
 <p>An exception object is usually contained in the <code>$!</code> special variable, but a <code>CATCH</code> block topicalizes the exception object, meaning that it becomes available in the <code>$_</code> topical variable (hence the <code>.Str</code> syntax above is sufficient to obtain the description of the exception).</p>
 <p>Although it is not really needed here, it may sometimes be useful to define the scope of the <code>CATCH</code> block by enclosing it in a <code>try</code> block, for example:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">use v6;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> v6;
 
-sub MAIN (Numeric $numerator, Numeric $denominator) {
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> (Numeric $numerator, Numeric $denominator) {
     try {
-        say &quot;Result of division is: &quot;, $numerator / $denominator;
+        say <span style="color:#e6db74">&#34;Result of division is: &#34;</span>, $numerator <span style="color:#f92672">/</span> $denominator;
         CATCH {
-            say $*ERR: &quot;Something went wrong here: &quot;, .Str;
+            say $<span style="color:#960050;background-color:#1e0010">*</span>ERR: <span style="color:#e6db74">&#34;Something went wrong here: &#34;</span>, <span style="color:#f92672">.</span>Str;
             exit;
         }
     }
 }
-</code></pre><p>Actually, defining a <code>try</code> block (it doesn&rsquo;t really have to be a block, a simple statement will also work) creates an implicit <code>CATCH</code> block, and this may be used to contain the exception:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">use v6;
+</code></pre></div><p>Actually, defining a <code>try</code> block (it doesn&rsquo;t really have to be a block, a simple statement will also work) creates an implicit <code>CATCH</code> block, and this may be used to contain the exception:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> v6;
 
-sub MAIN (Numeric $numerator, Numeric $denominator) {
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> (Numeric $numerator, Numeric $denominator) {
     try {
-        say &quot;Result of division is: &quot;, $numerator / $denominator;
+        say <span style="color:#e6db74">&#34;Result of division is: &#34;</span>, $numerator <span style="color:#f92672">/</span> $denominator;
     }
 }
-</code></pre><p>The above program does not die and doesn&rsquo;t print anything but exits normally (with the successful exit code, 0, on Unix-like systems) when you pass a zero value for the denominator. We&rsquo;re in effect silencing the exception. Even if you don&rsquo;t want to abort the program when encountering such an error, you might still prefer to tell the user that something went wrong with a message containing the description of the caught exception:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">use v6;
+</code></pre></div><p>The above program does not die and doesn&rsquo;t print anything but exits normally (with the successful exit code, 0, on Unix-like systems) when you pass a zero value for the denominator. We&rsquo;re in effect silencing the exception. Even if you don&rsquo;t want to abort the program when encountering such an error, you might still prefer to tell the user that something went wrong with a message containing the description of the caught exception:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> v6;
 
-sub MAIN (Numeric $numerator, Numeric $denominator) {
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> (Numeric $numerator, Numeric $denominator) {
     try {
-        say &quot;Result of division is: &quot;, $numerator / $denominator;
-    } or say &quot;Houston, we've had a problem here: &quot;,  $!.Str;
+        say <span style="color:#e6db74">&#34;Result of division is: &#34;</span>, $numerator <span style="color:#f92672">/</span> $denominator;
+    } <span style="color:#f92672">or</span> say <span style="color:#e6db74">&#34;Houston, we&#39;ve had a problem here: &#34;</span>,  $!<span style="color:#f92672">.</span>Str;
 }
-</code></pre><p>which outputs the following:</p>
+</code></pre></div><p>which outputs the following:</p>
 <pre><code>$ perl6 try-catch.p6  8 4
 Result of division is: 2
 
@@ -214,23 +214,23 @@ Houston, we've had a problem here: Attempt to divide by zero when coercing Ratio
 </code></pre>
 <h2 id="alternative-solutions">Alternative Solutions</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/adam-russell/perl6/ch-1.p6">Adam Russell</a> has been participating to the challenge in Perl 5 since the very beginning, but is participating to the challenge in Perl 6 / Raku for the first time (if I&rsquo;m not wrong). His solution uses a <code>try</code> block with an embedded <code>CATCH</code> block:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">try {
-    my $x = 9;
-    my $y = 0;
-    say $x / $y;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">try {
+    <span style="color:#66d9ef">my</span> $x <span style="color:#f92672">=</span> <span style="color:#ae81ff">9</span>;
+    <span style="color:#66d9ef">my</span> $y <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    say $x <span style="color:#f92672">/</span> $y;
     CATCH {
         default {
-            say &quot;caught an error: &quot; ~ .^name;
+            say <span style="color:#e6db74">&#34;caught an error: &#34;</span> <span style="color:#f92672">~</span> <span style="color:#f92672">.^</span>name;
         }
     }
 }
-</code></pre><p>Note also that Adam Russell also suggested a solution in C++.</p>
+</code></pre></div><p>Note also that Adam Russell also suggested a solution in C++.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/arne-sommer/perl6/ch-1.p6">Arne Sommer</a> used a <code>try</code> <a href="https://docs.perl6.org/language/statement-prefixes#index-entry-try_(statement_prefix)-try">statement prefix</a> to catch any error in the division.</p>
-<pre><code class="language-Perl6" data-lang="Perl6">unit sub MAIN (Numeric $a = 10, Numeric $b = 0);
-my $c = $a / $b;
-try say &quot;a/b = $c&quot;;
-say &quot;Division by zero detected.&quot; if $!;
-</code></pre><p>Arne&rsquo;s program works well in its own context. However, this may be nitpicking, but the error detected by <code>try</code> could be something else than a division by zero, for example a non-numerical argument to the division. Consider this test under the REPL:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">unit <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> <span style="color:#960050;background-color:#1e0010">(</span><span style="color:#a6e22e">Numeric</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">a</span> <span style="color:#960050;background-color:#1e0010">=</span> <span style="color:#960050;background-color:#1e0010">10,</span> <span style="color:#a6e22e">Numeric</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">b</span> <span style="color:#960050;background-color:#1e0010">=</span> <span style="color:#960050;background-color:#1e0010">0)</span>;
+<span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> $a <span style="color:#f92672">/</span> $b;
+try say <span style="color:#e6db74">&#34;a/b = $c&#34;</span>;
+say <span style="color:#e6db74">&#34;Division by zero detected.&#34;</span> <span style="color:#66d9ef">if</span> $!;
+</code></pre></div><p>Arne&rsquo;s program works well in its own context. However, this may be nitpicking, but the error detected by <code>try</code> could be something else than a division by zero, for example a non-numerical argument to the division. Consider this test under the REPL:</p>
 <pre><code>&gt; try say 10 / &quot;b&quot;;
 Nil
 &gt; say $!
@@ -239,97 +239,97 @@ Cannot convert string to number: base-10 number must begin with valid digits or 
 </code></pre>
 <p>The fact that <code>$!</code> is populated doesn&rsquo;t necessarily mean that the problem was a division by zero. So, it might be wise to check the content of <code>$_</code>.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/kevin-colyer/perl6/ch-1.p6">Kevin Colyer</a> use a <code>try</code> block, but apparently did not succeed to get an exception with a simple division by zero such as <code>my $c = 1/0;</code> computation and therefore had to use a trick such as <code>&quot;{$a/$b}&quot;</code>:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub Is_DivByZero($a,$b){
-    my Bool $result=False;
-    my $misc;
-    try {    $misc= &quot;{$a/$b}&quot; ; } ; # NOTE why does $misc = $a/$b not throw an exception! ????????????
-    if $! {
-        $result= True;
-        # say &quot;$a / $b failed with &quot; ~ $!.^name
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">Is_DivByZero</span>($a,$b){
+    <span style="color:#66d9ef">my</span> Bool $result<span style="color:#f92672">=</span>False;
+    <span style="color:#66d9ef">my</span> $misc;
+    try {    $misc<span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;{$a/$b}&#34;</span> ; } ; <span style="color:#75715e"># NOTE why does $misc = $a/$b not throw an exception! ????????????</span>
+    <span style="color:#66d9ef">if</span> $! {
+        $result<span style="color:#f92672">=</span> True;
+        <span style="color:#75715e"># say &#34;$a / $b failed with &#34; ~ $!.^name</span>
     }
-    return $result;
+    <span style="color:#66d9ef">return</span> $result;
 }
-</code></pre><p>Let me try to answer Kevin&rsquo;s interrogation. I have read in the past somewhere in the documentation an explanation about why <code>my $c = 1/0;</code> doesn&rsquo;t throw an exception immediately, but only when one tries to use <code>$c</code> is used, but can no longer find it right now. Let me try to explain what I understood at the time. From what I remember, the idea is that there is no reason to throw an exception just because you compute an illegal value, but that the exception should be raised only when you try to use that illegal value. The <code>my $c = 1/0;</code> leads only to a <a href="https://docs.perl6.org/type/Failure">Failure</a>, i.e. a <em>soft</em> or <em>unthrown</em> exception.  In other words, we could say that <code>my $c = 1/0</code> sort of throws a lazy exception that doesn&rsquo;t become real until you use that <code>$c</code> illegal value. I can understand the idea behind this, although I&rsquo;m not entirely convinced that it is better to postpone the moment the exception is raised, but so it is. Anyway, the idea here is that Kevin gets the exception only when he tries to convert the result of the division by zero computation into a string.</p>
+</code></pre></div><p>Let me try to answer Kevin&rsquo;s interrogation. I have read in the past somewhere in the documentation an explanation about why <code>my $c = 1/0;</code> doesn&rsquo;t throw an exception immediately, but only when one tries to use <code>$c</code> is used, but can no longer find it right now. Let me try to explain what I understood at the time. From what I remember, the idea is that there is no reason to throw an exception just because you compute an illegal value, but that the exception should be raised only when you try to use that illegal value. The <code>my $c = 1/0;</code> leads only to a <a href="https://docs.perl6.org/type/Failure">Failure</a>, i.e. a <em>soft</em> or <em>unthrown</em> exception.  In other words, we could say that <code>my $c = 1/0</code> sort of throws a lazy exception that doesn&rsquo;t become real until you use that <code>$c</code> illegal value. I can understand the idea behind this, although I&rsquo;m not entirely convinced that it is better to postpone the moment the exception is raised, but so it is. Anyway, the idea here is that Kevin gets the exception only when he tries to convert the result of the division by zero computation into a string.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/mark-senn/perl6/ch-1.p6">Mark Senn</a> provided three possible solutions:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub div1($a, $b) {
-    my $c = $a / $b;
-    return $c  //  Inf;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">div1</span>($a, $b) {
+    <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> $a <span style="color:#f92672">/</span> $b;
+    <span style="color:#66d9ef">return</span> $c  <span style="color:#e6db74">//</span>  Inf;
 }
 
-sub div2($a, $b) {
-    my $c = $a / $b;
-    ($c == Inf)  and  fail '/0 or other problem';
-    return $c;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">div2</span>($a, $b) {
+    <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> $a <span style="color:#f92672">/</span> $b;
+    ($c <span style="color:#f92672">==</span> Inf)  <span style="color:#f92672">and</span>  fail <span style="color:#e6db74">&#39;/0 or other problem&#39;</span>;
+    <span style="color:#66d9ef">return</span> $c;
 }
 
-sub div3($a, $b) {
-    my $c;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">div3</span>($a, $b) {
+    <span style="color:#66d9ef">my</span> $c;
     try {
         CATCH {
-            when (X::Numeric::DivideByZero)  { return '  /0 or other problem'; }
+            when (X::Numeric::DivideByZero)  { <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;  /0 or other problem&#39;</span>; }
         }
-        $c = $a / $b;
+        $c <span style="color:#f92672">=</span> $a <span style="color:#f92672">/</span> $b;
     }
-    return &quot;  $c&quot;;
+    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;  $c&#34;</span>;
 }
 
-sub MAIN() {
-    my $n = 10;
-    print 'div1:';
-    for (0,2) -&gt; $d {
-        my $c = div1($n, $d);
-        ($c == Inf)
-            ??  '  /0 or other problem'.print
-            !!  &quot;  $c&quot;.say;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>() {
+    <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>;
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39;div1:&#39;</span>;
+    <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">2</span>) <span style="color:#f92672">-&gt;</span> $d {
+        <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> div1($n, $d);
+        ($c <span style="color:#f92672">==</span> Inf)
+            ??  <span style="color:#e6db74">&#39;  /0 or other problem&#39;</span><span style="color:#f92672">.</span><span style="color:#66d9ef">print</span>
+            <span style="color:#f92672">!!</span>  <span style="color:#e6db74">&#34;  $c&#34;</span><span style="color:#f92672">.</span>say;
     }
-    print 'div2:';
-    for (0,2) -&gt; $d {
-        with div2($n, $d) -&gt; $c {
-            &quot;  $c&quot;.say;
-        }  else  {
-            &quot;  {.exception.message}&quot;.print;
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39;div2:&#39;</span>;
+    <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">2</span>) <span style="color:#f92672">-&gt;</span> $d {
+        with div2($n, $d) <span style="color:#f92672">-&gt;</span> $c {
+            <span style="color:#e6db74">&#34;  $c&#34;</span><span style="color:#f92672">.</span>say;
+        }  <span style="color:#66d9ef">else</span>  {
+            <span style="color:#e6db74">&#34;  {.exception.message}&#34;</span><span style="color:#f92672">.</span><span style="color:#66d9ef">print</span>;
         }
     }
-    print 'div3:';
-    for (0,2) -&gt; $d {
-        # This won't work without using &quot;.Num&quot;.
-        my $c = div3($n.Num, $d.Num);
-        $c.print;
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39;div3:&#39;</span>;
+    <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">2</span>) <span style="color:#f92672">-&gt;</span> $d {
+        <span style="color:#75715e"># This won&#39;t work without using &#34;.Num&#34;.</span>
+        <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> div3($n<span style="color:#f92672">.</span>Num, $d<span style="color:#f92672">.</span>Num);
+        $c<span style="color:#f92672">.</span><span style="color:#66d9ef">print</span>;
     }
-    ''.say;
+    <span style="color:#e6db74">&#39;&#39;</span><span style="color:#f92672">.</span>say;
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/markus-holzer/perl6/ch-1.p6">Markus Holzer</a> suggested a two-line script:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">say &quot;Division by zero&quot; without try ( 1/0 ).Str;
-say &quot;Division is okay&quot; with try ( 1/1 ).Str;
-</code></pre><p>The first line outputs a &ldquo;Division by zero&rdquo; error and the second one doesn&rsquo;t, as expected. But I still don&rsquo;t really understand what Markus tried to prove with that.</p>
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/markus-holzer/perl6/ch-1.p6">Markus Holzer</a> suggested a two-line script:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">say <span style="color:#e6db74">&#34;Division by zero&#34;</span> without try ( <span style="color:#ae81ff">1</span><span style="color:#f92672">/</span><span style="color:#ae81ff">0</span> )<span style="color:#f92672">.</span>Str;
+say <span style="color:#e6db74">&#34;Division is okay&#34;</span> with try ( <span style="color:#ae81ff">1</span><span style="color:#f92672">/</span><span style="color:#ae81ff">1</span> )<span style="color:#f92672">.</span>Str;
+</code></pre></div><p>The first line outputs a &ldquo;Division by zero&rdquo; error and the second one doesn&rsquo;t, as expected. But I still don&rsquo;t really understand what Markus tried to prove with that.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/noud/perl6/ch-1.p6">Noud</a> suggested a <a href="https://en.wikipedia.org/wiki/Stereographic_projection">stereographic projection</a> (on a complex sphere) where a division by zero is not an error (a division by zero produces the North Pole of the complex sphere). Please follow the link to understand Noud&rsquo;s idea.</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub infix:&lt;%/&gt;($x, $y) {
-    my $z = Complex.new($x * $y / ($x**2 + $y**2), $x**2 / ($x**2 + $y**2));
-    if ($z === i) {
-        # If z is the north pole, the inverse stereographic projection is
-        # not a number. (this is actually the perl weekly challenge)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">infix</span>:&lt;%/&gt;($x, $y) {
+    <span style="color:#66d9ef">my</span> $z <span style="color:#f92672">=</span> Complex<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>($x <span style="color:#f92672">*</span> $y <span style="color:#e6db74">/ ($x**2 + $y**2), $x**2 /</span> ($x<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> $y<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>));
+    <span style="color:#66d9ef">if</span> ($z <span style="color:#f92672">===</span> i) {
+        <span style="color:#75715e"># If z is the north pole, the inverse stereographic projection is</span>
+        <span style="color:#75715e"># not a number. (this is actually the perl weekly challenge)</span>
         NaN;
-    } else {
-        # For fun, use the inverse stereographic projection to compute x / y.
-        $z.re / (1 - $z.im);
+    } <span style="color:#66d9ef">else</span> {
+        <span style="color:#75715e"># For fun, use the inverse stereographic projection to compute x / y.</span>
+        $z<span style="color:#f92672">.</span>re <span style="color:#f92672">/</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> $z<span style="color:#f92672">.</span>im);
     }
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/simon-proctor/perl6/ch-1.p6">Simon Proctor</a> suggested a <code>safe-division</code> subroutine:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub safe-division( Numeric $nu, Numeric $de ) {
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/simon-proctor/perl6/ch-1.p6">Simon Proctor</a> suggested a <code>safe-division</code> subroutine:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">safe</span>-division( Numeric $nu, Numeric $de ) {
     try {
-        ($nu/$de).Str();
-        return True;
+        ($nu<span style="color:#f92672">/</span>$de)<span style="color:#f92672">.</span>Str();
+        <span style="color:#66d9ef">return</span> True;
     }
-    return False;
+    <span style="color:#66d9ef">return</span> False;
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/tyler-limkemann/perl6/ch-1.p6">Tyler Limkemann</a>, a new member of the team, suggested this very simple solution:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">CATCH { default { &quot;can't divide by 0!&quot;.say } }
-(1/0).say;
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/athanasius/perl6/ch-1.p6">Athanasius</a> provided, as usual, a somewhat verbose solution using a <code>try</code>block:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">my Real constant $DEFAULT-DIVIDEND = 1;
-my Real constant $DEFAULT-DIVISOR  = 0;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/tyler-limkemann/perl6/ch-1.p6">Tyler Limkemann</a>, a new member of the team, suggested this very simple solution:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">CATCH { default { <span style="color:#e6db74">&#34;can&#39;t divide by 0!&#34;</span><span style="color:#f92672">.</span>say } }
+(<span style="color:#ae81ff">1</span><span style="color:#f92672">/</span><span style="color:#ae81ff">0</span>)<span style="color:#f92672">.</span>say;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/athanasius/perl6/ch-1.p6">Athanasius</a> provided, as usual, a somewhat verbose solution using a <code>try</code>block:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> Real constant $DEFAULT<span style="color:#f92672">-</span>DIVIDEND <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+<span style="color:#66d9ef">my</span> Real constant $DEFAULT<span style="color:#f92672">-</span>DIVISOR  <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
 
-sub MAIN
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>
 (
     Real:D $dividend = $DEFAULT-DIVIDEND,
     Real:D $divisor  = $DEFAULT-DIVISOR,
@@ -337,82 +337,82 @@ sub MAIN
 {
     try
     {
-        my Real $quotient = $dividend / $divisor;
+        <span style="color:#66d9ef">my</span> Real $quotient <span style="color:#f92672">=</span> $dividend <span style="color:#f92672">/</span> $divisor;
 
-        &quot;$dividend / $divisor = $quotient&quot;.say;
+        <span style="color:#e6db74">&#34;$dividend / $divisor = $quotient&#34;</span><span style="color:#f92672">.</span>say;
     }
 
-    if $!
+    <span style="color:#66d9ef">if</span> $!
     {
-        if $! ~~ rx/ ^ Attempt \s to \s divide .+ by \s zero /
+        <span style="color:#66d9ef">if</span> $! <span style="color:#f92672">~~</span> rx<span style="color:#e6db74">/ ^ Attempt \s to \s divide .+ by \s zero /</span>
         {
-            &quot;$dividend / $divisor = DIVIDE BY ZERO ERROR&quot;.say;
+            <span style="color:#e6db74">&#34;$dividend / $divisor = DIVIDE BY ZERO ERROR&#34;</span><span style="color:#f92672">.</span>say;
         }
-        else
+        <span style="color:#66d9ef">else</span>
         {
-            $!.throw;
+            $!<span style="color:#f92672">.</span>throw;
         }
     }
 
-    &quot;\nNormal exit&quot;.say;
+    <span style="color:#e6db74">&#34;\nNormal exit&#34;</span><span style="color:#f92672">.</span>say;
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/jaldhar-h-vyas/perl6/ch-1.p6">Jaldhar H. Vyas</a> created a <code>isDividedByZero</code> subroutine to handle exception conditions with a <code>CATCH</code> block:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub isDividedByZero($numerator, $denominator) {
-        ($numerator / $denominator).grep({});
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/jaldhar-h-vyas/perl6/ch-1.p6">Jaldhar H. Vyas</a> created a <code>isDividedByZero</code> subroutine to handle exception conditions with a <code>CATCH</code> block:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">isDividedByZero</span>($numerator, $denominator) {
+        ($numerator <span style="color:#f92672">/</span> $denominator)<span style="color:#f92672">.</span>grep({});
         CATCH {
             default {
-                return True;
+                <span style="color:#66d9ef">return</span> True;
             }
         }
-    return False;
+    <span style="color:#66d9ef">return</span> False;
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/javier-luque/perl6/ch-1.p6">Javier Luque</a>, another new member of the team, used a <code>try</code> block with an embedded <code>CATCH</code> block:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub divide-by-zero-check(Str $statement) {
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/javier-luque/perl6/ch-1.p6">Javier Luque</a>, another new member of the team, used a <code>try</code> block with an embedded <code>CATCH</code> block:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">divide</span>-by-zero-check(Str $statement) {
     try {
-        my $answer = Rat($statement);
+        <span style="color:#66d9ef">my</span> $answer <span style="color:#f92672">=</span> Rat($statement);
         say $answer;
         CATCH {
-            default { say &quot;divide by 0 error, $_&quot; }
+            default { say <span style="color:#e6db74">&#34;divide by 0 error, $_&#34;</span> }
         }
     }
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/joelle-maslak/perl6/ch-1.p6">Joelle Maslak</a> used a <code>CATCH</code> block specifying the <code>X::Numeric::DivideByZero</code> exception, so that her program will pick only that error and no other:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub MAIN($numerator, $denominator) {
-    if test-for-div-by-zero($numerator, $denominator) {
-        say &quot;Denominator is zero&quot;;
-    } else {
-        say &quot;Denominator is not zero&quot;;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/joelle-maslak/perl6/ch-1.p6">Joelle Maslak</a> used a <code>CATCH</code> block specifying the <code>X::Numeric::DivideByZero</code> exception, so that her program will pick only that error and no other:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>($numerator, $denominator) {
+    <span style="color:#66d9ef">if</span> test<span style="color:#f92672">-</span><span style="color:#66d9ef">for</span><span style="color:#f92672">-</span>div<span style="color:#f92672">-</span>by<span style="color:#f92672">-</span>zero($numerator, $denominator) {
+        say <span style="color:#e6db74">&#34;Denominator is zero&#34;</span>;
+    } <span style="color:#66d9ef">else</span> {
+        say <span style="color:#e6db74">&#34;Denominator is not zero&#34;</span>;
     }
 }
-sub test-for-div-by-zero($numerator, $denominator) {
-    ($numerator / $denominator).Int.sink;
-    return; # Not div by zero
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">test</span>-for-div-by-zero($numerator, $denominator) {
+    ($numerator <span style="color:#f92672">/</span> $denominator)<span style="color:#f92672">.</span>Int<span style="color:#f92672">.</span>sink;
+    <span style="color:#66d9ef">return</span>; <span style="color:#75715e"># Not div by zero</span>
     CATCH {
         when X::Numeric::DivideByZero {
-            return 1; # Div by zero
+            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>; <span style="color:#75715e"># Div by zero</span>
         }
     }
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/ruben-westerberg/perl6/ch-1.p6">Ruben Westerberg</a> used a <code>try</code> statement prefix and tested the value of the <code>$!</code> error variable populated by <code>try</code> when it catches an exception:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">my $numerator=@*ARGS[0]//1;
-my $denominator=@*ARGS[1]//0;
-my $result;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/ruben-westerberg/perl6/ch-1.p6">Ruben Westerberg</a> used a <code>try</code> statement prefix and tested the value of the <code>$!</code> error variable populated by <code>try</code> when it catches an exception:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> $numerator<span style="color:#f92672">=</span>@<span style="color:#960050;background-color:#1e0010">*</span>ARGS[<span style="color:#ae81ff">0</span>]<span style="color:#e6db74">//</span><span style="color:#ae81ff">1</span>;
+<span style="color:#66d9ef">my</span> $denominator<span style="color:#f92672">=</span>@<span style="color:#960050;background-color:#1e0010">*</span>ARGS[<span style="color:#ae81ff">1</span>]<span style="color:#e6db74">//</span><span style="color:#ae81ff">0</span>;
+<span style="color:#66d9ef">my</span> $result;
 
-try $result=($numerator/$denominator).Str;
+try $result<span style="color:#f92672">=</span>($numerator<span style="color:#f92672">/</span>$denominator)<span style="color:#f92672">.</span>Str;
 
-put &quot;Division ok: $numerator/$denominator = $result&quot; unless $!;
-put &quot;Division failed: Divide by zero&quot; if $!;
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/yet-ebreo/perl6/ch-1.p6">Yet Ebreo</a> created a <code>div_zero_check</code> subroutine using a <code>try</code> block and testing the <code>$!</code> error variable (pretty much like like Ruben):</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub div_zero_check ($n, $d) {
-    my $r;
+put <span style="color:#e6db74">&#34;Division ok: $numerator/$denominator = $result&#34;</span> <span style="color:#66d9ef">unless</span> $!;
+put <span style="color:#e6db74">&#34;Division failed: Divide by zero&#34;</span> <span style="color:#66d9ef">if</span> $!;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/yet-ebreo/perl6/ch-1.p6">Yet Ebreo</a> created a <code>div_zero_check</code> subroutine using a <code>try</code> block and testing the <code>$!</code> error variable (pretty much like like Ruben):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">div_zero_check</span> ($n, $d) {
+    <span style="color:#66d9ef">my</span> $r;
     try {
-        $r = $n / $d;
-        #Error is not raised when the result of division is not used
+        $r <span style="color:#f92672">=</span> $n <span style="color:#f92672">/</span> $d;
+        <span style="color:#75715e">#Error is not raised when the result of division is not used</span>
         say $r;
     }
-    $! &amp;&amp; say &quot;Division by zero detected&quot;;
+    $! <span style="color:#f92672">&amp;&amp;</span> say <span style="color:#e6db74">&#34;Division by zero detected&#34;</span>;
 }
-</code></pre><h2 id="task-2-dynamic-variable-name">Task #2: Dynamic Variable Name</h2>
+</code></pre></div><h2 id="task-2-dynamic-variable-name">Task #2: Dynamic Variable Name</h2>
 <p>This is derived in part from my <a href="http://blogs.perl.org/users/laurent_r/2019/10/perl-weekly-challenge-31-illegal-division-by-zero-and-dynamic-variables.html">blog post</a> made in answer to the <a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-031/">Week 31 of the Perl Weekly Challenge</a> organized by  <a href="http://blogs.perl.org/users/mohammad_s_anwar/">Mohammad S. Anwar</a> as well as answers made by others to the same challenge.</p>
 <p>The challenge reads as follows:</p>
 <p><em>Create a script to demonstrate creating dynamic variable name, assign a value to the variable and finally print the variable. The variable name would be passed as command line argument.</em></p>
@@ -432,175 +432,175 @@ put &quot;Division failed: Divide by zero&quot; if $!;
 <p>The solution to avoid symbolic references in Perl 5 is to use a hash. Please read my other blog post linked above if you want to know more.</p>
 <h2 id="my-solution-1">My Solution</h2>
 <p>My first reaction is that I did not think that there is anything like symbolic references in Perl 6/Raku and that it was possible to create a variable dynamically. So, it seemed that it was not possible to literally &ldquo;demonstrate creating dynamic variable name&rdquo; in Perl 6/Raku. What we can do, however, is, like in P5, to use a hash:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">use v6;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> v6;
 
-sub MAIN (Str $name, Str $value) {
-    my %hash = $name =&gt; $value;
-    say &quot;The item is called $name and its value is %hash{$name}&quot;;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> (Str $name, Str $value) {
+    <span style="color:#66d9ef">my</span> %hash <span style="color:#f92672">=</span> $name <span style="color:#f92672">=&gt;</span> $value;
+    say <span style="color:#e6db74">&#34;The item is called $name and its value is %hash{$name}&#34;</span>;
 }
-</code></pre><p>This program displays the name of the item and its value:</p>
+</code></pre></div><p>This program displays the name of the item and its value:</p>
 <pre><code>$ perl6 sym_ref.p6 foo bar
 The item is called foo and its value is bar
 </code></pre>
 <p>It turns out that I was wrong and that there are some ways to dynamically create variables in Perl6/Raku, as several of the alternative solutions below will show. So, it can be done, but I very much doubt it is a good idea, as I tend to think that the reasons outlined by Mark Jason Dominus on the context of Perl 6 also apply to Perl6/Raku.</p>
 <h2 id="alternative-solutions-1">Alternative Solutions</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/adam-russell/perl6/ch-2.p6">Adam Russell</a> has been participating to the challenge in Perl 5 since the very beginning, but is participating to the challenge in Perl 6 / Raku for the first time (if I&rsquo;m not wrong). His very imaginative solution creates a variable name by concatenating <code>&quot;\$&quot;</code> with the first argument passed to the script, then creates on the fly a <code>Temp.pm6</code> file containing a module printing out newly created variable, runs the module (with <code>require</code> to import the module at run time) and finally deletes the <code>Temp.pm6</code> file.</p>
-<pre><code class="language-Perl6" data-lang="Perl6">my $variable = &quot;\$&quot; ~ @*ARGS[0];
-my $value = @*ARGS[1];
-spurt &quot;Temp.pm6&quot;, &quot;unit module Temp; my $variable = $value; say \&quot;The value of \\$variable is $variable.\&quot;&quot;;
-use lib &quot;.&quot;;
-require Temp;
-unlink &quot;Temp.pm6&quot;;
-</code></pre><p>See also his quite clever C++ implementation using macros to create dynamically a variable.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> $variable <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;\$&#34;</span> <span style="color:#f92672">~</span> @<span style="color:#960050;background-color:#1e0010">*</span>ARGS[<span style="color:#ae81ff">0</span>];
+<span style="color:#66d9ef">my</span> $value <span style="color:#f92672">=</span> @<span style="color:#960050;background-color:#1e0010">*</span>ARGS[<span style="color:#ae81ff">1</span>];
+spurt <span style="color:#e6db74">&#34;Temp.pm6&#34;</span>, <span style="color:#e6db74">&#34;unit module Temp; my $variable = $value; say \&#34;The value of \\$variable is $variable.\&#34;&#34;</span>;
+<span style="color:#66d9ef">use</span> lib <span style="color:#e6db74">&#34;.&#34;</span>;
+<span style="color:#66d9ef">require</span> Temp;
+unlink <span style="color:#e6db74">&#34;Temp.pm6&#34;</span>;
+</code></pre></div><p>See also his quite clever C++ implementation using macros to create dynamically a variable.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/arne-sommer/perl6/ch-2.p6">Arne Sommer</a> also thought that it is not possible to create a variable dynamically in Raku, but argued that it is possible to access an already existing one with the <code>::()</code> operator:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">unit sub MAIN ($name = '$a');
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">unit <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> <span style="color:#960050;background-color:#1e0010">($</span><span style="color:#a6e22e">name</span> <span style="color:#960050;background-color:#1e0010">=</span> <span style="color:#960050;background-color:#1e0010">&#39;$</span><span style="color:#a6e22e">a</span><span style="color:#960050;background-color:#1e0010">&#39;)</span>;
 
-my $a = 12;
-my $b = 15;
-my $c = 19;
-my $d = 26;
-my $e = 99;
+<span style="color:#66d9ef">my</span> $a <span style="color:#f92672">=</span> <span style="color:#ae81ff">12</span>;
+<span style="color:#66d9ef">my</span> $b <span style="color:#f92672">=</span> <span style="color:#ae81ff">15</span>;
+<span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> <span style="color:#ae81ff">19</span>;
+<span style="color:#66d9ef">my</span> $d <span style="color:#f92672">=</span> <span style="color:#ae81ff">26</span>;
+<span style="color:#66d9ef">my</span> $e <span style="color:#f92672">=</span> <span style="color:#ae81ff">99</span>;
 
-say &quot;The value of $name: &quot; ~ ::($name);
-</code></pre><p>So, after all, I was wrong: there appears to exist something like <a href="https://docs.perl6.org/language/packages#Interpolating_into_names">symbolic references</a> in Raku, or, at least, it is possible to interpolate strings as variable names.</p>
+say <span style="color:#e6db74">&#34;The value of $name: &#34;</span> <span style="color:#f92672">~</span> <span style="color:#f92672">::</span>($name);
+</code></pre></div><p>So, after all, I was wrong: there appears to exist something like <a href="https://docs.perl6.org/language/packages#Interpolating_into_names">symbolic references</a> in Raku, or, at least, it is possible to interpolate strings as variable names.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/kevin-colyer/perl6/ch-2.p6">Kevin Colyer</a> used essentially the same technique as Arne:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub MAIN($name='test'){
-    # From http://rosettacode.org/wiki/Dynamic_variable_names#Perl_6
-    my $var=$name;
-    say &quot;variable named $var is {$::('var')}&quot;;
-    $::('var')=137;
-    say &quot;variable named $var is {$::('var')}&quot;;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>($name=&#39;test&#39;){
+    <span style="color:#75715e"># From http://rosettacode.org/wiki/Dynamic_variable_names#Perl_6</span>
+    <span style="color:#66d9ef">my</span> $var<span style="color:#f92672">=</span>$name;
+    say <span style="color:#e6db74">&#34;variable named $var is {$::(&#39;var&#39;)}&#34;</span>;
+    $::(<span style="color:#e6db74">&#39;var&#39;</span>)<span style="color:#f92672">=</span><span style="color:#ae81ff">137</span>;
+    say <span style="color:#e6db74">&#34;variable named $var is {$::(&#39;var&#39;)}&#34;</span>;
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/mark-senn/perl6/ch-2.p6">Mark Senn</a> tried various ways to implement indirect names or symbolic references, and finally used a hash:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub MAIN($name, $value)
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/mark-senn/perl6/ch-2.p6">Mark Senn</a> tried various ways to implement indirect names or symbolic references, and finally used a hash:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>($name, $value)
 {
-    say &quot;$name    $value&quot;;
+    say <span style="color:#e6db74">&#34;$name    $value&#34;</span>;
 
-    # Using
-    #     my $$name = $value;
-    # gave
-    #     Cannot declare a variable by indirect name (use a hash instead?)
-    #
-    # Using
-    #     ${$name} = $value;
-    # gave
-    #     Unsupported use of ${$name}; in Perl 6 please use $($name) for hard ref
-    #     or $::($name) for symbolic ref
-    #
-    # Using
-    #     my $::($name);
-    # gave
-    #     Cannot declare a variable by indirect name (use a hash instead?)
-    my %hash;
-    %hash{$name} = $value;
-    %hash{$name}.say;
+    <span style="color:#75715e"># Using</span>
+    <span style="color:#75715e">#     my $$name = $value;</span>
+    <span style="color:#75715e"># gave</span>
+    <span style="color:#75715e">#     Cannot declare a variable by indirect name (use a hash instead?)</span>
+    <span style="color:#75715e">#</span>
+    <span style="color:#75715e"># Using</span>
+    <span style="color:#75715e">#     ${$name} = $value;</span>
+    <span style="color:#75715e"># gave</span>
+    <span style="color:#75715e">#     Unsupported use of ${$name}; in Perl 6 please use $($name) for hard ref</span>
+    <span style="color:#75715e">#     or $::($name) for symbolic ref</span>
+    <span style="color:#75715e">#</span>
+    <span style="color:#75715e"># Using</span>
+    <span style="color:#75715e">#     my $::($name);</span>
+    <span style="color:#75715e"># gave</span>
+    <span style="color:#75715e">#     Cannot declare a variable by indirect name (use a hash instead?)</span>
+    <span style="color:#66d9ef">my</span> %hash;
+    %hash{$name} <span style="color:#f92672">=</span> $value;
+    %hash{$name}<span style="color:#f92672">.</span>say;
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/markus-holzer/perl6/ch-2.p6">Markus Holzer</a> created a <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/markus-holzer/perl6/lib/VariableFactory.pm6">VariableFactory</a> class:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">class VariableFactory { * }
-sub EXPORT( $var-name )
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/markus-holzer/perl6/ch-2.p6">Markus Holzer</a> created a <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/markus-holzer/perl6/lib/VariableFactory.pm6">VariableFactory</a> class:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">class VariableFactory { <span style="color:#f92672">*</span> }
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">EXPORT</span>( $var-name )
 {
-    $var-name
-        ?? %( '$*' ~ $var-name =&gt; 42 )
-        !! %();
+    $var<span style="color:#f92672">-</span>name
+        ?? %<span style="color:#960050;background-color:#1e0010">(</span> <span style="color:#960050;background-color:#1e0010">&#39;$*&#39;</span> <span style="color:#960050;background-color:#1e0010">~</span> <span style="color:#960050;background-color:#1e0010">$</span>var<span style="color:#f92672">-</span>name <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">42</span> )
+        <span style="color:#f92672">!!</span> %<span style="color:#960050;background-color:#1e0010">(</span>);
 }
-</code></pre><p>and used it in his program:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">INIT use VariableFactory ( @*ARGS[0] );
-sub MAIN( $var-name ) { say ::( '$*' ~ $var-name ) }
-</code></pre><p>Markus&rsquo;s program creates the variable name through concatenation of the <code>'$*'</code> and <code>$var-name</code> components within the <code>::( ... )</code> construct, but I must admit that I don&rsquo;t fully understand the syntax. Well, no, it&rsquo;s not really the syntax that puzzles me, it&rsquo;s quite simple, after all, it is rather the fact that I have some difficulty to see actual use cases for such a contrived construct.</p>
+</code></pre></div><p>and used it in his program:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">INIT</span> <span style="color:#66d9ef">use</span> VariableFactory ( @<span style="color:#960050;background-color:#1e0010">*</span>ARGS[<span style="color:#ae81ff">0</span>] );
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>( $var-name ) { say <span style="color:#f92672">::</span>( <span style="color:#e6db74">&#39;$*&#39;</span> <span style="color:#f92672">~</span> $var<span style="color:#f92672">-</span>name ) }
+</code></pre></div><p>Markus&rsquo;s program creates the variable name through concatenation of the <code>'$*'</code> and <code>$var-name</code> components within the <code>::( ... )</code> construct, but I must admit that I don&rsquo;t fully understand the syntax. Well, no, it&rsquo;s not really the syntax that puzzles me, it&rsquo;s quite simple, after all, it is rather the fact that I have some difficulty to see actual use cases for such a contrived construct.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/noud/perl6/ch-2.p6">Noud</a> made something similar, although quite simpler, but I also have some difficulty understanding how this could be useful:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub MAIN($name, $value) {
-    GLOBAL::{'$' ~ $name} = $value;
-    say '$' ~ $name ~ &quot; = &quot; ~ GLOBAL::{'$' ~ $name};
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>($name, $value) {
+    GLOBAL::{<span style="color:#e6db74">&#39;$&#39;</span> <span style="color:#f92672">~</span> $name} <span style="color:#f92672">=</span> $value;
+    say <span style="color:#e6db74">&#39;$&#39;</span> <span style="color:#f92672">~</span> $name <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34; = &#34;</span> <span style="color:#f92672">~</span> GLOBAL::{<span style="color:#e6db74">&#39;$&#39;</span> <span style="color:#f92672">~</span> $name};
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/tyler-limkemann/perl6/ch-2.p6">Tyler Limkemann</a> created a <code>Contextualizer</code> class using <code>nqp</code> (not quite Perl), a lower-level subset of the Perl 6 syntax.</p>
-<pre><code class="language-Perl6" data-lang="Perl6">use MONKEY;
-use nqp;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/tyler-limkemann/perl6/ch-2.p6">Tyler Limkemann</a> created a <code>Contextualizer</code> class using <code>nqp</code> (not quite Perl), a lower-level subset of the Perl 6 syntax.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> MONKEY;
+<span style="color:#66d9ef">use</span> nqp;
 
 class Contextualizer {
-  submethod ctxsave(*@args --&gt; Nil) {
-    $*MAIN_CTX := nqp::ctxcaller(nqp::ctx());
+  submethod ctxsave(<span style="color:#f92672">*</span>@args <span style="color:#f92672">--&gt;</span> Nil) {
+    $<span style="color:#960050;background-color:#1e0010">*</span>MAIN_CTX :<span style="color:#f92672">=</span> nqp::ctxcaller(nqp::ctx());
   }
 }
 
-sub MAIN(Str $s) {
-  my $compiler = nqp::getcomp('perl6');
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(Str $s) {
+  <span style="color:#66d9ef">my</span> $compiler <span style="color:#f92672">=</span> nqp::getcomp(<span style="color:#e6db74">&#39;perl6&#39;</span>);
 
-  my $*MAIN_CTX := nqp::ctx();
-  my $*CTXSAVE := Contextualizer;
+  <span style="color:#66d9ef">my</span> $<span style="color:#960050;background-color:#1e0010">*</span>MAIN_CTX :<span style="color:#f92672">=</span> nqp::ctx();
+  <span style="color:#66d9ef">my</span> $<span style="color:#960050;background-color:#1e0010">*</span>CTXSAVE :<span style="color:#f92672">=</span> Contextualizer;
 
-  $compiler.eval(&quot;my \${$s.uc} = ':)'&quot;, :outer_ctx($*MAIN_CTX), :interactive(1));
-  $compiler.eval(&quot;\${$s.uc}.say&quot;, :outer_ctx($*MAIN_CTX), :interactive(1));
+  $compiler<span style="color:#f92672">.</span>eval(<span style="color:#e6db74">&#34;my \${$s.uc} = &#39;:)&#39;&#34;</span>, :outer_ctx($<span style="color:#960050;background-color:#1e0010">*</span>MAIN_CTX), :interactive(<span style="color:#ae81ff">1</span>));
+  $compiler<span style="color:#f92672">.</span>eval(<span style="color:#e6db74">&#34;\${$s.uc}.say&#34;</span>, :outer_ctx($<span style="color:#960050;background-color:#1e0010">*</span>MAIN_CTX), :interactive(<span style="color:#ae81ff">1</span>));
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/athanasius/perl6/ch-2.p6">Athanasius</a> used the <code>EVAL</code> built-in routine which makes it possible to execute a string containing valid Perl 6/ Raku code:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">use MONKEY-SEE-NO-EVAL;
-my Real constant $VALUE = 42;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/athanasius/perl6/ch-2.p6">Athanasius</a> used the <code>EVAL</code> built-in routine which makes it possible to execute a string containing valid Perl 6/ Raku code:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> MONKEY<span style="color:#f92672">-</span>SEE<span style="color:#f92672">-</span>NO<span style="color:#f92672">-</span>EVAL;
+<span style="color:#66d9ef">my</span> Real constant $VALUE <span style="color:#f92672">=</span> <span style="color:#ae81ff">42</span>;
 
-sub MAIN(Str:D $variable-name)
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(Str:D $variable-name)
 {
-    # Declare the variable and assign a value to it
-    my Str $expression = &quot;my \$$variable-name = $VALUE;&quot;;
-    # Print the variable
-    $expression ~= &quot; qq[\\\$$variable-name = \$$variable-name].say;&quot;;
-    # Declaration, assignment, and printing must be EVALuated together to avoid
-    # a &quot;Variable ... is not declared&quot; error in the say statement
+    <span style="color:#75715e"># Declare the variable and assign a value to it</span>
+    <span style="color:#66d9ef">my</span> Str $expression <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;my \$$variable-name = $VALUE;&#34;</span>;
+    <span style="color:#75715e"># Print the variable</span>
+    $expression <span style="color:#f92672">~=</span> <span style="color:#e6db74">&#34; qq[\\\$$variable-name = \$$variable-name].say;&#34;</span>;
+    <span style="color:#75715e"># Declaration, assignment, and printing must be EVALuated together to avoid</span>
+    <span style="color:#75715e"># a &#34;Variable ... is not declared&#34; error in the say statement</span>
     EVAL $expression;
 }
-</code></pre><p>Note that <code>EVAL</code> is considered to be a dangerous function and therefore requires the <code>use MONKEY-SEE-NO-EVAL;</code> pragma to be activated.</p>
+</code></pre></div><p>Note that <code>EVAL</code> is considered to be a dangerous function and therefore requires the <code>use MONKEY-SEE-NO-EVAL;</code> pragma to be activated.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/joelle-maslak/perl6/ch-2.p6">Joelle Maslak</a> also used the <code>EVAL</code> built-in routine:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">use MONKEY-SEE-NO-EVAL;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> MONKEY<span style="color:#f92672">-</span>SEE<span style="color:#f92672">-</span>NO<span style="color:#f92672">-</span>EVAL;
 
-# Note all sorts of bad things can still be done with this code - like a
-# user might pass in the name of an existing variable, might start a
-# variable name with a number, etc.
+<span style="color:#75715e"># Note all sorts of bad things can still be done with this code - like a</span>
+<span style="color:#75715e"># user might pass in the name of an existing variable, might start a</span>
+<span style="color:#75715e"># variable name with a number, etc.</span>
 
-sub MAIN(Str:D $var-name, $value) {
-    die &quot;Invalid variable name&quot; if $var-name !~~ m/^ \w+ $/;  # Doesn't catch everything
-    EVAL(&quot;my \$OUR::$var-name = { $value.perl }&quot;);
-    EVAL(&quot;say '\$$var-name is set to: ' ~ \$OUR::$var-name&quot;);
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(Str:D $var-name, $value) {
+    die <span style="color:#e6db74">&#34;Invalid variable name&#34;</span> <span style="color:#66d9ef">if</span> $var<span style="color:#f92672">-</span>name <span style="color:#f92672">!~~</span> <span style="color:#e6db74">m/^ \w+ $/</span>;  <span style="color:#75715e"># Doesn&#39;t catch everything</span>
+    EVAL(<span style="color:#e6db74">&#34;my \$OUR::$var-name = { $value.perl }&#34;</span>);
+    EVAL(<span style="color:#e6db74">&#34;say &#39;\$$var-name is set to: &#39; ~ \$OUR::$var-name&#34;</span>);
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/ruben-westerberg/perl6/ch-2.p6">Ruben Westerberg</a> also  the <code>EVAL</code> built-in routine:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">use MONKEY-SEE-NO-EVAL;
-my $name=@*ARGS[0]//&quot;var&quot;~1000.rand.Int;
-my $value=@*ARGS[1]//1.rand;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/ruben-westerberg/perl6/ch-2.p6">Ruben Westerberg</a> also  the <code>EVAL</code> built-in routine:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> MONKEY<span style="color:#f92672">-</span>SEE<span style="color:#f92672">-</span>NO<span style="color:#f92672">-</span>EVAL;
+<span style="color:#66d9ef">my</span> $name<span style="color:#f92672">=</span>@<span style="color:#960050;background-color:#1e0010">*</span>ARGS[<span style="color:#ae81ff">0</span>]<span style="color:#e6db74">//</span><span style="color:#e6db74">&#34;var&#34;</span><span style="color:#f92672">~</span><span style="color:#ae81ff">1000</span><span style="color:#f92672">.</span>rand<span style="color:#f92672">.</span>Int;
+<span style="color:#66d9ef">my</span> $value<span style="color:#f92672">=</span>@<span style="color:#960050;background-color:#1e0010">*</span>ARGS[<span style="color:#ae81ff">1</span>]<span style="color:#e6db74">//</span><span style="color:#ae81ff">1</span><span style="color:#f92672">.</span>rand;
 {
-    put &quot;Using Module/eval&quot;;
+    put <span style="color:#e6db74">&#34;Using Module/eval&#34;</span>;
     module D {
-        EVAL &quot;our \$$name=\&quot;$value\&quot;&quot;;
+        EVAL <span style="color:#e6db74">&#34;our \$$name=\&#34;$value\&#34;&#34;</span>;
     }
-    put $D::($name);
-    put &quot;Variable name: $name Value: {$D::($name)}&quot;;
+    put $D::<span style="color:#960050;background-color:#1e0010">($</span>name);
+    put <span style="color:#e6db74">&#34;Variable name: $name Value: {$D::($name)}&#34;</span>;
 }
 
-put &quot;&quot;;
+put <span style="color:#e6db74">&#34;&#34;</span>;
 
 {
-    put &quot;Using Hash&quot;;
-    my %h;
-    %h{$name}=$value;
-    put &quot;Variable name: $name Value: %h{$name}&quot;;
+    put <span style="color:#e6db74">&#34;Using Hash&#34;</span>;
+    <span style="color:#66d9ef">my</span> %h;
+    %h{$name}<span style="color:#f92672">=</span>$value;
+    put <span style="color:#e6db74">&#34;Variable name: $name Value: %h{$name}&#34;</span>;
 
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/jaldhar-h-vyas/perl6/ch-2.p6">Jaldhar H. Vyas</a> suggested this quite simple solution:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub MAIN( Str $var ) {
-    my $newvar = $var;
-    $($newvar) = 42;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/jaldhar-h-vyas/perl6/ch-2.p6">Jaldhar H. Vyas</a> suggested this quite simple solution:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>( Str $var ) {
+    <span style="color:#66d9ef">my</span> $newvar <span style="color:#f92672">=</span> $var;
+    $($newvar) <span style="color:#f92672">=</span> <span style="color:#ae81ff">42</span>;
 
-    say &quot;$var = &quot;, $($newvar);
+    say <span style="color:#e6db74">&#34;$var = &#34;</span>, $($newvar);
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/javier-luque/perl6/ch-2.p6">Javier Luque</a> used the <code>GLOBAL</code> name space to perform the task:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub MAIN (Str $variable) {
-    # Randomly populate the random value
-    my $random_value = (0..^9).roll(12).join;
-    GLOBAL::{'$' ~ $variable} = $random_value;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/javier-luque/perl6/ch-2.p6">Javier Luque</a> used the <code>GLOBAL</code> name space to perform the task:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> (Str $variable) {
+    <span style="color:#75715e"># Randomly populate the random value</span>
+    <span style="color:#66d9ef">my</span> $random_value <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span><span style="color:#f92672">..^</span><span style="color:#ae81ff">9</span>)<span style="color:#f92672">.</span>roll(<span style="color:#ae81ff">12</span>)<span style="color:#f92672">.</span>join;
+    GLOBAL::{<span style="color:#e6db74">&#39;$&#39;</span> <span style="color:#f92672">~</span> $variable} <span style="color:#f92672">=</span> $random_value;
 
-    # Say dynamic variable name and random value
-    say 'Dynamic variable name: ' ~  $variable;
-    say 'Random value: ' ~ GLOBAL::{'$' ~ $variable};
+    <span style="color:#75715e"># Say dynamic variable name and random value</span>
+    say <span style="color:#e6db74">&#39;Dynamic variable name: &#39;</span> <span style="color:#f92672">~</span>  $variable;
+    say <span style="color:#e6db74">&#39;Random value: &#39;</span> <span style="color:#f92672">~</span> GLOBAL::{<span style="color:#e6db74">&#39;$&#39;</span> <span style="color:#f92672">~</span> $variable};
 
-    # test like this: perl6 ch2.p6 test
-    say 'Variable test is: ' ~ $*test if ($variable eq 'test');
+    <span style="color:#75715e"># test like this: perl6 ch2.p6 test</span>
+    say <span style="color:#e6db74">&#39;Variable test is: &#39;</span> <span style="color:#f92672">~</span> $<span style="color:#960050;background-color:#1e0010">*</span>test <span style="color:#66d9ef">if</span> ($variable <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;test&#39;</span>);
 }
-</code></pre><h2 id="see-also">SEE ALSO</h2>
+</code></pre></div><h2 id="see-also">SEE ALSO</h2>
 <p>Three blog posts this time:</p>
 <ul>
 <li>

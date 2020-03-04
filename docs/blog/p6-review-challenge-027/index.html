@@ -16,7 +16,7 @@
 
     <meta name="description" content="Laurent Rosenfeld Weekly Review: Challenge - #027.">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.66.0-DEV" />
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -185,182 +185,182 @@ x = (b2 - b1) / (a1 - a2)
 <p>With the above knowledge secured, it is fairly easy to write a Perl 6 program computing the intersection point of two lines defined by two point pairs. The basic algorithm is fairly simple, but it becomes a little bit complicated when we want to tackle all the edge cases (two points which are the same, vertical line, parallel lines, etc.).</p>
 <p>There is one slight complication, though: if one (and only one) of the point pairs have points with the same abscissa, we cannot write a linear equation for that pair of points, but the straight line is nonetheless well defined (provided the ordinates are different): it is a vertical line where all point have the same abscissa (<code>x</code> value). We cannot write an equation for such a line, but may still find the intersection point with the other line: it is the point of that other line having this abscissa. This special case will account for quite a lot of code lines in our solution.</p>
 <p>Another observation is that this type of problem calls for object-oriented programming (even though I&rsquo;m generally not a great OO fan). So, we will define a <code>Point</code> type and a <code>Segment</code> class (with two <code>Point</code> attributes) providing the <code>slope</code> and <code>y-intercept</code> methods to compute the equation of a line passing through the two points. The <code>Point</code> role also provides a <code>gist</code> method enabling pretty printing of the point coordinates when using the <code>say</code> built-in function on a <code>Point</code> instance.</p>
-<pre><code class="language-Perl6" data-lang="Perl6">use v6;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> v6;
 
 role Point {
-    has $.x;
-    has $.y;
+    has $<span style="color:#960050;background-color:#1e0010">.</span>x;
+    has $<span style="color:#960050;background-color:#1e0010">.</span>y;
 
     method gist {
-        return &quot;\n- Abscissa: $.x\n- Ordinate: $.y.&quot;;
+        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;\n- Abscissa: $.x\n- Ordinate: $.y.&#34;</span>;
     }
 }
 class Segment {
-    has Point $.start;
-    has Point $.end;
+    has Point $<span style="color:#960050;background-color:#1e0010">.</span>start;
+    has Point $<span style="color:#960050;background-color:#1e0010">.</span>end;
 
     method slope {
-        return ($.end.y - $.start.y) / ($.end.x - $.start.x);
+        <span style="color:#66d9ef">return</span> ($<span style="color:#960050;background-color:#1e0010">.</span>end<span style="color:#f92672">.</span>y <span style="color:#f92672">-</span> $<span style="color:#960050;background-color:#1e0010">.</span>start<span style="color:#f92672">.</span>y) <span style="color:#f92672">/</span> ($<span style="color:#960050;background-color:#1e0010">.</span>end<span style="color:#f92672">.</span>x <span style="color:#f92672">-</span> $<span style="color:#960050;background-color:#1e0010">.</span>start<span style="color:#f92672">.</span>x);
     }
-    method y-intercept {
-        my $slope = self.slope;
-        return $.start.y - $slope * $.start.x;
+    method y<span style="color:#f92672">-</span>intercept {
+        <span style="color:#66d9ef">my</span> $slope <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>slope;
+        <span style="color:#66d9ef">return</span> $<span style="color:#960050;background-color:#1e0010">.</span>start<span style="color:#f92672">.</span>y <span style="color:#f92672">-</span> $slope <span style="color:#f92672">*</span> $<span style="color:#960050;background-color:#1e0010">.</span>start<span style="color:#f92672">.</span>x;
     }
-    method line-coordinates { # used only for debugging purpose
-        return self.slope, self.y-intercept;
+    method line<span style="color:#f92672">-</span>coordinates { <span style="color:#75715e"># used only for debugging purpose</span>
+        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>slope, self<span style="color:#f92672">.</span>y<span style="color:#f92672">-</span>intercept;
     }
 }
 
-sub compute-intersection (Segment $s1, Segment $s2) {
-    my $abscissa = ($s2.y-intercept - $s1.y-intercept) /
-                   ($s1.slope - $s2.slope);
-    my $ordinate = $s1.slope * $abscissa + $s1.y-intercept;
-    my $intersection = Point.new( x =&gt; $abscissa, y =&gt; $ordinate);
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">compute</span>-intersection (Segment $s1, Segment $s2) {
+    <span style="color:#66d9ef">my</span> $abscissa <span style="color:#f92672">=</span> ($s2<span style="color:#f92672">.</span>y<span style="color:#f92672">-</span>intercept <span style="color:#f92672">-</span> $s1<span style="color:#f92672">.</span>y<span style="color:#f92672">-</span>intercept) <span style="color:#f92672">/</span>
+                   ($s1<span style="color:#f92672">.</span>slope <span style="color:#f92672">-</span> $s2<span style="color:#f92672">.</span>slope);
+    <span style="color:#66d9ef">my</span> $ordinate <span style="color:#f92672">=</span> $s1<span style="color:#f92672">.</span>slope <span style="color:#f92672">*</span> $abscissa <span style="color:#f92672">+</span> $s1<span style="color:#f92672">.</span>y<span style="color:#f92672">-</span>intercept;
+    <span style="color:#66d9ef">my</span> $intersection <span style="color:#f92672">=</span> Point<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>( x <span style="color:#f92672">=&gt;</span> $abscissa, y <span style="color:#f92672">=&gt;</span> $ordinate);
 }
 
-multi MAIN ( $a1, $b1, # start of line segment 1
-             $a2, $b2, # end of line segment 1
-             $a3, $b3, # start of line segment 2
-             $a4, $b4  # end of line segment 2
+multi MAIN ( $a1, $b1, <span style="color:#75715e"># start of line segment 1</span>
+             $a2, $b2, <span style="color:#75715e"># end of line segment 1</span>
+             $a3, $b3, <span style="color:#75715e"># start of line segment 2</span>
+             $a4, $b4  <span style="color:#75715e"># end of line segment 2</span>
          ) {
-    my $segment1 = Segment.new(
-                                 start =&gt; Point.new(x =&gt; $a1, y =&gt; $b1),
-                                 end   =&gt; Point.new(x =&gt; $a2, y =&gt; $b2)
+    <span style="color:#66d9ef">my</span> $segment1 <span style="color:#f92672">=</span> Segment<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(
+                                 start <span style="color:#f92672">=&gt;</span> Point<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(x <span style="color:#f92672">=&gt;</span> $a1, y <span style="color:#f92672">=&gt;</span> $b1),
+                                 end   <span style="color:#f92672">=&gt;</span> Point<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(x <span style="color:#f92672">=&gt;</span> $a2, y <span style="color:#f92672">=&gt;</span> $b2)
                               );
-    my $segment2 = Segment.new(
-                                 start =&gt; Point.new(x =&gt; $a3, y =&gt; $b3),
-                                 end   =&gt; Point.new(x =&gt; $a4, y =&gt; $b4)
+    <span style="color:#66d9ef">my</span> $segment2 <span style="color:#f92672">=</span> Segment<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(
+                                 start <span style="color:#f92672">=&gt;</span> Point<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(x <span style="color:#f92672">=&gt;</span> $a3, y <span style="color:#f92672">=&gt;</span> $b3),
+                                 end   <span style="color:#f92672">=&gt;</span> Point<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(x <span style="color:#f92672">=&gt;</span> $a4, y <span style="color:#f92672">=&gt;</span> $b4)
                               );
-    say &quot;Coordinates of intersection point: &quot;, compute-intersection $segment1, $segment2;
+    say <span style="color:#e6db74">&#34;Coordinates of intersection point: &#34;</span>, compute<span style="color:#f92672">-</span>intersection $segment1, $segment2;
 }
 multi MAIN () {
-    say &quot;Using default input values for testing. Should display poinr (2, 4).&quot;;
-    my $segment1 = Segment.new(
-                                 start =&gt; Point.new(x =&gt; 3, y =&gt; 1),
-                                 end   =&gt; Point.new(x =&gt; 5, y =&gt; 3)
+    say <span style="color:#e6db74">&#34;Using default input values for testing. Should display poinr (2, 4).&#34;</span>;
+    <span style="color:#66d9ef">my</span> $segment1 <span style="color:#f92672">=</span> Segment<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(
+                                 start <span style="color:#f92672">=&gt;</span> Point<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(x <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>, y <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>),
+                                 end   <span style="color:#f92672">=&gt;</span> Point<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(x <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5</span>, y <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>)
                               );
-    my $segment2 = Segment.new(
-                                 start =&gt; Point.new(x =&gt; 3, y =&gt; 3),
-                                 end   =&gt; Point.new(x =&gt; 6, y =&gt; 0)
+    <span style="color:#66d9ef">my</span> $segment2 <span style="color:#f92672">=</span> Segment<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(
+                                 start <span style="color:#f92672">=&gt;</span> Point<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(x <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>, y <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>),
+                                 end   <span style="color:#f92672">=&gt;</span> Point<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(x <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">6</span>, y <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">0</span>)
                               );
-    say  &quot;Coordinates of intersection point: &quot;, compute-intersection $segment1, $segment2;
+    say  <span style="color:#e6db74">&#34;Coordinates of intersection point: &#34;</span>, compute<span style="color:#f92672">-</span>intersection $segment1, $segment2;
 }
-</code></pre><p>This is a sample run of the program:</p>
+</code></pre></div><p>This is a sample run of the program:</p>
 <pre><code>$ perl6  intersection.p6  3 1 5 3 3 3 6 0
 Coordinates of intersection point:
 - Abscissa: 4
 - Ordinate: 2.
 </code></pre>
 <p>As it is, this program isn&rsquo;t doing any validation on its arguments. So we will add a <code>valid-args</code> subroutine for that purpose and also check that the computed segments are not parallel.</p>
-<pre><code class="language-Perl6" data-lang="Perl6">use v6;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> v6;
 
 role Point {
-    has $.x;
-    has $.y;
+    has $<span style="color:#960050;background-color:#1e0010">.</span>x;
+    has $<span style="color:#960050;background-color:#1e0010">.</span>y;
 
     method gist {
-        return &quot;\n- Abscissa: $.x\n- Ordinate: $.y.&quot;;
+        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;\n- Abscissa: $.x\n- Ordinate: $.y.&#34;</span>;
     }
 }
 class Segment {
-    has Point $.start;
-    has Point $.end;
+    has Point $<span style="color:#960050;background-color:#1e0010">.</span>start;
+    has Point $<span style="color:#960050;background-color:#1e0010">.</span>end;
 
     method slope {
-        return ($.end.y - $.start.y) / ($.end.x - $.start.x);
+        <span style="color:#66d9ef">return</span> ($<span style="color:#960050;background-color:#1e0010">.</span>end<span style="color:#f92672">.</span>y <span style="color:#f92672">-</span> $<span style="color:#960050;background-color:#1e0010">.</span>start<span style="color:#f92672">.</span>y) <span style="color:#f92672">/</span> ($<span style="color:#960050;background-color:#1e0010">.</span>end<span style="color:#f92672">.</span>x <span style="color:#f92672">-</span> $<span style="color:#960050;background-color:#1e0010">.</span>start<span style="color:#f92672">.</span>x);
     }
-    method y-intercept {
-        my $slope = self.slope;
-        return $.start.y - $slope * $.start.x;
+    method y<span style="color:#f92672">-</span>intercept {
+        <span style="color:#66d9ef">my</span> $slope <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>slope;
+        <span style="color:#66d9ef">return</span> $<span style="color:#960050;background-color:#1e0010">.</span>start<span style="color:#f92672">.</span>y <span style="color:#f92672">-</span> $slope <span style="color:#f92672">*</span> $<span style="color:#960050;background-color:#1e0010">.</span>start<span style="color:#f92672">.</span>x;
     }
-    method line-coordinates {
-        return self.slope, self.y-intercept;
+    method line<span style="color:#f92672">-</span>coordinates {
+        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>slope, self<span style="color:#f92672">.</span>y<span style="color:#f92672">-</span>intercept;
     }
 }
-sub compute-intersection (Segment $s1, Segment $s2) {
-    my $abscissa = ($s2.y-intercept - $s1.y-intercept) /
-                   ($s1.slope - $s2.slope);
-    my $ordinate = $s1.slope * $abscissa + $s1.y-intercept;
-    my $intersection = Point.new( x =&gt; $abscissa, y =&gt; $ordinate);
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">compute</span>-intersection (Segment $s1, Segment $s2) {
+    <span style="color:#66d9ef">my</span> $abscissa <span style="color:#f92672">=</span> ($s2<span style="color:#f92672">.</span>y<span style="color:#f92672">-</span>intercept <span style="color:#f92672">-</span> $s1<span style="color:#f92672">.</span>y<span style="color:#f92672">-</span>intercept) <span style="color:#f92672">/</span>
+                   ($s1<span style="color:#f92672">.</span>slope <span style="color:#f92672">-</span> $s2<span style="color:#f92672">.</span>slope);
+    <span style="color:#66d9ef">my</span> $ordinate <span style="color:#f92672">=</span> $s1<span style="color:#f92672">.</span>slope <span style="color:#f92672">*</span> $abscissa <span style="color:#f92672">+</span> $s1<span style="color:#f92672">.</span>y<span style="color:#f92672">-</span>intercept;
+    <span style="color:#66d9ef">my</span> $intersection <span style="color:#f92672">=</span> Point<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>( x <span style="color:#f92672">=&gt;</span> $abscissa, y <span style="color:#f92672">=&gt;</span> $ordinate);
 }
-multi MAIN ( $a1, $b1, # start of line segment 1
-             $a2, $b2, # end of line segment 1
-             $a3, $b3, # start of line segment 2
-             $a4, $b4  # end of line segment 2
+multi MAIN ( $a1, $b1, <span style="color:#75715e"># start of line segment 1</span>
+             $a2, $b2, <span style="color:#75715e"># end of line segment 1</span>
+             $a3, $b3, <span style="color:#75715e"># start of line segment 2</span>
+             $a4, $b4  <span style="color:#75715e"># end of line segment 2</span>
          ) {
-    exit unless valid-args |@*ARGS;
-    my $segment1 = Segment.new(
-            start =&gt; Point.new(x =&gt; $a1, y =&gt; $b1),
-            end   =&gt; Point.new(x =&gt; $a2, y =&gt; $b2)
+    exit <span style="color:#66d9ef">unless</span> valid<span style="color:#f92672">-</span>args <span style="color:#f92672">|</span>@<span style="color:#960050;background-color:#1e0010">*</span>ARGS;
+    <span style="color:#66d9ef">my</span> $segment1 <span style="color:#f92672">=</span> Segment<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(
+            start <span style="color:#f92672">=&gt;</span> Point<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(x <span style="color:#f92672">=&gt;</span> $a1, y <span style="color:#f92672">=&gt;</span> $b1),
+            end   <span style="color:#f92672">=&gt;</span> Point<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(x <span style="color:#f92672">=&gt;</span> $a2, y <span style="color:#f92672">=&gt;</span> $b2)
                               );
-    my $segment2 = Segment.new(
-            start =&gt; Point.new(x =&gt; $a3, y =&gt; $b3),
-            end   =&gt; Point.new(x =&gt; $a4, y =&gt; $b4)
+    <span style="color:#66d9ef">my</span> $segment2 <span style="color:#f92672">=</span> Segment<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(
+            start <span style="color:#f92672">=&gt;</span> Point<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(x <span style="color:#f92672">=&gt;</span> $a3, y <span style="color:#f92672">=&gt;</span> $b3),
+            end   <span style="color:#f92672">=&gt;</span> Point<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(x <span style="color:#f92672">=&gt;</span> $a4, y <span style="color:#f92672">=&gt;</span> $b4)
                               );
-    say &quot;Segments are parallel or colinear.&quot; and exit
-        if $segment1.slope == $segment2.slope;
-    say &quot;Coordinates of intersection point: &quot;,
-        compute-intersection $segment1, $segment2;
+    say <span style="color:#e6db74">&#34;Segments are parallel or colinear.&#34;</span> <span style="color:#f92672">and</span> exit
+        <span style="color:#66d9ef">if</span> $segment1<span style="color:#f92672">.</span>slope <span style="color:#f92672">==</span> $segment2<span style="color:#f92672">.</span>slope;
+    say <span style="color:#e6db74">&#34;Coordinates of intersection point: &#34;</span>,
+        compute<span style="color:#f92672">-</span>intersection $segment1, $segment2;
 }
 multi MAIN () {
-    say &quot;Using default input values for testing. Should display poinr (2, 4).&quot;;
-    my $segment1 = Segment.new(
-            start =&gt; Point.new(x =&gt; 3, y =&gt; 1),
-            end   =&gt; Point.new(x =&gt; 5, y =&gt; 3)
+    say <span style="color:#e6db74">&#34;Using default input values for testing. Should display poinr (2, 4).&#34;</span>;
+    <span style="color:#66d9ef">my</span> $segment1 <span style="color:#f92672">=</span> Segment<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(
+            start <span style="color:#f92672">=&gt;</span> Point<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(x <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>, y <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>),
+            end   <span style="color:#f92672">=&gt;</span> Point<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(x <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5</span>, y <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>)
                               );
-    my $segment2 = Segment.new(
-            start =&gt; Point.new(x =&gt; 3, y =&gt; 3),
-            end   =&gt; Point.new(x =&gt; 6, y =&gt; 0)
+    <span style="color:#66d9ef">my</span> $segment2 <span style="color:#f92672">=</span> Segment<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(
+            start <span style="color:#f92672">=&gt;</span> Point<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(x <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>, y <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>),
+            end   <span style="color:#f92672">=&gt;</span> Point<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(x <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">6</span>, y <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">0</span>)
                               );
-    say  &quot;Coordinates of intersection point: &quot;,
-        compute-intersection $segment1, $segment2;
+    say  <span style="color:#e6db74">&#34;Coordinates of intersection point: &#34;</span>,
+        compute<span style="color:#f92672">-</span>intersection $segment1, $segment2;
 }
-sub valid-args ( $a1, $b1, # start of line segment 1
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">valid</span>-args ( $a1, $b1, # start of line segment 1
                  $a2, $b2, # end of line segment 1
                  $a3, $b3, # start of line segment 2
                  $a4, $b4  # end of line segment 2
          ) {
-    unless @*ARGS.all ~~ /&lt;[\d]&gt;+/ {
-        say &quot;Non numeric argument. Can't continue.&quot;;
-        return False;
+    <span style="color:#66d9ef">unless</span> @<span style="color:#960050;background-color:#1e0010">*</span>ARGS<span style="color:#f92672">.</span>all <span style="color:#f92672">~~</span> <span style="color:#e6db74">/&lt;[\d]&gt;+/</span> {
+        say <span style="color:#e6db74">&#34;Non numeric argument. Can&#39;t continue.&#34;</span>;
+        <span style="color:#66d9ef">return</span> False;
     }
-    if $a1 == $a2 and $b1 == $b2 {
-        say &quot;The first two points are the same. Cannot draw a line.&quot;;
-        return False;
+    <span style="color:#66d9ef">if</span> $a1 <span style="color:#f92672">==</span> $a2 <span style="color:#f92672">and</span> $b1 <span style="color:#f92672">==</span> $b2 {
+        say <span style="color:#e6db74">&#34;The first two points are the same. Cannot draw a line.&#34;</span>;
+        <span style="color:#66d9ef">return</span> False;
     }
-    if $a3 == $a4 and $b3 == $b4 {
-        say &quot;The last two points are the same. Cannot draw a line.&quot;;
-        return False;
+    <span style="color:#66d9ef">if</span> $a3 <span style="color:#f92672">==</span> $a4 <span style="color:#f92672">and</span> $b3 <span style="color:#f92672">==</span> $b4 {
+        say <span style="color:#e6db74">&#34;The last two points are the same. Cannot draw a line.&#34;</span>;
+        <span style="color:#66d9ef">return</span> False;
     }
-    if $a1 == $a2 and $a3 == $a4 {
-        say &quot;The two segments are vertical. No intersection.&quot;;
-        return False;
+    <span style="color:#66d9ef">if</span> $a1 <span style="color:#f92672">==</span> $a2 <span style="color:#f92672">and</span> $a3 <span style="color:#f92672">==</span> $a4 {
+        say <span style="color:#e6db74">&#34;The two segments are vertical. No intersection.&#34;</span>;
+        <span style="color:#66d9ef">return</span> False;
     }
-    if $a1 == $a2 {
-        # First segment is vertical but not the second one
-        my $segment2 = Segment.new(
-                start =&gt; Point.new(x =&gt; $a3, y =&gt; $b3),
-                end   =&gt; Point.new(x =&gt; $a4, y =&gt; $b4)
+    <span style="color:#66d9ef">if</span> $a1 <span style="color:#f92672">==</span> $a2 {
+        <span style="color:#75715e"># First segment is vertical but not the second one</span>
+        <span style="color:#66d9ef">my</span> $segment2 <span style="color:#f92672">=</span> Segment<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(
+                start <span style="color:#f92672">=&gt;</span> Point<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(x <span style="color:#f92672">=&gt;</span> $a3, y <span style="color:#f92672">=&gt;</span> $b3),
+                end   <span style="color:#f92672">=&gt;</span> Point<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(x <span style="color:#f92672">=&gt;</span> $a4, y <span style="color:#f92672">=&gt;</span> $b4)
             );
-        my $ordinate = $segment2.slope * $a1 + $segment2.y-intercept;
-        my $interception = Point.new(x =&gt; $a1, y =&gt; $ordinate);
-        say &quot;Coordinates of intersection point: &quot;, $interception;
-        return False;
+        <span style="color:#66d9ef">my</span> $ordinate <span style="color:#f92672">=</span> $segment2<span style="color:#f92672">.</span>slope <span style="color:#f92672">*</span> $a1 <span style="color:#f92672">+</span> $segment2<span style="color:#f92672">.</span>y<span style="color:#f92672">-</span>intercept;
+        <span style="color:#66d9ef">my</span> $interception <span style="color:#f92672">=</span> Point<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(x <span style="color:#f92672">=&gt;</span> $a1, y <span style="color:#f92672">=&gt;</span> $ordinate);
+        say <span style="color:#e6db74">&#34;Coordinates of intersection point: &#34;</span>, $interception;
+        <span style="color:#66d9ef">return</span> False;
     }
-    if $a3 == $a4 {
-        # Second segment is vertical but not the first one
-        my $segment1 = Segment.new(
-                start =&gt; Point.new(x =&gt; $a1, y =&gt; $b1),
-                end   =&gt; Point.new(x =&gt; $a2, y =&gt; $b2)
+    <span style="color:#66d9ef">if</span> $a3 <span style="color:#f92672">==</span> $a4 {
+        <span style="color:#75715e"># Second segment is vertical but not the first one</span>
+        <span style="color:#66d9ef">my</span> $segment1 <span style="color:#f92672">=</span> Segment<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(
+                start <span style="color:#f92672">=&gt;</span> Point<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(x <span style="color:#f92672">=&gt;</span> $a1, y <span style="color:#f92672">=&gt;</span> $b1),
+                end   <span style="color:#f92672">=&gt;</span> Point<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(x <span style="color:#f92672">=&gt;</span> $a2, y <span style="color:#f92672">=&gt;</span> $b2)
             );
-        my $ordinate = $segment1.slope * $a3 + $segment1.y-intercept;
-        my $interception = Point.new(x =&gt; $a3, y =&gt; $ordinate);
-        say &quot;Coordinates of intersection point: &quot;, $interception;
-        return False;
+        <span style="color:#66d9ef">my</span> $ordinate <span style="color:#f92672">=</span> $segment1<span style="color:#f92672">.</span>slope <span style="color:#f92672">*</span> $a3 <span style="color:#f92672">+</span> $segment1<span style="color:#f92672">.</span>y<span style="color:#f92672">-</span>intercept;
+        <span style="color:#66d9ef">my</span> $interception <span style="color:#f92672">=</span> Point<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(x <span style="color:#f92672">=&gt;</span> $a3, y <span style="color:#f92672">=&gt;</span> $ordinate);
+        say <span style="color:#e6db74">&#34;Coordinates of intersection point: &#34;</span>, $interception;
+        <span style="color:#66d9ef">return</span> False;
     }
-    return True;
+    <span style="color:#66d9ef">return</span> True;
 }
-</code></pre><p>Running the program with some examples of valid or invalid arguments displays the following:</p>
+</code></pre></div><p>Running the program with some examples of valid or invalid arguments displays the following:</p>
 <pre><code>$ perl6  intersection.p6  3 1 5 3 3 3 n 0
 Non numeric argument. Can't continue.
 
@@ -386,180 +386,180 @@ The two segments are vertical. Cannot find an intersection.
 <h2 id="alternate-solutions">Alternate Solutions</h2>
 <p>My program just above is much longer than most other solutions presented below. The only other quite long program is Joelle Maslak&rsquo;s, which also happens to be the only other object-oriented solution. This may be a coincidence, but I have the feeling that OO programming often leads to rather verbose solutions. And this is, by the way, one of the reasons why I&rsquo;m not a great fan of OO programming: it feels a bit like writing Java in Perl 6. Having said that, I should add that most more concise solutions contain long mathematical formulas that are a bit difficult to read and hardly self-documenting.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/arne-sommer/perl6/ch-1.p6">Arne Sommer</a>&lsquo;s solution is much shorter than mine, but I&rsquo;m afraid Arne looked only at some of the edge cases:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">my \ta1 = (y3−y4) * (x1−x3) + (x4−x3) * (y1−y3);
-my \ta2 = (x4−x3) * (y1−y2) − (x1−x2) * (y4−y3);
-my \tb1 = (y1−y2) * (x1−x3) + (x2−x1) * (y1−y3);
-my \tb2 = (x4−x3) * (y1−y2) − (x1−x2) * (y4−y3);
-my \ta = ta1 / ta2;
-my \tb = tb1 / tb2;
-if ta2 == 0 || tb2 == 0
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> <span style="color:#f92672">\</span>ta1 <span style="color:#f92672">=</span> (y3<span style="color:#960050;background-color:#1e0010">−</span>y4) <span style="color:#f92672">*</span> (x1<span style="color:#960050;background-color:#1e0010">−</span>x3) <span style="color:#f92672">+</span> (x4<span style="color:#960050;background-color:#1e0010">−</span>x3) <span style="color:#f92672">*</span> (y1<span style="color:#960050;background-color:#1e0010">−</span>y3);
+<span style="color:#66d9ef">my</span> <span style="color:#f92672">\</span>ta2 <span style="color:#f92672">=</span> (x4<span style="color:#960050;background-color:#1e0010">−</span>x3) <span style="color:#f92672">*</span> (y1<span style="color:#960050;background-color:#1e0010">−</span>y2) <span style="color:#960050;background-color:#1e0010">−</span> (x1<span style="color:#960050;background-color:#1e0010">−</span>x2) <span style="color:#f92672">*</span> (y4<span style="color:#960050;background-color:#1e0010">−</span>y3);
+<span style="color:#66d9ef">my</span> <span style="color:#f92672">\</span>tb1 <span style="color:#f92672">=</span> (y1<span style="color:#960050;background-color:#1e0010">−</span>y2) <span style="color:#f92672">*</span> (x1<span style="color:#960050;background-color:#1e0010">−</span>x3) <span style="color:#f92672">+</span> (x2<span style="color:#960050;background-color:#1e0010">−</span>x1) <span style="color:#f92672">*</span> (y1<span style="color:#960050;background-color:#1e0010">−</span>y3);
+<span style="color:#66d9ef">my</span> <span style="color:#f92672">\</span>tb2 <span style="color:#f92672">=</span> (x4<span style="color:#960050;background-color:#1e0010">−</span>x3) <span style="color:#f92672">*</span> (y1<span style="color:#960050;background-color:#1e0010">−</span>y2) <span style="color:#960050;background-color:#1e0010">−</span> (x1<span style="color:#960050;background-color:#1e0010">−</span>x2) <span style="color:#f92672">*</span> (y4<span style="color:#960050;background-color:#1e0010">−</span>y3);
+<span style="color:#66d9ef">my</span> <span style="color:#f92672">\</span>ta <span style="color:#f92672">=</span> ta1 <span style="color:#f92672">/</span> ta2;
+<span style="color:#66d9ef">my</span> <span style="color:#f92672">\</span>tb <span style="color:#f92672">=</span> tb1 <span style="color:#f92672">/</span> tb2;
+<span style="color:#66d9ef">if</span> ta2 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> tb2 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>
 {
-  say &quot;Colinear lines&quot;;
+  say <span style="color:#e6db74">&#34;Colinear lines&#34;</span>;
 }
-elsif 0 &lt;= ta &lt;= 1 &amp;&amp; 0 &lt;= tb &lt;= 1
+<span style="color:#66d9ef">elsif</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&lt;=</span> ta <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&lt;=</span> tb <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">1</span>
 {
-  say &quot;Segment intersection at x: { x1 + ta * (x2 - x1) } y: { y1 + ta * (y2 − y1) }&quot;;
+  say <span style="color:#e6db74">&#34;Segment intersection at x: { x1 + ta * (x2 - x1) } y: { y1 + ta * (y2 − y1) }&#34;</span>;
 }
-else
+<span style="color:#66d9ef">else</span>
 {
-  say &quot;General Intersection (outside the box)&quot;;
+  say <span style="color:#e6db74">&#34;General Intersection (outside the box)&#34;</span>;
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/kevin-colyer/perl6/ch-1.p6">Kevin Colyer</a>&lsquo;s solution is also shorter than mine but also appears to skip some of the validation. This is the code of Kevin&rsquo;s subroutine making the real work:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub intersection($a,$b,$c,$d,$e,$f,$g,$h) {
-    my $m1=($b-$d)/($a-$c);
-    my $m2=($f-$h)/($e-$g);
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/kevin-colyer/perl6/ch-1.p6">Kevin Colyer</a>&lsquo;s solution is also shorter than mine but also appears to skip some of the validation. This is the code of Kevin&rsquo;s subroutine making the real work:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">intersection</span>($a,$b,$c,$d,$e,$f,$g,$h) {
+    <span style="color:#66d9ef">my</span> $m1<span style="color:#f92672">=</span>($b<span style="color:#f92672">-</span>$d)<span style="color:#f92672">/</span>($a<span style="color:#f92672">-</span>$c);
+    <span style="color:#66d9ef">my</span> $m2<span style="color:#f92672">=</span>($f<span style="color:#f92672">-</span>$h)<span style="color:#f92672">/</span>($e<span style="color:#f92672">-</span>$g);
 
-    return (False,Nil,Nil,&quot;Do not intersect: lines are parallel&quot;) if $m1==$m2;
+    <span style="color:#66d9ef">return</span> (False,Nil,Nil,<span style="color:#e6db74">&#34;Do not intersect: lines are parallel&#34;</span>) <span style="color:#66d9ef">if</span> $m1<span style="color:#f92672">==</span>$m2;
 
-    my $x=($f-$b+$m1*$a-$m2*$e)/($m1-$m2);
+    <span style="color:#66d9ef">my</span> $x<span style="color:#f92672">=</span>($f<span style="color:#f92672">-</span>$b<span style="color:#f92672">+</span>$m1<span style="color:#f92672">*</span>$a<span style="color:#f92672">-</span>$m2<span style="color:#f92672">*</span>$e)<span style="color:#f92672">/</span>($m1<span style="color:#f92672">-</span>$m2);
 
-    my $y=$m2*$x-$m2*$e+$f;
+    <span style="color:#66d9ef">my</span> $y<span style="color:#f92672">=</span>$m2<span style="color:#f92672">*</span>$x<span style="color:#f92672">-</span>$m2<span style="color:#f92672">*</span>$e<span style="color:#f92672">+</span>$f;
 
-    return (False,Nil,Nil,&quot;Do not intersect: x is not on line 1&quot;) if $x &lt; $a &lt; $c or $x &gt; $c &gt; $a;
-    return (False,Nil,Nil,&quot;Do not intersect: y is not on line 1&quot;) if $y &lt; $b &lt; $d or $y &gt; $d &gt; $b;
-    return (False,Nil,Nil,&quot;Do not intersect: x is not on line 2&quot;) if $x &lt; $e &lt; $g or $x &gt; $g &gt; $e;
-    return (False,Nil,Nil,&quot;Do not intersect: y is not on line 2&quot;) if $y &lt; $f &lt; $h or $y &gt; $h &gt; $f;
+    <span style="color:#66d9ef">return</span> (False,Nil,Nil,<span style="color:#e6db74">&#34;Do not intersect: x is not on line 1&#34;</span>) <span style="color:#66d9ef">if</span> $x <span style="color:#f92672">&lt;</span> $a <span style="color:#f92672">&lt;</span> $c <span style="color:#f92672">or</span> $x <span style="color:#f92672">&gt;</span> $c <span style="color:#f92672">&gt;</span> $a;
+    <span style="color:#66d9ef">return</span> (False,Nil,Nil,<span style="color:#e6db74">&#34;Do not intersect: y is not on line 1&#34;</span>) <span style="color:#66d9ef">if</span> $y <span style="color:#f92672">&lt;</span> $b <span style="color:#f92672">&lt;</span> $d <span style="color:#f92672">or</span> $y <span style="color:#f92672">&gt;</span> $d <span style="color:#f92672">&gt;</span> $b;
+    <span style="color:#66d9ef">return</span> (False,Nil,Nil,<span style="color:#e6db74">&#34;Do not intersect: x is not on line 2&#34;</span>) <span style="color:#66d9ef">if</span> $x <span style="color:#f92672">&lt;</span> $e <span style="color:#f92672">&lt;</span> $g <span style="color:#f92672">or</span> $x <span style="color:#f92672">&gt;</span> $g <span style="color:#f92672">&gt;</span> $e;
+    <span style="color:#66d9ef">return</span> (False,Nil,Nil,<span style="color:#e6db74">&#34;Do not intersect: y is not on line 2&#34;</span>) <span style="color:#66d9ef">if</span> $y <span style="color:#f92672">&lt;</span> $f <span style="color:#f92672">&lt;</span> $h <span style="color:#f92672">or</span> $y <span style="color:#f92672">&gt;</span> $h <span style="color:#f92672">&gt;</span> $f;
 
-    return (True,$x,$y,&quot;Lines intersect at $x,$y&quot;);
+    <span style="color:#66d9ef">return</span> (True,$x,$y,<span style="color:#e6db74">&#34;Lines intersect at $x,$y&#34;</span>);
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/markus-holzer/perl6/ch-1.p6">Markus Holzer</a> also made a very short solution. This is Markus&rsquo;s main subroutine:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub intersection( Int \x1, Int \y1, Int \x2, Int \y2, Int \x3, Int \y3, Int \x4, Int \y4 )
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/markus-holzer/perl6/ch-1.p6">Markus Holzer</a> also made a very short solution. This is Markus&rsquo;s main subroutine:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">intersection</span>( Int \x1, Int \y1, Int \x2, Int \y2, Int \x3, Int \y3, Int \x4, Int \y4 )
 {
-    CATCH { default { fail &quot;Lines are parallel or identical&quot; } }
+    CATCH { default { fail <span style="color:#e6db74">&#34;Lines are parallel or identical&#34;</span> } }
 
-    return (
-        eager # potential for division by zero,
-            ( (x1 * y2 - y1 * x2 ) * (x3 - x4) - (x1 - x2) * (x3 * y4 - y3*x4) ) div
-            ( (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4) ),
+    <span style="color:#66d9ef">return</span> (
+        eager <span style="color:#75715e"># potential for division by zero,</span>
+            ( (x1 <span style="color:#f92672">*</span> y2 <span style="color:#f92672">-</span> y1 <span style="color:#f92672">*</span> x2 ) <span style="color:#f92672">*</span> (x3 <span style="color:#f92672">-</span> x4) <span style="color:#f92672">-</span> (x1 <span style="color:#f92672">-</span> x2) <span style="color:#f92672">*</span> (x3 <span style="color:#f92672">*</span> y4 <span style="color:#f92672">-</span> y3<span style="color:#f92672">*</span>x4) ) div
+            ( (x1 <span style="color:#f92672">-</span> x2) <span style="color:#f92672">*</span> (y3 <span style="color:#f92672">-</span> y4) <span style="color:#f92672">-</span> (y1 <span style="color:#f92672">-</span> y2) <span style="color:#f92672">*</span> (x3 <span style="color:#f92672">-</span> x4) ),
 
-        eager # without eager, laziness will bite us later
-            ( (x1 * y2 - y1 * x2) * (y3 - y4) - (y1 -y2) * (x3*y4 - y3 * x4) ) div
-            ( (x1 - x2) * (y3 - y4) - (y1 - y2) * (x2 - x4) )
+        eager <span style="color:#75715e"># without eager, laziness will bite us later</span>
+            ( (x1 <span style="color:#f92672">*</span> y2 <span style="color:#f92672">-</span> y1 <span style="color:#f92672">*</span> x2) <span style="color:#f92672">*</span> (y3 <span style="color:#f92672">-</span> y4) <span style="color:#f92672">-</span> (y1 <span style="color:#f92672">-</span>y2) <span style="color:#f92672">*</span> (x3<span style="color:#f92672">*</span>y4 <span style="color:#f92672">-</span> y3 <span style="color:#f92672">*</span> x4) ) div
+            ( (x1 <span style="color:#f92672">-</span> x2) <span style="color:#f92672">*</span> (y3 <span style="color:#f92672">-</span> y4) <span style="color:#f92672">-</span> (y1 <span style="color:#f92672">-</span> y2) <span style="color:#f92672">*</span> (x2 <span style="color:#f92672">-</span> x4) )
     );
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/noud/perl6/ch-1.p6">Noud</a> has the following very relevant comment:</p>
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/noud/perl6/ch-1.p6">Noud</a> has the following very relevant comment:</p>
 <pre><code># Computational geometry is always difficult, because there are so many border
 # cases you have to take into account. I hope I covered all of them.
 </code></pre>
 <p>Noud&rsquo;s main subroutine is as follows:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub line_intersection(($x1, $y1), ($x2, $y2), ($x3, $y3), ($x4, $y4)) {
-    if (($x1 == $x2 and $y1 == $y2) or ($x3 == $x4 and $y3 == $y4)) {
-        die &quot;Input doesn't represent two lines.&quot;;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">line_intersection</span>(($x1, $y1), ($x2, $y2), ($x3, $y3), ($x4, $y4)) {
+    <span style="color:#66d9ef">if</span> (($x1 <span style="color:#f92672">==</span> $x2 <span style="color:#f92672">and</span> $y1 <span style="color:#f92672">==</span> $y2) <span style="color:#f92672">or</span> ($x3 <span style="color:#f92672">==</span> $x4 <span style="color:#f92672">and</span> $y3 <span style="color:#f92672">==</span> $y4)) {
+        die <span style="color:#e6db74">&#34;Input doesn&#39;t represent two lines.&#34;</span>;
     }
-    my $disc = ($x1 - $x2) * ($y3 - $y4) - ($y1 - $y2) * ($x3 - $x4);
-    if ($disc == 0) {
-        if ($x1 == $x2 and $x2 == $x3 and $x3 == $x4) {
-            # Lines coincide vertically. Return one coinciding point.
-            return ($x1, $y1);
+    <span style="color:#66d9ef">my</span> $disc <span style="color:#f92672">=</span> ($x1 <span style="color:#f92672">-</span> $x2) <span style="color:#f92672">*</span> ($y3 <span style="color:#f92672">-</span> $y4) <span style="color:#f92672">-</span> ($y1 <span style="color:#f92672">-</span> $y2) <span style="color:#f92672">*</span> ($x3 <span style="color:#f92672">-</span> $x4);
+    <span style="color:#66d9ef">if</span> ($disc <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+        <span style="color:#66d9ef">if</span> ($x1 <span style="color:#f92672">==</span> $x2 <span style="color:#f92672">and</span> $x2 <span style="color:#f92672">==</span> $x3 <span style="color:#f92672">and</span> $x3 <span style="color:#f92672">==</span> $x4) {
+            <span style="color:#75715e"># Lines coincide vertically. Return one coinciding point.</span>
+            <span style="color:#66d9ef">return</span> ($x1, $y1);
         }
-        if ($y1 == $y2 and $y2 == $y3 and $y3 == $y4) {
-            # Lines coincide horizontally. Return one coinciding point.
-            return ($x1, $y1);
+        <span style="color:#66d9ef">if</span> ($y1 <span style="color:#f92672">==</span> $y2 <span style="color:#f92672">and</span> $y2 <span style="color:#f92672">==</span> $y3 <span style="color:#f92672">and</span> $y3 <span style="color:#f92672">==</span> $y4) {
+            <span style="color:#75715e"># Lines coincide horizontally. Return one coinciding point.</span>
+            <span style="color:#66d9ef">return</span> ($x1, $y1);
         }
-        if (($y1 - $x1) * ($x4 - $x2) == ($y2 - $x2) * ($x3 - $x1)) {
-            # Lines coincide diagonally. Return one coinciding point.
-            return ($x1, $y1);
+        <span style="color:#66d9ef">if</span> (($y1 <span style="color:#f92672">-</span> $x1) <span style="color:#f92672">*</span> ($x4 <span style="color:#f92672">-</span> $x2) <span style="color:#f92672">==</span> ($y2 <span style="color:#f92672">-</span> $x2) <span style="color:#f92672">*</span> ($x3 <span style="color:#f92672">-</span> $x1)) {
+            <span style="color:#75715e"># Lines coincide diagonally. Return one coinciding point.</span>
+            <span style="color:#66d9ef">return</span> ($x1, $y1);
         }
-        # If the discriminant is zero, the two lines are parallel to each
-        # other. Therefore, depending on your definitions the lines don't
-        # intersect, or they intersect at infinity, introducing a
-        # non-Euclidian geometry. I choose the latter.
-        return Inf;
+        <span style="color:#75715e"># If the discriminant is zero, the two lines are parallel to each</span>
+        <span style="color:#75715e"># other. Therefore, depending on your definitions the lines don&#39;t</span>
+        <span style="color:#75715e"># intersect, or they intersect at infinity, introducing a</span>
+        <span style="color:#75715e"># non-Euclidian geometry. I choose the latter.</span>
+        <span style="color:#66d9ef">return</span> Inf;
     }
-    # Discriminant is non-zero, hence there is one intersecting point.
-    return ((($x1 * $y2 - $y1 * $x2) * ($x3 - $x4)
-            - ($x3 * $y4 - $y3 * $x4) * ($x1 - $x2)) / $disc,
-        (($x1 * $y2 - $y1 * $x2) * ($y3 - $y4)
-            - ($x3 * $y4 - $y3 * $x4) * ($y1 - $y2)) / $disc);
+    <span style="color:#75715e"># Discriminant is non-zero, hence there is one intersecting point.</span>
+    <span style="color:#66d9ef">return</span> ((($x1 <span style="color:#f92672">*</span> $y2 <span style="color:#f92672">-</span> $y1 <span style="color:#f92672">*</span> $x2) <span style="color:#f92672">*</span> ($x3 <span style="color:#f92672">-</span> $x4)
+            <span style="color:#f92672">-</span> ($x3 <span style="color:#f92672">*</span> $y4 <span style="color:#f92672">-</span> $y3 <span style="color:#f92672">*</span> $x4) <span style="color:#f92672">*</span> ($x1 <span style="color:#f92672">-</span> $x2)) <span style="color:#f92672">/</span> $disc,
+        (($x1 <span style="color:#f92672">*</span> $y2 <span style="color:#f92672">-</span> $y1 <span style="color:#f92672">*</span> $x2) <span style="color:#f92672">*</span> ($y3 <span style="color:#f92672">-</span> $y4)
+            <span style="color:#f92672">-</span> ($x3 <span style="color:#f92672">*</span> $y4 <span style="color:#f92672">-</span> $y3 <span style="color:#f92672">*</span> $x4) <span style="color:#f92672">*</span> ($y1 <span style="color:#f92672">-</span> $y2)) <span style="color:#f92672">/</span> $disc);
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/simon-proctor/perl6/ch-1.p6">Simon Proctor</a>&lsquo;s program is also fairly short:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub MAIN( Rat() \a, Rat() \b, Rat() \c, Rat() \d,
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/simon-proctor/perl6/ch-1.p6">Simon Proctor</a>&lsquo;s program is also fairly short:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>( Rat() \a, Rat() \b, Rat() \c, Rat() \d,
           Rat() \p, Rat() \q, Rat() \r, Rat() \s ) {
 
-    my \a1 = d - b;
-    my \b1 = a - c;
-    my \c1 = a1*(a) + b1*(b);
+    <span style="color:#66d9ef">my</span> <span style="color:#f92672">\</span>a1 <span style="color:#f92672">=</span> d <span style="color:#f92672">-</span> b;
+    <span style="color:#66d9ef">my</span> <span style="color:#f92672">\</span>b1 <span style="color:#f92672">=</span> a <span style="color:#f92672">-</span> c;
+    <span style="color:#66d9ef">my</span> <span style="color:#f92672">\</span>c1 <span style="color:#f92672">=</span> a1<span style="color:#f92672">*</span>(a) <span style="color:#f92672">+</span> b1<span style="color:#f92672">*</span>(b);
 
-    my \a2 = s - q;
-    my \b2 = p - r;
-    my \c2 = a2*(p)+ b2*(q);
-
-    my \determinant = a1*b2 - a2*b1;
-
-    say &quot;Lines ({a},{b}) -&gt; ({c},{d}) and ({p},{q}) -&gt; ({r},{s})&quot;;
-
-    if ( determinant == 0 ) {
-        say &quot;Lines are parallel. No intersection&quot;;
-    } else {
-        my \x = (b2*c1 - b1*c2)/determinant;
-        my \y = (a1*c2 - a2*c1)/determinant;
-        say &quot;Intersection at ({x},{y})&quot;;
+    <span style="color:#66d9ef">my</span> <span style="color:#f92672">\</span>a2 <span style="color:#f92672">=</span> s <span style="color:#f92672">-</span> <span style="color:#e6db74">q;
+</span><span style="color:#e6db74">    my \b2 = p - r;</span>
+    <span style="color:#66d9ef">my</span> <span style="color:#f92672">\</span>c2 <span style="color:#f92672">=</span> a2<span style="color:#f92672">*</span>(p)<span style="color:#f92672">+</span> b2<span style="color:#f92672">*</span>(<span style="color:#e6db74">q);
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">    my \determinant = a1*b2 - a2*b1;
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">    say &#34;Lines ({a},{b})</span> <span style="color:#f92672">-&gt;</span> ({c},{d}) <span style="color:#f92672">and</span> ({p},{<span style="color:#e6db74">q}) -&gt; ({r}</span>,{s})<span style="color:#e6db74">&#34;;
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">    if ( determinant == 0 ) {
+</span><span style="color:#e6db74">        say &#34;</span>Lines are parallel<span style="color:#f92672">.</span> No intersection<span style="color:#e6db74">&#34;;
+</span><span style="color:#e6db74">    } else {
+</span><span style="color:#e6db74">        my \x = (b2*c1 - b1*c2)/determinant;
+</span><span style="color:#e6db74">        my \y = (a1*c2 - a2*c1)/determinant;
+</span><span style="color:#e6db74">        say &#34;</span>Intersection at ({x},{y})<span style="color:#960050;background-color:#1e0010">&#34;</span>;
     }
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/joelle-maslak/perl6/ch-1.p6">Joelle Maslak</a>&lsquo;s code starts with a very interesting and detailed comment about all the edge cases. Well worth reading. Her program is object-oriented and defines a <code>Point</code> and a <code>Line</code> classes (both use the CPAN <code>StrictClass</code> role, which I did not know before and which makes the program choke on unknown attributes). Her <code>Line</code> class defines five methods and also redefines the <code>eqv</code> infix operator for <code>Line</code> objects:</p>
-<pre><code class="language-Perl6" data-lang="Perl6"># We need an eqv that works
-CORE::&lt;&amp;infix:&lt;eqv&gt;&gt;.add_dispatchee(
-    multi sub infix:&lt;eqv&gt; (Line:D $line1, Line:D $line2 --&gt;Bool) {
-        return False if $line1.slope ≠ $line2.slope;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/joelle-maslak/perl6/ch-1.p6">Joelle Maslak</a>&lsquo;s code starts with a very interesting and detailed comment about all the edge cases. Well worth reading. Her program is object-oriented and defines a <code>Point</code> and a <code>Line</code> classes (both use the CPAN <code>StrictClass</code> role, which I did not know before and which makes the program choke on unknown attributes). Her <code>Line</code> class defines five methods and also redefines the <code>eqv</code> infix operator for <code>Line</code> objects:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#75715e"># We need an eqv that works</span>
+CORE::<span style="color:#e6db74">&lt;&amp;infix:&lt;eqv&gt;</span><span style="color:#f92672">&gt;.</span>add_dispatchee(
+    multi <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">infix</span>:&lt;eqv&gt; (Line:D $line1, Line:D $line2 --&gt;Bool) {
+        <span style="color:#66d9ef">return</span> False <span style="color:#66d9ef">if</span> $line1<span style="color:#f92672">.</span>slope <span style="color:#960050;background-color:#1e0010">≠</span> $line2<span style="color:#f92672">.</span>slope;
 
-        # Are both vertical?
-        if $line1.slope == ∞ and $line2.slope == ∞ {
-            return $line1.point.x == $line2.point.x;
+        <span style="color:#75715e"># Are both vertical?</span>
+        <span style="color:#66d9ef">if</span> $line1<span style="color:#f92672">.</span>slope <span style="color:#f92672">==</span> <span style="color:#960050;background-color:#1e0010">∞</span> <span style="color:#f92672">and</span> $line2<span style="color:#f92672">.</span>slope <span style="color:#f92672">==</span> <span style="color:#960050;background-color:#1e0010">∞</span> {
+            <span style="color:#66d9ef">return</span> $line1<span style="color:#f92672">.</span>point<span style="color:#f92672">.</span>x <span style="color:#f92672">==</span> $line2<span style="color:#f92672">.</span>point<span style="color:#f92672">.</span>x;
         }
 
-        # All other lines
-        return $line1.point.y == $line2.solve-for-y($line1.point.x);
+        <span style="color:#75715e"># All other lines</span>
+        <span style="color:#66d9ef">return</span> $line1<span style="color:#f92672">.</span>point<span style="color:#f92672">.</span>y <span style="color:#f92672">==</span> $line2<span style="color:#f92672">.</span>solve<span style="color:#f92672">-</span><span style="color:#66d9ef">for</span><span style="color:#f92672">-</span>y($line1<span style="color:#f92672">.</span>point<span style="color:#f92672">.</span>x);
     }
 );
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/roger-bell-west/perl6/ch-1.p6">Roger Bell West</a> contributed a fairly concise program (except for his rather verbose way of retrieving the argupments passed to the program):</p>
-<pre><code class="language-Perl6" data-lang="Perl6">my @x;
-my @y;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/roger-bell-west/perl6/ch-1.p6">Roger Bell West</a> contributed a fairly concise program (except for his rather verbose way of retrieving the argupments passed to the program):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> @x;
+<span style="color:#66d9ef">my</span> @y;
 
-@x[1]=shift @*ARGS;
-@y[1]=shift @*ARGS;
-@x[2]=shift @*ARGS;
-@y[2]=shift @*ARGS;
-@x[3]=shift @*ARGS;
-@y[3]=shift @*ARGS;
-@x[4]=shift @*ARGS;
-@y[4]=shift @*ARGS;
+@x[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">=</span>shift @<span style="color:#960050;background-color:#1e0010">*</span>ARGS;
+@y[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">=</span>shift @<span style="color:#960050;background-color:#1e0010">*</span>ARGS;
+@x[<span style="color:#ae81ff">2</span>]<span style="color:#f92672">=</span>shift @<span style="color:#960050;background-color:#1e0010">*</span>ARGS;
+@y[<span style="color:#ae81ff">2</span>]<span style="color:#f92672">=</span>shift @<span style="color:#960050;background-color:#1e0010">*</span>ARGS;
+@x[<span style="color:#ae81ff">3</span>]<span style="color:#f92672">=</span>shift @<span style="color:#960050;background-color:#1e0010">*</span>ARGS;
+@y[<span style="color:#ae81ff">3</span>]<span style="color:#f92672">=</span>shift @<span style="color:#960050;background-color:#1e0010">*</span>ARGS;
+@x[<span style="color:#ae81ff">4</span>]<span style="color:#f92672">=</span>shift @<span style="color:#960050;background-color:#1e0010">*</span>ARGS;
+@y[<span style="color:#ae81ff">4</span>]<span style="color:#f92672">=</span>shift @<span style="color:#960050;background-color:#1e0010">*</span>ARGS;
 
-my $d=(@x[1]-@x[2])*(@y[3]-@y[4]) - (@y[1]-@y[2])*(@x[3]-@x[4]);
-if ($d==0) {
-  die &quot;Lines are parallel or coincident.\n&quot;;
+<span style="color:#66d9ef">my</span> $d<span style="color:#f92672">=</span>(@x[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">-</span>@x[<span style="color:#ae81ff">2</span>])<span style="color:#f92672">*</span>(@y[<span style="color:#ae81ff">3</span>]<span style="color:#f92672">-</span>@y[<span style="color:#ae81ff">4</span>]) <span style="color:#f92672">-</span> (@y[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">-</span>@y[<span style="color:#ae81ff">2</span>])<span style="color:#f92672">*</span>(@x[<span style="color:#ae81ff">3</span>]<span style="color:#f92672">-</span>@x[<span style="color:#ae81ff">4</span>]);
+<span style="color:#66d9ef">if</span> ($d<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>) {
+  die <span style="color:#e6db74">&#34;Lines are parallel or coincident.\n&#34;</span>;
 }
-my $t=( (@x[1]-@x[3])*(@y[3]-@y[4]) - (@y[1]-@y[3])*(@x[3]-@x[4]) )/$d;
-if $t &lt; 0 or $t &gt; 1 {
-  die &quot;No intersection.\n&quot;;
+<span style="color:#66d9ef">my</span> $t<span style="color:#f92672">=</span>( (@x[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">-</span>@x[<span style="color:#ae81ff">3</span>])<span style="color:#f92672">*</span>(@y[<span style="color:#ae81ff">3</span>]<span style="color:#f92672">-</span>@y[<span style="color:#ae81ff">4</span>]) <span style="color:#f92672">-</span> (@y[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">-</span>@y[<span style="color:#ae81ff">3</span>])<span style="color:#f92672">*</span>(@x[<span style="color:#ae81ff">3</span>]<span style="color:#f92672">-</span>@x[<span style="color:#ae81ff">4</span>]) )<span style="color:#f92672">/</span>$d;
+<span style="color:#66d9ef">if</span> $t <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">or</span> $t <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> {
+  die <span style="color:#e6db74">&#34;No intersection.\n&#34;</span>;
 }
-my $u=( (@y[1]-@y[2])*(@x[1]-@x[3]) -  (@x[1]-@x[2])*(@y[1]-@y[3]))/$d;
-if $u &lt; 0 or $u &gt; 1 {
-  die &quot;No intersection.\n&quot;;
+<span style="color:#66d9ef">my</span> $u<span style="color:#f92672">=</span>( (@y[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">-</span>@y[<span style="color:#ae81ff">2</span>])<span style="color:#f92672">*</span>(@x[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">-</span>@x[<span style="color:#ae81ff">3</span>]) <span style="color:#f92672">-</span>  (@x[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">-</span>@x[<span style="color:#ae81ff">2</span>])<span style="color:#f92672">*</span>(@y[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">-</span>@y[<span style="color:#ae81ff">3</span>]))<span style="color:#f92672">/</span>$d;
+<span style="color:#66d9ef">if</span> $u <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">or</span> $u <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> {
+  die <span style="color:#e6db74">&#34;No intersection.\n&#34;</span>;
 }
-@x[0]=@x[1]+$t*(@x[2]-@x[1]);
-@y[0]=@y[1]+$t*(@y[2]-@y[1]);
-say &quot;@x[0] @y[0]&quot;;
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/ruben-westerberg/perl6/ch-1.p6">Ruben Westerberg</a> also suggested a very concise program:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">my @l;
-while @l &lt; 2  {
-    my @p=split &quot; &quot;, prompt(&quot;Enter line&quot;~(@l+1)~&quot;:  x1 y1 x2 y2\n&quot;), :skip-empty;
-    if (@p==4) {
-        push @l, {px=&gt;[@p[0,2]],py=&gt;[@p[1,3]],m=&gt;Any,c=&gt;Any};
+@x[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">=</span>@x[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">+</span>$t<span style="color:#f92672">*</span>(@x[<span style="color:#ae81ff">2</span>]<span style="color:#f92672">-</span>@x[<span style="color:#ae81ff">1</span>]);
+@y[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">=</span>@y[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">+</span>$t<span style="color:#f92672">*</span>(@y[<span style="color:#ae81ff">2</span>]<span style="color:#f92672">-</span>@y[<span style="color:#ae81ff">1</span>]);
+say <span style="color:#e6db74">&#34;@x[0] @y[0]&#34;</span>;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/ruben-westerberg/perl6/ch-1.p6">Ruben Westerberg</a> also suggested a very concise program:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> @l;
+<span style="color:#66d9ef">while</span> @l <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">2</span>  {
+    <span style="color:#66d9ef">my</span> @p<span style="color:#f92672">=</span>split <span style="color:#e6db74">&#34; &#34;</span>, prompt(<span style="color:#e6db74">&#34;Enter line&#34;</span><span style="color:#f92672">~</span>(@l<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">~</span><span style="color:#e6db74">&#34;:  x1 y1 x2 y2\n&#34;</span>), :skip<span style="color:#f92672">-</span>empty;
+    <span style="color:#66d9ef">if</span> (@p<span style="color:#f92672">==</span><span style="color:#ae81ff">4</span>) {
+        push @l, {px<span style="color:#f92672">=&gt;</span>[@p[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">2</span>]],py<span style="color:#f92672">=&gt;</span>[@p[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>]],m<span style="color:#f92672">=&gt;</span>Any,c<span style="color:#f92672">=&gt;</span>Any};
     }
-    else {
-        print &quot;not a valid line! \n&quot;;
+    <span style="color:#66d9ef">else</span> {
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;not a valid line! \n&#34;</span>;
     }
 }
 
-for @l {
-    $_&lt;m&gt;=($_&lt;py&gt;[1]-$_&lt;py&gt;[0])/($_&lt;px&gt;[1]-$_&lt;px&gt;[0]);
-    $_&lt;c&gt;=$_&lt;py&gt;[0]- ($_&lt;m&gt;*$_&lt;px&gt;[0]);
+<span style="color:#66d9ef">for</span> @l {
+    $_<span style="color:#e6db74">&lt;m&gt;</span><span style="color:#f92672">=</span>($_<span style="color:#e6db74">&lt;py&gt;</span>[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">-</span>$_<span style="color:#e6db74">&lt;py&gt;</span>[<span style="color:#ae81ff">0</span>])<span style="color:#f92672">/</span>($_<span style="color:#e6db74">&lt;px&gt;</span>[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">-</span>$_<span style="color:#e6db74">&lt;px&gt;</span>[<span style="color:#ae81ff">0</span>]);
+    $_<span style="color:#e6db74">&lt;c&gt;</span><span style="color:#f92672">=</span>$_<span style="color:#e6db74">&lt;py&gt;</span>[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-</span> ($_<span style="color:#e6db74">&lt;m&gt;</span><span style="color:#f92672">*</span>$_<span style="color:#e6db74">&lt;px&gt;</span>[<span style="color:#ae81ff">0</span>]);
 }
-my $x=(@l[0]&lt;c&gt;-@l[1]&lt;c&gt;)/( @l[1]&lt;m&gt;-@l[0]&lt;m&gt;);
-my $y=@l[0]&lt;m&gt;*$x+@l[0]&lt;c&gt;;
+<span style="color:#66d9ef">my</span> $x<span style="color:#f92672">=</span>(@l[<span style="color:#ae81ff">0</span>]<span style="color:#e6db74">&lt;c&gt;</span><span style="color:#f92672">-</span>@l[<span style="color:#ae81ff">1</span>]<span style="color:#e6db74">&lt;c&gt;</span>)<span style="color:#f92672">/</span>( @l[<span style="color:#ae81ff">1</span>]<span style="color:#e6db74">&lt;m&gt;</span><span style="color:#f92672">-</span>@l[<span style="color:#ae81ff">0</span>]<span style="color:#e6db74">&lt;m&gt;</span>);
+<span style="color:#66d9ef">my</span> $y<span style="color:#f92672">=</span>@l[<span style="color:#ae81ff">0</span>]<span style="color:#e6db74">&lt;m&gt;</span><span style="color:#f92672">*</span>$x<span style="color:#f92672">+</span>@l[<span style="color:#ae81ff">0</span>]<span style="color:#e6db74">&lt;c&gt;</span>;
 
-put &quot;Intercept point: $x, $y&quot;;
-</code></pre><hr>
+put <span style="color:#e6db74">&#34;Intercept point: $x, $y&#34;</span>;
+</code></pre></div><hr>
 <h1 id="task-2-displaying-historical-values">Task #2: Displaying Historical Values</h1>
 <hr>
 <p>This is derived in part from my <a href="http://blogs.perl.org/users/laurent_r/2019/09/perl-weekly-challenge-27-intersection-point-and-historical-values.html">blog post</a> made in answer to the <a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-027/">Week 27 of the Perl Weekly Challenge</a> organized by  <a href="http://blogs.perl.org/users/mohammad_s_anwar/">Mohammad S. Anwar</a> as well as answers made by others to the same challenge.</p>
@@ -575,31 +575,31 @@ put &quot;Intercept point: $x, $y&quot;;
 <pre><code>Cannot override infix operator '=', as it is a special form handled directly by the compiler
 </code></pre>
 <p>So, I decided to create my own <code>=:=</code> assignment operator for watched variables. Besides that, the program uses the <code>WatchedValue</code> class to enable the storing of current and past values.</p>
-<pre><code class="language-Perl6" data-lang="Perl6">use v6;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> v6;
 
 class WatchedValue {
-    has Int $.current-value is rw;
-    has @.past-values = ();
+    has Int $<span style="color:#960050;background-color:#1e0010">.</span>current<span style="color:#f92672">-</span>value is rw;
+    has @<span style="color:#960050;background-color:#1e0010">.</span>past<span style="color:#f92672">-</span>values <span style="color:#f92672">=</span> ();
 
-    method get-past-values {
-        return @.past-values;
+    method get<span style="color:#f92672">-</span>past<span style="color:#f92672">-</span>values {
+        <span style="color:#66d9ef">return</span> @<span style="color:#960050;background-color:#1e0010">.</span>past<span style="color:#f92672">-</span>values;
     }
 }
 
-multi sub infix:&lt;=:=&gt; (WatchedValue $y, Int $z) {
-    push $y.past-values, $y.current-value;
-    $y.current-value = $z;
+multi <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">infix</span>:&lt;=:=&gt; (WatchedValue $y, Int $z) {
+    push $y<span style="color:#f92672">.</span>past<span style="color:#f92672">-</span>values, $y<span style="color:#f92672">.</span>current<span style="color:#f92672">-</span>value;
+    $y<span style="color:#f92672">.</span>current<span style="color:#f92672">-</span>value <span style="color:#f92672">=</span> $z;
 }
-my $x = WatchedValue.new(current-value =&gt; 10);
-say &quot;Current: &quot;, $x.current-value;
-$x =:= 15;
-say &quot;Current: &quot;, $x.current-value;
-$x =:= 5;
-say &quot;Current: &quot;, $x.current-value;
-$x =:= 20;
-say &quot;Current: &quot;, $x.current-value;
-say &quot;Past values: &quot;, $x.get-past-values;
-</code></pre><p>When running the program; I get warnings for each assignment:</p>
+<span style="color:#66d9ef">my</span> $x <span style="color:#f92672">=</span> WatchedValue<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(current<span style="color:#f92672">-</span>value <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">10</span>);
+say <span style="color:#e6db74">&#34;Current: &#34;</span>, $x<span style="color:#f92672">.</span>current<span style="color:#f92672">-</span>value;
+$x <span style="color:#f92672">=</span>:<span style="color:#f92672">=</span> <span style="color:#ae81ff">15</span>;
+say <span style="color:#e6db74">&#34;Current: &#34;</span>, $x<span style="color:#f92672">.</span>current<span style="color:#f92672">-</span>value;
+$x <span style="color:#f92672">=</span>:<span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>;
+say <span style="color:#e6db74">&#34;Current: &#34;</span>, $x<span style="color:#f92672">.</span>current<span style="color:#f92672">-</span>value;
+$x <span style="color:#f92672">=</span>:<span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span>;
+say <span style="color:#e6db74">&#34;Current: &#34;</span>, $x<span style="color:#f92672">.</span>current<span style="color:#f92672">-</span>value;
+say <span style="color:#e6db74">&#34;Past values: &#34;</span>, $x<span style="color:#f92672">.</span>get<span style="color:#f92672">-</span>past<span style="color:#f92672">-</span>values;
+</code></pre></div><p>When running the program; I get warnings for each assignment:</p>
 <pre><code>Useless use of &quot;=:=&quot; in expression &quot;$x =:= 15&quot; in sink context (line 18)
 </code></pre>
 <p>I do not know how to avoid or suppress these warnings (it seems that the <code>no warnings ...</code> pragma isn&rsquo;t implemented yet), but the program otherwise runs correctly and displays the successive values:</p>
@@ -611,164 +611,164 @@ Past values: [10 15 5]
 </code></pre>
 <h2 id="alternate-solutions-1">Alternate solutions</h2>
 <p>All challengers except Noud and Yet Ebreo used objects of the built-in <a href="https://docs.perl6.org/type/Proxy">Proxy</a> class, which I did not know about before. According to the Perl 6 documentation, a proxy is an object that allows you to set a hook that executes whenever a value is retrieved from a container (<code>FETCH</code>) or when it is set (<code>STORE</code>). This is quite obviously the right tool for solving the task at hand. This is the example provided in the official Perl 6 documentation to create a container that returns twice what was stored in it:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub double() is rw {
-    my $storage = 0;
-    Proxy.new(
-        FETCH =&gt; method ()     { $storage * 2    },
-        STORE =&gt; method ($new) { $storage = $new },
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">double</span>() <span style="color:#a6e22e">is</span> <span style="color:#a6e22e">rw</span> {
+    <span style="color:#66d9ef">my</span> $storage <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    Proxy<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(
+        FETCH <span style="color:#f92672">=&gt;</span> method ()     { $storage <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span>    },
+        STORE <span style="color:#f92672">=&gt;</span> method ($new) { $storage <span style="color:#f92672">=</span> $new },
     )
  }
- my $doubled := double();
- $doubled = 4;
- say $doubled;       # OUTPUT: «8
-»
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/arne-sommer/perl6/ch-2.p6">Arne Sommer</a>&lsquo;s program defines a<code>%hist</code> hash to store values according to their time stamp, and then defines the <code>memoryvariable</code> subroutine creating and returning <code>Proxy</code> object:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub memoryvariable($label) is rw
+ <span style="color:#66d9ef">my</span> $doubled :<span style="color:#f92672">=</span> double();
+ $doubled <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>;
+ say $doubled;       <span style="color:#75715e"># OUTPUT: «8</span>
+<span style="color:#960050;background-color:#1e0010">»</span>
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/arne-sommer/perl6/ch-2.p6">Arne Sommer</a>&lsquo;s program defines a<code>%hist</code> hash to store values according to their time stamp, and then defines the <code>memoryvariable</code> subroutine creating and returning <code>Proxy</code> object:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">memoryvariable</span>($label) is rw
 {
-  my $val;
-  Proxy.new(
-    FETCH =&gt; method ()
+  <span style="color:#66d9ef">my</span> $val;
+  Proxy<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(
+    FETCH <span style="color:#f92672">=&gt;</span> method ()
     {
         $val
     },
-    STORE =&gt; method ($new)
+    STORE <span style="color:#f92672">=&gt;</span> method ($new)
     {
-        $val = $new;
-        %hist{$label}.push( Pair(now.Int =&gt; $new) );
+        $val <span style="color:#f92672">=</span> $new;
+        %hist{$label}<span style="color:#f92672">.</span>push( Pair(now<span style="color:#f92672">.</span>Int <span style="color:#f92672">=&gt;</span> $new) );
     },
   );
 }
-</code></pre><p>Arne also defines two additional subroutines, one for displaying the stored historical values and another to output historical values along with the associated time stamp. For example, the second subroutine might display the following:</p>
+</code></pre></div><p>Arne also defines two additional subroutines, one for displaying the stored historical values and another to output historical values along with the associated time stamp. For example, the second subroutine might display the following:</p>
 <pre><code>2019-10-06T17:35:10+02:00: 10
 2019-10-06T17:35:10+02:00: 20
 2019-10-06T17:35:10+02:00: 15
 </code></pre>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/kevin-colyer/perl6/ch-2.p6">Kevin Colyer</a> created a <code>HistoryInt</code> class also using a <code>Proxy</code> object, storing the historical values in an array attribute (<code>@.history</code>) of the <code>HistoryInt</code> class:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">class HistoryInt {
-  has Int $.x =0 ;
-  has @.history;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">class HistoryInt {
+  has Int $<span style="color:#960050;background-color:#1e0010">.</span>x <span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> ;
+  has @<span style="color:#960050;background-color:#1e0010">.</span>history;
 
   method x () is rw {
-    Proxy.new(
-      FETCH =&gt; -&gt; $ { $!x },
-      STORE =&gt; -&gt; $, Int $new {
-        $!x = $new;
-        @!history.push: $new;
+    Proxy<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(
+      FETCH <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">-&gt;</span> $ { $<span style="color:#960050;background-color:#1e0010">!</span>x },
+      STORE <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">-&gt;</span> $, Int $new {
+        $<span style="color:#960050;background-color:#1e0010">!</span>x <span style="color:#f92672">=</span> $new;
+        @<span style="color:#960050;background-color:#1e0010">!</span>history<span style="color:#f92672">.</span>push: $new;
       }
     )
   }
   method History () {
-    @!history;
+    @<span style="color:#960050;background-color:#1e0010">!</span>history;
   }
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/markus-holzer/perl6/ch-2.p6">Markus Holzer</a>&lsquo;s program is extremely concise:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">use Scalar::History;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/markus-holzer/perl6/ch-2.p6">Markus Holzer</a>&lsquo;s program is extremely concise:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> Scalar::History;
 
-my Int $x := Scalar::History.create(10, Int);
-$x = 20;
-$x -= 5;
-</code></pre><p>thanks to the fact that it uses the <a href="https://github.com/holli-holzer/perl6-Scalar-History">Scalar::History</a> module, which he wrote and is still in development stage (it should presumably go to CPAN some time in the future when completed). This module also uses <code>Proxy</code> objects.</p>
+<span style="color:#66d9ef">my</span> Int $x :<span style="color:#f92672">=</span> Scalar::History<span style="color:#f92672">.</span>create(<span style="color:#ae81ff">10</span>, Int);
+$x <span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span>;
+$x <span style="color:#f92672">-=</span> <span style="color:#ae81ff">5</span>;
+</code></pre></div><p>thanks to the fact that it uses the <a href="https://github.com/holli-holzer/perl6-Scalar-History">Scalar::History</a> module, which he wrote and is still in development stage (it should presumably go to CPAN some time in the future when completed). This module also uses <code>Proxy</code> objects.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/simon-proctor/perl6/ch-2.p6">Simon Proctor</a> implemented a <code>Historic</code> class with a <code>@!values</code> attribute, implementing various setters and getters and using <code>Proxy</code> objects. One very interesting point is that he also implemented a <code>Δ=</code> operator to handle <code>Historic</code> objects:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">multi sub infix:&lt;Δ=&gt; ( Any:U $h is rw, Any $v ) is equiv(&amp;infix:&lt;=&gt;) {
-     $h = Historic.new();
-     $h.set( $v );
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">multi <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">infix</span>:&lt;Δ=&gt; ( Any:U $h is rw, Any $v ) is equiv(&amp;infix:&lt;=&gt;) {
+     $h <span style="color:#f92672">=</span> Historic<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>();
+     $h<span style="color:#f92672">.</span>set( $v );
      $h;
 }
 
-multi sub infix:&lt;Δ=&gt; (Historic:D $h, Any $a) is equiv(&amp;infix:&lt;=&gt;) {
-    $h.set($a);
-    return $h;
+multi <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">infix</span>:&lt;Δ=&gt; (Historic:D $h, Any $a) is equiv(&amp;infix:&lt;=&gt;) {
+    $h<span style="color:#f92672">.</span>set($a);
+    <span style="color:#66d9ef">return</span> $h;
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/joelle-maslak/perl6/ch-2.p6">Joelle Maslak</a> implemented a <code>History</code> class with the <code>@!hist</code> and <code>$!data</code> attributes, also using <code>Proxy</code> objects:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">class History {
-    has @!hist;
-    has $!data;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/joelle-maslak/perl6/ch-2.p6">Joelle Maslak</a> implemented a <code>History</code> class with the <code>@!hist</code> and <code>$!data</code> attributes, also using <code>Proxy</code> objects:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">class History {
+    has @<span style="color:#960050;background-color:#1e0010">!</span>hist;
+    has $<span style="color:#960050;background-color:#1e0010">!</span>data;
 
-    method get-proxy() is rw {
-        my $data    := $!data;
-        my $history := @!hist;
-        Proxy.new(
-            FETCH =&gt; method ()     { $data },
-            STORE =&gt; method ($val) { $data = $val; $history.push( $data.clone ) },
+    method get<span style="color:#f92672">-</span>proxy() is rw {
+        <span style="color:#66d9ef">my</span> $data    :<span style="color:#f92672">=</span> $<span style="color:#960050;background-color:#1e0010">!</span>data;
+        <span style="color:#66d9ef">my</span> $history :<span style="color:#f92672">=</span> @<span style="color:#960050;background-color:#1e0010">!</span>hist;
+        Proxy<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(
+            FETCH <span style="color:#f92672">=&gt;</span> method ()     { $data },
+            STORE <span style="color:#f92672">=&gt;</span> method ($val) { $data <span style="color:#f92672">=</span> $val; $history<span style="color:#f92672">.</span>push( $data<span style="color:#f92672">.</span>clone ) },
         );
     }
 
     method history() {
-        my @h = @!hist;
-        return @h;
+        <span style="color:#66d9ef">my</span> @h <span style="color:#f92672">=</span> @<span style="color:#960050;background-color:#1e0010">!</span>hist;
+        <span style="color:#66d9ef">return</span> @h;
     }
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/ruben-westerberg/perl6/ch-2.p6">Ruben Westerberg</a> used a <code>@history</code> array to store the successive values of a <code>Proxy</code> object:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub remembering (@history) {
-    return-rw Proxy.new(
-        FETCH =&gt; method () {@history[*-1]},
-        STORE =&gt; method ($new) {;@history.push($new)}
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/ruben-westerberg/perl6/ch-2.p6">Ruben Westerberg</a> used a <code>@history</code> array to store the successive values of a <code>Proxy</code> object:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">remembering</span> (@history) {
+    <span style="color:#66d9ef">return</span><span style="color:#f92672">-</span>rw Proxy<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(
+        FETCH <span style="color:#f92672">=&gt;</span> method () {@history[<span style="color:#f92672">*-</span><span style="color:#ae81ff">1</span>]},
+        STORE <span style="color:#f92672">=&gt;</span> method ($new) {;@history<span style="color:#f92672">.</span>push($new)}
     );
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/noud/perl6/ch-2.p6">Noud</a> wrote a program that reads another program and writes a third one. His program takes another program as an argument and parses it to collect information about the variables used in this other script. After that, it creates a <code>%var_hash_</code> that updates the current values of each of the defined variables after each semicolon. The new script is then executed using the EVAL method. Noud humourously comments that he hopes he doesn&rsquo;t get banned from the Perl Weekly Challenge club for using the dangerous <code>EVAL</code> statement in this problem. He certainly shouldn&rsquo;t be banned, especially not for writing such an innovative solution! It is worth quoting the whole program:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">use MONKEY-SEE-NO-EVAL;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/noud/perl6/ch-2.p6">Noud</a> wrote a program that reads another program and writes a third one. His program takes another program as an argument and parses it to collect information about the variables used in this other script. After that, it creates a <code>%var_hash_</code> that updates the current values of each of the defined variables after each semicolon. The new script is then executed using the EVAL method. Noud humourously comments that he hopes he doesn&rsquo;t get banned from the Perl Weekly Challenge club for using the dangerous <code>EVAL</code> statement in this problem. He certainly shouldn&rsquo;t be banned, especially not for writing such an innovative solution! It is worth quoting the whole program:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> MONKEY<span style="color:#f92672">-</span>SEE<span style="color:#f92672">-</span>NO<span style="color:#f92672">-</span>EVAL;
 
-sub MAIN(Str $filename) {
-    # Collect all variables in program.
-    my @variables = ();
-    for $filename.IO.slurp.split(&quot;;&quot;) -&gt; $line {
-        my @line_var = ($line ~~ /my\s*\$(\w+)/).values;
-        if (@line_var.elems &gt; 0) {
-            @variables = (|(@line_var), |(@variables));
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(Str $filename) {
+    <span style="color:#75715e"># Collect all variables in program.</span>
+    <span style="color:#66d9ef">my</span> @variables <span style="color:#f92672">=</span> ();
+    <span style="color:#66d9ef">for</span> $filename<span style="color:#f92672">.</span>IO<span style="color:#f92672">.</span>slurp<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34;;&#34;</span>) <span style="color:#f92672">-&gt;</span> $line {
+        <span style="color:#66d9ef">my</span> @line_var <span style="color:#f92672">=</span> ($line <span style="color:#f92672">~~</span> <span style="color:#e6db74">/my\s*\$(\w+)/</span>)<span style="color:#f92672">.</span>values;
+        <span style="color:#66d9ef">if</span> (@line_var<span style="color:#f92672">.</span>elems <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
+            @variables <span style="color:#f92672">=</span> (<span style="color:#f92672">|</span>(@line_var), <span style="color:#f92672">|</span>(@variables));
         }
     }
 
-    my $exec_prog = &quot;&quot;;
-    for $filename.IO.slurp.split(&quot;;&quot;) -&gt; $line {
-        $exec_prog = &quot;$exec_prog $line\;&quot;;
-        # After every line update %var_hash_ with the current variable values.
-        for @variables -&gt; $x {
-            $exec_prog = &quot;$exec_prog
-                if (not DYNAMIC::&lt;\$$x&gt; === Nil) \{
-                    \%var_hash_\.push: ($x =&gt; DYNAMIC::&lt;\$$x&gt;)\; \}\;&quot;;
+    <span style="color:#66d9ef">my</span> $exec_prog <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
+    <span style="color:#66d9ef">for</span> $filename<span style="color:#f92672">.</span>IO<span style="color:#f92672">.</span>slurp<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34;;&#34;</span>) <span style="color:#f92672">-&gt;</span> $line {
+        $exec_prog <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;$exec_prog $line\;&#34;</span>;
+        <span style="color:#75715e"># After every line update %var_hash_ with the current variable values.</span>
+        <span style="color:#66d9ef">for</span> @variables <span style="color:#f92672">-&gt;</span> $x {
+            $exec_prog <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;$exec_prog
+</span><span style="color:#e6db74">                if (not DYNAMIC::&lt;\$$x&gt; === Nil) \{
+</span><span style="color:#e6db74">                    \%var_hash_\.push: ($x =&gt; DYNAMIC::&lt;\$$x&gt;)\; \}\;&#34;</span>;
         }
     }
 
-    my %var_hash_;
-    EVAL $exec_prog;  # https://xkcd.com/292/
+    <span style="color:#66d9ef">my</span> %var_hash_;
+    EVAL $exec_prog;  <span style="color:#75715e"># https://xkcd.com/292/</span>
 
-    say &quot;Variables history:&quot;;
-    for %var_hash_.kv -&gt; $var, @hist {
-        my @hist_ = @hist.grep({ not $_.^name === &quot;Any&quot; });
-        if (@hist_.elems &gt; 0) {
-            print(&quot;$var = (&quot;);
-            my $last = @hist_[0];
-            print(&quot;$last&quot;);
-            for @hist_[1..*] -&gt; $next {
-                if ($last != $next) {
-                    print(&quot;, $next&quot;);
-                    $last = $next;
+    say <span style="color:#e6db74">&#34;Variables history:&#34;</span>;
+    <span style="color:#66d9ef">for</span> %var_hash_<span style="color:#f92672">.</span>kv <span style="color:#f92672">-&gt;</span> $var, @hist {
+        <span style="color:#66d9ef">my</span> @hist_ <span style="color:#f92672">=</span> @hist<span style="color:#f92672">.</span>grep({ <span style="color:#f92672">not</span> $_<span style="color:#f92672">.^</span>name <span style="color:#f92672">===</span> <span style="color:#e6db74">&#34;Any&#34;</span> });
+        <span style="color:#66d9ef">if</span> (@hist_<span style="color:#f92672">.</span>elems <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
+            <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;$var = (&#34;</span>);
+            <span style="color:#66d9ef">my</span> $last <span style="color:#f92672">=</span> @hist_[<span style="color:#ae81ff">0</span>];
+            <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;$last&#34;</span>);
+            <span style="color:#66d9ef">for</span> @hist_[<span style="color:#ae81ff">1</span><span style="color:#f92672">..*</span>] <span style="color:#f92672">-&gt;</span> $next {
+                <span style="color:#66d9ef">if</span> ($last <span style="color:#f92672">!=</span> $next) {
+                    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;, $next&#34;</span>);
+                    $last <span style="color:#f92672">=</span> $next;
                 }
             }
-            print(&quot;)\n&quot;);
+            <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;)\n&#34;</span>);
         }
     }
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/yet-ebreo/perl6/ch-2.p6">Yet Ebreo</a> created an <em>apparently</em> very simple <code>hist</code> class with a <code>STORE</code> method:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">class hist {
-    has @.history;
-    has $!var handles &lt;Str gist FETCH Numeric&gt;;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/yet-ebreo/perl6/ch-2.p6">Yet Ebreo</a> created an <em>apparently</em> very simple <code>hist</code> class with a <code>STORE</code> method:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">class hist {
+    has @<span style="color:#960050;background-color:#1e0010">.</span>history;
+    has $<span style="color:#960050;background-color:#1e0010">!</span>var handles <span style="color:#f92672">&lt;</span>Str gist FETCH Numeric<span style="color:#f92672">&gt;</span>;
     method STORE($val) {
-        push @.history, $val;
-        $!var = $val;
+        push @<span style="color:#960050;background-color:#1e0010">.</span>history, $val;
+        $<span style="color:#960050;background-color:#1e0010">!</span>var <span style="color:#f92672">=</span> $val;
     }
 }
-my \x = hist.new(history =&gt; []);
+<span style="color:#66d9ef">my</span> <span style="color:#f92672">\</span>x <span style="color:#f92672">=</span> hist<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(history <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">[]</span>);
 
-x = 10;
-x = 20;
-x -= 5;
-x = 3.1416;
-x = Q[a quick brown fox jumps over the lazy dog];
-x = 1e3;
-x*= sqrt 3;
-.say  for x.history;
-</code></pre><p>The code of the <code>hist</code> class seems very simple, but is in fact pretty clever. I must admit that I don&rsquo;t fully grasp it: I don&rsquo;t really understand what the <code>handles</code> trait does in such context, and I am also not quite sure how this (re)definition of the <code>STORE</code> subroutine is supposed to work. If any reader wants to explain this, I would be very happy to update this blog post accordingly.</p>
+x <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>;
+x <span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span>;
+x <span style="color:#f92672">-=</span> <span style="color:#ae81ff">5</span>;
+x <span style="color:#f92672">=</span> <span style="color:#ae81ff">3.1416</span>;
+x <span style="color:#f92672">=</span> Q[a quick brown fox jumps over the lazy dog];
+x <span style="color:#f92672">=</span> <span style="color:#ae81ff">1e3</span>;
+x<span style="color:#f92672">*=</span> sqrt <span style="color:#ae81ff">3</span>;
+<span style="color:#f92672">.</span>say  <span style="color:#66d9ef">for</span> x<span style="color:#f92672">.</span>history;
+</code></pre></div><p>The code of the <code>hist</code> class seems very simple, but is in fact pretty clever. I must admit that I don&rsquo;t fully grasp it: I don&rsquo;t really understand what the <code>handles</code> trait does in such context, and I am also not quite sure how this (re)definition of the <code>STORE</code> subroutine is supposed to work. If any reader wants to explain this, I would be very happy to update this blog post accordingly.</p>
 <hr>
 <h2 id="see-also">SEE ALSO</h2>
 <p>Only two blog posts this time (in addition to mine):</p>

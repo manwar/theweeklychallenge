@@ -16,7 +16,7 @@
 
     <meta name="description" content="Advent Calendar - December 14, 2019">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.66.0-DEV" />
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -169,45 +169,45 @@
  1   9   36  84 126 126  84  36  9   1
 </code></pre>
 <p>So this challenge has two parts. Generating the numbers for the triangle and then laying it out. In this case I didn&rsquo;t read the article too much but had a neat idea. For a given row (eg <strong>[1,2,1]</strong> you can generate the next row by implementing doing the following):</p>
-<pre><code class="language-perl6" data-lang="perl6"># Here's our row
-my @row = [1,2,1];
-# Make a copy with a 0 at the start
-my @row1 = [0, |@row]; # [0,1,2,1] (| breaks the array down so it doesn't get added as a single object in this case)
-# Make a copy with a 0 at the end
-my @row2 = [|@row, 0]; # [1,2,1,0]
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#75715e"># Here&#39;s our row</span>
+<span style="color:#66d9ef">my</span> @row <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>];
+<span style="color:#75715e"># Make a copy with a 0 at the start</span>
+<span style="color:#66d9ef">my</span> @row1 <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>, <span style="color:#f92672">|</span>@row]; <span style="color:#75715e"># [0,1,2,1] (| breaks the array down so it doesn&#39;t get added as a single object in this case)</span>
+<span style="color:#75715e"># Make a copy with a 0 at the end</span>
+<span style="color:#66d9ef">my</span> @row2 <span style="color:#f92672">=</span> [<span style="color:#f92672">|</span>@row, <span style="color:#ae81ff">0</span>]; <span style="color:#75715e"># [1,2,1,0]</span>
 
-# For each item in row1 add it to the same item in row2
-my @row3 = [
-    @row1[0] + @row2[0], # 0 + 1 = 1
-    @row1[1] + @row2[1], # 1 + 2 = 3
-    @row1[2] + @row2[2], # 2 + 1 = 3
-    @row1[3] + @row2[3], # 1 + 0 = 1
+<span style="color:#75715e"># For each item in row1 add it to the same item in row2</span>
+<span style="color:#66d9ef">my</span> @row3 <span style="color:#f92672">=</span> [
+    @row1[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+</span> @row2[<span style="color:#ae81ff">0</span>], <span style="color:#75715e"># 0 + 1 = 1</span>
+    @row1[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> @row2[<span style="color:#ae81ff">1</span>], <span style="color:#75715e"># 1 + 2 = 3</span>
+    @row1[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">+</span> @row2[<span style="color:#ae81ff">2</span>], <span style="color:#75715e"># 2 + 1 = 3</span>
+    @row1[<span style="color:#ae81ff">3</span>] <span style="color:#f92672">+</span> @row2[<span style="color:#ae81ff">3</span>], <span style="color:#75715e"># 1 + 0 = 1</span>
 ];
-</code></pre><p>So&hellip; that&rsquo;s a thing but it&rsquo;s a bit unwieldy if only there was some kind of way to simplify this. Oh yes, the <a href="https://docs.perl6.org/language/operators#index-entry-Z_%28zip_metaoperator%29"><strong>Zip metaoperator</strong></a> <strong>Z</strong>. Place a <strong>Z</strong> between two lists and it will default to applying the <strong>,</strong> operator to each item in turn to make a new list of lists :</p>
+</code></pre></div><p>So&hellip; that&rsquo;s a thing but it&rsquo;s a bit unwieldy if only there was some kind of way to simplify this. Oh yes, the <a href="https://docs.perl6.org/language/operators#index-entry-Z_%28zip_metaoperator%29"><strong>Zip metaoperator</strong></a> <strong>Z</strong>. Place a <strong>Z</strong> between two lists and it will default to applying the <strong>,</strong> operator to each item in turn to make a new list of lists :</p>
 <pre><code>(0, 1, 2, 1) Z (1, 2, 1, 0) =&gt; ((0,1), (1,2), (2,1), (1,0))
 </code></pre>
 <p>But you can give <strong>Z</strong> and inline operator to apply list for instance <strong>+</strong> giving you :</p>
 <pre><code>0,1,2,1) Z+ (1,2,1,0) =&gt; (1, 3, 3, 1)
 </code></pre>
 <p>Which looks very nice. So if we just wanted our script to out lists of lists that make up Pascal&rsquo;s Triangle we could to this :</p>
-<pre><code class="language-perl6" data-lang="perl6"> Note the challenge says we need at least 3 lines so we catch that here.
-multi sub MAIN( Int() $lines is copy where * &gt; 2 ) {
-    # Set up the initial state.
-    # Decrement lines.
-    my @row = (1);
-    my @out = [ [1], ]; # Note we need a trailing comma or the array will be flattened
-    $lines--;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"> Note the challenge says we need at least <span style="color:#ae81ff">3</span> lines so we catch that here<span style="color:#f92672">.</span>
+multi <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>( Int() $lines is copy where * &gt; 2 ) {
+    <span style="color:#75715e"># Set up the initial state.</span>
+    <span style="color:#75715e"># Decrement lines.</span>
+    <span style="color:#66d9ef">my</span> @row <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>);
+    <span style="color:#66d9ef">my</span> @out <span style="color:#f92672">=</span> [ [<span style="color:#ae81ff">1</span>], ]; <span style="color:#75715e"># Note we need a trailing comma or the array will be flattened</span>
+    $lines<span style="color:#f92672">--</span>;
 
-    # Did I mention this earlier? Repeat / While is like the Perl5 do / while pair
+    <span style="color:#75715e"># Did I mention this earlier? Repeat / While is like the Perl5 do / while pair</span>
     repeat {
-        @row = (0, |(@row)) Z+ (|(@row), 0); # Here's the Zip magic
-        @out.push( @row.clone ); # We need to clone our row or will get clobbered in the next loop
-        $lines--;
-    } while ( $lines );
+        @row <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>, <span style="color:#f92672">|</span>(@row)) Z<span style="color:#f92672">+</span> (<span style="color:#f92672">|</span>(@row), <span style="color:#ae81ff">0</span>); <span style="color:#75715e"># Here&#39;s the Zip magic</span>
+        @out<span style="color:#f92672">.</span>push( @row<span style="color:#f92672">.</span>clone ); <span style="color:#75715e"># We need to clone our row or will get clobbered in the next loop</span>
+        $lines<span style="color:#f92672">--</span>;
+    } <span style="color:#66d9ef">while</span> ( $lines );
 
-    @out.say;
+    @out<span style="color:#f92672">.</span>say;
 }
-</code></pre><p>And that works but&hellip; well I wanted it pretty. The simple thought would be to join each row with spaces and then join the lot with newlines but just doing that you end up with :</p>
+</code></pre></div><p>And that works but&hellip; well I wanted it pretty. The simple thought would be to join each row with spaces and then join the lot with newlines but just doing that you end up with :</p>
 <pre><code>1
 1 1
 1 2 1
@@ -221,12 +221,12 @@ multi sub MAIN( Int() $lines is copy where * &gt; 2 ) {
 </code></pre>
 <p>Which is&hellip;. a bit meh.</p>
 <p>Of course you could make those lines up then find the length of the last line and left pad all the other by half that amount.</p>
-<pre><code class="language-perl6" data-lang="perl6">@out = @out.map( { $_.join(&quot; &quot;) } );
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6">@out <span style="color:#f92672">=</span> @out<span style="color:#f92672">.</span>map( { $_<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34; &#34;</span>) } );
 
-my $len = @out[*-1].codes;
+<span style="color:#66d9ef">my</span> $len <span style="color:#f92672">=</span> @out[<span style="color:#f92672">*-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>codes;
 
-@out.map( { ( &quot; &quot; x ( ($len - $_.codes) div 2) ) ~ &quot;$_&quot; } ).join(&quot;\n&quot;).say;
-</code></pre><p>And that&rsquo;s a bit nicer :</p>
+@out<span style="color:#f92672">.</span>map( { ( <span style="color:#e6db74">&#34; &#34;</span> x ( ($len <span style="color:#f92672">-</span> $_<span style="color:#f92672">.</span>codes) div <span style="color:#ae81ff">2</span>) ) <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34;$_&#34;</span> } )<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34;\n&#34;</span>)<span style="color:#f92672">.</span>say;
+</code></pre></div><p>And that&rsquo;s a bit nicer :</p>
 <pre><code>                   1
                  1   1
                1   2   1
@@ -239,46 +239,46 @@ my $len = @out[*-1].codes;
  1   9   36  84 126 126  84  36  9   1
 </code></pre>
 <p>But it falls apart when larger numbers get added. So we need to pad our output based on the length of the biggers number. Here&rsquo;s what I came up with :</p>
-<pre><code class="language-perl6" data-lang="perl6">sub pad( Str $val, Int $len ) {
-    my $diff = $len - $val.codes;
-    my $rpad = &quot; &quot; x ( ( $diff div 2 ) + 1 );
-    my $lpad = &quot; &quot; x ( ( $diff div 2 ) + ( $diff % 2 ) );
-    return &quot;{$lpad}{$val}{$rpad}&quot;;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">pad</span>( Str $val, Int $len ) {
+    <span style="color:#66d9ef">my</span> $diff <span style="color:#f92672">=</span> $len <span style="color:#f92672">-</span> $val<span style="color:#f92672">.</span>codes;
+    <span style="color:#66d9ef">my</span> $rpad <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34; &#34;</span> x ( ( $diff div <span style="color:#ae81ff">2</span> ) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> );
+    <span style="color:#66d9ef">my</span> $lpad <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34; &#34;</span> x ( ( $diff div <span style="color:#ae81ff">2</span> ) <span style="color:#f92672">+</span> ( $diff % 2 ) );
+    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;{$lpad}{$val}{$rpad}&#34;</span>;
 }
-</code></pre><p>Pass in the number to pad and the length of the largest number and it returns the number all laiud out nicely. With that here&rsquo;s my final code :</p>
-<pre><code class="language-perl6" data-lang="perl6">sub pad( Str $val, Int $len ) {
-    my $diff = $len - $val.codes;
-    my $rpad = &quot; &quot; x ( ( $diff div 2 ) + 1 );
-    my $lpad = &quot; &quot; x ( ( $diff div 2 ) + ( $diff % 2 ) );
-    return &quot;{$lpad}{$val}{$rpad}&quot;;
+</code></pre></div><p>Pass in the number to pad and the length of the largest number and it returns the number all laiud out nicely. With that here&rsquo;s my final code :</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">pad</span>( Str $val, Int $len ) {
+    <span style="color:#66d9ef">my</span> $diff <span style="color:#f92672">=</span> $len <span style="color:#f92672">-</span> $val<span style="color:#f92672">.</span>codes;
+    <span style="color:#66d9ef">my</span> $rpad <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34; &#34;</span> x ( ( $diff div <span style="color:#ae81ff">2</span> ) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> );
+    <span style="color:#66d9ef">my</span> $lpad <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34; &#34;</span> x ( ( $diff div <span style="color:#ae81ff">2</span> ) <span style="color:#f92672">+</span> ( $diff % 2 ) );
+    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;{$lpad}{$val}{$rpad}&#34;</span>;
 }
 
-multi sub MAIN( Int() $lines is copy where * &gt; 2 ) {
-    my @row = (1);
-    my @out = [ [1], ];
-    $lines--;
-    my $max = 1;
+multi <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>( Int() $lines is copy where * &gt; 2 ) {
+    <span style="color:#66d9ef">my</span> @row <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>);
+    <span style="color:#66d9ef">my</span> @out <span style="color:#f92672">=</span> [ [<span style="color:#ae81ff">1</span>], ];
+    $lines<span style="color:#f92672">--</span>;
+    <span style="color:#66d9ef">my</span> $max <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
 
     repeat {
-        @row = (0, |(@row)) Z+ (|(@row), 0);
-        @out.push( @row.clone );
-        $max = @row.max;
-        $lines--;
-    } while ( $lines );
+        @row <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>, <span style="color:#f92672">|</span>(@row)) Z<span style="color:#f92672">+</span> (<span style="color:#f92672">|</span>(@row), <span style="color:#ae81ff">0</span>);
+        @out<span style="color:#f92672">.</span>push( @row<span style="color:#f92672">.</span>clone );
+        $max <span style="color:#f92672">=</span> @row<span style="color:#f92672">.</span>max;
+        $lines<span style="color:#f92672">--</span>;
+    } <span style="color:#66d9ef">while</span> ( $lines );
 
-    my $len = $max.codes;
+    <span style="color:#66d9ef">my</span> $len <span style="color:#f92672">=</span> $max<span style="color:#f92672">.</span>codes;
 
-    @out = @out.map( -&gt; @list { @list.map( { pad($_.Str,$len) } ).join(&quot;&quot;) } );
+    @out <span style="color:#f92672">=</span> @out<span style="color:#f92672">.</span>map( <span style="color:#f92672">-&gt;</span> @list { @list<span style="color:#f92672">.</span>map( { pad($_<span style="color:#f92672">.</span>Str,$len) } )<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34;&#34;</span>) } );
 
-    $len = @out[*-1].codes;
+    $len <span style="color:#f92672">=</span> @out[<span style="color:#f92672">*-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>codes;
 
-    @out.map( { ( &quot; &quot; x ( ($len - $_.codes) div 2) ) ~ &quot;$_&quot; } ).join(&quot;\n&quot;).say;
+    @out<span style="color:#f92672">.</span>map( { ( <span style="color:#e6db74">&#34; &#34;</span> x ( ($len <span style="color:#f92672">-</span> $_<span style="color:#f92672">.</span>codes) div <span style="color:#ae81ff">2</span>) ) <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34;$_&#34;</span> } )<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34;\n&#34;</span>)<span style="color:#f92672">.</span>say;
 }
 
-multi sub MAIN($) {
-    note &quot;Please input a number of lines that must be at least 3&quot;;
+multi <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>($) {
+    note <span style="color:#e6db74">&#34;Please input a number of lines that must be at least 3&#34;</span>;
 }
-</code></pre><p>And that seems to do the trick which is fun. (This is the code used to make the triangle at the top).</p>
+</code></pre></div><p>And that seems to do the trick which is fun. (This is the code used to make the triangle at the top).</p>
 <hr>
 <p>If you have any suggestion then please do share with us <a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a>.</p>
 <p><a href="/blog/advent-calendar-2019"><strong>Advent Calendar 2019</strong></a></p>

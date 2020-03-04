@@ -16,7 +16,7 @@
 
     <meta name="description" content="Laurent Rosenfeld Weekly Review: Challenge - #042.">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.66.0-DEV" />
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -190,76 +190,76 @@ Decimal: 50     =  Octal 62
 <h3 id="using-the-basemethod">Using the <code>base</code>method</h3>
 <p>Many challengers used the same <a href="https://docs.raku.org/routine/base">base</a> method as I did, as follows:</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/arne-sommer/raku/ch-1.p6">Arne Sommer</a>:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">say &quot;Decimal $_ = Octal { $_.base(8) }&quot; for ^51;
-</code></pre><p>[Daniel Mita]&lsquo;<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/daniel-mita/raku/ch-1.sh">https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/daniel-mita/raku/ch-1.sh</a>) did it in the form of a one-liner:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">raku -e '.base(8).say for ^51'
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/markus-holzer/raku/ch-1.p6">Markus Holzer</a>:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">.base(8).say for ^51
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/simon-proctor/raku/ch-1.p6">Simon Proctor</a>:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">for $start-val..$end-val -&gt; \val {
-    say &quot;Decimal {val} = Octal {val.base(8)}&quot;;
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/ulrich-rieke/raku/ch-1.p6">Ulrich Rieke</a>:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">for (1..50) -&gt; $i {
-  say &quot;Decimal $i = Octal &quot; ~ $i.base(8).Str ;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">say <span style="color:#e6db74">&#34;Decimal $_ = Octal { $_.base(8) }&#34;</span> <span style="color:#66d9ef">for</span> <span style="color:#f92672">^</span><span style="color:#ae81ff">51</span>;
+</code></pre></div><p>[Daniel Mita]&lsquo;<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/daniel-mita/raku/ch-1.sh">https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/daniel-mita/raku/ch-1.sh</a>) did it in the form of a one-liner:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">raku <span style="color:#f92672">-</span>e <span style="color:#e6db74">&#39;.base(8).say for ^51&#39;</span>
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/markus-holzer/raku/ch-1.p6">Markus Holzer</a>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#f92672">.</span>base(<span style="color:#ae81ff">8</span>)<span style="color:#f92672">.</span>say <span style="color:#66d9ef">for</span> <span style="color:#f92672">^</span><span style="color:#ae81ff">51</span>
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/simon-proctor/raku/ch-1.p6">Simon Proctor</a>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">for</span> $start<span style="color:#f92672">-</span>val<span style="color:#f92672">..</span>$end<span style="color:#f92672">-</span>val <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">\</span>val {
+    say <span style="color:#e6db74">&#34;Decimal {val} = Octal {val.base(8)}&#34;</span>;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/ulrich-rieke/raku/ch-1.p6">Ulrich Rieke</a>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">50</span>) <span style="color:#f92672">-&gt;</span> $i {
+  say <span style="color:#e6db74">&#34;Decimal $i = Octal &#34;</span> <span style="color:#f92672">~</span> $i<span style="color:#f92672">.</span>base(<span style="color:#ae81ff">8</span>)<span style="color:#f92672">.</span>Str ;
 }
-</code></pre><h3 id="using-a-format-string">Using a Format String</h3>
+</code></pre></div><h3 id="using-a-format-string">Using a Format String</h3>
 <p>Many other challengers used the <code>%o</code> option of the <code>printf</code>, <code>sprintf</code>, and <code>fmt</code> routines (which I also used in my Perl 5 solution):</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/burkhard-nickels/raku/ch-1.p6">Burkhard Nickels</a>:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">for (0 .. 50) {
-    printf(&quot;Decimal: %d - Octal: %o\n&quot;,$_,$_);
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">50</span>) {
+    printf(<span style="color:#e6db74">&#34;Decimal: %d - Octal: %o\n&#34;</span>,$_,$_);
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/noud/raku/ch-1.p6">Noud Aldenhoven</a></p>
-<pre><code class="language-Perl6" data-lang="Perl6">say $_.fmt(&quot;Decimal $_ = Octal %o&quot;) for ^51;
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/jaldhar-h-vyas/raku/ch-1.sh">Jaldhar H. Vyas</a> came back to the challenge after a pause. Welcome back, Jaldhar. He wrote a Raku one-liner along the same lines:</p>
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/noud/raku/ch-1.p6">Noud Aldenhoven</a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">say $_<span style="color:#f92672">.</span>fmt(<span style="color:#e6db74">&#34;Decimal $_ = Octal %o&#34;</span>) <span style="color:#66d9ef">for</span> <span style="color:#f92672">^</span><span style="color:#ae81ff">51</span>;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/jaldhar-h-vyas/raku/ch-1.sh">Jaldhar H. Vyas</a> came back to the challenge after a pause. Welcome back, Jaldhar. He wrote a Raku one-liner along the same lines:</p>
 <pre><code>perl6 -e '[0 .. 50].map({ printf(&quot;Decimal %d = Octal %o\n&quot;, $_, $_) });'
 </code></pre>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/javier-luque/raku/ch-1.p6">Javier Luque</a> used a format string (<code>%o</code>option) to do the job:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub to-octal(Int $i) {
-    return sprintf('%o', $i);
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">to</span>-octal(Int $i) {
+    <span style="color:#66d9ef">return</span> sprintf(<span style="color:#e6db74">&#39;%o&#39;</span>, $i);
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/roger-bell-west/raku/ch-1.p6">Roger Bell West</a> also used a format string:</p>
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/roger-bell-west/raku/ch-1.p6">Roger Bell West</a> also used a format string:</p>
 <p>for (0..50) {
 printf(&lsquo;Decimal %d = Octal %o&rsquo; ~ &ldquo;\n&rdquo;,$_,$_);
 }</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/ryan-thompson/raku/ch-1.p6">Ryan Thompson</a> also used a format string:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">say (0..50).fmt('Decimal %1$2d = Octal %2o', &quot;\n&quot;);
-</code></pre><h3 id="doing-it-the-hard-way">Doing it the Hard Way</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">say (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">50</span>)<span style="color:#f92672">.</span>fmt(<span style="color:#e6db74">&#39;Decimal %1$2d = Octal %2o&#39;</span>, <span style="color:#e6db74">&#34;\n&#34;</span>);
+</code></pre></div><h3 id="doing-it-the-hard-way">Doing it the Hard Way</h3>
 <p>Two challengers decided to implement a full conversion algorithm:</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/kevin-colyer/raku/ch-1.p6">Kevin Colyer</a> knows that there are easier ways to do it, but decided to roll his own version, perhaps for the fun of the exercise. He did it in the old assembly language (or C hacker) way:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub dec-to-oct(Int $n is copy) returns Str {
-    return &quot;0&quot; if $n==0;
-    my Str $o = &quot;&quot;;
-    while $n&gt;0 {
-        $o= $n +&amp; 7 ~ $o; # add lower three bits
-        $n= $n +&gt; 3     ; # shift off lower three bits
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">dec</span>-to-oct(Int $n is copy) returns Str {
+    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;0&#34;</span> <span style="color:#66d9ef">if</span> $n<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">my</span> Str $o <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
+    <span style="color:#66d9ef">while</span> $n<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span> {
+        $o<span style="color:#f92672">=</span> $n <span style="color:#f92672">+&amp;</span> <span style="color:#ae81ff">7</span> <span style="color:#f92672">~</span> $o; <span style="color:#75715e"># add lower three bits</span>
+        $n<span style="color:#f92672">=</span> $n <span style="color:#f92672">+&gt;</span> <span style="color:#ae81ff">3</span>     ; <span style="color:#75715e"># shift off lower three bits</span>
     }
-    return $o;
+    <span style="color:#66d9ef">return</span> $o;
 }
 
-say &quot;Decimal $_ = Octal {dec-to-oct($_)} is sprintf conversion {sprintf &quot;%o&quot;, $_}&quot; for ^51;
-</code></pre><p>Just in case you don&rsquo;t know or don&rsquo;t remember (I didn&rsquo;t and had to look it up), <code>+&amp;</code> is the numeric bitwise <code>AND</code> operator, and <code>+&gt;</code> is the integer bit shift to the right.</p>
+say <span style="color:#e6db74">&#34;Decimal $_ = Octal {dec-to-oct($_)} is sprintf conversion {sprintf &#34;</span>%o<span style="color:#e6db74">&#34;, $_}&#34;</span> <span style="color:#66d9ef">for</span> <span style="color:#f92672">^</span><span style="color:#ae81ff">51</span>;
+</code></pre></div><p>Just in case you don&rsquo;t know or don&rsquo;t remember (I didn&rsquo;t and had to look it up), <code>+&amp;</code> is the numeric bitwise <code>AND</code> operator, and <code>+&gt;</code> is the integer bit shift to the right.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/colin-crain/raku/ch-1.p6">Colin Crain</a> used the standard CS integer division and remainder to compute octal numbers. Even though this is not required in the task, Colin even expanded the definition domain to Z (inclluding negative integers):</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub MAIN () {
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> () {
 
-    for -50 .. 50 {
-        printf &quot;Decimal %3d = Octal %3d\n&quot;, $_, octal($_) ;
+    <span style="color:#66d9ef">for</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">50</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">50</span> {
+        printf <span style="color:#e6db74">&#34;Decimal %3d = Octal %3d\n&#34;</span>, $_, octal($_) ;
     }
 }
 
-sub octal ( $dec is copy ){
-    my $out = &quot;&quot;;
-    my $sign = $dec &lt; 0 ?? &quot;-&quot; !! &quot;&quot;;
-    $dec .= abs;
-    my $rem;
-    while ( $dec &gt; 0 ) {
-        $rem = $dec % 8;
-        $dec = ($dec/8).floor;
-        $out = $rem ~ $out;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">octal</span> ( $dec is copy ){
+    <span style="color:#66d9ef">my</span> $out <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
+    <span style="color:#66d9ef">my</span> $sign <span style="color:#f92672">=</span> $dec <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> ?? <span style="color:#e6db74">&#34;-&#34;</span> <span style="color:#f92672">!!</span> <span style="color:#e6db74">&#34;&#34;</span>;
+    $dec <span style="color:#f92672">.=</span> abs;
+    <span style="color:#66d9ef">my</span> $rem;
+    <span style="color:#66d9ef">while</span> ( $dec <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> ) {
+        $rem <span style="color:#f92672">=</span> $dec % 8;
+        $dec <span style="color:#f92672">=</span> ($dec<span style="color:#f92672">/</span><span style="color:#ae81ff">8</span>)<span style="color:#f92672">.</span>floor;
+        $out <span style="color:#f92672">=</span> $rem <span style="color:#f92672">~</span> $out;
     }
-    $out = $sign ~ $out;
-    return $out ?? $out !! 0;  ## needs to output 0 for 0
+    $out <span style="color:#f92672">=</span> $sign <span style="color:#f92672">~</span> $out;
+    <span style="color:#66d9ef">return</span> $out ?? $out <span style="color:#f92672">!!</span> <span style="color:#ae81ff">0</span>;  <span style="color:#75715e">## needs to output 0 for 0</span>
 }
-</code></pre><p>Colin provides a long comment explaining his algorithm, please follow the link if you want further explanations.</p>
+</code></pre></div><p>Colin provides a long comment explaining his algorithm, please follow the link if you want further explanations.</p>
 <hr>
 <h2 id="task-2-balanced-parentheses">Task #2: Balanced Parentheses</h2>
 <hr>
@@ -276,20 +276,20 @@ sub octal ( $dec is copy ){
 <h2 id="my-solutions">My Solutions</h2>
 <h3 id="balanced-parentheses-using-a-grammar">Balanced Parentheses Using a Grammar</h3>
 <p>I admit that this may be slight technological overkill, but seeing such a task leads me immediately to use grammars, which are naturally capable to manage such tasks, since their rules can easily be called recursively to parse any number of nested parentheses. So, this is my first solution:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">use v6;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> v6;
 
 grammar Parens {
-    token TOP { \s* &lt;paren-expr&gt;+ \s* }
-    token paren-expr { | \s* &lt;paren-pair&gt; \s*
-                       | '(' \s* &lt;paren-expr&gt;+ \s* ')' }
-    token paren-pair { [ '(' \s* ')' ]+ }
+    token TOP { <span style="color:#f92672">\</span>s<span style="color:#f92672">*</span> <span style="color:#e6db74">&lt;paren-expr&gt;</span><span style="color:#f92672">+</span> <span style="color:#f92672">\</span>s<span style="color:#f92672">*</span> }
+    token paren<span style="color:#f92672">-</span>expr { <span style="color:#f92672">|</span> <span style="color:#f92672">\</span>s<span style="color:#f92672">*</span> <span style="color:#e6db74">&lt;paren-pair&gt;</span> <span style="color:#f92672">\</span>s<span style="color:#f92672">*</span>
+                       <span style="color:#f92672">|</span> <span style="color:#e6db74">&#39;(&#39;</span> <span style="color:#f92672">\</span>s<span style="color:#f92672">*</span> <span style="color:#e6db74">&lt;paren-expr&gt;</span><span style="color:#f92672">+</span> <span style="color:#f92672">\</span>s<span style="color:#f92672">*</span> <span style="color:#e6db74">&#39;)&#39;</span> }
+    token paren<span style="color:#f92672">-</span>pair { [ <span style="color:#e6db74">&#39;(&#39;</span> <span style="color:#f92672">\</span>s<span style="color:#f92672">*</span> <span style="color:#e6db74">&#39;)&#39;</span> ]<span style="color:#f92672">+</span> }
 }
 
-for &quot;()&quot;, &quot;(  )&quot;, &quot;(())&quot;, &quot;( ( ))&quot;, &quot;)(&quot;, &quot;())()&quot;,
-    &quot;((( ( ()))))&quot;,  &quot;()()()()&quot;, &quot;(())(())&quot; -&gt; $expr {
-    say &quot;$expr - &quot;, Parens.parse($expr) ?? &quot;OK&quot; !! &quot;NOT OK&quot;;
+<span style="color:#66d9ef">for</span> <span style="color:#e6db74">&#34;()&#34;</span>, <span style="color:#e6db74">&#34;(  )&#34;</span>, <span style="color:#e6db74">&#34;(())&#34;</span>, <span style="color:#e6db74">&#34;( ( ))&#34;</span>, <span style="color:#e6db74">&#34;)(&#34;</span>, <span style="color:#e6db74">&#34;())()&#34;</span>,
+    <span style="color:#e6db74">&#34;((( ( ()))))&#34;</span>,  <span style="color:#e6db74">&#34;()()()()&#34;</span>, <span style="color:#e6db74">&#34;(())(())&#34;</span> <span style="color:#f92672">-&gt;</span> $expr {
+    say <span style="color:#e6db74">&#34;$expr - &#34;</span>, Parens<span style="color:#f92672">.</span>parse($expr) ?? <span style="color:#e6db74">&#34;OK&#34;</span> <span style="color:#f92672">!!</span> <span style="color:#e6db74">&#34;NOT OK&#34;</span>;
 }
-</code></pre><p>The <code>TOP</code> token is any strictly positive number of <code>paren-expr</code>. A <code>paren-expr</code> is either a <code>paren-pair</code> or an opening parenthesis, followed by, recursively, another <code>paren-expr</code>, followed by a closing parenthesis. Note that this could most probably have been made simpler (only two tokens instead of three) if we had decided to remove all spaces of the string before parsing.</p>
+</code></pre></div><p>The <code>TOP</code> token is any strictly positive number of <code>paren-expr</code>. A <code>paren-expr</code> is either a <code>paren-pair</code> or an opening parenthesis, followed by, recursively, another <code>paren-expr</code>, followed by a closing parenthesis. Note that this could most probably have been made simpler (only two tokens instead of three) if we had decided to remove all spaces of the string before parsing.</p>
 <p>This script displays the following output:</p>
 <pre><code>$ perl6 parens.p6
 () - OK
@@ -304,27 +304,27 @@ for &quot;()&quot;, &quot;(  )&quot;, &quot;(())&quot;, &quot;( ( ))&quot;, &quo
 </code></pre>
 <h3 id="balanced-parentheses-using-a-stack">Balanced Parentheses Using a Stack</h3>
 <p>As I said, using grammars for such a simple task might be considered over-engineering. We had recently a challenge about reverse Polish notation that led us to use a stack. Recursion and stacks are intimately related. We could use a stack to perform the same task: push to the stack if we get a <code>(</code>, and pop from the stack if we get a <code>)</code>, unless the stack is empty; and, at the end, check that the stack is empty. Some people might think that this approach is conceptually simpler than a grammar. But I tend to think this is wrong. Except for a small typo, my grammar approach worked the first time I tested it. Not only is the stack code below significantly longer, but I had to debug the stack approach below for about 15 minutes before it got right:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">use v6;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> v6;
 
-sub check-parens (Str $expr) {
-    my @stack;
-    my $s = $expr;
-    $s ~~ s:g/\s+//; # remove spaces;
-    for $s.comb {
-        when '(' { push @stack, $_; }
-        when ')' {
-            say &quot;$expr: NOT OK&quot; and return unless @stack;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">check</span>-parens (Str $expr) {
+    <span style="color:#66d9ef">my</span> @stack;
+    <span style="color:#66d9ef">my</span> $s <span style="color:#f92672">=</span> $expr;
+    $s <span style="color:#f92672">~~</span> s:g<span style="color:#e6db74">/\s+/</span><span style="color:#f92672">/</span>; <span style="color:#75715e"># remove spaces;</span>
+    <span style="color:#66d9ef">for</span> $s<span style="color:#f92672">.</span>comb {
+        when <span style="color:#e6db74">&#39;(&#39;</span> { push @stack, $_; }
+        when <span style="color:#e6db74">&#39;)&#39;</span> {
+            say <span style="color:#e6db74">&#34;$expr: NOT OK&#34;</span> <span style="color:#f92672">and</span> <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">unless</span> @stack;
             pop @stack;
         }
         default { say $s }
     }
-    say &quot;$expr: &quot;, @stack.elems ?? &quot;NOT OK&quot; !! &quot;OK&quot;;
+    say <span style="color:#e6db74">&#34;$expr: &#34;</span>, @stack<span style="color:#f92672">.</span>elems ?? <span style="color:#e6db74">&#34;NOT OK&#34;</span> <span style="color:#f92672">!!</span> <span style="color:#e6db74">&#34;OK&#34;</span>;
 }
-for &quot;()&quot;, &quot;(  )&quot;, &quot;(())&quot;, &quot;( ( ))&quot;, &quot;)(&quot;, &quot;())()&quot;,
-    &quot;((( ( ()))))&quot;,  &quot;()()()()&quot;, &quot;(())(())&quot; {
-        check-parens($_)
+<span style="color:#66d9ef">for</span> <span style="color:#e6db74">&#34;()&#34;</span>, <span style="color:#e6db74">&#34;(  )&#34;</span>, <span style="color:#e6db74">&#34;(())&#34;</span>, <span style="color:#e6db74">&#34;( ( ))&#34;</span>, <span style="color:#e6db74">&#34;)(&#34;</span>, <span style="color:#e6db74">&#34;())()&#34;</span>,
+    <span style="color:#e6db74">&#34;((( ( ()))))&#34;</span>,  <span style="color:#e6db74">&#34;()()()()&#34;</span>, <span style="color:#e6db74">&#34;(())(())&#34;</span> {
+        check<span style="color:#f92672">-</span>parens($_)
 }
-</code></pre><p>This is the output:</p>
+</code></pre></div><p>This is the output:</p>
 <pre><code>$ perl6 parens.p6
 (): OK
 (  ): OK
@@ -338,213 +338,213 @@ for &quot;()&quot;, &quot;(  )&quot;, &quot;(())&quot;, &quot;( ( ))&quot;, &quo
 </code></pre>
 <h3 id="replacing-the-stack-by-a-counter">Replacing the Stack by a Counter</h3>
 <p>In fact, we don&rsquo;t really need a stack, as we can use a simple counter starting at 0, which we increment when we get an opening parenthesis, and decrement when we get a closing parenthesis. If we get a closing parenthesis when the counter is 0, or if the counter is not 0 at the end of the parsing, then the parens are not properly balanced. The <code>check-parens</code> subroutine is rewritten as follows:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub check-parens (Str $expr) {
-    my $count;
-    my $s = $expr;
-    $s ~~ s:g/\s+//; # remove spaces;
-    for $s.comb {
-        when '(' { $count++ }
-        when ')' {
-            say &quot;$expr: NOT OK&quot; and return unless $count;
-            $count--;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">check</span>-parens (Str $expr) {
+    <span style="color:#66d9ef">my</span> $count;
+    <span style="color:#66d9ef">my</span> $s <span style="color:#f92672">=</span> $expr;
+    $s <span style="color:#f92672">~~</span> s:g<span style="color:#e6db74">/\s+/</span><span style="color:#f92672">/</span>; <span style="color:#75715e"># remove spaces;</span>
+    <span style="color:#66d9ef">for</span> $s<span style="color:#f92672">.</span>comb {
+        when <span style="color:#e6db74">&#39;(&#39;</span> { $count<span style="color:#f92672">++</span> }
+        when <span style="color:#e6db74">&#39;)&#39;</span> {
+            say <span style="color:#e6db74">&#34;$expr: NOT OK&#34;</span> <span style="color:#f92672">and</span> <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">unless</span> $count;
+            $count<span style="color:#f92672">--</span>;
         }
         default { say $s }
     }
-    say &quot;$expr: &quot;, $count ?? &quot;NOT OK&quot; !! &quot;OK&quot;;
+    say <span style="color:#e6db74">&#34;$expr: &#34;</span>, $count ?? <span style="color:#e6db74">&#34;NOT OK&#34;</span> <span style="color:#f92672">!!</span> <span style="color:#e6db74">&#34;OK&#34;</span>;
 }
-</code></pre><p>The output is the same as before.</p>
+</code></pre></div><p>The output is the same as before.</p>
 <h2 id="alternative-solutions-1">Alternative Solutions</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/arne-sommer/raku/ch-2.p6">Arne Sommer</a> suggested a solution in which the most important element is a counter that is incremented for an opening parenthesis and decremented for a closing parenthesis, much along the idea of my last solution above:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub is-balanced ($brackets)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is</span>-balanced ($brackets)
 {
-  return False if $brackets.chars % 2; # An odd number
-  return False if $brackets.substr(0,  1) eq ')';
-  return False if $brackets.substr(*-1,1) eq '(';
+  <span style="color:#66d9ef">return</span> False <span style="color:#66d9ef">if</span> $brackets<span style="color:#f92672">.</span>chars % 2; <span style="color:#75715e"># An odd number</span>
+  <span style="color:#66d9ef">return</span> False <span style="color:#66d9ef">if</span> $brackets<span style="color:#f92672">.</span>substr(<span style="color:#ae81ff">0</span>,  <span style="color:#ae81ff">1</span>) <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;)&#39;</span>;
+  <span style="color:#66d9ef">return</span> False <span style="color:#66d9ef">if</span> $brackets<span style="color:#f92672">.</span>substr(<span style="color:#f92672">*-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>) <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;(&#39;</span>;
 
-  my $count = 0;
+  <span style="color:#66d9ef">my</span> $count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
 
-  for $brackets.comb -&gt; $char
+  <span style="color:#66d9ef">for</span> $brackets<span style="color:#f92672">.</span>comb <span style="color:#f92672">-&gt;</span> $char
   {
-    if    $char eq '(' { $count++; }
-    elsif $char eq ')' { $count--; }
-    else { die &quot;Illegal character $char&quot;; }
+    <span style="color:#66d9ef">if</span>    $char <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;(&#39;</span> { $count<span style="color:#f92672">++</span>; }
+    <span style="color:#66d9ef">elsif</span> $char <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;)&#39;</span> { $count<span style="color:#f92672">--</span>; }
+    <span style="color:#66d9ef">else</span> { die <span style="color:#e6db74">&#34;Illegal character $char&#34;</span>; }
 
-    return False if $count &lt; 0; # Unbalanced inside
+    <span style="color:#66d9ef">return</span> False <span style="color:#66d9ef">if</span> $count <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>; <span style="color:#75715e"># Unbalanced inside</span>
   }
 
-  return $count == 0;
+  <span style="color:#66d9ef">return</span> $count <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/daniel-mita/raku/ch-2.p6">Daniel Mita</a> used a counter much in the same way as my last solution:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">my $count = 0;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/daniel-mita/raku/ch-2.p6">Daniel Mita</a> used a counter much in the same way as my last solution:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> $count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
 
-for roll &lt;( )&gt;: (^$parens).pick {
-  .say;
-  when '(' { $count++ }
-  when ')' { die 'close before open' if --$count &lt; 0 }
-}
-
-if $count {
-  die &quot;$count unclosed&quot;;
+<span style="color:#66d9ef">for</span> roll <span style="color:#f92672">&lt;</span>( )<span style="color:#f92672">&gt;</span>: (<span style="color:#f92672">^</span>$parens)<span style="color:#f92672">.</span>pick {
+  <span style="color:#f92672">.</span>say;
+  when <span style="color:#e6db74">&#39;(&#39;</span> { $count<span style="color:#f92672">++</span> }
+  when <span style="color:#e6db74">&#39;)&#39;</span> { die <span style="color:#e6db74">&#39;close before open&#39;</span> <span style="color:#66d9ef">if</span> <span style="color:#f92672">--</span>$count <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> }
 }
 
-'balanced'.say;
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/kevin-colyer/raku/ch-2.p6">Kevin Colyer</a> also used a counter (<code>$open</code>):</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub match-brackets(Str $t) {
-    # can never match condition
-    return False if $t.chars &lt; 2;
+<span style="color:#66d9ef">if</span> $count {
+  die <span style="color:#e6db74">&#34;$count unclosed&#34;</span>;
+}
 
-    # loop counting +1 for open -1 for close.
+<span style="color:#e6db74">&#39;balanced&#39;</span><span style="color:#f92672">.</span>say;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/kevin-colyer/raku/ch-2.p6">Kevin Colyer</a> also used a counter (<code>$open</code>):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">match</span>-brackets(Str $t) {
+    <span style="color:#75715e"># can never match condition</span>
+    <span style="color:#66d9ef">return</span> False <span style="color:#66d9ef">if</span> $t<span style="color:#f92672">.</span>chars <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">2</span>;
 
-    # zero sum is matching
-    # positive sum is non matching
-    # negative is always non matching (and quick exit)
-    my $open=0;
-    for ^$t.chars -&gt; $i {
-        $open++ if $t.substr($i,1) eq '(';
-        $open-- if $t.substr($i,1) eq ')';
-        return False if $open &lt; 0;
+    <span style="color:#75715e"># loop counting +1 for open -1 for close.</span>
+
+    <span style="color:#75715e"># zero sum is matching</span>
+    <span style="color:#75715e"># positive sum is non matching</span>
+    <span style="color:#75715e"># negative is always non matching (and quick exit)</span>
+    <span style="color:#66d9ef">my</span> $open<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">for</span> <span style="color:#f92672">^</span>$t<span style="color:#f92672">.</span>chars <span style="color:#f92672">-&gt;</span> $i {
+        $open<span style="color:#f92672">++</span> <span style="color:#66d9ef">if</span> $t<span style="color:#f92672">.</span>substr($i,<span style="color:#ae81ff">1</span>) <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;(&#39;</span>;
+        $open<span style="color:#f92672">--</span> <span style="color:#66d9ef">if</span> $t<span style="color:#f92672">.</span>substr($i,<span style="color:#ae81ff">1</span>) <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;)&#39;</span>;
+        <span style="color:#66d9ef">return</span> False <span style="color:#66d9ef">if</span> $open <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>;
     }
-    return $open == 0 ?? True !! False ;
+    <span style="color:#66d9ef">return</span> $open <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> ?? True <span style="color:#f92672">!!</span> False ;
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/noud/raku/ch-2.p6">Noud Aldenhoven</a> also used a counter:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub balanced($brackets) {
-    my $c = 0;
-    for $brackets.comb() -&gt; $b {
-        if ($b === '(') {
-            $c++;
-        } elsif (--$c &lt; 0) {
-            return False;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/noud/raku/ch-2.p6">Noud Aldenhoven</a> also used a counter:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">balanced</span>($brackets) {
+    <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">for</span> $brackets<span style="color:#f92672">.</span>comb() <span style="color:#f92672">-&gt;</span> $b {
+        <span style="color:#66d9ef">if</span> ($b <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;(&#39;</span>) {
+            $c<span style="color:#f92672">++</span>;
+        } <span style="color:#66d9ef">elsif</span> (<span style="color:#f92672">--</span>$c <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>) {
+            <span style="color:#66d9ef">return</span> False;
         }
     }
-    return $c == 0;
+    <span style="color:#66d9ef">return</span> $c <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/simon-proctor/raku/ch-2.p6">Simon Proctor</a> also used a counter:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub balanced( Str \brackets ) {
-    my @list = brackets.comb(&quot;&quot;);
-    my $count = 0;
-    for @list -&gt; \bracket {
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/simon-proctor/raku/ch-2.p6">Simon Proctor</a> also used a counter:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">balanced</span>( Str \brackets ) {
+    <span style="color:#66d9ef">my</span> @list <span style="color:#f92672">=</span> brackets<span style="color:#f92672">.</span>comb(<span style="color:#e6db74">&#34;&#34;</span>);
+    <span style="color:#66d9ef">my</span> $count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">for</span> @list <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">\</span>bracket {
         given bracket {
-            when &quot;(&quot; {
-                $count++;
+            when <span style="color:#e6db74">&#34;(&#34;</span> {
+                $count<span style="color:#f92672">++</span>;
             }
-            when &quot;)&quot; {
-                $count--;
+            when <span style="color:#e6db74">&#34;)&#34;</span> {
+                $count<span style="color:#f92672">--</span>;
             }
         }
-        return False if $count &lt; 0;
+        <span style="color:#66d9ef">return</span> False <span style="color:#66d9ef">if</span> $count <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>;
     }
-    return $count == 0;
+    <span style="color:#66d9ef">return</span> $count <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/ulrich-rieke/raku/ch-2.p6">Ulrich Rieke</a> implemented two separate counters:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub validateBrackets( Str $term --&gt; Bool) {
-  if ( $term ~~ /^ ')' | '(' $/ ) {
-      return False ;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/ulrich-rieke/raku/ch-2.p6">Ulrich Rieke</a> implemented two separate counters:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">validateBrackets</span>( Str $term --&gt; Bool) {
+  <span style="color:#66d9ef">if</span> ( $term <span style="color:#f92672">~~</span> <span style="color:#e6db74">/^ &#39;)&#39; | &#39;(&#39; $/</span> ) {
+      <span style="color:#66d9ef">return</span> False ;
   }
-  return countLetter( $term , '(') == countLetter( $term , ')') ;
+  <span style="color:#66d9ef">return</span> countLetter( $term , <span style="color:#e6db74">&#39;(&#39;</span>) <span style="color:#f92672">==</span> countLetter( $term , <span style="color:#e6db74">&#39;)&#39;</span>) ;
 }
-sub countLetter( Str $term , Str $letter --&gt; Int) {
-  my $count = 0 ;
-  for ( $term.comb) -&gt; $let {
-      if ( $let eq $letter ) {
-    $count++ ;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">countLetter</span>( Str $term , Str $letter --&gt; Int) {
+  <span style="color:#66d9ef">my</span> $count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> ;
+  <span style="color:#66d9ef">for</span> ( $term<span style="color:#f92672">.</span>comb) <span style="color:#f92672">-&gt;</span> $let {
+      <span style="color:#66d9ef">if</span> ( $let <span style="color:#f92672">eq</span> $letter ) {
+    $count<span style="color:#f92672">++</span> ;
       }
   }
-  return $count ;
+  <span style="color:#66d9ef">return</span> $count ;
 }
-</code></pre><p>I&rsquo;m afraid Ulrich&rsquo;s code returns the wrong answer for some input strings. For example, it appears it would validate a string such as <code>&quot;())(()&quot;</code>, where as it is improperly balanced (even though it has the same number of opening and closing parentheses), as it starts with one opening parenthesis, followed by two closing parentheses, so that the second closing parentheses has no matching opening parenthesis <em>prior to</em> it..</p>
+</code></pre></div><p>I&rsquo;m afraid Ulrich&rsquo;s code returns the wrong answer for some input strings. For example, it appears it would validate a string such as <code>&quot;())(()&quot;</code>, where as it is improperly balanced (even though it has the same number of opening and closing parentheses), as it starts with one opening parenthesis, followed by two closing parentheses, so that the second closing parentheses has no matching opening parenthesis <em>prior to</em> it..</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/markus-holzer/raku/ch-2.p6">Markus Holzer</a> didn&rsquo;t quite use a grammar, but nonetheless used the grammar main building blocks, named rules (in this case, more precisely, tokens), to solve the problem:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub test-string( $string )
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">test</span>-string( $string )
 {
-    my token opening-brace { \( };
-    my token closing-brace { \) };
-    my token balanced-braces {
-        ( &lt;opening-brace&gt;+ ) &lt;closing-brace&gt; ** { $0.chars }
+    <span style="color:#66d9ef">my</span> token opening<span style="color:#f92672">-</span>brace { <span style="color:#f92672">\</span>( };
+    <span style="color:#66d9ef">my</span> token closing<span style="color:#f92672">-</span>brace { <span style="color:#f92672">\</span>) };
+    <span style="color:#66d9ef">my</span> token balanced<span style="color:#f92672">-</span>braces {
+        ( <span style="color:#e6db74">&lt;opening-brace&gt;</span><span style="color:#f92672">+</span> ) <span style="color:#e6db74">&lt;closing-brace&gt;</span> <span style="color:#f92672">**</span> { $0<span style="color:#f92672">.</span>chars }
     };
-    so $string ~~ /^ &lt;balanced-braces&gt; $/;
+    so $string <span style="color:#f92672">~~</span> <span style="color:#e6db74">/^ &lt;balanced-braces&gt; $/</span>;
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/burkhard-nickels/raku/ch-2.p6">Burhhard Nickels</a> used a recursive <code>balanced_brackets</code> subroutine that removes a <code>()</code> pair each time it is called. When all such pairs have been removed (it is no longer found), then we know that the initial string was a properly balanced if there is no opening or closing parenthesis found. Phew, it took me a few minutes to understand the logic of his algorithm (essentially because I had originally missed that the found parentheses pairs are removed from the string and thought that they were just being matched).</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub balanced_brackets ($arg) {
-    my $str = $arg;  # Cannot assign to a read-only.
-    my $found = ($str ~~ s/\(\)//);
-    my $ok;
-    if ($found) {
-        $ok = balanced_brackets($str);
-        return $ok;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/burkhard-nickels/raku/ch-2.p6">Burhhard Nickels</a> used a recursive <code>balanced_brackets</code> subroutine that removes a <code>()</code> pair each time it is called. When all such pairs have been removed (it is no longer found), then we know that the initial string was a properly balanced if there is no opening or closing parenthesis found. Phew, it took me a few minutes to understand the logic of his algorithm (essentially because I had originally missed that the found parentheses pairs are removed from the string and thought that they were just being matched).</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">balanced_brackets</span> ($arg) {
+    <span style="color:#66d9ef">my</span> $str <span style="color:#f92672">=</span> $arg;  <span style="color:#75715e"># Cannot assign to a read-only.</span>
+    <span style="color:#66d9ef">my</span> $found <span style="color:#f92672">=</span> ($str <span style="color:#f92672">~~</span> <span style="color:#e6db74">s/\(\)//</span>);
+    <span style="color:#66d9ef">my</span> $ok;
+    <span style="color:#66d9ef">if</span> ($found) {
+        $ok <span style="color:#f92672">=</span> balanced_brackets($str);
+        <span style="color:#66d9ef">return</span> $ok;
     }
-    else {
-        if ( $str ~~ /\(|\)/ ) { return 0; }
-        else { return 1; }
+    <span style="color:#66d9ef">else</span> {
+        <span style="color:#66d9ef">if</span> ( $str <span style="color:#f92672">~~</span> <span style="color:#e6db74">/\(|\)/</span> ) { <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>; }
+        <span style="color:#66d9ef">else</span> { <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>; }
     }
 }
-</code></pre><p>In this case, I would think that a simple loop to remove the parentheses pairs would have been more natural and simpler that a recursive subroutine.</p>
+</code></pre></div><p>In this case, I would think that a simple loop to remove the parentheses pairs would have been more natural and simpler that a recursive subroutine.</p>
 <p>Note also that Burhhard is making a copy of the input parameter, because subroutine parameters are read-only by default. This is perfectly correct, but Raku offers some features making this simpler: you can use some traits (<code>is rw</code> or <code>is copy</code>) in the signature to make a parameter mutable or to make it a copy of the argument passed to the subroutine. So,</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub balanced_brackets ($arg) {
-    my $str = $arg;  # Cannot assign to a read-only.
-</code></pre><p>could be replaced by something like:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub balanced_brackets ($str is copy) {
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/colin-crain/raku/ch-2.p6">Colin Crain</a> used essentially the same technique of eliminating progressively all <code>()</code> pairs with a regex substitution:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub validate (Str:D $orig) {
-    my $str = $orig;
-    unless $str.chars %% 2 { return &quot;IMBALANCED - odd number of parens&quot;};
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">balanced_brackets</span> ($arg) {
+    <span style="color:#66d9ef">my</span> $str <span style="color:#f92672">=</span> $arg;  <span style="color:#75715e"># Cannot assign to a read-only.</span>
+</code></pre></div><p>could be replaced by something like:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">balanced_brackets</span> ($str is copy) {
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/colin-crain/raku/ch-2.p6">Colin Crain</a> used essentially the same technique of eliminating progressively all <code>()</code> pairs with a regex substitution:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">validate</span> (Str:D $orig) {
+    <span style="color:#66d9ef">my</span> $str <span style="color:#f92672">=</span> $orig;
+    <span style="color:#66d9ef">unless</span> $str<span style="color:#f92672">.</span>chars %% 2 { <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;IMBALANCED - odd number of parens&#34;</span>};
 
-    while $str ~~ s/\((.*?)\)/$0/ { ; }
+    <span style="color:#66d9ef">while</span> $str <span style="color:#f92672">~~</span> <span style="color:#e6db74">s/\((.*?)\)/$0/</span> { ; }
 
-    return ($str.chars == 0) ?? &quot;PARENS BALANCED&quot; !! &quot;IMBALANCED - $str unmatched&quot;;
+    <span style="color:#66d9ef">return</span> ($str<span style="color:#f92672">.</span>chars <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) ?? <span style="color:#e6db74">&#34;PARENS BALANCED&#34;</span> <span style="color:#f92672">!!</span> <span style="color:#e6db74">&#34;IMBALANCED - $str unmatched&#34;</span>;
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/roger-bell-west/raku/ch-2.p6">Roger Bell West</a> also used the same approach with regex substitutions to eliminate <code>()</code> pairs:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">while ($s ~~ s:g/\(\)//) {
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/roger-bell-west/raku/ch-2.p6">Roger Bell West</a> also used the same approach with regex substitutions to eliminate <code>()</code> pairs:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">while</span> ($s <span style="color:#f92672">~~</span> s:g<span style="color:#e6db74">/\(\)/</span><span style="color:#f92672">/</span>) {
 }
-if ($s) {
-  say &quot;Invalid: $s&quot;;
-} else {
-  say &quot;Valid.&quot;;
+<span style="color:#66d9ef">if</span> ($s) {
+  say <span style="color:#e6db74">&#34;Invalid: $s&#34;</span>;
+} <span style="color:#66d9ef">else</span> {
+  say <span style="color:#e6db74">&#34;Valid.&#34;</span>;
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/ryan-thompson/raku/ch-2.p6">Ryan Thompson</a> also used a regex substitution to eliminate <code>()</code> pairs, and did it in a very concise manner:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub balanced( Str $str is copy --&gt; Bool ) {
-    Nil while $str ~~ s:g/'()'//;
-    $str.chars == 0
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/ryan-thompson/raku/ch-2.p6">Ryan Thompson</a> also used a regex substitution to eliminate <code>()</code> pairs, and did it in a very concise manner:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">balanced</span>( Str $str is copy --&gt; Bool ) {
+    Nil <span style="color:#66d9ef">while</span> $str <span style="color:#f92672">~~</span> s:g<span style="color:#e6db74">/&#39;()&#39;/</span><span style="color:#f92672">/</span>;
+    $str<span style="color:#f92672">.</span>chars <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/jaldhar-h-vyas/raku/ch-2.p6">Jaldhar H. Vyas</a> used a stack, in spirit much similar to my second solution:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub isBalanced(@brackets) {
-    my @stack;
-    (0 ..^ @brackets.elems).map({
-        if @brackets[$_] ~~ '(' {
-            @stack.push( '(' );
-        } else {
-            if !@stack.elems {
-                return False;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/jaldhar-h-vyas/raku/ch-2.p6">Jaldhar H. Vyas</a> used a stack, in spirit much similar to my second solution:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">isBalanced</span>(@brackets) {
+    <span style="color:#66d9ef">my</span> @stack;
+    (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..^</span> @brackets<span style="color:#f92672">.</span>elems)<span style="color:#f92672">.</span>map({
+        <span style="color:#66d9ef">if</span> @brackets[$_] <span style="color:#f92672">~~</span> <span style="color:#e6db74">&#39;(&#39;</span> {
+            @stack<span style="color:#f92672">.</span>push( <span style="color:#e6db74">&#39;(&#39;</span> );
+        } <span style="color:#66d9ef">else</span> {
+            <span style="color:#66d9ef">if</span> <span style="color:#f92672">!</span>@stack<span style="color:#f92672">.</span>elems {
+                <span style="color:#66d9ef">return</span> False;
             }
-            @stack.pop;
+            @stack<span style="color:#f92672">.</span>pop;
         }
     });
-    return @stack.elems == 0;
+    <span style="color:#66d9ef">return</span> @stack<span style="color:#f92672">.</span>elems <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/javier-luque/raku/ch-2.p6">Javier Luque</a> used a counter:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub validate-string(Str $word) {
-    my $open_p;
-    for $word.comb -&gt; $letter {
-        $open_p++ if ($letter eq '(');
-        $open_p-- if ($letter eq ')');
-        return 0 if ($open_p &lt; 0);
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/javier-luque/raku/ch-2.p6">Javier Luque</a> used a counter:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">validate</span>-string(Str $word) {
+    <span style="color:#66d9ef">my</span> $open_p;
+    <span style="color:#66d9ef">for</span> $word<span style="color:#f92672">.</span>comb <span style="color:#f92672">-&gt;</span> $letter {
+        $open_p<span style="color:#f92672">++</span> <span style="color:#66d9ef">if</span> ($letter <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;(&#39;</span>);
+        $open_p<span style="color:#f92672">--</span> <span style="color:#66d9ef">if</span> ($letter <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;)&#39;</span>);
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> ($open_p <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>);
     }
-    return ($open_p == 0);
+    <span style="color:#66d9ef">return</span> ($open_p <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>);
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/ruben-westerberg/raku/ch-2.p6">Ruben Westerberg</a> built an array <code>@v</code> of counters and then checked that none of the counter was below 0 and that the last one was equal to 0:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">my $maxLength=@*ARGS[0]//20; #If no max on command line use 20
-while 1 {
-    my $str=&quot;&quot;;
-    #make a random length string of upto $maxLength long
-    $str~=(1.rand()+40).round.chr for 0..$maxLength.rand.Int;
-    my @v= [\+] $str.comb.map({(ord($_)-40)*-2+1});
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/ruben-westerberg/raku/ch-2.p6">Ruben Westerberg</a> built an array <code>@v</code> of counters and then checked that none of the counter was below 0 and that the last one was equal to 0:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> $maxLength<span style="color:#f92672">=</span>@<span style="color:#960050;background-color:#1e0010">*</span>ARGS[<span style="color:#ae81ff">0</span>]<span style="color:#e6db74">//</span><span style="color:#ae81ff">20</span>; <span style="color:#75715e">#If no max on command line use 20</span>
+<span style="color:#66d9ef">while</span> <span style="color:#ae81ff">1</span> {
+    <span style="color:#66d9ef">my</span> $str<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>;
+    <span style="color:#75715e">#make a random length string of upto $maxLength long</span>
+    $str<span style="color:#f92672">~=</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">.</span>rand()<span style="color:#f92672">+</span><span style="color:#ae81ff">40</span>)<span style="color:#f92672">.</span>round<span style="color:#f92672">.</span>chr <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$maxLength<span style="color:#f92672">.</span>rand<span style="color:#f92672">.</span>Int;
+    <span style="color:#66d9ef">my</span> @v<span style="color:#f92672">=</span> [<span style="color:#f92672">\+</span>] $str<span style="color:#f92672">.</span>comb<span style="color:#f92672">.</span>map({(ord($_)<span style="color:#f92672">-</span><span style="color:#ae81ff">40</span>)<span style="color:#f92672">*-</span><span style="color:#ae81ff">2</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>});
 
-    if @v[*-1]==0 and !@v.grep(* &lt; 0) {
-        put &quot;balanced: $str&quot;;
-        sleep 1;
-        next;
+    <span style="color:#66d9ef">if</span> @v[<span style="color:#f92672">*-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span> <span style="color:#f92672">and</span> <span style="color:#f92672">!</span>@v<span style="color:#f92672">.</span>grep(<span style="color:#f92672">*</span> <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>) {
+        put <span style="color:#e6db74">&#34;balanced: $str&#34;</span>;
+        sleep <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">next</span>;
     }
-    say &quot;unbalanced: $str&quot;;
+    say <span style="color:#e6db74">&#34;unbalanced: $str&#34;</span>;
 }
-</code></pre><h2 id="see-also">SEE ALSO</h2>
+</code></pre></div><h2 id="see-also">SEE ALSO</h2>
 <p>Not less than six blog posts (besides mine) this time:</p>
 <ul>
 <li>

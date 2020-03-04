@@ -16,7 +16,7 @@
 
     <meta name="description" content="Laurent Rosenfeld Weekly Review: Challenge - #017.">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.66.0-DEV" />
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -186,63 +186,63 @@ fragment: h1
 <p>An <code>authority</code> component is itself composed of an optional <code>&lt;userinfo&gt;</code>and <code>@</code>, followed by a <code>&lt;host&gt;</code>, followed by an optional colon and a <code>&lt;port&gt;</code>. As you probably guessed by now, these three sub-components will be defined in other tokens, and so on.</p>
 <p>In the end, if the string is successfully parsed, the result is stored into the <code>$/</code> match object. We can then lookup for the various components with a hash-like syntax on the match object. So for example, the <code>&lt;scheme&gt;</code> component can be found in <code>$/&lt;scheme&gt;</code> or, in the code below, in <code>$match&lt;scheme&gt;</code>, since I assigned the parse result (the match object) to the <code>$match</code> variable.</p>
 <p>Now the full code of the program:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">use v6;
-# use Grammar::Tracer;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> v6;
+<span style="color:#75715e"># use Grammar::Tracer;</span>
 
 grammar URL {
     rule TOP {
-        &lt;scheme&gt; '//' &lt;authority&gt;? &lt;path&gt; [ '?' &lt;query&gt; ]? &lt;fragment&gt;?
+        <span style="color:#e6db74">&lt;scheme&gt;</span> <span style="color:#e6db74">&#39;//&#39;</span> <span style="color:#e6db74">&lt;authority&gt;</span>? <span style="color:#e6db74">&lt;path&gt;</span> [ <span style="color:#e6db74">&#39;?&#39;</span> <span style="color:#e6db74">&lt;query&gt;</span> ]? <span style="color:#e6db74">&lt;fragment&gt;</span>?
     }
-    token scheme { \w+ [ ':' \w+]? ':'}
-    token authority { [&lt;userinfo&gt; '@']? &lt;host&gt; [':' &lt;port&gt;]? }
-    token userinfo { &lt;user&gt; [':' &lt;password&gt; ]?}
-    token user { \w+ }
-    token password { &lt;-[ @ ]&gt;+ }
+    token scheme { <span style="color:#f92672">\</span>w<span style="color:#f92672">+</span> [ <span style="color:#e6db74">&#39;:&#39;</span> <span style="color:#f92672">\</span>w<span style="color:#f92672">+</span>]? <span style="color:#e6db74">&#39;:&#39;</span>}
+    token authority { [<span style="color:#e6db74">&lt;userinfo&gt;</span> <span style="color:#e6db74">&#39;@&#39;</span>]? <span style="color:#e6db74">&lt;host&gt;</span> [<span style="color:#e6db74">&#39;:&#39;</span> <span style="color:#e6db74">&lt;port&gt;</span>]? }
+    token userinfo { <span style="color:#e6db74">&lt;user&gt;</span> [<span style="color:#e6db74">&#39;:&#39;</span> <span style="color:#e6db74">&lt;password&gt;</span> ]?}
+    token user { <span style="color:#f92672">\</span>w<span style="color:#f92672">+</span> }
+    token password { <span style="color:#f92672">&lt;-</span>[ @ <span style="color:#960050;background-color:#1e0010">]&gt;+</span> <span style="color:#960050;background-color:#1e0010">}</span>
     token host {
-        || &lt;hostname&gt;
-        || &lt;ipv4&gt;
-        || &lt;ipv6&gt;
+        <span style="color:#f92672">||</span> <span style="color:#e6db74">&lt;hostname&gt;</span>
+        <span style="color:#f92672">||</span> <span style="color:#e6db74">&lt;ipv4&gt;</span>
+        <span style="color:#f92672">||</span> <span style="color:#e6db74">&lt;ipv6&gt;</span>
     }
-    token hostname { \w+ [ '.' \w+ ]* }
-    token ipv4 { &lt;octet&gt; ['.' &lt;octet&gt; ] ** 3 }
-    token octet { (\d ** 1..3) &lt;?{0 &lt;= $0 &lt;= 255 }&gt;}
-    token ipv6 { '[' &lt;group&gt; ** 8 ']' }
-    token group { &lt;xdigit&gt; ** 4 }
-    token port { \d+ }
-    token path { '/' &lt;segment&gt;? [ '/' &lt;segment&gt; ]* }
-    token segment { \w+ [ '::' \w+ ]? }
-    token query {  \w+ '=' &lt;[\w\s]&gt;+ }
-    token fragment { '#' &lt;frag_id&gt; }
-    token frag_id { \w+ }
+    token hostname { <span style="color:#f92672">\</span>w<span style="color:#f92672">+</span> [ <span style="color:#e6db74">&#39;.&#39;</span> <span style="color:#f92672">\</span>w<span style="color:#f92672">+</span> ]<span style="color:#f92672">*</span> }
+    token ipv4 { <span style="color:#e6db74">&lt;octet&gt;</span> [<span style="color:#e6db74">&#39;.&#39;</span> <span style="color:#e6db74">&lt;octet&gt;</span> ] <span style="color:#f92672">**</span> <span style="color:#ae81ff">3</span> }
+    token octet { (<span style="color:#f92672">\</span>d <span style="color:#f92672">**</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">3</span>) <span style="color:#f92672">&lt;</span>?{<span style="color:#ae81ff">0</span> <span style="color:#f92672">&lt;=</span> $0 <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">255</span> }<span style="color:#f92672">&gt;</span>}
+    token ipv6 { <span style="color:#e6db74">&#39;[&#39;</span> <span style="color:#e6db74">&lt;group&gt;</span> <span style="color:#f92672">**</span> <span style="color:#ae81ff">8</span> <span style="color:#e6db74">&#39;]&#39;</span> }
+    token group { <span style="color:#e6db74">&lt;xdigit&gt;</span> <span style="color:#f92672">**</span> <span style="color:#ae81ff">4</span> }
+    token port { <span style="color:#f92672">\</span>d<span style="color:#f92672">+</span> }
+    token path { <span style="color:#e6db74">&#39;/&#39;</span> <span style="color:#e6db74">&lt;segment&gt;</span>? [ <span style="color:#e6db74">&#39;/&#39;</span> <span style="color:#e6db74">&lt;segment&gt;</span> ]<span style="color:#f92672">*</span> }
+    token segment { <span style="color:#f92672">\</span>w<span style="color:#f92672">+</span> [ <span style="color:#e6db74">&#39;::&#39;</span> <span style="color:#f92672">\</span>w<span style="color:#f92672">+</span> ]? }
+    token query {  <span style="color:#f92672">\</span>w<span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;=&#39;</span> <span style="color:#e6db74">&lt;[\w\s]&gt;</span><span style="color:#f92672">+</span> }
+    token fragment { <span style="color:#e6db74">&#39;#&#39;</span> <span style="color:#e6db74">&lt;frag_id&gt;</span> }
+    token frag_id { <span style="color:#f92672">\</span>w<span style="color:#f92672">+</span> }
 }
-sub display (Str $label, Str $value) {
-    printf &quot;    %-15s:\t %-20s\n&quot;, $label, $value;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">display</span> (Str $label, Str $value) {
+    printf <span style="color:#e6db74">&#34;    %-15s:\t %-20s\n&#34;</span>, $label, $value;
 }
 
-for ('jdbc:mysql://user:password@localhost:3306/pwc?profile=true#h1',
-     'https://en.wikipedia.org/wiki/URL',
-     'https://perlcon.eu/my',
-     'https://www.perlmonks.org/?node=Seekers of Perl Wisdom',
-     'https://metacpan.org/pod/Test::More'
-    ) -&gt; $url-string {
-    my $match = URL.parse($url-string);
-    if $match {
-        say &quot;Matched $url-string:&quot;;
-        display &quot;scheme&quot;, ~$match&lt;scheme&gt;;
-        display &quot;userinfo&quot;, ~$match&lt;authority&gt;&lt;userinfo&gt;
-            if defined $match&lt;authority&gt;&lt;userinfo&gt;;
-        display &quot;host&quot;, ~$match&lt;authority&gt;&lt;host&gt;
-            if defined $match&lt;authority&gt;&lt;host&gt;;
-        display &quot;port&quot;, ~$match&lt;authority&gt;&lt;port&gt;
-            if defined $match&lt;authority&gt;&lt;port&gt;;
-        display &quot;path&quot;, ~$match&lt;path&gt;;
-        display &quot;query&quot;, ~$match&lt;query&gt; if defined $match&lt;query&gt;;
-        display &quot;fragment&quot;, ~$match&lt;fragment&gt; if defined $match&lt;fragment&gt;;
-    } else {
-        say &quot;Not matched $url-string&quot;;
+<span style="color:#66d9ef">for</span> (<span style="color:#e6db74">&#39;jdbc:mysql://user:password@localhost:3306/pwc?profile=true#h1&#39;</span>,
+     <span style="color:#e6db74">&#39;https://en.wikipedia.org/wiki/URL&#39;</span>,
+     <span style="color:#e6db74">&#39;https://perlcon.eu/my&#39;</span>,
+     <span style="color:#e6db74">&#39;https://www.perlmonks.org/?node=Seekers of Perl Wisdom&#39;</span>,
+     <span style="color:#e6db74">&#39;https://metacpan.org/pod/Test::More&#39;</span>
+    ) <span style="color:#f92672">-&gt;</span> $url<span style="color:#f92672">-</span>string {
+    <span style="color:#66d9ef">my</span> $match <span style="color:#f92672">=</span> URL<span style="color:#f92672">.</span>parse($url<span style="color:#f92672">-</span>string);
+    <span style="color:#66d9ef">if</span> $match {
+        say <span style="color:#e6db74">&#34;Matched $url-string:&#34;</span>;
+        display <span style="color:#e6db74">&#34;scheme&#34;</span>, <span style="color:#f92672">~</span>$match<span style="color:#e6db74">&lt;scheme&gt;</span>;
+        display <span style="color:#e6db74">&#34;userinfo&#34;</span>, <span style="color:#f92672">~</span>$match<span style="color:#e6db74">&lt;authority&gt;&lt;userinfo&gt;</span>
+            <span style="color:#66d9ef">if</span> defined $match<span style="color:#e6db74">&lt;authority&gt;&lt;userinfo&gt;</span>;
+        display <span style="color:#e6db74">&#34;host&#34;</span>, <span style="color:#f92672">~</span>$match<span style="color:#e6db74">&lt;authority&gt;&lt;host&gt;</span>
+            <span style="color:#66d9ef">if</span> defined $match<span style="color:#e6db74">&lt;authority&gt;&lt;host&gt;</span>;
+        display <span style="color:#e6db74">&#34;port&#34;</span>, <span style="color:#f92672">~</span>$match<span style="color:#e6db74">&lt;authority&gt;&lt;port&gt;</span>
+            <span style="color:#66d9ef">if</span> defined $match<span style="color:#e6db74">&lt;authority&gt;&lt;port&gt;</span>;
+        display <span style="color:#e6db74">&#34;path&#34;</span>, <span style="color:#f92672">~</span>$match<span style="color:#e6db74">&lt;path&gt;</span>;
+        display <span style="color:#e6db74">&#34;query&#34;</span>, <span style="color:#f92672">~</span>$match<span style="color:#e6db74">&lt;query&gt;</span> <span style="color:#66d9ef">if</span> defined $match<span style="color:#e6db74">&lt;query&gt;</span>;
+        display <span style="color:#e6db74">&#34;fragment&#34;</span>, <span style="color:#f92672">~</span>$match<span style="color:#e6db74">&lt;fragment&gt;</span> <span style="color:#66d9ef">if</span> defined $match<span style="color:#e6db74">&lt;fragment&gt;</span>;
+    } <span style="color:#66d9ef">else</span> {
+        say <span style="color:#e6db74">&#34;Not matched $url-string&#34;</span>;
     }
 }
-</code></pre><p>And this is the output with our five test URLs:</p>
+</code></pre></div><p>And this is the output with our five test URLs:</p>
 <pre><code>$ perl6  parse_url.p6
 Matched jdbc:mysql://user:password@localhost:3306/pwc?profile=true#h1:
     scheme         :         jdbc:mysql:
@@ -274,176 +274,176 @@ Matched https://metacpan.org/pod/Test::More:
 <h2 id="alternative-solutions">Alternative Solutions</h2>
 <p>Since most solutions used regexes or grammars to perform the bulk of the work, it seems interesting to quote these grammars (except when they are too long) to provide a ground for comparisons.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/arne-sommer/perl6/ch-2.p6">Arne Sommer</a> used a regex to parse URLs:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">if $url ~~
-  /^
-    (&lt;[a..z]&gt;&lt;[a..z 0..9 + . : \-]&gt;*)\: # $0 scheme
-    [\/\/                               # //
-      [(.*[\:.+]?)\@]?                  # $1 userinfo (optional)
-      (&lt;[\w \. \-]&gt;*)                   # $2 host
-      [\:(\d+)]?                        # $3 port (optional)
-      (\/?)                             # $4 path separator
-    ]?                                  # $1-$4 are optional
-    ([&lt;[\w \d -] - [#?]&gt;]+)?            # $5 path (optional)
-    [\?(&lt;[\w \d \- =]&gt;*)]?              # $6 query (optional)
-    [\#(.*)]?                           # $7 fragment (optional)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">if</span> $url <span style="color:#f92672">~~</span>
+  <span style="color:#f92672">/^</span>
+    (<span style="color:#e6db74">&lt;[a..z]&gt;</span><span style="color:#f92672">&lt;</span>[a<span style="color:#f92672">..</span>z <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">9</span> <span style="color:#f92672">+</span> <span style="color:#f92672">.</span> : <span style="color:#f92672">\-</span>]<span style="color:#f92672">&gt;*</span>)<span style="color:#f92672">\</span>: <span style="color:#75715e"># $0 scheme</span>
+    [<span style="color:#f92672">\</span><span style="color:#e6db74">/\/                               # /</span><span style="color:#f92672">/</span>
+      [(<span style="color:#f92672">.*</span>[<span style="color:#f92672">\</span>:<span style="color:#f92672">.+</span>]?)<span style="color:#f92672">\</span>@<span style="color:#960050;background-color:#1e0010">]?</span>                  <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#960050;background-color:#1e0010">$</span>1 userinfo (optional)
+      (<span style="color:#f92672">&lt;</span>[<span style="color:#f92672">\</span>w <span style="color:#f92672">\.</span> <span style="color:#f92672">\-</span>]<span style="color:#f92672">&gt;*</span>)                   <span style="color:#75715e"># $2 host</span>
+      [<span style="color:#f92672">\</span>:(<span style="color:#f92672">\</span>d<span style="color:#f92672">+</span>)]?                        <span style="color:#75715e"># $3 port (optional)</span>
+      (<span style="color:#f92672">\/</span>?)                             <span style="color:#75715e"># $4 path separator</span>
+    ]?                                  <span style="color:#75715e"># $1-$4 are optional</span>
+    ([<span style="color:#f92672">&lt;</span>[<span style="color:#f92672">\</span>w <span style="color:#f92672">\</span>d <span style="color:#f92672">-</span>] <span style="color:#f92672">-</span> [<span style="color:#75715e">#?]&gt;]+)?            # $5 path (optional)</span>
+    [<span style="color:#f92672">\</span>?(<span style="color:#f92672">&lt;</span>[<span style="color:#f92672">\</span>w <span style="color:#f92672">\</span>d <span style="color:#f92672">\-</span> <span style="color:#f92672">=</span>]<span style="color:#f92672">&gt;*</span>)]?              <span style="color:#75715e"># $6 query (optional)</span>
+    [<span style="color:#f92672">\</span><span style="color:#75715e">#(.*)]?                           # $7 fragment (optional)</span>
   $/
-{ # ...
-</code></pre><p>Note that I almost missed that Arne also wrote a <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/arne-sommer/perl6/url-parse-grammar">grammar-based solution</a>.</p>
+{ <span style="color:#75715e"># ...</span>
+</code></pre></div><p>Note that I almost missed that Arne also wrote a <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/arne-sommer/perl6/url-parse-grammar">grammar-based solution</a>.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/noud/perl6/ch-2.p6">Noud</a> also used a regex to parse the input. I can&rsquo;t resist showing his very compact <code>parse</code> subroutine:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub parse($url) {
-    my @keys = &lt;scheme userinfo host port path query fragment&gt;;
-    my $reg = / (\w+\:\w+)\:\/\/(\w+\:.+)\@(\w+)\:(\d+)(\/\w+)\?(.+)\#(\w+)$ /;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">parse</span>($url) {
+    <span style="color:#66d9ef">my</span> @keys <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;</span>scheme userinfo host port path query fragment<span style="color:#f92672">&gt;</span>;
+    <span style="color:#66d9ef">my</span> $reg <span style="color:#f92672">=</span> <span style="color:#e6db74">/ (\w+\:\w+)\:\/\/(\w+\:.+)\@(\w+)\:(\d+)(\/\w+)\?(.+)\#(\w+)$ /</span>;
 
-    return Hash.new(@keys Z ($url ~~ $reg).values);
+    <span style="color:#66d9ef">return</span> Hash<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(@keys Z ($url <span style="color:#f92672">~~</span> $reg)<span style="color:#f92672">.</span>values);
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/fjwhittle/perl6/ch-2.p6">Francis J. Whittle</a> created a full-fledged OOP program with three classes: <code>URL</code>, <code>URL::UserInfo</code>, and <code>A::URLish</code>.  Parsing itself is done with the <code>G::URLish</code> grammar:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">grammar G::URLish {
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/fjwhittle/perl6/ch-2.p6">Francis J. Whittle</a> created a full-fledged OOP program with three classes: <code>URL</code>, <code>URL::UserInfo</code>, and <code>A::URLish</code>.  Parsing itself is done with the <code>G::URLish</code> grammar:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">grammar G::URLish {
   regex TOP {
-    ^ &lt;scheme&gt; &lt; : :// &gt;
-    &lt;userinfo&gt;?
-    [ &lt;host&gt; [ ':' &lt;port&gt; ]? '/' ]?
-    &lt;path&gt;
-    [ '?' &lt;query&gt; ]?
-    [ '#' &lt;fragment&gt; ] ? $
-  }
-  proto regex userinfo      { * }
-  regex userinfo:sym&lt;user-pass&gt; { &lt;user&gt; [ ':' &lt;password&gt; ]? '@'                             }
-  regex user            { &lt;.xpalpha&gt;+                                                }
-  regex password        { &lt;.xpalpha&gt;+                                                }
-  regex host            { &lt;.xpalpha&gt;+                                                }
-  token port            { &lt;.digit&gt;+                                                  }
-  # For compatibility with the example, but I don't think : is valid here.
-  regex scheme          { &lt;.ialpha&gt;+ [ ':' &lt;.ialpha&gt;+ ]?                             }
-  regex path            { [ &lt;.xpalpha&gt;* ]+ % '/'                                     }
-  regex query           { &lt;param&gt;+ % &lt;[\&amp;;]&gt;                                         }
-  regex param           { $&lt;key&gt; = [ &lt;.xalpha&gt;+ ] [ '=' $&lt;value&gt; = [ &lt;.xalpha&gt;+ ] ]? }
-  token fragment        { &lt;.xalpha&gt;+                                                 }
-  token xalpha          { &lt;.alpha&gt; | &lt;.digit&gt; | &lt;.safe&gt; | &lt;.extra&gt; | &lt;.escape&gt;       }
-  token xpalpha         { &lt;.xalpha&gt; | '+'                                            }
-  token ialpha          { &lt;.alpha&gt; [ &lt;.xalpha&gt;+ ]                                    }
-  token alpha           { &lt;[a..z A..Z]&gt;                                              }
-  token digit           { &lt;[0..9]&gt;                                                   }
-  token safe            { &lt;[$ \- _ @ . &amp;]&gt;                                           }
-  token extra           { &lt;[! * &quot; ' ( ) ,]&gt;                                          }
-  token reserved        { &lt;[= ; / # ? : ]&gt; || ' '                                    }
-  token escape          { '%' &lt;[0..9 a..z A..Z]&gt; ** 2                                }
-  token national        { &lt;[{ } | \[ \] \\ ^ ~]&gt;                                     }
-  token punctuation     { &lt;[&lt; &gt;]&gt;                                                    }
+    <span style="color:#f92672">^</span> <span style="color:#e6db74">&lt;scheme&gt;</span> <span style="color:#f92672">&lt;</span> : :<span style="color:#e6db74">//</span> <span style="color:#f92672">&gt;</span>
+    <span style="color:#e6db74">&lt;userinfo&gt;</span>?
+    [ <span style="color:#e6db74">&lt;host&gt;</span> [ <span style="color:#e6db74">&#39;:&#39;</span> <span style="color:#e6db74">&lt;port&gt;</span> ]? <span style="color:#e6db74">&#39;/&#39;</span> ]?
+    <span style="color:#e6db74">&lt;path&gt;</span>
+    [ <span style="color:#e6db74">&#39;?&#39;</span> <span style="color:#e6db74">&lt;query&gt;</span> ]?
+    [ <span style="color:#e6db74">&#39;#&#39;</span> <span style="color:#e6db74">&lt;fragment&gt;</span> ] ? $
+  <span style="color:#960050;background-color:#1e0010">}</span>
+  proto regex userinfo      { <span style="color:#f92672">*</span> }
+  regex userinfo:sym<span style="color:#e6db74">&lt;user-pass&gt;</span> { <span style="color:#e6db74">&lt;user&gt;</span> [ <span style="color:#e6db74">&#39;:&#39;</span> <span style="color:#e6db74">&lt;password&gt;</span> ]? <span style="color:#e6db74">&#39;@&#39;</span>                             }
+  regex user            { <span style="color:#e6db74">&lt;.xpalpha&gt;</span><span style="color:#f92672">+</span>                                                }
+  regex password        { <span style="color:#e6db74">&lt;.xpalpha&gt;</span><span style="color:#f92672">+</span>                                                }
+  regex host            { <span style="color:#e6db74">&lt;.xpalpha&gt;</span><span style="color:#f92672">+</span>                                                }
+  token port            { <span style="color:#e6db74">&lt;.digit&gt;</span><span style="color:#f92672">+</span>                                                  }
+  <span style="color:#75715e"># For compatibility with the example, but I don&#39;t think : is valid here.</span>
+  regex scheme          { <span style="color:#e6db74">&lt;.ialpha&gt;</span><span style="color:#f92672">+</span> [ <span style="color:#e6db74">&#39;:&#39;</span> <span style="color:#e6db74">&lt;.ialpha&gt;</span><span style="color:#f92672">+</span> ]?                             }
+  regex path            { [ <span style="color:#e6db74">&lt;.xpalpha&gt;</span><span style="color:#f92672">*</span> ]<span style="color:#f92672">+</span> % <span style="color:#960050;background-color:#1e0010">&#39;/&#39;</span>                                     <span style="color:#960050;background-color:#1e0010">}</span>
+  regex query           { <span style="color:#e6db74">&lt;param&gt;</span><span style="color:#f92672">+</span> % <span style="color:#960050;background-color:#1e0010">&lt;[\&amp;;]&gt;</span>                                         <span style="color:#960050;background-color:#1e0010">}</span>
+  regex param           { $<span style="color:#960050;background-color:#1e0010">&lt;</span>key<span style="color:#f92672">&gt;</span> <span style="color:#f92672">=</span> [ <span style="color:#e6db74">&lt;.xalpha&gt;</span><span style="color:#f92672">+</span> ] [ <span style="color:#e6db74">&#39;=&#39;</span> $<span style="color:#960050;background-color:#1e0010">&lt;</span>value<span style="color:#f92672">&gt;</span> <span style="color:#f92672">=</span> [ <span style="color:#e6db74">&lt;.xalpha&gt;</span><span style="color:#f92672">+</span> ] ]? }
+  token fragment        { <span style="color:#e6db74">&lt;.xalpha&gt;</span><span style="color:#f92672">+</span>                                                 }
+  token xalpha          { <span style="color:#e6db74">&lt;.alpha&gt;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&lt;.digit&gt;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&lt;.safe&gt;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&lt;.extra&gt;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&lt;.escape&gt;</span>       }
+  token xpalpha         { <span style="color:#e6db74">&lt;.xalpha&gt;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&#39;+&#39;</span>                                            }
+  token ialpha          { <span style="color:#e6db74">&lt;.alpha&gt;</span> [ <span style="color:#e6db74">&lt;.xalpha&gt;</span><span style="color:#f92672">+</span> ]                                    }
+  token alpha           { <span style="color:#f92672">&lt;</span>[a<span style="color:#f92672">..</span>z A<span style="color:#f92672">..</span>Z]<span style="color:#f92672">&gt;</span>                                              }
+  token digit           { <span style="color:#e6db74">&lt;[0..9]&gt;</span>                                                   }
+  token safe            { <span style="color:#f92672">&lt;</span>[$ <span style="color:#960050;background-color:#1e0010">\-</span> _ @ <span style="color:#960050;background-color:#1e0010">.</span> <span style="color:#960050;background-color:#1e0010">&amp;]&gt;</span>                                           <span style="color:#960050;background-color:#1e0010">}</span>
+  token extra           { <span style="color:#f92672">&lt;</span>[<span style="color:#f92672">!</span> <span style="color:#f92672">*</span> <span style="color:#960050;background-color:#1e0010">&#34;</span> <span style="color:#e6db74">&#39; ( ) ,]&gt;                                          }
+</span><span style="color:#e6db74">  token reserved        { &lt;[= ; / # ? : ]&gt; || &#39;</span> <span style="color:#e6db74">&#39;                                    }
+</span><span style="color:#e6db74">  token escape          { &#39;</span>%<span style="color:#960050;background-color:#1e0010">&#39;</span> <span style="color:#960050;background-color:#1e0010">&lt;[</span>0<span style="color:#f92672">..</span><span style="color:#ae81ff">9</span> a<span style="color:#f92672">..</span>z A<span style="color:#f92672">..</span>Z]<span style="color:#f92672">&gt;</span> <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span>                                }
+  token national        { <span style="color:#f92672">&lt;</span>[{ } <span style="color:#f92672">|</span> <span style="color:#f92672">\</span>[ <span style="color:#f92672">\</span>] <span style="color:#f92672">\\</span> <span style="color:#f92672">^</span> <span style="color:#f92672">~</span>]<span style="color:#f92672">&gt;</span>                                     }
+  token punctuation     { <span style="color:#f92672">&lt;</span>[<span style="color:#f92672">&lt;</span> <span style="color:#f92672">&gt;</span>]<span style="color:#f92672">&gt;</span>                                                    }
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/kevin-colyer/perl6/ch-2.p6">Kevin Colyer</a> created a <code>URL</code> grammar to parse the input. Kevin also wrote a voluminous test suite. And he used an actions class with a <code>TOP</code> method to populate a hash with the various components of the URL.</p>
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/kevin-colyer/perl6/ch-2.p6">Kevin Colyer</a> created a <code>URL</code> grammar to parse the input. Kevin also wrote a voluminous test suite. And he used an actions class with a <code>TOP</code> method to populate a hash with the various components of the URL.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/ozzy/perl6/ch-2.p6">Ozzy</a> used a quite concise grammar:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">grammar G {
-    regex TOP { ^ &lt;scheme&gt; ':' ['//' &lt;authority&gt;]? &lt;path&gt; ['?' &lt;query&gt;]? ['#' &lt;fragment&gt;]? $ }
-    token scheme    { &lt;+alpha-[_]&gt; &lt;[\w \+ \. \-]&gt;+          }
-    token authority { [&lt;userinfo&gt; '@']? &lt;host&gt; [':' &lt;port&gt;]? }
-    token userinfo  {  &lt;user&gt; [':' &lt;password&gt;]?              }
-    token user      { \w+           }
-    token password  { \w*           }
-    token host      { &lt;[\w\.\[\]]&gt;+ }
-    token port      { \d+           }
-    token path      { [ '/' \w+ ]+  }
-    token query     { &lt;[=\w]&gt;+      }
-    token fragment  { \w+           }
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">grammar G {
+    regex TOP { <span style="color:#f92672">^</span> <span style="color:#e6db74">&lt;scheme&gt;</span> <span style="color:#e6db74">&#39;:&#39;</span> [<span style="color:#e6db74">&#39;//&#39;</span> <span style="color:#e6db74">&lt;authority&gt;</span>]? <span style="color:#e6db74">&lt;path&gt;</span> [<span style="color:#e6db74">&#39;?&#39;</span> <span style="color:#e6db74">&lt;query&gt;</span>]? [<span style="color:#e6db74">&#39;#&#39;</span> <span style="color:#e6db74">&lt;fragment&gt;</span>]? $ <span style="color:#960050;background-color:#1e0010">}</span>
+    token scheme    { <span style="color:#e6db74">&lt;+alpha-[_]&gt;</span> <span style="color:#f92672">&lt;</span>[<span style="color:#f92672">\</span>w <span style="color:#f92672">\+</span> <span style="color:#f92672">\.</span> <span style="color:#f92672">\-</span>]<span style="color:#f92672">&gt;+</span>          }
+    token authority { [<span style="color:#e6db74">&lt;userinfo&gt;</span> <span style="color:#e6db74">&#39;@&#39;</span>]? <span style="color:#e6db74">&lt;host&gt;</span> [<span style="color:#e6db74">&#39;:&#39;</span> <span style="color:#e6db74">&lt;port&gt;</span>]? }
+    token userinfo  {  <span style="color:#e6db74">&lt;user&gt;</span> [<span style="color:#e6db74">&#39;:&#39;</span> <span style="color:#e6db74">&lt;password&gt;</span>]?              }
+    token user      { <span style="color:#f92672">\</span>w<span style="color:#f92672">+</span>           }
+    token password  { <span style="color:#f92672">\</span>w<span style="color:#f92672">*</span>           }
+    token host      { <span style="color:#e6db74">&lt;[\w\.\[\]]&gt;</span><span style="color:#f92672">+</span> }
+    token port      { <span style="color:#f92672">\</span>d<span style="color:#f92672">+</span>           }
+    token path      { [ <span style="color:#e6db74">&#39;/&#39;</span> <span style="color:#f92672">\</span>w<span style="color:#f92672">+</span> ]<span style="color:#f92672">+</span>  }
+    token query     { <span style="color:#e6db74">&lt;[=\w]&gt;</span><span style="color:#f92672">+</span>      }
+    token fragment  { <span style="color:#f92672">\</span>w<span style="color:#f92672">+</span>           }
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/feng-chang/perl6/ch-2.p6">Feng Chang</a> also created a <code>URL</code> grammar:</p>
-<pre><code class="language-perl6" data-lang="perl6">grammar URL {
-    token TOP { ^
-        &lt;scheme&gt; ':'
-        [ '//'
-            [ &lt;userinfo&gt; '@' ]?
-            &lt;host&gt;
-            [ ':' &lt;port&gt; ]?
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/feng-chang/perl6/ch-2.p6">Feng Chang</a> also created a <code>URL</code> grammar:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6">grammar URL {
+    token TOP { <span style="color:#f92672">^</span>
+        <span style="color:#e6db74">&lt;scheme&gt;</span> <span style="color:#e6db74">&#39;:&#39;</span>
+        [ <span style="color:#e6db74">&#39;//&#39;</span>
+            [ <span style="color:#e6db74">&lt;userinfo&gt;</span> <span style="color:#e6db74">&#39;@&#39;</span> ]?
+            <span style="color:#e6db74">&lt;host&gt;</span>
+            [ <span style="color:#e6db74">&#39;:&#39;</span> <span style="color:#e6db74">&lt;port&gt;</span> ]?
         ]?
-        &lt;path&gt; [ '?' &lt;queries&gt; ]? [ '#' &lt;fragment&gt; ]?
-    $ }
-    token       scheme { &lt;id&gt; }
-    token     userinfo { &lt;user&gt; [ ':' &lt;password&gt; ]? }
-    token         user { &lt;id&gt; }
-    token     password { \w+ }
-    token         host { [ &lt;IPv4-address&gt; | &lt;domain-name&gt; ] }
-    token IPv4-address { [\d ** 1..3] ** 4 % '.' }
-    token        dname { &lt;[a..zA..Z]&gt; &lt;[-a..zA..Z0..9]&gt;* }
-    token  domain-name { &lt;dname&gt;+ % '.' }
-    token         port { \d+ }
-    token         path { '/' [&lt;[a..zA..Z0..9]&gt;+] *%% '/' }
-    token          key { &lt;id&gt; }
-    token        value { \w+ }
-    token        query { &lt;key&gt; '=' &lt;value&gt; }
-    token      queries { &lt;query&gt; +% '&amp;' }
-    token     fragment { &lt;id&gt; }
-    token           id { &lt;[a..zA..Z]&gt; &lt;[-+.a..zA..Z0..9]&gt;* }
+        <span style="color:#e6db74">&lt;path&gt;</span> [ <span style="color:#e6db74">&#39;?&#39;</span> <span style="color:#e6db74">&lt;queries&gt;</span> ]? [ <span style="color:#e6db74">&#39;#&#39;</span> <span style="color:#e6db74">&lt;fragment&gt;</span> ]?
+    $ <span style="color:#960050;background-color:#1e0010">}</span>
+    token       scheme { <span style="color:#e6db74">&lt;id&gt;</span> }
+    token     userinfo { <span style="color:#e6db74">&lt;user&gt;</span> [ <span style="color:#e6db74">&#39;:&#39;</span> <span style="color:#e6db74">&lt;password&gt;</span> ]? }
+    token         user { <span style="color:#e6db74">&lt;id&gt;</span> }
+    token     password { <span style="color:#f92672">\</span>w<span style="color:#f92672">+</span> }
+    token         host { [ <span style="color:#e6db74">&lt;IPv4-address&gt;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&lt;domain-name&gt;</span> ] }
+    token IPv4<span style="color:#f92672">-</span>address { [<span style="color:#f92672">\</span>d <span style="color:#f92672">**</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">3</span>] <span style="color:#f92672">**</span> <span style="color:#ae81ff">4</span> % <span style="color:#960050;background-color:#1e0010">&#39;.&#39;</span> <span style="color:#960050;background-color:#1e0010">}</span>
+    token        dname { <span style="color:#e6db74">&lt;[a..zA..Z]&gt;</span> <span style="color:#e6db74">&lt;[-a..zA..Z0..9]&gt;</span><span style="color:#f92672">*</span> }
+    token  domain<span style="color:#f92672">-</span>name { <span style="color:#e6db74">&lt;dname&gt;</span><span style="color:#f92672">+</span> % <span style="color:#960050;background-color:#1e0010">&#39;.&#39;</span> <span style="color:#960050;background-color:#1e0010">}</span>
+    token         port { <span style="color:#f92672">\</span>d<span style="color:#f92672">+</span> }
+    token         path { <span style="color:#e6db74">&#39;/&#39;</span> [<span style="color:#e6db74">&lt;[a..zA..Z0..9]&gt;</span><span style="color:#f92672">+</span>] <span style="color:#f92672">*</span>%% <span style="color:#960050;background-color:#1e0010">&#39;/&#39;</span> <span style="color:#960050;background-color:#1e0010">}</span>
+    token          key { <span style="color:#e6db74">&lt;id&gt;</span> }
+    token        value { <span style="color:#f92672">\</span>w<span style="color:#f92672">+</span> }
+    token        query { <span style="color:#e6db74">&lt;key&gt;</span> <span style="color:#e6db74">&#39;=&#39;</span> <span style="color:#e6db74">&lt;value&gt;</span> }
+    token      queries { <span style="color:#e6db74">&lt;query&gt;</span> <span style="color:#f92672">+</span>% <span style="color:#960050;background-color:#1e0010">&#39;&amp;&#39;</span> <span style="color:#960050;background-color:#1e0010">}</span>
+    token     fragment { <span style="color:#e6db74">&lt;id&gt;</span> }
+    token           id { <span style="color:#e6db74">&lt;[a..zA..Z]&gt;</span> <span style="color:#e6db74">&lt;[-+.a..zA..Z0..9]&gt;</span><span style="color:#f92672">*</span> }
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/jaldhar-h-vyas/perl6/ch-2.p6">Jaldhar H. Vyas</a> also created a <code>URL</code> grammar:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">grammar URL {
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/jaldhar-h-vyas/perl6/ch-2.p6">Jaldhar H. Vyas</a> also created a <code>URL</code> grammar:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">grammar URL {
     token TOP {
-        &lt;Scheme&gt; ':'
+        <span style="color:#e6db74">&lt;Scheme&gt;</span> <span style="color:#e6db74">&#39;:&#39;</span>
         [
-            '//'?
-            [ &lt;Userinfo&gt; '@' ]?
-            &lt;Host&gt;
-            [ ':' &lt;Port&gt; ]?
+            <span style="color:#e6db74">&#39;//&#39;</span>?
+            [ <span style="color:#e6db74">&lt;Userinfo&gt;</span> <span style="color:#e6db74">&#39;@&#39;</span> ]?
+            <span style="color:#e6db74">&lt;Host&gt;</span>
+            [ <span style="color:#e6db74">&#39;:&#39;</span> <span style="color:#e6db74">&lt;Port&gt;</span> ]?
         ]?
-        &lt;Path&gt;?  '?' &lt;Query&gt; ]? [ '#' &lt;Fragment&gt; ]?
+        <span style="color:#e6db74">&lt;Path&gt;</span>?  <span style="color:#e6db74">&#39;?&#39;</span> <span style="color:#e6db74">&lt;Query&gt;</span> ]? [ <span style="color:#e6db74">&#39;#&#39;</span> <span style="color:#e6db74">&lt;Fragment&gt;</span> ]?
     }
-    token Scheme { &lt;SchemeChar&gt;+ }
-    token Userinfo { &lt;UserinfoChar&gt;+ }
-    token Host { &lt;IPv4&gt; | &lt;Unreserved&gt;+ }
-    token Port { \d+ }
-    token Path { &lt;PathChar&gt;+ }
-    token Query { &lt;QueryOrFragment&gt;+ }
-    token Fragment { &lt;QueryOrFragment&gt;+ }
-    token SchemeChar { &lt;[ A..Z a..z 0..9 + \- . ]&gt; }
-    token DecOctet { \d | &lt;[1..9]&gt;\d | 1\d\d | 2&lt;[0..4]&gt;\d | 25&lt;[0..5]&gt; }
-    token HexOctet { &lt;[ 0..9 A..F a..f ]&gt; ** 2 }
-    token IPv4 { &lt;DecOctet&gt; \. &lt;DecOctet&gt; \. &lt;DecOctet&gt; \. &lt;DecOctet&gt; }
-    token PChar { &lt;UserinfoChar&gt; | '@' }
-    token PathChar { &lt;PChar&gt; | '/' }
-    token PctEncoded { \% &lt;HexOctet&gt; }
-    token QueryOrFragment { &lt;PChar&gt; | \/ | \? }
-    token SubDelim { &lt;[ \! $ &amp; \' \( \) * \+ \, \; \= ]&gt; }
-    token Unreserved { &lt;[ A..Z a..z 0..9 \- . _ \~ ]&gt; }
-    token UserinfoChar { &lt;Unreserved&gt; | &lt;PctEncoded&gt; | &lt;SubDelim&gt; | ':' }
+    token Scheme { <span style="color:#e6db74">&lt;SchemeChar&gt;</span><span style="color:#f92672">+</span> }
+    token Userinfo { <span style="color:#e6db74">&lt;UserinfoChar&gt;</span><span style="color:#f92672">+</span> }
+    token Host { <span style="color:#e6db74">&lt;IPv4&gt;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&lt;Unreserved&gt;</span><span style="color:#f92672">+</span> }
+    token Port { <span style="color:#f92672">\</span>d<span style="color:#f92672">+</span> }
+    token Path { <span style="color:#e6db74">&lt;PathChar&gt;</span><span style="color:#f92672">+</span> }
+    token Query { <span style="color:#e6db74">&lt;QueryOrFragment&gt;</span><span style="color:#f92672">+</span> }
+    token Fragment { <span style="color:#e6db74">&lt;QueryOrFragment&gt;</span><span style="color:#f92672">+</span> }
+    token SchemeChar { <span style="color:#f92672">&lt;</span>[ A<span style="color:#f92672">..</span>Z a<span style="color:#f92672">..</span>z <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">9</span> <span style="color:#f92672">+</span> <span style="color:#f92672">\-</span> <span style="color:#f92672">.</span> ]<span style="color:#f92672">&gt;</span> }
+    token DecOctet { <span style="color:#f92672">\</span>d <span style="color:#f92672">|</span> <span style="color:#e6db74">&lt;[1..9]&gt;</span><span style="color:#f92672">\</span>d <span style="color:#f92672">|</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">\</span>d<span style="color:#f92672">\</span>d <span style="color:#f92672">|</span> <span style="color:#ae81ff">2</span><span style="color:#e6db74">&lt;[0..4]&gt;</span><span style="color:#f92672">\</span>d <span style="color:#f92672">|</span> <span style="color:#ae81ff">25</span><span style="color:#e6db74">&lt;[0..5]&gt;</span> }
+    token HexOctet { <span style="color:#f92672">&lt;</span>[ <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">9</span> A<span style="color:#f92672">..</span>F a<span style="color:#f92672">..</span>f ]<span style="color:#f92672">&gt;</span> <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span> }
+    token IPv4 { <span style="color:#e6db74">&lt;DecOctet&gt;</span> <span style="color:#f92672">\.</span> <span style="color:#e6db74">&lt;DecOctet&gt;</span> <span style="color:#f92672">\.</span> <span style="color:#e6db74">&lt;DecOctet&gt;</span> <span style="color:#f92672">\.</span> <span style="color:#e6db74">&lt;DecOctet&gt;</span> }
+    token PChar { <span style="color:#e6db74">&lt;UserinfoChar&gt;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&#39;@&#39;</span> }
+    token PathChar { <span style="color:#e6db74">&lt;PChar&gt;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&#39;/&#39;</span> }
+    token PctEncoded { <span style="color:#f92672">\</span>% <span style="color:#960050;background-color:#1e0010">&lt;</span>HexOctet<span style="color:#f92672">&gt;</span> }
+    token QueryOrFragment { <span style="color:#e6db74">&lt;PChar&gt;</span> <span style="color:#f92672">|</span> <span style="color:#f92672">\/</span> <span style="color:#f92672">|</span> <span style="color:#f92672">\</span>? }
+    token SubDelim { <span style="color:#f92672">&lt;</span>[ <span style="color:#f92672">\!</span> $ <span style="color:#960050;background-color:#1e0010">&amp;</span> <span style="color:#960050;background-color:#1e0010">\&#39;</span> <span style="color:#960050;background-color:#1e0010">\(</span> <span style="color:#960050;background-color:#1e0010">\</span>) <span style="color:#f92672">*</span> <span style="color:#f92672">\+</span> <span style="color:#f92672">\</span>, <span style="color:#f92672">\</span>; <span style="color:#f92672">\=</span> ]<span style="color:#f92672">&gt;</span> }
+    token Unreserved { <span style="color:#f92672">&lt;</span>[ A<span style="color:#f92672">..</span>Z a<span style="color:#f92672">..</span>z <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">9</span> <span style="color:#f92672">\-</span> <span style="color:#f92672">.</span> _ <span style="color:#f92672">\~</span> ]<span style="color:#f92672">&gt;</span> }
+    token UserinfoChar { <span style="color:#e6db74">&lt;Unreserved&gt;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&lt;PctEncoded&gt;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&lt;SubDelim&gt;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&#39;:&#39;</span> }
 }
-</code></pre><p>Jaldhar used an actions class with one method to display each of the URL components.</p>
+</code></pre></div><p>Jaldhar used an actions class with one method to display each of the URL components.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/joelle-maslak/perl6/ch-2.p6">Joelle Maslak</a> also defined a <code>URL</code> grammar. I like the way she used character class &ldquo;subtractions&rdquo; to define several of her tokens (for example <code>username</code>, <code>password</code>, etc.), leading to a fairly concise grammar:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">grammar URL {
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">grammar URL {
     token TOP      {
-        ^ &lt;scheme&gt; ':'
+        <span style="color:#f92672">^</span> <span style="color:#e6db74">&lt;scheme&gt;</span> <span style="color:#e6db74">&#39;:&#39;</span>
         [
-            '//'
-            [ &lt;userinfo&gt; '@' ]?
-            &lt;host&gt;
-            [ ':' &lt;port&gt; ]?
+            <span style="color:#e6db74">&#39;//&#39;</span>
+            [ <span style="color:#e6db74">&lt;userinfo&gt;</span> <span style="color:#e6db74">&#39;@&#39;</span> ]?
+            <span style="color:#e6db74">&lt;host&gt;</span>
+            [ <span style="color:#e6db74">&#39;:&#39;</span> <span style="color:#e6db74">&lt;port&gt;</span> ]?
         ]?
-        &lt;path&gt; [ '?' &lt;query&gt; ]? [ '#' &lt;fragment&gt; ]? $
-    }
-    token scheme   { &lt;[A .. Z a .. z ]&gt; &lt;[ A .. Z a .. z 0 .. 9 . + - ]&gt;* }
-    token userinfo { &lt;username&gt; ':' &lt;password&gt; }
-    token username { &lt;[ \S ] - [ : ]&gt;+ }
-    token password { &lt;[ \S ] - [ @ ]&gt;* }
-    token host     { &lt;[ \S ] - [ : ? / \# ]&gt;+ }
-    token port     { &lt;[ \S ] - [ ? / \# ]&gt;+ }
-    token path     { [ '/' &lt;[ \S ] - [ ? \# ]&gt;* ]? }
-    token query    { &lt;[ \S ] - [ \# ]&gt;* }
-    token fragment { \S* }
+        <span style="color:#e6db74">&lt;path&gt;</span> [ <span style="color:#e6db74">&#39;?&#39;</span> <span style="color:#e6db74">&lt;query&gt;</span> ]? [ <span style="color:#e6db74">&#39;#&#39;</span> <span style="color:#e6db74">&lt;fragment&gt;</span> ]? $
+    <span style="color:#960050;background-color:#1e0010">}</span>
+    token scheme   { <span style="color:#f92672">&lt;</span>[A <span style="color:#f92672">..</span> Z a <span style="color:#f92672">..</span> z ]<span style="color:#f92672">&gt;</span> <span style="color:#f92672">&lt;</span>[ A <span style="color:#f92672">..</span> Z a <span style="color:#f92672">..</span> z <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">9</span> <span style="color:#f92672">.</span> <span style="color:#f92672">+</span> <span style="color:#f92672">-</span> ]<span style="color:#f92672">&gt;*</span> }
+    token userinfo { <span style="color:#e6db74">&lt;username&gt;</span> <span style="color:#e6db74">&#39;:&#39;</span> <span style="color:#e6db74">&lt;password&gt;</span> }
+    token username { <span style="color:#f92672">&lt;</span>[ <span style="color:#f92672">\</span>S ] <span style="color:#f92672">-</span> [ : ]<span style="color:#f92672">&gt;+</span> }
+    token password { <span style="color:#f92672">&lt;</span>[ <span style="color:#f92672">\</span>S ] <span style="color:#f92672">-</span> [ @ <span style="color:#960050;background-color:#1e0010">]&gt;*</span> <span style="color:#960050;background-color:#1e0010">}</span>
+    token host     { <span style="color:#f92672">&lt;</span>[ <span style="color:#f92672">\</span>S ] <span style="color:#f92672">-</span> [ : ? <span style="color:#f92672">/</span> <span style="color:#f92672">\</span><span style="color:#75715e"># ]&gt;+ }</span>
+    token port     { <span style="color:#f92672">&lt;</span>[ <span style="color:#f92672">\</span>S ] <span style="color:#f92672">-</span> [ ? <span style="color:#f92672">/</span> <span style="color:#f92672">\</span><span style="color:#75715e"># ]&gt;+ }</span>
+    token path     { [ <span style="color:#e6db74">&#39;/&#39;</span> <span style="color:#f92672">&lt;</span>[ <span style="color:#f92672">\</span>S ] <span style="color:#f92672">-</span> [ ? <span style="color:#f92672">\</span><span style="color:#75715e"># ]&gt;* ]? }</span>
+    token query    { <span style="color:#f92672">&lt;</span>[ <span style="color:#f92672">\</span>S ] <span style="color:#f92672">-</span> [ <span style="color:#f92672">\</span><span style="color:#75715e"># ]&gt;* }</span>
+    token fragment { <span style="color:#f92672">\</span>S<span style="color:#f92672">*</span> }
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/ruben-westerberg/perl6/ch-2.p6">Ruben Westerberg</a> defined a relatively compact <code>URI</code> grammar:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">grammar URI {
-    token TOP {&lt;scheme&gt;\:&lt;authority&gt;?&lt;path&gt;[\?&lt;query&gt;]?[\#&lt;fragment&gt;]?};##|&lt;authority&gt;};
-    token scheme { :i(&lt;alpha&gt;[&lt;[\-\.\+] + alnum&gt;]*)};
-    token path { (\/[&lt;alnum&gt;\/?]*)+};
-    token authority { (\/\/)[&lt;user&gt;[\:&lt;password&gt;]?\@]?&lt;host&gt;[\:&lt;port&gt;]?};
-    token user { (&lt;alnum&gt;+)};
-    token password { ( &lt;alnum&gt; +)};
-    token host { (&lt;alnum&gt;+)};
-    token port { (&lt;alnum&gt;+)};
-    token query { &lt;qpair&gt;[\&amp;&lt;qpair&gt;]*};
-    token qpair { (&lt;qkey&gt;\=&lt;qval&gt;)+};
-    token qkey {&lt;alnum&gt;+};
-    token qval {&lt;alnum&gt;+};
-    token fragment { (&lt;alnum&gt;+)};
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/ruben-westerberg/perl6/ch-2.p6">Ruben Westerberg</a> defined a relatively compact <code>URI</code> grammar:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">grammar URI {
+    token TOP {<span style="color:#e6db74">&lt;scheme&gt;</span><span style="color:#f92672">\</span>:<span style="color:#e6db74">&lt;authority&gt;</span>?<span style="color:#e6db74">&lt;path&gt;</span>[<span style="color:#f92672">\</span>?<span style="color:#e6db74">&lt;query&gt;</span>]?[<span style="color:#f92672">\</span><span style="color:#75715e">#&lt;fragment&gt;]?};##|&lt;authority&gt;};</span>
+    token scheme { :i(<span style="color:#e6db74">&lt;alpha&gt;</span>[<span style="color:#f92672">&lt;</span>[<span style="color:#f92672">\-\.\+</span>] <span style="color:#f92672">+</span> alnum<span style="color:#f92672">&gt;</span>]<span style="color:#f92672">*</span>)};
+    token path { (<span style="color:#f92672">\/</span>[<span style="color:#e6db74">&lt;alnum&gt;</span><span style="color:#f92672">\/</span>?]<span style="color:#f92672">*</span>)<span style="color:#f92672">+</span>};
+    token authority { (<span style="color:#f92672">\/\/</span>)[<span style="color:#e6db74">&lt;user&gt;</span>[<span style="color:#f92672">\</span>:<span style="color:#e6db74">&lt;password&gt;</span>]?<span style="color:#f92672">\</span>@<span style="color:#960050;background-color:#1e0010">]?&lt;</span>host<span style="color:#f92672">&gt;</span>[<span style="color:#f92672">\</span>:<span style="color:#e6db74">&lt;port&gt;</span>]?};
+    token user { (<span style="color:#e6db74">&lt;alnum&gt;</span><span style="color:#f92672">+</span>)};
+    token password { ( <span style="color:#e6db74">&lt;alnum&gt;</span> <span style="color:#f92672">+</span>)};
+    token host { (<span style="color:#e6db74">&lt;alnum&gt;</span><span style="color:#f92672">+</span>)};
+    token port { (<span style="color:#e6db74">&lt;alnum&gt;</span><span style="color:#f92672">+</span>)};
+    token query { <span style="color:#e6db74">&lt;qpair&gt;</span>[<span style="color:#f92672">\&amp;</span><span style="color:#e6db74">&lt;qpair&gt;</span>]<span style="color:#f92672">*</span>};
+    token qpair { (<span style="color:#e6db74">&lt;qkey&gt;</span><span style="color:#f92672">\=</span><span style="color:#e6db74">&lt;qval&gt;</span>)<span style="color:#f92672">+</span>};
+    token qkey {<span style="color:#e6db74">&lt;alnum&gt;</span><span style="color:#f92672">+</span>};
+    token qval {<span style="color:#e6db74">&lt;alnum&gt;</span><span style="color:#f92672">+</span>};
+    token fragment { (<span style="color:#e6db74">&lt;alnum&gt;</span><span style="color:#f92672">+</span>)};
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/athanasius/perl6/ch-2.p6">Athanasius</a> took a very different path compared to other challengers and used a Perl 5 module from the CPAN: <code>URI::Split</code>. He otherwise used regexes for validating components presumably not properly checked by the module (scheme and authority).</p>
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/athanasius/perl6/ch-2.p6">Athanasius</a> took a very different path compared to other challengers and used a Perl 5 module from the CPAN: <code>URI::Split</code>. He otherwise used regexes for validating components presumably not properly checked by the module (scheme and authority).</p>
 <h2 id="see-also">SEE ALSO</h2>
 <p>Only two blogs this time:</p>
 <p>Arne Sommer: <a href="https://perl6.eu/ackerman-url.html">https://perl6.eu/ackerman-url.html</a></p>

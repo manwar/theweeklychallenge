@@ -16,7 +16,7 @@
 
     <meta name="description" content="Laurent Rosenfeld Weekly Review: Challenge - #005.">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.66.0-DEV" />
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -164,14 +164,14 @@
 <h2 id="my-solutions">My Solutions</h2>
 <h3 id="normalized-strings-the-is-anagram-subroutine">Normalized Strings: the <code>is-anagram</code> Subroutine</h3>
 <p>We can start by creating an <code>is-anagram</code> subroutine that takes two words as parameters and return a true value if the words are anagrams of each other and false otherwise.</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub is-anagram (Str $word1, Str $word2) {
-    return False if $word1.chars != $word2.chars;
-    return $word1.comb.sort eq $word2.comb.sort;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is</span>-anagram (Str $word1, Str $word2) {
+    <span style="color:#66d9ef">return</span> False <span style="color:#66d9ef">if</span> $word1<span style="color:#f92672">.</span>chars <span style="color:#f92672">!=</span> $word2<span style="color:#f92672">.</span>chars;
+    <span style="color:#66d9ef">return</span> $word1<span style="color:#f92672">.</span>comb<span style="color:#f92672">.</span>sort <span style="color:#f92672">eq</span> $word2<span style="color:#f92672">.</span>comb<span style="color:#f92672">.</span>sort;
 }
-for &lt;ban bane post stop pots stop post pots pots taps&gt; -&gt; $w1, $w2 {
-    say &quot;$w1 $w2:\t&quot;, is-anagram $w1, $w2;
+<span style="color:#66d9ef">for</span> <span style="color:#f92672">&lt;</span>ban bane post stop pots stop post pots pots taps<span style="color:#f92672">&gt;</span> <span style="color:#f92672">-&gt;</span> $w1, $w2 {
+    say <span style="color:#e6db74">&#34;$w1 $w2:\t&#34;</span>, is<span style="color:#f92672">-</span>anagram $w1, $w2;
 }
-</code></pre><p>The <code>is-anagram</code> subroutine first returns a false value if the input words don&rsquo;t have the same length. Words of different lengths cannot be anagrams and it is my belief that checking the length of the input words is significantly faster than the subsequent processing of their individual letters (a couple of tests seemed to confirm that idea, but I must admit that haven&rsquo;t seriously benchmarked that). Therefore, it should speed up processing when we will use this subroutine repeatedly for a large number of word combinations. When words have the same length, then we just split the words into individual letters, sort the letters, and produce new &ldquo;normalized&rdquo; or &ldquo;canonical form&rdquo; strings with the input letters; if the new normalized strings are equal, then the words were anagrams of each other.</p>
+</code></pre></div><p>The <code>is-anagram</code> subroutine first returns a false value if the input words don&rsquo;t have the same length. Words of different lengths cannot be anagrams and it is my belief that checking the length of the input words is significantly faster than the subsequent processing of their individual letters (a couple of tests seemed to confirm that idea, but I must admit that haven&rsquo;t seriously benchmarked that). Therefore, it should speed up processing when we will use this subroutine repeatedly for a large number of word combinations. When words have the same length, then we just split the words into individual letters, sort the letters, and produce new &ldquo;normalized&rdquo; or &ldquo;canonical form&rdquo; strings with the input letters; if the new normalized strings are equal, then the words were anagrams of each other.</p>
 <p>This displays the following output:</p>
 <pre><code>$ perl6 is-anagram.p6
 ban bane:       False
@@ -204,13 +204,13 @@ It is a subset
 Found several oranges
 </code></pre>
 <p>We can now try the following alternate <code>is-anagram</code> subroutine using bags:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub is-anagram (Str $word1, Str $word2) {
-    return $word1.comb.Bag === $word2.comb.Bag;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is</span>-anagram (Str $word1, Str $word2) {
+    <span style="color:#66d9ef">return</span> $word1<span style="color:#f92672">.</span>comb<span style="color:#f92672">.</span>Bag <span style="color:#f92672">===</span> $word2<span style="color:#f92672">.</span>comb<span style="color:#f92672">.</span>Bag;
 }
-for &lt;ban bane post stop pots stop post pots pots taps&gt; -&gt; $w1, $w2 {
-    say &quot;$w1 $w2:\t&quot;, is-anagram $w1, $w2;
+<span style="color:#66d9ef">for</span> <span style="color:#f92672">&lt;</span>ban bane post stop pots stop post pots pots taps<span style="color:#f92672">&gt;</span> <span style="color:#f92672">-&gt;</span> $w1, $w2 {
+    say <span style="color:#e6db74">&#34;$w1 $w2:\t&#34;</span>, is<span style="color:#f92672">-</span>anagram $w1, $w2;
 }
-</code></pre><p>The <code>===</code> value identity operator used between two bags returns <code>True</code> if the bags are identical. This program displays the same output as before.</p>
+</code></pre></div><p>The <code>===</code> value identity operator used between two bags returns <code>True</code> if the bags are identical. This program displays the same output as before.</p>
 <h3 id="creating-an-anagram-operator">Creating an Anagram Operator</h3>
 <p>Just a bit of fun: rather than creating an <code>is-anagram</code> subroutine, we could create the infix <code>ana</code> operator:</p>
 <pre><code>sub infix:&lt;ana&gt; (Str $word1, Str $word2) {
@@ -235,14 +235,14 @@ pots taps:      False
 <p>I might undertake a serious benchmark one day, but it really seems that the perceived response time really has to do with compile time.</p>
 <h3 id="finding-all-anagrams-of-a-word-from-a-word-list">Finding All Anagrams of a Word From a Word List</h3>
 <p>The other possible understanding of the challenge is that we are given a word and a word list, and should output the words of the list that are anagrams of the input word. We can use the same <code>is-anagram</code> subroutine as follows and use directly the <code>words.txt</code> file mentioned earlier:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">my $post-bag = &quot;post&quot;.comb.Bag;
-sub is-anagram (Str $word) {
-    return $word.comb.Bag === $post-bag;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> $post<span style="color:#f92672">-</span>bag <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;post&#34;</span><span style="color:#f92672">.</span>comb<span style="color:#f92672">.</span>Bag;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is</span>-anagram (Str $word) {
+    <span style="color:#66d9ef">return</span> $word<span style="color:#f92672">.</span>comb<span style="color:#f92672">.</span>Bag <span style="color:#f92672">===</span> $post<span style="color:#f92672">-</span>bag;
 }
-for &quot;words.txt&quot;.IO.lines -&gt; $line {
-    say $line if is-anagram $line;
+<span style="color:#66d9ef">for</span> <span style="color:#e6db74">&#34;words.txt&#34;</span><span style="color:#f92672">.</span>IO<span style="color:#f92672">.</span>lines <span style="color:#f92672">-&gt;</span> $line {
+    say $line <span style="color:#66d9ef">if</span> is<span style="color:#f92672">-</span>anagram $line;
 }
-</code></pre><p>This program displays the words of the word list that are anagrams of the word &ldquo;post&rdquo;:</p>
+</code></pre></div><p>This program displays the words of the word list that are anagrams of the word &ldquo;post&rdquo;:</p>
 <pre><code>perl6 is-anagram.p6
 opts
 post
@@ -253,211 +253,211 @@ tops
 </code></pre>
 <h2 id="alternative-solutions">Alternative Solutions</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-005/arne-sommer/perl6/ch-1.p6">Arne Sommer</a> understood the challenge to mean that we were supposed to look up anagrams of a given word in a list or dictionary (what I did in the last section of my solutions). His approach is to read all the words of the dictionary and store them in a <code>Set</code> (done in the <code>get-dictionary</code> subroutine). Then, the program uses the <a href="https://docs.perl6.org/routine/permutations">permutations</a> built-in function to find all the letter permutations of the input word:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">unit sub MAIN (Str $word is copy where $word !~~ /\W/,
-  :$dictionary where $dictionary.IO.r = &quot;/usr/share/dict/british-english&quot;);
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">unit <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> (Str $word is copy where $word !~~ /\W/,
+  :$dictionary where $dictionary.IO.r = &#34;/usr/share/dict/british-english&#34;);
 
 $word .= lc;
 
 my $dict = get-dictionary($dictionary);
 
-print &quot;Anagrams:&quot;;
+print &#34;Anagrams:&#34;;
 
 for $word.comb.permutations&gt;&gt;.join.unique -&gt; $candidate
 {
-  # next if $candidate eq $word;
-  print &quot; $candidate&quot; if $dict{$candidate};
+  <span style="color:#75715e"># next if $candidate eq $word;</span>
+  <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34; $candidate&#34;</span> <span style="color:#66d9ef">if</span> $dict{$candidate};
 }
-print &quot;\n&quot;;
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
 
-sub get-dictionary ($file where $file.IO.r) is export
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get</span>-dictionary ($file where $file.IO.r) is export
 {
-  return $file.IO.lines.grep(* !~~ /\W/)&gt;&gt;.lc.Set;
+  <span style="color:#66d9ef">return</span> $file<span style="color:#f92672">.</span>IO<span style="color:#f92672">.</span>lines<span style="color:#f92672">.</span>grep(<span style="color:#f92672">*</span> <span style="color:#f92672">!~~</span> <span style="color:#e6db74">/\W/</span>)<span style="color:#f92672">&gt;&gt;.</span>lc<span style="color:#f92672">.</span>Set;
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-005/doug-schrag/perl6/ch-1.p6">Doug Schrag</a> understood the challenge the same way, also used a set to store the words of the dictionary, and also used the <code>permutations</code> built-in function:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">subset Filename of Str;
-sub MAIN(Str $word, Filename :$word-file) {
-    my $file = .IO with $word-file;
-    my Set $words = Set.new(.lines.sort) with $file;
-    if $words.defined {
-        .say for anagrams($word, -&gt; $w { $w (elem) $words });
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-005/doug-schrag/perl6/ch-1.p6">Doug Schrag</a> understood the challenge the same way, also used a set to store the words of the dictionary, and also used the <code>permutations</code> built-in function:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">subset Filename of Str;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(Str $word, Filename :$word-file) {
+    <span style="color:#66d9ef">my</span> $file <span style="color:#f92672">=</span> <span style="color:#f92672">.</span>IO with $word<span style="color:#f92672">-</span>file;
+    <span style="color:#66d9ef">my</span> Set $words <span style="color:#f92672">=</span> Set<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(<span style="color:#f92672">.</span>lines<span style="color:#f92672">.</span>sort) with $file;
+    <span style="color:#66d9ef">if</span> $words<span style="color:#f92672">.</span>defined {
+        <span style="color:#f92672">.</span>say <span style="color:#66d9ef">for</span> anagrams($word, <span style="color:#f92672">-&gt;</span> $w { $w (elem) $words });
     }
-    else {
-        note 'Please supply word dictionary using --word-file option';
-        say 'All permutations:';
-        .say for anagrams($word);
+    <span style="color:#66d9ef">else</span> {
+        note <span style="color:#e6db74">&#39;Please supply word dictionary using --word-file option&#39;</span>;
+        say <span style="color:#e6db74">&#39;All permutations:&#39;</span>;
+        <span style="color:#f92672">.</span>say <span style="color:#66d9ef">for</span> anagrams($word);
     }
 }
 
-sub anagrams ($word, &amp;is-word = -&gt; $w { True }) {
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">anagrams</span> ($word, &amp;is-word = -&gt; $w { True }) {
     gather
-    for $word.comb.permutations.unique(:with(&amp;[eqv])) {
-        with .join {
-            .take if .&amp;is-word
+    <span style="color:#66d9ef">for</span> $word<span style="color:#f92672">.</span>comb<span style="color:#f92672">.</span>permutations<span style="color:#f92672">.</span>unique(:with(<span style="color:#f92672">&amp;</span>[eqv])) {
+        with <span style="color:#f92672">.</span>join {
+            <span style="color:#f92672">.</span>take <span style="color:#66d9ef">if</span> <span style="color:#f92672">.&amp;</span>is<span style="color:#f92672">-</span>word
         }
     }
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-005/fjwhittle/perl6/ch-1.p6">Francis J. Whittle</a> also understood that the task was to find anagrams of a word in given file. He used <code>Bag</code>s of letters to check whether words are anagrams of each other.</p>
-<pre><code class="language-Perl6" data-lang="Perl6">unit sub MAIN(
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-005/fjwhittle/perl6/ch-1.p6">Francis J. Whittle</a> also understood that the task was to find anagrams of a word in given file. He used <code>Bag</code>s of letters to check whether words are anagrams of each other.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">unit <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(
   Str $file #= file containing list of words
-          where { given .IO { .r &amp;&amp; ( .l || .f) or die &quot;Cannot read from $_&quot; } },
-  $word #= word to find anagrams of
+          where { given <span style="color:#f92672">.</span>IO { <span style="color:#f92672">.</span>r <span style="color:#f92672">&amp;&amp;</span> ( <span style="color:#f92672">.</span>l <span style="color:#f92672">||</span> <span style="color:#f92672">.</span>f) <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;Cannot read from $_&#34;</span> } },
+  $word <span style="color:#75715e">#= word to find anagrams of</span>
 );
 
-my $word-bag := $word.lc.comb(/ \w /).Bag;
+<span style="color:#66d9ef">my</span> $word<span style="color:#f92672">-</span>bag :<span style="color:#f92672">=</span> $word<span style="color:#f92672">.</span>lc<span style="color:#f92672">.</span>comb(<span style="color:#e6db74">/ \w /</span>)<span style="color:#f92672">.</span>Bag;
 
-my @words = $file.IO.lines.unique.hyper.grep(*.chars &gt; 2)
-                 .map: { .lc.comb(/ \w /).Bag =&gt; $_ };
+<span style="color:#66d9ef">my</span> @words <span style="color:#f92672">=</span> $file<span style="color:#f92672">.</span>IO<span style="color:#f92672">.</span>lines<span style="color:#f92672">.</span>unique<span style="color:#f92672">.</span>hyper<span style="color:#f92672">.</span>grep(<span style="color:#f92672">*.</span>chars <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">2</span>)
+                 <span style="color:#f92672">.</span>map: { <span style="color:#f92672">.</span>lc<span style="color:#f92672">.</span>comb(<span style="color:#e6db74">/ \w /</span>)<span style="color:#f92672">.</span>Bag <span style="color:#f92672">=&gt;</span> $_ };
 
-@words.race.grep(*.key === $word-bag)».value.unique(with =&gt; *.lc eq *.lc).join(', ').put;
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-005/jaldhar-h-vyas/perl6/ch-1.p6">Jaldhar H. Vyas</a> normalized the target word and the words of the dictionary by rearranging their letters in alphabetical order much in the same way as in my original <code>is-anagram</code> subroutine. His normalized word dictionary is stored in a hash.</p>
-<pre><code class="language-Perl6" data-lang="Perl6">my $search = $word.comb.sort.join;
-my %dictionary = $list.IO.lines.map({ $_ =&gt; $_.comb.sort.join });
+@words<span style="color:#f92672">.</span>race<span style="color:#f92672">.</span>grep(<span style="color:#f92672">*.</span>key <span style="color:#f92672">===</span> $word<span style="color:#f92672">-</span>bag)<span style="color:#960050;background-color:#1e0010">»</span><span style="color:#f92672">.</span>value<span style="color:#f92672">.</span>unique(with <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">*.</span>lc <span style="color:#f92672">eq</span> <span style="color:#f92672">*.</span>lc)<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#39;, &#39;</span>)<span style="color:#f92672">.</span>put;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-005/jaldhar-h-vyas/perl6/ch-1.p6">Jaldhar H. Vyas</a> normalized the target word and the words of the dictionary by rearranging their letters in alphabetical order much in the same way as in my original <code>is-anagram</code> subroutine. His normalized word dictionary is stored in a hash.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> $search <span style="color:#f92672">=</span> $word<span style="color:#f92672">.</span>comb<span style="color:#f92672">.</span>sort<span style="color:#f92672">.</span>join;
+<span style="color:#66d9ef">my</span> %dictionary <span style="color:#f92672">=</span> $list<span style="color:#f92672">.</span>IO<span style="color:#f92672">.</span>lines<span style="color:#f92672">.</span>map({ $_ <span style="color:#f92672">=&gt;</span> $_<span style="color:#f92672">.</span>comb<span style="color:#f92672">.</span>sort<span style="color:#f92672">.</span>join });
 
-my %anagrams;
-for %dictionary.kv -&gt; $key, $value {
-    %anagrams{$value}.push($key);
+<span style="color:#66d9ef">my</span> %anagrams;
+<span style="color:#66d9ef">for</span> %dictionary<span style="color:#f92672">.</span>kv <span style="color:#f92672">-&gt;</span> $key, $value {
+    %anagrams{$value}<span style="color:#f92672">.</span>push($key);
 }
 
-if (%anagrams{$search}:exists) {
-    say %anagrams{$search}.grep({ $_ !~~ $word }).sort.join(' ');
+<span style="color:#66d9ef">if</span> (%anagrams{$search}:exists) {
+    say %anagrams{$search}<span style="color:#f92672">.</span>grep({ $_ <span style="color:#f92672">!~~</span> $word })<span style="color:#f92672">.</span>sort<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#39; &#39;</span>);
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-005/jo-christian-oterhals/perl6/ch-1.p6">Jo-Christian Oterhals</a> stored the words of the <code>/usr/share/dict/words</code> standard Unix dictionary into a <code>Set</code> and used the <code>permutations</code> of the input words to check for anagrams:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">my $dict = &quot;/usr/share/dict/words&quot;.IO.lines()&gt;&gt;.lc.Set;
-for @*ARGS ?? @*ARGS !! ! $*IN.t ?? lines() !! '' -&gt; $w {
-    $w.lc.comb.permutations&gt;&gt;.join.grep({ $dict{$_} and $_ ne $w }).map({ &quot;$w\t$_\n&quot; }).unique.join.say;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-005/jo-christian-oterhals/perl6/ch-1.p6">Jo-Christian Oterhals</a> stored the words of the <code>/usr/share/dict/words</code> standard Unix dictionary into a <code>Set</code> and used the <code>permutations</code> of the input words to check for anagrams:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> $dict <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;/usr/share/dict/words&#34;</span><span style="color:#f92672">.</span>IO<span style="color:#f92672">.</span>lines()<span style="color:#f92672">&gt;&gt;.</span>lc<span style="color:#f92672">.</span>Set;
+<span style="color:#66d9ef">for</span> @<span style="color:#960050;background-color:#1e0010">*</span>ARGS ?? @<span style="color:#960050;background-color:#1e0010">*</span>ARGS <span style="color:#f92672">!!</span> <span style="color:#f92672">!</span> $<span style="color:#960050;background-color:#1e0010">*</span>IN<span style="color:#f92672">.</span>t ?? lines() <span style="color:#f92672">!!</span> <span style="color:#e6db74">&#39;&#39;</span> <span style="color:#f92672">-&gt;</span> $w {
+    $w<span style="color:#f92672">.</span>lc<span style="color:#f92672">.</span>comb<span style="color:#f92672">.</span>permutations<span style="color:#f92672">&gt;&gt;.</span>join<span style="color:#f92672">.</span>grep({ $dict{$_} <span style="color:#f92672">and</span> $_ <span style="color:#f92672">ne</span> $w })<span style="color:#f92672">.</span>map({ <span style="color:#e6db74">&#34;$w\t$_\n&#34;</span> })<span style="color:#f92672">.</span>unique<span style="color:#f92672">.</span>join<span style="color:#f92672">.</span>say;
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-005/joelle-maslak/perl6/ch-1.p6">Joelle Maslak</a> used <code>Bag</code>s to store the letters of the input word and analyze the dictionary words.</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub MAIN(Str:D $letters, Str:D $filename = '/usr/share/dict/words') {
-    my $matchbag = Bag.new($letters.comb);
-    my SetHash $dedupe = SetHash.new;  # To store matches we gave back
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-005/joelle-maslak/perl6/ch-1.p6">Joelle Maslak</a> used <code>Bag</code>s to store the letters of the input word and analyze the dictionary words.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(Str:D $letters, Str:D $filename = &#39;/usr/share/dict/words&#39;) {
+    <span style="color:#66d9ef">my</span> $matchbag <span style="color:#f92672">=</span> Bag<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>($letters<span style="color:#f92672">.</span>comb);
+    <span style="color:#66d9ef">my</span> SetHash $dedupe <span style="color:#f92672">=</span> SetHash<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>;  <span style="color:#75715e"># To store matches we gave back</span>
 
-    for $filename.IO.lines -&gt; $word {
-        my $fcword = $word.fc;
+    <span style="color:#66d9ef">for</span> $filename<span style="color:#f92672">.</span>IO<span style="color:#f92672">.</span>lines <span style="color:#f92672">-&gt;</span> $word {
+        <span style="color:#66d9ef">my</span> $fcword <span style="color:#f92672">=</span> $word<span style="color:#f92672">.</span>fc;
 
-        my $bag = Bag.new($fcword.comb);
+        <span style="color:#66d9ef">my</span> $bag <span style="color:#f92672">=</span> Bag<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>($fcword<span style="color:#f92672">.</span>comb);
 
-        if $bag ~~ $matchbag {
-            next if $fcword ∈ $dedupe;
-            $dedupe{$fcword}++;
+        <span style="color:#66d9ef">if</span> $bag <span style="color:#f92672">~~</span> $matchbag {
+            <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $fcword <span style="color:#960050;background-color:#1e0010">∈</span> $dedupe;
+            $dedupe{$fcword}<span style="color:#f92672">++</span>;
             say $fcword;
         }
     }
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-005/mark-senn/perl6/ch-1.p6">Mark Senn</a> normalized words of the word list much in the same way as my original is-anagram solution (i.e. sorting the letters) and stored the result in a hash. He then used a hash</p>
-<pre><code class="language-Perl6" data-lang="Perl6">my Array %hash;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-005/mark-senn/perl6/ch-1.p6">Mark Senn</a> normalized words of the word list much in the same way as my original is-anagram solution (i.e. sorting the letters) and stored the result in a hash. He then used a hash</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> Array %hash;
 
-# Construct the array.
-for (@word)
+<span style="color:#75715e"># Construct the array.</span>
+<span style="color:#66d9ef">for</span> (@word)
 {
-    # The key for &quot;family&quot; is &quot;amfily&quot;.
-    my $key = .comb(/./).sort.join;
-    # Add the current word to the hash.
-    %hash{$key}.push($_);
+    <span style="color:#75715e"># The key for &#34;family&#34; is &#34;amfily&#34;.</span>
+    <span style="color:#66d9ef">my</span> $key <span style="color:#f92672">=</span> <span style="color:#f92672">.</span>comb(<span style="color:#e6db74">/./</span>)<span style="color:#f92672">.</span>sort<span style="color:#f92672">.</span>join;
+    <span style="color:#75715e"># Add the current word to the hash.</span>
+    %hash{$key}<span style="color:#f92672">.</span>push($_);
 }
-my $word = @word.pick;
+<span style="color:#66d9ef">my</span> $word <span style="color:#f92672">=</span> @word<span style="color:#f92672">.</span>pick;
 
-# Convert $word to $key.
-my $key = $word.comb(/./).sort.join;
+<span style="color:#75715e"># Convert $word to $key.</span>
+<span style="color:#66d9ef">my</span> $key <span style="color:#f92672">=</span> $word<span style="color:#f92672">.</span>comb(<span style="color:#e6db74">/./</span>)<span style="color:#f92672">.</span>sort<span style="color:#f92672">.</span>join;
 
-for (%hash{$key}.Array.sort)
+<span style="color:#66d9ef">for</span> (%hash{$key}<span style="color:#f92672">.</span>Array<span style="color:#f92672">.</span>sort)
 {
-    ($word eq $_)  or  print &quot; $_&quot;;
+    ($word <span style="color:#f92672">eq</span> $_)  <span style="color:#f92672">or</span>  <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34; $_&#34;</span>;
 }
-print &quot;\n&quot;;
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-005/rob4t/perl6/ch-1.p6">Rob4t</a> used <code>Bag</code>s to check for anagrams:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub MAIN(Str $word, Str $file where *.IO.r = '/usr/share/dict/words') {
-    my $word_bag = $word.lc.comb.Bag;
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-005/rob4t/perl6/ch-1.p6">Rob4t</a> used <code>Bag</code>s to check for anagrams:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(Str $word, Str $file where *.IO.r = &#39;/usr/share/dict/words&#39;) {
+    <span style="color:#66d9ef">my</span> $word_bag <span style="color:#f92672">=</span> $word<span style="color:#f92672">.</span>lc<span style="color:#f92672">.</span>comb<span style="color:#f92672">.</span>Bag;
 
-    my @found_words = $file.IO.lines.grep: {
-        # not the same word
-        .lc ne $word.lc
-        and
-        # look for words AND phrases
-        .lc.words.map({.comb}).flat.Bag eqv $word_bag
+    <span style="color:#66d9ef">my</span> @found_words <span style="color:#f92672">=</span> $file<span style="color:#f92672">.</span>IO<span style="color:#f92672">.</span>lines<span style="color:#f92672">.</span>grep: {
+        <span style="color:#75715e"># not the same word</span>
+        <span style="color:#f92672">.</span>lc <span style="color:#f92672">ne</span> $word<span style="color:#f92672">.</span>lc
+        <span style="color:#f92672">and</span>
+        <span style="color:#75715e"># look for words AND phrases</span>
+        <span style="color:#f92672">.</span>lc<span style="color:#f92672">.</span>words<span style="color:#f92672">.</span>map({<span style="color:#f92672">.</span>comb})<span style="color:#f92672">.</span>flat<span style="color:#f92672">.</span>Bag eqv $word_bag
     };
 
-    .say for @found_words;
+    <span style="color:#f92672">.</span>say <span style="color:#66d9ef">for</span> @found_words;
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-005/ruben-westerberg/perl6/ch-1.p6">Ruben Westerberg</a> wrote an <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-005/ruben-westerberg/perl6/anagram.pm6">anagram module</a> implementing a <code>findAnangrams</code> (sic) subroutine:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">unit module anagram;
-sub findAnangrams(@letters, @words) is export {
-    my @a=sort @letters;
-    my @anagrams;
-    my $test;
-    while * {
-        $test=@a.join(&quot;&quot;);
-        @anagrams.append(@words.hyper(degree=&gt;4,batch=&gt;50000).grep: {$_ eq $test});
-        my int $k=0;
-        my int $l=0;
-        my $tmp;
-        my $flag=False;
-        my int $maxK=-1;
-        my int $maxL=-1;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-005/ruben-westerberg/perl6/ch-1.p6">Ruben Westerberg</a> wrote an <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-005/ruben-westerberg/perl6/anagram.pm6">anagram module</a> implementing a <code>findAnangrams</code> (sic) subroutine:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">unit module anagram;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">findAnangrams</span>(@letters, @words) is export {
+    <span style="color:#66d9ef">my</span> @a<span style="color:#f92672">=</span>sort @letters;
+    <span style="color:#66d9ef">my</span> @anagrams;
+    <span style="color:#66d9ef">my</span> $test;
+    <span style="color:#66d9ef">while</span> <span style="color:#f92672">*</span> {
+        $test<span style="color:#f92672">=</span>@a<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34;&#34;</span>);
+        @anagrams<span style="color:#f92672">.</span>append(@words<span style="color:#f92672">.</span>hyper(degree<span style="color:#f92672">=&gt;</span><span style="color:#ae81ff">4</span>,batch<span style="color:#f92672">=&gt;</span><span style="color:#ae81ff">50000</span>)<span style="color:#f92672">.</span>grep: {$_ <span style="color:#f92672">eq</span> $test});
+        <span style="color:#66d9ef">my</span> int $k<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">my</span> int $l<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">my</span> $tmp;
+        <span style="color:#66d9ef">my</span> $flag<span style="color:#f92672">=</span>False;
+        <span style="color:#66d9ef">my</span> int $maxK<span style="color:#f92672">=-</span><span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">my</span> int $maxL<span style="color:#f92672">=-</span><span style="color:#ae81ff">1</span>;
 
-        while ($k &lt; @a.elems-1) {
-            $maxK= $k if ((@a[$k] lt @a[$k+1]) &amp;&amp; ($k &gt; $maxK));
-            $k++;
+        <span style="color:#66d9ef">while</span> ($k <span style="color:#f92672">&lt;</span> @a<span style="color:#f92672">.</span>elems<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
+            $maxK<span style="color:#f92672">=</span> $k <span style="color:#66d9ef">if</span> ((@a[$k] <span style="color:#f92672">lt</span> @a[$k<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]) <span style="color:#f92672">&amp;&amp;</span> ($k <span style="color:#f92672">&gt;</span> $maxK));
+            $k<span style="color:#f92672">++</span>;
         }
-        last unless $maxK &gt;= 0;
-        $maxL=$maxK+1;
-        while ($l &lt; @a.elems) {
-            $maxL= $l if ((@a[$maxK] lt @a[$l]) &amp;&amp; $l&gt;$maxL);
-            $l++;
+        <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">unless</span> $maxK <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>;
+        $maxL<span style="color:#f92672">=</span>$maxK<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">while</span> ($l <span style="color:#f92672">&lt;</span> @a<span style="color:#f92672">.</span>elems) {
+            $maxL<span style="color:#f92672">=</span> $l <span style="color:#66d9ef">if</span> ((@a[$maxK] <span style="color:#f92672">lt</span> @a[$l]) <span style="color:#f92672">&amp;&amp;</span> $l<span style="color:#f92672">&gt;</span>$maxL);
+            $l<span style="color:#f92672">++</span>;
         }
-        $tmp=@a[$maxK];
-        @a[$maxK]=@a[$maxL];
-        @a[$maxL]=$tmp;
-        my @b=@a.splice($maxK+1).reverse;
-        @a.=append(@b);
+        $tmp<span style="color:#f92672">=</span>@a[$maxK];
+        @a[$maxK]<span style="color:#f92672">=</span>@a[$maxL];
+        @a[$maxL]<span style="color:#f92672">=</span>$tmp;
+        <span style="color:#66d9ef">my</span> @b<span style="color:#f92672">=</span>@a<span style="color:#f92672">.</span>splice($maxK<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span>reverse;
+        @a<span style="color:#f92672">.=</span>append(@b);
     }
     @anagrams;
 }
-</code></pre><p>His program using this module then looks like this:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">use lib $?FILE.IO.dirname;
-use anagram;
-my $wordsFile=  $?FILE.IO.dirname ~ &quot;/../words_alpha.txt&quot;;
+</code></pre></div><p>His program using this module then looks like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> lib $<span style="color:#960050;background-color:#1e0010">?</span>FILE<span style="color:#f92672">.</span>IO<span style="color:#f92672">.</span>dirname;
+<span style="color:#66d9ef">use</span> anagram;
+<span style="color:#66d9ef">my</span> $wordsFile<span style="color:#f92672">=</span>  $<span style="color:#960050;background-color:#1e0010">?</span>FILE<span style="color:#f92672">.</span>IO<span style="color:#f92672">.</span>dirname <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34;/../words_alpha.txt&#34;</span>;
 
-my @word-list=$wordsFile.IO.lines;
-my $input= @*ARGS[0];
-my @letters=$input.trim.lc.split(&quot;&quot;)[1..*-2];
-say &quot;Anagrams: &quot;,findAnangrams(@letters,@word-list).join: ' ';
-</code></pre><p>This probably works well, but, although the idea of creating a module for anagrams is probably good, I have the feeling that this implementation is a bit over-engineered. My solution held in 7 code lines.</p>
+<span style="color:#66d9ef">my</span> @word<span style="color:#f92672">-</span>list<span style="color:#f92672">=</span>$wordsFile<span style="color:#f92672">.</span>IO<span style="color:#f92672">.</span>lines;
+<span style="color:#66d9ef">my</span> $input<span style="color:#f92672">=</span> @<span style="color:#960050;background-color:#1e0010">*</span>ARGS[<span style="color:#ae81ff">0</span>];
+<span style="color:#66d9ef">my</span> @letters<span style="color:#f92672">=</span>$input<span style="color:#f92672">.</span>trim<span style="color:#f92672">.</span>lc<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34;&#34;</span>)[<span style="color:#ae81ff">1</span><span style="color:#f92672">..*-</span><span style="color:#ae81ff">2</span>];
+say <span style="color:#e6db74">&#34;Anagrams: &#34;</span>,findAnangrams(@letters,@word<span style="color:#f92672">-</span>list)<span style="color:#f92672">.</span>join: <span style="color:#e6db74">&#39; &#39;</span>;
+</code></pre></div><p>This probably works well, but, although the idea of creating a module for anagrams is probably good, I have the feeling that this implementation is a bit over-engineered. My solution held in 7 code lines.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-005/simon-proctor/perl6/ch-1.p6">Simon Proctor</a> also wrote an <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-005/simon-proctor/perl6/lib/Anagrams.pm6">Anagrams module</a>:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">unit package Anagrams;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">unit <span style="color:#66d9ef">package</span> Anagrams;
 
-sub normal ( Str \word ) is pure {
-    samemark( lc( word ), &quot;a&quot; )
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">normal</span> ( Str \word ) is pure {
+    samemark( lc( word ), <span style="color:#e6db74">&#34;a&#34;</span> )
 }
-sub order-string ( Str \word ) is export is pure {
-    normal( word ).comb.sort( { $^a cmp $^b } ).join;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">order</span>-string ( Str \word ) is export is pure {
+    normal( word )<span style="color:#f92672">.</span>comb<span style="color:#f92672">.</span>sort( { $<span style="color:#960050;background-color:#1e0010">^</span>a <span style="color:#f92672">cmp</span> $<span style="color:#960050;background-color:#1e0010">^</span>b } )<span style="color:#f92672">.</span>join;
 }
-multi sub is-anagram-of( Str \target, Str \word where * eq target ) is export is pure { False; }
-multi sub is-anagram-of( Str \target, Str \word where *.codes != target.codes ) is export is pure { False; }
-multi sub is-anagram-of( Str \target, Str \word ) is export is pure {
-    normal( target ) ne normal( word ) &amp;&amp; order-string( target ) ~~ order-string( word );
+multi <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is</span>-anagram-of( Str \target, Str \word where * eq target ) is export is pure { False; }
+multi <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is</span>-anagram-of( Str \target, Str \word where *.codes != target.codes ) is export is pure { False; }
+multi <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is</span>-anagram-of( Str \target, Str \word ) is export is pure {
+    normal( target ) <span style="color:#f92672">ne</span> normal( word ) <span style="color:#f92672">&amp;&amp;</span> order<span style="color:#f92672">-</span>string( target ) <span style="color:#f92672">~~</span> order<span style="color:#f92672">-</span>string( word );
 }
-</code></pre><p>His program using this module then looks like this:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">use v6;
-use lib 'lib';
-use Anagrams;
+</code></pre></div><p>His program using this module then looks like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> v6;
+<span style="color:#66d9ef">use</span> lib <span style="color:#e6db74">&#39;lib&#39;</span>;
+<span style="color:#66d9ef">use</span> Anagrams;
 
-my %*SUB-MAIN-OPTS = :named-anywhere;
+<span style="color:#66d9ef">my</span> %<span style="color:#960050;background-color:#1e0010">*</span>SUB<span style="color:#f92672">-</span>MAIN<span style="color:#f92672">-</span>OPTS <span style="color:#f92672">=</span> :named<span style="color:#f92672">-</span>anywhere;
 
-sub USAGE { say $*USAGE }
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">USAGE</span> { say $<span style="color:#960050;background-color:#1e0010">*</span>USAGE }
 
-subset FilePath of Str where *.IO.f;
+subset FilePath of Str where <span style="color:#f92672">*.</span>IO<span style="color:#f92672">.</span>f;
 
-#| Display Help file
-multi sub MAIN ( Bool :h($help) where *.so ) { USAGE(); }
+<span style="color:#75715e">#| Display Help file</span>
+multi <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> ( Bool :h($help) where *.so ) { USAGE(); }
 
-#| Find the anagrams for a given word
-multi sub MAIN (
+<span style="color:#75715e">#| Find the anagrams for a given word</span>
+multi <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> (
     Str $word, #= Word to check for. Case insensitive
-    FilePath :$dict = &quot;/etc/dictionaries-common/words&quot; #= Dictionary file to use. Defaults to &quot;/etc/dictionaries-common/words&quot;
+    FilePath :$dict = &#34;/etc/dictionaries-common/words&#34; #= Dictionary file to use. Defaults to &#34;/etc/dictionaries-common/words&#34;
 ) {
-    $dict.IO.words.grep( { is-anagram-of( $word, $_ ) } )&gt;&gt;.say;
+    $dict<span style="color:#f92672">.</span>IO<span style="color:#f92672">.</span>words<span style="color:#f92672">.</span>grep( { is<span style="color:#f92672">-</span>anagram<span style="color:#f92672">-</span>of( $word, $_ ) } )<span style="color:#f92672">&gt;&gt;.</span>say;
 }
-</code></pre><p>Again, this seems to be a bit over-engineering to me.</p>
+</code></pre></div><p>Again, this seems to be a bit over-engineering to me.</p>
 <h2 id="see-also">SEE ALSO</h2>
 <p>Not less than six blog posts this time:</p>
 <ul>

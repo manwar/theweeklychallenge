@@ -16,7 +16,7 @@
 
     <meta name="description" content="Laurent Rosenfeld Weekly Review: Challenge - #006.">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.66.0-DEV" />
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -173,27 +173,27 @@
 <h2 id="my-solutions">My Solutions</h2>
 <p>Initially, I did not see any way of doing this that would be very different from the P5 version.</p>
 <p>This is a Perl 6 adaptation of the corrected P5 version:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">use v6;
-sub compare ($prev, $start) {
-    return $prev &gt; $start + 1 ?? &quot;$start-$prev&quot;
-        !! $prev &gt; $start     ?? &quot;$start,$prev&quot;
-        !! &quot;$prev&quot;;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> v6;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">compare</span> ($prev, $start) {
+    <span style="color:#66d9ef">return</span> $prev <span style="color:#f92672">&gt;</span> $start <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> ?? <span style="color:#e6db74">&#34;$start-$prev&#34;</span>
+        <span style="color:#f92672">!!</span> $prev <span style="color:#f92672">&gt;</span> $start     ?? <span style="color:#e6db74">&#34;$start,$prev&#34;</span>
+        <span style="color:#f92672">!!</span> <span style="color:#e6db74">&#34;$prev&#34;</span>;
 }
 
-my @input = @*ARGS.elems &gt; 0 ?? @*ARGS !! 1,2,3,4,9,10,14,15,16,3,4,5,6,4,5,6,7,9,9;
-my $prev_val = my $start_val = shift @input;
+<span style="color:#66d9ef">my</span> @input <span style="color:#f92672">=</span> @<span style="color:#960050;background-color:#1e0010">*</span>ARGS<span style="color:#f92672">.</span>elems <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> ?? @<span style="color:#960050;background-color:#1e0010">*</span>ARGS <span style="color:#f92672">!!</span> <span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">9</span>,<span style="color:#ae81ff">10</span>,<span style="color:#ae81ff">14</span>,<span style="color:#ae81ff">15</span>,<span style="color:#ae81ff">16</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">9</span>,<span style="color:#ae81ff">9</span>;
+<span style="color:#66d9ef">my</span> $prev_val <span style="color:#f92672">=</span> <span style="color:#66d9ef">my</span> $start_val <span style="color:#f92672">=</span> shift @input;
 
-my $output = &quot;&quot;;
-for @input -&gt; $num {
-    if ($num != $prev_val + 1) {
-        $output ~= compare($prev_val, $start_val) ~ &quot;,&quot;;
-        $start_val = $num;
+<span style="color:#66d9ef">my</span> $output <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
+<span style="color:#66d9ef">for</span> @input <span style="color:#f92672">-&gt;</span> $num {
+    <span style="color:#66d9ef">if</span> ($num <span style="color:#f92672">!=</span> $prev_val <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) {
+        $output <span style="color:#f92672">~=</span> compare($prev_val, $start_val) <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34;,&#34;</span>;
+        $start_val <span style="color:#f92672">=</span> $num;
     }
-    $prev_val = $num;
+    $prev_val <span style="color:#f92672">=</span> $num;
 }
-$output ~= compare $prev_val, $start_val;
+$output <span style="color:#f92672">~=</span> compare $prev_val, $start_val;
 say $output;
-</code></pre><p>With no argument passed to the script, it uses the default array and prints out:</p>
+</code></pre></div><p>With no argument passed to the script, it uses the default array and prints out:</p>
 <pre><code>$ perl6 num_range.p6
 1-4,9,10,14-16,3-6,4-7,9,9
 </code></pre>
@@ -201,128 +201,128 @@ say $output;
 <p>The recursive approach in P6 would essentially look like the P5 recursive version, except for the fact that using dynamic scope variables might simplify the passing of arguments between successive recursive calls. Not very interesting.</p>
 <p>Then I thought again about one of my pet subjects: why not try a functional programming approach? Perl 6 provides the <code>gather ... take</code> control flow statement, which can be thought as a generalized version of <code>map</code>, <code>grep</code>, and <code>return</code>: it is sort of a <code>map</code> in which you can also filter items (as in a <code>grep</code>), or sort of a <code>grep</code> in which you can also map various elements to something else. And you can return the data to the <code>gather</code> statement at the point you choose.</p>
 <p>Here we go:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">use v6;
-sub get($start, $prev) {
-    take $prev &gt; $start + 1 ?? &quot;$start-$prev&quot;
-        !! $prev &gt; $start     ?? &quot;$start,$prev&quot;
-        !! &quot;$prev&quot;;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> v6;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get</span>($start, $prev) {
+    take $prev <span style="color:#f92672">&gt;</span> $start <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> ?? <span style="color:#e6db74">&#34;$start-$prev&#34;</span>
+        <span style="color:#f92672">!!</span> $prev <span style="color:#f92672">&gt;</span> $start     ?? <span style="color:#e6db74">&#34;$start,$prev&#34;</span>
+        <span style="color:#f92672">!!</span> <span style="color:#e6db74">&#34;$prev&#34;</span>;
 }
-my @input = @*ARGS.elems &gt; 0 ?? |@*ARGS !! (1,2,3,4,9,10,14,15,16,3,4,5,6,4,5,6,7,9,10,11);
-my $prev = my $start = shift @input;
-my @result = gather {
-    for @input -&gt; $num {
-        if $num != $prev + 1 {
+<span style="color:#66d9ef">my</span> @input <span style="color:#f92672">=</span> @<span style="color:#960050;background-color:#1e0010">*</span>ARGS<span style="color:#f92672">.</span>elems <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> ?? <span style="color:#f92672">|</span>@<span style="color:#960050;background-color:#1e0010">*</span>ARGS <span style="color:#f92672">!!</span> (<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">9</span>,<span style="color:#ae81ff">10</span>,<span style="color:#ae81ff">14</span>,<span style="color:#ae81ff">15</span>,<span style="color:#ae81ff">16</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">9</span>,<span style="color:#ae81ff">10</span>,<span style="color:#ae81ff">11</span>);
+<span style="color:#66d9ef">my</span> $prev <span style="color:#f92672">=</span> <span style="color:#66d9ef">my</span> $start <span style="color:#f92672">=</span> shift @input;
+<span style="color:#66d9ef">my</span> @result <span style="color:#f92672">=</span> gather {
+    <span style="color:#66d9ef">for</span> @input <span style="color:#f92672">-&gt;</span> $num {
+        <span style="color:#66d9ef">if</span> $num <span style="color:#f92672">!=</span> $prev <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> {
             get $start, $prev;
-            $start = $num;
+            $start <span style="color:#f92672">=</span> $num;
         }
-    $prev = $num;
+    $prev <span style="color:#f92672">=</span> $num;
     }
     get $start, $prev;
 }
-say @result.join(&quot;,&quot;);
-</code></pre><p>That may not be perfect, but I&rsquo;m much more satisfied with this than with all my previous versions, be it P5 or P6.</p>
+say @result<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34;,&#34;</span>);
+</code></pre></div><p>That may not be perfect, but I&rsquo;m much more satisfied with this than with all my previous versions, be it P5 or P6.</p>
 <h1 id="alternative-solutions">Alternative Solutions</h1>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-006/arne-sommer/perl6/ch-1.p6">Arne Sommer</a>&lsquo;s main loop is as follows:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">while @values
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">while</span> @values
 {
-  my $next = @values.shift;
-  if $next == @current[* -1] + 1
+  <span style="color:#66d9ef">my</span> $next <span style="color:#f92672">=</span> @values<span style="color:#f92672">.</span>shift;
+  <span style="color:#66d9ef">if</span> $next <span style="color:#f92672">==</span> @current[<span style="color:#f92672">*</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
   {
-    @current.push($next);
+    @current<span style="color:#f92672">.</span>push($next);
   }
-  else
+  <span style="color:#66d9ef">else</span>
   {
-    @result.push(fix-it(@current));
-    @current = $next;
+    @result<span style="color:#f92672">.</span>push(fix<span style="color:#f92672">-</span>it(@current));
+    @current <span style="color:#f92672">=</span> $next;
   }
 }
-sub fix-it (@list)
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">fix</span>-it (@list)
 {
-  return @list[0]              if @list.elems == 1;
-  return &quot;@list[0],@list[1]&quot;   if @list.elems == 2;
-  return &quot;@list[0]-@list[*-1]&quot; if @list.elems  &gt; 2;
+  <span style="color:#66d9ef">return</span> @list[<span style="color:#ae81ff">0</span>]              <span style="color:#66d9ef">if</span> @list<span style="color:#f92672">.</span>elems <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>;
+  <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;@list[0],@list[1]&#34;</span>   <span style="color:#66d9ef">if</span> @list<span style="color:#f92672">.</span>elems <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span>;
+  <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;@list[0]-@list[*-1]&#34;</span> <span style="color:#66d9ef">if</span> @list<span style="color:#f92672">.</span>elems  <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">2</span>;
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-006/jaldhar-h-vyas/perl6/ch-1.p6">Jaldhar H. Vyas</a> made two nested <code>while</code> loops, which is unlikely to be optimal, but that probablly doesn&rsquo;t matter with a small or even medium input dataset:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">while ($current &lt;= $lastelem) {
-    $start = $current;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-006/jaldhar-h-vyas/perl6/ch-1.p6">Jaldhar H. Vyas</a> made two nested <code>while</code> loops, which is unlikely to be optimal, but that probablly doesn&rsquo;t matter with a small or even medium input dataset:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">while</span> ($current <span style="color:#f92672">&lt;=</span> $lastelem) {
+    $start <span style="color:#f92672">=</span> $current;
 
-    while ($current &lt; $lastelem &amp;&amp;
-    @numbers[$current] + 1 == @numbers[$current + 1]) {
-        $current++;
+    <span style="color:#66d9ef">while</span> ($current <span style="color:#f92672">&lt;</span> $lastelem <span style="color:#f92672">&amp;&amp;</span>
+    @numbers[$current] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">==</span> @numbers[$current <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>]) {
+        $current<span style="color:#f92672">++</span>;
     }
 
-    @ranges.push(do given (@numbers[$start], @numbers[$current]) {
-        when $_[1] == $_[0]     { $_[0]; }
-        when $_[1] == $_[0] + 1 { ($_[0], $_[1]); }
-        default                 { &quot;$_[0]-$_[1]&quot;; }
+    @ranges<span style="color:#f92672">.</span>push(<span style="color:#66d9ef">do</span> given (@numbers[$start], @numbers[$current]) {
+        when $_[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">==</span> $_[<span style="color:#ae81ff">0</span>]     { $_[<span style="color:#ae81ff">0</span>]; }
+        when $_[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">==</span> $_[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> { ($_[<span style="color:#ae81ff">0</span>], $_[<span style="color:#ae81ff">1</span>]); }
+        default                 { <span style="color:#e6db74">&#34;$_[0]-$_[1]&#34;</span>; }
     });
 
-    $current++;
+    $current<span style="color:#f92672">++</span>;
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-006/joelle-maslak/perl6/ch-1.p6">Joelle Maslack</a> first sorted the input arguments, and then used a <code>for</code> loop to go through the values:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">for @*ARGS.sort( { $^a &lt;=&gt; $^b } ) -&gt; Int() $num {
-    if ! defined $run {
-        $run = Pair.new($num, $num);
-    } else {
-        if $run.value == $num - 1 {
-            $run = Pair.new($run.key, $num);
-        } else {
-            @runs.append($run);
-            $run = Pair.new($num, $num);
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-006/joelle-maslak/perl6/ch-1.p6">Joelle Maslack</a> first sorted the input arguments, and then used a <code>for</code> loop to go through the values:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">for</span> @<span style="color:#960050;background-color:#1e0010">*</span>ARGS<span style="color:#f92672">.</span>sort( { $<span style="color:#960050;background-color:#1e0010">^</span>a <span style="color:#e6db74">&lt;=&gt;</span> $<span style="color:#960050;background-color:#1e0010">^</span>b } ) <span style="color:#f92672">-&gt;</span> Int() $num {
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">!</span> defined $run {
+        $run <span style="color:#f92672">=</span> Pair<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>($num, $num);
+    } <span style="color:#66d9ef">else</span> {
+        <span style="color:#66d9ef">if</span> $run<span style="color:#f92672">.</span>value <span style="color:#f92672">==</span> $num <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> {
+            $run <span style="color:#f92672">=</span> Pair<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>($run<span style="color:#f92672">.</span>key, $num);
+        } <span style="color:#66d9ef">else</span> {
+            @runs<span style="color:#f92672">.</span>append($run);
+            $run <span style="color:#f92672">=</span> Pair<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>($num, $num);
         }
     }
-    $run.freeze;
+    $run<span style="color:#f92672">.</span>freeze;
 }
-@runs.append($run) if defined $run;
-</code></pre><p>Note that the Pair <code>freeze</code> method is now deprecated (as of 6.d language version), but it probably wasn&rsquo;t when Joelle wrote it several months ago. Instead, you may now create a new <code>Pair</code>, with a <a href="https://docs.perl6.org/language/glossary#decont">decontainerized</a> key/value.</p>
+@runs<span style="color:#f92672">.</span>append($run) <span style="color:#66d9ef">if</span> defined $run;
+</code></pre></div><p>Note that the Pair <code>freeze</code> method is now deprecated (as of 6.d language version), but it probably wasn&rsquo;t when Joelle wrote it several months ago. Instead, you may now create a new <code>Pair</code>, with a <a href="https://docs.perl6.org/language/glossary#decont">decontainerized</a> key/value.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-006/ozzy/perl6/ch-1.p6">Ozzy</a> used two successive <code>for</code> loops to go through the input data:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">for @numbers -&gt; $n {
-    my $i = @output.elems;
-    if $i == 0 || $n &gt; @output[$i-1].max+1 { @output[$i] = Range.new($n.Int, $n.Int); }
-    elsif $n == @output[$i-1].max+1 { @output[$i-1] = Range.new( @output[$i-1].min, $n.Int ); };
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">for</span> @numbers <span style="color:#f92672">-&gt;</span> $n {
+    <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> @output<span style="color:#f92672">.</span>elems;
+    <span style="color:#66d9ef">if</span> $i <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> $n <span style="color:#f92672">&gt;</span> @output[$i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>max<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span> { @output[$i] <span style="color:#f92672">=</span> Range<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>($n<span style="color:#f92672">.</span>Int, $n<span style="color:#f92672">.</span>Int); }
+    <span style="color:#66d9ef">elsif</span> $n <span style="color:#f92672">==</span> @output[$i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>max<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span> { @output[$i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> Range<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>( @output[$i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>min, $n<span style="color:#f92672">.</span>Int ); };
 }
 
 
-# Print the ranges from the @output array
-for 0..(@output.elems-1) -&gt; $i {
+<span style="color:#75715e"># Print the ranges from the @output array</span>
+<span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>(@output<span style="color:#f92672">.</span>elems<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">-&gt;</span> $i {
 
-    FIRST { print 'Compact range representation: '; }
+    FIRST { <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39;Compact range representation: &#39;</span>; }
 
-    if @output[$i].elems == 1 { print(@output[$i].min); }
-    else { print(@output[$i].min, '-', @output[$i].max); }
+    <span style="color:#66d9ef">if</span> @output[$i]<span style="color:#f92672">.</span>elems <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> { <span style="color:#66d9ef">print</span>(@output[$i]<span style="color:#f92672">.</span>min); }
+    <span style="color:#66d9ef">else</span> { <span style="color:#66d9ef">print</span>(@output[$i]<span style="color:#f92672">.</span>min, <span style="color:#e6db74">&#39;-&#39;</span>, @output[$i]<span style="color:#f92672">.</span>max); }
 
-    if $i &lt; @output.elems-1 { print ', '; }
-    else { say '.'; }
+    <span style="color:#66d9ef">if</span> $i <span style="color:#f92672">&lt;</span> @output<span style="color:#f92672">.</span>elems<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> { <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39;, &#39;</span>; }
+    <span style="color:#66d9ef">else</span> { say <span style="color:#e6db74">&#39;.&#39;</span>; }
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-006/ruben-westerberg/perl6/ch-1.p6">Ruben Westerberg</a> first joined the input numbers into a CSV string, and immediately thereafter splitted the string on commas and stored the result in a bag (presumably to remove duplicates). I fail to see why this was necessary, as I have the feeling that he could have worked directly on the input numbers. This being said, Ruben&rsquo;s code is the most compact solution:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">my $string= @*ARGS ?? @*ARGS.join(&quot;,&quot;)!! prompt &quot;Enter numbers: &quot;;
-my $a=$string.split(&quot;,&quot;,:skip-empty)&gt;&gt;.trim.grep({!/^$/})&gt;&gt;.Int.Bag;
-my @r1=$a.keys.sort;
-my @diff=@r1.rotate &gt;&gt;-&lt;&lt; @r1;
-my @p=(0,|map {|($^k,$k+1) if abs($^v) &gt; 1}, @diff.kv);
-@p.pop;
-say join &quot;,&quot;, map {@r1[$^a]==@r1[$^b]??@r1[$^a]!!&quot;@r1[$^a]-@r1[$^b]&quot;}, @p;
-</code></pre><p>I like very much concise solutions, but the downside here is that Ruben&rsquo;s solution may be a bit too terse and somewhat difficult to follow.</p>
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-006/ruben-westerberg/perl6/ch-1.p6">Ruben Westerberg</a> first joined the input numbers into a CSV string, and immediately thereafter splitted the string on commas and stored the result in a bag (presumably to remove duplicates). I fail to see why this was necessary, as I have the feeling that he could have worked directly on the input numbers. This being said, Ruben&rsquo;s code is the most compact solution:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> $string<span style="color:#f92672">=</span> @<span style="color:#960050;background-color:#1e0010">*</span>ARGS ?? @<span style="color:#960050;background-color:#1e0010">*</span>ARGS<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34;,&#34;</span>)<span style="color:#f92672">!!</span> prompt <span style="color:#e6db74">&#34;Enter numbers: &#34;</span>;
+<span style="color:#66d9ef">my</span> $a<span style="color:#f92672">=</span>$string<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34;,&#34;</span>,:skip<span style="color:#f92672">-</span>empty)<span style="color:#f92672">&gt;&gt;.</span>trim<span style="color:#f92672">.</span>grep({<span style="color:#f92672">!</span><span style="color:#e6db74">/^$/</span>})<span style="color:#f92672">&gt;&gt;.</span>Int<span style="color:#f92672">.</span>Bag;
+<span style="color:#66d9ef">my</span> @r1<span style="color:#f92672">=</span>$a<span style="color:#f92672">.</span>keys<span style="color:#f92672">.</span>sort;
+<span style="color:#66d9ef">my</span> @diff<span style="color:#f92672">=</span>@r1<span style="color:#f92672">.</span>rotate <span style="color:#f92672">&gt;&gt;-&lt;&lt;</span> @r1;
+<span style="color:#66d9ef">my</span> @p<span style="color:#f92672">=</span>(<span style="color:#ae81ff">0</span>,<span style="color:#f92672">|</span>map {<span style="color:#f92672">|</span>($<span style="color:#960050;background-color:#1e0010">^</span>k,$k<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">if</span> abs($<span style="color:#960050;background-color:#1e0010">^</span>v) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>}, @diff<span style="color:#f92672">.</span>kv);
+@p<span style="color:#f92672">.</span>pop;
+say join <span style="color:#e6db74">&#34;,&#34;</span>, map {@r1[$<span style="color:#960050;background-color:#1e0010">^</span>a]<span style="color:#f92672">==</span>@r1[$<span style="color:#960050;background-color:#1e0010">^</span>b]??@r1[$<span style="color:#960050;background-color:#1e0010">^</span>a]<span style="color:#f92672">!!</span><span style="color:#e6db74">&#34;@r1[$^a]-@r1[$^b]&#34;</span>}, @p;
+</code></pre></div><p>I like very much concise solutions, but the downside here is that Ruben&rsquo;s solution may be a bit too terse and somewhat difficult to follow.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-006/simon-proctor/perl6/ch-1.p6">Simon Proctor</a> took an diametrically opposite approach and wrote a fairly  verbose (and somewhat over-engineered, IMHO) approach. Simon created a <code>GrowableRange</code> class, with five method definitions such as:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">    method next() { $!max + 1 }
-    method grow() { $!max++; return self }
-</code></pre><p>These methods basically do almost nothing and this is typically what I don&rsquo;t like very much with object-oriented programming pushed to the extreme. Anyone has the right to play with language features and have some fun using and even possibly abusing them (and I must confess that I also do that from time to time), but, frankly, this is kind of overkill, and, in my view, this is not really the Perl spirit.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">    method <span style="color:#66d9ef">next</span>() { $<span style="color:#960050;background-color:#1e0010">!</span>max <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> }
+    method grow() { $<span style="color:#960050;background-color:#1e0010">!</span>max<span style="color:#f92672">++</span>; <span style="color:#66d9ef">return</span> self }
+</code></pre></div><p>These methods basically do almost nothing and this is typically what I don&rsquo;t like very much with object-oriented programming pushed to the extreme. Anyone has the right to play with language features and have some fun using and even possibly abusing them (and I must confess that I also do that from time to time), but, frankly, this is kind of overkill, and, in my view, this is not really the Perl spirit.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-006/tim-smith/perl6/ch-1.p6">Tim Smith</a> provided a simple and easy to understand solution:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">my @vals = @*ARGS».comb(/\d+/).Seq.flat».Int.sort.unique
-    or die &quot;Usage: {$?FILE.IO.basename} 1 2,3 4/5/6 '7 8 9'&quot;;
-my @groups;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> @vals <span style="color:#f92672">=</span> @<span style="color:#960050;background-color:#1e0010">*</span>ARGS<span style="color:#960050;background-color:#1e0010">»</span><span style="color:#f92672">.</span>comb(<span style="color:#e6db74">/\d+/</span>)<span style="color:#f92672">.</span>Seq<span style="color:#f92672">.</span>flat<span style="color:#960050;background-color:#1e0010">»</span><span style="color:#f92672">.</span>Int<span style="color:#f92672">.</span>sort<span style="color:#f92672">.</span>unique
+    <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;Usage: {$?FILE.IO.basename} 1 2,3 4/5/6 &#39;7 8 9&#39;&#34;</span>;
+<span style="color:#66d9ef">my</span> @groups;
 
-for @vals -&gt; $n {
-    # Add a new group unless $n belongs in the current group
-    unless @groups and @groups.tail[1] == $n - 1 {
-        @groups.push: [$n, Nil];
+<span style="color:#66d9ef">for</span> @vals <span style="color:#f92672">-&gt;</span> $n {
+    <span style="color:#75715e"># Add a new group unless $n belongs in the current group</span>
+    <span style="color:#66d9ef">unless</span> @groups <span style="color:#f92672">and</span> @groups<span style="color:#f92672">.</span>tail[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">==</span> $n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> {
+        @groups<span style="color:#f92672">.</span>push: [$n, Nil];
     }
-    # Update the endpoint of the current group
-    @groups.tail[1] = $n;
+    <span style="color:#75715e"># Update the endpoint of the current group</span>
+    @groups<span style="color:#f92672">.</span>tail[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> $n;
 }
-# Display the groups
-put @groups.map(*.unique.join('-')).join(',');
-</code></pre><h2 id="task-2-ramanujans-constant">Task #2: Ramanujan&rsquo;s Constant</h2>
+<span style="color:#75715e"># Display the groups</span>
+put @groups<span style="color:#f92672">.</span>map(<span style="color:#f92672">*.</span>unique<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#39;-&#39;</span>))<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#39;,&#39;</span>);
+</code></pre></div><h2 id="task-2-ramanujans-constant">Task #2: Ramanujan&rsquo;s Constant</h2>
 <p>This is derived in part from my <a href="http://blogs.perl.org/users/laurent_r/2019/05/perl-weekly-challenge-6-ramanujans-constant.html">blog post</a> made in answer to the <a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-006/">Week 06 of the Perl Weekly Challenge</a> organized by  <a href="http://blogs.perl.org/users/mohammad_s_anwar/">Mohammad S. Anwar</a> as well as answers made by others to the same challenge.</p>
 <p>The challenge reads as follows:</p>
 <p><em>Create a script to calculate Ramanujan’s constant with at least 32 digits of precision. Find out more about it here (Wikipedia link).</em></p>
@@ -352,53 +352,53 @@ put @groups.map(*.unique.join('-')).join(',');
 <h2 id="alternative-solutions-1">Alternative Solutions</h2>
 <p>Only five challengers contributed to this challenge (in addition to me).</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-006/arne-sommer/perl6/ch-2.p6">Arne Sommer</a> suggested the following program:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub FatRatRoot (Int $int where $int &gt; 0, :$precision = 10)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">FatRatRoot</span> (Int $int where $int &gt; 0, :$precision = 10)
 {
-  my @x =
-    FatRat.new(1, 1),
-    -&gt; $x { $x - ($x ** 2 - $int) / (2 * $x) } ... *;
+  <span style="color:#66d9ef">my</span> @x <span style="color:#f92672">=</span>
+    FatRat<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>),
+    <span style="color:#f92672">-&gt;</span> $x { $x <span style="color:#f92672">-</span> ($x <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">-</span> $int) <span style="color:#f92672">/</span> (<span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $x) } <span style="color:#f92672">...</span> <span style="color:#f92672">*</span>;
 
-  return @x[$precision];
+  <span style="color:#66d9ef">return</span> @x[$precision];
 }
-say $e ** ($pi * FatRatRoot(163));
-</code></pre><p>I wasn&rsquo;t able to run it, because <code>$e</code> and <code>$pi</code> are not declared. Changing the last code line to this:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">say e ** (pi * FatRatRoot(163));
-</code></pre><p>makes the program runnable, but still doesn&rsquo;t really produce any result with a 32-digit accuracy:</p>
+say $e <span style="color:#f92672">**</span> ($pi <span style="color:#f92672">*</span> FatRatRoot(<span style="color:#ae81ff">163</span>));
+</code></pre></div><p>I wasn&rsquo;t able to run it, because <code>$e</code> and <code>$pi</code> are not declared. Changing the last code line to this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">say e <span style="color:#f92672">**</span> (pi <span style="color:#f92672">*</span> FatRatRoot(<span style="color:#ae81ff">163</span>));
+</code></pre></div><p>makes the program runnable, but still doesn&rsquo;t really produce any result with a 32-digit accuracy:</p>
 <pre><code>2.625374126407677e+17
 </code></pre>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-006/jaldhar-h-vyas/perl6/ch-2.p6">Jaldhar H. Vyas</a> started by trying essentially the same formula as the one just above:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">constant RAMANUJAN = 𝑒 ** (π * sqrt(163));
-</code></pre><p>but found out that doesn&rsquo;t work and produces the same floating point approximation as Arne&rsquo;s program above. So Jaldhar admits that he decided to cheat a little bit and reuse his Perl 5 program:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">shell('../perl5/ch-2.pl');
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-006/joelle-maslak/perl6/ch-2.p6">Joelle Maslak</a> used the same approximation formula as my solution and also obtained 33 accurate digits (262537412640768743.999999999999250):</p>
-<pre><code class="language-Perl6" data-lang="Perl6">say (640320³ + 744 - 196844.FatRat/(640320³ + 744)).Str.substr(0,34);
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-006/ruben-westerberg/perl6/ch-2.p6">Ruben Westerberg</a> implemented a <code>FatRat</code> factorial subroutine, a <code>FatRat</code> square root subroutine using the Newton-Raphson method, and a <code>FatRat</code> Taylor series exponential subroutine, and also hard-coded pi to 100 digits. Having done all this, he was able to write a version the original formula producing an accurate result:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">my $bigPi=FatRat.new(31415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679,10**100);
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">constant RAMANUJAN <span style="color:#f92672">=</span> 𝑒 <span style="color:#f92672">**</span> (π <span style="color:#f92672">*</span> sqrt(<span style="color:#ae81ff">163</span>));
+</code></pre></div><p>but found out that doesn&rsquo;t work and produces the same floating point approximation as Arne&rsquo;s program above. So Jaldhar admits that he decided to cheat a little bit and reuse his Perl 5 program:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">shell(<span style="color:#e6db74">&#39;../perl5/ch-2.pl&#39;</span>);
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-006/joelle-maslak/perl6/ch-2.p6">Joelle Maslak</a> used the same approximation formula as my solution and also obtained 33 accurate digits (262537412640768743.999999999999250):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">say (<span style="color:#ae81ff">640320</span><span style="color:#960050;background-color:#1e0010">³</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">744</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">196844</span><span style="color:#f92672">.</span>FatRat<span style="color:#f92672">/</span>(<span style="color:#ae81ff">640320</span><span style="color:#960050;background-color:#1e0010">³</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">744</span>))<span style="color:#f92672">.</span>Str<span style="color:#f92672">.</span>substr(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">34</span>);
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-006/ruben-westerberg/perl6/ch-2.p6">Ruben Westerberg</a> implemented a <code>FatRat</code> factorial subroutine, a <code>FatRat</code> square root subroutine using the Newton-Raphson method, and a <code>FatRat</code> Taylor series exponential subroutine, and also hard-coded pi to 100 digits. Having done all this, he was able to write a version the original formula producing an accurate result:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> $bigPi<span style="color:#f92672">=</span>FatRat<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(<span style="color:#ae81ff">31415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679</span>,<span style="color:#ae81ff">10</span><span style="color:#f92672">**</span><span style="color:#ae81ff">100</span>);
 
-sub factorial($n) {
-    constant @f= (1.FatRat, |[\*] 1.FatRat..*);
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">factorial</span>($n) {
+    constant @f<span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">.</span>FatRat, <span style="color:#f92672">|</span>[<span style="color:#f92672">\*</span>] <span style="color:#ae81ff">1</span><span style="color:#f92672">.</span>FatRat<span style="color:#f92672">..*</span>);
     @f[$n];
 }
-sub taylor-e ($atVal) {
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">taylor</span>-e ($atVal) {
 
-    my $sum=0.FatRat;
-    my $x=$atVal.FatRat;
-    for 0..200 {
-         $sum+=($x**$_)/factorial($_);
-         say &quot;Iteration $_: &quot; ~ $sum.Str.substr(0,50);
+    <span style="color:#66d9ef">my</span> $sum<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span><span style="color:#f92672">.</span>FatRat;
+    <span style="color:#66d9ef">my</span> $x<span style="color:#f92672">=</span>$atVal<span style="color:#f92672">.</span>FatRat;
+    <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">200</span> {
+         $sum<span style="color:#f92672">+=</span>($x<span style="color:#f92672">**</span>$_)<span style="color:#f92672">/</span>factorial($_);
+         say <span style="color:#e6db74">&#34;Iteration $_: &#34;</span> <span style="color:#f92672">~</span> $sum<span style="color:#f92672">.</span>Str<span style="color:#f92672">.</span>substr(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">50</span>);
     }
     $sum;
 }
 
-sub newton-sqrt($val, $target, $repeat){
-    my $guess=$val.FatRat;
-    for ^$repeat {
-        $guess:=($guess - ($guess**2 -$target)/(2*$guess));
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">newton</span>-sqrt($val, $target, $repeat){
+    <span style="color:#66d9ef">my</span> $guess<span style="color:#f92672">=</span>$val<span style="color:#f92672">.</span>FatRat;
+    <span style="color:#66d9ef">for</span> <span style="color:#f92672">^</span>$repeat {
+        $guess:<span style="color:#f92672">=</span>($guess <span style="color:#f92672">-</span> ($guess<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">-</span>$target)<span style="color:#f92672">/</span>(<span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>$guess));
     }
     $guess;
 }
-say taylor-e($bigPi*newton-sqrt(10,163,6)).Str.substr(0,50);
-</code></pre><p>which produces the right result after slightly more than 130 iterations:</p>
+say taylor<span style="color:#f92672">-</span>e($bigPi<span style="color:#f92672">*</span>newton<span style="color:#f92672">-</span>sqrt(<span style="color:#ae81ff">10</span>,<span style="color:#ae81ff">163</span>,<span style="color:#ae81ff">6</span>))<span style="color:#f92672">.</span>Str<span style="color:#f92672">.</span>substr(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">50</span>);
+</code></pre></div><p>which produces the right result after slightly more than 130 iterations:</p>
 <pre><code>Iteration 132: 262537412640768743.9999999999990867965865161656471
 Iteration 133: 262537412640768743.9999999999992013528229697101850
 Iteration 134: 262537412640768743.9999999999992356420435776175716
@@ -410,16 +410,16 @@ Iteration 139: 262537412640768743.9999999999992500430922335835121
 Iteration 140: 262537412640768743.9999999999992500642273428172645
 </code></pre>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-006/tim-smith/perl6/ch-2.p6">Tim Smith</a> used the same approximation as Joelle Maslak and myself:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">
-# Ramanujan's constant is _almost_ this integer ...
-my $r = 640_320 ** 3 + 744;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">
+<span style="color:#75715e"># Ramanujan&#39;s constant is _almost_ this integer ...</span>
+<span style="color:#66d9ef">my</span> $r <span style="color:#f92672">=</span> <span style="color:#ae81ff">640_320</span> <span style="color:#f92672">**</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">744</span>;
 
-# But is off by an error which is defined in terms of the constant itself,
-# so this approximation is close enough for at least 32 significant digits.
-$r += FatRat.new: -196_844, $r;
+<span style="color:#75715e"># But is off by an error which is defined in terms of the constant itself,</span>
+<span style="color:#75715e"># so this approximation is close enough for at least 32 significant digits.</span>
+$r <span style="color:#f92672">+=</span> FatRat<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>: <span style="color:#f92672">-</span><span style="color:#ae81ff">196_844</span>, $r;
 
-put substr($r, 0, 33);
-</code></pre><h2 id="see-also">SEE ALSO</h2>
+put substr($r, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">33</span>);
+</code></pre></div><h2 id="see-also">SEE ALSO</h2>
 <p>Only one blog post (besides mine) this time, as far as I can say from Mohammad&rsquo;s recap and from his GitHub repository:</p>
 <p>Arne Sommer: <a href="https://perl6.eu/int-erval.html">https://perl6.eu/int-erval.html</a>.</p>
 <h2 id="wrapping-up">Wrapping up</h2>

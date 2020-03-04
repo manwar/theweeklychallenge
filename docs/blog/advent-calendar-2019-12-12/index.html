@@ -16,7 +16,7 @@
 
     <meta name="description" content="Advent Calendar - December 12, 2019">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.66.0-DEV" />
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -231,22 +231,22 @@ Can't calculate 6th series of 6 values at fwd_diff.pl line 13.
 &gt;
 </code></pre>
 <p>OK, enough experimenting with the REPL, we now know how to solve the challenge and can write our program:</p>
-<pre><code class="language-perl6" data-lang="perl6">use v6;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">use</span> v6;
 
-sub fwd-diff (*@in) {
-    map {$_[1] - $_[0]},  (@in).rotor(2 =&gt; -1)
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">fwd</span>-diff (*@in) {
+    map {$_[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> $_[<span style="color:#ae81ff">0</span>]},  (@in)<span style="color:#f92672">.</span>rotor(<span style="color:#ae81ff">2</span> <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
 }
-sub MAIN (Int $order, *@values) {
-    if @values.elems &lt;= $order {
-        die &quot;Can't compute {$order}th series of {@values.elems} values&quot;;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> (Int $order, *@values) {
+    <span style="color:#66d9ef">if</span> @values<span style="color:#f92672">.</span>elems <span style="color:#f92672">&lt;=</span> $order {
+        die <span style="color:#e6db74">&#34;Can&#39;t compute {$order}th series of {@values.elems} values&#34;</span>;
     }
-    my @result = @values;
-    for 1 .. $order {
-        @result = fwd-diff @result;
+    <span style="color:#66d9ef">my</span> @result <span style="color:#f92672">=</span> @values;
+    <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $order {
+        @result <span style="color:#f92672">=</span> fwd<span style="color:#f92672">-</span>diff @result;
     }
-    say &quot;{$order}th forward diff of @values[] is: @result[]&quot;;
+    say <span style="color:#e6db74">&#34;{$order}th forward diff of @values[] is: @result[]&#34;</span>;
 }
-</code></pre><p>Testing with 6 values the forward difference series with orders 1 to 6 displays the following output:</p>
+</code></pre></div><p>Testing with 6 values the forward difference series with orders 1 to 6 displays the following output:</p>
 <pre><code>$ fwd-diff.p6 1 5 9 2 8 1 6
 1th forward diff of 5 9 2 8 1 6 is: 4 -7 6 -7 5
 

@@ -16,7 +16,7 @@
 
     <meta name="description" content="Laurent Rosenfeld Weekly Review: Challenge - #028.">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.66.0-DEV" />
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -163,34 +163,34 @@
 <h2 id="my-solution">My Solution</h2>
 <p>Perl 6 has most of the Perl 5 test file operators (albeit with a slightly different syntax), but operators equivalent to Perl 5 <code>-T</code> and <code>-B</code> file test operators currently do not exist (or are not yet implemented). We will use the existing file test operators (<code>-e</code>, <code>-z</code> and <code>-f</code>) to check, respectively, that the file exists, that it is not empty and that it is a regular file, but we have to roll out our own <code>is-binary</code> subroutine to try to mimic the Perl 5 <code>-T</code> and <code>-B</code> operators. This subroutine will read a raw block of the first 4096 bytes of the file and examine each byte in turn to make some statistics on space characters and printable characters versus non-printable characters.</p>
 <p>The slight difficulty, though, is to determine exactly what should be considered a non-printable character. For lack of a standard definition of such characters, I&rsquo;ve decided to consider that byte decimal values 0 to 8 and 14 to 31 correspond to ASCII non-printable characters. Those values will be stored in a set. With such a small number of non-printable characters compared to the full extended ASCII, the proportion of non-printable character would be around 10% on a random bytes binary file. I have decided to consider that a file shall be deemed to be text (ASCII) if there is less than one byte out of 32 that is non-printable, and binary otherwise. In addition, any file for which the buffer contains at least one null byte (value 0) is considered to be binary.</p>
-<pre><code class="language-Perl6" data-lang="Perl6">use v6;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> v6;
 
-sub is-binary ($file) {
-    my constant non-printable-bytes = (0..8).Set (|) (14..31).Set;
-    my constant block-size = 4096;
-    my $fh = $file.IO.open(:r, :bin);
-    my $buf = $fh.read(block-size);
-    $fh.close;
-    my ($printable, $non-printable) = 0, 0;
-    for $buf.list -&gt; $byte {
-        return True if $byte == 0; # null byte
-        if $byte (elem) non-printable-bytes {
-            $non-printable++;
-        } else {
-            $printable++;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is</span>-binary ($file) {
+    <span style="color:#66d9ef">my</span> constant non<span style="color:#f92672">-</span>printable<span style="color:#f92672">-</span>bytes <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">8</span>)<span style="color:#f92672">.</span>Set (<span style="color:#f92672">|</span>) (<span style="color:#ae81ff">14</span><span style="color:#f92672">..</span><span style="color:#ae81ff">31</span>)<span style="color:#f92672">.</span>Set;
+    <span style="color:#66d9ef">my</span> constant block<span style="color:#f92672">-</span>size <span style="color:#f92672">=</span> <span style="color:#ae81ff">4096</span>;
+    <span style="color:#66d9ef">my</span> $fh <span style="color:#f92672">=</span> $file<span style="color:#f92672">.</span>IO<span style="color:#f92672">.</span>open(:r, :bin);
+    <span style="color:#66d9ef">my</span> $buf <span style="color:#f92672">=</span> $fh<span style="color:#f92672">.</span>read(block<span style="color:#f92672">-</span>size);
+    $fh<span style="color:#f92672">.</span>close;
+    <span style="color:#66d9ef">my</span> ($printable, $non<span style="color:#f92672">-</span>printable) <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">for</span> $buf<span style="color:#f92672">.</span>list <span style="color:#f92672">-&gt;</span> $byte {
+        <span style="color:#66d9ef">return</span> True <span style="color:#66d9ef">if</span> $byte <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>; <span style="color:#75715e"># null byte</span>
+        <span style="color:#66d9ef">if</span> $byte (elem) non<span style="color:#f92672">-</span>printable<span style="color:#f92672">-</span>bytes {
+            $non<span style="color:#f92672">-</span>printable<span style="color:#f92672">++</span>;
+        } <span style="color:#66d9ef">else</span> {
+            $printable<span style="color:#f92672">++</span>;
         }
     }
-    return True if $non-printable * 31 &gt; $printable;
+    <span style="color:#66d9ef">return</span> True <span style="color:#66d9ef">if</span> $non<span style="color:#f92672">-</span>printable <span style="color:#f92672">*</span> <span style="color:#ae81ff">31</span> <span style="color:#f92672">&gt;</span> $printable;
     False;
 }
 
-sub MAIN ($file) {
-    die &quot;File $file does not exist&quot; unless $file.IO ~~ :e;
-    die &quot;File $file is empty&quot; if $file.IO ~~ :z;
-    die &quot;File $file isn't a plain file&quot; unless $file.IO ~~ :f;
-    say is-binary($file) ?? &quot;File content is binary&quot; !! &quot;File content is text (ASCII)&quot;;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> ($file) {
+    die <span style="color:#e6db74">&#34;File $file does not exist&#34;</span> <span style="color:#66d9ef">unless</span> $file<span style="color:#f92672">.</span>IO <span style="color:#f92672">~~</span> :e;
+    die <span style="color:#e6db74">&#34;File $file is empty&#34;</span> <span style="color:#66d9ef">if</span> $file<span style="color:#f92672">.</span>IO <span style="color:#f92672">~~</span> :z;
+    die <span style="color:#e6db74">&#34;File $file isn&#39;t a plain file&#34;</span> <span style="color:#66d9ef">unless</span> $file<span style="color:#f92672">.</span>IO <span style="color:#f92672">~~</span> :f;
+    say is<span style="color:#f92672">-</span>binary($file) ?? <span style="color:#e6db74">&#34;File content is binary&#34;</span> <span style="color:#f92672">!!</span> <span style="color:#e6db74">&#34;File content is text (ASCII)&#34;</span>;
 }
-</code></pre><p>This appears to work as desired:</p>
+</code></pre></div><p>This appears to work as desired:</p>
 <pre><code>$ perl6 file-type.p6
 Usage:
   file-type.p6 &lt;file&gt;
@@ -209,178 +209,178 @@ File content is binary
 </code></pre>
 <h2 id="alternative-solutions">Alternative Solutions</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-028/arne-sommer/perl6/ch-1.p6">Arne Sommer</a> used the <code>is-text</code> subroutine exported by Jonathan Worthington&rsquo;s <a href="https://github.com/jnthn/p6-data-textorbinary">Data::TextOrBinary</a> module, which applies more or less the same heuristics as the one I used above. Using such a module makes the code pretty simple:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">use Data::TextOrBinary;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> Data::TextOrBinary;
 
-sub MAIN ($file, :$test-bytes = 4096)
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> ($file, :$test-bytes = 4096)
 {
-  if $file.IO.d
+  <span style="color:#66d9ef">if</span> $file<span style="color:#f92672">.</span>IO<span style="color:#f92672">.</span>d
   {
-    say &quot;Directory.&quot;;
+    say <span style="color:#e6db74">&#34;Directory.&#34;</span>;
   }
-  elsif $file.IO.e
+  <span style="color:#66d9ef">elsif</span> $file<span style="color:#f92672">.</span>IO<span style="color:#f92672">.</span>e
   {
-    say is-text($file.IO, :$test-bytes)
-      ?? &quot;Text file.&quot;
-      !! &quot;Binary file.&quot;;
+    say is<span style="color:#f92672">-</span>text($file<span style="color:#f92672">.</span>IO, :$test<span style="color:#f92672">-</span>bytes)
+      ?? <span style="color:#e6db74">&#34;Text file.&#34;</span>
+      <span style="color:#f92672">!!</span> <span style="color:#e6db74">&#34;Binary file.&#34;</span>;
   }
-  else
+  <span style="color:#66d9ef">else</span>
   {
-    say &quot;File doesn't exist.&quot;;
+    say <span style="color:#e6db74">&#34;File doesn&#39;t exist.&#34;</span>;
   }
 }
-</code></pre><p>Note that Arne&rsquo;s <a href="https://perl6.eu/binary-clock.html">blog post</a> has an extended discussion about the subject, including original 7-bit ASCII versus extended 8-bit ASCII, and so on.</p>
+</code></pre></div><p>Note that Arne&rsquo;s <a href="https://perl6.eu/binary-clock.html">blog post</a> has an extended discussion about the subject, including original 7-bit ASCII versus extended 8-bit ASCII, and so on.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-028/yet-ebreo/perl6/ch-1.p6">Yet Ebreo</a> also used the <code>is-text</code> function of the <a href="https://github.com/jnthn/p6-data-textorbinary">Data::TextOrBinary</a> module:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">use Data::TextOrBinary;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> Data::TextOrBinary;
 
-sub MAIN (
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> (
     *@files #= Files to check if ascii/binary
 ) {
-    for @files -&gt; $x {
-        if (is-text($x.IO)) {
-            say &quot;[$x]: The file content is ascii.&quot;;
-        } else {
-            say &quot;[$x]: The file content is binary.&quot;;
+    <span style="color:#66d9ef">for</span> @files <span style="color:#f92672">-&gt;</span> $x {
+        <span style="color:#66d9ef">if</span> (is<span style="color:#f92672">-</span>text($x<span style="color:#f92672">.</span>IO)) {
+            say <span style="color:#e6db74">&#34;[$x]: The file content is ascii.&#34;</span>;
+        } <span style="color:#66d9ef">else</span> {
+            say <span style="color:#e6db74">&#34;[$x]: The file content is binary.&#34;</span>;
         }
     }
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-028/athanasius/perl6/ch-1.p6">Athanasius</a> chose to use the Perl 5 <a href="https://metacpan.org/pod/File::Util">File::Util</a> module within Perl 6, which provides a good example on how Perl 6 can benefit from the Perl 5 ecosystem:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">use File::Util:from&lt;Perl5&gt; &lt;file_type&gt;;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-028/athanasius/perl6/ch-1.p6">Athanasius</a> chose to use the Perl 5 <a href="https://metacpan.org/pod/File::Util">File::Util</a> module within Perl 6, which provides a good example on how Perl 6 can benefit from the Perl 5 ecosystem:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> File::Util:from<span style="color:#e6db74">&lt;Perl5&gt;</span> <span style="color:#e6db74">&lt;file_type&gt;</span>;
 
-BEGIN say '';
+<span style="color:#66d9ef">BEGIN</span> say <span style="color:#e6db74">&#39;&#39;</span>;
 
-#===============================================================================
-sub MAIN(Str:D $path)
+<span style="color:#75715e">#===============================================================================</span>
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(Str:D $path)
 #===============================================================================
 {
-    my Str $description = ! .e ?? 'This does not exist'      !!
-                            .d ?? 'This is a directory'      !!
-                          ! .f ?? 'This is not a plain file' !!
-                            .z ?? 'The file is empty'        !! 'OK'
-               given $path.IO;
+    <span style="color:#66d9ef">my</span> Str $description <span style="color:#f92672">=</span> <span style="color:#f92672">!</span> <span style="color:#f92672">.</span>e ?? <span style="color:#e6db74">&#39;This does not exist&#39;</span>      <span style="color:#f92672">!!</span>
+                            <span style="color:#f92672">.</span>d ?? <span style="color:#e6db74">&#39;This is a directory&#39;</span>      <span style="color:#f92672">!!</span>
+                          <span style="color:#f92672">!</span> <span style="color:#f92672">.</span>f ?? <span style="color:#e6db74">&#39;This is not a plain file&#39;</span> <span style="color:#f92672">!!</span>
+                            <span style="color:#f92672">.</span>z ?? <span style="color:#e6db74">&#39;The file is empty&#39;</span>        <span style="color:#f92672">!!</span> <span style="color:#e6db74">&#39;OK&#39;</span>
+               given $path<span style="color:#f92672">.</span>IO;
 
-    if $description eq 'OK'
+    <span style="color:#66d9ef">if</span> $description <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;OK&#39;</span>
     {
-        my Str @types = file_type($path);
+        <span style="color:#66d9ef">my</span> Str @types <span style="color:#f92672">=</span> file_type($path);
 
-        if @types.elems == 2 &amp;&amp; @types[0] eq 'PLAIN'
+        <span style="color:#66d9ef">if</span> @types<span style="color:#f92672">.</span>elems <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">&amp;&amp;</span> @types[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;PLAIN&#39;</span>
         {
-            my Str $t1   = @types[1];
-            $description = $t1 eq 'TEXT'   ?? 'The file content is text'   !!
-                           $t1 eq 'BINARY' ?? 'The file content is binary' !!
-                      'ERROR: The file content is neither text nor binary';
+            <span style="color:#66d9ef">my</span> Str $t1   <span style="color:#f92672">=</span> @types[<span style="color:#ae81ff">1</span>];
+            $description <span style="color:#f92672">=</span> $t1 <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;TEXT&#39;</span>   ?? <span style="color:#e6db74">&#39;The file content is text&#39;</span>   <span style="color:#f92672">!!</span>
+                           $t1 <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;BINARY&#39;</span> ?? <span style="color:#e6db74">&#39;The file content is binary&#39;</span> <span style="color:#f92672">!!</span>
+                      <span style="color:#e6db74">&#39;ERROR: The file content is neither text nor binary&#39;</span>;
         }
-        else
+        <span style="color:#66d9ef">else</span>
         {
-            $description = 'ERROR: Unexpected file types: ' ~ @types.join(', ');
+            $description <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;ERROR: Unexpected file types: &#39;</span> <span style="color:#f92672">~</span> @types<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#39;, &#39;</span>);
         }
     }
 
-    qq{&quot;$path&quot;: $description}.say;
+    <span style="color:#e6db74">qq{&#34;$path&#34;: $description}</span><span style="color:#f92672">.</span>say;
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-028/kevin-colyer/perl6/ch-1.p6">Kevin Colyer</a> decided to read a single byte using the <code>getc</code> method in a <code>try</code> block in order to decide whether a file is ASCII or binary. I&rsquo;m not convinced this is very reliable, but Kevin&rsquo;s program uses some interesting Perl 6 features:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">use Test;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-028/kevin-colyer/perl6/ch-1.p6">Kevin Colyer</a> decided to read a single byte using the <code>getc</code> method in a <code>try</code> block in order to decide whether a file is ASCII or binary. I&rsquo;m not convinced this is very reliable, but Kevin&rsquo;s program uses some interesting Perl 6 features:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> Test;
 
-sub MAIN(Str $file where *.IO.e) {
-    my $fh = $file.IO.open;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(Str $file where *.IO.e) {
+    <span style="color:#66d9ef">my</span> $fh <span style="color:#f92672">=</span> $file<span style="color:#f92672">.</span>IO<span style="color:#f92672">.</span>open;
     LEAVE try close $fh;
 
-    # attempt a single byte read explicitly in ascii
-    $fh.encoding: 'ascii';
+    <span style="color:#75715e"># attempt a single byte read explicitly in ascii</span>
+    $fh<span style="color:#f92672">.</span>encoding: <span style="color:#e6db74">&#39;ascii&#39;</span>;
 
     try {
-        $fh.getc;
+        $fh<span style="color:#f92672">.</span>getc;
     }
-    if $! { say “The file content is binary.”}
-    else  { say “The file content is ascii.” };
+    <span style="color:#66d9ef">if</span> $! { say <span style="color:#960050;background-color:#1e0010">“</span>The file content is binary<span style="color:#f92672">.</span><span style="color:#960050;background-color:#1e0010">”</span>}
+    <span style="color:#66d9ef">else</span>  { say <span style="color:#960050;background-color:#1e0010">“</span>The file content is ascii<span style="color:#f92672">.</span><span style="color:#960050;background-color:#1e0010">”</span> };
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-028/ulrich-rieke/perl6/ch-1.p6">Ulrich Rieke</a>, who is a new member of the team (welcome, Ulrich), used a solution similar to Kevin&rsquo;s:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub MAIN( Str $filename ) {
-  my $fh = open $filename , :r ;
-  try $fh.get ;
-  if ( $! ) {
-      say &quot;The file is binary.&quot; ;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-028/ulrich-rieke/perl6/ch-1.p6">Ulrich Rieke</a>, who is a new member of the team (welcome, Ulrich), used a solution similar to Kevin&rsquo;s:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>( Str $filename ) {
+  <span style="color:#66d9ef">my</span> $fh <span style="color:#f92672">=</span> open $filename , :r ;
+  try $fh<span style="color:#f92672">.</span>get ;
+  <span style="color:#66d9ef">if</span> ( $! ) {
+      say <span style="color:#e6db74">&#34;The file is binary.&#34;</span> ;
   }
-  else {
-      say &quot;The file is ascii.&quot; ;
+  <span style="color:#66d9ef">else</span> {
+      say <span style="color:#e6db74">&#34;The file is ascii.&#34;</span> ;
   }
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-028/kevin-colyer/perl6/ch-1.p6">Markus Holzer</a> used the <a href="http://gnuwin32.sourceforge.net/packages/file.htm">file</a> external GNU Windows utility:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub MAIN( $file )
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-028/kevin-colyer/perl6/ch-1.p6">Markus Holzer</a> used the <a href="http://gnuwin32.sourceforge.net/packages/file.htm">file</a> external GNU Windows utility:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>( $file )
 {
-    my $magic = run( &quot;file&quot;, $file, :out ).out.slurp;
-    say &quot;The file content is &quot;, ($magic ~~ / \s text \, / ?? &quot;ascii&quot; !! &quot;binary&quot;);
+    <span style="color:#66d9ef">my</span> $magic <span style="color:#f92672">=</span> run( <span style="color:#e6db74">&#34;file&#34;</span>, $file, :out )<span style="color:#f92672">.</span>out<span style="color:#f92672">.</span>slurp;
+    say <span style="color:#e6db74">&#34;The file content is &#34;</span>, ($magic <span style="color:#f92672">~~</span> <span style="color:#e6db74">/ \s text \, /</span> ?? <span style="color:#e6db74">&#34;ascii&#34;</span> <span style="color:#f92672">!!</span> <span style="color:#e6db74">&#34;binary&#34;</span>);
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-028/feng-chang/perl6/ch-1.p6">Feng Chang</a> chose to read 16 bytes from the file and apply the <code>is-ascii</code> subroutine, which checks for bytes numeric ranges 9 to 13 and 32 to 126:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub is-ascii(uint8 $c --&gt; Bool) {
-    9 &lt;= $c &lt;= 13 or 32 &lt;= $c &lt;= 126
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-028/feng-chang/perl6/ch-1.p6">Feng Chang</a> chose to read 16 bytes from the file and apply the <code>is-ascii</code> subroutine, which checks for bytes numeric ranges 9 to 13 and 32 to 126:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is</span>-ascii(uint8 $c --&gt; Bool) {
+    <span style="color:#ae81ff">9</span> <span style="color:#f92672">&lt;=</span> $c <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">13</span> <span style="color:#f92672">or</span> <span style="color:#ae81ff">32</span> <span style="color:#f92672">&lt;=</span> $c <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">126</span>
 }
-sub MAIN(Str:D $file-name where *.IO.e) {
-    print 'the file content is ';
-    say   ([and] open($file-name, :r).read(16).list».&amp;{ is-ascii($_) }) ??
-              'ascii' !! 'binary';
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(Str:D $file-name where *.IO.e) {
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39;the file content is &#39;</span>;
+    say   ([<span style="color:#f92672">and</span>] open($file<span style="color:#f92672">-</span>name, :r)<span style="color:#f92672">.</span>read(<span style="color:#ae81ff">16</span>)<span style="color:#f92672">.</span>list<span style="color:#960050;background-color:#1e0010">»</span><span style="color:#f92672">.&amp;</span>{ is<span style="color:#f92672">-</span>ascii($_) }) ??
+              <span style="color:#e6db74">&#39;ascii&#39;</span> <span style="color:#f92672">!!</span> <span style="color:#e6db74">&#39;binary&#39;</span>;
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-028/joelle-maslak/perl6/ch-1.p6">Joelle Maslak</a> wrote a <code>File-Info</code> class, which considers bytes 7, 9 to 13 and 32 to 126 to be printable ASCII characters. Her program reads 512 bytes from the file and deems the file to be <em>possibly</em> ASCII if less that one third of the characters are non printable.</p>
-<pre><code class="language-Perl6" data-lang="Perl6">class File-Info {
-    my uint8 @print-default;
-    BEGIN {
-        @print-default.push:   7; # Backspace is considered a printable for this routine's purposes
-        @print-default.push:   9; # Horizontal tab
-        @print-default.push:  10; # Line Feed
-        @print-default.push:  12; # Form Feed
-        @print-default.push:  13; # Carriage Return
-        @print-default.push: |(32..126);  # All other printables
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-028/joelle-maslak/perl6/ch-1.p6">Joelle Maslak</a> wrote a <code>File-Info</code> class, which considers bytes 7, 9 to 13 and 32 to 126 to be printable ASCII characters. Her program reads 512 bytes from the file and deems the file to be <em>possibly</em> ASCII if less that one third of the characters are non printable.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">class File<span style="color:#f92672">-</span>Info {
+    <span style="color:#66d9ef">my</span> uint8 @print<span style="color:#f92672">-</span>default;
+    <span style="color:#66d9ef">BEGIN</span> {
+        @print<span style="color:#f92672">-</span>default<span style="color:#f92672">.</span>push:   <span style="color:#ae81ff">7</span>; <span style="color:#75715e"># Backspace is considered a printable for this routine&#39;s purposes</span>
+        @print<span style="color:#f92672">-</span>default<span style="color:#f92672">.</span>push:   <span style="color:#ae81ff">9</span>; <span style="color:#75715e"># Horizontal tab</span>
+        @print<span style="color:#f92672">-</span>default<span style="color:#f92672">.</span>push:  <span style="color:#ae81ff">10</span>; <span style="color:#75715e"># Line Feed</span>
+        @print<span style="color:#f92672">-</span>default<span style="color:#f92672">.</span>push:  <span style="color:#ae81ff">12</span>; <span style="color:#75715e"># Form Feed</span>
+        @print<span style="color:#f92672">-</span>default<span style="color:#f92672">.</span>push:  <span style="color:#ae81ff">13</span>; <span style="color:#75715e"># Carriage Return</span>
+        @print<span style="color:#f92672">-</span>default<span style="color:#f92672">.</span>push: <span style="color:#f92672">|</span>(<span style="color:#ae81ff">32</span><span style="color:#f92672">..</span><span style="color:#ae81ff">126</span>);  <span style="color:#75715e"># All other printables</span>
     }
 
-    has Str:D  $.filename is required;
-    has UInt:D $.bytes-to-examine = 512;
-    has Set:D  $.printables = Set.new(@print-default);
-    has buf8   $!start-block;
+    has Str:D  $<span style="color:#960050;background-color:#1e0010">.</span>filename is required;
+    has UInt:D $<span style="color:#960050;background-color:#1e0010">.</span>bytes<span style="color:#f92672">-</span>to<span style="color:#f92672">-</span>examine <span style="color:#f92672">=</span> <span style="color:#ae81ff">512</span>;
+    has Set:D  $<span style="color:#960050;background-color:#1e0010">.</span>printables <span style="color:#f92672">=</span> Set<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(@print<span style="color:#f92672">-</span>default);
+    has buf8   $<span style="color:#960050;background-color:#1e0010">!</span>start<span style="color:#f92672">-</span>block;
 
     method TWEAK() {
-        my $fh = $.filename.IO.open: :r, :bin;
-        $!start-block = $fh.read($!bytes-to-examine);
-        $fh.close;
+        <span style="color:#66d9ef">my</span> $fh <span style="color:#f92672">=</span> $<span style="color:#960050;background-color:#1e0010">.</span>filename<span style="color:#f92672">.</span>IO<span style="color:#f92672">.</span>open: :r, :bin;
+        $<span style="color:#960050;background-color:#1e0010">!</span>start<span style="color:#f92672">-</span>block <span style="color:#f92672">=</span> $fh<span style="color:#f92672">.</span>read($<span style="color:#960050;background-color:#1e0010">!</span>bytes<span style="color:#f92672">-</span>to<span style="color:#f92672">-</span>examine);
+        $fh<span style="color:#f92672">.</span>close;
     }
 
-    method possibly-ascii-printable(--&gt;Bool:D) {
-        return False if 0 ∈ $!start-block;  # Nul chars are automatic binary
+    method possibly<span style="color:#f92672">-</span>ascii<span style="color:#f92672">-</span>printable(<span style="color:#f92672">--&gt;</span>Bool:D) {
+        <span style="color:#66d9ef">return</span> False <span style="color:#66d9ef">if</span> <span style="color:#ae81ff">0</span> <span style="color:#960050;background-color:#1e0010">∈</span> $<span style="color:#960050;background-color:#1e0010">!</span>start<span style="color:#f92672">-</span>block;  <span style="color:#75715e"># Nul chars are automatic binary</span>
 
-        my $unprintable = $!start-block.grep( * ∈ @($!printables) ).elems;
-        return False if ($unprintable * 3) &gt; $!start-block.elems;
+        <span style="color:#66d9ef">my</span> $unprintable <span style="color:#f92672">=</span> $<span style="color:#960050;background-color:#1e0010">!</span>start<span style="color:#f92672">-</span>block<span style="color:#f92672">.</span>grep( <span style="color:#f92672">*</span> <span style="color:#960050;background-color:#1e0010">∈</span> @<span style="color:#960050;background-color:#1e0010">($!</span>printables) )<span style="color:#f92672">.</span>elems;
+        <span style="color:#66d9ef">return</span> False <span style="color:#66d9ef">if</span> ($unprintable <span style="color:#f92672">*</span> <span style="color:#ae81ff">3</span>) <span style="color:#f92672">&gt;</span> $<span style="color:#960050;background-color:#1e0010">!</span>start<span style="color:#f92672">-</span>block<span style="color:#f92672">.</span>elems;
 
-        # It's possibly ascii.
-        return True;
+        <span style="color:#75715e"># It&#39;s possibly ascii.</span>
+        <span style="color:#66d9ef">return</span> True;
     }
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-028/ruben-westerberg/perl6/ch-1.p6">Ruben Westerberg</a> based his determination of the file type on the file extension:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">#!/usr/bin/env perl6
-my %ext;
-data.lines.map({
-    my @f=.split(/\s|\,/,:skip-empty);
-    my $type= /^text\// ?? &quot;text&quot; !! &quot;binary&quot; given @f.shift;
-    %ext{$_}=$type for @f;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-028/ruben-westerberg/perl6/ch-1.p6">Ruben Westerberg</a> based his determination of the file type on the file extension:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#75715e">#!/usr/bin/env perl6</span>
+<span style="color:#66d9ef">my</span> %ext;
+data<span style="color:#f92672">.</span>lines<span style="color:#f92672">.</span>map({
+    <span style="color:#66d9ef">my</span> @f<span style="color:#f92672">=.</span>split(<span style="color:#e6db74">/\s|\,/</span>,:skip<span style="color:#f92672">-</span>empty);
+    <span style="color:#66d9ef">my</span> $type<span style="color:#f92672">=</span> <span style="color:#e6db74">/^text\//</span> ?? <span style="color:#e6db74">&#34;text&#34;</span> <span style="color:#f92672">!!</span> <span style="color:#e6db74">&#34;binary&#34;</span> given @f<span style="color:#f92672">.</span>shift;
+    %ext{$_}<span style="color:#f92672">=</span>$type <span style="color:#66d9ef">for</span> @f;
 });
 
-@*ARGS.map({
-    my $type=%ext{.IO.extension};
-    $type=&quot;binary&quot; if !$type;
-    put &quot;$_: The file content is $type&quot;;
+@<span style="color:#960050;background-color:#1e0010">*</span>ARGS<span style="color:#f92672">.</span>map({
+    <span style="color:#66d9ef">my</span> $type<span style="color:#f92672">=</span>%ext{<span style="color:#f92672">.</span>IO<span style="color:#f92672">.</span>extension};
+    $type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;binary&#34;</span> <span style="color:#66d9ef">if</span> <span style="color:#f92672">!</span>$type;
+    put <span style="color:#e6db74">&#34;$_: The file content is $type&#34;</span>;
 });
 
-#emulate perl5 DATA section... sort of..
-sub data() {
-    q:to/END/
-    text/html                                        html htm shtml
-    text/css                                         css
-    text/xml                                         xml
-    text/mathml                                      mml
-    text/plain                                       txt
-    text/vnd.sun.j2me.app-descriptor                 jad
-    text/vnd.wap.wml                                 wml
-    text/x-component                                 htc
-    END
+<span style="color:#75715e">#emulate perl5 DATA section... sort of..</span>
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">data</span>() {
+    q:to<span style="color:#e6db74">/END/</span>
+    text<span style="color:#f92672">/</span>html                                        html htm shtml
+    text<span style="color:#f92672">/</span>css                                         css
+    text<span style="color:#f92672">/</span>xml                                         xml
+    text<span style="color:#f92672">/</span>mathml                                      mml
+    text<span style="color:#f92672">/</span>plain                                       txt
+    text<span style="color:#f92672">/</span>vnd<span style="color:#f92672">.</span>sun<span style="color:#f92672">.</span>j2me<span style="color:#f92672">.</span>app<span style="color:#f92672">-</span>descriptor                 jad
+    text<span style="color:#f92672">/</span>vnd<span style="color:#f92672">.</span>wap<span style="color:#f92672">.</span>wml                                 wml
+    text<span style="color:#f92672">/</span>x<span style="color:#f92672">-</span>component                                 htc
+    <span style="color:#66d9ef">END</span>
 }
-</code></pre><h2 id="task-2-digital-clock">Task #2: Digital Clock</h2>
+</code></pre></div><h2 id="task-2-digital-clock">Task #2: Digital Clock</h2>
 <p>This is derived in part from my <a href="http://blogs.perl.org/users/laurent_r/2019/10/perl-weekly-challenge-28-file-type-and-digital-clock.html">blog post</a> made in answer to the <a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-028/">Week 28 of the Perl Weekly Challenge</a> organized by  <a href="http://blogs.perl.org/users/mohammad_s_anwar/">Mohammad S. Anwar</a> as well as answers made by others to the same challenge.</p>
 <p>The challenge reads as follows:</p>
 <p><em>Write a script to display Digital Clock. Feel free to be as creative as you can when displaying digits. We expect bare minimum something like “14:10:11”.</em></p>
@@ -395,43 +395,43 @@ sub data() {
 14:38:06
 </code></pre>
 <p>So, job done? Yes, sure, we&rsquo;re displaying a digital clock. But the task specification suggests to feel free to be creative when displaying the digits. So, let&rsquo;s try to get a nicer output. We could probably use some graphical library such as <code>Tk</code>, but I haven&rsquo;t used it for a fairly long time and I&rsquo;m also not sure how to use it in Perl 6. We could also possibly use an HTML display, but I fear that would require to run a Web server, and I don&rsquo;t want to run into annoying environment problems. So I decided to simply display the time with ASCII art.</p>
-<pre><code class="language-Perl6" data-lang="Perl6">use v6;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> v6;
 
-my @digit_strings = (
-' _  -   - _  -_  -    - _  - _  - _  - _  - _  -     ',
-'| | - | - _| -_| -|_| -|_  -|_  -  | -|_| -|_| -  O  ',
-'|_| - | -|_  -_| -  | - _| -|_| -  | -|_| - _| -  O  ',
-'    -   -    -   -    -    -    -    -    -    -     ');
+<span style="color:#66d9ef">my</span> @digit_strings <span style="color:#f92672">=</span> (
+<span style="color:#e6db74">&#39; _  -   - _  -_  -    - _  - _  - _  - _  - _  -     &#39;</span>,
+<span style="color:#e6db74">&#39;| | - | - _| -_| -|_| -|_  -|_  -  | -|_| -|_| -  O  &#39;</span>,
+<span style="color:#e6db74">&#39;|_| - | -|_  -_| -  | - _| -|_| -  | -|_| - _| -  O  &#39;</span>,
+<span style="color:#e6db74">&#39;    -   -    -   -    -    -    -    -    -    -     &#39;</span>);
 
-my @digits = map { [split /\-/, $_] }, @digit_strings;
+<span style="color:#66d9ef">my</span> @digits <span style="color:#f92672">=</span> map { [split <span style="color:#e6db74">/\-/</span>, $_] }, @digit_strings;
 
-sub display_time (Str $time) {
-    my @pieces = $time.comb;
-    for 0..3 -&gt; $line {
-        for @pieces &lt;-&gt; $digit {
-            $digit = 10 if $digit eq &quot;:&quot;;
-            print @digits[$line][$digit];
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">display_time</span> (Str $time) {
+    <span style="color:#66d9ef">my</span> @pieces <span style="color:#f92672">=</span> $time<span style="color:#f92672">.</span>comb;
+    <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">3</span> <span style="color:#f92672">-&gt;</span> $line {
+        <span style="color:#66d9ef">for</span> @pieces <span style="color:#e6db74">&lt;-&gt;</span> $digit {
+            $digit <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span> <span style="color:#66d9ef">if</span> $digit <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#34;:&#34;</span>;
+            <span style="color:#66d9ef">print</span> @digits[$line][$digit];
         }
-    say &quot;&quot;;
+    say <span style="color:#e6db74">&#34;&#34;</span>;
     }
 }
 
-my $clear_screen = ($*VM.osname ~~ m:i/cyg | lin/) ?? &quot;clear&quot; !! &quot;cls&quot;;
+<span style="color:#66d9ef">my</span> $clear_screen <span style="color:#f92672">=</span> ($<span style="color:#960050;background-color:#1e0010">*</span>VM<span style="color:#f92672">.</span>osname <span style="color:#f92672">~~</span> m:i<span style="color:#e6db74">/cyg | lin/</span>) ?? <span style="color:#e6db74">&#34;clear&#34;</span> <span style="color:#f92672">!!</span> <span style="color:#e6db74">&#34;cls&#34;</span>;
 loop {
-    my $d = DateTime.now;
-    my $time_str = sprintf &quot;%02d:%02d:%02d&quot;, $d.hour, $d.minute, $d.second;
+    <span style="color:#66d9ef">my</span> $d <span style="color:#f92672">=</span> DateTime<span style="color:#f92672">.</span>now;
+    <span style="color:#66d9ef">my</span> $time_str <span style="color:#f92672">=</span> sprintf <span style="color:#e6db74">&#34;%02d:%02d:%02d&#34;</span>, $d<span style="color:#f92672">.</span>hour, $d<span style="color:#f92672">.</span>minute, $d<span style="color:#f92672">.</span>second;
     shell $clear_screen;
     display_time $time_str;
-    sleep 1;
+    sleep <span style="color:#ae81ff">1</span>;
 }
 
-=finish
+<span style="color:#f92672">=</span>finish
 
 Example of displayed time:
     _        _   _        _   _
- |   |   O  | | |_|   O  | |  _|
- |   |   O  |_|  _|   O  |_| |_
-</code></pre><h2 id="alternative-solutions-1">Alternative Solutions</h2>
+ <span style="color:#f92672">|</span>   <span style="color:#f92672">|</span>   O  <span style="color:#f92672">|</span> <span style="color:#f92672">|</span> <span style="color:#f92672">|</span>_<span style="color:#f92672">|</span>   O  <span style="color:#f92672">|</span> <span style="color:#f92672">|</span>  _<span style="color:#f92672">|</span>
+ <span style="color:#f92672">|</span>   <span style="color:#f92672">|</span>   O  <span style="color:#f92672">|</span>_<span style="color:#f92672">|</span>  _<span style="color:#f92672">|</span>   O  <span style="color:#f92672">|</span>_<span style="color:#f92672">|</span> <span style="color:#f92672">|</span>_
+</code></pre></div><h2 id="alternative-solutions-1">Alternative Solutions</h2>
 <p>Quite a few of the solutions below used system-specific features that did not work for me, despite trying them under Windows, Linux and Cygwin. The fact that I wasn&rsquo;t able to run a solution doesn&rsquo;t mean that it is a bad solution</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-028/arne-sommer/perl6/ch-2.p6">Arne Sommer</a> also used ASCII art to display a digital clock, but his digits are much more elaborated than mine:</p>
 <pre><code>   ,a8888a,         88           88  888888888888               ,d8        88
@@ -444,170 +444,170 @@ Example of displayed time:
    &quot;Y8888P&quot;         88           88  8P'                         88        88
 </code></pre>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-028/athanasius/perl6/ch-2.p6">Athanasius</a> wrote a <code>while</code> loop using the <code>\r</code> carriage return character to overwrite the previous display with the new one each time, just as in my one-liners:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">while 1
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">while</span> <span style="color:#ae81ff">1</span>
 {
-    sleep 1;
+    sleep <span style="color:#ae81ff">1</span>;
 
-    if ++$sec &gt;= 60
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">++</span>$sec <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">60</span>
     {
-        $sec = 0;
+        $sec <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
 
-        if ++$min == 60
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">++</span>$min <span style="color:#f92672">==</span> <span style="color:#ae81ff">60</span>
         {
-            $min  = 0;
-            $hour = 0 if ++$hour == 24;
+            $min  <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+            $hour <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> <span style="color:#f92672">++</span>$hour <span style="color:#f92672">==</span> <span style="color:#ae81ff">24</span>;
         }
     }
 
-    &quot;%02d:%02d:%02d\r&quot;.printf($hour, $min, $sec);
+    <span style="color:#e6db74">&#34;%02d:%02d:%02d\r&#34;</span><span style="color:#f92672">.</span>printf($hour, $min, $sec);
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-028/daniel-mita/perl6/ch-2.p6">Daniel Mita</a> suggested a program which I don&rsquo;t fully understand and which I could not run (perhaps not the right terminal):</p>
-<pre><code class="language-Perl6" data-lang="Perl6">my @num-groups = (^0x20000)
-  .map( { .chr } )
-  .grep( { .uniprop eq &quot;Nd&quot; } )
-  .rotor(10)
-  .map( { ( ^10 Z=&gt; $_ ).Hash } );
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-028/daniel-mita/perl6/ch-2.p6">Daniel Mita</a> suggested a program which I don&rsquo;t fully understand and which I could not run (perhaps not the right terminal):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> @num<span style="color:#f92672">-</span>groups <span style="color:#f92672">=</span> (<span style="color:#f92672">^</span><span style="color:#ae81ff">0x20000</span>)
+  <span style="color:#f92672">.</span>map( { <span style="color:#f92672">.</span>chr } )
+  <span style="color:#f92672">.</span>grep( { <span style="color:#f92672">.</span>uniprop <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#34;Nd&#34;</span> } )
+  <span style="color:#f92672">.</span>rotor(<span style="color:#ae81ff">10</span>)
+  <span style="color:#f92672">.</span>map( { ( <span style="color:#f92672">^</span><span style="color:#ae81ff">10</span> Z<span style="color:#f92672">=&gt;</span> $_ )<span style="color:#f92672">.</span>Hash } );
 
 loop {
-  run 'clear';
-  given DateTime.now -&gt; $t {
-    for @num-groups -&gt; %nums {
-      once {print ' ' x 8 ~ &quot;\t&quot;}
-      print $t.hh-mm-ss.comb.map( { %nums{$_}
-        || do given %nums{0}.uniprop('Block') {
-          when 'Arabic' {'؛'}
-          when 'NKo'    {'߸'}
-          default       {':'}
-        }} ).join;
-      print $++ % 3 ?? &quot;\t&quot; !! &quot;\n&quot;;
+  run <span style="color:#e6db74">&#39;clear&#39;</span>;
+  given DateTime<span style="color:#f92672">.</span>now <span style="color:#f92672">-&gt;</span> $t {
+    <span style="color:#66d9ef">for</span> @num<span style="color:#f92672">-</span>groups <span style="color:#f92672">-&gt;</span> %nums {
+      once {<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39; &#39;</span> x <span style="color:#ae81ff">8</span> <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34;\t&#34;</span>}
+      <span style="color:#66d9ef">print</span> $t<span style="color:#f92672">.</span>hh<span style="color:#f92672">-</span>mm<span style="color:#f92672">-</span>ss<span style="color:#f92672">.</span>comb<span style="color:#f92672">.</span>map( { %nums{$_}
+        <span style="color:#f92672">||</span> <span style="color:#66d9ef">do</span> given %nums{<span style="color:#ae81ff">0</span>}<span style="color:#f92672">.</span>uniprop(<span style="color:#e6db74">&#39;Block&#39;</span>) {
+          when <span style="color:#e6db74">&#39;Arabic&#39;</span> {<span style="color:#e6db74">&#39;؛&#39;</span>}
+          when <span style="color:#e6db74">&#39;NKo&#39;</span>    {<span style="color:#e6db74">&#39;߸&#39;</span>}
+          default       {<span style="color:#e6db74">&#39;:&#39;</span>}
+        }} )<span style="color:#f92672">.</span>join;
+      <span style="color:#66d9ef">print</span> $+<span style="color:#f92672">+</span> % 3 ?? <span style="color:#e6db74">&#34;\t&#34;</span> <span style="color:#f92672">!!</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
     }
-    sleep 0.1 while $t.whole-second == DateTime.now.whole-second;
+    sleep <span style="color:#ae81ff">0.1</span> <span style="color:#66d9ef">while</span> $t<span style="color:#f92672">.</span>whole<span style="color:#f92672">-</span>second <span style="color:#f92672">==</span> DateTime<span style="color:#f92672">.</span>now<span style="color:#f92672">.</span>whole<span style="color:#f92672">-</span>second;
   }
 }
-</code></pre><p>I also could not run <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-028/markus-holzer/perl6/ch-2.p6">Markus Holzer</a> solution, probably for similar reasons:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">
-subset CoordStr of Str where / ^ \d+ \, \d+ $ /;
+</code></pre></div><p>I also could not run <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-028/markus-holzer/perl6/ch-2.p6">Markus Holzer</a> solution, probably for similar reasons:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">
+subset CoordStr of Str where <span style="color:#e6db74">/ ^ \d+ \, \d+ $ /</span>;
 
-my @numbers = map *.comb(3).Array,
-    &quot;╻━╻┃ ┃╹━╹&quot;, &quot;  ╻  ┃  ╹&quot;, &quot;╺━╻╻━╹╹━╸&quot;, &quot;╺━╻╺━┃╺━╹&quot;, &quot;╻ ╻╹━┃  ╹&quot;,
-    &quot;╻━╸╹━╻╺━╹&quot;, &quot;╻━╸┃━╻╹━╹&quot;, &quot;╺━╻  ┃  ╹&quot;, &quot;╻━╻┃━┃╹━╹&quot;, &quot;╻━╻╹━┃╺━╹&quot;;
+<span style="color:#66d9ef">my</span> @numbers <span style="color:#f92672">=</span> map <span style="color:#f92672">*.</span>comb(<span style="color:#ae81ff">3</span>)<span style="color:#f92672">.</span>Array,
+    <span style="color:#e6db74">&#34;╻━╻┃ ┃╹━╹&#34;</span>, <span style="color:#e6db74">&#34;  ╻  ┃  ╹&#34;</span>, <span style="color:#e6db74">&#34;╺━╻╻━╹╹━╸&#34;</span>, <span style="color:#e6db74">&#34;╺━╻╺━┃╺━╹&#34;</span>, <span style="color:#e6db74">&#34;╻ ╻╹━┃  ╹&#34;</span>,
+    <span style="color:#e6db74">&#34;╻━╸╹━╻╺━╹&#34;</span>, <span style="color:#e6db74">&#34;╻━╸┃━╻╹━╹&#34;</span>, <span style="color:#e6db74">&#34;╺━╻  ┃  ╹&#34;</span>, <span style="color:#e6db74">&#34;╻━╻┃━┃╹━╹&#34;</span>, <span style="color:#e6db74">&#34;╻━╻╹━┃╺━╹&#34;</span>;
 
-sub MAIN( CoordStr :$at = &quot;2,2&quot; )
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>( CoordStr :$at = &#34;2,2&#34; )
 {
-    my ($x, $y) = $at.Str.split(',');
+    <span style="color:#66d9ef">my</span> ($x, $y) <span style="color:#f92672">=</span> $at<span style="color:#f92672">.</span>Str<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39;,&#39;</span>);
 
     react {
-        whenever Supply.interval(1) -&gt; $v {
-            print clear-screen;
-            display-time( $x, $y, DateTime.now.hh-mm-ss );
-            print go-to(0,0);
+        whenever Supply<span style="color:#f92672">.</span>interval(<span style="color:#ae81ff">1</span>) <span style="color:#f92672">-&gt;</span> $v {
+            <span style="color:#66d9ef">print</span> clear<span style="color:#f92672">-</span>screen;
+            display<span style="color:#f92672">-</span>time( $x, $y, DateTime<span style="color:#f92672">.</span>now<span style="color:#f92672">.</span>hh<span style="color:#f92672">-</span>mm<span style="color:#f92672">-</span>ss );
+            <span style="color:#66d9ef">print</span> go<span style="color:#f92672">-</span>to(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>);
         }
 
-        whenever signal(SIGINT) { exit 0; }
+        whenever signal(SIGINT) { exit <span style="color:#ae81ff">0</span>; }
     }
 }
 
-sub display-time( $x, $y, $time )
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">display</span>-time( $x, $y, $time )
 {
-    for $time.comb.kv -&gt; $column, $part
+    <span style="color:#66d9ef">for</span> $time<span style="color:#f92672">.</span>comb<span style="color:#f92672">.</span>kv <span style="color:#f92672">-&gt;</span> $column, $part
     {
-        if $part ~~ /\d/
+        <span style="color:#66d9ef">if</span> $part <span style="color:#f92672">~~</span> <span style="color:#e6db74">/\d/</span>
         {
-            for |@numbers[$part].kv -&gt; $idx, $line
+            <span style="color:#66d9ef">for</span> <span style="color:#f92672">|</span>@numbers[$part]<span style="color:#f92672">.</span>kv <span style="color:#f92672">-&gt;</span> $idx, $line
             {
-                print go-to( $x + ($column * 3), $y + $idx ) ~ $line;
+                <span style="color:#66d9ef">print</span> go<span style="color:#f92672">-</span>to( $x <span style="color:#f92672">+</span> ($column <span style="color:#f92672">*</span> <span style="color:#ae81ff">3</span>), $y <span style="color:#f92672">+</span> $idx ) <span style="color:#f92672">~</span> $line;
             }
         }
-        else
+        <span style="color:#66d9ef">else</span>
         {
-            print go-to( $x + ($column * 3) , $y + 1) ~ &quot; : &quot;;
+            <span style="color:#66d9ef">print</span> go<span style="color:#f92672">-</span>to( $x <span style="color:#f92672">+</span> ($column <span style="color:#f92672">*</span> <span style="color:#ae81ff">3</span>) , $y <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34; : &#34;</span>;
         }
     }
 }
 
-sub clear-screen() { escape(&quot;2J&quot;) ~ escape(&quot;;H&quot;); }
-sub go-to( $column, $row ) { escape( &quot;$row;$column&quot; ~ &quot;H&quot; ); }
-sub escape( $value ) { &quot;\e[&quot; ~ $value; }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-028/kevin-colyer/perl6/ch-2.p6">Kevin Colyer</a> wrote a bare-bone program essentially similar to one of my one-liners:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub MAIN() {
-    # bare minimum
-    say DateTime.now.hh-mm-ss;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">clear</span>-screen() { escape(<span style="color:#e6db74">&#34;2J&#34;</span>) <span style="color:#f92672">~</span> escape(<span style="color:#e6db74">&#34;;H&#34;</span>); }
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">go</span>-to( $column, $row ) { escape( <span style="color:#e6db74">&#34;$row;$column&#34;</span> <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34;H&#34;</span> ); }
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">escape</span>( $value ) { <span style="color:#e6db74">&#34;\e[&#34;</span> <span style="color:#f92672">~</span> $value; }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-028/kevin-colyer/perl6/ch-2.p6">Kevin Colyer</a> wrote a bare-bone program essentially similar to one of my one-liners:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>() {
+    <span style="color:#75715e"># bare minimum</span>
+    say DateTime<span style="color:#f92672">.</span>now<span style="color:#f92672">.</span>hh<span style="color:#f92672">-</span>mm<span style="color:#f92672">-</span>ss;
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-028/simon-proctor/perl6/ch-2.p6">Simon Proctor</a> used the <code>\r</code> carriage-return character to do something similar to my one-liners:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">multi sub MAIN() {
-    END say &quot;&quot;;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-028/simon-proctor/perl6/ch-2.p6">Simon Proctor</a> used the <code>\r</code> carriage-return character to do something similar to my one-liners:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">multi <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>() {
+    <span style="color:#66d9ef">END</span> say <span style="color:#e6db74">&#34;&#34;</span>;
     loop {
-        print &quot;{DateTime.now.hh-mm-ss}&quot;;
-        sleep 1;
-        print &quot;\r&quot;;
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;{DateTime.now.hh-mm-ss}&#34;</span>;
+        sleep <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\r&#34;</span>;
     }
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-028/ulrich-rieke/perl6/ch-2.p6">Ulrich Rieke</a>&lsquo;s solution uses an external <code>figlet</code> command which I do not know and can&rsquo;t test adequately:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">use v6 ;
-run 'figlet' , &quot;{DateTime.now.Str.substr(11,8)}&quot; ;
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-028/feng-chang/perl6/ch-2.p6">Feng Chang</a> also suggested a solution which I am not able to run:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">my $clock = Supply.interval: 1;
-$clock.tap: { print &quot;\r&quot;, DateTime.now.hh-mm-ss };
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-028/ulrich-rieke/perl6/ch-2.p6">Ulrich Rieke</a>&lsquo;s solution uses an external <code>figlet</code> command which I do not know and can&rsquo;t test adequately:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> v6 ;
+run <span style="color:#e6db74">&#39;figlet&#39;</span> , <span style="color:#e6db74">&#34;{DateTime.now.Str.substr(11,8)}&#34;</span> ;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-028/feng-chang/perl6/ch-2.p6">Feng Chang</a> also suggested a solution which I am not able to run:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> $clock <span style="color:#f92672">=</span> Supply<span style="color:#f92672">.</span>interval: <span style="color:#ae81ff">1</span>;
+$clock<span style="color:#f92672">.</span>tap: { <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\r&#34;</span>, DateTime<span style="color:#f92672">.</span>now<span style="color:#f92672">.</span>hh<span style="color:#f92672">-</span>mm<span style="color:#f92672">-</span>ss };
 
-signal(SIGINT).tap({ put &quot;\r{ DateTime.now.hh-mm-ss }  &quot;; exit 0; });
-sleep ∞;
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-028/joelle-maslak/perl6/ch-2.p6">Joelle M%aslak</a> used a solution similar to one of my one-liners:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub MAIN() {
-    say DateTime.now.hh-mm-ss;
+signal(SIGINT)<span style="color:#f92672">.</span>tap({ put <span style="color:#e6db74">&#34;\r{ DateTime.now.hh-mm-ss }  &#34;</span>; exit <span style="color:#ae81ff">0</span>; });
+sleep <span style="color:#960050;background-color:#1e0010">∞</span>;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-028/joelle-maslak/perl6/ch-2.p6">Joelle M%aslak</a> used a solution similar to one of my one-liners:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>() {
+    say DateTime<span style="color:#f92672">.</span>now<span style="color:#f92672">.</span>hh<span style="color:#f92672">-</span>mm<span style="color:#f92672">-</span>ss;
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-028/ruben-westerberg/perl6/ch-2.p6">Ruben Westerberg</a> provided code using supplies, <code>react</code> and <code>whenever</code> features and I must admit that I get an idea of what it is doing, but don&rsquo;t fully understand it:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">my $offset=0;
-#my @codes=(&quot;\x1b[{$offset}D&quot;
-react { whenever Supply.interval(.1) {
-    print &quot;=&quot;;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-028/ruben-westerberg/perl6/ch-2.p6">Ruben Westerberg</a> provided code using supplies, <code>react</code> and <code>whenever</code> features and I must admit that I get an idea of what it is doing, but don&rsquo;t fully understand it:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> $offset<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+<span style="color:#75715e">#my @codes=(&#34;\x1b[{$offset}D&#34;</span>
+react { whenever Supply<span style="color:#f92672">.</span>interval(<span style="color:#ae81ff">.1</span>) {
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;=&#34;</span>;
 }
-    whenever Supply.interval(1) {
-        print &quot;\x1b[2K&quot;;
-         print &quot;\x1b[1000D&quot;;
-        print DateTime.now.hh-mm-ss;
+    whenever Supply<span style="color:#f92672">.</span>interval(<span style="color:#ae81ff">1</span>) {
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\x1b[2K&#34;</span>;
+         <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\x1b[1000D&#34;</span>;
+        <span style="color:#66d9ef">print</span> DateTime<span style="color:#f92672">.</span>now<span style="color:#f92672">.</span>hh<span style="color:#f92672">-</span>mm<span style="color:#f92672">-</span>ss;
      }
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-028/yet-ebreo/perl6/ch-2.p6">Yet Ebreo</a> provided an ASCII art solution:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">my @ascii_num= (
-    [&quot;  0000  &quot;,&quot; 00  00 &quot;,&quot; 00  00 &quot;,&quot; 00  00 &quot;,&quot;  0000  &quot;],
-    [&quot;   11   &quot;,&quot;   11   &quot;,&quot;   11   &quot;,&quot;   11   &quot;,&quot;   11   &quot;],
-    [&quot; 222222 &quot;,&quot;     22 &quot;,&quot; 222222 &quot;,&quot; 22     &quot;,&quot; 222222 &quot;],
-    [&quot; 333333 &quot;,&quot;     33 &quot;,&quot; 333333 &quot;,&quot;     33 &quot;,&quot; 333333 &quot;],
-    [&quot; 44  44 &quot;,&quot; 44  44 &quot;,&quot; 444444 &quot;,&quot;     44 &quot;,&quot;     44 &quot;],
-    [&quot; 555555 &quot;,&quot; 55     &quot;,&quot; 555555 &quot;,&quot;     55 &quot;,&quot; 555555 &quot;],
-    [&quot; 666666 &quot;,&quot; 66     &quot;,&quot; 666666 &quot;,&quot; 66  66 &quot;,&quot; 666666 &quot;],
-    [&quot; 777777 &quot;,&quot;     77 &quot;,&quot;     77 &quot;,&quot;     77 &quot;,&quot;     77 &quot;],
-    [&quot; 888888 &quot;,&quot; 88  88 &quot;,&quot; 888888 &quot;,&quot; 88  88 &quot;,&quot; 888888 &quot;],
-    [&quot; 999999 &quot;,&quot; 99  99 &quot;,&quot; 999999 &quot;,&quot;     99 &quot;,&quot; 999999 &quot;],
-    [&quot;    &quot;,&quot; :: &quot;,&quot;    &quot;,&quot; :: &quot;,&quot;    &quot;],
-    [&quot;    &quot;,&quot;    &quot;,&quot;    &quot;,&quot;    &quot;,&quot;    &quot;]
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-028/yet-ebreo/perl6/ch-2.p6">Yet Ebreo</a> provided an ASCII art solution:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> @ascii_num<span style="color:#f92672">=</span> (
+    [<span style="color:#e6db74">&#34;  0000  &#34;</span>,<span style="color:#e6db74">&#34; 00  00 &#34;</span>,<span style="color:#e6db74">&#34; 00  00 &#34;</span>,<span style="color:#e6db74">&#34; 00  00 &#34;</span>,<span style="color:#e6db74">&#34;  0000  &#34;</span>],
+    [<span style="color:#e6db74">&#34;   11   &#34;</span>,<span style="color:#e6db74">&#34;   11   &#34;</span>,<span style="color:#e6db74">&#34;   11   &#34;</span>,<span style="color:#e6db74">&#34;   11   &#34;</span>,<span style="color:#e6db74">&#34;   11   &#34;</span>],
+    [<span style="color:#e6db74">&#34; 222222 &#34;</span>,<span style="color:#e6db74">&#34;     22 &#34;</span>,<span style="color:#e6db74">&#34; 222222 &#34;</span>,<span style="color:#e6db74">&#34; 22     &#34;</span>,<span style="color:#e6db74">&#34; 222222 &#34;</span>],
+    [<span style="color:#e6db74">&#34; 333333 &#34;</span>,<span style="color:#e6db74">&#34;     33 &#34;</span>,<span style="color:#e6db74">&#34; 333333 &#34;</span>,<span style="color:#e6db74">&#34;     33 &#34;</span>,<span style="color:#e6db74">&#34; 333333 &#34;</span>],
+    [<span style="color:#e6db74">&#34; 44  44 &#34;</span>,<span style="color:#e6db74">&#34; 44  44 &#34;</span>,<span style="color:#e6db74">&#34; 444444 &#34;</span>,<span style="color:#e6db74">&#34;     44 &#34;</span>,<span style="color:#e6db74">&#34;     44 &#34;</span>],
+    [<span style="color:#e6db74">&#34; 555555 &#34;</span>,<span style="color:#e6db74">&#34; 55     &#34;</span>,<span style="color:#e6db74">&#34; 555555 &#34;</span>,<span style="color:#e6db74">&#34;     55 &#34;</span>,<span style="color:#e6db74">&#34; 555555 &#34;</span>],
+    [<span style="color:#e6db74">&#34; 666666 &#34;</span>,<span style="color:#e6db74">&#34; 66     &#34;</span>,<span style="color:#e6db74">&#34; 666666 &#34;</span>,<span style="color:#e6db74">&#34; 66  66 &#34;</span>,<span style="color:#e6db74">&#34; 666666 &#34;</span>],
+    [<span style="color:#e6db74">&#34; 777777 &#34;</span>,<span style="color:#e6db74">&#34;     77 &#34;</span>,<span style="color:#e6db74">&#34;     77 &#34;</span>,<span style="color:#e6db74">&#34;     77 &#34;</span>,<span style="color:#e6db74">&#34;     77 &#34;</span>],
+    [<span style="color:#e6db74">&#34; 888888 &#34;</span>,<span style="color:#e6db74">&#34; 88  88 &#34;</span>,<span style="color:#e6db74">&#34; 888888 &#34;</span>,<span style="color:#e6db74">&#34; 88  88 &#34;</span>,<span style="color:#e6db74">&#34; 888888 &#34;</span>],
+    [<span style="color:#e6db74">&#34; 999999 &#34;</span>,<span style="color:#e6db74">&#34; 99  99 &#34;</span>,<span style="color:#e6db74">&#34; 999999 &#34;</span>,<span style="color:#e6db74">&#34;     99 &#34;</span>,<span style="color:#e6db74">&#34; 999999 &#34;</span>],
+    [<span style="color:#e6db74">&#34;    &#34;</span>,<span style="color:#e6db74">&#34; :: &#34;</span>,<span style="color:#e6db74">&#34;    &#34;</span>,<span style="color:#e6db74">&#34; :: &#34;</span>,<span style="color:#e6db74">&#34;    &#34;</span>],
+    [<span style="color:#e6db74">&#34;    &#34;</span>,<span style="color:#e6db74">&#34;    &#34;</span>,<span style="color:#e6db74">&#34;    &#34;</span>,<span style="color:#e6db74">&#34;    &#34;</span>,<span style="color:#e6db74">&#34;    &#34;</span>]
 );
-my $toggler = 1;
+<span style="color:#66d9ef">my</span> $toggler <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
 loop {
-    my $dig_time = DateTime.now;
-    my @printline;
+    <span style="color:#66d9ef">my</span> $dig_time <span style="color:#f92672">=</span> DateTime<span style="color:#f92672">.</span>now;
+    <span style="color:#66d9ef">my</span> @printline;
 
-    $toggler = !$toggler;
-    for $dig_time.hh-mm-ss.split(&quot;&quot;,:skip-empty) -&gt; $x {
-        for (0 .. 4) -&gt; $i {
-            @printline[$i] ~= @ascii_num[ ($x~~/\:/) ?? ( $toggler ?? 10 !! 11) !! $x ][$i];
+    $toggler <span style="color:#f92672">=</span> <span style="color:#f92672">!</span>$toggler;
+    <span style="color:#66d9ef">for</span> $dig_time<span style="color:#f92672">.</span>hh<span style="color:#f92672">-</span>mm<span style="color:#f92672">-</span>ss<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34;&#34;</span>,:skip<span style="color:#f92672">-</span>empty) <span style="color:#f92672">-&gt;</span> $x {
+        <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">4</span>) <span style="color:#f92672">-&gt;</span> $i {
+            @printline[$i] <span style="color:#f92672">~=</span> @ascii_num[ ($x<span style="color:#f92672">~~</span><span style="color:#e6db74">/\:/</span>) ?? ( $toggler ?? <span style="color:#ae81ff">10</span> <span style="color:#f92672">!!</span> <span style="color:#ae81ff">11</span>) <span style="color:#f92672">!!</span> $x ][$i];
         }
     }
 
-    #This might cause flicker
-    shell (($*DISTRO.name eq 'mswin32') ?? 'cls' !! 'clear');
+    <span style="color:#75715e">#This might cause flicker</span>
+    shell (($<span style="color:#960050;background-color:#1e0010">*</span>DISTRO<span style="color:#f92672">.</span>name <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;mswin32&#39;</span>) ?? <span style="color:#e6db74">&#39;cls&#39;</span> <span style="color:#f92672">!!</span> <span style="color:#e6db74">&#39;clear&#39;</span>);
 
-    for (0 .. 4) -&gt; $i {
+    <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">4</span>) <span style="color:#f92672">-&gt;</span> $i {
         say @printline[$i];
     }
 
-    say &quot;\nToday is &quot;~qw|Monday Tuesday Wednesday Thursday Friday Saturday Sunday|[$dig_time.day-of-week-1]
-    ~&quot;: &quot;~qw|January February March April May June July August September October November December|[$dig_time.month-1]
-    ~&quot; &quot;~$dig_time.day~&quot;,&quot;
-    ~&quot; &quot;~$dig_time.year;
-    sleep .5
+    say <span style="color:#e6db74">&#34;\nToday is &#34;</span><span style="color:#f92672">~</span><span style="color:#e6db74">qw|Monday Tuesday Wednesday Thursday Friday Saturday Sunday|</span>[$dig_time<span style="color:#f92672">.</span>day<span style="color:#f92672">-</span>of<span style="color:#f92672">-</span>week<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
+    <span style="color:#f92672">~</span><span style="color:#e6db74">&#34;: &#34;</span><span style="color:#f92672">~</span><span style="color:#e6db74">qw|January February March April May June July August September October November December|</span>[$dig_time<span style="color:#f92672">.</span>month<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
+    <span style="color:#f92672">~</span><span style="color:#e6db74">&#34; &#34;</span><span style="color:#f92672">~</span>$dig_time<span style="color:#f92672">.</span>day<span style="color:#f92672">~</span><span style="color:#e6db74">&#34;,&#34;</span>
+    <span style="color:#f92672">~</span><span style="color:#e6db74">&#34; &#34;</span><span style="color:#f92672">~</span>$dig_time<span style="color:#f92672">.</span>year;
+    sleep <span style="color:#ae81ff">.5</span>
 }
-</code></pre><p>which produces output like so:</p>
+</code></pre></div><p>which produces output like so:</p>
 <pre><code> 222222  333333      44  44   0000       333333   0000
      22      33  ::  44  44  00  00  ::      33  00  00
  222222  333333      444444  00  00      333333  00  00

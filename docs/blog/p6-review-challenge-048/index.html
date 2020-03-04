@@ -16,7 +16,7 @@
 
     <meta name="description" content="Ryan Thompson › Raku Weekly Review #048">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.66.0-DEV" />
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -194,322 +194,322 @@
 <p>It&rsquo;s a little inefficient, especially in the later rounds when most everyone is dead, but it certainly runs quickly enough for small problem sizes.</p>
 <h2 id="alicia-bielsa1">Alicia Bielsa</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/alicia-bielsa/raku/ch-1.p6">Alicia Bielsa&rsquo;s solution</a> continues her foray into Raku submissions this week with the following:</p>
-<pre><code class="language-raku" data-lang="raku">my $numberPeople = 50;
-my $numberPeopleAlive = $numberPeople;
-my @aPeople;
-for 1..$numberPeople {
-    my $nextPosition = $_ == $numberPeople ?? 1 !! $_ +1;
-    @aPeople.push({'nextPosition' =&gt;  $nextPosition});
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">my</span> $numberPeople <span style="color:#f92672">=</span> <span style="color:#ae81ff">50</span>;
+<span style="color:#66d9ef">my</span> $numberPeopleAlive <span style="color:#f92672">=</span> $numberPeople;
+<span style="color:#66d9ef">my</span> @aPeople;
+<span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$numberPeople {
+    <span style="color:#66d9ef">my</span> $nextPosition <span style="color:#f92672">=</span> $_ <span style="color:#f92672">==</span> $numberPeople ?? <span style="color:#ae81ff">1</span> <span style="color:#f92672">!!</span> $_ <span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>;
+    @aPeople<span style="color:#f92672">.</span>push({<span style="color:#e6db74">&#39;nextPosition&#39;</span> <span style="color:#f92672">=&gt;</span>  $nextPosition});
 }
-my $swordPosition  = 1;
-while $numberPeopleAlive &gt; 1 {
-    my $killPosition =  @aPeople[ $swordPosition-1 ]&lt;nextPosition&gt;;
-    @aPeople[ $swordPosition-1 ]&lt;nextPosition&gt;  = @aPeople[ $killPosition-1 ]&lt;nextPosition&gt;;
-    $swordPosition = @aPeople[ $killPosition-1 ]&lt;nextPosition&gt;;
-    $numberPeopleAlive--;
+<span style="color:#66d9ef">my</span> $swordPosition  <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+<span style="color:#66d9ef">while</span> $numberPeopleAlive <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> {
+    <span style="color:#66d9ef">my</span> $killPosition <span style="color:#f92672">=</span>  @aPeople[ $swordPosition<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> ]<span style="color:#e6db74">&lt;nextPosition&gt;</span>;
+    @aPeople[ $swordPosition<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> ]<span style="color:#e6db74">&lt;nextPosition&gt;</span>  <span style="color:#f92672">=</span> @aPeople[ $killPosition<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> ]<span style="color:#e6db74">&lt;nextPosition&gt;</span>;
+    $swordPosition <span style="color:#f92672">=</span> @aPeople[ $killPosition<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> ]<span style="color:#e6db74">&lt;nextPosition&gt;</span>;
+    $numberPeopleAlive<span style="color:#f92672">--</span>;
 }
-print &quot;Last Position Alive : $swordPosition\n&quot;;
-</code></pre><p>Alicia has come up with a circular linked list implementation. The explicit variable names make it easy to follow.</p>
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Last Position Alive : $swordPosition\n&#34;</span>;
+</code></pre></div><p>Alicia has come up with a circular linked list implementation. The explicit variable names make it easy to follow.</p>
 <h2 id="arne-sommer1">Arne Sommer</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/arne-sommer/raku/ch-1.p6">Arne Sommer&rsquo;s solution</a> uses <code>splice</code>:</p>
-<pre><code class="language-raku" data-lang="raku">unit sub MAIN (:$verbose);
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku">unit <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> (:$verbose);
 my @people = 1 .. 50;
 my $next = 1;
-say &quot;: @people[] [Index: $next]&quot; if $verbose;
+say &#34;: @people[] [Index: $next]&#34; if $verbose;
 while @people.elems &gt; 1 {
-  my $killed = @people.splice($next, 1);
-  $next++;
-  $next = 0 if $next &gt; @people.end;
-  say &quot;: @people[] [K:$killed] [Next:$next]&quot; if $verbose;
+  <span style="color:#66d9ef">my</span> $killed <span style="color:#f92672">=</span> @people<span style="color:#f92672">.</span>splice($next, <span style="color:#ae81ff">1</span>);
+  $next<span style="color:#f92672">++</span>;
+  $next <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $next <span style="color:#f92672">&gt;</span> @people<span style="color:#f92672">.</span>end;
+  say <span style="color:#e6db74">&#34;: @people[] [K:$killed] [Next:$next]&#34;</span> <span style="color:#66d9ef">if</span> $verbose;
 }
-say &quot;Living: @people[]&quot;;
-</code></pre><p>Unfortunately, the solution returns 31, but the correct answer is 37. As seems to be typical with these <code>splice</code> implementations on both Perl and Raku, it&rsquo;s really easy to get the indexing wrong, since <code>splice</code> requires an explicit index, and also changes the length of the array.</p>
+say <span style="color:#e6db74">&#34;Living: @people[]&#34;</span>;
+</code></pre></div><p>Unfortunately, the solution returns 31, but the correct answer is 37. As seems to be typical with these <code>splice</code> implementations on both Perl and Raku, it&rsquo;s really easy to get the indexing wrong, since <code>splice</code> requires an explicit index, and also changes the length of the array.</p>
 <p>Fortunately, the fix is simple: change <code>$next = 0</code> to <code>$next -= @people.elems</code>. Or, replace the <code>$next++</code> and <code>$next = 0 ...</code> lines with <code>$next = ($next + 1) % @people.elems</code>.</p>
 <p><strong>Blog</strong> › <a href="https://raku-musings.com/surviving-dates.html">Surviving Dates with Raku</a></p>
 <h2 id="colin-crain1">Colin Crain</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/colin-crain/raku/ch-1.p6">Colin Crain&rsquo;s solution</a>, as with his Perl version, has some hilariously colourful commentary on the problem in an extended comment at the top, which is well worth a read. The code itself uses <code>splice</code>, deftly dodging any indexing errors with the modulo operator:</p>
-<pre><code class="language-raku" data-lang="raku">sub survivor (Int:D $size where {$size &gt; 0}){
-    my @circle = (0..$size-1);
-    my $next = 0;
-    while (  @circle.elems &gt; 1 ) {
-        $next = ++$next % @circle.elems;
-        @circle.splice($next, 1);
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">survivor</span> (Int:D $size where {$size <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>}){
+    <span style="color:#66d9ef">my</span> @circle <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$size<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
+    <span style="color:#66d9ef">my</span> $next <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">while</span> (  @circle<span style="color:#f92672">.</span>elems <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> ) {
+        $next <span style="color:#f92672">=</span> <span style="color:#f92672">++</span>$next % <span style="color:#960050;background-color:#1e0010">@</span>circle<span style="color:#f92672">.</span>elems;
+        @circle<span style="color:#f92672">.</span>splice($next, <span style="color:#ae81ff">1</span>);
     }
-    return @circle[0];
+    <span style="color:#66d9ef">return</span> @circle[<span style="color:#ae81ff">0</span>];
 }
-</code></pre><p>Colin explicitly documents his choice to use 0-based indexing, so his result of 36 instead of 37 is expected.</p>
+</code></pre></div><p>Colin explicitly documents his choice to use 0-based indexing, so his result of 36 instead of 37 is expected.</p>
 <h2 id="jaldhar-h-vyas1">Jaldhar H. Vyas</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/jaldhar-h-vyas/raku/ch-1.p6">Jaldhar H. Vyas&rsquo;s solution</a> uses a brute force method to iterate over a fixed length array:</p>
-<pre><code class="language-raku" data-lang="raku">multi sub MAIN() {
-    my @people = (0 .. 49);
-    my $remaining = @people.elems;
-    my $next = 0;
-    my $victim = 1;
-    while $remaining &gt; 1 {
-        @people[$victim] = Nil;
-        $remaining--;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku">multi <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>() {
+    <span style="color:#66d9ef">my</span> @people <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">49</span>);
+    <span style="color:#66d9ef">my</span> $remaining <span style="color:#f92672">=</span> @people<span style="color:#f92672">.</span>elems;
+    <span style="color:#66d9ef">my</span> $next <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">my</span> $victim <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">while</span> $remaining <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> {
+        @people[$victim] <span style="color:#f92672">=</span> Nil;
+        $remaining<span style="color:#f92672">--</span>;
         repeat {
-            $next = ($next + 1) % 50;
-        } until defined @people[$next];
-        $victim = $next;
+            $next <span style="color:#f92672">=</span> ($next <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) % 50;
+        } <span style="color:#66d9ef">until</span> defined @people[$next];
+        $victim <span style="color:#f92672">=</span> $next;
         repeat {
-            $victim = ($victim + 1) % 50;
-        } until defined @people[$victim];
+            $victim <span style="color:#f92672">=</span> ($victim <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) % 50;
+        } <span style="color:#66d9ef">until</span> defined @people[$victim];
     }
-    say @people.grep({ defined $_; })[0] + 1;
+    say @people<span style="color:#f92672">.</span>grep({ defined $_; })[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
 }
-</code></pre><p><strong>Blog</strong> › <a href="https://perlchallenges.wordpress.com/2020/02/17/perl-weekly-challenge-048/">048 – Perl Weekly Challenge</a></p>
+</code></pre></div><p><strong>Blog</strong> › <a href="https://perlchallenges.wordpress.com/2020/02/17/perl-weekly-challenge-048/">048 – Perl Weekly Challenge</a></p>
 <h2 id="javier-luque1">Javier Luque</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/javier-luque/raku/ch-1.p6">Javier Luque&rsquo;s solution</a> uses <code>push</code>/<code>shift</code> and <code>shift</code> to rotate the array and then remove the first person:</p>
-<pre><code class="language-raku" data-lang="raku">sub MAIN() {
-    my @people = 1..50;
-    kill-and-switch(@people) while (@people.elems &gt; 1);
-    say @people[0] ~&quot; is still alive&quot;;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>() {
+    <span style="color:#66d9ef">my</span> @people <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">50</span>;
+    kill<span style="color:#f92672">-</span><span style="color:#f92672">and</span><span style="color:#f92672">-</span>switch(@people) <span style="color:#66d9ef">while</span> (@people<span style="color:#f92672">.</span>elems <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>);
+    say @people[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">~</span><span style="color:#e6db74">&#34; is still alive&#34;</span>;
 }
-# Kill and Switch
-sub kill-and-switch(@people) {
-    # switch
+<span style="color:#75715e"># Kill and Switch</span>
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">kill</span>-and-switch(@people) {
+    <span style="color:#75715e"># switch</span>
     push @people, shift @people;
-    # kill
+    <span style="color:#75715e"># kill</span>
     shift @people;
 }
-</code></pre><p><strong>Blog</strong> › <a href="https://perlchallenges.wordpress.com/2020/02/17/perl-weekly-challenge-048/">048 – Perl Weekly Challenge</a></p>
+</code></pre></div><p><strong>Blog</strong> › <a href="https://perlchallenges.wordpress.com/2020/02/17/perl-weekly-challenge-048/">048 – Perl Weekly Challenge</a></p>
 <h2 id="kevin-colyer1">Kevin Colyer</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/kevin-colyer/raku/ch-1.p6">Kevin Colyer&rsquo;s solution</a> uses a fixed-length array in <code>@circle</code>, and then uses a brute force method to choose the next victim:</p>
-<pre><code class="language-raku" data-lang="raku"># fill the circle with 50 alive people = 1's
-my @circle = 1 xx 50;
-# helper function to loop around the circle looking for the next living person
-sub nextAlive($i) {
-    my $j=$i;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#75715e"># fill the circle with 50 alive people = 1&#39;s</span>
+<span style="color:#66d9ef">my</span> @circle <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> xx <span style="color:#ae81ff">50</span>;
+<span style="color:#75715e"># helper function to loop around the circle looking for the next living person</span>
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">nextAlive</span>($i) {
+    <span style="color:#66d9ef">my</span> $j<span style="color:#f92672">=</span>$i;
     loop {
-        # choose next person
-        $j++;
-        # loop back if reached end of array
-        $j=0 if $j&gt;= @circle.elems;
-        # return index if that person is living...
-        return $j if @circle[$j]==1;
-        # prevent infinite loop check
-        die &quot;No-one alive in circle&quot; if $i==$j;
-        # and loop
+        <span style="color:#75715e"># choose next person</span>
+        $j<span style="color:#f92672">++</span>;
+        <span style="color:#75715e"># loop back if reached end of array</span>
+        $j<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $j<span style="color:#f92672">&gt;=</span> @circle<span style="color:#f92672">.</span>elems;
+        <span style="color:#75715e"># return index if that person is living...</span>
+        <span style="color:#66d9ef">return</span> $j <span style="color:#66d9ef">if</span> @circle[$j]<span style="color:#f92672">==</span><span style="color:#ae81ff">1</span>;
+        <span style="color:#75715e"># prevent infinite loop check</span>
+        die <span style="color:#e6db74">&#34;No-one alive in circle&#34;</span> <span style="color:#66d9ef">if</span> $i<span style="color:#f92672">==</span>$j;
+        <span style="color:#75715e"># and loop</span>
     }
 }
-</code></pre><p>To find the ultimate survivor, a simple <code>loop</code> does the trick:</p>
-<pre><code class="language-raku" data-lang="raku">my $i=0;
-my $j=-1;
-say &quot;1 has the sword...&quot;;
+</code></pre></div><p>To find the ultimate survivor, a simple <code>loop</code> does the trick:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">my</span> $i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+<span style="color:#66d9ef">my</span> $j<span style="color:#f92672">=-</span><span style="color:#ae81ff">1</span>;
+say <span style="color:#e6db74">&#34;1 has the sword...&#34;</span>;
 loop {
-    # choose victim
-    $j=nextAlive($i);
-    # kill them
-    @circle[$j]=0;
-    say &quot;{$i+1} killed {$j+1}&quot;;
-    # pass the sword on
-    my $k=nextAlive($j);
-    # check exit the loop if we have just passed sword to ourselves - we are the only living one left
-    last if $i == $k;
-    # pass the sword on
-    $i=$k;
-    say &quot; and gave sword to {$i+1}&quot;;
+    <span style="color:#75715e"># choose victim</span>
+    $j<span style="color:#f92672">=</span>nextAlive($i);
+    <span style="color:#75715e"># kill them</span>
+    @circle[$j]<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+    say <span style="color:#e6db74">&#34;{$i+1} killed {$j+1}&#34;</span>;
+    <span style="color:#75715e"># pass the sword on</span>
+    <span style="color:#66d9ef">my</span> $k<span style="color:#f92672">=</span>nextAlive($j);
+    <span style="color:#75715e"># check exit the loop if we have just passed sword to ourselves - we are the only living one left</span>
+    <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $i <span style="color:#f92672">==</span> $k;
+    <span style="color:#75715e"># pass the sword on</span>
+    $i<span style="color:#f92672">=</span>$k;
+    say <span style="color:#e6db74">&#34; and gave sword to {$i+1}&#34;</span>;
 }
-say &quot;So the survivor is {$i+1}&quot;;
-</code></pre><h2 id="laurent-rosenfeld1">Laurent Rosenfeld</h2>
+say <span style="color:#e6db74">&#34;So the survivor is {$i+1}&#34;</span>;
+</code></pre></div><h2 id="laurent-rosenfeld1">Laurent Rosenfeld</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/laurent-rosenfeld/raku/ch-1.p6">Laurent Rosenfeld&rsquo;s solution</a> uses the <code>push</code>/<code>shift</code>, <code>shift</code> technique:</p>
-<pre><code class="language-raku" data-lang="raku">my $number = @*ARGS ?? @*ARGS[0] !! 50;
-my $number = 50;
-my @persons = 1 .. $number;
-for (1.. $number - 1) {
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">my</span> $number <span style="color:#f92672">=</span> @<span style="color:#960050;background-color:#1e0010">*</span>ARGS ?? @<span style="color:#960050;background-color:#1e0010">*</span>ARGS[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">!!</span> <span style="color:#ae81ff">50</span>;
+<span style="color:#66d9ef">my</span> $number <span style="color:#f92672">=</span> <span style="color:#ae81ff">50</span>;
+<span style="color:#66d9ef">my</span> @persons <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $number;
+<span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span> $number <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) {
     push @persons, shift @persons;
     shift @persons;
 }
-say &quot;Person @persons[] is the survivor.\n&quot;;
-</code></pre><p><strong>Blog</strong> › <a href="http://blogs.perl.org/users/laurent_r/2020/02/perl-weekly-challenge-48-survivor-and-palindrome-dates.html">Survivor and Palindrome Dates</a></p>
+say <span style="color:#e6db74">&#34;Person @persons[] is the survivor.\n&#34;</span>;
+</code></pre></div><p><strong>Blog</strong> › <a href="http://blogs.perl.org/users/laurent_r/2020/02/perl-weekly-challenge-48-survivor-and-palindrome-dates.html">Survivor and Palindrome Dates</a></p>
 <h2 id="luca-ferrari1">Luca Ferrari</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/luca-ferrari/raku/ch-1.p6">Luca Ferrari&rsquo;s solution</a> also uses a fixed-length array, and has a <code>next-alive</code> sub to find the next victim:</p>
-<pre><code class="language-raku" data-lang="raku"># Implements the list rotation.
-sub next-alive( @people, $current-person ) {
-    my $next = $current-person;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#75715e"># Implements the list rotation.</span>
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">next</span>-alive( @people, $current-person ) {
+    <span style="color:#66d9ef">my</span> $next <span style="color:#f92672">=</span> $current<span style="color:#f92672">-</span>person;
     loop {
-        $next++;
-        $next = $next &gt;= @people.elems ?? $next % @people.elems !! $next;
-        return $next if @people[ $next ].defined;
+        $next<span style="color:#f92672">++</span>;
+        $next <span style="color:#f92672">=</span> $next <span style="color:#f92672">&gt;=</span> @people<span style="color:#f92672">.</span>elems ?? $next % <span style="color:#960050;background-color:#1e0010">@</span>people<span style="color:#f92672">.</span>elems <span style="color:#f92672">!!</span> $next;
+        <span style="color:#66d9ef">return</span> $next <span style="color:#66d9ef">if</span> @people[ $next ]<span style="color:#f92672">.</span>defined;
     }
 }
-</code></pre><p>The semantics of <code>@people</code> are a bit different: <code>False</code> means the person is alive but does not have the sword. <code>True</code> means the person has the sword.  <code>Nil</code> means the person is dead. The main loop iterates through and kills each person in turn:</p>
-<pre><code class="language-raku" data-lang="raku">sub MAIN( Int :$how_many_people = 50 ) {
-    my @people = False xx $how_many_people;
-    @people[ 0 ] = True;
-    while ( @people.grep( *.defined ) &gt; 1 ) {
-        # find out who has the sword
-        my $killer      = @people.first: *.so, :k;
-        # then find out the next person to kill
-        my $killed      = next-alive( @people, $killer );
-        @people[ $killed ] = Nil;  # killed!
-        @people[ $killer ] = False; # pass the sword
-        # now get the next person that will hold the sword
-        my $next-killer = next-alive( @people, $killed );
-        @people[ $next-killer ] = True; # the next killer
+</code></pre></div><p>The semantics of <code>@people</code> are a bit different: <code>False</code> means the person is alive but does not have the sword. <code>True</code> means the person has the sword.  <code>Nil</code> means the person is dead. The main loop iterates through and kills each person in turn:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>( Int :$how_many_people = 50 ) {
+    <span style="color:#66d9ef">my</span> @people <span style="color:#f92672">=</span> False xx $how_many_people;
+    @people[ <span style="color:#ae81ff">0</span> ] <span style="color:#f92672">=</span> True;
+    <span style="color:#66d9ef">while</span> ( @people<span style="color:#f92672">.</span>grep( <span style="color:#f92672">*.</span>defined ) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> ) {
+        <span style="color:#75715e"># find out who has the sword</span>
+        <span style="color:#66d9ef">my</span> $killer      <span style="color:#f92672">=</span> @people<span style="color:#f92672">.</span>first: <span style="color:#f92672">*.</span>so, :k;
+        <span style="color:#75715e"># then find out the next person to kill</span>
+        <span style="color:#66d9ef">my</span> $killed      <span style="color:#f92672">=</span> <span style="color:#66d9ef">next</span><span style="color:#f92672">-</span>alive( @people, $killer );
+        @people[ $killed ] <span style="color:#f92672">=</span> Nil;  <span style="color:#75715e"># killed!</span>
+        @people[ $killer ] <span style="color:#f92672">=</span> False; <span style="color:#75715e"># pass the sword</span>
+        <span style="color:#75715e"># now get the next person that will hold the sword</span>
+        <span style="color:#66d9ef">my</span> $next<span style="color:#f92672">-</span>killer <span style="color:#f92672">=</span> <span style="color:#66d9ef">next</span><span style="color:#f92672">-</span>alive( @people, $killed );
+        @people[ $next<span style="color:#f92672">-</span>killer ] <span style="color:#f92672">=</span> True; <span style="color:#75715e"># the next killer</span>
     }
-    &quot;The person who survives is { $_ + 1 }&quot;.say given @people.first: *.so, :k;
+    <span style="color:#e6db74">&#34;The person who survives is { $_ + 1 }&#34;</span><span style="color:#f92672">.</span>say given @people<span style="color:#f92672">.</span>first: <span style="color:#f92672">*.</span>so, :k;
 }
-</code></pre><p><strong>Blog</strong> › <a href="https://fluca1978.github.io/2020/02/17/PerlWeeklyChallenge48.html#task1">Survivors and Palindrome Dates</a></p>
+</code></pre></div><p><strong>Blog</strong> › <a href="https://fluca1978.github.io/2020/02/17/PerlWeeklyChallenge48.html#task1">Survivors and Palindrome Dates</a></p>
 <h2 id="mark-anderson1">Mark Anderson</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/mark-anderson/raku/ch-1.p6">Mark Anderson&rsquo;s solution</a> has a unique solution:</p>
-<pre><code class="language-raku" data-lang="raku">my @people = 1 .. 50;
-while @people &gt; 1 {
-    my $last = @people[*-1];
-    @people  = @people[@people.keys.grep(* %% 2)];
-    shift @people if @people[*-1] == $last;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">my</span> @people <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">50</span>;
+<span style="color:#66d9ef">while</span> @people <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> {
+    <span style="color:#66d9ef">my</span> $last <span style="color:#f92672">=</span> @people[<span style="color:#f92672">*-</span><span style="color:#ae81ff">1</span>];
+    @people  <span style="color:#f92672">=</span> @people[@people<span style="color:#f92672">.</span>keys<span style="color:#f92672">.</span>grep(<span style="color:#f92672">*</span> %% 2)];
+    shift @people <span style="color:#66d9ef">if</span> @people[<span style="color:#f92672">*-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">==</span> $last;
 }
 put @people;
-</code></pre><p>While algorithmically, this is a brute force solution, it is rather refined: Mark has no doubt realized that every time the sword goes around the circle, it kills every other person. So he coded that explicitly, with <code>@people = @people[@people.keys.grep(* %% 2)]</code>.</p>
+</code></pre></div><p>While algorithmically, this is a brute force solution, it is rather refined: Mark has no doubt realized that every time the sword goes around the circle, it kills every other person. So he coded that explicitly, with <code>@people = @people[@people.keys.grep(* %% 2)]</code>.</p>
 <h2 id="markus-holzer1">Markus Holzer</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/markus-holzer/raku/ch-1.p6">Markus Holzer&rsquo;s solution</a> shows a few different methods.</p>
 <p>First, a concise solution using <code>splice</code>:</p>
-<pre><code class="language-raku" data-lang="raku">given my @men = 1..50 { .push( .splice(0,2).first ) while .elems &gt; 1 };
-say @men.first;
-</code></pre><hr>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku">given <span style="color:#66d9ef">my</span> @men <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">50</span> { <span style="color:#f92672">.</span>push( <span style="color:#f92672">.</span>splice(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">2</span>)<span style="color:#f92672">.</span>first ) <span style="color:#66d9ef">while</span> <span style="color:#f92672">.</span>elems <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> };
+say @men<span style="color:#f92672">.</span>first;
+</code></pre></div><hr>
 <p>Next, Markus had a go with a circular linked list implemenetation, and also lit up some pathways in my brain that I haven&rsquo;t used since I took that Latin class in university a long time ago:</p>
-<pre><code class="language-raku" data-lang="raku">role Concatenationem { has $.vicinus is rw; }
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku">role Concatenationem { has $<span style="color:#960050;background-color:#1e0010">.</span>vicinus is rw; }
 class Moribunda is Int does Concatenationem { };
-sub bicimare-sine-fine( Int $homines where * &gt; 1 ) {
-    my $armis = my $primus = Moribunda.new(1);
-    for 2..$homines
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">bicimare</span>-sine-fine( Int $homines where * &gt; 1 ) {
+    <span style="color:#66d9ef">my</span> $armis <span style="color:#f92672">=</span> <span style="color:#66d9ef">my</span> $primus <span style="color:#f92672">=</span> Moribunda<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(<span style="color:#ae81ff">1</span>);
+    <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">..</span>$homines
     {
-        my $homine = Moribunda.new($_);
-        $armis.vicinus = $homine;
-        $armis = $homine;
+        <span style="color:#66d9ef">my</span> $homine <span style="color:#f92672">=</span> Moribunda<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>($_);
+        $armis<span style="color:#f92672">.</span>vicinus <span style="color:#f92672">=</span> $homine;
+        $armis <span style="color:#f92672">=</span> $homine;
     }
-    $armis = $armis.vicinus = $primus;
-    while $armis != $armis.vicinus
+    $armis <span style="color:#f92672">=</span> $armis<span style="color:#f92672">.</span>vicinus <span style="color:#f92672">=</span> $primus;
+    <span style="color:#66d9ef">while</span> $armis <span style="color:#f92672">!=</span> $armis<span style="color:#f92672">.</span>vicinus
     {
-        $armis = $armis.vicinus = $armis.vicinus.vicinus;
+        $armis <span style="color:#f92672">=</span> $armis<span style="color:#f92672">.</span>vicinus <span style="color:#f92672">=</span> $armis<span style="color:#f92672">.</span>vicinus<span style="color:#f92672">.</span>vicinus;
     }
     $armis;
 }
-say bicimare-sine-fine( 50 );
-</code></pre><hr>
+say bicimare<span style="color:#f92672">-</span>sine<span style="color:#f92672">-</span>fine( <span style="color:#ae81ff">50</span> );
+</code></pre></div><hr>
 <p>Finally, Markus provided a solution that uses <code>rotor(2)</code> to split up the people into &ldquo;killer/victim tuples&rdquo; (obviously recognizing that every other person is killed, each time around the circle). It requires a special case for even/odd sized groups:</p>
-<pre><code class="language-raku" data-lang="raku">sub rotor-kill( $n ) {
-    my @men = 1..$n;
-    while @men.elems &gt; 1 {
-        if @men.elems %% 2 {
-            # When the number of men is even, we know the very last man
-            # in line will die and we can start the next round at the beginning.
-            @men = @men.rotor(2).map: *.first;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">rotor</span>-kill( $n ) {
+    <span style="color:#66d9ef">my</span> @men <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$n;
+    <span style="color:#66d9ef">while</span> @men<span style="color:#f92672">.</span>elems <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> {
+        <span style="color:#66d9ef">if</span> @men<span style="color:#f92672">.</span>elems %% 2 {
+            <span style="color:#75715e"># When the number of men is even, we know the very last man</span>
+            <span style="color:#75715e"># in line will die and we can start the next round at the beginning.</span>
+            @men <span style="color:#f92672">=</span> @men<span style="color:#f92672">.</span>rotor(<span style="color:#ae81ff">2</span>)<span style="color:#f92672">.</span>map: <span style="color:#f92672">*.</span>first;
         }
-        else
+        <span style="color:#66d9ef">else</span>
         {
-            # When the number of men is odd, the last man survives and will
-            # kill the first in the next round, so we need to skip over the
-            # poor fellow.
-            @men = @men.rotor(2, :partial).skip.map: *.first;
+            <span style="color:#75715e"># When the number of men is odd, the last man survives and will</span>
+            <span style="color:#75715e"># kill the first in the next round, so we need to skip over the</span>
+            <span style="color:#75715e"># poor fellow.</span>
+            @men <span style="color:#f92672">=</span> @men<span style="color:#f92672">.</span>rotor(<span style="color:#ae81ff">2</span>, :partial)<span style="color:#f92672">.</span>skip<span style="color:#f92672">.</span>map: <span style="color:#f92672">*.</span>first;
         }
     }
-    @men.first;
+    @men<span style="color:#f92672">.</span>first;
 }
-say rotor-kill( 50 );
-</code></pre><h2 id="mohammad-anwar1">Mohammad S Anwar</h2>
+say rotor<span style="color:#f92672">-</span>kill( <span style="color:#ae81ff">50</span> );
+</code></pre></div><h2 id="mohammad-anwar1">Mohammad S Anwar</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/mohammad-anwar/raku/ch-1.p6">Mohammad S Anwar&rsquo;s solution</a> uses the <code>shift</code>/<code>push</code> technique:</p>
-<pre><code class="language-raku" data-lang="raku">sub MAIN() {
-    my @people = 1..50;
-    while @people.elems &gt; 1 {
-        my $sword = @people.shift;
-        @people.shift;
-        @people.push($sword);
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>() {
+    <span style="color:#66d9ef">my</span> @people <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">50</span>;
+    <span style="color:#66d9ef">while</span> @people<span style="color:#f92672">.</span>elems <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> {
+        <span style="color:#66d9ef">my</span> $sword <span style="color:#f92672">=</span> @people<span style="color:#f92672">.</span>shift;
+        @people<span style="color:#f92672">.</span>shift;
+        @people<span style="color:#f92672">.</span>push($sword);
     }
-    say &quot;Survivor is at position @people[0]&quot;;
+    say <span style="color:#e6db74">&#34;Survivor is at position @people[0]&#34;</span>;
 }
-</code></pre><p><strong>The following comment is copied from my Perl review:</strong></p>
+</code></pre></div><p><strong>The following comment is copied from my Perl review:</strong></p>
 <p><em>I am really glad to see Mohammad not only participating in the challenge, but now blogging about his solutions as well! His first blog post (below) covers the past three weeks (Weeks 046, 047, and 048), and is a good introspective look at Mohammad&rsquo;s experience contributing solutions in Perl and his early steps in translating those solutions (and, I think, parts of his brain!) to Raku:</em></p>
 <p><strong>Blog</strong> › <a href="https://perlweeklychallenge.org/blog/my-first-date-with-raku">My first date with Raku</a></p>
 <h2 id="noud1">Noud Aldenhoven</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/noud/raku/ch-1.p6">Noud Aldenhoven&rsquo;s solution</a> uses recursion, with the well-known recurrence relation <code>f(n, k) = (f(n - 1, k) + k - 1) mod n + 1.</code></p>
-<pre><code class="language-raku" data-lang="raku">multi sub f(1, $k) { 1; }
-multi sub f($n, $k) { (f($n - 1, $k) + $k - 1) % $n + 1; }
-say &quot;Survivor: &quot;, f(50, 2);
-</code></pre><p>The code comments contain a paraphrasing of <a href="https://en.wikipedia.org/wiki/Josephus_problem#The_general_case">Wikipedia</a>, which has additional background that might be of interest.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku">multi <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">f</span>(1, $k) { <span style="color:#ae81ff">1</span>; }
+multi <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">f</span>($n, $k) { (f($n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, $k) <span style="color:#f92672">+</span> $k <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) % <span style="color:#960050;background-color:#1e0010">$</span>n <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>; }
+say <span style="color:#e6db74">&#34;Survivor: &#34;</span>, f(<span style="color:#ae81ff">50</span>, <span style="color:#ae81ff">2</span>);
+</code></pre></div><p>The code comments contain a paraphrasing of <a href="https://en.wikipedia.org/wiki/Josephus_problem#The_general_case">Wikipedia</a>, which has additional background that might be of interest.</p>
 <h2 id="roger-bell-west1">Roger Bell West</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/roger-bell-west/raku/ch-1.p6">Roger Bell West&rsquo;s solution</a> uses <code>splice</code>:</p>
-<pre><code class="language-raku" data-lang="raku">my @list=(1..50);
-my $n=0;
-while (@list.elems &gt; 1) {
-    $n++;
-    if ($n&gt;@list.end) {
-        $n=0;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">my</span> @list<span style="color:#f92672">=</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">50</span>);
+<span style="color:#66d9ef">my</span> $n<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+<span style="color:#66d9ef">while</span> (@list<span style="color:#f92672">.</span>elems <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>) {
+    $n<span style="color:#f92672">++</span>;
+    <span style="color:#66d9ef">if</span> ($n<span style="color:#f92672">&gt;</span>@list<span style="color:#f92672">.</span>end) {
+        $n<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
     }
-    splice @list,$n,1;
+    splice @list,$n,<span style="color:#ae81ff">1</span>;
 }
-say @list[0];
-</code></pre><p>As with his similar solution in Perl, Roger&rsquo;s solution here arrives at the wrong answer (31, instead of 37). This can be fixed by changing <code>$n = 0</code> to <code>$n -= @list.elems</code>, or by replacing the top two lines of the loop body with <code>$n = ($n + 1) % @list.elems</code>.</p>
+say @list[<span style="color:#ae81ff">0</span>];
+</code></pre></div><p>As with his similar solution in Perl, Roger&rsquo;s solution here arrives at the wrong answer (31, instead of 37). This can be fixed by changing <code>$n = 0</code> to <code>$n -= @list.elems</code>, or by replacing the top two lines of the loop body with <code>$n = ($n + 1) % @list.elems</code>.</p>
 <h2 id="ruben-westerberg1">Ruben Westerberg</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/ruben-westerberg/raku/ch-1.p6">Ruben Westerberg&rsquo;s solution</a> also uses splice, but uses modulo arithmetic to ensure the index wrap works correctly:</p>
-<pre><code class="language-raku" data-lang="raku">my @sur=1..50;
-my $i=0;
-@sur.splice($i=($i+1)%@sur,1)  while @sur &gt; 1;
-put &quot;Survivor: @sur[]&quot;;
-</code></pre><h2 id="ryan-thompson1">Ryan Thompson</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">my</span> @sur<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">50</span>;
+<span style="color:#66d9ef">my</span> $i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+@sur<span style="color:#f92672">.</span>splice($i<span style="color:#f92672">=</span>($i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)%@sur,<span style="color:#ae81ff">1</span>)  <span style="color:#66d9ef">while</span> @sur <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>;
+put <span style="color:#e6db74">&#34;Survivor: @sur[]&#34;</span>;
+</code></pre></div><h2 id="ryan-thompson1">Ryan Thompson</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/ryan-thompson/raku/ch-1.p6">My solution</a> is a circular linked list implementation:</p>
-<pre><code class="language-raku" data-lang="raku">my Int @ll = 0, |[1..$N].rotate;
-my Int $cur = 1;
-@ll[$cur] = @ll[ @ll[$cur] ] and $cur = @ll[$cur] until @ll[$cur] == $cur;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">my</span> Int @ll <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, <span style="color:#f92672">|</span>[<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$N]<span style="color:#f92672">.</span>rotate;
+<span style="color:#66d9ef">my</span> Int $cur <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+@ll[$cur] <span style="color:#f92672">=</span> @ll[ @ll[$cur] ] <span style="color:#f92672">and</span> $cur <span style="color:#f92672">=</span> @ll[$cur] <span style="color:#66d9ef">until</span> @ll[$cur] <span style="color:#f92672">==</span> $cur;
 say $cur;
-</code></pre><p>A linked list is a high level description of a data structure. The underlying implementation can vary, and in this case, I&rsquo;m using an array of numbers. The array <em>index</em> is the current person, and the <em>value</em> at that index is the <em>next</em> person in the linked list. I&rsquo;m using two linked list operations, here (<code>$cur</code> is the &ldquo;cursor&rdquo;, or index of the current element):</p>
+</code></pre></div><p>A linked list is a high level description of a data structure. The underlying implementation can vary, and in this case, I&rsquo;m using an array of numbers. The array <em>index</em> is the current person, and the <em>value</em> at that index is the <em>next</em> person in the linked list. I&rsquo;m using two linked list operations, here (<code>$cur</code> is the &ldquo;cursor&rdquo;, or index of the current element):</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">@ll[$cur] <span style="color:#f92672">=</span> @ll[@ll[$cur]]  <span style="color:#75715e"># &#34;delete&#34; -- Delete element to the right</span>
     $cur  <span style="color:#f92672">=</span> @ll[    $cur ]  <span style="color:#75715e"># &#34;next&#34;   -- Go to next element in list</span>
 </code></pre></div><p>My blog also discusses an analytic O(1) solution to the problem, if you are interested.</p>
 <p><strong>Blog</strong> › <a href="http://www.ry.ca/2020/02/survivor-josepheus-problem/">Survivor (Josepheus problem)</a></p>
 <h2 id="simon-proctor1">Simon Proctor</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/simon-proctor/raku/ch-1.p6">Simon Proctor&rsquo;s solution</a> has two <code>MAIN</code> methods; one using <code>splice</code>:</p>
-<pre><code class="language-raku" data-lang="raku">#| Calculate the survior of the swordsmen suicide pact
-multi sub MAIN(
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#75715e">#| Calculate the survior of the swordsmen suicide pact</span>
+multi <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(
     UInt $swords = 50, #= Number of swordsmen (default 50)
 ) {
-    my @men = [1..$swords];
-    while ( @men.elems &gt; 1 ) {
-        my ( $alive, $dead ) = @men.splice(0,2);
-        @men.push($alive);
+    <span style="color:#66d9ef">my</span> @men <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$swords];
+    <span style="color:#66d9ef">while</span> ( @men<span style="color:#f92672">.</span>elems <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> ) {
+        <span style="color:#66d9ef">my</span> ( $alive, $dead ) <span style="color:#f92672">=</span> @men<span style="color:#f92672">.</span>splice(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">2</span>);
+        @men<span style="color:#f92672">.</span>push($alive);
     }
-    say &quot;Survivor of $swords is number {@men[0]}&quot;;
+    say <span style="color:#e6db74">&#34;Survivor of $swords is number {@men[0]}&#34;</span>;
 }
-</code></pre><p>And the other uses math:</p>
-<pre><code class="language-raku" data-lang="raku"># Find p where p ** 2 &lt; s (swordsmen)
-# The survior is the nth odd number where n = s - p
-#| Calculate mathematically
-multi sub MAIN(
-    &quot;math&quot;,
+</code></pre></div><p>And the other uses math:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#75715e"># Find p where p ** 2 &lt; s (swordsmen)</span>
+<span style="color:#75715e"># The survior is the nth odd number where n = s - p</span>
+<span style="color:#75715e">#| Calculate mathematically</span>
+multi <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(
+    &#34;math&#34;,
     UInt $swords = 50, #= Number of swordsmen
 ) {
-    my $low-power = (1,* * 2...*).first(* &gt; $swords) div 2;
-    say &quot;Survivor of $swords is number {(1,3,5...*)[$swords - $low-power]}&quot;;
+    <span style="color:#66d9ef">my</span> $low<span style="color:#f92672">-</span>power <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>,<span style="color:#f92672">*</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">...*</span>)<span style="color:#f92672">.</span>first(<span style="color:#f92672">*</span> <span style="color:#f92672">&gt;</span> $swords) div <span style="color:#ae81ff">2</span>;
+    say <span style="color:#e6db74">&#34;Survivor of $swords is number {(1,3,5...*)[$swords - $low-power]}&#34;</span>;
 }
-</code></pre><p>Simon&rsquo;s math solution still loops, to find the power of 2 less than <code>$swords</code>.  It&rsquo;s possible to do this in constant time with <code>log($swords, 2).floor</code>. I bet Simon knows this, as his blog talks about &ldquo;fun uses of Raku sequences,&rdquo; which I can absolutely relate to.</p>
+</code></pre></div><p>Simon&rsquo;s math solution still loops, to find the power of 2 less than <code>$swords</code>.  It&rsquo;s possible to do this in constant time with <code>log($swords, 2).floor</code>. I bet Simon knows this, as his blog talks about &ldquo;fun uses of Raku sequences,&rdquo; which I can absolutely relate to.</p>
 <p><strong>Blog</strong> › <a href="https://dev.to/scimon/perl-weekly-challenge-week-42-2oo2">Perl Weekly Challenge : Week 48</a></p>
 <h2 id="xkr471">Jonas Berlin</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/xkr47/raku/ch-1.p6">Jonas Berlin&rsquo;s solution</a> uses a custom class, extending <code>Array</code>, with a custom <code>Iterator</code>:</p>
-<pre><code class="language-raku" data-lang="raku">#!/usr/bin/env perl6
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#75715e">#!/usr/bin/env perl6</span>
 class Pwc048_1 is Array {
     method iterator {
-        class :: does Iterator {
-            has $.index is rw = 0;
-            has $.array is required;
-            method pull-one {
-                my $val = $.array.AT-POS($.index++);
-                $.index %= $.array.elems;
-                $.array.splice($.index, 1);
-                if ($.array.elems) {
-                    $.index %= $.array.elems;
+        class <span style="color:#f92672">::</span> does Iterator {
+            has $<span style="color:#960050;background-color:#1e0010">.</span>index is rw <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+            has $<span style="color:#960050;background-color:#1e0010">.</span>array is required;
+            method pull<span style="color:#f92672">-</span>one {
+                <span style="color:#66d9ef">my</span> $val <span style="color:#f92672">=</span> $<span style="color:#960050;background-color:#1e0010">.</span>array<span style="color:#f92672">.</span>AT<span style="color:#f92672">-</span>POS($<span style="color:#960050;background-color:#1e0010">.</span>index<span style="color:#f92672">++</span>);
+                $<span style="color:#960050;background-color:#1e0010">.</span>index %<span style="color:#960050;background-color:#1e0010">=</span> <span style="color:#960050;background-color:#1e0010">$.</span>array<span style="color:#f92672">.</span>elems;
+                $<span style="color:#960050;background-color:#1e0010">.</span>array<span style="color:#f92672">.</span>splice($<span style="color:#960050;background-color:#1e0010">.</span>index, <span style="color:#ae81ff">1</span>);
+                <span style="color:#66d9ef">if</span> ($<span style="color:#960050;background-color:#1e0010">.</span>array<span style="color:#f92672">.</span>elems) {
+                    $<span style="color:#960050;background-color:#1e0010">.</span>index %<span style="color:#960050;background-color:#1e0010">=</span> <span style="color:#960050;background-color:#1e0010">$.</span>array<span style="color:#f92672">.</span>elems;
                     $val;
-                } else {
+                } <span style="color:#66d9ef">else</span> {
                     IterationEnd;
                 }
             }
-        }.new(array =&gt; self)
+        }<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(array <span style="color:#f92672">=&gt;</span> self)
     }
 }
-my $arr = Pwc048_1.new();
-$arr.append(1...50);
-say &quot;Survivors, in order: &quot;, $arr;
-</code></pre><p>Internally the <code>Iterator</code> uses <code>splice</code> to remove the victims. Iterating through the array results in the following sequence:</p>
+<span style="color:#66d9ef">my</span> $arr <span style="color:#f92672">=</span> Pwc048_1<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>();
+$arr<span style="color:#f92672">.</span>append(<span style="color:#ae81ff">1</span><span style="color:#f92672">...</span><span style="color:#ae81ff">50</span>);
+say <span style="color:#e6db74">&#34;Survivors, in order: &#34;</span>, $arr;
+</code></pre></div><p>Internally the <code>Iterator</code> uses <code>splice</code> to remove the victims. Iterating through the array results in the following sequence:</p>
 <pre><code>[1 3 5 7 9 11 13 15 17 19 21 23 25 27 29 31 33 35 37 39 41 43 45 47 49 1 5 9 13 17 21 25 29 33 37 41 45 49 5 13 21 29 37 45 5 21 37 5 37]
 </code></pre><p>I like to see solutions like this, that showcase different language features.</p>
 <hr>
@@ -525,276 +525,276 @@ say &quot;Survivors, in order: &quot;, $arr;
 <hr>
 <h2 id="alicia-bielsa2">Alicia Bielsa</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/alicia-bielsa/raku/ch-2.p6">Alicia Bielsa&rsquo;s solution</a> uses the <code>Date</code> class to validate palindromic strings generated by flipping and splitting the year:</p>
-<pre><code class="language-raku" data-lang="raku">for 2000..2999 {
-    my $mmdd = $_.flip;
-    my $date = Date.new($_,  $mmdd.substr(0,2), $mmdd.substr(2,2));
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">for</span> <span style="color:#ae81ff">2000</span><span style="color:#f92672">..</span><span style="color:#ae81ff">2999</span> {
+    <span style="color:#66d9ef">my</span> $mmdd <span style="color:#f92672">=</span> $_<span style="color:#f92672">.</span>flip;
+    <span style="color:#66d9ef">my</span> $date <span style="color:#f92672">=</span> Date<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>($_,  $mmdd<span style="color:#f92672">.</span>substr(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">2</span>), $mmdd<span style="color:#f92672">.</span>substr(<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">2</span>));
     CATCH {
         default {  }
     }
-    say $mmdd ~ $_;
+    say $mmdd <span style="color:#f92672">~</span> $_;
 }
-</code></pre><h2 id="arne-sommer2">Arne Sommer</h2>
+</code></pre></div><h2 id="arne-sommer2">Arne Sommer</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/arne-sommer/raku/ch-2.p6">Arne Sommer&rsquo;s solution</a> uses nested loops to build up candidate strings that he then validates with his own code:</p>
-<pre><code class="language-raku" data-lang="raku">for 0..2 -&gt; $y2 {
-  for 0..9 -&gt; $y3 {
-    for 0..1 -&gt; $y4 {
-      for 0..1 -&gt; $m1 {
-        for 0..9 -&gt; $m2 {
-          for 0..2 -&gt; $d1 {
-            next unless $m1 == $y4 &amp;&amp; $m2 == $y3 &amp;&amp; $d1 == $y2;
-            next if $m1 == 0 == $m2;
-                next if $m1 == 1 &amp;&amp; $m2 &gt; 2;
-            say $m1 ~ $m2 ~ $d1 ~ '22' ~ $y2 ~ $y3 ~ $y4;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">-&gt;</span> $y2 {
+  <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">9</span> <span style="color:#f92672">-&gt;</span> $y3 {
+    <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">-&gt;</span> $y4 {
+      <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">-&gt;</span> $m1 {
+        <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">9</span> <span style="color:#f92672">-&gt;</span> $m2 {
+          <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">-&gt;</span> $d1 {
+            <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> $m1 <span style="color:#f92672">==</span> $y4 <span style="color:#f92672">&amp;&amp;</span> $m2 <span style="color:#f92672">==</span> $y3 <span style="color:#f92672">&amp;&amp;</span> $d1 <span style="color:#f92672">==</span> $y2;
+            <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $m1 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">==</span> $m2;
+                <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $m1 <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;&amp;</span> $m2 <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">2</span>;
+            say $m1 <span style="color:#f92672">~</span> $m2 <span style="color:#f92672">~</span> $d1 <span style="color:#f92672">~</span> <span style="color:#e6db74">&#39;22&#39;</span> <span style="color:#f92672">~</span> $y2 <span style="color:#f92672">~</span> $y3 <span style="color:#f92672">~</span> $y4;
           }
         }
       }
     }
   }
 }
-</code></pre><p>Due to the careful setup of the nested loops, Arne only needs to do some very basic filtering of the dates.</p>
+</code></pre></div><p>Due to the careful setup of the nested loops, Arne only needs to do some very basic filtering of the dates.</p>
 <p><strong>Blog</strong> › <a href="https://raku-musings.com/surviving-dates.html">Surviving Dates with Raku</a></p>
 <h2 id="colin-crain2">Colin Crain</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/colin-crain/raku/ch-2.p6">Colin Crain&rsquo;s solution</a> generates candidates by looking at each year and its <code>flip</code>ped counterpart:</p>
-<pre><code class="language-raku" data-lang="raku">sub MAIN () {
-    ## make a list of valid candidates
-    my @candidates = (2000..2999).map({$_.flip ~ $_}).grep({validate($_)});
-    ## a little prettification and output
-    .map({S/^(..)(..)/$0-$1-/}).put for @candidates;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> () {
+    <span style="color:#75715e">## make a list of valid candidates</span>
+    <span style="color:#66d9ef">my</span> @candidates <span style="color:#f92672">=</span> (<span style="color:#ae81ff">2000</span><span style="color:#f92672">..</span><span style="color:#ae81ff">2999</span>)<span style="color:#f92672">.</span>map({$_<span style="color:#f92672">.</span>flip <span style="color:#f92672">~</span> $_})<span style="color:#f92672">.</span>grep({validate($_)});
+    <span style="color:#75715e">## a little prettification and output</span>
+    <span style="color:#f92672">.</span>map({S<span style="color:#e6db74">/^(..)(..)/</span>$0<span style="color:#f92672">-</span>$1<span style="color:#f92672">-/</span>})<span style="color:#f92672">.</span>put <span style="color:#66d9ef">for</span> @candidates;
 }
-</code></pre><p>The <code>validate</code> sub then rejects any invalid dates:</p>
-<pre><code class="language-raku" data-lang="raku">sub validate ($candidate) {
-## returns true is the given string represents a valid mmddyyyy date
-## does not consider leap years, in this case they are logically irrelevant
-    my @mlen  = 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31;
-    my ($m, $d ) = $candidate.comb(2);
-    return      $m &gt; 12
-             || $m == 0
-             || $d &gt; @mlen[$m-1]
-             || $d == 0             ?? 0 !! 1;
+</code></pre></div><p>The <code>validate</code> sub then rejects any invalid dates:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">validate</span> ($candidate) {
+<span style="color:#75715e">## returns true is the given string represents a valid mmddyyyy date</span>
+<span style="color:#75715e">## does not consider leap years, in this case they are logically irrelevant</span>
+    <span style="color:#66d9ef">my</span> @mlen  <span style="color:#f92672">=</span> <span style="color:#ae81ff">31</span>, <span style="color:#ae81ff">29</span>, <span style="color:#ae81ff">31</span>, <span style="color:#ae81ff">30</span>, <span style="color:#ae81ff">31</span>, <span style="color:#ae81ff">30</span>, <span style="color:#ae81ff">31</span>, <span style="color:#ae81ff">31</span>, <span style="color:#ae81ff">30</span>, <span style="color:#ae81ff">31</span>, <span style="color:#ae81ff">30</span>, <span style="color:#ae81ff">31</span>;
+    <span style="color:#66d9ef">my</span> ($m, $d ) <span style="color:#f92672">=</span> $candidate<span style="color:#f92672">.</span>comb(<span style="color:#ae81ff">2</span>);
+    <span style="color:#66d9ef">return</span>      $m <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">12</span>
+             <span style="color:#f92672">||</span> $m <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>
+             <span style="color:#f92672">||</span> $d <span style="color:#f92672">&gt;</span> @mlen[$m<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
+             <span style="color:#f92672">||</span> $d <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>             ?? <span style="color:#ae81ff">0</span> <span style="color:#f92672">!!</span> <span style="color:#ae81ff">1</span>;
 }
-</code></pre><h2 id="jaldhar-h-vyas2">Jaldhar H. Vyas</h2>
+</code></pre></div><h2 id="jaldhar-h-vyas2">Jaldhar H. Vyas</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/jaldhar-h-vyas/raku/ch-2.p6">Jaldhar H. Vyas&rsquo;s solution</a> uses a hard-coded list of (reversed) months and checks that against the two-digit year to get a list of valid <code>@years</code>:</p>
-<pre><code class="language-raku" data-lang="raku">my @years = (2000 .. 2999).grep({
-    / $&lt;year&gt; = (\d\d) $ /;
-    (10, 20, 30, 40, 50, 60 , 70, 80, 90, 1, 11, 21).grep({ $_ == $/&lt;year&gt;})
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">my</span> @years <span style="color:#f92672">=</span> (<span style="color:#ae81ff">2000</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">2999</span>)<span style="color:#f92672">.</span>grep({
+    <span style="color:#e6db74">/ $&lt;year&gt; = (\d\d) $ /</span>;
+    (<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">30</span>, <span style="color:#ae81ff">40</span>, <span style="color:#ae81ff">50</span>, <span style="color:#ae81ff">60</span> , <span style="color:#ae81ff">70</span>, <span style="color:#ae81ff">80</span>, <span style="color:#ae81ff">90</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">21</span>)<span style="color:#f92672">.</span>grep({ $_ <span style="color:#f92672">==</span> $/<span style="color:#e6db74">&lt;year&gt;</span>})
 });
-</code></pre><p>With that, he can now <code>flip</code> the year to get the <code>$&lt;month&gt;</code> and <code>$&lt;day&gt;</code> with
+</code></pre></div><p>With that, he can now <code>flip</code> the year to get the <code>$&lt;month&gt;</code> and <code>$&lt;day&gt;</code> with
 a regex, and print out any dates where the day is less than 23:</p>
-<pre><code class="language-raku" data-lang="raku">for @years -&gt; $year {
-    $year.flip ~~ / ^ $&lt;month&gt; = (\d\d) $&lt;day&gt; = (\d\d) $ /;
-    if $/&lt;day&gt; &lt; 23 {
-        ($/&lt;month&gt;, $/&lt;day&gt;, $year).join(q{/}).say;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">for</span> @years <span style="color:#f92672">-&gt;</span> $year {
+    $year<span style="color:#f92672">.</span>flip <span style="color:#f92672">~~</span> <span style="color:#e6db74">/ ^ $&lt;month&gt; = (\d\d) $&lt;day&gt; = (\d\d) $ /</span>;
+    <span style="color:#66d9ef">if</span> $/<span style="color:#e6db74">&lt;day&gt;</span> <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">23</span> {
+        ($/<span style="color:#e6db74">&lt;month&gt;</span>, $/<span style="color:#e6db74">&lt;day&gt;</span>, $year)<span style="color:#f92672">.</span>join(<span style="color:#e6db74">q{/}</span>)<span style="color:#f92672">.</span>say;
     }
 }
-</code></pre><h2 id="javier-luque2">Javier Luque</h2>
+</code></pre></div><h2 id="javier-luque2">Javier Luque</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/javier-luque/raku/ch-2.p6">Javier Luque&rsquo;s solution</a> solution uses the <code>Date</code> class, and goes through every day between 2000-01-01 and 2999-12-31:</p>
-<pre><code class="language-raku" data-lang="raku">sub MAIN () {
-    my $current_date  = Date.new(2000, 1, 1);
-    my $end_date = Date.new(2999, 12, 31);
-    while ($current_date &lt; $end_date) {
-        # Format month and day
-        my $month = ($current_date.month &lt; 10) ??
-            '0' ~ $current_date.month !!
-            $current_date.month;
-        my $day   = ($current_date.day &lt; 10) ??
-            '0' ~ $current_date.day !!
-            $current_date.day;
-        # Date String
-        my $date_string = $month ~ $day ~ $current_date.year;
-        # Output the datestring if it's a palindrome
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> () {
+    <span style="color:#66d9ef">my</span> $current_date  <span style="color:#f92672">=</span> Date<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(<span style="color:#ae81ff">2000</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>);
+    <span style="color:#66d9ef">my</span> $end_date <span style="color:#f92672">=</span> Date<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(<span style="color:#ae81ff">2999</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">31</span>);
+    <span style="color:#66d9ef">while</span> ($current_date <span style="color:#f92672">&lt;</span> $end_date) {
+        <span style="color:#75715e"># Format month and day</span>
+        <span style="color:#66d9ef">my</span> $month <span style="color:#f92672">=</span> ($current_date<span style="color:#f92672">.</span>month <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">10</span>) ??
+            <span style="color:#e6db74">&#39;0&#39;</span> <span style="color:#f92672">~</span> $current_date<span style="color:#f92672">.</span>month <span style="color:#f92672">!!</span>
+            $current_date<span style="color:#f92672">.</span>month;
+        <span style="color:#66d9ef">my</span> $day   <span style="color:#f92672">=</span> ($current_date<span style="color:#f92672">.</span>day <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">10</span>) ??
+            <span style="color:#e6db74">&#39;0&#39;</span> <span style="color:#f92672">~</span> $current_date<span style="color:#f92672">.</span>day <span style="color:#f92672">!!</span>
+            $current_date<span style="color:#f92672">.</span>day;
+        <span style="color:#75715e"># Date String</span>
+        <span style="color:#66d9ef">my</span> $date_string <span style="color:#f92672">=</span> $month <span style="color:#f92672">~</span> $day <span style="color:#f92672">~</span> $current_date<span style="color:#f92672">.</span>year;
+        <span style="color:#75715e"># Output the datestring if it&#39;s a palindrome</span>
         say $date_string
-            if ($date_string eq $date_string.flip);
-        # Next Day
-        $current_date = $current_date + 1;
+            <span style="color:#66d9ef">if</span> ($date_string <span style="color:#f92672">eq</span> $date_string<span style="color:#f92672">.</span>flip);
+        <span style="color:#75715e"># Next Day</span>
+        $current_date <span style="color:#f92672">=</span> $current_date <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
     }
 }
-</code></pre><p>This returns the correct results in about 7.5 seconds on my system.</p>
+</code></pre></div><p>This returns the correct results in about 7.5 seconds on my system.</p>
 <p><strong>Blog</strong> › <a href="https://perlchallenges.wordpress.com/2020/02/17/perl-weekly-challenge-048/">048 – Perl Weekly Challenge</a></p>
 <h2 id="kevin-colyer2">Kevin Colyer</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/kevin-colyer/raku/ch-2.p6">Kevin Colyer&rsquo;s solution</a> uses a code ref to format the date per the specification:</p>
-<pre><code class="language-raku" data-lang="raku">my $pwcformat= sub ($self) { sprintf &quot;%02d%02d%04d&quot;, .month, .day, .year given $self;};
-</code></pre><p>This formatter is one of the optional arguments when creating a new <a href="https://docs.perl6.org/type/Date#(Dateish)_method_formatter"><code>Date</code></a> object:</p>
-<pre><code class="language-raku" data-lang="raku">my $date=Date.new(year =&gt; 2001,month=&gt;10,day=&gt;2, formatter =&gt; $pwcformat);
-my $end=Date.new(year =&gt; 3000,month=&gt;1,day=&gt;1);
-</code></pre><p>Finally, Kevin simply loops over every day, printing the ones that are palindromic:</p>
-<pre><code class="language-raku" data-lang="raku">while $date &lt; $end {
-    my $d=$date.Str;
-    say $date.yyyy-mm-dd ~ &quot; is palindrome: $d&quot; if $d eq $d.flip;
-    $date.=succ;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">my</span> $pwcformat<span style="color:#f92672">=</span> <span style="color:#66d9ef">sub</span> ($self) { sprintf <span style="color:#e6db74">&#34;%02d%02d%04d&#34;</span>, <span style="color:#f92672">.</span>month, <span style="color:#f92672">.</span>day, <span style="color:#f92672">.</span>year given $self;};
+</code></pre></div><p>This formatter is one of the optional arguments when creating a new <a href="https://docs.perl6.org/type/Date#(Dateish)_method_formatter"><code>Date</code></a> object:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">my</span> $date<span style="color:#f92672">=</span>Date<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(year <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2001</span>,month<span style="color:#f92672">=&gt;</span><span style="color:#ae81ff">10</span>,day<span style="color:#f92672">=&gt;</span><span style="color:#ae81ff">2</span>, formatter <span style="color:#f92672">=&gt;</span> $pwcformat);
+<span style="color:#66d9ef">my</span> $end<span style="color:#f92672">=</span>Date<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(year <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3000</span>,month<span style="color:#f92672">=&gt;</span><span style="color:#ae81ff">1</span>,day<span style="color:#f92672">=&gt;</span><span style="color:#ae81ff">1</span>);
+</code></pre></div><p>Finally, Kevin simply loops over every day, printing the ones that are palindromic:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">while</span> $date <span style="color:#f92672">&lt;</span> $end {
+    <span style="color:#66d9ef">my</span> $d<span style="color:#f92672">=</span>$date<span style="color:#f92672">.</span>Str;
+    say $date<span style="color:#f92672">.</span>yyyy<span style="color:#f92672">-</span>mm<span style="color:#f92672">-</span>dd <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34; is palindrome: $d&#34;</span> <span style="color:#66d9ef">if</span> $d <span style="color:#f92672">eq</span> $d<span style="color:#f92672">.</span>flip;
+    $date<span style="color:#f92672">.=</span>succ;
 }
-</code></pre><h2 id="laurent-rosenfeld2">Laurent Rosenfeld</h2>
+</code></pre></div><h2 id="laurent-rosenfeld2">Laurent Rosenfeld</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/laurent-rosenfeld/raku/ch-2.p6">Laurent Rosenfeld&rsquo;s solution</a> loops over every year from 2000..2300 (see his blog, below, for the rationale for not needing to go all the way to 2999):</p>
-<pre><code class="language-raku" data-lang="raku">for 2000 .. 2300 -&gt; $year {
-    my ($month, $day) = ($year.flip ~~ /(\d\d)(\d\d)/)[0, 1];
-    next if $month &gt; 12 or $month &lt; 1 or $day &gt; 31 or $day &lt; 1;
-    say &quot;$month/$day/$year is a palindromic date.&quot;;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">for</span> <span style="color:#ae81ff">2000</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">2300</span> <span style="color:#f92672">-&gt;</span> $year {
+    <span style="color:#66d9ef">my</span> ($month, $day) <span style="color:#f92672">=</span> ($year<span style="color:#f92672">.</span>flip <span style="color:#f92672">~~</span> <span style="color:#e6db74">/(\d\d)(\d\d)/</span>)[<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>];
+    <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $month <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">12</span> <span style="color:#f92672">or</span> $month <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">or</span> $day <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">31</span> <span style="color:#f92672">or</span> $day <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">1</span>;
+    say <span style="color:#e6db74">&#34;$month/$day/$year is a palindromic date.&#34;</span>;
 }
-</code></pre><p>Laurent <code>flip</code>s each <code>$year</code>, and then pulls out the <code>$month</code> and <code>$day</code> with a capturing regex. He then prints every date that passes a simple validity check.</p>
+</code></pre></div><p>Laurent <code>flip</code>s each <code>$year</code>, and then pulls out the <code>$month</code> and <code>$day</code> with a capturing regex. He then prints every date that passes a simple validity check.</p>
 <p><strong>Blog</strong> › <a href="http://blogs.perl.org/users/laurent_r/2020/02/perl-weekly-challenge-48-survivor-and-palindrome-dates.html">Survivor and Palindrome Dates</a></p>
 <h2 id="luca-ferrari2">Luca Ferrari</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/luca-ferrari/raku/ch-2.p6">Luca Ferrari&rsquo;s solution</a> iterates over the year range, <code>flip</code>s the year, and skips any dates that fail a basic validity check:</p>
-<pre><code class="language-raku" data-lang="raku">sub MAIN( Int :$year-start? = 2000,
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>( Int :$year-start? = 2000,
           Int :$year-end?   = 2999 ) {
-    for $year-start .. $year-end {
-        $_ ~~ / ^ $&lt;day&gt;=\d ** 2 $&lt;month&gt;=\d ** 2 $ /;
-        my $month = $/&lt;month&gt;.flip;
-        my $day   = $/&lt;day&gt;.flip;
-        next if  $month &gt; 12 || $month == 0;
-        next if $day &gt; 31 || $day == 0;
-        &quot;Palindrome date %02d%02d%04d&quot;.sprintf( $month, $day, $_ ).say if try Date.new( :year( $_),
+    <span style="color:#66d9ef">for</span> $year<span style="color:#f92672">-</span>start <span style="color:#f92672">..</span> $year<span style="color:#f92672">-</span>end {
+        $_ <span style="color:#f92672">~~</span> <span style="color:#e6db74">/ ^ $&lt;day&gt;=\d ** 2 $&lt;month&gt;=\d ** 2 $ /</span>;
+        <span style="color:#66d9ef">my</span> $month <span style="color:#f92672">=</span> $/<span style="color:#e6db74">&lt;month&gt;</span><span style="color:#f92672">.</span>flip;
+        <span style="color:#66d9ef">my</span> $day   <span style="color:#f92672">=</span> $/<span style="color:#e6db74">&lt;day&gt;</span><span style="color:#f92672">.</span>flip;
+        <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span>  $month <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">12</span> <span style="color:#f92672">||</span> $month <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $day <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">31</span> <span style="color:#f92672">||</span> $day <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#e6db74">&#34;Palindrome date %02d%02d%04d&#34;</span><span style="color:#f92672">.</span>sprintf( $month, $day, $_ )<span style="color:#f92672">.</span>say <span style="color:#66d9ef">if</span> try Date<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>( :year( $_),
                                                                                     :month( $month),
                                                                                     :day( $day ) );
     }
 }
 
-</code></pre><p><strong>Blog</strong> › <a href="https://fluca1978.github.io/2020/02/17/PerlWeeklyChallenge48.html#task2">Survivors and Palindrome Dates</a></p>
+</code></pre></div><p><strong>Blog</strong> › <a href="https://fluca1978.github.io/2020/02/17/PerlWeeklyChallenge48.html#task2">Survivors and Palindrome Dates</a></p>
 <h2 id="mark-anderson2">Mark Anderson</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/mark-anderson/raku/ch-2.p6">Mark Anderson&rsquo;s solution</a> is self-described as &ldquo;just brute force&rdquo;, and it lives up to that description!</p>
 <p>It also uses a custom formatter:</p>
-<pre><code class="language-raku" data-lang="raku">my $mdy = sub ($self) {
-              sprintf &quot;%02d%02d%04d&quot;, .month, .day, .year given $self;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">my</span> $mdy <span style="color:#f92672">=</span> <span style="color:#66d9ef">sub</span> ($self) {
+              sprintf <span style="color:#e6db74">&#34;%02d%02d%04d&#34;</span>, <span style="color:#f92672">.</span>month, <span style="color:#f92672">.</span>day, <span style="color:#f92672">.</span>year given $self;
           }
-my $dt = Date.new(
-    year      =&gt; 2000,
-    month     =&gt; 1,
-    day       =&gt; 1,
-    formatter =&gt; $mdy
+<span style="color:#66d9ef">my</span> $dt <span style="color:#f92672">=</span> Date<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(
+    year      <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2000</span>,
+    month     <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>,
+    day       <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>,
+    formatter <span style="color:#f92672">=&gt;</span> $mdy
 );
-while ($dt.year &lt; 3000) {
-    my $str = sprintf &quot;%s&quot;, $dt;
-    if ($str eq $str.flip) {
-        printf &quot;%02d/%02d/%04d\n&quot;, .month, .day, .year given $dt;
+<span style="color:#66d9ef">while</span> ($dt<span style="color:#f92672">.</span>year <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">3000</span>) {
+    <span style="color:#66d9ef">my</span> $str <span style="color:#f92672">=</span> sprintf <span style="color:#e6db74">&#34;%s&#34;</span>, $dt;
+    <span style="color:#66d9ef">if</span> ($str <span style="color:#f92672">eq</span> $str<span style="color:#f92672">.</span>flip) {
+        printf <span style="color:#e6db74">&#34;%02d/%02d/%04d\n&#34;</span>, <span style="color:#f92672">.</span>month, <span style="color:#f92672">.</span>day, <span style="color:#f92672">.</span>year given $dt;
     }
-    #$dt += 1; # Formatting may be lost with this line
-               # so I'm doing the below hack for now.
-               # (The issue has been fixed in Rakudo Star RC-1)
-    $dt = $dt.succ.clone(formatter =&gt; $mdy);
+    <span style="color:#75715e">#$dt += 1; # Formatting may be lost with this line</span>
+               <span style="color:#75715e"># so I&#39;m doing the below hack for now.</span>
+               <span style="color:#75715e"># (The issue has been fixed in Rakudo Star RC-1)</span>
+    $dt <span style="color:#f92672">=</span> $dt<span style="color:#f92672">.</span>succ<span style="color:#f92672">.</span>clone(formatter <span style="color:#f92672">=&gt;</span> $mdy);
 }
-</code></pre><p>This solution runs in about 4.5 minutes on my system.</p>
+</code></pre></div><p>This solution runs in about 4.5 minutes on my system.</p>
 <h2 id="markus-holzer2">Markus Holzer</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/markus-holzer/raku/ch-2.p6">Markus Holzer&rsquo;s solution</a> also uses a formatter, but iterates over each year, rather than each day:</p>
-<pre><code class="language-raku" data-lang="raku">my $formatter = sub { sprintf '%02d%02d%04d', .month, .day, .year given $^date };
-.say for (2000..2999)
-    # filter out most of the impossible years
-    .grep({
-        0 &lt; .substr(2,2).flip &lt; 13 &amp;&amp;
-        0 &lt; .substr(0,2).flip &lt; 32 })
-    # Try making a date, this fails sometimes, eg for the year 1311 -&gt; 11311311
-    # which is not a valid date. That doesn't happen for 2000 to 29999 though.
-    .map({
-        try Date.new($_, |.flip.comb(2), :$formatter ) })
-    # So we need to filter these out
-    .grep({
-        .so });
-</code></pre><h2 id="mohammad-anwar2">Mohammad S Anwar</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">my</span> $formatter <span style="color:#f92672">=</span> <span style="color:#66d9ef">sub</span> { sprintf <span style="color:#e6db74">&#39;%02d%02d%04d&#39;</span>, <span style="color:#f92672">.</span>month, <span style="color:#f92672">.</span>day, <span style="color:#f92672">.</span>year given $<span style="color:#960050;background-color:#1e0010">^</span>date };
+<span style="color:#f92672">.</span>say <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">2000</span><span style="color:#f92672">..</span><span style="color:#ae81ff">2999</span>)
+    <span style="color:#75715e"># filter out most of the impossible years</span>
+    <span style="color:#f92672">.</span>grep({
+        <span style="color:#ae81ff">0</span> <span style="color:#f92672">&lt;</span> <span style="color:#f92672">.</span>substr(<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">2</span>)<span style="color:#f92672">.</span>flip <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">13</span> <span style="color:#f92672">&amp;&amp;</span>
+        <span style="color:#ae81ff">0</span> <span style="color:#f92672">&lt;</span> <span style="color:#f92672">.</span>substr(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">2</span>)<span style="color:#f92672">.</span>flip <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">32</span> })
+    <span style="color:#75715e"># Try making a date, this fails sometimes, eg for the year 1311 -&gt; 11311311</span>
+    <span style="color:#75715e"># which is not a valid date. That doesn&#39;t happen for 2000 to 29999 though.</span>
+    <span style="color:#f92672">.</span>map({
+        try Date<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>($_, <span style="color:#f92672">|.</span>flip<span style="color:#f92672">.</span>comb(<span style="color:#ae81ff">2</span>), :$formatter ) })
+    <span style="color:#75715e"># So we need to filter these out</span>
+    <span style="color:#f92672">.</span>grep({
+        <span style="color:#f92672">.</span>so });
+</code></pre></div><h2 id="mohammad-anwar2">Mohammad S Anwar</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/mohammad-anwar/raku/ch-2.p6">Mohammad S Anwar&rsquo;s solution</a> uses <code>Date</code> with a custom formatter, checking the <code>flip</code>ped version for palindromes:</p>
-<pre><code class="language-raku" data-lang="raku">sub MAIN() {
-    my $fmt  = { sprintf &quot;%02d%02d%04d&quot;, .month, .day, .year };
-    my $date = Date.new(2000, 1, 1, formatter =&gt; $fmt);
-    while $date.year &lt;= 2299 {
-        my $date-as-str = $date.Str;
-        if $date-as-str eq $date-as-str.flip {
-            say &quot;$date-as-str is a Palindrome date.&quot;;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>() {
+    <span style="color:#66d9ef">my</span> $fmt  <span style="color:#f92672">=</span> { sprintf <span style="color:#e6db74">&#34;%02d%02d%04d&#34;</span>, <span style="color:#f92672">.</span>month, <span style="color:#f92672">.</span>day, <span style="color:#f92672">.</span>year };
+    <span style="color:#66d9ef">my</span> $date <span style="color:#f92672">=</span> Date<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(<span style="color:#ae81ff">2000</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, formatter <span style="color:#f92672">=&gt;</span> $fmt);
+    <span style="color:#66d9ef">while</span> $date<span style="color:#f92672">.</span>year <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">2299</span> {
+        <span style="color:#66d9ef">my</span> $date<span style="color:#f92672">-</span>as<span style="color:#f92672">-</span>str <span style="color:#f92672">=</span> $date<span style="color:#f92672">.</span>Str;
+        <span style="color:#66d9ef">if</span> $date<span style="color:#f92672">-</span>as<span style="color:#f92672">-</span>str <span style="color:#f92672">eq</span> $date<span style="color:#f92672">-</span>as<span style="color:#f92672">-</span>str<span style="color:#f92672">.</span>flip {
+            say <span style="color:#e6db74">&#34;$date-as-str is a Palindrome date.&#34;</span>;
         }
-        ++$date;
+        <span style="color:#f92672">++</span>$date;
     }
 }
-</code></pre><p>This solution requires Rakudo Star RC-1 or newer.</p>
+</code></pre></div><p>This solution requires Rakudo Star RC-1 or newer.</p>
 <p><strong>Blog</strong> › <a href="https://perlweeklychallenge.org/blog/my-first-date-with-raku">My first date with Raku</a></p>
 <h2 id="noud2">Noud Aldenhoven</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/noud/raku/ch-2.p6">Noud Aldenhoven&rsquo;s solution</a> realizes that palindromic dates within this range can be found directly, without the need to validate them at all, provided the range is carefully chosen:</p>
-<pre><code class="language-raku" data-lang="raku">for 1..12 X ^3 -&gt; ($m, $d) {
-    say ($m div 10), ($m % 10), $d, 2, 2, $d, ($m % 10), ($m div 10);
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">12</span> X <span style="color:#f92672">^</span><span style="color:#ae81ff">3</span> <span style="color:#f92672">-&gt;</span> ($m, $d) {
+    say ($m div <span style="color:#ae81ff">10</span>), ($m % 10), $d, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>, $d, ($m % 10), ($m div <span style="color:#ae81ff">10</span>);
 }
-</code></pre><p>A minor issue is that this solution prints the dates out of order.</p>
+</code></pre></div><p>A minor issue is that this solution prints the dates out of order.</p>
 <h2 id="roger-bell-west2">Roger Bell West</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/roger-bell-west/raku/ch-2.p6">Roger Bell West&rsquo;s solution</a> has a nested loop to check each year, month, and day:</p>
-<pre><code class="language-raku" data-lang="raku">for 2000..2999 -&gt; $y {
-  for 1..12 -&gt; $m {
-    for 1..31 -&gt; $d {
-      if ($d==31 &amp;&amp; ($m==4 || $m==6 || $m==9 || $m==11)) {
-        next;
-      } elsif ($m==2 &amp;&amp; $d==30) {
-        next;
-      } elsif ($m==2 &amp;&amp; $d==29 &amp;&amp; ($y % 4 != 0 || ($y % 100 == 0 &amp;&amp; $y % 400 != 0))) {
-        next;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">for</span> <span style="color:#ae81ff">2000</span><span style="color:#f92672">..</span><span style="color:#ae81ff">2999</span> <span style="color:#f92672">-&gt;</span> $y {
+  <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">12</span> <span style="color:#f92672">-&gt;</span> $m {
+    <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">31</span> <span style="color:#f92672">-&gt;</span> $d {
+      <span style="color:#66d9ef">if</span> ($d<span style="color:#f92672">==</span><span style="color:#ae81ff">31</span> <span style="color:#f92672">&amp;&amp;</span> ($m<span style="color:#f92672">==</span><span style="color:#ae81ff">4</span> <span style="color:#f92672">||</span> $m<span style="color:#f92672">==</span><span style="color:#ae81ff">6</span> <span style="color:#f92672">||</span> $m<span style="color:#f92672">==</span><span style="color:#ae81ff">9</span> <span style="color:#f92672">||</span> $m<span style="color:#f92672">==</span><span style="color:#ae81ff">11</span>)) {
+        <span style="color:#66d9ef">next</span>;
+      } <span style="color:#66d9ef">elsif</span> ($m<span style="color:#f92672">==</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">&amp;&amp;</span> $d<span style="color:#f92672">==</span><span style="color:#ae81ff">30</span>) {
+        <span style="color:#66d9ef">next</span>;
+      } <span style="color:#66d9ef">elsif</span> ($m<span style="color:#f92672">==</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">&amp;&amp;</span> $d<span style="color:#f92672">==</span><span style="color:#ae81ff">29</span> <span style="color:#f92672">&amp;&amp;</span> ($y % 4 <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> ($y % 100 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> $y % 400 <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>))) {
+        <span style="color:#66d9ef">next</span>;
       }
-      my $u=sprintf('%02d%02d%04d',$m,$d,$y);
-      if ($u eq $u.flip) {
+      <span style="color:#66d9ef">my</span> $u<span style="color:#f92672">=</span>sprintf(<span style="color:#e6db74">&#39;%02d%02d%04d&#39;</span>,$m,$d,$y);
+      <span style="color:#66d9ef">if</span> ($u <span style="color:#f92672">eq</span> $u<span style="color:#f92672">.</span>flip) {
         say $u;
       }
     }
   }
 }
-</code></pre><p>Each candidate date is then passed through a quick validator, before it is <code>flip</code>ped and compared, to see if it is a palindrome.</p>
+</code></pre></div><p>Each candidate date is then passed through a quick validator, before it is <code>flip</code>ped and compared, to see if it is a palindrome.</p>
 <h2 id="ruben-westerberg2">Ruben Westerberg</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/ruben-westerberg/raku/ch-2.p6">Ruben Westerberg&rsquo;s solution</a> uses <code>Date</code> with a custom formatter:</p>
-<pre><code class="language-raku" data-lang="raku">my $f={sprintf &quot;%02d%02d%04d&quot;, .month,.day,.year};
-put (Date.new(&quot;2000-01-01&quot;,formatter=&gt;$f)..Date.new(&quot;2999-01-01&quot;))
-    .grep({my $str= .Str;$str.flip eq $str})
-    .map({ &quot;Date is a palindrone: &quot;~Date.new($_)~&quot;\n&quot;}).join;
-</code></pre><p>This will not work in Rakudo Star versions prior to RC-1.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">my</span> $f<span style="color:#f92672">=</span>{sprintf <span style="color:#e6db74">&#34;%02d%02d%04d&#34;</span>, <span style="color:#f92672">.</span>month,<span style="color:#f92672">.</span>day,<span style="color:#f92672">.</span>year};
+put (Date<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(<span style="color:#e6db74">&#34;2000-01-01&#34;</span>,formatter<span style="color:#f92672">=&gt;</span>$f)<span style="color:#f92672">..</span>Date<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(<span style="color:#e6db74">&#34;2999-01-01&#34;</span>))
+    <span style="color:#f92672">.</span>grep({<span style="color:#66d9ef">my</span> $str<span style="color:#f92672">=</span> <span style="color:#f92672">.</span>Str;$str<span style="color:#f92672">.</span>flip <span style="color:#f92672">eq</span> $str})
+    <span style="color:#f92672">.</span>map({ <span style="color:#e6db74">&#34;Date is a palindrone: &#34;</span><span style="color:#f92672">~</span>Date<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>($_)<span style="color:#f92672">~</span><span style="color:#e6db74">&#34;\n&#34;</span>})<span style="color:#f92672">.</span>join;
+</code></pre></div><p>This will not work in Rakudo Star versions prior to RC-1.</p>
 <h2 id="ryan-thompson2">Ryan Thompson</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/ryan-thompson/raku/ch-2.p6">My solution</a> relies on a little analysis (see blog, below) to loop over only the valid palindromic dates:</p>
-<pre><code class="language-raku" data-lang="raku">for (&lt;02 12 22&gt; X (1..12)».fmt('%02d')».flip.sort).flat -&gt; $dd, $yy {
-    say &quot;{$yy.flip}-$dd-{$dd.flip}$yy&quot;;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">for</span> (<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">02</span> <span style="color:#ae81ff">12</span> <span style="color:#ae81ff">22</span><span style="color:#f92672">&gt;</span> X (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">12</span>)<span style="color:#960050;background-color:#1e0010">»</span><span style="color:#f92672">.</span>fmt(<span style="color:#e6db74">&#39;%02d&#39;</span>)<span style="color:#960050;background-color:#1e0010">»</span><span style="color:#f92672">.</span>flip<span style="color:#f92672">.</span>sort)<span style="color:#f92672">.</span>flat <span style="color:#f92672">-&gt;</span> $dd, $yy {
+    say <span style="color:#e6db74">&#34;{$yy.flip}-$dd-{$dd.flip}$yy&#34;</span>;
 }
-</code></pre><p>The results are in sorted order. (Note the <code>.sort</code> you see only sorts the 12 months. It could be moved outside the loop to avoid two unnecessary calls, but it didn&rsquo;t make any measurable difference, so I left it.)</p>
+</code></pre></div><p>The results are in sorted order. (Note the <code>.sort</code> you see only sorts the 12 months. It could be moved outside the loop to avoid two unnecessary calls, but it didn&rsquo;t make any measurable difference, so I left it.)</p>
 <p><strong>Blog</strong> › <a href="http://www.ry.ca/2020/02/palindrome-dates/">Palindrome Dates (mm/dd/yyyy)</a></p>
 <h2 id="simon-proctor2">Simon Proctor</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/simon-proctor/raku/ch-2.p6">Simon Proctor&rsquo;s solution</a> uses <code>Date</code> with a custom formatter to both validate and format the dates, before <code>.flip</code>ping them to check for palindromes:</p>
-<pre><code class="language-raku" data-lang="raku">#| Find the palendromic numbers (writen mmddyyy) between 2000-01-01 and 2999-01-01
-sub MAIN() {
-    my sub df( Date $d) {
-        # Bleh American dates
-        sprintf &quot;%02d%02d%04d&quot;, .month, .day, .year given $d;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#75715e">#| Find the palendromic numbers (writen mmddyyy) between 2000-01-01 and 2999-01-01</span>
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>() {
+    <span style="color:#66d9ef">my</span> <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">df</span>( Date $d) {
+        <span style="color:#75715e"># Bleh American dates</span>
+        sprintf <span style="color:#e6db74">&#34;%02d%02d%04d&#34;</span>, <span style="color:#f92672">.</span>month, <span style="color:#f92672">.</span>day, <span style="color:#f92672">.</span>year given $d;
     }
-    constant START = Date.new(2000,1,1,formatter =&gt; &amp;df);
-    constant END = Date.new(2999,12,31, formatter =&gt; &amp;df);
-    my @out;
-    for (1..12) -&gt; $month {
-        for (1..31) -&gt; $day {
-            my $date;
-            my $year = sprintf( &quot;%02d%02d&quot;, $month, $day ).flip;
+    constant START <span style="color:#f92672">=</span> Date<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(<span style="color:#ae81ff">2000</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,formatter <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">&amp;</span>df);
+    constant <span style="color:#66d9ef">END</span> <span style="color:#f92672">=</span> Date<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(<span style="color:#ae81ff">2999</span>,<span style="color:#ae81ff">12</span>,<span style="color:#ae81ff">31</span>, formatter <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">&amp;</span>df);
+    <span style="color:#66d9ef">my</span> @out;
+    <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">12</span>) <span style="color:#f92672">-&gt;</span> $month {
+        <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">31</span>) <span style="color:#f92672">-&gt;</span> $day {
+            <span style="color:#66d9ef">my</span> $date;
+            <span style="color:#66d9ef">my</span> $year <span style="color:#f92672">=</span> sprintf( <span style="color:#e6db74">&#34;%02d%02d&#34;</span>, $month, $day )<span style="color:#f92672">.</span>flip;
             try {
-                $date = Date.new($year,$month,$day,formatter =&gt; &amp;df);
+                $date <span style="color:#f92672">=</span> Date<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>($year,$month,$day,formatter <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">&amp;</span>df);
             }
-            next unless $date;
-            next unless START &lt;= $date &lt;= END;
-            @out.push($date);
+            <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> $date;
+            <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> START <span style="color:#f92672">&lt;=</span> $date <span style="color:#f92672">&lt;=</span> <span style="color:#66d9ef">END</span>;
+            @out<span style="color:#f92672">.</span>push($date);
         }
     }
-    .say for @out.sort;
+    <span style="color:#f92672">.</span>say <span style="color:#66d9ef">for</span> @out<span style="color:#f92672">.</span>sort;
 }
-</code></pre><p><strong>Blog</strong> › <a href="https://dev.to/scimon/perl-weekly-challenge-week-42-2oo2">Perl Weekly Challenge : Week 48</a></p>
+</code></pre></div><p><strong>Blog</strong> › <a href="https://dev.to/scimon/perl-weekly-challenge-week-42-2oo2">Perl Weekly Challenge : Week 48</a></p>
 <h2 id="ulrich-rieke2">Ulrich Rieke</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/ulrich-rieke/raku/ch-2.p6">Ulrich Rieke&rsquo;s solution</a> uses <code>Date</code> as well, iterating one day at a time with a capturing regexp to pull out the date parts for reordering into mm/dd/yyyy format. He then checks for a palindrome with <code>.flip</code>:</p>
-<pre><code class="language-raku" data-lang="raku">my $currentDate = Date.new( 1999 , 12 , 31 ) ;
-my $reordered ;
-my @palindromedates ;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">my</span> $currentDate <span style="color:#f92672">=</span> Date<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>( <span style="color:#ae81ff">1999</span> , <span style="color:#ae81ff">12</span> , <span style="color:#ae81ff">31</span> ) ;
+<span style="color:#66d9ef">my</span> $reordered ;
+<span style="color:#66d9ef">my</span> @palindromedates ;
 repeat {
-  $currentDate += 1 ;
-  my $datestr = $currentDate.Str ;
-  $datestr ~~ /(\d ** 4) '-' (\d+ ) '-' (\d+)/ ;
-  $reordered = ~$2 ~ ~$1 ~ ~$0 ;
-  if ( $reordered eq $reordered.flip ) {
-      @palindromedates.push( $reordered ) ;
+  $currentDate <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span> ;
+  <span style="color:#66d9ef">my</span> $datestr <span style="color:#f92672">=</span> $currentDate<span style="color:#f92672">.</span>Str ;
+  $datestr <span style="color:#f92672">~~</span> <span style="color:#e6db74">/(\d ** 4) &#39;-&#39; (\d+ ) &#39;-&#39; (\d+)/</span> ;
+  $reordered <span style="color:#f92672">=</span> <span style="color:#f92672">~</span>$2 <span style="color:#f92672">~</span> <span style="color:#f92672">~</span>$1 <span style="color:#f92672">~</span> <span style="color:#f92672">~</span>$0 ;
+  <span style="color:#66d9ef">if</span> ( $reordered <span style="color:#f92672">eq</span> $reordered<span style="color:#f92672">.</span>flip ) {
+      @palindromedates<span style="color:#f92672">.</span>push( $reordered ) ;
   }
-} until ( $currentDate.year == 2999 &amp;&amp; $currentDate.month == 12 &amp;&amp;
-      $currentDate.day == 31 ) ;
-.say for @palindromedates ;
-</code></pre><h2 id="xkr472">Jonas Berlin</h2>
+} <span style="color:#66d9ef">until</span> ( $currentDate<span style="color:#f92672">.</span>year <span style="color:#f92672">==</span> <span style="color:#ae81ff">2999</span> <span style="color:#f92672">&amp;&amp;</span> $currentDate<span style="color:#f92672">.</span>month <span style="color:#f92672">==</span> <span style="color:#ae81ff">12</span> <span style="color:#f92672">&amp;&amp;</span>
+      $currentDate<span style="color:#f92672">.</span>day <span style="color:#f92672">==</span> <span style="color:#ae81ff">31</span> ) ;
+<span style="color:#f92672">.</span>say <span style="color:#66d9ef">for</span> @palindromedates ;
+</code></pre></div><h2 id="xkr472">Jonas Berlin</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-048/xkr47/raku/ch-2.p6">Jonas Berlin&rsquo;s solution</a> uses <code>Date</code> in a <code>try { ... }</code> block to validate dates he generates by <code>flip</code>ping and <code>match</code>ing each year and pulling out the <code>mm</code> and <code>dd</code> parts, to reduce the search space by a factor of 365:</p>
-<pre><code class="language-raku" data-lang="raku">(2000...2999)
-        .map({
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku">(<span style="color:#ae81ff">2000</span><span style="color:#f92672">...</span><span style="color:#ae81ff">2999</span>)
+        <span style="color:#f92672">.</span>map({
             try {
-                    Date.new(($_, $_.flip.match(/^(..)(..)/).map(*.Str)).flat.join(&quot;-&quot;))
+                    Date<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(($_, $_<span style="color:#f92672">.</span>flip<span style="color:#f92672">.</span>match(<span style="color:#e6db74">/^(..)(..)/</span>)<span style="color:#f92672">.</span>map(<span style="color:#f92672">*.</span>Str))<span style="color:#f92672">.</span>flat<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34;-&#34;</span>))
             }
         })
-        .grep(*.defined)
-        .map({ sprintf &quot;%02d%02d%04d&quot;, .month, .day, .year })
-        .say
-</code></pre><hr>
+        <span style="color:#f92672">.</span>grep(<span style="color:#f92672">*.</span>defined)
+        <span style="color:#f92672">.</span>map({ sprintf <span style="color:#e6db74">&#34;%02d%02d%04d&#34;</span>, <span style="color:#f92672">.</span>month, <span style="color:#f92672">.</span>day, <span style="color:#f92672">.</span>year })
+        <span style="color:#f92672">.</span>say
+</code></pre></div><hr>
 <hr>
 <h2 id="blogs">See Also</h2>
 <h3 id="raku-blogs-this-week">Raku Blogs this week:</h3>

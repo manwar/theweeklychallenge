@@ -16,7 +16,7 @@
 
     <meta name="description" content="Advent Calendar - December 3, 2019">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.66.0-DEV" />
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -158,35 +158,35 @@
 <hr>
 <p>To start with, I read the Wikipedia page referenced in the challenge, and realized there were several different systems for writing Roman numerals – it wasn’t as standardized as I thought! That said, I stuck with the style used in the description of the challenge, specifically <strong>“subtractive”</strong> notation.  Essentially, the symbols are written from the largest value to the smallest value, left to right, with no more than <strong>3</strong> of any symbol used.  When four of a symbol would normally be used (for instance, <strong>IIII</strong> to mean <strong>4</strong>), instead it would be written as <strong>IV</strong>, meaning one less than <strong>4</strong> (you see this because the smaller number is before the bigger number).</p>
 <p>So that’s what I’ll talk about below – the part of the code that converts an integer to a Roman number.</p>
-<pre><code class="language-perl6" data-lang="perl6"> 1 sub decimal-to-roman(UInt:D $decimal is copy --&gt;Str:D) {
- 2    my $str = '';
- 3
- 4    my @conversions =
- 5        M  =&gt; 1000,
- 6        CM =&gt;  900,
- 7        D  =&gt;  500,
- 8        CD =&gt;  400,
- 9        C  =&gt;  100,
-10        XC =&gt;   90,
-11        L  =&gt;   50,
-12        XL =&gt;   40,
-13        X  =&gt;   10,
-14        IX =&gt;    9,
-15        V  =&gt;    5,
-16        IV =&gt;    4,
-17        I  =&gt;    1,
-18    ;
-19
-20    for @conversions -&gt; $pair {
-21        while $decimal ≥ $pair.value {
-22            $decimal -= $pair.value;
-23            $str     ~= $pair.key;
-24        }
-25    }
-26
-27    return $str;
-28 }
-</code></pre><p>I haven’t talked about a lot of the syntax of the basic language in <a href="https://digitalbarbedwire.com/2019/05/23/solving-the-sparkpost-challenge/">past</a> <a href="https://digitalbarbedwire.com/2019/04/27/anagrams-in-on/">posts</a> about the <strong>Perl Weekly Challenge</strong>, but I’ll mention a bit here.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">decimal</span>-to-roman(UInt:D $decimal is copy --&gt;Str:D) {
+ <span style="color:#ae81ff">2</span>    <span style="color:#66d9ef">my</span> $str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
+ <span style="color:#ae81ff">3</span>
+ <span style="color:#ae81ff">4</span>    <span style="color:#66d9ef">my</span> @conversions <span style="color:#f92672">=</span>
+ <span style="color:#ae81ff">5</span>        M  <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1000</span>,
+ <span style="color:#ae81ff">6</span>        CM <span style="color:#f92672">=&gt;</span>  <span style="color:#ae81ff">900</span>,
+ <span style="color:#ae81ff">7</span>        D  <span style="color:#f92672">=&gt;</span>  <span style="color:#ae81ff">500</span>,
+ <span style="color:#ae81ff">8</span>        CD <span style="color:#f92672">=&gt;</span>  <span style="color:#ae81ff">400</span>,
+ <span style="color:#ae81ff">9</span>        C  <span style="color:#f92672">=&gt;</span>  <span style="color:#ae81ff">100</span>,
+<span style="color:#ae81ff">10</span>        XC <span style="color:#f92672">=&gt;</span>   <span style="color:#ae81ff">90</span>,
+<span style="color:#ae81ff">11</span>        L  <span style="color:#f92672">=&gt;</span>   <span style="color:#ae81ff">50</span>,
+<span style="color:#ae81ff">12</span>        XL <span style="color:#f92672">=&gt;</span>   <span style="color:#ae81ff">40</span>,
+<span style="color:#ae81ff">13</span>        X  <span style="color:#f92672">=&gt;</span>   <span style="color:#ae81ff">10</span>,
+<span style="color:#ae81ff">14</span>        IX <span style="color:#f92672">=&gt;</span>    <span style="color:#ae81ff">9</span>,
+<span style="color:#ae81ff">15</span>        V  <span style="color:#f92672">=&gt;</span>    <span style="color:#ae81ff">5</span>,
+<span style="color:#ae81ff">16</span>        IV <span style="color:#f92672">=&gt;</span>    <span style="color:#ae81ff">4</span>,
+<span style="color:#ae81ff">17</span>        I  <span style="color:#f92672">=&gt;</span>    <span style="color:#ae81ff">1</span>,
+<span style="color:#ae81ff">18</span>    ;
+<span style="color:#ae81ff">19</span>
+<span style="color:#ae81ff">20</span>    <span style="color:#66d9ef">for</span> @conversions <span style="color:#f92672">-&gt;</span> $pair {
+<span style="color:#ae81ff">21</span>        <span style="color:#66d9ef">while</span> $decimal <span style="color:#960050;background-color:#1e0010">≥</span> $pair<span style="color:#f92672">.</span>value {
+<span style="color:#ae81ff">22</span>            $decimal <span style="color:#f92672">-=</span> $pair<span style="color:#f92672">.</span>value;
+<span style="color:#ae81ff">23</span>            $str     <span style="color:#f92672">~=</span> $pair<span style="color:#f92672">.</span>key;
+<span style="color:#ae81ff">24</span>        }
+<span style="color:#ae81ff">25</span>    }
+<span style="color:#ae81ff">26</span>
+<span style="color:#ae81ff">27</span>    <span style="color:#66d9ef">return</span> $str;
+<span style="color:#ae81ff">28</span> }
+</code></pre></div><p>I haven’t talked about a lot of the syntax of the basic language in <a href="https://digitalbarbedwire.com/2019/05/23/solving-the-sparkpost-challenge/">past</a> <a href="https://digitalbarbedwire.com/2019/04/27/anagrams-in-on/">posts</a> about the <strong>Perl Weekly Challenge</strong>, but I’ll mention a bit here.</p>
 <p>In <strong>line 1</strong> above, we define a function named decimal-to-roman. Yes, you can use “-” in function names, which is probably anxiety provoking to most people familiar with Algol-based languages, but is unambiguous in <strong>Raku</strong> syntax – and thus allowed (indeed, <strong>Lisp</strong>, among many others allow hyphens too).</p>
 <p>This function takes one parameter, <em>$decimal</em>. This variable has a type – UInt:D.  The <strong>UInt</strong> part is relatively straightforward to most developers, whether or not they use <strong>Raku</strong> – must be an unsigned integer.  The <strong>:D</strong> part is unusual to most non-Raku developers, but is simple – it simply indicates the <strong>UInt</strong> passed must be defined, I.E. it has to be an actual value.  This <strong>line 1</strong> also makes this parameter, <em>$decimal</em>, a copy. By default, <strong>Raku</strong> parameters are read only, so they can’t be modified. This saves the overhead of making a copy when calling functions. Finally, the function returns a <strong>Str:D</strong> – a defined string.</p>
 <p>You don’t have to define types in <strong>Raku</strong> – but when you do, you get some automatic error checking, so it’s sometimes a good thing to do. For instance, if I tried to return a <strong>UInt</strong> rather than a String, or returned an undefined variable, I would get an error that indicating where the assignment happened, not some far away module that expected a String and didn’t get it.</p>

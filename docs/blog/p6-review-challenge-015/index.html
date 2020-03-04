@@ -16,7 +16,7 @@
 
     <meta name="description" content="Laurent Rosenfeld Weekly Review: Challenge - #015.">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.66.0-DEV" />
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -184,67 +184,67 @@ Encoded message: qifef.
 <p>because &lsquo;c&rsquo; is the second letter after &lsquo;a&rsquo;.</p>
 <p>Originally, I kept letters within the <code>a..z</code> range (folding the input message to lowercase), because the numeric codes for uppercase letters are different, in order to keep as close as possible to the original Vigenère cipher. But the original cipher was limited to this range only because of the way encoding was done manually at the time. With a computer, there is no reason to limit ourselves to such range. So, the script below use the full range of an octet (0..255), i.e. the full extended ASCII range. This way we can also encode spaces, punctuation symbols, etc. Of course, this implies that the partner uses the same alphabet and scheme.</p>
 <p>In this script, the bulk of the work is done in the <code>rotate-msg</code> and <code>rotate-one-letter</code> subroutines. The <code>encode</code> and <code>decode</code> subroutines are only calling them with the proper arguments. And the <code>create-code</code> subroutine is used to transform the password into an array of numeric values.</p>
-<pre><code class="language-Perl6" data-lang="Perl6">use v6;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> v6;
 
-subset Letter of Str where .chars == 1;
+subset Letter of Str where <span style="color:#f92672">.</span>chars <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>;
 
-sub create-code (Str $passwd) {
-    # Converts password to a list of numeric codes
-    # where 'a' corresponds to a shift of 1, etc.
-    return $passwd.comb(1).map: {.ord - 'a'.ord + 1}
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">create</span>-code (Str $passwd) {
+    <span style="color:#75715e"># Converts password to a list of numeric codes</span>
+    <span style="color:#75715e"># where &#39;a&#39; corresponds to a shift of 1, etc.</span>
+    <span style="color:#66d9ef">return</span> $passwd<span style="color:#f92672">.</span>comb(<span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span>map: {<span style="color:#f92672">.</span>ord <span style="color:#f92672">-</span> <span style="color:#e6db74">&#39;a&#39;</span><span style="color:#f92672">.</span>ord <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>}
 }
-sub rotate-one-letter (Letter $letter, Int $shift) {
-    # Converts a single letter and deals with cases
-    # where applying the shift would get out of range
-    constant $max = 255;
-    my $shifted = $letter.ord + $shift;
-    $shifted = $shifted &gt; $max ?? $shifted - $max !!
-        $shifted &lt; 0 ?? $shifted + $max !!
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">rotate</span>-one-letter (Letter $letter, Int $shift) {
+    <span style="color:#75715e"># Converts a single letter and deals with cases</span>
+    <span style="color:#75715e"># where applying the shift would get out of range</span>
+    constant $max <span style="color:#f92672">=</span> <span style="color:#ae81ff">255</span>;
+    <span style="color:#66d9ef">my</span> $shifted <span style="color:#f92672">=</span> $letter<span style="color:#f92672">.</span>ord <span style="color:#f92672">+</span> $shift;
+    $shifted <span style="color:#f92672">=</span> $shifted <span style="color:#f92672">&gt;</span> $max ?? $shifted <span style="color:#f92672">-</span> $max <span style="color:#f92672">!!</span>
+        $shifted <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> ?? $shifted <span style="color:#f92672">+</span> $max <span style="color:#f92672">!!</span>
         $shifted;
-    return $shifted.chr;
+    <span style="color:#66d9ef">return</span> $shifted<span style="color:#f92672">.</span>chr;
 }
-sub rotate-msg (Str $msg, @code) {
-    # calls rotate-one-letter for each letter of the input message
-    # and passes the right shift value for that letter
-    my $i = 0;
-    my $result = &quot;&quot;;
-    for $msg.comb(1) -&gt; $letter {
-        my $shift = @code[$i];
-        $result ~= rotate-one-letter $letter, $shift;
-        $i++;
-        $i = 0 if $i &gt;= @code.elems;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">rotate</span>-msg (Str $msg, @code) {
+    <span style="color:#75715e"># calls rotate-one-letter for each letter of the input message</span>
+    <span style="color:#75715e"># and passes the right shift value for that letter</span>
+    <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">my</span> $result <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
+    <span style="color:#66d9ef">for</span> $msg<span style="color:#f92672">.</span>comb(<span style="color:#ae81ff">1</span>) <span style="color:#f92672">-&gt;</span> $letter {
+        <span style="color:#66d9ef">my</span> $shift <span style="color:#f92672">=</span> @code[$i];
+        $result <span style="color:#f92672">~=</span> rotate<span style="color:#f92672">-</span>one<span style="color:#f92672">-</span>letter $letter, $shift;
+        $i<span style="color:#f92672">++</span>;
+        $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $i <span style="color:#f92672">&gt;=</span> @code<span style="color:#f92672">.</span>elems;
     }
-    return $result;
+    <span style="color:#66d9ef">return</span> $result;
 }
-sub encode (Str $message, @key) {
-    rotate-msg $message, @key;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">encode</span> (Str $message, @key) {
+    rotate<span style="color:#f92672">-</span>msg $message, @key;
 }
-sub decode (Str $message, @key) {
-    my @back-key = map {- $_}, @key;
-    rotate-msg $message, @back-key;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">decode</span> (Str $message, @key) {
+    <span style="color:#66d9ef">my</span> @back<span style="color:#f92672">-</span>key <span style="color:#f92672">=</span> map {<span style="color:#f92672">-</span> $_}, @key;
+    rotate<span style="color:#f92672">-</span>msg $message, @back<span style="color:#f92672">-</span>key;
 }
 multi MAIN (Str $message, Str $password) {
-    my @code = create-code $password;
-    my $ciphertext = encode $message, @code;
-    say &quot;Encoded cyphertext: $ciphertext&quot;;
-    say &quot;Roundtrip to decoded message: {decode $ciphertext, @code}&quot;;
+    <span style="color:#66d9ef">my</span> @code <span style="color:#f92672">=</span> create<span style="color:#f92672">-</span>code $password;
+    <span style="color:#66d9ef">my</span> $ciphertext <span style="color:#f92672">=</span> encode $message, @code;
+    say <span style="color:#e6db74">&#34;Encoded cyphertext: $ciphertext&#34;</span>;
+    say <span style="color:#e6db74">&#34;Roundtrip to decoded message: {decode $ciphertext, @code}&#34;</span>;
 }
-multi MAIN (&quot;test&quot;) {
-    use Test; # Minimal tests for providing an example
-    plan 6;
-    my $code = join &quot;&quot;, create-code(&quot;abcde&quot;);
-    is $code, 12345, &quot;Testing create-code&quot;;
-    my @c = create-code &quot;password&quot;;
-    for &lt;foo bar hello world&gt; -&gt; $word {
+multi MAIN (<span style="color:#e6db74">&#34;test&#34;</span>) {
+    <span style="color:#66d9ef">use</span> Test; <span style="color:#75715e"># Minimal tests for providing an example</span>
+    plan <span style="color:#ae81ff">6</span>;
+    <span style="color:#66d9ef">my</span> $code <span style="color:#f92672">=</span> join <span style="color:#e6db74">&#34;&#34;</span>, create<span style="color:#f92672">-</span>code(<span style="color:#e6db74">&#34;abcde&#34;</span>);
+    is $code, <span style="color:#ae81ff">12345</span>, <span style="color:#e6db74">&#34;Testing create-code&#34;</span>;
+    <span style="color:#66d9ef">my</span> @c <span style="color:#f92672">=</span> create<span style="color:#f92672">-</span>code <span style="color:#e6db74">&#34;password&#34;</span>;
+    <span style="color:#66d9ef">for</span> <span style="color:#f92672">&lt;</span>foo bar hello world<span style="color:#f92672">&gt;</span> <span style="color:#f92672">-&gt;</span> $word {
         is decode( encode($word, @c), @c), $word,
-            &quot;Round trip for $word&quot;;
+            <span style="color:#e6db74">&#34;Round trip for $word&#34;</span>;
     }
-    my $msg = &quot;One small step for man, one giant leap for mankind!&quot;;
-    my $ciphertext = encode $msg, @c;
+    <span style="color:#66d9ef">my</span> $msg <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;One small step for man, one giant leap for mankind!&#34;</span>;
+    <span style="color:#66d9ef">my</span> $ciphertext <span style="color:#f92672">=</span> encode $msg, @c;
     is decode($ciphertext, @c), $msg,
-        &quot;Message with spaces and punctuation&quot;;
+        <span style="color:#e6db74">&#34;Message with spaces and punctuation&#34;</span>;
 }
-</code></pre><p>In the script above, we have two MAIN multi subroutines. When the single argument is &ldquo;test&rdquo;, the script runs a series of basic tests (which would probably have to be expanded in a real life project); when the arguments are two strings (a message to be encoded and a password), the script runs with the input arguments.</p>
+</code></pre></div><p>In the script above, we have two MAIN multi subroutines. When the single argument is &ldquo;test&rdquo;, the script runs a series of basic tests (which would probably have to be expanded in a real life project); when the arguments are two strings (a message to be encoded and a password), the script runs with the input arguments.</p>
 <p>This is an example run with the &ldquo;test&rdquo; argument:</p>
 <pre><code>$ perl6  vigenere.p6 test
 1..6
@@ -263,80 +263,80 @@ Roundtrip to decoded message: AlphaBeta
 <p>In the <a href="https://en.wikipedia.org/wiki/Autokey_cipher">autokey cypher</a> improvement of the Vigenère cypher mentioned at the beginning of this post (which is the true invention made by Vigenère), the key is not repeated, but used only once, and the rest of the message is encoded using the message itself as the key. The fact that the key is no longer repeated in the coding process defeats most of the first known methods to break the traditional Vigenère cypher.</p>
 <h2 id="alternate-solutions">Alternate Solutions</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-015/arne-sommer/perl6/ch-2.p6">Arne Sommer</a> made a very simple and very concise implementation of the cypher dealing only with uppercase letters (as in Vigenère&rsquo;s original cypher). His program loops on the input string&rsquo;s numerical codes and at the same time on the key&rsquo;s numerical codes. It adds the key&rsquo;s codes when encrypting and subtract them when decrypting.</p>
-<pre><code class="language-Perl6" data-lang="Perl6">subset UCASE of Str where * ~~ /^&lt;[A .. Z]&gt;+$/;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">subset UCASE of Str where <span style="color:#f92672">*</span> <span style="color:#f92672">~~</span> <span style="color:#e6db74">/^&lt;[A .. Z]&gt;+$/</span>;
 
-unit sub MAIN (UCASE $uppercase-string, UCASE $key, :$decrypt = False);
+unit <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> (UCASE $uppercase-string, UCASE $key, :$decrypt = False);
 
-my $base = &quot;A&quot;.ord;
+my $base = &#34;A&#34;.ord;
 my $key-length = $key.chars;
 
-my @string = $uppercase-string.comb.map({ $_.ord - $base });
-my @key    = $key.comb.map({ $_.ord - $base });
+my @string = $uppercase-string.comb.map({ $_<span style="color:#f92672">.</span>ord <span style="color:#f92672">-</span> $base });
+<span style="color:#66d9ef">my</span> @key    <span style="color:#f92672">=</span> $key<span style="color:#f92672">.</span>comb<span style="color:#f92672">.</span>map({ $_<span style="color:#f92672">.</span>ord <span style="color:#f92672">-</span> $base });
 
-for ^@string.elems -&gt; $p
+<span style="color:#66d9ef">for</span> <span style="color:#f92672">^</span>@string<span style="color:#f92672">.</span>elems <span style="color:#f92672">-&gt;</span> $p
 {
-  my $k = $p mod $key-length;
+  <span style="color:#66d9ef">my</span> $k <span style="color:#f92672">=</span> $p mod $key<span style="color:#f92672">-</span>length;
 
   $decrypt
-    ?? print ($base + (@string[$p] - @key[$k] + 26) mod 26).chr
-    !! print ($base + (@string[$p] + @key[$k]) mod 26).chr;
+    ?? <span style="color:#66d9ef">print</span> ($base <span style="color:#f92672">+</span> (@string[$p] <span style="color:#f92672">-</span> @key[$k] <span style="color:#f92672">+</span> <span style="color:#ae81ff">26</span>) mod <span style="color:#ae81ff">26</span>)<span style="color:#f92672">.</span>chr
+    <span style="color:#f92672">!!</span> <span style="color:#66d9ef">print</span> ($base <span style="color:#f92672">+</span> (@string[$p] <span style="color:#f92672">+</span> @key[$k]) mod <span style="color:#ae81ff">26</span>)<span style="color:#f92672">.</span>chr;
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-015/fjwhittle/perl6/ch-2.p6">Francis J. Whittle</a> first wrote an <code>ordinate</code> helper subroutine to transform the password or the message into a list of numeric codes. Once this is done, encoding a message boils down to:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">put ordinate($message).rotor(@key.elems, :partial).map({ (($_ Z+ @key) X% 26) X+ 'A'.ord})».Slip».chr.join
-</code></pre><p>and decoding an encrypted message to:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">put ordinate($message).rotor(@key.elems, :partial).map({ (($_ Z- @key) X% 26) X+ 'A'.ord})».Slip».chr.join
-</code></pre><p>Wow, that&rsquo;s quite impressive! And also a little bit cryptic: it took me quite a few minutes to understand these code lines.</p>
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-015/fjwhittle/perl6/ch-2.p6">Francis J. Whittle</a> first wrote an <code>ordinate</code> helper subroutine to transform the password or the message into a list of numeric codes. Once this is done, encoding a message boils down to:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">put ordinate($message)<span style="color:#f92672">.</span>rotor(@key<span style="color:#f92672">.</span>elems, :partial)<span style="color:#f92672">.</span>map({ (($_ Z<span style="color:#f92672">+</span> @key) X% 26) X<span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;A&#39;</span><span style="color:#f92672">.</span>ord})<span style="color:#960050;background-color:#1e0010">»</span><span style="color:#f92672">.</span>Slip<span style="color:#960050;background-color:#1e0010">»</span><span style="color:#f92672">.</span>chr<span style="color:#f92672">.</span>join
+</code></pre></div><p>and decoding an encrypted message to:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">put ordinate($message)<span style="color:#f92672">.</span>rotor(@key<span style="color:#f92672">.</span>elems, :partial)<span style="color:#f92672">.</span>map({ (($_ Z<span style="color:#f92672">-</span> @key) X% 26) X<span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;A&#39;</span><span style="color:#f92672">.</span>ord})<span style="color:#960050;background-color:#1e0010">»</span><span style="color:#f92672">.</span>Slip<span style="color:#960050;background-color:#1e0010">»</span><span style="color:#f92672">.</span>chr<span style="color:#f92672">.</span>join
+</code></pre></div><p>Wow, that&rsquo;s quite impressive! And also a little bit cryptic: it took me quite a few minutes to understand these code lines.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-015/kevin-colyer/perl6/ch-2.p6">Kevin Colyer</a> also limited the input text and the key to uppercase letters, and his program also loops on the input string&rsquo;s numeric codes and at the same time on the key&rsquo;s numerical codes. It multiplies the key numerical codes by -1 when decrypting. His central subroutine is also fairly simple and looks as follows:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub VigenereCipher($text,$key,$encode) {
-    my $offset=&quot;A&quot;.ord;
-    my @t = $text.uc.comb.map(*.ord-$offset);
-    my @k = $key .uc.comb.map(*.ord-$offset);
-    my @result;
-    my $EorD = $encode==True ?? 1 !! -1;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">VigenereCipher</span>($text,$key,$encode) {
+    <span style="color:#66d9ef">my</span> $offset<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;A&#34;</span><span style="color:#f92672">.</span>ord;
+    <span style="color:#66d9ef">my</span> @t <span style="color:#f92672">=</span> $text<span style="color:#f92672">.</span>uc<span style="color:#f92672">.</span>comb<span style="color:#f92672">.</span>map(<span style="color:#f92672">*.</span>ord<span style="color:#f92672">-</span>$offset);
+    <span style="color:#66d9ef">my</span> @k <span style="color:#f92672">=</span> $key <span style="color:#f92672">.</span>uc<span style="color:#f92672">.</span>comb<span style="color:#f92672">.</span>map(<span style="color:#f92672">*.</span>ord<span style="color:#f92672">-</span>$offset);
+    <span style="color:#66d9ef">my</span> @result;
+    <span style="color:#66d9ef">my</span> $EorD <span style="color:#f92672">=</span> $encode<span style="color:#f92672">==</span>True ?? <span style="color:#ae81ff">1</span> <span style="color:#f92672">!!</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
 
-    my $i=0;
+    <span style="color:#66d9ef">my</span> $i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
 
-    for ^@t -&gt; $j {
-        @result.push: chr($offset + ( (@t[$j]+ $EorD*@k[$i]) mod 26) );
-        $i=($i+1) mod @k.elems;
+    <span style="color:#66d9ef">for</span> <span style="color:#f92672">^</span>@t <span style="color:#f92672">-&gt;</span> $j {
+        @result<span style="color:#f92672">.</span>push: chr($offset <span style="color:#f92672">+</span> ( (@t[$j]<span style="color:#f92672">+</span> $EorD<span style="color:#f92672">*</span>@k[$i]) mod <span style="color:#ae81ff">26</span>) );
+        $i<span style="color:#f92672">=</span>($i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>) mod @k<span style="color:#f92672">.</span>elems;
 
     }
-    return @result.join ;
+    <span style="color:#66d9ef">return</span> @result<span style="color:#f92672">.</span>join ;
 }
-</code></pre><p>One little surprising thing is that Kevin decided to abort his program when the key passed to it is longer than the message. I do not see any reason to do so, quite to the contrary: the code is much more difficult to break when the key has a length equal to or larger than the message (the repeating of the key is the main weakness of the Vigenère cypher).</p>
+</code></pre></div><p>One little surprising thing is that Kevin decided to abort his program when the key passed to it is longer than the message. I do not see any reason to do so, quite to the contrary: the code is much more difficult to break when the key has a length equal to or larger than the message (the repeating of the key is the main weakness of the Vigenère cypher).</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-015/athanasius/perl6/ch-2.p6">Athanasius</a> wrote two helper subroutines, <code>str2num</code> and <code>num2str</code>, to convert a string into an array of numerical items and back, which can be used both for the input string and the key. Before starting to encode or decode, the program copies the key numeric codes as many times as needed to obtain a final key equal to or longer than the text. At this point, encrypting a message from the array of its numeric codes becomes fairly easy:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">while @plain
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">while</span> @plain
     {
-        my $m = @plain.shift;
-        my $k = @key.shift;`
-        @cipher.push: ($m + $k) % @ALPHABET.elems;
+        <span style="color:#66d9ef">my</span> $m <span style="color:#f92672">=</span> @plain<span style="color:#f92672">.</span>shift;
+        <span style="color:#66d9ef">my</span> $k <span style="color:#f92672">=</span> @key<span style="color:#f92672">.</span>shift;<span style="color:#960050;background-color:#1e0010">`</span>
+        @cipher<span style="color:#f92672">.</span>push: ($m <span style="color:#f92672">+</span> $k) % <span style="color:#960050;background-color:#1e0010">@</span>ALPHABET<span style="color:#f92672">.</span>elems;
     }
-    return num2str(@cipher);
+    <span style="color:#66d9ef">return</span> num2str(@cipher);
 }
-</code></pre><p>and decrypting is just about the same with a minus sign instead of a plus.</p>
+</code></pre></div><p>and decrypting is just about the same with a minus sign instead of a plus.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-015/jaldhar-h-vyas/perl6/ch-2.p6">Jaldhar H. Vyas</a> chose an unexpected and uncommon approach: he actually wrote a <em>tabula recta</em>:</p>
 <p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Vigen%C3%A8re_square_shading.svg/330px-Vigen%C3%A8re_square_shading.svg.png" alt="Tabula recta"></p>
 <p>i.e. Vigenère&rsquo;s original table of alphabets written out 26 times, each time shifted by one letter, in the form of hash of strings: <code>A =&gt; ABCDEFGHIJKLMNOPQRSTUVWXYZ, B =&gt; BCDEFGHIJKLMNOPQRSTUVWXYZA, ...</code>. Once this preparation work is done, this encrypt subroutine becomes quite concise:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub encrypt(@key, $keylength, %tabulaRecta, $c) {
-    state $i = 0;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">encrypt</span>(@key, $keylength, %tabulaRecta, $c) {
+    state $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
 
-    return substr(%tabulaRecta{@key[$i++ % $keylength]}, ord($c) - ord('A'), 1);
+    <span style="color:#66d9ef">return</span> substr(%tabulaRecta{@key[$i<span style="color:#f92672">++</span> % <span style="color:#960050;background-color:#1e0010">$</span>keylength]}, ord($c) <span style="color:#f92672">-</span> ord(<span style="color:#e6db74">&#39;A&#39;</span>), <span style="color:#ae81ff">1</span>);
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-015/joelle-maslak/perl6/ch-2.p6">Joelle Maslak</a> decided to accept upper case and lower case alphabetical characters for the input message. She managed the array of letters representing the key as a circular buffer: at each step during encoding or decoding, her program moves the first letter of the key to the end of the array, so that, for coding or decoding a message, her program always picks up the letter of the array.</p>
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-015/joelle-maslak/perl6/ch-2.p6">Joelle Maslak</a> decided to accept upper case and lower case alphabetical characters for the input message. She managed the array of letters representing the key as a circular buffer: at each step during encoding or decoding, her program moves the first letter of the key to the end of the array, so that, for coding or decoding a message, her program always picks up the letter of the array.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-015/ruben-westerberg/perl6/ch-2.p6">Ruben Westerberg</a> decided to use an alphabet containing upper case and lower case ASCII letters plus spaces and a few punctuation symbols. His program reads line by line from a file and writes to a file. It uses heavily the <code>&gt;&gt;</code> hyper-operator to encode in just one statement the input array of integer ASCII codes into an array of encoded numbers. I must say that it took me a while to understand that statement.</p>
-<pre><code class="language-Perl6" data-lang="Perl6">sub MAIN ( Str $key, Bool :$decode, Str :$file ) {
-    my $f=$decode??1!!-1;
-    $*OUT.out-buffer=0;
-    my @alpha=(&quot;a&quot;..&quot;z&quot;,&quot;A&quot;..&quot;Z&quot;,&quot; &quot;, &lt;? ! . : &gt;)[*;*];
-    my @a=@alpha.keys;
-    my @k=$key.comb.map(-&gt; $c {|@alpha.grep($c,:k)});
-    for $*IN.lines -&gt; $line {
-        my @in= $line.comb.map(-&gt;$c {|@alpha.grep($c,:k)});
-        my @t= (@in &gt;&gt;+&gt;&gt; (@k &gt;&gt;*&gt;&gt; $f)) &gt;&gt;%&gt;&gt; @a.elems;
-        put  join &quot;&quot;, @alpha[@t];
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> ( Str $key, Bool :$decode, Str :$file ) {
+    <span style="color:#66d9ef">my</span> $f<span style="color:#f92672">=</span>$decode??<span style="color:#ae81ff">1</span><span style="color:#f92672">!!-</span><span style="color:#ae81ff">1</span>;
+    $<span style="color:#960050;background-color:#1e0010">*</span>OUT<span style="color:#f92672">.</span>out<span style="color:#f92672">-</span>buffer<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">my</span> @alpha<span style="color:#f92672">=</span>(<span style="color:#e6db74">&#34;a&#34;</span><span style="color:#f92672">..</span><span style="color:#e6db74">&#34;z&#34;</span>,<span style="color:#e6db74">&#34;A&#34;</span><span style="color:#f92672">..</span><span style="color:#e6db74">&#34;Z&#34;</span>,<span style="color:#e6db74">&#34; &#34;</span>, <span style="color:#f92672">&lt;</span>? <span style="color:#f92672">!</span> <span style="color:#f92672">.</span> : <span style="color:#f92672">&gt;</span>)[<span style="color:#f92672">*</span>;<span style="color:#f92672">*</span>];
+    <span style="color:#66d9ef">my</span> @a<span style="color:#f92672">=</span>@alpha<span style="color:#f92672">.</span>keys;
+    <span style="color:#66d9ef">my</span> @k<span style="color:#f92672">=</span>$key<span style="color:#f92672">.</span>comb<span style="color:#f92672">.</span>map(<span style="color:#f92672">-&gt;</span> $c {<span style="color:#f92672">|</span>@alpha<span style="color:#f92672">.</span>grep($c,:k)});
+    <span style="color:#66d9ef">for</span> $<span style="color:#960050;background-color:#1e0010">*</span>IN<span style="color:#f92672">.</span>lines <span style="color:#f92672">-&gt;</span> $line {
+        <span style="color:#66d9ef">my</span> @in<span style="color:#f92672">=</span> $line<span style="color:#f92672">.</span>comb<span style="color:#f92672">.</span>map(<span style="color:#f92672">-&gt;</span>$c {<span style="color:#f92672">|</span>@alpha<span style="color:#f92672">.</span>grep($c,:k)});
+        <span style="color:#66d9ef">my</span> @t<span style="color:#f92672">=</span> (@in <span style="color:#f92672">&gt;&gt;+&gt;&gt;</span> (@k <span style="color:#f92672">&gt;&gt;*&gt;&gt;</span> $f)) <span style="color:#f92672">&gt;&gt;</span>%<span style="color:#960050;background-color:#1e0010">&gt;&gt;</span> <span style="color:#960050;background-color:#1e0010">@</span>a<span style="color:#f92672">.</span>elems;
+        put  join <span style="color:#e6db74">&#34;&#34;</span>, @alpha[@t];
     }
 }
-</code></pre><h2 id="task-2-strong-and-weak-prime-numbers">Task #2: Strong and Weak Prime Numbers</h2>
+</code></pre></div><h2 id="task-2-strong-and-weak-prime-numbers">Task #2: Strong and Weak Prime Numbers</h2>
 <p>This is derived in part from my <a href="http://blogs.perl.org/users/laurent_r/2019/07/perl-weekly-challenge-15-strong-and-weak-primes-and-vigenere-encryption.html">blog post1</a> and <a href="http://blogs.perl.org/users/laurent_r/2019/07/functional-programming-in-perl-strong-and-weak-primes-perl-weekly-challenge.html">blog post2</a> made in answer to the <a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-015/">Week 15 of the Perl Weekly Challenge</a> organized by  <a href="http://blogs.perl.org/users/mohammad_s_anwar/">Mohammad S. Anwar</a> as well as answers made by others to the same challenge.</p>
 <p>The challenge reads as follows:</p>
 <p><em>Write a script to generate first 10 strong and weak prime numbers.</em></p>
@@ -356,29 +356,29 @@ for ^@string.elems -&gt; $p
 <h3 id="first-steps">First Steps</h3>
 <p>We don&rsquo;t know in advance how many prime numbers we&rsquo;ll need to check to find 10 strong and 10 weak primes. This is a typical situation where using Perl 6&rsquo;s infinite lazy lists is very convenient.</p>
 <p>In the first code example below, we first build a lazy infinite list of prime numbers, and then use <code>grep</code> to filter the strong (and weak) primes, so as to construct lazy infinite lists of strong and weak primes, and we finally print out the first 10 numbers of each such list. This is fairly straight forward:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">use v6;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> v6;
 
-my @p = grep { .is-prime }, 1..*;   #Lazy infinite list of primes
-my @strong = map { @p[$_] },
-    grep { @p[$_] &gt; (@p[$_ - 1] + @p[$_ + 1]) / 2 }, 1..*;
-my @weak = map { @p[$_] },
-    grep { @p[$_] &lt; (@p[$_ - 1] + @p[$_ + 1]) / 2 }, 1..*;
-say &quot;Strong primes: @strong[0..9]&quot;;
-say &quot;Weak primes: @weak[0..9]&quot;;
-</code></pre><p>This script displays the following output:</p>
+<span style="color:#66d9ef">my</span> @p <span style="color:#f92672">=</span> grep { <span style="color:#f92672">.</span>is<span style="color:#f92672">-</span>prime }, <span style="color:#ae81ff">1</span><span style="color:#f92672">..*</span>;   <span style="color:#75715e">#Lazy infinite list of primes</span>
+<span style="color:#66d9ef">my</span> @strong <span style="color:#f92672">=</span> map { @p[$_] },
+    grep { @p[$_] <span style="color:#f92672">&gt;</span> (@p[$_ <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> @p[$_ <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>]) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span> }, <span style="color:#ae81ff">1</span><span style="color:#f92672">..*</span>;
+<span style="color:#66d9ef">my</span> @weak <span style="color:#f92672">=</span> map { @p[$_] },
+    grep { @p[$_] <span style="color:#f92672">&lt;</span> (@p[$_ <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> @p[$_ <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>]) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span> }, <span style="color:#ae81ff">1</span><span style="color:#f92672">..*</span>;
+say <span style="color:#e6db74">&#34;Strong primes: @strong[0..9]&#34;</span>;
+say <span style="color:#e6db74">&#34;Weak primes: @weak[0..9]&#34;</span>;
+</code></pre></div><p>This script displays the following output:</p>
 <pre><code>$ perl6 strong_primes.p6
 Strong primes: 11 17 29 37 41 59 67 71 79 97
 Weak primes: 3 7 13 19 23 31 43 47 61 73
 </code></pre>
 <p>We don&rsquo;t really need to build the intermediate <code>@strong</code> and <code>@weak</code> lazy infinite lists, but can print out the results directly:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">use v6;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> v6;
 
-my @p = grep { .is-prime }, 1..*;   # Lazy infinite list of primes
-say &quot;Strong primes: &quot;, (map { @p[$_] },
-    grep { @p[$_] &gt; (@p[$_ - 1] + @p[$_ + 1]) / 2 }, 1..*)[0..9];
-say &quot;Weak primes: &quot;, (map { @p[$_] },
-    grep { @p[$_] &lt; (@p[$_ - 1] + @p[$_ + 1]) / 2 }, 1..*)[0..9];
-</code></pre><p>This prints out the same lists as before:</p>
+<span style="color:#66d9ef">my</span> @p <span style="color:#f92672">=</span> grep { <span style="color:#f92672">.</span>is<span style="color:#f92672">-</span>prime }, <span style="color:#ae81ff">1</span><span style="color:#f92672">..*</span>;   <span style="color:#75715e"># Lazy infinite list of primes</span>
+say <span style="color:#e6db74">&#34;Strong primes: &#34;</span>, (map { @p[$_] },
+    grep { @p[$_] <span style="color:#f92672">&gt;</span> (@p[$_ <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> @p[$_ <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>]) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span> }, <span style="color:#ae81ff">1</span><span style="color:#f92672">..*</span>)[<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">9</span>];
+say <span style="color:#e6db74">&#34;Weak primes: &#34;</span>, (map { @p[$_] },
+    grep { @p[$_] <span style="color:#f92672">&lt;</span> (@p[$_ <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> @p[$_ <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>]) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span> }, <span style="color:#ae81ff">1</span><span style="color:#f92672">..*</span>)[<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">9</span>];
+</code></pre></div><p>This prints out the same lists as before:</p>
 <pre><code>perl6 strong_primes.p6
 Strong primes: (11 17 29 37 41 59 67 71 79 97)
 Weak primes: (3 7 13 19 23 31 43 47 61 73)
@@ -386,19 +386,19 @@ Weak primes: (3 7 13 19 23 31 43 47 61 73)
 <p>We&rsquo;re now down to three code lines instead of five (except that I have to format each of the two last code lines over two typographical lines to fit cleanly on my editor screen or on this blog post).</p>
 <h3 id="categorizing-or-classifying-primes">Categorizing or Classifying Primes</h3>
 <p>One slight problem with the implementation above is that, once we have generated our list of primes, we need to go through it twice with the <code>map ... grep</code> chained statements, one for the strong primes and once for the weak primes; and we&rsquo;d need to visit the prime list a third time for finding balanced primes. Although the script runs very fast, it would be better if we could do the categorizing in one go. Perl 6 has two built-in routines to do that, <code>categorize</code> and <code>classify</code>. Let&rsquo;s try to use the first one:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">use v6;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> v6;
 
-my @p = grep { .is-prime }, 1..*;   # Lazy infinite list of primes
-sub mapper(UInt $i) {
-    @p[$i] &gt; (@p[$i - 1] + @p[$i + 1])/2 ?? 'Strong' !!
-    @p[$i] &lt; (@p[$i - 1] + @p[$i + 1])/2 ?? 'Weak'   !!
-    'Balanced';
+<span style="color:#66d9ef">my</span> @p <span style="color:#f92672">=</span> grep { <span style="color:#f92672">.</span>is<span style="color:#f92672">-</span>prime }, <span style="color:#ae81ff">1</span><span style="color:#f92672">..*</span>;   <span style="color:#75715e"># Lazy infinite list of primes</span>
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">mapper</span>(UInt $i) {
+    @p[$i] <span style="color:#f92672">&gt;</span> (@p[$i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> @p[$i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>])<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span> ?? <span style="color:#e6db74">&#39;Strong&#39;</span> <span style="color:#f92672">!!</span>
+    @p[$i] <span style="color:#f92672">&lt;</span> (@p[$i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> @p[$i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>])<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span> ?? <span style="color:#e6db74">&#39;Weak&#39;</span>   <span style="color:#f92672">!!</span>
+    <span style="color:#e6db74">&#39;Balanced&#39;</span>;
 }
-my %categories = categorize &amp;mapper, 1..120;
-for sort keys %categories -&gt; $key {
-    say &quot;$key primes:  &quot;, map {@p[$_]}, %categories{$key}[0..9];
+<span style="color:#66d9ef">my</span> %categories <span style="color:#f92672">=</span> categorize <span style="color:#f92672">&amp;</span>mapper, <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">120</span>;
+<span style="color:#66d9ef">for</span> sort keys %categories <span style="color:#f92672">-&gt;</span> $key {
+    say <span style="color:#e6db74">&#34;$key primes:  &#34;</span>, map {@p[$_]}, %categories{$key}[<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">9</span>];
 }
-</code></pre><p>Running this program produces the following output:</p>
+</code></pre></div><p>Running this program produces the following output:</p>
 <pre><code>$ perl6 strong_primes.p6
 Balanced primes:  (5 53 157 173 211 257 263 373 563 593)
 Strong primes:  (11 17 29 37 41 59 67 71 79 97)
@@ -419,32 +419,32 @@ Weak primes:  (3 7 13 19 23 31 43 47 61 73)
 <h3 id="using-functional-programming">Using Functional Programming</h3>
 <p>I want to use the opportunity of this challenge to illustrate once more some possibilities of functional programming in Perl</p>
 <p>In fact, the first solution suggested above is in fact already largely functional in spirit. We&rsquo;re using a data pipeline programming model. The code lines with <code>map</code> and <code>grep</code> statements should be read from bottom to top (when they are formatted over more than one line)  and from right to left. For example, to understand this code line:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">my @strong = map $p[$_],
-    grep { $p[$_] - $p[$_-1] &gt; $p[$_+1] - $p[$_] } 1..25;
-</code></pre><p>one needs to start from the <code>1..25</code> range, which is fed to the <code>grep</code> statement, whose role is to filter the range values and keep those which satisfy the condition within the <code>grep</code> block. This means, in this case, to keep the indexes of values in the <code>@p</code> array of prime numbers for which the current prime number is closer to the next prime than to the previous prime. These indexes are then fed to the <code>map</code> statement in order to populate the <code>@strong</code> array with such primes.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> @strong <span style="color:#f92672">=</span> map $p[$_],
+    grep { $p[$_] <span style="color:#f92672">-</span> $p[$_<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&gt;</span> $p[$_<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> $p[$_] } <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">25</span>;
+</code></pre></div><p>one needs to start from the <code>1..25</code> range, which is fed to the <code>grep</code> statement, whose role is to filter the range values and keep those which satisfy the condition within the <code>grep</code> block. This means, in this case, to keep the indexes of values in the <code>@p</code> array of prime numbers for which the current prime number is closer to the next prime than to the previous prime. These indexes are then fed to the <code>map</code> statement in order to populate the <code>@strong</code> array with such primes.</p>
 <p>This implementation works fine, but we saw that there is a weakness: we&rsquo;re scanning the <code>@p</code> array of prime numbers twice (or even three times if we want to also identify the balanced primes). And the other solution using <code>categorize</code>  or <code>classify</code> removed that weakness, but was not entirely satisfactory because we could no longer use lazy infinite lists for our input values.</p>
 <p>Note that these weaknesses don&rsquo;t matter very much, since we&rsquo;re dealing with small ranges anyway, but that&rsquo;s not really satisfactory to the mind, as we know that these programs wouldn&rsquo;t scale too well for larger ranges. Let&rsquo;s see whether we can improve these programs.</p>
 <p>I hate to say that, but an easy solution is to write a non (or less) functional solution using an infinite loop.</p>
 <p>For example, this could be something like this:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">use v6;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> v6;
 
-my @p = grep { .is-prime }, 1..*;   # Lazy infinite list of primes
-my (@strong, @weak, @balanced);
-for 1..* -&gt; $i {
-    if @p[$i] &gt; (@p[$i - 1] + @p[$i + 1])/2 {
+<span style="color:#66d9ef">my</span> @p <span style="color:#f92672">=</span> grep { <span style="color:#f92672">.</span>is<span style="color:#f92672">-</span>prime }, <span style="color:#ae81ff">1</span><span style="color:#f92672">..*</span>;   <span style="color:#75715e"># Lazy infinite list of primes</span>
+<span style="color:#66d9ef">my</span> (@strong, @weak, @balanced);
+<span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..*</span> <span style="color:#f92672">-&gt;</span> $i {
+    <span style="color:#66d9ef">if</span> @p[$i] <span style="color:#f92672">&gt;</span> (@p[$i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> @p[$i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>])<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span> {
         push @strong, @p[$i];
     }
-    elsif @p[$i] &lt; (@p[$i - 1] + @p[$i + 1])/2 {
+    <span style="color:#66d9ef">elsif</span> @p[$i] <span style="color:#f92672">&lt;</span> (@p[$i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> @p[$i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>])<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span> {
         push @weak, @p[$i];
-    } else {
+    } <span style="color:#66d9ef">else</span> {
         push @balanced, @p[$i];
     }
-    last if @balanced.elems &gt;= 10;
+    <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> @balanced<span style="color:#f92672">.</span>elems <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">10</span>;
 }
-say &quot;Strong primes: @strong[0..9]&quot;;
-say &quot;Weak primes: @weak[0..9]&quot;;
-say &quot;Balanced primes: @balanced[]&quot;;
-</code></pre><p>This script produces the following output:</p>
+say <span style="color:#e6db74">&#34;Strong primes: @strong[0..9]&#34;</span>;
+say <span style="color:#e6db74">&#34;Weak primes: @weak[0..9]&#34;</span>;
+say <span style="color:#e6db74">&#34;Balanced primes: @balanced[]&#34;</span>;
+</code></pre></div><p>This script produces the following output:</p>
 <pre><code>$ perl6 strong_primes.p6
 Strong primes: 11 17 29 37 41 59 67 71 79 97
 Weak primes: 3 7 13 19 23 31 43 47 61 73
@@ -454,26 +454,26 @@ Balanced primes: 5 53 157 173 211 257 263 373 563 593
 <p>This new version works fine, but that&rsquo;s really not the way I would like to go: I would like to have a more functional version , not a less functional version.</p>
 <p>Let&rsquo;s come back to the <code>categorize</code> and <code>classify</code> built-in functions. As already noted, they&rsquo;re perfect for what we want to do, but don&rsquo;t work with infinite lists.</p>
 <p>Let&rsquo;s see if we can write our own version of  <code>categorize</code> or <code>classify</code> which would have the same calling syntax and be able to handle infinite lists. Our version of this function will be called <code>distribute</code>.</p>
-<pre><code class="language-Perl6" data-lang="Perl6">@p = grep { .is-prime }, 1..*;   # Lazy infinite list of primes
-    sub mapper(UInt $i) {
-        @p[$i] &gt; (@p[$i - 1] + @p[$i + 1])/2 ?? 'Strong' !!
-        @p[$i] &lt; (@p[$i - 1] + @p[$i + 1])/2 ?? 'Weak'   !!
-        'Balanced';
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">@p <span style="color:#f92672">=</span> grep { <span style="color:#f92672">.</span>is<span style="color:#f92672">-</span>prime }, <span style="color:#ae81ff">1</span><span style="color:#f92672">..*</span>;   <span style="color:#75715e"># Lazy infinite list of primes</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">mapper</span>(UInt $i) {
+        @p[$i] <span style="color:#f92672">&gt;</span> (@p[$i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> @p[$i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>])<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span> ?? <span style="color:#e6db74">&#39;Strong&#39;</span> <span style="color:#f92672">!!</span>
+        @p[$i] <span style="color:#f92672">&lt;</span> (@p[$i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> @p[$i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>])<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span> ?? <span style="color:#e6db74">&#39;Weak&#39;</span>   <span style="color:#f92672">!!</span>
+        <span style="color:#e6db74">&#39;Balanced&#39;</span>;
     }
-    sub distribute (&amp;code, @primes) {
-        my %distribution;
-        for @primes.kv -&gt; $key, $val {
-            next if $key == 0;
-            push %distribution{&amp;code($key)}, $val;
-            last if %distribution{'Balanced'}.elems &gt;= 10;
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">distribute</span> (&amp;code, @primes) {
+        <span style="color:#66d9ef">my</span> %distribution;
+        <span style="color:#66d9ef">for</span> @primes<span style="color:#f92672">.</span>kv <span style="color:#f92672">-&gt;</span> $key, $val {
+            <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $key <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+            push %distribution{<span style="color:#f92672">&amp;</span>code($key)}, $val;
+            <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> %distribution{<span style="color:#e6db74">&#39;Balanced&#39;</span>}<span style="color:#f92672">.</span>elems <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">10</span>;
         }
-        return %distribution;
+        <span style="color:#66d9ef">return</span> %distribution;
     }
-    my %categories = distribute &amp;mapper, @p;
-    for sort keys %categories -&gt; $key {
-        say &quot;$key primes:  &quot;, %categories{$key}[0..9];
+    <span style="color:#66d9ef">my</span> %categories <span style="color:#f92672">=</span> distribute <span style="color:#f92672">&amp;</span>mapper, @p;
+    <span style="color:#66d9ef">for</span> sort keys %categories <span style="color:#f92672">-&gt;</span> $key {
+        say <span style="color:#e6db74">&#34;$key primes:  &#34;</span>, %categories{$key}[<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">9</span>];
     }
-</code></pre><p>Note that, contrary to the previous version, the <code>%distribution</code> and <code>%categories</code> hashes now contain the primes, not the prime indexes in the prime array.</p>
+</code></pre></div><p>Note that, contrary to the previous version, the <code>%distribution</code> and <code>%categories</code> hashes now contain the primes, not the prime indexes in the prime array.</p>
 <p>And we no longer need to estimate the number of input values to get the desired output.</p>
 <p>I am not fully satisfied, though, because our <code>distribute</code> subroutine is tailored to our problem at hand and is not generic enough:</p>
 <ul>
@@ -481,30 +481,30 @@ Balanced primes: 5 53 157 173 211 257 263 373 563 593
 <li>The stopping condition (<code>last if ...</code>) is hard-coded in the <code>distribute</code> subroutine. Well, we can pass to <code>distribute</code> a third argument, another code block (<code>$stopper</code>), to stop the iteration.</li>
 </ul>
 <p>These two changes  will make our <code>distribute</code> subroutine more generic:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">use v6;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> v6;
 
-my @p = grep { .is-prime }, 1..*;   # Lazy infinite list of primes
-sub mapper(UInt $i) {
-    $i &lt; 1                               ?? 'Excluded' !!
-    @p[$i] &gt; (@p[$i - 1] + @p[$i + 1])/2 ?? 'Strong'   !!
-    @p[$i] &lt; (@p[$i - 1] + @p[$i + 1])/2 ?? 'Weak'     !!
-    'Balanced';
+<span style="color:#66d9ef">my</span> @p <span style="color:#f92672">=</span> grep { <span style="color:#f92672">.</span>is<span style="color:#f92672">-</span>prime }, <span style="color:#ae81ff">1</span><span style="color:#f92672">..*</span>;   <span style="color:#75715e"># Lazy infinite list of primes</span>
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">mapper</span>(UInt $i) {
+    $i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">1</span>                               ?? <span style="color:#e6db74">&#39;Excluded&#39;</span> <span style="color:#f92672">!!</span>
+    @p[$i] <span style="color:#f92672">&gt;</span> (@p[$i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> @p[$i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>])<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span> ?? <span style="color:#e6db74">&#39;Strong&#39;</span>   <span style="color:#f92672">!!</span>
+    @p[$i] <span style="color:#f92672">&lt;</span> (@p[$i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> @p[$i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>])<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span> ?? <span style="color:#e6db74">&#39;Weak&#39;</span>     <span style="color:#f92672">!!</span>
+    <span style="color:#e6db74">&#39;Balanced&#39;</span>;
 }
-sub distribute (&amp;code, @primes, &amp;stopper) {
-    my %distribution;
-    for @primes.kv -&gt; $key, $val {
-        push %distribution{&amp;code($key)}, $val;
-        &amp;stopper(%distribution);
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">distribute</span> (&amp;code, @primes, &amp;stopper) {
+    <span style="color:#66d9ef">my</span> %distribution;
+    <span style="color:#66d9ef">for</span> @primes<span style="color:#f92672">.</span>kv <span style="color:#f92672">-&gt;</span> $key, $val {
+        push %distribution{<span style="color:#f92672">&amp;</span>code($key)}, $val;
+        <span style="color:#f92672">&amp;</span>stopper(%distribution);
     }
-    return %distribution;
+    <span style="color:#66d9ef">return</span> %distribution;
 }
-my $stopper = { last if %^a{'Balanced'}.elems &gt;= 10 };
-my %categories = distribute &amp;mapper, @p, $stopper;
-for sort keys %categories -&gt; $key {
-    next if $key eq 'Excluded';
-    say &quot;$key primes:  &quot;, %categories{$key}[0..9];
+<span style="color:#66d9ef">my</span> $stopper <span style="color:#f92672">=</span> { <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> %<span style="color:#960050;background-color:#1e0010">^</span>a{<span style="color:#e6db74">&#39;Balanced&#39;</span>}<span style="color:#f92672">.</span>elems <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">10</span> };
+<span style="color:#66d9ef">my</span> %categories <span style="color:#f92672">=</span> distribute <span style="color:#f92672">&amp;</span>mapper, @p, $stopper;
+<span style="color:#66d9ef">for</span> sort keys %categories <span style="color:#f92672">-&gt;</span> $key {
+    <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $key <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;Excluded&#39;</span>;
+    say <span style="color:#e6db74">&#34;$key primes:  &#34;</span>, %categories{$key}[<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">9</span>];
 }
-</code></pre><p>The only trick here if that the <code>$stopper</code> code block uses a self-declared positional parameter (or placeholder), <code>%^a</code>. And we pass the <code>%distribution</code> hash as a parameter to <code>&amp;stopper</code> when we run it within the <code>distribute</code> subroutine. Thus, the calling code doesn&rsquo;t have to know the name of the hash within the <code>distribute</code> subroutine, which is now generic. To be frank, I wasn&rsquo;t fully convinced that this would work until I ran it.</p>
+</code></pre></div><p>The only trick here if that the <code>$stopper</code> code block uses a self-declared positional parameter (or placeholder), <code>%^a</code>. And we pass the <code>%distribution</code> hash as a parameter to <code>&amp;stopper</code> when we run it within the <code>distribute</code> subroutine. Thus, the calling code doesn&rsquo;t have to know the name of the hash within the <code>distribute</code> subroutine, which is now generic. To be frank, I wasn&rsquo;t fully convinced that this would work until I ran it.</p>
 <p>The output is what we want:</p>
 <pre><code>$ perl6 strong_primes.p6
 Balanced primes:  (5 53 157 173 211 257 263 373 563 593)
@@ -512,44 +512,44 @@ Strong primes:  (11 17 29 37 41 59 67 71 79 97)
 Weak primes:  (3 7 13 19 23 31 43 47 61 73)
 </code></pre>
 <p>A final comment on all this. I called <code>distribute</code> my new version of the <code>classify</code> or <code>categorize</code> subroutines because I did not want to mess around the semantics of those existing functions. But it works to define the <code>distribute</code> subroutine as a <code>multi sub classify</code> subroutine:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">use v6;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> v6;
 
-my @p = grep { .is-prime }, 1..*;   # Lazy infinite list of primes
-sub mapper(UInt $i) {
-    # same code as just above
+<span style="color:#66d9ef">my</span> @p <span style="color:#f92672">=</span> grep { <span style="color:#f92672">.</span>is<span style="color:#f92672">-</span>prime }, <span style="color:#ae81ff">1</span><span style="color:#f92672">..*</span>;   <span style="color:#75715e"># Lazy infinite list of primes</span>
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">mapper</span>(UInt $i) {
+    <span style="color:#75715e"># same code as just above</span>
 }
-multi sub classify (&amp;code, @a, &amp;stopper) {
-    my %distribution;
-    for @a.kv -&gt; $key, $val {
-        push %distribution{&amp;code($key)}, $val;
-        &amp;stopper(%distribution);
+multi <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">classify</span> (&amp;code, @a, &amp;stopper) {
+    <span style="color:#66d9ef">my</span> %distribution;
+    <span style="color:#66d9ef">for</span> @a<span style="color:#f92672">.</span>kv <span style="color:#f92672">-&gt;</span> $key, $val {
+        push %distribution{<span style="color:#f92672">&amp;</span>code($key)}, $val;
+        <span style="color:#f92672">&amp;</span>stopper(%distribution);
     }
-    return %distribution;
+    <span style="color:#66d9ef">return</span> %distribution;
 }
-my $stopper = { last if %^a{'Balanced'}.elems &gt;= 10 };
-my %categories = classify &amp;mapper, @p, $stopper;
-for sort keys %categories -&gt; $key {
-    next if $key eq 'Excluded';
-    say &quot;$key primes:  &quot;, %categories{$key}[0..9];
+<span style="color:#66d9ef">my</span> $stopper <span style="color:#f92672">=</span> { <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> %<span style="color:#960050;background-color:#1e0010">^</span>a{<span style="color:#e6db74">&#39;Balanced&#39;</span>}<span style="color:#f92672">.</span>elems <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">10</span> };
+<span style="color:#66d9ef">my</span> %categories <span style="color:#f92672">=</span> classify <span style="color:#f92672">&amp;</span>mapper, @p, $stopper;
+<span style="color:#66d9ef">for</span> sort keys %categories <span style="color:#f92672">-&gt;</span> $key {
+    <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $key <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;Excluded&#39;</span>;
+    say <span style="color:#e6db74">&#34;$key primes:  &#34;</span>, %categories{$key}[<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">9</span>];
 }
-</code></pre><p>I no longer get the <code>Cannot classify a lazy list</code> error message, this code works fine and it outputs the same result as before. This was just to test that this could be done syntactically and would work, but I wouldn&rsquo;t want to do that in actual production code without first very closely looking at the semantics of the built-in <code>classify</code> subroutine: I do not want to create a monster with a different meanings depending on the circumstances.</p>
+</code></pre></div><p>I no longer get the <code>Cannot classify a lazy list</code> error message, this code works fine and it outputs the same result as before. This was just to test that this could be done syntactically and would work, but I wouldn&rsquo;t want to do that in actual production code without first very closely looking at the semantics of the built-in <code>classify</code> subroutine: I do not want to create a monster with a different meanings depending on the circumstances.</p>
 <h2 id="alternative-solutions">Alternative Solutions</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-015/arne-sommer/perl6/ch-1.p6">Arne Sommer</a> first generated a lazy infinite list of prime numbers. Then, his program iterates over successive integers and, for each such integer, determines whether the prime having that index in the prime array is strong or weak (or neither), and pushes those in the right array. The loop stops when both the <code>@strong</code> and <code>@weak</code> arrays have at least 10 elements. It then prints 10 elements of each array.</p>
 <p>It is worth noting that Arne used a sigil-less variable, <code>p</code>, for his array of primes, as well as for his <code>for</code> loop iteration variable (<code>n</code>), so that his code to compute whether a prime is strong or weak looks almost exactly the same as the math formulas of the challenge specification:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">if p[n] &gt; ( p[n-1] + p[n+1] ) / 2 { # ...
-</code></pre><p>That&rsquo;s quite a nice feature, because the code can be understood and possibly even checked (to a certain degree) by domain experts, not just software engineers or CS scientists (even though, or course, we&rsquo;re talking here about rather trivial examples).</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">if</span> p[n] <span style="color:#f92672">&gt;</span> ( p[n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> p[n<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] ) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span> { <span style="color:#75715e"># ...</span>
+</code></pre></div><p>That&rsquo;s quite a nice feature, because the code can be understood and possibly even checked (to a certain degree) by domain experts, not just software engineers or CS scientists (even though, or course, we&rsquo;re talking here about rather trivial examples).</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-015/athanasius/perl6/ch-1.p6">Athanasius</a> used a <code>next-prime</code> subroutine that acts essentially as an iterator: each time it is called, it returns a new prime number (keeping track of the last one that was provided). Otherwise, his program maintains a hash of 2 arrays (strong and weak primes). Then, while we don&rsquo;t have enough primes of each category, the program calls <code>next-prime</code> to get another prime (<code>$next</code>) and stores into one of the categories, if it meets the criteria. The program also maintains a <code>$previous</code> prime and a <code>current</code> prime to be able to perform the proper comparisons.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-015/jaldhar-h-vyas/perl6/ch-1.p6">Jaldhar M. Vyas</a> created first a lazy infinite list of primes, and then use a <code>grep</code> to create a lazy infinite list of strong primes and a lazy infinite list of weak primes, and finally printed the first ten items of each of those two last lists. Essentially the same thing as my first solution, except that Jaldhar&rsquo;s program is using chained method invocations (where mine uses chained function calls). Here is the example for the strong primes:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">my @strongPrimes = (1 .. ∞)
-   .grep({ @primes[$_] &gt; (@primes[$_ - 1] + @primes[$_ + 1]) / 2 })
-   .map({ @primes[$_] });
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-015/joelle-maslak/perl6/ch-1.p6">Joelle Maslak</a> also created a lazy infinite list of primes. Then, she created the lists of strong and weak primes using a <code>lazy gather/take</code> block. For example for the strong primes:</p>
-<pre><code class="language-Perl6" data-lang="Perl6">my @strong = lazy gather {
-    for 1..∞ -&gt; $i {
-        take @primes[$i] if @primes[$i] &gt; @primes[$i-1,$i+1].sum / 2
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> @strongPrimes <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#960050;background-color:#1e0010">∞</span>)
+   <span style="color:#f92672">.</span>grep({ @primes[$_] <span style="color:#f92672">&gt;</span> (@primes[$_ <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> @primes[$_ <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>]) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span> })
+   <span style="color:#f92672">.</span>map({ @primes[$_] });
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-015/joelle-maslak/perl6/ch-1.p6">Joelle Maslak</a> also created a lazy infinite list of primes. Then, she created the lists of strong and weak primes using a <code>lazy gather/take</code> block. For example for the strong primes:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> @strong <span style="color:#f92672">=</span> lazy gather {
+    <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#960050;background-color:#1e0010">∞</span> <span style="color:#f92672">-&gt;</span> $i {
+        take @primes[$i] <span style="color:#66d9ef">if</span> @primes[$i] <span style="color:#f92672">&gt;</span> @primes[$i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,$i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>sum <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>
     };
 }
-</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-015/ruben-westerberg/perl6/ch-1.p6">Ruben Westerberg</a> also created a lazy infinite list of primes. Then, while iterating over successive integers, his program populates a kind of circular buffer (<code>@ps</code>) of three primes and does the required computations on this circular buffer. This works, but seems a bit contrived to me: why not making directly the computations on the previous, current and next elements of the <code>@primes</code> array, since we have an index that can be used on that array?</p>
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-015/ruben-westerberg/perl6/ch-1.p6">Ruben Westerberg</a> also created a lazy infinite list of primes. Then, while iterating over successive integers, his program populates a kind of circular buffer (<code>@ps</code>) of three primes and does the required computations on this circular buffer. This works, but seems a bit contrived to me: why not making directly the computations on the previous, current and next elements of the <code>@primes</code> array, since we have an index that can be used on that array?</p>
 <h2 id="see-also">SEE ALSO</h2>
 <p>Only two blog posts on the strong and weak primes, as far as can say:</p>
 <ul>

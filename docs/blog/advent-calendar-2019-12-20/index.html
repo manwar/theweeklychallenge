@@ -16,7 +16,7 @@
 
     <meta name="description" content="Advent Calendar - December 20, 2019">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.66.0-DEV" />
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -299,107 +299,107 @@
     <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$maxscore: &#34;</span>,join(<span style="color:#e6db74">&#39; &#39;</span>,sort @maxcandidate),<span style="color:#e6db74">&#34;\n&#34;</span>;
 </code></pre></div><h2 id="raku-solution">RAKU SOLUTION</h2>
 <p><strong>Raku</strong> is a bit different, because there are useful built-in language features:</p>
-<pre><code class="language-perl6" data-lang="perl6">    my $tilecount=(
-        'A' =&gt; 8,
-        'G' =&gt; 3,
-        'I' =&gt; 5,
-        'S' =&gt; 7,
-        'U' =&gt; 5,
-        'X' =&gt; 2,
-        'Z' =&gt; 5,
-        'E' =&gt; 9,
-        'J' =&gt; 3,
-        'L' =&gt; 3,
-        'R' =&gt; 3,
-        'V' =&gt; 3,
-        'Y' =&gt; 5,
-        'F' =&gt; 3,
-        'D' =&gt; 3,
-        'P' =&gt; 5,
-        'W' =&gt; 5,
-        'B' =&gt; 5,
-        'N' =&gt; 4,
-        'T' =&gt; 5,
-        'O' =&gt; 3,
-        'H' =&gt; 3,
-        'M' =&gt; 4,
-        'C' =&gt; 4,
-        'K' =&gt; 2,
-        'Q' =&gt; 2,
-    ).BagHash;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6">    <span style="color:#66d9ef">my</span> $tilecount<span style="color:#f92672">=</span>(
+        <span style="color:#e6db74">&#39;A&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">8</span>,
+        <span style="color:#e6db74">&#39;G&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>,
+        <span style="color:#e6db74">&#39;I&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5</span>,
+        <span style="color:#e6db74">&#39;S&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">7</span>,
+        <span style="color:#e6db74">&#39;U&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5</span>,
+        <span style="color:#e6db74">&#39;X&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>,
+        <span style="color:#e6db74">&#39;Z&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5</span>,
+        <span style="color:#e6db74">&#39;E&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">9</span>,
+        <span style="color:#e6db74">&#39;J&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>,
+        <span style="color:#e6db74">&#39;L&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>,
+        <span style="color:#e6db74">&#39;R&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>,
+        <span style="color:#e6db74">&#39;V&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>,
+        <span style="color:#e6db74">&#39;Y&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5</span>,
+        <span style="color:#e6db74">&#39;F&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>,
+        <span style="color:#e6db74">&#39;D&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>,
+        <span style="color:#e6db74">&#39;P&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5</span>,
+        <span style="color:#e6db74">&#39;W&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5</span>,
+        <span style="color:#e6db74">&#39;B&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5</span>,
+        <span style="color:#e6db74">&#39;N&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">4</span>,
+        <span style="color:#e6db74">&#39;T&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5</span>,
+        <span style="color:#e6db74">&#39;O&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>,
+        <span style="color:#e6db74">&#39;H&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>,
+        <span style="color:#e6db74">&#39;M&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">4</span>,
+        <span style="color:#e6db74">&#39;C&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">4</span>,
+        <span style="color:#e6db74">&#39;K&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>,
+        <span style="color:#e6db74">&#39;Q&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>,
+    )<span style="color:#f92672">.</span>BagHash;
 
-    my %tilevalue=(
-        'A' =&gt; 1,
-        'G' =&gt; 1,
-        'I' =&gt; 1,
-        'S' =&gt; 1,
-        'U' =&gt; 1,
-        'X' =&gt; 1,
-        'Z' =&gt; 1,
-        'E' =&gt; 2,
-        'J' =&gt; 2,
-        'L' =&gt; 2,
-        'R' =&gt; 2,
-        'V' =&gt; 2,
-        'Y' =&gt; 2,
-        'F' =&gt; 3,
-        'D' =&gt; 3,
-        'P' =&gt; 3,
-        'W' =&gt; 3,
-        'B' =&gt; 4,
-        'N' =&gt; 4,
-        'T' =&gt; 5,
-        'O' =&gt; 5,
-        'H' =&gt; 5,
-        'M' =&gt; 5,
-        'C' =&gt; 5,
-        'K' =&gt; 10,
-        'Q' =&gt; 10,
+    <span style="color:#66d9ef">my</span> %tilevalue<span style="color:#f92672">=</span>(
+        <span style="color:#e6db74">&#39;A&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>,
+        <span style="color:#e6db74">&#39;G&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>,
+        <span style="color:#e6db74">&#39;I&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>,
+        <span style="color:#e6db74">&#39;S&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>,
+        <span style="color:#e6db74">&#39;U&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>,
+        <span style="color:#e6db74">&#39;X&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>,
+        <span style="color:#e6db74">&#39;Z&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>,
+        <span style="color:#e6db74">&#39;E&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>,
+        <span style="color:#e6db74">&#39;J&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>,
+        <span style="color:#e6db74">&#39;L&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>,
+        <span style="color:#e6db74">&#39;R&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>,
+        <span style="color:#e6db74">&#39;V&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>,
+        <span style="color:#e6db74">&#39;Y&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>,
+        <span style="color:#e6db74">&#39;F&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>,
+        <span style="color:#e6db74">&#39;D&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>,
+        <span style="color:#e6db74">&#39;P&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>,
+        <span style="color:#e6db74">&#39;W&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>,
+        <span style="color:#e6db74">&#39;B&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">4</span>,
+        <span style="color:#e6db74">&#39;N&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">4</span>,
+        <span style="color:#e6db74">&#39;T&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5</span>,
+        <span style="color:#e6db74">&#39;O&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5</span>,
+        <span style="color:#e6db74">&#39;H&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5</span>,
+        <span style="color:#e6db74">&#39;M&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5</span>,
+        <span style="color:#e6db74">&#39;C&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5</span>,
+        <span style="color:#e6db74">&#39;K&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">10</span>,
+        <span style="color:#e6db74">&#39;Q&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">10</span>,
     );
 
-</code></pre><p>The <strong>grab</strong> method on a <strong>BagHash</strong> gives me a series of weighted random picks, without replacement. This is a really handy thing to have; lots of code I write does things a bit like this.</p>
-<pre><code class="language-perl6" data-lang="perl6">    my @bag=$tilecount.grab($l);
+</code></pre></div><p>The <strong>grab</strong> method on a <strong>BagHash</strong> gives me a series of weighted random picks, without replacement. This is a really handy thing to have; lots of code I write does things a bit like this.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6">    <span style="color:#66d9ef">my</span> @bag<span style="color:#f92672">=</span>$tilecount<span style="color:#f92672">.</span>grab($l);
 
-    my %w;
-    my $fh=open :r,'wordlist';
-    for $fh.lines {
-        if ($_.chars &lt;= $l) {
-            %w{$_.uc}=1;
+    <span style="color:#66d9ef">my</span> %w;
+    <span style="color:#66d9ef">my</span> $fh<span style="color:#f92672">=</span>open :r,<span style="color:#e6db74">&#39;wordlist&#39;</span>;
+    <span style="color:#66d9ef">for</span> $fh<span style="color:#f92672">.</span>lines {
+        <span style="color:#66d9ef">if</span> ($_<span style="color:#f92672">.</span>chars <span style="color:#f92672">&lt;=</span> $l) {
+            %w{$_<span style="color:#f92672">.</span>uc}<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
         }
     }
     close $fh;
-</code></pre><p>Similarly, all that permuting algorithm can be replaced with another core feature:</p>
-<pre><code class="language-perl6" data-lang="perl6">
-    my $maxscore=0;
-    my @maxcandidate;
-    my %tried;
+</code></pre></div><p>Similarly, all that permuting algorithm can be replaced with another core feature:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6">
+    <span style="color:#66d9ef">my</span> $maxscore<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">my</span> @maxcandidate;
+    <span style="color:#66d9ef">my</span> %tried;
 
-    for @bag.permutations -&gt; $n {
-        my @candidate=$n.list;
-        while (@candidate) {
-            my $candidate=join('',@candidate);
-            if (%tried{$candidate}:exists) {
-                last;
+    <span style="color:#66d9ef">for</span> @bag<span style="color:#f92672">.</span>permutations <span style="color:#f92672">-&gt;</span> $n {
+        <span style="color:#66d9ef">my</span> @candidate<span style="color:#f92672">=</span>$n<span style="color:#f92672">.</span>list;
+        <span style="color:#66d9ef">while</span> (@candidate) {
+            <span style="color:#66d9ef">my</span> $candidate<span style="color:#f92672">=</span>join(<span style="color:#e6db74">&#39;&#39;</span>,@candidate);
+            <span style="color:#66d9ef">if</span> (%tried{$candidate}:exists) {
+                <span style="color:#66d9ef">last</span>;
             }
-            %tried{$candidate}=1;
-            if (%w{$candidate}:exists) {
-                my $score=sum(map {%tilevalue{$_}}, @candidate);
-                if ($score &gt; $maxscore) {
-                    @maxcandidate=();
-                    $maxscore=$score;
+            %tried{$candidate}<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
+            <span style="color:#66d9ef">if</span> (%w{$candidate}:exists) {
+                <span style="color:#66d9ef">my</span> $score<span style="color:#f92672">=</span>sum(map {%tilevalue{$_}}, @candidate);
+                <span style="color:#66d9ef">if</span> ($score <span style="color:#f92672">&gt;</span> $maxscore) {
+                    @maxcandidate<span style="color:#f92672">=</span>();
+                    $maxscore<span style="color:#f92672">=</span>$score;
                 }
-                if ($score == $maxscore) {
-                    @maxcandidate.push($candidate);
+                <span style="color:#66d9ef">if</span> ($score <span style="color:#f92672">==</span> $maxscore) {
+                    @maxcandidate<span style="color:#f92672">.</span>push($candidate);
                 }
-                last;
+                <span style="color:#66d9ef">last</span>;
             }
-            @candidate.pop;
+            @candidate<span style="color:#f92672">.</span>pop;
         }
     }
 
-    print join('',sort @bag),&quot;\n&quot;;
-    print &quot;$maxscore: &quot;,join(' ',sort @maxcandidate),&quot;\n&quot;;
-</code></pre><p>Which is less fun to write than the <strong>SJT permuter</strong> above but also less effort. (Now, if only the startup, loading up all these features that are nice to have but most of which a given program won&rsquo;t use, weren&rsquo;t so slow…)</p>
+    <span style="color:#66d9ef">print</span> join(<span style="color:#e6db74">&#39;&#39;</span>,sort @bag),<span style="color:#e6db74">&#34;\n&#34;</span>;
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$maxscore: &#34;</span>,join(<span style="color:#e6db74">&#39; &#39;</span>,sort @maxcandidate),<span style="color:#e6db74">&#34;\n&#34;</span>;
+</code></pre></div><p>Which is less fun to write than the <strong>SJT permuter</strong> above but also less effort. (Now, if only the startup, loading up all these features that are nice to have but most of which a given program won&rsquo;t use, weren&rsquo;t so slow…)</p>
 <h2 id="addendum">ADDENDUM</h2>
 <p>The alternative approach is to read each word from the dictionary, see if it can be constructed with the available tiles, and if so score it. I wrote this in <strong>Perl</strong> for the blog post, to see how the performance differed. After constructing the bag:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">open I,<span style="color:#e6db74">&#39;&lt;&#39;</span>,<span style="color:#e6db74">&#39;wordlist&#39;</span>;
