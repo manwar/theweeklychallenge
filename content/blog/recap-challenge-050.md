@@ -171,6 +171,14 @@ Checkout the masterpiece collection of [**blogs**](https://perlweeklychallenge.o
 ***
 ***
 
+### Andrezgz
+![Andrezgz](/images/team/andrezgz.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-050/andrezgz/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-050/andrezgz/perl/ch-2.pl)]
+
+***
+
 ### Alexander Karelas
 ![Alexander Karelas](/images/team/user.jpg)
 
