@@ -95,6 +95,8 @@ With last week contributions, I am currently placed at **46th** position in the 
 
 Changes to the ranking in the **Centurion Club** last week listed below
 
+#### **Ryan Thompson** moved up to the **rank #09**.
+
 #### **Andrezgz** moved up to the **rank #12**.
 
 #### **Colin Crain** moved up to the **rank #17**.
@@ -119,9 +121,9 @@ Changes to the ranking in the **Centurion Club** last week listed below
 
 #### 8) E. Choroba (**276**)
 
-#### 9) Athanasius (**220**)
+#### 9) Ryan Thompson (**230**)
 
-#### 10) Ryan Thompson (**220**)
+#### 10) Athanasius (**220**)
 
 #### 11) Javier Luque (**210**)
 
@@ -425,6 +427,15 @@ Checkout the masterpiece collection of [**blogs**](https://perlweeklychallenge.o
 [[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-051/ruben-westerberg/raku/ch-2.p6)]
 
 ***
+
+### Ryan Thompson
+![Ryan Thompson](/images/team/ryan-thompson.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-051/ryan-thompson/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-051/ryan-thompson/perl/ch-2.pl)]
+[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-051/ryan-thompson/raku/ch-1.p6)]
+[[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-051/ryan-thompson/raku/ch-2.p6)]
+[[**BLOG #1**](http://www.ry.ca/2020/03/pwc-051/)]
 
 ### Ulrich Rieke
 ![Ulrich Rieke](/images/team/user.jpg)
