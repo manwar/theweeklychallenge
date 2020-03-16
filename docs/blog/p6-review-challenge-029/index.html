@@ -16,7 +16,7 @@
 
     <meta name="description" content="Laurent Rosenfeld Weekly Review: Challenge - #029.">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.55.0-DEV" />
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -41,6 +41,8 @@
     <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
     <!-- hover -->
     <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
     <!-- template main css file -->
     
     <link rel="stylesheet" href="https://perlweeklychallenge.org/css/style.min.css" integrity="" media="screen">
@@ -149,46 +151,30 @@
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
-                    
-
-<hr />
-
+                    <hr>
 <h1 id="raku-solutions-weekly-review">Raku Solutions Weekly Review</h1>
-
-<hr />
-
+<hr>
 <h2 id="task-1-expansion">Task #1: Expansion</h2>
-
 <p>This is derived in part from my <a href="http://blogs.perl.org/users/laurent_r/2019/10/perl-weekly-challenge-29-file-type-and-digital-clock.html">blog post</a> made in answer to the <a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-029/">Week 29 of the Perl Weekly Challenge</a> organized by  <a href="http://blogs.perl.org/users/mohammad_s_anwar/">Mohammad S. Anwar</a> as well as answers made by others to the same challenge.</p>
-
 <p>The challenge reads as follows:</p>
-
 <p><em>Write a script to demonstrate brace expansion. For example, script would take command line argument Perl {Daily,Weekly,Monthly,Yearly} Challenge and should expand it and print like below:</em></p>
-
 <pre><code>Perl Daily Challenge
 Perl Weekly Challenge
 Perl Monthly Challenge
 Perl Yearly Challenge
 </code></pre>
-
 <p>The specification is not very detailed, and we will not attempt to provide a full-fledged templating system, as this already exists. So we will limit our implementation to the following: an initial sentence fragment, followed by a single list of options between curly brackets, followed by a final sentence fragment.</p>
-
 <h2 id="my-solution">My Solution</h2>
-
 <p>We will supply a command line argument in the form of a string between quote marks, and provide for a default value for the purpose of testing. The program also attempts to normalize spaces in the output, since it is difficult to predict the exact format (number of spaces) supplied by the user.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> v6;
 
-<pre><code class="language-Perl6">use v6;
-
-sub MAIN (Str $input = 'Perl {Daily,Weekly,Monthly,Yearly} Challenge') {
-    my $match = $input ~~ /(&lt;-[{]&gt;+) '{' (&lt;-[}]&gt;+) '}' (.+)/;
-    my ($start, $options, $end) = map { ~$_ }, $match[0 .. 2];
-    s:g/^ \h+ | \h+ $// for $start, $options, $end;
-    say &quot;$start $_ $end&quot; for $options.split(/\s*','\s*/);
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> (Str $input = &#39;Perl {Daily,Weekly,Monthly,Yearly} Challenge<span style="color:#e6db74">&#39;) {
+</span><span style="color:#e6db74">    my $match = $input ~~ /(&lt;-[{]&gt;+) &#39;</span>{<span style="color:#e6db74">&#39; (&lt;-[}]&gt;+) &#39;</span>}<span style="color:#e6db74">&#39; (.+)/;
+</span><span style="color:#e6db74">    my ($start, $options, $end) = map { ~$_ }, $match[0 .. 2];
+</span><span style="color:#e6db74">    s:g/^ \h+ | \h+ $// for $start, $options, $end;
+</span><span style="color:#e6db74">    say &#34;$start $_ $end&#34; for $options.split(/\s*&#39;</span>,<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">\</span>s<span style="color:#f92672">*/</span>);
 }
-</code></pre>
-
-<p>Running the program using the default value and with a poorly formatted input string displays the following satisfactory results:</p>
-
+</code></pre></div><p>Running the program using the default value and with a poorly formatted input string displays the following satisfactory results:</p>
 <pre><code>$ perl6 brace-expansion.p6
 Perl Daily Challenge
 Perl Weekly Challenge
@@ -201,318 +187,247 @@ Perl Weekly Challenge
 Perl Monthly Challenge
 Perl Yearly Challenge
 </code></pre>
-
 <h2 id="alternate-solutions">Alternate Solutions</h2>
-
 <p>It appears that I was a bit lazy with my bare-bone solution: many challengers contributed solutions that were richer with features, especially the ability to process several groups of braces, using either grammars or recursive subroutines (or both).</p>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/arne-sommer/perl6/ch-1.p6">Arne Sommer</a> contributed a fairly concise and clever program. Consider his multi <code>MAIN</code> subroutine doing the first pattern matching within the signature and the loop to split the pattern within braces in the body of the function, <em>and</em> calling itself recursively in the event there are more brace patterns to be processed:</p>
-
-<pre><code class="language-Perl6">multi MAIN ($string where $string ~~ /^(.*?) \{ (.*?) \} (.*)/)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">multi MAIN ($string where $string <span style="color:#f92672">~~</span> <span style="color:#e6db74">/^(.*?) \{ (.*?) \} (.*)/</span>)
 {
-  MAIN(&quot;$0$_$2&quot;) for $1.Str.split(&quot;,&quot;);
+  MAIN(<span style="color:#e6db74">&#34;$0$_$2&#34;</span>) <span style="color:#66d9ef">for</span> $1<span style="color:#f92672">.</span>Str<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34;,&#34;</span>);
 }
 multi MAIN ($string)
 {
   say $string;
 }
-</code></pre>
-
-<p>The second multi <code>Main</code> subroutine is called only when there are no more brace subpatterns to be processed. Quite impressive and really nice. Congrats, Arne.</p>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/noud/perl6/ch-1.p6">Noud</a>&rsquo;s solution is also quite concise:</p>
-
-<pre><code class="language-Perl6">sub brace_expansion(Str $s) {
-    if ($s ~~ /(.*)\{(.*)\}(.*)/) {
-        [&quot;$_[0]$_[1]$2&quot; for brace_expansion(Str($0)) X $1.split(',')];
-    } else {
+</code></pre></div><p>The second multi <code>Main</code> subroutine is called only when there are no more brace subpatterns to be processed. Quite impressive and really nice. Congrats, Arne.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/noud/perl6/ch-1.p6">Noud</a>&lsquo;s solution is also quite concise:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">brace_expansion</span>(Str $s) {
+    <span style="color:#66d9ef">if</span> ($s <span style="color:#f92672">~~</span> <span style="color:#e6db74">/(.*)\{(.*)\}(.*)/</span>) {
+        [<span style="color:#e6db74">&#34;$_[0]$_[1]$2&#34;</span> <span style="color:#66d9ef">for</span> brace_expansion(Str($0)) X $1<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39;,&#39;</span>)];
+    } <span style="color:#66d9ef">else</span> {
         [$s];
     }
 }
-</code></pre>
-
-<p>I&rsquo;m impressed by Noud&rsquo;s main code line:</p>
-
-<pre><code class="language-Perl6">        [&quot;$_[0]$_[1]$2&quot; for brace_expansion(Str($0)) X $1.split(',')];
-</code></pre>
-
-<p>which does quite a lot in a single statement (I like especially the use of the <code>X</code> cross product operator in this context). Yes, Perl 6 can be very expressive when used by such talented people as Arne and Noud.</p>
-
+</code></pre></div><p>I&rsquo;m impressed by Noud&rsquo;s main code line:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">        [<span style="color:#e6db74">&#34;$_[0]$_[1]$2&#34;</span> <span style="color:#66d9ef">for</span> brace_expansion(Str($0)) X $1<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39;,&#39;</span>)];
+</code></pre></div><p>which does quite a lot in a single statement (I like especially the use of the <code>X</code> cross product operator in this context). Yes, Perl 6 can be very expressive when used by such talented people as Arne and Noud.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/daniel-mita/perl6/ch-1.p6">Daniel Mita</a> used quite clever nested <code>given</code> statements to process several input phrases:</p>
-
-<pre><code class="language-Perl6">sub MAIN (
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> (
   *@phrase where * &gt; 0,
   --&gt; Nil
 ) {
-  given @phrase.join: ' ' -&gt; $str {
-    given $str.match: /^ ( .*? ) '{' ( .* ) '}' ( .*? ) $/ {
-      when .[1].so {
-        for .[1].split: ',' -&gt; $split {
-          &quot;$_[0]$split$_[2]&quot;.say;
+  given @phrase<span style="color:#f92672">.</span>join: <span style="color:#e6db74">&#39; &#39;</span> <span style="color:#f92672">-&gt;</span> $str {
+    given $str<span style="color:#f92672">.</span>match: <span style="color:#e6db74">/^ ( .*? ) &#39;{&#39; ( .* ) &#39;}&#39; ( .*? ) $/</span> {
+      when <span style="color:#f92672">.</span>[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>so {
+        <span style="color:#66d9ef">for</span> <span style="color:#f92672">.</span>[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>split: <span style="color:#e6db74">&#39;,&#39;</span> <span style="color:#f92672">-&gt;</span> $split {
+          <span style="color:#e6db74">&#34;$_[0]$split$_[2]&#34;</span><span style="color:#f92672">.</span>say;
         }
       }
-      default { $str.say }
+      default { $str<span style="color:#f92672">.</span>say }
     }
   }
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/kevin-colyer/perl6/ch-1.p6">Kevin Colyer</a> also wrote a program able to handle several brace expansions. This is his <code>expand</code> subroutine doing the bulk of the work:</p>
-
-<pre><code class="language-Perl6">sub expand(*@texts) {
-    my @expanded;
-    for @texts -&gt; $t {
-        if $t.starts-with: '{' and $t.ends-with: '}' {
-             @expanded.push: [ $t.substr(1,*-1).split(',') ];
-        } else {
-            @expanded.push:  [ $t ];
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/kevin-colyer/perl6/ch-1.p6">Kevin Colyer</a> also wrote a program able to handle several brace expansions. This is his <code>expand</code> subroutine doing the bulk of the work:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">expand</span>(*@texts) {
+    <span style="color:#66d9ef">my</span> @expanded;
+    <span style="color:#66d9ef">for</span> @texts <span style="color:#f92672">-&gt;</span> $t {
+        <span style="color:#66d9ef">if</span> $t<span style="color:#f92672">.</span>starts<span style="color:#f92672">-</span>with: <span style="color:#e6db74">&#39;{&#39;</span> <span style="color:#f92672">and</span> $t<span style="color:#f92672">.</span>ends<span style="color:#f92672">-</span>with: <span style="color:#e6db74">&#39;}&#39;</span> {
+             @expanded<span style="color:#f92672">.</span>push: [ $t<span style="color:#f92672">.</span>substr(<span style="color:#ae81ff">1</span>,<span style="color:#f92672">*-</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39;,&#39;</span>) ];
+        } <span style="color:#66d9ef">else</span> {
+            @expanded<span style="color:#f92672">.</span>push:  [ $t ];
         }
     }
-    # reduce array using cross multiplier
-    return [X] @expanded;
+    <span style="color:#75715e"># reduce array using cross multiplier</span>
+    <span style="color:#66d9ef">return</span> [X] @expanded;
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/mark-senn/perl6/ch-1.p6">Mark Senn</a>&rsquo;s program is accompanied with interesting and lengthy comments that I would urge you to read from the linked page (and possibly provide some answers to his questions), but will omit these comments from this review.</p>
-
-<pre><code class="language-Perl6">sub MAIN(*@arg);
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/mark-senn/perl6/ch-1.p6">Mark Senn</a>&lsquo;s program is accompanied with interesting and lengthy comments that I would urge you to read from the linked page (and possibly provide some answers to his questions), but will omit these comments from this review.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(*@arg);
 {
-    (@arg.elems)
-        or  @arg = 'Perl', '{Daily,Weekly,Monthly,Yearly}', 'Challenge';
+    (@arg<span style="color:#f92672">.</span>elems)
+        <span style="color:#f92672">or</span>  @arg <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Perl&#39;</span>, <span style="color:#e6db74">&#39;{Daily,Weekly,Monthly,Yearly}&#39;</span>, <span style="color:#e6db74">&#39;Challenge&#39;</span>;
 
-    # Convert the @arg array to a @term array.
-    my @term = ();
-    for @arg  {
-        if  /^^ \{ (.*?) \} $$/  {
-            push @term, $0.split(',');
-        }  else  {
+    <span style="color:#75715e"># Convert the @arg array to a @term array.</span>
+    <span style="color:#66d9ef">my</span> @term <span style="color:#f92672">=</span> ();
+    <span style="color:#66d9ef">for</span> @arg  {
+        <span style="color:#66d9ef">if</span>  <span style="color:#e6db74">/^^ \{ (.*?) \} $$/</span>  {
+            push @term, $0<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39;,&#39;</span>);
+        }  <span style="color:#66d9ef">else</span>  {
             push @term, $_;
         }
     }
-    # I like the following line the best.
-    ([X] @term).map({.join(' ').say});
+    <span style="color:#75715e"># I like the following line the best.</span>
+    ([X] @term)<span style="color:#f92672">.</span>map({<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#39; &#39;</span>)<span style="color:#f92672">.</span>say});
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/markus-holzer/perl6/ch-1.p6">Markus Holzer</a> wrote a very complete program, including a full-fledged grammar for brace expansion and a detailed test plan. Markus&rsquo;s program is too long to quote here (but I would really advise you to follow the link and look in detail to his solution). Anyway, I arbitrarily decided to quote only his grammar (since we haven&rsquo;t discussed so many grammars in our reviews so far):</p>
-
-<pre><code class="language-Perl6">grammar BraceExpansion
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/markus-holzer/perl6/ch-1.p6">Markus Holzer</a> wrote a very complete program, including a full-fledged grammar for brace expansion and a detailed test plan. Markus&rsquo;s program is too long to quote here (but I would really advise you to follow the link and look in detail to his solution). Anyway, I arbitrarily decided to quote only his grammar (since we haven&rsquo;t discussed so many grammars in our reviews so far):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">grammar BraceExpansion
 {
-    regex TOP           { &lt;start-txt&gt; [ &lt;list&gt; | &lt;range&gt; ] &lt;end-txt&gt; }
-    regex start-txt     { .* &lt;?before [&lt;list&gt; || &lt;range&gt;]&gt; }
-    regex end-txt       { &lt;save-char&gt;*? }
-    regex save-char     { &lt;-[ \&quot; \&amp; \( \) \` \' \; \&lt; \&gt; \| \{ \} ]&gt; }
-    regex list-element  { &lt;list&gt; | &lt;-[ \&quot; \! \$ \&amp; \( \) \` \' \; \&lt; \&gt; \|]&gt;  }
-    regex a-to-z        { &lt;[ a..z A..Z ]&gt; }
-    regex num           { \-? &lt;[ 0..9 ]&gt;+ }
-    regex range         { &lt;alpha-range&gt; | &lt;num-range&gt; }
-    regex num-range     { \{ &lt;num&gt;  \. \. &lt;num&gt; [ \. \. &lt;num&gt; ]? \} }
-    regex alpha-range   { \{ &lt;a-to-z&gt; \. \. &lt;a-to-z&gt; [ \. \.&lt;num&gt; ]? \} }
-    regex list          { \{ &lt;list-element&gt;+ % ',' \} }
+    regex TOP           { <span style="color:#e6db74">&lt;start-txt&gt;</span> [ <span style="color:#e6db74">&lt;list&gt;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&lt;range&gt;</span> ] <span style="color:#e6db74">&lt;end-txt&gt;</span> }
+    regex start<span style="color:#f92672">-</span>txt     { <span style="color:#f92672">.*</span> <span style="color:#f92672">&lt;</span>?before [<span style="color:#e6db74">&lt;list&gt;</span> <span style="color:#f92672">||</span> <span style="color:#e6db74">&lt;range&gt;</span>]<span style="color:#f92672">&gt;</span> }
+    regex end<span style="color:#f92672">-</span>txt       { <span style="color:#e6db74">&lt;save-char&gt;</span><span style="color:#f92672">*</span>? }
+    regex save<span style="color:#f92672">-</span>char     { <span style="color:#f92672">&lt;-</span>[ <span style="color:#f92672">\</span><span style="color:#960050;background-color:#1e0010">&#34;</span> <span style="color:#f92672">\&amp;</span> <span style="color:#f92672">\</span>( <span style="color:#f92672">\</span>) <span style="color:#f92672">\</span><span style="color:#960050;background-color:#1e0010">`</span> <span style="color:#f92672">\</span><span style="color:#e6db74">&#39; \; \&lt; \&gt; \| \{ \} ]&gt; }
+</span><span style="color:#e6db74">    regex list-element  { &lt;list&gt; | &lt;-[ \&#34; \! \$ \&amp; \( \) \` \&#39; \; \&lt; \&gt; \|]&gt;  }
+</span><span style="color:#e6db74">    regex a-to-z        { &lt;[ a..z A..Z ]&gt; }
+</span><span style="color:#e6db74">    regex num           { \-? &lt;[ 0..9 ]&gt;+ }
+</span><span style="color:#e6db74">    regex range         { &lt;alpha-range&gt; | &lt;num-range&gt; }
+</span><span style="color:#e6db74">    regex num-range     { \{ &lt;num&gt;  \. \. &lt;num&gt; [ \. \. &lt;num&gt; ]? \} }
+</span><span style="color:#e6db74">    regex alpha-range   { \{ &lt;a-to-z&gt; \. \. &lt;a-to-z&gt; [ \. \.&lt;num&gt; ]? \} }
+</span><span style="color:#e6db74">    regex list          { \{ &lt;list-element&gt;+ % &#39;</span>,<span style="color:#960050;background-color:#1e0010">&#39;</span> <span style="color:#f92672">\</span>} }
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/ozzy/perl6/ch-1.p6">Ozzy</a> also wrote a grammar to parse the input string. Ozzy also used quite cleverly the <code>X~</code> cross product operator and concatenation operator:</p>
-
-<pre><code class="language-Perl6">sub MAIN ( Str $string = 'Perl {Daily,Weekly,Monthly,Yearly} Challenge' ) {
-
-    grammar G {
-        token TOP           { ( &lt;h&gt; \{ &lt;alt&gt;+ % ',' \} &lt;t&gt; )+ }
-        token h             { &lt;[\w\s]&gt;* }
-        token alt           { &lt;[\w\s]&gt;+ }
-        token t             { &lt;[\w\s]&gt;* }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/ozzy/perl6/ch-1.p6">Ozzy</a> also wrote a grammar to parse the input string. Ozzy also used quite cleverly the <code>X~</code> cross product operator and concatenation operator:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> ( Str $string = &#39;Perl {Daily,Weekly,Monthly,Yearly} Challenge<span style="color:#e6db74">&#39; ) {
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">    grammar G {
+</span><span style="color:#e6db74">        token TOP           { ( &lt;h&gt; \{ &lt;alt&gt;+ % &#39;</span>,<span style="color:#960050;background-color:#1e0010">&#39;</span> <span style="color:#f92672">\</span>} <span style="color:#e6db74">&lt;t&gt;</span> )<span style="color:#f92672">+</span> }
+        token h             { <span style="color:#e6db74">&lt;[\w\s]&gt;</span><span style="color:#f92672">*</span> }
+        token alt           { <span style="color:#e6db74">&lt;[\w\s]&gt;</span><span style="color:#f92672">+</span> }
+        token t             { <span style="color:#e6db74">&lt;[\w\s]&gt;</span><span style="color:#f92672">*</span> }
     }
 
-    my @m = G.parse($string)[0];
-    my @r = &quot;&quot;;
+    <span style="color:#66d9ef">my</span> @m <span style="color:#f92672">=</span> G<span style="color:#f92672">.</span>parse($string)[<span style="color:#ae81ff">0</span>];
+    <span style="color:#66d9ef">my</span> @r <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
 
-    for ^@m.elems -&gt; $i {
-        @r = (@r X~ @m[$i]&lt;h&gt; X~ @m[$i]&lt;alt&gt; X~ @m[$i]&lt;t&gt;);
+    <span style="color:#66d9ef">for</span> <span style="color:#f92672">^</span>@m<span style="color:#f92672">.</span>elems <span style="color:#f92672">-&gt;</span> $i {
+        @r <span style="color:#f92672">=</span> (@r X<span style="color:#f92672">~</span> @m[$i]<span style="color:#e6db74">&lt;h&gt;</span> X<span style="color:#f92672">~</span> @m[$i]<span style="color:#e6db74">&lt;alt&gt;</span> X<span style="color:#f92672">~</span> @m[$i]<span style="color:#e6db74">&lt;t&gt;</span>);
     }
-    .say for @r;
+    <span style="color:#f92672">.</span>say <span style="color:#66d9ef">for</span> @r;
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/joelle-maslak/perl6/ch-1.p6">Joelle Maslak</a> wrote an awesome program handling both juxtaposed and nested curly braces. Of course, she used a grammar for this, then recursively exploring the parse tree. Joelle&rsquo;s Grammar is as follows:</p>
-
-<pre><code class="language-Perl6">grammar Expansion {
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/joelle-maslak/perl6/ch-1.p6">Joelle Maslak</a> wrote an awesome program handling both juxtaposed and nested curly braces. Of course, she used a grammar for this, then recursively exploring the parse tree. Joelle&rsquo;s Grammar is as follows:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">grammar Expansion {
     rule TOP      {
-        ^
-        &lt;element&gt;*
+        <span style="color:#f92672">^</span>
+        <span style="color:#e6db74">&lt;element&gt;</span><span style="color:#f92672">*</span>
         $
-    }
-    token element  { &lt;string&gt; | &lt;curly&gt; }
-    token string   { &lt;-[ \{ \} ]&gt;+ }
-    token curly    { \{ &lt;option&gt;+ % ',' \} }
-    token option   { &lt;innerele&gt;* }
-    token innerele { &lt;innerstr&gt; | &lt;curly&gt; }
-    token innerstr { &lt;-[ \{ \} \, ]&gt;+ }
+    <span style="color:#960050;background-color:#1e0010">}</span>
+    token element  { <span style="color:#e6db74">&lt;string&gt;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&lt;curly&gt;</span> }
+    token string   { <span style="color:#f92672">&lt;-</span>[ <span style="color:#f92672">\</span>{ <span style="color:#f92672">\</span>} ]<span style="color:#f92672">&gt;+</span> }
+    token curly    { <span style="color:#f92672">\</span>{ <span style="color:#e6db74">&lt;option&gt;</span><span style="color:#f92672">+</span> % <span style="color:#960050;background-color:#1e0010">&#39;</span>,<span style="color:#960050;background-color:#1e0010">&#39;</span> <span style="color:#f92672">\</span>} }
+    token option   { <span style="color:#e6db74">&lt;innerele&gt;</span><span style="color:#f92672">*</span> }
+    token innerele { <span style="color:#e6db74">&lt;innerstr&gt;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&lt;curly&gt;</span> }
+    token innerstr { <span style="color:#f92672">&lt;-</span>[ <span style="color:#f92672">\</span>{ <span style="color:#f92672">\</span>} <span style="color:#f92672">\</span>, ]<span style="color:#f92672">&gt;+</span> }
 }
-</code></pre>
-
-<p>But, while the grammar is in a sense the most powerful feature used by Joelle, the real work of her program is done in this subroutine:</p>
-
-<pre><code class="language-Perl6">sub expansion(@arr is copy, $tree) {
-    if $tree&lt;element&gt;:exists {
-        # Handle each element.
-        for @($tree&lt;element&gt;) -&gt; $ele {
-            @arr = expansion(@arr, $ele);
+</code></pre></div><p>But, while the grammar is in a sense the most powerful feature used by Joelle, the real work of her program is done in this subroutine:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">expansion</span>(@arr is copy, $tree) {
+    <span style="color:#66d9ef">if</span> $tree<span style="color:#e6db74">&lt;element&gt;</span>:exists {
+        <span style="color:#75715e"># Handle each element.</span>
+        <span style="color:#66d9ef">for</span> @<span style="color:#960050;background-color:#1e0010">($</span>tree<span style="color:#e6db74">&lt;element&gt;</span>) <span style="color:#f92672">-&gt;</span> $ele {
+            @arr <span style="color:#f92672">=</span> expansion(@arr, $ele);
         }
-        return @arr;
-    } elsif $tree&lt;innerele&gt;:exists {
-        for @($tree&lt;innerele&gt;) -&gt; $ele {
-            @arr = expansion(@arr, $ele);
+        <span style="color:#66d9ef">return</span> @arr;
+    } <span style="color:#66d9ef">elsif</span> $tree<span style="color:#e6db74">&lt;innerele&gt;</span>:exists {
+        <span style="color:#66d9ef">for</span> @<span style="color:#960050;background-color:#1e0010">($</span>tree<span style="color:#e6db74">&lt;innerele&gt;</span>) <span style="color:#f92672">-&gt;</span> $ele {
+            @arr <span style="color:#f92672">=</span> expansion(@arr, $ele);
         }
-        return @arr;
-    } elsif $tree&lt;string&gt;:exists {
-        return @arr.map: { $_ ~ $tree&lt;string&gt; };
-    } elsif $tree&lt;innerstr&gt;:exists {
-        return @arr.map: { $_ ~ $tree&lt;innerstr&gt; };
-    } elsif $tree&lt;curly&gt;:exists {
-        my @arr-copy = @arr;
-        @arr = [];
-        for @($tree&lt;curly&gt;&lt;option&gt;) -&gt; $ele {
-            @arr.append: expansion(@arr-copy, $ele);
+        <span style="color:#66d9ef">return</span> @arr;
+    } <span style="color:#66d9ef">elsif</span> $tree<span style="color:#e6db74">&lt;string&gt;</span>:exists {
+        <span style="color:#66d9ef">return</span> @arr<span style="color:#f92672">.</span>map: { $_ <span style="color:#f92672">~</span> $tree<span style="color:#e6db74">&lt;string&gt;</span> };
+    } <span style="color:#66d9ef">elsif</span> $tree<span style="color:#e6db74">&lt;innerstr&gt;</span>:exists {
+        <span style="color:#66d9ef">return</span> @arr<span style="color:#f92672">.</span>map: { $_ <span style="color:#f92672">~</span> $tree<span style="color:#e6db74">&lt;innerstr&gt;</span> };
+    } <span style="color:#66d9ef">elsif</span> $tree<span style="color:#e6db74">&lt;curly&gt;</span>:exists {
+        <span style="color:#66d9ef">my</span> @arr<span style="color:#f92672">-</span>copy <span style="color:#f92672">=</span> @arr;
+        @arr <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>;
+        <span style="color:#66d9ef">for</span> @<span style="color:#960050;background-color:#1e0010">($</span>tree<span style="color:#e6db74">&lt;curly&gt;&lt;option&gt;</span>) <span style="color:#f92672">-&gt;</span> $ele {
+            @arr<span style="color:#f92672">.</span>append: expansion(@arr<span style="color:#f92672">-</span>copy, $ele);
         }
-        return @arr;
-    } else {
+        <span style="color:#66d9ef">return</span> @arr;
+    } <span style="color:#66d9ef">else</span> {
         die;
     }
 }
-</code></pre>
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/ruben-westerberg/perl6/ch-1.p6">Ruben Westerberg</a> has an <code>expand</code> subroutine making most of the work:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">$_<span style="color:#f92672">=</span> @<span style="color:#960050;background-color:#1e0010">*</span>ARGS<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34; &#34;</span>);
+<span style="color:#66d9ef">my</span> $matches<span style="color:#f92672">=</span>m:g<span style="color:#e6db74">/\{.*?\}/</span>;
+<span style="color:#66d9ef">my</span> @entries;
+@entries<span style="color:#f92672">.</span>push:  [<span style="color:#f92672">.</span>Str<span style="color:#f92672">.</span>split: <span style="color:#e6db74">/&lt;[\{\}\,]&gt;/</span>, :skip<span style="color:#f92672">-</span>empty] <span style="color:#66d9ef">for</span> $matches<span style="color:#f92672">.</span>list;
 
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/ruben-westerberg/perl6/ch-1.p6">Ruben Westerberg</a> has an <code>expand</code> subroutine making most of the work:</p>
+expand($_,<span style="color:#f92672">[]</span>,@entries,$matches<span style="color:#f92672">.</span>list)<span style="color:#f92672">.</span>map(<span style="color:#f92672">*.</span>say);
 
-<pre><code class="language-Perl6">$_= @*ARGS.join(&quot; &quot;);
-my $matches=m:g/\{.*?\}/;
-my @entries;
-@entries.push:  [.Str.split: /&lt;[\{\}\,]&gt;/, :skip-empty] for $matches.list;
-
-expand($_,[],@entries,$matches.list).map(*.say);
-
-sub expand($line,@stack,@entries, @positions) {
-        my @results;
-        if (@stack == @entries ) {
-                my $l=$line;
-                my $offset=0;
-                for @stack.keys {
-                        $l.substr-rw(@positions[$_].from-$offset, @positions[$_].chars)=@stack[$_];
-                        $offset+=@positions[$_].chars-@stack[$_].chars;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">expand</span>($line,@stack,@entries, @positions) {
+        <span style="color:#66d9ef">my</span> @results;
+        <span style="color:#66d9ef">if</span> (@stack <span style="color:#f92672">==</span> @entries ) {
+                <span style="color:#66d9ef">my</span> $l<span style="color:#f92672">=</span>$line;
+                <span style="color:#66d9ef">my</span> $offset<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+                <span style="color:#66d9ef">for</span> @stack<span style="color:#f92672">.</span>keys {
+                        $l<span style="color:#f92672">.</span>substr<span style="color:#f92672">-</span>rw(@positions[$_]<span style="color:#f92672">.</span>from<span style="color:#f92672">-</span>$offset, @positions[$_]<span style="color:#f92672">.</span>chars)<span style="color:#f92672">=</span>@stack[$_];
+                        $offset<span style="color:#f92672">+=</span>@positions[$_]<span style="color:#f92672">.</span>chars<span style="color:#f92672">-</span>@stack[$_]<span style="color:#f92672">.</span>chars;
                 }
-                return ($l,);
+                <span style="color:#66d9ef">return</span> ($l,);
         }
-        else {
-                my @s;
-                my @e=|@entries[@stack.elems];
-                for @e  {
-                        @s= (|@stack[], |$_);
-                        @results.push( |expand($line, @s,@entries, @positions));
+        <span style="color:#66d9ef">else</span> {
+                <span style="color:#66d9ef">my</span> @s;
+                <span style="color:#66d9ef">my</span> @e<span style="color:#f92672">=|</span>@entries[@stack<span style="color:#f92672">.</span>elems];
+                <span style="color:#66d9ef">for</span> @e  {
+                        @s<span style="color:#f92672">=</span> (<span style="color:#f92672">|</span>@stack<span style="color:#f92672">[]</span>, <span style="color:#f92672">|</span>$_);
+                        @results<span style="color:#f92672">.</span>push( <span style="color:#f92672">|</span>expand($line, @s,@entries, @positions));
                 }
-                return @results;
+                <span style="color:#66d9ef">return</span> @results;
         }
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/ulrich-rieke/perl6/ch-1.p6">Ulrich Rieke</a> provided a fairly concise script:</p>
-
-<pre><code class="language-Perl6">#works only if there are no spaces in the expansion bracket!
-sub MAIN( **@ARGS ) {
-  my $howoften = @ARGS.elems - 2 ;
-  for (1..$howoften) -&gt; $i {
-      say &quot;@ARGS[0] @ARGS[$i] @ARGS[*-1]&quot; ;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/ulrich-rieke/perl6/ch-1.p6">Ulrich Rieke</a> provided a fairly concise script:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#75715e">#works only if there are no spaces in the expansion bracket!</span>
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>( **@ARGS ) {
+  <span style="color:#66d9ef">my</span> $howoften <span style="color:#f92672">=</span> @ARGS<span style="color:#f92672">.</span>elems <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span> ;
+  <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$howoften) <span style="color:#f92672">-&gt;</span> $i {
+      say <span style="color:#e6db74">&#34;@ARGS[0] @ARGS[$i] @ARGS[*-1]&#34;</span> ;
   }
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/yet-ebreo/perl6/ch-1.p6">Yet Ebreo</a>&rsquo;s solution is using a recursive <code>expand</code> subroutine and is also quite concise once you remove lengthy comments as I did here (but follow the link if you want to read the comments):</p>
-
-<pre><code class="language-Perl6">sub expand ($string) {
-    my $mstring = $string;
-    if ($mstring ~~ /\{(&lt;-[{}]&gt;*)\}/) {
-        my ($l,$m,$r) = ($/.prematch,$0,$/.postmatch);
-        for ($m.split(&quot;,&quot;)) {
-            expand($l~$_~$r);
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/yet-ebreo/perl6/ch-1.p6">Yet Ebreo</a>&lsquo;s solution is using a recursive <code>expand</code> subroutine and is also quite concise once you remove lengthy comments as I did here (but follow the link if you want to read the comments):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">expand</span> ($string) {
+    <span style="color:#66d9ef">my</span> $mstring <span style="color:#f92672">=</span> $string;
+    <span style="color:#66d9ef">if</span> ($mstring <span style="color:#f92672">~~</span> <span style="color:#e6db74">/\{(&lt;-[{}]&gt;*)\}/</span>) {
+        <span style="color:#66d9ef">my</span> ($l,$m,$r) <span style="color:#f92672">=</span> ($/<span style="color:#f92672">.</span>prematch,$0,$/<span style="color:#f92672">.</span>postmatch);
+        <span style="color:#66d9ef">for</span> ($m<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34;,&#34;</span>)) {
+            expand($l<span style="color:#f92672">~</span>$_<span style="color:#f92672">~</span>$r);
         }
-    } else {
+    } <span style="color:#66d9ef">else</span> {
          say $mstring;
     }
 }
-</code></pre>
-
-<p>To me, the code tends to be clearer without these comments, but that may just be me, YMMV.</p>
-
+</code></pre></div><p>To me, the code tends to be clearer without these comments, but that may just be me, YMMV.</p>
 <p><a href="https://www.braincells.com/perl/2019/10/perl_weekly_challenge_week_29.html">Jaldhar H. Vyas</a> was away in a location with poor Internet access and therefore unable to complete the challenge in time. He nonetheless completed the challenge afterwards. He wrote an <code>expand</code> subroutine that first captures the data between braces, then splits ths captured string and use a <code>map</code> to build the various output strings:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">expand</span>(Str $string) {
+    $string <span style="color:#f92672">~~</span> <span style="color:#e6db74">/ \{(.+)\} /</span>;
 
-<pre><code class="language-Perl6">sub expand(Str $string) {
-    $string ~~ / \{(.+)\} /;
-
-    return $0.split(/\,\s*/).map({
-        my $word = $_;
-        (my $expansion = $string) ~~ s/\{.+\}/$word/;
+    <span style="color:#66d9ef">return</span> $0<span style="color:#f92672">.</span>split(<span style="color:#e6db74">/\,\s*/</span>)<span style="color:#f92672">.</span>map({
+        <span style="color:#66d9ef">my</span> $word <span style="color:#f92672">=</span> $_;
+        (<span style="color:#66d9ef">my</span> $expansion <span style="color:#f92672">=</span> $string) <span style="color:#f92672">~~</span> <span style="color:#e6db74">s/\{.+\}/$word/</span>;
         $expansion;
     });
 }
 
-sub MAIN(Str $string) {
-    .say for expand($string);
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(Str $string) {
+    <span style="color:#f92672">.</span>say <span style="color:#66d9ef">for</span> expand($string);
 }
-</code></pre>
-
-<h2 id="task-2-calling-a-c-function-from-perl-6">Task #2: Calling a C Function from Perl 6</h2>
-
+</code></pre></div><h2 id="task-2-calling-a-c-function-from-perl-6">Task #2: Calling a C Function from Perl 6</h2>
 <p>This is derived in part from my <a href="http://blogs.perl.org/users/laurent_r/2019/10/perl-weekly-challenge-29-file-type-and-digital-clock.html">blog post</a> made in answer to the <a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-029/">Week 29 of the Perl Weekly Challenge</a> organized by  <a href="http://blogs.perl.org/users/mohammad_s_anwar/">Mohammad S. Anwar</a> as well as answers made by others to the same challenge.</p>
-
 <p>The challenge reads as follows:</p>
-
-<p>*Write a script to demonstrate calling a <strong>C function</strong>. It could be any user defined or standard <strong>C</strong> function.*</p>
-
+<p><em>Write a script to demonstrate calling a <strong>C function</strong>. It could be any user defined or standard <strong>C</strong> function.</em></p>
 <p>Note to the reader: it is now more or less official that Perl6 is going to be renamed &ldquo;Raku.&rdquo; This series of blogs will have to get used to it, but I won&rsquo;t switch to Raku immediately, since there is no Raku compiler or ecosystem yet.</p>
-
 <h2 id="my-solutions">My Solutions</h2>
-
 <p>Calling a function from a compiled C library is actually quite simple, using the <a href="https://docs.perl6.org/language/nativecall">NativeCall</a> module.</p>
-
 <p>The documentation linked above says that the simplest imaginable use of <code>NativeCall</code> would look something like this:</p>
-
-<pre><code class="language-Perl6">use NativeCall;
-sub some_argless_function() is native('something') { * }
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> NativeCall;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">some_argless_function</span>() <span style="color:#a6e22e">is</span> <span style="color:#a6e22e">native</span>(&#39;something&#39;) { <span style="color:#f92672">*</span> }
 some_argless_function();
-</code></pre>
-
-<p>The documentation then explains further that the first line imports various traits and types. The next line looks like a relatively ordinary Perl 6 sub declaration—with a twist. We use the &ldquo;native&rdquo; trait in order to specify that the sub is actually defined in a native library. The platform-specific extension (e.g., .so or .dll), as well as any customary prefixes (e.g., &lsquo;lib&rsquo;) will be added for you.</p>
-
+</code></pre></div><p>The documentation then explains further that the first line imports various traits and types. The next line looks like a relatively ordinary Perl 6 sub declaration—with a twist. We use the &ldquo;native&rdquo; trait in order to specify that the sub is actually defined in a native library. The platform-specific extension (e.g., .so or .dll), as well as any customary prefixes (e.g., &lsquo;lib&rsquo;) will be added for you.</p>
 <p>The first time you call &ldquo;some_argless_function&rdquo;, the &ldquo;libsomething&rdquo; will be loaded and the &ldquo;some_argless_function&rdquo; will be located in it. A call will then be made. Subsequent calls will be faster, since the symbol handle is retained.</p>
-
 <p>Of course, most functions take arguments or return values, but even that is quite simple. And I did not have any problem calling an existing function from the standard C library, but that&rsquo;s not a very interesting problem. I really wanted to do the whole thing, including building and using my own C library,</p>
-
 <p>The only real difficulty for me was to build a C library for the purpose of this challenge. Although I haven&rsquo;t written any serious program in C for more than 15 years, I still remember enough about the C language to be able to write simple C functions without trouble, except for the irritating fact that a C compiler is much less user-friendly than Perl (for example, the C compiler complained when I omitted semi-colons (<code>;</code>) before closing curly braces, which, of course, you can do in Perl), but that&rsquo;s secondary. No, the difficulty for me was elsewhere: not having used the GCC compiler and related tools for anything serious for so many years, I had to navigate through the GCC documentation and some examples on the Internet to find out how to build a static or shared library with it and do quite a number of tests before it actually worked. As you&rsquo;ve understood, I&rsquo;m really not an expert on compiling and properly linking C libraries, so the solutions presented below may not be the best, but, at least, they worked for me.</p>
-
 <h3 id="starting-with-a-very-simple-c-function">Starting With a Very Simple C Function</h3>
-
 <p>I started with a very simple C <code>calc.c</code> program providing an single <code>add</code> function:</p>
-
-<pre><code class="language-C">#include &lt;stdio.h&gt;
-int add (int a, int b) {
-    return a + b;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">add</span> (<span style="color:#66d9ef">int</span> a, <span style="color:#66d9ef">int</span> b) {
+    <span style="color:#66d9ef">return</span> a <span style="color:#f92672">+</span> b;
 }
-</code></pre>
+</code></pre></div><p>and a simple Perl 6 script calling it:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> NativeCall;
 
-<p>and a simple Perl 6 script calling it:</p>
-
-<pre><code class="language-Perl6">use NativeCall;
-
-sub add(int32, int32)
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">add</span>(int32, int32)
     returns int32
-    is native('./calc.dll')
-    { * }
+    is native(&#39;./calc.dll&#39;)
+    { <span style="color:#f92672">*</span> }
 
-say add(3, 4);
-</code></pre>
-
-<p>Note that the Perl 6 script uses Perl 6 <a href="https://docs.perl6.org/language/nativetypes">native types</a> (such as <code>int32</code>) for the variables passed to the C function.</p>
-
+say add(<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>);
+</code></pre></div><p>Note that the Perl 6 script uses Perl 6 <a href="https://docs.perl6.org/language/nativetypes">native types</a> (such as <code>int32</code>) for the variables passed to the C function.</p>
 <p>After a number of faulty tries, I was able to find the right GCC compiling and linking flags and build a shared library, and run the program:</p>
-
 <pre><code>$ gcc -c -fPIC calc.c -o calc.o
 
 $ gcc -shared calc.o -o calc.dll
@@ -520,59 +435,45 @@ $ gcc -shared calc.o -o calc.dll
 $ perl6 calc.p6
 7
 </code></pre>
-
 <p>Note that these examples are run on Cygwin, so they use the Linux bash syntax, but the C library receives a Windows name (<code>*.dll</code>).</p>
-
 <p>After some further tests, I found that the compilation of the C library with GCC can be made simpler:</p>
-
 <pre><code>$ gcc -shared -o calc.dll calc.c
 </code></pre>
-
 <p>If this were a tutorial on using C functions in Perl 6, I would have to explain in details the <code>gcc</code> options and probably to show how a <code>makefile</code> could automatize all this. But I&rsquo;m just a beginner with C functions in Perl 6, I certainly cannot claim to offer a tutorial on this subject. My only ambition is to show how I solved a specific task.</p>
-
 <h3 id="benchmarking-a-pure-perl-6-program-and-a-native-c-library">Benchmarking a Pure Perl 6 Program and a Native C Library</h3>
-
 <p>Now that we know how to run a basic function from a C library, we can try something more interesting: benchmarking a pure Perl 6 subroutine against a native C function. For this, I chose to use a recursive implementation of the Fibonacci sequence, since execution times get very long even for moderately large input. Of course, it is possible to memoize the recursive Fibonacci subroutine to obtain very small execution times, but I don&rsquo;t want to do it (at least not for the time being, we&rsquo;ll do it later), since I want to compare naïve recursive implementations to compare their durations.</p>
-
 <p>The following <code>fibonacci.c</code> program provides a recursive <code>fib</code> function:</p>
-
-<pre><code class="language-C">#include &lt;stdio.h&gt;
-int fib (int a) {
-    if (a == 0 || a == 1) {
-        return 1;
-    } else {
-        return fib(a -1 ) + fib(a - 2);
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">fib</span> (<span style="color:#66d9ef">int</span> a) {
+    <span style="color:#66d9ef">if</span> (a <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> a <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>) {
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+    } <span style="color:#66d9ef">else</span> {
+        <span style="color:#66d9ef">return</span> fib(a <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> ) <span style="color:#f92672">+</span> fib(a <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>);
     }
 }
-</code></pre>
+</code></pre></div><p>The <code>fibo.p6</code> program below uses both the native <code>fib</code> function and a pure Perl 6 <code>fib-p6</code> subroutine and record their execution times:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> v6;
+<span style="color:#66d9ef">use</span> NativeCall;
 
-<p>The <code>fibo.p6</code> program below uses both the native <code>fib</code> function and a pure Perl 6 <code>fib-p6</code> subroutine and record their execution times:</p>
-
-<pre><code class="language-Perl6">use v6;
-use NativeCall;
-
-sub fib(int32)
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">fib</span>(int32)
     returns int32
-    is native('./fibonacci.dll')
-    { * }
+    is native(&#39;./fibonacci.dll&#39;)
+    { <span style="color:#f92672">*</span> }
 
-sub fib-p6 (Int $num) {
-    return 1 if $num == 0 or $num == 1;
-    return fib-p6($num - 1) + fib-p6($num - 2);
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">fib</span>-p6 (Int $num) {
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> $num <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">or</span> $num <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">return</span> fib<span style="color:#f92672">-</span>p6($num <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span> fib<span style="color:#f92672">-</span>p6($num <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>);
 }
 
-sub MAIN (Int $num where * &gt;= 0 = 36 ) {
-    my $start-time = INIT now;
-    say &quot;C library function: &quot;, fib($num);
-    say &quot;Duration C function: &quot;, now - $start-time;
-    my $now = now;
-    say &quot;P6 subroutine: &quot;, fib-p6 $num;
-    say &quot;Duration P6 subroutine: &quot;, now - $now;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> (Int $num where * &gt;= 0 = 36 ) {
+    <span style="color:#66d9ef">my</span> $start<span style="color:#f92672">-</span>time <span style="color:#f92672">=</span> <span style="color:#66d9ef">INIT</span> now;
+    say <span style="color:#e6db74">&#34;C library function: &#34;</span>, fib($num);
+    say <span style="color:#e6db74">&#34;Duration C function: &#34;</span>, now <span style="color:#f92672">-</span> $start<span style="color:#f92672">-</span>time;
+    <span style="color:#66d9ef">my</span> $now <span style="color:#f92672">=</span> now;
+    say <span style="color:#e6db74">&#34;P6 subroutine: &#34;</span>, fib<span style="color:#f92672">-</span>p6 $num;
+    say <span style="color:#e6db74">&#34;Duration P6 subroutine: &#34;</span>, now <span style="color:#f92672">-</span> $now;
 }
-</code></pre>
-
-<p>Building the shared library and running the benchmark shows the following result:</p>
-
+</code></pre></div><p>Building the shared library and running the benchmark shows the following result:</p>
 <pre><code>$ gcc -shared -o fibonacci.dll fibonacci.c
 
 $ perl6 fibo.p6
@@ -581,236 +482,186 @@ Duration C function: 0.1306511
 P6 subroutine: 24157817
 Duration P6 subroutine: 37.425447
 </code></pre>
-
 <p>The result is really impressive: 0.13 seconds for the C <code>fib</code> function and 37 seconds for <code>fib-p6</code> the pure Perl 6 implementation. With the default 36 input value, the C function runs 286 times faster!</p>
-
 <p>This being said, using the proper algorithm is often much better than using a faster programming language (when possible). Let&rsquo;s try to memoize manually the <code>fib-p6</code> pure Perl 6 subroutine by storing the Fibonacci numbers in a <code>@fibo</code> array for fast lookup:</p>
-
-<pre><code class="language-Perl6">sub fib-p6 (Int $num) {
-    state @fibo = 1, 1;    # initialization that removes the need for a base case
-    @fibo[$num] = fib-p6($num - 1) + fib-p6($num - 2) unless defined @fibo[$num];
-    return @fibo[$num];
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">fib</span>-p6 (Int $num) {
+    state @fibo <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>;    <span style="color:#75715e"># initialization that removes the need for a base case</span>
+    @fibo[$num] <span style="color:#f92672">=</span> fib<span style="color:#f92672">-</span>p6($num <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span> fib<span style="color:#f92672">-</span>p6($num <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>) <span style="color:#66d9ef">unless</span> defined @fibo[$num];
+    <span style="color:#66d9ef">return</span> @fibo[$num];
 }
-</code></pre>
-
-<p>Note that there are some possibilities for memoizing automatically a function, but I preferred to do it manually to show how it works and how simple it is, rather than giving an impression of magics.</p>
-
+</code></pre></div><p>Note that there are some possibilities for memoizing automatically a function, but I preferred to do it manually to show how it works and how simple it is, rather than giving an impression of magics.</p>
 <p>The memoized pure Perl 6 subroutine is now about 130 times faster than the C function:</p>
-
 <pre><code>$ perl6 fibo.p6
 C library function: 24157817
 Duration C function: 0.129651
 P6 subroutine: 24157817
 Duration P6 subroutine: 0.000997
 </code></pre>
-
 <p>I have to deeply thank Mohammad Anwar for having forced me with this challenge to go through this somewhat painful process, as I now have in my toolbox a very useful instrument that can be used when Perl 6 is not quite fast enough. I hope this blog post will be a useful example for others.</p>
-
 <h2 id="alternative-solutions">Alternative Solutions</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/arne-sommer/perl6/ch-2.p6">Arne Sommer</a> used the <code>toupper</code> function of the standard C library (probably <code>libc</code> or <code>glibc</code>):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> NativeCall;
 
-<pre><code class="language-Perl6">use NativeCall;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">toupper</span>(uint8) returns uint8 is native(&#39;c&#39;, v6) { <span style="color:#f92672">*</span> }
 
-sub toupper(uint8) returns uint8 is native('c', v6) { * }
-
-sub to-upper ($string)
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">to</span>-upper ($string)
 {
-  return $string.comb.map({ toupper($_.ord).chr }).join;
+  <span style="color:#66d9ef">return</span> $string<span style="color:#f92672">.</span>comb<span style="color:#f92672">.</span>map({ toupper($_<span style="color:#f92672">.</span>ord)<span style="color:#f92672">.</span>chr })<span style="color:#f92672">.</span>join;
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/daniel-mita/perl6/ch-2.p6">Daniel Mita</a> also used a standard C library function, <code>getrandom</code>. In the event of an error, his program also uses the <code>strerror</code> function to retrieve the string describing the error.</p>
-
-<pre><code class="language-Perl6">sub MAIN (
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/daniel-mita/perl6/ch-2.p6">Daniel Mita</a> also used a standard C library function, <code>getrandom</code>. In the event of an error, his program also uses the <code>strerror</code> function to retrieve the string describing the error.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> (
   UInt  $bytes = 8, #= Number of random bytes (defaults to 8)
   UInt :$flags = 0,
   --&gt; Nil
 ) {
-  given Buf.allocate: $bytes {
-    given .&amp;getrandom: $bytes, $flags {
-      when -1 {
-        die sub strerror( int32 --&gt; Str ) is native {*}(
-          cglobal |( 'c', v6; 'errno'; int32 ) );
+  given Buf<span style="color:#f92672">.</span>allocate: $bytes {
+    given <span style="color:#f92672">.&amp;</span>getrandom: $bytes, $flags {
+      when <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> {
+        die <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">strerror</span>( int32 --&gt; Str ) is native {<span style="color:#f92672">*</span>}(
+          cglobal <span style="color:#f92672">|</span>( <span style="color:#e6db74">&#39;c&#39;</span>, v6; <span style="color:#e6db74">&#39;errno&#39;</span>; int32 ) );
       }
-      when * &lt; $bytes { die 'got fewer bytes than requested' }
+      when <span style="color:#f92672">*</span> <span style="color:#f92672">&lt;</span> $bytes { die <span style="color:#e6db74">&#39;got fewer bytes than requested&#39;</span> }
     }
-    .say;
+    <span style="color:#f92672">.</span>say;
   }
 }
 
-sub getrandom ( Buf, size_t, uint32 --&gt; ssize_t ) is native {*}
-</code></pre>
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">getrandom</span> ( Buf, size_t, uint32 --&gt; ssize_t ) is native {<span style="color:#f92672">*</span>}
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/kevin-colyer/perl6/ch-2.p6">Kevin Colyer</a> used functions from the <code>libqrencode</code> library to process QR codes:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> NativeCall;
 
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/kevin-colyer/perl6/ch-2.p6">Kevin Colyer</a> used functions from the <code>libqrencode</code> library to process QR codes:</p>
+constant LIBQRENCODE <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;/usr/lib/x86_64-linux-gnu/libqrencode.so.3&#39;</span>;
 
-<pre><code class="language-Perl6">use NativeCall;
+<span style="color:#75715e"># Level of error correction. (lowest to highest)</span>
+enum  QRecLevel <span style="color:#f92672">&lt;</span>QR_ECLEVEL_L QR_ECLEVEL_M QR_ECLEVEL_Q QR_ECLEVEL_H<span style="color:#f92672">&gt;</span>;
 
-constant LIBQRENCODE = '/usr/lib/x86_64-linux-gnu/libqrencode.so.3';
-
-# Level of error correction. (lowest to highest)
-enum  QRecLevel &lt;QR_ECLEVEL_L QR_ECLEVEL_M QR_ECLEVEL_Q QR_ECLEVEL_H&gt;;
-
-class QRcode is repr('CStruct') {
-    has int32           $.version;
-    has int32           $.width;
-    has Pointer[uint8]  $.data; # sized width*width
+class QRcode is repr(<span style="color:#e6db74">&#39;CStruct&#39;</span>) {
+    has int32           $<span style="color:#960050;background-color:#1e0010">.</span>version;
+    has int32           $<span style="color:#960050;background-color:#1e0010">.</span>width;
+    has Pointer[uint8]  $<span style="color:#960050;background-color:#1e0010">.</span>data; <span style="color:#75715e"># sized width*width</span>
 }
 
-# QRcode* QRcode_encodeString8bit   (   const char *    string, int     version, QRecLevel  level )
-sub QRcode_encodeString8bit ( Str is encoded('utf8'), uint8, uint8 ) returns QRcode is native( LIBQRENCODE ) { * }
-sub QRcode_free             ( QRcode )                                              is native( LIBQRENCODE ) { * }
-</code></pre>
+<span style="color:#75715e"># QRcode* QRcode_encodeString8bit   (   const char *    string, int     version, QRecLevel  level )</span>
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">QRcode_encodeString8bit</span> ( Str is encoded(&#39;utf8&#39;), uint8, uint8 ) returns QRcode is native( LIBQRENCODE ) { <span style="color:#f92672">*</span> }
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">QRcode_free</span>             ( QRcode )                                              is native( LIBQRENCODE ) { <span style="color:#f92672">*</span> }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/markus-holzer/perl6/ch-2.p6">Markus Holzer</a> used the <code>MessageBoxW</code> function of a C Microsoft library, which pops up a message box.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> NativeCall;
 
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/markus-holzer/perl6/ch-2.p6">Markus Holzer</a> used the <code>MessageBoxW</code> function of a C Microsoft library, which pops up a message box.</p>
+constant WCHAR              <span style="color:#f92672">=</span> uint16;
+constant INT                <span style="color:#f92672">=</span> int32;
+constant UINT               <span style="color:#f92672">=</span> uint32;
+constant HANDLE             <span style="color:#f92672">=</span> Pointer[void];
+constant LPWCTSTR           <span style="color:#f92672">=</span> CArray[WCHAR];
+constant MB_ICONEXCLAMATION <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x00000030</span>;
 
-<pre><code class="language-Perl6">use NativeCall;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MessageBoxW</span>( HANDLE, LPWCTSTR, LPWCTSTR, UINT ) is native(&#39;user32&#39;) returns INT { <span style="color:#f92672">*</span> };
 
-constant WCHAR              = uint16;
-constant INT                = int32;
-constant UINT               = uint32;
-constant HANDLE             = Pointer[void];
-constant LPWCTSTR           = CArray[WCHAR];
-constant MB_ICONEXCLAMATION = 0x00000030;
+MessageBoxW( <span style="color:#66d9ef">my</span> $handle, to<span style="color:#f92672">-</span>c<span style="color:#f92672">-</span>str(<span style="color:#e6db74">&#34;Raku is awesome&#34;</span>), to<span style="color:#f92672">-</span>c<span style="color:#f92672">-</span>str(<span style="color:#e6db74">&#34;Hello World&#34;</span>), MB_ICONEXCLAMATION );
 
-sub MessageBoxW( HANDLE, LPWCTSTR, LPWCTSTR, UINT ) is native('user32') returns INT { * };
-
-MessageBoxW( my $handle, to-c-str(&quot;Raku is awesome&quot;), to-c-str(&quot;Hello World&quot;), MB_ICONEXCLAMATION );
-
-sub to-c-str( Str $str ) returns CArray[WCHAR]
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">to</span>-c-str( Str $str ) returns CArray[WCHAR]
 {
-    my @str := CArray[WCHAR].new;
-    for ( $str.comb ).kv -&gt; $i, $char { @str[$i] = $char.ord; }
-    @str[ $str.chars ] = 0;
+    <span style="color:#66d9ef">my</span> @str :<span style="color:#f92672">=</span> CArray[WCHAR]<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>;
+    <span style="color:#66d9ef">for</span> ( $str<span style="color:#f92672">.</span>comb )<span style="color:#f92672">.</span>kv <span style="color:#f92672">-&gt;</span> $i, $char { @str[$i] <span style="color:#f92672">=</span> $char<span style="color:#f92672">.</span>ord; }
+    @str[ $str<span style="color:#f92672">.</span>chars ] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
     @str;
 }
-</code></pre>
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/noud/perl6/ch-2.p6">Noud</a> wrote a <code>rot13</code> C function performing ROT13 encryption (where all letters are shifted in the alphabet by 13 positions so that the same program can be used for both encrypting and decrypting):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;ctype.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdlib.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">rot13</span>(<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>s) {
+    <span style="color:#66d9ef">const</span> size_t s_len <span style="color:#f92672">=</span> strlen(s);
+    <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>result <span style="color:#f92672">=</span> malloc((s_len <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">*</span> <span style="color:#66d9ef">sizeof</span>(<span style="color:#66d9ef">char</span>));
 
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/noud/perl6/ch-2.p6">Noud</a> wrote a <code>rot13</code> C function performing ROT13 encryption (where all letters are shifted in the alphabet by 13 positions so that the same program can be used for both encrypting and decrypting):</p>
-
-<pre><code class="language-C">#include &lt;ctype.h&gt;
-#include &lt;stdlib.h&gt;
-#include &lt;string.h&gt;
-
-char *rot13(char *s) {
-    const size_t s_len = strlen(s);
-    char *result = malloc((s_len + 1) * sizeof(char));
-
-    for (size_t i = 0; i &lt; s_len; i++) {
-        if (isalpha(s[i])) {
-            if ((tolower(s[i]) - 'a') &lt; 13) {
-                result[i] = s[i] + 13;
-            } else {
-                result[i] = s[i] - 13;
+    <span style="color:#66d9ef">for</span> (size_t i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> s_len; i<span style="color:#f92672">++</span>) {
+        <span style="color:#66d9ef">if</span> (isalpha(s[i])) {
+            <span style="color:#66d9ef">if</span> ((tolower(s[i]) <span style="color:#f92672">-</span> <span style="color:#e6db74">&#39;a&#39;</span>) <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">13</span>) {
+                result[i] <span style="color:#f92672">=</span> s[i] <span style="color:#f92672">+</span> <span style="color:#ae81ff">13</span>;
+            } <span style="color:#66d9ef">else</span> {
+                result[i] <span style="color:#f92672">=</span> s[i] <span style="color:#f92672">-</span> <span style="color:#ae81ff">13</span>;
             }
-        } else {
-            result[i] = s[i];
+        } <span style="color:#66d9ef">else</span> {
+            result[i] <span style="color:#f92672">=</span> s[i];
         }
     }
 
-    result[s_len] = '\0';
+    result[s_len] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;\0&#39;</span>;
 
-    return result;
+    <span style="color:#66d9ef">return</span> result;
 }
-</code></pre>
+</code></pre></div><p>The shared C library can be build with the following <code>make.sh</code> shell script:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">gcc -shared -o rot13.so rot13.c
+</code></pre></div><p>And this is the Perl 6 program:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> NativeCall;
 
-<p>The shared C library can be build with the following <code>make.sh</code> shell script:</p>
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">rot13</span>(Str) returns Str is native(&#39;./rot13.so&#39;) {<span style="color:#f92672">*</span>};
 
-<pre><code class="language-sh">gcc -shared -o rot13.so rot13.c
-</code></pre>
+<span style="color:#66d9ef">my</span> $enc <span style="color:#f92672">=</span> rot13(<span style="color:#e6db74">&#34;hello perl weekly challenge!&#34;</span>);
+<span style="color:#66d9ef">my</span> $dec <span style="color:#f92672">=</span> rot13($enc);
 
-<p>And this is the Perl 6 program:</p>
+say <span style="color:#e6db74">&#34;ROT13 encryption: $enc&#34;</span>;
+say <span style="color:#e6db74">&#34;ROT13 decryption: $dec&#34;</span>;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/joelle-maslak/perl6/ch-2.p6">Joelle Maslak</a> used a native <code>sleep</code> C function (presumably from one of the Unix/Posix libraries, such as <code>unistd</code>)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> v6;
 
-<pre><code class="language-Perl6">use NativeCall;
+<span style="color:#66d9ef">use</span> NativeCall;
 
-sub rot13(Str) returns Str is native('./rot13.so') {*};
-
-my $enc = rot13(&quot;hello perl weekly challenge!&quot;);
-my $dec = rot13($enc);
-
-say &quot;ROT13 encryption: $enc&quot;;
-say &quot;ROT13 decryption: $dec&quot;;
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/joelle-maslak/perl6/ch-2.p6">Joelle Maslak</a> used a native <code>sleep</code> C function (presumably from one of the Unix/Posix libraries, such as <code>unistd</code>)</p>
-
-<pre><code class="language-Perl6">use v6;
-
-use NativeCall;
-
-sub MAIN(UInt:D $seconds = 2) {
-    my $ret = native-sleep($seconds);
-    say &quot;Sleep returned a value of $ret&quot;;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(UInt:D $seconds = 2) {
+    <span style="color:#66d9ef">my</span> $ret <span style="color:#f92672">=</span> native<span style="color:#f92672">-</span>sleep($seconds);
+    say <span style="color:#e6db74">&#34;Sleep returned a value of $ret&#34;</span>;
 }
 
-my sub native-sleep(uint64 --&gt;uint64) is native is symbol('sleep') { * }
-</code></pre>
+<span style="color:#66d9ef">my</span> <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">native</span>-sleep(uint64 --&gt;uint64) is native is symbol(&#39;sleep&#39;) { <span style="color:#f92672">*</span> }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/roger-bell-west/perl6/ch-2.p6">Roger Bell West</a> used the standard C <code>printf</code> function:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> NativeCall;
 
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/roger-bell-west/perl6/ch-2.p6">Roger Bell West</a> used the standard C <code>printf</code> function:</p>
+<span style="color:#66d9ef">our</span> <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">cpf</span>(Str, Str --&gt; int32) is native(sub{<span style="color:#e6db74">&#39;libc.so.6&#39;</span>}) is symbol(<span style="color:#e6db74">&#39;printf&#39;</span>) { <span style="color:#f92672">*</span> }
 
-<pre><code class="language-Perl6">use NativeCall;
-
-our sub cpf(Str, Str --&gt; int32) is native(sub{'libc.so.6'}) is symbol('printf') { * }
-
-cpf(&quot;%s\n&quot;,'a string passed from perl6');
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/ruben-westerberg/perl6/ch-2.p6">Ruben Westerberg</a> used the <code>getuid</code> C function (presumably from one of the Unix/Posix libraries, such as <code>inistd</code>):</p>
-
-<pre><code class="language-Perl6">use NativeCall;
-sub getuid() returns uint32   is native { * };
-put &quot;User ID: &quot;~getuid;
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/ulrich-rieke/perl6/ch-2.p6">Ulrich Rieke</a> used the <code>strcmp</code> function of the standard C library:</p>
-
-<pre><code class="language-Perl6">use NativeCall ;
-constant LIBC = '/lib/x86_64-linux-gnu/libc.so.6' ;
-sub strcmp( CArray[uint8], CArray[uint8]) returns int32 is native(LIBC) { * } ;
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/yet-ebreo/perl6/ch-2.p6">Yet Ebreo</a>&rsquo;s solution looks very much like my second solution: he implemented a C function to compute a Fibonacci number, probably something like this (at least, that what he used in his Perl 5 implementation):</p>
-
-<pre><code class="language-C">unsigned long fib(int n) {
-    if ( n == 0 )
-        return 0;
-    else if ( n == 1 )
-        return 1;
-    else
-        return ( fib(n-1) + fib(n-2) );
+cpf(<span style="color:#e6db74">&#34;%s\n&#34;</span>,<span style="color:#e6db74">&#39;a string passed from perl6&#39;</span>);
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/ruben-westerberg/perl6/ch-2.p6">Ruben Westerberg</a> used the <code>getuid</code> C function (presumably from one of the Unix/Posix libraries, such as <code>inistd</code>):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> NativeCall;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">getuid</span>() <span style="color:#a6e22e">returns</span> <span style="color:#a6e22e">uint32</span>   <span style="color:#a6e22e">is</span> <span style="color:#a6e22e">native</span> { <span style="color:#f92672">*</span> };
+put <span style="color:#e6db74">&#34;User ID: &#34;</span><span style="color:#f92672">~</span>getuid;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/ulrich-rieke/perl6/ch-2.p6">Ulrich Rieke</a> used the <code>strcmp</code> function of the standard C library:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> NativeCall ;
+constant LIBC <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;/lib/x86_64-linux-gnu/libc.so.6&#39;</span> ;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">strcmp</span>( CArray[uint8], CArray[uint8]) returns int32 is native(LIBC) { <span style="color:#f92672">*</span> } ;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-029/yet-ebreo/perl6/ch-2.p6">Yet Ebreo</a>&lsquo;s solution looks very much like my second solution: he implemented a C function to compute a Fibonacci number, probably something like this (at least, that what he used in his Perl 5 implementation):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">long</span> <span style="color:#a6e22e">fib</span>(<span style="color:#66d9ef">int</span> n) {
+    <span style="color:#66d9ef">if</span> ( n <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> )
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> ( n <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> )
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">else</span>
+        <span style="color:#66d9ef">return</span> ( fib(n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span> fib(n<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>) );
 }
-</code></pre>
+</code></pre></div><p>He then proceeded to compare the C function with a naïve pure Perl 6 implementation and with a memoized (<code>is cached</code>) Perl 6 implementation:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> NativeCall;
+<span style="color:#66d9ef">use</span> experimental :cached;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">fib</span>(int32) returns int32 is native(&#39;fib.so&#39;) {<span style="color:#f92672">*</span>}
 
-<p>He then proceeded to compare the C function with a naïve pure Perl 6 implementation and with a memoized (<code>is cached</code>) Perl 6 implementation:</p>
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> () {
 
-<pre><code class="language-Perl6">use NativeCall;
-use experimental :cached;
-sub fib(int32) returns int32 is native('fib.so') {*}
+    <span style="color:#66d9ef">my</span> $start <span style="color:#f92672">=</span> now;
+    <span style="color:#66d9ef">print</span> (perl_fib($_)<span style="color:#f92672">~</span><span style="color:#e6db74">&#34; &#34;</span>) <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">36</span>;
 
-sub MAIN () {
+    say <span style="color:#e6db74">&#34;\nRun Time (Perl): &#34;</span><span style="color:#f92672">~</span>(now <span style="color:#f92672">-</span> $start)<span style="color:#f92672">~</span><span style="color:#e6db74">&#34; sec\n&#34;</span>;
 
-    my $start = now;
-    print (perl_fib($_)~&quot; &quot;) for 1..36;
+    $start <span style="color:#f92672">=</span> now;
+    <span style="color:#66d9ef">print</span> (perl_fib_cached($_)<span style="color:#f92672">~</span><span style="color:#e6db74">&#34; &#34;</span>) <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">36</span>;
 
-    say &quot;\nRun Time (Perl): &quot;~(now - $start)~&quot; sec\n&quot;;
+    say <span style="color:#e6db74">&#34;\nRun Time (Perl-Cached): &#34;</span><span style="color:#f92672">~</span>(now <span style="color:#f92672">-</span> $start)<span style="color:#f92672">~</span><span style="color:#e6db74">&#34; sec\n&#34;</span>;
 
-    $start = now;
-    print (perl_fib_cached($_)~&quot; &quot;) for 1..36;
+    $start <span style="color:#f92672">=</span> now;
+    <span style="color:#66d9ef">print</span> (fib($_)<span style="color:#f92672">~</span><span style="color:#e6db74">&#34; &#34;</span>) <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">36</span>;
 
-    say &quot;\nRun Time (Perl-Cached): &quot;~(now - $start)~&quot; sec\n&quot;;
-
-    $start = now;
-    print (fib($_)~&quot; &quot;) for 1..36;
-
-    say &quot;\nRun Time: (NativeCall)&quot;~(now - $start)~&quot; sec\n&quot;;
+    say <span style="color:#e6db74">&#34;\nRun Time: (NativeCall)&#34;</span><span style="color:#f92672">~</span>(now <span style="color:#f92672">-</span> $start)<span style="color:#f92672">~</span><span style="color:#e6db74">&#34; sec\n&#34;</span>;
 }
 
-sub perl_fib($n)  { ($n == 0) ?? 0 !! ($n == 1) ?? 1 !! perl_fib($n-1)+perl_fib($n-2) }
-sub perl_fib_cached($n) is cached { ($n == 0) ?? 0 !! ($n == 1) ?? 1 !! perl_fib_cached($n-1)+perl_fib_cached($n-2) }
-</code></pre>
-
-<p>Running Yet&rsquo;s program yields the following output:</p>
-
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">perl_fib</span>($n)  { ($n <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) ?? <span style="color:#ae81ff">0</span> <span style="color:#f92672">!!</span> ($n <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>) ?? <span style="color:#ae81ff">1</span> <span style="color:#f92672">!!</span> perl_fib($n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">+</span>perl_fib($n<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>) }
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">perl_fib_cached</span>($n) is cached { ($n <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) ?? <span style="color:#ae81ff">0</span> <span style="color:#f92672">!!</span> ($n <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>) ?? <span style="color:#ae81ff">1</span> <span style="color:#f92672">!!</span> perl_fib_cached($n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">+</span>perl_fib_cached($n<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>) }
+</code></pre></div><p>Running Yet&rsquo;s program yields the following output:</p>
 <pre><code># perl6 .\ch-2.p6 32
 # 1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987 1597 2584 4181 6765 10946 17711 28657 46368 75025 121393 196418 317811 514229 832040 1346269 2178309 3524578 5702887 9227465 14930352
 # Run Time (Perl): 74.794843 sec
@@ -821,50 +672,33 @@ sub perl_fib_cached($n) is cached { ($n == 0) ?? 0 !! ($n == 1) ?? 1 !! perl_fib
 # 1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987 1597 2584 4181 6765 10946 17711 28657 46368 75025 121393 196418 317811 514229 832040 1346269 2178309 3524578 5702887 9227465 14930352
 # Run Time: (NativeCall)0.31090124 sec
 </code></pre>
-
 <p>We can see here again that the C function is much faster than the naïve pure Perl 6 implementation, but the P6 memoized version (<code>Perl-Cached</code>) is much faster than the C function.</p>
-
 <p><a href="https://www.braincells.com/perl/2019/10/perl_weekly_challenge_week_29.html">Jaldhar H. Vyas</a> was away in a location with poor Internet access and therefore unable to complete the challenge in time. He nonetheless completed the challenge afterwards. He first wrote a C program containing a simple <code>hello</code> function displaying &ldquo;Hello world!&rdquo; on the screen. This is the C function:</p>
-
-<pre><code class="language-C">void hello() {
-    puts(&quot;Hello world!&quot;);
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">hello</span>() {
+    puts(<span style="color:#e6db74">&#34;Hello world!&#34;</span>);
 }
-</code></pre>
-
-<p>This is the <code>Hello</code> Perl 6 module using using the C <code>hello</code> function:</p>
-
-<pre><code class="language-Perl6">use v6;
+</code></pre></div><p>This is the <code>Hello</code> Perl 6 module using using the C <code>hello</code> function:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> v6;
 unit module Hello;
 
-use NativeCall;
+<span style="color:#66d9ef">use</span> NativeCall;
 
-sub libhello is export {
-    return '../c/libhello.so';
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">libhello</span> <span style="color:#a6e22e">is</span> <span style="color:#a6e22e">export</span> {
+    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;../c/libhello.so&#39;</span>;
 }
 
-sub hello() is native(&amp;libhello) is export {*};
-</code></pre>
-
-<p>And, this is an example of Perl 6 code calling the aforesaid module.</p>
-
-<pre><code class="language-Perl6">use lib '.';
-use Hello;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">hello</span>() <span style="color:#a6e22e">is</span> <span style="color:#a6e22e">native</span>(&amp;libhello) is export {<span style="color:#f92672">*</span>};
+</code></pre></div><p>And, this is an example of Perl 6 code calling the aforesaid module.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> lib <span style="color:#e6db74">&#39;.&#39;</span>;
+<span style="color:#66d9ef">use</span> Hello;
 
 hello();
-</code></pre>
-
-<h2 id="see-also">SEE ALSO</h2>
-
+</code></pre></div><h2 id="see-also">SEE ALSO</h2>
 <p>Three blog posts this time:</p>
-
-<p>Arne Sommer: <a href="https://perl6.eu/bracen-c.html">https://perl6.eu/bracen-c.html</a>;</p>
-
+<p>Arne Sommer: <a href="https://perl6.eu/bracen-c.html;">https://perl6.eu/bracen-c.html;</a></p>
 <p>Yet Ebrao: <a href="https://doomtrain14.github.io/pwc/2019/10/13/pwc_calling_c.html">https://doomtrain14.github.io/pwc/2019/10/13/pwc_calling_c.html</a>. Yet&rsquo;s blog post really relates to his Perl 5 implementation of the challenge, but it still does shed some light on his Perl 6 implementation.</p>
-
 <p>Jaldhar H. Vyas: <a href="https://www.braincells.com/perl/2019/10/perl_weekly_challenge_week_29.html">https://www.braincells.com/perl/2019/10/perl_weekly_challenge_week_29.html</a>.</p>
-
 <h2 id="wrapping-up">Wrapping up</h2>
-
 <p>Please let me know if I forgot any of the challengers or if you think my explanation of your code misses something important (send me an e-mail or just raise an issue against this GitHub page).</p>
 
                 </div>

@@ -16,7 +16,7 @@
 
     <meta name="description" content="Kian-Meng Ang Weekly Review: Challenge - #038.">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.55.0-DEV" />
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -41,6 +41,8 @@
     <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
     <!-- hover -->
     <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
     <!-- template main css file -->
     
     <link rel="stylesheet" href="https://perlweeklychallenge.org/css/style.min.css" integrity="" media="screen">
@@ -149,219 +151,152 @@
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
-                    
-
-<hr />
-
-<hr />
-
+                    <hr>
+<hr>
 <p>Continues from <a href="/blog/review-challenge-037/"><strong>previous week</strong></a>.</p>
-
 <p>Feel free to <a href="https://github.com/manwar/perlweeklychallenge"><strong>submit a merge request or open a ticket</strong></a> if you found any issues with this post. We highly appreciate and welcome your feedback.</p>
-
 <p>For a quick overview, go through the <a href="/blog/perl-weekly-challenge-038/"><strong>original tasks</strong></a> and <a href="/blog/recap-challenge-038/"><strong>recap</strong></a> of the weekly challenge.</p>
-
 <p>Additional feedback to the our Perl Weekly Challenge’s <a href="https://twitter.com/perlwchallenge?lang=en"><strong>Twitter account</strong></a> is much appreciated.</p>
-
-<hr />
-
-<hr />
-
+<hr>
+<hr>
 <h2 id="task-1">Task #1</h2>
-
-<hr />
-
-<hr />
-
+<hr>
+<hr>
 <p><strong>CPAN</strong> modules used: <a href="https://metacpan.org/pod/Carp"><code>Carp</code></a>, <a href="https://metacpan.org/pod/Date::Calc"><code>Date::Calc</code></a>, <a href="https://metacpan.org/pod/Date::Manip"><code>Date::Manip</code></a>, <a href="https://metacpan.org/pod/DateTime"><code>DateTime</code></a>, <a href="https://metacpan.org/pod/POSIX"><code>POSIX</code></a>, <a href="https://metacpan.org/pod/Test::Exception"><code>Test::Exception</code></a>, <a href="https://metacpan.org/pod/Test::More"><code>Test::More</code></a>, <a href="https://metacpan.org/pod/Time::Local"><code>Time::Local</code></a>, <a href="https://metacpan.org/pod/Time::Piece"><code>Time::Piece</code></a>, <a href="https://metacpan.org/pod/Try::Tiny"><code>Try::Tiny</code></a>, <a href="https://metacpan.org/pod/boolean"><code>boolean</code></a>, <a href="https://metacpan.org/pod/feature"><code>feature</code></a>, <a href="https://metacpan.org/pod/strict"><code>strict</code></a>, <a href="https://metacpan.org/pod/utf8"><code>utf8</code></a>, <a href="https://metacpan.org/pod/warnings"><code>warnings</code></a></p>
-
 <p>Another week, another date related challenge.</p>
-
 <p>For this task, we observed there were two approaches in validating the <strong>7-digits date</strong>, either using a <strong>regex</strong> or <strong>non-regex</strong> at all. Almost everyone took the former approach but some participant have put in extra effort to ensure the readability of the code, especially the regex. Yes, you can write readable and maintainable code in <strong>Perl</strong>, regardless its notorious reputation of <a href="https://www.perl.com/pub/2000/01/10PerlMyths.html/#Perl_looks_like_line_noise"><strong>looking like line noise</strong></a>.</p>
-
 <p>First, look at the submission by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/adam-russell/perl5/ch-1.pl"><strong>Adam Russell</strong></a>. It&rsquo;s a straightforward approach to validate the <strong>7-digits</strong> date. But it didn&rsquo;t tell us much on what being extracted or matched from the regex without checking back the requirement.</p>
-
-<pre><code class="language-perl">sub is_valid{
-    my($x) = @_;
-    $x =~ m/([1-2]{1})([0-9]{2})(0[1-9]{1}|1[012]{1})(0[1-9]{1}|1[012]{1}|2[0-9]{1})/;
-    return $x, $1, $2, $3, $4;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_valid</span>{
+    <span style="color:#66d9ef">my</span>($x) <span style="color:#f92672">=</span> @_;
+    $x <span style="color:#f92672">=~</span> <span style="color:#e6db74">m/([1-2]{1})([0-9]{2})(0[1-9]{1}|1[012]{1})(0[1-9]{1}|1[012]{1}|2[0-9]{1})/</span>;
+    <span style="color:#66d9ef">return</span> $x, $1, $2, $3, $4;
 }
-</code></pre>
-
-<p>Now, compare to these code submissions.</p>
-
+</code></pre></div><p>Now, compare to these code submissions.</p>
 <p>By <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/javier-luque/perl5/ch-1.pl"><strong>Javier Luque</strong></a>.</p>
-
-<pre><code class="language-perl"># Regex to test date format
-return &quot;Invalid date format&quot;
-    unless $date &amp;&amp; $date =~ /
-        ^                     # start string
-        ([12])                # 1 or 2
-        (\d\d)                # year 00-99
-        (0[1-9]|1[0-2])       # month 1-12
-        (0[1-9]|[12]\d|3[01]) # day 1-31
-        $                     # end string
-    /x;
-</code></pre>
-
-<p>By <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/dave-jacoby/perl5/ch-1.pl"><strong>Dave Jacoby</strong></a>.</p>
-
-<pre><code class="language-perl">my ( $century, $year, $month, $day ) = $string =~ m{
-    ^         # start of string
-    (\d)      # century value 1-2
-    (\d{2})   # year value 00-99
-    (\d{2})   # month value 01-12
-    (\d{2})   # day value 01-31, plus
-    $         # end of string
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e"># Regex to test date format</span>
+<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Invalid date format&#34;</span>
+    <span style="color:#66d9ef">unless</span> $date <span style="color:#f92672">&amp;&amp;</span> $date <span style="color:#f92672">=~</span><span style="color:#e6db74"> /
+</span><span style="color:#e6db74">        ^                     # start string
+</span><span style="color:#e6db74">        ([12])                # 1 or 2
+</span><span style="color:#e6db74">        (\d\d)                # year 00-99
+</span><span style="color:#e6db74">        (0[1-9]|1[0-2])       # month 1-12
+</span><span style="color:#e6db74">        (0[1-9]|[12]\d|3[01]) # day 1-31
+</span><span style="color:#e6db74">        $                     # end string
+</span><span style="color:#e6db74">    /x</span>;
+</code></pre></div><p>By <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/dave-jacoby/perl5/ch-1.pl"><strong>Dave Jacoby</strong></a>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> ( $century, $year, $month, $day ) <span style="color:#f92672">=</span> $string <span style="color:#f92672">=~</span> <span style="color:#e6db74">m{
+</span><span style="color:#e6db74">    ^         # start of string
+</span><span style="color:#e6db74">    (\d)      # century value 1-2
+</span><span style="color:#e6db74">    (\d{2}</span>)   <span style="color:#75715e"># year value 00-99</span>
+    (<span style="color:#f92672">\</span>d{<span style="color:#ae81ff">2</span>})   <span style="color:#75715e"># month value 01-12</span>
+    (<span style="color:#f92672">\</span>d{<span style="color:#ae81ff">2</span>})   <span style="color:#75715e"># day value 01-31, plus</span>
+    $         <span style="color:#960050;background-color:#1e0010">#</span> end of string
 }mx;
-</code></pre>
+</code></pre></div><p>By <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/andrezgz/perl5/ch-1.pl"><strong>Andrezgz</strong></a>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">die <span style="color:#e6db74">&#39;invalid 7-digits date&#39;</span><span style="color:#f92672">.</span>$/
+    <span style="color:#66d9ef">if</span> $n <span style="color:#f92672">!~</span> <span style="color:#f92672">/^</span>
+        (?<span style="color:#e6db74">&lt;y1&gt;</span>[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>])                    <span style="color:#75715e"># 1st: 1 or 2</span>
+        (?<span style="color:#e6db74">&lt;y2&gt;</span><span style="color:#f92672">\</span>d{<span style="color:#ae81ff">2</span>})                    <span style="color:#75715e"># 2nd &amp; 3rd: anything</span>
+        (?<span style="color:#e6db74">&lt;m&gt;</span><span style="color:#ae81ff">0</span>[<span style="color:#ae81ff">1</span><span style="color:#f92672">-</span><span style="color:#ae81ff">9</span>]<span style="color:#f92672">|</span><span style="color:#ae81ff">1</span>[<span style="color:#ae81ff">0</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>])             <span style="color:#75715e"># 4th &amp; 5th: month</span>
+        (?<span style="color:#e6db74">&lt;d&gt;</span><span style="color:#ae81ff">0</span>[<span style="color:#ae81ff">1</span><span style="color:#f92672">-</span><span style="color:#ae81ff">9</span>]<span style="color:#f92672">|</span>[<span style="color:#ae81ff">12</span>][<span style="color:#ae81ff">0</span><span style="color:#f92672">-</span><span style="color:#ae81ff">9</span>]<span style="color:#f92672">|</span><span style="color:#ae81ff">3</span>[<span style="color:#ae81ff">01</span>])    <span style="color:#75715e"># 6th &amp; 7th: day of the month</span>
+    $<span style="color:#960050;background-color:#1e0010">/</span>x;
+</code></pre></div><p>By <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/ryan-thompson/perl5/ch-1.pl"><strong>Ryan Thompson</strong></a>. Yes, we do agree, the regex is the real star.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e"># This regex is the real star of the show</span>
+$ARGV[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^
+</span><span style="color:#e6db74">    (?&lt;cent&gt; [12]                    ) # Century, 1:1900, 2:2000
+</span><span style="color:#e6db74">    (?&lt;yy&gt;   \d\d                    ) # Year (2-digit)
+</span><span style="color:#e6db74">    (?&lt;mm&gt;   0[1-9] | 1[012]         ) # Month
+</span><span style="color:#e6db74">    (?&lt;dd&gt;   0[1-9] | [12]\d | 3[01] ) # Day
+</span><span style="color:#e6db74">$/x</span> <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;usage: $0 Cyymmdd&#34;</span>;
+</code></pre></div><p>How about non-regex solution, as usual, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/e-choroba/perl5/ch-1.pl"><strong>E. Choroba</strong></a> surprised us with his submission by not using any regex at all. Compare his solution to the above mentioned regex examples, which is more readable and understandable at a quick glance?</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">validate</span> {
+    <span style="color:#66d9ef">my</span> ($number) <span style="color:#f92672">=</span> @_;
+    die <span style="color:#e6db74">&#39;Invalid length&#39;</span> <span style="color:#66d9ef">unless</span> length $number <span style="color:#f92672">==</span> <span style="color:#ae81ff">7</span>;
 
-<p>By <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/andrezgz/perl5/ch-1.pl"><strong>Andrezgz</strong></a>.</p>
+    <span style="color:#66d9ef">my</span> $date <span style="color:#f92672">=</span> {  <span style="color:#ae81ff">1</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">2</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">19</span> }<span style="color:#f92672">-&gt;</span>{ substr $number, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span> }
+      <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#39;Invalid year&#39;</span>;
 
-<pre><code class="language-perl">die 'invalid 7-digits date'.$/
-    if $n !~ /^
-        (?&lt;y1&gt;[1,2])                    # 1st: 1 or 2
-        (?&lt;y2&gt;\d{2})                    # 2nd &amp; 3rd: anything
-        (?&lt;m&gt;0[1-9]|1[0-2])             # 4th &amp; 5th: month
-        (?&lt;d&gt;0[1-9]|[12][0-9]|3[01])    # 6th &amp; 7th: day of the month
-    $/x;
-</code></pre>
+    $date <span style="color:#f92672">.=</span> substr $number, <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">my</span> $tp <span style="color:#f92672">=</span> eval { <span style="color:#e6db74">&#39;Time::Piece&#39;</span><span style="color:#f92672">-&gt;</span>strptime($date, <span style="color:#e6db74">&#39;%Y%m%d&#39;</span>) };
+    die <span style="color:#e6db74">&#39;Invalid date&#39;</span> <span style="color:#66d9ef">unless</span> $tp <span style="color:#f92672">&amp;&amp;</span> $tp<span style="color:#f92672">-&gt;</span>mon <span style="color:#f92672">==</span> substr $number, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>;
 
-<p>By <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/ryan-thompson/perl5/ch-1.pl"><strong>Ryan Thompson</strong></a>. Yes, we do agree, the regex is the real star.</p>
-
-<pre><code class="language-perl"># This regex is the real star of the show
-$ARGV[0] =~ /^
-    (?&lt;cent&gt; [12]                    ) # Century, 1:1900, 2:2000
-    (?&lt;yy&gt;   \d\d                    ) # Year (2-digit)
-    (?&lt;mm&gt;   0[1-9] | 1[012]         ) # Month
-    (?&lt;dd&gt;   0[1-9] | [12]\d | 3[01] ) # Day
-$/x or die &quot;usage: $0 Cyymmdd&quot;;
-</code></pre>
-
-<p>How about non-regex solution, as usual, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/e-choroba/perl5/ch-1.pl"><strong>E. Choroba</strong></a> surprised us with his submission by not using any regex at all. Compare his solution to the above mentioned regex examples, which is more readable and understandable at a quick glance?</p>
-
-<pre><code class="language-perl">sub validate {
-    my ($number) = @_;
-    die 'Invalid length' unless length $number == 7;
-
-    my $date = {  1 =&gt; 20, 2 =&gt; 19 }-&gt;{ substr $number, 0, 1 }
-      or die 'Invalid year';
-
-    $date .= substr $number, 1;
-    my $tp = eval { 'Time::Piece'-&gt;strptime($date, '%Y%m%d') };
-    die 'Invalid date' unless $tp &amp;&amp; $tp-&gt;mon == substr $number, 3, 2;
-
-    return $tp-&gt;ymd
+    <span style="color:#66d9ef">return</span> $tp<span style="color:#f92672">-&gt;</span>ymd
 }
-</code></pre>
-
-<p>So what have we learned here from these submissions. You can write good and readable regex with good comment, split regex into multiple lines with the help of <code>\x</code> modifier, named captured variables, and good code indentation. The submission by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/ryan-thompson/perl5/ch-1.pl"><strong>Ryan Thompson</strong></a> was a good example of this.</p>
-
-<hr />
-
-<hr />
-
+</code></pre></div><p>So what have we learned here from these submissions. You can write good and readable regex with good comment, split regex into multiple lines with the help of <code>\x</code> modifier, named captured variables, and good code indentation. The submission by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/ryan-thompson/perl5/ch-1.pl"><strong>Ryan Thompson</strong></a> was a good example of this.</p>
+<hr>
+<hr>
 <h2 id="task-2">Task #2</h2>
-
-<hr />
-
-<hr />
-
+<hr>
+<hr>
 <p><strong>CPAN</strong> modules used: <a href="https://metacpan.org/pod/Algorithm::Combinatorics"><code>Algorithm::Combinatorics</code></a>, <a href="https://metacpan.org/pod/Data::Dumper"><code>Data::Dumper</code></a>, <a href="https://metacpan.org/pod/File::Slurp"><code>File::Slurp</code></a>, <a href="https://metacpan.org/pod/File::Slurper"><code>File::Slurper</code></a>, <a href="https://metacpan.org/pod/Getopt::Long"><code>Getopt::Long</code></a>, <a href="https://metacpan.org/pod/LWP::Simple"><code>LWP::Simple</code></a>, <a href="https://metacpan.org/pod/List::Util"><code>List::Util</code></a>, <a href="https://metacpan.org/pod/Math::Combinatorics"><code>Math::Combinatorics</code></a>, <a href="https://metacpan.org/pod/Memoize"><code>Memoize</code></a>, <a href="https://metacpan.org/pod/Readonly"><code>Readonly</code></a>, <a href="https://metacpan.org/pod/autodie"><code>autodie</code></a>, <a href="https://metacpan.org/pod/constant"><code>constant</code></a>, <a href="https://metacpan.org/pod/enum"><code>enum</code></a>, <a href="https://metacpan.org/pod/feature"><code>feature</code></a>, <a href="https://metacpan.org/pod/strict"><code>strict</code></a>, <a href="https://metacpan.org/pod/utf8"><code>utf8</code></a>, <a href="https://metacpan.org/pod/warnings"><code>warnings</code></a></p>
-
 <p>While the question did not explain it explicitly, the task is like a <a href="https://en.wikipedia.org/wiki/Scrabble"><strong>Scrabble</strong></a> game.</p>
-
 <p>Let&rsquo;s us compare how participants initialize the character value/point/score and frequency/count.</p>
-
 <p>By <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/ruben-westerberg/perl5/ch-2.pl"><strong>Ruben Westerberg</strong></a> which have the shortest code.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @l<span style="color:#f92672">=</span>split <span style="color:#e6db74">&#34;&#34;</span>, <span style="color:#e6db74">&#34;AGISUXZEJLRVYFDPWBNTOHMCKQ&#34;</span>;
+<span style="color:#66d9ef">my</span> @c<span style="color:#f92672">=</span>(<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">9</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">2</span>);
+<span style="color:#66d9ef">my</span> @v<span style="color:#f92672">=</span>((<span style="color:#ae81ff">1</span>)x7, (<span style="color:#ae81ff">2</span>)x6,(<span style="color:#ae81ff">3</span>)x4,(<span style="color:#ae81ff">4</span>)x2,(<span style="color:#ae81ff">5</span>)x5,(<span style="color:#ae81ff">10</span>)x2);
+</code></pre></div><p>By <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/ryan-thompson/perl5/ch-2.pl"><strong>Ryan Thompson</strong></a>. Notice the for loop used to initialize the tile.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e"># Point values for each tile, as given in the challenge description:</span>
+<span style="color:#66d9ef">my</span> %val;
+$val{$_} <span style="color:#f92672">=</span>  <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">for</span> <span style="color:#e6db74">qw&lt; A G I S U X Z &gt;</span>;
+$val{$_} <span style="color:#f92672">=</span>  <span style="color:#ae81ff">2</span> <span style="color:#66d9ef">for</span> <span style="color:#e6db74">qw&lt; E J L R V Y   &gt;</span>;
+$val{$_} <span style="color:#f92672">=</span>  <span style="color:#ae81ff">3</span> <span style="color:#66d9ef">for</span> <span style="color:#e6db74">qw&lt; F D P W       &gt;</span>;
+$val{$_} <span style="color:#f92672">=</span>  <span style="color:#ae81ff">4</span> <span style="color:#66d9ef">for</span> <span style="color:#e6db74">qw&lt; B N           &gt;</span>;
+$val{$_} <span style="color:#f92672">=</span>  <span style="color:#ae81ff">5</span> <span style="color:#66d9ef">for</span> <span style="color:#e6db74">qw&lt; T O H M C     &gt;</span>;
+$val{$_} <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span> <span style="color:#66d9ef">for</span> <span style="color:#e6db74">qw&lt; K Q           &gt;</span>;
 
-<pre><code class="language-perl">my @l=split &quot;&quot;, &quot;AGISUXZEJLRVYFDPWBNTOHMCKQ&quot;;
-my @c=(8,3,5,7,5,2,5,9,3,3,3,3,5,3,3,5,5,5,4,5,3,3,4,4,2,2);
-my @v=((1)x7, (2)x6,(3)x4,(4)x2,(5)x5,(10)x2);
-</code></pre>
-
-<p>By <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/ryan-thompson/perl5/ch-2.pl"><strong>Ryan Thompson</strong></a>. Notice the for loop used to initialize the tile.</p>
-
-<pre><code class="language-perl"># Point values for each tile, as given in the challenge description:
-my %val;
-$val{$_} =  1 for qw&lt; A G I S U X Z &gt;;
-$val{$_} =  2 for qw&lt; E J L R V Y   &gt;;
-$val{$_} =  3 for qw&lt; F D P W       &gt;;
-$val{$_} =  4 for qw&lt; B N           &gt;;
-$val{$_} =  5 for qw&lt; T O H M C     &gt;;
-$val{$_} = 10 for qw&lt; K Q           &gt;;
-
-# Tile counts in bag. Each letter is repeated the specified number of times
-# We shuffle with List::Util's shuffle(), but see perlfaq4 for Fisher-Yates
-my @bag = shuffle map { my ($l, $count) = split //; ($l) x $count }
-    qw&lt; A8 G3 I5 S7 U5 X2 Z5
-        E9 J3 L3 R3 V3 Y5
-        F3 D3 P5 W5
-        B5 N4
-        T5 O3 H3 M4 C4
-        K2 Q2 &gt;;
-</code></pre>
-
-<p>By <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/andrezgz/perl5/ch-2.pl"><strong>Andrezgz</strong></a>. Similar to <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/ruben-westerberg/perl5/ch-2.pl"><strong>Ruben Westerberg</strong></a> but more readable.</p>
-
-<pre><code class="language-perl"># Points for each tile
-my %tile_points = (
-    A =&gt; 1, G =&gt; 1, I =&gt; 1, S =&gt; 1, U =&gt; 1, X =&gt; 1, Z =&gt; 1,
-    E =&gt; 2, J =&gt; 2, L =&gt; 2, R =&gt; 2, V =&gt; 2, Y =&gt; 2,
-    F =&gt; 3, D =&gt; 3, P =&gt; 3, W =&gt; 3,
-    B =&gt; 4, N =&gt; 4,
-    T =&gt; 5, O =&gt; 5, H =&gt; 5, M =&gt; 5, C =&gt; 5,
-    K =&gt; 10, Q =&gt; 10
+<span style="color:#75715e"># Tile counts in bag. Each letter is repeated the specified number of times</span>
+<span style="color:#75715e"># We shuffle with List::Util&#39;s shuffle(), but see perlfaq4 for Fisher-Yates</span>
+<span style="color:#66d9ef">my</span> @bag <span style="color:#f92672">=</span> shuffle map { <span style="color:#66d9ef">my</span> ($l, $count) <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>; ($l) x $count }
+    <span style="color:#e6db74">qw&lt; A8 G3 I5 S7 U5 X2 Z5
+</span><span style="color:#e6db74">        E9 J3 L3 R3 V3 Y5
+</span><span style="color:#e6db74">        F3 D3 P5 W5
+</span><span style="color:#e6db74">        B5 N4
+</span><span style="color:#e6db74">        T5 O3 H3 M4 C4
+</span><span style="color:#e6db74">        K2 Q2 &gt;</span>;
+</code></pre></div><p>By <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/andrezgz/perl5/ch-2.pl"><strong>Andrezgz</strong></a>. Similar to <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/ruben-westerberg/perl5/ch-2.pl"><strong>Ruben Westerberg</strong></a> but more readable.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e"># Points for each tile</span>
+<span style="color:#66d9ef">my</span> %tile_points <span style="color:#f92672">=</span> (
+    A <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>, G <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>, I <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>, S <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>, U <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>, X <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>, Z <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>,
+    E <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>, J <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>, L <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>, R <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>, V <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>, Y <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>,
+    F <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>, D <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>, P <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>, W <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>,
+    B <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">4</span>, N <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">4</span>,
+    T <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5</span>, O <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5</span>, H <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5</span>, M <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5</span>, C <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5</span>,
+    K <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">10</span>, Q <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">10</span>
 );
 
-# Lot of available tiles
-my @lot = (
-    ('K','Q','X') x 2,
-    ('D','F','G','H','J','L','O','R','V') x 3,
-    ('C','M','N') x 4,
-    ('B','I','P','T','U','W','Y','Z') x 5,
-    ('S') x 7,
-    ('A') x 8,
-    ('E') x 9
+<span style="color:#75715e"># Lot of available tiles</span>
+<span style="color:#66d9ef">my</span> @lot <span style="color:#f92672">=</span> (
+    (<span style="color:#e6db74">&#39;K&#39;</span>,<span style="color:#e6db74">&#39;Q&#39;</span>,<span style="color:#e6db74">&#39;X&#39;</span>) x <span style="color:#ae81ff">2</span>,
+    (<span style="color:#e6db74">&#39;D&#39;</span>,<span style="color:#e6db74">&#39;F&#39;</span>,<span style="color:#e6db74">&#39;G&#39;</span>,<span style="color:#e6db74">&#39;H&#39;</span>,<span style="color:#e6db74">&#39;J&#39;</span>,<span style="color:#e6db74">&#39;L&#39;</span>,<span style="color:#e6db74">&#39;O&#39;</span>,<span style="color:#e6db74">&#39;R&#39;</span>,<span style="color:#e6db74">&#39;V&#39;</span>) x <span style="color:#ae81ff">3</span>,
+    (<span style="color:#e6db74">&#39;C&#39;</span>,<span style="color:#e6db74">&#39;M&#39;</span>,<span style="color:#e6db74">&#39;N&#39;</span>) x <span style="color:#ae81ff">4</span>,
+    (<span style="color:#e6db74">&#39;B&#39;</span>,<span style="color:#e6db74">&#39;I&#39;</span>,<span style="color:#e6db74">&#39;P&#39;</span>,<span style="color:#e6db74">&#39;T&#39;</span>,<span style="color:#e6db74">&#39;U&#39;</span>,<span style="color:#e6db74">&#39;W&#39;</span>,<span style="color:#e6db74">&#39;Y&#39;</span>,<span style="color:#e6db74">&#39;Z&#39;</span>) x <span style="color:#ae81ff">5</span>,
+    (<span style="color:#e6db74">&#39;S&#39;</span>) x <span style="color:#ae81ff">7</span>,
+    (<span style="color:#e6db74">&#39;A&#39;</span>) x <span style="color:#ae81ff">8</span>,
+    (<span style="color:#e6db74">&#39;E&#39;</span>) x <span style="color:#ae81ff">9</span>
 );
-</code></pre>
+</code></pre></div><p>By <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/e-choroba/perl5/ch-2.pl"><strong>E. Choroba</strong></a>. A rather elegant way of initializing the score and count of character tiles.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> %tile <span style="color:#f92672">=</span> (
+    A <span style="color:#f92672">=&gt;</span> [ <span style="color:#ae81ff">8</span>,  <span style="color:#ae81ff">1</span> ], G <span style="color:#f92672">=&gt;</span> [ <span style="color:#ae81ff">3</span>,  <span style="color:#ae81ff">1</span> ], I <span style="color:#f92672">=&gt;</span> [ <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">1</span> ], S <span style="color:#f92672">=&gt;</span> [ <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">1</span> ],
+    U <span style="color:#f92672">=&gt;</span> [ <span style="color:#ae81ff">5</span>,  <span style="color:#ae81ff">1</span> ], X <span style="color:#f92672">=&gt;</span> [ <span style="color:#ae81ff">2</span>,  <span style="color:#ae81ff">1</span> ], Z <span style="color:#f92672">=&gt;</span> [ <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">1</span> ], E <span style="color:#f92672">=&gt;</span> [ <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">2</span> ],
+    J <span style="color:#f92672">=&gt;</span> [ <span style="color:#ae81ff">3</span>,  <span style="color:#ae81ff">2</span> ], L <span style="color:#f92672">=&gt;</span> [ <span style="color:#ae81ff">3</span>,  <span style="color:#ae81ff">2</span> ], R <span style="color:#f92672">=&gt;</span> [ <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span> ], V <span style="color:#f92672">=&gt;</span> [ <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span> ],
+    Y <span style="color:#f92672">=&gt;</span> [ <span style="color:#ae81ff">5</span>,  <span style="color:#ae81ff">2</span> ], F <span style="color:#f92672">=&gt;</span> [ <span style="color:#ae81ff">3</span>,  <span style="color:#ae81ff">3</span> ], D <span style="color:#f92672">=&gt;</span> [ <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span> ], P <span style="color:#f92672">=&gt;</span> [ <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">3</span> ],
+    W <span style="color:#f92672">=&gt;</span> [ <span style="color:#ae81ff">5</span>,  <span style="color:#ae81ff">3</span> ], B <span style="color:#f92672">=&gt;</span> [ <span style="color:#ae81ff">5</span>,  <span style="color:#ae81ff">4</span> ], N <span style="color:#f92672">=&gt;</span> [ <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">4</span> ], T <span style="color:#f92672">=&gt;</span> [ <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">5</span> ],
+    O <span style="color:#f92672">=&gt;</span> [ <span style="color:#ae81ff">3</span>,  <span style="color:#ae81ff">5</span> ], H <span style="color:#f92672">=&gt;</span> [ <span style="color:#ae81ff">3</span>,  <span style="color:#ae81ff">5</span> ], M <span style="color:#f92672">=&gt;</span> [ <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span> ], C <span style="color:#f92672">=&gt;</span> [ <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span> ],
+    K <span style="color:#f92672">=&gt;</span> [ <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">10</span> ], Q <span style="color:#f92672">=&gt;</span> [ <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">10</span> ]);
 
-<p>By <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/e-choroba/perl5/ch-2.pl"><strong>E. Choroba</strong></a>. A rather elegant way of initializing the score and count of character tiles.</p>
-
-<pre><code class="language-perl">my %tile = (
-    A =&gt; [ 8,  1 ], G =&gt; [ 3,  1 ], I =&gt; [ 5, 1 ], S =&gt; [ 7, 1 ],
-    U =&gt; [ 5,  1 ], X =&gt; [ 2,  1 ], Z =&gt; [ 5, 1 ], E =&gt; [ 9, 2 ],
-    J =&gt; [ 3,  2 ], L =&gt; [ 3,  2 ], R =&gt; [ 3, 2 ], V =&gt; [ 3, 2 ],
-    Y =&gt; [ 5,  2 ], F =&gt; [ 3,  3 ], D =&gt; [ 3, 3 ], P =&gt; [ 5, 3 ],
-    W =&gt; [ 5,  3 ], B =&gt; [ 5,  4 ], N =&gt; [ 4, 4 ], T =&gt; [ 5, 5 ],
-    O =&gt; [ 3,  5 ], H =&gt; [ 3,  5 ], M =&gt; [ 4, 5 ], C =&gt; [ 4, 5 ],
-    K =&gt; [ 2, 10 ], Q =&gt; [ 2, 10 ]);
-
-my @all = shuffle(map +($_) x $tile{$_}[NUMBER], keys %tile);
-</code></pre>
-
-<hr />
-
-<hr />
-
+<span style="color:#66d9ef">my</span> @all <span style="color:#f92672">=</span> shuffle(map <span style="color:#f92672">+</span>($_) x $tile{$_}[NUMBER], keys %tile);
+</code></pre></div><hr>
+<hr>
 <h2 id="see-also">SEE ALSO</h2>
-
-<hr />
-
-<hr />
-
+<hr>
+<hr>
 <p>(1) <a href="https://adamcrussell.livejournal.com/12987.html"><strong>Perl Weekly Challenge 038</strong></a> by <strong>Adam Russell</strong></p>
-
 <p>(2) <a href="https://raku-musings.com/date-word.html"><strong>Datefinder General, A Raku Wordgame</strong></a> by <strong>Arne Sommer</strong></p>
-
 <p>(3) <a href="http://217.229.26.129:81/www/Perl/PWC/20191215_38/ch-1.html"><strong>Perl Weekly Challenge #38</strong></a> by <strong>Burkhard Nickels</strong></p>
-
 <p>(4) <a href="https://jacoby.github.io/2019/12/10/words-and-dates-which-is-more-fun.html"><strong>Words and Dates: Which is more fun?</strong></a> by <strong>Dave Jacoby</strong></p>
-
 <p>(5) <a href="http://blogs.perl.org/users/e_choroba/2019/12/perl-weekly-challenge-038-date-finder-and-word-game.html"><strong>Perl Weekly Challenge 038: Date Finder and Word Game</strong></a> by <strong>E. Choroba</strong></p>
-
 <p>(6) <a href="https://perlchallenges.wordpress.com/2019/12/10/perl-weekly-challenge-038/"><strong>Perl Weekly Challenge – 038</strong></a> by <strong>Javier Luque</strong></p>
-
 <p>(7) <a href="http://blogs.perl.org/users/laurent_r/2019/12/perl-weekly-challenge-38-date-finder-and-word-game.html"><strong>Perl Weekly Challenge 38: Date Finder and Word Game</strong></a> by <strong>Laurent Rosenfeld</strong></p>
 
                 </div>

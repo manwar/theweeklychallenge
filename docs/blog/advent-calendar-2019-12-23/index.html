@@ -16,7 +16,7 @@
 
     <meta name="description" content="Advent Calendar - December 23, 2019">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.55.0-DEV" />
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -41,6 +41,8 @@
     <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
     <!-- hover -->
     <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
     <!-- template main css file -->
     
     <link rel="stylesheet" href="https://perlweeklychallenge.org/css/style.min.css" integrity="" media="screen">
@@ -149,68 +151,42 @@
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
-                    
-
-<p><a href="/blog/advent-calendar-2019"><strong>Advent Calendar 2019</strong></a></p>
-
-<hr />
-
-<p>The gift is presented by <strong>Francis J Whittle</strong>. Today he is talking about his solutions to <strong>Task #1: Perfect Numbers</strong> of <a href="/blog/perl-weekly-challenge-008"><strong>&ldquo;The Weekly Challenge - 008&rdquo;</strong></a>.</p>
-
-<h4 id="write-a-script-that-computes-the-first-five-perfect-numbers-a-perfect-number-is-an-integer-that-is-the-sum-of-its-positive-proper-divisors-all-divisors-except-itself-please-check-wiki-https-en-wikipedia-org-wiki-perfect-number-for-more-information-this-challenge-was-proposed-by-laurent-rosenfeld">Write a script that computes the first five perfect numbers. A perfect number is an integer that is the sum of its positive proper divisors (all divisors except itself). Please check <a href="https://en.wikipedia.org/wiki/Perfect_number">Wiki</a> for more information. This challenge was proposed by Laurent Rosenfeld.</h4>
-
-<hr />
-
+                    <p><a href="/blog/advent-calendar-2019"><strong>Advent Calendar 2019</strong></a></p>
+<hr>
+<p>The gift is presented by <strong>Francis J Whittle**. Today he is talking about his solutions to <strong>Task #1: Perfect Numbers** of </strong>&ldquo;The Weekly Challenge - 008&rdquo;</strong><a href="/blog/perl-weekly-challenge-008"></a>.</p>
+<h4 id="write-a-script-that-computes-the-first-five-perfect-numbers-a-perfect-number-is-an-integer-that-is-the-sum-of-its-positive-proper-divisors-all-divisors-except-itself-please-check-wikihttpsenwikipediaorgwikiperfect_number-for-more-information-this-challenge-was-proposed-by-laurent-rosenfeld">Write a script that computes the first five perfect numbers. A perfect number is an integer that is the sum of its positive proper divisors (all divisors except itself). Please check <a href="https://en.wikipedia.org/wiki/Perfect_number">Wiki</a> for more information. This challenge was proposed by Laurent Rosenfeld.</h4>
+<hr>
 <h2 id="perfect-numbers">Perfect Numbers</h2>
-
 <p>I’m a little late to the blog this week, so I’ve had a look at what other people did before writing this up (I did my solution before checking out others’), and it looks like a number of people tried to filter the list of positive integers directly. As they discovered, this is mostly fine for the first four perfect numbers, but the fifth… takes a while to discover this way. I didn’t run into this timing issue, because I like to generate.</p>
-
 <h2 id="how-do-i-generate-perfect-number">How do I generate perfect number?</h2>
-
 <p>The first step is to find an algorithm. This is pretty well documented on the Wikipedia page:</p>
-
 <blockquote>
 <p>Euclid proved that all numbers of the form q(q + 1) / 2 are perfect numbers where q is (what would later be known as) a Mersenne Prime.</p>
-
+</blockquote>
+<blockquote>
 <p>Much more recently, Euler proved that in fact all perfect numbers are formed like this.</p>
 </blockquote>
-
 <p>So the answer then is to generate Mersenne primes, and calculate perfect numbers using these.</p>
-
 <h2 id="lazily-we-mersenne">Lazily we Mersenne</h2>
-
 <p>A <strong>Mersenne Prime</strong> is of the form 2p - 1 where p is a prime number. So we lazily gather a list of all prime numbers up to ∞, check if they’re prime, apply the formula, and then check if the result is prime as well, because the sequence can produce composite numbers, but Mersenne numbers / primes are always prime.</p>
-
 <p>I bound this to the term M:</p>
-
 <pre><code>my \M := (^∞)
        .grep(*.is-prime)
        .map(-&gt; $n { 2 ** $n - 1})
        .grep(*.is-prime);
 </code></pre>
-
 <h2 id="perfect-map">Perfect Map</h2>
-
 <p>The next step is to bind a mapping of the Mersenne primes to the corresponding perfect number:</p>
-
 <pre><code>my \P := M.map: -&gt; $q { $q * ($q + 1) div 2 };
 </code></pre>
-
 <p>I used div so the result is Int not Rat.</p>
-
 <h2 id="finally-get-the-results">Finally, get the results</h2>
-
 <p>P is now a lazily generated array that will find the nth Perfect number as P[n]. ^5 gives a list of the first 5, so</p>
-
 <pre><code>P[^5]».put
 </code></pre>
-
 <p>Gets the first 5 perfect numbers, then prints each one on its own line.</p>
-
-<hr />
-
+<hr>
 <p>If you have any suggestion then please do share with us <a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a>.</p>
-
 <p><a href="/blog/advent-calendar-2019"><strong>Advent Calendar 2019</strong></a></p>
 
                 </div>

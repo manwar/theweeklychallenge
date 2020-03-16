@@ -16,7 +16,7 @@
 
     <meta name="description" content="Ryan Thompson › Raku Weekly Review: Challenge - #046">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.55.0-DEV" />
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -41,6 +41,8 @@
     <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
     <!-- hover -->
     <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
     <!-- template main css file -->
     
     <link rel="stylesheet" href="https://perlweeklychallenge.org/css/style.min.css" integrity="" media="screen">
@@ -149,124 +151,81 @@
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
-                    
-
-<p>Continues from <a href="/blog/p6-review-challenge-045/">previous week</a>.</p>
-
+                    <p>Continues from <a href="/blog/p6-review-challenge-045/">previous week</a>.</p>
 <p>Welcome to the Raku review for Week 046 of the Weekly Challenge! For a quick overview, go through the <a href="/blog/perl-weekly-challenge-046/">original tasks</a> and <a href="/blog/recap-challenge-046/">recap</a> of the weekly challenge.</p>
-
 <h2 id="getting-in-touch">Getting in Touch</h2>
-
 <p><a href="mailto:rjt@cpan.org"><img src="http://ry.ca/misc/Email.svg" height="50" width="50"> Email</a> › Email me (Ryan) with any feedback about this review.</p>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge"><img src="http://ry.ca/misc/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request for any issues you may find with this page.</p>
-
 <p><a href="https://twitter.com/perlwchallenge"><img src="http://ry.ca/misc/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!</p>
-
 <p>We&rsquo;d greatly appreciate any feedback you&rsquo;d like to give.</p>
-
 <h2 id="table-of-contents">Table of Contents</h2>
-
-<h3 id="task-1-task1"><a href="#task1">Task 1</a></h3>
-
+<h3 id="task-1task1"><a href="#task1">Task 1</a></h3>
 <p>[  <a href="#arne-sommer1">Arne Sommer</a>  | <a href="#javier-luque1">Javier Luque</a>  | <a href="#kevin-colyer1">Kevin Colyer</a>  | <a href="#laurent-rosenfeld1">Laurent Rosenfeld</a>  | <a href="#luca-ferrari1">Luca Ferrari</a>  | <a href="#mark-anderson1">Mark Anderson</a>  | <a href="#markus-holzer1">Markus Holzer</a>  | <a href="#noud1">Noud Aldenhoven</a>  | <a href="#roger-bell-west1">Roger Bell West</a>  | <a href="#ruben-westerberg1">Ruben Westerberg</a>  | <a href="#ryan-thompson1">Ryan Thompson</a>  | <a href="#simon-proctor1">Simon Proctor</a>  | <a href="#ulrich-rieke1">Ulrich Rieke</a>  ]</p>
-
-<h3 id="task-2-task2"><a href="#task2">Task 2</a></h3>
-
+<h3 id="task-2task2"><a href="#task2">Task 2</a></h3>
 <p>[  <a href="#arne-sommer2">Arne Sommer</a>  | <a href="#colin-crain2">Colin Crain</a>  | <a href="#jaldhar-h-vyas2">Jaldhar H. Vyas</a>  | <a href="#javier-luque2">Javier Luque</a>  | <a href="#kevin-colyer2">Kevin Colyer</a>  | <a href="#laurent-rosenfeld2">Laurent Rosenfeld</a>  | <a href="#luca-ferrari2">Luca Ferrari</a>  | <a href="#mark-anderson2">Mark Anderson</a>  | <a href="#markus-holzer2">Markus Holzer</a>  | <a href="#noud2">Noud Aldenhoven</a>  | <a href="#roger-bell-west2">Roger Bell West</a>  | <a href="#ruben-westerberg2">Ruben Westerberg</a>  | <a href="#ryan-thompson2">Ryan Thompson</a>  | <a href="#simon-proctor2">Simon Proctor</a>  | <a href="#ulrich-rieke2">Ulrich Rieke</a>  ]</p>
-
-<h3 id="blogs-blogs"><a href="#blogs">Blogs</a></h3>
-
-<hr />
-
-<hr />
-
+<h3 id="blogsblogs"><a href="#blogs">Blogs</a></h3>
+<hr>
+<hr>
 <h1 id="task1">Task #1 - Cryptic Message</h1>
-
 <p>This task had us resolving &ldquo;unreliable transmissions&rdquo; that were sent repeatedly, each time with errors in different locations in the string, such as this one:</p>
-
 <pre><code>P + 2 l ! a t o
 1 e 8 0 R $ 4 u
 5 - r ] + a &gt; /
 P x w l b 3 k \
 2 e 3 5 R 8 y u
 &lt; ! r ^ ( ) k 0
-</code></pre>
-
-<p>That spells <code>PerlRaku</code>, which you can arrive at by noticing that only one character in each column will be repeated.</p>
-
-<hr />
-
+</code></pre><p>That spells <code>PerlRaku</code>, which you can arrive at by noticing that only one character in each column will be repeated.</p>
+<hr>
 <h2 id="my-general-observations">My general observations</h2>
-
 <p>Both example ciphers show that each plaintext character appears exactly twice in each column, and the other characters appear exactly once. Naturally, some hackers relied on this and printed all characters that appeared twice. Some hackers took a more permissive or general interpretation, and calculated the frequency of each character, printing whichever character appeared most often in each column.</p>
-
-<hr />
-
+<hr>
 <h2 id="arne-sommer1">Arne Sommer</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/arne-sommer/raku/ch-1.p6">Arne Sommer&rsquo;s solution</a> accepts a string of rows separated by spaces, which he then splits to <code>@strings</code> (rows), calculates the <code>$max</code> row length, and iterates over the character indices:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku">$string <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;P+2l!ato 1e80R$4u 5-r]+a&gt;/ Pxwlb3k\ 2e35R8yu &lt;!r^()k0&#39;</span> <span style="color:#66d9ef">if</span> $another;
+<span style="color:#66d9ef">my</span> @strings <span style="color:#f92672">=</span> $string<span style="color:#f92672">.</span>words;
+<span style="color:#66d9ef">my</span> $max     <span style="color:#f92672">=</span> @strings<span style="color:#f92672">&gt;&gt;.</span>chars<span style="color:#f92672">.</span>max;
+<span style="color:#66d9ef">my</span> @result;
 
-<p><a href="/challenge-046/arne-sommer/raku/ch-1.p6">Arne Sommer&rsquo;s solution</a> accepts a string of rows separated by spaces, which he then splits to <code>@strings</code> (rows), calculates the <code>$max</code> row length, and iterates over the character indices:</p>
-
-<pre><code class="language-raku">$string = 'P+2l!ato 1e80R$4u 5-r]+a&gt;/ Pxwlb3k\ 2e35R8yu &lt;!r^()k0' if $another;
-my @strings = $string.words;
-my $max     = @strings&gt;&gt;.chars.max;
-my @result;
-
-for ^$max -&gt; $index {
-  @result.push: @strings.map({ $_.substr($index,1) // &quot;&quot; }).repeated.unique;
+<span style="color:#66d9ef">for</span> <span style="color:#f92672">^</span>$max <span style="color:#f92672">-&gt;</span> $index {
+  @result<span style="color:#f92672">.</span>push: @strings<span style="color:#f92672">.</span>map({ $_<span style="color:#f92672">.</span>substr($index,<span style="color:#ae81ff">1</span>) <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#34;&#34;</span> })<span style="color:#f92672">.</span>repeated<span style="color:#f92672">.</span>unique;
 }
-say @result.join;
-</code></pre>
-
-<p>The <code>@result</code> is built up by taking the character at <code>$index</code> from each string, and looking for the <code>.repeated</code> characters. <code>.unique</code> ensures that if there are more than two of the same character, that only one will be returned. (e.g., <code>&lt;A x A y A&gt;.repeated.unique = (A)</code>, whereas <code>&lt;A x A y A&gt;.repeated = (A A)</code>).</p>
-
+say @result<span style="color:#f92672">.</span>join;
+</code></pre></div><p>The <code>@result</code> is built up by taking the character at <code>$index</code> from each string, and looking for the <code>.repeated</code> characters. <code>.unique</code> ensures that if there are more than two of the same character, that only one will be returned. (e.g., <code>&lt;A x A y A&gt;.repeated.unique = (A)</code>, whereas <code>&lt;A x A y A&gt;.repeated = (A A)</code>).</p>
 <h3 id="ambiguous-input">Ambiguous Input</h3>
-
 <p>Arne also submitted a <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/arne-sommer/raku/cryptic">more in-depth solution</a> that better handles ambiguous input (i.e., more than one character is repeated). The main difference is the addition of a recursive <code>expand</code> routine as follows:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku">expand( <span style="color:#e6db74">&#34;&#34;</span>, @result );
 
-<pre><code class="language-raku">expand( &quot;&quot;, @result );
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">expand</span> ( $current, @strings ) {
+    <span style="color:#66d9ef">my</span> $copy <span style="color:#f92672">=</span> $current;
 
-sub expand ( $current, @strings ) {
-    my $copy = $current;
-
-    for ^@strings.elems -&gt; $index {
-        my $curr = @strings[$index];
-        if $curr.elems &gt; 1 {
-            expand( $copy ~$_, @strings[ $index + 1 .. Inf ] ) for @$curr;
-            return;
-        } else {
-            $copy ~= $curr;
+    <span style="color:#66d9ef">for</span> <span style="color:#f92672">^</span>@strings<span style="color:#f92672">.</span>elems <span style="color:#f92672">-&gt;</span> $index {
+        <span style="color:#66d9ef">my</span> $curr <span style="color:#f92672">=</span> @strings[$index];
+        <span style="color:#66d9ef">if</span> $curr<span style="color:#f92672">.</span>elems <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> {
+            expand( $copy <span style="color:#f92672">~</span>$_, @strings[ $index <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> Inf ] ) <span style="color:#66d9ef">for</span> @$curr;
+            <span style="color:#66d9ef">return</span>;
+        } <span style="color:#66d9ef">else</span> {
+            $copy <span style="color:#f92672">~=</span> $curr;
         }
     } say $copy;
 }
-</code></pre>
-
-<p><code>expand</code> runs on the <code>@result</code> from the first solution. If more than one character is repeated, <code>@result</code> would contain a sublist, e.g., we might get <code>(H (e u) l l o)</code>. The unmodified first solution would print <code>He ullo</code>, which is not ideal. So <code>expand</code> takes these sublists (<code>if $curr.elems &gt; 1</code>), and branches so that every possible result will be printed. In this case, <code>Hello</code> and <code>Hullo</code>, but in general the number of output lines will be the product of all sublist lengths. This is a good way of disambiguating results for an imperfect transmission method such as this.</p>
-
+</code></pre></div><p><code>expand</code> runs on the <code>@result</code> from the first solution. If more than one character is repeated, <code>@result</code> would contain a sublist, e.g., we might get <code>(H (e u) l l o)</code>. The unmodified first solution would print <code>He ullo</code>, which is not ideal. So <code>expand</code> takes these sublists (<code>if $curr.elems &gt; 1</code>), and branches so that every possible result will be printed. In this case, <code>Hello</code> and <code>Hullo</code>, but in general the number of output lines will be the product of all sublist lengths. This is a good way of disambiguating results for an imperfect transmission method such as this.</p>
 <p>Arne&rsquo;s solutions include some verbose output, which provides good introspection into how they work, so I recommend you try them out for yourself, and read Arne&rsquo;s excellent blog:</p>
-
 <p><strong>Blog</strong> › <a href="https://raku-musings.com/cryptic-room.html">The Cryptic Raku Room</a></p>
-
 <h2 id="javier-luque1">Javier Luque</h2>
-
-<p><a href="/challenge-046/javier-luque/raku/ch-1.p6">Javier Luque&rsquo;s solution</a> accepts a multiline string, gets the length of the first line, and then starts building the frequency table:</p>
-
-<pre><code class="language-raku"># Initialize the columns hash
-my @column_hash;
-my ($first_line) = $message.split(&quot;\n&quot;, 2);
-my $length = $first_line.split(&quot; &quot;).join.chars;
-@column_hash[0 .. $length - 1] = {};
-# Parse the cryptic message
-for ($message.split(&quot;\n&quot;)) -&gt; $line {
-    my $i = 0;
-    for ($line.split(&quot; &quot;)) -&gt; $char {
-        @column_hash[$i++].{$char}++;
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/javier-luque/raku/ch-1.p6">Javier Luque&rsquo;s solution</a> accepts a multiline string, gets the length of the first line, and then starts building the frequency table:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#75715e"># Initialize the columns hash</span>
+<span style="color:#66d9ef">my</span> @column_hash;
+<span style="color:#66d9ef">my</span> ($first_line) <span style="color:#f92672">=</span> $message<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34;\n&#34;</span>, <span style="color:#ae81ff">2</span>);
+<span style="color:#66d9ef">my</span> $length <span style="color:#f92672">=</span> $first_line<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34; &#34;</span>)<span style="color:#f92672">.</span>join<span style="color:#f92672">.</span>chars;
+@column_hash[<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $length <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> {};
+<span style="color:#75715e"># Parse the cryptic message</span>
+<span style="color:#66d9ef">for</span> ($message<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34;\n&#34;</span>)) <span style="color:#f92672">-&gt;</span> $line {
+    <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">for</span> ($line<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34; &#34;</span>)) <span style="color:#f92672">-&gt;</span> $char {
+        @column_hash[$i<span style="color:#f92672">++</span>]<span style="color:#f92672">.</span>{$char}<span style="color:#f92672">++</span>;
     }
 }
-</code></pre>
-
-<p>The loop splits the input into lines, and then builds a <code>@column_hash</code>, which is a mapping of a character&rsquo;s count in a particular column. From there, each column is processed, and the most frequent character is appended to the <code>$output</code>:</p>
-
+</code></pre></div><p>The loop splits the input into lines, and then builds a <code>@column_hash</code>, which is a mapping of a character&rsquo;s count in a particular column. From there, each column is processed, and the most frequent character is appended to the <code>$output</code>:</p>
 <pre><code># Sort
 my $output = '';
 for (@column_hash) -&gt; %column {
@@ -276,582 +235,370 @@ for (@column_hash) -&gt; %column {
         )[0];
 }
 say $output;
-</code></pre>
-
-<p><strong>Blog</strong> › <a href="https://perlchallenges.wordpress.com/2020/02/04/perl-weekly-challenge-046/">PERL WEEKLY CHALLENGE – 046 – Perl Weekly Challenge</a></p>
-
+</code></pre><p><strong>Blog</strong> › <a href="https://perlchallenges.wordpress.com/2020/02/04/perl-weekly-challenge-046/">PERL WEEKLY CHALLENGE – 046 – Perl Weekly Challenge</a></p>
 <h2 id="kevin-colyer1">Kevin Colyer</h2>
-
-<p><a href="/challenge-046/kevin-colyer/raku/ch-1.p6">Kevin Colyer&rsquo;s solution</a> also accepts a multiline string in <code>$m</code>, taking advantage of Raku&rsquo;s string builtin <code>.lines</code> to split it into <code>@m</code>. (Kevin uses <code>.words</code> as well, since his input has spaces between each character):</p>
-
-<pre><code class="language-raku">my %seen;
-my $unscramble=&quot;&quot;;
-my @m;
-for $m.lines {  @m.push( .words.list ) };
-</code></pre>
-
-<p>Now Kevin iterates from 0 to one less than the first row&rsquo;s length (<code>$m[0].elems</code>), to get his <code>$c</code>olumn index. He maintains a <code>%seen</code> frequency map for each column and appends the character seen twice to the <code>$unscramble</code>d output string:</p>
-
-<pre><code class="language-raku">for ^@m[0].elems -&gt; $c {
-    my %seen;
-    %seen{ @m[$_][$c] }++ for ^@m.elems;
-    $unscramble~=%seen.grep( *.value==2)&gt;&gt;.key;
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/kevin-colyer/raku/ch-1.p6">Kevin Colyer&rsquo;s solution</a> also accepts a multiline string in <code>$m</code>, taking advantage of Raku&rsquo;s string builtin <code>.lines</code> to split it into <code>@m</code>. (Kevin uses <code>.words</code> as well, since his input has spaces between each character):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">my</span> %seen;
+<span style="color:#66d9ef">my</span> $unscramble<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>;
+<span style="color:#66d9ef">my</span> @m;
+<span style="color:#66d9ef">for</span> $m<span style="color:#f92672">.</span>lines {  @m<span style="color:#f92672">.</span>push( <span style="color:#f92672">.</span>words<span style="color:#f92672">.</span>list ) };
+</code></pre></div><p>Now Kevin iterates from 0 to one less than the first row&rsquo;s length (<code>$m[0].elems</code>), to get his <code>$c</code>olumn index. He maintains a <code>%seen</code> frequency map for each column and appends the character seen twice to the <code>$unscramble</code>d output string:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">for</span> <span style="color:#f92672">^</span>@m[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>elems <span style="color:#f92672">-&gt;</span> $c {
+    <span style="color:#66d9ef">my</span> %seen;
+    %seen{ @m[$_][$c] }<span style="color:#f92672">++</span> <span style="color:#66d9ef">for</span> <span style="color:#f92672">^</span>@m<span style="color:#f92672">.</span>elems;
+    $unscramble<span style="color:#f92672">~=</span>%seen<span style="color:#f92672">.</span>grep( <span style="color:#f92672">*.</span>value<span style="color:#f92672">==</span><span style="color:#ae81ff">2</span>)<span style="color:#f92672">&gt;&gt;.</span>key;
 }
-</code></pre>
-
-<h2 id="laurent-rosenfeld1">Laurent Rosenfeld</h2>
-
-<p><a href="/challenge-046/laurent-rosenfeld/raku/ch-1.p6">Laurent Rosenfeld&rsquo;s solution</a> also accepts a multiline string with space-separated characters, but uses a more complex <code>map</code> and <code>split</code> chain to turn it into an array of arrays (AoA), which he then transposes to a column-major representation:</p>
-
-<pre><code class="language-raku">my @AoA = map { my @a = split /\s+/, $_; @a }, split /&lt;[\r\n]&gt;+/, $garbled;
-my @transposed;
-for (0 .. @AoA.end) -&gt; $i {
-    @transposed[$_][$i] = @AoA[$i][$_] for 0.. (@AoA[$i]).elems -1;
+</code></pre></div><h2 id="laurent-rosenfeld1">Laurent Rosenfeld</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/laurent-rosenfeld/raku/ch-1.p6">Laurent Rosenfeld&rsquo;s solution</a> also accepts a multiline string with space-separated characters, but uses a more complex <code>map</code> and <code>split</code> chain to turn it into an array of arrays (AoA), which he then transposes to a column-major representation:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">my</span> @AoA <span style="color:#f92672">=</span> map { <span style="color:#66d9ef">my</span> @a <span style="color:#f92672">=</span> split <span style="color:#e6db74">/\s+/</span>, $_; @a }, split <span style="color:#e6db74">/&lt;[\r\n]&gt;+/</span>, $garbled;
+<span style="color:#66d9ef">my</span> @transposed;
+<span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> @AoA<span style="color:#f92672">.</span>end) <span style="color:#f92672">-&gt;</span> $i {
+    @transposed[$_][$i] <span style="color:#f92672">=</span> @AoA[$i][$_] <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span> (@AoA[$i])<span style="color:#f92672">.</span>elems <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
 }
-</code></pre>
-
-<p>Now, the results are easy; each <code>$line</code> in <code>@transposed</code> corresponds to a column in the original input, so Laurent can simply tally the characters and select the character that appears more than once (assuming there is no ambiguity):</p>
-
-<pre><code class="language-raku">my @msg = &quot;&quot;;
-for @transposed -&gt; $line {
-    my BagHash $counter;
-    $counter{$_}++ for @$line;
-    push @msg, grep { $counter{$_} &gt; 1 }, keys $counter;
+</code></pre></div><p>Now, the results are easy; each <code>$line</code> in <code>@transposed</code> corresponds to a column in the original input, so Laurent can simply tally the characters and select the character that appears more than once (assuming there is no ambiguity):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">my</span> @msg <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
+<span style="color:#66d9ef">for</span> @transposed <span style="color:#f92672">-&gt;</span> $line {
+    <span style="color:#66d9ef">my</span> BagHash $counter;
+    $counter{$_}<span style="color:#f92672">++</span> <span style="color:#66d9ef">for</span> @$line;
+    push @msg, grep { $counter{$_} <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> }, keys $counter;
 }
-say join &quot;&quot;, @msg;
-</code></pre>
-
-<p>I like the transposition approach.</p>
-
+say join <span style="color:#e6db74">&#34;&#34;</span>, @msg;
+</code></pre></div><p>I like the transposition approach.</p>
 <p><strong>Blog</strong> › <a href="http://blogs.perl.org/users/laurent_r/2020/02/perl-weekly-challenge-46-garbled-message-and-room-open.html">Garbled Message and Room Open</a></p>
-
 <h2 id="luca-ferrari1">Luca Ferrari</h2>
-
-<p><a href="/challenge-046/luca-ferrari/raku/ch-1.p6">Luca Ferrari&rsquo;s solution</a> accepts an array of strings with space-separated characters, in <code>@message</code>. Luca turns the input into an AoA, transposed at the same time:</p>
-
-<pre><code class="language-raku">my @chars;
-my $decoded;
-for @message -&gt; $single-line {
-    for $single-line.split( '', :skip-empty ) {
-        next if ! $_.trim;
-        @chars[ $++ ].push: $_;
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/luca-ferrari/raku/ch-1.p6">Luca Ferrari&rsquo;s solution</a> accepts an array of strings with space-separated characters, in <code>@message</code>. Luca turns the input into an AoA, transposed at the same time:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">my</span> @chars;
+<span style="color:#66d9ef">my</span> $decoded;
+<span style="color:#66d9ef">for</span> @message <span style="color:#f92672">-&gt;</span> $single<span style="color:#f92672">-</span>line {
+    <span style="color:#66d9ef">for</span> $single<span style="color:#f92672">-</span>line<span style="color:#f92672">.</span>split( <span style="color:#e6db74">&#39;&#39;</span>, :skip<span style="color:#f92672">-</span>empty ) {
+        <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> <span style="color:#f92672">!</span> $_<span style="color:#f92672">.</span>trim;
+        @chars[ $+<span style="color:#f92672">+</span> ]<span style="color:#f92672">.</span>push: $_;
     }
 }
-</code></pre>
-
-<p>As with Laurent&rsquo;s solution, all Luca has to do now is count the characters in each sublist and append the one that appears more than once:</p>
-
-<pre><code class="language-raku">for @chars -&gt; @line {
-    for @line -&gt; $searching_for {
-        if @line.grep( { $_ eq $searching_for} ).elems &gt; 1 {
-            $decoded ~= $searching_for;
-            last;
+</code></pre></div><p>As with Laurent&rsquo;s solution, all Luca has to do now is count the characters in each sublist and append the one that appears more than once:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">for</span> @chars <span style="color:#f92672">-&gt;</span> @line {
+    <span style="color:#66d9ef">for</span> @line <span style="color:#f92672">-&gt;</span> $searching_for {
+        <span style="color:#66d9ef">if</span> @line<span style="color:#f92672">.</span>grep( { $_ <span style="color:#f92672">eq</span> $searching_for} )<span style="color:#f92672">.</span>elems <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> {
+            $decoded <span style="color:#f92672">~=</span> $searching_for;
+            <span style="color:#66d9ef">last</span>;
         }
     }
 }
-</code></pre>
-
-<p><strong>Blog</strong> › <a href="https://fluca1978.github.io/2020/02/03/PerlWeeklyChallened_46.html">Encoded messages and open rooms</a></p>
-
+</code></pre></div><p><strong>Blog</strong> › <a href="https://fluca1978.github.io/2020/02/03/PerlWeeklyChallened_46.html">Encoded messages and open rooms</a></p>
 <h2 id="mark-anderson1">Mark Anderson</h2>
-
-<p><a href="/challenge-046/mark-anderson/raku/ch-1.p6">Mark Anderson&rsquo;s solution</a> accepts a multiline string with space-separated characters, and compactly turns that into an AoA:</p>
-
-<pre><code class="language-raku">my @AoL;
-my $result;
-for $msg.split(/\n/, :skip-empty) -&gt; $str {
-    @AoL.push($str.trim-trailing.comb(/\S/).List);
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/mark-anderson/raku/ch-1.p6">Mark Anderson&rsquo;s solution</a> accepts a multiline string with space-separated characters, and compactly turns that into an AoA:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">my</span> @AoL;
+<span style="color:#66d9ef">my</span> $result;
+<span style="color:#66d9ef">for</span> $msg<span style="color:#f92672">.</span>split(<span style="color:#e6db74">/\n/</span>, :skip<span style="color:#f92672">-</span>empty) <span style="color:#f92672">-&gt;</span> $str {
+    @AoL<span style="color:#f92672">.</span>push($str<span style="color:#f92672">.</span>trim<span style="color:#f92672">-</span>trailing<span style="color:#f92672">.</span>comb(<span style="color:#e6db74">/\S/</span>)<span style="color:#f92672">.</span>List);
 }
-</code></pre>
-
-<p>Mark then transposes <code>@AoL</code> with <code>[Z]</code>, so each <code>$list</code> is a column. Then, Mark uses a regex on <code>$list</code>s string representation to find the repeated character:</p>
-
-<pre><code class="language-raku">for [Z] @AoL -&gt; $list {
-    $list.Str ~~ /(\S) .* {} :my $letter = $0; $letter/;
-    $result ~= $letter;
+</code></pre></div><p>Mark then transposes <code>@AoL</code> with <code>[Z]</code>, so each <code>$list</code> is a column. Then, Mark uses a regex on <code>$list</code>s string representation to find the repeated character:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">for</span> [Z] @AoL <span style="color:#f92672">-&gt;</span> $list {
+    $list<span style="color:#f92672">.</span>Str <span style="color:#f92672">~~</span> <span style="color:#e6db74">/(\S) .* {} :my $letter = $0; $letter/</span>;
+    $result <span style="color:#f92672">~=</span> $letter;
 }
-</code></pre>
-
-<h2 id="markus-holzer1">Markus Holzer</h2>
-
-<p><a href="/challenge-046/markus-holzer/raku/ch-1.p6">Markus Holzer&rsquo;s solution</a> accepts a multi-line string, uses <code>zip</code> to transpose it, and then uses the <code>Bag</code> representation of each column list to make finding the most frequent character very concise thanks to <code>maxpairs</code>, which returns the pair(s) with the maximum value:</p>
-
-<pre><code class="language-raku">[~] zip(
-    $encrypted.lines.map: *.words
-).map(
-    *.Bag.maxpairs[0].key
+</code></pre></div><h2 id="markus-holzer1">Markus Holzer</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/markus-holzer/raku/ch-1.p6">Markus Holzer&rsquo;s solution</a> accepts a multi-line string, uses <code>zip</code> to transpose it, and then uses the <code>Bag</code> representation of each column list to make finding the most frequent character very concise thanks to <code>maxpairs</code>, which returns the pair(s) with the maximum value:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku">[<span style="color:#f92672">~</span>] zip(
+    $encrypted<span style="color:#f92672">.</span>lines<span style="color:#f92672">.</span>map: <span style="color:#f92672">*.</span>words
+)<span style="color:#f92672">.</span>map(
+    <span style="color:#f92672">*.</span>Bag<span style="color:#f92672">.</span>maxpairs[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>key
 );
-</code></pre>
-
-<p>Impressive.</p>
-
+</code></pre></div><p>Impressive.</p>
 <h2 id="noud1">Noud Aldenhoven</h2>
-
-<p><a href="/challenge-046/noud/raku/ch-1.p6">Noud Aldenhoven&rsquo;s solution</a> accepts an AoA as input, and then <code>decrypt</code> works on a transposed version of that:</p>
-
-<pre><code class="language-raku">sub decrypt(@a) {
-    return [~] ([Z] @a).map({ select-double($_) });
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/noud/raku/ch-1.p6">Noud Aldenhoven&rsquo;s solution</a> accepts an AoA as input, and then <code>decrypt</code> works on a transposed version of that:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">decrypt</span>(@a) {
+    <span style="color:#66d9ef">return</span> [<span style="color:#f92672">~</span>] ([Z] @a)<span style="color:#f92672">.</span>map({ select<span style="color:#f92672">-</span>double($_) });
 }
-</code></pre>
-
-<p>The <code>select-double</code> routine takes a column list and returns the character that appears most frequently:</p>
-
-<pre><code class="language-raku">sub select-double(@a) {
-    for @a -&gt; $elm {
-        if (@a.grep($elm).elems == 2) {
-            return $elm;
+</code></pre></div><p>The <code>select-double</code> routine takes a column list and returns the character that appears most frequently:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">select</span>-double(@a) {
+    <span style="color:#66d9ef">for</span> @a <span style="color:#f92672">-&gt;</span> $elm {
+        <span style="color:#66d9ef">if</span> (@a<span style="color:#f92672">.</span>grep($elm)<span style="color:#f92672">.</span>elems <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span>) {
+            <span style="color:#66d9ef">return</span> $elm;
         }
     }
 }
-</code></pre>
-
-<p>This is a nice modular approach to the problem.</p>
-
+</code></pre></div><p>This is a nice modular approach to the problem.</p>
 <h2 id="roger-bell-west1">Roger Bell West</h2>
-
-<p><a href="/challenge-046/roger-bell-west/raku/ch-1.p6">Roger Bell West&rsquo;s solution</a> accepts strings from standard input, and puts those into a column-character frequency map (<code>@place</code>):</p>
-
-<pre><code class="language-raku">my @place;
-for lines() {
-  .chomp;
-  my @k=comb(/\S/,$_);
-  map {@place[$_]{@k[$_]}++}, (0..@k.end);
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/roger-bell-west/raku/ch-1.p6">Roger Bell West&rsquo;s solution</a> accepts strings from standard input, and puts those into a column-character frequency map (<code>@place</code>):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">my</span> @place;
+<span style="color:#66d9ef">for</span> lines() {
+  <span style="color:#f92672">.</span>chomp;
+  <span style="color:#66d9ef">my</span> @k<span style="color:#f92672">=</span>comb(<span style="color:#e6db74">/\S/</span>,$_);
+  map {@place[$_]{@k[$_]}<span style="color:#f92672">++</span>}, (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>@k<span style="color:#f92672">.</span>end);
 }
-</code></pre>
-
-<p>The putout is then printed character-wise by iterating over each column in <code>@place</code>, <code>sort</code>ing in decreasing numeric order and printing the first (most frequent) result:</p>
-
-<pre><code class="language-raku">for @place -&gt; %h {
-  my @v=values %h;
-  my @k=keys %h;
-  my @i=sort {@v[$^b] &lt;=&gt; @v[$^a]}, (0..@v.end);
-  print @k[@i[0]];
+</code></pre></div><p>The putout is then printed character-wise by iterating over each column in <code>@place</code>, <code>sort</code>ing in decreasing numeric order and printing the first (most frequent) result:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">for</span> @place <span style="color:#f92672">-&gt;</span> %h {
+  <span style="color:#66d9ef">my</span> @v<span style="color:#f92672">=</span>values %h;
+  <span style="color:#66d9ef">my</span> @k<span style="color:#f92672">=</span>keys %h;
+  <span style="color:#66d9ef">my</span> @i<span style="color:#f92672">=</span>sort {@v[$<span style="color:#960050;background-color:#1e0010">^</span>b] <span style="color:#e6db74">&lt;=&gt;</span> @v[$<span style="color:#960050;background-color:#1e0010">^</span>a]}, (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>@v<span style="color:#f92672">.</span>end);
+  <span style="color:#66d9ef">print</span> @k[@i[<span style="color:#ae81ff">0</span>]];
 }
-print &quot;\n&quot;;
-</code></pre>
-
-<h2 id="ruben-westerberg1">Ruben Westerberg</h2>
-
-<p><a href="/challenge-046/ruben-westerberg/raku/ch-1.p6">Ruben Westerberg&rsquo;s solution</a> accepts an AoA, and then iterates over each column index. The most frequent character key/value pair is fetched by taking a vertical slice of <code>@inComming</code> as a <code>Bag</code>, and then taking all pairs that appear twice. The <code>key</code> is the character itself, so that&rsquo;s what Ruben <code>push</code>es to the result:</p>
-
-<pre><code class="language-raku">my @decoded;
-for (0..@inComming[0]-1) {
-    my $col=@inComming[0..@inComming-1;$_].Bag.grep({$_.value==2});
-    @decoded.push: $col&gt;&gt;.key;
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
+</code></pre></div><h2 id="ruben-westerberg1">Ruben Westerberg</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/ruben-westerberg/raku/ch-1.p6">Ruben Westerberg&rsquo;s solution</a> accepts an AoA, and then iterates over each column index. The most frequent character key/value pair is fetched by taking a vertical slice of <code>@inComming</code> as a <code>Bag</code>, and then taking all pairs that appear twice. The <code>key</code> is the character itself, so that&rsquo;s what Ruben <code>push</code>es to the result:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">my</span> @decoded;
+<span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>@inComming[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
+    <span style="color:#66d9ef">my</span> $col<span style="color:#f92672">=</span>@inComming[<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>@inComming<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;$_]<span style="color:#f92672">.</span>Bag<span style="color:#f92672">.</span>grep({$_<span style="color:#f92672">.</span>value<span style="color:#f92672">==</span><span style="color:#ae81ff">2</span>});
+    @decoded<span style="color:#f92672">.</span>push: $col<span style="color:#f92672">&gt;&gt;.</span>key;
 }
-put @decoded.join: &quot;&quot;;
-</code></pre>
-
-<p>Ruben has done a great job of producing concise, expressive code that I was able to understand more or less instantly.</p>
-
+put @decoded<span style="color:#f92672">.</span>join: <span style="color:#e6db74">&#34;&#34;</span>;
+</code></pre></div><p>Ruben has done a great job of producing concise, expressive code that I was able to understand more or less instantly.</p>
 <h2 id="ryan-thompson1">Ryan Thompson</h2>
-
-<p><a href="/challenge-046/ryan-thompson/raku/ch-1.p6">My solution</a> accepts an array of <code>@strings</code>, splits those into rows, and then maintains a column-character frequency map in <code>@col-count</code>:</p>
-
-<pre><code class="language-raku">my @col-count;
-for @strings».split: ' ' -&gt; $row {
-    @col-count[.key]{.value}++ for |$row.pairs;
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/ryan-thompson/raku/ch-1.p6">My solution</a> accepts an array of <code>@strings</code>, splits those into rows, and then maintains a column-character frequency map in <code>@col-count</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">my</span> @col<span style="color:#f92672">-</span>count;
+<span style="color:#66d9ef">for</span> @strings<span style="color:#960050;background-color:#1e0010">»</span><span style="color:#f92672">.</span>split: <span style="color:#e6db74">&#39; &#39;</span> <span style="color:#f92672">-&gt;</span> $row {
+    @col<span style="color:#f92672">-</span>count[<span style="color:#f92672">.</span>key]{<span style="color:#f92672">.</span>value}<span style="color:#f92672">++</span> <span style="color:#66d9ef">for</span> <span style="color:#f92672">|</span>$row<span style="color:#f92672">.</span>pairs;
 }
-</code></pre>
-
-<p>After that, I built up the result by sorting in decreasing numerical order by value, picking the <code>first</code> (most frequent) result, grabbing its key, and joining everything together:</p>
-
-<pre><code class="language-raku">@col-count».sort(-*.value)».first».key.join;
-</code></pre>
-
-<p><strong>Blog</strong> › <a href="http://www.ry.ca/2020/02/cryptic-message/">Cryptic Message</a></p>
-
+</code></pre></div><p>After that, I built up the result by sorting in decreasing numerical order by value, picking the <code>first</code> (most frequent) result, grabbing its key, and joining everything together:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku">@col<span style="color:#f92672">-</span>count<span style="color:#960050;background-color:#1e0010">»</span><span style="color:#f92672">.</span>sort(<span style="color:#f92672">-*.</span>value)<span style="color:#960050;background-color:#1e0010">»</span><span style="color:#f92672">.</span>first<span style="color:#960050;background-color:#1e0010">»</span><span style="color:#f92672">.</span>key<span style="color:#f92672">.</span>join;
+</code></pre></div><p><strong>Blog</strong> › <a href="http://www.ry.ca/2020/02/cryptic-message/">Cryptic Message</a></p>
 <h2 id="simon-proctor1">Simon Proctor</h2>
-
-<p><a href="/challenge-046/simon-proctor/raku/ch-1.p6">Simon Proctor&rsquo;s solution</a> accepts an AoA in <code>$data</code>, doing the decoding with one statement (I&rsquo;ve added some whitespace):</p>
-
-<pre><code class="language-raku"> zip( $data.List )
-.map( { Bag.new($_) } )
-.map( *.pairs
-       .sort( { $^b.value cmp $^a.value } )
-       .first
-       .key )
-.join(&quot;&quot;)
-</code></pre>
-
-<p>Here again we see <code>zip</code> being used to transpose the matrix, and the <code>Bag</code> representation to enable <code>sort</code>ing by value. The <code>.first.key</code> is the most frequent character.</p>
-
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/simon-proctor/raku/ch-1.p6">Simon Proctor&rsquo;s solution</a> accepts an AoA in <code>$data</code>, doing the decoding with one statement (I&rsquo;ve added some whitespace):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"> zip( $data<span style="color:#f92672">.</span>List )
+<span style="color:#f92672">.</span>map( { Bag<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>($_) } )
+<span style="color:#f92672">.</span>map( <span style="color:#f92672">*.</span>pairs
+       <span style="color:#f92672">.</span>sort( { $<span style="color:#960050;background-color:#1e0010">^</span>b<span style="color:#f92672">.</span>value <span style="color:#f92672">cmp</span> $<span style="color:#960050;background-color:#1e0010">^</span>a<span style="color:#f92672">.</span>value } )
+       <span style="color:#f92672">.</span>first
+       <span style="color:#f92672">.</span>key )
+<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34;&#34;</span>)
+</code></pre></div><p>Here again we see <code>zip</code> being used to transpose the matrix, and the <code>Bag</code> representation to enable <code>sort</code>ing by value. The <code>.first.key</code> is the most frequent character.</p>
 <p>It&rsquo;s important to note that, unlike Perl&rsquo;s <code>cmp</code> (based on C&rsquo;s <code>strcmp</code>) which is a stringwise 3-way comparator, Raku&rsquo;s <code>cmp</code> is generic, so it will compare integers as integers, here.</p>
-
 <h2 id="ulrich-rieke1">Ulrich Rieke</h2>
-
-<p><a href="/challenge-046/ulrich-rieke/raku/ch-1.p6">Ulrich Rieke&rsquo;s solution</a> accepts an array of <code>@strings</code>, and then iterates through each column index, building up a <code>%letterfrequency</code> map for the current column:</p>
-
-<pre><code class="language-raku">my $len = @words[0].chars ;
-my $decoded ;
-for (0..$len - 1 ) -&gt; $i {
-    my %letterfrequency ;
-    for @words -&gt; $word {
-        %letterfrequency{ $word.substr( $i , 1 ) }++ ;
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/ulrich-rieke/raku/ch-1.p6">Ulrich Rieke&rsquo;s solution</a> accepts an array of <code>@strings</code>, and then iterates through each column index, building up a <code>%letterfrequency</code> map for the current column:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">my</span> $len <span style="color:#f92672">=</span> @words[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>chars ;
+<span style="color:#66d9ef">my</span> $decoded ;
+<span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$len <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ) <span style="color:#f92672">-&gt;</span> $i {
+    <span style="color:#66d9ef">my</span> %letterfrequency ;
+    <span style="color:#66d9ef">for</span> @words <span style="color:#f92672">-&gt;</span> $word {
+        %letterfrequency{ $word<span style="color:#f92672">.</span>substr( $i , <span style="color:#ae81ff">1</span> ) }<span style="color:#f92672">++</span> ;
     }
-</code></pre>
-
-<p>Following a reverse-numerical order sort, the first element of <code>@sorted</code> (the most frequent character) is appended to the <code>$decoded</code> output:</p>
-
-<pre><code class="language-raku">    my @sorted = %letterfrequency.keys.sort( {
-        %letterfrequency{$^b} &lt;=&gt; %letterfrequency{$^a} } ) ;
-    $decoded ~= @sorted[ 0 ] ;
+</code></pre></div><p>Following a reverse-numerical order sort, the first element of <code>@sorted</code> (the most frequent character) is appended to the <code>$decoded</code> output:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku">    <span style="color:#66d9ef">my</span> @sorted <span style="color:#f92672">=</span> %letterfrequency<span style="color:#f92672">.</span>keys<span style="color:#f92672">.</span>sort( {
+        %letterfrequency{$<span style="color:#960050;background-color:#1e0010">^</span>b} <span style="color:#e6db74">&lt;=&gt;</span> %letterfrequency{$<span style="color:#960050;background-color:#1e0010">^</span>a} } ) ;
+    $decoded <span style="color:#f92672">~=</span> @sorted[ <span style="color:#ae81ff">0</span> ] ;
 }
-</code></pre>
-
-<hr />
-
-<hr />
-
+</code></pre></div><hr>
+<hr>
 <h1 id="task2">Task #2 - Is The Room Open? (500 Doors)</h1>
-
 <p>Here is Mohammad&rsquo;s description:</p>
-
 <p>There are 500 rooms in a hotel with 500 employees having keys to all the rooms. The first employee opened main entrance door of all the rooms. The second employee then closed the doors of room numbers 2,4,6,8,10 and so on to 500. The third employee then closed the door if it was opened or opened the door if it was closed of rooms 3,6,9,12,15 and so on to 500. Similarly the fourth employee did the same as the third but only room numbers 4,8,12,16 and so on to 500. This goes on until all employees has had a turn.</p>
-
 <p>Write a script to find out all the rooms still open at the end.</p>
-
-<hr />
-
+<hr>
 <h2 id="types-of-solutions">Types of Solutions</h2>
-
 <h3 id="1-nested-loops">1. Nested Loops</h3>
-
-<p>Most people solved this with some form of a nested loop. The outer loop for each employee (<code>i</code>), and the inner loop corresponds to each <code>1/i</code> door that employee will toggle. This results in an efficiency of O(n × (<sup>1</sup>&frasl;<sub>1</sub> + <sup>1</sup>&frasl;<sub>2</sub> + ⋯ + 1/n)) ≈ O(n × log n). For a problem size of n = 500, that&rsquo;s absolutely fine.  However, with a little bit of math, it&rsquo;s possible to simplify things even more:</p>
-
+<p>Most people solved this with some form of a nested loop. The outer loop for each employee (<code>i</code>), and the inner loop corresponds to each <code>1/i</code> door that employee will toggle. This results in an efficiency of O(n × (1/1 + 1/2 + ⋯ + 1/n)) ≈ O(n × log n). For a problem size of n = 500, that&rsquo;s absolutely fine.  However, with a little bit of math, it&rsquo;s possible to simplify things even more:</p>
 <h3 id="2-square-numbers">2. Square Numbers</h3>
-
 <p>Many people noticed that the doors left open are the square numbers (1², 2²=4, 3²=9, etc.). Some decided to implement this pattern as an algorithm, resulting in trivial code with O(sqrt(n)) complexity.</p>
-
 <p>The main difficulty behind using this method is demonstrating its correctness, yet several people managed to do just that, with explanations or informal proofs of why <em>only</em> perfect square numbered doors would be open.</p>
-
 <p>Correctness proofs are an important topic in computer science, so I&rsquo;m glad to see some effort being put into it here!</p>
-
-<hr />
-
+<hr>
 <p>Of course, neither of these solutions is necessarily &ldquo;better&rdquo; in the context of this challenge. The square numbers solution (2) is the result of analysis and math, while the looping solution (1) is a better showcase of the language features and coding ability. Both skills are tremendously important, and I&rsquo;m quite sure everyone I&rsquo;m reviewing today is capable of either method; it&rsquo;s just a matter of what they decide to submit.</p>
-
-<hr />
-
+<hr>
 <h2 id="arne-sommer2">Arne Sommer</h2>
-
-<p><a href="/challenge-046/arne-sommer/raku/ch-2.p6">Arne Sommer&rsquo;s solution</a> uses nested loops to toggle the doors in <code>@open</code>:</p>
-
-<pre><code class="language-raku">my @open;
-for 1 .. 500 -&gt; $employee {
-    for ($employee, $employee + $employee ... 500) -&gt; $index {
-        @open[$index] = ! @open[$index];
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/arne-sommer/raku/ch-2.p6">Arne Sommer&rsquo;s solution</a> uses nested loops to toggle the doors in <code>@open</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">my</span> @open;
+<span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">500</span> <span style="color:#f92672">-&gt;</span> $employee {
+    <span style="color:#66d9ef">for</span> ($employee, $employee <span style="color:#f92672">+</span> $employee <span style="color:#f92672">...</span> <span style="color:#ae81ff">500</span>) <span style="color:#f92672">-&gt;</span> $index {
+        @open[$index] <span style="color:#f92672">=</span> <span style="color:#f92672">!</span> @open[$index];
     }
 }
-say &quot;Open rooms: { (1..500).grep({@open[$_] }).join(',') }.&quot;;
-</code></pre>
-
-<p>The inner loop will only iterate over every <code>$employee</code>th index.</p>
-
+say <span style="color:#e6db74">&#34;Open rooms: { (1..500).grep({@open[$_] }).join(&#39;,&#39;) }.&#34;</span>;
+</code></pre></div><p>The inner loop will only iterate over every <code>$employee</code>th index.</p>
 <p><strong>Blog</strong> › <a href="https://raku-musings.com/cryptic-room.html">The Cryptic Raku Room</a></p>
-
 <h2 id="colin-crain2">Colin Crain</h2>
-
-<p><a href="/challenge-046/colin-crain/raku/ch-2.p6">Colin Crain&rsquo;s solution</a> has an outer loop for each employee, but the inner loop builds a list of <code>@doors</code> that employee will toggle, and then applies it like a mask over <code>@hotel</code> using zip+XOR (<code>Z+^</code>):</p>
-
-<pre><code class="language-raku">my @hotel = 0 xx $size;
-for (1..$size) -&gt; $emp {
-    my @doors = map { $_ %% $emp ?? 1 !! 0 }, ( 1..$size );
-    @hotel = @hotel Z+^ @doors;
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/colin-crain/raku/ch-2.p6">Colin Crain&rsquo;s solution</a> has an outer loop for each employee, but the inner loop builds a list of <code>@doors</code> that employee will toggle, and then applies it like a mask over <code>@hotel</code> using zip+XOR (<code>Z+^</code>):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">my</span> @hotel <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> xx $size;
+<span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$size) <span style="color:#f92672">-&gt;</span> $emp {
+    <span style="color:#66d9ef">my</span> @doors <span style="color:#f92672">=</span> map { $_ %% <span style="color:#960050;background-color:#1e0010">$</span>emp ?? <span style="color:#ae81ff">1</span> <span style="color:#f92672">!!</span> <span style="color:#ae81ff">0</span> }, ( <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$size );
+    @hotel <span style="color:#f92672">=</span> @hotel Z<span style="color:#f92672">+^</span> @doors;
 }
-</code></pre>
-
-<p>Then it&rsquo;s just a matter of printing the numbers of the <code>@hotel</code> rooms that are
+</code></pre></div><p>Then it&rsquo;s just a matter of printing the numbers of the <code>@hotel</code> rooms that are
 open:</p>
-
-<pre><code class="language-raku">for (0..$size-1) {
-    printf &quot;room %3s is open\n&quot;, $_+1 if @hotel[$_];
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$size<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
+    printf <span style="color:#e6db74">&#34;room %3s is open\n&#34;</span>, $_<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> @hotel[$_];
 }
-</code></pre>
-
-<h2 id="jaldhar-h-vyas2">Jaldhar H. Vyas</h2>
-
-<p><a href="/challenge-046/jaldhar-h-vyas/raku/ch-2.p6">Jaldhar H. Vyas&rsquo;s solution</a> uses a nested loop to toggle each door <em>iff</em> the employee number, <code>$i</code> divides the room number, <code>$j</code>:</p>
-
-<pre><code class="language-raku">constant $end = 500;
-my Bool @rooms[$end];
-for 0 ..^ $end -&gt; $i {
-    for 0 ..^ $end -&gt; $j {
-        if ($j + 1) %% ($i + 1) {
-            @rooms[$j] = !@rooms[$j];
+</code></pre></div><h2 id="jaldhar-h-vyas2">Jaldhar H. Vyas</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/jaldhar-h-vyas/raku/ch-2.p6">Jaldhar H. Vyas&rsquo;s solution</a> uses a nested loop to toggle each door <em>iff</em> the employee number, <code>$i</code> divides the room number, <code>$j</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku">constant $end <span style="color:#f92672">=</span> <span style="color:#ae81ff">500</span>;
+<span style="color:#66d9ef">my</span> Bool @rooms[$end];
+<span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">..^</span> $end <span style="color:#f92672">-&gt;</span> $i {
+    <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">..^</span> $end <span style="color:#f92672">-&gt;</span> $j {
+        <span style="color:#66d9ef">if</span> ($j <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) %% <span style="color:#960050;background-color:#1e0010">($</span>i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) {
+            @rooms[$j] <span style="color:#f92672">=</span> <span style="color:#f92672">!</span>@rooms[$j];
         }
     }
 }
-</code></pre>
-
-<p>Printing the results is accomplished similarly, taking care to work with the 0-based indexing set up in the previous section:</p>
-
-<pre><code class="language-raku">for 0 ..^ $end -&gt; $i {
-    if @rooms[$i] {
-        print $i + 1, q{ };
+</code></pre></div><p>Printing the results is accomplished similarly, taking care to work with the 0-based indexing set up in the previous section:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">..^</span> $end <span style="color:#f92672">-&gt;</span> $i {
+    <span style="color:#66d9ef">if</span> @rooms[$i] {
+        <span style="color:#66d9ef">print</span> $i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, <span style="color:#e6db74">q{ }</span>;
     }
 }
-print &quot;\n&quot;;
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
 
-</code></pre>
-
-<h2 id="javier-luque2">Javier Luque</h2>
-
-<p><a href="/challenge-046/javier-luque/raku/ch-2.p6">Javier Luque&rsquo;s solution</a> uses a nested loop as well:</p>
-
-<pre><code class="language-raku">my @doors;
-@doors[0 .. 500] = 0;
-for (1 .. 500) -&gt; $employee {
-    for ($employee .. 500 ) -&gt; $door {
-        next unless $door % $employee == 0;
-        @doors[$door] = (@doors[$door]) ?? 0 !! 1;
+</code></pre></div><h2 id="javier-luque2">Javier Luque</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/javier-luque/raku/ch-2.p6">Javier Luque&rsquo;s solution</a> uses a nested loop as well:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">my</span> @doors;
+@doors[<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">500</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+<span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">500</span>) <span style="color:#f92672">-&gt;</span> $employee {
+    <span style="color:#66d9ef">for</span> ($employee <span style="color:#f92672">..</span> <span style="color:#ae81ff">500</span> ) <span style="color:#f92672">-&gt;</span> $door {
+        <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> $door % <span style="color:#960050;background-color:#1e0010">$</span>employee <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+        @doors[$door] <span style="color:#f92672">=</span> (@doors[$door]) ?? <span style="color:#ae81ff">0</span> <span style="color:#f92672">!!</span> <span style="color:#ae81ff">1</span>;
     }
 }
-for (1 .. 500) -&gt; $i {
-    say &quot;Door: &quot; ~ $i ~ &quot; is open.&quot;
-        if (@doors[$i]);
+<span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">500</span>) <span style="color:#f92672">-&gt;</span> $i {
+    say <span style="color:#e6db74">&#34;Door: &#34;</span> <span style="color:#f92672">~</span> $i <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34; is open.&#34;</span>
+        <span style="color:#66d9ef">if</span> (@doors[$i]);
 }
-</code></pre>
-
-<p><strong>Blog</strong> › <a href="https://perlchallenges.wordpress.com/2020/02/04/perl-weekly-challenge-046/">046 – Perl Weekly Challenge</a></p>
-
+</code></pre></div><p><strong>Blog</strong> › <a href="https://perlchallenges.wordpress.com/2020/02/04/perl-weekly-challenge-046/">046 – Perl Weekly Challenge</a></p>
 <h2 id="kevin-colyer2">Kevin Colyer</h2>
-
-<p><a href="/challenge-046/kevin-colyer/raku/ch-2.p6">Kevin Colyer&rsquo;s solution</a> does a nested loop as well, but optimizes the inner loop by incrementing <code>$i</code> by the <code>$e</code>mployee number:</p>
-
-<pre><code class="language-raku">my Int @doors = 1 xx 500;
-for 2..500 -&gt; $e {
-    my $i=0;
-    while $i &lt; 500 {
-        @doors[$i] = 1 - @doors[$i];
-        $i+=$e;
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/kevin-colyer/raku/ch-2.p6">Kevin Colyer&rsquo;s solution</a> does a nested loop as well, but optimizes the inner loop by incrementing <code>$i</code> by the <code>$e</code>mployee number:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">my</span> Int @doors <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> xx <span style="color:#ae81ff">500</span>;
+<span style="color:#66d9ef">for</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">..</span><span style="color:#ae81ff">500</span> <span style="color:#f92672">-&gt;</span> $e {
+    <span style="color:#66d9ef">my</span> $i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">while</span> $i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">500</span> {
+        @doors[$i] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> @doors[$i];
+        $i<span style="color:#f92672">+=</span>$e;
     }
 }
-say @doors.sum;
-</code></pre>
-
-<p>Kevin outputs <code>@doors.sum</code>, which effectively counts how many doors are open.  I modified that line to read <code>@doors.pairs.grep(*.value)».key</code>, and Kevin&rsquo;s code does indeed find the correct doors, though there was never really any doubt.</p>
-
+say @doors<span style="color:#f92672">.</span>sum;
+</code></pre></div><p>Kevin outputs <code>@doors.sum</code>, which effectively counts how many doors are open.  I modified that line to read <code>@doors.pairs.grep(*.value)».key</code>, and Kevin&rsquo;s code does indeed find the correct doors, though there was never really any doubt.</p>
 <h2 id="laurent-rosenfeld2">Laurent Rosenfeld</h2>
-
-<p><a href="/challenge-046/laurent-rosenfeld/raku/ch-2.p6">Laurent Rosenfeld&rsquo;s solution</a> does the efficient nested looping method as well:</p>
-
-<pre><code class="language-raku">my @rooms = 1 xx MAX + 1; # (first employee)
-my $start = 1;
-for 2..MAX {
-    $start++;
-    my $door = $start;
-    while $door &lt;= MAX {
-        @rooms[$door] = @rooms[$door] ?? 0 !! 1;
-        $door += $start;
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/laurent-rosenfeld/raku/ch-2.p6">Laurent Rosenfeld&rsquo;s solution</a> does the efficient nested looping method as well:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">my</span> @rooms <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> xx MAX <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>; <span style="color:#75715e"># (first employee)</span>
+<span style="color:#66d9ef">my</span> $start <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+<span style="color:#66d9ef">for</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">..</span>MAX {
+    $start<span style="color:#f92672">++</span>;
+    <span style="color:#66d9ef">my</span> $door <span style="color:#f92672">=</span> $start;
+    <span style="color:#66d9ef">while</span> $door <span style="color:#f92672">&lt;=</span> MAX {
+        @rooms[$door] <span style="color:#f92672">=</span> @rooms[$door] ?? <span style="color:#ae81ff">0</span> <span style="color:#f92672">!!</span> <span style="color:#ae81ff">1</span>;
+        $door <span style="color:#f92672">+=</span> $start;
     }
 }
-say join &quot; &quot;, @rooms[1..MAX];
-</code></pre>
-
-<p>Laurent opted to print a string of 1s and 0s (1 = open, 0 = closed). In his blog, Laurent took the time to do some interesting analysis of this problem.</p>
-
+say join <span style="color:#e6db74">&#34; &#34;</span>, @rooms[<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>MAX];
+</code></pre></div><p>Laurent opted to print a string of 1s and 0s (1 = open, 0 = closed). In his blog, Laurent took the time to do some interesting analysis of this problem.</p>
 <p><strong>Blog</strong> › <a href="http://blogs.perl.org/users/laurent_r/2020/02/perl-weekly-challenge-46-garbled-message-and-room-open.html">Garbled Message and Room Open</a></p>
-
 <h2 id="luca-ferrari2">Luca Ferrari</h2>
-
-<p><a href="/challenge-046/luca-ferrari/raku/ch-2.p6">Luca Ferrari&rsquo;s solution</a> stores his door status in a <code>%rooms</code> hash, but the resulting code is similar to array-based nested loop solutions:</p>
-
-<pre><code class="language-raku">my %rooms = ( 1 .. $room-count).map: * =&gt; False;
-for 1 .. $room-count -&gt; $employee {
-    %rooms{ $_ } = ! %rooms{ $_ } if $_ %% $employee for 1 .. $room-count;
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/luca-ferrari/raku/ch-2.p6">Luca Ferrari&rsquo;s solution</a> stores his door status in a <code>%rooms</code> hash, but the resulting code is similar to array-based nested loop solutions:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">my</span> %rooms <span style="color:#f92672">=</span> ( <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $room<span style="color:#f92672">-</span>count)<span style="color:#f92672">.</span>map: <span style="color:#f92672">*</span> <span style="color:#f92672">=&gt;</span> False;
+<span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $room<span style="color:#f92672">-</span>count <span style="color:#f92672">-&gt;</span> $employee {
+    %rooms{ $_ } <span style="color:#f92672">=</span> <span style="color:#f92672">!</span> %rooms{ $_ } <span style="color:#66d9ef">if</span> $_ %% <span style="color:#960050;background-color:#1e0010">$</span>employee <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $room<span style="color:#f92672">-</span>count;
 }
-</code></pre>
-
-<p>Since <code>%rooms</code> is a hash, the room numbers (keys) will be in random order, so
+</code></pre></div><p>Since <code>%rooms</code> is a hash, the room numbers (keys) will be in random order, so
 they must be sorted:</p>
-
-<pre><code class="language-raku">say &quot;Room $_ is Open&quot; if %rooms{ $_ } for %rooms.keys.sort: *.Int &lt;=&gt; *.Int;
-</code></pre>
-
-<p><strong>Blog</strong> › <a href="https://fluca1978.github.io/2020/02/03/PerlWeeklyChallened_46.html">Encoded messages and open rooms</a></p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku">say <span style="color:#e6db74">&#34;Room $_ is Open&#34;</span> <span style="color:#66d9ef">if</span> %rooms{ $_ } <span style="color:#66d9ef">for</span> %rooms<span style="color:#f92672">.</span>keys<span style="color:#f92672">.</span>sort: <span style="color:#f92672">*.</span>Int <span style="color:#e6db74">&lt;=&gt;</span> <span style="color:#f92672">*.</span>Int;
+</code></pre></div><p><strong>Blog</strong> › <a href="https://fluca1978.github.io/2020/02/03/PerlWeeklyChallened_46.html">Encoded messages and open rooms</a></p>
 <h2 id="mark-anderson2">Mark Anderson</h2>
-
-<p><a href="/challenge-046/mark-anderson/raku/ch-2.p6">Mark Anderson&rsquo;s solution</a> has a little fun with control flow in the nested loop:</p>
-
-<pre><code class="language-raku">my \open = True;
-my @doors = open xx 500;
-for 1 .. 500 -&gt; $emp {
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/mark-anderson/raku/ch-2.p6">Mark Anderson&rsquo;s solution</a> has a little fun with control flow in the nested loop:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">my</span> <span style="color:#f92672">\</span>open <span style="color:#f92672">=</span> True;
+<span style="color:#66d9ef">my</span> @doors <span style="color:#f92672">=</span> open xx <span style="color:#ae81ff">500</span>;
+<span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">500</span> <span style="color:#f92672">-&gt;</span> $emp {
     NEXT {
-        for $emp, $emp*2 ... 500 -&gt; $door {
-            @doors[$door-1] ?^= open;
+        <span style="color:#66d9ef">for</span> $emp, $emp<span style="color:#f92672">*</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">...</span> <span style="color:#ae81ff">500</span> <span style="color:#f92672">-&gt;</span> $door {
+            @doors[$door<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] ?<span style="color:#f92672">^=</span> open;
         }
     }
-    say $emp if @doors[$emp-1];
+    say $emp <span style="color:#66d9ef">if</span> @doors[$emp<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
 }
-</code></pre>
-
-<p>Mark also uses a special sequence to loop over <code>$emp</code>th door in the inner loop. Finally, you&rsquo;ll notice the output line is inside the top-level loop; this works because <code>$emp-1</code>&rsquo;s door will never be toggled once it is <code>$emp</code>&rsquo;s turn through the loop.</p>
-
+</code></pre></div><p>Mark also uses a special sequence to loop over <code>$emp</code>th door in the inner loop. Finally, you&rsquo;ll notice the output line is inside the top-level loop; this works because <code>$emp-1</code>'s door will never be toggled once it is <code>$emp</code>'s turn through the loop.</p>
 <h2 id="markus-holzer2">Markus Holzer</h2>
-
-<p><a href="/challenge-046/markus-holzer/raku/ch-2.p6">Markus Holzer&rsquo;s solution</a> makes note of the fact that only the square numbered doors will be open (check the link for his informal proof). He then offers three ways to generate the list of square numbers below 500:</p>
-
-<pre><code class="language-raku">say &quot;Open rooms: &quot;, ( 1..500 ).grep: *.&amp;is-open;
-sub is-open( $room ) { $room.sqrt.narrow ~~ Int }
-</code></pre>
-
-<pre><code class="language-raku">say &quot;Open rooms: &quot;, (1..500.sqrt.Int).map: * ** 2;
-</code></pre>
-
-<pre><code class="language-raku">say &quot;Open rooms: &quot;, (1..500.sqrt.Int)&gt;&gt;²; # nicest idiom by jnthn
-</code></pre>
-
-<p><code>jnthn</code>, of course is <a href="http://www.jnthn.net/">Jonathan Worthington</a> (<a href="https://github.com/jnthn">GitHub</a>).</p>
-
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/markus-holzer/raku/ch-2.p6">Markus Holzer&rsquo;s solution</a> makes note of the fact that only the square numbered doors will be open (check the link for his informal proof). He then offers three ways to generate the list of square numbers below 500:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku">say <span style="color:#e6db74">&#34;Open rooms: &#34;</span>, ( <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">500</span> )<span style="color:#f92672">.</span>grep: <span style="color:#f92672">*.&amp;</span>is<span style="color:#f92672">-</span>open;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is</span>-open( $room ) { $room<span style="color:#f92672">.</span>sqrt<span style="color:#f92672">.</span>narrow <span style="color:#f92672">~~</span> Int }
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku">say <span style="color:#e6db74">&#34;Open rooms: &#34;</span>, (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">500</span><span style="color:#f92672">.</span>sqrt<span style="color:#f92672">.</span>Int)<span style="color:#f92672">.</span>map: <span style="color:#f92672">*</span> <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span>;
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku">say <span style="color:#e6db74">&#34;Open rooms: &#34;</span>, (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">500</span><span style="color:#f92672">.</span>sqrt<span style="color:#f92672">.</span>Int)<span style="color:#f92672">&gt;&gt;</span><span style="color:#960050;background-color:#1e0010">²</span>; <span style="color:#75715e"># nicest idiom by jnthn</span>
+</code></pre></div><p><code>jnthn</code>, of course is <a href="http://www.jnthn.net/">Jonathan Worthington</a> (<a href="https://github.com/jnthn">GitHub</a>).</p>
 <h2 id="noud2">Noud Aldenhoven</h2>
-
-<p><a href="/challenge-046/noud/raku/ch-2.p6">Noud Aldenhoven&rsquo;s solution</a> also prints out a list of square numbers, and also includes an informal proof in the comments of his solution. Here is the code:</p>
-
-<pre><code class="language-raku">say &quot;Open rooms:&quot;;
-say $_**2 for 1..(500.sqrt);
-</code></pre>
-
-<p>Noud&rsquo;s blog contains essentially the same proof, but with better typesetting than you can get in a Raku source file:</p>
-
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/noud/raku/ch-2.p6">Noud Aldenhoven&rsquo;s solution</a> also prints out a list of square numbers, and also includes an informal proof in the comments of his solution. Here is the code:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku">say <span style="color:#e6db74">&#34;Open rooms:&#34;</span>;
+say $_<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span> <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>(<span style="color:#ae81ff">500</span><span style="color:#f92672">.</span>sqrt);
+</code></pre></div><p>Noud&rsquo;s blog contains essentially the same proof, but with better typesetting than you can get in a Raku source file:</p>
 <p><strong>Blog</strong> › <a href="https://www.noudaldenhoven.nl/wordpress/?p=288">Is the room open?</a></p>
-
 <h2 id="roger-bell-west2">Roger Bell West</h2>
-
-<p><a href="/challenge-046/roger-bell-west/raku/ch-2.p6">Roger Bell West&rsquo;s solution</a> loops efficiently, thanks to the C-style inner <code>loop</code>, which advances the index by the current employee <code>$n</code>umber:</p>
-
-<pre><code class="language-raku">my @rooms=1 xx 500;
-for 2..500 -&gt; $n {
-  loop (my $k=$n-1 ; $k &lt;500 ; $k+=$n) {
-    @rooms[$k]=1-@rooms[$k];
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/roger-bell-west/raku/ch-2.p6">Roger Bell West&rsquo;s solution</a> loops efficiently, thanks to the C-style inner <code>loop</code>, which advances the index by the current employee <code>$n</code>umber:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">my</span> @rooms<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> xx <span style="color:#ae81ff">500</span>;
+<span style="color:#66d9ef">for</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">..</span><span style="color:#ae81ff">500</span> <span style="color:#f92672">-&gt;</span> $n {
+  loop (<span style="color:#66d9ef">my</span> $k<span style="color:#f92672">=</span>$n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> ; $k <span style="color:#f92672">&lt;</span><span style="color:#ae81ff">500</span> ; $k<span style="color:#f92672">+=</span>$n) {
+    @rooms[$k]<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span><span style="color:#f92672">-</span>@rooms[$k];
   }
 }
-map {say $_+1}, grep {@rooms[$_]==1}, (0..@rooms.end);
-</code></pre>
-
-<h2 id="ruben-westerberg2">Ruben Westerberg</h2>
-
-<p><a href="/challenge-046/ruben-westerberg/raku/ch-2.p6">Ruben Westerberg&rsquo;s solution</a> generates an intermediate <code>@index</code> array, which is essentially a mask of doors to toggle for the current employee (<code>$i</code>):</p>
-
-<pre><code class="language-raku">my @doors=False xx 500; #doors initally closed
-@doors[$_]=!@doors[$_] for 0..499; #First person opens all
-for (2..500) -&gt; $i {
-    my @index=($i, {$_+$i} ... * &gt;= 500).grep(* &lt;= 500).map: *-1;
-    @doors[$_]=!@doors[$_] for @index;
+map {say $_<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>}, grep {@rooms[$_]<span style="color:#f92672">==</span><span style="color:#ae81ff">1</span>}, (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>@rooms<span style="color:#f92672">.</span>end);
+</code></pre></div><h2 id="ruben-westerberg2">Ruben Westerberg</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/ruben-westerberg/raku/ch-2.p6">Ruben Westerberg&rsquo;s solution</a> generates an intermediate <code>@index</code> array, which is essentially a mask of doors to toggle for the current employee (<code>$i</code>):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">my</span> @doors<span style="color:#f92672">=</span>False xx <span style="color:#ae81ff">500</span>; <span style="color:#75715e">#doors initally closed</span>
+@doors[$_]<span style="color:#f92672">=!</span>@doors[$_] <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">499</span>; <span style="color:#75715e">#First person opens all</span>
+<span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">2</span><span style="color:#f92672">..</span><span style="color:#ae81ff">500</span>) <span style="color:#f92672">-&gt;</span> $i {
+    <span style="color:#66d9ef">my</span> @index<span style="color:#f92672">=</span>($i, {$_<span style="color:#f92672">+</span>$i} <span style="color:#f92672">...</span> <span style="color:#f92672">*</span> <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">500</span>)<span style="color:#f92672">.</span>grep(<span style="color:#f92672">*</span> <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">500</span>)<span style="color:#f92672">.</span>map: <span style="color:#f92672">*-</span><span style="color:#ae81ff">1</span>;
+    @doors[$_]<span style="color:#f92672">=!</span>@doors[$_] <span style="color:#66d9ef">for</span> @index;
 }
-put @doors&gt;&gt;.Num;
-</code></pre>
-
-<p>Ruben&rsquo;s <code>@doors</code> is an array of <code>Bool</code>s, so he coerces each to a <code>Num</code> in order to output a string of 1s (open) and 0s (closed).</p>
-
+put @doors<span style="color:#f92672">&gt;&gt;.</span>Num;
+</code></pre></div><p>Ruben&rsquo;s <code>@doors</code> is an array of <code>Bool</code>s, so he coerces each to a <code>Num</code> in order to output a string of 1s (open) and 0s (closed).</p>
 <h2 id="ryan-thompson2">Ryan Thompson</h2>
-
-<p><a href="/challenge-046/ryan-thompson/raku/ch-2.p6">My submission</a> includes two solutions. The first is to simply output the square numbers directly:</p>
-
-<pre><code class="language-raku">say (1..$doors.sqrt.Int) »**» 2;
-</code></pre>
-
-<p>As justification for the above method, I provided an informal correctness proof in my blog, linked below.</p>
-
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/ryan-thompson/raku/ch-2.p6">My submission</a> includes two solutions. The first is to simply output the square numbers directly:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku">say (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$doors<span style="color:#f92672">.</span>sqrt<span style="color:#f92672">.</span>Int) <span style="color:#960050;background-color:#1e0010">»</span><span style="color:#f92672">**</span><span style="color:#960050;background-color:#1e0010">»</span> <span style="color:#ae81ff">2</span>;
+</code></pre></div><p>As justification for the above method, I provided an informal correctness proof in my blog, linked below.</p>
 <p>For completeness, I decided to also submit a looping solution:</p>
-
-<pre><code class="language-raku">my %doors;
-for 1..$doors -&gt; $m {
-    %doors{$m*$_} ^^= 1 for 1..$doors/$m;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">my</span> %doors;
+<span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$doors <span style="color:#f92672">-&gt;</span> $m {
+    %doors{$m<span style="color:#f92672">*</span>$_} <span style="color:#f92672">^^=</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$doors<span style="color:#f92672">/</span>$m;
 }
-say %doors.grep(*.value)».key».Int.sort;
-</code></pre>
-
-<p>The looping is optimal, as I only loop over every <code>$m</code> doors (<code>$m</code> is the current employee). For the output, I simply pull out all doors with a value and sort them numerically.</p>
-
+say %doors<span style="color:#f92672">.</span>grep(<span style="color:#f92672">*.</span>value)<span style="color:#960050;background-color:#1e0010">»</span><span style="color:#f92672">.</span>key<span style="color:#960050;background-color:#1e0010">»</span><span style="color:#f92672">.</span>Int<span style="color:#f92672">.</span>sort;
+</code></pre></div><p>The looping is optimal, as I only loop over every <code>$m</code> doors (<code>$m</code> is the current employee). For the output, I simply pull out all doors with a value and sort them numerically.</p>
 <p>As a dispassionate reviewer of my own code a week later, I don&rsquo;t know why I used a hash, here. An array would have been cleaner, avoiding a potentially costly <code>sort</code>:</p>
-
-<pre><code class="language-raku">say %doors.grep(*.value)».key».Int.sort; # &lt;-- This
-say @doors.pairs.grep(*.value)».key;     # &lt;-- Becomes this
-</code></pre>
-
-<p><strong>Blog</strong> › <a href="http://www.ry.ca/2020/02/500-doors/">Is the Room Open? (500 Doors)</a></p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku">say %doors<span style="color:#f92672">.</span>grep(<span style="color:#f92672">*.</span>value)<span style="color:#960050;background-color:#1e0010">»</span><span style="color:#f92672">.</span>key<span style="color:#960050;background-color:#1e0010">»</span><span style="color:#f92672">.</span>Int<span style="color:#f92672">.</span>sort; <span style="color:#75715e"># &lt;-- This</span>
+say @doors<span style="color:#f92672">.</span>pairs<span style="color:#f92672">.</span>grep(<span style="color:#f92672">*.</span>value)<span style="color:#960050;background-color:#1e0010">»</span><span style="color:#f92672">.</span>key;     <span style="color:#75715e"># &lt;-- Becomes this</span>
+</code></pre></div><p><strong>Blog</strong> › <a href="http://www.ry.ca/2020/02/500-doors/">Is the Room Open? (500 Doors)</a></p>
 <h2 id="simon-proctor2">Simon Proctor</h2>
-
-<p><a href="/challenge-046/simon-proctor/raku/ch-2.p6">Simon Proctor&rsquo;s solution</a> loops optimally, thanks to the increment in the <code>while</code> loop:</p>
-
-<pre><code class="language-raku">my @doors-open = 501 xx False;
-for 1..500 -&gt; $inc {
-    my $cur = $inc;
-    while $cur &lt;= 500 {
-        @doors-open[$cur] = ! @doors-open[$cur];
-        $cur += $inc;
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/simon-proctor/raku/ch-2.p6">Simon Proctor&rsquo;s solution</a> loops optimally, thanks to the increment in the <code>while</code> loop:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">my</span> @doors<span style="color:#f92672">-</span>open <span style="color:#f92672">=</span> <span style="color:#ae81ff">501</span> xx False;
+<span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">500</span> <span style="color:#f92672">-&gt;</span> $inc {
+    <span style="color:#66d9ef">my</span> $cur <span style="color:#f92672">=</span> $inc;
+    <span style="color:#66d9ef">while</span> $cur <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">500</span> {
+        @doors<span style="color:#f92672">-</span>open[$cur] <span style="color:#f92672">=</span> <span style="color:#f92672">!</span> @doors<span style="color:#f92672">-</span>open[$cur];
+        $cur <span style="color:#f92672">+=</span> $inc;
     }
 }
-</code></pre>
-
-<p>Since Simon added a dummy element zero, for 501 elements in total, he can work directly with 1-based indexing, which simplifies everything, including the output loop:</p>
-
-<pre><code class="language-raku">for 1..500 -&gt; $door {
-    say &quot;$door is Open&quot; if @doors-open[$door];
+</code></pre></div><p>Since Simon added a dummy element zero, for 501 elements in total, he can work directly with 1-based indexing, which simplifies everything, including the output loop:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">500</span> <span style="color:#f92672">-&gt;</span> $door {
+    say <span style="color:#e6db74">&#34;$door is Open&#34;</span> <span style="color:#66d9ef">if</span> @doors<span style="color:#f92672">-</span>open[$door];
 }
-</code></pre>
-
-<h2 id="ulrich-rieke2">Ulrich Rieke</h2>
-
-<p><a href="/challenge-046/ulrich-rieke/raku/ch-2.p6">Ulrich Rieke&rsquo;s solution</a> begins by
+</code></pre></div><h2 id="ulrich-rieke2">Ulrich Rieke</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-046/ulrich-rieke/raku/ch-2.p6">Ulrich Rieke&rsquo;s solution</a> begins by
 defining a custom <code>flip</code> routine, that returns the opposite of the <code>open</code> or
 <code>closed</code> keyword passed in:</p>
-
-<pre><code class="language-raku">sub flip( $state ) {
-    return $state eq &quot;open&quot; ?? &quot;closed&quot; !! &quot;open&quot;  ;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">flip</span>( $state ) {
+    <span style="color:#66d9ef">return</span> $state <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#34;open&#34;</span> ?? <span style="color:#e6db74">&#34;closed&#34;</span> <span style="color:#f92672">!!</span> <span style="color:#e6db74">&#34;open&#34;</span>  ;
 }
-</code></pre>
-
-<p>The main body of Ulrich&rsquo;s solution is a familiar nested loop:</p>
-
-<pre><code class="language-raku">my @current = &quot;open&quot; xx 500 ;
-for (2..500) -&gt; $i {
-    if ( $i &lt; 251 ) {
-        for ($i , 2 * $i  ... 500 ) -&gt; $j {
-            @current[ $j - 1 ] = flip( @current[ $j - 1] ) ;
+</code></pre></div><p>The main body of Ulrich&rsquo;s solution is a familiar nested loop:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">my</span> @current <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;open&#34;</span> xx <span style="color:#ae81ff">500</span> ;
+<span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">2</span><span style="color:#f92672">..</span><span style="color:#ae81ff">500</span>) <span style="color:#f92672">-&gt;</span> $i {
+    <span style="color:#66d9ef">if</span> ( $i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">251</span> ) {
+        <span style="color:#66d9ef">for</span> ($i , <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $i  <span style="color:#f92672">...</span> <span style="color:#ae81ff">500</span> ) <span style="color:#f92672">-&gt;</span> $j {
+            @current[ $j <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ] <span style="color:#f92672">=</span> flip( @current[ $j <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] ) ;
         }
     }
-    else {
-        @current[ $i - 1 ] = flip( @current[ $i - 1 ] ) ;
+    <span style="color:#66d9ef">else</span> {
+        @current[ $i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ] <span style="color:#f92672">=</span> flip( @current[ $i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ] ) ;
     }
 }
-</code></pre>
-
-<p>At this point, <code>@current</code> is an array of strings, <code>closed</code> or <code>open</code>,
+</code></pre></div><p>At this point, <code>@current</code> is an array of strings, <code>closed</code> or <code>open</code>,
 accordingly. So Ulrich then zips that into <code>@doors</code> to map the <code>open</code>/<code>closed</code>
 state to the room number:</p>
-
-<pre><code class="language-raku">my @doors = @current Z (1..500) ;
-</code></pre>
-
-<p>That is a neat way to do it. I would normally use <code>@current.pairs</code> (or <code>@current.antipairs</code> in this case), but it&rsquo;s always nice to consider another way to do the same thing.</p>
-
-<pre><code class="language-raku">for @doors -&gt; $pair {
-    say &quot;door {$pair[ 1 ]} is open!&quot; if $pair[0] eq &quot;open&quot; ;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">my</span> @doors <span style="color:#f92672">=</span> @current Z (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">500</span>) ;
+</code></pre></div><p>That is a neat way to do it. I would normally use <code>@current.pairs</code> (or <code>@current.antipairs</code> in this case), but it&rsquo;s always nice to consider another way to do the same thing.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">for</span> @doors <span style="color:#f92672">-&gt;</span> $pair {
+    say <span style="color:#e6db74">&#34;door {$pair[ 1 ]} is open!&#34;</span> <span style="color:#66d9ef">if</span> $pair[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#34;open&#34;</span> ;
 }
-</code></pre>
-
-<hr />
-
-<hr />
-
+</code></pre></div><hr>
+<hr>
 <h2 id="blogs">See Also</h2>
-
 <h3 id="blogs-this-week">Blogs this week:</h3>
-
 <p><strong>Arne Sommer</strong> › <a href="https://raku-musings.com/cryptic-room.html">The Cryptic Raku Room</a></p>
-
 <p><strong>Javier Luque</strong> › <a href="https://perlchallenges.wordpress.com/2020/02/04/perl-weekly-challenge-046/">046 – Perl Weekly Challenge</a></p>
-
 <p><strong>Laurent Rosenfeld</strong> › <a href="http://blogs.perl.org/users/laurent_r/2020/02/perl-weekly-challenge-46-garbled-message-and-room-open.html">Garbled Message and Room Open</a></p>
-
 <p><strong>Luca Ferrari</strong> › <a href="https://fluca1978.github.io/2020/02/03/PerlWeeklyChallened_46.html">Encoded messages and open rooms</a></p>
-
 <p><strong>Noud Aldenhoven</strong> › <a href="https://www.noudaldenhoven.nl/wordpress/?p=288">Is the room open?</a></p>
-
 <p><strong>Ryan Thompson</strong> › <a href="http://www.ry.ca/2020/02/cryptic-message/">Cryptic Message</a> | <a href="http://www.ry.ca/2020/02/500-doors/">Is the Room Open? (500 Doors)</a></p>
 
                 </div>

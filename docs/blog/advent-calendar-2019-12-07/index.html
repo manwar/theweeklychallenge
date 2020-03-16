@@ -16,7 +16,7 @@
 
     <meta name="description" content="Advent Calendar - December 7, 2019">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.55.0-DEV" />
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -41,6 +41,8 @@
     <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
     <!-- hover -->
     <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
     <!-- template main css file -->
     
     <link rel="stylesheet" href="https://perlweeklychallenge.org/css/style.min.css" integrity="" media="screen">
@@ -149,19 +151,12 @@
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
-                    
-
-<p><a href="/blog/advent-calendar-2019"><strong>Advent Calendar 2019</strong></a></p>
-
-<hr />
-
-<p>The gift is presented by <a href="/blog/meet-the-champion-014"><strong>Jaldhar H. Vyas</strong></a>. Today he is talking about his solutions to <strong>Task #1: Ackermann Function</strong> of <a href="/blog/perl-weekly-challenge-017"><strong>&ldquo;The Weekly Challenge - 017&rdquo;</strong></a>.</p>
-
-<h4 id="create-a-script-to-demonstrate-ackermann-function-as-defined-in-wikipedia-https-en-wikipedia-org-wiki-ackermann-function">Create a script to demonstrate Ackermann function as defined in <a href="https://en.wikipedia.org/wiki/Ackermann_function">wikipedia</a>.</h4>
-
-<p><br />
+                    <p><a href="/blog/advent-calendar-2019"><strong>Advent Calendar 2019</strong></a></p>
+<hr>
+<p>The gift is presented by <a href="/blog/meet-the-champion-014"><strong>Jaldhar H. Vyas</strong></a>. Today he is talking about his solutions to <strong>Task #1: Ackermann Function** of </strong>&ldquo;The Weekly Challenge - 017&rdquo;**<a href="/blog/perl-weekly-challenge-017"></a>.</p>
+<h4 id="create-a-script-to-demonstrate-ackermann-function-as-defined-in-wikipediahttpsenwikipediaorgwikiackermann_function">Create a script to demonstrate Ackermann function as defined in <a href="https://en.wikipedia.org/wiki/Ackermann_function">wikipedia</a>.</h4>
+<p><br>
 As per the example in wiki page.</p>
-
 <pre><code>A(1, 2) = A(0, A(1, 1))
         = A(0, A(0, A(1, 0)))
         = A(0, A(0, A(0, 1)))
@@ -169,61 +164,50 @@ As per the example in wiki page.</p>
         = A(0, 3)
         = 4
 </code></pre>
-
-<p><br />
+<p><br>
 This can be easily modeled by a <strong>recursive</strong> function with <strong>two special cases</strong>. (Plus <strong>an extra</strong> check to make sure the inputs are <strong>positive integers</strong>.) Here is the <strong>Perl</strong> version.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">ackermann</span> {
+    <span style="color:#66d9ef">my</span> ($m, $n) <span style="color:#f92672">=</span> @_;
 
-<pre><code class="language-perl">sub ackermann {
-    my ($m, $n) = @_;
-
-    if ($m &lt; 0 || $n &lt; 0) {
-        return undef;
+    <span style="color:#66d9ef">if</span> ($m <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> $n <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>) {
+        <span style="color:#66d9ef">return</span> undef;
     }
 
-    if ($m == 0) {
-        return $n + 1;
+    <span style="color:#66d9ef">if</span> ($m <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+        <span style="color:#66d9ef">return</span> $n <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
     }
 
-    if ($n == 0) {
-        return ackermann($m - 1, 1);
+    <span style="color:#66d9ef">if</span> ($n <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+        <span style="color:#66d9ef">return</span> ackermann($m <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>);
     }
 
-    return ackermann($m - 1, ackermann($m, $n - 1));
+    <span style="color:#66d9ef">return</span> ackermann($m <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, ackermann($m, $n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>));
 }
-</code></pre>
-
-<p><a href="https://github.com/jaldhar/perlweeklychallenge-club/blob/master/challenge-017/jaldhar-h-vyas/perl5/ch-1.pl"><strong>source code</strong></a></p>
-
+</code></pre></div><p><a href="https://github.com/jaldhar/perlweeklychallenge-club/blob/master/challenge-017/jaldhar-h-vyas/perl5/ch-1.pl"><strong>source code</strong></a></p>
 <p>In <strong>Raku</strong>, we can use the <strong>multi</strong> sub functionality for <strong>each case</strong> and <strong>parameter validation</strong> is built in.</p>
-
-<pre><code class="language-perl6">multi sub ackermann (
-    Int $m where { $m == 0 },
-    Int $n where { $n &gt;= 0 },
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6">multi <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">ackermann</span> (
+    Int $m where { $m <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> },
+    Int $n where { $n <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> },
 ) {
-    return $n + 1;
+    <span style="color:#66d9ef">return</span> $n <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
 }
 
-multi sub ackermann (
-    Int $m where { $m &gt;= 0 },
-    Int $n where { $n == 0 },
+multi <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">ackermann</span> (
+    Int $m where { $m <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> },
+    Int $n where { $n <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> },
 ) {
-    return ackermann($m - 1, 1);
+    <span style="color:#66d9ef">return</span> ackermann($m <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>);
 }
 
-multi sub ackermann (
-    Int $m where { $m &gt;= 0 },
-    Int $n where { $n &gt;= 0 },
+multi <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">ackermann</span> (
+    Int $m where { $m <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> },
+    Int $n where { $n <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> },
 ) {
-    return ackermann($m - 1, ackermann($m, $n - 1));
+    <span style="color:#66d9ef">return</span> ackermann($m <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, ackermann($m, $n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>));
 }
-</code></pre>
-
-<p><a href="https://github.com/jaldhar/perlweeklychallenge-club/blob/master/challenge-017/jaldhar-h-vyas/perl6/ch-1.p6"><strong>source code</strong></a></p>
-
-<hr />
-
+</code></pre></div><p><a href="https://github.com/jaldhar/perlweeklychallenge-club/blob/master/challenge-017/jaldhar-h-vyas/perl6/ch-1.p6"><strong>source code</strong></a></p>
+<hr>
 <p>If you have any suggestion then please do share with us <a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a>.</p>
-
 <p><a href="/blog/advent-calendar-2019"><strong>Advent Calendar 2019</strong></a></p>
 
                 </div>

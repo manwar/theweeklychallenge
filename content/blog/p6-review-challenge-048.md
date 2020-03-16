@@ -1,10 +1,11 @@
 ---
 author:       Ryan Thompson
-date:         2020-03-01T17:16:40
+date:         2020-03-01T00:00:00
 description:  "Ryan Thompson › Raku Weekly Review #048"
 tags:         ["raku"]
 title:        "Ryan Thompson › Raku Weekly Review #048"
 type:         post
+image:        /images/blog/p6-review-challenge-048.jpg
 ---
 
 Continues from [previous week](/blog/review-challenge-047/).

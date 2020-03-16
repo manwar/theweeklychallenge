@@ -16,7 +16,7 @@
 
     <meta name="description" content="Kian-Meng Ang Weekly Review: Challenge - #037.">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.55.0-DEV" />
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -41,6 +41,8 @@
     <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
     <!-- hover -->
     <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
     <!-- template main css file -->
     
     <link rel="stylesheet" href="https://perlweeklychallenge.org/css/style.min.css" integrity="" media="screen">
@@ -149,108 +151,58 @@
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
-                    
-
-<hr />
-
-<hr />
-
+                    <hr>
+<hr>
 <p>Continues from <a href="/blog/review-challenge-036/"><strong>previous week</strong></a>.</p>
-
 <p>Feel free to <a href="https://github.com/manwar/perlweeklychallenge"><strong>submit a merge request or open a ticket</strong></a> if you found any issues with this post. We highly appreciate and welcome your feedback.</p>
-
 <p>For a quick overview, go through the <a href="/blog/perl-weekly-challenge-037/"><strong>original tasks</strong></a> and <a href="/blog/recap-challenge-037/"><strong>recap</strong></a> of the weekly challenge.</p>
-
 <p>Additional feedback to the our Perl Weekly Challenge’s <a href="https://twitter.com/perlwchallenge?lang=en"><strong>Twitter account</strong></a> is much appreciated.</p>
-
-<hr />
-
-<hr />
-
+<hr>
+<hr>
 <h2 id="task-1">Task #1</h2>
-
-<hr />
-
-<hr />
-
+<hr>
+<hr>
 <p><strong>CPAN</strong> modules used: <a href="https://metacpan.org/pod/Data::Dumper"><code>Data::Dumper</code></a>, <a href="https://metacpan.org/pod/Date::Manip"><code>Date::Manip</code></a>, <a href="https://metacpan.org/pod/DateTime"><code>DateTime</code></a>, <a href="https://metacpan.org/pod/DateTime::Duration"><code>DateTime::Duration</code></a>, <a href="https://metacpan.org/pod/DateTime::Event::Recurrence"><code>DateTime::Event::Recurrence</code></a>, <a href="https://metacpan.org/pod/Function::Parameters"><code>Function::Parameters</code></a>, <a href="https://metacpan.org/pod/List::Util"><code>List::Util</code></a>, <a href="https://metacpan.org/pod/Modern::Perl"><code>Modern::Perl</code></a>, <a href="https://metacpan.org/pod/POSIX"><code>POSIX</code></a>, <a href="https://metacpan.org/pod/Test::More"><code>Test::More</code></a>, <a href="https://metacpan.org/pod/Time::Local"><code>Time::Local</code></a>, <a href="https://metacpan.org/pod/Time::Moment"><code>Time::Moment</code></a>, <a href="https://metacpan.org/pod/Time::Piece"><code>Time::Piece</code></a>, <a href="https://metacpan.org/pod/Time::Seconds"><code>Time::Seconds</code></a>, <a href="https://metacpan.org/pod/Time::localtime"><code>Time::localtime</code></a>, <a href="https://metacpan.org/pod/constant"><code>constant</code></a>, <a href="https://metacpan.org/pod/feature"><code>feature</code></a>, <a href="https://metacpan.org/pod/strict"><code>strict</code></a>, <a href="https://metacpan.org/pod/utf8"><code>utf8</code></a>, <a href="https://metacpan.org/pod/warnings"><code>warnings</code></a></p>
-
 <p>This is a similar task to the previous challenges. Thus, we observed some participants reuse the same code with some modifications.</p>
-
 <p>For a start, look at the solution by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/ryan-thompson/perl5/ch-1.pl"><strong>Ryan Thompson</strong></a> and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/colin-crain/perl5/ch-1.pl"><strong>Colin Crain</strong></a> which were heavily commented. This should provides us with some context and their thought on solving this tasks. Similarly but in blog post, read the write-up by <a href="http://blogs.perl.org/users/laurent_r/2019/12/perl-weekly-challenge-37-week-days-in-each-month-and-daylight-gainloss.html"><strong>Laurent Rosenfeld</strong></a>, <a href="http://blogs.perl.org/users/e_choroba/2019/12/perl-weekly-challenge-037-weekdays-and-daylight-gainloss.html"><strong>E. Choroba</strong></a>, and <a href="https://raku-musings.com/weekdays-daylight.html"><strong>Arne Sommer</strong></a>. They provides us with even more insight on how they approached this task.</p>
-
 <p>And as usual, a few things that caught our attention.</p>
-
 <p>The <code>Date::Manip::Recur</code> <strong>CPAN</strong> module used by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/colin-crain/perl5/ch-1.pl"><strong>Colin Crain</strong></a> was rather interesting and unique compare to typical <strong>CPAN</strong> modules found in most submitted solutions. The <strong>CPAN</strong> module provides a way to parse and manipulate recurrence which was used by the participant to filter out all weekdays.</p>
-
 <pre><code>    my $recur   = new Date::Manip::Recur;
     $recur-&gt;parse(&quot;0:0:0:1*0:0:0*IBD&quot;,&quot;Jan 1  2019&quot;,&quot;Jan 1  2019&quot;,&quot;Dec 31 2019&quot;);
     my @date    = $recur-&gt;dates();
 
-</code></pre>
-
-<p>Now, if the above recurrence modifier string was rather obscure, look at the solution by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/javier-luque/perl5/ch-1.pl"><strong>Javier Luque</strong></a> which use the <code>DateTime::Event::Recurrence</code> <strong>CPAN</strong> module. As shown below, the code is pretty much self-explanatory.</p>
-
+</code></pre><p>Now, if the above recurrence modifier string was rather obscure, look at the solution by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/javier-luque/perl5/ch-1.pl"><strong>Javier Luque</strong></a> which use the <code>DateTime::Event::Recurrence</code> <strong>CPAN</strong> module. As shown below, the code is pretty much self-explanatory.</p>
 <pre><code>    my $working_days =
         DateTime::Event::Recurrence-&gt;weekly(
             days =&gt; [1 .. 5]
         );
-</code></pre>
-
-<p>For a purist solution (without using any <strong>CPAN</strong> modules), <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/adam-russell/perl5/ch-1.pl"><strong>Adam Russell</strong></a> was the only particpant who seemed to achieve that feat.</p>
-
-<hr />
-
-<hr />
-
+</code></pre><p>For a purist solution (without using any <strong>CPAN</strong> modules), <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/adam-russell/perl5/ch-1.pl"><strong>Adam Russell</strong></a> was the only particpant who seemed to achieve that feat.</p>
+<hr>
+<hr>
 <h2 id="task-2">Task #2</h2>
-
-<hr />
-
-<hr />
-
+<hr>
+<hr>
 <p><strong>CPAN</strong> modules used: <a href="https://metacpan.org/pod/Astro::Coord::ECI"><code>Astro::Coord::ECI</code></a>, <a href="https://metacpan.org/pod/Astro::Coord::ECI::Sun"><code>Astro::Coord::ECI::Sun</code></a>, <a href="https://metacpan.org/pod/Astro::Coord::ECI::Utils"><code>Astro::Coord::ECI::Utils</code></a>, <a href="https://metacpan.org/pod/Astro::Sunrise"><code>Astro::Sunrise</code></a>, <a href="https://metacpan.org/pod/Data::Dumper"><code>Data::Dumper</code></a>, <a href="https://metacpan.org/pod/DateTime"><code>DateTime</code></a>, <a href="https://metacpan.org/pod/DateTime::Duration"><code>DateTime::Duration</code></a>, <a href="https://metacpan.org/pod/DateTime::Event::Sunrise"><code>DateTime::Event::Sunrise</code></a>, <a href="https://metacpan.org/pod/File::Slurp"><code>File::Slurp</code></a>, <a href="https://metacpan.org/pod/Function::Parameters"><code>Function::Parameters</code></a>, <a href="https://metacpan.org/pod/Getopt::Long"><code>Getopt::Long</code></a>, <a href="https://metacpan.org/pod/HTML::Parser"><code>HTML::Parser</code></a>, <a href="https://metacpan.org/pod/HTML::TableExtract"><code>HTML::TableExtract</code></a>, <a href="https://metacpan.org/pod/HTTP::Tiny"><code>HTTP::Tiny</code></a>, <a href="https://metacpan.org/pod/LWP::Simple"><code>LWP::Simple</code></a>, <a href="https://metacpan.org/pod/LWP::UserAgent"><code>LWP::UserAgent</code></a>, <a href="https://metacpan.org/pod/List::Util"><code>List::Util</code></a>, <a href="https://metacpan.org/pod/Modern::Perl"><code>Modern::Perl</code></a>, <a href="https://metacpan.org/pod/Mojo::UserAgent"><code>Mojo::UserAgent</code></a>, <a href="https://metacpan.org/pod/Pod::Usage"><code>Pod::Usage</code></a>, <a href="https://metacpan.org/pod/String::Util"><code>String::Util</code></a>, <a href="https://metacpan.org/pod/Syntax::Construct"><code>Syntax::Construct</code></a>, <a href="https://metacpan.org/pod/Time::Local"><code>Time::Local</code></a>, <a href="https://metacpan.org/pod/Time::Piece"><code>Time::Piece</code></a>, <a href="https://metacpan.org/pod/Time::Seconds"><code>Time::Seconds</code></a>, <a href="https://metacpan.org/pod/URI"><code>URI</code></a>, <a href="https://metacpan.org/pod/WWW::Mechanize"><code>WWW::Mechanize</code></a>, <a href="https://metacpan.org/pod/Web::Scraper"><code>Web::Scraper</code></a>, <a href="https://metacpan.org/pod/constant"><code>constant</code></a>, <a href="https://metacpan.org/pod/feature"><code>feature</code></a>, <a href="https://metacpan.org/pod/integer"><code>integer</code></a>, <a href="https://metacpan.org/pod/strict"><code>strict</code></a>, <a href="https://metacpan.org/pod/utf8"><code>utf8</code></a>, <a href="https://metacpan.org/pod/warnings"><code>warnings</code></a></p>
-
 <p>This task reminded us of the optional third task we used to have in previous challenges in using web services or APIs.</p>
-
 <p>For this task, we can group the submitted solutions into three groups. Those who scrapped the daylight gain and loss data from the <strong>Interweb</strong>, those who scrapped and pre-cached, or those who calculate dynamically.</p>
-
 <p>Participants who approached this task with the first approach were <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/mark-anderson/perl5/ch-2.pl"><strong>Mark Anderson</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/javier-luque/perl5/ch-2.pl"><strong>Javier Luque</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/adam-russell/perl5/ch-2.pl"><strong>Adam Russell</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/ruben-westerberg/perl5/ch-2.pl"><strong>Ruben Westerberg</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/saiftynet/perl5/ch-2.pl"><strong>Saif Ahmed</strong></a>, and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/e-choroba/perl5/ch-2.pl"><strong>E. Choroba</strong></a>.</p>
-
 <p>Participants who pre-cached the daylight data were <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/laurent-rosenfeld/perl5/ch-2.pl"><strong>Laurent Rosenfeld</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/andrezgz/perl5/ch-2.pl"><strong>Andrezgz</strong></a>, and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/colin-crain/perl5/ch-2.pl"><strong>Colin Crain</strong></a>.</p>
-
 <p>Participants who opted to calculate daylight details dynamically were <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/dave-jacoby/perl5/ch-2.pl"><strong>Dave Jacoby</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/roger-bell-west/perl5/ch-2.pl"><strong>Roger Bell_West</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/lubos-kolouch/perl5/ch-2.pl"><strong>Lubos Kolouch</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/ryan-thompson/perl5/ch-2.pl"><strong>Ryan Thompson</strong></a>, and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/duncan-c-white/perl5/ch-2.pl"><strong>Duncan C. White</strong></a>.</p>
-
 <p>Again, certain solutions that caught our attentions.</p>
-
 <p>The <a href="https://en.wikipedia.org/wiki/Forward-looking_statement"><strong>forward-looking statement or safe habour statement found</strong></a> in the submission by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/colin-crain/perl5/ch-2.pl"><strong>Colin Crain</strong></a> was rather intriguing and justifiable due to the uncertainties in predicting the daylight result.</p>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/ryan-thompson/perl5/ch-2.pl"><strong>Ryan Thompson</strong></a> basically wrote a console app or rather a <strong>CPAN</strong> module to calculate the difference of daylight between two months.</p>
-
 <p>The solution by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/mark-anderson/perl5/ch-2.pl"><strong>Mark Anderson</strong></a> is a short and practical demonstration of how <a href="https://en.wikipedia.org/wiki/MapReduce"><strong>MapReduce</strong></a> works.</p>
-
-<hr />
-
-<hr />
-
+<hr>
+<hr>
 <h2 id="see-also">SEE ALSO</h2>
-
-<hr />
-
-<hr />
-
+<hr>
+<hr>
 <p>(1) <a href="https://adamcrussell.livejournal.com/12735.html"><strong>Weekdays and Daytimes</strong></a> by <strong>Adam Russell</strong></p>
-
 <p>(2) <a href="https://raku-musings.com/weekdays-daylight.html"><strong>Weekdays, Daylight and Raku</strong></a> by <strong>Arne Sommer</strong></p>
-
 <p>(3) <a href="https://jacoby.github.io/2019/12/02/sunrise-and-sunset-in-perl.html"><strong>Sunrise and Sunset in Perl</strong></a> by <strong>Dave Jacoby</strong></p>
-
 <p>(4) <a href="http://blogs.perl.org/users/e_choroba/2019/12/perl-weekly-challenge-037-weekdays-and-daylight-gainloss.html"><strong>Perl Weekly Challenge 037: Weekdays and Daylight Gain/Loss</strong></a> by <strong>E. Choroba</strong></p>
-
 <p>(5) <a href="https://perlchallenges.wordpress.com/2019/12/02/perl-weekly-challenge-037/"><strong>Perl Weekly Challenge - 037</strong></a> by <strong>Javier Luque</strong></p>
-
 <p>(6) <a href="http://blogs.perl.org/users/laurent_r/2019/12/perl-weekly-challenge-37-week-days-in-each-month-and-daylight-gainloss.html"><strong>Perl Weekly Challenge 37: Week Days in Each Month and Daylight Gain/loss</strong></a> by <strong>Laurent Rosenfeld</strong></p>
-
 <p>(7) <a href="https://blog.firedrake.org/archive/2019/12/Perl_Weekly_Challenge_37__weekdays_and_day_lengths.html"><strong>Perl Weekly Challenge 37: weekdays and day lengths</strong></a> by <strong>Roger Bell_West</strong></p>
 
                 </div>

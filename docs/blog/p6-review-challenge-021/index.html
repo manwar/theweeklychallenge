@@ -16,7 +16,7 @@
 
     <meta name="description" content="Laurent Rosenfeld Weekly Review: Challenge - #021.">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.55.0-DEV" />
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -41,6 +41,8 @@
     <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
     <!-- hover -->
     <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
     <!-- template main css file -->
     
     <link rel="stylesheet" href="https://perlweeklychallenge.org/css/style.min.css" integrity="" media="screen">
@@ -149,57 +151,35 @@
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
-                    
-
-<hr />
-
+                    <hr>
 <h1 id="raku-solutions-weekly-review">Raku Solutions Weekly Review</h1>
-
-<hr />
-
-<h2 id="task-1-euler-s-number">Task #1: Euler&rsquo;s Number</h2>
-
+<hr>
+<h2 id="task-1-eulers-number">Task #1: Euler&rsquo;s Number</h2>
 <p>This is derived from my <a href="http://blogs.perl.org/users/laurent_r/2019/08/perl-weekly-challenge-21-eulers-number-and-url-normalizing.html">blog post</a> made in answer to the <a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-021/">Week 21 of the Perl Weekly Challenge</a> organized by  <a href="http://blogs.perl.org/users/mohammad_s_anwar/">Mohammad S. Anwar</a> as well as answers made by others to the same challenge.</p>
-
 <p>The challenge reads as follows:</p>
-
 <p><em>Write a script to calculate the value of e, also known as Euler’s number and Napier’s constant. Please checkout this <a href="https://en.wikipedia.org/wiki/E_(mathematical_constant)">wiki page</a> for more information.</em></p>
-
 <p>The number <em>e</em> is a mathematical constant that is the base of natural logarithms: it is the unique number whose natural logarithm is equal to 1 and its value is approximately 2.71828.</p>
-
 <h2 id="my-solution">My Solution</h2>
-
 <p>Perl 6 has a built-in constant, <code>e</code>, for Euler&rsquo;s number, which we can just print in a Perl 6 one-liner:</p>
-
 <pre><code>$ perl6 -e 'say e'
 2.718281828459045
 </code></pre>
-
 <p>If you did not know about this special built-in constant in Perl 6, you could still print the exponential of 1 (and that one-liner also works in exactly the same way in Perl 5):</p>
-
 <pre><code>$ perl6 -e 'say exp 1'
 2.718281828459045
 </code></pre>
-
 <p>So, job done? Well, maybe it is sort of cheating, and we don&rsquo;t want to cheat. Let&rsquo;s try to compute <em>e</em> really.</p>
-
 <p>Let&rsquo;s try the formula investigated by Jacob Bernoulli in 1683: <em>e</em> is equal to this limit:</p>
-
-<p><img src="./Euler1.jpg" alt="alt text" title="Bernoulli's limit formula for e" /></p>
-
+<p><img src="./Euler1.jpg" alt="alt text" title="Bernoulli's limit formula for e"></p>
 <p>We can just use this formula with a large input number:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">use</span> v6;
 
-<pre><code class="language-perl6">use v6;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">eul</span> ($n) { (<span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">/</span>$n)<span style="color:#f92672">**</span>$n}
 
-sub eul ($n) { (1 + 1/$n)**$n}
-
-sub MAIN (Int $n) {
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> (Int $n) {
     say eul $n;
 }
-</code></pre>
-
-<p>Let&rsquo;s try to run this program with increasing input numbers:</p>
-
+</code></pre></div><p>Let&rsquo;s try to run this program with increasing input numbers:</p>
 <pre><code>$perl6  euler.p6 5
 2.48832
 
@@ -215,86 +195,54 @@ $perl6  euler.p6 1000
 $perl6  euler.p6 10000
 2.718145926825225
 </code></pre>
-
 <p>It works, but the formula converges very slowly: with an input number of 10,000, we obtain only 4 correct digits.</p>
-
 <p>Let&rsquo;s try with a better formula. Isaac Newton found in 1669 that what is known as Euler&rsquo;s constant is equal to the  sum of the following infinite series (sometimes called the Maclaurin series expansion):</p>
-
-<p><img src="./Euler2.jpg" alt="alt text" title="Sum of infinite series for e" /></p>
-
+<p><img src="./Euler2.jpg" alt="alt text" title="Sum of infinite series for e"></p>
 <p>where <code>n!</code> is the factorial of <code>n</code>, i.e. the product of all positive integers between 1 and <code>n</code>.</p>
-
 <p>For computing this, we will first define a new postfix operator, <code>!</code>, to compute the factorial of any number, and then use it to compute the sum. For this, we will use twice the <code>[...]</code> reduction metaoperator, which reduces a list of values with the given infix operator. For example,</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6">say [<span style="color:#f92672">+</span>] <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>;   <span style="color:#75715e">#  -&gt; 10</span>
+</code></pre></div><p>is equivalent to:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6">say <span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">4</span>;
+</code></pre></div><p>i.e. works as if the infix operator (<code>+</code> in this example) was placed between each item of the list to produce an arithmetic expression yielding a single numerical value. This is the perfect functionality for computing both the factorial of an integer and the sum of terms of the formula.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">use</span> v6;
 
-<pre><code class="language-perl6">say [+] 1, 2, 3, 4;   #  -&gt; 10
-</code></pre>
-
-<p>is equivalent to:</p>
-
-<pre><code class="language-perl6">say 1 + 2 + 3 + 4;
-</code></pre>
-
-<p>i.e. works as if the infix operator (<code>+</code> in this example) was placed between each item of the list to produce an arithmetic expression yielding a single numerical value. This is the perfect functionality for computing both the factorial of an integer and the sum of terms of the formula.</p>
-
-<pre><code class="language-perl6">use v6;
-
-sub postfix:&lt;!&gt; (Int $n) {   # factorial operator
-    [*] 2..$n;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">postfix</span>:&lt;!&gt; (Int $n) {   <span style="color:#75715e"># factorial operator</span>
+    [<span style="color:#f92672">*</span>] <span style="color:#ae81ff">2</span><span style="color:#f92672">..</span>$n;
 }
-sub eul (Int $n) {
-    [+] map { 1 / $_! }, 0..$n;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">eul</span> (Int $n) {
+    [<span style="color:#f92672">+</span>] map { <span style="color:#ae81ff">1</span> <span style="color:#f92672">/</span> $_<span style="color:#f92672">!</span> }, <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$n;
 }
-sub MAIN (Int $n) {
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> (Int $n) {
     say eul $n;
 }
-</code></pre>
-
-<p>The version with this new formula converges much faster than the original one:</p>
-
+</code></pre></div><p>The version with this new formula converges much faster than the original one:</p>
 <pre><code>$ perl6  euler.p6 10
 2.7182818
 
 $ perl6  euler.p6 25
 2.718281828459045
 </code></pre>
-
 <p>The digits are all accurate, but if we wanted more significant digits, we would need to use <code>FatRat</code> numbers. For example, like so:</p>
-
-<pre><code class="language-perl6">sub postfix:&lt;!&gt; (Int $n) {   # factorial operator
-    [*] (2..$n).FatRat;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">postfix</span>:&lt;!&gt; (Int $n) {   <span style="color:#75715e"># factorial operator</span>
+    [<span style="color:#f92672">*</span>] (<span style="color:#ae81ff">2</span><span style="color:#f92672">..</span>$n)<span style="color:#f92672">.</span>FatRat;
 }
-</code></pre>
-
-<p>or, probably better, by making the change in the <code>eul</code> subroutine rather than in the definition of the factorial operator:</p>
-
-<pre><code class="language-perl6">sub eul (Int $n) {
-    [+] map { 1 / ($_!).FatRat}, 0..$n;
+</code></pre></div><p>or, probably better, by making the change in the <code>eul</code> subroutine rather than in the definition of the factorial operator:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">eul</span> (Int $n) {
+    [<span style="color:#f92672">+</span>] map { <span style="color:#ae81ff">1</span> <span style="color:#f92672">/</span> ($_<span style="color:#f92672">!</span>)<span style="color:#f92672">.</span>FatRat}, <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$n;
 }
-</code></pre>
-
-<p>With this last change, the script outputs significantly more accurate digits:</p>
-
+</code></pre></div><p>With this last change, the script outputs significantly more accurate digits:</p>
 <pre><code>perl6 euler.p6 25
 2.7182818284590452353602875
 </code></pre>
-
 <p>and can display many more with higher input values.</p>
-
 <h2 id="alternative-solutions">Alternative Solutions</h2>
-
 <p>There is more than on way to do it. In some cases in the past, many solutions to the Perl Weekly Challenge looked similar. Not so with Euler&rsquo;s number: challengers used quite a number different formulas to compute <em>e</em> and, even when they used the same formula, the implementations were markedly different.</p>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-021/arne-sommer/perl6/ch-1.p6">Arne Sommer</a> used the same formula as my second one above, but coded it very differently: he made a lazy infinite list of the <code>1/n!</code> terms and and then computed the sum for the <em>j</em> terms.</p>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-021/ozzy/perl6/ch-1.p6">Ozzy</a> also used the same formula, but yet with a totally different coding approach; the distinctive quality of his solution is that he first defines a default precision of one hundred digits after the decimal point, and loops on his formula until he effectively gets more than 100 correct digits. This is the result I get with Ozzy&rsquo;s code:</p>
-
 <pre><code>2.7182818284590452353602874713526624977572470936999595749669676277240766303535475945713821785251664274263
 </code></pre>
-
 <p>(The last two digits displayed above (63) are wrong, but that&rsquo;s nonetheless 102 correct first digits.) Congratulations!</p>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-021/simon-proctor/perl6/ch-1.p6">Simon Proctor</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-021/joelle-maslak/perl6/ch-1.p6">Joelle Maslak</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-021/roger-bell-west/perl6/ch-1.p6">Roger Bell West</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-021/ruben-westerberg/perl6/ch-1.p6">Ruben Westerberg</a>, and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-021/randy-lauen/perl6/ch-1.p6">Randy Lauen</a> also used the same sum of infinite series formula, but each with a very different coding approach. Roger did it in an infinite loop printing each value found for <em>e</em>, so that you need to kill the process to finish it (which I don&rsquo;t like too much), but it prints the various successive approximations, so that you can see the precision increase at each iteration, and this, I like very much. I added a <code>last</code> statement in his code in order to exit gracefully the infinite loop after a given number of iterations and got this:</p>
-
 <pre><code>2
 2.5
 2.666667
@@ -320,48 +268,30 @@ $ perl6  euler.p6 25
 2.71828182845904523536029
 2.7182818284590452353602874
 </code></pre>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-021/adam-russell/perl6/ch-1.p6">Adam Russell</a> played with channels presumably to test concurrent or distributed computing in order to boost performance. Looking at his solution, it seemed to me that Adam was using the same sum of infinite series as the previous challengers just above, but I must admit that I originally didn&rsquo;t really understand his method. It became clear to me only afterward when I read his <a href="https://adamcrussell.livejournal.com/6924.html">Implementing a spigot algorithm for the digits of e</a> blog post, so you might probably want to do the same.</p>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-021/kevin-colyer/perl6/ch-1.p6">Kevin Colyer</a> apparently has quite a bit of fun with that and suggested not less than 5 different ways of computing <em>e</em>: the two formulas I gave at the beginning of this post, two continued fractions and even a probabilistic or stochastic computation. I had probably the same  amount of fun reading and trying his solutions as he did writing them, and I think you should really follow the link and read his solutions to enjoy the same fun. This one of his subroutines, for the fun:</p>
-
-<pre><code class="language-Perl6">sub e_continued_fraction($n) {
-    # calculated in reverse order to avoid recursion
-    my $frac=1;
-    my @seq=lazy gather for 1..Inf  -&gt; $a  {take 1; take 2*$a; take 1} ;
-    for (0..^$n).reverse -&gt; $i {
-        $frac=1/(@seq[$i]+$frac);
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">e_continued_fraction</span>($n) {
+    <span style="color:#75715e"># calculated in reverse order to avoid recursion</span>
+    <span style="color:#66d9ef">my</span> $frac<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">my</span> @seq<span style="color:#f92672">=</span>lazy gather <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>Inf  <span style="color:#f92672">-&gt;</span> $a  {take <span style="color:#ae81ff">1</span>; take <span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>$a; take <span style="color:#ae81ff">1</span>} ;
+    <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span><span style="color:#f92672">..^</span>$n)<span style="color:#f92672">.</span>reverse <span style="color:#f92672">-&gt;</span> $i {
+        $frac<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span><span style="color:#f92672">/</span>(@seq[$i]<span style="color:#f92672">+</span>$frac);
     }
-    return $frac+2;
+    <span style="color:#66d9ef">return</span> $frac<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>;
 };
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-021/noud/perl6/ch-1.p6">Noud</a> used the following continued fraction:</p>
-
-<p><img src="./Euler3.jpg" alt="alt text" title="Continued fraction for e" /></p>
-
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-021/noud/perl6/ch-1.p6">Noud</a> used the following continued fraction:</p>
+<p><img src="./Euler3.jpg" alt="alt text" title="Continued fraction for e"></p>
 <p>and computed it for the first 50 steps (which yields 2.7182818284590455).</p>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-021/athanasius/perl6/ch-1.p6">Athanasius</a> used yet another, much more recent and apparently significantly  faster, method suggested in Jan. 2004 by Harlan J. Brothers in a paper entitled <a href="http://www.brotherstechnology.com/docs/Improving_Convergence_(CMJ-2004-01).pdf">Improving the Convergence of Newton&rsquo;s Series Approximation for e</a>.</p>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-021/jaldhar-h-vyas/perl6/ch-1.sh">Jaldhar H. Vyas</a> cheated as blatantly as I did in my first suggestion, also with a code length of a mere 5 characters, but yet managed to do it with a different syntax (method call syntax). Yes, TIMTOWTDI.</p>
-
 <h1 id="task-2-url-normalization">Task #2: URL Normalization</h1>
-
 <p>This is derived from my <a href="http://blogs.perl.org/users/laurent_r/2019/08/perl-weekly-challenge-21-eulers-number-and-url-normalizing.html">blog post</a> made in answer to the <a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-021/">Week 21 of the Perl Weekly Challenge</a> organized by  <a href="http://blogs.perl.org/users/mohammad_s_anwar/">Mohammad S. Anwar</a> as well as answers made by others to the same challenge.</p>
-
 <p>The challenge reads as follows:</p>
-
 <p><em>Write a script for URL normalization based on <a href="https://en.wikipedia.org/wiki/URL_normalization">rfc3986</a>. This task was shared by Anonymous Contributor.</em></p>
-
 <p><em>According to Wikipedia, URL normalization is the process by which URLs are modified and standardized in a consistent manner. The goal of the normalization process is to transform a URL into a normalized URL so it is possible to determine if two syntactically different URLs may be equivalent.</em></p>
-
 <h2 id="my-solution-1">My Solution</h2>
-
 <p>URL normalization does not appear to be a well normalized process. Some of the changes may be useful for some purposes and unwanted in others. In the scripts suggested below, I have limited the changes to <a href="https://en.wikipedia.org/wiki/URL_normalization#Normalizations_that_preserve_semantics">normalizations that preserve semantics</a> plus removing dot-segments among the <a href="https://en.wikipedia.org/wiki/URL_normalization#Normalizations_that_usually_preserve_semantics">normalizations that usually preserve semantics</a>. Other normalization rules are often unwanted (depending on the specific circumstances) or poorly defined.</p>
-
 <p>To summarize, we will perform the following normalization actions:</p>
-
 <ul>
 <li>Converting to lower case,</li>
 <li>Capitalizing letters in escape sequences,</li>
@@ -369,21 +299,14 @@ $ perl6  euler.p6 25
 <li>Removing the default port,</li>
 <li>Removing dot-segments.</li>
 </ul>
-
 <p>We will simply apply a series of successive regex substitutions to the URL, one (or in one case two) for each of the normalization actions.</p>
-
 <p>In the <code>normalize</code> subroutine of the program below, we topicalize the URL (with the <code>given</code> keyword), so that we can use directly the regex substitution operator on the topical <code>$_</code> variable. This simplifies the substitutions. We can write simply:</p>
-
 <pre><code>s:g/'/./'/\//;
 </code></pre>
-
 <p>instead of having to write, for each of the substitutions, something like:</p>
-
 <pre><code>$url ~~ s:g/'/./'/\//;
 </code></pre>
-
 <p>Each of the substitutions in the program below is commented to explain to which normalization action it refers to.</p>
-
 <pre><code>use v6;
 use Test;
 
@@ -417,9 +340,7 @@ for &lt; 1 HTTP://www.Example.com/
         cmp-ok normalize($source), 'eq', $target, &quot;Test $num&quot;;
 }
 </code></pre>
-
 <p>The five test cases work fine:</p>
-
 <pre><code>$ perl6  normalize_url.p6
 1..5
 ok 1 - Test 1
@@ -428,55 +349,40 @@ ok 3 - Test 3
 ok 4 - Test 4
 ok 5 - Test 5
 </code></pre>
-
 <p>The decoding of percent-encoded octets is a bit more complicated than the others and it might help to explain it a bit further. The first line:</p>
-
 <pre><code>    s:g/'%'(&lt;xdigit&gt;**2)     # Decoding percent-encoded octets
 </code></pre>
-
 <p>looks for a literal <code>%</code> character followed by two hexadecimal digits. But the match really occurs only if the code assertion immediately thereafter:</p>
-
 <pre><code>       &lt;?{ (+&quot;0x$0&quot;) (elem) $unreserved-range }&gt; # code assertion
 </code></pre>
-
 <p>is successful, that is essentially if the two hexadecimal digits found belong to the <code>$unreserved</code> set of unreserved characters populated at the top of the subroutine. As a result, the substitution occurs only for the octets listed in that set.</p>
-
 <p>Here, we have used five test cases, one for each of the normalization actions, because we don&rsquo;t have detailed specifications, but a real test plan would require more test cases based on actual specs.</p>
-
 <h2 id="alternative-solutions-1">Alternative Solutions</h2>
-
 <p>It seems that this challenge encountered limited enthusiasm, since only 6 of the challengers (including myself) suggested Perl 6 solutions. Having said that, I should add that reviewing them took me quite some time, since some of the solutions are fairly long.</p>
-
 <p>Some participants wrote full-fledged grammars, while others used a series of regexes. A grammar is most probably better than my poor 6 regexes. I actually thought about writing a grammar, but was a bit too lazy for that (although I already wrote a grammar for URLs in the context of Perl Weekly Challenge 17 and could have partly reused that). I also thought that regexes would be good enough in this case - in a real world situation, I would certainly also write a grammar. Anyway, once the URL is split up in various components (scheme, user info, host, port, etc.), it is obviously safer and more robust to apply the changes to the various parts, rather than applying blindly regexes to the whole URL.</p>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-021/arne-sommer/perl6/ch-2.p6">Arne Sommer</a> wrote a full grammar to parse the various components of a URL.</p>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-021/joelle-maslak/perl6/ch-2.p6">Joelle Maslak</a> also used a grammar, albeit a seemingly simpler one. On the other hand, I feel that she could have used a more concise way of processing the <code>$encoding</code> in the <code>normalize-percent</code> subroutine which has a number of code repetitions.</p>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-021/kevin-colyer/perl6/ch-2.p6">Kevin Colyer</a> also used a full grammar to parse the various components of a URL and even went further, since he also wrote an actions class to perform some of the normalization actions, as well as an 90 line test plan. Altogether, his program has 279 code lines!</p>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-021/noud/perl6/ch-2.p6">Noud</a> and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-021/ruben-westerberg/perl6/ch-2.p6">Ruben Westerberg</a> used a series a regexes similar in spirit to what I did.</p>
-
 <p><a href="https://www.braincells.com/perl/2019/08/perl_weekly_challenge_week_21.html">Jaldhar H.Vyas</a> missed the Perl Weekly Challenge deadline for this specific challenge in Perl 6 because he encountered some coding difficulties (he explains them in the blog post linked just above). He reused the grammar for URL he had written for <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/jaldhar-h-vyas/perl6/ch-2.p6">Challenge 17</a> (with just one small change) et rewrote his actions class to perform the normalization actions. He eventually succeeded to get his code working, but with a rather ugly hack. I am not sure to understand the problem he encountered, but, in general, when you want to insert a modified component into your AST, it is usually best to do it in the action method corresponding to the rule level immediately above. As far as I understand, Jaldhar wanted to modify the <em>PctEncoded</em> match within the <em>PctEncoded</em> method, and that probably doesn&rsquo;t work too well. I think it would probably a good idea to try do it at the level immediately above, i.e. in the <em>UserinfoChar</em> action method (the <em>PctEncoded</em> token is called in the <em>UserinfoChar</em> token).</p>
-
 <h2 id="see-also">SEE ALSO</h2>
-
 <p>Blog posts on Euler&rsquo;s number</p>
-
 <ul>
-<li><p>Arne Sommer: <a href="https://perl6.eu/eulers-url.html">https://perl6.eu/eulers-url.html</a></p></li>
-
-<li><p>Adam Russell: <a href="https://adamcrussell.livejournal.com/6924.html">https://adamcrussell.livejournal.com/6924.html</a></p></li>
-
-<li><p>Roger Bell West: <a href="https://blog.firedrake.org/archive/2019/08/Perl_Weekly_Challenge_21.html">https://blog.firedrake.org/archive/2019/08/Perl_Weekly_Challenge_21.html</a></p></li>
-
-<li><p>Damian Conway: <a href="http://blogs.perl.org/users/damian_conway/2019/09/to-compute-a-constant-of-calculusa-treatise-on-multiple-ways.html">http://blogs.perl.org/users/damian_conway/2019/09/to-compute-a-constant-of-calculusa-treatise-on-multiple-ways.html</a>. Damian&rsquo;s blog post on Euler&rsquo;s number is more insanely awesome than usual. Reading it is an absolute must.</p></li>
+<li>
+<p>Arne Sommer: <a href="https://perl6.eu/eulers-url.html">https://perl6.eu/eulers-url.html</a></p>
+</li>
+<li>
+<p>Adam Russell: <a href="https://adamcrussell.livejournal.com/6924.html">https://adamcrussell.livejournal.com/6924.html</a></p>
+</li>
+<li>
+<p>Roger Bell West: <a href="https://blog.firedrake.org/archive/2019/08/Perl_Weekly_Challenge_21.html">https://blog.firedrake.org/archive/2019/08/Perl_Weekly_Challenge_21.html</a></p>
+</li>
+<li>
+<p>Damian Conway: <a href="http://blogs.perl.org/users/damian_conway/2019/09/to-compute-a-constant-of-calculusa-treatise-on-multiple-ways.html">http://blogs.perl.org/users/damian_conway/2019/09/to-compute-a-constant-of-calculusa-treatise-on-multiple-ways.html</a>. Damian&rsquo;s blog post on Euler&rsquo;s number is more insanely awesome than usual. Reading it is an absolute must.</p>
+</li>
 </ul>
-
 <h2 id="wrapping-up">Wrapping up</h2>
-
 <p>Please let me know if I forgot any of the challengers or if you think my explanation of your code misses something important.</p>
-
 <p>If you want to participate to the Perl Weekly Challenge, please connect to <a href="https://perlweeklychallenge.org/">this site</a>.</p>
 
                 </div>

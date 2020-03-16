@@ -16,7 +16,7 @@
 
     <meta name="description" content="Kian-Meng Ang Weekly Review: Challenge - #017.">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.55.0-DEV" />
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -41,6 +41,8 @@
     <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
     <!-- hover -->
     <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
     <!-- template main css file -->
     
     <link rel="stylesheet" href="https://perlweeklychallenge.org/css/style.min.css" integrity="" media="screen">
@@ -149,156 +151,92 @@
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
-                    
-
-<hr />
-
+                    <hr>
 <p>Continues from <a href="/blog/review-challenge-016/">previous week</a>.</p>
-
 <p>Feel free to <a href="https://github.com/manwar/perlweeklychallenge">submit a merge request or open a ticket</a> if you found any issues with this post. We highly appreciate and welcome your feedback.</p>
-
 <p>For a quick overview, go through the <a href="/blog/perl-weekly-challenge-017/">original tasks</a> and <a href="/blog/recap-challenge-017/">recap</a> of the weekly challenge.</p>
-
-<hr />
-
+<hr>
 <h3 id="task-1">Task #1</h3>
-
-<hr />
-
+<hr>
 <p>For a good overview on how this recursive formulae works, you can look at this <a href="https://gfredericks.com/things/arith/ackermann">animated calculator</a>.</p>
-
 <p>This seemed like a straight forward question, a direct translation and implementation of the <a href="https://en.wikipedia.org/wiki/Ackermann_function">Ackermann function</a> using the definition of the formulae given.</p>
-
-<p>Well, some particpants (<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/veesh-goldman/perl5/ch-1.pl">Veesh Goldman</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/duane-powell/perl5/ch-1.pl">Duane Powell</a>, and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/daniel-mantovani/perl5/ch-1.pl">Daniel Mantovani</a>) discovered that direct formulae implementation will hit the bottleneck of the recursion starting from <code>A(4, 2)</code>. Or as <strong>Veesh Goldman</strong> <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/veesh-goldman/perl5/ch-1.pl">found out</a>, <em>&ldquo;good luck getting (4, 2) to print, it&rsquo;s 2 ** 65533..&rdquo;</em>. Even using caching through storing pre-calculated values in hash or <a href="https://perldoc.perl.org/Memoize.html"><code>Memoize</code></a> <strong>CPAN</strong> module would only help to a certain limit. Nevertheless, <strong>Dave Jacoby</strong> <a href="https://jacoby.github.io/2019/07/16/thoughts-on-perl-weekly-challenge-17.html">did some benchmark</a> and found out that <code>Memoize</code> did make the code faster by <strong>15x</strong>. Likewise, <strong>Yozen Hernandez</strong>&rsquo;s <a href="https://yzhernand.github.io/posts/perl-weekly-challenge-17-1/">benchmark result</a> showed a <strong>216%</strong> improvement.</p>
-
+<p>Well, some particpants (<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/veesh-goldman/perl5/ch-1.pl">Veesh Goldman</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/duane-powell/perl5/ch-1.pl">Duane Powell</a>, and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/daniel-mantovani/perl5/ch-1.pl">Daniel Mantovani</a>) discovered that direct formulae implementation will hit the bottleneck of the recursion starting from <code>A(4, 2)</code>. Or as <strong>Veesh Goldman</strong> <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/veesh-goldman/perl5/ch-1.pl">found out</a>, <em>&ldquo;good luck getting (4, 2) to print, it&rsquo;s 2 ** 65533..&quot;</em>. Even using caching through storing pre-calculated values in hash or <a href="https://perldoc.perl.org/Memoize.html"><code>Memoize</code></a> <strong>CPAN</strong> module would only help to a certain limit. Nevertheless, <strong>Dave Jacoby</strong> <a href="https://jacoby.github.io/2019/07/16/thoughts-on-perl-weekly-challenge-17.html">did some benchmark</a> and found out that <code>Memoize</code> did make the code faster by <strong>15x</strong>. Likewise, <strong>Yozen Hernandez</strong>&lsquo;s <a href="https://yzhernand.github.io/posts/perl-weekly-challenge-17-1/">benchmark result</a> showed a <strong>216%</strong> improvement.</p>
 <p>As <strong>Ackermann</strong> function is deeply recursive (more than 100 levels), you will get <code>Deep recursion on anonymous subroutine</code> warning. The workaround was to suppress the warning through <a href="https://perldoc.perl.org/warnings.html"><code>no warnings</code> pragma</a>. Surprisingly, not sure why, not all submitted answers which translated the implementation directly hide this warning message.</p>
-
 <p>Only the solution by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/veesh-goldman/perl5/arrows.pl">Veesh Goldman</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/michael-hamlin/perl5/t1-ackermann-two.pl">Michael Hamlin</a> and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/joelle-maslak/perl5/ch-1.pl">Joelle Maslak</a> managed to calculate the value of <code>A(4, 2)</code> within the reasonable time.</p>
-
 <p>Some notable solutions that caught our attention. The recursion subroutine of <strong>Michael Hamlin</strong> <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/michael-hamlin/perl5/t1-ackermann-simple.pl">direct formulate implementation</a> certainly stand out compare to other participants. The code was short and concise although some will argue about the clarity and readability of the nested ternary operators. There were four techniques or tricks being used here. <strong>First</strong>, using <a href="https://perldoc.perl.org/functions/state.html"><code>state</code></a> variable to cache the calculated value. <strong>Second</strong>, <a href="https://perldoc.perl.org/perlop.html#C-style-Logical-Or"><code>logical-or</code></a> was used to check and retrieve cached value or to calculate and cache it. <strong>Third</strong>, the <a href="https://perldoc.perl.org/functions/do.html"><code>do</code></a> block used here was to improve readability and group the ternary operators although the usage was optional here. Note that the <code>do</code> block here may seem like a subroutine but it&rsquo;s not. And <strong>fourth</strong>, nested <a href="https://perldoc.perl.org/perlop.html#Conditional-Operator">ternary or conditional operators</a> to replace <code>if-else</code> statement.</p>
-
-<pre><code class="language-perl">    sub _ack( $m, $n ) {
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_ack</span>( $m, $n ) {
         state @known;
-        $count++;
-        return $known[$m][$n] ||= do {
-            !$m ? $n + 1 :
-            !$n ? _ack($m - 1, 1) :
-            _ack($m - 1, _ack($m, $n - 1));
+        $count<span style="color:#f92672">++</span>;
+        <span style="color:#66d9ef">return</span> $known[$m][$n] <span style="color:#f92672">||=</span> <span style="color:#66d9ef">do</span> {
+            <span style="color:#f92672">!</span>$m ? $n <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> :
+            <span style="color:#f92672">!</span>$n ? _ack($m <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>) :
+            _ack($m <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, _ack($m, $n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>));
         };
     }
-</code></pre>
+</code></pre></div><p>Another interesting Perl trick we found in <strong>Joelle Maslak</strong>&lsquo;s <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/joelle-maslak/perl5/ch-1.pl">solution</a>. Note the last two lines of the subroutine which was an implementation of a <a href="https://www.perlmonks.org/?node_id=161611">pure Perl tail call optimization</a>. The <a href="https://perldoc.perl.org/functions/goto.html"><code>goto &amp;NAMED_SUBROUTINE</code></a> form immediately exits the current subroutine and calls the named subroutine with new values of <a href="https://perldoc.perl.org/perlvar.html#@_"><code>@_</code></a>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">up_arrow</span>($m, $num_arrows, $n) {
+        <span style="color:#66d9ef">no</span> warnings <span style="color:#e6db74">&#39;recursion&#39;</span>;
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">unless</span> $n;
+        <span style="color:#66d9ef">return</span> $m <span style="color:#f92672">**</span> $n <span style="color:#66d9ef">if</span> $num_arrows <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>;
 
-<p>Another interesting Perl trick we found in <strong>Joelle Maslak</strong>&rsquo;s <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/joelle-maslak/perl5/ch-1.pl">solution</a>. Note the last two lines of the subroutine which was an implementation of a <a href="https://www.perlmonks.org/?node_id=161611">pure Perl tail call optimization</a>. The <a href="https://perldoc.perl.org/functions/goto.html"><code>goto &amp;NAMED_SUBROUTINE</code></a> form immediately exits the current subroutine and calls the named subroutine with new values of <a href="https://perldoc.perl.org/perlvar.html#@_"><code>@_</code></a>.</p>
-
-<pre><code class="language-perl">    sub up_arrow($m, $num_arrows, $n) {
-        no warnings 'recursion';
-        return 1 unless $n;
-        return $m ** $n if $num_arrows == 1;
-
-        @_ = ($m, $num_arrows-1, up_arrow($m, $num_arrows, $n-1));
-        goto &amp;up_arrow;
+        @_ <span style="color:#f92672">=</span> ($m, $num_arrows<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, up_arrow($m, $num_arrows, $n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>));
+        goto <span style="color:#f92672">&amp;</span>up_arrow;
     }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h3 id="task-2">Task #2</h3>
-
-<hr />
-
+<hr>
 <p>In general, three approaches were used by the participants which includes parsing the <strong>URL</strong> manually, using a <strong>CPAN</strong> module, or use your own parser.</p>
-
-<p>Most participants (<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/dave-jacoby/perl5/ch-2.pl">Dave Jacoby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/daniel-mantovani/perl5/ch-2.pl">Daniel Mantovani</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/ruben-westerberg/perl5/ch-2.pl">Ruben Westerberg</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/laurent-rosenfeld/perl5/ch-2.pl">Laurent Rosenfeld</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/jaldhar-h-vyas/perl5/ch-2.pl">Jaldhar H. Vyas</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/roger-bell-west/perl5/ch-2.pl">Roger Bell West</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/yozen-hernandez/perl5/ch-2.pl">Yozen Hernandez</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/duncan-c-white/perl5/ch-2.pl">Duncan C White</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/feng-chang/perl5/ch-2.pl">Feng Chang</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/steven-wilson/perl5/ch-2.pl">Steven Wilson</a>, and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/andrezgz/perl5/ch-2.pl">Andrezgz</a>) solved this task using the manual way through regex. While there were many coding styles to express your regex, we found <strong>Laurent Rosenfeld</strong>&rsquo;s <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/laurent-rosenfeld/perl5/ch-2.pl">style</a> short and sweet with all the necessary details.</p>
-
-<pre><code class="language-perl">    $url =~ m{
-        ^                       # start of string
-        (\w+ (?: : \w+)?)       # scheme, captured in $1
-        ://                     # literal ://
-        (?:(\w+:\w+)@)?         # optional user info captured in $2
-        (\w+ (?: \.\w+)*)       # host, captured in $3
-        (?: : (\d+) )?          # optional port captured in $4
-        (/(?:\w+ (?:/\w+)*)?)   # path, captured in  $5
-        (?: \? (\w+=[\s\w]+))?  # optional query in $6
-        (?: \# (\w+))?          # optional fragment in $7
-        $                       # end of string
-    }x;
-</code></pre>
-
-<p>Some <strong>CPAN</strong> modules used to parse the URL from the submitted answers includes <a href="https://mojolicious.org/perldoc/Mojo/URL"><code>Mojo::URL</code></a>, <a href="https://metacpan.org/pod/URI"><code>URI</code></a>, <a href="https://metacpan.org/pod/URI::Split"><code>URI::Split</code></a>, and <a href="https://metacpan.org/pod/URI::Fast"><code>URI::Fast</code></a>.</p>
-
+<p>Most participants (<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/dave-jacoby/perl5/ch-2.pl">Dave Jacoby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/daniel-mantovani/perl5/ch-2.pl">Daniel Mantovani</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/ruben-westerberg/perl5/ch-2.pl">Ruben Westerberg</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/laurent-rosenfeld/perl5/ch-2.pl">Laurent Rosenfeld</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/jaldhar-h-vyas/perl5/ch-2.pl">Jaldhar H. Vyas</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/roger-bell-west/perl5/ch-2.pl">Roger Bell West</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/yozen-hernandez/perl5/ch-2.pl">Yozen Hernandez</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/duncan-c-white/perl5/ch-2.pl">Duncan C White</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/feng-chang/perl5/ch-2.pl">Feng Chang</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/steven-wilson/perl5/ch-2.pl">Steven Wilson</a>, and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/andrezgz/perl5/ch-2.pl">Andrezgz</a>) solved this task using the manual way through regex. While there were many coding styles to express your regex, we found <strong>Laurent Rosenfeld</strong>&lsquo;s <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/laurent-rosenfeld/perl5/ch-2.pl">style</a> short and sweet with all the necessary details.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    $url <span style="color:#f92672">=~</span> <span style="color:#e6db74">m{
+</span><span style="color:#e6db74">        ^                       # start of string
+</span><span style="color:#e6db74">        (\w+ (?: : \w+)?)       # scheme, captured in $1
+</span><span style="color:#e6db74">        ://                     # literal ://
+</span><span style="color:#e6db74">        (?:(\w+:\w+)@)?         # optional user info captured in $2
+</span><span style="color:#e6db74">        (\w+ (?: \.\w+)*)       # host, captured in $3
+</span><span style="color:#e6db74">        (?: : (\d+) )?          # optional port captured in $4
+</span><span style="color:#e6db74">        (/(?:\w+ (?:/\w+)*)?)   # path, captured in  $5
+</span><span style="color:#e6db74">        (?: \? (\w+=[\s\w]+))?  # optional query in $6
+</span><span style="color:#e6db74">        (?: \# (\w+))?          # optional fragment in $7
+</span><span style="color:#e6db74">        $                       # end of string
+</span><span style="color:#e6db74">    }x</span>;
+</code></pre></div><p>Some <strong>CPAN</strong> modules used to parse the URL from the submitted answers includes <a href="https://mojolicious.org/perldoc/Mojo/URL"><code>Mojo::URL</code></a>, <a href="https://metacpan.org/pod/URI"><code>URI</code></a>, <a href="https://metacpan.org/pod/URI::Split"><code>URI::Split</code></a>, and <a href="https://metacpan.org/pod/URI::Fast"><code>URI::Fast</code></a>.</p>
 <p><strong>Yozen Hernandez</strong> did a <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/yozen-hernandez/perl5/ch-2.pl">benchmark</a> test to compare normal regular expression and <code>Mojo::URL</code> to parse the URL. Theoretically plain regular expression should be faster but the benchmark indicated that it&rsquo;s way <strong>255%</strong> faster than <code>Mojo::URL</code>. We assumed that there must be quite a lot of overhead with <code>Mojo::URL</code>.</p>
-
-<pre><code class="language-perl">                           Rate               mojo from_scratch_regex
-    mojo                31204/s                 --               -72%
-    from_scratch_regex 110892/s               255%                 --
-</code></pre>
-
-<p>We believed this was the first time where three participants submitted their solutions through the implementation of a parser. <strong>Adam Russell</strong> <a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-017/adam-russell/perl5">done this</a> through <a href="https://metacpan.org/pod/Parse::Yapp"><code>Parse::Yapp</code></a>. <strong>E. Choroba</strong> took an <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/e-choroba/perl5/ch-2.pl">alternative way</a> using <a href="https://metacpan.org/pod/Marpa::R2"><code>Marpa::R2</code></a>. And lastly, <strong>Joelle Maslak</strong> <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/joelle-maslak/perl5/ch-2.pl">solved this</a> using <a href="https://metacpan.org/pod/Parse::RecDescent"><code>Parse::RecDescent</code></a>.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">                           Rate               mojo from_scratch_regex
+    mojo                <span style="color:#ae81ff">31204</span><span style="color:#f92672">/</span>s                 <span style="color:#f92672">--</span>               <span style="color:#f92672">-</span><span style="color:#ae81ff">72</span>%
+    from_scratch_regex <span style="color:#ae81ff">110892</span><span style="color:#f92672">/</span>s               <span style="color:#ae81ff">255</span>%                 <span style="color:#960050;background-color:#1e0010">--</span>
+</code></pre></div><p>We believed this was the first time where three participants submitted their solutions through the implementation of a parser. <strong>Adam Russell</strong> <a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-017/adam-russell/perl5">done this</a> through <a href="https://metacpan.org/pod/Parse::Yapp"><code>Parse::Yapp</code></a>. <strong>E. Choroba</strong> took an <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/e-choroba/perl5/ch-2.pl">alternative way</a> using <a href="https://metacpan.org/pod/Marpa::R2"><code>Marpa::R2</code></a>. And lastly, <strong>Joelle Maslak</strong> <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/joelle-maslak/perl5/ch-2.pl">solved this</a> using <a href="https://metacpan.org/pod/Parse::RecDescent"><code>Parse::RecDescent</code></a>.</p>
 <p>It may seemed over-engineered, but we love to see creative and alternative solutions and tricks using Perl for every weekly challenge.</p>
-
 <p>If you&rsquo;re interested in parsing in Perl, <strong>Adam Russell</strong> <a href="https://adamcrussell.livejournal.com/5707.html">recommended</a> that you should start with this book, <a href="https://www.apress.com/us/book/9781590595046">Pro Perl Parsing</a>.</p>
-
-<hr />
-
+<hr>
 <h3 id="task-3">Task #3</h3>
-
-<hr />
-
+<hr>
 <p>Compare to last week, we&rsquo;ve more submissions this week for <strong>Perl 5</strong> (<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/adam-russell/perl5/ch-3.pl">Adam Russell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/jaldhar-h-vyas/perl5/ch-3.pl">Jaldhar H Vyas</a>, and the regular participant for this task, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/joelle-maslak/perl5/ch-3.pl">Joelle Maslak</a>) and <strong>Perl 6</strong> (<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/randy-lauen/perl6/ch-3.p6">Randy Lauen</a> and again, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/joelle-maslak/perl6/ch-3.p6">Joelle Maslak</a>).</p>
-
 <p>If you want to learn how to use <a href="https://en.wikipedia.org/wiki/OAuth">OAuth</a> with Perl, go through all the submitted answers to learn how it was done.</p>
-
 <p>In our <a href="https://perlweeklychallenge.org/blog/review-challenge-015/">previous challenge</a>, <strong>Neil Bowers</strong> created a new <strong>CPAN</strong> module to solve this task. And this week, it was <strong>Jaldhar H. Vyas</strong> turn to <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/jaldhar-h-vyas/perl5/ch-3.pl">create</a> a whole <strong>CPAN</strong> module, <code>WWW::Bhagavadgita</code> (he will upload to <strong>CPAN</strong> later) as part of his solution. Similarly for <strong>Perl 6</strong>, <strong>Randy Lauen</strong> have created a <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-017/randy-lauen/perl6/BhagavadGita.pm6">Perl 6 package</a> to solve this solution. Comparing <strong>Perl 5</strong> with <code>Moo</code> and <strong>Perl 6</strong> solution, it made us wonder if <strong>Perl 6</strong> would be a good replacement or successor for web development these days?</p>
-
 <p>And for those who haven&rsquo;t try this optional task, feel free to give it a shot, either in <strong>Perl 5</strong> or <strong>Perl 6</strong>.</p>
-
-<hr />
-
+<hr>
 <h3 id="blog-posts">Blog Posts</h3>
-
-<hr />
-
+<hr>
 <p>Additional details write-up by some of our regular participants for this week challenge.</p>
-
 <p>(1) <a href="http://blogs.perl.org/users/veesh/2019/07/up-up-and-away.html">Up, up and Away!</a> by <strong>Veesh Goldman</strong>.</p>
-
 <p>Read how he optimized the <strong>Task #1</strong> using different strategies in both <strong>Perl 5</strong> and <strong>Perl 6</strong>.</p>
-
 <p>(2) <a href="https://perl6.eu/ackerman-url.html">Ackerman, URL and Perl 6</a> by <strong>Arne Sommer</strong>.</p>
-
 <p>The usual step-by-step code in <strong>Perl 6</strong>. As what he demonstrated, <strong>Perl 6</strong> grammar is definitely a better choice than regular expression for parsing.</p>
-
 <p>(3) <a href="https://adamcrussell.livejournal.com/5707.html">Perl Weekly Challenge 017 Parsing with Parse::Yapp and using the Bhagavad Gita API</a> by <strong>Adam Russell</strong>.</p>
-
 <p>If you&rsquo;re interested in parsing with Perl, read how he solved the <strong>Task #2</strong> using a parser. The visualization of the grammar was a nice touch to the submitted solution.</p>
-
 <p>(4) <a href="https://jacoby.github.io/2019/07/16/thoughts-on-perl-weekly-challenge-17.html">Thoughts on Perl Weekly Challenge 17</a> by <strong>Dave Jacoby</strong>.</p>
-
 <p><strong>Dave</strong> discovered that using <code>Memoize</code> <strong>CPAN</strong> module help to speed up <strong>Task #1</strong> by <strong>15x</strong>.</p>
-
 <p>(5) <a href="http://blogs.perl.org/users/laurent_r/2019/07/-perl-weekly-challenge.html">Perl Weekly Challenge # 17: Ackermann Function and Parsing URLs</a> by <strong>Laurent Rosenfeld</strong>.</p>
-
 <p><strong>Laurent</strong> showed us that you can replace <code>if</code> statement with <code>multi</code> subroutines. His <strong>Perl 6</strong> solution on parsing URL was similar but different from <strong>Arne Sommer</strong>.</p>
-
 <p>(6) <a href="https://www.braincells.com/perl/2019/07/perl_weekly_challenge_week_17.html">Perl Weekly Challenge: Week 17</a> by <strong>Jaldhar H. Vyas</strong>.</p>
-
-<p><strong>Jaldhar</strong> solved all three tasks for this week challenge and again, his <strong>Perl 6</strong> solutions on parsing URL was similar to <strong>Laurent</strong>&rsquo;s approach but slight minor difference.</p>
-
+<p><strong>Jaldhar</strong> solved all three tasks for this week challenge and again, his <strong>Perl 6</strong> solutions on parsing URL was similar to <strong>Laurent</strong>&lsquo;s approach but slight minor difference.</p>
 <p>(7) <a href="https://rage.powered.ninja/2019/07/21/uniform-resource-parsing.html">Multitudinal Uniform Resource Parsing – Perl weekly challenge, week 17</a> by <strong>Francis Whittle</strong>.</p>
-
 <p>Similar to <strong>Laurent</strong>, <strong>Francis</strong> using multiple dispatch to solve <strong>Task #1</strong> in <strong>Perl 6</strong>. Likewise, he was using the same Grammar approach to parse URL, just like <strong>Arne</strong> and <strong>Laurent</strong>.</p>
-
 <p>(8) <a href="https://yzhernand.github.io/posts/perl-weekly-challenge-17-1/">Perl Weekly Challenge 17: The Ackermann function</a> by <strong>Yozen Hernandez</strong>.</p>
-
 <p>Another benchmark comparison using <code>Memoize</code> <strong>CPAN</strong> module for <strong>Task #1</strong>.</p>
-
 <p>(9) <a href="https://yzhernand.github.io/posts/perl-weekly-challenge-17-2/">Perl Weekly Challenge 17: Writing Our Own URL Parser in Perl (But Should We?)</a> by <strong>Yozen Hernandez</strong>.</p>
-
 <p>Yet another benchmark result comparing regular expression against <code>Mojo::URL</code> <strong>CPAN</strong> module.</p>
-
 <p>(10) <a href="http://blogs.perl.org/users/e_choroba/2019/07/perl-weekly-challenge-017-ackermann-function-and-url-parsing.html">Perl Weekly Challenge 017: Ackermann Function and URL Parsing</a> by <strong>E. Choroba</strong>.</p>
-
 <p>See how he related <strong>Erlang</strong> pattern matching to <strong>Perl 6</strong> multi dispatch. Read his alternative approach on URL parsing compare to <strong>Adam Russell</strong>.</p>
 
                 </div>

@@ -16,7 +16,7 @@
 
     <meta name="description" content="Laurent Rosenfeld Weekly Review: Challenge - #040.">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.55.0-DEV" />
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -41,6 +41,8 @@
     <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
     <!-- hover -->
     <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
     <!-- template main css file -->
     
     <link rel="stylesheet" href="https://perlweeklychallenge.org/css/style.min.css" integrity="" media="screen">
@@ -149,31 +151,19 @@
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
-                    
-
-<hr />
-
+                    <hr>
 <h1 id="raku-solutions-weekly-review">Raku Solutions Weekly Review</h1>
-
-<hr />
-
+<hr>
 <h2 id="task-1-multiple-arrays-content">Task #1: Multiple Arrays Content</h2>
-
 <p>This is derived in part from my <a href="http://blogs.perl.org/users/laurent_r/2019/12/perl-weekly-challenge-40-multiple-arrays-content-and-sublist-sorting.html">blog post</a> made in answer to the <a href="/blog/perl-weekly-challenge-040/">Week 40 of the Perl Weekly Challenge</a> organized by  <a href="http://blogs.perl.org/users/mohammad_s_anwar/">Mohammad S. Anwar</a> as well as answers made by others to the same challenge.</p>
-
 <p>The challenge reads as follows:</p>
-
 <p><em>You are given two or more arrays. Write a script to display values of each list at a given index.</em></p>
-
 <p><em>For example:</em></p>
-
 <pre><code>Array 1: [ I L O V E Y O U ]
 Array 2: [ 2 4 0 3 2 0 1 9 ]
 Array 3: [ ! ? £ $ % ^ &amp; * ]
 </code></pre>
-
 <p><em>We expect the following output:</em></p>
-
 <pre><code>I 2 !
 L 4 ?
 O 0 £
@@ -183,24 +173,17 @@ Y 0 ^
 O 1 &amp;
 U 9 *
 </code></pre>
-
 <p>The task implicitly asks for matrix transposition.</p>
-
 <h2 id="my-solutions">My Solutions</h2>
-
 <p>Let&rsquo;s start with the example provided with the task. We have three arrays, they all have 8 items and each item is just one character long. With such nice input data, we can obtain the desired out with just one line of real code:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> v6;
 
-<pre><code class="language-Perl6">use v6;
+<span style="color:#66d9ef">my</span> @a1 <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;</span> I L O V E Y O U <span style="color:#f92672">&gt;</span>;
+<span style="color:#66d9ef">my</span> @a2 <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">9</span> <span style="color:#f92672">&gt;</span>;
+<span style="color:#66d9ef">my</span> @a3 <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;</span> <span style="color:#f92672">!</span> ? <span style="color:#960050;background-color:#1e0010">£</span> $ <span style="color:#960050;background-color:#1e0010">%</span> <span style="color:#960050;background-color:#1e0010">^</span> <span style="color:#960050;background-color:#1e0010">&amp;</span> <span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">&gt;;</span>
 
-my @a1 = &lt; I L O V E Y O U &gt;;
-my @a2 = &lt; 2 4 0 3 2 0 1 9 &gt;;
-my @a3 = &lt; ! ? £ $ % ^ &amp; * &gt;;
-
-say &quot;@a1[$_] @a2[$_] @a3[$_]&quot; for 0..@a1.end;
-</code></pre>
-
-<p>which duly displays the desired result:</p>
-
+say <span style="color:#e6db74">&#34;@a1[$_] @a2[$_] @a3[$_]&#34;</span> <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>@a1<span style="color:#f92672">.</span>end;
+</code></pre></div><p>which duly displays the desired result:</p>
 <pre><code>$ perl6 multi_array.p6
 I 2 !
 L 4 ?
@@ -211,20 +194,15 @@ Y 0 ^
 O 1 &amp;
 U 9 *
 </code></pre>
-
 <p>But that doesn&rsquo;t work properly if the length of the arrays’ items is not always the same. This can be solved (to a certain extent) using tabulations:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> v6;
 
-<pre><code class="language-Perl6">use v6;
+<span style="color:#66d9ef">my</span> @a1 <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;</span> I L OOO V E Y O U <span style="color:#f92672">&gt;</span>;
+<span style="color:#66d9ef">my</span> @a2 <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">42</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">33</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">9</span> <span style="color:#f92672">&gt;</span>;
+<span style="color:#66d9ef">my</span> @a3 <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;</span> <span style="color:#f92672">!!!!!</span> ? <span style="color:#960050;background-color:#1e0010">£</span> $ <span style="color:#960050;background-color:#1e0010">%</span> <span style="color:#960050;background-color:#1e0010">^</span> <span style="color:#960050;background-color:#1e0010">&amp;</span> <span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">&gt;;</span>
 
-my @a1 = &lt; I L OOO V E Y O U &gt;;
-my @a2 = &lt; 2 42 0 33 2 0 1 9 &gt;;
-my @a3 = &lt; !!!!! ? £ $ % ^ &amp; * &gt;;
-
-say &quot;@a1[$_]\t@a2[$_]\t@a3[$_]&quot; for 0..@a1.end;
-</code></pre>
-
-<p>The output is satisfactory:</p>
-
+say <span style="color:#e6db74">&#34;@a1[$_]\t@a2[$_]\t@a3[$_]&#34;</span> <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>@a1<span style="color:#f92672">.</span>end;
+</code></pre></div><p>The output is satisfactory:</p>
 <pre><code>$ perl6 multi_array.p6
 I       2       !!!!!
 L       42      ?
@@ -235,24 +213,18 @@ Y       0       ^
 O       1       &amp;
 U       9       *
 </code></pre>
-
 <p>But, what if the arrays don&rsquo;t have the same number of items? And, more importantly, since the task relates to two <em>or more</em> arrays, we cannot hard code the number of arrays, and we&rsquo;ll therefore use an array of arrays (AoA) structure and perform a proper matrix transposition before trying to output the result.</p>
-
 <p>The Raku programming language has the <a href="https://docs.raku.org/routine/Z">Z</a> Zip built-in operator, which, used together with the <code>[]</code> reduction metaoperator to act on several sub-arrays, gives us a very easy way to transpose lines and columns of a 2-D array:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> v6;
 
-<pre><code class="language-Perl6">use v6;
+<span style="color:#66d9ef">my</span> @a <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;</span> I L O V E Y O U <span style="color:#f92672">&gt;</span>,
+        <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">244</span> <span style="color:#ae81ff">42</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">1233</span> <span style="color:#ae81ff">222</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">11</span> <span style="color:#ae81ff">90</span> <span style="color:#f92672">&gt;</span>,
+        <span style="color:#f92672">&lt;</span> <span style="color:#f92672">!</span> ???? <span style="color:#960050;background-color:#1e0010">£</span> $ <span style="color:#960050;background-color:#1e0010">%%</span> <span style="color:#960050;background-color:#1e0010">^</span> <span style="color:#960050;background-color:#1e0010">&amp;</span> <span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">&gt;</span>,
+        <span style="color:#f92672">&lt;</span> a b c d e f g f <span style="color:#f92672">&gt;</span>;
 
-my @a = &lt; I L O V E Y O U &gt;,
-        &lt; 244 42 0 1233 222 0 11 90 &gt;,
-        &lt; ! ???? £ $ %% ^ &amp; * &gt;,
-        &lt; a b c d e f g f &gt;;
-
-my @b = [Z] @a;  # performs transposition
-say join &quot;\t&quot;, map {$_ // &quot;&quot; }, @$_ for @b;
-</code></pre>
-
-<p>This displays the following output:</p>
-
+<span style="color:#66d9ef">my</span> @b <span style="color:#f92672">=</span> [Z] @a;  <span style="color:#75715e"># performs transposition</span>
+say join <span style="color:#e6db74">&#34;\t&#34;</span>, map {$_ <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#34;&#34;</span> }, @$_ <span style="color:#66d9ef">for</span> @b;
+</code></pre></div><p>This displays the following output:</p>
 <pre><code>$ perl6 mult_arrays.p6
 I       244     !       a
 L       42      ????    b
@@ -263,31 +235,25 @@ Y       0       ^       f
 O       11      &amp;       g
 U       90      *       f
 </code></pre>
-
 <h3 id="item-lengths-exceeding-the-tabulation-size">Item Lengths Exceeding the Tabulation Size</h3>
-
 <p>Now, what if some of the array items have a length exceeding the tabulation size (7 or more character in our case)?  Using tabulations is no longer sufficient. We can construct dynamically a formatting string to be used by the <code>sprinf</code>, <code>printf</code>, or <code>fmt</code> built-in functions:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> v6;
 
-<pre><code class="language-Perl6">use v6;
+<span style="color:#66d9ef">my</span> @a <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;</span> I L O V E Y O U <span style="color:#f92672">&gt;</span>,
+        <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">244</span> <span style="color:#ae81ff">42</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">123344556677</span> <span style="color:#ae81ff">222</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">11</span> <span style="color:#f92672">&gt;</span>,
+        <span style="color:#f92672">&lt;</span> <span style="color:#f92672">!</span> ?????? <span style="color:#960050;background-color:#1e0010">£</span> $ <span style="color:#960050;background-color:#1e0010">%%</span> <span style="color:#960050;background-color:#1e0010">^</span> <span style="color:#960050;background-color:#1e0010">&amp;</span> <span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">&gt;</span>,
+        <span style="color:#f92672">&lt;</span> a b c d e f g f i j<span style="color:#f92672">&gt;</span>;
 
-my @a = &lt; I L O V E Y O U &gt;,
-        &lt; 244 42 0 123344556677 222 0 11 &gt;,
-        &lt; ! ?????? £ $ %% ^ &amp; * &gt;,
-        &lt; a b c d e f g f i j&gt;;
-
-my $max = max map { .elems }, @a;
-my @max-lengths = map { .map({.chars}).max  }, @a;
-my $fmt = [~] map {&quot;%-&quot; ~ @max-lengths[$_] + 2 ~ &quot;s&quot;}, keys @max-lengths;
-say &quot;Format: &quot;, $fmt;   # just displaying the resulting formatting string
-my @b;
-for ^$max X ^@a.elems -&gt; ($i, $j) {
-    @b[$i][$j] = @a[$j][$i] // &quot;&quot;;
+<span style="color:#66d9ef">my</span> $max <span style="color:#f92672">=</span> max map { <span style="color:#f92672">.</span>elems }, @a;
+<span style="color:#66d9ef">my</span> @max<span style="color:#f92672">-</span>lengths <span style="color:#f92672">=</span> map { <span style="color:#f92672">.</span>map({<span style="color:#f92672">.</span>chars})<span style="color:#f92672">.</span>max  }, @a;
+<span style="color:#66d9ef">my</span> $fmt <span style="color:#f92672">=</span> [<span style="color:#f92672">~</span>] map {<span style="color:#e6db74">&#34;%-&#34;</span> <span style="color:#f92672">~</span> @max<span style="color:#f92672">-</span>lengths[$_] <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34;s&#34;</span>}, keys @max<span style="color:#f92672">-</span>lengths;
+say <span style="color:#e6db74">&#34;Format: &#34;</span>, $fmt;   <span style="color:#75715e"># just displaying the resulting formatting string</span>
+<span style="color:#66d9ef">my</span> @b;
+<span style="color:#66d9ef">for</span> <span style="color:#f92672">^</span>$max X <span style="color:#f92672">^</span>@a<span style="color:#f92672">.</span>elems <span style="color:#f92672">-&gt;</span> ($i, $j) {
+    @b[$i][$j] <span style="color:#f92672">=</span> @a[$j][$i] <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#34;&#34;</span>;
 }
-printf &quot;$fmt\n&quot;, @$_ for @b;
-</code></pre>
-
-<p>This displays the following output:</p>
-
+printf <span style="color:#e6db74">&#34;$fmt\n&#34;</span>, @$_ <span style="color:#66d9ef">for</span> @b;
+</code></pre></div><p>This displays the following output:</p>
 <pre><code>$ perl6 mult_arrays.p6
 Format: %-3s%-14s%-8s%-3s
 I  244           !       a
@@ -301,284 +267,204 @@ U                *       f
                          i
                          j
 </code></pre>
-
 <h2 id="alternative-solutions">Alternative Solutions</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-040/arne-sommer/perl6/ch-1.p6">Arne Sommer</a> made good use of the <code>&gt;&gt;</code> hyper operator together with the <code>max</code>built-in to find the size of the largest array and the length of the largest string in each array. He then used two nested <code>for</code> loops to print out the array of arrays&rsquo; items <em>column-wise</em>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">@strings <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#39;I L O V E Y O U&#39;</span>, <span style="color:#e6db74">&#39;2 4 0 3 2 0 1 9&#39;</span>, <span style="color:#e6db74">&#39;! ? £ $ % ^ &amp; *&#39;</span>) <span style="color:#66d9ef">unless</span> @strings<span style="color:#f92672">.</span>elems;
 
-<pre><code class="language-Perl6">@strings = ('I L O V E Y O U', '2 4 0 3 2 0 1 9', '! ? £ $ % ^ &amp; *') unless @strings.elems;
+<span style="color:#66d9ef">my</span> @arrays <span style="color:#f92672">=</span> @strings<span style="color:#f92672">.</span>map(<span style="color:#f92672">*.</span>words<span style="color:#f92672">.</span>List);
 
-my @arrays = @strings.map(*.words.List);
+<span style="color:#66d9ef">my</span> $length <span style="color:#f92672">=</span> @arrays<span style="color:#f92672">&gt;&gt;.</span>elems<span style="color:#f92672">.</span>max;
+<span style="color:#66d9ef">my</span> @width  <span style="color:#f92672">=</span> @arrays<span style="color:#f92672">&gt;&gt;.</span>chars<span style="color:#f92672">&gt;&gt;.</span>max;
 
-my $length = @arrays&gt;&gt;.elems.max;
-my @width  = @arrays&gt;&gt;.chars&gt;&gt;.max;
-
-for ^$length -&gt; $index
+<span style="color:#66d9ef">for</span> <span style="color:#f92672">^</span>$length <span style="color:#f92672">-&gt;</span> $index
 {
-  my $col = 0;
-  for @arrays
+  <span style="color:#66d9ef">my</span> $col <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+  <span style="color:#66d9ef">for</span> @arrays
   {
-    print &quot;{ ($_[$index] // '').fmt(&quot;%-{ @width[$col] }s&quot;) } &quot;;
-    $col++;
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;{ ($_[$index] // &#39;&#39;).fmt(&#34;</span>%<span style="color:#960050;background-color:#1e0010">-</span>{ @width[$col] }s<span style="color:#e6db74">&#34;) } &#34;</span>;
+    $col<span style="color:#f92672">++</span>;
   }
-  say &quot;&quot;;
+  say <span style="color:#e6db74">&#34;&#34;</span>;
 }
-</code></pre>
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-040/noud/perl6/ch-1.p6">Noud</a> wrote a quite clever and concise <code>print_intertwined</code> subroutine that takes a number of arrays as input and then uses the <code>[Z]</code> combined zip and reduction operators to transpose the matrix on the fly:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> @arr1 <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;</span>I L O V E Y O U<span style="color:#f92672">&gt;</span>;
+<span style="color:#66d9ef">my</span> @arr2 <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;</span><span style="color:#ae81ff">2</span> <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">9</span> <span style="color:#ae81ff">5</span> <span style="color:#ae81ff">6</span> <span style="color:#ae81ff">7</span> <span style="color:#ae81ff">8</span><span style="color:#f92672">&gt;</span>;
+<span style="color:#66d9ef">my</span> @arr3 <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;!</span> ? <span style="color:#960050;background-color:#1e0010">£</span> $ <span style="color:#960050;background-color:#1e0010">%</span> <span style="color:#960050;background-color:#1e0010">^</span> <span style="color:#960050;background-color:#1e0010">&amp;</span> <span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">(</span> )<span style="color:#f92672">&gt;</span>;
 
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-040/noud/perl6/ch-1.p6">Noud</a> wrote a quite clever and concise <code>print_intertwined</code> subroutine that takes a number of arrays as input and then uses the <code>[Z]</code> combined zip and reduction operators to transpose the matrix on the fly:</p>
-
-<pre><code class="language-Perl6">my @arr1 = &lt;I L O V E Y O U&gt;;
-my @arr2 = &lt;2 4 0 3 2 0 1 9 5 6 7 8&gt;;
-my @arr3 = &lt;! ? £ $ % ^ &amp; * ( )&gt;;
-
-sub print_intertwined(**@arrs) {
-    my $sub_arr_max = max(($_.elems for @arrs));
-    @arrs = ((|$_, &quot; &quot; xx $sub_arr_max - $_.elems).flat for @arrs);
-    for [Z] @arrs -&gt; @arr {
-        say join(&quot; &quot;, @arr);
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">print_intertwined</span>(**@arrs) {
+    <span style="color:#66d9ef">my</span> $sub_arr_max <span style="color:#f92672">=</span> max(($_<span style="color:#f92672">.</span>elems <span style="color:#66d9ef">for</span> @arrs));
+    @arrs <span style="color:#f92672">=</span> ((<span style="color:#f92672">|</span>$_, <span style="color:#e6db74">&#34; &#34;</span> xx $sub_arr_max <span style="color:#f92672">-</span> $_<span style="color:#f92672">.</span>elems)<span style="color:#f92672">.</span>flat <span style="color:#66d9ef">for</span> @arrs);
+    <span style="color:#66d9ef">for</span> [Z] @arrs <span style="color:#f92672">-&gt;</span> @arr {
+        say join(<span style="color:#e6db74">&#34; &#34;</span>, @arr);
     }
 }
 print_intertwined(@arr1, @arr2, @arr3);
-</code></pre>
-
-<p>Quite well done, Noud! Note also how Noud&rsquo;s program deals manually with array items of varying lengths.</p>
-
+</code></pre></div><p>Quite well done, Noud! Note also how Noud&rsquo;s program deals manually with array items of varying lengths.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-040/simon-proctor/perl6/ch-1.p6">Simon Proctor</a> suggested an even more concise solution that also uses the <code>[Z]</code> combined operator:</p>
-
-<pre><code class="language-Perl6">sub MAIN(
-    *@inputs where { @_.all.codes ~~ @_[0].codes } #= Strings to display
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(
+    *@inputs where { @_<span style="color:#f92672">.</span>all<span style="color:#f92672">.</span>codes <span style="color:#f92672">~~</span> @_[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>codes } <span style="color:#75715e">#= Strings to display</span>
 ) {
-    ([Z] @inputs.map(*.comb)).map(*.join(&quot; &quot;).say);
+    ([Z] @inputs<span style="color:#f92672">.</span>map(<span style="color:#f92672">*.</span>comb))<span style="color:#f92672">.</span>map(<span style="color:#f92672">*.</span>join(<span style="color:#e6db74">&#34; &#34;</span>)<span style="color:#f92672">.</span>say);
 }
-</code></pre>
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-040/burkhard-nickels/perl6/ch-1.p6">Burkhard Nickels</a> participated to the Raku challenge for the first time. His program is very short, but it only covers the simple input provided with the task (as my first solution at the beginning of this post), but not cases where the input data is less regular:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> @a1 <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#39;I&#39;</span>,<span style="color:#e6db74">&#39;L&#39;</span>,<span style="color:#e6db74">&#39;O&#39;</span>,<span style="color:#e6db74">&#39;V&#39;</span>,<span style="color:#e6db74">&#39;E&#39;</span>,<span style="color:#e6db74">&#39;Y&#39;</span>,<span style="color:#e6db74">&#39;O&#39;</span>,<span style="color:#e6db74">&#39;U&#39;</span>);
+<span style="color:#66d9ef">my</span> @a2 <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#39;2&#39;</span>,<span style="color:#e6db74">&#39;4&#39;</span>,<span style="color:#e6db74">&#39;0&#39;</span>,<span style="color:#e6db74">&#39;3&#39;</span>,<span style="color:#e6db74">&#39;2&#39;</span>,<span style="color:#e6db74">&#39;0&#39;</span>,<span style="color:#e6db74">&#39;1&#39;</span>,<span style="color:#e6db74">&#39;9&#39;</span>);
+<span style="color:#66d9ef">my</span> @a3 <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#39;!&#39;</span>,<span style="color:#e6db74">&#39;?&#39;</span>,<span style="color:#e6db74">&#39;£&#39;</span>,<span style="color:#e6db74">&#39;$&#39;</span>,<span style="color:#e6db74">&#39;%&#39;</span>,<span style="color:#e6db74">&#39;^&#39;</span>,<span style="color:#e6db74">&#39;&amp;&#39;</span>,<span style="color:#e6db74">&#39;*&#39;</span>);
 
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-040/burkhard-nickels/perl6/ch-1.p6">Burkhard Nickels</a> participated to the Raku challenge for the first time. His program is very short, but it only covers the simple input provided with the task (as my first solution at the beginning of this post), but not cases where the input data is less regular:</p>
-
-<pre><code class="language-Perl6">my @a1 = ('I','L','O','V','E','Y','O','U');
-my @a2 = ('2','4','0','3','2','0','1','9');
-my @a3 = ('!','?','£','$','%','^','&amp;','*');
-
-loop ( my $i = 0; $i &lt;= @a1.end; $i++ ) {
-    print &quot;@a1[$i] @a2[$i] @a3[$i]\n&quot;;
+loop ( <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; $i <span style="color:#f92672">&lt;=</span> @a1<span style="color:#f92672">.</span>end; $i<span style="color:#f92672">++</span> ) {
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;@a1[$i] @a2[$i] @a3[$i]\n&#34;</span>;
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-040/javier-luque/perl6/ch-1.p6">Javier Luque</a>&rsquo;s solution covers more complicated input data than just three arrays of equal size, but it doesn&rsquo;t cover the case where the array items are larger than a single character:</p>
-
-<pre><code class="language-Perl6">sub MAIN() {
-    my @arrays = (
-        &lt;I L O V E Y O U&gt;,
-        &lt;2 4 0 3 2 0 1 9&gt;,
-        &lt;! ? £ $ % ^ &amp; *&gt;,
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-040/javier-luque/perl6/ch-1.p6">Javier Luque</a>&lsquo;s solution covers more complicated input data than just three arrays of equal size, but it doesn&rsquo;t cover the case where the array items are larger than a single character:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>() {
+    <span style="color:#66d9ef">my</span> @arrays <span style="color:#f92672">=</span> (
+        <span style="color:#f92672">&lt;</span>I L O V E Y O U<span style="color:#f92672">&gt;</span>,
+        <span style="color:#f92672">&lt;</span><span style="color:#ae81ff">2</span> <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">9</span><span style="color:#f92672">&gt;</span>,
+        <span style="color:#f92672">&lt;!</span> ? <span style="color:#960050;background-color:#1e0010">£</span> $ <span style="color:#960050;background-color:#1e0010">%</span> <span style="color:#960050;background-color:#1e0010">^</span> <span style="color:#960050;background-color:#1e0010">&amp;</span> <span style="color:#960050;background-color:#1e0010">*&gt;</span>,
     );
 
-    my $max = @arrays.sort({$^b.elems &lt;=&gt; $^a.elems})
-                     .first
-                     .elems;
+    <span style="color:#66d9ef">my</span> $max <span style="color:#f92672">=</span> @arrays<span style="color:#f92672">.</span>sort({$<span style="color:#960050;background-color:#1e0010">^</span>b<span style="color:#f92672">.</span>elems <span style="color:#e6db74">&lt;=&gt;</span> $<span style="color:#960050;background-color:#1e0010">^</span>a<span style="color:#f92672">.</span>elems})
+                     <span style="color:#f92672">.</span>first
+                     <span style="color:#f92672">.</span>elems;
 
-    for (0 .. $max - 1) -&gt;$i {
-        say @arrays.map({$_[$i] // ' '})
-                   .join(&quot; &quot;);
+    <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $max <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">-&gt;</span>$i {
+        say @arrays<span style="color:#f92672">.</span>map({$_[$i] <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#39; &#39;</span>})
+                   <span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34; &#34;</span>);
     }
 }
-</code></pre>
-
-<p>Note that <code>for (0 .. $max - 1) -&gt; $i</code> might be written more concisely: <code>for ^$max -&gt; $i</code>. Also, sorting the data to find the largest element is not very efficient in my view (the <code>max</code> function can do that faster), but, or course, it doesn&rsquo;t matter much with such small input data.</p>
-
+</code></pre></div><p>Note that <code>for (0 .. $max - 1) -&gt; $i</code> might be written more concisely: <code>for ^$max -&gt; $i</code>. Also, sorting the data to find the largest element is not very efficient in my view (the <code>max</code> function can do that faster), but, or course, it doesn&rsquo;t matter much with such small input data.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-040/roger-bell-west/perl6/ch-1.p6">Roger Bell West</a> used two nested loops to go through the data and populate an intermediate one-line array (<code>@out</code>). His solution covers more complicated input data than just three arrays of equal size, but it doesn&rsquo;t cover the case where the array items are larger than a single character:</p>
-
-<pre><code class="language-Perl6">my @a=(
-    (qw|I L O V E Y O U|),
-    (qw|2 4 0 3 2 0 1 9|),
-    (qw|! ? £ $ % ^ &amp; *|),
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> @a<span style="color:#f92672">=</span>(
+    (<span style="color:#e6db74">qw|I L O V E Y O U|</span>),
+    (<span style="color:#e6db74">qw|2 4 0 3 2 0 1 9|</span>),
+    (<span style="color:#e6db74">qw|! ? £ $ % ^ &amp; *|</span>),
       );
 
-my $ix=0;
-my $r=1;
-while ($r) {
-  $r=0;
-  my @out;
-  for 0..@a.end -&gt; $iy {
-    if (@a[$iy][$ix].defined) {
+<span style="color:#66d9ef">my</span> $ix<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+<span style="color:#66d9ef">my</span> $r<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
+<span style="color:#66d9ef">while</span> ($r) {
+  $r<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+  <span style="color:#66d9ef">my</span> @out;
+  <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>@a<span style="color:#f92672">.</span>end <span style="color:#f92672">-&gt;</span> $iy {
+    <span style="color:#66d9ef">if</span> (@a[$iy][$ix]<span style="color:#f92672">.</span>defined) {
       push @out,@a[$iy][$ix];
-      $r=1;
-    } else {
-      push @out,' ';
+      $r<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
+    } <span style="color:#66d9ef">else</span> {
+      push @out,<span style="color:#e6db74">&#39; &#39;</span>;
     }
   }
-  if ($r) {
-    say join(' ',@out);
+  <span style="color:#66d9ef">if</span> ($r) {
+    say join(<span style="color:#e6db74">&#39; &#39;</span>,@out);
   }
-  $ix++;
+  $ix<span style="color:#f92672">++</span>;
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-040/ruben-westerberg/perl6/ch-1.p6">Ruben Westerberg</a> provided a very concise solution that I initially didn&rsquo;t fully grasp:</p>
-
-<pre><code class="language-Perl6">my @aoa=( &lt;I L O V E Y O U&gt;, &lt;2 4 0 3 2 0 1 9&gt;, &lt;! ? £ $ % ^ &amp; * &gt;);
-my @indexes=@*ARGS==0??(2,3)!!@*ARGS;
-put $_ for @indexes.map({@aoa[*;$_].join: &quot; &quot;});
-</code></pre>
-
-<p>and also appeared not to work properly when I first tested it&hellip; until I understood that you need to pass to the program the indexes of the items that you want to print. I&rsquo;m not sure why he did that. His program also doesn&rsquo;t handle well cases where an array is smaller than the others or where some items are longer than one character.</p>
-
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-040/ruben-westerberg/perl6/ch-1.p6">Ruben Westerberg</a> provided a very concise solution that I initially didn&rsquo;t fully grasp:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> @aoa<span style="color:#f92672">=</span>( <span style="color:#f92672">&lt;</span>I L O V E Y O U<span style="color:#f92672">&gt;</span>, <span style="color:#f92672">&lt;</span><span style="color:#ae81ff">2</span> <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">9</span><span style="color:#f92672">&gt;</span>, <span style="color:#f92672">&lt;!</span> ? <span style="color:#960050;background-color:#1e0010">£</span> $ <span style="color:#960050;background-color:#1e0010">%</span> <span style="color:#960050;background-color:#1e0010">^</span> <span style="color:#960050;background-color:#1e0010">&amp;</span> <span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">&gt;</span>);
+<span style="color:#66d9ef">my</span> @indexes<span style="color:#f92672">=</span>@<span style="color:#960050;background-color:#1e0010">*</span>ARGS<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>??(<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>)<span style="color:#f92672">!!</span>@<span style="color:#960050;background-color:#1e0010">*</span>ARGS;
+put $_ <span style="color:#66d9ef">for</span> @indexes<span style="color:#f92672">.</span>map({@aoa[<span style="color:#f92672">*</span>;$_]<span style="color:#f92672">.</span>join: <span style="color:#e6db74">&#34; &#34;</span>});
+</code></pre></div><p>and also appeared not to work properly when I first tested it&hellip; until I understood that you need to pass to the program the indexes of the items that you want to print. I&rsquo;m not sure why he did that. His program also doesn&rsquo;t handle well cases where an array is smaller than the others or where some items are longer than one character.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-040/ryan-thompson/perl6/ch-1.p6">Ryan Thompson</a> provided two solutions, each holding in a single code line, using the <code>zip</code> built-in function of the infix <code>Z</code> operator. So, two very concise solutions, but no attempt to handle less regular input data.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl" data-lang="Perl"><span style="color:#66d9ef">my</span> @a1 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;ILOVEYOU&#39;</span><span style="color:#f92672">.</span>comb;
+<span style="color:#66d9ef">my</span> @a2 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;24032019&#39;</span><span style="color:#f92672">.</span>comb;
+<span style="color:#66d9ef">my</span> @a3 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;!?X$%^&amp;*&#39;</span><span style="color:#f92672">.</span>comb;
 
-<pre><code class="language-Perl">my @a1 = 'ILOVEYOU'.comb;
-my @a2 = '24032019'.comb;
-my @a3 = '!?X$%^&amp;*'.comb;
+<span style="color:#75715e"># The zip routine, much like Perl 5&#39;s List::Utils:</span>
+<span style="color:#f92672">.</span>Str<span style="color:#f92672">.</span>say <span style="color:#66d9ef">for</span> zip @a1, @a2, @a3;
 
-# The zip routine, much like Perl 5's List::Utils:
-.Str.say for zip @a1, @a2, @a3;
-
-# Or Raku's new chaining infix Z(ip) operator:
-.Str.say for @a1 Z @a2 Z @a3;
-</code></pre>
-
-<h2 id="task-2-sublist-sorting">Task #2: Sublist Sorting</h2>
-
+<span style="color:#75715e"># Or Raku&#39;s new chaining infix Z(ip) operator:</span>
+<span style="color:#f92672">.</span>Str<span style="color:#f92672">.</span>say <span style="color:#66d9ef">for</span> @a1 Z @a2 Z @a3;
+</code></pre></div><h2 id="task-2-sublist-sorting">Task #2: Sublist Sorting</h2>
 <p>This is derived in part from my <a href="http://blogs.perl.org/users/laurent_r/2019/12/perl-weekly-challenge-40-multiple-arrays-content-and-sublist-sorting.html">blog post</a> made in answer to the <a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-040/">Week 40 of the Perl Weekly Challenge</a> organized by  <a href="http://blogs.perl.org/users/mohammad_s_anwar/">Mohammad S. Anwar</a> as well as answers made by others to the same challenge.</p>
-
 <p>The challenge reads as follows:</p>
-
 <p><em>You are given a list of numbers and set of indices belong to the list. Write a script to sort the values belongs to the indices.</em></p>
-
 <p><em>For example,</em></p>
-
 <pre><code>List: [ 10, 4, 1, 8, 12, 3 ]
 Indices: 0,2,5
 </code></pre>
-
 <p><em>We would sort the values at indices 0, 2 and 5 i.e. 10, 1 and 3.</em></p>
-
 <p><em>Final List would look like below:</em></p>
-
 <pre><code>List: [ 1, 4, 3, 8, 12, 10 ]
 </code></pre>
-
 <h2 id="my-solution">My Solution</h2>
-
 <p>This is the perfect example for using array slices, which was the subject of a challenge a few weeks ago. We&rsquo;ll use slices twice: once as a <em>rvalue</em> to extract from the list the values to be sorted, and once again as a <em>lvalue</em> for inserting the sorted values back into the array at their proper position.</p>
-
 <p>Note that Raku&rsquo;s sort procedure is clever enough to discover that it should perform numeric sort when it sees numbers (well, more accurately, it is the default <a href="https://docs.raku.org/routine/cmp">cmp</a> operator used by <code>sort</code> which is smart enough to compare strings with string semantics and numbers with number semantics).</p>
-
 <p>And we end up with a single line of code doing all the real work:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> v6;
 
-<pre><code class="language-Perl6">use v6;
+<span style="color:#66d9ef">my</span> @numbers <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">3</span>;
+<span style="color:#66d9ef">my</span> @indices <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">5</span>;
 
-my @numbers = 10, 4, 1, 8, 12, 3;
-my @indices = 0, 2, 5;
-
-@numbers[@indices] = sort @numbers[@indices];
+@numbers[@indices] <span style="color:#f92672">=</span> sort @numbers[@indices];
 say @numbers;
-</code></pre>
-
-<p>This program displays the following output:</p>
-
+</code></pre></div><p>This program displays the following output:</p>
 <pre><code>$ perl6 sublists.p6
 [1 4 3 8 12 10]
 </code></pre>
-
 <h2 id="alternative-solutions-1">Alternative Solutions</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-040/arne-sommer/perl6/ch-2.p6">Arne Sommer</a> made a solution even simpler than mine and avoided to repeat the name of the array variable. The bulk of the work holds in a short code line:</p>
-
-<pre><code class="language-Perl6">@array[@indices].=sort;
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-040/noud/perl6/ch-2.p6">Noud</a> offered a solution very similar to mine!</p>
-
-<pre><code class="language-Perl6">sub subsort(@arr, @ind) {
-    @arr[@ind] = @arr[@ind].sort; @arr;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">@array[@indices]<span style="color:#f92672">.=</span>sort;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-040/noud/perl6/ch-2.p6">Noud</a> offered a solution very similar to mine!</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">subsort</span>(@arr, @ind) {
+    @arr[@ind] <span style="color:#f92672">=</span> @arr[@ind]<span style="color:#f92672">.</span>sort; @arr;
 }
-say subsort([10, 4, 1, 8, 12, 3], [0, 2, 5]);
-</code></pre>
+say subsort([<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">3</span>], [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">5</span>]);
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-040/ryan-thompson/perl6/ch-2.p6">Ryan Thompson</a> also made a program quite similar to mine:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">@list[@idx] <span style="color:#f92672">=</span> @list[@idx]<span style="color:#f92672">.</span>sort;
+@list<span style="color:#f92672">.</span>say;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-040/simon-proctor/perl6/ch-2.p6">Simon Proctor</a> used essentially the same technique:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">@list[@indices] <span style="color:#f92672">=</span> @list[@indices]<span style="color:#f92672">.</span>sort;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-040/burkhard-nickels/perl6/ch-2.p6">Burkhard Nickels</a> participated to the Raku challenge for the first time. His program is slightly more complicated than those seen so far, as it involves two steps, but it also relies on slices:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> @a <span style="color:#f92672">=</span> (<span style="color:#ae81ff">10</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">12</span>,<span style="color:#ae81ff">3</span>);
+<span style="color:#66d9ef">my</span> @i <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">5</span>);
 
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-040/ryan-thompson/perl6/ch-2.p6">Ryan Thompson</a> also made a program quite similar to mine:</p>
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Before:&#34;</span>, join(<span style="color:#e6db74">&#34; - &#34;</span>, @a), <span style="color:#e6db74">&#34;\n&#34;</span>;
+<span style="color:#66d9ef">my</span> @d <span style="color:#f92672">=</span> @a[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">5</span>];
+@a[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">5</span>] <span style="color:#f92672">=</span> @d<span style="color:#f92672">.</span>sort( { <span style="color:#f92672">.</span>Int } );
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;After: &#34;</span>, join(<span style="color:#e6db74">&#34; - &#34;</span>, @a), <span style="color:#e6db74">&#34;\n&#34;</span>;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-040/javier-luque/perl6/ch-2.p6">Javier Luque</a>&lsquo;s program also also does the work in two steps:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> @list <span style="color:#f92672">=</span> (<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">3</span>);
+<span style="color:#66d9ef">my</span> @indices <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">5</span>);
 
-<pre><code class="language-Perl6">@list[@idx] = @list[@idx].sort;
-@list.say;
-</code></pre>
+<span style="color:#66d9ef">my</span> @sublist <span style="color:#f92672">=</span> @list[@indices]<span style="color:#f92672">.</span>sort;
 
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-040/simon-proctor/perl6/ch-2.p6">Simon Proctor</a> used essentially the same technique:</p>
-
-<pre><code class="language-Perl6">@list[@indices] = @list[@indices].sort;
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-040/burkhard-nickels/perl6/ch-2.p6">Burkhard Nickels</a> participated to the Raku challenge for the first time. His program is slightly more complicated than those seen so far, as it involves two steps, but it also relies on slices:</p>
-
-<pre><code class="language-Perl6">my @a = (10,4,1,8,12,3);
-my @i = (0,2,5);
-
-print &quot;Before:&quot;, join(&quot; - &quot;, @a), &quot;\n&quot;;
-my @d = @a[0,2,5];
-@a[0,2,5] = @d.sort( { .Int } );
-print &quot;After: &quot;, join(&quot; - &quot;, @a), &quot;\n&quot;;
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-040/javier-luque/perl6/ch-2.p6">Javier Luque</a>&rsquo;s program also also does the work in two steps:</p>
-
-<pre><code class="language-Perl6">my @list = (10, 4, 1, 8, 12, 3);
-my @indices = (0, 2, 5);
-
-my @sublist = @list[@indices].sort;
-
-# Override the original array
-my $i = 0;
-for (@indices) -&gt; $index {
-    @list[$index] = @sublist[$i++];
+<span style="color:#75715e"># Override the original array</span>
+<span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+<span style="color:#66d9ef">for</span> (@indices) <span style="color:#f92672">-&gt;</span> $index {
+    @list[$index] <span style="color:#f92672">=</span> @sublist[$i<span style="color:#f92672">++</span>];
 }
 say @list;
-</code></pre>
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-040/roger-bell-west/perl6/ch-2.p6">Roger Bell West</a> also wrote a program doing the work in two steps:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> @list<span style="color:#f92672">=</span>(<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">3</span>);
+<span style="color:#66d9ef">my</span> @indices<span style="color:#f92672">=</span>(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">5</span>);
 
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-040/roger-bell-west/perl6/ch-2.p6">Roger Bell West</a> also wrote a program doing the work in two steps:</p>
+<span style="color:#66d9ef">my</span> @s<span style="color:#f92672">=</span>(map {@list[$_]},@indices)<span style="color:#f92672">.</span>sort;
+map {@list[@indices[$_]]<span style="color:#f92672">=</span>@s[$_]},(<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>@indices<span style="color:#f92672">.</span>end);
 
-<pre><code class="language-Perl6">my @list=(10, 4, 1, 8, 12, 3);
-my @indices=(0,2,5);
-
-my @s=(map {@list[$_]},@indices).sort;
-map {@list[@indices[$_]]=@s[$_]},(0..@indices.end);
-
-print join(', ',@list),&quot;\n&quot;;
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-040/ruben-westerberg/perl6/ch-2.p6">Ruben Westerberg</a> clearly wins the conciseness prize on this task:</p>
-
-<pre><code class="language-Perl6">put @a[@i].sort;
-</code></pre>
-
-<hr />
-
-<hr />
-
+<span style="color:#66d9ef">print</span> join(<span style="color:#e6db74">&#39;, &#39;</span>,@list),<span style="color:#e6db74">&#34;\n&#34;</span>;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-040/ruben-westerberg/perl6/ch-2.p6">Ruben Westerberg</a> clearly wins the conciseness prize on this task:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">put @a[@i]<span style="color:#f92672">.</span>sort;
+</code></pre></div><hr>
+<hr>
 <h2 id="see-also">SEE ALSO</h2>
-
-<hr />
-
-<hr />
-
+<hr>
+<hr>
 <p>Only two blog posts (besides mine), or perhaps three, for this task:</p>
-
 <ul>
-<li><p>Arne Sommer: <a href="https://raku-musings.com/arrays.html">https://raku-musings.com/arrays.html</a>;</p></li>
-
-<li><p>Ryan Thompson:<a href="http://www.ry.ca/2019/12/zip6/">http://www.ry.ca/2019/12/zip6/</a></p></li>
-
-<li><p>Javier Luque: <a href="https://perlchallenges.wordpress.com/2019/12/23/perl-weekly-challenge-040/">https://perlchallenges.wordpress.com/2019/12/23/perl-weekly-challenge-040/</a>.</p></li>
+<li>
+<p>Arne Sommer: <a href="https://raku-musings.com/arrays.html;">https://raku-musings.com/arrays.html;</a></p>
+</li>
+<li>
+<p>Ryan Thompson:http://www.ry.ca/2019/12/zip6/</p>
+</li>
+<li>
+<p>Javier Luque: <a href="https://perlchallenges.wordpress.com/2019/12/23/perl-weekly-challenge-040/">https://perlchallenges.wordpress.com/2019/12/23/perl-weekly-challenge-040/</a>.</p>
+</li>
 </ul>
-
 <p>Burkhard Nickels apparently blogged twice about the challenge, but I was unable to find his blog posts, as the links provided seem to be faulty.</p>
-
-<hr />
-
-<hr />
-
+<hr>
+<hr>
 <h2 id="wrapping-up">Wrapping up</h2>
-
 <p>After Mohammad&rsquo;s love declaration to all of us, I want to tell him publicly that I love him too. And I should add that I also love all the other challengers contributing to the Raku part of the challenge, because reading their contributions teaches me something new about Raku every week.</p>
-
 <p>Please let me know if I forgot any of the challengers or if you think my explanation of your code misses something important (send me an e-mail or just raise an issue against this GitHub page).</p>
-
 <p>If you want to participate to the Perl Weekly Challenge, please connect to <a href="https://perlweeklychallenge.org/">this site</a>.</p>
 
                 </div>

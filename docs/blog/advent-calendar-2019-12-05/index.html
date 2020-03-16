@@ -16,7 +16,7 @@
 
     <meta name="description" content="Advent Calendar - December 5, 2019">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.55.0-DEV" />
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -41,6 +41,8 @@
     <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
     <!-- hover -->
     <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
     <!-- template main css file -->
     
     <link rel="stylesheet" href="https://perlweeklychallenge.org/css/style.min.css" integrity="" media="screen">
@@ -149,103 +151,62 @@
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
-                    
-
-<p><a href="/blog/advent-calendar-2019"><strong>Advent Calendar 2019</strong></a></p>
-
-<hr />
-
-<p>The gift is presented by <strong>Neil Bowers</strong>. Today he is talking about his solutions to <strong>Task #2: Longest English word using US state postal abbreviation</strong> of <a href="/blog/perl-weekly-challenge-014"><strong>&ldquo;The Weekly Challenge - 014&rdquo;</strong></a>.</p>
-
-<h4 id="using-only-the-official-postal-2-letter-abbreviations-for-the-50-u-s-states-write-a-script-to-find-the-longest-english-word-you-can-spell-here-is-the-list-of-u-s-states-abbreviations-as-per-wikipedia-https-en-wikipedia-org-wiki-list-of-u-s-state-abbreviations-page">Using only the official postal (2-letter) abbreviations for the 50 U.S. states, write a script to find the longest English word you can spell? Here is the list of U.S. states abbreviations as per <a href="https://en.wikipedia.org/wiki/List_of_U.S._state_abbreviations">wikipedia</a> page.</h4>
-
-<hr />
-
+                    <p><a href="/blog/advent-calendar-2019"><strong>Advent Calendar 2019</strong></a></p>
+<hr>
+<p>The gift is presented by <strong>Neil Bowers**. Today he is talking about his solutions to <strong>Task #2: Longest English word using US state postal abbreviation** of </strong>&ldquo;The Weekly Challenge - 014&rdquo;</strong><a href="/blog/perl-weekly-challenge-014"></a>.</p>
+<h4 id="using-only-the-official-postal-2-letter-abbreviations-for-the-50-us-states-write-a-script-to-find-the-longest-english-word-you-can-spell-here-is-the-list-of-us-states-abbreviations-as-per-wikipediahttpsenwikipediaorgwikilist_of_us_state_abbreviations-page">Using only the official postal (2-letter) abbreviations for the 50 U.S. states, write a script to find the longest English word you can spell? Here is the list of U.S. states abbreviations as per <a href="https://en.wikipedia.org/wiki/List_of_U.S._state_abbreviations">wikipedia</a> page.</h4>
+<hr>
 <p>I&rsquo;ve got the state codes in a file, so the first thing is to load them into an array:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> File::Slurper <span style="color:#e6db74">qw/ read_lines /</span>;
 
-<pre><code class="language-perl">    use File::Slurper qw/ read_lines /;
-
-    my @states = read_lines('state-codes.txt');
-</code></pre>
-
-<p>I&rsquo;ve got a word list, with one word per line, so I can similarly load those:</p>
-
-<pre><code class="language-perl">    my @words = read_lines('word-list.txt');
-</code></pre>
-
-<p>We&rsquo;re only interested in words that are made up of state codes. We can make a regular expression for that:</p>
-
-<pre><code class="language-perl">    my $regexp = join('|', @states);
-    my @words  = grep { /^($re)+$/ }
-                 read_lines('word-list.txt');
-</code></pre>
-
-<p>State codes are all two letters, so we know that the string is going to have an even number of letters in it. The regular expression will enforce that, but applying an even-length check before applying the regular expression check will be faster:</p>
-
-<pre><code class="language-perl">    my $regexp = join('|', @states);
-    my @words  = grep { /^($re)+$/ }
-                 grep { length($_) % 2 == 0 }
-                 read_lines('word-list.txt');
-</code></pre>
-
-<p>It takes less than a second to run my solution anyway, so I didn&rsquo;t keep the even-length check.</p>
-
+    <span style="color:#66d9ef">my</span> @states <span style="color:#f92672">=</span> read_lines(<span style="color:#e6db74">&#39;state-codes.txt&#39;</span>);
+</code></pre></div><p>I&rsquo;ve got a word list, with one word per line, so I can similarly load those:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> @words <span style="color:#f92672">=</span> read_lines(<span style="color:#e6db74">&#39;word-list.txt&#39;</span>);
+</code></pre></div><p>We&rsquo;re only interested in words that are made up of state codes. We can make a regular expression for that:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $regexp <span style="color:#f92672">=</span> join(<span style="color:#e6db74">&#39;|&#39;</span>, @states);
+    <span style="color:#66d9ef">my</span> @words  <span style="color:#f92672">=</span> grep { <span style="color:#e6db74">/^($re)+$/</span> }
+                 read_lines(<span style="color:#e6db74">&#39;word-list.txt&#39;</span>);
+</code></pre></div><p>State codes are all two letters, so we know that the string is going to have an even number of letters in it. The regular expression will enforce that, but applying an even-length check before applying the regular expression check will be faster:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $regexp <span style="color:#f92672">=</span> join(<span style="color:#e6db74">&#39;|&#39;</span>, @states);
+    <span style="color:#66d9ef">my</span> @words  <span style="color:#f92672">=</span> grep { <span style="color:#e6db74">/^($re)+$/</span> }
+                 grep { length($_) % 2 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> }
+                 read_lines(<span style="color:#e6db74">&#39;word-list.txt&#39;</span>);
+</code></pre></div><p>It takes less than a second to run my solution anyway, so I didn&rsquo;t keep the even-length check.</p>
 <p>We want to find the longest such word, so we can sort into order of decreasing length, and then the first string we find is the answer:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    sort { length($b) <span style="color:#e6db74">&lt;=&gt;</span> length($a) }
+</code></pre></div><p>Putting all of those together, I came up with this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> File::Slurper <span style="color:#e6db74">qw/ read_lines /</span>;
 
-<pre><code class="language-perl">    sort { length($b) &lt;=&gt; length($a) }
-</code></pre>
+    <span style="color:#66d9ef">my</span> @states <span style="color:#f92672">=</span> read_lines(<span style="color:#e6db74">&#39;state-codes.txt&#39;</span>);
+    <span style="color:#66d9ef">my</span> $re     <span style="color:#f92672">=</span> join(<span style="color:#e6db74">&#39;|&#39;</span>, @states);
+    <span style="color:#66d9ef">my</span> @words  <span style="color:#f92672">=</span> grep { <span style="color:#e6db74">/^($re)+$/</span> }
+                 sort { length($b) <span style="color:#e6db74">&lt;=&gt;</span> length($a) }
+                 read_lines(<span style="color:#e6db74">&#39;word-list.txt&#39;</span>);
 
-<p>Putting all of those together, I came up with this:</p>
-
-<pre><code class="language-perl">    use File::Slurper qw/ read_lines /;
-
-    my @states = read_lines('state-codes.txt');
-    my $re     = join('|', @states);
-    my @words  = grep { /^($re)+$/ }
-                 sort { length($b) &lt;=&gt; length($a) }
-                 read_lines('word-list.txt');
-
-    print $words[0], &quot;\n&quot;;
-</code></pre>
-
-<p>Which, for my word list, produces <strong>cascarilla</strong> (&ldquo;the aromatic bark of a West Indian shrub&rdquo;).</p>
-
+    <span style="color:#66d9ef">print</span> $words[<span style="color:#ae81ff">0</span>], <span style="color:#e6db74">&#34;\n&#34;</span>;
+</code></pre></div><p>Which, for my word list, produces <strong>cascarilla</strong> (&ldquo;the aromatic bark of a West Indian shrub&rdquo;).</p>
 <h2 id="no-duplicates">No duplicates</h2>
-
 <p>The above solution lets you use states more than once. But imagine you have a bag of 50 scrabble-like tiles, one for each state, and you have to make the longest word you can with these.</p>
-
 <p>As it happens, the longest word found, <strong>cascarilla</strong>, doesn&rsquo;t use any state more than once. But what if we&rsquo;re listing all of the words we can make with the tiles?</p>
-
 <p>For this, split each word into pairs of letters, and then remove any duplicates. If the resulting list is no different, then the word&rsquo;s good.</p>
-
 <p>For removing duplicates my first thought was a hash:</p>
-
-<pre><code class="language-perl">    foreach my $word (@words) {
-        my @pairs     = $word =~ /([a-z][a-z])/g;
-        my @uniqpairs = keys %{ { map { $_ =&gt; 1 } @pairs } };
-        print &quot;$word\n&quot; if @pairs == @uniqpairs;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $word (@words) {
+        <span style="color:#66d9ef">my</span> @pairs     <span style="color:#f92672">=</span> $word <span style="color:#f92672">=~</span><span style="color:#e6db74"> /([a-z][a-z])/g</span>;
+        <span style="color:#66d9ef">my</span> @uniqpairs <span style="color:#f92672">=</span> keys %{ { map { $_ <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> } @pairs } };
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$word\n&#34;</span> <span style="color:#66d9ef">if</span> @pairs <span style="color:#f92672">==</span> @uniqpairs;
     }
-</code></pre>
+</code></pre></div><p>That line&rsquo;s a bit hairy, so my next thought was to use <strong>uniqstr()</strong> from <strong>List::Util</strong>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw/ uniqstr /</span>;
 
-<p>That line&rsquo;s a bit hairy, so my next thought was to use <strong>uniqstr()</strong> from <strong>List::Util</strong>:</p>
-
-<pre><code class="language-perl">    use List::Util qw/ uniqstr /;
-
-    foreach my $word (@words) {
-        my @pairs     = $word =~ /([a-z][a-z])/g;
-        my @uniqpairs = uniqstr @pairs;
-        print &quot;$word\n&quot; if @pairs == @uniqpairs;
+    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $word (@words) {
+        <span style="color:#66d9ef">my</span> @pairs     <span style="color:#f92672">=</span> $word <span style="color:#f92672">=~</span><span style="color:#e6db74"> /([a-z][a-z])/g</span>;
+        <span style="color:#66d9ef">my</span> @uniqpairs <span style="color:#f92672">=</span> uniqstr @pairs;
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$word\n&#34;</span> <span style="color:#66d9ef">if</span> @pairs <span style="color:#f92672">==</span> @uniqpairs;
     }
-</code></pre>
-
-<p>This removes <strong>20 words</strong> that were found by the first solution.</p>
-
-<hr />
-
-<hr />
-
+</code></pre></div><p>This removes <strong>20 words</strong> that were found by the first solution.</p>
+<hr>
+<hr>
 <p>If you have any suggestion then please do share with us <a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a>.</p>
-
 <p><a href="/blog/advent-calendar-2019"><strong>Advent Calendar 2019</strong></a></p>
 
                 </div>

@@ -16,7 +16,7 @@
 
     <meta name="description" content="Advent Calendar - December 3, 2019">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.55.0-DEV" />
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -41,6 +41,8 @@
     <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
     <!-- hover -->
     <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
     <!-- template main css file -->
     
     <link rel="stylesheet" href="https://perlweeklychallenge.org/css/style.min.css" integrity="" media="screen">
@@ -149,84 +151,57 @@
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
-                    
-
-<p><a href="/blog/advent-calendar-2019"><strong>Advent Calendar 2019</strong></a></p>
-
-<hr />
-
-<p>The gift is presented by <a href="https://perlweeklychallenge.org/blog/meet-the-champion-015"><strong>Joelle Maslak</strong></a>. Today she is talking about her solutions to <strong>Task #1: Decimal to Roman</strong> of <a href="/blog/perl-weekly-challenge-010"><strong>&ldquo;The Weekly Challenge - 010&rdquo;</strong></a>.</p>
-
-<h4 id="write-a-script-to-encode-decode-roman-numerals-for-example-given-roman-numeral-ccxlvi-it-should-return-246-similarly-for-decimal-number-39-it-should-return-xxxix-checkout-wikipedia-https-en-wikipedia-org-wiki-roman-numerals-page-for-more-informaiton">Write a script to encode/decode Roman numerals. For example, given Roman numeral CCXLVI, it should return 246. Similarly, for decimal number 39, it should return XXXIX. Checkout <a href="https://en.wikipedia.org/wiki/Roman_numerals">wikipedia</a> page for more informaiton.</h4>
-
-<hr />
-
+                    <p><a href="/blog/advent-calendar-2019"><strong>Advent Calendar 2019</strong></a></p>
+<hr>
+<p>The gift is presented by <a href="https://perlweeklychallenge.org/blog/meet-the-champion-015"><strong>Joelle Maslak</strong></a>. Today she is talking about her solutions to <strong>Task #1: Decimal to Roman** of </strong>&ldquo;The Weekly Challenge - 010&rdquo;**<a href="/blog/perl-weekly-challenge-010"></a>.</p>
+<h4 id="write-a-script-to-encodedecode-roman-numerals-for-example-given-roman-numeral-ccxlvi-it-should-return-246-similarly-for-decimal-number-39-it-should-return-xxxix-checkout-wikipediahttpsenwikipediaorgwikiroman_numerals-page-for-more-informaiton">Write a script to encode/decode Roman numerals. For example, given Roman numeral CCXLVI, it should return 246. Similarly, for decimal number 39, it should return XXXIX. Checkout <a href="https://en.wikipedia.org/wiki/Roman_numerals">wikipedia</a> page for more informaiton.</h4>
+<hr>
 <p>To start with, I read the Wikipedia page referenced in the challenge, and realized there were several different systems for writing Roman numerals – it wasn’t as standardized as I thought! That said, I stuck with the style used in the description of the challenge, specifically <strong>“subtractive”</strong> notation.  Essentially, the symbols are written from the largest value to the smallest value, left to right, with no more than <strong>3</strong> of any symbol used.  When four of a symbol would normally be used (for instance, <strong>IIII</strong> to mean <strong>4</strong>), instead it would be written as <strong>IV</strong>, meaning one less than <strong>4</strong> (you see this because the smaller number is before the bigger number).</p>
-
 <p>So that’s what I’ll talk about below – the part of the code that converts an integer to a Roman number.</p>
-
-<pre><code class="language-perl6"> 1 sub decimal-to-roman(UInt:D $decimal is copy --&gt;Str:D) {
- 2    my $str = '';
- 3
- 4    my @conversions =
- 5        M  =&gt; 1000,
- 6        CM =&gt;  900,
- 7        D  =&gt;  500,
- 8        CD =&gt;  400,
- 9        C  =&gt;  100,
-10        XC =&gt;   90,
-11        L  =&gt;   50,
-12        XL =&gt;   40,
-13        X  =&gt;   10,
-14        IX =&gt;    9,
-15        V  =&gt;    5,
-16        IV =&gt;    4,
-17        I  =&gt;    1,
-18    ;
-19
-20    for @conversions -&gt; $pair {
-21        while $decimal ≥ $pair.value {
-22            $decimal -= $pair.value;
-23            $str     ~= $pair.key;
-24        }
-25    }
-26
-27    return $str;
-28 }
-</code></pre>
-
-<p>I haven’t talked about a lot of the syntax of the basic language in <a href="https://digitalbarbedwire.com/2019/05/23/solving-the-sparkpost-challenge/">past</a> <a href="https://digitalbarbedwire.com/2019/04/27/anagrams-in-on/">posts</a> about the <strong>Perl Weekly Challenge</strong>, but I’ll mention a bit here.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">decimal</span>-to-roman(UInt:D $decimal is copy --&gt;Str:D) {
+ <span style="color:#ae81ff">2</span>    <span style="color:#66d9ef">my</span> $str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
+ <span style="color:#ae81ff">3</span>
+ <span style="color:#ae81ff">4</span>    <span style="color:#66d9ef">my</span> @conversions <span style="color:#f92672">=</span>
+ <span style="color:#ae81ff">5</span>        M  <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1000</span>,
+ <span style="color:#ae81ff">6</span>        CM <span style="color:#f92672">=&gt;</span>  <span style="color:#ae81ff">900</span>,
+ <span style="color:#ae81ff">7</span>        D  <span style="color:#f92672">=&gt;</span>  <span style="color:#ae81ff">500</span>,
+ <span style="color:#ae81ff">8</span>        CD <span style="color:#f92672">=&gt;</span>  <span style="color:#ae81ff">400</span>,
+ <span style="color:#ae81ff">9</span>        C  <span style="color:#f92672">=&gt;</span>  <span style="color:#ae81ff">100</span>,
+<span style="color:#ae81ff">10</span>        XC <span style="color:#f92672">=&gt;</span>   <span style="color:#ae81ff">90</span>,
+<span style="color:#ae81ff">11</span>        L  <span style="color:#f92672">=&gt;</span>   <span style="color:#ae81ff">50</span>,
+<span style="color:#ae81ff">12</span>        XL <span style="color:#f92672">=&gt;</span>   <span style="color:#ae81ff">40</span>,
+<span style="color:#ae81ff">13</span>        X  <span style="color:#f92672">=&gt;</span>   <span style="color:#ae81ff">10</span>,
+<span style="color:#ae81ff">14</span>        IX <span style="color:#f92672">=&gt;</span>    <span style="color:#ae81ff">9</span>,
+<span style="color:#ae81ff">15</span>        V  <span style="color:#f92672">=&gt;</span>    <span style="color:#ae81ff">5</span>,
+<span style="color:#ae81ff">16</span>        IV <span style="color:#f92672">=&gt;</span>    <span style="color:#ae81ff">4</span>,
+<span style="color:#ae81ff">17</span>        I  <span style="color:#f92672">=&gt;</span>    <span style="color:#ae81ff">1</span>,
+<span style="color:#ae81ff">18</span>    ;
+<span style="color:#ae81ff">19</span>
+<span style="color:#ae81ff">20</span>    <span style="color:#66d9ef">for</span> @conversions <span style="color:#f92672">-&gt;</span> $pair {
+<span style="color:#ae81ff">21</span>        <span style="color:#66d9ef">while</span> $decimal <span style="color:#960050;background-color:#1e0010">≥</span> $pair<span style="color:#f92672">.</span>value {
+<span style="color:#ae81ff">22</span>            $decimal <span style="color:#f92672">-=</span> $pair<span style="color:#f92672">.</span>value;
+<span style="color:#ae81ff">23</span>            $str     <span style="color:#f92672">~=</span> $pair<span style="color:#f92672">.</span>key;
+<span style="color:#ae81ff">24</span>        }
+<span style="color:#ae81ff">25</span>    }
+<span style="color:#ae81ff">26</span>
+<span style="color:#ae81ff">27</span>    <span style="color:#66d9ef">return</span> $str;
+<span style="color:#ae81ff">28</span> }
+</code></pre></div><p>I haven’t talked about a lot of the syntax of the basic language in <a href="https://digitalbarbedwire.com/2019/05/23/solving-the-sparkpost-challenge/">past</a> <a href="https://digitalbarbedwire.com/2019/04/27/anagrams-in-on/">posts</a> about the <strong>Perl Weekly Challenge</strong>, but I’ll mention a bit here.</p>
 <p>In <strong>line 1</strong> above, we define a function named decimal-to-roman. Yes, you can use “-” in function names, which is probably anxiety provoking to most people familiar with Algol-based languages, but is unambiguous in <strong>Raku</strong> syntax – and thus allowed (indeed, <strong>Lisp</strong>, among many others allow hyphens too).</p>
-
 <p>This function takes one parameter, <em>$decimal</em>. This variable has a type – UInt:D.  The <strong>UInt</strong> part is relatively straightforward to most developers, whether or not they use <strong>Raku</strong> – must be an unsigned integer.  The <strong>:D</strong> part is unusual to most non-Raku developers, but is simple – it simply indicates the <strong>UInt</strong> passed must be defined, I.E. it has to be an actual value.  This <strong>line 1</strong> also makes this parameter, <em>$decimal</em>, a copy. By default, <strong>Raku</strong> parameters are read only, so they can’t be modified. This saves the overhead of making a copy when calling functions. Finally, the function returns a <strong>Str:D</strong> – a defined string.</p>
-
 <p>You don’t have to define types in <strong>Raku</strong> – but when you do, you get some automatic error checking, so it’s sometimes a good thing to do. For instance, if I tried to return a <strong>UInt</strong> rather than a String, or returned an undefined variable, I would get an error that indicating where the assignment happened, not some far away module that expected a String and didn’t get it.</p>
-
 <p>We’re using <em>$str</em> to build a string that will be returned by this function, so we initialize it to zero character long string. We’ll be building this string left to right later in the function.</p>
-
 <p>We then build an array of <strong>Pair</strong>. In <strong>Raku</strong>, pairs are built-in to the language. <strong>Pairs</strong> are simply two values stored together, typically referred to as a key and a value.  We use these pairs to represent some symbols and their decimal values.  You can define a pair with the <strong>X =&gt; Y</strong> notation (X is the key, Y is the value).</p>
-
 <p>We start with the largest values – for instance, <strong>“M”</strong>, which represents 1,000 (this is the largest symbol in widespread usage.</p>
-
 <p>The next value is <strong>“CM”</strong>. <strong>“C”</strong> means <strong>100</strong>, so <strong>“CM”</strong> means <strong>100</strong> less than <strong>1000</strong>, or <strong>900</strong>.</p>
-
 <p>We then represent the rest of the pairs of Roman numeral <strong>“digits”</strong> and their associated decimal values.</p>
-
 <p>The loops are where it gets interesting. For each pair, we see if that pair is less than the current value of <em>$decimal</em>.  For instance, if <em>$decimal</em> is <strong>8</strong>, the first time through this outer loop we have the pair representing <strong>“M”</strong> and <strong>1000</strong>. The inner loop only runs while <em>$decimal</em> is equal or greater than <strong>1000</strong> (my editor automatically changes &gt;= to ≥, a Unicode character, to save characters on my screen – and let me keep more state on the screen).  Of course, it’s not ≥ 1000, so we go on to the next symbol, <strong>“CM”</strong>, which is still bigger than <strong>8</strong>, etc.</p>
-
 <p>Eventually we get to <strong>“V”</strong>, representing <strong>5</strong>. So the first (and only) time through the inner loop with a pair of <strong>V =&gt; 5</strong>, we subtract 5 from <em>$decimal</em> (so <em>$decimal</em> is now 3), and add the symbol <strong>“V”</strong> to the end of <em>$str</em> (which now contains <strong>“V”</strong>).</p>
-
 <p>We then move to <strong>“IV”</strong>, representing <strong>4</strong>, which is not ≥ the value of <em>$decimal</em> (3).</p>
-
 <p>Then we get to I =&gt; 1. The inner loop runs 3 times, subtracting 1 from <em>$decimal</em> each time and appending an <strong>“I”</strong> to <em>$src</em> each time. After the <strong>3rd</strong> run through this inner loop, <em>$decimal</em> is 0, which is no longer greater or equal to 1.  So we’re done.</p>
-
-<hr />
-
-<hr />
-
+<hr>
+<hr>
 <p>If you have any suggestion then please do share with us <a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a>.</p>
-
 <p><a href="/blog/advent-calendar-2019"><strong>Advent Calendar 2019</strong></a></p>
 
                 </div>

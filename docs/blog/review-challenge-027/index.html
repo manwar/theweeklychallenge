@@ -16,7 +16,7 @@
 
     <meta name="description" content="Kian-Meng Ang Weekly Review: Challenge - #027.">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.55.0-DEV" />
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -41,6 +41,8 @@
     <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
     <!-- hover -->
     <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
     <!-- template main css file -->
     
     <link rel="stylesheet" href="https://perlweeklychallenge.org/css/style.min.css" integrity="" media="screen">
@@ -149,83 +151,46 @@
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
-                    
-
-<hr />
-
+                    <hr>
 <p>Continues from <a href="/blog/review-challenge-026/"><strong>previous week</strong></a>.</p>
-
 <p>Feel free to <a href="https://github.com/manwar/perlweeklychallenge"><strong>submit a merge request or open a ticket</strong></a> if you found any issues with this post. We highly appreciate and welcome your feedback.</p>
-
 <p>For a quick overview, go through the <a href="/blog/perl-weekly-challenge-027/"><strong>original tasks</strong></a> and <a href="/blog/recap-challenge-027/"><strong>recap</strong></a> of the weekly challenge.</p>
-
-<hr />
-
+<hr>
 <h3 id="task-1">Task #1</h3>
-
-<hr />
-
+<hr>
 <p><strong>CPAN</strong> modules used: <a href="https://metacpan.org/pod/Function::Parameters"><code>Function::Parameters</code></a>, <a href="https://metacpan.org/pod/Getopt::Long"><code>Getopt::Long</code></a>, <a href="https://metacpan.org/pod/List::Util"><code>List::Util</code></a>, <a href="https://metacpan.org/pod/Modern::Perl"><code>Modern::Perl</code></a>, <a href="https://metacpan.org/pod/Moose"><code>Moose</code></a>, <a href="https://metacpan.org/pod/Regexp::Common"><code>Regexp::Common</code></a>, <a href="https://metacpan.org/pod/Test::Exception"><code>Test::Exception</code></a>, <a href="https://metacpan.org/pod/Test::More"><code>Test::More</code></a>, <a href="https://metacpan.org/pod/feature"><code>feature</code></a>, <a href="https://metacpan.org/pod/strict"><code>strict</code></a>, <a href="https://metacpan.org/pod/utf8"><code>utf8</code></a>, <a href="https://metacpan.org/pod/warnings"><code>warnings</code></a></p>
-
 <p>Start with the submission by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/duncan-c-white/perl5/ch-1.pl"><strong>Duncan C White</strong></a>. His solution was the only one with visualization through <a href="http://gnuplot.info/"><strong>Gnuplot</strong></a>. For those who want to try it out, you can test using the sample command below. While the plot was a good way look at the intersection graphically (alternatively, read the <a href="https://perl6.eu/historical-intersection.html"><strong>blog post</strong></a> by <strong>Arne Sommer</strong>), it doesn&rsquo;t handle all test data correctly, especially the test cases from <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/e-choroba/perl5/ch-1.pl"><strong>E. Choroba</strong></a>.</p>
-
-<pre><code class="language-bash">$ perl ch-1.pl 1 4 4 2 2 4 1
-1
-a=1, b=4, c=4, d=2, p=2, q=4, r=1, s=1
-line 1 : y = -0.666666666666667 x + 4.66666666666667
-line 2 : y = 3 x + -2
-intersection at (1.81818181818182,3.45454545454546)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl ch-1.pl <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">1</span>
+<span style="color:#ae81ff">1</span>
+a<span style="color:#f92672">=</span>1, b<span style="color:#f92672">=</span>4, c<span style="color:#f92672">=</span>4, d<span style="color:#f92672">=</span>2, p<span style="color:#f92672">=</span>2, q<span style="color:#f92672">=</span>4, r<span style="color:#f92672">=</span>1, s<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>
+line <span style="color:#ae81ff">1</span> : y <span style="color:#f92672">=</span> -0.666666666666667 x + 4.66666666666667
+line <span style="color:#ae81ff">2</span> : y <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span> x + -2
+intersection at <span style="color:#f92672">(</span>1.81818181818182,3.45454545454546<span style="color:#f92672">)</span>
 show results in gnuplot? y
-</code></pre>
-
-<p>Next, study the solution by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/joelle-maslak/perl5/ch-1.pl"><strong>Joelle Maslak</strong></a> which was very comprehensive. The solution demonstrated different features of <strong>Perl 5</strong> like <strong>method signatures</strong>, <strong>Unicode support</strong>, <strong>Object-oriented programming</strong> through <a href="https://metacpan.org/pod/Moose"><strong>Moose</strong></a>, and well-written comment explaining the solution.</p>
-
+</code></pre></div><p>Next, study the solution by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/joelle-maslak/perl5/ch-1.pl"><strong>Joelle Maslak</strong></a> which was very comprehensive. The solution demonstrated different features of <strong>Perl 5</strong> like <strong>method signatures</strong>, <strong>Unicode support</strong>, <strong>Object-oriented programming</strong> through <a href="https://metacpan.org/pod/Moose"><strong>Moose</strong></a>, and well-written comment explaining the solution.</p>
 <p>For this task, the participant needs to handle many command line arguments and we&rsquo;ve observed different ways of doing it in Perl. The common approach was just expanding these command line arguments into argument list as seen in the solution by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/duane-powell/perl5/ch-1.pl"><strong>Duane Powell</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/laurent-rosenfeld/perl5/ch-1.pl"><strong>Laurent Rosenfeld</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/roger-bell-west/perl5/ch-1.pl"><strong>Roger Bell_West</strong></a> (using <code>shift</code>), <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/lubos-kolouch/perl5/ch-1.pl"><strong>Lubos Kolouch</strong></a>, and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/joelle-maslak/perl5/ch-1.pl"><strong>Joelle Maslak</strong></a>. Or if you prefer array slicing as used by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/adam-russell/perl5/ch-1.pl"><strong>Adam Russell</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/yet-ebreo/perl5/ch-1.pl"><strong>Yet Ebreo</strong></a> and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/duncan-c-white/perl5/ch-1.pl"><strong>Duncan C White</strong></a></p>
-
 <p>Special mention of <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/andrezgz/perl5/ch-1.pl"><strong>Andrezgz</strong></a>, which provides us with clear instruction on how to pass arguments to its console app. Likewise for <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/colin-crain/perl5/ch-1.pl"><strong>Colin Crain</strong></a> which have far more complex but tasteful way to handle co-ordinates as well as validation.</p>
-
-<hr />
-
+<hr>
 <h3 id="task-2">Task #2</h3>
-
-<hr />
-
+<hr>
 <p><strong>CPAN</strong> modules used: <a href="https://metacpan.org/pod/Class::Hash"><code>Class::Hash</code></a>, <a href="https://metacpan.org/pod/Data::Dump"><code>Data::Dump</code></a>, <a href="https://metacpan.org/pod/Data::Dumper"><code>Data::Dumper</code></a>, <a href="https://metacpan.org/pod/Filter::Simple"><code>Filter::Simple</code></a>, <a href="https://metacpan.org/pod/Function::Parameters"><code>Function::Parameters</code></a>, <a href="https://metacpan.org/pod/Modern::Perl"><code>Modern::Perl</code></a>, <a href="https://metacpan.org/pod/Moo"><code>Moo</code></a>, <a href="https://metacpan.org/pod/Moose"><code>Moose</code></a>, <a href="https://metacpan.org/pod/Storable"><code>Storable</code></a>, <a href="https://metacpan.org/pod/Test::More"><code>Test::More</code></a>, <a href="https://metacpan.org/pod/Tie::Scalar"><code>Tie::Scalar</code></a>, <a href="https://metacpan.org/pod/Variable::Magic"><code>Variable::Magic</code></a>, <a href="https://metacpan.org/pod/feature"><code>feature</code></a>, <a href="https://metacpan.org/pod/lib"><code>lib</code></a>, <a href="https://metacpan.org/pod/parent"><code>parent</code></a>, <a href="https://metacpan.org/pod/strict"><code>strict</code></a>, <a href="https://metacpan.org/pod/warnings"><code>warnings</code></a></p>
-
 <p>This was one of those task where participants really demonstrated different <strong>Perl</strong> features or <strong>CPAN</strong> modules to solve a problem.</p>
-
 <p>Start with the solution by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/duane-powell/perl5/ch-2.pl"><strong>Duane Powell</strong></a> as we learned about basic OO usage in Perl without any external <strong>CPAN</strong> modules dependencies. Follow this by the solution by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/colin-crain/perl5/ch-2.pl"><strong>Colin Crain</strong></a> and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/joelle-maslak/perl5/ch-2.pl"><strong>Joelle Maslak</strong></a>. Both share some similarities but using external dependencies and conventional naming conventions.</p>
-
-<p>The typical approach was to use the <a href="https://metacpan.org/pod/Tie::Scalar"><code>Tie::Scalar</code></a> <strong>CPAN</strong> module. Participants who took this approach were <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/mark-anderson/perl5/ch-2.pl"><strong>Mark Anderson</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/ruben-westerberg/perl5/ch-2.pl"><strong>Ruben Westerberg</strong></a> and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/e-choroba/perl5/ch-2.pl"><strong>E. Choroba</strong></a> (very compact and clean solution).</p>
-
+<p>The typical approach was to use the <a href="https://metacpan.org/pod/Tie::Scalar'"><code>Tie::Scalar</code></a> <strong>CPAN</strong> module. Participants who took this approach were <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/mark-anderson/perl5/ch-2.pl"><strong>Mark Anderson</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/ruben-westerberg/perl5/ch-2.pl"><strong>Ruben Westerberg</strong></a> and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/e-choroba/perl5/ch-2.pl"><strong>E. Choroba</strong></a> (very compact and clean solution).</p>
 <p>And then there were those who&rsquo;ve chosen to implement something similar using <a href="https://perldoc.perl.org/functions/tie.html"><code>tie</code></a> but without using the <a href="https://metacpan.org/pod/Tie::Scalar"><code>Tie::Scalar</code></a> <strong>CPAN</strong> module. <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/trenton-langer/perl5/ch-2.pl"><strong>Trenton Langer</strong></a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/yet-ebreo/perl5/ch-2.pl"><strong>Yet Ebreo</strong></a> and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/joelle-maslak/perl5/ch-2.pl"><strong>Joelle Maslak</strong></a> were the three participants who experimented with such method.</p>
-
 <p>And <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/roger-bell-west/perl5/ch-2.pl"><strong>Roger Bell_West</strong></a> solved this solution with magic, other to be precise, <a href="https://metacpan.org/pod/Variable::Magic"><code>Variable::Magic</code></a>, a special <strong>CPAN</strong> module that let you add your own magic to any variable.</p>
-
 <p>These were the participants that preferred unorthodox aproaches.</p>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/laurent-rosenfeld/perl5/ch-2.pl"><strong>Laurent Rosenfeld</strong></a> used a simple yet powerful programming language feature, <a href="https://en.wikipedia.org/wiki/Closure_(computer_programming)"><strong>Closure</strong></a> in <a href="https://perldoc.perl.org/perlfaq7.html#What's-a-closure%3f"><strong>Perl</strong></a> to implement logging. This was also a good approach as <strong>Closure</strong> allows us to keep track of variables that gone out of the scope.</p>
-
 <p>While <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/lubos-kolouch/perl5/ch-2.pl"><strong>Lubos Kolouch</strong></a> and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/andrezgz/perl5/ch-2.pl"><strong>Andrezgz</strong></a> have an interesting interpretation and literally solved the problem as it is using <a href="https://perldoc.perl.org/functions/eval.html"><code>eval</code></a>.</p>
-
 <p>Again, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/duncan-c-white/perl5/ch-2.pl"><strong>Duncan C White</strong></a> solved this problem by providing a visualization through <a href="http://gnuplot.info/"><strong>Gnuplot</strong></a> by implementing a simple numerical logging by operator.</p>
-
 <p>Lastly, the participant that always willing to try and explore different approach, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-027/adam-russell/perl5/ch-2.pl"><strong>Adam Russell</strong></a> took it to another level by logging through <a href="https://perldoc.perl.org/perlfilter.html"><strong>source filter</strong></a>. Read his <a href="https://adamcrussell.livejournal.com/9508.html"><strong>blog post</strong></a> on how he implemented this.</p>
-
-<hr />
-
+<hr>
 <h3 id="see-also">SEE ALSO</h3>
-
-<hr />
-
+<hr>
 <p>(1) <a href="https://perl6.eu/historical-intersection.html"><strong>Historical Intersection with Perl 6</strong></a> by <strong>Arne Sommer</strong></p>
-
 <p>(2) <a href="https://adamcrussell.livejournal.com/9508.html"><strong>Perl Weekly Challenge 027</strong></a> by <strong>Adam Russell</strong></p>
-
 <p>(3) <a href="http://blogs.perl.org/users/laurent_r/2019/09/perl-weekly-challenge-27-intersection-point-and-historical-values.html"><strong>Perl Weekly Challenge 27: Intersection Point and Historical Values</strong></a> by <strong>Laurent Rosenfeld</strong></p>
-
 <p>(4) <a href="https://blog.firedrake.org/archive/2019/09/Perl_Weekly_Challenge_27.html"><strong>RogerBW&rsquo;s Blog: Perl Weekly Challenge 27</strong></a> by <strong>Roger Bell_West</strong></p>
-
 <p>(5) <a href="http://blogs.perl.org/users/e_choroba/2019/09/perl-weekly-challenge-027-intersection-of-straight-lines-and-historical-data.html"><strong>Perl Weekly Challenge 027: Intersection of Straight Lines and Historical Data</strong></a> by <strong>E. Choroba</strong></p>
 
                 </div>

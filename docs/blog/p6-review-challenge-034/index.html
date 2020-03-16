@@ -16,7 +16,7 @@
 
     <meta name="description" content="Laurent Rosenfeld Weekly Review: Challenge - #034.">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.55.0-DEV" />
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -41,6 +41,8 @@
     <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
     <!-- hover -->
     <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
     <!-- template main css file -->
     
     <link rel="stylesheet" href="https://perlweeklychallenge.org/css/style.min.css" integrity="" media="screen">
@@ -149,28 +151,16 @@
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
-                    
-
-<hr />
-
+                    <hr>
 <h1 id="raku-solutions-weekly-review">Raku Solutions Weekly Review</h1>
-
-<hr />
-
+<hr>
 <h2 id="task-1-array-and-hash-slices">Task #1: Array and Hash Slices</h2>
-
 <p>This is derived in part from my <a href="http://blogs.perl.org/users/laurent_r/2019/11/perl-weekly-challenge-34-array-and-hash-slices-and-dispatch-tables.html">blog post</a> made in answer to the <a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-034/">Week 34 of the Perl Weekly Challenge</a> organized by  <a href="http://blogs.perl.org/users/mohammad_s_anwar/">Mohammad S. Anwar</a> as well as answers made by others to the same challenge.</p>
-
 <p>The challenge, contributed by Dave Cross,  reads as follows:</p>
-
 <p><em>Write a program that demonstrates using hash slices and/or array slices.</em></p>
-
 <p>Slices are a way to access several values of an array or of a hash in one statement, by using multiple subscripts or keys.</p>
-
 <h2 id="my-solutions">My solutions</h2>
-
 <p>If you have an <code>@array</code> containing for example some successive integers, you can obtain several values from it with the following syntax: <code>@array[3, 7, 2]</code> or even <code>@array[2..7]</code>. This is an example under the REPL:</p>
-
 <pre><code>&gt; my @array = 0..10;
 [0 1 2 3 4 5 6 7 8 9 10]
 &gt; say @array[3, 7, 3]
@@ -178,33 +168,28 @@
 &gt; say @array[2..7]
 (2 3 4 5 6 7)
 </code></pre>
-
 <p>And you can do just about the same with a hash to obtain a bunch of values. Array and hash slices may also be used as <em>l-values</em>, i.e. on the left-hand side of an assignment, to populate a new array or a new hash.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> v6;
 
-<pre><code class="language-Perl6">use v6;
+<span style="color:#66d9ef">my</span> @array <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">10</span>;
+<span style="color:#66d9ef">my</span> $count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+<span style="color:#66d9ef">my</span> %hash  <span style="color:#f92672">=</span> map {$_ <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">++</span>$count}, <span style="color:#e6db74">&#39;a&#39;</span><span style="color:#f92672">..</span><span style="color:#e6db74">&#39;j&#39;</span>;
 
-my @array = 0..10;
-my $count = 0;
-my %hash  = map {$_ =&gt; ++$count}, 'a'..'j';
+say <span style="color:#e6db74">&#34;Array slice :  @array[3..7]&#34;</span>;
+say <span style="color:#e6db74">&#34;Hash slice 1: &#34;</span>, join <span style="color:#e6db74">&#39; &#39;</span>, %hash{<span style="color:#e6db74">&#39;b&#39;</span>, <span style="color:#e6db74">&#39;d&#39;</span>, <span style="color:#e6db74">&#39;c&#39;</span>};
+say <span style="color:#e6db74">&#34;Hash slice 2: &#34;</span>, join <span style="color:#e6db74">&#39; &#39;</span>, %hash{<span style="color:#e6db74">&#39;b&#39;</span><span style="color:#f92672">..</span><span style="color:#e6db74">&#39;d&#39;</span>};
+say <span style="color:#e6db74">&#34;Hash slice 3: &#34;</span>, join <span style="color:#e6db74">&#39; &#39;</span>, %hash<span style="color:#f92672">&lt;</span>b c d<span style="color:#f92672">&gt;</span>;
 
-say &quot;Array slice :  @array[3..7]&quot;;
-say &quot;Hash slice 1: &quot;, join ' ', %hash{'b', 'd', 'c'};
-say &quot;Hash slice 2: &quot;, join ' ', %hash{'b'..'d'};
-say &quot;Hash slice 3: &quot;, join ' ', %hash&lt;b c d&gt;;
-
-# Array slice a l-value
-my @new-array = (1, 2);
-@new-array[2, 3] = @array[6, 7];
-say &quot;New array: &quot;, @new-array;
-# Hash slice as l-value:
-my @keys = qw/c d e/;
-my %new-hash;
-%new-hash{@keys} = %hash{@keys};
-say &quot;New hash: &quot;, %new-hash;
-</code></pre>
-
-<p>This program produces the following output:</p>
-
+<span style="color:#75715e"># Array slice a l-value</span>
+<span style="color:#66d9ef">my</span> @new<span style="color:#f92672">-</span>array <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>);
+@new<span style="color:#f92672">-</span>array[<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>] <span style="color:#f92672">=</span> @array[<span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">7</span>];
+say <span style="color:#e6db74">&#34;New array: &#34;</span>, @new<span style="color:#f92672">-</span>array;
+<span style="color:#75715e"># Hash slice as l-value:</span>
+<span style="color:#66d9ef">my</span> @keys <span style="color:#f92672">=</span> <span style="color:#e6db74">qw/c d e/</span>;
+<span style="color:#66d9ef">my</span> %new<span style="color:#f92672">-</span>hash;
+%new<span style="color:#f92672">-</span>hash{@keys} <span style="color:#f92672">=</span> %hash{@keys};
+say <span style="color:#e6db74">&#34;New hash: &#34;</span>, %new<span style="color:#f92672">-</span>hash;
+</code></pre></div><p>This program produces the following output:</p>
 <pre><code>$ perl6 hash_slices.p6
 Array slice :  3 4 5 6 7
 Hash slice 1: 2 4 3
@@ -213,206 +198,158 @@ Hash slice 3: 2 3 4
 New array: [1 2 6 7]
 New hash: {c =&gt; 3, d =&gt; 4, e =&gt; 5}
 </code></pre>
-
 <h2 id="alternative-solutions">Alternative Solutions</h2>
-
 <p>Maybe it&rsquo;s me missing out something, but I&rsquo;m a bit disappointed by several of the solutions, which is quite surprising for such a simple challenge. Several solutions just don&rsquo;t really fit the bill.</p>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/arne-sommer/perl6/ch-1.p6">Arne Sommer</a> provided a few nice examples of array slices, plus one example of a hash slice. Please run Arne&rsquo;s code to understand anything that isn&rsquo;t obvious to you.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> @values <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;</span>zero one twice thrice four fifth VI seventh acht nine X<span style="color:#f92672">&gt;</span>;
 
-<pre><code class="language-Perl6">my @values = &lt;zero one twice thrice four fifth VI seventh acht nine X&gt;;
+say @values[<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">10</span>];
+say @values[<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">12</span>];
+say @values[<span style="color:#ae81ff">10</span> <span style="color:#f92672">...</span> <span style="color:#ae81ff">0</span>];
+say @values[<span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">1</span>];
 
-say @values[0 .. 10];
-say @values[0 .. 12];
-say @values[10 ... 0];
-say @values[7, 4, 1];
+<span style="color:#66d9ef">my</span> %values <span style="color:#f92672">=</span> @values<span style="color:#f92672">.</span>antipairs;
 
-my %values = @values.antipairs;
-
-say %values&lt;zero&gt;;
-say %values&lt;zero VI nine&gt;;
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/kevin-colyer/perl6/ch-1.p6">Kevin Colyer</a> contributed a quite long script, implementing an adventure game and demonstrating both topics of week # 34 challenge, dispatch tables and hash slices. I originally did not see the hash slices and mistakenly reported that. Kevin, please excuse me for this initial error. Kevin&rsquo;s script has two hash slices on his dispatch table, on lines 228 and 235;</p>
-
-<pre><code class="language-Perl6">    # NOTE dispatch tables AND hash slices!
-    if $thing eq &quot;bubblyflask&quot; {
-        %dispatch{&quot;n&quot;,&quot;north&quot;, &quot;e&quot;,&quot;east&quot;,&quot;s&quot;,&quot;south&quot;,&quot;w&quot;,&quot;west&quot;} = (&amp;east, &amp;east, &amp;south, &amp;south, &amp;west, &amp;west, &amp;north, &amp;north);
-        %flags&lt;confused&gt;=True;
-        return increase_score(1) ~ &quot;The bubbly liquid tastes of melon and treacle and it goes straight to your head in seconds. You feel dizzy and confused, yet pleasantly happy.&quot;;
+say %values<span style="color:#e6db74">&lt;zero&gt;</span>;
+say %values<span style="color:#f92672">&lt;</span>zero VI nine<span style="color:#f92672">&gt;</span>;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/kevin-colyer/perl6/ch-1.p6">Kevin Colyer</a> contributed a quite long script, implementing an adventure game and demonstrating both topics of week # 34 challenge, dispatch tables and hash slices. I originally did not see the hash slices and mistakenly reported that. Kevin, please excuse me for this initial error. Kevin&rsquo;s script has two hash slices on his dispatch table, on lines 228 and 235;</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">    <span style="color:#75715e"># NOTE dispatch tables AND hash slices!</span>
+    <span style="color:#66d9ef">if</span> $thing <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#34;bubblyflask&#34;</span> {
+        %dispatch{<span style="color:#e6db74">&#34;n&#34;</span>,<span style="color:#e6db74">&#34;north&#34;</span>, <span style="color:#e6db74">&#34;e&#34;</span>,<span style="color:#e6db74">&#34;east&#34;</span>,<span style="color:#e6db74">&#34;s&#34;</span>,<span style="color:#e6db74">&#34;south&#34;</span>,<span style="color:#e6db74">&#34;w&#34;</span>,<span style="color:#e6db74">&#34;west&#34;</span>} <span style="color:#f92672">=</span> (<span style="color:#f92672">&amp;</span>east, <span style="color:#f92672">&amp;</span>east, <span style="color:#f92672">&amp;</span>south, <span style="color:#f92672">&amp;</span>south, <span style="color:#f92672">&amp;</span>west, <span style="color:#f92672">&amp;</span>west, <span style="color:#f92672">&amp;</span>north, <span style="color:#f92672">&amp;</span>north);
+        %flags<span style="color:#e6db74">&lt;confused&gt;</span><span style="color:#f92672">=</span>True;
+        <span style="color:#66d9ef">return</span> increase_score(<span style="color:#ae81ff">1</span>) <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34;The bubbly liquid tastes of melon and treacle and it goes straight to your head in seconds. You feel dizzy and confused, yet pleasantly happy.&#34;</span>;
     }
-    if $thing eq &quot;fizzyflask&quot; {
-        %dispatch{&quot;n&quot;,&quot;north&quot;, &quot;e&quot;,&quot;east&quot;,&quot;s&quot;,&quot;south&quot;,&quot;w&quot;,&quot;west&quot;} = (&amp;north, &amp;north, &amp;east, &amp;east, &amp;south, &amp;south, &amp;west, &amp;west);
-        %flags&lt;confused&gt;=False;
-        return increase_score(1) ~ &quot;The vile taste of the fizzy liquid sobers you right up. The room swims back into focus.&quot;;
+    <span style="color:#66d9ef">if</span> $thing <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#34;fizzyflask&#34;</span> {
+        %dispatch{<span style="color:#e6db74">&#34;n&#34;</span>,<span style="color:#e6db74">&#34;north&#34;</span>, <span style="color:#e6db74">&#34;e&#34;</span>,<span style="color:#e6db74">&#34;east&#34;</span>,<span style="color:#e6db74">&#34;s&#34;</span>,<span style="color:#e6db74">&#34;south&#34;</span>,<span style="color:#e6db74">&#34;w&#34;</span>,<span style="color:#e6db74">&#34;west&#34;</span>} <span style="color:#f92672">=</span> (<span style="color:#f92672">&amp;</span>north, <span style="color:#f92672">&amp;</span>north, <span style="color:#f92672">&amp;</span>east, <span style="color:#f92672">&amp;</span>east, <span style="color:#f92672">&amp;</span>south, <span style="color:#f92672">&amp;</span>south, <span style="color:#f92672">&amp;</span>west, <span style="color:#f92672">&amp;</span>west);
+        %flags<span style="color:#e6db74">&lt;confused&gt;</span><span style="color:#f92672">=</span>False;
+        <span style="color:#66d9ef">return</span> increase_score(<span style="color:#ae81ff">1</span>) <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34;The vile taste of the fizzy liquid sobers you right up. The room swims back into focus.&#34;</span>;
     }
-</code></pre>
-
-<p>Also note that Kevin&rsquo;s script is the only one besides mine which uses hash slices as <em>l-values</em> (i.e. on the left-hand side of an assignment).</p>
-
+</code></pre></div><p>Also note that Kevin&rsquo;s script is the only one besides mine which uses hash slices as <em>l-values</em> (i.e. on the left-hand side of an assignment).</p>
 <p>Again, sorry, Kevin, for this initial mistake.</p>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/simon-proctor/perl6/ch-1.p6">Simon Proctor</a> suggested a quite interesting program that illustrates various relatively advanced features of Raku including, but only marginally, slices, so that the slice features are a bit blurred by the other features. I extracted from his code two examples illustrating the slice feature:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#75715e"># Making an array from a Sequence using a slice (^100 is the Range 0..100)</span>
+<span style="color:#66d9ef">my</span> @fibto100 <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#f92672">*+*...*</span>)[<span style="color:#f92672">^</span><span style="color:#ae81ff">100</span>];
 
-<pre><code class="language-Perl6"># Making an array from a Sequence using a slice (^100 is the Range 0..100)
-my @fibto100 = (1,1,*+*...*)[^100];
-
-# Use a simple slice to get the first 5 Fibonacci numbers
-say &quot;First five Fibonacci numbers {@fibto100[^5].join(&quot;,&quot;)}&quot;;
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/ulrich-rieke/perl6/ch-1.p6">Ulrich Rieke</a> also wrote a program that doesn&rsquo;t really convince me in terms of really illustrating hash slices: using <code>grep</code> and <code>:delete</code> is a good way to filter items of a hash, but that has little to do with slices.  His array slice example is much more convincing:</p>
-
-<pre><code class="language-Perl6">#...and of array slices :
-my @random_DNA_bases  ;
-for (1..63 ) {
-  @random_DNA_bases.push( &lt;A C T G&gt;.pick( 1 )) ;
+<span style="color:#75715e"># Use a simple slice to get the first 5 Fibonacci numbers</span>
+say <span style="color:#e6db74">&#34;First five Fibonacci numbers {@fibto100[^5].join(&#34;</span>,<span style="color:#e6db74">&#34;)}&#34;</span>;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/ulrich-rieke/perl6/ch-1.p6">Ulrich Rieke</a> also wrote a program that doesn&rsquo;t really convince me in terms of really illustrating hash slices: using <code>grep</code> and <code>:delete</code> is a good way to filter items of a hash, but that has little to do with slices.  His array slice example is much more convincing:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#75715e">#...and of array slices :</span>
+<span style="color:#66d9ef">my</span> @random_DNA_bases  ;
+<span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">63</span> ) {
+  @random_DNA_bases<span style="color:#f92672">.</span>push( <span style="color:#f92672">&lt;</span>A C T G<span style="color:#f92672">&gt;.</span>pick( <span style="color:#ae81ff">1</span> )) ;
 }
-my @tripletstarts = @random_DNA_bases[0,3,6...*] ;
-say &quot;...and the corresponding triplet starts:&quot; ;
-@tripletstarts.say ;
-</code></pre>
+<span style="color:#66d9ef">my</span> @tripletstarts <span style="color:#f92672">=</span> @random_DNA_bases[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">6</span><span style="color:#f92672">...*</span>] ;
+say <span style="color:#e6db74">&#34;...and the corresponding triplet starts:&#34;</span> ;
+@tripletstarts<span style="color:#f92672">.</span>say ;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/jaldhar-h-vyas/perl6/ch-1.p6">Jaldhar H. Vyas</a> implemented a recursive binary search algorithm that convincingly uses array slices to provide the arguments to the recursive subroutine calls:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">binarySearch</span>(@haystack,  $needle) {
+    <span style="color:#66d9ef">if</span> @haystack<span style="color:#f92672">.</span>elems {
+        <span style="color:#66d9ef">my</span> $mid <span style="color:#f92672">=</span> (@haystack<span style="color:#f92672">.</span>elems <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>)<span style="color:#f92672">.</span>Int;
 
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/jaldhar-h-vyas/perl6/ch-1.p6">Jaldhar H. Vyas</a> implemented a recursive binary search algorithm that convincingly uses array slices to provide the arguments to the recursive subroutine calls:</p>
-
-<pre><code class="language-Perl6">sub binarySearch(@haystack,  $needle) {
-    if @haystack.elems {
-        my $mid = (@haystack.elems / 2).Int;
-
-        if $needle eq @haystack[$mid] {
-            return True;
+        <span style="color:#66d9ef">if</span> $needle <span style="color:#f92672">eq</span> @haystack[$mid] {
+            <span style="color:#66d9ef">return</span> True;
         }
 
-        if $needle gt @haystack[$mid] {
-            return binarySearch(@haystack[$mid + 1 .. *], $needle);
+        <span style="color:#66d9ef">if</span> $needle <span style="color:#f92672">gt</span> @haystack[$mid] {
+            <span style="color:#66d9ef">return</span> binarySearch(@haystack[$mid <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#f92672">*</span>], $needle);
         }
 
-        return binarySearch(@haystack[0 .. $mid - 1], $needle);
+        <span style="color:#66d9ef">return</span> binarySearch(@haystack[<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $mid <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>], $needle);
     }
-    return False;
+    <span style="color:#66d9ef">return</span> False;
 }
-</code></pre>
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/noud/perl6/ch-1.p6">Noud</a> provided a program demonstrating simple hash slices and various array slices:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#75715e"># Hash slices</span>
+<span style="color:#75715e">#</span>
+<span style="color:#75715e"># The idea behind hash slices is that you can assign multiple keys at the same</span>
+<span style="color:#75715e"># time with a hash slice.</span>
+<span style="color:#75715e"># Also see: https://docs.perl6.org/language/hashmap#Hash_slices</span>
 
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/noud/perl6/ch-1.p6">Noud</a> provided a program demonstrating simple hash slices and various array slices:</p>
-
-<pre><code class="language-Perl6"># Hash slices
-#
-# The idea behind hash slices is that you can assign multiple keys at the same
-# time with a hash slice.
-# Also see: https://docs.perl6.org/language/hashmap#Hash_slices
-
-my %h;
-%h&lt;a b c d&gt; = ^4;
+<span style="color:#66d9ef">my</span> %h;
+%h<span style="color:#f92672">&lt;</span>a b c d<span style="color:#f92672">&gt;</span> <span style="color:#f92672">=</span> <span style="color:#f92672">^</span><span style="color:#ae81ff">4</span>;
 
 say %h;
-say %h&lt;a c&gt;;
+say %h<span style="color:#f92672">&lt;</span>a c<span style="color:#f92672">&gt;</span>;
 
 
-# Slice indexing
-#
-# Similar, we can use slicing for extracting slices from an array.
-# Also see: https://docs.perl6.org/language/list#Range_as_slice
+<span style="color:#75715e"># Slice indexing</span>
+<span style="color:#75715e">#</span>
+<span style="color:#75715e"># Similar, we can use slicing for extracting slices from an array.</span>
+<span style="color:#75715e"># Also see: https://docs.perl6.org/language/list#Range_as_slice</span>
 
-my @a = ^10;
+<span style="color:#66d9ef">my</span> @a <span style="color:#f92672">=</span> <span style="color:#f92672">^</span><span style="color:#ae81ff">10</span>;
 
-say @a[0..2];
-say @a[^2];
-say @a[0..*];
-say @a[0..Inf-1];
-say @a[0..*-1];
-say @a[0..^*-1];
-say @a[0..^*/2];
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/javier-luque/perl6/ch-1.p6">Javier Luque</a> made a very simple program illustrating well the central feature of array and hash slices:</p>
-
-<pre><code class="language-Perl6">sub MAIN () {
-    my @array = (0..Inf);
-    my %hash = ( a =&gt; 1, b =&gt; 2, c =&gt; 3, d =&gt; 4 );
-    say 'Array slice: ' ~ @array[0..5];
-    say 'Hash slice: ' ~ %hash{'a','b'};
+say @a[<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">2</span>];
+say @a[<span style="color:#f92672">^</span><span style="color:#ae81ff">2</span>];
+say @a[<span style="color:#ae81ff">0</span><span style="color:#f92672">..*</span>];
+say @a[<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>Inf<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+say @a[<span style="color:#ae81ff">0</span><span style="color:#f92672">..*-</span><span style="color:#ae81ff">1</span>];
+say @a[<span style="color:#ae81ff">0</span><span style="color:#f92672">..^*-</span><span style="color:#ae81ff">1</span>];
+say @a[<span style="color:#ae81ff">0</span><span style="color:#f92672">..^*/</span><span style="color:#ae81ff">2</span>];
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/javier-luque/perl6/ch-1.p6">Javier Luque</a> made a very simple program illustrating well the central feature of array and hash slices:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> () {
+    <span style="color:#66d9ef">my</span> @array <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>Inf);
+    <span style="color:#66d9ef">my</span> %hash <span style="color:#f92672">=</span> ( a <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>, b <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>, c <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>, d <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">4</span> );
+    say <span style="color:#e6db74">&#39;Array slice: &#39;</span> <span style="color:#f92672">~</span> @array[<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">5</span>];
+    say <span style="color:#e6db74">&#39;Hash slice: &#39;</span> <span style="color:#f92672">~</span> %hash{<span style="color:#e6db74">&#39;a&#39;</span>,<span style="color:#e6db74">&#39;b&#39;</span>};
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/roger-bell-west/perl6/ch-1.p6">Roger Bell West</a> suggested a program illustrating array slices:</p>
-
-<pre><code class="language-Perl6">my @data=map {rand}, (1..10);
-my @ma=map {sum(@data[$_-1..$_+1])/3}, (1..@data.end-1);
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/roger-bell-west/perl6/ch-1.p6">Roger Bell West</a> suggested a program illustrating array slices:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> @data<span style="color:#f92672">=</span>map {rand}, (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">10</span>);
+<span style="color:#66d9ef">my</span> @ma<span style="color:#f92672">=</span>map {sum(@data[$_<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$_<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>])<span style="color:#f92672">/</span><span style="color:#ae81ff">3</span>}, (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>@data<span style="color:#f92672">.</span>end<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
 unshift @ma,NaN;
 push @ma,NaN;
-my @out=map {[@data[$_],@ma[$_]]}, (0..@data.end);
-say @out.perl;
-</code></pre>
+<span style="color:#66d9ef">my</span> @out<span style="color:#f92672">=</span>map {[@data[$_],@ma[$_]]}, (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>@data<span style="color:#f92672">.</span>end);
+say @out<span style="color:#f92672">.</span>perl;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/ruben-westerberg/perl6/ch-1.p6">Ruben Westerberg</a> made a simple no-frills program illustrating very well array and hash slices:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#75715e">#Demonstate array and hash slicing</span>
+<span style="color:#66d9ef">my</span> @array<span style="color:#f92672">=</span>(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">9</span>);
+<span style="color:#66d9ef">my</span> %hash<span style="color:#f92672">=</span>(a<span style="color:#f92672">=&gt;</span><span style="color:#ae81ff">0</span>, b<span style="color:#f92672">=&gt;</span><span style="color:#ae81ff">1</span>, c<span style="color:#f92672">=&gt;</span><span style="color:#ae81ff">2</span>, e<span style="color:#f92672">=&gt;</span><span style="color:#ae81ff">3</span>);
+say <span style="color:#e6db74">&#34;Original Array: \n&#34;</span>, @array;
+say <span style="color:#e6db74">&#34;Original Hash \n&#34;</span>,%hash;
 
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/ruben-westerberg/perl6/ch-1.p6">Ruben Westerberg</a> made a simple no-frills program illustrating very well array and hash slices:</p>
+say <span style="color:#e6db74">&#34;Slicing Array with a range [0..3]: &#34;</span>;
+say @array[<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">3</span>];
 
-<pre><code class="language-Perl6">#Demonstate array and hash slicing
-my @array=(0,1,2,3,4,5,6,7,8,9);
-my %hash=(a=&gt;0, b=&gt;1, c=&gt;2, e=&gt;3);
-say &quot;Original Array: \n&quot;, @array;
-say &quot;Original Hash \n&quot;,%hash;
+say <span style="color:#e6db74">&#34;Slicing Array with duplicate index [0,0]: &#34;</span>;
+say @array[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>];
 
-say &quot;Slicing Array with a range [0..3]: &quot;;
-say @array[0..3];
+say <span style="color:#e6db74">&#39;Slicing hash into another hash %hash{qw&lt;a b&gt;}:kv.hash : &#39;</span>;
+say %hash{<span style="color:#e6db74">qw&lt;a b&gt;</span>}:kv<span style="color:#f92672">.</span>hash;
 
-say &quot;Slicing Array with duplicate index [0,0]: &quot;;
-say @array[0,0];
-
-say 'Slicing hash into another hash %hash{qw&lt;a b&gt;}:kv.hash : ';
-say %hash{qw&lt;a b&gt;}:kv.hash;
-
-say 'Slicing hash in to value array %hash{qw&lt;a b&gt;}: ';
-say %hash{qw&lt;a b&gt;};
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/steven-wilson/perl6/ch-1.p6">Steven Wilson</a>, a new member of the challengers team, also provided a simple program illustrating array slices:</p>
-
-<pre><code class="language-Perl6">my @numbers = &lt;10 20 30 40 50 60 70 80 90&gt;;
-my ( $first_number, $last_number ) = @numbers[0, *-1];
-put &quot;First 4 numbers in the array are: @numbers[0 .. 3]&quot;;
-</code></pre>
-
-<h2 id="task-2-dispatch-tables">Task #2: Dispatch Tables</h2>
-
+say <span style="color:#e6db74">&#39;Slicing hash in to value array %hash{qw&lt;a b&gt;}: &#39;</span>;
+say %hash{<span style="color:#e6db74">qw&lt;a b&gt;</span>};
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/steven-wilson/perl6/ch-1.p6">Steven Wilson</a>, a new member of the challengers team, also provided a simple program illustrating array slices:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> @numbers <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;</span><span style="color:#ae81ff">10</span> <span style="color:#ae81ff">20</span> <span style="color:#ae81ff">30</span> <span style="color:#ae81ff">40</span> <span style="color:#ae81ff">50</span> <span style="color:#ae81ff">60</span> <span style="color:#ae81ff">70</span> <span style="color:#ae81ff">80</span> <span style="color:#ae81ff">90</span><span style="color:#f92672">&gt;</span>;
+<span style="color:#66d9ef">my</span> ( $first_number, $last_number ) <span style="color:#f92672">=</span> @numbers[<span style="color:#ae81ff">0</span>, <span style="color:#f92672">*-</span><span style="color:#ae81ff">1</span>];
+put <span style="color:#e6db74">&#34;First 4 numbers in the array are: @numbers[0 .. 3]&#34;</span>;
+</code></pre></div><h2 id="task-2-dispatch-tables">Task #2: Dispatch Tables</h2>
 <p>This is derived in part from my <a href="http://blogs.perl.org/users/laurent_r/2019/11/perl-weekly-challenge-34-array-and-hash-slices-and-dispatch-tables.html">blog post</a> made in answer to the <a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-034/">Week 34 of the Perl Weekly Challenge</a> organized by  <a href="http://blogs.perl.org/users/mohammad_s_anwar/">Mohammad S. Anwar</a> as well as answers made by others to the same challenge.</p>
-
 <p>The challenge, contributed by Dave Cross,  reads as follows:</p>
-
 <p><em>Write a program that demonstrates a dispatch table.</em></p>
-
 <p>A dispatch table is a table (e.g. an array or more commonly a hash) of subroutine references or other code objects.</p>
-
 <h2 id="my-solution">My Solution</h2>
-
 <p>For this task, we want to do a bit more than simply demonstrate the syntax: we will try to do something (moderately) useful with it.</p>
-
 <p>Suppose we have a text file and want to feed each word from the file into 26 files (one per letter of the alphabet) depending on the first letter of the word. This could be done with a monstrous <code>if ... elsif ... else</code> or <code>given ... when</code> construct, or we could use a dispatch table, in this case a hash containing for each letter a code reference printing the word into the proper file. As we will see, this produces much shorter and simpler code. We will even use a dynamic dispatch table, i.e. only create the hash entries (and files) that are needed with the input file.</p>
-
 <p>we first write a <code>function_builder</code> subroutine that acts as a function factory. It receives a letter as a parameter, creates a file name for that letter, opens the corresponding file in write mode, and it returns an anonymous code block (actually a closure) that writes its argument to the file handle. This anonymous code block will be stored into the dispatch table.</p>
-
 <p>In the <code>MAIN</code> subroutine , the program reads the words of the input file, fold them to lower case, and finds the first character of each such word. To avoid file name problems with special characters, we only keep words starting with a letter. If the dispatch table has no entry yet for this letter, the program calls <code>function_builder</code> subroutine to open the proper file and stores the code reference returned by that subroutine in the dispatch table. Finally, the program calls the code reference stored in the dispatch table for word&rsquo;s first letter.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> v6;
 
-<pre><code class="language-Perl6">use v6;
-
-sub function_builder (Str $letter) {
-    my $file_name = &quot;letter_$letter.txt&quot;;
-    my $fh = open &quot;./$file_name&quot;, :w;
-    return { $fh.say($^a) }
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">function_builder</span> (Str $letter) {
+    <span style="color:#66d9ef">my</span> $file_name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;letter_$letter.txt&#34;</span>;
+    <span style="color:#66d9ef">my</span> $fh <span style="color:#f92672">=</span> open <span style="color:#e6db74">&#34;./$file_name&#34;</span>, :w;
+    <span style="color:#66d9ef">return</span> { $fh<span style="color:#f92672">.</span>say($<span style="color:#960050;background-color:#1e0010">^</span>a) }
 }
 
-multi sub MAIN (Str $file where *.IO.f) {
-    my %dispatch;
-    for $file.IO.words.map({.lc}) -&gt; $word {
-        my $letter = substr $word, 0, 1;
-        next if $letter !~~ /^&lt;[a..z]&gt;/;
-        %dispatch{$letter} = function_builder $letter unless defined %dispatch{$letter};
+multi <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> (Str $file where *.IO.f) {
+    <span style="color:#66d9ef">my</span> %dispatch;
+    <span style="color:#66d9ef">for</span> $file<span style="color:#f92672">.</span>IO<span style="color:#f92672">.</span>words<span style="color:#f92672">.</span>map({<span style="color:#f92672">.</span>lc}) <span style="color:#f92672">-&gt;</span> $word {
+        <span style="color:#66d9ef">my</span> $letter <span style="color:#f92672">=</span> substr $word, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $letter <span style="color:#f92672">!~~</span> <span style="color:#e6db74">/^&lt;[a..z]&gt;/</span>;
+        %dispatch{$letter} <span style="color:#f92672">=</span> function_builder $letter <span style="color:#66d9ef">unless</span> defined %dispatch{$letter};
         %dispatch{$letter}($word);
     }
 }
-</code></pre>
-
-<p>Running the program and passing it the <code>hash_slices.p6</code> file (the <a href="https://github.com/LaurentRosenfeld/Perl-6-Miscellaneous/blob/master/Challenges-in-Perl6/Array-and-hash-slices.md">script</a> of task # 1 of this week) produced the following files in the default directory:</p>
-
+</code></pre></div><p>Running the program and passing it the <code>hash_slices.p6</code> file (the <a href="https://github.com/LaurentRosenfeld/Perl-6-Miscellaneous/blob/master/Challenges-in-Perl6/Array-and-hash-slices.md">script</a> of task # 1 of this week) produced the following files in the default directory:</p>
 <pre><code>-rwxr-xr-x  1 Laurent Aucun       5 11 nov.  18:26  letter_u.txt
 -rwxr-xr-x  1 Laurent Aucun       5 11 nov.  18:26  letter_v.txt
 -rwxr-xr-x  1 Laurent Aucun       3 11 nov.  18:26  letter_c.txt
@@ -426,359 +363,318 @@ multi sub MAIN (Str $file where *.IO.f) {
 -rwxr-xr-x  1 Laurent Aucun       8 11 nov.  18:26  letter_d.txt
 -rwxr-xr-x  1 Laurent Aucun      22 11 nov.  18:26  letter_a.txt
 </code></pre>
-
 <p>This is the file generated for letter &ldquo;a&rdquo;:</p>
-
 <pre><code>$ cat letter_a.txt
 array
 a
 array:
 as
 </code></pre>
-
 <h2 id="alternative-solutions-1">Alternative Solutions</h2>
-
 <p>My initial idea, when I started to consider this challenge, was to implement some form of an arithmetic calculator. I&rsquo;m happy that I chose something else, as not less than three challengers chose to implement such an arithmetic calculator.</p>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/arne-sommer/perl6/ch-2.p6">Arne Sommer</a> implemented a program with a user interface in which the user is prompted to enter a command and the program executes the subroutine associated with that command in a <code>%dispatch</code> hash:</p>
-
-<pre><code class="language-Perl6">my $value = 0;
-my %dispatch =
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> $value <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+<span style="color:#66d9ef">my</span> %dispatch <span style="color:#f92672">=</span>
 (
-  q      =&gt; &amp;last,
-  quit   =&gt; &amp;last,
-  d      =&gt; &amp;double,
-  double =&gt; &amp;double,
-  h      =&gt; &amp;half,
-  half   =&gt; &amp;half,
-  c      =&gt; &amp;clear,
-  clear  =&gt; &amp;clear,
-  help   =&gt; &amp;help,
+  <span style="color:#e6db74">q  </span>    <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">&amp;</span><span style="color:#66d9ef">last</span>,
+  quit   <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">&amp;</span><span style="color:#66d9ef">last</span>,
+  d      <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">&amp;</span>double,
+  double <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">&amp;</span>double,
+  h      <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">&amp;</span>half,
+  half   <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">&amp;</span>half,
+  c      <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">&amp;</span>clear,
+  clear  <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">&amp;</span>clear,
+  help   <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">&amp;</span>help,
 );
 loop
 {
-  my $command = prompt &quot;[$value]: &quot;;
+  <span style="color:#66d9ef">my</span> $command <span style="color:#f92672">=</span> prompt <span style="color:#e6db74">&#34;[$value]: &#34;</span>;
 
-  if %dispatch{$command}     { %dispatch{$command}(); }
-  elsif $command ~~ /^(\d)$/ { set($0.Int); }
+  <span style="color:#66d9ef">if</span> %dispatch{$command}     { %dispatch{$command}(); }
+  <span style="color:#66d9ef">elsif</span> $command <span style="color:#f92672">~~</span> <span style="color:#e6db74">/^(\d)$/</span> { set($0<span style="color:#f92672">.</span>Int); }
 }
-sub last
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">last</span>
 {
   exit;
 }
-sub double
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">double</span>
 {
-  $value *= 2;
+  $value <span style="color:#f92672">*=</span> <span style="color:#ae81ff">2</span>;
 }
-sub half
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">half</span>
 {
-  $value /= 2;
+  $value <span style="color:#f92672">/=</span> <span style="color:#ae81ff">2</span>;
 }
-sub clear
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">clear</span>
 {
-  $value = 0;
+  $value <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
 }
-sub set ($new)
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">set</span> ($new)
 {
-  $value = $new;
+  $value <span style="color:#f92672">=</span> $new;
 }
-sub help
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">help</span>
 {
-  say &quot;Please consult a doctor.&quot;;
+  say <span style="color:#e6db74">&#34;Please consult a doctor.&#34;</span>;
 }
-</code></pre>
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/kevin-colyer/perl6/ch-2.p6">Kevfin Colyer</a> also implemented a user interface for a game in which the user is prompted to enter a command and the program executes the subroutine associated with that command in a <code>%dispatch</code> hash:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> %dispatch <span style="color:#f92672">=</span>
+    debug <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">&amp;</span>_debug,
+    test <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">&amp;</span>_test,
 
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/kevin-colyer/perl6/ch-2.p6">Kevfin Colyer</a> also implemented a user interface for a game in which the user is prompted to enter a command and the program executes the subroutine associated with that command in a <code>%dispatch</code> hash:</p>
+    save <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">&amp;</span>_savegame,
 
-<pre><code class="language-Perl6">my %dispatch =
-    debug =&gt; &amp;_debug,
-    test =&gt; &amp;_test,
-
-    save =&gt; &amp;_savegame,
-
-    help =&gt; &amp;help,
-    h =&gt; &amp;help,
-    north =&gt; &amp;north,
-    n =&gt; &amp;north,
-    south =&gt; &amp;south,
-    s =&gt; &amp;south,
-    east =&gt; &amp;east,
-    e =&gt; &amp;east,
-    west =&gt; &amp;west,
-    w =&gt; &amp;west,
-    quit =&gt; &amp;quit,
-    q =&gt; &amp;quit,
-    examine =&gt; &amp;examine,
-    x =&gt; &amp;examine,
-    look =&gt; &amp;look,
-    l =&gt; &amp;look,
-    score =&gt; &amp;score,
-    inventory =&gt; &amp;inventory,
-    i =&gt; &amp;inventory,
-    get =&gt; &amp;get,
-    take =&gt; &amp;get,
-    drop =&gt; &amp;drop,
-    drink =&gt; &amp;drink,
+    help <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">&amp;</span>help,
+    h <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">&amp;</span>help,
+    north <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">&amp;</span>north,
+    n <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">&amp;</span>north,
+    south <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">&amp;</span>south,
+    s <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">&amp;</span>south,
+    east <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">&amp;</span>east,
+    e <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">&amp;</span>east,
+    west <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">&amp;</span>west,
+    w <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">&amp;</span>west,
+    quit <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">&amp;</span>quit,
+    <span style="color:#e6db74">q =&gt; </span><span style="color:#f92672">&amp;</span>quit,
+    examine <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">&amp;</span>examine,
+    x <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">&amp;</span>examine,
+    look <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">&amp;</span>look,
+    l <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">&amp;</span>look,
+    score <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">&amp;</span>score,
+    inventory <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">&amp;</span>inventory,
+    i <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">&amp;</span>inventory,
+    get <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">&amp;</span>get,
+    take <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">&amp;</span>get,
+    drop <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">&amp;</span>drop,
+    drink <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">&amp;</span>drink,
 ;
-</code></pre>
+</code></pre></div><p>Kevin then provides the code for all the subroutines listed in the dispatch table. I&rsquo;ll quote only a few of them:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">score</span>($v,$a,$n) { <span style="color:#e6db74">&#34;You have scored {%flags&lt;score&gt;} out of a possible {%flags&lt;max_score&gt;} points.&#34;</span> };
 
-<p>Kevin then provides the code for all the subroutines listed in the dispatch table. I&rsquo;ll quote only a few of them:</p>
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_debug</span>($v,$a,$n) { %flags<span style="color:#e6db74">&lt;_debug&gt;</span><span style="color:#f92672">=</span> $n<span style="color:#f92672">~~</span> <span style="color:#e6db74">&#34;on&#34;</span> ?? True <span style="color:#f92672">!!</span> False; <span style="color:#e6db74">&#34;debug on: &#34;</span> <span style="color:#f92672">~</span> %flags<span style="color:#e6db74">&lt;_debug&gt;</span> };
 
-<pre><code class="language-Perl6">sub score($v,$a,$n) { &quot;You have scored {%flags&lt;score&gt;} out of a possible {%flags&lt;max_score&gt;} points.&quot; };
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_test</span>($v,$a,$n) { <span style="color:#e6db74">&#34;testing here!&#34;</span> };
 
-sub _debug($v,$a,$n) { %flags&lt;_debug&gt;= $n~~ &quot;on&quot; ?? True !! False; &quot;debug on: &quot; ~ %flags&lt;_debug&gt; };
-
-sub _test($v,$a,$n) { &quot;testing here!&quot; };
-
-sub _savegame($v,$a,$n) {my $f= &quot;save.game&quot;; $f.IO.spurt: { flags =&gt; %flags, objects =&gt; %objects, rooms =&gt; %rooms }.perl; &quot;Saved to file [$f]&quot; };
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/noud/perl6/ch-2.p6">Noud</a> suggested a simple <code>%dispatch</code> table with three items:</p>
-
-<pre><code class="language-Perl6">sub hello() {
-    &quot;Hello&quot;;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_savegame</span>($v,$a,$n) {<span style="color:#66d9ef">my</span> $f<span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;save.game&#34;</span>; $f<span style="color:#f92672">.</span>IO<span style="color:#f92672">.</span>spurt: { flags <span style="color:#f92672">=&gt;</span> %flags, objects <span style="color:#f92672">=&gt;</span> %objects, rooms <span style="color:#f92672">=&gt;</span> %rooms }<span style="color:#f92672">.</span>perl; <span style="color:#e6db74">&#34;Saved to file [$f]&#34;</span> };
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/noud/perl6/ch-2.p6">Noud</a> suggested a simple <code>%dispatch</code> table with three items:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">hello</span>() {
+    <span style="color:#e6db74">&#34;Hello&#34;</span>;
 }
-sub fib($n) {
-    if ($n &lt; 1) {
-        return 0;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">fib</span>($n) {
+    <span style="color:#66d9ef">if</span> ($n <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">1</span>) {
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
     }
-    if ($n == 1) {
-        return 1;
+    <span style="color:#66d9ef">if</span> ($n <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>) {
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
     }
-    return fib($n - 1) + fib($n - 2);
+    <span style="color:#66d9ef">return</span> fib($n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span> fib($n <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>);
 }
-my %dispatch = (
-    hello =&gt; &amp;hello,
-    world =&gt; sub { &quot;World&quot;; },
-    fib =&gt; &amp;fib
+<span style="color:#66d9ef">my</span> %dispatch <span style="color:#f92672">=</span> (
+    hello <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">&amp;</span>hello,
+    world <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { <span style="color:#e6db74">&#34;World&#34;</span>; },
+    fib <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">&amp;</span>fib
 );
-say %dispatch{&quot;hello&quot;}() ~ &quot; &quot; ~ %dispatch{&quot;world&quot;}();
-say %dispatch{&quot;fib&quot;}(20);
-</code></pre>
+say %dispatch{<span style="color:#e6db74">&#34;hello&#34;</span>}() <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34; &#34;</span> <span style="color:#f92672">~</span> %dispatch{<span style="color:#e6db74">&#34;world&#34;</span>}();
+say %dispatch{<span style="color:#e6db74">&#34;fib&#34;</span>}(<span style="color:#ae81ff">20</span>);
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/simon-proctor/perl6/ch-2.p6">Simon Proctor</a> contributed a program that can be launched with two parameters, an action and an integer value. As you might have guessed, the authorized actions are stored in a <code>%commands</code> dispatch table. His program then performs action required by the first argument on the second argument:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#75715e"># Possible actions</span>
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">doubler</span> ( Int $x ) { $x <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span> }
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">halver</span> ( Int $x ) { $x <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span> }
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">squarer</span> ( Int $x ) { $x <span style="color:#f92672">*</span> $x }
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">reverser</span> ( Int $x ) { $x<span style="color:#f92672">.</span>flip<span style="color:#f92672">.</span>Int }
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">zeroer</span> ( Int $x ) { <span style="color:#ae81ff">0</span> }
 
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/simon-proctor/perl6/ch-2.p6">Simon Proctor</a> contributed a program that can be launched with two parameters, an action and an integer value. As you might have guessed, the authorized actions are stored in a <code>%commands</code> dispatch table. His program then performs action required by the first argument on the second argument:</p>
-
-<pre><code class="language-Perl6"># Possible actions
-sub doubler ( Int $x ) { $x * 2 }
-sub halver ( Int $x ) { $x / 2 }
-sub squarer ( Int $x ) { $x * $x }
-sub reverser ( Int $x ) { $x.flip.Int }
-sub zeroer ( Int $x ) { 0 }
-
-# Despatch table
-my %commands = (
-    &quot;double&quot;  =&gt; &amp;doubler,
-    &quot;halve&quot;   =&gt; &amp;halver,
-    &quot;square&quot;  =&gt; &amp;squarer,
-    &quot;reverse&quot; =&gt; &amp;reverser,
-    &quot;zero&quot;    =&gt; &amp;zeroer,
+<span style="color:#75715e"># Despatch table</span>
+<span style="color:#66d9ef">my</span> %commands <span style="color:#f92672">=</span> (
+    <span style="color:#e6db74">&#34;double&#34;</span>  <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">&amp;</span>doubler,
+    <span style="color:#e6db74">&#34;halve&#34;</span>   <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">&amp;</span>halver,
+    <span style="color:#e6db74">&#34;square&#34;</span>  <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">&amp;</span>squarer,
+    <span style="color:#e6db74">&#34;reverse&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">&amp;</span>reverser,
+    <span style="color:#e6db74">&#34;zero&#34;</span>    <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">&amp;</span>zeroer,
 );
 
-#| Help
-multi sub MAIN( Bool :h(:$help) where so * ) {
-    say $*USAGE;
+<span style="color:#75715e">#| Help</span>
+multi <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>( Bool :h(:$help) where so * ) {
+    say $<span style="color:#960050;background-color:#1e0010">*</span>USAGE;
 }
 
-#| Use despatch table to run the given command
-multi sub MAIN(
-    Str $command where { %commands{$command}:exists }, #= Valid command from double, halve, square, reverse, zero
-    Int() $value #= Value to apply command to
+<span style="color:#75715e">#| Use despatch table to run the given command</span>
+multi <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(
+    Str $command where { %commands{$command}:exists }, <span style="color:#75715e">#= Valid command from double, halve, square, reverse, zero</span>
+    Int() $value <span style="color:#75715e">#= Value to apply command to</span>
 ) {
-    say &quot;{$command}( {$value} ) =&gt; {%commands{$command}($value)}&quot;;
+    say <span style="color:#e6db74">&#34;{$command}( {$value} ) =&gt; {%commands{$command}($value)}&#34;</span>;
 }
-</code></pre>
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/ulrich-rieke/perl6/ch-2.p6">Ulrich Rieke</a> provided a program with a user interface in which the user is prompted to enter a code for an arithmetic operation and two numbers. The program then uses a <code>%dispatcher</code> table to perform the requested operation:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#75715e">#demonstrating the use of a dispatcher, without much of input validation</span>
 
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/ulrich-rieke/perl6/ch-2.p6">Ulrich Rieke</a> provided a program with a user interface in which the user is prompted to enter a code for an arithmetic operation and two numbers. The program then uses a <code>%dispatcher</code> table to perform the requested operation:</p>
-
-<pre><code class="language-Perl6">#demonstrating the use of a dispatcher, without much of input validation
-
-sub add( Numeric $a , Numeric $b ) {
-  return $a + $b ;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">add</span>( Numeric $a , Numeric $b ) {
+  <span style="color:#66d9ef">return</span> $a <span style="color:#f92672">+</span> $b ;
 }
 
-sub subtract( Numeric $a , Numeric $b ) {
-  return $a - $b ;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">subtract</span>( Numeric $a , Numeric $b ) {
+  <span style="color:#66d9ef">return</span> $a <span style="color:#f92672">-</span> $b ;
 }
 
-sub multiply( Numeric $a , Numeric $b ) {
-  return $a * $b ;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">multiply</span>( Numeric $a , Numeric $b ) {
+  <span style="color:#66d9ef">return</span> $a <span style="color:#f92672">*</span> $b ;
 }
 
-sub divide( Numeric $a , Numeric $b ) {
-  return $a / $b ;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">divide</span>( Numeric $a , Numeric $b ) {
+  <span style="color:#66d9ef">return</span> $a <span style="color:#f92672">/</span> $b ;
 }
 
-say &quot;Enter a number from 1 to 4 to indicate what you want to do!&quot; ;
-say &quot;1) add&quot; ;
-say &quot;2) subtract&quot; ;
-say &quot;3) multiply&quot; ;
-say &quot;4) divide&quot; ;
-my $answer = $*IN.get ;
-my $choice = $answer.substr(0, 1 ) ;
-while ( +$choice &lt; 1 || +$choice &gt; 4 )  {
-  say &quot;Enter a number from 1 to 4 to indicate what you want to do!&quot; ;
-  say &quot;1) add&quot; ;
-  say &quot;2) subtract&quot; ;
-  say &quot;3) multiply&quot; ;
-  say &quot;4) divide&quot; ;
-  $answer = $*IN.get ;
-  $choice = $answer.substr(0, 1 ) ;
+say <span style="color:#e6db74">&#34;Enter a number from 1 to 4 to indicate what you want to do!&#34;</span> ;
+say <span style="color:#e6db74">&#34;1) add&#34;</span> ;
+say <span style="color:#e6db74">&#34;2) subtract&#34;</span> ;
+say <span style="color:#e6db74">&#34;3) multiply&#34;</span> ;
+say <span style="color:#e6db74">&#34;4) divide&#34;</span> ;
+<span style="color:#66d9ef">my</span> $answer <span style="color:#f92672">=</span> $<span style="color:#960050;background-color:#1e0010">*</span>IN<span style="color:#f92672">.</span>get ;
+<span style="color:#66d9ef">my</span> $choice <span style="color:#f92672">=</span> $answer<span style="color:#f92672">.</span>substr(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span> ) ;
+<span style="color:#66d9ef">while</span> ( <span style="color:#f92672">+</span>$choice <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">||</span> <span style="color:#f92672">+</span>$choice <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">4</span> )  {
+  say <span style="color:#e6db74">&#34;Enter a number from 1 to 4 to indicate what you want to do!&#34;</span> ;
+  say <span style="color:#e6db74">&#34;1) add&#34;</span> ;
+  say <span style="color:#e6db74">&#34;2) subtract&#34;</span> ;
+  say <span style="color:#e6db74">&#34;3) multiply&#34;</span> ;
+  say <span style="color:#e6db74">&#34;4) divide&#34;</span> ;
+  $answer <span style="color:#f92672">=</span> $<span style="color:#960050;background-color:#1e0010">*</span>IN<span style="color:#f92672">.</span>get ;
+  $choice <span style="color:#f92672">=</span> $answer<span style="color:#f92672">.</span>substr(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span> ) ;
 }
-say &quot;Enter your 2 operands: ( 2 in a row separated by spaces )&quot; ;
-my $numberline = $*IN.get ;
-my @numbers = $numberline.split(/\s+/) ;
-while @numbers.elems &lt; 2 {
-  say &quot;Enter your 2 operands: (2 in a row separated by spaces)&quot; ;
-  my $numberline = $*IN.get ;
-  my @numbers = $numberline.split(/\s+/) ;
+say <span style="color:#e6db74">&#34;Enter your 2 operands: ( 2 in a row separated by spaces )&#34;</span> ;
+<span style="color:#66d9ef">my</span> $numberline <span style="color:#f92672">=</span> $<span style="color:#960050;background-color:#1e0010">*</span>IN<span style="color:#f92672">.</span>get ;
+<span style="color:#66d9ef">my</span> @numbers <span style="color:#f92672">=</span> $numberline<span style="color:#f92672">.</span>split(<span style="color:#e6db74">/\s+/</span>) ;
+<span style="color:#66d9ef">while</span> @numbers<span style="color:#f92672">.</span>elems <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">2</span> {
+  say <span style="color:#e6db74">&#34;Enter your 2 operands: (2 in a row separated by spaces)&#34;</span> ;
+  <span style="color:#66d9ef">my</span> $numberline <span style="color:#f92672">=</span> $<span style="color:#960050;background-color:#1e0010">*</span>IN<span style="color:#f92672">.</span>get ;
+  <span style="color:#66d9ef">my</span> @numbers <span style="color:#f92672">=</span> $numberline<span style="color:#f92672">.</span>split(<span style="color:#e6db74">/\s+/</span>) ;
 }
-my %dispatcher = '1' =&gt; &amp;add , '2' =&gt; &amp;subtract , '3' =&gt; &amp;multiply,
-  '4' =&gt; &amp;divide ;
-if ( 1 &lt;= +$choice &lt;= 3 ) {
-  say &quot;The result is {%dispatcher{$choice}(+@numbers[0] , +@numbers[1]) }!&quot; ;
+<span style="color:#66d9ef">my</span> %dispatcher <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;1&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">&amp;</span>add , <span style="color:#e6db74">&#39;2&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">&amp;</span>subtract , <span style="color:#e6db74">&#39;3&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">&amp;</span>multiply,
+  <span style="color:#e6db74">&#39;4&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">&amp;</span>divide ;
+<span style="color:#66d9ef">if</span> ( <span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;=</span> <span style="color:#f92672">+</span>$choice <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">3</span> ) {
+  say <span style="color:#e6db74">&#34;The result is {%dispatcher{$choice}(+@numbers[0] , +@numbers[1]) }!&#34;</span> ;
 }
-if (+$choice == 4 ) {
-  if (+@numbers[1] == 0) {
-      say &quot;Illegal division by 0!&quot; ;
+<span style="color:#66d9ef">if</span> (<span style="color:#f92672">+</span>$choice <span style="color:#f92672">==</span> <span style="color:#ae81ff">4</span> ) {
+  <span style="color:#66d9ef">if</span> (<span style="color:#f92672">+</span>@numbers[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+      say <span style="color:#e6db74">&#34;Illegal division by 0!&#34;</span> ;
   }
-  else {
-      say &quot;The result is {%dispatcher{'4'}(+@numbers[0] , +@numbers[1]) }!&quot; ;
+  <span style="color:#66d9ef">else</span> {
+      say <span style="color:#e6db74">&#34;The result is {%dispatcher{&#39;4&#39;}(+@numbers[0] , +@numbers[1]) }!&#34;</span> ;
   }
 }
-</code></pre>
-
-<p>Note that since the user is prompted to enter an integer code for the arithmetic operation, this is a case where the dispatch table could have been implemented as a simple array instead of a hash.</p>
-
+</code></pre></div><p>Note that since the user is prompted to enter an integer code for the arithmetic operation, this is a case where the dispatch table could have been implemented as a simple array instead of a hash.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/javier-luque/perl6/ch-2.p6">Javier Luque</a> also used a dispatch table to implement arithmetic operations:</p>
-
-<pre><code class="language-Perl6">sub MAIN () {
-    my %dispatch_table = (
-        '+' =&gt; &amp;add,
-        '-' =&gt; &amp;subtract,
-        'x' =&gt; sub ($a , $b) { $a * $b },
-        '/' =&gt; -&gt; $a , $b { $a / $b },
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> () {
+    <span style="color:#66d9ef">my</span> %dispatch_table <span style="color:#f92672">=</span> (
+        <span style="color:#e6db74">&#39;+&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">&amp;</span>add,
+        <span style="color:#e6db74">&#39;-&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">&amp;</span>subtract,
+        <span style="color:#e6db74">&#39;x&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> ($a , $b) { $a <span style="color:#f92672">*</span> $b },
+        <span style="color:#e6db74">&#39;/&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">-&gt;</span> $a , $b { $a <span style="color:#f92672">/</span> $b },
     );
 
-    my @equations = ('2 + 2', '10 - 4', '3 x 3', '25 / 5');
-    for (@equations) -&gt; $equation {
-        ($equation ~~ /^(\d+)\s*(\+|\-|x|\/)\s*(\d+)$/);
-        say $equation ~ ' = ' ~
+    <span style="color:#66d9ef">my</span> @equations <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#39;2 + 2&#39;</span>, <span style="color:#e6db74">&#39;10 - 4&#39;</span>, <span style="color:#e6db74">&#39;3 x 3&#39;</span>, <span style="color:#e6db74">&#39;25 / 5&#39;</span>);
+    <span style="color:#66d9ef">for</span> (@equations) <span style="color:#f92672">-&gt;</span> $equation {
+        ($equation <span style="color:#f92672">~~</span> <span style="color:#e6db74">/^(\d+)\s*(\+|\-|x|\/)\s*(\d+)$/</span>);
+        say $equation <span style="color:#f92672">~</span> <span style="color:#e6db74">&#39; = &#39;</span> <span style="color:#f92672">~</span>
             %dispatch_table{$1}($0, $2);
     }
 }
 
-sub add(Num() $a, Num() $b)      { return ($a + $b); }
-sub subtract(Num() $a, Num() $b) { return ($a - $b); }
-</code></pre>
-
-<p>Note that Javier is the only challenger who used an anonymous subroutine reference and an anonymous code block defined directly in the dispatch table (for the multiplication and the division), although Ruben Westerberg did something vaguely similar. This is an interesting syntax, as it tends to make the code simpler and more concise (at least when the subroutine is simple enough).</p>
-
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">add</span>(Num() $a, Num() $b)      { <span style="color:#66d9ef">return</span> ($a <span style="color:#f92672">+</span> $b); }
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">subtract</span>(Num() $a, Num() $b) { <span style="color:#66d9ef">return</span> ($a <span style="color:#f92672">-</span> $b); }
+</code></pre></div><p>Note that Javier is the only challenger who used an anonymous subroutine reference and an anonymous code block defined directly in the dispatch table (for the multiplication and the division), although Ruben Westerberg did something vaguely similar. This is an interesting syntax, as it tends to make the code simpler and more concise (at least when the subroutine is simple enough).</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/roger-bell-west/perl6/ch-2.p6">Roger Bell West</a> also implemented an arithmetic calculator, but in the form of a stack machine. His dispatch table looks like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> %op<span style="color:#f92672">=</span>(
+  add <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">&amp;</span>add,
+  <span style="color:#e6db74">&#39;+&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">&amp;</span>add,
+  <span style="color:#66d9ef">sub</span> <span style="color:#960050;background-color:#1e0010">=&gt;</span> <span style="color:#960050;background-color:#1e0010">&amp;</span><span style="color:#a6e22e">sub</span><span style="color:#960050;background-color:#1e0010">,</span>
+  <span style="color:#960050;background-color:#1e0010">&#39;-&#39;</span> <span style="color:#960050;background-color:#1e0010">=&gt;</span> <span style="color:#960050;background-color:#1e0010">&amp;</span><span style="color:#a6e22e">sub</span><span style="color:#960050;background-color:#1e0010">,</span>
+  <span style="color:#a6e22e">mul</span> <span style="color:#960050;background-color:#1e0010">=&gt;</span> <span style="color:#960050;background-color:#1e0010">&amp;</span><span style="color:#a6e22e">mul</span><span style="color:#960050;background-color:#1e0010">,</span>
+  <span style="color:#960050;background-color:#1e0010">&#39;*&#39;</span> <span style="color:#960050;background-color:#1e0010">=&gt;</span> <span style="color:#960050;background-color:#1e0010">&amp;</span><span style="color:#a6e22e">mul</span><span style="color:#960050;background-color:#1e0010">,</span>
+  <span style="color:#a6e22e">div</span> <span style="color:#960050;background-color:#1e0010">=&gt;</span> <span style="color:#960050;background-color:#1e0010">&amp;</span><span style="color:#a6e22e">div</span><span style="color:#960050;background-color:#1e0010">,</span>
+  <span style="color:#960050;background-color:#1e0010">&#39;/&#39;</span> <span style="color:#960050;background-color:#1e0010">=&gt;</span> <span style="color:#960050;background-color:#1e0010">&amp;</span><span style="color:#a6e22e">div</span><span style="color:#960050;background-color:#1e0010">,</span>
+  <span style="color:#a6e22e">neg</span> <span style="color:#960050;background-color:#1e0010">=&gt;</span> <span style="color:#960050;background-color:#1e0010">&amp;</span><span style="color:#a6e22e">neg</span><span style="color:#960050;background-color:#1e0010">,</span>
+  <span style="color:#a6e22e">dup</span> <span style="color:#960050;background-color:#1e0010">=&gt;</span> <span style="color:#960050;background-color:#1e0010">&amp;</span><span style="color:#a6e22e">dup</span><span style="color:#960050;background-color:#1e0010">,</span>
+  <span style="color:#a6e22e">pop</span> <span style="color:#960050;background-color:#1e0010">=&gt;</span> <span style="color:#960050;background-color:#1e0010">&amp;</span><span style="color:#a6e22e">pop</span><span style="color:#960050;background-color:#1e0010">,</span>
+  <span style="color:#a6e22e">exch</span> <span style="color:#960050;background-color:#1e0010">=&gt;</span> <span style="color:#960050;background-color:#1e0010">&amp;</span><span style="color:#a6e22e">exch</span><span style="color:#960050;background-color:#1e0010">,</span>
+    <span style="color:#960050;background-color:#1e0010">)</span>;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/jaldhar-h-vyas/perl6/ch-2.p6">Jaldhar H. Vyas</a> implemented a rock, paper, and scissors game simulation:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> @choices <span style="color:#f92672">=</span> ( <span style="color:#f92672">&amp;</span>chose_paper, <span style="color:#f92672">&amp;</span>chose_scissors, <span style="color:#f92672">&amp;</span>chose_rock );
 
-<pre><code class="language-Perl6">my %op=(
-  add =&gt; &amp;add,
-  '+' =&gt; &amp;add,
-  sub =&gt; &amp;sub,
-  '-' =&gt; &amp;sub,
-  mul =&gt; &amp;mul,
-  '*' =&gt; &amp;mul,
-  div =&gt; &amp;div,
-  '/' =&gt; &amp;div,
-  neg =&gt; &amp;neg,
-  dup =&gt; &amp;dup,
-  pop =&gt; &amp;pop,
-  exch =&gt; &amp;exch,
-    );
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/jaldhar-h-vyas/perl6/ch-2.p6">Jaldhar H. Vyas</a> implemented a rock, paper, and scissors game simulation:</p>
-
-<pre><code class="language-Perl6">my @choices = ( &amp;chose_paper, &amp;chose_scissors, &amp;chose_rock );
-
-my @outcomes = (
-    (    &amp;draw,              &amp;scissors_loss,     &amp;paper_win,    ),
-    (    &amp;scissors_win,      &amp;draw,              &amp;rock_loss,    ),
-    (    &amp;paper_loss,        &amp;rock_win,          &amp;draw,         )
+<span style="color:#66d9ef">my</span> @outcomes <span style="color:#f92672">=</span> (
+    (    <span style="color:#f92672">&amp;</span>draw,              <span style="color:#f92672">&amp;</span>scissors_loss,     <span style="color:#f92672">&amp;</span>paper_win,    ),
+    (    <span style="color:#f92672">&amp;</span>scissors_win,      <span style="color:#f92672">&amp;</span>draw,              <span style="color:#f92672">&amp;</span>rock_loss,    ),
+    (    <span style="color:#f92672">&amp;</span>paper_loss,        <span style="color:#f92672">&amp;</span>rock_win,          <span style="color:#f92672">&amp;</span>draw,         )
 );
 
-my @winners = ( &amp;winner_A, &amp;winner_B );
+<span style="color:#66d9ef">my</span> @winners <span style="color:#f92672">=</span> ( <span style="color:#f92672">&amp;</span>winner_A, <span style="color:#f92672">&amp;</span>winner_B );
 
-sub chose_paper($chooser) {
-    say &quot;$chooser chose Paper.&quot;;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">chose_paper</span>($chooser) {
+    say <span style="color:#e6db74">&#34;$chooser chose Paper.&#34;</span>;
 }
-sub chose_scissors($chooser) {
-    say &quot;$chooser chose Scissors.&quot;;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">chose_scissors</span>($chooser) {
+    say <span style="color:#e6db74">&#34;$chooser chose Scissors.&#34;</span>;
 }
-sub chose_rock($chooser) {
-    say &quot;$chooser chose Rock.&quot;;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">chose_rock</span>($chooser) {
+    say <span style="color:#e6db74">&#34;$chooser chose Rock.&#34;</span>;
 }
-sub paper_win {
-    say &quot;Paper covers Rock.  &quot;;
-    @winners[0]();
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">paper_win</span> {
+    say <span style="color:#e6db74">&#34;Paper covers Rock.  &#34;</span>;
+    @winners[<span style="color:#ae81ff">0</span>]();
 }
-sub paper_loss {
-    say &quot;Paper covers Rock.  &quot;;
-    @winners[1]();
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">paper_loss</span> {
+    say <span style="color:#e6db74">&#34;Paper covers Rock.  &#34;</span>;
+    @winners[<span style="color:#ae81ff">1</span>]();
 }
-sub scissors_win {
-    say &quot;Scissors cuts Paper.  &quot;;
-    @winners[0]();
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">scissors_win</span> {
+    say <span style="color:#e6db74">&#34;Scissors cuts Paper.  &#34;</span>;
+    @winners[<span style="color:#ae81ff">0</span>]();
 }
-sub scissors_loss {
-    say &quot;Scissors cuts Paper.  &quot;;
-    @winners[1]();
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">scissors_loss</span> {
+    say <span style="color:#e6db74">&#34;Scissors cuts Paper.  &#34;</span>;
+    @winners[<span style="color:#ae81ff">1</span>]();
 }
-sub rock_win {
-    say &quot;Rock smashes Scissors.  &quot;;
-    @winners[0]();
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">rock_win</span> {
+    say <span style="color:#e6db74">&#34;Rock smashes Scissors.  &#34;</span>;
+    @winners[<span style="color:#ae81ff">0</span>]();
 }
-sub rock_loss {
-    say &quot;Rock smashes Scissors.  &quot;;
-    @winners[1]();
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">rock_loss</span> {
+    say <span style="color:#e6db74">&#34;Rock smashes Scissors.  &#34;</span>;
+    @winners[<span style="color:#ae81ff">1</span>]();
 }
-sub draw {
-    say &quot;It's a draw.&quot;;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">draw</span> {
+    say <span style="color:#e6db74">&#34;It&#39;s a draw.&#34;</span>;
 }
-sub winner_A {
-    say &quot;A wins.&quot;;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">winner_A</span> {
+    say <span style="color:#e6db74">&#34;A wins.&#34;</span>;
 }
-sub winner_B {
-    say &quot;B wins.&quot;;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">winner_B</span> {
+    say <span style="color:#e6db74">&#34;B wins.&#34;</span>;
 }
-sub MAIN() {
-    my $achoice = (0..2).roll;
-    my $bchoice = (0..2).roll;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>() {
+    <span style="color:#66d9ef">my</span> $achoice <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">2</span>)<span style="color:#f92672">.</span>roll;
+    <span style="color:#66d9ef">my</span> $bchoice <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">2</span>)<span style="color:#f92672">.</span>roll;
 
-    @choices[$achoice]('A');
-    @choices[$bchoice]('B');
+    @choices[$achoice](<span style="color:#e6db74">&#39;A&#39;</span>);
+    @choices[$bchoice](<span style="color:#e6db74">&#39;B&#39;</span>);
 
     @outcomes[$achoice][$bchoice]();
 }
-</code></pre>
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/ruben-westerberg/perl6/ch-2.p6">Ruben Westerberg</a> implemented an array of 10 anonymous subroutines called randomly:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> @dispatch<span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">10</span>)<span style="color:#f92672">.</span>map( { <span style="color:#66d9ef">my</span> $i<span style="color:#f92672">=</span>$_;<span style="color:#66d9ef">sub</span> { templateSub($i)}});
 
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-034/ruben-westerberg/perl6/ch-2.p6">Ruben Westerberg</a> implemented an array of 10 anonymous subroutines called randomly:</p>
+@dispatch[@dispatch<span style="color:#f92672">.</span>elems<span style="color:#f92672">.</span>rand<span style="color:#f92672">.</span>Int]() <span style="color:#66d9ef">for</span> @dispatch;
 
-<pre><code class="language-Perl6">my @dispatch= (1..10).map( { my $i=$_;sub { templateSub($i)}});
-
-@dispatch[@dispatch.elems.rand.Int]() for @dispatch;
-
-sub templateSub($i) {
-    put &quot;Hello from function $i&quot;;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">templateSub</span>($i) {
+    put <span style="color:#e6db74">&#34;Hello from function $i&#34;</span>;
 }
-</code></pre>
-
-<h2 id="see-also">SEE ALSO</h2>
-
+</code></pre></div><h2 id="see-also">SEE ALSO</h2>
 <p>Three blog posts this time:</p>
-
 <ul>
-<li>Arne Sommer: <a href="https://raku-musings.com/sliced-dispatch.html">https://raku-musings.com/sliced-dispatch.html</a>;</li>
-<li>Jaldhar H. Vyas: <a href="https://www.braincells.com/perl/2019/11/perl_weekly_challenge_week_34.html">https://www.braincells.com/perl/2019/11/perl_weekly_challenge_week_34.html</a>;</li>
+<li>Arne Sommer: <a href="https://raku-musings.com/sliced-dispatch.html;">https://raku-musings.com/sliced-dispatch.html;</a></li>
+<li>Jaldhar H. Vyas: <a href="https://www.braincells.com/perl/2019/11/perl_weekly_challenge_week_34.html;">https://www.braincells.com/perl/2019/11/perl_weekly_challenge_week_34.html;</a></li>
 <li>Javier Luque: <a href="https://perlchallenges.wordpress.com/2019/11/11/perl-weekly-challenge-034/">https://perlchallenges.wordpress.com/2019/11/11/perl-weekly-challenge-034/</a></li>
 </ul>
-
 <h2 id="wrapping-up">Wrapping up</h2>
-
 <p>Please let me know if I forgot any of the challengers or if you think my explanation of your code misses something important (send me an e-mail or just raise an issue against this GitHub page).</p>
 
                 </div>

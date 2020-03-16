@@ -16,7 +16,7 @@
 
     <meta name="description" content="Kian-Meng Ang Weekly Review: Challenge - #020.">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.55.0-DEV" />
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -41,6 +41,8 @@
     <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
     <!-- hover -->
     <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
     <!-- template main css file -->
     
     <link rel="stylesheet" href="https://perlweeklychallenge.org/css/style.min.css" integrity="" media="screen">
@@ -149,89 +151,48 @@
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
-                    
-
-<hr />
-
+                    <hr>
 <p>Continues from <a href="/blog/review-challenge-019/">previous week</a>.</p>
-
 <p>Feel free to <a href="https://github.com/manwar/perlweeklychallenge">submit a merge request or open a ticket</a> if you found any issues with this post. We highly appreciate and welcome your feedback.</p>
-
 <p>For a quick overview, go through the <a href="/blog/perl-weekly-challenge-020/">original tasks</a> and <a href="/blog/recap-challenge-020/">recap</a> of the weekly challenge.</p>
-
 <p>We&rsquo;re going to review thing a bit differently for this week by listing down all the <strong>CPAN</strong> modules used for a particular task. The modules usage reflects three things, the coding style of a participant (<a href="https://metacpan.org/pod/Function::Parameters"><code>Function::Parameters</code></a>) the common used module (<a href="https://metacpan.org/pod/Math::Prime::Util"><code>Math::Prime::Util</code></a>) to solve a particular problem, and the trend of module usage (<a href="https://metacpan.org/pod/Modern::Perl"><code>Modern::Perl</code></a>) which was seen quite often in the last few challenges.</p>
-
-<hr />
-
+<hr>
 <h3 id="task-1">Task #1</h3>
-
-<hr />
-
+<hr>
 <p>The <strong>CPAN</strong> modules used for this task were <a href="https://metacpan.org/pod/Modern::Perl"><code>Modern::Perl</code></a>, <a href="https://metacpan.org/pod/Const::Fast"><code>Const::Fast</code></a>, <a href="https://metacpan.org/pod/Encode"><code>Encode</code></a>, <a href="https://metacpan.org/pod/List::Util"><code>List::Util</code></a>, <a href="https://metacpan.org/pod/Carp"><code>Carp</code></a>, <a href="https://metacpan.org/pod/Function::Parameters"><code>Function::Parameters</code></a>, <a href="https://metacpan.org/pod/Data::Dumper"><code>Data::Dumper</code></a> and <a href="https://metacpan.org/pod/Test::More"><code>Test::More</code></a>.</p>
-
 <p>Participants (<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-020/mark-anderson/perl5/ch-1.pl">Mark Anderson</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-020/gustavo-chaves/perl5/ch-1.pl">Gustavo Chaves</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-020/guillermo-ramos/perl5/ch-1.pl">Guillermo Ramos</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-020/andrezgz/perl5/ch-1.pl">Andrezgz</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-020/e-choroba/perl5/ch-1.pl">E Choroba</a>, and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-020/joelle-maslak/perl5/ch-1.pl">Joelle Maslak</a>) whose solutions that can be turned into Perl one-liner (well, <strong>Jaldhar H. Vyas</strong> <a href="https://www.braincells.com/perl/2019/08/perl_weekly_challenge_week_20.html">did it</a>) due to the expressiveness of the regex and brevity of the code. Example of such approach was the solution by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-020/gustavo-chaves/perl5/ch-1.pl">Gustavo Chaves</a> as shown below. Note that <code>$&amp;</code> is the variable that stores the matched string of the regex.</p>
-
 <pre><code>my $string = shift or die &quot;Usage: $0 STRING\n&quot;;
 
 say $&amp; while $string =~ /(.)\g1*/g
 </code></pre>
-
 <p>Generally, the regex used (read up the good breakdown of the regex by <a href="http://blogs.perl.org/users/veesh/2019/08/solving-two-problems.html">Veesh Goodman</a> and <a href="https://engineering.purdue.edu/~mark/pwc-020-1.pdf">Mark Senn</a>) to split and group these characters were quite similar. The difference and <a href="http://blogs.perl.org/users/e_choroba/2019/08/perl-weekly-challenge-020-split-on-change-amicable-numbers.html">difficulty</a> was on how to process the regex result. <strong>Roger Bell West</strong> used of <a href="https://metacpan.org/pod/List::Util#pairmap"><code>pairmap</code></a> function in his <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-020/roger-bell-west/perl5/ch-1.pl">solution</a> was quite unique as well.</p>
-
 <p>Instead of using regex, some participants like <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-020/adam-russell/perl5/ch-1.pl">Adam Russell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-020/duane-powell/perl5/ch-1.pl">Duane Powell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-020/dave-jacoby/perl5/ch-1.pl">Dave Jacoby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-020/daniel-mantovani/perl5/ch-1.pl">Daniel Mantovani</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-020/ruben-westerberg/perl5/ch-1.pl">Ruben Westerberg</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-020/lubos-kolouch/perl5/ch-1.pl">Lubos Kolouch</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-020/pete-hou%20%20ston/perl5/ch-1.pl">Pete Houston</a> opted for non-regex approach. Longer code but with increased readability.</p>
-
 <p>For a comparison between the two approaches within a solution, look into the <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-020/feng-chang/perl5/ch-1.pl">submission</a> by <strong>Feng Chang</strong>.</p>
-
-<hr />
-
+<hr>
 <h3 id="task-2">Task #2</h3>
-
-<hr />
-
+<hr>
 <p>The <strong>CPAN</strong> modules used for this task were <a href="https://metacpan.org/pod/Math::Factor::XS"><code>Math::Factor::XS</code></a>, <a href="https://metacpan.org/pod/ntheory"><code>ntheory</code></a>, <a href="https://metacpan.org/pod/Thread"><code>Thread</code></a>, <a href="https://metacpan.org/pod/Math::Prime::Util"><code>Math::Prime::Util</code></a>, <a href="https://metacpan.org/pod/Memoize"><code>Memoize</code></a>, <a href="https://metacpan.org/pod/Const::Fast"><code>Const::Fast</code></a>, <a href="https://metacpan.org/pod/Getopt::Long"><code>Getopt::Long</code></a>, <a href="https://metacpan.org/pod/List::Util"><code>List::Util</code></a>, <a href="https://metacpan.org/pod/Math::BigInt"><code>Math::BigInt</code></a>, <a href="https://metacpan.org/pod/Math::Prime::XS"><code>Math::Prime::XS</code></a>, <a href="https://metacpan.org/pod/Function::Parameters"><code>Function::Parameters</code></a>, <a href="https://metacpan.org/pod/Data::Dumper"><code>Data::Dumper</code></a>, <a href="https://metacpan.org/pod/Modern::Perl"><code>Modern::Perl</code></a> and <a href="https://metacpan.org/pod/integer"><code>integer</code></a> (one of the Perl pragma or <a href="https://metacpan.org/pod/distribution/perl/pod/perlmodlib.PL#Pragmatic-Modules">pragmatic modules</a>).</p>
-
 <p>For a mathematical background of this task, read the <a href="http://blogs.perl.org/users/damian_conway/2019/08/with-friends-like-these.html">excellent write-up</a> by <strong>Damian Conway</strong>.</p>
-
 <p>As this task involved prime numbers, some participants have re-used (<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-020/adam-russell/perl5/ch-2.pl">Adam Russell</a> and <a href="https://www.braincells.com/perl/2019/08/perl_weekly_challenge_week_20.html">Jaldhar H.  Vyas</a>) their solutions in previous tasks for primality test. Others were using the available function from <strong>CPAN</strong> modules to find the factors of a number.</p>
-
 <p>For this week, <strong>Adam Russell</strong> again try <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-020/adam-russell/perl5/ch-2.pl">another unconventional approach</a> by generating the <a href="https://en.wikipedia.org/wiki/Amicable_numbers">Amicable numbers</a> using the power of threading. Read his <a href="https://adamcrussell.livejournal.com/6526.html">note on using threads</a> in either <strong>Perl 5</strong> and <strong>Perl 6</strong>. We observed more and more participants were solving challenges in both Perl versions these days.</p>
-
-<hr />
-
+<hr>
 <h3 id="task-3">Task #3</h3>
-
-<hr />
-
+<hr>
 <p>The <strong>CPAN</strong> modules used for this task were <a href="https://metacpan.org/pod/Getopt::Long"><code>Getopt::Long</code></a>, <a href="https://metacpan.org/pod/Mojo::UserAgent"><code>Mojo::UserAgent</code></a>, <a href="https://metacpan.org/pod/Mojo::Util"><code>Mojo::Util</code></a>, <a href="https://metacpan.org/pod/Path::Tiny"><code>Path::Tiny</code></a>, <a href="https://metacpan.org/pod/Perl6::Slurp"><code>Perl6::Slurp</code></a> and <a href="https://metacpan.org/pod/autodie"><code>autodie</code></a>.</p>
-
 <p>Our regular participant to this task, <strong>Joelle Maslak</strong> was the only participant again with both <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-020/joelle-maslak/perl5/ch-3.pl">Perl 5</a> and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-020/joelle-maslak/perl6/ch-3.p6">Perl 6</a> solutions. While both answers looks somewhat similar, the <strong>Perl 6</strong> version looks more cleaner due to all the default and built-in features available in <a href="https://perl6.org/">Perl 6</a> and <a href="https://cro.services/">Cro libraries</a>.</p>
-
 <p>For those who haven&rsquo;t done this task before, do give it a try.</p>
-
-<hr />
-
+<hr>
 <h3 id="blog-posts">Blog Posts</h3>
-
-<hr />
-
+<hr>
 <p>Some write-ups by the regular participants.</p>
-
 <p>(1) <a href="http://blogs.perl.org/users/veesh/2019/08/solving-two-problems.html">Solving two problems</a> by <strong>Veesh Goldman</strong></p>
-
 <p>(2) <a href="https://perl6.eu/amicable-split.html">Amicable Split with Perl 6</a> by <strong>Arne Sommer</strong></p>
-
 <p>(3) <a href="https://engineering.purdue.edu/~mark/pwc-020-1.pdf">Perl Weekly Challenge - 020, Task #1</a> by <strong>Mark Senn</strong></p>
-
 <p>(4) <a href="https://adamcrussell.livejournal.com/6526.html">Perl Weekly Challenge 020</a> by <strong>Adam Russell</strong></p>
-
 <p>(5) <a href="https://jacoby.github.io/2019/08/05/perl-weekly-challenge-week-20.html">Perl Weekly Challenge - Week 20</a> by <strong>Dave Jacoby</strong></p>
-
 <p>(6) <a href="http://blogs.perl.org/users/laurent_r/2019/08/perl-weekly-challenge-20-split-string-on-character-change-and-amicable-numbers.html">Perl Weekly Challenge # 20: Split String on Character Change and Amicable Numbers</a> by <strong>Laurent Rosenfeld</strong></p>
-
 <p>(7) <a href="https://www.braincells.com/perl/2019/08/perl_weekly_challenge_week_20.html">Perl Weekly Challenge: Week 20</a> by <strong>Jaldhar H. Vyas</strong></p>
-
 <p>(8) <a href="http://blogs.perl.org/users/e_choroba/2019/08/perl-weekly-challenge-020-split-on-change-amicable-numbers.html">Perl Weekly Challenge 020: Split on change + amicable numbers</a> by <strong>E. Choroba</strong></p>
-
 <p>(9) <a href="http://blogs.perl.org/users/damian_conway/2019/08/with-friends-like-these.html">With friends like these&hellip;</a> by <strong>Damian Conway</strong></p>
 
                 </div>

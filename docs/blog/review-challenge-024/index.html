@@ -16,7 +16,7 @@
 
     <meta name="description" content="Kian-Meng Ang Weekly Review: Challenge - #024.">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.55.0-DEV" />
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -41,6 +41,8 @@
     <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
     <!-- hover -->
     <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
     <!-- template main css file -->
     
     <link rel="stylesheet" href="https://perlweeklychallenge.org/css/style.min.css" integrity="" media="screen">
@@ -149,60 +151,34 @@
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
-                    
-
-<hr />
-
+                    <hr>
 <p>Continues from <a href="/blog/review-challenge-023/">previous week</a>.</p>
-
 <p>Feel free to <a href="https://github.com/manwar/perlweeklychallenge">submit a merge request or open a ticket</a> if you found any issues with this post. We highly appreciate and welcome your feedback.</p>
-
 <p>For a quick overview, go through the <a href="/blog/perl-weekly-challenge-024/">original tasks</a> and <a href="/blog/recap-challenge-024/">recap</a> of the weekly challenge.</p>
-
-<hr />
-
+<hr>
 <h3 id="task-1">Task #1</h3>
-
-<hr />
-
+<hr>
 <p><strong>CPAN</strong> modules used: <a href="https://metacpan.org/pod/B"><code>B</code></a>, <a href="https://metacpan.org/pod/strict"><code>strict</code></a>, <a href="https://metacpan.org/pod/warnings"><code>warnings</code></a></p>
-
 <p>Read the excellent <a href="https://perl6.eu/small-inversions.html">blog post</a> by <strong>Arne Sommer</strong> on his investigation to find the shortest solution in both <strong>Perl 5</strong> and <strong>Perl 6</strong>.</p>
-
-<p>Quite a few participants were taken aback (including the reviewer) by this task. Upon re-reading and reviewing the task and submitted solutions, perhaps this was one of those task where the solution depends solely on the interpretation of the participant and along the way, let us all learn something about the <strong>Perl</strong> interpreter itself (see <strong>Arne Sommer</strong>&rsquo;s <a href="https://perl6.eu/small-inversions.html">post</a>). Nevertheless, we will look at different ways used by participants to solve this task.</p>
-
+<p>Quite a few participants were taken aback (including the reviewer) by this task. Upon re-reading and reviewing the task and submitted solutions, perhaps this was one of those task where the solution depends solely on the interpretation of the participant and along the way, let us all learn something about the <strong>Perl</strong> interpreter itself (see <strong>Arne Sommer</strong>&lsquo;s <a href="https://perl6.eu/small-inversions.html">post</a>). Nevertheless, we will look at different ways used by participants to solve this task.</p>
 <p>First off is the empty file solution. First submitted by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-024/joelle-maslak/perl5/ch-1.pl">Joelle Maslak</a> and followed by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-024/e-choroba/perl5/ch-1.pl">E.Choroba</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-024/simon-proctor/perl5/ch-1.pl">Simon Proctor</a>, and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-024/ruben-westerberg/perl5/ch-1.pl">Ruben Westerberg</a>. <strong>Joelle Maslak</strong> did a <a href="https://digitalbarbedwire.com/2016/03/27/perl-is-good-for-nothing/">comparison</a> of parsing empty file between a few programming languages and <strong>Perl 5</strong> have the fastest startup time without throwing any errors at <strong>&ldquo;doing nothing&rdquo;</strong>.</p>
-
 <p>Equivalent one-liner also submitted by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-024/colin-crain/perl5/ch-1.pl">Colin Crain</a>, <a href="http://blogs.perl.org/users/e_choroba/2019/09/perl-weekly-challenge-024-inverted-index-and-shortest-oneliner.html">E. Choroba</a>, <a href="http://blogs.perl.org/users/laurent_r/2019/09/perl-weekly-challenge-24-smallest-script-and-inverted-index.html">Laurent Rosenfeld</a>, and <a href="http://blogs.perl.org/users/yet_ebreo/2019/09/perl-weekly-challenge-w024---smallest-script-inverted-index.html">Yet Ebreo</a>.</p>
-
 <p>Some participants (<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-024/dave-cross/perl5/ch-1.pl">Dave Cross</a> and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-024/roger-bell-west/perl5/ch-1.pl">Roger Bell West</a>) have an alternative opinion that an empty file is not really a Perl script. Well, they are partially correct as according to <a href="https://en.wikipedia.org/wiki/File_(command)"><code>file</code></a> command, an empty file, is just an empty file.</p>
-
-<pre><code class="language-bash">$ file challenge-024/joelle-maslak/perl5/ch-1.pl
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ file challenge-024/joelle-maslak/perl5/ch-1.pl
 challenge-024/joelle-maslak/perl5/ch-1.pl: empty
-</code></pre>
-
-<p>Hence, by adding a <a href="https://en.wikipedia.org/wiki/Shebang_(Unix)"><code>shebang</code></a> as a interpreter directive, the <code>file</code> command will recognize a file as Perl executable script.</p>
-
-<pre><code class="language-bash">$ file challenge-024/roger-bell-west/perl5/ch-1.pl
+</code></pre></div><p>Hence, by adding a <a href="https://en.wikipedia.org/wiki/Shebang_(Unix)"><code>shebang</code></a> as a interpreter directive, the <code>file</code> command will recognize a file as Perl executable script.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ file challenge-024/roger-bell-west/perl5/ch-1.pl
 challenge-024/roger-bell-west/perl5/ch-1.pl: Perl script text executable
-</code></pre>
-
-<p>Does that means that a text file without a Perl <code>shebang</code> interpreter directive is not a <strong>Perl</strong> script?</p>
-
+</code></pre></div><p>Does that means that a text file without a Perl <code>shebang</code> interpreter directive is not a <strong>Perl</strong> script?</p>
 <p>Not really.</p>
-
 <p>As shown in the solution submitted by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-024/lubos-kolouch/perl5/ch-1.pl">Lubos Kolouch</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-024/steven-wilson/perl5/ch-1.pl">Steven Wilson</a>, and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-024/andrezgz/perl5/ch-1.pl">Andrezgz</a>, we can run the script just fine although <code>file</code> command identified the file as plain <a href="https://en.wikipedia.org/wiki/ASCII">ASCII</a> text file.</p>
-
-<pre><code class="language-bash">$ perl challenge-024/andrezgz/perl5/ch-1.pl
-This script is the smallest in terms of size that on execution doesn't throw
-any error, doesn't do anything special and explains what it does
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ perl challenge-024/andrezgz/perl5/ch-1.pl
+This script is the smallest in terms of size that on execution doesn<span style="color:#e6db74">&#39;t throw
+</span><span style="color:#e6db74">any error, doesn&#39;</span>t <span style="color:#66d9ef">do</span> anything special and explains what it does
 
 $ file challenge-024/andrezgz/perl5/ch-1.pl
 challenge-024/andrezgz/perl5/ch-1.pl: ASCII text
-</code></pre>
-
-<p>For those who use code linter in their development environment, <a href="https://metacpan.org/pod/Perl::Critic"><code>perlcritic</code></a>, even at the most gentle setting will raise some concerns. Well, this is not part of the requirement of the task, it&rsquo;s good to know how <code>perlcritic</code> evaluates a basic <strong>Perl</strong> script.</p>
-
+</code></pre></div><p>For those who use code linter in their development environment, <a href="https://metacpan.org/pod/Perl::Critic"><code>perlcritic</code></a>, even at the most gentle setting will raise some concerns. Well, this is not part of the requirement of the task, it&rsquo;s good to know how <code>perlcritic</code> evaluates a basic <strong>Perl</strong> script.</p>
 <pre><code>$ perlcritic --gentle challenge-024/lubos-kolouch/perl5/ch-1.pl
 challenge-024/lubos-kolouch/perl5/ch-1.pl: [TestingAndDebugging::RequireUseStrict]
 Code before strictures are enabled at line 1, column 1 (Severity 5).
@@ -217,71 +193,42 @@ Code before strictures are enabled at line 1, column 1 (Severity 5).
     `'use Moose'' is treated as equivalent to `'use strict''.  The maximum
     number of violations per document for this policy defaults
     to 1.
-</code></pre>
-
-<p>In short, an empty file is probably the shortest and closest answer to this task that fulfil most of the requirements.</p>
-
-<hr />
-
+</code></pre><p>In short, an empty file is probably the shortest and closest answer to this task that fulfil most of the requirements.</p>
+<hr>
 <h3 id="task-2">Task #2</h3>
-
-<hr />
-
+<hr>
 <p><strong>CPAN</strong> modules used: <a href="https://metacpan.org/pod/Carp"><code>Carp</code></a>, <a href="https://metacpan.org/pod/DBI"><code>DBI</code></a>, <a href="https://metacpan.org/pod/Data::Dumper"><code>Data::Dumper</code></a>, <a href="https://metacpan.org/pod/English"><code>English</code></a>, <a href="https://metacpan.org/pod/File::ByLine"><code>File::ByLine</code></a>, <a href="https://metacpan.org/pod/File::Find::Rule"><code>File::Find::Rule</code></a>, <a href="https://metacpan.org/pod/Lingua::Stem"><code>Lingua::Stem</code></a>, <a href="https://metacpan.org/pod/List::MoreUtils"><code>List::MoreUtils</code></a>, <a href="https://metacpan.org/pod/List::Util"><code>List::Util</code></a>, <a href="https://metacpan.org/pod/Storable"><code>Storable</code></a>, <a href="https://metacpan.org/pod/Syntax::Construct"><code>Syntax::Construct</code></a>, <a href="https://metacpan.org/pod/Test::More"><code>Test::More</code></a>, <a href="https://metacpan.org/pod/Text::Table::Tiny"><code>Text::Table::Tiny</code></a>, <a href="https://metacpan.org/pod/autodie"><code>autodie</code></a>, <a href="https://metacpan.org/pod/boolean"><code>boolean</code></a>, <a href="https://metacpan.org/pod/constant"><code>constant</code></a>, <a href="https://metacpan.org/pod/feature"><code>feature</code></a>, <a href="https://metacpan.org/pod/strict"><code>strict</code></a>, <a href="https://metacpan.org/pod/warnings"><code>warnings</code></a></p>
-
 <p>If you haven&rsquo;t done this task and want to learn more about implementing full text search using <a href="https://en.wikipedia.org/wiki/Inverted_index">Inverted Index</a>, start with submission by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-024/laurent-rosenfeld/perl5/ch-2.pl">Laurent Rosenfeld</a>. The solution was concise but comprehensive enough to demonstrate a working implementation of Inverted Index. Next, move to something similar with test case by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-024/lubos-kolouch/perl5/ch-2.pl">Lubos Kolouch</a>. If the regex on extracting words to build the indexes confuse you, you can read the submission by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-024/andrezgz/perl5/ch-2.pl">Andrezgz</a>, which have good written comments on the regex. Now if you still cannot grok how Inverted Index works, then look at output of the solution by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-024/yet-ebreo/perl5/ch-2.pl">Yet Ebreo</a> where you can visualize the how the index works as shown below.</p>
-
-<pre><code class="language-bash">perl .\ch-2.pl &quot;i sing eat and love&quot; .\file1.txt .\file2.txt .\file3.txt .\file4.txt .\file5.txt
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">perl .<span style="color:#ae81ff">\c</span>h-2.pl <span style="color:#e6db74">&#34;i sing eat and love&#34;</span> .<span style="color:#ae81ff">\f</span>ile1.txt .<span style="color:#ae81ff">\f</span>ile2.txt .<span style="color:#ae81ff">\f</span>ile3.txt .<span style="color:#ae81ff">\f</span>ile4.txt .<span style="color:#ae81ff">\f</span>ile5.txt
 +-------+--------------------------------+
-| Words | File(s)                        |
+| Words | File<span style="color:#f92672">(</span>s<span style="color:#f92672">)</span>                        |
 +-------+--------------------------------+
 | and   | file1.txt file2.txt            |
 | eat   | file4.txt                      |
 | i     | file1.txt file2.txt file4.txt  |
 | love  | file2.txt file5.txt            |
-| sing  | (N/A)                          |
+| sing  | <span style="color:#f92672">(</span>N/A<span style="color:#f92672">)</span>                          |
 +-------+--------------------------------+
 
-</code></pre>
-
-<p>By going through all four submissions, you&rsquo;re now equipped with good fundamental overview of the implementation of <strong>Inverted Index</strong>.</p>
-
+</code></pre></div><p>By going through all four submissions, you&rsquo;re now equipped with good fundamental overview of the implementation of <strong>Inverted Index</strong>.</p>
 <p>The above mentioned four solutions served as a good working prototype to get things started. You must be wondering, can we improve or extend on these solutions?</p>
-
 <p>Yes, there were quite a few.</p>
-
 <p>Interestingly, two of the participants (<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-024/e-choroba/perl5/ch-2.pl">E. Choroba</a> and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-024/joelle-maslak/perl5/ch-2.pl">Joelle Maslak</a>) used their own <strong>CPAN</strong> module in their own solution. The first we&rsquo;ve seen so far and it caught us by surprise! First, the solution by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-024/e-choroba/perl5/ch-2.pl">E. Choroba</a> used <a href="https://metacpan.org/pod/Syntax::Construct"><code>Syntax::Construct</code></a> <strong>CPAN</strong> module as an alternative way to manage <code>feature</code> pragma. Second, the solution by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-024/joelle-maslak/perl5/ch-2.pl">Joelle Maslak</a> which used <a href="https://metacpan.org/pod/File::ByLine"><code>File::ByLine</code></a> <strong>CPAN</strong> module to process single a file in a parallel manner.</p>
-
 <p>How about storage? Both <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-024/duane-powell/perl5/ch-2.pl">Duane Powell</a> and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-024/e-choroba/perl5/ch-2.pl">E. Choroba</a> used <a href="https://metacpan.org/pod/Storable"><code>Storable</code></a> <strong>CPAN</strong> module to capture the index in a persistent manner. While <strong>Guillermo Ramos</strong> was the only participant who used <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-024/guillermo-ramos/perl5/ch-2.pl">DB</a> to store the index.</p>
-
 <p>What if we want to refine the word we&rsquo;ve extracted to build the index? <strong>Roger Bell West</strong> <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-024/roger-bell-west/perl5/ch-2.pl">solved this</a> by <a href="https://en.wikipedia.org/wiki/Stemming">stemming</a> through the <a href="https://metacpan.org/pod/Lingua::Stem"><code>Lingua::Stem</code></a> <strong>CPAN</strong> module.</p>
-
 <p>How about counting the word frequency for each document? <strong>Randy Lauen</strong> was the only participant which <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-024/randy-lauen/perl5/ch-2.pl">implemented this approach</a>.</p>
-
 <p>Now, for some other miscellaneous we&rsquo;ve noticed from reviewing these solutions.</p>
-
 <p>If you don&rsquo;t like to use <a href="https://perldoc.perl.org/functions/glob.html"><code>glob</code></a> to filter and get the list of files, you can look into <a href="https://metacpan.org/pod/File::Find::Rule"><code>File::Find::Rule</code></a> as seen in <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-024/duane-powell/perl5/ch-2.pl">submission</a> by <strong>Duane Powell</strong>. In formatting the output of the result, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-024/adam-russell/perl5/ch-2.pl">Adam Russell</a> demonstrated that you can use the <a href="https://perldoc.perl.org/perlform.html">Perl formats</a> (quite old school way) to achieve that.</p>
-
-<hr />
-
+<hr>
 <h3 id="see-also">See Also</h3>
-
-<hr />
-
+<hr>
 <p>(1) <a href="https://perl6.eu/small-inversions.html">Small Inversions with Perl 6</a> by <strong>Arne Sommer</strong>. Recommended read of the week.</p>
-
 <p>(2) <a href="https://adamcrussell.livejournal.com/8285.html">Inverted Index Formatting</a> by <strong>Adam Russell</strong></p>
-
 <p>(3) <a href="http://blogs.perl.org/users/laurent_r/2019/09/perl-weekly-challenge-24-smallest-script-and-inverted-index.html">Perl Weekly Challenge # 24: Smallest Script and Inverted Index</a> by <strong>Laurent Rosenfeld</strong></p>
-
 <p>(4) <a href="https://www.braincells.com/perl/2019/09/perl_weekly_challenge_week_24.html">Perl Weekly Challenge 24</a> by <strong>Jaldhar H. Vyas</strong></p>
-
 <p>(5) <a href="https://blog.firedrake.org/archive/2019/09/Perl_Weekly_Challenge_24.html">RogerBW&rsquo;s Blog: Perl Weekly Challenge 24</a> by <strong>Roger Bell West</strong></p>
-
 <p>(6) <a href="http://blogs.perl.org/users/yet_ebreo/2019/09/perl-weekly-challenge-w024---smallest-script-inverted-index.html">Perl Weekly Challenge W024 - Smallest Script, Inverted Index</a> by <strong>Yet Ebreo</strong></p>
-
 <p>(7) <a href="http://blogs.perl.org/users/e_choroba/2019/09/perl-weekly-challenge-024-inverted-index-and-shortest-oneliner.html">Perl Weekly Challenge 024: Inverted Index and Shortest Oneliner</a> by <strong>E. Choroba</strong></p>
-
 <p>(8) <a href="https://digitalbarbedwire.com/2016/03/27/perl-is-good-for-nothing/">Perl is Good for Nothing</a> by <strong>Joelle Maslak</strong></p>
 
                 </div>

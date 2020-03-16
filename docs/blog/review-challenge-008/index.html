@@ -16,7 +16,7 @@
 
     <meta name="description" content="Kian-Meng Ang Review Challenge #008.">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.55.0-DEV" />
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -41,6 +41,8 @@
     <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
     <!-- hover -->
     <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
     <!-- template main css file -->
     
     <link rel="stylesheet" href="https://perlweeklychallenge.org/css/style.min.css" integrity="" media="screen">
@@ -149,18 +151,11 @@
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
-                    
-
-<p>Follow up on this week review of the Perl Weekly Challenge #008 of answers submitted by all the participants. Read the <a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-008/">full question list</a> and the <a href="https://perlweeklychallenge.org/blog/recap-challenge-008/">recap of the challenge</a> to have an overview before we proceed with our review.</p>
-
-<hr />
-
+                    <p>Follow up on this week review of the Perl Weekly Challenge #008 of answers submitted by all the participants. Read the <a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-008/">full question list</a> and the <a href="https://perlweeklychallenge.org/blog/recap-challenge-008/">recap of the challenge</a> to have an overview before we proceed with our review.</p>
+<hr>
 <h2 id="challenge-1">Challenge #1</h2>
-
-<hr />
-
+<hr>
 <p>Looking through all the submissions, there are several approaches used by these participants to calculate the first five <a href="https://en.wikipedia.org/wiki/Perfect_number">perfect numbers</a> which are <a href="https://en.wikipedia.org/wiki/List_of_perfect_numbers">6, 28, 496, 8128, and 33550336</a>. The first approach is to calculate by brute force (<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-008/adam-russell/perl5/ch-1.pl">Adam Russell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-008/dave-jacoby/perl5/ch-1.pl">Dave Jacoby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-008/gustavo-chaves/perl5/ch-1.pl">Gustavo Chaves</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-008/ruben-westerberg/perl5/ch-1.pl">Ruben Westerberg</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-008/laurent-rosenfeld/perl5/ch-1a.pl">Laurent Rosenfeld</a>, and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-008/guillermo-ramos/perl5/ch-1.pl">Guillermo Ramos</a>). Result was slow (<a href="https://adamcrussell.livejournal.com/2607.html">took a few hours</a>) as the bottleneck is on the calculation of fifth perfect number, a very large number, as in around 33 millions. This is a time complexity or <a href="https://en.wikipedia.org/wiki/Big_O_notation">O(n)</a> problem where we have to iterate through all the numbers lesser than n. A better or optimized approach was to generate the series using algorithm through <a href="https://en.wikipedia.org/wiki/Euclid%E2%80%93Euler_theorem">Euclid–Euler theorem</a> (<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-008/alicia-bielsa/perl5/ch-1.pl">Alicia Bielsa</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-008/maxim-nechaev/perl5/ch-1.pl">Maxim Nechaev</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-008/athanasius/perl5/ch-1.pl">Athanasius</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-008/daniel-mantovani/perl5/ch-1.pl">Daniel Mantovani</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-008/laurent-rosenfeld/perl5/ch-1b.pl">Laurent Rosenfeld</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-008/jaldhar-h-vyas/perl5/ch-1.pl">Jaldhar H. Vyas</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-008/guillermo-ramos/perl5/ch-1a.pl">Guillermo Ramos</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-008/james-smith/perl5/ch-1.pl">James Smith</a>, and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-008/yozen-hernandez/perl5/ch-1.pl">Yozen Hernandez</a>). The shortest and Perl way answer using the Euclid-Euler theorem belongs to <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-008/james-smith/perl5/ch-1.pl">James Smith</a>. Read his <a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-008/james-smith">write-up</a> on his approach to tackle this problem.</p>
-
 <pre><code>use feature qw(say);
 use List::Util qw(notall);
 my $q = 1;
@@ -170,39 +165,27 @@ foreach(1..7) {
   say $q*($q+1)/2;
 }
 </code></pre>
-
 <p>One interesting observation while went through all these answers was how common the <a href="https://perldoc.perl.org/List/Util.html"><code>List::Util</code></a> module being used and yet, in totally different manners. Even though the approach to solve the question was similar, different participants have different coding styles. Hence, we have seen <a href="https://perldoc.perl.org/List/Util.html#sum"><code>sum</code></a>, <a href="https://perldoc.perl.org/List/Util.html#uniqnum"><code>uniqnum</code></a>, <a href="https://perldoc.perl.org/List/Util.html#sum0"><code>sum0</code></a>, and <a href="https://perldoc.perl.org/List/Util.html#notall"><code>notall</code></a> functions being applied differently.</p>
-
-<hr />
-
+<hr>
 <h2 id="challenge-2">Challenge #2</h2>
-
-<hr />
-
+<hr>
 <p>This is a straightforward question and some participant should have already solved it in challenge #2 in <a href="https://www.kianmeng.org/2019/04/perl-weekly-challenge-003-2019-week-15.html">Perl Weekly Challenge #003</a> to display <a href="https://en.wikipedia.org/wiki/Pascal%27s_triangle">Pascal&rsquo;s triangle</a> in tree or triangle form. To center a list of string, we need three steps. First, we need to find the longest length of the string from the list. If we don&rsquo;t want to use external module, we can do it using the default language constructs. For example, Laurent Rosenfeld <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-008/laurent-rosenfeld/perl5/ch-2.pl">calculated the maximum length</a> by simply looping through all the lines&rsquo; length.</p>
-
 <pre><code>my $max_size = 0;
 for my $str (@_) {
     my $length = length $str;
     $max_size = $length if $length &gt; $max_size;
 }
 </code></pre>
-
 <p>While Ruben Westerberg used an <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-008/ruben-westerberg/perl5/ch-2.pl">one-liner approach</a>.</p>
-
 <pre><code>my $max=0;
 map { chomp; ($max &lt; length($_ )) ? $max=length($_):();} @_;
 </code></pre>
-
 <p>And Guillermo Ramos used a more explicit <a href="https://en.wikipedia.org/wiki/MapReduce">map-reduce approach</a>.</p>
-
 <pre><code>use List::Util qw(max reduce);
 ......
 my $maxlen = reduce { max($a, length $b) } 0, @_;
 </code></pre>
-
 <p>Meanwhile, Adam Russell used an unorthodox approach by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-008/adam-russell/perl5/ch-2.pl">using <code>eval</code> and <code>tr</code></a> to calculate each line length.</p>
-
 <pre><code>foreach my $line (@words){
     $line_length{$i} = do{
         $line =~ tr/ [a-z][A-Z]//;
@@ -211,46 +194,44 @@ my $maxlen = reduce { max($a, length $b) } 0, @_;
     $i++;
 }
 </code></pre>
-
 <p>Next, we find the number of space to prepend to the current line of string by
 calculating the difference of the longest string length and current line and
 divided it by 2. Almost all participants was using this formulae. The
 solution by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-008/gustavo-chaves/perl5/ch-2.pl">Gustavo
 Chaves</a>
 illustrates this succinctly.</p>
-
 <pre><code>sub center {
     my @lines = @_;
     my $max = max map {length} @lines;
     return map {' ' x (($max - length) / 2) . $_} @lines;
 }
 </code></pre>
-
 <p>And off course, there will a relevant CPAN module, <a href="https://metacpan.org/pod/String::Pad"><code>String::Pad</code></a>, in this case, that have such functionality.</p>
-
-<hr />
-
+<hr>
 <h2 id="challenge-3">Challenge #3</h2>
-
-<hr />
-
+<hr>
 <p>Joelle Maslak is the only participant who took up this last and optional challenge. Nevertheless, the solution was <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-008/joelle-maslak/perl5/ch-3.readme">featureful</a>, comprehensive, and very well coded. Furthermore, it was also one of the earliest submissions and there were even two versions existed for <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-008/joelle-maslak/perl5/ch-3.pl">Perl 5</a> and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-008/joelle-maslak/perl6/ch-3.p6">Perl 6</a>. Hopefully, this solution can turned into a full featured Perl module or console app. There are a few things to take note from the reading the code of this script. It&rsquo;s okay to use <a href="https://perldoc.perl.org/feature.html#The-'signatures'-feature"><code>signatures</code> feature</a> or subroutine signature even though it&rsquo;s still under experimental since it was <a href="https://www.effectiveperlprogramming.com/2015/04/use-v5-20-subroutine-signatures/">first released in v5.20</a>. If you&rsquo;re developing for internal system and don&rsquo;t release your code for external consumption, then it&rsquo;s a good choice to use this. Subroutine signature did reduce the need for <a href="https://www.perl.com/article/72/2014/2/24/Perl-levels-up-with-native-subroutine-signatures/">parameter assignment</a>. The use of <a href="https://metacpan.org/pod/Perl6::Slurp"><code>Perl6::Slurp</code></a> module was a deliberated choice since the author have submitted solutions for both Perl 5 and 6 and want to maintain compability and minimize changes.</p>
-
 <p>Related blog posts related to this week challenge.</p>
-
-<p>1) Arne Sommer gave us a walk through on solving both problem in Perl 6 especially how long it took to calculate the fifth perfect numbers.</p>
-
-<p>2) Adam Russel wrote about <a href="https://adamcrussell.livejournal.com/2607.html">different approaches</a> on optimizing the
+<ol>
+<li>
+<p>Arne Sommer gave us a walk through on solving both problem in Perl 6 especially how long it took to calculate the fifth perfect numbers.</p>
+</li>
+<li>
+<p>Adam Russel wrote about <a href="https://adamcrussell.livejournal.com/2607.html">different approaches</a> on optimizing the
 perfect numbers calculation from brute force, algorithmic, parallelization by <a href="https://adamcrussell.livejournal.com/3146.html">threading</a>, and delegation by <a href="https://adamcrussell.livejournal.com/2850.html">integrating C++ and Perl with SWIG</a>.</p>
-
-<p>3) Dave Jacoby <a href="https://jacoby.github.io//2019/05/15/finding-perfect-numbers-in-perl.html">blogged</a>
+</li>
+<li>
+<p>Dave Jacoby <a href="https://jacoby.github.io//2019/05/15/finding-perfect-numbers-in-perl.html">blogged</a>
 about the difference about brute force and algorithmic approach.</p>
-
-<p>4) Laurent Rosenfeld <a href="http://blogs.perl.org/users/laurent_r/2019/05/perl-weekly-challenge-8-perfect-numbers-and-centered-output.html">provided us</a> with mathematical background on different algorithmic approaches in calculating Perfect numbers.</p>
-
+</li>
+<li>
+<p>Laurent Rosenfeld <a href="http://blogs.perl.org/users/laurent_r/2019/05/perl-weekly-challenge-8-perfect-numbers-and-centered-output.html">provided us</a> with mathematical background on different algorithmic approaches in calculating Perfect numbers.</p>
+</li>
+</ol>
 <p>5) Francis Whittle wrote about Perl 6 solutions <a href="https://rage.powered.ninja/2019/05/15/squaring-perfect-centre.html">post</a> on both challenges.</p>
-
-<p>6) Simon Proctor also wrote another Perl 6 solution <a href="http://www.khanate.co.uk/blog/2019/05/14/perl-weekly-challenge-part-8/">post</a>.</p>
+<ol start="6">
+<li>Simon Proctor also wrote another Perl 6 solution <a href="http://www.khanate.co.uk/blog/2019/05/14/perl-weekly-challenge-part-8/">post</a>.</li>
+</ol>
 
                 </div>
             </div>

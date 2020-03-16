@@ -16,7 +16,7 @@
 
     <meta name="description" content="Advent Calendar - December 9, 2019">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.55.0-DEV" />
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -41,6 +41,8 @@
     <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
     <!-- hover -->
     <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
     <!-- template main css file -->
     
     <link rel="stylesheet" href="https://perlweeklychallenge.org/css/style.min.css" integrity="" media="screen">
@@ -149,51 +151,37 @@
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
-                    
-
-<p><a href="/blog/advent-calendar-2019"><strong>Advent Calendar 2019</strong></a></p>
-
-<hr />
-
-<p>The gift is presented by <strong>Dave Cross</strong>. Today he is talking about his solutions to <strong>Task #1: Find 5 Weekends</strong> of <a href="/blog/perl-weekly-challenge-019"><strong>&ldquo;The Weekly Challenge - 019&rdquo;</strong></a>.</p>
-
-<h4 id="write-a-script-to-display-months-from-the-year-1900-to-2019-where-you-find-5-weekends-i-e-5-friday-5-saturday-and-5-sunday">Write a script to display months from the year 1900 to 2019 where you find 5 weekends i.e. 5 Friday, 5 Saturday and 5 Sunday.</h4>
-
-<hr />
-
+                    <p><a href="/blog/advent-calendar-2019"><strong>Advent Calendar 2019</strong></a></p>
+<hr>
+<p>The gift is presented by <strong>Dave Cross**. Today he is talking about his solutions to <strong>Task #1: Find 5 Weekends** of </strong>&ldquo;The Weekly Challenge - 019&rdquo;</strong><a href="/blog/perl-weekly-challenge-019"></a>.</p>
+<h4 id="write-a-script-to-display-months-from-the-year-1900-to-2019-where-you-find-5-weekends-ie-5-friday-5-saturday-and-5-sunday">Write a script to display months from the year 1900 to 2019 where you find 5 weekends i.e. 5 Friday, 5 Saturday and 5 Sunday.</h4>
+<hr>
 <p>This would be simple enough to just brute-force. But when I started to think about it, I realised there’s a bit of a trick we can use which can cut down our search space quite significantly.</p>
-
 <p>If we’re looking for a month with five <strong>Fridays</strong>, <strong>Saturdays</strong> and <strong>Sundays</strong> then we need a month with <strong>31</strong> days (as <strong>four weeks</strong> is <strong>twenty-eight days</strong> and we need <strong>three extra days</strong>). Only <strong>seven months</strong> ever have <strong>31 days</strong> – <strong>January</strong>, <strong>March</strong>, <strong>May</strong>, <strong>July</strong>, <strong>August</strong>, <strong>October</strong> and <strong>December</strong>. There is no point at all in ever looking in any other month. You might also realise that those <strong>three extra days</strong> need to be <strong>Friday 29th</strong>, <strong>Saturday 30th</strong> and <strong>Sunday 31st</strong>. And that means that the first day of the month also needs to be a <strong>Friday</strong>.</p>
-
 <p>So, the problem simplifies to “Find months with <strong>31 days</strong> where the <strong>1st</strong> is a <strong>Friday</strong>”. And here’s the code I wrote to do that:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/perl</span>
 
-<pre><code class="language-perl">#!/usr/bin/perl
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">&#39;say&#39;</span>;
 
-use strict;
-use warnings;
-use feature 'say';
+<span style="color:#66d9ef">use</span> Time::Piece;
 
-use Time::Piece;
+<span style="color:#75715e"># Array of months with 31 days</span>
+<span style="color:#66d9ef">my</span> @months <span style="color:#f92672">=</span> (<span style="color:#e6db74">qw[Jan Mar May Jul Aug Oct Dec]</span>);
+<span style="color:#66d9ef">my</span> $format <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;%Y-%b&#39;</span>;
 
-# Array of months with 31 days
-my @months = (qw[Jan Mar May Jul Aug Oct Dec]);
-my $format = '%Y-%b';
+<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $y (<span style="color:#ae81ff">1900</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">2019</span>) {
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $m (@months) {
+        <span style="color:#75715e"># Get the first day of the month as a Time::Piece object</span>
+        <span style="color:#66d9ef">my</span> $first <span style="color:#f92672">=</span> Time::Piece<span style="color:#f92672">-&gt;</span>strptime(<span style="color:#e6db74">&#34;$y-$m&#34;</span>, $format);
 
-for my $y (1900 .. 2019) {
-    for my $m (@months) {
-        # Get the first day of the month as a Time::Piece object
-        my $first = Time::Piece-&gt;strptime(&quot;$y-$m&quot;, $format);
-
-        # Print the date if the 1st is a Friday
-        say $first-&gt;strftime('%b %Y') if $first-&gt;day eq 'Fri';
+        <span style="color:#75715e"># Print the date if the 1st is a Friday</span>
+        say $first<span style="color:#f92672">-&gt;</span>strftime(<span style="color:#e6db74">&#39;%b %Y&#39;</span>) <span style="color:#66d9ef">if</span> $first<span style="color:#f92672">-&gt;</span>day <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;Fri&#39;</span>;
     }
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <p>If you have any suggestion then please do share with us <a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a>.</p>
-
 <p><a href="/blog/advent-calendar-2019"><strong>Advent Calendar 2019</strong></a></p>
 
                 </div>

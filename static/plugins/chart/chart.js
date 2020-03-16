@@ -158,6 +158,57 @@ $("#pwc_current").click(function() {
     $('#pwc-challenges-spinner').hide();
 });
 
+$("#pwc_challenge_051").click(function() {
+    $('#pwc-challenges-spinner').show();
+
+    var xobj = new XMLHttpRequest();
+    xobj.overrideMimeType("application/json");
+    xobj.open('GET', 'pwc-challenge-051.json', true);
+    xobj.onreadystatechange = function () {
+        if (xobj.readyState == 4 && xobj.status == "200") {
+            var response = JSON.parse(xobj.responseText);
+            $('#pwc_challenge_051_stats').highcharts(response);
+        }
+    };
+    xobj.send(null);
+
+    $('#pwc-challenges-spinner').hide();
+});
+
+$("#pwc_challenge_050").click(function() {
+    $('#pwc-challenges-spinner').show();
+
+    var xobj = new XMLHttpRequest();
+    xobj.overrideMimeType("application/json");
+    xobj.open('GET', 'pwc-challenge-050.json', true);
+    xobj.onreadystatechange = function () {
+        if (xobj.readyState == 4 && xobj.status == "200") {
+            var response = JSON.parse(xobj.responseText);
+            $('#pwc_challenge_050_stats').highcharts(response);
+        }
+    };
+    xobj.send(null);
+
+    $('#pwc-challenges-spinner').hide();
+});
+
+$("#pwc_challenge_049").click(function() {
+    $('#pwc-challenges-spinner').show();
+
+    var xobj = new XMLHttpRequest();
+    xobj.overrideMimeType("application/json");
+    xobj.open('GET', 'pwc-challenge-049.json', true);
+    xobj.onreadystatechange = function () {
+        if (xobj.readyState == 4 && xobj.status == "200") {
+            var response = JSON.parse(xobj.responseText);
+            $('#pwc_challenge_049_stats').highcharts(response);
+        }
+    };
+    xobj.send(null);
+
+    $('#pwc-challenges-spinner').hide();
+});
+
 $("#pwc_challenge_048").click(function() {
     $('#pwc-challenges-spinner').show();
 

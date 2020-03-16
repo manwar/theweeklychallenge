@@ -16,7 +16,7 @@
 
     <meta name="description" content="Laurent Rosenfeld Weekly Review: Challenge - #014.">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.55.0-DEV" />
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -41,6 +41,8 @@
     <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
     <!-- hover -->
     <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
     <!-- template main css file -->
     
     <link rel="stylesheet" href="https://perlweeklychallenge.org/css/style.min.css" integrity="" media="screen">
@@ -149,165 +151,126 @@
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
-                    
-
-<hr />
-
+                    <hr>
 <h1 id="raku-solutions-weekly-review">Raku Solutions Weekly Review</h1>
-
-<hr />
-
-<h2 id="task-1-van-eck-s-sequence">Task #1: Van Eck&rsquo;s Sequence</h2>
-
+<hr>
+<h2 id="task-1-van-ecks-sequence">Task #1: Van Eck&rsquo;s Sequence</h2>
 <p>This is derived in part from my <a href="http://blogs.perl.org/users/laurent_r/2019/06/perl-weekly-challenge-14-van-ecks-sequence-and-us-states.html">blog post</a> made in answer to the <a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-014/">Week 14 of the Perl Weekly Challenge</a> organized by  <a href="http://blogs.perl.org/users/mohammad_s_anwar/">Mohammad S. Anwar</a> as well as answers made by others to the same challenge.</p>
-
 <p>The challenge reads as follows:</p>
-
 <p><em>Write a script to generate Van Eck’s sequence starts with 0. For more information, please check out <a href="https://en.wikipedia.org/wiki/Van_Eck%27s_sequence">wikipedia page</a>. This challenge was proposed by team member Andrezgz.</em></p>
-
 <p>Jan Ritsema van Eck&rsquo;s sequence is an integer sequence defined recursively as follows. Let a(0) = 0. Then, for n ≥ 0, if there exists an m &lt; n such that a(m) = a(n), take the largest such m and set a(n+1) = n − m; otherwise a(n+1) = 0. Thus, the first occurrence of an integer in the sequence is followed by a 0, and the second and subsequent occurrences are followed by the size of the gap between the two most recent occurrences.</p>
-
 <h2 id="my-solutions">My Solutions</h2>
-
 <p>The definition is quite simple, but, for some reason (maybe the heatwave striking a good part of Western Europe at the time), it took me more time (about 30 minutes) than I expected to get it right. Anyway, here we go:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> v6;
 
-<pre><code class="language-Perl6">use v6;
-
-my @a = 0,;
-for ^20 -&gt; $n {
-    my $result = 0;
-    for reverse ^$n -&gt; $m {
-        $result = $n - $m and last if @a[$m] == @a[$n];
-            # Note: $m is always smaller than $n, so $n - $m &gt; 0
+<span style="color:#66d9ef">my</span> @a <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>,;
+<span style="color:#66d9ef">for</span> <span style="color:#f92672">^</span><span style="color:#ae81ff">20</span> <span style="color:#f92672">-&gt;</span> $n {
+    <span style="color:#66d9ef">my</span> $result <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">for</span> reverse <span style="color:#f92672">^</span>$n <span style="color:#f92672">-&gt;</span> $m {
+        $result <span style="color:#f92672">=</span> $n <span style="color:#f92672">-</span> $m <span style="color:#f92672">and</span> <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> @a[$m] <span style="color:#f92672">==</span> @a[$n];
+            <span style="color:#75715e"># Note: $m is always smaller than $n, so $n - $m &gt; 0</span>
     }
     push @a, $result;
 }
 say @a;
-</code></pre>
-
-<p>Not much to say about it: we just apply the definition, and the code is pretty small. This outputs the following sequence:</p>
-
+</code></pre></div><p>Not much to say about it: we just apply the definition, and the code is pretty small. This outputs the following sequence:</p>
 <pre><code>$ perl6 vaneck.p6
 [0 0 1 0 2 0 2 2 1 6 0 5 0 2 6 5 4 0 5 3 0]
 </code></pre>
-
 <p>Since we have nested loops, I have been thinking whether it might be possible to store the values in a hash or a set, or use a junction, to avoid performing the inner loop when possible.</p>
-
 <p>But looking at a longer version of the sequence, for example:</p>
-
 <pre><code>[0 0 1 0 2 0 2 2 1 6 0 5 0 2 6 5 4 0 5 3 0 3 2 9 0 4 9 3 6 14 0 6 3 5 15 0 5 3 5 2 17 0 6 11 0 3 8 0 3 3 1 42 0 5 15 20 0 4 32 0 3 11 18 0 4 7 0 3 7 3 2 31 0 6 31 3 6 3 2 8 33]
 </code></pre>
-
 <p>it appears that, except at the very beginning of the sequence, zeros are relatively rare, meaning that there are only few cases where we will go through the whole list and not find an <code>$m</code> within the inner loop. Therefore, there is probably no or little point trying to optimize away the inner loop by a lookup mechanism: we will not get a very significant performance improvement. (That&rsquo;s what I was thinking at the time I wrote the original blog post; thinking again about it several months later,  I think a hash lookup would probably be better, especially if you want to generate a long sequence;  several of the alternate solutions below implement this.)</p>
-
 <p>Maybe a solution using the <code>gather/take</code> construct to produce lazy lists would be more idiomatic Perl 6 code. Let&rsquo;s see what we can do.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> v6;
 
-<pre><code class="language-Perl6">use v6;
-
-sub MAIN ( UInt $max ) {
-    my @a = lazy gather {
-        take 0;
-        for 0..* -&gt; $n {
-            my $result = 0;
-            for reverse ^$n -&gt; $m {
-                $result = $n - $m and last if @a[$m] == @a[$n];
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> ( UInt $max ) {
+    <span style="color:#66d9ef">my</span> @a <span style="color:#f92672">=</span> lazy gather {
+        take <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">..*</span> <span style="color:#f92672">-&gt;</span> $n {
+            <span style="color:#66d9ef">my</span> $result <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+            <span style="color:#66d9ef">for</span> reverse <span style="color:#f92672">^</span>$n <span style="color:#f92672">-&gt;</span> $m {
+                $result <span style="color:#f92672">=</span> $n <span style="color:#f92672">-</span> $m <span style="color:#f92672">and</span> <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> @a[$m] <span style="color:#f92672">==</span> @a[$n];
             }
             take $result;
         }
     }
-    say join &quot; &quot;, @a[0..$max];
+    say join <span style="color:#e6db74">&#34; &#34;</span>, @a[<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$max];
 }
-</code></pre>
-
-<p>It works and produces the same output as before, and using a lazy infinite list may look slightly more Perl-6-ish, but it does not make the code simpler, quite to the contrary. So, ultimately, I tend to prefer my first solution.</p>
-
+</code></pre></div><p>It works and produces the same output as before, and using a lazy infinite list may look slightly more Perl-6-ish, but it does not make the code simpler, quite to the contrary. So, ultimately, I tend to prefer my first solution.</p>
 <h2 id="alternative-solutions">Alternative Solutions</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-014/arne-sommer/perl6/ch-1.p6">Arne Sommer</a> decided, contrary to me, to use a look-up hash. As already mentioned, it may be a better solution, after all.</p>
-
-<pre><code class="language-Perl6">my @van-eck = (0);
-my %seen;
-for ^($limit -1) -&gt; $pos
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> @van<span style="color:#f92672">-</span>eck <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>);
+<span style="color:#66d9ef">my</span> %seen;
+<span style="color:#66d9ef">for</span> <span style="color:#f92672">^</span>($limit <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">-&gt;</span> $pos
 {
-  %seen{@van-eck[*-1]}.defined
-   ?? @van-eck.push: $pos - %seen{@van-eck[*-1]}
-   !! @van-eck.push: 0;
+  %seen{@van<span style="color:#f92672">-</span>eck[<span style="color:#f92672">*-</span><span style="color:#ae81ff">1</span>]}<span style="color:#f92672">.</span>defined
+   ?? @van<span style="color:#f92672">-</span>eck<span style="color:#f92672">.</span>push: $pos <span style="color:#f92672">-</span> %seen{@van<span style="color:#f92672">-</span>eck[<span style="color:#f92672">*-</span><span style="color:#ae81ff">1</span>]}
+   <span style="color:#f92672">!!</span> @van<span style="color:#f92672">-</span>eck<span style="color:#f92672">.</span>push: <span style="color:#ae81ff">0</span>;
 
-  %seen{@van-eck[*-2]} = $pos;
+  %seen{@van<span style="color:#f92672">-</span>eck[<span style="color:#f92672">*-</span><span style="color:#ae81ff">2</span>]} <span style="color:#f92672">=</span> $pos;
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-014/athanasius/perl6/ch-1.p6">Athanasius</a> also went for a hash look-up:</p>
-
-<pre><code class="language-Perl6">sub van-eck(Int:D $length --&gt; Array)
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-014/athanasius/perl6/ch-1.p6">Athanasius</a> also went for a hash look-up:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">van</span>-eck(Int:D $length --&gt; Array)
 {
-    my @seq = (Nil, 0);
-    my %indices;
+    <span style="color:#66d9ef">my</span> @seq <span style="color:#f92672">=</span> (Nil, <span style="color:#ae81ff">0</span>);
+    <span style="color:#66d9ef">my</span> %indices;
 
-    for 1 .. $length - 1 -&gt; Int $n
+    <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $length <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">-&gt;</span> Int $n
     {
-        my $old_term = @seq[$n];
-        push @seq, %indices{$old_term}:exists ?? $n - %indices{$old_term} !! 0;
-        %indices{$old_term} = $n;
+        <span style="color:#66d9ef">my</span> $old_term <span style="color:#f92672">=</span> @seq[$n];
+        push @seq, %indices{$old_term}:exists ?? $n <span style="color:#f92672">-</span> %indices{$old_term} <span style="color:#f92672">!!</span> <span style="color:#ae81ff">0</span>;
+        %indices{$old_term} <span style="color:#f92672">=</span> $n;
     }
 
     shift  @seq;
-    return @seq;
+    <span style="color:#66d9ef">return</span> @seq;
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-014/fjwhittle/perl6/ch-1.p6">Francis J. Whittle</a> also used a hash look-up, but created an infinite sequence of Van Eck numbers:</p>
-
-<pre><code class="language-Perl6">my \Van_Eck := gather {
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-014/fjwhittle/perl6/ch-1.p6">Francis J. Whittle</a> also used a hash look-up, but created an infinite sequence of Van Eck numbers:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> <span style="color:#f92672">\</span>Van_Eck :<span style="color:#f92672">=</span> gather {
   take $start;
-  my %m = $start =&gt; 0;
+  <span style="color:#66d9ef">my</span> %m <span style="color:#f92672">=</span> $start <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">0</span>;
 
-  for ^∞ -&gt; $n {
-    take %m{Van_Eck[$n]}:exists ?? $n - %m{Van_Eck[$n]} !! 0;
-    %m{Van_Eck[$n]} = $n;
+  <span style="color:#66d9ef">for</span> <span style="color:#f92672">^</span><span style="color:#960050;background-color:#1e0010">∞</span> <span style="color:#f92672">-&gt;</span> $n {
+    take %m{Van_Eck[$n]}:exists ?? $n <span style="color:#f92672">-</span> %m{Van_Eck[$n]} <span style="color:#f92672">!!</span> <span style="color:#ae81ff">0</span>;
+    %m{Van_Eck[$n]} <span style="color:#f92672">=</span> $n;
   }
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-014/joelle-maslak/perl6/ch-1.p6">Joelle Maslak</a> also used hash look-up:</p>
-
-<pre><code class="language-Perl6">sub MAIN(UInt:D $length = 19) {
-    my $seq = lazy gather { for 0..∞ -&gt; $n { take van-eck($n) } }
-    say $seq[^$length].join(&quot; &quot;);
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-014/joelle-maslak/perl6/ch-1.p6">Joelle Maslak</a> also used hash look-up:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(UInt:D $length = 19) {
+    <span style="color:#66d9ef">my</span> $seq <span style="color:#f92672">=</span> lazy gather { <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#960050;background-color:#1e0010">∞</span> <span style="color:#f92672">-&gt;</span> $n { take van<span style="color:#f92672">-</span>eck($n) } }
+    say $seq[<span style="color:#f92672">^</span>$length]<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34; &#34;</span>);
 }
-my %cache-by-val = 0 =&gt; [0, 1];
-my @cache-by-pos = 0, 0;
+<span style="color:#66d9ef">my</span> %cache<span style="color:#f92672">-</span>by<span style="color:#f92672">-</span>val <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">=&gt;</span> [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>];
+<span style="color:#66d9ef">my</span> @cache<span style="color:#f92672">-</span>by<span style="color:#f92672">-</span>pos <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>;
 
-multi sub van-eck(0 --&gt; UInt:D) { 0 }
-multi sub van-eck(1 --&gt; UInt:D) { 0 }
-multi sub van-eck(UInt:D $pos --&gt; UInt:D) {
-    return @cache-by-pos[$pos] if @cache-by-pos[$pos]:exists;
-    # Ensure cache is populated.
-    for ^$pos -&gt; $p { van-eck($p) }
-    my $n = $pos - 1;
-    # We know that we must have been called in order.
-    my $prev = van-eck($n);
-    my $current;
-    if %cache-by-val{$prev} and %cache-by-val{$prev}.elems ≥ 2 {
-        my $m = %cache-by-val{$prev}[*-2];
-        $current = $n - $m;
-    } else {
-        $current = 0;
+multi <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">van</span>-eck(0 --&gt; UInt:D) { <span style="color:#ae81ff">0</span> }
+multi <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">van</span>-eck(1 --&gt; UInt:D) { <span style="color:#ae81ff">0</span> }
+multi <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">van</span>-eck(UInt:D $pos --&gt; UInt:D) {
+    <span style="color:#66d9ef">return</span> @cache<span style="color:#f92672">-</span>by<span style="color:#f92672">-</span>pos[$pos] <span style="color:#66d9ef">if</span> @cache<span style="color:#f92672">-</span>by<span style="color:#f92672">-</span>pos[$pos]:exists;
+    <span style="color:#75715e"># Ensure cache is populated.</span>
+    <span style="color:#66d9ef">for</span> <span style="color:#f92672">^</span>$pos <span style="color:#f92672">-&gt;</span> $p { van<span style="color:#f92672">-</span>eck($p) }
+    <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> $pos <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#75715e"># We know that we must have been called in order.</span>
+    <span style="color:#66d9ef">my</span> $prev <span style="color:#f92672">=</span> van<span style="color:#f92672">-</span>eck($n);
+    <span style="color:#66d9ef">my</span> $current;
+    <span style="color:#66d9ef">if</span> %cache<span style="color:#f92672">-</span>by<span style="color:#f92672">-</span>val{$prev} <span style="color:#f92672">and</span> %cache<span style="color:#f92672">-</span>by<span style="color:#f92672">-</span>val{$prev}<span style="color:#f92672">.</span>elems <span style="color:#960050;background-color:#1e0010">≥</span> <span style="color:#ae81ff">2</span> {
+        <span style="color:#66d9ef">my</span> $m <span style="color:#f92672">=</span> %cache<span style="color:#f92672">-</span>by<span style="color:#f92672">-</span>val{$prev}[<span style="color:#f92672">*-</span><span style="color:#ae81ff">2</span>];
+        $current <span style="color:#f92672">=</span> $n <span style="color:#f92672">-</span> $m;
+    } <span style="color:#66d9ef">else</span> {
+        $current <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
     }
-    @cache-by-pos[$pos] = $current;
-    ( %cache-by-val{$current} //= Array.new ).push: $pos;
+    @cache<span style="color:#f92672">-</span>by<span style="color:#f92672">-</span>pos[$pos] <span style="color:#f92672">=</span> $current;
+    ( %cache<span style="color:#f92672">-</span>by<span style="color:#f92672">-</span>val{$current} <span style="color:#e6db74">//</span><span style="color:#f92672">=</span> Array<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span> )<span style="color:#f92672">.</span>push: $pos;
 
-    return $current;
+    <span style="color:#66d9ef">return</span> $current;
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-014/feng-chang/perl6/ch-1.p6">Fench Chang</a> chose, like me, to traverse the current <code>@eck</code> array backward to find the previous matching value;</p>
-
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-014/feng-chang/perl6/ch-1.p6">Fench Chang</a> chose, like me, to traverse the current <code>@eck</code> array backward to find the previous matching value;</p>
 <p>sub MAIN(UInt $n) {
-    my @eck = 0, 0;
-    for 2..$n -&gt; Int $i {
-        @eck[$i] = 0;</p>
-
+my @eck = 0, 0;
+for 2..$n -&gt; Int $i {
+@eck[$i] = 0;</p>
 <pre><code>    for $i - 2 ... 0 -&gt; Int $j {
         if @eck[$j] == @eck[$i - 1] {
             @eck[$i] = $i - $j - 1;
@@ -317,55 +280,48 @@ multi sub van-eck(UInt:D $pos --&gt; UInt:D) {
 }
 say @eck;
 </code></pre>
-
 <p>}</p>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-014/jaldhar-h-vyas/perl6/ch-1.p6">Jaldhar H. Vyas</a> wrote the <code>backtrack</code> subroutine to traverse the current  <code>@vanEcks</code> array backward:</p>
-
-<pre><code class="language-Perl6">sub backtrack($n, @vanEcks) {
-    loop (my $i = @vanEcks.elems - 1; $i &gt; 0; $i--) {
-        if @vanEcks[$i - 1] == $n {
-            return @vanEcks.elems - $i;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">backtrack</span>($n, @vanEcks) {
+    loop (<span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> @vanEcks<span style="color:#f92672">.</span>elems <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>; $i <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>; $i<span style="color:#f92672">--</span>) {
+        <span style="color:#66d9ef">if</span> @vanEcks[$i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">==</span> $n {
+            <span style="color:#66d9ef">return</span> @vanEcks<span style="color:#f92672">.</span>elems <span style="color:#f92672">-</span> $i;
         }
     }
-    return 0;
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
-multi sub MAIN() {
-    my @vanEcks = (0);
-    my $n = 0;
-    while @vanEcks.elems &lt;= 100 {
-        @vanEcks.push($n);
-        $n = backtrack($n, @vanEcks);
+multi <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>() {
+    <span style="color:#66d9ef">my</span> @vanEcks <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>);
+    <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">while</span> @vanEcks<span style="color:#f92672">.</span>elems <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">100</span> {
+        @vanEcks<span style="color:#f92672">.</span>push($n);
+        $n <span style="color:#f92672">=</span> backtrack($n, @vanEcks);
     }
-    @vanEcks.join(&quot;, &quot;).say;
+    @vanEcks<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34;, &#34;</span>)<span style="color:#f92672">.</span>say;
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-014/ruben-westerberg/perl6/ch-1.p6">Ruben Westerberg</a> also chose to traverse the current Van Eck sequence to find the previous matching value:</p>
-
-<pre><code class="language-Perl6">my @a=(0);
-for 0..^$nn -&gt; $n {
-    my $max= @a[0..^$n].grep(@a[$n],:k).max();
-    @a[$n+1]=$max == -Inf??0!!$n-$max;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-014/ruben-westerberg/perl6/ch-1.p6">Ruben Westerberg</a> also chose to traverse the current Van Eck sequence to find the previous matching value:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> @a<span style="color:#f92672">=</span>(<span style="color:#ae81ff">0</span>);
+<span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">..^</span>$nn <span style="color:#f92672">-&gt;</span> $n {
+    <span style="color:#66d9ef">my</span> $max<span style="color:#f92672">=</span> @a[<span style="color:#ae81ff">0</span><span style="color:#f92672">..^</span>$n]<span style="color:#f92672">.</span>grep(@a[$n],:k)<span style="color:#f92672">.</span>max();
+    @a[$n<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">=</span>$max <span style="color:#f92672">==</span> <span style="color:#f92672">-</span>Inf??<span style="color:#ae81ff">0</span><span style="color:#f92672">!!</span>$n<span style="color:#f92672">-</span>$max;
 }
-</code></pre>
-
-<h2 id="see-also">SEE ALSO</h2>
-
+</code></pre></div><h2 id="see-also">SEE ALSO</h2>
 <p>Four blog posts on the subject this time:</p>
-
 <ul>
-<li><p>Arne Sommer: <a href="https://perl6.eu/van-eck-state.html">https://perl6.eu/van-eck-state.html</a>;</p></li>
-
-<li><p>Athanasius: <a href="http://blogs.perl.org/users/athanasius/2019/06/perl-weekly-challenge-014.html">http://blogs.perl.org/users/athanasius/2019/06/perl-weekly-challenge-014.html</a>;</p></li>
-
-<li><p>Francis J. Whittle: <a href="https://rage.powered.ninja/2019/06/30/hashed-up-sequencing.html">https://rage.powered.ninja/2019/06/30/hashed-up-sequencing.html</a>;</p></li>
-
-<li><p>Jaldhar H. Vyas: <a href="https://www.braincells.com/perl/2019/06/perl_weekly_challenge_week_14.html">https://www.braincells.com/perl/2019/06/perl_weekly_challenge_week_14.html</a>.</p></li>
+<li>
+<p>Arne Sommer: <a href="https://perl6.eu/van-eck-state.html;">https://perl6.eu/van-eck-state.html;</a></p>
+</li>
+<li>
+<p>Athanasius: <a href="http://blogs.perl.org/users/athanasius/2019/06/perl-weekly-challenge-014.html;">http://blogs.perl.org/users/athanasius/2019/06/perl-weekly-challenge-014.html;</a></p>
+</li>
+<li>
+<p>Francis J. Whittle: <a href="https://rage.powered.ninja/2019/06/30/hashed-up-sequencing.html;">https://rage.powered.ninja/2019/06/30/hashed-up-sequencing.html;</a></p>
+</li>
+<li>
+<p>Jaldhar H. Vyas: <a href="https://www.braincells.com/perl/2019/06/perl_weekly_challenge_week_14.html">https://www.braincells.com/perl/2019/06/perl_weekly_challenge_week_14.html</a>.</p>
+</li>
 </ul>
-
 <h2 id="wrapping-up">Wrapping up</h2>
-
 <p>Please let me know if I forgot any of the challengers or if you think my explanation of your code misses something important (send me an e-mail or just raise an issue against this GitHub page).</p>
 
                 </div>

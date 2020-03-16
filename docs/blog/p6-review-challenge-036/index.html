@@ -16,7 +16,7 @@
 
     <meta name="description" content="Laurent Rosenfeld Weekly Review: Challenge - #036.">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.55.0-DEV" />
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -41,6 +41,8 @@
     <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
     <!-- hover -->
     <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
     <!-- template main css file -->
     
     <link rel="stylesheet" href="https://perlweeklychallenge.org/css/style.min.css" integrity="" media="screen">
@@ -149,61 +151,45 @@
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
-                    
-
-<hr />
-
+                    <hr>
 <h1 id="raku-solutions-weekly-review">Raku Solutions Weekly Review</h1>
-
-<hr />
-
+<hr>
 <h2 id="task-1-vehicle-identification-numbers-vin">Task #1: Vehicle Identification Numbers (VIN)</h2>
-
 <p>This is derived in part from my <a href="http://blogs.perl.org/users/laurent_r/2019/05/perl-weekly-challenge-6-compact-number-ranges.html">blog post</a> made in answer to the <a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-036/">Week 36 of the Perl Weekly Challenge</a> organized by  <a href="http://blogs.perl.org/users/mohammad_s_anwar/">Mohammad S. Anwar</a> as well as answers made by others to the same challenge.</p>
-
 <p>The challenge reads as follows:</p>
-
 <p><em>Write a program to validate given Vehicle Identification Number (VIN). For more information, please checkout <a href="https://en.wikipedia.org/wiki/Vehicle_identification_number">wikipedia</a>.</em></p>
-
 <p>From the Wikipedia article, it appears that VINs are made up of 17 digits and upper-case letters, with the exception of letters I (i), O (o) and Q (q), to avoid confusion with numerals 0, 1, and 9. There are some additional rules that only applicable to certain areas of the world but are not internationally recognized.</p>
-
 <h2 id="my-solutions">My Solutions</h2>
-
 <p>We write a simple <code>validate</code> subroutine that returns a true value if the passed parameter complies with the above rules for VINs and a false value otherwise.</p>
-
 <p>In addition, we write a test suite in the Raku <a href="https://docs.raku.org/language/testing">Test</a> framework containing 16 test cases. The <code>ok</code> function is fine for checking if a Boolean value is true; contrary to the Perl 5 <code>Test::More</code> testing framework, the Raku <code>Test</code> framework also has a <code>nok</code> function that makes it possible to test directly a false Boolean value.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> v6;
+<span style="color:#66d9ef">use</span> Test;
 
-<pre><code class="language-Perl6">use v6;
-use Test;
-
-sub validate ($vin) {
-    return False if $vin ~~ /&lt;[OIQ]&gt;/;
-    return True if $vin ~~ /^ &lt;[A..Z0..9]&gt; ** 17 $/;
-    return False;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">validate</span> ($vin) {
+    <span style="color:#66d9ef">return</span> False <span style="color:#66d9ef">if</span> $vin <span style="color:#f92672">~~</span> <span style="color:#e6db74">/&lt;[OIQ]&gt;/</span>;
+    <span style="color:#66d9ef">return</span> True <span style="color:#66d9ef">if</span> $vin <span style="color:#f92672">~~</span> <span style="color:#e6db74">/^ &lt;[A..Z0..9]&gt; ** 17 $/</span>;
+    <span style="color:#66d9ef">return</span> False;
 }
 
-plan 16;
+plan <span style="color:#ae81ff">16</span>;
 
-ok  validate(&quot;A&quot; x 17),   &quot;17 A's&quot;;
-ok  validate(1 x 17),     &quot;17 digits&quot;;
-nok validate(&quot;AEIOU&quot;),    &quot;Five vowels&quot;;
-nok validate(1234567890), &quot;Ten digits&quot;;
-nok validate(&quot;1234AEIOU5678901&quot;),   &quot;sixteen digits or letters&quot;;
-ok  validate(&quot;12345678901234567&quot;),  &quot;17 digits&quot;;
-nok validate(&quot;1234567890123456Q&quot;),  &quot;16 digits and a Q&quot;;
-nok validate(&quot;1234567890123456O&quot;),  &quot;16 digits and a O&quot;;
-nok validate(&quot;1234567890123456I&quot;),  &quot;16 digits and a I&quot;;
-nok validate(&quot;Q1234567890123456&quot;),  &quot;A Q and 16 digits&quot;;
-nok validate(&quot;I1234567890123456&quot;),  &quot;An I and 16 digits&quot;;
-ok  validate(&quot;ABCD4567890123456&quot;),  &quot;17 digits and letters&quot;;
-nok validate(&quot;ABef4567890123456&quot;),  &quot;Digits and some lower case letters&quot;;
-nok validate(&quot;ABE?4567890123456&quot;),  &quot;A non alphanumerical character&quot;;
-nok validate(&quot;ABCD4567 90123456&quot;),  &quot;A space&quot;;
-nok validate(&quot;ABCD45678901234567&quot;), &quot;More than 17 characters&quot;;
-</code></pre>
-
-<p>Running the program shows that all test pass:</p>
-
+ok  validate(<span style="color:#e6db74">&#34;A&#34;</span> x <span style="color:#ae81ff">17</span>),   <span style="color:#e6db74">&#34;17 A&#39;s&#34;</span>;
+ok  validate(<span style="color:#ae81ff">1</span> x <span style="color:#ae81ff">17</span>),     <span style="color:#e6db74">&#34;17 digits&#34;</span>;
+nok validate(<span style="color:#e6db74">&#34;AEIOU&#34;</span>),    <span style="color:#e6db74">&#34;Five vowels&#34;</span>;
+nok validate(<span style="color:#ae81ff">1234567890</span>), <span style="color:#e6db74">&#34;Ten digits&#34;</span>;
+nok validate(<span style="color:#e6db74">&#34;1234AEIOU5678901&#34;</span>),   <span style="color:#e6db74">&#34;sixteen digits or letters&#34;</span>;
+ok  validate(<span style="color:#e6db74">&#34;12345678901234567&#34;</span>),  <span style="color:#e6db74">&#34;17 digits&#34;</span>;
+nok validate(<span style="color:#e6db74">&#34;1234567890123456Q&#34;</span>),  <span style="color:#e6db74">&#34;16 digits and a Q&#34;</span>;
+nok validate(<span style="color:#e6db74">&#34;1234567890123456O&#34;</span>),  <span style="color:#e6db74">&#34;16 digits and a O&#34;</span>;
+nok validate(<span style="color:#e6db74">&#34;1234567890123456I&#34;</span>),  <span style="color:#e6db74">&#34;16 digits and a I&#34;</span>;
+nok validate(<span style="color:#e6db74">&#34;Q1234567890123456&#34;</span>),  <span style="color:#e6db74">&#34;A Q and 16 digits&#34;</span>;
+nok validate(<span style="color:#e6db74">&#34;I1234567890123456&#34;</span>),  <span style="color:#e6db74">&#34;An I and 16 digits&#34;</span>;
+ok  validate(<span style="color:#e6db74">&#34;ABCD4567890123456&#34;</span>),  <span style="color:#e6db74">&#34;17 digits and letters&#34;</span>;
+nok validate(<span style="color:#e6db74">&#34;ABef4567890123456&#34;</span>),  <span style="color:#e6db74">&#34;Digits and some lower case letters&#34;</span>;
+nok validate(<span style="color:#e6db74">&#34;ABE?4567890123456&#34;</span>),  <span style="color:#e6db74">&#34;A non alphanumerical character&#34;</span>;
+nok validate(<span style="color:#e6db74">&#34;ABCD4567 90123456&#34;</span>),  <span style="color:#e6db74">&#34;A space&#34;</span>;
+nok validate(<span style="color:#e6db74">&#34;ABCD45678901234567&#34;</span>), <span style="color:#e6db74">&#34;More than 17 characters&#34;</span>;
+</code></pre></div><p>Running the program shows that all test pass:</p>
 <pre><code>$ perl6 vin.p6
 1..16
 ok 1 - 17 A's
@@ -223,38 +209,33 @@ ok 14 - A non alphanumerical character
 ok 15 - A space
 ok 16 - More than 17 characters
 </code></pre>
-
 <p>In North America, the ninth position in a VIN is a check digit i.e. a number calculated from all other characters. Although this is not explicitly requested in the task, we&rsquo;ll make a second version of our program also verifying the check digit, as a bonus. The <code>check-digit</code> subroutine splits the input string, translates the characters into numbers, multiplies each number by the weight assigned to its rank, sums up all the results, computes the remainder of its division by 11, and replaces the remainder by &ldquo;X&rdquo; if it is found to be 10.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> v6;
 
-<pre><code class="language-Perl6">use v6;
-
-sub validate (Str $vin) {
-    return False if $vin ~~ /&lt;[OIQ]&gt;/;
-    return False unless $vin ~~ /^ &lt;[A..Z0..9]&gt; ** 17 $/;
-    return check-digit $vin;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">validate</span> (Str $vin) {
+    <span style="color:#66d9ef">return</span> False <span style="color:#66d9ef">if</span> $vin <span style="color:#f92672">~~</span> <span style="color:#e6db74">/&lt;[OIQ]&gt;/</span>;
+    <span style="color:#66d9ef">return</span> False <span style="color:#66d9ef">unless</span> $vin <span style="color:#f92672">~~</span> <span style="color:#e6db74">/^ &lt;[A..Z0..9]&gt; ** 17 $/</span>;
+    <span style="color:#66d9ef">return</span> check<span style="color:#f92672">-</span>digit $vin;
 }
 
-sub check-digit (Str $vin) {
-    my %translations = A =&gt; 1, B =&gt; 2, C =&gt; 3, D =&gt; 4, E =&gt; 5, F =&gt; 6, G =&gt; 7, H =&gt; 8,
-        J =&gt; 1, K =&gt; 2, L =&gt; 3, M =&gt; 4, N =&gt; 5, P =&gt; 7, R =&gt; 9, S =&gt; 2,
-        T =&gt; 3, U =&gt; 4, V =&gt; 5, W =&gt; 6, X =&gt; 7, Y =&gt; 8, Z =&gt; 9;
-    %translations{$_} = $_ for 0..9;
-    my @weights = 8, 7, 6, 5, 4, 3, 2, 10, 0, 9, 8, 7, 6, 5, 4, 3, 2;
-    my $i = 0;
-    my $sum = sum map { %translations{$_} * @weights[$i++]}, $vin.comb;
-    my $mod = $sum % 11;
-    $mod = 'X' if $mod == 10;
-    return True if $mod eq substr $vin, 8, 1;
-    return False;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">check</span>-digit (Str $vin) {
+    <span style="color:#66d9ef">my</span> %translations <span style="color:#f92672">=</span> A <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>, B <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>, C <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>, D <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">4</span>, E <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5</span>, F <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">6</span>, G <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">7</span>, H <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">8</span>,
+        J <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>, K <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>, L <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>, M <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">4</span>, N <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5</span>, P <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">7</span>, R <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">9</span>, S <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>,
+        T <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>, U <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">4</span>, V <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5</span>, W <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">6</span>, X <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">7</span>, Y <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">8</span>, Z <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">9</span>;
+    %translations{$_} <span style="color:#f92672">=</span> $_ <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">9</span>;
+    <span style="color:#66d9ef">my</span> @weights <span style="color:#f92672">=</span> <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>;
+    <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> sum map { %translations{$_} <span style="color:#f92672">*</span> @weights[$i<span style="color:#f92672">++</span>]}, $vin<span style="color:#f92672">.</span>comb;
+    <span style="color:#66d9ef">my</span> $mod <span style="color:#f92672">=</span> $sum % 11;
+    $mod <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;X&#39;</span> <span style="color:#66d9ef">if</span> $mod <span style="color:#f92672">==</span> <span style="color:#ae81ff">10</span>;
+    <span style="color:#66d9ef">return</span> True <span style="color:#66d9ef">if</span> $mod <span style="color:#f92672">eq</span> substr $vin, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">return</span> False;
 }
 
-sub MAIN (Str $vin = &quot;1M8GDM9AXKP042788&quot;) {
-    say validate($vin) ?? &quot;Correct&quot; !! &quot;Wrong&quot;;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> (Str $vin = &#34;1M8GDM9AXKP042788&#34;) {
+    say validate($vin) ?? <span style="color:#e6db74">&#34;Correct&#34;</span> <span style="color:#f92672">!!</span> <span style="color:#e6db74">&#34;Wrong&#34;</span>;
 }
-</code></pre>
-
-<p>Running the program displays the following output:</p>
-
+</code></pre></div><p>Running the program displays the following output:</p>
 <pre><code>$ perl6 vin.p6
 Correct
 
@@ -264,305 +245,243 @@ Correct
 $ perl6 vin.p6 1M8GDM9AXKP042789
 Wrong
 </code></pre>
-
 <h2 id="alternative-solutions">Alternative Solutions</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-036/arne-sommer/perl6/ch-1.p6">Arne Sommer</a> provided a 300-line script telling me that, apparently, I must have missed a lot of the rules. Among other things, his code seems to be checking country codes, manufacturer codes (although a number of manufacturers appear to be missing, such as Citroen, Fiat, Renault, Skoda, Seat, Peugeot or several Chinese companies, but this is apparently because the list would have been too long, so Arne decided just to prune some of it) and construction year codes. I can&rsquo;t summarize here such a lengthy piece of code, please follow the link to his code just above (or look as his <a href="https://raku-musings.com/vin-knapsack.html">blog</a>) if you want to know more.</p>
-
 <p>Note that his <code>VINCHAR</code> regex:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> regex VINCHAR { A <span style="color:#f92672">|</span> B <span style="color:#f92672">|</span> C <span style="color:#f92672">|</span> D <span style="color:#f92672">|</span> E <span style="color:#f92672">|</span> F <span style="color:#f92672">|</span> G <span style="color:#f92672">|</span> H <span style="color:#f92672">|</span> J <span style="color:#f92672">|</span> K <span style="color:#f92672">|</span> L <span style="color:#f92672">|</span> M <span style="color:#f92672">|</span> N <span style="color:#f92672">|</span> P <span style="color:#f92672">|</span> R <span style="color:#f92672">|</span> S <span style="color:#f92672">|</span> T <span style="color:#f92672">|</span> U <span style="color:#f92672">|</span> V <span style="color:#f92672">|</span> W <span style="color:#f92672">|</span> X <span style="color:#f92672">|</span> Y <span style="color:#f92672">|</span> Z <span style="color:#f92672">|</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">|</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">|</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">|</span> <span style="color:#ae81ff">4</span> <span style="color:#f92672">|</span> <span style="color:#ae81ff">5</span> <span style="color:#f92672">|</span> <span style="color:#ae81ff">6</span> <span style="color:#f92672">|</span> <span style="color:#ae81ff">7</span> <span style="color:#f92672">|</span> <span style="color:#ae81ff">8</span> <span style="color:#f92672">|</span> <span style="color:#ae81ff">9</span> <span style="color:#f92672">|</span> <span style="color:#ae81ff">0</span> };
+</code></pre></div><p>might be expressed more conveniently (or, at least, more concisely), with a character class as something like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> regex VINCHAR { <span style="color:#f92672">&lt;</span> [A<span style="color:#f92672">..</span>Z0<span style="color:#f92672">..</span><span style="color:#ae81ff">9</span>] <span style="color:#f92672">-</span> [IOQ] <span style="color:#f92672">&gt;</span> };
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-036/javier-luque/perl6/ch-1.p6">Javier Luque</a> also implemented a lot of rules which I did not know about. This is his main VIN-checking subroutine:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_check</span>-vin(Str $vin) {
+    <span style="color:#66d9ef">my</span> $vin_re <span style="color:#f92672">=</span> <span style="color:#e6db74">/&lt;[A..HJ..NPR..Z0..9]&gt;/</span>;
 
-<pre><code class="language-Perl6">my regex VINCHAR { A | B | C | D | E | F | G | H | J | K | L | M | N | P | R | S | T | U | V | W | X | Y | Z | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 0 };
-</code></pre>
+    <span style="color:#75715e"># Check for valid World Vin</span>
+    <span style="color:#66d9ef">return</span> Nil <span style="color:#66d9ef">unless</span> ($vin <span style="color:#f92672">~~</span> <span style="color:#f92672">/</span>
+        <span style="color:#f92672">^^</span>              <span style="color:#75715e"># Start of string</span>
+        ($vin_re <span style="color:#f92672">**</span> <span style="color:#ae81ff">3</span>)  <span style="color:#75715e"># World identification number</span>
+        ($vin_re <span style="color:#f92672">**</span> <span style="color:#ae81ff">6</span>)  <span style="color:#75715e"># Vehicle descriptor section</span>
+        ($vin_re <span style="color:#f92672">**</span> <span style="color:#ae81ff">8</span>)  <span style="color:#75715e"># Vehicle identifier section</span>
+        $$              <span style="color:#75715e"># End of string</span>
+    <span style="color:#f92672">/</span>);
 
-<p>might be expressed more conveniently (or, at least, more concisely), with a character class as something like this:</p>
+    <span style="color:#75715e"># Capture parts of the vin</span>
+    <span style="color:#66d9ef">my</span> $win <span style="color:#f92672">=</span> $0; <span style="color:#75715e"># World identification number</span>
+    <span style="color:#66d9ef">my</span> $vds <span style="color:#f92672">=</span> $1; <span style="color:#75715e"># Vehicle descriptor section</span>
+    <span style="color:#66d9ef">my</span> $vis <span style="color:#f92672">=</span> $2; <span style="color:#75715e"># Vehicle identifier section</span>
 
-<pre><code class="language-Perl6">my regex VINCHAR { &lt; [A..Z0..9] - [IOQ] &gt; };
-</code></pre>
+    <span style="color:#75715e"># 1st digit of the VIS can&#39;t be a U, Z or 0</span>
+    <span style="color:#66d9ef">return</span> Nil <span style="color:#66d9ef">if</span> ($vis <span style="color:#f92672">~~</span> <span style="color:#e6db74">/^^&lt;[UZ0]&gt;/</span>);
 
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-036/javier-luque/perl6/ch-1.p6">Javier Luque</a> also implemented a lot of rules which I did not know about. This is his main VIN-checking subroutine:</p>
-
-<pre><code class="language-Perl6">sub _check-vin(Str $vin) {
-    my $vin_re = /&lt;[A..HJ..NPR..Z0..9]&gt;/;
-
-    # Check for valid World Vin
-    return Nil unless ($vin ~~ /
-        ^^              # Start of string
-        ($vin_re ** 3)  # World identification number
-        ($vin_re ** 6)  # Vehicle descriptor section
-        ($vin_re ** 8)  # Vehicle identifier section
-        $$              # End of string
-    /);
-
-    # Capture parts of the vin
-    my $win = $0; # World identification number
-    my $vds = $1; # Vehicle descriptor section
-    my $vis = $2; # Vehicle identifier section
-
-    # 1st digit of the VIS can't be a U, Z or 0
-    return Nil if ($vis ~~ /^^&lt;[UZ0]&gt;/);
-
-    # Need to validate check digit
-    # compulsory for vehicles
-    # in North America and China,
-    if ($win ~~ /^^&lt;[1..5L]&gt;/) {
-        return Nil unless check-digit($vin);
+    <span style="color:#75715e"># Need to validate check digit</span>
+    <span style="color:#75715e"># compulsory for vehicles</span>
+    <span style="color:#75715e"># in North America and China,</span>
+    <span style="color:#66d9ef">if</span> ($win <span style="color:#f92672">~~</span> <span style="color:#e6db74">/^^&lt;[1..5L]&gt;/</span>) {
+        <span style="color:#66d9ef">return</span> Nil <span style="color:#66d9ef">unless</span> check<span style="color:#f92672">-</span>digit($vin);
     }
 
-    # In america and china the last 5
-    # digits of the vis is numeric
-    if ($win ~~  /^^&lt;[1..5L]&gt;/) {
-        return Nil unless ($vis ~~ /
-            ^^             # Start of string
-            $vin_re ** 3   # First 3
-            \d  ** 5       # Last 5 digits
-            $$             # End of string
-        /);
+    <span style="color:#75715e"># In america and china the last 5</span>
+    <span style="color:#75715e"># digits of the vis is numeric</span>
+    <span style="color:#66d9ef">if</span> ($win <span style="color:#f92672">~~</span>  <span style="color:#e6db74">/^^&lt;[1..5L]&gt;/</span>) {
+        <span style="color:#66d9ef">return</span> Nil <span style="color:#66d9ef">unless</span> ($vis <span style="color:#f92672">~~</span> <span style="color:#f92672">/</span>
+            <span style="color:#f92672">^^</span>             <span style="color:#75715e"># Start of string</span>
+            $vin_re <span style="color:#f92672">**</span> <span style="color:#ae81ff">3</span>   <span style="color:#75715e"># First 3</span>
+            <span style="color:#f92672">\</span>d  <span style="color:#f92672">**</span> <span style="color:#ae81ff">5</span>       <span style="color:#75715e"># Last 5 digits</span>
+            $$             <span style="color:#75715e"># End of string</span>
+        <span style="color:#f92672">/</span>);
     }
 
-    return 1;
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-036/daniel-mita/perl6/ch-1.p6">Daniel Mita</a> wrote a small grammar to perform VIN validation:</p>
-
-<pre><code class="language-Perl6">grammar VIN {
-  token TOP  { &lt;WMI&gt; &lt;VDS&gt; &lt;VIS&gt; }
-  token WMI  { &lt;.char&gt; ** 3 }
-  token VDS  { &lt;.char&gt; ** 6 }
-  token VIS  { &lt;.char&gt; ** 8 }
-  token char { &lt;[A..H J..N P R..Z 0..9]&gt; }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-036/daniel-mita/perl6/ch-1.p6">Daniel Mita</a> wrote a small grammar to perform VIN validation:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">grammar VIN {
+  token TOP  { <span style="color:#e6db74">&lt;WMI&gt;</span> <span style="color:#e6db74">&lt;VDS&gt;</span> <span style="color:#e6db74">&lt;VIS&gt;</span> }
+  token WMI  { <span style="color:#e6db74">&lt;.char&gt;</span> <span style="color:#f92672">**</span> <span style="color:#ae81ff">3</span> }
+  token VDS  { <span style="color:#e6db74">&lt;.char&gt;</span> <span style="color:#f92672">**</span> <span style="color:#ae81ff">6</span> }
+  token VIS  { <span style="color:#e6db74">&lt;.char&gt;</span> <span style="color:#f92672">**</span> <span style="color:#ae81ff">8</span> }
+  token char { <span style="color:#f92672">&lt;</span>[A<span style="color:#f92672">..</span>H J<span style="color:#f92672">..</span>N P R<span style="color:#f92672">..</span>Z <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">9</span>]<span style="color:#f92672">&gt;</span> }
 }
-</code></pre>
-
-<p>That&rsquo;s quite nice, but, to tell the truth, since three of the tokens are just a number of <code>char</code> tokens, it seems to me that the grammar may slightly over-engineered, as this grammar:</p>
-
-<pre><code class="language-Perl6">grammar VIN {
-  token TOP  { &lt;.char&gt; ** 17 }
-  token char { &lt;[A..H J..N P R..Z 0..9]&gt; }
+</code></pre></div><p>That&rsquo;s quite nice, but, to tell the truth, since three of the tokens are just a number of <code>char</code> tokens, it seems to me that the grammar may slightly over-engineered, as this grammar:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">grammar VIN {
+  token TOP  { <span style="color:#e6db74">&lt;.char&gt;</span> <span style="color:#f92672">**</span> <span style="color:#ae81ff">17</span> }
+  token char { <span style="color:#f92672">&lt;</span>[A<span style="color:#f92672">..</span>H J<span style="color:#f92672">..</span>N P R<span style="color:#f92672">..</span>Z <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">9</span>]<span style="color:#f92672">&gt;</span> }
 }
-</code></pre>
-
-<p>should presumably yield the same result (unless you intend to do further things with the <code>&lt;WMI&gt;</code>, <code>&lt;VDS&gt;</code>, and <code>&lt;VIS&gt;</code> tokens).</p>
-
+</code></pre></div><p>should presumably yield the same result (unless you intend to do further things with the <code>&lt;WMI&gt;</code>, <code>&lt;VDS&gt;</code>, and <code>&lt;VIS&gt;</code> tokens).</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-036/kevin-colyer/perl6/ch-1.p6">Kevin Colyer</a>, like me, checks the length of the VIN, also checks that it does not contains invalid letters (I, O, and Q), and it verifies the check digit:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">validateVIN</span>($vin is copy) {
+    <span style="color:#66d9ef">my</span> @v<span style="color:#f92672">=</span> $vin<span style="color:#f92672">.</span>uc<span style="color:#f92672">.</span>comb;
+    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;invalid vin character: I,O or Q&#34;</span>     <span style="color:#66d9ef">if</span> $vin <span style="color:#f92672">~~</span> m:i<span style="color:#e6db74">/ &lt;[ I O Q ]&gt;+ /</span>;
+    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;invalid vin length {$vin.chars}&#34;</span> <span style="color:#66d9ef">if</span> $vin<span style="color:#f92672">.</span>chars <span style="color:#f92672">!=</span> <span style="color:#ae81ff">17</span>;
 
-<pre><code class="language-Perl6">sub validateVIN($vin is copy) {
-    my @v= $vin.uc.comb;
-    return &quot;invalid vin character: I,O or Q&quot;     if $vin ~~ m:i/ &lt;[ I O Q ]&gt;+ /;
-    return &quot;invalid vin length {$vin.chars}&quot; if $vin.chars != 17;
+    <span style="color:#66d9ef">my</span> $check<span style="color:#f92672">=</span>@v[<span style="color:#ae81ff">8</span>];
+    $check <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>  <span style="color:#66d9ef">if</span> $check <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;_&#39;</span>;
+    $check <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span> <span style="color:#66d9ef">if</span> $check <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;X&#39;</span>;
+    <span style="color:#66d9ef">my</span> $i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
 
-    my $check=@v[8];
-    $check = 0  if $check eq '_';
-    $check = 10 if $check eq 'X';
-    my $i=0;
-
-    for ^17 {
-        $i += %value{@v[$_]} * @weight[$_];
+    <span style="color:#66d9ef">for</span> <span style="color:#f92672">^</span><span style="color:#ae81ff">17</span> {
+        $i <span style="color:#f92672">+=</span> %value{@v[$_]} <span style="color:#f92672">*</span> @weight[$_];
     };
 
-    return $i % 11 == $check ?? &quot;valid&quot; !! &quot;invalid - failed checksum&quot; ;
+    <span style="color:#66d9ef">return</span> $i % 11 <span style="color:#f92672">==</span> $check ?? <span style="color:#e6db74">&#34;valid&#34;</span> <span style="color:#f92672">!!</span> <span style="color:#e6db74">&#34;invalid - failed checksum&#34;</span> ;
 }
-</code></pre>
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-036/simon-proctor/perl6/ch-1.p6">Simon Proctor</a> basically checks the same things as Kevin:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">subset ValidVinStr of Str
+    where <span style="color:#e6db74">m/^ &lt;[A..Z 0..9] - [IOQ]&gt; ** 9 &lt;[A..Z 0..9] - [IOQUZ0]&gt; &lt;[A..Z 0..9] - [IOQ]&gt; ** 7 $/</span>;
 
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-036/simon-proctor/perl6/ch-1.p6">Simon Proctor</a> basically checks the same things as Kevin:</p>
-
-<pre><code class="language-Perl6">subset ValidVinStr of Str
-    where m/^ &lt;[A..Z 0..9] - [IOQ]&gt; ** 9 &lt;[A..Z 0..9] - [IOQUZ0]&gt; &lt;[A..Z 0..9] - [IOQ]&gt; ** 7 $/;
-
-#| Validate a North American VIN
-sub MAIN (
+<span style="color:#75715e">#| Validate a North American VIN</span>
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> (
     ValidVinStr $vin #= VIN to check
 ) {
-    my %transliterator = ( ( &quot;A&quot;..&quot;Z&quot; ) Z=&gt; ( |(1..9),|(1..9),|(2..9) ) );
+    <span style="color:#66d9ef">my</span> %transliterator <span style="color:#f92672">=</span> ( ( <span style="color:#e6db74">&#34;A&#34;</span><span style="color:#f92672">..</span><span style="color:#e6db74">&#34;Z&#34;</span> ) Z<span style="color:#f92672">=&gt;</span> ( <span style="color:#f92672">|</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">9</span>),<span style="color:#f92672">|</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">9</span>),<span style="color:#f92672">|</span>(<span style="color:#ae81ff">2</span><span style="color:#f92672">..</span><span style="color:#ae81ff">9</span>) ) );
 
-    my @combed = $vin.comb();
-    my $check = @combed[8];
-    my $calc-check = ( [+] (@combed[|(0..7),|(9..16)].map( { %transliterator{$_} // $_ } )) Z* (|(8...2),|(10...2)) ) % 11;
-    $calc-check = &quot;X&quot; if $calc-check == 10;
-    say $calc-check ~~ $check ?? &quot;Valid VIN $vin&quot; !! &quot;Invalid VIN $vin&quot;;
+    <span style="color:#66d9ef">my</span> @combed <span style="color:#f92672">=</span> $vin<span style="color:#f92672">.</span>comb();
+    <span style="color:#66d9ef">my</span> $check <span style="color:#f92672">=</span> @combed[<span style="color:#ae81ff">8</span>];
+    <span style="color:#66d9ef">my</span> $calc<span style="color:#f92672">-</span>check <span style="color:#f92672">=</span> ( [<span style="color:#f92672">+</span>] (@combed[<span style="color:#f92672">|</span>(<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">7</span>),<span style="color:#f92672">|</span>(<span style="color:#ae81ff">9</span><span style="color:#f92672">..</span><span style="color:#ae81ff">16</span>)]<span style="color:#f92672">.</span>map( { %transliterator{$_} <span style="color:#e6db74">//</span> $_ } )) Z<span style="color:#f92672">*</span> (<span style="color:#f92672">|</span>(<span style="color:#ae81ff">8</span><span style="color:#f92672">...</span><span style="color:#ae81ff">2</span>),<span style="color:#f92672">|</span>(<span style="color:#ae81ff">10</span><span style="color:#f92672">...</span><span style="color:#ae81ff">2</span>)) ) % 11;
+    $calc<span style="color:#f92672">-</span>check <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;X&#34;</span> <span style="color:#66d9ef">if</span> $calc<span style="color:#f92672">-</span>check <span style="color:#f92672">==</span> <span style="color:#ae81ff">10</span>;
+    say $calc<span style="color:#f92672">-</span>check <span style="color:#f92672">~~</span> $check ?? <span style="color:#e6db74">&#34;Valid VIN $vin&#34;</span> <span style="color:#f92672">!!</span> <span style="color:#e6db74">&#34;Invalid VIN $vin&#34;</span>;
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-036/ulrich-rieke/perl6/ch-1.p6">Ulrich Rieke</a> essentially checked the same things:</p>
-
-<pre><code class="language-Perl6">sub validate_VIN_number( Str $vincode ) returns Bool {
-  if ( $vincode ~~ / 'I' | 'Q' | 'O' / ) {
-      return False ;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-036/ulrich-rieke/perl6/ch-1.p6">Ulrich Rieke</a> essentially checked the same things:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">validate_VIN_number</span>( Str $vincode ) returns Bool {
+  <span style="color:#66d9ef">if</span> ( $vincode <span style="color:#f92672">~~</span> <span style="color:#e6db74">/ &#39;I&#39; | &#39;Q&#39; | &#39;O&#39; /</span> ) {
+      <span style="color:#66d9ef">return</span> False ;
   }
-  if ( $vincode.substr( 9 , 1 ) ~~ /&lt;[IQOUZ0]&gt;/ ) {
-      return False ;
+  <span style="color:#66d9ef">if</span> ( $vincode<span style="color:#f92672">.</span>substr( <span style="color:#ae81ff">9</span> , <span style="color:#ae81ff">1</span> ) <span style="color:#f92672">~~</span> <span style="color:#e6db74">/&lt;[IQOUZ0]&gt;/</span> ) {
+      <span style="color:#66d9ef">return</span> False ;
   }
-  if ( $vincode.substr( 9 , 1) !~~ /&lt;[A..Y1..9]&gt;/ ) {
-      return False ;
+  <span style="color:#66d9ef">if</span> ( $vincode<span style="color:#f92672">.</span>substr( <span style="color:#ae81ff">9</span> , <span style="color:#ae81ff">1</span>) <span style="color:#f92672">!~~</span> <span style="color:#e6db74">/&lt;[A..Y1..9]&gt;/</span> ) {
+      <span style="color:#66d9ef">return</span> False ;
   }
-  if ( $vincode ~~ /&lt;[A..Z1..9]-[IOQ]&gt; ** 17/ ) {
-    return True ;
+  <span style="color:#66d9ef">if</span> ( $vincode <span style="color:#f92672">~~</span> <span style="color:#e6db74">/&lt;[A..Z1..9]-[IOQ]&gt; ** 17/</span> ) {
+    <span style="color:#66d9ef">return</span> True ;
   }
-  return True ;
+  <span style="color:#66d9ef">return</span> True ;
 }
-</code></pre>
-
-<p>However, his 37-line <code>test_check_digit</code> subroutine seems a bit too complicated to me.</p>
-
+</code></pre></div><p>However, his 37-line <code>test_check_digit</code> subroutine seems a bit too complicated to me.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-036/jaldhar-h-vyas/perl6/ch-1.p6">Jaldar H. Vyas</a>, on the other hand, made something a little bit too simple in my view, as it doesn&rsquo;t do any check on the forbidden <code>IOQ</code> letters (yet, adding that check would be very simple).</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">validateVIN</span>(Str $vin) {
 
-<pre><code class="language-Perl6">sub validateVIN(Str $vin) {
-
-    if ($vin.chars != 17) {
-        return False;
+    <span style="color:#66d9ef">if</span> ($vin<span style="color:#f92672">.</span>chars <span style="color:#f92672">!=</span> <span style="color:#ae81ff">17</span>) {
+        <span style="color:#66d9ef">return</span> False;
     }
 
-    if $vin !~~ /^
-        &lt;alnum&gt; ** 3 # World Manufacturer Identifier
-        &lt;alnum&gt; ** 6 # Vehicle Descriptor Section
-        &lt;alnum&gt; ** 8 # Vehicle Identifier Section
+    <span style="color:#66d9ef">if</span> $vin <span style="color:#f92672">!~~</span> <span style="color:#f92672">/^</span>
+        <span style="color:#e6db74">&lt;alnum&gt;</span> <span style="color:#f92672">**</span> <span style="color:#ae81ff">3</span> <span style="color:#75715e"># World Manufacturer Identifier</span>
+        <span style="color:#e6db74">&lt;alnum&gt;</span> <span style="color:#f92672">**</span> <span style="color:#ae81ff">6</span> <span style="color:#75715e"># Vehicle Descriptor Section</span>
+        <span style="color:#e6db74">&lt;alnum&gt;</span> <span style="color:#f92672">**</span> <span style="color:#ae81ff">8</span> <span style="color:#75715e"># Vehicle Identifier Section</span>
     $/ {
-        return False;
+        <span style="color:#66d9ef">return</span> False;
     }
 
-    return True;
+    <span style="color:#66d9ef">return</span> True;
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-036/roger-bell-west/perl6/ch-1.p6">Roger Bell West</a> made some reasonable sense with the somewhat weird-looking translation table for the check-digit calculation:</p>
-
-<pre><code class="language-Perl6">my %cvalue;
-map {%cvalue{$_}=$_}, (0..9);
-my $base=ord('A');
-for (slip('A'..'H'),slip('J'..'N'),'P','R') -&gt; $char {
-  %cvalue{$char}=(ord($char)-$base)%9+1;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-036/roger-bell-west/perl6/ch-1.p6">Roger Bell West</a> made some reasonable sense with the somewhat weird-looking translation table for the check-digit calculation:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> %cvalue;
+map {%cvalue{$_}<span style="color:#f92672">=</span>$_}, (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">9</span>);
+<span style="color:#66d9ef">my</span> $base<span style="color:#f92672">=</span>ord(<span style="color:#e6db74">&#39;A&#39;</span>);
+<span style="color:#66d9ef">for</span> (slip(<span style="color:#e6db74">&#39;A&#39;</span><span style="color:#f92672">..</span><span style="color:#e6db74">&#39;H&#39;</span>),slip(<span style="color:#e6db74">&#39;J&#39;</span><span style="color:#f92672">..</span><span style="color:#e6db74">&#39;N&#39;</span>),<span style="color:#e6db74">&#39;P&#39;</span>,<span style="color:#e6db74">&#39;R&#39;</span>) <span style="color:#f92672">-&gt;</span> $char {
+  %cvalue{$char}<span style="color:#f92672">=</span>(ord($char)<span style="color:#f92672">-</span>$base)%9<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>;
 }
-for ('S'..'Z') -&gt; $char {
-  %cvalue{$char}=(ord($char)-$base)%9+2;
+<span style="color:#66d9ef">for</span> (<span style="color:#e6db74">&#39;S&#39;</span><span style="color:#f92672">..</span><span style="color:#e6db74">&#39;Z&#39;</span>) <span style="color:#f92672">-&gt;</span> $char {
+  %cvalue{$char}<span style="color:#f92672">=</span>(ord($char)<span style="color:#f92672">-</span>$base)%9<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>;
 }
-my $valid='^&lt;[' ~ join('',keys %cvalue) ~ ']&gt;*$';
-</code></pre>
-
-<p>Also notice, on the last line above, how his program cleverly uses the keys of the <code>%cvalue</code> hash to build a <code>$valid</code> regex character class pattern for later use:</p>
-
-<pre><code class="language-Perl6">unless ($vin ~~ /&lt;$valid&gt;/) {
-    print &quot;$vin contains invalid characters\n&quot;;
-    next;
+<span style="color:#66d9ef">my</span> $valid<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;^&lt;[&#39;</span> <span style="color:#f92672">~</span> join(<span style="color:#e6db74">&#39;&#39;</span>,keys %cvalue) <span style="color:#f92672">~</span> <span style="color:#e6db74">&#39;]&gt;*$&#39;</span>;
+</code></pre></div><p>Also notice, on the last line above, how his program cleverly uses the keys of the <code>%cvalue</code> hash to build a <code>$valid</code> regex character class pattern for later use:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">unless</span> ($vin <span style="color:#f92672">~~</span> <span style="color:#e6db74">/&lt;$valid&gt;/</span>) {
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$vin contains invalid characters\n&#34;</span>;
+    <span style="color:#66d9ef">next</span>;
 }
-</code></pre>
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-036/ruben-westerberg/perl6/ch-1.p6">Ruben Westerberg</a> made one of the most concise implementations:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> @vins:<span style="color:#f92672">=</span>@<span style="color:#960050;background-color:#1e0010">*</span>ARGS;
+<span style="color:#66d9ef">my</span> %keys<span style="color:#f92672">=</span>((<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">9</span> Z <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">9</span>),(<span style="color:#e6db74">&#34;A&#34;</span><span style="color:#f92672">..</span><span style="color:#e6db74">&#34;H&#34;</span> Z <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">8</span>), (<span style="color:#e6db74">&#34;J&#34;</span><span style="color:#f92672">..</span><span style="color:#e6db74">&#34;N&#34;</span> Z <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">5</span>), <span style="color:#e6db74">&#34;P&#34;</span>,<span style="color:#ae81ff">7</span>, <span style="color:#e6db74">&#34;R&#34;</span>,<span style="color:#ae81ff">9</span>,(<span style="color:#e6db74">&#34;S&#34;</span><span style="color:#f92672">..</span><span style="color:#e6db74">&#34;Z&#34;</span> Z <span style="color:#ae81ff">2</span><span style="color:#f92672">..</span><span style="color:#ae81ff">9</span>))<span style="color:#f92672">.</span>flat;
+<span style="color:#66d9ef">my</span> @weights<span style="color:#f92672">=</span>((<span style="color:#ae81ff">2</span><span style="color:#f92672">..</span><span style="color:#ae81ff">8</span>)<span style="color:#f92672">.</span>reverse,<span style="color:#ae81ff">10</span>,<span style="color:#ae81ff">0</span>,(<span style="color:#ae81ff">2</span><span style="color:#f92672">..</span><span style="color:#ae81ff">9</span>)<span style="color:#f92672">.</span>reverse)<span style="color:#f92672">.</span>flat;
 
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-036/ruben-westerberg/perl6/ch-1.p6">Ruben Westerberg</a> made one of the most concise implementations:</p>
+<span style="color:#66d9ef">for</span> @vins {
+    <span style="color:#66d9ef">my</span> $i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Testing $_: &#34;</span>;
+    <span style="color:#66d9ef">my</span> $result<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;OK&#34;</span>;
 
-<pre><code class="language-Perl6">my @vins:=@*ARGS;
-my %keys=((0..9 Z 0..9),(&quot;A&quot;..&quot;H&quot; Z 1..8), (&quot;J&quot;..&quot;N&quot; Z 1..5), &quot;P&quot;,7, &quot;R&quot;,9,(&quot;S&quot;..&quot;Z&quot; Z 2..9)).flat;
-my @weights=((2..8).reverse,10,0,(2..9).reverse).flat;
+    $result <span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Invalid digits present&#34;</span> <span style="color:#66d9ef">unless</span> <span style="color:#e6db74">/^&lt;[A..Z]+[0..9]&gt;**17$/</span>;
+    $result <span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Incorrect length&#34;</span> <span style="color:#66d9ef">if</span> $_<span style="color:#f92672">.</span>chars <span style="color:#f92672">!=</span> <span style="color:#ae81ff">17</span>;
 
-for @vins {
-    my $i=0;
-    print &quot;Testing $_: &quot;;
-    my $result=&quot;OK&quot;;
-
-    $result =&quot;Invalid digits present&quot; unless /^&lt;[A..Z]+[0..9]&gt;**17$/;
-    $result =&quot;Incorrect length&quot; if $_.chars != 17;
-
-    if $result eq &quot;OK&quot;  {
-        my $check=$_.comb.map({%keys{$_} * @weights[$i++]}).sum % 11;
-        $check=&quot;X&quot; if $check == 10;
-        $result= &quot;Invalid VIN number&quot; if $check ne $_.substr(8,1);
+    <span style="color:#66d9ef">if</span> $result <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#34;OK&#34;</span>  {
+        <span style="color:#66d9ef">my</span> $check<span style="color:#f92672">=</span>$_<span style="color:#f92672">.</span>comb<span style="color:#f92672">.</span>map({%keys{$_} <span style="color:#f92672">*</span> @weights[$i<span style="color:#f92672">++</span>]})<span style="color:#f92672">.</span>sum % 11;
+        $check<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;X&#34;</span> <span style="color:#66d9ef">if</span> $check <span style="color:#f92672">==</span> <span style="color:#ae81ff">10</span>;
+        $result<span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Invalid VIN number&#34;</span> <span style="color:#66d9ef">if</span> $check <span style="color:#f92672">ne</span> $_<span style="color:#f92672">.</span>substr(<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">1</span>);
     }
     put $result;
 }
-</code></pre>
-
-<p>I especially like the innovative way in which Ruben constructs the <code>%key</code> character-translation hash and the <code>@weights</code> array used for computing the check digit, as well as the way he computes the check digit in just one statement.</p>
-
+</code></pre></div><p>I especially like the innovative way in which Ruben constructs the <code>%key</code> character-translation hash and the <code>@weights</code> array used for computing the check digit, as well as the way he computes the check digit in just one statement.</p>
 <h2 id="task-2-the-knapsack-problem">Task #2: The Knapsack Problem</h2>
-
 <p>The challenge reads as follows:</p>
-
 <p><em>Write a program to solve Knapsack Problem.</em></p>
-
 <p><em>There are 5 color coded boxes with varying weights and amounts in GBP. Which boxes should be chosen to maximize the amount of money while still keeping the overall weight under or equal to 15 kg?</em>
-    R: (weight = 1 kg, amount = £1)
-    B: (weight = 1 kg, amount = £2)
-    G: (weight = 2 kg, amount = £2)
-    Y: (weight = 12 kg, amount = £4)
-    P: (weight = 4 kg, amount = £10)</p>
-
+R: (weight = 1 kg, amount = £1)
+B: (weight = 1 kg, amount = £2)
+G: (weight = 2 kg, amount = £2)
+Y: (weight = 12 kg, amount = £4)
+P: (weight = 4 kg, amount = £10)</p>
 <p><em>Bonus task, what if you were allowed to pick only 2 boxes or 3 boxes or 4 boxes? Find out which combination of boxes is the most optimal?</em></p>
-
 <p>The <em>knapsack problem</em> or <em>rucksack problem</em> is a well-known problem in combinatorial optimization: given a set of items, each with a weight and a value, determine the number of each item to include in a collection so that the total weight is less than or equal to a given limit and the total value is as large as possible. It derives its name from the problem faced by someone who is constrained by a fixed-size knapsack and must fill it with the most valuable items. In this specific case, this is what is sometimes called the <em>0-1 knapsack problem</em>, where you can chose only one of each of the listed items.</p>
-
 <p>I will directly take the &ldquo;bonus&rdquo; version of the problem, as it seems simpler to take this constraint in consideration right from the beginning.</p>
-
 <p>The <em>knapsack problem</em> is known to be a at least an NP-Complete problem (and the optimization problem is NP-Hard). This means that there is no known polynomial algorithm which can tell, given a solution, whether it is optimal. There are, however, some algorithms that can solve the problem in pseudo-polynomial time, using dynamic programming.</p>
-
 <p>However, with a set of only five boxes, we can run a so-called brute-force algorithm, that is try all possible solutions to find the best. A better algorithm would probably be needed to manage 30 or more boxes, but we&rsquo;re given only 5 boxes, and trying to find a better algorithm for only five boxes would be, in my humble view, a case of over-engineering.</p>
-
 <h2 id="my-solutions-1">My Solutions</h2>
-
 <p>To start with, we&rsquo;ll populate a <code>%boxes</code> hash of hashes with the box colors as keys, and their respective weights and values:</p>
-
-<pre><code class="language-Perl6">constant %boxes = (
-    &quot;R&quot; =&gt; { &quot;w&quot; =&gt; 1,  val =&gt; 1  },
-    &quot;B&quot; =&gt; { &quot;w&quot; =&gt; 1,  val =&gt; 2  },
-    &quot;G&quot; =&gt; { &quot;w&quot; =&gt; 2,  val =&gt; 2  },
-    &quot;Y&quot; =&gt; { &quot;w&quot; =&gt; 12, val =&gt; 4  },
-    &quot;P&quot; =&gt; { &quot;w&quot; =&gt; 4,  val =&gt; 10 },
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">constant %boxes <span style="color:#f92672">=</span> (
+    <span style="color:#e6db74">&#34;R&#34;</span> <span style="color:#f92672">=&gt;</span> { <span style="color:#e6db74">&#34;w&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>,  val <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>  },
+    <span style="color:#e6db74">&#34;B&#34;</span> <span style="color:#f92672">=&gt;</span> { <span style="color:#e6db74">&#34;w&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>,  val <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>  },
+    <span style="color:#e6db74">&#34;G&#34;</span> <span style="color:#f92672">=&gt;</span> { <span style="color:#e6db74">&#34;w&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>,  val <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>  },
+    <span style="color:#e6db74">&#34;Y&#34;</span> <span style="color:#f92672">=&gt;</span> { <span style="color:#e6db74">&#34;w&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">12</span>, val <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">4</span>  },
+    <span style="color:#e6db74">&#34;P&#34;</span> <span style="color:#f92672">=&gt;</span> { <span style="color:#e6db74">&#34;w&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">4</span>,  val <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">10</span> },
 );
-​```
-</code></pre>
-
-<h3 id="a-recursive-solution">A Recursive Solution</h3>
-
+<span style="color:#960050;background-color:#1e0010">​</span><span style="color:#e6db74">``</span><span style="color:#960050;background-color:#1e0010">`</span>
+</code></pre></div><h3 id="a-recursive-solution">A Recursive Solution</h3>
 <p>The most immediate solution to test all boxes combinations would be to use five nested loops, but that&rsquo;s tedious and ugly, and we would need to neutralize some of the loops for satisfying the bonus task with only 2, 3, or 4 boxes. And it doesn&rsquo;t scale: it would break if we were given 6 boxes. I prefer to implement a recursive solution which can work independently of the number of boxes (at least for a start, as this is the idea of the solution I implemented originally for the Perl 5 solution to the challenge, we will see later a simpler solution in Raku).</p>
-
 <p>We want to look at combinations (i.e. subsets of the data where the order in which the boxes are selected doesn&rsquo;t matter) and not permutations (where the order  matters) to avoid doing unnecessary work. To get combinations, we can just retain only permutations that are in a given order, for example in alphabetic order, and filter out the others. One parameter to our recursive subroutine, <code>$last-box-used</code>, enables us to compare each <code>box</code> in the <code>for</code> loop with the previous one and to keep only those where <code>box</code> comes after in the alphabetic order. And we make our first call of the <code>try-one</code>subroutine with a dummy parameter, &ldquo;A&rdquo;, which comes before any of the boxes.</p>
-
-<p>I prefer to implement a recursive solution where the parameters to the recursive <code>try-one</code> subroutine govern the number of loops that will be performed. These parameters are as follows:
-* Current cumulative weight of the selected boxes;
-* Current total value of the selected boxes;
-* Maximum number of boxes to be selected (for the bonus)
-* A string listing the boxes used so far in the current solution;
-* Name of the last used box (to get only combinations);
-* A list of the boxes still available;</p>
-
+<p>I prefer to implement a recursive solution where the parameters to the recursive <code>try-one</code> subroutine govern the number of loops that will be performed. These parameters are as follows:</p>
+<ul>
+<li>Current cumulative weight of the selected boxes;</li>
+<li>Current total value of the selected boxes;</li>
+<li>Maximum number of boxes to be selected (for the bonus)</li>
+<li>A string listing the boxes used so far in the current solution;</li>
+<li>Name of the last used box (to get only combinations);</li>
+<li>A list of the boxes still available;</li>
+</ul>
 <p>For the first call of <code>try-one</code> recursive subroutine, we have the following parameters: 0 for the weight, 0 for the value, the maximum number of boxes to be used is passed as a parameter to the script (or, failing a parameter, defaulted to 5), an empty string for the list of boxes, &ldquo;A&rdquo; for the last box used, and the list of box colors.</p>
-
 <p>The recursion base case (where recursion should stop) is reached when the current weight exceed 15 or when the number of available boxes left reaches 0.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> v6;
 
-<pre><code class="language-Perl6">use v6;
-
-constant %boxes = (
-    &quot;R&quot; =&gt; { &quot;w&quot; =&gt; 1,  val =&gt; 1  },
-    &quot;B&quot; =&gt; { &quot;w&quot; =&gt; 1,  val =&gt; 2  },
-    &quot;G&quot; =&gt; { &quot;w&quot; =&gt; 2,  val =&gt; 2  },
-    &quot;Y&quot; =&gt; { &quot;w&quot; =&gt; 12, val =&gt; 4  },
-    &quot;P&quot; =&gt; { &quot;w&quot; =&gt; 4,  val =&gt; 10 },
+constant %boxes <span style="color:#f92672">=</span> (
+    <span style="color:#e6db74">&#34;R&#34;</span> <span style="color:#f92672">=&gt;</span> { <span style="color:#e6db74">&#34;w&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>,  val <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>  },
+    <span style="color:#e6db74">&#34;B&#34;</span> <span style="color:#f92672">=&gt;</span> { <span style="color:#e6db74">&#34;w&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>,  val <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>  },
+    <span style="color:#e6db74">&#34;G&#34;</span> <span style="color:#f92672">=&gt;</span> { <span style="color:#e6db74">&#34;w&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>,  val <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>  },
+    <span style="color:#e6db74">&#34;Y&#34;</span> <span style="color:#f92672">=&gt;</span> { <span style="color:#e6db74">&#34;w&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">12</span>, val <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">4</span>  },
+    <span style="color:#e6db74">&#34;P&#34;</span> <span style="color:#f92672">=&gt;</span> { <span style="color:#e6db74">&#34;w&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">4</span>,  val <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">10</span> },
 );
 
-sub MAIN (UInt $start-nb-boxes = 5) {
-    my @boxes = keys %boxes;
-    my $*max-val = 0;
-    my $*max-boxes = &quot;&quot;;
-    try-one(0, 0, $start-nb-boxes, &quot;&quot;, &quot;A&quot;, @boxes);
-    say &quot;Max: $*max-val, Boxes:  $*max-boxes&quot;;
-    say now - INIT now;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> (UInt $start-nb-boxes = 5) {
+    <span style="color:#66d9ef">my</span> @boxes <span style="color:#f92672">=</span> keys %boxes;
+    <span style="color:#66d9ef">my</span> $<span style="color:#960050;background-color:#1e0010">*</span>max<span style="color:#f92672">-</span>val <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">my</span> $<span style="color:#960050;background-color:#1e0010">*</span>max<span style="color:#f92672">-</span>boxes <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
+    try<span style="color:#f92672">-</span>one(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, $start<span style="color:#f92672">-</span>nb<span style="color:#f92672">-</span>boxes, <span style="color:#e6db74">&#34;&#34;</span>, <span style="color:#e6db74">&#34;A&#34;</span>, @boxes);
+    say <span style="color:#e6db74">&#34;Max: $*max-val, Boxes:  $*max-boxes&#34;</span>;
+    say now <span style="color:#f92672">-</span> <span style="color:#66d9ef">INIT</span> now;
 }
 
-sub try-one ($cur-weight, $cur-val, $num-boxes, $boxes-used, $last-box-used, @boxes-left) {
-    if $cur-val &gt; $*max-val {
-        $*max-val = $cur-val;
-        $*max-boxes = $boxes-used;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">try</span>-one ($cur-weight, $cur-val, $num-boxes, $boxes-used, $last-box-used, @boxes-left) {
+    <span style="color:#66d9ef">if</span> $cur<span style="color:#f92672">-</span>val <span style="color:#f92672">&gt;</span> $<span style="color:#960050;background-color:#1e0010">*</span>max<span style="color:#f92672">-</span>val {
+        $<span style="color:#960050;background-color:#1e0010">*</span>max<span style="color:#f92672">-</span>val <span style="color:#f92672">=</span> $cur<span style="color:#f92672">-</span>val;
+        $<span style="color:#960050;background-color:#1e0010">*</span>max<span style="color:#f92672">-</span>boxes <span style="color:#f92672">=</span> $boxes<span style="color:#f92672">-</span>used;
     }
-    for @boxes-left -&gt; $box {
-        next if $box lt $last-box-used;
-        my $new-cur-weight = $cur-weight + %boxes{$box}{'w'};
-        next if $new-cur-weight &gt; 15 or $num-boxes &lt;= 0;
-        my @new-boxes-left = grep { $_ ne $box}, @boxes-left;
-        my $new-box-used = $boxes-used ?? $boxes-used ~ &quot;-$box&quot; !! $box;
-        try-one $new-cur-weight, $cur-val + %boxes{$box}{'val'}, $num-boxes -1, $new-box-used, $box, @new-boxes-left;
+    <span style="color:#66d9ef">for</span> @boxes<span style="color:#f92672">-</span>left <span style="color:#f92672">-&gt;</span> $box {
+        <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $box <span style="color:#f92672">lt</span> $last<span style="color:#f92672">-</span>box<span style="color:#f92672">-</span>used;
+        <span style="color:#66d9ef">my</span> $new<span style="color:#f92672">-</span>cur<span style="color:#f92672">-</span>weight <span style="color:#f92672">=</span> $cur<span style="color:#f92672">-</span>weight <span style="color:#f92672">+</span> %boxes{$box}{<span style="color:#e6db74">&#39;w&#39;</span>};
+        <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $new<span style="color:#f92672">-</span>cur<span style="color:#f92672">-</span>weight <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">15</span> <span style="color:#f92672">or</span> $num<span style="color:#f92672">-</span>boxes <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">my</span> @new<span style="color:#f92672">-</span>boxes<span style="color:#f92672">-</span>left <span style="color:#f92672">=</span> grep { $_ <span style="color:#f92672">ne</span> $box}, @boxes<span style="color:#f92672">-</span>left;
+        <span style="color:#66d9ef">my</span> $new<span style="color:#f92672">-</span>box<span style="color:#f92672">-</span>used <span style="color:#f92672">=</span> $boxes<span style="color:#f92672">-</span>used ?? $boxes<span style="color:#f92672">-</span>used <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34;-$box&#34;</span> <span style="color:#f92672">!!</span> $box;
+        try<span style="color:#f92672">-</span>one $new<span style="color:#f92672">-</span>cur<span style="color:#f92672">-</span>weight, $cur<span style="color:#f92672">-</span>val <span style="color:#f92672">+</span> %boxes{$box}{<span style="color:#e6db74">&#39;val&#39;</span>}, $num<span style="color:#f92672">-</span>boxes <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, $new<span style="color:#f92672">-</span>box<span style="color:#f92672">-</span>used, $box, @new<span style="color:#f92672">-</span>boxes<span style="color:#f92672">-</span>left;
     }
 }
-</code></pre>
-
-<p>This are some examples of output:</p>
-
+</code></pre></div><p>This are some examples of output:</p>
 <pre><code>$ perl6 boxes.p6
 Max: 15, Boxes:  B-G-P-R
 0.0099724
@@ -579,13 +498,9 @@ $ perl6 boxes.p6 2
 Max: 12, Boxes:  B-P
 0.0109711
 </code></pre>
-
-<h3 id="a-solution-taking-advantage-of-raku-s-built-in-features">A Solution Taking Advantage of Raku&rsquo;s Built-in Features</h3>
-
+<h3 id="a-solution-taking-advantage-of-rakus-built-in-features">A Solution Taking Advantage of Raku&rsquo;s Built-in Features</h3>
 <p>As mentioned earlier, the recursive solution above was inspired by our Perl 5 solution.</p>
-
 <p>But Raku offers the built-in <a href="https://docs.raku.org/routine/combinations">combinations</a> routine that can make our program shorter and simpler. It will return a list (really a <a href="https://docs.raku.org/type/Seq">Seq</a>) of all possible combinations of the input list or array. You can even specify the number of items, or, even better, a range for the numbers of items in each combinations; this will enable us to answer the bonus question by specifying the maximal number of boxes, and also to remove from the output the empty list (which may otherwise generate errors or warnings). The <code>find-best</code> subroutine does most of the work: the first statement populates a <code>@valid-candidates</code> array with combinations not exceeding the maximal weight, along with their total respective values, and the next statement returns the maximal value combination.</p>
-
 <pre><code>use v6;
 
 constant %boxes = (
@@ -607,9 +522,7 @@ sub find-best (@candidates) {
     return  @valid-candidates.max({$_[1]});
 }
 </code></pre>
-
 <p>The output is the same as before:</p>
-
 <pre><code>$ perl6 boxes2.p6
 Max: 15; (R G B P)
 
@@ -625,169 +538,137 @@ Max: 14; (B G P)
 $ perl6 boxes2.p6 2
 Max: 12; (P G)
 </code></pre>
-
 <p>The actual code is about twice shorter with the <code>combinations</code> routine.</p>
-
 <h2 id="alternative-solutions-1">Alternative Solutions</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-036/arne-sommer/perl6/ch-2.p6">Arne Sommer</a> also used the <code>combinations</code> built-in routine, but with a slightly different, more procedural, approach:</p>
-
-<pre><code class="language-Perl6">for @boxes.combinations.grep(0 &lt; *.elems &lt;= $boxcount) -&gt; @list
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">for</span> @boxes<span style="color:#f92672">.</span>combinations<span style="color:#f92672">.</span>grep(<span style="color:#ae81ff">0</span> <span style="color:#f92672">&lt;</span> <span style="color:#f92672">*.</span>elems <span style="color:#f92672">&lt;=</span> $boxcount) <span style="color:#f92672">-&gt;</span> @list
 {
-  my $key    = @list.join;
+  <span style="color:#66d9ef">my</span> $key    <span style="color:#f92672">=</span> @list<span style="color:#f92672">.</span>join;
 
-  next if %w{$key}.defined;
+  <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> %w{$key}<span style="color:#f92672">.</span>defined;
 
-  my $weight = @list.map({ %weight{$_} }).sum;
-  my $value  = @list.map({ %value{$_}  }).sum;
+  <span style="color:#66d9ef">my</span> $weight <span style="color:#f92672">=</span> @list<span style="color:#f92672">.</span>map({ %weight{$_} })<span style="color:#f92672">.</span>sum;
+  <span style="color:#66d9ef">my</span> $value  <span style="color:#f92672">=</span> @list<span style="color:#f92672">.</span>map({ %value{$_}  })<span style="color:#f92672">.</span>sum;
 
-  if $weight &lt;= $maxweight
+  <span style="color:#66d9ef">if</span> $weight <span style="color:#f92672">&lt;=</span> $maxweight
   {
-    %w{$key} = $weight;
-    %v{$key} = $value;
+    %w{$key} <span style="color:#f92672">=</span> $weight;
+    %v{$key} <span style="color:#f92672">=</span> $value;
 
-    say &quot;{ @list } -&gt; $weight kg -&gt; £ $value&quot; if $verbose;
+    say <span style="color:#e6db74">&#34;{ @list } -&gt; $weight kg -&gt; £ $value&#34;</span> <span style="color:#66d9ef">if</span> $verbose;
   }
-  elsif $verbose
+  <span style="color:#66d9ef">elsif</span> $verbose
   {
-    say &quot;{ @list } -&gt; $weight kg -&gt; £ $value (&gt; $maxweight kg; ignored)&quot;;
+    say <span style="color:#e6db74">&#34;{ @list } -&gt; $weight kg -&gt; £ $value (&gt; $maxweight kg; ignored)&#34;</span>;
   }
 }
-my $max = %v.values.max;
-</code></pre>
+<span style="color:#66d9ef">my</span> $max <span style="color:#f92672">=</span> %v<span style="color:#f92672">.</span>values<span style="color:#f92672">.</span>max;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-036/daniel-mita/perl6/ch-2.p6">Daniel Mita</a> also used the <code>combinations</code> built-in routine and made a very concise program using a data pipeline to solve the problem. Note that I originally tried to use a single data pipeline with <code>grep</code>, <code>map</code>, <code>sum</code> and <code>max</code>, but I did not succeed to get it to work properly (it tends to be more difficult that in Perl 5, because type mismatches get in the way), so I decided to change it to a <code>gather ... take</code> construct. So, I wish to congratulate Daniel for having succeeded to do it. Anyway, here it is:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> @boxes <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;</span>R B G Y P<span style="color:#f92672">&gt;.</span>map({ $_ <span style="color:#f92672">=&gt;</span> %<span style="color:#960050;background-color:#1e0010">(</span> :weight((<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">10</span>)<span style="color:#f92672">.</span>roll), :amount((<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">100</span>)<span style="color:#f92672">.</span>roll) ) });
 
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-036/daniel-mita/perl6/ch-2.p6">Daniel Mita</a> also used the <code>combinations</code> built-in routine and made a very concise program using a data pipeline to solve the problem. Note that I originally tried to use a single data pipeline with <code>grep</code>, <code>map</code>, <code>sum</code> and <code>max</code>, but I did not succeed to get it to work properly (it tends to be more difficult that in Perl 5, because type mismatches get in the way), so I decided to change it to a <code>gather ... take</code> construct. So, I wish to congratulate Daniel for having succeeded to do it. Anyway, here it is:</p>
+<span style="color:#f92672">.</span>say <span style="color:#66d9ef">for</span> <span style="color:#f92672">|</span>@boxes, <span style="color:#e6db74">&#39;&#39;</span>;
 
-<pre><code class="language-Perl6">my @boxes = &lt;R B G Y P&gt;.map({ $_ =&gt; %( :weight((1..10).roll), :amount((1..100).roll) ) });
+<span style="color:#f92672">.</span>Hash<span style="color:#f92672">.</span>keys<span style="color:#f92672">.</span>say <span style="color:#66d9ef">for</span> @boxes
+  <span style="color:#75715e"># Generate all possible combinations of boxes</span>
+  <span style="color:#f92672">.</span>combinations(<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#960050;background-color:#1e0010">∞</span>)
+  <span style="color:#75715e"># Grep the ones with valid weights</span>
+  <span style="color:#f92672">.</span>grep(<span style="color:#f92672">*.</span>map(<span style="color:#f92672">*.</span>value<span style="color:#e6db74">&lt;weight&gt;</span>)<span style="color:#f92672">.</span>sum <span style="color:#960050;background-color:#1e0010">≤</span> <span style="color:#ae81ff">15</span>)
+  <span style="color:#75715e"># Sort them by total value</span>
+  <span style="color:#f92672">.</span>sort({ $_($<span style="color:#960050;background-color:#1e0010">^</span>b) <span style="color:#e6db74">&lt;=&gt;</span> $_($<span style="color:#960050;background-color:#1e0010">^</span>a) given <span style="color:#f92672">*.</span>map(<span style="color:#f92672">*.</span>value<span style="color:#e6db74">&lt;amount&gt;</span>)<span style="color:#f92672">.</span>sum });
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-036/simon-proctor/perl6/ch-2.p6">Simon Proctor</a> created a very simple <code>box</code> class:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">class Box {
+    has Int $<span style="color:#960050;background-color:#1e0010">.</span>weight;
+    has Int $<span style="color:#960050;background-color:#1e0010">.</span>worth;
 
-.say for |@boxes, '';
-
-.Hash.keys.say for @boxes
-  # Generate all possible combinations of boxes
-  .combinations(1 .. ∞)
-  # Grep the ones with valid weights
-  .grep(*.map(*.value&lt;weight&gt;).sum ≤ 15)
-  # Sort them by total value
-  .sort({ $_($^b) &lt;=&gt; $_($^a) given *.map(*.value&lt;amount&gt;).sum });
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-036/simon-proctor/perl6/ch-2.p6">Simon Proctor</a> created a very simple <code>box</code> class:</p>
-
-<pre><code class="language-Perl6">class Box {
-    has Int $.weight;
-    has Int $.worth;
-
-    method gist { &quot;{$!weight}kg worth £{$!worth}&quot; }
+    method gist { <span style="color:#e6db74">&#34;{$!weight}kg worth £{$!worth}&#34;</span> }
 }
-</code></pre>
-
-<p>Note the definition of a <code>gist</code> method to pretty print <code>Box</code> objects: this works because the <code>say</code> routine invokes the <code>gist</code> method to format its output; therefore, if you redefine <code>gist</code> in a class, then <code>say</code> will use the redefined <code>gist</code> method on any object of that class to obtain the string representation of such objects.</p>
-
+</code></pre></div><p>Note the definition of a <code>gist</code> method to pretty print <code>Box</code> objects: this works because the <code>say</code> routine invokes the <code>gist</code> method to format its output; therefore, if you redefine <code>gist</code> in a class, then <code>say</code> will use the redefined <code>gist</code> method on any object of that class to obtain the string representation of such objects.</p>
 <p>Otherwise, I extend my congratulations to Simon, who also wrote a single data pipeline to do the bulk of the work:</p>
-
-<pre><code class="language-Perl6">my @options = @boxes.combinations().grep( *.elems &lt;= $max-boxes ).grep( { ([+] $_.map( *.weight )) &lt;= $max-weight } ).sort( { ( [+] $^b.map( *.worth ) ) cmp ( [+] $^a.map( *.worth ) ) } );
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-036/kevin-colyer/perl6/ch-2.p6">Kevin Colyer</a> also created a very simple <code>box</code> class to manage the colors, weights and values:</p>
-
-<pre><code class="language-Perl6">class box {
-    has Str $.colour;
-    has Int $.weight;
-    has Int $.amount;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> @options <span style="color:#f92672">=</span> @boxes<span style="color:#f92672">.</span>combinations()<span style="color:#f92672">.</span>grep( <span style="color:#f92672">*.</span>elems <span style="color:#f92672">&lt;=</span> $max<span style="color:#f92672">-</span>boxes )<span style="color:#f92672">.</span>grep( { ([<span style="color:#f92672">+</span>] $_<span style="color:#f92672">.</span>map( <span style="color:#f92672">*.</span>weight )) <span style="color:#f92672">&lt;=</span> $max<span style="color:#f92672">-</span>weight } )<span style="color:#f92672">.</span>sort( { ( [<span style="color:#f92672">+</span>] $<span style="color:#960050;background-color:#1e0010">^</span>b<span style="color:#f92672">.</span>map( <span style="color:#f92672">*.</span>worth ) ) <span style="color:#f92672">cmp</span> ( [<span style="color:#f92672">+</span>] $<span style="color:#960050;background-color:#1e0010">^</span>a<span style="color:#f92672">.</span>map( <span style="color:#f92672">*.</span>worth ) ) } );
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-036/kevin-colyer/perl6/ch-2.p6">Kevin Colyer</a> also created a very simple <code>box</code> class to manage the colors, weights and values:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">class box {
+    has Str $<span style="color:#960050;background-color:#1e0010">.</span>colour;
+    has Int $<span style="color:#960050;background-color:#1e0010">.</span>weight;
+    has Int $<span style="color:#960050;background-color:#1e0010">.</span>amount;
 }
-</code></pre>
+</code></pre></div><p>He then used the <code>combinations</code> built-in routine to create all possible box combinations, filtered out combinations with too many boxes or overweight combinations and finally sorted the combinations to retain the largest value:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">knapsack</span>(@combinations,@boxes,$max_weight,$max_boxes) {
+    <span style="color:#66d9ef">my</span> @cands<span style="color:#f92672">=</span> gather <span style="color:#66d9ef">for</span> @combinations <span style="color:#f92672">-&gt;</span> @c {
 
-<p>He then used the <code>combinations</code> built-in routine to create all possible box combinations, filtered out combinations with too many boxes or overweight combinations and finally sorted the combinations to retain the largest value:</p>
+        <span style="color:#75715e"># prune combinations with more than max boxes</span>
+        <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> @c<span style="color:#f92672">.</span>elems <span style="color:#f92672">&lt;=</span> $max_boxes;
 
-<pre><code class="language-Perl6">sub knapsack(@combinations,@boxes,$max_weight,$max_boxes) {
-    my @cands= gather for @combinations -&gt; @c {
+        <span style="color:#66d9ef">my</span> $w<span style="color:#f92672">=</span> @boxes[@c]<span style="color:#f92672">&gt;&gt;.</span>weight<span style="color:#f92672">.</span>sum;
 
-        # prune combinations with more than max boxes
-        next unless @c.elems &lt;= $max_boxes;
+        <span style="color:#75715e"># prune overweight combinations</span>
+        <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> $w <span style="color:#f92672">&lt;=</span> $max_weight;
 
-        my $w= @boxes[@c]&gt;&gt;.weight.sum;
-
-        # prune overweight combinations
-        next unless $w &lt;= $max_weight;
-
-        # cache for later
-        my %wv= comb =&gt; @c, w =&gt; $w, v =&gt; @boxes[@c]&gt;&gt;.amount.sum;
+        <span style="color:#75715e"># cache for later</span>
+        <span style="color:#66d9ef">my</span> %wv<span style="color:#f92672">=</span> comb <span style="color:#f92672">=&gt;</span> @c, w <span style="color:#f92672">=&gt;</span> $w, v <span style="color:#f92672">=&gt;</span> @boxes[@c]<span style="color:#f92672">&gt;&gt;.</span>amount<span style="color:#f92672">.</span>sum;
         take %wv;
     }
-    # sort in descending order - highest value first.
-    @cands.=sort({$^a&lt;v&gt; &lt;= $^b&lt;v&gt;});
+    <span style="color:#75715e"># sort in descending order - highest value first.</span>
+    @cands<span style="color:#f92672">.=</span>sort({$<span style="color:#960050;background-color:#1e0010">^</span>a<span style="color:#e6db74">&lt;v&gt;</span> <span style="color:#f92672">&lt;=</span> $<span style="color:#960050;background-color:#1e0010">^</span>b<span style="color:#e6db74">&lt;v&gt;</span>});
 
-    return @cands[0];
+    <span style="color:#66d9ef">return</span> @cands[<span style="color:#ae81ff">0</span>];
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-036/ulrich-rieke/perl6/ch-2.p6">Ulrich Rieke</a> also used the <code>combinations</code> built-in routine several times:</p>
-
-<pre><code class="language-Perl6">my @combis1 = &quot;RBGYP&quot;.comb.combinations( 4 ).Array ;
-my @combis2 = &quot;RBGYP&quot;.comb.combinations( 3 ).Array ;
-my @combis3 = &quot;RBGYP&quot;.comb.combinations( 2 ).Array ;
-for @combis1 -&gt; $sublist {
-  @results.push( computeSubsums( $sublist.join )) ;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-036/ulrich-rieke/perl6/ch-2.p6">Ulrich Rieke</a> also used the <code>combinations</code> built-in routine several times:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> @combis1 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;RBGYP&#34;</span><span style="color:#f92672">.</span>comb<span style="color:#f92672">.</span>combinations( <span style="color:#ae81ff">4</span> )<span style="color:#f92672">.</span>Array ;
+<span style="color:#66d9ef">my</span> @combis2 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;RBGYP&#34;</span><span style="color:#f92672">.</span>comb<span style="color:#f92672">.</span>combinations( <span style="color:#ae81ff">3</span> )<span style="color:#f92672">.</span>Array ;
+<span style="color:#66d9ef">my</span> @combis3 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;RBGYP&#34;</span><span style="color:#f92672">.</span>comb<span style="color:#f92672">.</span>combinations( <span style="color:#ae81ff">2</span> )<span style="color:#f92672">.</span>Array ;
+<span style="color:#66d9ef">for</span> @combis1 <span style="color:#f92672">-&gt;</span> $sublist {
+  @results<span style="color:#f92672">.</span>push( computeSubsums( $sublist<span style="color:#f92672">.</span>join )) ;
 }
-for @combis2 -&gt; $sublist {
-  @results.push( computeSubsums( $sublist.join )) ;
+<span style="color:#66d9ef">for</span> @combis2 <span style="color:#f92672">-&gt;</span> $sublist {
+  @results<span style="color:#f92672">.</span>push( computeSubsums( $sublist<span style="color:#f92672">.</span>join )) ;
 }
-for @combis3 -&gt; $sublist {
-  @results.push( computeSubsums( $sublist.join )) ;
+<span style="color:#66d9ef">for</span> @combis3 <span style="color:#f92672">-&gt;</span> $sublist {
+  @results<span style="color:#f92672">.</span>push( computeSubsums( $sublist<span style="color:#f92672">.</span>join )) ;
 }
-my @withinWeight = @results.grep( { $_[1] &lt;= 15 }) ;
-my @sorted = @withinWeight.sort( {$^b[2] &lt;=&gt; $^a[2] } ) ;
-</code></pre>
-
-<p>It seems that Ulrich did not know that you can pass a range to the <a href="https://docs.raku.org/routine/combinations">combinations</a> routine, as shown here under the REPL (some output combinations omitted for brevity):</p>
-
+<span style="color:#66d9ef">my</span> @withinWeight <span style="color:#f92672">=</span> @results<span style="color:#f92672">.</span>grep( { $_[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">15</span> }) ;
+<span style="color:#66d9ef">my</span> @sorted <span style="color:#f92672">=</span> @withinWeight<span style="color:#f92672">.</span>sort( {$<span style="color:#960050;background-color:#1e0010">^</span>b[<span style="color:#ae81ff">2</span>] <span style="color:#e6db74">&lt;=&gt;</span> $<span style="color:#960050;background-color:#1e0010">^</span>a[<span style="color:#ae81ff">2</span>] } ) ;
+</code></pre></div><p>It seems that Ulrich did not know that you can pass a range to the <a href="https://docs.raku.org/routine/combinations">combinations</a> routine, as shown here under the REPL (some output combinations omitted for brevity):</p>
 <pre><code>&gt; say &quot;RBGYP&quot;.comb.combinations: 2..4;
 ((R B) (R G) ... (G Y) (G P) (Y P) (R B G) (R B Y) ... (R G Y P) (B G Y P))
 </code></pre>
-
 <p>I believe this could have made his code shorter and simpler.</p>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-036/javier-luque/perl6/ch-2.p6">Javier Luque</a> did not use the <code>combinations</code> built-in routine and, as a result, his <code>knapsack</code> subroutine is (like my initial recursive solution) significantly longer and more complex than many other solutions:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">knapsack</span> (%boxes, Int $max_weight, Num() $max_boxes) {
+    <span style="color:#66d9ef">my</span> $total_weight <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">my</span> $total_boxes  <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">my</span> $total_amount <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">my</span> $set_of_boxes <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
 
-<pre><code class="language-perl6">sub knapsack (%boxes, Int $max_weight, Num() $max_boxes) {
-    my $total_weight = 0;
-    my $total_boxes  = 0;
-    my $total_amount = 0;
-    my $set_of_boxes = '';
+    <span style="color:#66d9ef">for</span> %boxes<span style="color:#f92672">.</span>keys<span style="color:#f92672">.</span>sort(<span style="color:#f92672">&amp;</span>sort<span style="color:#f92672">-</span>value<span style="color:#f92672">-</span>weight) <span style="color:#f92672">-&gt;</span> $key {
+        <span style="color:#66d9ef">my</span> $box <span style="color:#f92672">=</span> %boxes<span style="color:#f92672">.</span>{$key};
 
-    for %boxes.keys.sort(&amp;sort-value-weight) -&gt; $key {
-        my $box = %boxes.{$key};
-
-        # While there is space or weight left
-        while (1) {
-            # Check for space or weight
-            last unless
-                $total_weight + $box.{'weight'} &lt;=
+        <span style="color:#75715e"># While there is space or weight left</span>
+        <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
+            <span style="color:#75715e"># Check for space or weight</span>
+            <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">unless</span>
+                $total_weight <span style="color:#f92672">+</span> $box<span style="color:#f92672">.</span>{<span style="color:#e6db74">&#39;weight&#39;</span>} <span style="color:#f92672">&lt;=</span>
                 $max_weight;
 
-            last unless
-                !$max_boxes ||
-                ($max_boxes &amp;&amp; $total_boxes + 1 &lt;=
+            <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">unless</span>
+                <span style="color:#f92672">!</span>$max_boxes <span style="color:#f92672">||</span>
+                ($max_boxes <span style="color:#f92672">&amp;&amp;</span> $total_boxes <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;=</span>
                  $max_boxes);
 
-            $total_boxes++;
-            $set_of_boxes ~= $key;
-            $total_weight += $box.{'weight'};
-            $total_amount += $box.{'amount'};
+            $total_boxes<span style="color:#f92672">++</span>;
+            $set_of_boxes <span style="color:#f92672">~=</span> $key;
+            $total_weight <span style="color:#f92672">+=</span> $box<span style="color:#f92672">.</span>{<span style="color:#e6db74">&#39;weight&#39;</span>};
+            $total_amount <span style="color:#f92672">+=</span> $box<span style="color:#f92672">.</span>{<span style="color:#e6db74">&#39;amount&#39;</span>};
         }
     }
 
-    say 'Max weight: ' ~ $max_weight ~
-        ', max boxes: ' ~ $max_boxes ~
-        '. Boxes in knapsack: ' ~
-        $set_of_boxes ~
-        ' ' ~ $total_weight ~ 'kg ' ~
-        '£' ~ $total_amount;
+    say <span style="color:#e6db74">&#39;Max weight: &#39;</span> <span style="color:#f92672">~</span> $max_weight <span style="color:#f92672">~</span>
+        <span style="color:#e6db74">&#39;, max boxes: &#39;</span> <span style="color:#f92672">~</span> $max_boxes <span style="color:#f92672">~</span>
+        <span style="color:#e6db74">&#39;. Boxes in knapsack: &#39;</span> <span style="color:#f92672">~</span>
+        $set_of_boxes <span style="color:#f92672">~</span>
+        <span style="color:#e6db74">&#39; &#39;</span> <span style="color:#f92672">~</span> $total_weight <span style="color:#f92672">~</span> <span style="color:#e6db74">&#39;kg &#39;</span> <span style="color:#f92672">~</span>
+        <span style="color:#e6db74">&#39;£&#39;</span> <span style="color:#f92672">~</span> $total_amount;
 }
-</code></pre>
-
-<p>Also, Javier uses a 22-code-line subroutine (not shown here) for the purpose of sorting the boxes by values and then by weight, where as it can be done in just one statement, as shown in this example under the Raku REPL implementing a descending order sort by value and then by weight:</p>
-
+</code></pre></div><p>Also, Javier uses a 22-code-line subroutine (not shown here) for the purpose of sorting the boxes by values and then by weight, where as it can be done in just one statement, as shown in this example under the Raku REPL implementing a descending order sort by value and then by weight:</p>
 <pre><code>&gt; my %boxes = (
 *     R =&gt; { weight =&gt; 1,  amount =&gt; 1  },
 *     B =&gt; { weight =&gt; 1,  amount =&gt; 2  },
@@ -799,86 +680,63 @@ my @sorted = @withinWeight.sort( {$^b[2] &lt;=&gt; $^a[2] } ) ;
 &gt; my @sorted-keys = %boxes.keys.sort({%boxes{$^b}&lt;amount&gt; &lt;=&gt; %boxes{$^a}&lt;amount&gt; || %boxes{$^b}&lt;weight&gt; &lt;=&gt; %boxes{$^a}&lt;weight&gt;});
 [P Y G B R]
 </code></pre>
-
 <p>And, by the way, I&rsquo;m not entirely convinced it is really useful to sort the boxes in such a way.</p>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-036/roger-bell-west/perl6/ch-2.p6">Roger Bell West</a> also did not use the <code>combinations</code> built-in routine and his solution is also quite long. This is the part of his code doing the bulk of the work:</p>
-
-<pre><code class="language-Perl6">for (1..2**(@k.elems)-1) -&gt; $map {
-  my $b=0;
-  my $v=0;
-  my $w=0;
-  for (0..@k.end) -&gt; $ci {
-    if ($map +&amp; @v[$ci]) {
-      $v += %box{@k[$ci]}{'v'};
-      $w += %box{@k[$ci]}{'w'};
-      $b++;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">2</span><span style="color:#f92672">**</span>(@k<span style="color:#f92672">.</span>elems)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">-&gt;</span> $map {
+  <span style="color:#66d9ef">my</span> $b<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+  <span style="color:#66d9ef">my</span> $v<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+  <span style="color:#66d9ef">my</span> $w<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+  <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>@k<span style="color:#f92672">.</span>end) <span style="color:#f92672">-&gt;</span> $ci {
+    <span style="color:#66d9ef">if</span> ($map <span style="color:#f92672">+&amp;</span> @v[$ci]) {
+      $v <span style="color:#f92672">+=</span> %box{@k[$ci]}{<span style="color:#e6db74">&#39;v&#39;</span>};
+      $w <span style="color:#f92672">+=</span> %box{@k[$ci]}{<span style="color:#e6db74">&#39;w&#39;</span>};
+      $b<span style="color:#f92672">++</span>;
     }
-    if ($b&gt;$maxb || $w&gt;$maxw) {
-      $v=-1;
-      last;
-    }
-  }
-  if ($v&gt;0) {
-    if ($v&gt;$bestv || ($v==$bestv &amp;&amp; $w&gt;$maxw)) {
-      $bestv=$v;
-      $bestw=$w;
-      $bestid=$map;
+    <span style="color:#66d9ef">if</span> ($b<span style="color:#f92672">&gt;</span>$maxb <span style="color:#f92672">||</span> $w<span style="color:#f92672">&gt;</span>$maxw) {
+      $v<span style="color:#f92672">=-</span><span style="color:#ae81ff">1</span>;
+      <span style="color:#66d9ef">last</span>;
     }
   }
-}
-
-for (0..@k.end) -&gt; $ci {
-  if ($bestid +&amp; @v[$ci]) {
-    print @k[$ci],&quot;\n&quot;;
+  <span style="color:#66d9ef">if</span> ($v<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span>) {
+    <span style="color:#66d9ef">if</span> ($v<span style="color:#f92672">&gt;</span>$bestv <span style="color:#f92672">||</span> ($v<span style="color:#f92672">==</span>$bestv <span style="color:#f92672">&amp;&amp;</span> $w<span style="color:#f92672">&gt;</span>$maxw)) {
+      $bestv<span style="color:#f92672">=</span>$v;
+      $bestw<span style="color:#f92672">=</span>$w;
+      $bestid<span style="color:#f92672">=</span>$map;
+    }
   }
 }
-</code></pre>
 
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-036/ruben-westerberg/perl6/ch-2.p6">Ruben Westerberg</a> also did not use the <code>combinations</code> routine, but he nonetheless succeeded to keep his code relatively small. I can see several interesting ideas in his code. First, he uses hash slices to populate his data structure:</p>
-
-<pre><code class="language-Perl6">my %boxes;
-%boxes{&lt;R B G Y P&gt;}=({c=&gt;1,w=&gt;1,},{c=&gt;2, w=&gt;1},{c=&gt;2,w=&gt;2},{c=&gt;4,w=&gt;12},{c=&gt;10,w=&gt;4});
-</code></pre>
-
-<p>Then, his program sorts the data by the value/weight ratio:</p>
-
-<pre><code class="language-Perl6">.value&lt;r&gt;=.value&lt;c&gt;/.value&lt;w&gt; for %boxes;
-my @b= %boxes.keys.sort( -&gt;$a,$b { %boxes{$b}&lt;r&gt; &lt;=&gt; %boxes{$a}&lt;r&gt;});
-</code></pre>
-
-<p>It&rsquo;s a clever idea in terms of possible optimization, but, again, I&rsquo;m not entirely sure that sorting the data in this way is really useful here if you want to test all possible combinations (it&rsquo;s a bit late on Sunday evening, and I don&rsquo;t have time to really test because I want to submit this review in time for Mohammad to be able to announce it tonight ot tomorrow morning).</p>
-
+<span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>@k<span style="color:#f92672">.</span>end) <span style="color:#f92672">-&gt;</span> $ci {
+  <span style="color:#66d9ef">if</span> ($bestid <span style="color:#f92672">+&amp;</span> @v[$ci]) {
+    <span style="color:#66d9ef">print</span> @k[$ci],<span style="color:#e6db74">&#34;\n&#34;</span>;
+  }
+}
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-036/ruben-westerberg/perl6/ch-2.p6">Ruben Westerberg</a> also did not use the <code>combinations</code> routine, but he nonetheless succeeded to keep his code relatively small. I can see several interesting ideas in his code. First, he uses hash slices to populate his data structure:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> %boxes;
+%boxes{<span style="color:#f92672">&lt;</span>R B G Y P<span style="color:#f92672">&gt;</span>}<span style="color:#f92672">=</span>({c<span style="color:#f92672">=&gt;</span><span style="color:#ae81ff">1</span>,w<span style="color:#f92672">=&gt;</span><span style="color:#ae81ff">1</span>,},{c<span style="color:#f92672">=&gt;</span><span style="color:#ae81ff">2</span>, w<span style="color:#f92672">=&gt;</span><span style="color:#ae81ff">1</span>},{c<span style="color:#f92672">=&gt;</span><span style="color:#ae81ff">2</span>,w<span style="color:#f92672">=&gt;</span><span style="color:#ae81ff">2</span>},{c<span style="color:#f92672">=&gt;</span><span style="color:#ae81ff">4</span>,w<span style="color:#f92672">=&gt;</span><span style="color:#ae81ff">12</span>},{c<span style="color:#f92672">=&gt;</span><span style="color:#ae81ff">10</span>,w<span style="color:#f92672">=&gt;</span><span style="color:#ae81ff">4</span>});
+</code></pre></div><p>Then, his program sorts the data by the value/weight ratio:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#f92672">.</span>value<span style="color:#e6db74">&lt;r&gt;</span><span style="color:#f92672">=.</span>value<span style="color:#e6db74">&lt;c&gt;</span><span style="color:#f92672">/.</span>value<span style="color:#e6db74">&lt;w&gt;</span> <span style="color:#66d9ef">for</span> %boxes;
+<span style="color:#66d9ef">my</span> @b<span style="color:#f92672">=</span> %boxes<span style="color:#f92672">.</span>keys<span style="color:#f92672">.</span>sort( <span style="color:#f92672">-&gt;</span>$a,$b { %boxes{$b}<span style="color:#e6db74">&lt;r&gt;</span> <span style="color:#e6db74">&lt;=&gt;</span> %boxes{$a}<span style="color:#e6db74">&lt;r&gt;</span>});
+</code></pre></div><p>It&rsquo;s a clever idea in terms of possible optimization, but, again, I&rsquo;m not entirely sure that sorting the data in this way is really useful here if you want to test all possible combinations (it&rsquo;s a bit late on Sunday evening, and I don&rsquo;t have time to really test because I want to submit this review in time for Mohammad to be able to announce it tonight ot tomorrow morning).</p>
 <p>Otherwise, his loop to find the best knapsack is quite concise:</p>
-
-<pre><code class="language-Perl6">while (@b) {
-    state $rem=$limit;
-    my $tmp=$rem - %boxes{@b[0]}&lt;w&gt;;
-    if $tmp &lt; 0 {
-        @b.shift;
-        next;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">while</span> (@b) {
+    state $rem<span style="color:#f92672">=</span>$limit;
+    <span style="color:#66d9ef">my</span> $tmp<span style="color:#f92672">=</span>$rem <span style="color:#f92672">-</span> %boxes{@b[<span style="color:#ae81ff">0</span>]}<span style="color:#e6db74">&lt;w&gt;</span>;
+    <span style="color:#66d9ef">if</span> $tmp <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> {
+        @b<span style="color:#f92672">.</span>shift;
+        <span style="color:#66d9ef">next</span>;
     }
-    @selected.push: @b[0];
-    $rem=$tmp;
+    @selected<span style="color:#f92672">.</span>push: @b[<span style="color:#ae81ff">0</span>];
+    $rem<span style="color:#f92672">=</span>$tmp;
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h3 id="see-also">SEE ALSO</h3>
-
 <p>Three blog posts (besides mine) this time:</p>
-
-<p>Arne Sommer: <a href="https://raku-musings.com/vin-knapsack.html">https://raku-musings.com/vin-knapsack.html</a>;</p>
-
-<p>Kevin Colyer wrote his first blog on the Perl Weekly Challenge: <a href="https://raku-musings.com/vin-knapsack.html">https://raku-musings.com/vin-knapsack.html</a>;</p>
-
+<p>Arne Sommer: <a href="https://raku-musings.com/vin-knapsack.html;">https://raku-musings.com/vin-knapsack.html;</a></p>
+<p>Kevin Colyer wrote his first blog on the Perl Weekly Challenge: <a href="https://raku-musings.com/vin-knapsack.html;">https://raku-musings.com/vin-knapsack.html;</a></p>
 <p>Javier Luque: <a href="https://perlchallenges.wordpress.com/2019/11/25/perl-weekly-challenge-036/">https://perlchallenges.wordpress.com/2019/11/25/perl-weekly-challenge-036/</a>.</p>
-
 <h2 id="wrapping-up">Wrapping up</h2>
-
 <p>Please let me know if I forgot any of the challengers or if you think my explanation of your code misses something important (send me an e-mail or just raise an issue against this GitHub page).</p>
-
 <p>If you want to participate to the Perl Weekly Challenge, please connect to <a href="https://perlweeklychallenge.org/">this site</a>.</p>
 
                 </div>

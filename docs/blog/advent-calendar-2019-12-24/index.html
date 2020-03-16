@@ -16,7 +16,7 @@
 
     <meta name="description" content="Advent Calendar - December 24, 2019">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.55.0-DEV" />
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -41,6 +41,8 @@
     <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
     <!-- hover -->
     <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
     <!-- template main css file -->
     
     <link rel="stylesheet" href="https://perlweeklychallenge.org/css/style.min.css" integrity="" media="screen">
@@ -149,47 +151,28 @@
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
-                    
-
-<p><a href="/blog/advent-calendar-2019"><strong>Advent Calendar 2019</strong></a></p>
-
-<hr />
-
-<p>The gift is presented by <strong>Jo Christian Oterhals</strong>. Today he is talking about his solutions to <strong>Task #1: Niven Numbers</strong> of <a href="/blog/perl-weekly-challenge-007"><strong>&ldquo;The Weekly Challenge - 007&rdquo;</strong></a>.</p>
-
+                    <p><a href="/blog/advent-calendar-2019"><strong>Advent Calendar 2019</strong></a></p>
+<hr>
+<p>The gift is presented by <strong>Jo Christian Oterhals**. Today he is talking about his solutions to <strong>Task #1: Niven Numbers** of </strong>&ldquo;The Weekly Challenge - 007&rdquo;</strong><a href="/blog/perl-weekly-challenge-007"></a>.</p>
 <h4 id="print-all-the-niven-numbers-from-0-to-50-inclusive-each-on-their-own-line-a-niven-number-is-a-non-negative-number-that-is-divisible-by-the-sum-of-its-digits">Print all the niven numbers from 0 to 50 inclusive, each on their own line. A niven number is a non-negative number that is divisible by the sum of its digits.</h4>
-
-<hr />
-
+<hr>
 <p>After a week’s hiatus I’ve returned to the <strong>Perl Weekly Challenge</strong>. This is the <strong>seventh challenge</strong> so far. As before there are <strong>two excercises</strong>. The first one is to calculate all <strong>Niven Numbers</strong> between <strong>0</strong> and <strong>50</strong>. Niven numbers are integers that are divisible by the sum of its digits. I.e. 47 is a niven number if 47 / (4 + 7) is an integer without remainder (it’s not, as the result is 4.2727; 48 is, as 48/(4+8) is 4).</p>
-
 <p>These kinds of operations are called <strong>modulo operations</strong> or <strong>mods</strong>. Most programming languages use the operator <strong>%</strong> for this, so that you can check for this by testing whether 47 % (4 + 7) == 0. But <strong>Raku</strong> has an additional operator, a shorthand for the former, and is written as 47 %% (4 + 7). <strong>%%</strong> returns True or False and lets you ignore the == 0 part.</p>
-
 <p>To find the individual digits of a number we use the <strong>.comb method</strong>. That returns a list with the individual digits (I’ve used <strong>.comb</strong> on earlier challenges as well, but then to divide strings into their individual characters). On the <strong>combed list</strong> we use something called a <strong>reduction operator</strong>, specifically <strong>[+]</strong>. What this does is that it loops through the list and adds all of the numbers within. Where you once would have written something like</p>
-
 <pre><code>my $result = 0;
 $result += $_ for 1, 2, 3, 4, 5;
 say $result;
 </code></pre>
-
 <p>you can now do the same with a simple</p>
-
 <pre><code>say [+] 1, 2, 3, 4, 5 .
 </code></pre>
-
 <p>There are lots of these reduction operators. They save time, so look into them.</p>
-
 <p>Knowing these two things it becomes apparaent that calculating Niven numbers with <strong>Raku</strong> can be done with a simple and reasonably readable one-liner.</p>
-
 <pre><code>.say if $_ %% [+] .comb for 0..50;
 </code></pre>
-
 <p>That’s it.</p>
-
-<hr />
-
+<hr>
 <p>If you have any suggestion then please do share with us <a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a>.</p>
-
 <p><a href="/blog/advent-calendar-2019"><strong>Advent Calendar 2019</strong></a></p>
 
                 </div>

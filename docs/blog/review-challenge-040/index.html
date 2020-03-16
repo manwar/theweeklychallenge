@@ -16,7 +16,7 @@
 
     <meta name="description" content="Perl Weekly Review: Challenge - #040.">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.55.0-DEV" />
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -41,6 +41,8 @@
     <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
     <!-- hover -->
     <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
     <!-- template main css file -->
     
     <link rel="stylesheet" href="https://perlweeklychallenge.org/css/style.min.css" integrity="" media="screen">
@@ -149,44 +151,24 @@
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
-                    
-
-<hr />
-
-<hr />
-
+                    <hr>
+<hr>
 <p>Continues from <a href="/blog/review-challenge-039/"><strong>previous week</strong></a>.</p>
-
 <p>Feel free to <a href="https://github.com/manwar/perlweeklychallenge"><strong>submit a merge request or open a ticket</strong></a> if you found any issues with this post. We highly appreciate and welcome your feedback.</p>
-
 <p>For a quick overview, go through the <a href="/blog/perl-weekly-challenge-040/"><strong>original tasks</strong></a> and <a href="/blog/recap-challenge-040/"><strong>recap</strong></a> of the weekly challenge.</p>
-
 <p>Additional feedback to our Perl Weekly Challenge’s <a href="https://twitter.com/perlwchallenge?lang=en"><strong>Twitter account</strong></a> is much appreciated.</p>
-
-<hr />
-
-<hr />
-
+<hr>
+<hr>
 <h2 id="task-1">Task #1</h2>
-
-<hr />
-
-<hr />
-
+<hr>
+<hr>
 <h3 id="show-multiple-arrays-content">Show multiple arrays content</h3>
-
 <p>You are given <strong>two</strong> or more arrays. Write a script to display values of each list at a given index.</p>
-
 <p>For example:</p>
-
-<h4 id="array-1-i-l-o-v-e-y-o-u">Array 1: [ I L O V E Y O U ]</h4>
-
-<h4 id="array-2-2-4-0-3-2-0-1-9">Array 2: [ 2 4 0 3 2 0 1 9 ]</h4>
-
-<h4 id="array-3">Array 3: [ ! ? £ $ % ^ &amp; * ]</h4>
-
+<h4 id="array-1--i-l-o-v-e-y-o-u-">Array 1: [ I L O V E Y O U ]</h4>
+<h4 id="array-2--2-4-0-3-2-0-1-9-">Array 2: [ 2 4 0 3 2 0 1 9 ]</h4>
+<h4 id="array-3----------">Array 3: [ ! ? £ $ % ^ &amp; * ]</h4>
 <p>We expect the following output:</p>
-
 <pre><code>I 2 !
 L 4 ?
 O 0 £
@@ -196,438 +178,362 @@ Y 0 ^
 O 1 &amp;
 U 9 *
 </code></pre>
-
-<hr />
-
+<hr>
 <h2 id="adam-russell">Adam Russell</h2>
-
 <p><strong>Adam</strong> reminded me about <strong>Readonly</strong>. I was first introduced to <strong>Readonly</strong> by <strong>Damian Conway</strong> book titled &ldquo;Perl Best Practices&rdquo;. The magical line is where he finds the <em>$max_index</em>. Just love it.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> Readonly;
+Readonly::Array <span style="color:#66d9ef">my</span> @A <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">qw/I L O V E Y O U/</span>;
+Readonly::Array <span style="color:#66d9ef">my</span> @B <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">qw/2 4 0 3 2 0 1 9/</span>;
+Readonly::Array <span style="color:#66d9ef">my</span> @C <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">qw/! ? £ $ % ^ &amp; */</span>;
 
-<pre><code class="language-perl">use Readonly;
-Readonly::Array my @A =&gt; qw/I L O V E Y O U/;
-Readonly::Array my @B =&gt; qw/2 4 0 3 2 0 1 9/;
-Readonly::Array my @C =&gt; qw/! ? £ $ % ^ &amp; */;
-
-sub display{
-    my($arrays) = @_;
-    my $max_index = (sort {$a &lt;=&gt; $b} map {scalar @{$_}} @{$arrays})[-1] - 1;
-    for my $x (0 .. $max_index){
-        for my $a (@{$arrays}){
-            print $a-&gt;[$x] // &quot;&quot;;
-            print &quot;\t&quot;;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">display</span>{
+    <span style="color:#66d9ef">my</span>($arrays) <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">my</span> $max_index <span style="color:#f92672">=</span> (sort {$a <span style="color:#e6db74">&lt;=&gt;</span> $b} map {scalar @{$_}} @{$arrays})[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $x (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $max_index){
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $a (@{$arrays}){
+            <span style="color:#66d9ef">print</span> $a<span style="color:#f92672">-&gt;</span>[$x] <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#34;&#34;</span>;
+            <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\t&#34;</span>;
         }
-        print &quot;\n&quot;;
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
     }
 }
 
 MAIN:{
-    display([\@A, \@B, \@C]);
+    display([<span style="color:#f92672">\</span>@A, <span style="color:#f92672">\</span>@B, <span style="color:#f92672">\</span>@C]);
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="andrezgz">Andrezgz</h2>
-
 <p><strong>Andrezgz</strong> making use of <strong>postderef</strong> is really tricky. I hardly use it but find it cool. The magic line is:</p>
+<h4 id="max--_--if-_---max">$max = $_-&gt;@* if ($_-&gt;@* &gt; $max)</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.20</span>;
+<span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">qw(postderef)</span>;
+<span style="color:#66d9ef">no</span> warnings <span style="color:#e6db74">qw(experimental::postderef)</span>;
 
-<h4 id="max-if-max">$max = $<em>-&gt;@* if ($</em>-&gt;@* &gt; $max)</h4>
-
-<pre><code class="language-perl">use v5.20;
-use feature qw(postderef);
-no warnings qw(experimental::postderef);
-
-my @arrays = (
-    [qw/ I L O V E Y O U /],
-    [qw/ 2 4 0 3 2 0 1 9 /],
-    [qw/ ! ? £ $ % ^ &amp; * /]
+<span style="color:#66d9ef">my</span> @arrays <span style="color:#f92672">=</span> (
+    [<span style="color:#e6db74">qw/ I L O V E Y O U /</span>],
+    [<span style="color:#e6db74">qw/ 2 4 0 3 2 0 1 9 /</span>],
+    [<span style="color:#e6db74">qw/ ! ? £ $ % ^ &amp; * /</span>]
 );
 
-my $max=0;
-for (@arrays) {
-    $max = $_-&gt;@* if ($_-&gt;@* &gt; $max);
+<span style="color:#66d9ef">my</span> $max<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+<span style="color:#66d9ef">for</span> (@arrays) {
+    $max <span style="color:#f92672">=</span> $_<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> if ($_<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">&gt;</span> <span style="color:#960050;background-color:#1e0010">$</span>max);
 }
 
-for my $i (0.. $max - 1) {
-    print $_-&gt;[$i].' ' for @arrays;
-    print $/;
+<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span> $max <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) {
+    <span style="color:#66d9ef">print</span> $_<span style="color:#f92672">-&gt;</span>[$i]<span style="color:#f92672">.</span><span style="color:#e6db74">&#39; &#39;</span> <span style="color:#66d9ef">for</span> @arrays;
+    <span style="color:#66d9ef">print</span> $/;
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="anton-fedotov">Anton Fedotov</h2>
-
 <p><strong>Anton</strong> came back after a short break. <strong>Welcome back</strong>, we missed you. I noticed the method call with <strong>&amp;</strong>. I rarely see this notation now a days.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.10</span>;
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
 
-<pre><code class="language-perl">use v5.10;
-use strict;
-use warnings;
+<span style="color:#66d9ef">my</span> @arr1 <span style="color:#f92672">=</span> <span style="color:#e6db74">qw( I L O V E Y O U )</span>;
+<span style="color:#66d9ef">my</span> @arr2 <span style="color:#f92672">=</span> <span style="color:#e6db74">qw( T Z U Y U F R O M)</span>;
+<span style="color:#66d9ef">my</span> @arr3 <span style="color:#f92672">=</span> <span style="color:#e6db74">qw( T W I C E )</span>;
+<span style="color:#66d9ef">my</span> @arr4 <span style="color:#f92672">=</span> <span style="color:#e6db74">qw( ! ? £ $ % ^ &amp; * )</span>;
 
-my @arr1 = qw( I L O V E Y O U );
-my @arr2 = qw( T Z U Y U F R O M);
-my @arr3 = qw( T W I C E );
-my @arr4 = qw( ! ? £ $ % ^ &amp; * );
+<span style="color:#f92672">&amp;</span>print_arrays(<span style="color:#f92672">\</span>@arr1, <span style="color:#f92672">\</span>@arr2, <span style="color:#f92672">\</span>@arr3, <span style="color:#f92672">\</span>@arr4);
 
-&amp;print_arrays(\@arr1, \@arr2, \@arr3, \@arr4);
-
-sub print_arrays {
-    my $max_size = 0;
-    for (@_) {
-        my $size = scalar @$_;
-        $max_size = $size if $size &gt; $max_size;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">print_arrays</span> {
+    <span style="color:#66d9ef">my</span> $max_size <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">for</span> (@_) {
+        <span style="color:#66d9ef">my</span> $size <span style="color:#f92672">=</span> scalar @$_;
+        $max_size <span style="color:#f92672">=</span> $size <span style="color:#66d9ef">if</span> $size <span style="color:#f92672">&gt;</span> $max_size;
     }
 
-    for my $i (0 .. $max_size) {
-        for (@_) {
-            if ($_-&gt;[$i]) { print $_-&gt;[$i] . ' ' }
-            else { print '  ' };
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $max_size) {
+        <span style="color:#66d9ef">for</span> (@_) {
+            <span style="color:#66d9ef">if</span> ($_<span style="color:#f92672">-&gt;</span>[$i]) { <span style="color:#66d9ef">print</span> $_<span style="color:#f92672">-&gt;</span>[$i] <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39; &#39;</span> }
+            <span style="color:#66d9ef">else</span> { <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39;  &#39;</span> };
         }
-        print &quot;\n&quot;;
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
     }
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="burkhard-nickels">Burkhard Nickels</h2>
-
 <p><strong>Burkhard</strong> didn&rsquo;t try to be clever and kept it simple. <strong>Nice</strong> and <strong>Easy</strong>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @a1 <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#39;I&#39;</span>,<span style="color:#e6db74">&#39;L&#39;</span>,<span style="color:#e6db74">&#39;O&#39;</span>,<span style="color:#e6db74">&#39;V&#39;</span>,<span style="color:#e6db74">&#39;E&#39;</span>,<span style="color:#e6db74">&#39;Y&#39;</span>,<span style="color:#e6db74">&#39;O&#39;</span>,<span style="color:#e6db74">&#39;U&#39;</span>);
+<span style="color:#66d9ef">my</span> @a2 <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#39;2&#39;</span>,<span style="color:#e6db74">&#39;4&#39;</span>,<span style="color:#e6db74">&#39;0&#39;</span>,<span style="color:#e6db74">&#39;3&#39;</span>,<span style="color:#e6db74">&#39;2&#39;</span>,<span style="color:#e6db74">&#39;0&#39;</span>,<span style="color:#e6db74">&#39;1&#39;</span>,<span style="color:#e6db74">&#39;9&#39;</span>);
+<span style="color:#66d9ef">my</span> @a3 <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#39;!&#39;</span>,<span style="color:#e6db74">&#39;?&#39;</span>,<span style="color:#e6db74">&#39;£&#39;</span>,<span style="color:#e6db74">&#39;$&#39;</span>,<span style="color:#e6db74">&#39;%&#39;</span>,<span style="color:#e6db74">&#39;^&#39;</span>,<span style="color:#e6db74">&#39;&amp;&#39;</span>,<span style="color:#e6db74">&#39;*&#39;</span>);
 
-<pre><code class="language-perl">my @a1 = ('I','L','O','V','E','Y','O','U');
-my @a2 = ('2','4','0','3','2','0','1','9');
-my @a3 = ('!','?','£','$','%','^','&amp;','*');
+<span style="color:#75715e"># Pound Sign: &lt;AltGr&gt;&lt;Shift&gt;&lt;3&gt; on Debian with german keyboard</span>
 
-# Pound Sign: &lt;AltGr&gt;&lt;Shift&gt;&lt;3&gt; on Debian with german keyboard
-
-for( my $i=0; $i&lt;=$#a1; $i++ ) {
-    print &quot;$a1[$i] $a2[$i] $a3[$i]\n&quot;;
+<span style="color:#66d9ef">for</span>( <span style="color:#66d9ef">my</span> $i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; $i<span style="color:#f92672">&lt;=</span>$#a1; $i<span style="color:#f92672">++</span> ) {
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$a1[$i] $a2[$i] $a3[$i]\n&#34;</span>;
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="colin-crain">Colin Crain</h2>
-
 <p><strong>Colin</strong> solution gives importance to presentation as well as the task itself. I appreciate the extra care. Great work.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">&#34;:5.26&#34;</span>;
 
-<pre><code class="language-perl">use strict;
-use feature &quot;:5.26&quot;;
+<span style="color:#66d9ef">use</span> Data::Dumper;
+<span style="color:#75715e">## ## ## ## ## MAIN</span>
 
-use Data::Dumper;
-## ## ## ## ## MAIN
+<span style="color:#75715e">## the given data:</span>
+<span style="color:#66d9ef">my</span> $a <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;I&#34;</span>, <span style="color:#e6db74">&#34;L&#34;</span>, <span style="color:#e6db74">&#34;O&#34;</span>, <span style="color:#e6db74">&#34;V&#34;</span>, <span style="color:#e6db74">&#34;E&#34;</span>, <span style="color:#e6db74">&#34;Y&#34;</span>, <span style="color:#e6db74">&#34;O&#34;</span>, <span style="color:#e6db74">&#34;U&#34;</span>];
+<span style="color:#66d9ef">my</span> $b <span style="color:#f92672">=</span> [ <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">9</span> ];
+<span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;!&#39;</span>, <span style="color:#e6db74">&#39;?&#39;</span>, <span style="color:#e6db74">&#39;£&#39;</span>, <span style="color:#e6db74">&#39;$&#39;</span>, <span style="color:#e6db74">&#39;%&#39;</span>, <span style="color:#e6db74">&#39;^&#39;</span>, <span style="color:#e6db74">&#39;&amp;&#39;</span>, <span style="color:#e6db74">&#39;*&#39;</span>];
 
-## the given data:
-my $a = [&quot;I&quot;, &quot;L&quot;, &quot;O&quot;, &quot;V&quot;, &quot;E&quot;, &quot;Y&quot;, &quot;O&quot;, &quot;U&quot;];
-my $b = [ 2, 4, 0, 3, 2, 0, 1, 9 ];
-my $c = ['!', '?', '£', '$', '%', '^', '&amp;', '*'];
+<span style="color:#75715e">## add an element to @a to show truncation</span>
+push $a<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, <span style="color:#e6db74">&#39;X&#39;</span>;
 
-## add an element to @a to show truncation
-push $a-&gt;@*, 'X';
+<span style="color:#66d9ef">my</span> $zipped <span style="color:#f92672">=</span> zip( $a, $b, $c );
 
-my $zipped = zip( $a, $b, $c );
+<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $list ( $zipped<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> ) {
+    say join <span style="color:#e6db74">&#39; &#39;</span>, $list<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+<span style="color:#960050;background-color:#1e0010">}</span>
 
-for my $list ( $zipped-&gt;@* ) {
-    say join ' ', $list-&gt;@*;
-}
+say <span style="color:#e6db74">&#39;=&#39;</span> x <span style="color:#ae81ff">25</span>;
 
-say '=' x 25;
+<span style="color:#75715e">## add more elements to @a to show the new behavior</span>
+push $a<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, (<span style="color:#e6db74">&#39;X&#39;</span>) x <span style="color:#ae81ff">2</span>, (<span style="color:#e6db74">&#39;O&#39;</span>) x <span style="color:#ae81ff">3</span>;
 
-## add more elements to @a to show the new behavior
-push $a-&gt;@*, ('X') x 2, ('O') x 3;
+<span style="color:#66d9ef">my</span> $zipped_undef <span style="color:#f92672">=</span> zip_undef( $a, $b, $c );
 
-my $zipped_undef = zip_undef( $a, $b, $c );
+<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $list ( $zipped_undef<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> ) {
+    say join <span style="color:#e6db74">&#39; &#39;</span>, $list<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+<span style="color:#960050;background-color:#1e0010">}</span>
 
-for my $list ( $zipped_undef-&gt;@* ) {
-    say join ' ', $list-&gt;@*;
-}
+<span style="color:#960050;background-color:#1e0010">##</span> <span style="color:#960050;background-color:#1e0010">##</span> <span style="color:#960050;background-color:#1e0010">##</span> <span style="color:#960050;background-color:#1e0010">##</span> <span style="color:#960050;background-color:#1e0010">##</span> SUBS
 
-## ## ## ## ## SUBS
-
-sub zip {
-## interleaves into a list of lists, with an index for every element in the shortest input list
-## longer lists will be truncated and the data unused
-    my @output;
-    my $shortest = (sort {$b &lt;=&gt; $a} map {scalar($_-&gt;@*)} @_)[0];
-    for my $list ( @_ ){
-        for my $idx (0..$shortest-1) {
-            push $output[$idx]-&gt;@*, $list-&gt;[$idx];
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">zip</span> {
+<span style="color:#75715e">## interleaves into a list of lists, with an index for every element in the shortest input list</span>
+<span style="color:#75715e">## longer lists will be truncated and the data unused</span>
+    <span style="color:#66d9ef">my</span> @output;
+    <span style="color:#66d9ef">my</span> $shortest <span style="color:#f92672">=</span> (sort {$b <span style="color:#e6db74">&lt;=&gt;</span> $a} map {scalar($_<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>)} @_)[<span style="color:#ae81ff">0</span>];
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $list ( @_ ){
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $idx (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$shortest<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
+            push $output[$idx]<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, $list<span style="color:#f92672">-&gt;</span>[$idx];
         }
     }
-    return \@output;
+    <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@output;
 }
 
-sub zip_undef {
-## interleaves into a list of lists, with an index for every element in the longest input list
-## shorter lists will be null padded with undefs to fit
-    my @output;
-    my $longest = ( sort {$a &lt;=&gt; $b} map {scalar($_-&gt;@*)} @_)[0];
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">zip_undef</span> {
+<span style="color:#75715e">## interleaves into a list of lists, with an index for every element in the longest input list</span>
+<span style="color:#75715e">## shorter lists will be null padded with undefs to fit</span>
+    <span style="color:#66d9ef">my</span> @output;
+    <span style="color:#66d9ef">my</span> $longest <span style="color:#f92672">=</span> ( sort {$a <span style="color:#e6db74">&lt;=&gt;</span> $b} map {scalar($_<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>)} @_)[<span style="color:#ae81ff">0</span>];
 
-    for my $list ( @_ ){
-        for my $idx (0..$longest-1) {
-            push $output[$idx]-&gt;@*, $list-&gt;[$idx];   ## this will autovivate undef elements as required
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $list ( @_ ){
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $idx (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$longest<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
+            push $output[$idx]<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, $list<span style="color:#f92672">-&gt;</span>[$idx];   <span style="color:#75715e">## this will autovivate undef elements as required</span>
         }
     }
-    return \@output;
+    <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@output;
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="duane-powell">Duane Powell</h2>
-
 <p><strong>Duane</strong> solution takes care of different sized arrays. I loved the variable naming convention i.e. <strong>$AoA</strong>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">qw( say )</span>;
 
-<pre><code class="language-perl">use warnings;
-use strict;
-use feature qw( say );
-
-my $AoA = [
-    [qw( I L O V E Y O U !)],
-    [qw( 2 4 0 3 2 0 1 9)],
-    [qw( ! ? $ $ % ^ &amp; * @ + -)],
+<span style="color:#66d9ef">my</span> $AoA <span style="color:#f92672">=</span> [
+    [<span style="color:#e6db74">qw( I L O V E Y O U !)</span>],
+    [<span style="color:#e6db74">qw( 2 4 0 3 2 0 1 9)</span>],
+    [<span style="color:#e6db74">qw( ! ? $ $ % ^ &amp; * @ + -)</span>],
 ];
 
-my $max = 0;
-foreach my $aref ( @{$AoA} ) {
-    $max = (scalar(@{$aref}) &gt; $max) ? scalar(@{$aref}) : $max;
+<span style="color:#66d9ef">my</span> $max <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+<span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $aref ( @{$AoA} ) {
+    $max <span style="color:#f92672">=</span> (scalar(@{$aref}) <span style="color:#f92672">&gt;</span> $max) ? scalar(@{$aref}) : $max;
 }
 
-foreach my $i (0 .. $max-1) {
-    my $out;
-    foreach my $aref ( @{$AoA} ) {
-        $out .= defined($aref-&gt;[$i]) ? $aref-&gt;[$i] : &quot; &quot;;
+<span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $max<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
+    <span style="color:#66d9ef">my</span> $out;
+    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $aref ( @{$AoA} ) {
+        $out <span style="color:#f92672">.=</span> defined($aref<span style="color:#f92672">-&gt;</span>[$i]) ? $aref<span style="color:#f92672">-&gt;</span>[$i] : <span style="color:#e6db74">&#34; &#34;</span>;
     }
     say $out;
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="duncan-c-white">Duncan C. White</h2>
-
 <p><strong>Duncan</strong> used <em>substr()</em> very cleverly in the solution.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#75715e">#use Data::Dumper;</span>
 
-<pre><code class="language-perl">use strict;
-use warnings;
-#use Data::Dumper;
+die <span style="color:#e6db74">&#34;Usage: ch-1.pl ARRAY1 ARRAY2 [ARRAYn..]\n&#34;</span> <span style="color:#66d9ef">if</span> @ARGV<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">2</span>;
 
-die &quot;Usage: ch-1.pl ARRAY1 ARRAY2 [ARRAYn..]\n&quot; if @ARGV&lt;2;
+<span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> @ARGV;
+<span style="color:#66d9ef">my</span> $len <span style="color:#f92672">=</span> length($ARGV[<span style="color:#ae81ff">0</span>]);
 
-my $n = @ARGV;
-my $len = length($ARGV[0]);
-
-foreach my $i (1..$#ARGV)
+<span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$#ARGV)
 {
-    my $al = length($ARGV[$i]);
-    # find longest
-    $len = $al if $al &gt; $len;
+    <span style="color:#66d9ef">my</span> $al <span style="color:#f92672">=</span> length($ARGV[$i]);
+    <span style="color:#75715e"># find longest</span>
+    $len <span style="color:#f92672">=</span> $al <span style="color:#66d9ef">if</span> $al <span style="color:#f92672">&gt;</span> $len;
 }
 
-foreach my $i (0..$len-1)
+<span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$len<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
 {
-    my @el;
-    foreach my $arg (@ARGV)
+    <span style="color:#66d9ef">my</span> @el;
+    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $arg (@ARGV)
     {
-        my $oneel = length($arg)&gt;$i ? substr($arg,$i,1) : '?';
+        <span style="color:#66d9ef">my</span> $oneel <span style="color:#f92672">=</span> length($arg)<span style="color:#f92672">&gt;</span>$i ? substr($arg,$i,<span style="color:#ae81ff">1</span>) : <span style="color:#e6db74">&#39;?&#39;</span>;
         push @el, $oneel;
     }
-    say join( &quot; &quot;, @el );
+    say join( <span style="color:#e6db74">&#34; &#34;</span>, @el );
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="e-choroba">E. Choroba</h2>
-
 <p><strong>Choroba</strong> used <em>binmode</em> to handle the <em>£</em> sign. I didn&rsquo;t realise when I came up with the task. Thanks for taking care of it. Also I liked how he used <em>map</em> as well.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">qw{ say }</span>;
+<span style="color:#66d9ef">use</span> utf8;
 
-<pre><code class="language-perl">use warnings;
-use strict;
-use feature qw{ say };
-use utf8;
+binmode <span style="color:#f92672">*</span>STDOUT, <span style="color:#e6db74">&#39;:encoding(UTF-8)&#39;</span>;
 
-binmode *STDOUT, ':encoding(UTF-8)';
+<span style="color:#66d9ef">my</span> @arrays <span style="color:#f92672">=</span> ([<span style="color:#e6db74">qw[ I L O V E Y O U ]</span>],
+              [<span style="color:#e6db74">qw[ 2 4 0 3 2 0 1 9 ]</span>],
+              [<span style="color:#e6db74">qw[ ! ? £ $ % ^ &amp; * ]</span>]);
 
-my @arrays = ([qw[ I L O V E Y O U ]],
-              [qw[ 2 4 0 3 2 0 1 9 ]],
-              [qw[ ! ? £ $ % ^ &amp; * ]]);
-
-for my $i (0 .. $#{ $arrays[0] }) {
-    say join ' ', $i, map $_-&gt;[$i], @arrays;
+<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#{ $arrays[<span style="color:#ae81ff">0</span>] }) {
+    say join <span style="color:#e6db74">&#39; &#39;</span>, $i, map $_<span style="color:#f92672">-&gt;</span>[$i], @arrays;
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="javier-luque">Javier Luque</h2>
-
 <p><strong>Javier</strong> solution has the speciality how he calculated array sizes. I loved the mix use of <em>sort</em> and <em>map</em>.</p>
-
-<pre><code class="language-perl">use strict;
-use warnings;
-use feature qw /say/;
-
-my $arrays = [
-    [ qw (I L O V E Y O U) ],
-    [ qw (2 4 0 3 2 0 1 9) ],
-    [ qw (! ? £ $ % ^ &amp; *) ],
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">qw /say/;
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">my </span>$arrays <span style="color:#f92672">=</span> [
+    [ <span style="color:#e6db74">qw (I </span>L O V E Y O U) ],
+    [ <span style="color:#e6db74">qw (2 </span><span style="color:#ae81ff">4</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">9</span>) ],
+    [ <span style="color:#e6db74">qw (! </span>? <span style="color:#960050;background-color:#1e0010">£</span> $ <span style="color:#960050;background-color:#1e0010">%</span> <span style="color:#960050;background-color:#1e0010">^</span> <span style="color:#960050;background-color:#1e0010">&amp;</span> <span style="color:#960050;background-color:#1e0010">*</span>) ],
 ];
 
-# Sizes of the array
-my @sizes =
-    sort { $b &lt;=&gt; $a }
+<span style="color:#75715e"># Sizes of the array</span>
+<span style="color:#66d9ef">my</span> @sizes <span style="color:#f92672">=</span>
+    sort { $b <span style="color:#e6db74">&lt;=&gt;</span> $a }
     map { scalar(@$_) } @$arrays;
 
-# Loop through each array
-for my $i (0 .. $sizes[0] - 1) {
-    say join ' ',
-        map { $_-&gt;[$i] // ' ' }
+<span style="color:#75715e"># Loop through each array</span>
+<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $sizes[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) {
+    say join <span style="color:#e6db74">&#39; &#39;</span>,
+        map { $_<span style="color:#f92672">-&gt;</span>[$i] <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#39; &#39;</span> }
         @$arrays;
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="laurent-rosenfeld">Laurent Rosenfeld</h2>
-
 <p><strong>Laurent</strong> is someone who would never miss any test case. There are plenty to learn from his solution. For me the magical line is:</p>
+<h4 id="say-join-t-map-_----_-for-b">say join &ldquo;\t&rdquo;, map {$_ // &quot;&rdquo; } @$_ for @b;</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">qw/say/</span>;
 
-<h4 id="say-join-t-map-for-b">say join &ldquo;\t&rdquo;, map {$_ // &ldquo;&rdquo; } @$_ for @b;</h4>
-
-<pre><code class="language-perl">use strict;
-use warnings;
-use feature qw/say/;
-
-my @a = ( [ qw /I L O V E Y O U / ],
-          [ qw /244 42 0 1233 222 0 / ],
-          [ qw /! ???? £ $ %% ^ / ],
-          [ qw /a b c d e f g h i j k/ ]
+<span style="color:#66d9ef">my</span> @a <span style="color:#f92672">=</span> ( [ <span style="color:#e6db74">qw /I </span>L O V E Y O U <span style="color:#f92672">/</span> ],
+          [ <span style="color:#e6db74">qw /244 </span><span style="color:#ae81ff">42</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">1233</span> <span style="color:#ae81ff">222</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">/</span> ],
+          [ <span style="color:#e6db74">qw /! </span>???? <span style="color:#960050;background-color:#1e0010">£</span> $ <span style="color:#960050;background-color:#1e0010">%%</span> <span style="color:#960050;background-color:#1e0010">^</span> <span style="color:#960050;background-color:#1e0010">/</span> <span style="color:#960050;background-color:#1e0010">]</span>,
+          [ <span style="color:#e6db74">qw /a </span>b c d e f g h i j k<span style="color:#f92672">/</span> ]
         );
-my $max_size = 0;
-for (@a) {
-    $max_size = scalar @$_ if @$_ &gt; $max_size;
+<span style="color:#66d9ef">my</span> $max_size <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+<span style="color:#66d9ef">for</span> (@a) {
+    $max_size <span style="color:#f92672">=</span> scalar @$_ <span style="color:#66d9ef">if</span> @$_ <span style="color:#f92672">&gt;</span> $max_size;
 }
-my @b;
-for my $i (0..$max_size - 1) {
-    push @b, [ map { $a[$_][$i]} 0 .. @a - 1];
+<span style="color:#66d9ef">my</span> @b;
+<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$max_size <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) {
+    push @b, [ map { $a[$_][$i]} <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> @a <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>];
 }
-say join &quot;\t&quot;, map {$_ // &quot;&quot; } @$_ for @b;
-</code></pre>
-
-<hr />
-
+say join <span style="color:#e6db74">&#34;\t&#34;</span>, map {$_ <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#34;&#34;</span> } @$_ <span style="color:#66d9ef">for</span> @b;
+</code></pre></div><hr>
 <h2 id="lubos-kolouch">Lubos Kolouch</h2>
-
 <p><strong>Lubos</strong> way to dealing with parameter is the main attraction for me. I just love it.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">qw /say/;
+</span><span style="color:#e6db74">use </span>Data::Dumper;
 
-<pre><code class="language-perl">use strict;
-use warnings;
-use feature qw /say/;
-use Data::Dumper;
+<span style="color:#66d9ef">my</span> $array_ref <span style="color:#f92672">=</span> shift <span style="color:#e6db74">//</span> die <span style="color:#e6db74">&#39;No arrays passed&#39;</span>;
+<span style="color:#66d9ef">my</span> @arr <span style="color:#f92672">=</span> $array_ref;
+die <span style="color:#e6db74">&#34;Usage ch-1.pl \&#34;[1 2 3 4][5 6 7 8]\&#34;&#34;</span> <span style="color:#66d9ef">unless</span> ($arr[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=~</span><span style="color:#e6db74"> / ^(\[(. *)+\])+$/msx</span>);
 
-my $array_ref = shift // die 'No arrays passed';
-my @arr = $array_ref;
-die &quot;Usage ch-1.pl \&quot;[1 2 3 4][5 6 7 8]\&quot;&quot; unless ($arr[0] =~ / ^(\[(. *)+\])+$/msx);
+<span style="color:#66d9ef">my</span> $arr_size;
+<span style="color:#66d9ef">my</span> @all_array;
 
-my $arr_size;
-my @all_array;
-
-my $i=0;
-for (split /\]/, $arr[0]) {
-    $_ =~ s/\[//g;
-    push @{$all_array[$i]}, split / /;
-    $arr_size = scalar @{$all_array[$i]} unless $arr_size;
-    die &quot;arrays are not of the same size&quot; unless scalar @{$all_array[$i]} == $arr_size;
-    $i++;
+<span style="color:#66d9ef">my</span> $i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+<span style="color:#66d9ef">for</span> (split <span style="color:#e6db74">/\]/</span>, $arr[<span style="color:#ae81ff">0</span>]) {
+    $_ <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/\[//g</span>;
+    push @{$all_array[$i]}, split <span style="color:#e6db74">/ /</span>;
+    $arr_size <span style="color:#f92672">=</span> scalar @{$all_array[$i]} <span style="color:#66d9ef">unless</span> $arr_size;
+    die <span style="color:#e6db74">&#34;arrays are not of the same size&#34;</span> <span style="color:#66d9ef">unless</span> scalar @{$all_array[$i]} <span style="color:#f92672">==</span> $arr_size;
+    $i<span style="color:#f92672">++</span>;
 }
 
-for my $key (0..$arr_size-1) {
-    for my $arr (0..scalar @all_array -1) {
-            print $all_array[$arr][$key].&quot; &quot;;
+<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $key (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$arr_size<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $arr (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>scalar @all_array <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
+            <span style="color:#66d9ef">print</span> $all_array[$arr][$key]<span style="color:#f92672">.</span><span style="color:#e6db74">&#34; &#34;</span>;
     }
-    say '';
+    say <span style="color:#e6db74">&#39;&#39;</span>;
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="peter-scott">Peter Scott</h2>
-
 <p>Welcome back <strong>Peter</strong> after short break. The <strong>one-liner</strong> is really cool with the use of <strong>END {}</strong> block.</p>
-
-<pre><code class="language-perl">#!/bin/sh
-cat &lt;&lt;'EOF' &gt; /tmp/arrays
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/bin/sh</span>
+cat <span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#39;EOF&#39;</span> <span style="color:#f92672">&gt;</span> <span style="color:#e6db74">/tmp/</span>arrays
 I L O V E Y O U
-2 4 0 3 2 0 1 9
-! ? £ $ % ^ &amp; *
+<span style="color:#ae81ff">2</span> <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">9</span>
+<span style="color:#f92672">!</span> ? <span style="color:#960050;background-color:#1e0010">£</span> $ <span style="color:#960050;background-color:#1e0010">%</span> <span style="color:#960050;background-color:#1e0010">^</span> <span style="color:#960050;background-color:#1e0010">&amp;</span> <span style="color:#960050;background-color:#1e0010">*</span>
 EOF
-perl -lane '$i=0; push @{$x[$i++]}, $_ for @F; END{print &quot;@$_&quot; for @x}' /tmp/arrays
-</code></pre>
-
-<hr />
-
-<h2 id="roger-bell-west">Roger Bell_West</h2>
-
+perl <span style="color:#f92672">-</span>lane <span style="color:#e6db74">&#39;$i=0; push @{$x[$i++]}, $_ for @F; END{print &#34;@$_&#34; for @x}&#39;</span> <span style="color:#e6db74">/tmp/</span>arrays
+</code></pre></div><hr>
+<h2 id="roger-bell_west">Roger Bell_West</h2>
 <p><strong>Roger</strong> solution is really <em>unique</em>. I enjoyed the solution thoroughly.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
 
-<pre><code class="language-perl">use strict;
-use warnings;
-
-my @a=(
-    [qw(I L O V E Y O U)],
-    [qw(2 4 0 3 2 0 1 9)],
-    [qw(! ? £ $ % ^ &amp; *)],
+<span style="color:#66d9ef">my</span> @a<span style="color:#f92672">=</span>(
+    [<span style="color:#e6db74">qw(I L O V E Y O U)</span>],
+    [<span style="color:#e6db74">qw(2 4 0 3 2 0 1 9)</span>],
+    [<span style="color:#e6db74">qw(! ? £ $ % ^ &amp; *)</span>],
       );
 
-my $ix=0;
-my $r=1;
-while ($r) {
-  $r=0;
-  my @out;
-  foreach my $iy (0..$#a) {
-    if (exists $a[$iy][$ix]) {
+<span style="color:#66d9ef">my</span> $ix<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+<span style="color:#66d9ef">my</span> $r<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
+<span style="color:#66d9ef">while</span> ($r) {
+  $r<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+  <span style="color:#66d9ef">my</span> @out;
+  <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $iy (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#a) {
+    <span style="color:#66d9ef">if</span> (exists $a[$iy][$ix]) {
       push @out,$a[$iy][$ix];
-      $r=1;
-    } else {
-      push @out,' ';
+      $r<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
+    } <span style="color:#66d9ef">else</span> {
+      push @out,<span style="color:#e6db74">&#39; &#39;</span>;
     }
   }
-  if ($r) {
-    print join(' ',@out),&quot;\n&quot;;
+  <span style="color:#66d9ef">if</span> ($r) {
+    <span style="color:#66d9ef">print</span> join(<span style="color:#e6db74">&#39; &#39;</span>,@out),<span style="color:#e6db74">&#34;\n&#34;</span>;
   }
-  $ix++;
+  $ix<span style="color:#f92672">++</span>;
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="ruben-westerberg">Ruben Westerberg</h2>
-
 <p><strong>Ruben</strong> one-line is special <em>obfuscated</em> code. Take your time to decode it.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">my</span> @aoa<span style="color:#f92672">=</span>([<span style="color:#e6db74">qw&lt;I L O V E Y O U&gt;</span>], [<span style="color:#e6db74">qw&lt;2 4 0 3 2 0 1 9&gt;</span>], [<span style="color:#e6db74">qw&lt;! ? £ $ % ^ &amp; * &gt;</span>]);
+<span style="color:#66d9ef">my</span> @indexes<span style="color:#f92672">=</span>@ARGV<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>?(<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>):@ARGV;
 
-<pre><code class="language-perl">use strict;
-use warnings;
-my @aoa=([qw&lt;I L O V E Y O U&gt;], [qw&lt;2 4 0 3 2 0 1 9&gt;], [qw&lt;! ? £ $ % ^ &amp; * &gt;]);
-my @indexes=@ARGV==0?(2,3):@ARGV;
-
-print &quot;$_\n&quot; for map {my $i=$_; join &quot; &quot;, map {$aoa[$_]-&gt;[$i]} 0..$#aoa} @indexes;
-</code></pre>
-
-<hr />
-
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$_\n&#34;</span> <span style="color:#66d9ef">for</span> map {<span style="color:#66d9ef">my</span> $i<span style="color:#f92672">=</span>$_; join <span style="color:#e6db74">&#34; &#34;</span>, map {$aoa[$_]<span style="color:#f92672">-&gt;</span>[$i]} <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#aoa} @indexes;
+</code></pre></div><hr>
 <h2 id="ryan-thompson">Ryan Thompson</h2>
-
 <p><strong>Ryan</strong> used <em>prototype</em> and came up with thorough solution.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> <span style="color:#ae81ff">5.010</span>;
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> Carp;
+<span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw&lt; max any &gt;</span>;
+<span style="color:#66d9ef">no</span> warnings <span style="color:#e6db74">&#39;uninitialized&#39;</span>;
 
-<pre><code class="language-perl">use 5.010;
-use warnings;
-use strict;
-use Carp;
-use List::Util qw&lt; max any &gt;;
-no warnings 'uninitialized';
-
-sub my_zip6(\@\@;\@\@\@\@\@\@\@\@\@\@\@\@\@\@\@\@\@\@\@\@\@);
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">my_zip6</span>(\@\@;\@\@\@\@\@\@\@\@\@\@\@\@\@\@\@\@\@\@\@\@\@);
 sub zip6ref($$;@);
 sub zip6ref_check($$;@);
 
@@ -635,665 +541,525 @@ my @a1 = qw&lt;I L O V E Y O U&gt;;
 my @a2 = qw&lt;2 4 0 3 2 0 1 9&gt;;
 my @a3 = qw&lt;! ? X $ % ^ &amp; *&gt;;
 
-say join ' ', @$_ for my_zip6 @a1, @a2, @a3;
+say join &#39; &#39;, @$_ for my_zip6 @a1, @a2, @a3;
 
-# Here's one solution, trying to match List::MoreUtils' behaviour
+# Here&#39;s one solution, trying to match List::MoreUtils&#39; behaviour
 sub my_zip6(\@\@;\@\@\@\@\@\@\@\@\@\@\@\@\@\@\@\@\@\@\@\@\@) {
-    my $max = max map $#$_, @_;  # Use the size of the longest array
-    map { my $i = $_; [ map $_-&gt;[$i], @_ ] } 0..$max;
+    <span style="color:#66d9ef">my</span> $max <span style="color:#f92672">=</span> max map $#$_, @_;  <span style="color:#75715e"># Use the size of the longest array</span>
+    map { <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> $_; [ map $_<span style="color:#f92672">-&gt;</span>[$i], @_ ] } <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$max;
 }
 
-# And now the same code, with a different prototype, which is more flexible
-sub zip6ref($$;@) {
-    my $max = max map $#$_, @_;  # Use the size of the longest array
-    map { my $i = $_; [ map $_-&gt;[$i], @_ ] } 0..$max;
+<span style="color:#75715e"># And now the same code, with a different prototype, which is more flexible</span>
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">zip6ref</span>($$;@) {
+    <span style="color:#66d9ef">my</span> $max <span style="color:#f92672">=</span> max map $#$_, @_;  <span style="color:#75715e"># Use the size of the longest array</span>
+    map { <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> $_; [ map $_<span style="color:#f92672">-&gt;</span>[$i], @_ ] } <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$max;
 }
 
-# As above, but with a check to ensure all args are ARRAY refs. Slower.
-sub zip6ref_check($$;@) {
-    croak &quot;Not an ARRAY ref&quot; if any { 'ARRAY' ne ref } @_;
-    my $max = max map $#$_, @_;  # Use the size of the longest array
-    map { my $i = $_; [ map $_-&gt;[$i], @_ ] } 0..$max;
+<span style="color:#75715e"># As above, but with a check to ensure all args are ARRAY refs. Slower.</span>
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">zip6ref_check</span>($$;@) {
+    croak <span style="color:#e6db74">&#34;Not an ARRAY ref&#34;</span> <span style="color:#66d9ef">if</span> any { <span style="color:#e6db74">&#39;ARRAY&#39;</span> <span style="color:#f92672">ne</span> ref } @_;
+    <span style="color:#66d9ef">my</span> $max <span style="color:#f92672">=</span> max map $#$_, @_;  <span style="color:#75715e"># Use the size of the longest array</span>
+    map { <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> $_; [ map $_<span style="color:#f92672">-&gt;</span>[$i], @_ ] } <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$max;
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="saif-ahmed">Saif Ahmed</h2>
-
 <p><strong>Saif</strong> covered up various use cases very elegantly. I liked the use of <strong>say</strong>, touch of <strong>Raku</strong>.</p>
-
-<pre><code class="language-perl">use feature &quot;say&quot;;
-my @arraysList=(                  # array containing 2 or more arrays (as anon array refs)
-    [qw{I L O V E Y O U }],
-    [qw{2 4 0 3 2 0 1 9 }],
-    [qw{! ? £ $ % ^ &amp; * }],
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">&#34;say&#34;</span>;
+<span style="color:#66d9ef">my</span> @arraysList<span style="color:#f92672">=</span>(                  <span style="color:#75715e"># array containing 2 or more arrays (as anon array refs)</span>
+    [<span style="color:#e6db74">qw{I L O V E Y O U }</span>],
+    [<span style="color:#e6db74">qw{2 4 0 3 2 0 1 9 }</span>],
+    [<span style="color:#e6db74">qw{! ? £ $ % ^ &amp; * }</span>],
     );
 
-say &quot;Without an index list&quot;;
-printAtIndex(\@arraysList);                   # call routine with no indices
+say <span style="color:#e6db74">&#34;Without an index list&#34;</span>;
+printAtIndex(<span style="color:#f92672">\</span>@arraysList);                   <span style="color:#75715e"># call routine with no indices</span>
 
-say &quot;\nWith a single index passed&quot;;
-printAtIndex(\@arraysList, 5);                # call routine with a single index
+say <span style="color:#e6db74">&#34;\nWith a single index passed&#34;</span>;
+printAtIndex(<span style="color:#f92672">\</span>@arraysList, <span style="color:#ae81ff">5</span>);                <span style="color:#75715e"># call routine with a single index</span>
 
-say &quot;\nWith a multiple indices passed&quot;;
-printAtIndex(\@arraysList, [3,2,1,4]);        # call routine with list of indices
+say <span style="color:#e6db74">&#34;\nWith a multiple indices passed&#34;</span>;
+printAtIndex(<span style="color:#f92672">\</span>@arraysList, [<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">4</span>]);        <span style="color:#75715e"># call routine with list of indices</span>
 
-sub printAtIndex{
-    my ($arrays,$indices)=@_;
-    $indices//=[0..$#{@$arrays[0]}];           # if indices not specified make list of all indices
-    $indices=[$indices] unless (ref $indices); # if index passed as scalar convert to arrayRef
-    foreach my $index (@$indices){             # for each index provided..
-       foreach my $array (@arraysList){        # for each array in the list
-          print $$array[$index],&quot; &quot;;           # print indexed contents of these arrays
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">printAtIndex</span>{
+    <span style="color:#66d9ef">my</span> ($arrays,$indices)<span style="color:#f92672">=</span>@_;
+    $indices<span style="color:#e6db74">//</span><span style="color:#f92672">=</span>[<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#{@$arrays[<span style="color:#ae81ff">0</span>]}];           <span style="color:#75715e"># if indices not specified make list of all indices</span>
+    $indices<span style="color:#f92672">=</span>[$indices] <span style="color:#66d9ef">unless</span> (ref $indices); <span style="color:#75715e"># if index passed as scalar convert to arrayRef</span>
+    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $index (@$indices){             <span style="color:#75715e"># for each index provided..</span>
+       <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $array (@arraysList){        <span style="color:#75715e"># for each array in the list</span>
+          <span style="color:#66d9ef">print</span> $$array[$index],<span style="color:#e6db74">&#34; &#34;</span>;           <span style="color:#75715e"># print indexed contents of these arrays</span>
        };
-       print &quot;\n&quot;;                             # next line
+       <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\n&#34;</span>;                             <span style="color:#75715e"># next line</span>
     };
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="steven-wilson">Steven Wilson</h2>
-
 <p><strong>Steven</strong> followed the simple multi-level <em>for loop</em> without any complexity. Easy to follow the solution.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
 
-<pre><code class="language-perl">use strict;
-use warnings;
+<span style="color:#66d9ef">my</span> @array_1 <span style="color:#f92672">=</span> <span style="color:#e6db74">qw[ I L O V E Y O U ]</span>;
+<span style="color:#66d9ef">my</span> @array_2 <span style="color:#f92672">=</span> <span style="color:#e6db74">qw[ 2 4 0 3 2 0 1 9 ]</span>;
+<span style="color:#66d9ef">my</span> @array_3 <span style="color:#f92672">=</span> <span style="color:#e6db74">qw[ ! ? £ $ % ^ &amp; * ]</span>;
+<span style="color:#66d9ef">my</span> @arrays  <span style="color:#f92672">=</span> [ <span style="color:#f92672">\</span>@array_1, <span style="color:#f92672">\</span>@array_2, <span style="color:#f92672">\</span>@array_3 ];
 
-my @array_1 = qw[ I L O V E Y O U ];
-my @array_2 = qw[ 2 4 0 3 2 0 1 9 ];
-my @array_3 = qw[ ! ? £ $ % ^ &amp; * ];
-my @arrays  = [ \@array_1, \@array_2, \@array_3 ];
+display_arrays( <span style="color:#f92672">\</span>@arrays );
 
-display_arrays( \@arrays );
-
-sub display_arrays {
-    my $arrays_ref = shift;
-    my @arrays     = @$arrays_ref;
-    for my $array_ref (@arrays) {
-        my @array        = @$array_ref;
-        my $max_index   = get_max_index($array_ref);
-        my $no_of_arrays = scalar @array;
-        for ( my $index = 0; $index &lt; $max_index; $index++ ) {
-            for ( my $array_no = 0; $array_no &lt; $no_of_arrays; $array_no++ ) {
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">display_arrays</span> {
+    <span style="color:#66d9ef">my</span> $arrays_ref <span style="color:#f92672">=</span> shift;
+    <span style="color:#66d9ef">my</span> @arrays     <span style="color:#f92672">=</span> @$arrays_ref;
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $array_ref (@arrays) {
+        <span style="color:#66d9ef">my</span> @array        <span style="color:#f92672">=</span> @$array_ref;
+        <span style="color:#66d9ef">my</span> $max_index   <span style="color:#f92672">=</span> get_max_index($array_ref);
+        <span style="color:#66d9ef">my</span> $no_of_arrays <span style="color:#f92672">=</span> scalar @array;
+        <span style="color:#66d9ef">for</span> ( <span style="color:#66d9ef">my</span> $index <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; $index <span style="color:#f92672">&lt;</span> $max_index; $index<span style="color:#f92672">++</span> ) {
+            <span style="color:#66d9ef">for</span> ( <span style="color:#66d9ef">my</span> $array_no <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; $array_no <span style="color:#f92672">&lt;</span> $no_of_arrays; $array_no<span style="color:#f92672">++</span> ) {
                 defined @{$array[$array_no]}[$index]
-                    ? print @{$array[$array_no]}[$index]
-                    : print &quot; &quot;;
-                print &quot; &quot;;
+                    ? <span style="color:#66d9ef">print</span> @{$array[$array_no]}[$index]
+                    : <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34; &#34;</span>;
+                <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34; &#34;</span>;
             }
-            print &quot;\n&quot;;
+            <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
         }
     }
 }
 
-sub get_max_index {
-    my $array_ref = shift;
-    my @arrays    = @$array_ref;
-    my $max       = 0;
-    for my $array_ref (@arrays) {
-        my @array = @$array_ref;
-        if ( scalar @array &gt; $max ) {
-            $max = scalar @array;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get_max_index</span> {
+    <span style="color:#66d9ef">my</span> $array_ref <span style="color:#f92672">=</span> shift;
+    <span style="color:#66d9ef">my</span> @arrays    <span style="color:#f92672">=</span> @$array_ref;
+    <span style="color:#66d9ef">my</span> $max       <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $array_ref (@arrays) {
+        <span style="color:#66d9ef">my</span> @array <span style="color:#f92672">=</span> @$array_ref;
+        <span style="color:#66d9ef">if</span> ( scalar @array <span style="color:#f92672">&gt;</span> $max ) {
+            $max <span style="color:#f92672">=</span> scalar @array;
         }
     }
-    return $max;
+    <span style="color:#66d9ef">return</span> $max;
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="ulrich-rieke">Ulrich Rieke</h2>
-
 <p><strong>Ulrich</strong> taken a very different route with <em>minimum length</em>. Interesting approach.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict ;
+<span style="color:#66d9ef">use</span> warnings ;
 
-<pre><code class="language-perl">use strict ;
-use warnings ;
-
-sub printListItems {
-  my $minlength = @{$_[0]} + 0 ;
-  foreach my $list ( @_ ) {
-      my $len = @{$list} + 0 ;
-      if ( $len &lt; $minlength ) {
-        $minlength = $len ;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">printListItems</span> {
+  <span style="color:#66d9ef">my</span> $minlength <span style="color:#f92672">=</span> @{$_[<span style="color:#ae81ff">0</span>]} <span style="color:#f92672">+</span> <span style="color:#ae81ff">0</span> ;
+  <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $list ( @_ ) {
+      <span style="color:#66d9ef">my</span> $len <span style="color:#f92672">=</span> @{$list} <span style="color:#f92672">+</span> <span style="color:#ae81ff">0</span> ;
+      <span style="color:#66d9ef">if</span> ( $len <span style="color:#f92672">&lt;</span> $minlength ) {
+        $minlength <span style="color:#f92672">=</span> $len ;
       }
   }
-  print &quot;$minlength \n&quot; ;
-  my $i = 0 ;
-  while ( $i &lt; $minlength ) {
-      foreach my $list ( @_ ) {
-        print &quot;${$list}[$i] &quot; ;
+  <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$minlength \n&#34;</span> ;
+  <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> ;
+  <span style="color:#66d9ef">while</span> ( $i <span style="color:#f92672">&lt;</span> $minlength ) {
+      <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $list ( @_ ) {
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;${$list}[$i] &#34;</span> ;
       }
-      print &quot;\n&quot; ;
-      $i++ ;
+      <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\n&#34;</span> ;
+      $i<span style="color:#f92672">++</span> ;
   }
 }
 
-my @array1 = ( 'I', 'L' , 'O' , 'V', 'E' , 'Y', 'O' , 'U' ) ;
-my @array2 = (2 , 4, 0, 3 , 2,  0 , 1, 9 ) ;
-my @array3 = ('!',  '?' ,  '£' , '$' , '%' , '^', '&amp;' , '*' ) ;
-printListItems( \@array1 , \@array2 , \@array3 ) ;
-</code></pre>
-
-<hr />
-
+<span style="color:#66d9ef">my</span> @array1 <span style="color:#f92672">=</span> ( <span style="color:#e6db74">&#39;I&#39;</span>, <span style="color:#e6db74">&#39;L&#39;</span> , <span style="color:#e6db74">&#39;O&#39;</span> , <span style="color:#e6db74">&#39;V&#39;</span>, <span style="color:#e6db74">&#39;E&#39;</span> , <span style="color:#e6db74">&#39;Y&#39;</span>, <span style="color:#e6db74">&#39;O&#39;</span> , <span style="color:#e6db74">&#39;U&#39;</span> ) ;
+<span style="color:#66d9ef">my</span> @array2 <span style="color:#f92672">=</span> (<span style="color:#ae81ff">2</span> , <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">3</span> , <span style="color:#ae81ff">2</span>,  <span style="color:#ae81ff">0</span> , <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">9</span> ) ;
+<span style="color:#66d9ef">my</span> @array3 <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#39;!&#39;</span>,  <span style="color:#e6db74">&#39;?&#39;</span> ,  <span style="color:#e6db74">&#39;£&#39;</span> , <span style="color:#e6db74">&#39;$&#39;</span> , <span style="color:#e6db74">&#39;%&#39;</span> , <span style="color:#e6db74">&#39;^&#39;</span>, <span style="color:#e6db74">&#39;&amp;&#39;</span> , <span style="color:#e6db74">&#39;*&#39;</span> ) ;
+printListItems( <span style="color:#f92672">\</span>@array1 , <span style="color:#f92672">\</span>@array2 , <span style="color:#f92672">\</span>@array3 ) ;
+</code></pre></div><hr>
 <h2 id="wanderdoc">Wanderdoc</h2>
-
 <p><strong>Wanderdoc</strong> introduced the new method <strong>zip6</strong> from the <strong>CPAN</strong> module <strong>List::MoreUtils</strong>. I love the solutions that promote <strong>CPAN</strong> distribution.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> utf8; <span style="color:#75715e"># Source file encoding.</span>
+binmode (STDOUT, <span style="color:#e6db74">&#34;:encoding(cp850)&#34;</span>); <span style="color:#75715e"># &#39;£&#39; in Windows cmd.</span>
 
-<pre><code class="language-perl">use utf8; # Source file encoding.
-binmode (STDOUT, &quot;:encoding(cp850)&quot;); # '£' in Windows cmd.
+<span style="color:#66d9ef">my</span> @arr_1 <span style="color:#f92672">=</span> <span style="color:#e6db74">qw(I L O V E Y O U)</span>;
+<span style="color:#66d9ef">my</span> @arr_2 <span style="color:#f92672">=</span> <span style="color:#e6db74">qw(2 4 0 3 2 0 1 9)</span>;
+<span style="color:#66d9ef">my</span> @arr_3 <span style="color:#f92672">=</span> <span style="color:#e6db74">qw(! ? £ $ % ^ &amp; *)</span>;
 
-my @arr_1 = qw(I L O V E Y O U);
-my @arr_2 = qw(2 4 0 3 2 0 1 9);
-my @arr_3 = qw(! ? £ $ % ^ &amp; *);
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;@$_$/&#34;</span> <span style="color:#66d9ef">for</span> my_zip6(<span style="color:#f92672">\</span>@arr_1, <span style="color:#f92672">\</span>@arr_2, <span style="color:#f92672">\</span>@arr_3);
 
-print &quot;@$_$/&quot; for my_zip6(\@arr_1, \@arr_2, \@arr_3);
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Now cheating with module: $/&#34;</span>;
 
-print &quot;Now cheating with module: $/&quot;;
+<span style="color:#66d9ef">use</span> List::MoreUtils <span style="color:#e6db74">qw(zip6)</span>;
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;@$_$/&#34;</span> <span style="color:#66d9ef">for</span> zip6 @arr_1, @arr_2, @arr_3;
 
-use List::MoreUtils qw(zip6);
-print &quot;@$_$/&quot; for zip6 @arr_1, @arr_2, @arr_3;
-
-sub my_zip6
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">my_zip6</span>
 {
-     my @arefs = @_;
-     my @result;
-     my $imax = $#{$arefs[0]};
-     for my $i ( 0 .. $imax )
+     <span style="color:#66d9ef">my</span> @arefs <span style="color:#f92672">=</span> @_;
+     <span style="color:#66d9ef">my</span> @result;
+     <span style="color:#66d9ef">my</span> $imax <span style="color:#f92672">=</span> $#{$arefs[<span style="color:#ae81ff">0</span>]};
+     <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $imax )
      {
-          my @row;
-          for my $ar ( @arefs )
+          <span style="color:#66d9ef">my</span> @row;
+          <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $ar ( @arefs )
           {
-               push @row, $ar-&gt;[$i];
+               push @row, $ar<span style="color:#f92672">-&gt;</span>[$i];
           }
           push @result, [@row];
      }
-     return @result;
+     <span style="color:#66d9ef">return</span> @result;
 }
-</code></pre>
-
-<hr />
-
-<hr />
-
+</code></pre></div><hr>
+<hr>
 <h2 id="task-2">Task #2</h2>
-
-<hr />
-
-<hr />
-
+<hr>
+<hr>
 <h3 id="sort-sublist">Sort SubList</h3>
-
 <p>You are given a list of numbers and set of indices belong to the list. Write a script to sort the values belongs to the indices.</p>
-
 <p>For example,</p>
-
-<h4 id="list-10-4-1-8-12-3">List: [ 10, 4, 1, 8, 12, 3 ]</h4>
-
-<h4 id="indices-0-2-5">Indices: 0,2,5</h4>
-
+<h4 id="list--10-4-1-8-12-3-">List: [ 10, 4, 1, 8, 12, 3 ]</h4>
+<h4 id="indices-025">Indices: 0,2,5</h4>
 <p>We would sort the values at indices <strong>0, 2 and 5</strong> i.e. <strong>10, 1 and 3</strong>.</p>
-
 <p>Final List would look like below:</p>
-
-<h4 id="list-1-4-3-8-12-10">List: [ 1, 4, 3, 8, 12, 10 ]</h4>
-
-<hr />
-
+<h4 id="list--1-4-3-8-12-10-">List: [ 1, 4, 3, 8, 12, 10 ]</h4>
+<hr>
 <h2 id="adam-russell-1">Adam Russell</h2>
-
 <p><strong>Adam</strong> played with sorted array very cleverly. I liked it.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> Readonly;
+Readonly::Array <span style="color:#66d9ef">my</span> @A <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">qw/10 4 1 8 12 3/</span>;
+Readonly::Array <span style="color:#66d9ef">my</span> @INDICES <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">qw/0 2 5/</span>;
 
-<pre><code class="language-perl">use Readonly;
-Readonly::Array my @A =&gt; qw/10 4 1 8 12 3/;
-Readonly::Array my @INDICES =&gt; qw/0 2 5/;
-
-my @sorted = @A;
-my @sorted_values = sort {$a &lt;=&gt; $b} map {$A[$_]} @INDICES;
-my @sorted_indices = sort {$a &lt;=&gt; $b} @INDICES;
-for my $i (@sorted_indices){
-    $sorted[$i] = shift @sorted_values;
+<span style="color:#66d9ef">my</span> @sorted <span style="color:#f92672">=</span> @A;
+<span style="color:#66d9ef">my</span> @sorted_values <span style="color:#f92672">=</span> sort {$a <span style="color:#e6db74">&lt;=&gt;</span> $b} map {$A[$_]} @INDICES;
+<span style="color:#66d9ef">my</span> @sorted_indices <span style="color:#f92672">=</span> sort {$a <span style="color:#e6db74">&lt;=&gt;</span> $b} @INDICES;
+<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (@sorted_indices){
+    $sorted[$i] <span style="color:#f92672">=</span> shift @sorted_values;
 }
-print join(&quot;, &quot;, @sorted) . &quot;\n&quot;;
-</code></pre>
-
-<hr />
-
+<span style="color:#66d9ef">print</span> join(<span style="color:#e6db74">&#34;, &#34;</span>, @sorted) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
+</code></pre></div><hr>
 <h2 id="andrezgz-1">Andrezgz</h2>
-
 <p><strong>Andrezgz</strong> followed similar path to some extent like <strong>Adam Russell</strong> but with less code. A very clever coding.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
 
-<pre><code class="language-perl">use strict;
-use warnings;
+<span style="color:#66d9ef">my</span> @list <span style="color:#f92672">=</span> (<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">3</span>);
+<span style="color:#66d9ef">my</span> @indexes <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">5</span>);
 
-my @list = (10, 4, 1, 8, 12, 3);
-my @indexes = (0,2,5);
+<span style="color:#66d9ef">my</span> @sorted_values <span style="color:#f92672">=</span> sort {$a <span style="color:#e6db74">&lt;=&gt;</span> $b} @list[@indexes];
 
-my @sorted_values = sort {$a &lt;=&gt; $b} @list[@indexes];
+splice @list, $_, <span style="color:#ae81ff">1</span>, shift @sorted_values <span style="color:#66d9ef">for</span> (@indexes);
 
-splice @list, $_, 1, shift @sorted_values for (@indexes);
-
-print join ',', @list;
-</code></pre>
-
-<hr />
-
+<span style="color:#66d9ef">print</span> join <span style="color:#e6db74">&#39;,&#39;</span>, @list;
+</code></pre></div><hr>
 <h2 id="anton-fedotov-1">Anton Fedotov</h2>
-
 <p><strong>Anton</strong> made use of <strong>state</strong> pragma. I have never used it myself in real project. I loved its use here.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.10</span>;
 
-<pre><code class="language-perl">use strict;
-use warnings;
-use v5.10;
+<span style="color:#66d9ef">my</span> @numbers <span style="color:#f92672">=</span> (<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">3</span>);
+<span style="color:#66d9ef">my</span> @indices <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">5</span>);
 
-my @numbers = (10, 4, 1, 8, 12, 3);
-my @indices = (0, 2, 5);
+say join <span style="color:#e6db74">&#39; &#39;</span>, @numbers;
 
-say join ' ', @numbers;
+<span style="color:#66d9ef">my</span> @arr;
+push @arr, $numbers[$_] <span style="color:#66d9ef">for</span> @indices;
+@arr <span style="color:#f92672">=</span> sort {$a <span style="color:#e6db74">&lt;=&gt;</span> $b} @arr;
 
-my @arr;
-push @arr, $numbers[$_] for @indices;
-@arr = sort {$a &lt;=&gt; $b} @arr;
-
-for (@indices) {
-    state $i = 0;
-    $numbers[$_] = $arr[$i++];
+<span style="color:#66d9ef">for</span> (@indices) {
+    state $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    $numbers[$_] <span style="color:#f92672">=</span> $arr[$i<span style="color:#f92672">++</span>];
 }
 
-say join ' ', @numbers;
-</code></pre>
-
-<hr />
-
+say join <span style="color:#e6db74">&#39; &#39;</span>, @numbers;
+</code></pre></div><hr>
 <h2 id="burkhard-nickels-1">Burkhard Nickels</h2>
-
 <p><strong>Burkhard</strong> magical line simply bowled me. <strong>Good Job</strong>.</p>
+<h4 id="a025--sort--a--b---a025-">@a[0,2,5] = sort { $a &lt;=&gt; $b } ( @a[0,2,5] );</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @a <span style="color:#f92672">=</span> (<span style="color:#ae81ff">10</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">12</span>,<span style="color:#ae81ff">3</span>);
+<span style="color:#66d9ef">my</span> @i <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">5</span>);
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Before:&#34;</span>, Dumper(<span style="color:#f92672">\</span>@a), <span style="color:#e6db74">&#34;\n&#34;</span>;
 
-<h4 id="a-0-2-5-sort-a-b-a-0-2-5">@a[0,2,5] = sort { $a &lt;=&gt; $b } ( @a[0,2,5] );</h4>
-
-<pre><code class="language-perl">my @a = (10,4,1,8,12,3);
-my @i = (0,2,5);
-print &quot;Before:&quot;, Dumper(\@a), &quot;\n&quot;;
-
-@a[0,2,5] = sort { $a &lt;=&gt; $b } ( @a[0,2,5] );
-print &quot;After: &quot;, Dumper(\@a), &quot;\n&quot;;
-</code></pre>
-
-<hr />
-
+@a[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">5</span>] <span style="color:#f92672">=</span> sort { $a <span style="color:#e6db74">&lt;=&gt;</span> $b } ( @a[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">5</span>] );
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;After: &#34;</span>, Dumper(<span style="color:#f92672">\</span>@a), <span style="color:#e6db74">&#34;\n&#34;</span>;
+</code></pre></div><hr>
 <h2 id="colin-crain-1">Colin Crain</h2>
-
 <p><strong>Colin</strong> found a way to use <em>splice</em>, very smart. A very different approach so far.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">&#34;:5.26&#34;</span>;
 
-<pre><code class="language-perl">use warnings;
-use strict;
-use feature &quot;:5.26&quot;;
+<span style="color:#75715e">## ## ## ## ## MAIN</span>
 
-## ## ## ## ## MAIN
+<span style="color:#66d9ef">my</span> $list    <span style="color:#f92672">=</span> [ <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">3</span> ];
+<span style="color:#66d9ef">my</span> $indices <span style="color:#f92672">=</span> [ <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">2</span> ];
 
-my $list    = [ 10, 4, 1, 8, 12, 3 ];
-my $indices = [ 0, 5, 2 ];
+<span style="color:#75715e">## presort the index set to make an ordered list from low to high</span>
+<span style="color:#66d9ef">my</span> @indices <span style="color:#f92672">=</span> sort { $a <span style="color:#e6db74">&lt;=&gt;</span> $b } $indices<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
 
-## presort the index set to make an ordered list from low to high
-my @indices = sort { $a &lt;=&gt; $b } $indices-&gt;@*;
+<span style="color:#960050;background-color:#1e0010">#</span> OUTPUT
+<span style="color:#75715e">#</span>
+say <span style="color:#e6db74">&#34;prechange list  : [ &#34;</span>, (join <span style="color:#e6db74">&#39;, &#39;</span>, $list<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>), <span style="color:#e6db74">&#34; ]&#34;</span>;
 
-# OUTPUT
-#
-say &quot;prechange list  : [ &quot;, (join ', ', $list-&gt;@*), &quot; ]&quot;;
+<span style="color:#75715e">## we get the values at the indices specified from the original list and sort</span>
+<span style="color:#66d9ef">my</span> @sorted <span style="color:#f92672">=</span> sort {$a <span style="color:#e6db74">&lt;=&gt;</span> $b <span style="color:#f92672">||</span> $a <span style="color:#f92672">cmp</span> $b } map { $list<span style="color:#f92672">-&gt;</span>[$_] } @indices;
 
-## we get the values at the indices specified from the original list and sort
-my @sorted = sort {$a &lt;=&gt; $b || $a cmp $b } map { $list-&gt;[$_] } @indices;
+<span style="color:#75715e">## reinsert the sorted data</span>
+splice( $list<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, $_, <span style="color:#ae81ff">1</span>, shift @sorted ) <span style="color:#66d9ef">for</span> @indices ;
 
-## reinsert the sorted data
-splice( $list-&gt;@*, $_, 1, shift @sorted ) for @indices ;
-
-# OUTPUT
-#
-say &quot;postchange list : [ &quot;, (join ', ', $list-&gt;@*), &quot; ]&quot;;
-</code></pre>
-
-<hr />
-
+<span style="color:#75715e"># OUTPUT</span>
+<span style="color:#75715e">#</span>
+say <span style="color:#e6db74">&#34;postchange list : [ &#34;</span>, (join <span style="color:#e6db74">&#39;, &#39;</span>, $list<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>), <span style="color:#e6db74">&#34; ]&#34;</span>;
+</code></pre></div><hr>
 <h2 id="duane-powell-1">Duane Powell</h2>
-
 <p><strong>Duane</strong> kept it short and simple.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">qw( say )</span>;
 
-<pre><code class="language-perl">use warnings;
-use strict;
-use feature qw( say );
+<span style="color:#66d9ef">my</span> @a <span style="color:#f92672">=</span> <span style="color:#e6db74">qw( 10 4 1 8 12 3 )</span>;
+<span style="color:#66d9ef">my</span> @i <span style="color:#f92672">=</span> <span style="color:#e6db74">qw( 0 2 5)</span>;
 
-my @a = qw( 10 4 1 8 12 3 );
-my @i = qw( 0 2 5);
-
-say join(',',@a);
-my @temp;
-foreach (@i) {
+say join(<span style="color:#e6db74">&#39;,&#39;</span>,@a);
+<span style="color:#66d9ef">my</span> @temp;
+<span style="color:#66d9ef">foreach</span> (@i) {
     push @temp, $a[$_];
 }
-@temp = sort {$a &lt;=&gt; $b} @temp;
-foreach (@i) {
-    $a[$_] = shift @temp;
+@temp <span style="color:#f92672">=</span> sort {$a <span style="color:#e6db74">&lt;=&gt;</span> $b} @temp;
+<span style="color:#66d9ef">foreach</span> (@i) {
+    $a[$_] <span style="color:#f92672">=</span> shift @temp;
 }
-say join(',',@a);
-</code></pre>
-
-<hr />
-
+say join(<span style="color:#e6db74">&#39;,&#39;</span>,@a);
+</code></pre></div><hr>
 <h2 id="duncan-c-white-1">Duncan C. White</h2>
-
 <p><strong>Duncan</strong> magical line is really cool. It reminded me the power of <strong>Perl</strong>.</p>
+<h4 id="arrayindex--subarray">@array[@index] = @subarray;</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.10</span>;  <span style="color:#75715e"># to get &#34;say&#34;</span>
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#75715e">#use Data::Dumper;</span>
 
-<h4 id="array-index-subarray">@array[@index] = @subarray;</h4>
+die <span style="color:#e6db74">&#34;Usage: ch-2.pl ARRAYLIST INDEXLIST\n&#34;</span> <span style="color:#66d9ef">unless</span> @ARGV<span style="color:#f92672">==</span><span style="color:#ae81ff">2</span>;
+<span style="color:#66d9ef">my</span> @array <span style="color:#f92672">=</span> split(<span style="color:#e6db74">/,/</span>, $ARGV[<span style="color:#ae81ff">0</span>]);
+<span style="color:#66d9ef">my</span> @index <span style="color:#f92672">=</span> split(<span style="color:#e6db74">/,/</span>, $ARGV[<span style="color:#ae81ff">1</span>]);
 
-<pre><code class="language-perl">use v5.10;  # to get &quot;say&quot;
-use strict;
-use warnings;
-#use Data::Dumper;
+<span style="color:#66d9ef">my</span> @subarray <span style="color:#f92672">=</span> @array[@index];
+<span style="color:#75715e">#die Dumper \@subarray;</span>
 
-die &quot;Usage: ch-2.pl ARRAYLIST INDEXLIST\n&quot; unless @ARGV==2;
-my @array = split(/,/, $ARGV[0]);
-my @index = split(/,/, $ARGV[1]);
+@subarray <span style="color:#f92672">=</span> sort { $a <span style="color:#e6db74">&lt;=&gt;</span> $b } @subarray;
+<span style="color:#75715e">#die Dumper \@subarray;</span>
 
-my @subarray = @array[@index];
-#die Dumper \@subarray;
+@array[@index] <span style="color:#f92672">=</span> @subarray;
+<span style="color:#75715e">#die Dumper \@array;</span>
 
-@subarray = sort { $a &lt;=&gt; $b } @subarray;
-#die Dumper \@subarray;
-
-@array[@index] = @subarray;
-#die Dumper \@array;
-
-say &quot;List: [ &quot;, join(', ', @array), &quot; ]&quot;;
-</code></pre>
-
-<hr />
-
+say <span style="color:#e6db74">&#34;List: [ &#34;</span>, join(<span style="color:#e6db74">&#39;, &#39;</span>, @array), <span style="color:#e6db74">&#34; ]&#34;</span>;
+</code></pre></div><hr>
 <h2 id="e-choroba-1">E. Choroba</h2>
-
 <p>No one can beat <strong>Choroba</strong>. I love the fact he always packs his solution with unit test. Great Work.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> strict;
 
-<pre><code class="language-perl">use warnings;
-use strict;
+<span style="color:#66d9ef">my</span> @list <span style="color:#f92672">=</span> (<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">3</span>);
+<span style="color:#66d9ef">my</span> @indices <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">5</span>);
 
-my @list = (10, 4, 1, 8, 12, 3);
-my @indices = (0, 2, 5);
+<span style="color:#66d9ef">my</span> @sorted <span style="color:#f92672">=</span> @list;
+@sorted[@indices] <span style="color:#f92672">=</span> sort { $a <span style="color:#e6db74">&lt;=&gt;</span> $b } @sorted[@indices];
 
-my @sorted = @list;
-@sorted[@indices] = sort { $a &lt;=&gt; $b } @sorted[@indices];
+<span style="color:#66d9ef">my</span> @expected <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">10</span>);
 
-my @expected = (1, 4, 3, 8, 12, 10);
-
-&quot;@sorted&quot; eq &quot;@expected&quot;
-or die &quot;Got:      @sorted\nExpected: @expected\n&quot;;
-</code></pre>
-
-<hr />
-
+<span style="color:#e6db74">&#34;@sorted&#34;</span> <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#34;@expected&#34;</span>
+<span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;Got:      @sorted\nExpected: @expected\n&#34;</span>;
+</code></pre></div><hr>
 <h2 id="javier-luque-1">Javier Luque</h2>
-
 <p><strong>Javier</strong> never misses to have magical line in his work. This time it is:</p>
+<h4 id="my-sublist--sort-a--b-listindices">my @sublist = sort {$a &lt;=&gt; $b} @list[@indices];</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">qw /say/;
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">my </span>@list <span style="color:#f92672">=</span> (<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">3</span>);
+<span style="color:#66d9ef">my</span> @indices <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">5</span>);
 
-<h4 id="my-sublist-sort-a-b-list-indices">my @sublist = sort {$a &lt;=&gt; $b} @list[@indices];</h4>
+<span style="color:#75715e"># Create a sublist</span>
+<span style="color:#66d9ef">my</span> @sublist <span style="color:#f92672">=</span>
+    sort {$a <span style="color:#e6db74">&lt;=&gt;</span> $b} @list[@indices];
 
-<pre><code class="language-perl">use strict;
-use warnings;
-use feature qw /say/;
-
-my @list = (10, 4, 1, 8, 12, 3);
-my @indices = (0, 2, 5);
-
-# Create a sublist
-my @sublist =
-    sort {$a &lt;=&gt; $b} @list[@indices];
-
-# Override the original array
-my $i = 0;
-for my $index (@indices) {
-    $list[$index] = $sublist[$i++];
+<span style="color:#75715e"># Override the original array</span>
+<span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $index (@indices) {
+    $list[$index] <span style="color:#f92672">=</span> $sublist[$i<span style="color:#f92672">++</span>];
 }
 
-say join ',', @list;
-</code></pre>
-
-<hr />
-
+say join <span style="color:#e6db74">&#39;,&#39;</span>, @list;
+</code></pre></div><hr>
 <h2 id="laurent-rosenfeld-1">Laurent Rosenfeld</h2>
-
 <p><strong>Laurent</strong> also took the same path like some of the members. The line does most of the work.</p>
+<h4 id="numbersindices--sort--a--b--numbersindices">@numbers[@indices] = sort { $a &lt;=&gt; $b } @numbers[@indices];</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">qw/say/</span>;
+<span style="color:#66d9ef">use</span> Data::Dumper;
 
-<h4 id="numbers-indices-sort-a-b-numbers-indices">@numbers[@indices] = sort { $a &lt;=&gt; $b } @numbers[@indices];</h4>
+<span style="color:#66d9ef">my</span> @numbers <span style="color:#f92672">=</span> (<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">3</span>);
+<span style="color:#66d9ef">my</span> @indices <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">5</span>);
 
-<pre><code class="language-perl">use strict;
-use warnings;
-use feature qw/say/;
-use Data::Dumper;
-
-my @numbers = (10, 4, 1, 8, 12, 3);
-my @indices = (0, 2, 5);
-
-@numbers[@indices] = sort { $a &lt;=&gt; $b } @numbers[@indices];
-say &quot;@numbers&quot;;
-</code></pre>
-
-<hr />
-
+@numbers[@indices] <span style="color:#f92672">=</span> sort { $a <span style="color:#e6db74">&lt;=&gt;</span> $b } @numbers[@indices];
+say <span style="color:#e6db74">&#34;@numbers&#34;</span>;
+</code></pre></div><hr>
 <h2 id="lubos-kolouch-1">Lubos Kolouch</h2>
-
 <p><strong>Lubos</strong> magic of dealing with command line array is super cool. The magical line wasn&rsquo;t easy to decode in first attempt.</p>
+<h4 id="all_array0all_array1i--sort_arrayi">$all_array[0][$all_array[1][$i]] = $sort_array[$i];</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">qw /say/;
+</span><span style="color:#e6db74">use </span>Data::Dumper;
 
-<h4 id="all-array-0-all-array-1-i-sort-array-i">$all_array[0][$all_array[1][$i]] = $sort_array[$i];</h4>
+<span style="color:#66d9ef">my</span> $array_ref <span style="color:#f92672">=</span> shift <span style="color:#e6db74">//</span> die <span style="color:#e6db74">&#39;No arrays passed&#39;</span>;
+<span style="color:#66d9ef">my</span> @arr <span style="color:#f92672">=</span> $array_ref;
+die <span style="color:#e6db74">&#34;Usage ch-2.pl \&#34;[10 4 1 8 12 3][0 2 5]\&#34;&#34;</span> <span style="color:#66d9ef">unless</span> ($arr[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=~</span><span style="color:#e6db74"> / ^(\[(\d+\h*)+\])+$/msx</span>);
 
-<pre><code class="language-perl">use strict;
-use warnings;
-use feature qw /say/;
-use Data::Dumper;
+<span style="color:#66d9ef">my</span> $arr_size;
+<span style="color:#66d9ef">my</span> @all_array;
 
-my $array_ref = shift // die 'No arrays passed';
-my @arr = $array_ref;
-die &quot;Usage ch-2.pl \&quot;[10 4 1 8 12 3][0 2 5]\&quot;&quot; unless ($arr[0] =~ / ^(\[(\d+\h*)+\])+$/msx);
-
-my $arr_size;
-my @all_array;
-
-my $i=0;
-for (split /\]/, $arr[0]) {
-    $_ =~ s/\[//g;
-    push @{$all_array[$i]}, split / /;
-    $arr_size = scalar @{$all_array[$i]} unless $arr_size;
-    $i++;
+<span style="color:#66d9ef">my</span> $i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+<span style="color:#66d9ef">for</span> (split <span style="color:#e6db74">/\]/</span>, $arr[<span style="color:#ae81ff">0</span>]) {
+    $_ <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/\[//g</span>;
+    push @{$all_array[$i]}, split <span style="color:#e6db74">/ /</span>;
+    $arr_size <span style="color:#f92672">=</span> scalar @{$all_array[$i]} <span style="color:#66d9ef">unless</span> $arr_size;
+    $i<span style="color:#f92672">++</span>;
 }
 
-my @sort_array;
-for (@{$all_array[1]}) {
-    push @sort_array, $all_array[0][$_];
+<span style="color:#66d9ef">my</span> @sort_array;
+<span style="color:#66d9ef">for</span> (@{$all_array[<span style="color:#ae81ff">1</span>]}) {
+    push @sort_array, $all_array[<span style="color:#ae81ff">0</span>][$_];
 }
 
-@sort_array = sort {$a &lt;=&gt; $b} @sort_array;
-$i=0;
-for (@{$all_array[1]}) {
-    $all_array[0][$all_array[1][$i]] = $sort_array[$i];
-    $i++;
+@sort_array <span style="color:#f92672">=</span> sort {$a <span style="color:#e6db74">&lt;=&gt;</span> $b} @sort_array;
+$i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+<span style="color:#66d9ef">for</span> (@{$all_array[<span style="color:#ae81ff">1</span>]}) {
+    $all_array[<span style="color:#ae81ff">0</span>][$all_array[<span style="color:#ae81ff">1</span>][$i]] <span style="color:#f92672">=</span> $sort_array[$i];
+    $i<span style="color:#f92672">++</span>;
 }
 
-warn Dumper \$all_array[0];
-</code></pre>
-
-<hr />
-
-<h2 id="roger-bell-west-1">Roger Bell_West</h2>
-
+warn Dumper <span style="color:#f92672">\</span>$all_array[<span style="color:#ae81ff">0</span>];
+</code></pre></div><hr>
+<h2 id="roger-bell_west-1">Roger Bell_West</h2>
 <p><strong>Roger</strong> seems to be playing <strong>golf game</strong>. I find it hard to read if it is not laid out nicely. Having said that once you decode it, you will love it. Good Job.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
 
-<pre><code class="language-perl">use strict;
-use warnings;
+<span style="color:#66d9ef">my</span> @list<span style="color:#f92672">=</span>(<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">3</span>);
+<span style="color:#66d9ef">my</span> @indices<span style="color:#f92672">=</span>(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">5</span>);
 
-my @list=(10, 4, 1, 8, 12, 3);
-my @indices=(0,2,5);
+<span style="color:#66d9ef">my</span> @s<span style="color:#f92672">=</span>sort {$a <span style="color:#e6db74">&lt;=&gt;</span> $b} map {$list[$_]} @indices;
+map {$list[$indices[$_]]<span style="color:#f92672">=</span>$s[$_]} (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#indices);
 
-my @s=sort {$a &lt;=&gt; $b} map {$list[$_]} @indices;
-map {$list[$indices[$_]]=$s[$_]} (0..$#indices);
-
-print join(', ',@list),&quot;\n&quot;;
-</code></pre>
-
-<hr />
-
+<span style="color:#66d9ef">print</span> join(<span style="color:#e6db74">&#39;, &#39;</span>,@list),<span style="color:#e6db74">&#34;\n&#34;</span>;
+</code></pre></div><hr>
 <h2 id="ruben-westerberg-1">Ruben Westerberg</h2>
-
 <p><strong>Ruben</strong>, you have beaten all with your solution. I still can&rsquo;t believe what I see here.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
 
-<pre><code class="language-perl">use strict;
-use warnings;
+<span style="color:#66d9ef">my</span> @a<span style="color:#f92672">=</span>(<span style="color:#ae81ff">10</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">12</span>,<span style="color:#ae81ff">3</span>);
+<span style="color:#66d9ef">my</span> @i<span style="color:#f92672">=</span>(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">5</span>);
 
-my @a=(10,4,1,8,12,3);
-my @i=(0,2,5);
-
-$,=&quot; &quot;;
-print sort {$a &lt;=&gt; $b} @a[@i];
-</code></pre>
-
-<hr />
-
+$,<span style="color:#f92672">=</span><span style="color:#e6db74">&#34; &#34;</span>;
+<span style="color:#66d9ef">print</span> sort {$a <span style="color:#e6db74">&lt;=&gt;</span> $b} @a[@i];
+</code></pre></div><hr>
 <h2 id="ryan-thompson-1">Ryan Thompson</h2>
-
 <p><strong>Ryan</strong> is one member who I always look for magic. Although he is relative new to team but have impressed many already.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> <span style="color:#ae81ff">5.010</span>;
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> strict;
 
-<pre><code class="language-perl">use 5.010;
-use warnings;
-use strict;
+<span style="color:#66d9ef">my</span> @list <span style="color:#f92672">=</span> (<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">3</span>);
+<span style="color:#66d9ef">my</span> @idx  <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">5</span>);
 
-my @list = (10, 4, 1, 8, 12, 3);
-my @idx  = (0, 2, 5);
+@list[@idx] <span style="color:#f92672">=</span> sort { $a <span style="color:#e6db74">&lt;=&gt;</span> $b } @list[@idx];
 
-@list[@idx] = sort { $a &lt;=&gt; $b } @list[@idx];
-
-say &quot;@list&quot;;
-</code></pre>
-
-<hr />
-
+say <span style="color:#e6db74">&#34;@list&#34;</span>;
+</code></pre></div><hr>
 <h2 id="saif-ahmed-1">Saif Ahmed</h2>
-
 <p><strong>Saif</strong> presented the power of array slicing so elegantly. It refreshes my memory as well. Thank you <strong>Saif</strong>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">&#39;say&#39;</span>;
 
-<pre><code class="language-perl">use feature 'say';
-
-my @list= ( 10, 4, 1, 8, 12, 3 );               # list for selective sorting
-my @Indices=(0,2,5);                            # list of indices to sort
-say &quot;Original list:- &quot;,join &quot; &quot;,@list;          # display original list
-@list[@Indices]=sort{$a &lt;=&gt; $b}@list[@Indices]; # sort index values
-say &quot;Modified list:- &quot;,join &quot; &quot;,@list; # display results after modification
-</code></pre>
-
-<hr />
-
+<span style="color:#66d9ef">my</span> @list<span style="color:#f92672">=</span> ( <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">3</span> );               <span style="color:#75715e"># list for selective sorting</span>
+<span style="color:#66d9ef">my</span> @Indices<span style="color:#f92672">=</span>(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">5</span>);                            <span style="color:#75715e"># list of indices to sort</span>
+say <span style="color:#e6db74">&#34;Original list:- &#34;</span>,join <span style="color:#e6db74">&#34; &#34;</span>,@list;          <span style="color:#75715e"># display original list</span>
+@list[@Indices]<span style="color:#f92672">=</span>sort{$a <span style="color:#e6db74">&lt;=&gt;</span> $b}@list[@Indices]; <span style="color:#75715e"># sort index values</span>
+say <span style="color:#e6db74">&#34;Modified list:- &#34;</span>,join <span style="color:#e6db74">&#34; &#34;</span>,@list; <span style="color:#75715e"># display results after modification</span>
+</code></pre></div><hr>
 <h2 id="steven-wilson-1">Steven Wilson</h2>
-
 <p><strong>Steven</strong> approach is similar to some of the member above. It is nicely laid out and well commented. Good work.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">qw/ say /</span>;
 
-<pre><code class="language-perl">use strict;
-use warnings;
-use feature qw/ say /;
+<span style="color:#66d9ef">my</span> @list_of_numbers <span style="color:#f92672">=</span> ( <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">3</span> );
+<span style="color:#66d9ef">my</span> @set_of_indices <span style="color:#f92672">=</span> ( <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">5</span> );
 
-my @list_of_numbers = ( 10, 4, 1, 8, 12, 3 );
-my @set_of_indices = ( 0, 2, 5 );
+say <span style="color:#e6db74">&#34;Initial List:\t&#34;</span>, join <span style="color:#e6db74">&#34; &#34;</span>, @list_of_numbers;
+say <span style="color:#e6db74">&#34;Indices:\t&#34;</span>, join <span style="color:#e6db74">&#34; &#34;</span>, @set_of_indices;
 
-say &quot;Initial List:\t&quot;, join &quot; &quot;, @list_of_numbers;
-say &quot;Indices:\t&quot;, join &quot; &quot;, @set_of_indices;
+<span style="color:#66d9ef">my</span> @sub_list <span style="color:#f92672">=</span> map { $list_of_numbers[$_] } @set_of_indices;
+<span style="color:#66d9ef">my</span> @sorted_sub_list <span style="color:#f92672">=</span> sort { $a <span style="color:#e6db74">&lt;=&gt;</span> $b } @sub_list;
 
-my @sub_list = map { $list_of_numbers[$_] } @set_of_indices;
-my @sorted_sub_list = sort { $a &lt;=&gt; $b } @sub_list;
+<span style="color:#75715e"># Put sorted values back into list at indices</span>
+map { $list_of_numbers[ $set_of_indices[$_] ] <span style="color:#f92672">=</span> $sorted_sub_list[$_] }
+    ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> ( scalar @set_of_indices <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ) );
 
-# Put sorted values back into list at indices
-map { $list_of_numbers[ $set_of_indices[$_] ] = $sorted_sub_list[$_] }
-    ( 0 .. ( scalar @set_of_indices - 1 ) );
-
-say &quot;Final List:\t&quot;, join &quot; &quot;, @list_of_numbers;
-</code></pre>
-
-<hr />
-
+say <span style="color:#e6db74">&#34;Final List:\t&#34;</span>, join <span style="color:#e6db74">&#34; &#34;</span>, @list_of_numbers;
+</code></pre></div><hr>
 <h2 id="ulrich-rieke-1">Ulrich Rieke</h2>
-
 <p><strong>Ulrich</strong> kept it simple and easy with the use of <em>for loop</em>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict ;
+<span style="color:#66d9ef">use</span> warnings ;
 
-<pre><code class="language-perl">use strict ;
-use warnings ;
-
-my @list = ( 10, 4, 1, 8, 12, 3 ) ;
-my @indices = ( 0, 2, 5 ) ;
-#a numerical comparison is to be enforced in the next 2 lines
-my @sortedSlice = sort { $a &lt;=&gt; $b } @list[@indices] ;
-my @sortedIndices = sort { $a &lt;=&gt; $b } @indices ;
-my $arraylen = @sortedIndices + 0 ;
-for ( my $i = 0 ; $i &lt; $arraylen ; $i++ ) {
-  $list[ $sortedIndices[ $i ]] = $sortedSlice[ $i ] ;
+<span style="color:#66d9ef">my</span> @list <span style="color:#f92672">=</span> ( <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">3</span> ) ;
+<span style="color:#66d9ef">my</span> @indices <span style="color:#f92672">=</span> ( <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">5</span> ) ;
+<span style="color:#75715e">#a numerical comparison is to be enforced in the next 2 lines</span>
+<span style="color:#66d9ef">my</span> @sortedSlice <span style="color:#f92672">=</span> sort { $a <span style="color:#e6db74">&lt;=&gt;</span> $b } @list[@indices] ;
+<span style="color:#66d9ef">my</span> @sortedIndices <span style="color:#f92672">=</span> sort { $a <span style="color:#e6db74">&lt;=&gt;</span> $b } @indices ;
+<span style="color:#66d9ef">my</span> $arraylen <span style="color:#f92672">=</span> @sortedIndices <span style="color:#f92672">+</span> <span style="color:#ae81ff">0</span> ;
+<span style="color:#66d9ef">for</span> ( <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> ; $i <span style="color:#f92672">&lt;</span> $arraylen ; $i<span style="color:#f92672">++</span> ) {
+  $list[ $sortedIndices[ $i ]] <span style="color:#f92672">=</span> $sortedSlice[ $i ] ;
 }
-for my $item ( @list ) {
-  print &quot;$item &quot; ;
+<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $item ( @list ) {
+  <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$item &#34;</span> ;
 }
-print &quot;\n&quot; ;
-</code></pre>
-
-<hr />
-
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\n&#34;</span> ;
+</code></pre></div><hr>
 <h2 id="wanderdoc-1">Wanderdoc</h2>
-
 <p><strong>Wanderdoc</strong> magical line below is the one I always get confused. I will try to remember how it works now.</p>
+<h4 id="val2sortidx2sort--arrayidx2sort">@val2sort{@idx2sort} = @array[@idx2sort];</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @array <span style="color:#f92672">=</span> (<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">3</span>);
+<span style="color:#66d9ef">my</span> @idx2sort <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">5</span>);
 
-<h4 id="val2sort-idx2sort-array-idx2sort">@val2sort{@idx2sort} = @array[@idx2sort];</h4>
+<span style="color:#66d9ef">my</span> %val2sort;
 
-<pre><code class="language-perl">my @array = (10, 4, 1, 8, 12, 3);
-my @idx2sort = (0, 2, 5);
+@val2sort{@idx2sort} <span style="color:#f92672">=</span> @array[@idx2sort];
 
-my %val2sort;
+<span style="color:#66d9ef">my</span> @idx_stack <span style="color:#f92672">=</span> sort {$a <span style="color:#e6db74">&lt;=&gt;</span> $b } values %val2sort;
 
-@val2sort{@idx2sort} = @array[@idx2sort];
-
-my @idx_stack = sort {$a &lt;=&gt; $b } values %val2sort;
-
-my @new_array;
-for my $i ( 0 .. $#array )
+<span style="color:#66d9ef">my</span> @new_array;
+<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#array )
 {
-     $new_array[$i] = exists $val2sort{$i} ?
+     $new_array[$i] <span style="color:#f92672">=</span> exists $val2sort{$i} ?
           shift @idx_stack : $array[$i];
 }
 
-print join(', ', @new_array), $/;
-print &quot;Now saving indices not values:&quot;, $/;
+<span style="color:#66d9ef">print</span> join(<span style="color:#e6db74">&#39;, &#39;</span>, @new_array), $/;
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Now saving indices not values:&#34;</span>, $/;
 
-@new_array = ();
-my @idx_sorted =
-     sort {$val2sort{$a} &lt;=&gt; $val2sort{$b}} keys %val2sort;
+@new_array <span style="color:#f92672">=</span> ();
+<span style="color:#66d9ef">my</span> @idx_sorted <span style="color:#f92672">=</span>
+     sort {$val2sort{$a} <span style="color:#e6db74">&lt;=&gt;</span> $val2sort{$b}} keys %val2sort;
 
-for my $i ( 0 .. $#array )
+<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#array )
 {
-     $new_array[$i] = exists $val2sort{$i} ?
+     $new_array[$i] <span style="color:#f92672">=</span> exists $val2sort{$i} ?
           $array[shift @idx_sorted] : $array[$i];
 }
 
-print join(', ', @new_array), $/;
-</code></pre>
-
-<hr />
-
-<hr />
-
+<span style="color:#66d9ef">print</span> join(<span style="color:#e6db74">&#39;, &#39;</span>, @new_array), $/;
+</code></pre></div><hr>
+<hr>
 <h2 id="see-also">SEE ALSO</h2>
-
-<hr />
-
-<hr />
-
+<hr>
+<hr>
 <p>(1) <a href="https://adamcrussell.livejournal.com/13711.html"><strong>Perl Weekly Challenge 040</strong></a> by <strong>Adam Russell</strong></p>
-
 <p>(2) <a href="http://blogs.perl.org/users/e_choroba/2019/12/perl-weekly-challenge-040-multiple-arrays-sort-sublist.html"><strong>Perl Weekly Challenge 040: Multiple Arrays &amp; Sort SubList</strong></a> by <strong>E.Choroba</strong></p>
-
 <p>(3) <a href="https://perlchallenges.wordpress.com/2019/12/23/perl-weekly-challenge-040/"><strong>PERL WEEKLY CHALLENGE – 040</strong></a> by <strong>Javier Luque</strong></p>
-
 <p>(4) <a href="http://blogs.perl.org/users/laurent_r/2019/12/perl-weekly-challenge-40-multiple-arrays-content-and-sublist-sorting.html"><strong>Perl Weekly Challenge 40: Multiple Arrays Content and Sublist Sorting</strong></a> by <strong>Laurent Rosenfeld</strong></p>
-
 <p>(5) <a href="http://www.ry.ca/2019/12/zip6/"><strong>Zip6</strong></a> by <strong>Ryan Thompson</strong></p>
 
                 </div>

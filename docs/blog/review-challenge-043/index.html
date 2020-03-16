@@ -16,7 +16,7 @@
 
     <meta name="description" content="Ryan Thompson › Perl Weekly Review: Challenge - #043">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.55.0-DEV" />
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -41,6 +41,8 @@
     <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
     <!-- hover -->
     <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
     <!-- template main css file -->
     
     <link rel="stylesheet" href="https://perlweeklychallenge.org/css/style.min.css" integrity="" media="screen">
@@ -149,978 +151,713 @@
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
-                    
-
-<hr />
-
-<hr />
-
+                    <hr>
+<hr>
 <p>Continues from <a href="/blog/review-challenge-042/">previous week</a>.</p>
-
 <p>Feel free to <a href="https://github.com/manwar/perlweeklychallenge">submit a merge request or open a ticket</a> if you found any issues with this post. We highly appreciate and welcome your feedback. You can also <a href="http://ry.ca/contact">contact me (Ryan) directly</a>, with any feedback on this review.</p>
-
 <p>For a quick overview, go through the <a href="/blog/perl-weekly-challenge-043/">original tasks</a> and <a href="/blog/recap-challenge-043/">recap</a> of the weekly challenge.</p>
-
 <p>Additional feedback to our Perl Weekly Challenge’s <a href="https://twitter.com/perlwchallenge?lang=en">Twitter account</a> is much appreciated.</p>
-
-<h1 id="task-1-olympic-rings">Task #1 - Olympic Rings</h1>
-
+<h1 id="task-1---olympic-rings">Task #1 - Olympic Rings</h1>
 <p>The task here was to fill in the numbers 1, 2, 3, 4, and 6 into the spaces within the intersecting Olympic rings, such that the numbers in each ring sum to 11. (See the diagram.)</p>
-
 <p>The problem can be solved easily enough by hand, yet still presents an interesting programming challenge that can be tackled in many different ways.</p>
-
 <h2 id="adam-russell">Adam Russell</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-043/adam-russell/perl/ch-1.pl">Adam&rsquo;s solution</a> this week is a Perl wrapper around a Prolog clause using <a href="https://metacpan.org/pod/AI::Prolog">AI::Prolog</a>. It&rsquo;s satisfyingly elegant.</p>
-
 <p>The Prolog clause is as follows:</p>
-
-<pre><code class="language-prolog">member(X,[X|T]).
-member(X,[H|T]) :- member(X,T).
-colors(Red, Green, Black, Yellow, Blue) :-
-    member(Blue, [1,2,3,4,6]),
-    member(Yellow, [1,2,3,4,6]),
-    member(Green, [1,2,3,4,6]),
-    member(Red, [1,2,3,4,6]),
-    member(Black, [1,2,3,4,6]),
-    R = 11, R is 9 + Red,
-    G = 11, G is 5 + Red + Green,
-    B = 11, B is 8 + Blue,
-    Y = 11, Y is 7 + Blue + Yellow,
-    Bl = 11, Bl is Green + Yellow + Black.
-</code></pre>
-
-<p>And that clause (stored in <code>$prolog</code>) is called in Perl like so:</p>
-
-<pre><code class="language-perl">$prolog = new AI::Prolog($prolog);
-$prolog-&gt;query(&quot;colors(Red, Green, Black, Yellow, Blue).&quot;);
-</code></pre>
-
-<p>Prolog is a great choice for this type of problem, as the solution can be simply defined as a system of equations. Prolog then understands these equations as a constraint-based problem, and abstracts away all of the complexity.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-prolog" data-lang="prolog"><span style="color:#a6e22e">member</span>(X,[X|T]).
+<span style="color:#a6e22e">member</span>(X,[H|T]) :- <span style="color:#a6e22e">member</span>(X,T).
+<span style="color:#a6e22e">colors</span>(Red, Green, Black, Yellow, Blue) :-
+    <span style="color:#a6e22e">member</span>(Blue, [<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">6</span>]),
+    <span style="color:#a6e22e">member</span>(Yellow, [<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">6</span>]),
+    <span style="color:#a6e22e">member</span>(Green, [<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">6</span>]),
+    <span style="color:#a6e22e">member</span>(Red, [<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">6</span>]),
+    <span style="color:#a6e22e">member</span>(Black, [<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">6</span>]),
+    R <span style="color:#f92672">=</span> <span style="color:#ae81ff">11</span>, R <span style="color:#f92672">is</span> <span style="color:#ae81ff">9</span> <span style="color:#f92672">+</span> Red,
+    G <span style="color:#f92672">=</span> <span style="color:#ae81ff">11</span>, G <span style="color:#f92672">is</span> <span style="color:#ae81ff">5</span> <span style="color:#f92672">+</span> Red <span style="color:#f92672">+</span> Green,
+    B <span style="color:#f92672">=</span> <span style="color:#ae81ff">11</span>, B <span style="color:#f92672">is</span> <span style="color:#ae81ff">8</span> <span style="color:#f92672">+</span> Blue,
+    Y <span style="color:#f92672">=</span> <span style="color:#ae81ff">11</span>, Y <span style="color:#f92672">is</span> <span style="color:#ae81ff">7</span> <span style="color:#f92672">+</span> Blue <span style="color:#f92672">+</span> Yellow,
+    Bl <span style="color:#f92672">=</span> <span style="color:#ae81ff">11</span>, Bl <span style="color:#f92672">is</span> Green <span style="color:#f92672">+</span> Yellow <span style="color:#f92672">+</span> Black.
+</code></pre></div><p>And that clause (stored in <code>$prolog</code>) is called in Perl like so:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">$prolog <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> AI::Prolog($prolog);
+$prolog<span style="color:#f92672">-&gt;</span>query(<span style="color:#e6db74">&#34;colors(Red, Green, Black, Yellow, Blue).&#34;</span>);
+</code></pre></div><p>Prolog is a great choice for this type of problem, as the solution can be simply defined as a system of equations. Prolog then understands these equations as a constraint-based problem, and abstracts away all of the complexity.</p>
 <p>Read more on <a href="https://adamcrussell.livejournal.com/14361.html">Adam&rsquo;s blog</a>.</p>
-
 <h2 id="alicia-bielsa">Alicia Bielsa</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-043/alicia-bielsa/perl/ch-1.pl">Alicia&rsquo;s solution</a> sets up a hash, <code>%hRingsComposition</code>, which maps each ring to the segments that must be sum to 11 inside that ring:</p>
-
-<pre><code class="language-perl">my %hRingsComposition = (
-                   'RED' =&gt;  [ 'RED', 'RED_GREEN'],
-                   'GREEN' =&gt;  [ 'GREEN', 'RED_GREEN',  'GREEN_BLACK'],
-                   'YELLOW' =&gt; [ 'YELLOW', 'BLUE_YELLOW', 'YELLOW_BLACK'],
-                   'BLUE' =&gt; [ 'BLUE', 'BLUE_YELLOW'],
-                   'BLACK' =&gt;[ 'BLACK',  'GREEN_BLACK','YELLOW_BLACK']
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> %hRingsComposition <span style="color:#f92672">=</span> (
+                   <span style="color:#e6db74">&#39;RED&#39;</span> <span style="color:#f92672">=&gt;</span>  [ <span style="color:#e6db74">&#39;RED&#39;</span>, <span style="color:#e6db74">&#39;RED_GREEN&#39;</span>],
+                   <span style="color:#e6db74">&#39;GREEN&#39;</span> <span style="color:#f92672">=&gt;</span>  [ <span style="color:#e6db74">&#39;GREEN&#39;</span>, <span style="color:#e6db74">&#39;RED_GREEN&#39;</span>,  <span style="color:#e6db74">&#39;GREEN_BLACK&#39;</span>],
+                   <span style="color:#e6db74">&#39;YELLOW&#39;</span> <span style="color:#f92672">=&gt;</span> [ <span style="color:#e6db74">&#39;YELLOW&#39;</span>, <span style="color:#e6db74">&#39;BLUE_YELLOW&#39;</span>, <span style="color:#e6db74">&#39;YELLOW_BLACK&#39;</span>],
+                   <span style="color:#e6db74">&#39;BLUE&#39;</span> <span style="color:#f92672">=&gt;</span> [ <span style="color:#e6db74">&#39;BLUE&#39;</span>, <span style="color:#e6db74">&#39;BLUE_YELLOW&#39;</span>],
+                   <span style="color:#e6db74">&#39;BLACK&#39;</span> <span style="color:#f92672">=&gt;</span>[ <span style="color:#e6db74">&#39;BLACK&#39;</span>,  <span style="color:#e6db74">&#39;GREEN_BLACK&#39;</span>,<span style="color:#e6db74">&#39;YELLOW_BLACK&#39;</span>]
 );
-</code></pre>
+</code></pre></div><p>Alicia&rsquo;s algorithm is efficient. It takes advantage of the fact that there is only one solution, and it can be found by simply looking for a ring with only one unknown, and filling in that unknown from one of the available values, repeating until the problem is solved. Here is the main loop:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $countAvailableNumbers <span style="color:#f92672">=</span> scalar @aAvailableNumbers;
+<span style="color:#66d9ef">while</span> ( $countAvailableNumbers ){
+    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $ringColor (keys %hRingsComposition){
 
-<p>Alicia&rsquo;s algorithm is efficient. It takes advantage of the fact that there is only one solution, and it can be found by simply looking for a ring with only one unknown, and filling in that unknown from one of the available values, repeating until the problem is solved. Here is the main loop:</p>
+        <span style="color:#66d9ef">my</span> $singleEmptyValue <span style="color:#f92672">=</span> findSingleEmptyValue($ringColor);
+        <span style="color:#66d9ef">if</span> ($singleEmptyValue){
 
-<pre><code class="language-perl">my $countAvailableNumbers = scalar @aAvailableNumbers;
-while ( $countAvailableNumbers ){
-    foreach my $ringColor (keys %hRingsComposition){
-
-        my $singleEmptyValue = findSingleEmptyValue($ringColor);
-        if ($singleEmptyValue){
-
-            my $currentRingSum = getCurrentRingSum($ringColor);
-            my $difference =  $TOTALSUM - $currentRingSum;
-            if (checkValueAvailability($difference)){
-                $hColorValue{$singleEmptyValue} =$difference;
-            } else {
-                die &quot;ERROR: Value  '$difference' not available, imposible to resolve\n&quot;;
+            <span style="color:#66d9ef">my</span> $currentRingSum <span style="color:#f92672">=</span> getCurrentRingSum($ringColor);
+            <span style="color:#66d9ef">my</span> $difference <span style="color:#f92672">=</span>  $TOTALSUM <span style="color:#f92672">-</span> $currentRingSum;
+            <span style="color:#66d9ef">if</span> (checkValueAvailability($difference)){
+                $hColorValue{$singleEmptyValue} <span style="color:#f92672">=</span>$difference;
+            } <span style="color:#66d9ef">else</span> {
+                die <span style="color:#e6db74">&#34;ERROR: Value  &#39;$difference&#39; not available, imposible to resolve\n&#34;</span>;
             }
         }
     }
-    $countAvailableNumbers = scalar @aAvailableNumbers;
+    $countAvailableNumbers <span style="color:#f92672">=</span> scalar @aAvailableNumbers;
 }
-</code></pre>
-
-<p>Her program finds the solution in just 10 total iterations of the inner <code>foreach</code> loop. Nice!</p>
-
+</code></pre></div><p>Her program finds the solution in just 10 total iterations of the inner <code>foreach</code> loop. Nice!</p>
 <h2 id="andrezgz">Andrezgz</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-043/andrezgz/perl/ch-1.pl">Andrezgz&rsquo;s solution</a> followed a strategy similar to Alicia&rsquo;s, but managed to do so in a concise way, by writing a program highly specialized to this particular puzzle. First, there is the <code>@rings_components</code> array, which sets up the segments contained within each ring:</p>
-
-<pre><code class="language-perl">my @rings_components = (
-    ['Red','RedGreen'],
-    ['Green','RedGreen','GreenBlack'],
-    ['Blue','YellowBlue'],
-    ['Yellow','YellowBlue','BlackYellow'],
-    ['GreenBlack','BlackYellow','Black']
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @rings_components <span style="color:#f92672">=</span> (
+    [<span style="color:#e6db74">&#39;Red&#39;</span>,<span style="color:#e6db74">&#39;RedGreen&#39;</span>],
+    [<span style="color:#e6db74">&#39;Green&#39;</span>,<span style="color:#e6db74">&#39;RedGreen&#39;</span>,<span style="color:#e6db74">&#39;GreenBlack&#39;</span>],
+    [<span style="color:#e6db74">&#39;Blue&#39;</span>,<span style="color:#e6db74">&#39;YellowBlue&#39;</span>],
+    [<span style="color:#e6db74">&#39;Yellow&#39;</span>,<span style="color:#e6db74">&#39;YellowBlue&#39;</span>,<span style="color:#e6db74">&#39;BlackYellow&#39;</span>],
+    [<span style="color:#e6db74">&#39;GreenBlack&#39;</span>,<span style="color:#e6db74">&#39;BlackYellow&#39;</span>,<span style="color:#e6db74">&#39;Black&#39;</span>]
 );
-</code></pre>
-
-<p>The main loop finds the solution (<code>%values</code> contains the known (given) values):</p>
-
-<pre><code class="language-perl">foreach my $ring (@rings_components) {
-    my $internal_sum = 11;
-    foreach my $c (@$ring){
-        $values{$c} = $internal_sum unless defined $values{$c};
-        $internal_sum -= $values{$c};
+</code></pre></div><p>The main loop finds the solution (<code>%values</code> contains the known (given) values):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $ring (@rings_components) {
+    <span style="color:#66d9ef">my</span> $internal_sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">11</span>;
+    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $c (@$ring){
+        $values{$c} <span style="color:#f92672">=</span> $internal_sum <span style="color:#66d9ef">unless</span> defined $values{$c};
+        $internal_sum <span style="color:#f92672">-=</span> $values{$c};
     }
 }
-</code></pre>
-
-<p>Andrezgz defines, but does not even need, a hash of the available numbers, 1, 2, 3, 4, and 6.</p>
-
+</code></pre></div><p>Andrezgz defines, but does not even need, a hash of the available numbers, 1, 2, 3, 4, and 6.</p>
 <h2 id="burkhard-chuck-nickels">Burkhard &ldquo;Chuck&rdquo; Nickels</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-043/burkhard-nickels/perl/ch-1.pl">Chuck&rsquo;s solution</a> sets up a <code>while</code> loop and a sliding window, which looks at three contiguous ring compartments at a time. If there is only one unknown in that group, that unknown can be safely calculated. Here is the loop:</p>
-
-<pre><code class="language-perl">my $nrx;                             # Number of x in array
-do {
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $nrx;                             <span style="color:#75715e"># Number of x in array</span>
+<span style="color:#66d9ef">do</span> {
   numbers();
-  $nrx = () = join(&quot;&quot;,@a) =~ /x/g; # Determine Nr of x
-} while($nrx);                       # if Nr of x
-</code></pre>
+  $nrx <span style="color:#f92672">=</span> () <span style="color:#f92672">=</span> join(<span style="color:#e6db74">&#34;&#34;</span>,@a) <span style="color:#f92672">=~</span><span style="color:#e6db74"> /x/g</span>; <span style="color:#75715e"># Determine Nr of x</span>
+} <span style="color:#66d9ef">while</span>($nrx);                       <span style="color:#75715e"># if Nr of x</span>
+</code></pre></div><p>The <code>numbers()</code> routine looks at the sliding window and does the math to fill in the missing value if there is only one unknown:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">numbers</span> {
+  <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">my</span> $i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; $i<span style="color:#f92672">&lt;=</span>$#a; $i<span style="color:#f92672">+=</span><span style="color:#ae81ff">2</span>) {  <span style="color:#75715e"># Only every second value is a Main Ring Value</span>
 
-<p>The <code>numbers()</code> routine looks at the sliding window and does the math to fill in the missing value if there is only one unknown:</p>
+    <span style="color:#66d9ef">my</span> @win <span style="color:#f92672">=</span> @a[$i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]; <span style="color:#75715e"># Create window of 3 numbers that shifts along array</span>
+    $win[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $i<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>;       <span style="color:#75715e"># At begin, set window first element to zero</span>
+    $win[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $i<span style="color:#f92672">==</span>$#a;     <span style="color:#75715e"># At end,   set window last  element to zero</span>
 
-<pre><code class="language-perl">sub numbers {
-  for(my $i=0; $i&lt;=$#a; $i+=2) {  # Only every second value is a Main Ring Value
-
-    my @win = @a[$i-1 .. $i+1]; # Create window of 3 numbers that shifts along array
-    $win[0] = 0 if $i==0;       # At begin, set window first element to zero
-    $win[2] = 0 if $i==$#a;     # At end,   set window last  element to zero
-
-    my $nr = () = join(&quot;&quot;,@win) =~ /x/g;  # How many x are in window
-    print &quot;($i) Win(&quot;, join(&quot;/&quot;,@win), &quot;) Nrx $nr\n&quot; if $DEBUG;
-    if($nr == 1) {                     # Only if 1 value is missing, determine next value
-      if($win[1] eq 'x') { $a[$i] = 11 - $win[0] - $win[2]; }
-      elsif($win[0] eq 'x') { $a[$i-1] = 11 - $win[1] - $win[2]; }
-      elsif($win[2] eq 'x') { $a[$i+1] = 11 - $win[1] - $win[0]; }
+    <span style="color:#66d9ef">my</span> $nr <span style="color:#f92672">=</span> () <span style="color:#f92672">=</span> join(<span style="color:#e6db74">&#34;&#34;</span>,@win) <span style="color:#f92672">=~</span><span style="color:#e6db74"> /x/g</span>;  <span style="color:#75715e"># How many x are in window</span>
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;($i) Win(&#34;</span>, join(<span style="color:#e6db74">&#34;/&#34;</span>,@win), <span style="color:#e6db74">&#34;) Nrx $nr\n&#34;</span> <span style="color:#66d9ef">if</span> $DEBUG;
+    <span style="color:#66d9ef">if</span>($nr <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>) {                     <span style="color:#75715e"># Only if 1 value is missing, determine next value</span>
+      <span style="color:#66d9ef">if</span>($win[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;x&#39;</span>) { $a[$i] <span style="color:#f92672">=</span> <span style="color:#ae81ff">11</span> <span style="color:#f92672">-</span> $win[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">-</span> $win[<span style="color:#ae81ff">2</span>]; }
+      <span style="color:#66d9ef">elsif</span>($win[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;x&#39;</span>) { $a[$i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">11</span> <span style="color:#f92672">-</span> $win[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> $win[<span style="color:#ae81ff">2</span>]; }
+      <span style="color:#66d9ef">elsif</span>($win[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;x&#39;</span>) { $a[$i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">11</span> <span style="color:#f92672">-</span> $win[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> $win[<span style="color:#ae81ff">0</span>]; }
     }
   }
 }
-</code></pre>
-
-<p>I&rsquo;m impressed by this solution. It&rsquo;s unique, and the sliding window makes short work of this problem. Be sure to check out <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-043/burkhard-nickels/perl/ch-1.pod">Chuck&rsquo;s POD blog</a>, which goes into more detail.</p>
-
+</code></pre></div><p>I&rsquo;m impressed by this solution. It&rsquo;s unique, and the sliding window makes short work of this problem. Be sure to check out <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-043/burkhard-nickels/perl/ch-1.pod">Chuck&rsquo;s POD blog</a>, which goes into more detail.</p>
 <h2 id="colin-crain">Colin Crain</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-043/colin-crain/perl/ch-1.pl">Colin&rsquo;s solution</a> recognizes the fact that this puzzle can be represented as a system of linear equations. Colin derives the linear algebra equations by hand, and then uses <a href="https://metacpan.org/pod/Math::MatrixReal">Math::MatrixReal</a> to do the actual matrix multiplication:</p>
-
-<pre><code class="language-perl">my $a = Math::MatrixReal-&gt;new_from_string(&lt;&lt;MATRIX);
-[ 1 0 0 0 0 ]
-[ 1 1 0 0 0 ]
-[ 0 1 1 1 0 ]
-[ 0 0 0 1 1 ]
-[ 0 0 0 0 1 ]
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $a <span style="color:#f92672">=</span> Math::MatrixReal<span style="color:#f92672">-&gt;</span>new_from_string(<span style="color:#f92672">&lt;&lt;</span>MATRIX);
+[ <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> ]
+[ <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> ]
+[ <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">0</span> ]
+[ <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span> ]
+[ <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">1</span> ]
 MATRIX
 
-my $b = Math::MatrixReal-&gt;new_from_string(&lt;&lt;MATRIX);
-[ 3  ]
-[ 4  ]
-[ 11 ]
-[ 6  ]
-[ 2  ]
+<span style="color:#66d9ef">my</span> $b <span style="color:#f92672">=</span> Math::MatrixReal<span style="color:#f92672">-&gt;</span>new_from_string(<span style="color:#f92672">&lt;&lt;</span>MATRIX);
+[ <span style="color:#ae81ff">3</span>  ]
+[ <span style="color:#ae81ff">4</span>  ]
+[ <span style="color:#ae81ff">11</span> ]
+[ <span style="color:#ae81ff">6</span>  ]
+[ <span style="color:#ae81ff">2</span>  ]
 MATRIX
 
-my $LR = $a-&gt;decompose_LR();
-my ($dim, $out, $base) = $LR-&gt;solve_LR($b);
-</code></pre>
-
-<p>Using this method, the code is very simple. The real magic is in realizing that this puzzle could be reduced to a system of linear equations in the first place!</p>
-
+<span style="color:#66d9ef">my</span> $LR <span style="color:#f92672">=</span> $a<span style="color:#f92672">-&gt;</span>decompose_LR();
+<span style="color:#66d9ef">my</span> ($dim, $out, $base) <span style="color:#f92672">=</span> $LR<span style="color:#f92672">-&gt;</span>solve_LR($b);
+</code></pre></div><p>Using this method, the code is very simple. The real magic is in realizing that this puzzle could be reduced to a system of linear equations in the first place!</p>
 <h2 id="cristina-heredia">Cristina Heredia</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-043/cristian-heredia/perl/ch-1.pl">Cristina&rsquo;s solution</a> provides another interesting variation on the direct calculation method we&rsquo;ve seen previously. She repeats the following code for each of the rings:</p>
-
-<pre><code class="language-perl">@black[0] = $b;
-@black[2] = $c;
-$q = @total[0] - @black[0] - @black[2];
-@black[1] = $q;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">@black[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> $b;
+@black[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">=</span> $c;
+$q <span style="color:#f92672">=</span> @total[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">-</span> @black[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">-</span> @black[<span style="color:#ae81ff">2</span>];
+@black[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> $q;
 validate($q);
-print &quot;\nValors of black:\n&quot;;
-for (my $j = 0; $j &lt; @black; $j++) {
-  print &quot;@black[$j],&quot;;
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\nValors of black:\n&#34;</span>;
+<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; $j <span style="color:#f92672">&lt;</span> @black; $j<span style="color:#f92672">++</span>) {
+  <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;@black[$j],&#34;</span>;
 }
-print &quot;\n&quot;;
-</code></pre>
-
-<p>And the <code>validate()</code> sub simply has to check whether the remaining number, <code>11 - $black[0] - $black[2]</code>, is one of the givens. If so, the solution is valid:</p>
-
-<pre><code class="language-perl">sub validate {
-  $valor = shift;
-  my $valide;
-  for (my $j = 0; $j &lt; @values; $j++) {
-    if (@values[$j] == $valor) {
-      $valide = &quot;KO&quot;;
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
+</code></pre></div><p>And the <code>validate()</code> sub simply has to check whether the remaining number, <code>11 - $black[0] - $black[2]</code>, is one of the givens. If so, the solution is valid:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">validate</span> {
+  $valor <span style="color:#f92672">=</span> shift;
+  <span style="color:#66d9ef">my</span> $valide;
+  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; $j <span style="color:#f92672">&lt;</span> @values; $j<span style="color:#f92672">++</span>) {
+    <span style="color:#66d9ef">if</span> (@values[$j] <span style="color:#f92672">==</span> $valor) {
+      $valide <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;KO&#34;</span>;
     }
-    else {
-      $valide = &quot;OK&quot;;
-      last;
+    <span style="color:#66d9ef">else</span> {
+      $valide <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;OK&#34;</span>;
+      <span style="color:#66d9ef">last</span>;
     }
   }
-  if ($validate == KO) {
-    print &quot;The number $valor is one of the given.&quot;;
+  <span style="color:#66d9ef">if</span> ($validate <span style="color:#f92672">==</span> KO) {
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;The number $valor is one of the given.&#34;</span>;
   }
-  else {
-    print &quot;The number $valor isn't one of the given.&quot;;
+  <span style="color:#66d9ef">else</span> {
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;The number $valor isn&#39;t one of the given.&#34;</span>;
   }
 }
-</code></pre>
-
-<p>Stylistically, I would prefer to see <code>use warnings</code> and <code>use strict</code>, and perhaps a bit of refactoring to reduce the duplication of code. However, Cristina succeeded in the more difficult task of delivering a program that works, is efficient, and is easy to understand.</p>
-
+</code></pre></div><p>Stylistically, I would prefer to see <code>use warnings</code> and <code>use strict</code>, and perhaps a bit of refactoring to reduce the duplication of code. However, Cristina succeeded in the more difficult task of delivering a program that works, is efficient, and is easy to understand.</p>
 <h2 id="dave-jacoby">Dave Jacoby</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-043/dave-jacoby/perl/ch-1.pl">Dave&rsquo;s solution</a> uses some new Perl features again this week, such as the <a href="https://perldoc.perl.org/perlref.html#Postfix-Dereference-Syntax">postfix deref</a> introduced in 5.20, and <a href="https://perldoc.perl.org/perlsub.html#Signatures">signatures</a>. Dave&rsquo;s code goes through every permutation of the numbers (1, 2, 3, 4, 6) and stops if it finds one where all of the rings sum to 11. The <code>permute_array</code> function is what actually generates the permutations:</p>
-
-<pre><code class="language-perl">sub permute_array ( $array ) {
-    return $array if scalar $array-&gt;@* == 1;
-    my @response = map {
-        my $i        = $_;
-        my $d        = $array-&gt;[$i];
-        my $copy-&gt;@* = $array-&gt;@*;
-        splice $copy-&gt;@*, $i, 1;
-        my @out = map { unshift $_-&gt;@*, $d; $_ } permute_array($copy);
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">permute_array</span> ( $array ) {
+    <span style="color:#66d9ef">return</span> $array <span style="color:#66d9ef">if</span> scalar $array<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">==</span> 1;
+    <span style="color:#66d9ef">my</span> @response <span style="color:#f92672">=</span> map {
+        <span style="color:#66d9ef">my</span> $i        <span style="color:#f92672">=</span> $_;
+        <span style="color:#66d9ef">my</span> $d        <span style="color:#f92672">=</span> $array<span style="color:#f92672">-&gt;</span>[$i];
+        <span style="color:#66d9ef">my</span> $copy<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">=</span> <span style="color:#960050;background-color:#1e0010">$</span>array<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+        splice $copy<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, $i, <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">my</span> @out <span style="color:#f92672">=</span> map { unshift $_<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, $d; $_ } permute_array($copy);
         @out
-    } 0 .. scalar $array-&gt;@* - 1;
-    return @response;
+    } <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> scalar $array<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">-</span> 1;
+    <span style="color:#66d9ef">return</span> @response;
 }
-</code></pre>
-
-<p>In terms of computational complexity, Dave&rsquo;s algorithm is O(n!) on the size of the number list. In this case, there are 5! = 120 ways of arranging the numbers. While some solutions are considerably more efficient, Dave&rsquo;s is general, elegant, and the factorial isn&rsquo;t a problem for small lists.</p>
-
+</code></pre></div><p>In terms of computational complexity, Dave&rsquo;s algorithm is O(n!) on the size of the number list. In this case, there are 5! = 120 ways of arranging the numbers. While some solutions are considerably more efficient, Dave&rsquo;s is general, elegant, and the factorial isn&rsquo;t a problem for small lists.</p>
 <p><a href="https://jacoby.github.io/2020/01/17/perl-weekly-challenge-43-rings-and-selfdescription.html">Dave&rsquo;s blog</a>.</p>
-
 <h2 id="duane-powell">Duane Powell</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-043/duane-powell/perl/ch-1.pl">Duane&rsquo;s solution</a> also looks at all the permutations of (1, 2, 3, 4, 6), but the key difference is Duane uses <a href="https://metacpan.org/pod/Math::Combinatorics">Math::Combinatorics</a> to do the heavy lifting:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @num <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">6</span>);
 
-<pre><code class="language-perl">my @num = (1,2,3,4,6);
+<span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> Math::Combinatorics<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(count <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>, data <span style="color:#f92672">=&gt;</span> [@num]);
+<span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">my</span> @perm <span style="color:#f92672">=</span> $c<span style="color:#f92672">-&gt;</span>next_permutation) {
+  <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> red($perm[<span style="color:#ae81ff">0</span>])                     <span style="color:#f92672">==</span> $eleven;
+  <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> green($perm[<span style="color:#ae81ff">0</span>],$perm[<span style="color:#ae81ff">1</span>])          <span style="color:#f92672">==</span> $eleven;
+  <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> black($perm[<span style="color:#ae81ff">1</span>],$perm[<span style="color:#ae81ff">2</span>],$perm[<span style="color:#ae81ff">3</span>]) <span style="color:#f92672">==</span> $eleven;
+  <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> yellow($perm[<span style="color:#ae81ff">3</span>],$perm[<span style="color:#ae81ff">4</span>])         <span style="color:#f92672">==</span> $eleven;
+  <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> blue($perm[<span style="color:#ae81ff">4</span>])                    <span style="color:#f92672">==</span> $eleven;
 
-my $c = Math::Combinatorics-&gt;new(count =&gt; 1, data =&gt; [@num]);
-while (my @perm = $c-&gt;next_permutation) {
-  next unless red($perm[0])                     == $eleven;
-  next unless green($perm[0],$perm[1])          == $eleven;
-  next unless black($perm[1],$perm[2],$perm[3]) == $eleven;
-  next unless yellow($perm[3],$perm[4])         == $eleven;
-  next unless blue($perm[4])                    == $eleven;
-
-  # a solution found if we made it here
-  say join(',',@perm);
+  <span style="color:#75715e"># a solution found if we made it here</span>
+  say join(<span style="color:#e6db74">&#39;,&#39;</span>,@perm);
 }
-</code></pre>
-
-<p>Whether or not to use non-core modules in these challenges is a matter of personal preference, and I, for one, love seeing both approaches when I look at the solutions every week.</p>
-
+</code></pre></div><p>Whether or not to use non-core modules in these challenges is a matter of personal preference, and I, for one, love seeing both approaches when I look at the solutions every week.</p>
 <h2 id="e-choroba">E. Choroba</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-043/e-choroba/perl/ch-1a.pl">Choroba&rsquo;s first solution</a> again uses <code>Math::Combinatorics</code>. However, in his blog, he notes that he saw it could be solved much more easily.</p>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-043/e-choroba/perl/ch-1.pl">The second solution</a> is therefore another take on the constant-time difference approach we&rsquo;ve seen. As is typical of Choroba&rsquo;s solutions, it is beautifully concise:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> ($red, $green, $yellow, $blue) <span style="color:#f92672">=</span> (<span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">8</span>);
 
-<pre><code class="language-perl">my ($red, $green, $yellow, $blue) = (9, 5, 7, 8);
+<span style="color:#66d9ef">my</span> $red_green    <span style="color:#f92672">=</span> <span style="color:#ae81ff">11</span> <span style="color:#f92672">-</span> $red;
+<span style="color:#66d9ef">my</span> $blue_yellow  <span style="color:#f92672">=</span> <span style="color:#ae81ff">11</span> <span style="color:#f92672">-</span> $blue;
+<span style="color:#66d9ef">my</span> $black_green  <span style="color:#f92672">=</span> <span style="color:#ae81ff">11</span> <span style="color:#f92672">-</span> $green <span style="color:#f92672">-</span> $red_green;
+<span style="color:#66d9ef">my</span> $black_yellow <span style="color:#f92672">=</span> <span style="color:#ae81ff">11</span> <span style="color:#f92672">-</span> $yellow <span style="color:#f92672">-</span> $blue_yellow;
+<span style="color:#66d9ef">my</span> $black        <span style="color:#f92672">=</span> <span style="color:#ae81ff">11</span> <span style="color:#f92672">-</span> $black_green <span style="color:#f92672">-</span> $black_yellow;
 
-my $red_green    = 11 - $red;
-my $blue_yellow  = 11 - $blue;
-my $black_green  = 11 - $green - $red_green;
-my $black_yellow = 11 - $yellow - $blue_yellow;
-my $black        = 11 - $black_green - $black_yellow;
-
-say join ' ', $red_green, $black_green, $black, $black_yellow, $blue_yellow;)
-</code></pre>
-
-<p><a href="http://blogs.perl.org/users/e_choroba/2020/01/perl-weekly-challenge-043-olympic-rings-and-self-descriptive-numbers.html">Choroba&rsquo;s blog</a> explains the math very well.</p>
-
+say join <span style="color:#e6db74">&#39; &#39;</span>, $red_green, $black_green, $black, $black_yellow, $blue_yellow;)
+</code></pre></div><p><a href="http://blogs.perl.org/users/e_choroba/2020/01/perl-weekly-challenge-043-olympic-rings-and-self-descriptive-numbers.html">Choroba&rsquo;s blog</a> explains the math very well.</p>
 <h2 id="jaldhar-h-vyas">Jaldhar H. Vyas</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-043/jaldhar-h-vyas/perl/ch-1.pl">Jaldhar&rsquo;s solution</a> has its own <code>permute</code> sub:</p>
-
-<pre><code class="language-perl">sub permute (&amp;@) {
-    my $code = shift;
-    my @idx = 0..$#_;
-    while ( $code-&gt;(@_[@idx]) ) {
-        my $p = $#idx;
-        --$p while $idx[$p-1] &gt; $idx[$p];
-        my $q = $p or return;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">permute</span> (&amp;@) {
+    <span style="color:#66d9ef">my</span> $code <span style="color:#f92672">=</span> shift;
+    <span style="color:#66d9ef">my</span> @idx <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#_;
+    <span style="color:#66d9ef">while</span> ( $code<span style="color:#f92672">-&gt;</span>(@_[@idx]) ) {
+        <span style="color:#66d9ef">my</span> $p <span style="color:#f92672">=</span> $#idx;
+        <span style="color:#f92672">--</span>$p <span style="color:#66d9ef">while</span> $idx[$p<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&gt;</span> $idx[$p];
+        <span style="color:#66d9ef">my</span> $q <span style="color:#f92672">=</span> $p <span style="color:#f92672">or</span> <span style="color:#66d9ef">return</span>;
         push @idx, reverse splice @idx, $p;
-        ++$q while $idx[$p-1] &gt; $idx[$q];
-        @idx[$p-1,$q]=@idx[$q,$p-1];
+        <span style="color:#f92672">++</span>$q <span style="color:#66d9ef">while</span> $idx[$p<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&gt;</span> $idx[$q];
+        @idx[$p<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,$q]<span style="color:#f92672">=</span>@idx[$q,$p<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
     }
 }
-</code></pre>
-
-<p>This one takes a code ref as a callback, and a list of numbers. Jaldhar then uses it like this:</p>
-
-<pre><code class="language-perl">my @permutations;
-permute { push @permutations, \@_; } @numbers;
-for my $permutation (@permutations) { ... }
-</code></pre>
-
-<p>I&rsquo;m not sure why Jaldhar implemented a callback, only to <code>push</code> the values into an array to iterate over on the next line of code, but it doesn&rsquo;t matter much in this case, since the list of <code>@permutations</code> is small.</p>
-
+</code></pre></div><p>This one takes a code ref as a callback, and a list of numbers. Jaldhar then uses it like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @permutations;
+permute { push @permutations, <span style="color:#f92672">\</span>@_; } @numbers;
+<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $permutation (@permutations) { <span style="color:#f92672">...</span> }
+</code></pre></div><p>I&rsquo;m not sure why Jaldhar implemented a callback, only to <code>push</code> the values into an array to iterate over on the next line of code, but it doesn&rsquo;t matter much in this case, since the list of <code>@permutations</code> is small.</p>
 <p>The internals of the loop mostly do the arithmetic to calculate the value of each ring, and then this check is performed:</p>
-
-<pre><code class="language-perl">    if (scalar (grep { $ringValues{$_} == 11 } keys %ringValues) == 5) {
-        map { say &quot;$_ = $try{$_}&quot;; } @unknowns;
-        last;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">if</span> (scalar (grep { $ringValues{$_} <span style="color:#f92672">==</span> <span style="color:#ae81ff">11</span> } keys %ringValues) <span style="color:#f92672">==</span> <span style="color:#ae81ff">5</span>) {
+        map { say <span style="color:#e6db74">&#34;$_ = $try{$_}&#34;</span>; } @unknowns;
+        <span style="color:#66d9ef">last</span>;
     }
-</code></pre>
-
-<p><code>%ringValues</code> contains the sums inside each ring, so he&rsquo;s checking to see if all five rings sum to 11, and then outputting the values and exiting the loop early.</p>
-
+</code></pre></div><p><code>%ringValues</code> contains the sums inside each ring, so he&rsquo;s checking to see if all five rings sum to 11, and then outputting the values and exiting the loop early.</p>
 <h2 id="javier-luque">Javier Luque</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-043/javier-luque/perl/ch-1.pl">Javier&rsquo;s solution</a> uses <a href="https://metacpan.org/pod/Algorithm::Combinatorics">Algorithm::Combinatorics</a> for another permutation-based approach:</p>
-
-<pre><code class="language-perl">my $iter = permutations(\@numbers);
-while (my $p = $iter-&gt;next) {
-    my $slots = {
-        redgreen     =&gt; $p-&gt;[0],
-        greenblack   =&gt; $p-&gt;[1],
-        black        =&gt; $p-&gt;[2],
-        blackyellow  =&gt; $p-&gt;[3],
-        yellowblue   =&gt; $p-&gt;[4]
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $iter <span style="color:#f92672">=</span> permutations(<span style="color:#f92672">\</span>@numbers);
+<span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">my</span> $p <span style="color:#f92672">=</span> $iter<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">next</span>) {
+    <span style="color:#66d9ef">my</span> $slots <span style="color:#f92672">=</span> {
+        redgreen     <span style="color:#f92672">=&gt;</span> $p<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>],
+        greenblack   <span style="color:#f92672">=&gt;</span> $p<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>],
+        black        <span style="color:#f92672">=&gt;</span> $p<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">2</span>],
+        blackyellow  <span style="color:#f92672">=&gt;</span> $p<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">3</span>],
+        yellowblue   <span style="color:#f92672">=&gt;</span> $p<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">4</span>]
     };
 
-    if (validate_answer($rings, $slots)) {
-        for my $key (keys %$slots) {
-            say 'Slot: ' . $key .
-                ' value: ' . $slots-&gt;{$key};
+    <span style="color:#66d9ef">if</span> (validate_answer($rings, $slots)) {
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $key (keys %$slots) {
+            say <span style="color:#e6db74">&#39;Slot: &#39;</span> <span style="color:#f92672">.</span> $key <span style="color:#f92672">.</span>
+                <span style="color:#e6db74">&#39; value: &#39;</span> <span style="color:#f92672">.</span> $slots<span style="color:#f92672">-&gt;</span>{$key};
         }
     }
 }
-</code></pre>
-
-<p><code>validate_answer()</code> is essentially the following conditional:</p>
-
-<pre><code class="language-perl">    ( $s-&gt;{redgreen} + $r-&gt;{red} == 11 &amp;&amp;
-      $s-&gt;{redgreen} + $r-&gt;{green} + $s-&gt;{greenblack} == 11 &amp;&amp;
-      $s-&gt;{greenblack} + $s-&gt;{black} + $s-&gt;{blackyellow} == 11 &amp;&amp;
-      $s-&gt;{blackyellow} + $r-&gt;{yellow} + $s-&gt;{yellowblue} == 11 &amp;&amp;
-      $r-&gt;{blue} + $s-&gt;{yellowblue} == 11 );
-</code></pre>
-
-<p><a href="https://perlchallenges.wordpress.com/2020/01/13/perl-weekly-challenge-043/">Javier&rsquo;s blog</a></p>
-
+</code></pre></div><p><code>validate_answer()</code> is essentially the following conditional:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    ( $s<span style="color:#f92672">-&gt;</span>{redgreen} <span style="color:#f92672">+</span> $r<span style="color:#f92672">-&gt;</span>{red} <span style="color:#f92672">==</span> <span style="color:#ae81ff">11</span> <span style="color:#f92672">&amp;&amp;</span>
+      $s<span style="color:#f92672">-&gt;</span>{redgreen} <span style="color:#f92672">+</span> $r<span style="color:#f92672">-&gt;</span>{green} <span style="color:#f92672">+</span> $s<span style="color:#f92672">-&gt;</span>{greenblack} <span style="color:#f92672">==</span> <span style="color:#ae81ff">11</span> <span style="color:#f92672">&amp;&amp;</span>
+      $s<span style="color:#f92672">-&gt;</span>{greenblack} <span style="color:#f92672">+</span> $s<span style="color:#f92672">-&gt;</span>{black} <span style="color:#f92672">+</span> $s<span style="color:#f92672">-&gt;</span>{blackyellow} <span style="color:#f92672">==</span> <span style="color:#ae81ff">11</span> <span style="color:#f92672">&amp;&amp;</span>
+      $s<span style="color:#f92672">-&gt;</span>{blackyellow} <span style="color:#f92672">+</span> $r<span style="color:#f92672">-&gt;</span>{yellow} <span style="color:#f92672">+</span> $s<span style="color:#f92672">-&gt;</span>{yellowblue} <span style="color:#f92672">==</span> <span style="color:#ae81ff">11</span> <span style="color:#f92672">&amp;&amp;</span>
+      $r<span style="color:#f92672">-&gt;</span>{blue} <span style="color:#f92672">+</span> $s<span style="color:#f92672">-&gt;</span>{yellowblue} <span style="color:#f92672">==</span> <span style="color:#ae81ff">11</span> );
+</code></pre></div><p><a href="https://perlchallenges.wordpress.com/2020/01/13/perl-weekly-challenge-043/">Javier&rsquo;s blog</a></p>
 <h2 id="laurent-rosenfeld">Laurent Rosenfeld</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-043/laurent-rosenfeld/perl/ch-1.pl">Laurent&rsquo;s solution</a> takes a deductive approach to the problem. First, the red and blue rings each have only one unknown, so those numbers can be calculated directly. Once those are filled in, the green and yellow rings now have one unknown, and finally, the black ring gets the final number.</p>
-
 <p>The (short) nested loops that figure out the red-green and blue-yellow intersections provide a good summary of Laurent&rsquo;s approach:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @ring_sequences <span style="color:#f92672">=</span> ( [<span style="color:#e6db74">qw &lt;red </span>green<span style="color:#f92672">&gt;</span>], [<span style="color:#e6db74">qw &lt;blue </span>yellow<span style="color:#f92672">&gt;</span>]
+<span style="color:#66d9ef">my</span> @black_vals;
 
-<pre><code class="language-perl">my @ring_sequences = ( [qw &lt;red green&gt;], [qw &lt;blue yellow&gt;]
-my @black_vals;
-
-for my $seq_ref (@ring_sequences) {
-    my $diff = 0;
-    for my $ring (@$seq_ref) {
-        $rings{$ring} += $diff;
-        say &quot;Added $diff to $ring ring, &quot; if $diff;
-        $diff = TARGET - $rings{$ring};
-        die &quot;No way&quot; unless exists $nums{$diff};
-        say &quot;Added $diff to $ring ring&quot;;
-        $rings{$ring} += $diff;
+<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $seq_ref (@ring_sequences) {
+    <span style="color:#66d9ef">my</span> $diff <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $ring (@$seq_ref) {
+        $rings{$ring} <span style="color:#f92672">+=</span> $diff;
+        say <span style="color:#e6db74">&#34;Added $diff to $ring ring, &#34;</span> <span style="color:#66d9ef">if</span> $diff;
+        $diff <span style="color:#f92672">=</span> TARGET <span style="color:#f92672">-</span> $rings{$ring};
+        die <span style="color:#e6db74">&#34;No way&#34;</span> <span style="color:#66d9ef">unless</span> exists $nums{$diff};
+        say <span style="color:#e6db74">&#34;Added $diff to $ring ring&#34;</span>;
+        $rings{$ring} <span style="color:#f92672">+=</span> $diff;
     }
-    $rings{black} += $diff;
+    $rings{black} <span style="color:#f92672">+=</span> $diff;
     push @black_vals, $diff;
 }
-</code></pre>
-
-<p>As always, Laurent provides solid, readable, idiomatic Perl. What&rsquo;s funny is that Laurent&rsquo;s code is very similar to how I solved this by hand, even though I felt like using backtracking in my Perl solution instead.</p>
-
+</code></pre></div><p>As always, Laurent provides solid, readable, idiomatic Perl. What&rsquo;s funny is that Laurent&rsquo;s code is very similar to how I solved this by hand, even though I felt like using backtracking in my Perl solution instead.</p>
 <p><a href="http://blogs.perl.org/users/laurent_r/2020/01/perl-weekly-challenge-43-olympic-rings-and-self-descripting-numbers.html">Laurent&rsquo;s blog</a> goes into more detail into the numerical analysis and algorithm design.</p>
-
 <h2 id="roger-bell-west">Roger Bell West</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-043/roger-bell-west/perl/ch-1.pl">Roger&rsquo;s solution</a> uses a 6-nested loop, one loop for each of the rings, and a final loop over the numbers (1, 2, 3, 4, 6), trying each number in each slot. After computing the sums in each ring, he uses <a href="https://metacpan.org/pod/List::MoreUtils">List::MoreUtils</a>&rsquo; <code>minmax</code> to check whether <em>all</em> sums are 11:</p>
-
-<pre><code class="language-perl">my @l=minmax(@sums);
-if ($l[0]==$target &amp;&amp; $l[1]==$target) {
-    print join(', ',map {&quot;$candidate[$_] in $metanames[$index[$_]]&quot;} (0..$#candidate)),&quot;\n&quot;;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @l<span style="color:#f92672">=</span>minmax(@sums);
+<span style="color:#66d9ef">if</span> ($l[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">==</span>$target <span style="color:#f92672">&amp;&amp;</span> $l[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">==</span>$target) {
+    <span style="color:#66d9ef">print</span> join(<span style="color:#e6db74">&#39;, &#39;</span>,map {<span style="color:#e6db74">&#34;$candidate[$_] in $metanames[$index[$_]]&#34;</span>} (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#candidate)),<span style="color:#e6db74">&#34;\n&#34;</span>;
 }
-</code></pre>
-
-<p>Complexity-wise, Roger&rsquo;s algorithm runs in O(m(2n)^5) time, where <em>m</em> is the number of candidate numbers (1, 2, 3, 4, 6), and <em>n</em> is the number of givens. For this problem, his algorithm will require over 200,000 operations. It still runs in about a quarter of a second, and the advantage of this approach is that the inner loop almost writes itself:</p>
-
-<pre><code class="language-perl">            my $ix=int($index[$i]/2);
-            $sums[$ix]+=$candidate[$i];
-            if ($index[$i]%2==1) {
-              $sums[$ix+1]+=$candidate[$i];
+</code></pre></div><p>Complexity-wise, Roger&rsquo;s algorithm runs in O(m(2n)^5) time, where <em>m</em> is the number of candidate numbers (1, 2, 3, 4, 6), and <em>n</em> is the number of givens. For this problem, his algorithm will require over 200,000 operations. It still runs in about a quarter of a second, and the advantage of this approach is that the inner loop almost writes itself:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">            <span style="color:#66d9ef">my</span> $ix<span style="color:#f92672">=</span>int($index[$i]<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>);
+            $sums[$ix]<span style="color:#f92672">+=</span>$candidate[$i];
+            <span style="color:#66d9ef">if</span> ($index[$i]%2<span style="color:#f92672">==</span><span style="color:#ae81ff">1</span>) {
+              $sums[$ix<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">+=</span>$candidate[$i];
             }
-</code></pre>
-
-<p>In other words, when you just want the answer to a problem, sometimes computational complexity is less important than simply doing the first thing that might work.</p>
-
+</code></pre></div><p>In other words, when you just want the answer to a problem, sometimes computational complexity is less important than simply doing the first thing that might work.</p>
 <h2 id="ruben-westerberg">Ruben Westerberg</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-043/ruben-westerberg/perl/ch-1.pl">Ruben&rsquo;s solution</a> is another example of using techniques from linear algebra (specifically, Gauss-Jordan Elimination or row reduction). Colin Crain used a similar algorithm, but Ruben also implemented all of the matrix operations himself, without the help of any non-core modules.</p>
-
 <p>The <code>solve</code> sub is a dense mix of array primitives and arithmetic:</p>
-
-<pre><code class="language-perl">sub solve {
-  my ($c, $y)=@_;
-  my $j=build($c,$y);
-  my $s=@$c;
-  my $row;
-  for my $p (0..$s-1) {
-    my $v=$j-&gt;[$p][$p];
-    my $prow=$j-&gt;[$p];
-    for my $r (0..$s-1) {
-      $row=$j-&gt;[$r];
-      next if $p==$r;
-      my $d=$row-&gt;[$p]/$v;
-      for my $col (0..$s) {
-        $row-&gt;[$col]-=$d*$prow-&gt;[$col];
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">solve</span> {
+  <span style="color:#66d9ef">my</span> ($c, $y)<span style="color:#f92672">=</span>@_;
+  <span style="color:#66d9ef">my</span> $j<span style="color:#f92672">=</span>build($c,$y);
+  <span style="color:#66d9ef">my</span> $s<span style="color:#f92672">=</span>@$c;
+  <span style="color:#66d9ef">my</span> $row;
+  <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $p (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$s<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
+    <span style="color:#66d9ef">my</span> $v<span style="color:#f92672">=</span>$j<span style="color:#f92672">-&gt;</span>[$p][$p];
+    <span style="color:#66d9ef">my</span> $prow<span style="color:#f92672">=</span>$j<span style="color:#f92672">-&gt;</span>[$p];
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $r (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$s<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
+      $row<span style="color:#f92672">=</span>$j<span style="color:#f92672">-&gt;</span>[$r];
+      <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $p<span style="color:#f92672">==</span>$r;
+      <span style="color:#66d9ef">my</span> $d<span style="color:#f92672">=</span>$row<span style="color:#f92672">-&gt;</span>[$p]<span style="color:#f92672">/</span>$v;
+      <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $col (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$s) {
+        $row<span style="color:#f92672">-&gt;</span>[$col]<span style="color:#f92672">-=</span>$d<span style="color:#f92672">*</span>$prow<span style="color:#f92672">-&gt;</span>[$col];
       }
     }
   }
-  $row-&gt;[-1]/=$row-&gt;[-2];
-  $row-&gt;[-2]=1;
+  $row<span style="color:#f92672">-&gt;</span>[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">/=</span>$row<span style="color:#f92672">-&gt;</span>[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>];
+  $row<span style="color:#f92672">-&gt;</span>[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>]<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
   backsub($j);
 }
-</code></pre>
-
-<p>I really enjoyed going through Ruben&rsquo;s implementation. If you, like me, have any doubts about your ability to sit down and write a Gauss-Jordan implementation without cracking a linear algebra textbook, it&rsquo;s worth looking at Ruben&rsquo;s code.</p>
-
+</code></pre></div><p>I really enjoyed going through Ruben&rsquo;s implementation. If you, like me, have any doubts about your ability to sit down and write a Gauss-Jordan implementation without cracking a linear algebra textbook, it&rsquo;s worth looking at Ruben&rsquo;s code.</p>
 <h2 id="ryan-thompson">Ryan Thompson</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-043/ryan-thompson/perl/ch-1.pl">My own solution</a> went a little overboard. I had already solved the problem by staring at it for a minute, so I knew it would not be a computationally difficult problem. I decided on a rather generic recursive backtracking approach.</p>
-
 <p>I actually focused most of my efforts on a terminal-based <em>animated</em> visualizer for how backtracking algorithms work, without using any non-core modules. You can see a screenshot at the top of this page. Click the link to the solution, above, if you want to see how the visualizer works. Since that code is both lengthy and tangential to the challenge, I&rsquo;ll focus on the actual solver algorithm, here.</p>
-
 <p>In my backtracking approach, the base case relies on <code>check_sol</code>, which returns <code>solved</code> if the puzzle is solved, <code>impossible</code> if any of the sums do not equal 11, and <code>possible</code> otherwise. I had originally used a simpler binary <code>is_solved</code>, but having the ternary return value reduced the number of iterations from 113 (not much better than checking all 5! permutations) down to just 16.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">solve</span> {
+    <span style="color:#66d9ef">my</span> (%sol) <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">my</span> $check <span style="color:#f92672">=</span> check_sol(<span style="color:#f92672">\</span>%sol);
+    <span style="color:#66d9ef">return</span> %sol <span style="color:#66d9ef">if</span> $check <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;solved&#39;</span>;
+    <span style="color:#66d9ef">return</span>      <span style="color:#66d9ef">if</span> $check <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;impossible&#39;</span>;
 
-<pre><code class="language-perl">sub solve {
-    my (%sol) = @_;
-    my $check = check_sol(\%sol);
-    return %sol if $check eq 'solved';
-    return      if $check eq 'impossible';
+    <span style="color:#75715e"># Get list of numbers still available</span>
+    <span style="color:#66d9ef">my</span> %solR <span style="color:#f92672">=</span> reverse %sol; <span style="color:#75715e"># keys &lt;-&gt; values</span>
+    <span style="color:#66d9ef">my</span> @rem  <span style="color:#f92672">=</span> grep { <span style="color:#f92672">not</span> exists $solR{$_} } @avail;
 
-    # Get list of numbers still available
-    my %solR = reverse %sol; # keys &lt;-&gt; values
-    my @rem  = grep { not exists $solR{$_} } @avail;
-
-    my $spot = first { $sol{$_} == 0 } @order_try;
-    for my $num (@rem) {
-        my %new = solve(%sol, $spot =&gt; $num);
-        return %new if keys %new; # Pass back solution
+    <span style="color:#66d9ef">my</span> $spot <span style="color:#f92672">=</span> first { $sol{$_} <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> } @order_try;
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $num (@rem) {
+        <span style="color:#66d9ef">my</span> %new <span style="color:#f92672">=</span> solve(%sol, $spot <span style="color:#f92672">=&gt;</span> $num);
+        <span style="color:#66d9ef">return</span> %new <span style="color:#66d9ef">if</span> keys %new; <span style="color:#75715e"># Pass back solution</span>
     }
 
-    return;
+    <span style="color:#66d9ef">return</span>;
 }
-</code></pre>
-
-<p>Thanks to being able to prune early, <code>solve</code> is only ever called 16 times. Although this problem&rsquo;s search space is tiny, backtracking is a powerful tool that can efficiently solve a surprising family of problems. I think I might have been the only one to explicitly use backtracking, which either makes me clever or foolish.</p>
-
+</code></pre></div><p>Thanks to being able to prune early, <code>solve</code> is only ever called 16 times. Although this problem&rsquo;s search space is tiny, backtracking is a powerful tool that can efficiently solve a surprising family of problems. I think I might have been the only one to explicitly use backtracking, which either makes me clever or foolish.</p>
 <p><a href="http://www.ry.ca/2020/01/olympic-rings/">Olympic rings blog</a></p>
-
 <h2 id="saif-ahmed-saiftynet">Saif Ahmed (saiftynet)</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-043/saiftynet/perl/ch-1.pl">Saif&rsquo;s solution</a> iterates all of the rings in a <code>while</code> loop until the puzzle is solved. Any time there is only one unknown in a ring, Saif knows the value must be 11 minus the sum of the other number(s) in that ring. A funny comment also highlights how trivial this problem can be: <em>&ldquo;this function solves in one pass if we fix in the sequence blue red green yellow black but that would be cheating&rdquo;.</em></p>
-
 <p>Saif&rsquo;s, I think, is the only other Perl solution besides mine that attempts to display the results in something resembling their actual position:</p>
-
-<pre><code class="language-perl">sub displayRings{
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">displayRings</span>{
     printf  (
-&quot;     RED %s                 BLACK %s                     BLUE %s
-        RedGrn %s    GrnBlk %s     BlkYel %s      YelBlu %s
-               GREEN %s                  YELLOW %s\n&quot;,
-               @list[0,4,8,1,3,5,7,2,6]
+<span style="color:#e6db74">&#34;     RED %s                 BLACK %s                     BLUE %s
+</span><span style="color:#e6db74">        RedGrn %s    GrnBlk %s     BlkYel %s      YelBlu %s
+</span><span style="color:#e6db74">               GREEN %s                  YELLOW %s\n&#34;</span>,
+               @list[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">6</span>]
         );
 
 }
-</code></pre>
-
-<p>The output looks like this:</p>
-
+</code></pre></div><p>The output looks like this:</p>
 <pre><code>Final state:-
      RED 9                 BLACK 6                     BLUE 8
         RedGrn 2    GrnBlk 4     BlkYel 1      YelBlu 3
                GREEN 5                  YELLOW 7
-</code></pre>
-
-<h2 id="wanderdoc">wanderdoc</h2>
-
+</code></pre><h2 id="wanderdoc">wanderdoc</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-043/wanderdoc/perl/ch-1.pl">wanderdoc&rsquo;s solution</a> is another that uses <code>Algorithm::Combinatorics</code> to iterate over all permutations of the available numbers 1, 2, 3, 4, and 6.</p>
-
-<pre><code class="language-perl">while (my $i = $iter-&gt;next())
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> $iter<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">next</span>())
 {
-     @var{@col2search} = @$i;
+     @var{@col2search} <span style="color:#f92672">=</span> @$i;
 
-     next unless ( all { is_valid($_) } @olympic );
-     print join(' =&gt; ', $_, $var{$_}), $/ for @col2search;
+     <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> ( all { is_valid($_) } @olympic );
+     <span style="color:#66d9ef">print</span> join(<span style="color:#e6db74">&#39; =&gt; &#39;</span>, $_, $var{$_}), $/ <span style="color:#66d9ef">for</span> @col2search;
 }
-</code></pre>
-
-<p>wanderdoc&rsquo;s <code>ring_sum</code> function is interesting:</p>
-
-<pre><code class="language-perl">sub ring_sum
+</code></pre></div><p>wanderdoc&rsquo;s <code>ring_sum</code> function is interesting:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">ring_sum</span>
 {
-     my @ring = @{$_[0]};
-     my $sum = reduce { ('SCALAR' eq ref $a ? $$a : $a) + ('SCALAR' eq ref $b ? $$b : $b) } @ring;
-     return $sum;
+     <span style="color:#66d9ef">my</span> @ring <span style="color:#f92672">=</span> @{$_[<span style="color:#ae81ff">0</span>]};
+     <span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> reduce { (<span style="color:#e6db74">&#39;SCALAR&#39;</span> <span style="color:#f92672">eq</span> ref $a ? $$a : $a) <span style="color:#f92672">+</span> (<span style="color:#e6db74">&#39;SCALAR&#39;</span> <span style="color:#f92672">eq</span> ref $b ? $$b : $b) } @ring;
+     <span style="color:#66d9ef">return</span> $sum;
 }
-</code></pre>
-
-<p>This usage of <code>reduce</code> is a typical way to implement <code>sum</code>. Of course, with <a href="https://perldoc.perl.org/List/Util.html#sum">List::Util</a>&rsquo;s <code>sum</code>, this could be written:</p>
-
-<pre><code class="language-perl">sum map { 'SCALAR' eq ref $_ ? $$_ : $_ } @ring;   # Or even...
+</code></pre></div><p>This usage of <code>reduce</code> is a typical way to implement <code>sum</code>. Of course, with <a href="https://perldoc.perl.org/List/Util.html#sum">List::Util</a>&lsquo;s <code>sum</code>, this could be written:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">sum map { <span style="color:#e6db74">&#39;SCALAR&#39;</span> <span style="color:#f92672">eq</span> ref $_ ? $$_ : $_ } @ring;   <span style="color:#75715e"># Or even...</span>
 sum map { ref ? $$_ : $_ } @ring;
-</code></pre>
-
-<p>Still, I like seeing <code>reduce</code> getting some love. It&rsquo;s extremely powerful.</p>
-
-<hr />
-
-<h1 id="task-2-self-descriptive-numbers">Task #2 - Self-Descriptive Numbers</h1>
-
+</code></pre></div><p>Still, I like seeing <code>reduce</code> getting some love. It&rsquo;s extremely powerful.</p>
+<hr>
+<h1 id="task-2---self-descriptive-numbers">Task #2 - Self-Descriptive Numbers</h1>
 <p>This week&rsquo;s second task is to generate self-descriptive numbers in arbitrary
 bases. A self-descriptive number, as described by Wikipedia, is an integer <em>m</em>
 that in a given base <em>b</em> is <em>b</em> digits long in which each digit <em>d</em> at position <em>n</em>
 (the most significant digit being at position 0 and the least significant at
 position <em>b – 1</em>) counts how many instances of digit <em>n</em> are in <em>m</em>.</p>
-
 <h2 id="methods">Methods</h2>
-
 <p>Solutions to this challenge differed mainly on how much of the math behind self-descriptive numbers people chose to take advantage of. Most solutions used the fact that bases 7 and above have an easy formula:</p>
-
-<pre><code class="language-perl">(b - 4)b^(b-1) + 2b^(b-2) + b^(b-3) + b^3
-</code></pre>
-
-<p>This constant-time formula does not work for bases &lt; 7, so solutions here tended to be either hard-code the answers, or search for self-descriptive numbers. <strong>Roger Bell West</strong> and <strong>Saif Ahmed</strong> both used an interesting iterative method which munges an <em>n</em>-digit number to rapidly converge to a self-describing number.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">(b <span style="color:#f92672">-</span> <span style="color:#ae81ff">4</span>)b<span style="color:#f92672">^</span>(b<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>b<span style="color:#f92672">^</span>(b<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>) <span style="color:#f92672">+</span> b<span style="color:#f92672">^</span>(b<span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>) <span style="color:#f92672">+</span> b<span style="color:#f92672">^</span><span style="color:#ae81ff">3</span>
+</code></pre></div><p>This constant-time formula does not work for bases &lt; 7, so solutions here tended to be either hard-code the answers, or search for self-descriptive numbers. <strong>Roger Bell West</strong> and <strong>Saif Ahmed</strong> both used an interesting iterative method which munges an <em>n</em>-digit number to rapidly converge to a self-describing number.</p>
 <p>Another difference in solutions is whether they output the results in base 10, or the given base, or both. As the challenge description&rsquo;s only example was in base 10, there was ambiguity, so both output formats would seem to be equally valid.</p>
-
 <h2 id="adam-russell-1">Adam Russell</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-043/adam-russell/perl/ch-2.pl">Adam&rsquo;s solution</a> iterates through all non-negative integers below 100,000,000, checking if each one is self-describing, using the following function:</p>
-
-<pre><code class="language-perl">sub self_describing{
-    my($i) = @_;
-    my @digits = split(//, $i);
-    for my $x (0 .. @digits - 1){
-        my $count = 0;
-        for my $j (0 .. @digits - 1){
-            $count++ if($digits[$j] == $x);
-            return false if($count &gt; $digits[$x]);
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">self_describing</span>{
+    <span style="color:#66d9ef">my</span>($i) <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">my</span> @digits <span style="color:#f92672">=</span> split(<span style="color:#e6db74">//</span>, $i);
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $x (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> @digits <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>){
+        <span style="color:#66d9ef">my</span> $count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $j (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> @digits <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>){
+            $count<span style="color:#f92672">++</span> <span style="color:#66d9ef">if</span>($digits[$j] <span style="color:#f92672">==</span> $x);
+            <span style="color:#66d9ef">return</span> false <span style="color:#66d9ef">if</span>($count <span style="color:#f92672">&gt;</span> $digits[$x]);
         }
-        return false if($count != $digits[$x]);
+        <span style="color:#66d9ef">return</span> false <span style="color:#66d9ef">if</span>($count <span style="color:#f92672">!=</span> $digits[$x]);
     }
-    return true;
+    <span style="color:#66d9ef">return</span> true;
 }
-</code></pre>
-
-<p>I appreciate Adam&rsquo;s direct approach to the problem. <a href="https://adamcrussell.livejournal.com/14361.html">Adam&rsquo;s blog</a> mentions his code simply follows from the definition of a self-describing number.</p>
-
+</code></pre></div><p>I appreciate Adam&rsquo;s direct approach to the problem. <a href="https://adamcrussell.livejournal.com/14361.html">Adam&rsquo;s blog</a> mentions his code simply follows from the definition of a self-describing number.</p>
 <h2 id="andrezgz-1">Andrezgz</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-043/andrezgz/perl/ch-2.pl">Andrezgz&rsquo;s solution</a> uses the base ≥ 7 formula, supporting bases up to 35. Andrezgz hard-codes in the bases which are known to have no self-descriptive numbers, and then searches the others:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">die <span style="color:#e6db74">&#34;No self-descriptive numbers in base $base&#34;</span> <span style="color:#66d9ef">if</span> ($base <span style="color:#f92672">&lt;</span><span style="color:#ae81ff">4</span> <span style="color:#f92672">||</span> $base <span style="color:#f92672">==</span> <span style="color:#ae81ff">6</span>);
 
-<pre><code class="language-perl">die &quot;No self-descriptive numbers in base $base&quot; if ($base &lt;4 || $base == 6);
-
-if ($base &gt;= 7) {
-    my @symbols = (0..9,'A'..'Z');
-    print $symbols[$base - 4] . '21' . '0' x ($base - 7) . '1000' . $/;
+<span style="color:#66d9ef">if</span> ($base <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">7</span>) {
+    <span style="color:#66d9ef">my</span> @symbols <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">9</span>,<span style="color:#e6db74">&#39;A&#39;</span><span style="color:#f92672">..</span><span style="color:#e6db74">&#39;Z&#39;</span>);
+    <span style="color:#66d9ef">print</span> $symbols[$base <span style="color:#f92672">-</span> <span style="color:#ae81ff">4</span>] <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;21&#39;</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;0&#39;</span> x ($base <span style="color:#f92672">-</span> <span style="color:#ae81ff">7</span>) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;1000&#39;</span> <span style="color:#f92672">.</span> $/;
 }
-else{
-    my $from = '1' . '0' x ($base-1);
-    my $to = '9' x $base;
+<span style="color:#66d9ef">else</span>{
+    <span style="color:#66d9ef">my</span> $from <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;1&#39;</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;0&#39;</span> x ($base<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
+    <span style="color:#66d9ef">my</span> $to <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;9&#39;</span> x $base;
 
-    for my $n ($from .. $to) {
-        my @count = (0) x $base;
-        $count[$_]++ for split //, $n;
-        print $n.$/ if ($n eq join '',@count[0..$base-1]);
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $n ($from <span style="color:#f92672">..</span> $to) {
+        <span style="color:#66d9ef">my</span> @count <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>) x $base;
+        $count[$_]<span style="color:#f92672">++</span> <span style="color:#66d9ef">for</span> split <span style="color:#e6db74">//</span>, $n;
+        <span style="color:#66d9ef">print</span> $n<span style="color:#f92672">.</span>$/ <span style="color:#66d9ef">if</span> ($n <span style="color:#f92672">eq</span> join <span style="color:#e6db74">&#39;&#39;</span>,@count[<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$base<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]);
     }
 }
-</code></pre>
-
-<h2 id="burkhard-chuck-nickels-1">Burkhard &ldquo;Chuck&rdquo; Nickels</h2>
-
+</code></pre></div><h2 id="burkhard-chuck-nickels-1">Burkhard &ldquo;Chuck&rdquo; Nickels</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-043/burkhard-nickels/perl/ch-2.pl">Chuck&rsquo;s solution</a> uses the base ≥ 7 formula for all bases, starting at 4. The formula <em>does</em> give the first self-descriptive number, 1210, but misses the second, 2020, and third, 21200. This would be easy enough to fix, however, by searching (Chuck did implement a <code>verify</code> function), or by simply hard-coding those non-generic cases.</p>
-
 <p>What is interesting about Chuck&rsquo;s solution, though, is his handling of bases both during the computation, and when outputting the results. Chuck noticed that bases 4..14 could be handled with decimal numbers, while bases 13..17 could be handled in hexadecimal, and bases greater than 15 could be handled by a custom <code>0..9, 'a'..'z'</code> base-35 converter that he wrote. (Yes, these ranges do overlap, but that will not negatively affect the output):</p>
-
-<pre><code class="language-perl">my $base   = join(&quot;&quot;,@r);
-my $is_sdn;
-if($b &gt; 3  and $b &lt; 15) { $is_sdn = verify_dec($base); }
-if($b &gt; 12 and $b &lt; 18) { $is_sdn = verify_hex($base); }
-if($b &gt; 15) { $is_sdn = verify_str($base); }
-</code></pre>
-
-<p>Chuck therefore has written three different <code>verify_*</code> routines. Here is one of them:</p>
-
-<pre><code class="language-perl">sub verify_str {
-  my ($sdn) = @_;
-  my $i = 0;
-  my $is_sdn = 1;
-  foreach my $v (split(//,$sdn)) {
-    my $nr;
-    my $search = $C[$i];
-    $nr = () = $sdn =~ m/$search/g;
-    $nr = $C[$nr];
-    if( $v ne $nr ) {
-      $is_sdn = 0;
-      return $is_sdn;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $base   <span style="color:#f92672">=</span> join(<span style="color:#e6db74">&#34;&#34;</span>,@r);
+<span style="color:#66d9ef">my</span> $is_sdn;
+<span style="color:#66d9ef">if</span>($b <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">3</span>  <span style="color:#f92672">and</span> $b <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">15</span>) { $is_sdn <span style="color:#f92672">=</span> verify_dec($base); }
+<span style="color:#66d9ef">if</span>($b <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">12</span> <span style="color:#f92672">and</span> $b <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">18</span>) { $is_sdn <span style="color:#f92672">=</span> verify_hex($base); }
+<span style="color:#66d9ef">if</span>($b <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">15</span>) { $is_sdn <span style="color:#f92672">=</span> verify_str($base); }
+</code></pre></div><p>Chuck therefore has written three different <code>verify_*</code> routines. Here is one of them:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">verify_str</span> {
+  <span style="color:#66d9ef">my</span> ($sdn) <span style="color:#f92672">=</span> @_;
+  <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+  <span style="color:#66d9ef">my</span> $is_sdn <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+  <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $v (split(<span style="color:#e6db74">//</span>,$sdn)) {
+    <span style="color:#66d9ef">my</span> $nr;
+    <span style="color:#66d9ef">my</span> $search <span style="color:#f92672">=</span> $C[$i];
+    $nr <span style="color:#f92672">=</span> () <span style="color:#f92672">=</span> $sdn <span style="color:#f92672">=~</span> <span style="color:#e6db74">m/$search/g</span>;
+    $nr <span style="color:#f92672">=</span> $C[$nr];
+    <span style="color:#66d9ef">if</span>( $v <span style="color:#f92672">ne</span> $nr ) {
+      $is_sdn <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+      <span style="color:#66d9ef">return</span> $is_sdn;
     }
-    $i++;
+    $i<span style="color:#f92672">++</span>;
   }
-  return $is_sdn;
+  <span style="color:#66d9ef">return</span> $is_sdn;
 }
-</code></pre>
-
-<p>A <code>convert</code> routine was also necessary, in order to convert between bases (note this is running under <code>bigint</code>):</p>
-
-<pre><code class="language-perl">sub convert {
-  my ($b,$n,$erg) = @_;
-  my $d = int($n / $b);
-  my $r = $n % $b;
-  if($r &gt; 15) {
-    # print &quot;Value &gt; 15: $r $C[$r]\n&quot;;
-    $r = $C[$r];
+</code></pre></div><p>A <code>convert</code> routine was also necessary, in order to convert between bases (note this is running under <code>bigint</code>):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">convert</span> {
+  <span style="color:#66d9ef">my</span> ($b,$n,$erg) <span style="color:#f92672">=</span> @_;
+  <span style="color:#66d9ef">my</span> $d <span style="color:#f92672">=</span> int($n <span style="color:#f92672">/</span> $b);
+  <span style="color:#66d9ef">my</span> $r <span style="color:#f92672">=</span> $n % <span style="color:#960050;background-color:#1e0010">$</span>b;
+  <span style="color:#66d9ef">if</span>($r <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">15</span>) {
+    <span style="color:#75715e"># print &#34;Value &gt; 15: $r $C[$r]\n&#34;;</span>
+    $r <span style="color:#f92672">=</span> $C[$r];
   }
-  elsif($r &gt; 9) { $r = sprintf(&quot;%x&quot;, $r); }
+  <span style="color:#66d9ef">elsif</span>($r <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">9</span>) { $r <span style="color:#f92672">=</span> sprintf(<span style="color:#e6db74">&#34;%x&#34;</span>, $r); }
   unshift(@$erg,$r);
-  convert($b,$d,$erg) if $d;
+  convert($b,$d,$erg) <span style="color:#66d9ef">if</span> $d;
 }
-</code></pre>
-
-<p><a href="http://pearls.dyndnss.net/">Chuck&rsquo;s blog</a> (<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-043/burkhard-nickels/perl/ch-2.pod">POD version</a>) provides a refreshingly candid description of the journey towards the eventual solution.</p>
-
+</code></pre></div><p><a href="http://pearls.dyndnss.net/">Chuck&rsquo;s blog</a> (<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-043/burkhard-nickels/perl/ch-2.pod">POD version</a>) provides a refreshingly candid description of the journey towards the eventual solution.</p>
 <h2 id="colin-crain-1">Colin Crain</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-043/colin-crain/perl/ch-2.pl">Colin&rsquo;s solution</a> only handles bases ≥ 7. I like the additional thought Colin put in to the formula&rsquo;s implementation, however. While most of us just implemented the formula numerically, or adapted it to use string concatenation, Colin showcased both methods:</p>
-
-<pre><code class="language-perl">sub self_descriptive {
-## formula for creating self-descriptive numbers in base 10 for a given base ( &gt; 7 )
-    my $base = shift;
-    my $dec = ($base-4)*($base**($base-1)) + 2*($base**($base-2)) + $base**($base-3) + $base**3;
-    my @alphanum = (0..9, 'A'..'Z');
-    my $out = &quot;&quot;;
-    my $rem;
-    while ( $dec &gt; 0 ) {
-        ($dec, $rem) = (int( $dec/$base ), $dec % $base);
-        $out = $alphanum[$rem] . $out;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">self_descriptive</span> {
+<span style="color:#75715e">## formula for creating self-descriptive numbers in base 10 for a given base ( &gt; 7 )</span>
+    <span style="color:#66d9ef">my</span> $base <span style="color:#f92672">=</span> shift;
+    <span style="color:#66d9ef">my</span> $dec <span style="color:#f92672">=</span> ($base<span style="color:#f92672">-</span><span style="color:#ae81ff">4</span>)<span style="color:#f92672">*</span>($base<span style="color:#f92672">**</span>($base<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)) <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>($base<span style="color:#f92672">**</span>($base<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>)) <span style="color:#f92672">+</span> $base<span style="color:#f92672">**</span>($base<span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>) <span style="color:#f92672">+</span> $base<span style="color:#f92672">**</span><span style="color:#ae81ff">3</span>;
+    <span style="color:#66d9ef">my</span> @alphanum <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">9</span>, <span style="color:#e6db74">&#39;A&#39;</span><span style="color:#f92672">..</span><span style="color:#e6db74">&#39;Z&#39;</span>);
+    <span style="color:#66d9ef">my</span> $out <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
+    <span style="color:#66d9ef">my</span> $rem;
+    <span style="color:#66d9ef">while</span> ( $dec <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> ) {
+        ($dec, $rem) <span style="color:#f92672">=</span> (int( $dec<span style="color:#f92672">/</span>$base ), $dec % <span style="color:#960050;background-color:#1e0010">$</span>base);
+        $out <span style="color:#f92672">=</span> $alphanum[$rem] <span style="color:#f92672">.</span> $out;
     }
-    return $out;
+    <span style="color:#66d9ef">return</span> $out;
 }
-</code></pre>
-
-<pre><code class="language-perl">sub self_descriptive_assembled {
-## or we can just assemble a graphical representation of a number manually that will fit the bill
-    my $base = shift;
-    my @alphanum = (0..9, 'A'..'Z');
-    my $out = $alphanum[$base-4] . &quot;21&quot; . &quot;0&quot; x ($base-7) . &quot;1000&quot;;
-    return $out;
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">self_descriptive_assembled</span> {
+<span style="color:#75715e">## or we can just assemble a graphical representation of a number manually that will fit the bill</span>
+    <span style="color:#66d9ef">my</span> $base <span style="color:#f92672">=</span> shift;
+    <span style="color:#66d9ef">my</span> @alphanum <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">9</span>, <span style="color:#e6db74">&#39;A&#39;</span><span style="color:#f92672">..</span><span style="color:#e6db74">&#39;Z&#39;</span>);
+    <span style="color:#66d9ef">my</span> $out <span style="color:#f92672">=</span> $alphanum[$base<span style="color:#f92672">-</span><span style="color:#ae81ff">4</span>] <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;21&#34;</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;0&#34;</span> x ($base<span style="color:#f92672">-</span><span style="color:#ae81ff">7</span>) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;1000&#34;</span>;
+    <span style="color:#66d9ef">return</span> $out;
 }
-</code></pre>
-
-<p>The string method is more concise, and gives results directly in the target base, while the pure numerical method gives its answer in base-10, which may be desirable.</p>
-
+</code></pre></div><p>The string method is more concise, and gives results directly in the target base, while the pure numerical method gives its answer in base-10, which may be desirable.</p>
 <h2 id="cristina-heredia-1">Cristina Heredia</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-043/cristian-heredia/perl/ch-2.pl">Cristina&rsquo;s solution</a> handles bases 7..10 in both decimal and the original base, using the numeric formula:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> Math::Base::Convert <span style="color:#e6db74">qw(:base)</span>;
 
-<pre><code class="language-perl">use strict;
-use Math::Base::Convert qw(:base);
+<span style="color:#66d9ef">my</span> $valor;
+<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $b <span style="color:#f92672">=</span> <span style="color:#ae81ff">7</span>; $b <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">10</span>; $b<span style="color:#f92672">++</span>) {
+  $valor <span style="color:#f92672">=</span> ($b <span style="color:#f92672">-</span> <span style="color:#ae81ff">4</span>) <span style="color:#f92672">*</span> $b<span style="color:#f92672">**</span>($b <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $b <span style="color:#f92672">**</span> ($b<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>) <span style="color:#f92672">+</span> $b<span style="color:#f92672">**</span>($b<span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>) <span style="color:#f92672">+</span> $b<span style="color:#f92672">**</span><span style="color:#ae81ff">3</span>;
 
-my $valor;
-for (my $b = 7; $b &lt;= 10; $b++) {
-  $valor = ($b - 4) * $b**($b - 1) + 2 * $b ** ($b-2) + $b**($b-3) + $b**3;
-
-  $converted = cnv($valor,10 =&gt; $b);
-  print &quot;Base is $b, and the result is $converted\n&quot;;
+  $converted <span style="color:#f92672">=</span> cnv($valor,<span style="color:#ae81ff">10</span> <span style="color:#f92672">=&gt;</span> $b);
+  <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Base is $b, and the result is $converted\n&#34;</span>;
 }
-</code></pre>
+</code></pre></div><p>While this is very close to being correct, the code does not quite run as-is. <code>$converted</code> needs to be declared under <code>strict</code>, and the <code>cnv</code> function from <a href="https://metacpan.org/pod/Math::Base::Convert">Math::Base::Convert</a> is not exported with <code>:base</code>.</p>
+<p>Furthermore, <code>Math::Base::Convert</code>'s <code>cnv</code> says it supports &ldquo;arbitrary bases,&rdquo; yet throws an error for base 7. I looked up the error in the <a href="https://metacpan.org/release/Math-Base-Convert/source/Convert.pm">module source</a>, and it seems you need to supply your own character set if not using one of the six standard bases it supports. With all this in mind, I would suggest the following minimal fix to Cristina&rsquo;s code (I hope you don&rsquo;t mind, Cristina!):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e"># Ryan&#39;s suggested fix</span>
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> Math::Base::Convert <span style="color:#e6db74">qw(cnv)</span>;
 
-<p>While this is very close to being correct, the code does not quite run as-is. <code>$converted</code> needs to be declared under <code>strict</code>, and the <code>cnv</code> function from <a href="https://metacpan.org/pod/Math::Base::Convert">Math::Base::Convert</a> is not exported with <code>:base</code>.</p>
+<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $b <span style="color:#f92672">=</span> <span style="color:#ae81ff">7</span>; $b <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">10</span>; $b<span style="color:#f92672">++</span>) {
+  <span style="color:#66d9ef">my</span> $valor <span style="color:#f92672">=</span> ($b <span style="color:#f92672">-</span> <span style="color:#ae81ff">4</span>) <span style="color:#f92672">*</span> $b<span style="color:#f92672">**</span>($b <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $b <span style="color:#f92672">**</span> ($b<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>) <span style="color:#f92672">+</span> $b<span style="color:#f92672">**</span>($b<span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>) <span style="color:#f92672">+</span> $b<span style="color:#f92672">**</span><span style="color:#ae81ff">3</span>;
 
-<p>Furthermore, <code>Math::Base::Convert</code>&rsquo;s <code>cnv</code> says it supports &ldquo;arbitrary bases,&rdquo; yet throws an error for base 7. I looked up the error in the <a href="https://metacpan.org/release/Math-Base-Convert/source/Convert.pm">module source</a>, and it seems you need to supply your own character set if not using one of the six standard bases it supports. With all this in mind, I would suggest the following minimal fix to Cristina&rsquo;s code (I hope you don&rsquo;t mind, Cristina!):</p>
-
-<pre><code class="language-perl"># Ryan's suggested fix
-use strict;
-use Math::Base::Convert qw(cnv);
-
-for (my $b = 7; $b &lt;= 10; $b++) {
-  my $valor = ($b - 4) * $b**($b - 1) + 2 * $b ** ($b-2) + $b**($b-3) + $b**3;
-
-  my $converted = cnv($valor,10 =&gt; [0..$b-1]);
-  print &quot;Base is $b, and the result is $converted\n&quot;;
+  <span style="color:#66d9ef">my</span> $converted <span style="color:#f92672">=</span> cnv($valor,<span style="color:#ae81ff">10</span> <span style="color:#f92672">=&gt;</span> [<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$b<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]);
+  <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Base is $b, and the result is $converted\n&#34;</span>;
 }
-</code></pre>
-
-<h2 id="dave-jacoby-1">Dave Jacoby</h2>
-
+</code></pre></div><h2 id="dave-jacoby-1">Dave Jacoby</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-043/dave-jacoby/perl/ch-2.pl">Dave&rsquo;s solution</a> generates all self-descriptive numbers from base 7..37 using the string concatenation variant of the formula. He also takes care to verify that the numbers are indeed self-descriptive.</p>
-
 <p>Here is Dave&rsquo;s implementation of the formula:</p>
-
-<pre><code class="language-perl">sub get_self( $n ) {
-    my @output = map { 0 } 1 .. $n;
-    my $b      = $n - 4;
-    $output[0]  = $from_base{$b};
-    $output[1]  = 2;
-    $output[2]  = 1;
-    $output[$b] = 1;
-    return join '', @output;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get_self</span>( $n ) {
+    <span style="color:#66d9ef">my</span> @output <span style="color:#f92672">=</span> map { <span style="color:#ae81ff">0</span> } <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $n;
+    <span style="color:#66d9ef">my</span> $b      <span style="color:#f92672">=</span> $n <span style="color:#f92672">-</span> <span style="color:#ae81ff">4</span>;
+    $output[<span style="color:#ae81ff">0</span>]  <span style="color:#f92672">=</span> $from_base{$b};
+    $output[<span style="color:#ae81ff">1</span>]  <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;
+    $output[<span style="color:#ae81ff">2</span>]  <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+    $output[$b] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">return</span> join <span style="color:#e6db74">&#39;&#39;</span>, @output;
 }
-</code></pre>
-
-<p>The <code>check_self</code> sub validates self-descriptive numbers by going through all of the digits.</p>
-
-<pre><code class="language-perl">sub check_self ( $s, $n ) {
-    no warnings;
-    my @s = split //, $s;
-    my $b = $s[0];
-    my @check;
-    for my $i ( 0 .. $n - 1 ) {
-        my $eye = $from_base{$i};
-        my $c = $s[$i];
-        my @all = grep { $_ eq $eye } @s;
-        my $all = join ',', @all;
-        my $j   = scalar @all;
-        my $jay = $from_base{$j};
-        return 0 if $c ne $jay;
+</code></pre></div><p>The <code>check_self</code> sub validates self-descriptive numbers by going through all of the digits.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">check_self</span> ( $s, $n ) {
+    <span style="color:#66d9ef">no</span> warnings;
+    <span style="color:#66d9ef">my</span> @s <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, $s;
+    <span style="color:#66d9ef">my</span> $b <span style="color:#f92672">=</span> $s[<span style="color:#ae81ff">0</span>];
+    <span style="color:#66d9ef">my</span> @check;
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ) {
+        <span style="color:#66d9ef">my</span> $eye <span style="color:#f92672">=</span> $from_base{$i};
+        <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> $s[$i];
+        <span style="color:#66d9ef">my</span> @all <span style="color:#f92672">=</span> grep { $_ <span style="color:#f92672">eq</span> $eye } @s;
+        <span style="color:#66d9ef">my</span> $all <span style="color:#f92672">=</span> join <span style="color:#e6db74">&#39;,&#39;</span>, @all;
+        <span style="color:#66d9ef">my</span> $j   <span style="color:#f92672">=</span> scalar @all;
+        <span style="color:#66d9ef">my</span> $jay <span style="color:#f92672">=</span> $from_base{$j};
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $c <span style="color:#f92672">ne</span> $jay;
     }
-    return 1;
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
 }
-</code></pre>
-
-<p>Dave&rsquo;s variable names made me smile. I used to work with someone who also used <code>$i, $j, $eye,</code> and <code>$jay</code>. His name was Dave, too.</p>
-
+</code></pre></div><p>Dave&rsquo;s variable names made me smile. I used to work with someone who also used <code>$i, $j, $eye,</code> and <code>$jay</code>. His name was Dave, too.</p>
 <h2 id="duane-powell-1">Duane Powell</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-043/duane-powell/perl/ch-2.pl">Duane&rsquo;s solution</a> works for bases 1..10, by brute forcing the search space, and checking if each number is self-descriptive, using the following function:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">SDN</span> {
+  <span style="color:#66d9ef">my</span> $n    <span style="color:#f92672">=</span> shift;
+  <span style="color:#66d9ef">my</span> $base <span style="color:#f92672">=</span> shift;
 
-<pre><code class="language-perl">sub SDN {
-  my $n    = shift;
-  my $base = shift;
+  <span style="color:#66d9ef">my</span> @n <span style="color:#f92672">=</span> split(<span style="color:#e6db74">//</span>,$n);                       <span style="color:#75715e"># Split $n into separate digits</span>
+  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">unless</span> (scalar @n <span style="color:#f92672">==</span> $base);       <span style="color:#75715e"># A SND is the same length as its base</span>
 
-  my @n = split(//,$n);                       # Split $n into separate digits
-  return 0 unless (scalar @n == $base);       # A SND is the same length as its base
+  <span style="color:#66d9ef">my</span> %count;
+  $count{$_} <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">foreach</span> (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> scalar(@n)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>); <span style="color:#75715e"># Init a counter to all 0&#39;s</span>
+  $count{$_}<span style="color:#f92672">++</span>   <span style="color:#66d9ef">foreach</span> (@n);                <span style="color:#75715e"># Count the occurance of each digit</span>
 
-  my %count;
-  $count{$_} = 0 foreach (0 .. scalar(@n)-1); # Init a counter to all 0's
-  $count{$_}++   foreach (@n);                # Count the occurance of each digit
-
-  # Determine if $n &quot;describes&quot; itself by comparing
-  # the count to the digit found at index $i
-  my $i = 0;
-  foreach (0 .. scalar(@n)-1) {
-    return 0 if ($count{$_} != $n[$i]); # not a SDN, exit
-    $i++;
+  <span style="color:#75715e"># Determine if $n &#34;describes&#34; itself by comparing</span>
+  <span style="color:#75715e"># the count to the digit found at index $i</span>
+  <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+  <span style="color:#66d9ef">foreach</span> (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> scalar(@n)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> ($count{$_} <span style="color:#f92672">!=</span> $n[$i]); <span style="color:#75715e"># not a SDN, exit</span>
+    $i<span style="color:#f92672">++</span>;
   }
-  return 1; # All digits matched the counts, this is an SDN
+  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>; <span style="color:#75715e"># All digits matched the counts, this is an SDN</span>
 }
-</code></pre>
-
-<p>Duane admits this is very slow for larger bases. One optimization that Duane did that some people missed is this line:</p>
-
-<pre><code class="language-perl">  return 0 unless (scalar @n == $base);       # A SND is the same length as its base
-</code></pre>
-
-<p>Duane is checking whether the number is a <a href="http://mathworld.wolfram.com/HarshadNumber.html">Niven number</a> (or Harshad number), which you might remember from <a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-007/">week 007</a> of the Perl Weekly Challenge. It can be proven that <a href="https://en.wikipedia.org/wiki/Self-descriptive_number#Properties">all self-descriptive numbers are also Niven numbers</a>.</p>
-
+</code></pre></div><p>Duane admits this is very slow for larger bases. One optimization that Duane did that some people missed is this line:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">unless</span> (scalar @n <span style="color:#f92672">==</span> $base);       <span style="color:#75715e"># A SND is the same length as its base</span>
+</code></pre></div><p>Duane is checking whether the number is a <a href="http://mathworld.wolfram.com/HarshadNumber.html">Niven number</a> (or Harshad number), which you might remember from <a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-007/">week 007</a> of the Perl Weekly Challenge. It can be proven that <a href="https://en.wikipedia.org/wiki/Self-descriptive_number#Properties">all self-descriptive numbers are also Niven numbers</a>.</p>
 <h2 id="e-choroba-1">E. Choroba</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-043/e-choroba/perl/ch-2.pl">Choroba&rsquo;s solution</a> uses a table of values for bases &lt; 7. For bases ≥ 7, Choroba takes a somewhat novel approach:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">return</span> $convert<span style="color:#f92672">-&gt;</span>(join <span style="color:#e6db74">&#34;&#34;</span>,
+                  map $_ <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">9</span> ? chr <span style="color:#ae81ff">55</span> <span style="color:#f92672">+</span> $_ : $_,
+                  ($base <span style="color:#f92672">-</span> <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>, (<span style="color:#ae81ff">0</span>) x ($base <span style="color:#f92672">-</span> <span style="color:#ae81ff">7</span>), <span style="color:#ae81ff">1</span>, (<span style="color:#ae81ff">0</span>) x <span style="color:#ae81ff">3</span>))
+</code></pre></div><p>The use of <code>join</code> to handle the concatenation streamlines the code somewhat. That bit of ASCII math (<code>chr 55 + $_</code>) is a cheeky way of expanding the character set for bases greater than 9. I like it.</p>
+<p><code>$convert</code> is a code ref that either returns its argument unmodified, or sends it through <a href="https://metacpan.org/pod/distribution/Convert-AnyBase/lib/Convert/AnyBase.pm">Convert::AnyBase</a>&lsquo;s <code>decode()</code> method. Thus, Choroba&rsquo;s <code>self_descriptive_number()</code> sub can either return the result in the original base, or be <code>decode()</code>'d to a regular Perl number:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $convert <span style="color:#f92672">=</span> @_ <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>
+    ? <span style="color:#66d9ef">sub</span> { $_[<span style="color:#ae81ff">0</span>] }
+    : <span style="color:#66d9ef">sub</span> { <span style="color:#e6db74">&#39;Convert::AnyBase&#39;</span><span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(set <span style="color:#f92672">=&gt;</span> $set)<span style="color:#f92672">-&gt;</span>decode($_[<span style="color:#ae81ff">0</span>]) };
+</code></pre></div><p>Instead of returning an empty list or <code>undef</code> if there are no self-descriptive numbers for the base, Choroba opted to use an exception model instead:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">if</span> (exists $irregular{$base}) {
+        die <span style="color:#e6db74">&#34;No self descriptive number in base $base.\n&#34;</span>
+            <span style="color:#66d9ef">unless</span> $irregular{$base};
 
-<pre><code class="language-perl">return $convert-&gt;(join &quot;&quot;,
-                  map $_ &gt; 9 ? chr 55 + $_ : $_,
-                  ($base - 4, 2, 1, (0) x ($base - 7), 1, (0) x 3))
-</code></pre>
-
-<p>The use of <code>join</code> to handle the concatenation streamlines the code somewhat. That bit of ASCII math (<code>chr 55 + $_</code>) is a cheeky way of expanding the character set for bases greater than 9. I like it.</p>
-
-<p><code>$convert</code> is a code ref that either returns its argument unmodified, or sends it through <a href="https://metacpan.org/pod/distribution/Convert-AnyBase/lib/Convert/AnyBase.pm">Convert::AnyBase</a>&rsquo;s <code>decode()</code> method. Thus, Choroba&rsquo;s <code>self_descriptive_number()</code> sub can either return the result in the original base, or be <code>decode()</code>&rsquo;d to a regular Perl number:</p>
-
-<pre><code class="language-perl">my $convert = @_ == 1
-    ? sub { $_[0] }
-    : sub { 'Convert::AnyBase'-&gt;new(set =&gt; $set)-&gt;decode($_[0]) };
-</code></pre>
-
-<p>Instead of returning an empty list or <code>undef</code> if there are no self-descriptive numbers for the base, Choroba opted to use an exception model instead:</p>
-
-<pre><code class="language-perl">    if (exists $irregular{$base}) {
-        die &quot;No self descriptive number in base $base.\n&quot;
-            unless $irregular{$base};
-
-        return $convert-&gt;($irregular{$base})
+        <span style="color:#66d9ef">return</span> $convert<span style="color:#f92672">-&gt;</span>($irregular{$base})
     }
-</code></pre>
-
-<p>One easily fixed issue is that the <code>%irregular</code> hash only lists one of the two base-4 self-descriptive numbers (1210; the other is 2020):</p>
-
-<pre><code class="language-perl">my %irregular = (
-    1 =&gt; undef,
-    2 =&gt; undef,
-    3 =&gt; undef,
-    4 =&gt; 1210,
-    5 =&gt; 21200,
-    6 =&gt; undef,
+</code></pre></div><p>One easily fixed issue is that the <code>%irregular</code> hash only lists one of the two base-4 self-descriptive numbers (1210; the other is 2020):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> %irregular <span style="color:#f92672">=</span> (
+    <span style="color:#ae81ff">1</span> <span style="color:#f92672">=&gt;</span> undef,
+    <span style="color:#ae81ff">2</span> <span style="color:#f92672">=&gt;</span> undef,
+    <span style="color:#ae81ff">3</span> <span style="color:#f92672">=&gt;</span> undef,
+    <span style="color:#ae81ff">4</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1210</span>,
+    <span style="color:#ae81ff">5</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">21200</span>,
+    <span style="color:#ae81ff">6</span> <span style="color:#f92672">=&gt;</span> undef,
 );
-</code></pre>
-
-<p>That&rsquo;s easily remedied, though. Finally, Choroba provides a comprehensive set of tests, which is always nice to see. Testing exceptions is easy with <a href="https://metacpan.org/pod/Test::Exception">Test::Exception</a>:</p>
-
-<pre><code class="language-perl">throws_ok { self_descriptive_number(1) } qr/base 1/, 'base 1';
-throws_ok { self_descriptive_number(2) } qr/base 2/, 'base 2';
-throws_ok { self_descriptive_number(3) } qr/base 3/, 'base 3';
-throws_ok { self_descriptive_number(6) } qr/base 6/, 'base 6';
-</code></pre>
-
-<p><a href="http://blogs.perl.org/users/e_choroba/2020/01/perl-weekly-challenge-043-olympic-rings-and-self-descriptive-numbers.html">Choroba&rsquo;s blog</a>.</p>
-
+</code></pre></div><p>That&rsquo;s easily remedied, though. Finally, Choroba provides a comprehensive set of tests, which is always nice to see. Testing exceptions is easy with <a href="https://metacpan.org/pod/Test::Exception">Test::Exception</a>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">throws_ok { self_descriptive_number(<span style="color:#ae81ff">1</span>) } <span style="color:#e6db74">qr/base 1/</span>, <span style="color:#e6db74">&#39;base 1&#39;</span>;
+throws_ok { self_descriptive_number(<span style="color:#ae81ff">2</span>) } <span style="color:#e6db74">qr/base 2/</span>, <span style="color:#e6db74">&#39;base 2&#39;</span>;
+throws_ok { self_descriptive_number(<span style="color:#ae81ff">3</span>) } <span style="color:#e6db74">qr/base 3/</span>, <span style="color:#e6db74">&#39;base 3&#39;</span>;
+throws_ok { self_descriptive_number(<span style="color:#ae81ff">6</span>) } <span style="color:#e6db74">qr/base 6/</span>, <span style="color:#e6db74">&#39;base 6&#39;</span>;
+</code></pre></div><p><a href="http://blogs.perl.org/users/e_choroba/2020/01/perl-weekly-challenge-043-olympic-rings-and-self-descriptive-numbers.html">Choroba&rsquo;s blog</a>.</p>
 <h2 id="jaldhar-h-vyas-1">Jaldhar H. Vyas</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-043/jaldhar-h-vyas/perl/ch-2.pl">Jaldhar&rsquo;s solution</a> uses the numeric formula, and hard-coded list of bases to ignore. However, the formula does not work for bases smaller than 7, so the results for bases 4 and 5 are incorrect:</p>
-
 <pre><code>[weekly/rjt] challenge-043/⋯/perl %&gt; ./ch-2.pl 4
 1210
 [weekly/rjt] challenge-043/⋯/perl %&gt; ./ch-2.pl 5
 13100
-</code></pre>
-
-<p>The expected results would be 1210, 2020, and 21200. This would be easily fixed, however, by either searching bases 4 and 5, or hard-coding the expected results for those non-generic cases.</p>
-
+</code></pre><p>The expected results would be 1210, 2020, and 21200. This would be easily fixed, however, by either searching bases 4 and 5, or hard-coding the expected results for those non-generic cases.</p>
 <p>Jaldhar uses the numeric formula to obtain the self-descriptive numbers, but opted to output his results in the target base, so he provided a conversion function:</p>
-
-<pre><code class="language-perl">sub base {
-    my ($number, $base) = @_;
-    my @digits = (0 .. 9, 'A' .. 'Z');
-    my @result;
-    while ($number &gt; ($base - 1)) {
-        my $digit = $number % $base;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">base</span> {
+    <span style="color:#66d9ef">my</span> ($number, $base) <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">my</span> @digits <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">9</span>, <span style="color:#e6db74">&#39;A&#39;</span> <span style="color:#f92672">..</span> <span style="color:#e6db74">&#39;Z&#39;</span>);
+    <span style="color:#66d9ef">my</span> @result;
+    <span style="color:#66d9ef">while</span> ($number <span style="color:#f92672">&gt;</span> ($base <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)) {
+        <span style="color:#66d9ef">my</span> $digit <span style="color:#f92672">=</span> $number % <span style="color:#960050;background-color:#1e0010">$</span>base;
         push @result, $digits[$digit];
-        $number /=  $base;
+        $number <span style="color:#f92672">/=</span>  $base;
     }
     push @result, $digits[$number];
 
-    return join '', reverse @result;
+    <span style="color:#66d9ef">return</span> join <span style="color:#e6db74">&#39;&#39;</span>, reverse @result;
 }
-</code></pre>
-
-<p><a href="https://www.braincells.com/perl/2020/01/perl_weekly_challenge_week_43.html">Jaldhar&rsquo;s blog</a>.</p>
-
+</code></pre></div><p><a href="https://www.braincells.com/perl/2020/01/perl_weekly_challenge_week_43.html">Jaldhar&rsquo;s blog</a>.</p>
 <h2 id="javier-luque-1">Javier Luque</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-043/javier-luque/perl/ch-2.pl">Javier&rsquo;s solution</a> uses the base ≥ 7 definition, and has hard-coded answers for lesser bases. He shows us two similar functions: one that returns the results in base 10, and another that returns the results in the target base. I will list the target base version, here:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">self_descriptive_x</span> {
+    <span style="color:#66d9ef">my</span> $b <span style="color:#f92672">=</span> shift;
 
-<pre><code class="language-perl">sub self_descriptive_x {
-    my $b = shift;
+    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;no solution&#39;</span> <span style="color:#66d9ef">if</span>
+        ( $b <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">||</span> $b <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">||</span>
+          $b <span style="color:#f92672">==</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">||</span> $b <span style="color:#f92672">==</span> <span style="color:#ae81ff">6</span>);
 
-    return 'no solution' if
-        ( $b == 1 || $b == 2 ||
-          $b == 3 || $b == 6);
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1210</span> <span style="color:#66d9ef">if</span> ($b <span style="color:#f92672">==</span> <span style="color:#ae81ff">4</span>);
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">21200</span> <span style="color:#66d9ef">if</span> ($b <span style="color:#f92672">==</span> <span style="color:#ae81ff">5</span>);
 
-    return 1210 if ($b == 4);
-    return 21200 if ($b == 5);
-
-    return
-        $NUMS[($b - 4)] . '2' . 1 . 0 x ($b - 7) . '1000';
+    <span style="color:#66d9ef">return</span>
+        $NUMS[($b <span style="color:#f92672">-</span> <span style="color:#ae81ff">4</span>)] <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;2&#39;</span> <span style="color:#f92672">.</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">.</span> <span style="color:#ae81ff">0</span> x ($b <span style="color:#f92672">-</span> <span style="color:#ae81ff">7</span>) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;1000&#39;</span>;
 }
-</code></pre>
-
-<p>Javier&rsquo;s solution is fast. Hard-coding the bases &lt; 7 means the solution has O(1) complexity.</p>
-
+</code></pre></div><p>Javier&rsquo;s solution is fast. Hard-coding the bases &lt; 7 means the solution has O(1) complexity.</p>
 <p>There is one small bug, though: In base-4, there are actually two self-descriptive numbers: 1210 and 2020 (Happy New Year!). That&rsquo;s an easy fix, though.</p>
-
 <p><a href="https://perlchallenges.wordpress.com/2020/01/13/perl-weekly-challenge-043/">Javier&rsquo;s blog</a>.</p>
-
 <h2 id="laurent-rosenfeld-1">Laurent Rosenfeld</h2>
-
 <p><strong>Note:</strong> I&rsquo;m using Laurent&rsquo;s solution from his <a href="http://blogs.perl.org/users/laurent_r/2020/01/perl-weekly-challenge-43-olympic-rings-and-self-descripting-numbers.html">blog</a>, as it appears to be farther along than <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-043/laurent-rosenfeld/perl/ch-2.pl">the one currently checked in to the repository</a>. By the way, his blog—as always—is well worth the read.</p>
-
 <p>Laurent&rsquo;s solution hard-codes the invalid bases, uses the numeric base ≥ 7 for larger bases, and checks all cases for bases 4 and 5.</p>
-
-<pre><code class="language-perl">sub find_self_descriptive {
-    my $b = shift;
-    return &quot;No self-descriptive number for base $b&quot;
-        if $b &lt; 4 or $b == 6;
-    if ($b == 4 or $b == 5) {
-        return check_all_cases ($b);
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">find_self_descriptive</span> {
+    <span style="color:#66d9ef">my</span> $b <span style="color:#f92672">=</span> shift;
+    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;No self-descriptive number for base $b&#34;</span>
+        <span style="color:#66d9ef">if</span> $b <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">4</span> <span style="color:#f92672">or</span> $b <span style="color:#f92672">==</span> <span style="color:#ae81ff">6</span>;
+    <span style="color:#66d9ef">if</span> ($b <span style="color:#f92672">==</span> <span style="color:#ae81ff">4</span> <span style="color:#f92672">or</span> $b <span style="color:#f92672">==</span> <span style="color:#ae81ff">5</span>) {
+        <span style="color:#66d9ef">return</span> check_all_cases ($b);
     }
-    my $dec_num = ($b - 4) * $b ** ($b - 1)
-        + 2 * $b ** ($b - 2) + $b ** ($b - 3) + $b ** 3;
-    my $base_num = to_base_b ($dec_num, $b);
-    return &quot;Number in base $b: $base_num; decimal: $dec_num&quot;;
+    <span style="color:#66d9ef">my</span> $dec_num <span style="color:#f92672">=</span> ($b <span style="color:#f92672">-</span> <span style="color:#ae81ff">4</span>) <span style="color:#f92672">*</span> $b <span style="color:#f92672">**</span> ($b <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)
+        <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $b <span style="color:#f92672">**</span> ($b <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>) <span style="color:#f92672">+</span> $b <span style="color:#f92672">**</span> ($b <span style="color:#f92672">-</span> <span style="color:#ae81ff">3</span>) <span style="color:#f92672">+</span> $b <span style="color:#f92672">**</span> <span style="color:#ae81ff">3</span>;
+    <span style="color:#66d9ef">my</span> $base_num <span style="color:#f92672">=</span> to_base_b ($dec_num, $b);
+    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Number in base $b: $base_num; decimal: $dec_num&#34;</span>;
 }
-</code></pre>
-
-<p>The <code>check_all_cases()</code> sub handles the iteration through every possible number of a given base, skips numbers that don&rsquo;t end in zero, skips non-Niven numbers, and finally loops through the digits to check whether each digit describes its count:</p>
-
-<pre><code class="language-perl">sub check_all_cases {
-    my $base = shift;;
-    for my $num ($base ** ($base -1) .. $base ** $base -1) {
-        my $num_in_b = to_base_b ($num, $base);
-        next unless $num_in_b =~ /0$/;
-        my @digits = split //, $num_in_b;
-        my $sum = 0;
-        $sum += $_ for split //, $num_in_b;
-        next if $sum != $base;
-        my $success = 1;
-        for my $rank (0..$base - 1) {
-            my $nb_digits = $digits[$rank];
-            my $num_occ = $num_in_b =~ s/$rank/$rank/g;
-            if ($num_occ != $nb_digits) {
-                $success = 0;
-                last;
+</code></pre></div><p>The <code>check_all_cases()</code> sub handles the iteration through every possible number of a given base, skips numbers that don&rsquo;t end in zero, skips non-Niven numbers, and finally loops through the digits to check whether each digit describes its count:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">check_all_cases</span> {
+    <span style="color:#66d9ef">my</span> $base <span style="color:#f92672">=</span> shift;;
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $num ($base <span style="color:#f92672">**</span> ($base <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">..</span> $base <span style="color:#f92672">**</span> $base <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
+        <span style="color:#66d9ef">my</span> $num_in_b <span style="color:#f92672">=</span> to_base_b ($num, $base);
+        <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> $num_in_b <span style="color:#f92672">=~</span><span style="color:#e6db74"> /0$/</span>;
+        <span style="color:#66d9ef">my</span> @digits <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, $num_in_b;
+        <span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        $sum <span style="color:#f92672">+=</span> $_ <span style="color:#66d9ef">for</span> split <span style="color:#e6db74">//</span>, $num_in_b;
+        <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $sum <span style="color:#f92672">!=</span> $base;
+        <span style="color:#66d9ef">my</span> $success <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $rank (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$base <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) {
+            <span style="color:#66d9ef">my</span> $nb_digits <span style="color:#f92672">=</span> $digits[$rank];
+            <span style="color:#66d9ef">my</span> $num_occ <span style="color:#f92672">=</span> $num_in_b <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/$rank/$rank/g</span>;
+            <span style="color:#66d9ef">if</span> ($num_occ <span style="color:#f92672">!=</span> $nb_digits) {
+                $success <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+                <span style="color:#66d9ef">last</span>;
             }
         }
-        return &quot;Number in base $base: $num_in_b; decimal: $num&quot; if $success;
+        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Number in base $base: $num_in_b; decimal: $num&#34;</span> <span style="color:#66d9ef">if</span> $success;
     }
 }
-</code></pre>
-
-<p>Hard-coding the invalid bases (especially base 6) provides a significant performance boost.</p>
-
+</code></pre></div><p>Hard-coding the invalid bases (especially base 6) provides a significant performance boost.</p>
 <p><a href="http://blogs.perl.org/users/laurent_r/2020/01/perl-weekly-challenge-43-olympic-rings-and-self-descripting-numbers.html">Laurent&rsquo;s blog</a></p>
-
 <h2 id="roger-bell-west-1">Roger Bell West</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-043/roger-bell-west/perl/ch-2.pl">Roger&rsquo;s solution</a> also hard-codes the invalid bases, and uses a different adaptation of the base ≥ 7 formula, by keeping the digits in an array:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @n<span style="color:#f92672">=</span>(<span style="color:#ae81ff">0</span>) x $base;
 
-<pre><code class="language-perl">my @n=(0) x $base;
+$n[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
 
-$n[0]=1;
-
-if ($base&gt;6) {
-  $n[0]=$base-4;
-  $n[1]=2;
-  $n[2]=1;
-  $n[$base-4]=1
+<span style="color:#66d9ef">if</span> ($base<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">6</span>) {
+  $n[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">=</span>$base<span style="color:#f92672">-</span><span style="color:#ae81ff">4</span>;
+  $n[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>;
+  $n[<span style="color:#ae81ff">2</span>]<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
+  $n[$base<span style="color:#f92672">-</span><span style="color:#ae81ff">4</span>]<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>
 }
-</code></pre>
-
-<p>Now see if you can figure out how the following loop works, at a glance:</p>
-
-<pre><code class="language-perl">while (1) {
-  my @o=@n;
-  my %o;
-  map {$o{$_}++} @o;
-  foreach my $i (0..$#o) {
-    $n[$i]=$o{$i} || 0;
+</code></pre></div><p>Now see if you can figure out how the following loop works, at a glance:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
+  <span style="color:#66d9ef">my</span> @o<span style="color:#f92672">=</span>@n;
+  <span style="color:#66d9ef">my</span> %o;
+  map {$o{$_}<span style="color:#f92672">++</span>} @o;
+  <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#o) {
+    $n[$i]<span style="color:#f92672">=</span>$o{$i} <span style="color:#f92672">||</span> <span style="color:#ae81ff">0</span>;
   }
-  if (join('',@o) eq join('',@n)) {
-    last;
+  <span style="color:#66d9ef">if</span> (join(<span style="color:#e6db74">&#39;&#39;</span>,@o) <span style="color:#f92672">eq</span> join(<span style="color:#e6db74">&#39;&#39;</span>,@n)) {
+    <span style="color:#66d9ef">last</span>;
   }
 }
-</code></pre>
-
-<p>The <code>map</code> and <code>foreach</code> lines concisely count the digits, so the <code>join</code>s can check if a number is self-descriptive. What is much less obvious, though, is how this loop actually mutates <code>@n</code> so it will try new numbers each time through.</p>
-
+</code></pre></div><p>The <code>map</code> and <code>foreach</code> lines concisely count the digits, so the <code>join</code>s can check if a number is self-descriptive. What is much less obvious, though, is how this loop actually mutates <code>@n</code> so it will try new numbers each time through.</p>
 <p>The <code>$n[$i]=$o{$i} || 0</code> line modifies <code>@n</code>, but the <code>%o</code> hash is dependent on <code>@o</code>, which itself was a copy of <code>@n</code> at the top of the loop. It starts to make a lot more sense when you look at the actual values being produced. For base-5, this results in the following interesting sequence:</p>
-
 <pre><code>1 0 0 0 0
 4 1 0 0 0
 3 1 0 0 1
 2 2 0 1 0
 2 1 2 0 0
-</code></pre>
-
-<p>Roger is thus iteratively working his way towards a self-descriptive number by replacing each digit with its count from the current iteration. This needs to be repeated, but it converges quickly on the answer. Very nice!</p>
-
+</code></pre><p>Roger is thus iteratively working his way towards a self-descriptive number by replacing each digit with its count from the current iteration. This needs to be repeated, but it converges quickly on the answer. Very nice!</p>
 <p>One problem with Roger&rsquo;s method is with the base-4 numbers; it only finds the first one, because the loop exits as soon as it finds the first number. The <code>last</code> has to be there, though; otherwise the loop would get stuck on 1210 forever. This could be easily worked around in any number of ways, such as simply hard-coding the result for base-4 or having a special case to search that small base via brute force.</p>
-
 <h2 id="ruben-westerberg-1">Ruben Westerberg</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-043/ruben-westerberg/perl/ch-2.pl">Ruben&rsquo;s solution</a> exhaustively searches all base-<em>n</em> numbers and checks whether they are self-descriptive or not.</p>
-
 <p>I did not think I would see signal handling when reviewing the solutions to this challenge. Ruben hooks <code>$SIG{INT}</code> to display all self-descriptive numbers found before exiting, so you can let the program run, press <code>^C</code> and then see the results:</p>
-
 <pre><code>:
 NO: 3545165
 NO: 3545166
@@ -1129,139 +866,99 @@ NO: 3545200
 Found Self Describing Numbers:
 3211000
 [weekly/rjt] challenge-043/⋯/perl %&gt;
-</code></pre>
-
-<p>Here is the main loop, and the <code>$SIG{INT}</code> handler:</p>
-
-<pre><code class="language-perl">my $run=1;
-my @found;
-$SIG{INT}=sub {print &quot;Stopping Search\n&quot;; $run=undef};
-while ($run) {
-  my $res=test($base,$num);
-  if ($res) {
-    print &quot;***OK: $num***\n&quot;;
+</code></pre><p>Here is the main loop, and the <code>$SIG{INT}</code> handler:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $run<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
+<span style="color:#66d9ef">my</span> @found;
+$SIG{INT}<span style="color:#f92672">=</span><span style="color:#66d9ef">sub</span> {<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Stopping Search\n&#34;</span>; $run<span style="color:#f92672">=</span>undef};
+<span style="color:#66d9ef">while</span> ($run) {
+  <span style="color:#66d9ef">my</span> $res<span style="color:#f92672">=</span>test($base,$num);
+  <span style="color:#66d9ef">if</span> ($res) {
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;***OK: $num***\n&#34;</span>;
     push @found,$num;
-    sleep 1;
+    sleep <span style="color:#ae81ff">1</span>;
   }
-  else {
-    print &quot;NO: $num\n&quot;;
+  <span style="color:#66d9ef">else</span> {
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;NO: $num\n&#34;</span>;
   }
-  $i++;
-  $num=decToBase($base,$i);
-  last if length $num &gt; $base
+  $i<span style="color:#f92672">++</span>;
+  $num<span style="color:#f92672">=</span>decToBase($base,$i);
+  <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> length $num <span style="color:#f92672">&gt;</span> $base
 }
-print &quot;Found Self Describing Numbers:\n&quot;;
-print &quot;$_\n&quot; for @found;
-</code></pre>
-
-<h2 id="ryan-thompson-1">Ryan Thompson</h2>
-
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Found Self Describing Numbers:\n&#34;</span>;
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$_\n&#34;</span> <span style="color:#66d9ef">for</span> @found;
+</code></pre></div><h2 id="ryan-thompson-1">Ryan Thompson</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-043/ryan-thompson/perl/ch-2.pl">My solution</a> uses the string-concatenation version of the base ≥ 7 formula, and an optimized search of smaller bases. Although I was of course aware of the bases with no self-descriptive numbers, I chose to search those anyway. It would have been trivial to skip them. The <code>self_descriptive_base()</code> function returns all self-descriptive numbers of the given base, in that base:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">self_descriptive_base</span> {
+    <span style="color:#66d9ef">my</span> $b <span style="color:#f92672">=</span> shift;
 
-<pre><code class="language-perl">sub self_descriptive_base {
-    my $b = shift;
-
-    return &quot;$base[$b-4]21&quot; . '0' x ($b-7) . '1000' if $b &gt;= 7;
+    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;$base[$b-4]21&#34;</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;0&#39;</span> x ($b<span style="color:#f92672">-</span><span style="color:#ae81ff">7</span>) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;1000&#39;</span> <span style="color:#66d9ef">if</span> $b <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">7</span>;
 
     grep { is_self_descriptive($_) }
-     map { 10 * $_ } 10**($b-2) .. 10**($b-1) - 1;
+     map { <span style="color:#ae81ff">10</span> <span style="color:#f92672">*</span> $_ } <span style="color:#ae81ff">10</span><span style="color:#f92672">**</span>($b<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>) <span style="color:#f92672">..</span> <span style="color:#ae81ff">10</span><span style="color:#f92672">**</span>($b<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
 }
-</code></pre>
-
-<p>Note that the <code>map</code> at the bottom multiplies the entire range by 10, so although I am iterating in base-10, I am effectively searching 1/10th of the numbers, for a 90% speedup. I can do this since self-descriptive numbers must be divisible by their base.</p>
-
+</code></pre></div><p>Note that the <code>map</code> at the bottom multiplies the entire range by 10, so although I am iterating in base-10, I am effectively searching 1/10th of the numbers, for a 90% speedup. I can do this since self-descriptive numbers must be divisible by their base.</p>
 <p>Here is the <code>is_self_descriptive()</code> function, which simply counts its digits and ensures that count is equal to the value of each digit:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_self_descriptive</span> {
+    <span style="color:#66d9ef">my</span> @s <span style="color:#f92672">=</span> split <span style="color:#e6db74">&#39;&#39;</span>, shift;
 
-<pre><code class="language-perl">sub is_self_descriptive {
-    my @s = split '', shift;
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">if</span> @s <span style="color:#f92672">!=</span> sum @s; <span style="color:#75715e"># Not a Niven number</span>
 
-    return if @s != sum @s; # Not a Niven number
+    <span style="color:#66d9ef">my</span> %count;
+    $count{ $s[$_] }<span style="color:#f92672">++</span> <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#s;
 
-    my %count;
-    $count{ $s[$_] }++ for 0..$#s;
-
-    all { $count{$_} == $s[$_] } 0..$#s;
+    all { $count{$_} <span style="color:#f92672">==</span> $s[$_] } <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#s;
 }
-</code></pre>
-
-<p><a href="http://www.ry.ca/2020/01/self-descriptive-numbers/">My blog</a></p>
-
+</code></pre></div><p><a href="http://www.ry.ca/2020/01/self-descriptive-numbers/">My blog</a></p>
 <h2 id="saif-ahmed">Saif Ahmed</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-043/saiftynet/perl/ch-2.pl">Saif&rsquo;s solution</a> is very similar to Roger&rsquo;s, in that it starts with an array of digits and then mutates that array with the following <code>countAndPlace()</code> function:</p>
-
-<pre><code class="language-perl">sub countAndPlace{
-    my ($string)=@_;
-    my @split=split  //,$string;
-    foreach my $pos (0..$#split){
-      $split[$pos]= $decToBase[ grep { $_ eq  $decToBase[$pos] } @split];
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">countAndPlace</span>{
+    <span style="color:#66d9ef">my</span> ($string)<span style="color:#f92672">=</span>@_;
+    <span style="color:#66d9ef">my</span> @split<span style="color:#f92672">=</span>split  <span style="color:#e6db74">//</span>,$string;
+    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $pos (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#split){
+      $split[$pos]<span style="color:#f92672">=</span> $decToBase[ grep { $_ <span style="color:#f92672">eq</span>  $decToBase[$pos] } @split];
     }
-    return join &quot;&quot;,@split;
+    <span style="color:#66d9ef">return</span> join <span style="color:#e6db74">&#34;&#34;</span>,@split;
 }
-</code></pre>
-
-<p>As before, this works very well, but does miss the 2nd base-4 self-descriptive number, 2020, so a small modification or special case would be necessary for that.</p>
-
+</code></pre></div><p>As before, this works very well, but does miss the 2nd base-4 self-descriptive number, 2020, so a small modification or special case would be necessary for that.</p>
 <p>Saif also implemented the string-based version of the base ≥ 7 formula, but uses this only as a &ldquo;cheat&rdquo; to validate the results of his <code>countAndPlace</code> method:</p>
-
-<pre><code class="language-perl">sub cheatGetSelfDescriptive{
-  my $base=shift;
-  return  $decToBase[$base-4].&quot;21&quot;.(&quot;0&quot;x($base-7)).&quot;1000&quot; if $base &gt;6;
-  return &quot;oops...failed!&quot;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">cheatGetSelfDescriptive</span>{
+  <span style="color:#66d9ef">my</span> $base<span style="color:#f92672">=</span>shift;
+  <span style="color:#66d9ef">return</span>  $decToBase[$base<span style="color:#f92672">-</span><span style="color:#ae81ff">4</span>]<span style="color:#f92672">.</span><span style="color:#e6db74">&#34;21&#34;</span><span style="color:#f92672">.</span>(<span style="color:#e6db74">&#34;0&#34;</span>x($base<span style="color:#f92672">-</span><span style="color:#ae81ff">7</span>))<span style="color:#f92672">.</span><span style="color:#e6db74">&#34;1000&#34;</span> <span style="color:#66d9ef">if</span> $base <span style="color:#f92672">&gt;</span><span style="color:#ae81ff">6</span>;
+  <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;oops...failed!&#34;</span>
 }
-</code></pre>
-
-<p>I like the fact that Saif &ldquo;assumed no prior knowledge&rdquo; of self-descriptive numbers, aside from knowing which bases had no self-descriptive numbers.</p>
-
+</code></pre></div><p>I like the fact that Saif &ldquo;assumed no prior knowledge&rdquo; of self-descriptive numbers, aside from knowing which bases had no self-descriptive numbers.</p>
 <h2 id="wanderdoc-1">wanderdoc</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-043/wanderdoc/perl/ch-2.pl">wanderdoc&rsquo;s solution</a> chooses to hard-code the results for all bases &lt; 7, and then <code>join</code> together an array built up using the base ≥ 7 formula:</p>
-
-<pre><code class="language-perl">sub descr_create
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">descr_create</span>
 {
-     my $base = $_[0];
-     if ( $base &lt;= 3 or $base == 6 ) { return &quot;Does not exist!&quot; }
-     if ( $base == 4 ) { return &quot;1210 or 2020&quot;; }
-     if ( $base == 5 ) { return &quot;21200&quot;; }
-     if ( $base &gt; 64 ) { return &quot;Is not implemented!&quot;; }
+     <span style="color:#66d9ef">my</span> $base <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>];
+     <span style="color:#66d9ef">if</span> ( $base <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">or</span> $base <span style="color:#f92672">==</span> <span style="color:#ae81ff">6</span> ) { <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Does not exist!&#34;</span> }
+     <span style="color:#66d9ef">if</span> ( $base <span style="color:#f92672">==</span> <span style="color:#ae81ff">4</span> ) { <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;1210 or 2020&#34;</span>; }
+     <span style="color:#66d9ef">if</span> ( $base <span style="color:#f92672">==</span> <span style="color:#ae81ff">5</span> ) { <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;21200&#34;</span>; }
+     <span style="color:#66d9ef">if</span> ( $base <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">64</span> ) { <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Is not implemented!&#34;</span>; }
 
-     my @number = (0) x $base;
+     <span style="color:#66d9ef">my</span> @number <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>) x $base;
 
-     $number[0] = $base - 4;
-     $number[1] = 2;
-     $number[2] = 1;
-     $number[$#number - 3] = 1;
-     my $num_str = join('', map $digits{$_}, @number);
-     return $num_str;
+     $number[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> $base <span style="color:#f92672">-</span> <span style="color:#ae81ff">4</span>;
+     $number[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;
+     $number[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+     $number[$#number <span style="color:#f92672">-</span> <span style="color:#ae81ff">3</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+     <span style="color:#66d9ef">my</span> $num_str <span style="color:#f92672">=</span> join(<span style="color:#e6db74">&#39;&#39;</span>, map $digits{$_}, @number);
+     <span style="color:#66d9ef">return</span> $num_str;
 }
-</code></pre>
-
-<p>There isn&rsquo;t much else I can say about wanderdoc&rsquo;s solution, except that it is a concise, efficient implementation. Well done.</p>
-
-<hr />
-
-<hr />
-
+</code></pre></div><p>There isn&rsquo;t much else I can say about wanderdoc&rsquo;s solution, except that it is a concise, efficient implementation. Well done.</p>
+<hr>
+<hr>
 <h2 id="see-also">SEE ALSO</h2>
-
-<hr />
-
+<hr>
 <h3 id="blogs-this-week">Blogs this week:</h3>
-
 <p>(1) <strong>Adam Russell</strong> › <a href="https://adamcrussell.livejournal.com/14361.html">Perl &amp; Prolog</a></p>
-
 <p>(2) <strong>Arne Sommer</strong> › <a href="https://raku-musings.com/olympic-numbers.html">Olympic Numbers with Raku</a></p>
-
 <p>(3) <strong>Burkhard Nickels</strong> › <a href="http://pearls.dyndnss.net/">Olympic Rings, Self-Descriptive Numbers</a></p>
-
 <p>(4) <strong>Dave Jacoby</strong> › <a href="https://jacoby.github.io/2020/01/17/perl-weekly-challenge-43-rings-and-selfdescription.html">Rings and Self-Description</a></p>
-
 <p>(5) <strong>E. Choroba</strong> › <a href="http://blogs.perl.org/users/e_choroba/2020/01/perl-weekly-challenge-043-olympic-rings-and-self-descriptive-numbers.html">Olympic Rings and Self-Descriptive Numbers</a></p>
-
 <p>(6) <strong>Jaldhar H. Vyas</strong> › <a href="https://www.braincells.com/perl/2020/01/perl_weekly_challenge_week_43.html">Perl Weekly Challenge: Week 43</a></p>
-
 <p>(7) <strong>Javier Luque</strong> › <a href="https://perlchallenges.wordpress.com/2020/01/13/perl-weekly-challenge-043/">Perl Weekly Challenge - 043</a></p>
-
 <p>(8) <strong>Ryan Thompson</strong> › <a href="http://www.ry.ca/2020/01/olympic-rings/">Olympic Rings</a> | <a href="http://www.ry.ca/2020/01/self-descriptive-numbers/">Self-Descriptive Numbers</a></p>
 
                 </div>

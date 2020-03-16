@@ -16,7 +16,7 @@
 
     <meta name="description" content="Laurent Rosenfeld Weekly Review: Challenge - #032.">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.55.0-DEV" />
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -41,6 +41,8 @@
     <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
     <!-- hover -->
     <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
     <!-- template main css file -->
     
     <link rel="stylesheet" href="https://perlweeklychallenge.org/css/style.min.css" integrity="" media="screen">
@@ -149,24 +151,14 @@
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
-                    
-
-<hr />
-
+                    <hr>
 <h1 id="raku-solutions-weekly-review">Raku Solutions Weekly Review</h1>
-
-<hr />
-
+<hr>
 <h2 id="task-1-word-histogram">Task #1: Word Histogram</h2>
-
 <p>This is derived in part from my <a href="http://blogs.perl.org/users/laurent_r/2019/10/perl-weekly-challenge-30-word-histogram-and-ascii-bar-chart.html">blog post</a> made in answer to the <a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-032/">Week 32 of the Perl Weekly Challenge</a> organized by  <a href="http://blogs.perl.org/users/mohammad_s_anwar/">Mohammad S. Anwar</a> as well as answers made by others to the same challenge.</p>
-
 <p>The challenge reads as follows:</p>
-
 <p><em>Create a script that either reads standard input or one or more files specified on the command-line. Count the number of times and then print a summary, sorted by the count of each entry.</em></p>
-
 <p><em>So with the following input in file example.txt:</em></p>
-
 <pre><code>apple
 banana
 apple
@@ -174,103 +166,72 @@ cherry
 cherry
 apple
 </code></pre>
-
 <p><em>the script would display something like:</em></p>
-
 <pre><code>apple     3
 cherry    2
 banana    1
 </code></pre>
-
 <p><em>For extra credit, add a -csv option to your script, which would generate:</em></p>
-
 <pre><code>apple,3
 cherry,2
 banana,1
 </code></pre>
-
 <p>In other words, we&rsquo;re supposed to make an histogram reporting the frequency of various words in the input, which can be one or several files.</p>
-
 <h2 id="my-solutions">My Solutions</h2>
-
 <p>A simple solution might be to use a hash, as we would do in Perl 5, to store the word counters. In Raku (aka Perl 6), however, we can do slightly better and use a <code>Bag</code> to directly assign frequencies when reading the input files.</p>
-
 <p>Sorting the histogram can also be made simpler than it would be in Perl 5: if the code block (or subroutine) passed to the <code>sort</code> built-in function  accepts only one parameter, then the code block (or subroutine) is not a comparison block (or subroutine), but a code object implementing the transformation to be applied to the items to be sorted before using the default <code>cmp</code> comparison routine. Here, the <code>{$histo{$_}}</code> code block passed to the <code>sort</code>function takes only one parameter,; this means that <code>sort</code> should apply the standard <code>cmp</code> comparison function to the values associated with the keys that we want to sort. In addition, the default <code>cmp</code> comparison routine and <code>sort</code> built-in function are clever enough to see that they are comparing integers and should therefore apply a numeric sort to the data. Furthermore, this is also more efficient as the transformed values are not recomputed for each comparison, but cached, which means that we get the performance benefit of the the Schwartzian Transform in Perl 5 without having to implement it ourselves (although this performance advantage is probably secondary here, unless our input files have a very large number of different words).</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> v6;
 
-<pre><code class="language-Perl6">use v6;
-
-sub MAIN (*@files) {
-    my $histo = @files.map({.IO.lines}).Bag;
-    for reverse sort {$histo{$_}}, keys $histo -&gt; $key {
-        printf &quot;%-20s%d\n&quot;, $key, $histo{$key};
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> (*@files) {
+    <span style="color:#66d9ef">my</span> $histo <span style="color:#f92672">=</span> @files<span style="color:#f92672">.</span>map({<span style="color:#f92672">.</span>IO<span style="color:#f92672">.</span>lines})<span style="color:#f92672">.</span>Bag;
+    <span style="color:#66d9ef">for</span> reverse sort {$histo{$_}}, keys $histo <span style="color:#f92672">-&gt;</span> $key {
+        printf <span style="color:#e6db74">&#34;%-20s%d\n&#34;</span>, $key, $histo{$key};
     }
 }
-</code></pre>
-
-<p>With a  <code>word_test.txt</code> input file containing the sample input data:</p>
-
+</code></pre></div><p>With a  <code>word_test.txt</code> input file containing the sample input data:</p>
 <pre><code>apple
 banana
 apple
 cherry
 cherry
 apple
-</code></pre>
-
-<p>We obtain the following  the word counters:</p>
-
+</code></pre><p>We obtain the following  the word counters:</p>
 <pre><code>apple     3
 cherry    2
 banana    1
-</code></pre>
-
-<p>If you prefer another syntax, the <code>histo</code> assignment at the beginning could also be written as follows:</p>
-
-<pre><code class="language-Perl6">    my $histo = (map {.IO.lines}, @files).Bag;
-</code></pre>
-
-<p>This program correctly takes into account the files passed as a parameter. For example, passing twice the same <code>word_test.txt</code> input file yields counters that are twice the original ones.:</p>
-
+</code></pre><p>If you prefer another syntax, the <code>histo</code> assignment at the beginning could also be written as follows:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">    <span style="color:#66d9ef">my</span> $histo <span style="color:#f92672">=</span> (map {<span style="color:#f92672">.</span>IO<span style="color:#f92672">.</span>lines}, @files)<span style="color:#f92672">.</span>Bag;
+</code></pre></div><p>This program correctly takes into account the files passed as a parameter. For example, passing twice the same <code>word_test.txt</code> input file yields counters that are twice the original ones.:</p>
 <pre><code>$ perl6 word_histo.p6 word_test.txt word_test.txt
 apple               6
 cherry              4
 banana              2
 </code></pre>
-
 <p>Note that there is (in Perl 6.d) a new <code>IO.CatHandle</code> class for seamlessly gathering input from multiple files, but this did not appear to be necessary here.</p>
-
 <h3 id="extra-credit-csv-option">Extra Credit: CSV Option</h3>
-
 <p>For the extra credit, we could just try to add an optional parameter (with a default value), a  Boolean flag to decide whether we want CSV output, and then change the <code>printf</code> formatting string according to its value:</p>
-
 <pre><code>sub MAIN (Int $csv = 0, *@files) { # ...
 </code></pre>
-
 <p>but that does not really work as expected when no CSV flag argument is passed to the program. It appears that an optional parameter cannot be put before a mandatory one. Changing the order of the arguments does not help, because an optional parameter cannot be put after variadic parameters.</p>
-
 <p>We will therefore use two multi <code>MAIN</code> subroutines to handle cases where a Boolean flag is passed and those where there is no such flag. These <code>MAIN</code> subroutines will populate a <code>$*format</code> dynamic scope variable and then call the same <code>readfiles</code> subroutine:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">    <span style="color:#66d9ef">use</span> v6;
+    subset file of Str where <span style="color:#f92672">*.</span>IO<span style="color:#f92672">.</span>f;
 
-<pre><code class="language-Perl6">    use v6;
-    subset file of Str where *.IO.f;
-
-    multi sub MAIN (Int $csv, *@files where all(@files) ~~ file) {
-        my $*format = $csv ?? &quot;%s,%d\n&quot; !! &quot;%-20s%d\n&quot;;
+    multi <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> (Int $csv, *@files where all(@files) ~~ file) {
+        <span style="color:#66d9ef">my</span> $<span style="color:#960050;background-color:#1e0010">*</span>format <span style="color:#f92672">=</span> $csv ?? <span style="color:#e6db74">&#34;%s,%d\n&#34;</span> <span style="color:#f92672">!!</span> <span style="color:#e6db74">&#34;%-20s%d\n&#34;</span>;
         readfiles @files;
     }
-    multi sub MAIN (*@files where all(@files) ~~ file) {
-        my $*format = &quot;%-20s%d\n&quot;;
+    multi <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> (*@files where all(@files) ~~ file) {
+        <span style="color:#66d9ef">my</span> $<span style="color:#960050;background-color:#1e0010">*</span>format <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;%-20s%d\n&#34;</span>;
         readfiles @files;
     }
-    sub readfiles (@files) {
-        my $histo = @files.map({.IO.lines}).Bag;
-        for reverse sort {$histo{$_}}, keys $histo -&gt; $key {
-            printf $*format, $key, $histo{$key};
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">readfiles</span> (@files) {
+        <span style="color:#66d9ef">my</span> $histo <span style="color:#f92672">=</span> @files<span style="color:#f92672">.</span>map({<span style="color:#f92672">.</span>IO<span style="color:#f92672">.</span>lines})<span style="color:#f92672">.</span>Bag;
+        <span style="color:#66d9ef">for</span> reverse sort {$histo{$_}}, keys $histo <span style="color:#f92672">-&gt;</span> $key {
+            printf $<span style="color:#960050;background-color:#1e0010">*</span>format, $key, $histo{$key};
         }
     }
-</code></pre>
-
-<p>This can be tested with or without a CSV flag:</p>
-
+</code></pre></div><p>This can be tested with or without a CSV flag:</p>
 <pre><code>$ perl6 word_histo2.p6 word_test.txt word_test.txt
 apple               6
 cherry              4
@@ -286,26 +247,20 @@ apple               6
 cherry              4
 banana              2
 </code></pre>
-
 <h3 id="using-named-parameters">Using Named Parameters</h3>
-
 <p>So, now, this works properly, but we may still have a slight problem if the name of the file passed as an argument is a plain integer: this would become ambiguous, and the Moar virtual machine might not be able to tell correctly an integer from a file. This can be solved with <em>named arguments</em> for the Boolean CSV flag, which will also make it possible to write shorter and simpler code:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> v6;
+subset file of Str where <span style="color:#f92672">*.</span>IO<span style="color:#f92672">.</span>f;
 
-<pre><code class="language-Perl6">use v6;
-subset file of Str where *.IO.f;
-
-sub MAIN (Bool :$csv, *@files where all(@files) ~~ file) {
-    my $format = $csv ?? &quot;%s,%d\n&quot; !! &quot;%-20s%d\n&quot;;
-    my $histo = @files.map({.IO.lines}).Bag;
-    for reverse sort {$histo{$_}}, keys $histo -&gt; $key {
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> (Bool :$csv, *@files where all(@files) ~~ file) {
+    <span style="color:#66d9ef">my</span> $format <span style="color:#f92672">=</span> $csv ?? <span style="color:#e6db74">&#34;%s,%d\n&#34;</span> <span style="color:#f92672">!!</span> <span style="color:#e6db74">&#34;%-20s%d\n&#34;</span>;
+    <span style="color:#66d9ef">my</span> $histo <span style="color:#f92672">=</span> @files<span style="color:#f92672">.</span>map({<span style="color:#f92672">.</span>IO<span style="color:#f92672">.</span>lines})<span style="color:#f92672">.</span>Bag;
+    <span style="color:#66d9ef">for</span> reverse sort {$histo{$_}}, keys $histo <span style="color:#f92672">-&gt;</span> $key {
         printf $format, $key, $histo{$key};
     }
 
 }
-</code></pre>
-
-<p>Now, we need to pass a <code>--csv</code> argument when calling the program at the CLI in order to activate the CSV format:</p>
-
+</code></pre></div><p>Now, we need to pass a <code>--csv</code> argument when calling the program at the CLI in order to activate the CSV format:</p>
 <pre><code>$ perl6 word_histo2.p6 word_test.txt word_test.txt
 apple               6
 cherry              4
@@ -316,299 +271,230 @@ apple,9
 cherry,6
 banana,3
 </code></pre>
-
 <h2 id="alternative-solutions">Alternative Solutions</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/arne-sommer/perl6/ch-1.p6">Arne Sommer</a> submitted a seemingly somewhat complex solution, but much of the complexity comes from Arne&rsquo;s care to output a nicely formatted output. Looking closely at his code, you&rsquo;ll find that most of the challenge work is actually done in the <code>line-counter</code> subroutine arguments, which do store the word counts into an anonymous <code>Bag</code> passed to the subroutine:</p>
-
-<pre><code class="language-Perl6">multi sub MAIN ($file where $file.IO.f &amp;&amp; $file.IO.r, :$csv = False)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">multi <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> ($file where $file.IO.f &amp;&amp; $file.IO.r, :$csv = False)
 {
-  line-counter($file.IO.lines.Bag, $csv);
+  line<span style="color:#f92672">-</span>counter($file<span style="color:#f92672">.</span>IO<span style="color:#f92672">.</span>lines<span style="color:#f92672">.</span>Bag, $csv);
 }
-multi sub MAIN (:$csv = False)
+multi <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> (:$csv = False)
 {
-  line-counter($*ARGFILES.lines.Bag, $csv);
+  line<span style="color:#f92672">-</span>counter($<span style="color:#960050;background-color:#1e0010">*</span>ARGFILES<span style="color:#f92672">.</span>lines<span style="color:#f92672">.</span>Bag, $csv);
 }
-sub line-counter (%input, $csv)
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">line</span>-counter (%input, $csv)
 {
-  my $max = %input.keys&gt;&gt;.chars.max;
-  for %input.keys.sort({ %input{$^b} &lt;=&gt; %input{$^a} || $^a cmp $^b })
+  <span style="color:#66d9ef">my</span> $max <span style="color:#f92672">=</span> %input<span style="color:#f92672">.</span>keys<span style="color:#f92672">&gt;&gt;.</span>chars<span style="color:#f92672">.</span>max;
+  <span style="color:#66d9ef">for</span> %input<span style="color:#f92672">.</span>keys<span style="color:#f92672">.</span>sort({ %input{$<span style="color:#960050;background-color:#1e0010">^</span>b} <span style="color:#e6db74">&lt;=&gt;</span> %input{$<span style="color:#960050;background-color:#1e0010">^</span>a} <span style="color:#f92672">||</span> $<span style="color:#960050;background-color:#1e0010">^</span>a <span style="color:#f92672">cmp</span> $<span style="color:#960050;background-color:#1e0010">^</span>b })
   {
     say $csv
-      ?? &quot;$_,%input{$_}&quot;
-      !! &quot;{ $_ }{ &quot; &quot; x ($max - .chars) } { %input{$_} }&quot;;
+      ?? <span style="color:#e6db74">&#34;$_,%input{$_}&#34;</span>
+      <span style="color:#f92672">!!</span> <span style="color:#e6db74">&#34;{ $_ }{ &#34;</span> <span style="color:#e6db74">&#34; x ($max - .chars) } { %input{$_} }&#34;</span>;
   }
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/kevin-colyer/perl6/ch-1.p6">Kevin Colyer</a> made a much shorter solution also using a <code>Bag</code>:</p>
-
-<pre><code class="language-Perl6">sub MAIN($file where *.IO.f = &quot;test.txt&quot;, Bool :$csv = False) {
-    my $bag=Bag.new($file.IO.slurp.lines&gt;&gt;.trim);
-    my $delim=$csv ?? &quot;,&quot; !! &quot;\t&quot;;
-    say $_.antipairs.fmt(&quot;%s$delim%s&quot;) for $bag.invert.sort.reverse;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/kevin-colyer/perl6/ch-1.p6">Kevin Colyer</a> made a much shorter solution also using a <code>Bag</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>($file where *.IO.f = &#34;test.txt&#34;, Bool :$csv = False) {
+    <span style="color:#66d9ef">my</span> $bag<span style="color:#f92672">=</span>Bag<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>($file<span style="color:#f92672">.</span>IO<span style="color:#f92672">.</span>slurp<span style="color:#f92672">.</span>lines<span style="color:#f92672">&gt;&gt;.</span>trim);
+    <span style="color:#66d9ef">my</span> $delim<span style="color:#f92672">=</span>$csv ?? <span style="color:#e6db74">&#34;,&#34;</span> <span style="color:#f92672">!!</span> <span style="color:#e6db74">&#34;\t&#34;</span>;
+    say $_<span style="color:#f92672">.</span>antipairs<span style="color:#f92672">.</span>fmt(<span style="color:#e6db74">&#34;%s$delim%s&#34;</span>) <span style="color:#66d9ef">for</span> $bag<span style="color:#f92672">.</span>invert<span style="color:#f92672">.</span>sort<span style="color:#f92672">.</span>reverse;
 }
-</code></pre>
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/markus-holzer/perl6/ch-1-and-2.pl6">Markus Holzer</a> took advantage of the fact that the two tasks of this weekly challenge were related to provide a single solution for both.  This makes it a bit difficult for me report the part related to this challenge and the part related to the other. Let me just say that he also used a <code>Bag</code> to store the word counters and quote only the part of his code relating directly to this task:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">    <span style="color:#66d9ef">my</span> @words   <span style="color:#f92672">=</span> @files
+                  ?? @files<span style="color:#f92672">.</span>map( <span style="color:#f92672">|*.</span>IO<span style="color:#f92672">.</span>lines )
+                  <span style="color:#f92672">!!</span> <span style="color:#f92672">|</span>$<span style="color:#960050;background-color:#1e0010">*</span>ARGFILES<span style="color:#f92672">.</span>lines;
 
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/markus-holzer/perl6/ch-1-and-2.pl6">Markus Holzer</a> took advantage of the fact that the two tasks of this weekly challenge were related to provide a single solution for both.  This makes it a bit difficult for me report the part related to this challenge and the part related to the other. Let me just say that he also used a <code>Bag</code> to store the word counters and quote only the part of his code relating directly to this task:</p>
-
-<pre><code class="language-Perl6">    my @words   = @files
-                  ?? @files.map( |*.IO.lines )
-                  !! |$*ARGFILES.lines;
-
-    my $weights = Bag.new( @words );
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/noud/perl6/ch-1.p6">Noud</a> used a plain <code>%word_count</code> hash to store the word frequencies:</p>
-
-<pre><code class="language-Perl6">sub MAIN(*@files, Bool :$csv) {
-    my %word_count;
-    for @files -&gt; $file {
-        for $file.IO.words -&gt; $word {
-            %word_count{$word}++;
+    <span style="color:#66d9ef">my</span> $weights <span style="color:#f92672">=</span> Bag<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>( @words );
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/noud/perl6/ch-1.p6">Noud</a> used a plain <code>%word_count</code> hash to store the word frequencies:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(*@files, Bool :$csv) {
+    <span style="color:#66d9ef">my</span> %word_count;
+    <span style="color:#66d9ef">for</span> @files <span style="color:#f92672">-&gt;</span> $file {
+        <span style="color:#66d9ef">for</span> $file<span style="color:#f92672">.</span>IO<span style="color:#f92672">.</span>words <span style="color:#f92672">-&gt;</span> $word {
+            %word_count{$word}<span style="color:#f92672">++</span>;
         }
     }
-    my $infix = gather { if $csv { take &quot;,&quot; } else { take &quot;:\t&quot; } };
-    for %word_count.sort(-*.value)&gt;&gt;.kv -&gt; ($word, $count) {
-        say &quot;$word$infix$count&quot;;
+    <span style="color:#66d9ef">my</span> $infix <span style="color:#f92672">=</span> gather { <span style="color:#66d9ef">if</span> $csv { take <span style="color:#e6db74">&#34;,&#34;</span> } <span style="color:#66d9ef">else</span> { take <span style="color:#e6db74">&#34;:\t&#34;</span> } };
+    <span style="color:#66d9ef">for</span> %word_count<span style="color:#f92672">.</span>sort(<span style="color:#f92672">-*.</span>value)<span style="color:#f92672">&gt;&gt;.</span>kv <span style="color:#f92672">-&gt;</span> ($word, $count) {
+        say <span style="color:#e6db74">&#34;$word$infix$count&#34;</span>;
     }
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/adam-russell/perl6/ch-1.p6">Adam Russell</a> also used a plain hash to record the word counters:</p>
-
-<pre><code class="language-Perl6">sub MAIN{
-    my %word_counts;
-    for $*IN.lines -&gt; $line {
-        $line.chomp;
-        %word_counts{$line}+=1;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/adam-russell/perl6/ch-1.p6">Adam Russell</a> also used a plain hash to record the word counters:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>{
+    <span style="color:#66d9ef">my</span> %word_counts;
+    <span style="color:#66d9ef">for</span> $<span style="color:#960050;background-color:#1e0010">*</span>IN<span style="color:#f92672">.</span>lines <span style="color:#f92672">-&gt;</span> $line {
+        $line<span style="color:#f92672">.</span>chomp;
+        %word_counts{$line}<span style="color:#f92672">+=</span><span style="color:#ae81ff">1</span>;
     }
-    for %word_counts.sort(*.value).reverse -&gt; $pair {
-        say $pair.key ~ &quot;\t&quot; ~ $pair.value;
+    <span style="color:#66d9ef">for</span> %word_counts<span style="color:#f92672">.</span>sort(<span style="color:#f92672">*.</span>value)<span style="color:#f92672">.</span>reverse <span style="color:#f92672">-&gt;</span> $pair {
+        say $pair<span style="color:#f92672">.</span>key <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34;\t&#34;</span> <span style="color:#f92672">~</span> $pair<span style="color:#f92672">.</span>value;
     }
 }
-</code></pre>
-
-<p>Note that Adam Russell also provided a <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/adam-russell/cxx/ch-1.cxx">C++ implementation</a>.</p>
-
+</code></pre></div><p>Note that Adam Russell also provided a <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/adam-russell/cxx/ch-1.cxx">C++ implementation</a>.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/jaldhar-h-vyas/perl6/ch-1.p6">Jaldhar H. Vyas</a> also used a hash (<code>%totals</code>) to store the histogram:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">    <span style="color:#66d9ef">my</span> %totals;
 
-<pre><code class="language-Perl6">    my %totals;
-
-    if @files.elems {
-        for @files -&gt; $file {
-            $file.IO.lines.map({ %totals{$_}++; });
+    <span style="color:#66d9ef">if</span> @files<span style="color:#f92672">.</span>elems {
+        <span style="color:#66d9ef">for</span> @files <span style="color:#f92672">-&gt;</span> $file {
+            $file<span style="color:#f92672">.</span>IO<span style="color:#f92672">.</span>lines<span style="color:#f92672">.</span>map({ %totals{$_}<span style="color:#f92672">++</span>; });
         }
-    } else {
-        $*IN.lines.map({ %totals{$_}++; });
+    } <span style="color:#66d9ef">else</span> {
+        $<span style="color:#960050;background-color:#1e0010">*</span>IN<span style="color:#f92672">.</span>lines<span style="color:#f92672">.</span>map({ %totals{$_}<span style="color:#f92672">++</span>; });
     }
-</code></pre>
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/javier-luque/perl6/ch-1.p6">Javier Luque</a> also stored his word counters in a hash (<code>%counts</code>):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">    <span style="color:#66d9ef">my</span> %counts;
 
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/javier-luque/perl6/ch-1.p6">Javier Luque</a> also stored his word counters in a hash (<code>%counts</code>):</p>
-
-<pre><code class="language-Perl6">    my %counts;
-
-    # Increment the counts hash for each line
-    for $*IN.lines() -&gt; $line {
-        %counts{$line.chomp}++
+    <span style="color:#75715e"># Increment the counts hash for each line</span>
+    <span style="color:#66d9ef">for</span> $<span style="color:#960050;background-color:#1e0010">*</span>IN<span style="color:#f92672">.</span>lines() <span style="color:#f92672">-&gt;</span> $line {
+        %counts{$line<span style="color:#f92672">.</span>chomp}<span style="color:#f92672">++</span>
     };
-    for %counts.keys.sort -&gt; $item {
-        if ($use_csv) {
-            # Normally i'd use a module like Text::CSV
-            say $item ~ ',' ~ %counts{$item};
-        } else {
-            &quot;%-10s %d\n&quot;.printf($item, %counts{$item});
+    <span style="color:#66d9ef">for</span> %counts<span style="color:#f92672">.</span>keys<span style="color:#f92672">.</span>sort <span style="color:#f92672">-&gt;</span> $item {
+        <span style="color:#66d9ef">if</span> ($use_csv) {
+            <span style="color:#75715e"># Normally i&#39;d use a module like Text::CSV</span>
+            say $item <span style="color:#f92672">~</span> <span style="color:#e6db74">&#39;,&#39;</span> <span style="color:#f92672">~</span> %counts{$item};
+        } <span style="color:#66d9ef">else</span> {
+            <span style="color:#e6db74">&#34;%-10s %d\n&#34;</span><span style="color:#f92672">.</span>printf($item, %counts{$item});
         }
     }
-</code></pre>
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/ruben-westerberg/perl6/ch-1.p6">Ruben Westerberg</a> also used a hash to store the counters:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(*@files,:$vsort=False) {
+    <span style="color:#66d9ef">my</span> %data;
 
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/ruben-westerberg/perl6/ch-1.p6">Ruben Westerberg</a> also used a hash to store the counters:</p>
-
-<pre><code class="language-Perl6">sub MAIN(*@files,:$vsort=False) {
-    my %data;
-
-    for @files {
-        for .IO.lines() {
-            %data{$_}++;
+    <span style="color:#66d9ef">for</span> @files {
+        <span style="color:#66d9ef">for</span> <span style="color:#f92672">.</span>IO<span style="color:#f92672">.</span>lines() {
+            %data{$_}<span style="color:#f92672">++</span>;
         }
     }
     histogram(%data,$vsort,False);
     histogram(%data,$vsort,True);
 }
-</code></pre>
-
-<p>Note that, like Markus Holzer, Ruben also provided <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/ruben-westerberg/perl6/ch-1_and_2.p6">a solution combining task 1 and task 2</a> of this weekly challenge. Please follow the link if you want to know more.</p>
-
+</code></pre></div><p>Note that, like Markus Holzer, Ruben also provided <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/ruben-westerberg/perl6/ch-1_and_2.p6">a solution combining task 1 and task 2</a> of this weekly challenge. Please follow the link if you want to know more.</p>
 <p><a href="https://perlweeklychallenge.org/blog/recap-challenge-032/">Ryan Thompson</a>, a new participant to the Raku/Perl 6 challenge (welcome, Ryan!), also used a <code>%count</code> hash to store the counters.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#75715e"># Bit of a hack. Normal preference would be MAIN(Bool :$csv) or Getopt::Long</span>
+<span style="color:#66d9ef">my</span> $csv <span style="color:#f92672">=</span> (@<span style="color:#960050;background-color:#1e0010">*</span>ARGS[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">and</span> @<span style="color:#960050;background-color:#1e0010">*</span>ARGS[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;-csv&#39;</span>) ?? @<span style="color:#960050;background-color:#1e0010">*</span>ARGS<span style="color:#f92672">.</span>shift <span style="color:#f92672">!!</span> False;
 
-<pre><code class="language-Perl6"># Bit of a hack. Normal preference would be MAIN(Bool :$csv) or Getopt::Long
-my $csv = (@*ARGS[0] and @*ARGS[0] eq '-csv') ?? @*ARGS.shift !! False;
+<span style="color:#66d9ef">my</span> %count;
+%count{ $<span style="color:#960050;background-color:#1e0010">*</span>ARGFILES<span style="color:#f92672">.</span>get }<span style="color:#f92672">++</span> <span style="color:#66d9ef">while</span> <span style="color:#f92672">!</span> $<span style="color:#960050;background-color:#1e0010">*</span>ARGFILES<span style="color:#f92672">.</span>eof;
 
-my %count;
-%count{ $*ARGFILES.get }++ while ! $*ARGFILES.eof;
+<span style="color:#66d9ef">my</span> $key_width <span style="color:#f92672">=</span> %count<span style="color:#f92672">.</span>  keys<span style="color:#f92672">.</span>race<span style="color:#f92672">.</span>map({<span style="color:#f92672">.</span>chars})<span style="color:#f92672">.</span>max;
+<span style="color:#66d9ef">my</span> $int_width <span style="color:#f92672">=</span> %count<span style="color:#f92672">.</span>values<span style="color:#f92672">.</span>race<span style="color:#f92672">.</span>map({<span style="color:#f92672">.</span>chars})<span style="color:#f92672">.</span>max;
+<span style="color:#66d9ef">my</span> $fmt <span style="color:#f92672">=</span> $csv ?? <span style="color:#e6db74">&#34;%s,%s\n&#34;</span> <span style="color:#f92672">!!</span> <span style="color:#e6db74">&#34;%-{$key_width}s %{$int_width}d\n&#34;</span>;
 
-my $key_width = %count.  keys.race.map({.chars}).max;
-my $int_width = %count.values.race.map({.chars}).max;
-my $fmt = $csv ?? &quot;%s,%s\n&quot; !! &quot;%-{$key_width}s %{$int_width}d\n&quot;;
-
-$fmt.printf(.key, .value) for %count.sort: { .value, .key };
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/simon-proctor/perl6/ch-1.p6">Simon Proctor</a> used a <code>BagHash</code> rather than a <code>Bag</code>. A <code>BagHash</code> is very similar to a <code>Bag</code>, but with the difference that it is a mutable data structure, so that it can be populated progressively with individual items, pretty much like a hash, whereas a <code>Bag</code> essentially has to be populated in one shot at the time it is being constructed. His program has three <code>Main</code> subroutines, two of which use new <code>IO::CatHandle</code> type to manage multiple files and pass it to a <code>read-files</code> subroutine:</p>
-
-<pre><code class="language-Perl6">    read-files( IO::CatHandle.new( $*IN ), $csv );
-</code></pre>
-
-<p>And its <code>read-files</code> subroutine looks like this:</p>
-
-<pre><code class="language-Perl6">sub read-files( IO::CatHandle $files, $csv ) {
-    my %results := BagHash.new();
-    %results{$_}++ for $files.lines;
-    my $k-dist = %results.keys.map( *.codes ).max;
-    my $v-dist = %results.values.map( *.codes ).max;
-    my $fmt = $csv ?? '&quot;%s&quot;,%d' !! &quot;% -{$k-dist+2}s%{$v-dist+2}d&quot;;
-    .say for %results.sort( *.value &lt;=&gt; *.value ).reverse.map( { sprintf($fmt,$_.key,$_.value) } );
+$fmt<span style="color:#f92672">.</span>printf(<span style="color:#f92672">.</span>key, <span style="color:#f92672">.</span>value) <span style="color:#66d9ef">for</span> %count<span style="color:#f92672">.</span>sort: { <span style="color:#f92672">.</span>value, <span style="color:#f92672">.</span>key };
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/simon-proctor/perl6/ch-1.p6">Simon Proctor</a> used a <code>BagHash</code> rather than a <code>Bag</code>. A <code>BagHash</code> is very similar to a <code>Bag</code>, but with the difference that it is a mutable data structure, so that it can be populated progressively with individual items, pretty much like a hash, whereas a <code>Bag</code> essentially has to be populated in one shot at the time it is being constructed. His program has three <code>Main</code> subroutines, two of which use new <code>IO::CatHandle</code> type to manage multiple files and pass it to a <code>read-files</code> subroutine:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">    read<span style="color:#f92672">-</span>files( IO::CatHandle<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>( $<span style="color:#960050;background-color:#1e0010">*</span>IN ), $csv );
+</code></pre></div><p>And its <code>read-files</code> subroutine looks like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">read</span>-files( IO::CatHandle $files, $csv ) {
+    <span style="color:#66d9ef">my</span> %results :<span style="color:#f92672">=</span> BagHash<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>();
+    %results{$_}<span style="color:#f92672">++</span> <span style="color:#66d9ef">for</span> $files<span style="color:#f92672">.</span>lines;
+    <span style="color:#66d9ef">my</span> $k<span style="color:#f92672">-</span>dist <span style="color:#f92672">=</span> %results<span style="color:#f92672">.</span>keys<span style="color:#f92672">.</span>map( <span style="color:#f92672">*.</span>codes )<span style="color:#f92672">.</span>max;
+    <span style="color:#66d9ef">my</span> $v<span style="color:#f92672">-</span>dist <span style="color:#f92672">=</span> %results<span style="color:#f92672">.</span>values<span style="color:#f92672">.</span>map( <span style="color:#f92672">*.</span>codes )<span style="color:#f92672">.</span>max;
+    <span style="color:#66d9ef">my</span> $fmt <span style="color:#f92672">=</span> $csv ?? <span style="color:#e6db74">&#39;&#34;%s&#34;,%d&#39;</span> <span style="color:#f92672">!!</span> <span style="color:#e6db74">&#34;% -{$k-dist+2}s%{$v-dist+2}d&#34;</span>;
+    <span style="color:#f92672">.</span>say <span style="color:#66d9ef">for</span> %results<span style="color:#f92672">.</span>sort( <span style="color:#f92672">*.</span>value <span style="color:#e6db74">&lt;=&gt;</span> <span style="color:#f92672">*.</span>value )<span style="color:#f92672">.</span>reverse<span style="color:#f92672">.</span>map( { sprintf($fmt,$_<span style="color:#f92672">.</span>key,$_<span style="color:#f92672">.</span>value) } );
 }
-</code></pre>
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/athanasius/perl6/ch-1.p6">Athanasius</a> created a <code>read-data</code> subroutine to store the input words into a <code>@data</code> array, and read back the <code>@data</code> array to populate a <code>%count</code> hash, and finally sorted the hash to print out the results. The program is quite long, I will only show here the part when the hash is populated, sorted and printed out:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">    <span style="color:#66d9ef">my</span> UInt %count;
+    <span style="color:#f92672">++</span>%count{$_} <span style="color:#66d9ef">for</span> @data;
 
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/athanasius/perl6/ch-1.p6">Athanasius</a> created a <code>read-data</code> subroutine to store the input words into a <code>@data</code> array, and read back the <code>@data</code> array to populate a <code>%count</code> hash, and finally sorted the hash to print out the results. The program is quite long, I will only show here the part when the hash is populated, sorted and printed out:</p>
-
-<pre><code class="language-Perl6">    my UInt %count;
-    ++%count{$_} for @data;
-
-    # Sort keys by count: highest count first, equal counts in lexicographi-
-    # cal order. Adapted from:
-    #   https://perldoc.perl.org/5.30.0/perlfaq4.html#How-do-I-sort-a-hash-
-    #           (optionally-by-value-instead-of-key)%3f
-    my Str @keys = %count.keys.sort:
+    <span style="color:#75715e"># Sort keys by count: highest count first, equal counts in lexicographi-</span>
+    <span style="color:#75715e"># cal order. Adapted from:</span>
+    <span style="color:#75715e">#   https://perldoc.perl.org/5.30.0/perlfaq4.html#How-do-I-sort-a-hash-</span>
+    <span style="color:#75715e">#           (optionally-by-value-instead-of-key)%3f</span>
+    <span style="color:#66d9ef">my</span> Str @keys <span style="color:#f92672">=</span> %count<span style="color:#f92672">.</span>keys<span style="color:#f92672">.</span>sort:
                    {
-                       %count{$^b} &lt;=&gt; %count{$^a}      # Descending
-                       ||
-                       $^a cmp $^b                      # Lexicographical
+                       %count{$<span style="color:#960050;background-color:#1e0010">^</span>b} <span style="color:#e6db74">&lt;=&gt;</span> %count{$<span style="color:#960050;background-color:#1e0010">^</span>a}      <span style="color:#75715e"># Descending</span>
+                       <span style="color:#f92672">||</span>
+                       $<span style="color:#960050;background-color:#1e0010">^</span>a <span style="color:#f92672">cmp</span> $<span style="color:#960050;background-color:#1e0010">^</span>b                      <span style="color:#75715e"># Lexicographical</span>
                    };
-    my Str $delimiter = $csv ?? ',' !! &quot;\t&quot;;
+    <span style="color:#66d9ef">my</span> Str $delimiter <span style="color:#f92672">=</span> $csv ?? <span style="color:#e6db74">&#39;,&#39;</span> <span style="color:#f92672">!!</span> <span style="color:#e6db74">&#34;\t&#34;</span>;
 
-    &quot;%s%s%d\n&quot;.printf: $_, $delimiter, %count{$_} for @keys;
-</code></pre>
-
-<p>Note that Athanasius is using the Perl 5 documentation on <code>sort</code>. As mentioned earlier, the Raku <code>cmp</code> built-in function is &ldquo;clever&rdquo; and can decide by itself whether to perform numeric or lexicographic comparison, based on the data type. This can make the code a bit simpler.</p>
-
+    <span style="color:#e6db74">&#34;%s%s%d\n&#34;</span><span style="color:#f92672">.</span>printf: $_, $delimiter, %count{$_} <span style="color:#66d9ef">for</span> @keys;
+</code></pre></div><p>Note that Athanasius is using the Perl 5 documentation on <code>sort</code>. As mentioned earlier, the Raku <code>cmp</code> built-in function is &ldquo;clever&rdquo; and can decide by itself whether to perform numeric or lexicographic comparison, based on the data type. This can make the code a bit simpler.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/joelle-maslak/perl6/ch-1.p6">Joelle Maslak</a> did something similar: she stored all the input words into a <code>@words</code> array and then populated a <code>$bag</code> <code>Bag</code> structure:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(+@filenames, Bool :$csv) {
+    <span style="color:#75715e"># Assumption: no line is blank.</span>
+    <span style="color:#75715e"># Assumption: Files will fit into RAM simultaniously</span>
 
-<pre><code class="language-Perl6">sub MAIN(+@filenames, Bool :$csv) {
-    # Assumption: no line is blank.
-    # Assumption: Files will fit into RAM simultaniously
+    @filenames<span style="color:#f92672">.</span>push(<span style="color:#e6db74">&#34;example.txt&#34;</span>) <span style="color:#66d9ef">unless</span> @filenames<span style="color:#f92672">.</span>elems;
 
-    @filenames.push(&quot;example.txt&quot;) unless @filenames.elems;
-
-    my @words;
-    for @filenames -&gt; $fn {
-        @words.push: | $fn.IO.lines.grep( * ne '' );
+    <span style="color:#66d9ef">my</span> @words;
+    <span style="color:#66d9ef">for</span> @filenames <span style="color:#f92672">-&gt;</span> $fn {
+        @words<span style="color:#f92672">.</span>push: <span style="color:#f92672">|</span> $fn<span style="color:#f92672">.</span>IO<span style="color:#f92672">.</span>lines<span style="color:#f92672">.</span>grep( <span style="color:#f92672">*</span> <span style="color:#f92672">ne</span> <span style="color:#e6db74">&#39;&#39;</span> );
     }
-    my $bag = bag @words;
-    my $sorted = $bag.pairs.sort( { $^a.value &lt;=&gt; $^b.value } ).reverse;
+    <span style="color:#66d9ef">my</span> $bag <span style="color:#f92672">=</span> bag @words;
+    <span style="color:#66d9ef">my</span> $sorted <span style="color:#f92672">=</span> $bag<span style="color:#f92672">.</span>pairs<span style="color:#f92672">.</span>sort( { $<span style="color:#960050;background-color:#1e0010">^</span>a<span style="color:#f92672">.</span>value <span style="color:#e6db74">&lt;=&gt;</span> $<span style="color:#960050;background-color:#1e0010">^</span>b<span style="color:#f92672">.</span>value } )<span style="color:#f92672">.</span>reverse;
 
-    if $csv {
-        say $sorted.map( { &quot;{$_.key},{$_.value}&quot; } ).join(&quot;\n&quot;);
-    } else {
-        say $sorted.map( { &quot;{$_.key}\t{$_.value}&quot; } ).join(&quot;\n&quot;);
+    <span style="color:#66d9ef">if</span> $csv {
+        say $sorted<span style="color:#f92672">.</span>map( { <span style="color:#e6db74">&#34;{$_.key},{$_.value}&#34;</span> } )<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34;\n&#34;</span>);
+    } <span style="color:#66d9ef">else</span> {
+        say $sorted<span style="color:#f92672">.</span>map( { <span style="color:#e6db74">&#34;{$_.key}\t{$_.value}&#34;</span> } )<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34;\n&#34;</span>);
     }
 }
-</code></pre>
-
-<hr />
-
-<hr />
-
+</code></pre></div><hr>
+<hr>
 <h2 id="task-2-ascii-bar-chart">Task #2: ASCII Bar Chart</h2>
-
-<hr />
-
-<hr />
-
+<hr>
+<hr>
 <p>This is derived in part from my <a href="http://blogs.perl.org/users/laurent_r/2019/10/perl-weekly-challenge-30-word-histogram-and-ascii-bar-chart.html">blog post</a> made in answer to the <a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-032/">Week 32 of the Perl Weekly Challenge</a> organized by  <a href="http://blogs.perl.org/users/mohammad_s_anwar/">Mohammad S. Anwar</a> as well as answers made by others to the same challenge.</p>
-
 <p>The challenge reads as follows:</p>
-
 <p><em>Write a function that takes a hashref where the keys are labels and the values are integer or floating point values. Generate a bar graph of the data and display it to stdout.</em></p>
-
 <p><em>The input could be something like:</em></p>
-
 <pre><code>$data = { apple =&gt; 3, cherry =&gt; 2, banana =&gt; 1 };
 generate_bar_graph($data);
 </code></pre>
-
 <p><em>And would then generate something like this:</em></p>
-
 <pre><code> apple | ############
 cherry | ########
 banana | ####
 </code></pre>
-
 <p><em>If you fancy then please try this as well: (a) the function could let you specify whether the chart should be ordered by (1) the labels, or (2) the values.</em></p>
-
 <p>There is really nothing complicated in generating the bars of the chart: we just need to use the <code>x</code> string repetition operator with the fruit values. However, I would like to standardize somehow the size of output, irrespective of the absolute values.  For this, the program loops over the hash a first time to collect the minimum and maximum values, and  computes a scaling factor as <code>10 / ($max - $min)</code>, and then uses that <code>$scale_factor</code> for standardizing the length of the bars, so that the bar graph has about the same size for values of 4, 6, and 9 as for values of 40, 60 and 90. The hard coded value of 10 arbitrarily chosen here simply means that the spread between the smallest and the largest value will be represented by 10 units (concretely, 10 <code>#</code> characters). I could have chosen another value, but I wanted the bar graphs to keep relatively small to make sure they remain correctly formatted within the limited page width of this blog post.</p>
-
 <p>This could lead to the following approach:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> v6;
 
-<pre><code class="language-Perl6">use v6;
-
-sub generate_chart (%data) {
-    my ($max, $min);
-    for keys %data -&gt; $key {
-        ($max, $min) = (%data{$key}, %data{$key}) unless defined $max;
-        $max = %data{$key} if %data{$key} &gt; $max;
-        $min = %data{$key} if %data{$key} &lt; $min;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">generate_chart</span> (%data) {
+    <span style="color:#66d9ef">my</span> ($max, $min);
+    <span style="color:#66d9ef">for</span> keys %data <span style="color:#f92672">-&gt;</span> $key {
+        ($max, $min) <span style="color:#f92672">=</span> (%data{$key}, %data{$key}) <span style="color:#66d9ef">unless</span> defined $max;
+        $max <span style="color:#f92672">=</span> %data{$key} <span style="color:#66d9ef">if</span> %data{$key} <span style="color:#f92672">&gt;</span> $max;
+        $min <span style="color:#f92672">=</span> %data{$key} <span style="color:#66d9ef">if</span> %data{$key} <span style="color:#f92672">&lt;</span> $min;
     }
-    my $scale_factor = 10 / ($max - $min);
-    for sort { %data{$^b} &lt;=&gt; %data{$^a} }, keys %data -&gt; $key {
-        printf &quot;%15s | %s\n&quot;, $key, &quot;#&quot; x (%data{$key} * $scale_factor);
+    <span style="color:#66d9ef">my</span> $scale_factor <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span> <span style="color:#f92672">/</span> ($max <span style="color:#f92672">-</span> $min);
+    <span style="color:#66d9ef">for</span> sort { %data{$<span style="color:#960050;background-color:#1e0010">^</span>b} <span style="color:#e6db74">&lt;=&gt;</span> %data{$<span style="color:#960050;background-color:#1e0010">^</span>a} }, keys %data <span style="color:#f92672">-&gt;</span> $key {
+        printf <span style="color:#e6db74">&#34;%15s | %s\n&#34;</span>, $key, <span style="color:#e6db74">&#34;#&#34;</span> x (%data{$key} <span style="color:#f92672">*</span> $scale_factor);
     }
 }
-my $data = { apple =&gt; 3, cherry =&gt; 6, banana =&gt; 1, pear =&gt; 4 };
+<span style="color:#66d9ef">my</span> $data <span style="color:#f92672">=</span> { apple <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>, cherry <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">6</span>, banana <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>, pear <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">4</span> };
 generate_chart $data;
-</code></pre>
-
-<p>Note that, compared too Perl 5, Raku has no real difference between hashes and hash references in most cases.</p>
-
+</code></pre></div><p>Note that, compared too Perl 5, Raku has no real difference between hashes and hash references in most cases.</p>
 <p>This produces the following output:</p>
-
 <pre><code>$ perl6 ascii_chart.p6
          cherry | ############
            pear | ########
           apple | ######
          banana | ##
 </code></pre>
-
 <h4 id="ordering-the-bar-chart-in-accordance-with-labels-or-values">Ordering the Bar Chart in Accordance with Labels or Values</h4>
-
 <p>We will use anonymous code references as the first argument to the <code>sort</code> built-in function.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> v6;
 
-<pre><code class="language-Perl6">use v6;
-
-sub generate_chart (%data) {
-    my ($max, $min);
-    for keys %data -&gt; $key {
-        ($max, $min) = (%data{$key}, %data{$key}) unless defined $max;
-        $max = %data{$key} if %data{$key} &gt; $max;
-        $min = %data{$key} if %data{$key} &lt; $min;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">generate_chart</span> (%data) {
+    <span style="color:#66d9ef">my</span> ($max, $min);
+    <span style="color:#66d9ef">for</span> keys %data <span style="color:#f92672">-&gt;</span> $key {
+        ($max, $min) <span style="color:#f92672">=</span> (%data{$key}, %data{$key}) <span style="color:#66d9ef">unless</span> defined $max;
+        $max <span style="color:#f92672">=</span> %data{$key} <span style="color:#66d9ef">if</span> %data{$key} <span style="color:#f92672">&gt;</span> $max;
+        $min <span style="color:#f92672">=</span> %data{$key} <span style="color:#66d9ef">if</span> %data{$key} <span style="color:#f92672">&lt;</span> $min;
     }
-    my $scale_factor = 10 / ($max - $min);
-    my &amp;sort_routine = ($*sort-type ~~ m:i/val/)
-        ?? { %data{$^b} &lt;=&gt; %data{$^a} }
-        !! {$^a cmp $^b };
-    for sort &amp;sort_routine, keys %data -&gt; $key {
-        printf &quot;%15s | %s\n&quot;, $key, &quot;#&quot; x (%data{$key} * $scale_factor);
+    <span style="color:#66d9ef">my</span> $scale_factor <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span> <span style="color:#f92672">/</span> ($max <span style="color:#f92672">-</span> $min);
+    <span style="color:#66d9ef">my</span> <span style="color:#f92672">&amp;</span>sort_routine <span style="color:#f92672">=</span> ($<span style="color:#960050;background-color:#1e0010">*</span>sort<span style="color:#f92672">-</span>type <span style="color:#f92672">~~</span> m:i<span style="color:#e6db74">/val/</span>)
+        ?? { %data{$<span style="color:#960050;background-color:#1e0010">^</span>b} <span style="color:#e6db74">&lt;=&gt;</span> %data{$<span style="color:#960050;background-color:#1e0010">^</span>a} }
+        <span style="color:#f92672">!!</span> {$<span style="color:#960050;background-color:#1e0010">^</span>a <span style="color:#f92672">cmp</span> $<span style="color:#960050;background-color:#1e0010">^</span>b };
+    <span style="color:#66d9ef">for</span> sort <span style="color:#f92672">&amp;</span>sort_routine, keys %data <span style="color:#f92672">-&gt;</span> $key {
+        printf <span style="color:#e6db74">&#34;%15s | %s\n&#34;</span>, $key, <span style="color:#e6db74">&#34;#&#34;</span> x (%data{$key} <span style="color:#f92672">*</span> $scale_factor);
     }
 }
-sub MAIN (Str $*sort-type) {
-    my $data = { apple =&gt; 3, cherry =&gt; 6, banana =&gt; 1, pear =&gt; 4 };
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> (Str $*sort-type) {
+    <span style="color:#66d9ef">my</span> $data <span style="color:#f92672">=</span> { apple <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>, cherry <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">6</span>, banana <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>, pear <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">4</span> };
     generate_chart $data;
 }
-</code></pre>
-
-<p>This works as expected:</p>
-
+</code></pre></div><p>This works as expected:</p>
 <pre><code>$ perl6 ascii_chart2.p6 val
          cherry | ############
            pear | ########
@@ -621,308 +507,260 @@ $ perl6 ascii_chart2.p6 lab
          cherry | ############
            pear | ########
 </code></pre>
-
 <h2 id="alternative-solutions-1">Alternative Solutions</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/arne-sommer/perl6/ch-2.p6">Arne Sommer</a> wrote a <code>generate_bar_graph</code> subroutine doing the sort according to the labels or the values in a <code>if ... else</code> conditional statement and storing the result in an array of keys, and then using this array to output the result:</p>
-
-<pre><code class="language-Perl6">sub generate_bar_graph ($data, $sort)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">generate_bar_graph</span> ($data, $sort)
 {
-  my $max = %($data).keys&gt;&gt;.chars.max;
-  my @keys = %($data).keys;
+  <span style="color:#66d9ef">my</span> $max <span style="color:#f92672">=</span> %<span style="color:#960050;background-color:#1e0010">($</span>data)<span style="color:#f92672">.</span>keys<span style="color:#f92672">&gt;&gt;.</span>chars<span style="color:#f92672">.</span>max;
+  <span style="color:#66d9ef">my</span> @keys <span style="color:#f92672">=</span> %<span style="color:#960050;background-color:#1e0010">($</span>data)<span style="color:#f92672">.</span>keys;
 
-  if $sort eq &quot;values&quot;
+  <span style="color:#66d9ef">if</span> $sort <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#34;values&#34;</span>
   {
-    @keys = @keys.sort({ %($data){$^b} cmp %($data){$^a} });
+    @keys <span style="color:#f92672">=</span> @keys<span style="color:#f92672">.</span>sort({ %<span style="color:#960050;background-color:#1e0010">($</span>data){$<span style="color:#960050;background-color:#1e0010">^</span>b} <span style="color:#f92672">cmp</span> %<span style="color:#960050;background-color:#1e0010">($</span>data){$<span style="color:#960050;background-color:#1e0010">^</span>a} });
   }
-  elsif $sort eq &quot;labels&quot;
+  <span style="color:#66d9ef">elsif</span> $sort <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#34;labels&#34;</span>
   {
-    @keys = @keys.sort;
+    @keys <span style="color:#f92672">=</span> @keys<span style="color:#f92672">.</span>sort;
   }
-  for  @keys -&gt; $label
+  <span style="color:#66d9ef">for</span>  @keys <span style="color:#f92672">-&gt;</span> $label
   {
-    say &quot;{ &quot; &quot; x ($max - $label.chars) }$label | { &quot;#&quot; x 4 * %($data){$label} }&quot;;
+    say <span style="color:#e6db74">&#34;{ &#34;</span> <span style="color:#e6db74">&#34; x ($max - $label.chars) }$label | { &#34;</span><span style="color:#75715e">#&#34; x 4 * %($data){$label} }&#34;;</span>
   }
 }
-</code></pre>
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/noud/perl6/ch-2.p6">Noud</a> similarly wrote a <code>generate_bar_graph</code> subroutine which populates a temporary array of sorted keys:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">generate_bar_graph</span>(%data, $sort-on=&#34;value&#34;) {
+    <span style="color:#66d9ef">my</span> $vmin <span style="color:#f92672">=</span> %data<span style="color:#f92672">.</span>values<span style="color:#f92672">.</span>min <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">my</span> $vmax <span style="color:#f92672">=</span> %data<span style="color:#f92672">.</span>values<span style="color:#f92672">.</span>max;
+    constant $width <span style="color:#f92672">=</span> <span style="color:#ae81ff">79</span>;
 
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/noud/perl6/ch-2.p6">Noud</a> similarly wrote a <code>generate_bar_graph</code> subroutine which populates a temporary array of sorted keys:</p>
-
-<pre><code class="language-Perl6">sub generate_bar_graph(%data, $sort-on=&quot;value&quot;) {
-    my $vmin = %data.values.min - 1;
-    my $vmax = %data.values.max;
-    constant $width = 79;
-
-    my @count_array;
-    if ($sort-on === &quot;value&quot;) {
-        @count_array = %data.sort(-*.value)&gt;&gt;.kv;
-    } elsif ($sort-on === &quot;key&quot;) {
-        @count_array = %data.sort(*.key)&gt;&gt;.kv;
-    } else {
-        die &quot;Unknown sorting argument: $sort-on&quot;;
+    <span style="color:#66d9ef">my</span> @count_array;
+    <span style="color:#66d9ef">if</span> ($sort<span style="color:#f92672">-</span>on <span style="color:#f92672">===</span> <span style="color:#e6db74">&#34;value&#34;</span>) {
+        @count_array <span style="color:#f92672">=</span> %data<span style="color:#f92672">.</span>sort(<span style="color:#f92672">-*.</span>value)<span style="color:#f92672">&gt;&gt;.</span>kv;
+    } <span style="color:#66d9ef">elsif</span> ($sort<span style="color:#f92672">-</span>on <span style="color:#f92672">===</span> <span style="color:#e6db74">&#34;key&#34;</span>) {
+        @count_array <span style="color:#f92672">=</span> %data<span style="color:#f92672">.</span>sort(<span style="color:#f92672">*.</span>key)<span style="color:#f92672">&gt;&gt;.</span>kv;
+    } <span style="color:#66d9ef">else</span> {
+        die <span style="color:#e6db74">&#34;Unknown sorting argument: $sort-on&#34;</span>;
     }
 
-    for @count_array -&gt; ($word, $count) {
-        my $times = Int(($count - $vmin) / ($vmax - $vmin) * $width);
-        say &quot;$word:\t&quot; ~ &quot;#&quot; x $times;
+    <span style="color:#66d9ef">for</span> @count_array <span style="color:#f92672">-&gt;</span> ($word, $count) {
+        <span style="color:#66d9ef">my</span> $times <span style="color:#f92672">=</span> Int(($count <span style="color:#f92672">-</span> $vmin) <span style="color:#f92672">/</span> ($vmax <span style="color:#f92672">-</span> $vmin) <span style="color:#f92672">*</span> $width);
+        say <span style="color:#e6db74">&#34;$word:\t&#34;</span> <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34;#&#34;</span> x $times;
     }
 }
-</code></pre>
-
-<p>Note that, like me, Noud is computing a scaling factor to standardize the bar graph width.</p>
-
+</code></pre></div><p>Note that, like me, Noud is computing a scaling factor to standardize the bar graph width.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/jaldhar-h-vyas/perl6/ch-2.p6">Jaldhar H. Vyas</a> also wrote a <code>generate_bar_graph</code> subroutine that populates an array of sorted keys:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">generate_bar_graph</span>(%data, Bool $bylabels = False) {
+    constant $SCALE <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>;
 
-<pre><code class="language-Perl6">sub generate_bar_graph(%data, Bool $bylabels = False) {
-    constant $SCALE = 4;
+    <span style="color:#66d9ef">my</span> @labels <span style="color:#f92672">=</span> %data<span style="color:#f92672">.</span>keys<span style="color:#f92672">.</span>sort({ %data{$<span style="color:#960050;background-color:#1e0010">^</span>b} <span style="color:#e6db74">&lt;=&gt;</span> %data{$<span style="color:#960050;background-color:#1e0010">^</span>a} });
+    <span style="color:#66d9ef">my</span> $smallest <span style="color:#f92672">=</span> %data{@labels[@labels<span style="color:#f92672">.</span>end]};
 
-    my @labels = %data.keys.sort({ %data{$^b} &lt;=&gt; %data{$^a} });
-    my $smallest = %data{@labels[@labels.end]};
-
-    if ($bylabels) {
-        @labels = @labels.sort;
+    <span style="color:#66d9ef">if</span> ($bylabels) {
+        @labels <span style="color:#f92672">=</span> @labels<span style="color:#f92672">.</span>sort;
     }
 
-    my $width = @labels.sort({$^b.chars &lt;=&gt; $^a.chars}).first.chars;
-    my $bar_graph = q{};
+    <span style="color:#66d9ef">my</span> $width <span style="color:#f92672">=</span> @labels<span style="color:#f92672">.</span>sort({$<span style="color:#960050;background-color:#1e0010">^</span>b<span style="color:#f92672">.</span>chars <span style="color:#e6db74">&lt;=&gt;</span> $<span style="color:#960050;background-color:#1e0010">^</span>a<span style="color:#f92672">.</span>chars})<span style="color:#f92672">.</span>first<span style="color:#f92672">.</span>chars;
+    <span style="color:#66d9ef">my</span> $bar_graph <span style="color:#f92672">=</span> <span style="color:#e6db74">q{}</span>;
 
-    for @labels -&gt; $label {
-        my $bar = (%data{$label} / $smallest) * $SCALE;
-        if %data{$label} !%% $smallest {
-            $bar += $SCALE / 2;
+    <span style="color:#66d9ef">for</span> @labels <span style="color:#f92672">-&gt;</span> $label {
+        <span style="color:#66d9ef">my</span> $bar <span style="color:#f92672">=</span> (%data{$label} <span style="color:#f92672">/</span> $smallest) <span style="color:#f92672">*</span> $SCALE;
+        <span style="color:#66d9ef">if</span> %data{$label} <span style="color:#f92672">!</span>%% <span style="color:#960050;background-color:#1e0010">$</span>smallest {
+            $bar <span style="color:#f92672">+=</span> $SCALE <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>;
         }
-        $bar_graph ~= sprintf(&quot;% -*s | %s\n&quot;, $width, $label, '#' x $bar);
+        $bar_graph <span style="color:#f92672">~=</span> sprintf(<span style="color:#e6db74">&#34;% -*s | %s\n&#34;</span>, $width, $label, <span style="color:#e6db74">&#39;#&#39;</span> x $bar);
     }
 
-    return $bar_graph;
+    <span style="color:#66d9ef">return</span> $bar_graph;
 }
-</code></pre>
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/kevin-colyer/perl6/ch-2.p6">Kevin Colyer</a> also wrote a <code>generate_bar_graph</code> subroutine which similarly populates an array with sorted keys:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">generate_bar_graph</span>(%data, Bool :$sortByLabel=False, Bool :$sortDescending=False, Int :$graphWidth=20) {
+    <span style="color:#66d9ef">my</span> $lableWidth<span style="color:#f92672">=</span>[max] %data<span style="color:#f92672">.</span>keys<span style="color:#f92672">&gt;&gt;.</span>chars;
+    <span style="color:#66d9ef">my</span> $max<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span><span style="color:#f92672">+</span>[max] %data<span style="color:#f92672">.</span>values;
+    <span style="color:#66d9ef">my</span> $min<span style="color:#f92672">=</span>[min] %data<span style="color:#f92672">.</span>values;
+    <span style="color:#66d9ef">my</span> $multiplier<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span><span style="color:#f92672">/</span>$max<span style="color:#f92672">*</span>$graphWidth;
 
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/kevin-colyer/perl6/ch-2.p6">Kevin Colyer</a> also wrote a <code>generate_bar_graph</code> subroutine which similarly populates an array with sorted keys:</p>
+    die <span style="color:#e6db74">&#34;not sure I want to display negative values&#34;</span> <span style="color:#66d9ef">if</span> $min <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>;
 
-<pre><code class="language-Perl6">sub generate_bar_graph(%data, Bool :$sortByLabel=False, Bool :$sortDescending=False, Int :$graphWidth=20) {
-    my $lableWidth=[max] %data.keys&gt;&gt;.chars;
-    my $max=1+[max] %data.values;
-    my $min=[min] %data.values;
-    my $multiplier=1/$max*$graphWidth;
+    <span style="color:#66d9ef">my</span> @sorted <span style="color:#f92672">=</span> $sortByLabel<span style="color:#f92672">==</span>True ?? %data<span style="color:#f92672">.</span>sort(<span style="color:#f92672">*.</span>key) <span style="color:#f92672">!!</span> %data<span style="color:#f92672">.</span>sort(<span style="color:#f92672">*.</span>value);
+    @sorted<span style="color:#f92672">.=</span>reverse <span style="color:#66d9ef">if</span> $sortDescending;
 
-    die &quot;not sure I want to display negative values&quot; if $min &lt; 0;
-
-    my @sorted = $sortByLabel==True ?? %data.sort(*.key) !! %data.sort(*.value);
-    @sorted.=reverse if $sortDescending;
-
-    for @sorted -&gt; (:$key,:$value) {
-        say sprintf(&quot;%{$lableWidth}s | &quot;, $key ) ~ &quot;#&quot; x $value*$multiplier;
+    <span style="color:#66d9ef">for</span> @sorted <span style="color:#f92672">-&gt;</span> (:$key,:$value) {
+        say sprintf(<span style="color:#e6db74">&#34;%{$lableWidth}s | &#34;</span>, $key ) <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34;#&#34;</span> x $value<span style="color:#f92672">*</span>$multiplier;
     };
 };
-</code></pre>
+</code></pre></div><p>I especially like the simple way Kevin&rsquo;s program is doing the sort by passing <code>*.key</code> or <code>*.value</code> to the <code>sort</code> built-in function:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> @sorted <span style="color:#f92672">=</span> $sortByLabel<span style="color:#f92672">==</span>True ?? %data<span style="color:#f92672">.</span>sort(<span style="color:#f92672">*.</span>key) <span style="color:#f92672">!!</span> %data<span style="color:#f92672">.</span>sort(<span style="color:#f92672">*.</span>value);
+</code></pre></div><p>although comparing <code>$sortByLabel</code> to <code>True</code> isn&rsquo;t really needed, as the <code>?? ... !!</code> operator coerces a Boolean evaluation and this should work the same way:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> @sorted <span style="color:#f92672">=</span> $sortByLabel ?? %data<span style="color:#f92672">.</span>sort(<span style="color:#f92672">*.</span>key) <span style="color:#f92672">!!</span> %data<span style="color:#f92672">.</span>sort(<span style="color:#f92672">*.</span>value);
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/javier-luque/perl6/ch-2.p6">Javier Luque</a> also wrote a <code>generate_bar_graph</code> subroutine, which creates a <code>$sort_func</code> code object to sort according to values or names, depending on the input parameter:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">generate_bar_graph</span> (%data, %params) {
+    <span style="color:#66d9ef">my</span> $sort_func;
 
-<p>I especially like the simple way Kevin&rsquo;s program is doing the sort by passing <code>*.key</code> or <code>*.value</code> to the <code>sort</code> built-in function:</p>
-
-<pre><code class="language-Perl6">my @sorted = $sortByLabel==True ?? %data.sort(*.key) !! %data.sort(*.value);
-</code></pre>
-
-<p>although comparing <code>$sortByLabel</code> to <code>True</code> isn&rsquo;t really needed, as the <code>?? ... !!</code> operator coerces a Boolean evaluation and this should work the same way:</p>
-
-<pre><code class="language-Perl6">my @sorted = $sortByLabel ?? %data.sort(*.key) !! %data.sort(*.value);
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/javier-luque/perl6/ch-2.p6">Javier Luque</a> also wrote a <code>generate_bar_graph</code> subroutine, which creates a <code>$sort_func</code> code object to sort according to values or names, depending on the input parameter:</p>
-
-<pre><code class="language-Perl6">sub generate_bar_graph (%data, %params) {
-    my $sort_func;
-
-    # Sorting function - just 2 for now
+    <span style="color:#75715e"># Sorting function - just 2 for now</span>
     {
-        when (%params.{'order_by'} eq 'size') {
-            $sort_func = sub { %data.{$^b} &lt;=&gt; %data.{$^a} };
+        when (%params<span style="color:#f92672">.</span>{<span style="color:#e6db74">&#39;order_by&#39;</span>} <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;size&#39;</span>) {
+            $sort_func <span style="color:#f92672">=</span> <span style="color:#66d9ef">sub</span> { %data<span style="color:#f92672">.</span>{$<span style="color:#960050;background-color:#1e0010">^</span>b} <span style="color:#e6db74">&lt;=&gt;</span> %data<span style="color:#f92672">.</span>{$<span style="color:#960050;background-color:#1e0010">^</span>a} };
         }
 
-        when (%params.{'order_by'} eq 'name') {
-            $sort_func = sub { fc($^a) cmp fc($^b) };
+        when (%params<span style="color:#f92672">.</span>{<span style="color:#e6db74">&#39;order_by&#39;</span>} <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;name&#39;</span>) {
+            $sort_func <span style="color:#f92672">=</span> <span style="color:#66d9ef">sub</span> { fc($<span style="color:#960050;background-color:#1e0010">^</span>a) <span style="color:#f92672">cmp</span> fc($<span style="color:#960050;background-color:#1e0010">^</span>b) };
         }
     }
 
-    # Print the chart
-    for %data.keys.sort($sort_func) -&gt; $key {
-        &quot;%10s | %s \n&quot;.printf($key, '#' x (4 * %data.{$key}));
+    <span style="color:#75715e"># Print the chart</span>
+    <span style="color:#66d9ef">for</span> %data<span style="color:#f92672">.</span>keys<span style="color:#f92672">.</span>sort($sort_func) <span style="color:#f92672">-&gt;</span> $key {
+        <span style="color:#e6db74">&#34;%10s | %s \n&#34;</span><span style="color:#f92672">.</span>printf($key, <span style="color:#e6db74">&#39;#&#39;</span> x (<span style="color:#ae81ff">4</span> <span style="color:#f92672">*</span> %data<span style="color:#f92672">.</span>{$key}));
     }
 }
-</code></pre>
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/markus-holzer/perl6/ch-1-and-2.pl6">Markus Holzer</a> used a nice <code>$format</code> string and <code>&amp;sorter</code> subroutine to achieve the desired result:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">    <span style="color:#66d9ef">my</span> $lngst   <span style="color:#f92672">=</span> max $weights<span style="color:#f92672">.</span>keys<span style="color:#f92672">.</span>map( <span style="color:#f92672">*.</span>chars );
+    <span style="color:#66d9ef">my</span> $format  <span style="color:#f92672">=</span> $csv   ?? <span style="color:#e6db74">&#34;%s, %s&#34;</span>           <span style="color:#f92672">!!</span>
+                  $graph ?? <span style="color:#e6db74">&#34;%{$lngst}s | %s &#34;</span> <span style="color:#f92672">!!</span>
+                  <span style="color:#e6db74">&#34;%-{$lngst}s %s &#34;</span>             ;
 
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/markus-holzer/perl6/ch-1-and-2.pl6">Markus Holzer</a> used a nice <code>$format</code> string and <code>&amp;sorter</code> subroutine to achieve the desired result:</p>
+    <span style="color:#66d9ef">my</span> <span style="color:#f92672">&amp;</span>sorter  <span style="color:#f92672">=</span> $sort<span style="color:#f92672">-</span>by<span style="color:#f92672">-</span>label
+                  ?? { $<span style="color:#960050;background-color:#1e0010">^</span>a<span style="color:#f92672">.</span>key   <span style="color:#f92672">cmp</span> $<span style="color:#960050;background-color:#1e0010">^</span>b<span style="color:#f92672">.</span>key   }
+                  <span style="color:#f92672">!!</span> { $<span style="color:#960050;background-color:#1e0010">^</span>b<span style="color:#f92672">.</span>value <span style="color:#e6db74">&lt;=&gt;</span> $<span style="color:#960050;background-color:#1e0010">^</span>a<span style="color:#f92672">.</span>value };
 
-<pre><code class="language-Perl6">    my $lngst   = max $weights.keys.map( *.chars );
-    my $format  = $csv   ?? &quot;%s, %s&quot;           !!
-                  $graph ?? &quot;%{$lngst}s | %s &quot; !!
-                  &quot;%-{$lngst}s %s &quot;             ;
+    <span style="color:#f92672">.</span>say <span style="color:#66d9ef">for</span> $weights
+        <span style="color:#f92672">.</span>sort( <span style="color:#f92672">&amp;</span>sorter )
+        <span style="color:#f92672">.</span>map({ <span style="color:#f92672">.</span>key <span style="color:#f92672">=&gt;</span> $graph ?? <span style="color:#e6db74">&#34;#&#34;</span> x <span style="color:#f92672">.</span>value <span style="color:#f92672">!!</span> <span style="color:#f92672">.</span>value })
+        <span style="color:#f92672">.</span>map({ sprintf $format, <span style="color:#f92672">.</span>key, <span style="color:#f92672">.</span>value });
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/simon-proctor/perl6/ch-2.p6">Simon Proctor</a> made a fairly long program that I&rsquo;ll quote only in part:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">draw</span>-graph( %data, SortType $sort-type, SortDir $sort-dir ) {
+    <span style="color:#66d9ef">my</span> $k<span style="color:#f92672">-</span>width <span style="color:#f92672">=</span> %data<span style="color:#f92672">.</span>keys<span style="color:#f92672">.</span>map(<span style="color:#f92672">*.</span>codes)<span style="color:#f92672">.</span>max;
+    <span style="color:#66d9ef">my</span> $max<span style="color:#f92672">-</span>val <span style="color:#f92672">=</span> %data<span style="color:#f92672">.</span>values<span style="color:#f92672">.</span>max;
+    <span style="color:#66d9ef">my</span> $screen<span style="color:#f92672">-</span>width <span style="color:#f92672">=</span> get<span style="color:#f92672">-</span>screen<span style="color:#f92672">-</span>width();
 
-    my &amp;sorter  = $sort-by-label
-                  ?? { $^a.key   cmp $^b.key   }
-                  !! { $^b.value &lt;=&gt; $^a.value };
+    <span style="color:#66d9ef">my</span> <span style="color:#f92672">&amp;</span>sorter <span style="color:#f92672">=</span> make<span style="color:#f92672">-</span>sorter( $sort<span style="color:#f92672">-</span>type, $sort<span style="color:#f92672">-</span>dir );
 
-    .say for $weights
-        .sort( &amp;sorter )
-        .map({ .key =&gt; $graph ?? &quot;#&quot; x .value !! .value })
-        .map({ sprintf $format, .key, .value });
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/simon-proctor/perl6/ch-2.p6">Simon Proctor</a> made a fairly long program that I&rsquo;ll quote only in part:</p>
-
-<pre><code class="language-Perl6">sub draw-graph( %data, SortType $sort-type, SortDir $sort-dir ) {
-    my $k-width = %data.keys.map(*.codes).max;
-    my $max-val = %data.values.max;
-    my $screen-width = get-screen-width();
-
-    my &amp;sorter = make-sorter( $sort-type, $sort-dir );
-
-    my $available = $screen-width - $k-width - 5;
-    .say for %data.sort( &amp;sorter ).map( { sprintf( &quot;% -{$k-width}s  |  %s&quot;, $_.key, get-bar( $available, $max-val, $_.value ) ) } );
+    <span style="color:#66d9ef">my</span> $available <span style="color:#f92672">=</span> $screen<span style="color:#f92672">-</span>width <span style="color:#f92672">-</span> $k<span style="color:#f92672">-</span>width <span style="color:#f92672">-</span> <span style="color:#ae81ff">5</span>;
+    <span style="color:#f92672">.</span>say <span style="color:#66d9ef">for</span> %data<span style="color:#f92672">.</span>sort( <span style="color:#f92672">&amp;</span>sorter )<span style="color:#f92672">.</span>map( { sprintf( <span style="color:#e6db74">&#34;% -{$k-width}s  |  %s&#34;</span>, $_<span style="color:#f92672">.</span>key, get<span style="color:#f92672">-</span>bar( $available, $max<span style="color:#f92672">-</span>val, $_<span style="color:#f92672">.</span>value ) ) } );
 }
 
-sub make-sorter( SortType $sort-type, SortDir $sort-dir ) {
-    given $sort-dir {
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">make</span>-sorter( SortType $sort-type, SortDir $sort-dir ) {
+    given $sort<span style="color:#f92672">-</span>dir {
         when asc {
-            -&gt; $a, $b { $a.^lookup($sort-type)($a) cmp $b.^lookup($sort-type)($b) }
+            <span style="color:#f92672">-&gt;</span> $a, $b { $a<span style="color:#f92672">.^</span>lookup($sort<span style="color:#f92672">-</span>type)($a) <span style="color:#f92672">cmp</span> $b<span style="color:#f92672">.^</span>lookup($sort<span style="color:#f92672">-</span>type)($b) }
         }
         when desc {
-            -&gt; $a, $b { $b.^lookup($sort-type)($b) cmp $a.^lookup($sort-type)($a) }
+            <span style="color:#f92672">-&gt;</span> $a, $b { $b<span style="color:#f92672">.^</span>lookup($sort<span style="color:#f92672">-</span>type)($b) <span style="color:#f92672">cmp</span> $a<span style="color:#f92672">.^</span>lookup($sort<span style="color:#f92672">-</span>type)($a) }
         }
     }
 }
 
-sub get-bar( Int $available, $max, $value ) {
-    '#' x ceiling( $available * ( $value / $max ) );
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get</span>-bar( Int $available, $max, $value ) {
+    <span style="color:#e6db74">&#39;#&#39;</span> x ceiling( $available <span style="color:#f92672">*</span> ( $value <span style="color:#f92672">/</span> $max ) );
 }
 
-sub get-screen-width() {
-    my $result;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get</span>-screen-width() {
+    <span style="color:#66d9ef">my</span> $result;
     try {
-        $result = run(&quot;tput&quot;,&quot;cols&quot;,:out).out.slurp.chomp;
+        $result <span style="color:#f92672">=</span> run(<span style="color:#e6db74">&#34;tput&#34;</span>,<span style="color:#e6db74">&#34;cols&#34;</span>,:out)<span style="color:#f92672">.</span>out<span style="color:#f92672">.</span>slurp<span style="color:#f92672">.</span>chomp;
     }
-    # Fallback incase tput not available
-    return $result || 100;
+    <span style="color:#75715e"># Fallback incase tput not available</span>
+    <span style="color:#66d9ef">return</span> $result <span style="color:#f92672">||</span> <span style="color:#ae81ff">100</span>;
 }
 
-sub parse-space-sep( Str $line ) {
-    if ( my $match = $line ~~ m!^ (\S+) \s+ (\S+) $! ) {
-        return $match[0], $match[1];
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">parse</span>-space-sep( Str $line ) {
+    <span style="color:#66d9ef">if</span> ( <span style="color:#66d9ef">my</span> $match <span style="color:#f92672">=</span> $line <span style="color:#f92672">~~</span> <span style="color:#e6db74">m!^ (\S+) \s+ (\S+) $!</span> ) {
+        <span style="color:#66d9ef">return</span> $match[<span style="color:#ae81ff">0</span>], $match[<span style="color:#ae81ff">1</span>];
     }
-    die &quot;Line parser didn't work on $line&quot;;
+    die <span style="color:#e6db74">&#34;Line parser didn&#39;t work on $line&#34;</span>;
 }
 
-sub parse-csv( Str $line ) {
-    if ( my $match = $line ~~ m!^ (\&quot;?) (.+) $0 &quot;,&quot; (.+) $! ) { #&quot; Editor bug
-       return $match[1], $match[2];
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">parse</span>-csv( Str $line ) {
+    <span style="color:#66d9ef">if</span> ( <span style="color:#66d9ef">my</span> $match <span style="color:#f92672">=</span> $line <span style="color:#f92672">~~</span> <span style="color:#e6db74">m!^ (\&#34;?) (.+) $0 &#34;,&#34; (.+) $!</span> ) { <span style="color:#75715e">#&#34; Editor bug</span>
+       <span style="color:#66d9ef">return</span> $match[<span style="color:#ae81ff">1</span>], $match[<span style="color:#ae81ff">2</span>];
     }
-    die &quot;Lazy CSV parser didn't work on $line&quot;;
+    die <span style="color:#e6db74">&#34;Lazy CSV parser didn&#39;t work on $line&#34;</span>;
 }
-</code></pre>
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/athanasius/perl6/ch-2.p6">Athanasius</a> also wrote a lengthy program from which I&rsquo;ll only quote a small part:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">    <span style="color:#66d9ef">my</span> Str @keys <span style="color:#f92672">=</span> %data<span style="color:#f92672">.</span>keys;
 
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/athanasius/perl6/ch-2.p6">Athanasius</a> also wrote a lengthy program from which I&rsquo;ll only quote a small part:</p>
-
-<pre><code class="language-Perl6">    my Str @keys = %data.keys;
-
-    if $by-values   # Order by values
+    <span style="color:#66d9ef">if</span> $by<span style="color:#f92672">-</span>values   <span style="color:#75715e"># Order by values</span>
     {
-        @keys = @keys.sort:
+        @keys <span style="color:#f92672">=</span> @keys<span style="color:#f92672">.</span>sort:
                 {
-                    %data{$^b} &lt;=&gt; %data{$^a}       # Descending
-                    ||                              #    then
-                    $^a cmp $^b                     # Lexicographical
+                    %data{$<span style="color:#960050;background-color:#1e0010">^</span>b} <span style="color:#e6db74">&lt;=&gt;</span> %data{$<span style="color:#960050;background-color:#1e0010">^</span>a}       <span style="color:#75715e"># Descending</span>
+                    <span style="color:#f92672">||</span>                              <span style="color:#75715e">#    then</span>
+                    $<span style="color:#960050;background-color:#1e0010">^</span>a <span style="color:#f92672">cmp</span> $<span style="color:#960050;background-color:#1e0010">^</span>b                     <span style="color:#75715e"># Lexicographical</span>
                 };
     }
-    else            # Order by labels
+    <span style="color:#66d9ef">else</span>            <span style="color:#75715e"># Order by labels</span>
     {
-        @keys = @keys.sort;                         # Lexicographical only
+        @keys <span style="color:#f92672">=</span> @keys<span style="color:#f92672">.</span>sort;                         <span style="color:#75715e"># Lexicographical only</span>
     }
 
-    my UInt $width = @keys.map( { .chars } ).max;
-    my Str  $graph = '';
+    <span style="color:#66d9ef">my</span> UInt $width <span style="color:#f92672">=</span> @keys<span style="color:#f92672">.</span>map( { <span style="color:#f92672">.</span>chars } )<span style="color:#f92672">.</span>max;
+    <span style="color:#66d9ef">my</span> Str  $graph <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
 
-    for @keys -&gt; Str $key
+    <span style="color:#66d9ef">for</span> @keys <span style="color:#f92672">-&gt;</span> Str $key
     {
-        my Str $bar = $BAR-CHARACTER x ($BAR-MULTIPLIER * %data{$key});
-        $graph     ~= &quot;  %*s | %s\n&quot;.sprintf: $width, $key, $bar;
+        <span style="color:#66d9ef">my</span> Str $bar <span style="color:#f92672">=</span> $BAR<span style="color:#f92672">-</span>CHARACTER x ($BAR<span style="color:#f92672">-</span>MULTIPLIER <span style="color:#f92672">*</span> %data{$key});
+        $graph     <span style="color:#f92672">~=</span> <span style="color:#e6db74">&#34;  %*s | %s\n&#34;</span><span style="color:#f92672">.</span>sprintf: $width, $key, $bar;
     }
 
-    return $graph;
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/adam-russell/perl6/ch-2.p6">Adam Russell</a> used the interesting <a href="https://docs.perl6.org/routine/term:%3C%3E">term</a> feature of Raku that I did not know about to populate a constant:</p>
-
-<pre><code class="language-Perl6">sub term:&lt;MAX-LENGTH&gt; { 10 };
-</code></pre>
-
-<p>Otherwise, his program sorts the data to find the min/max values in order to scale the bar graph (using the <code>min</code> and <code>max</code> built-in functions might be more efficient, but it probably doesn&rsquo;t matter very much unless the data is very large):</p>
-
-<pre><code class="language-Perl6">sub MAIN($input) {
-    my %data = from-json $input;
-    my @sorted = %data.sort(*.value);
-    my $min = @sorted[0].value;
-    my $max = @sorted[@sorted.end].value;
-    for %data.sort(*.value).reverse -&gt; $pair {
-        print $pair.key ~ &quot;\t| &quot;;
-        say &quot;#&quot; x ($pair.value - $min + 1) / ($max  - $min) * MAX-LENGTH;
+    <span style="color:#66d9ef">return</span> $graph;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/adam-russell/perl6/ch-2.p6">Adam Russell</a> used the interesting <a href="https://docs.perl6.org/routine/term:%3C%3E">term</a> feature of Raku that I did not know about to populate a constant:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">term</span>:&lt;MAX-LENGTH&gt; { <span style="color:#ae81ff">10</span> };
+</code></pre></div><p>Otherwise, his program sorts the data to find the min/max values in order to scale the bar graph (using the <code>min</code> and <code>max</code> built-in functions might be more efficient, but it probably doesn&rsquo;t matter very much unless the data is very large):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>($input) {
+    <span style="color:#66d9ef">my</span> %data <span style="color:#f92672">=</span> from<span style="color:#f92672">-</span>json $input;
+    <span style="color:#66d9ef">my</span> @sorted <span style="color:#f92672">=</span> %data<span style="color:#f92672">.</span>sort(<span style="color:#f92672">*.</span>value);
+    <span style="color:#66d9ef">my</span> $min <span style="color:#f92672">=</span> @sorted[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>value;
+    <span style="color:#66d9ef">my</span> $max <span style="color:#f92672">=</span> @sorted[@sorted<span style="color:#f92672">.</span>end]<span style="color:#f92672">.</span>value;
+    <span style="color:#66d9ef">for</span> %data<span style="color:#f92672">.</span>sort(<span style="color:#f92672">*.</span>value)<span style="color:#f92672">.</span>reverse <span style="color:#f92672">-&gt;</span> $pair {
+        <span style="color:#66d9ef">print</span> $pair<span style="color:#f92672">.</span>key <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34;\t| &#34;</span>;
+        say <span style="color:#e6db74">&#34;#&#34;</span> x ($pair<span style="color:#f92672">.</span>value <span style="color:#f92672">-</span> $min <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">/</span> ($max  <span style="color:#f92672">-</span> $min) <span style="color:#f92672">*</span> MAX<span style="color:#f92672">-</span>LENGTH;
     }
 }
-</code></pre>
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/joelle-maslak/perl6/ch-2.p6">Joelle Maslak</a> scaled the graph according to the spread between the min  and max values:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">    <span style="color:#66d9ef">my</span> $spread    <span style="color:#f92672">=</span> $max<span style="color:#f92672">-</span>value <span style="color:#f92672">-</span> $min<span style="color:#f92672">-</span>value;            <span style="color:#75715e"># How far apart are max and min?</span>
+    <span style="color:#66d9ef">my</span> $max<span style="color:#f92672">-</span>bar   <span style="color:#f92672">=</span> $screen<span style="color:#f92672">-</span>width <span style="color:#f92672">-</span> $max<span style="color:#f92672">-</span>len <span style="color:#f92672">-</span> <span style="color:#ae81ff">4</span>;       <span style="color:#75715e"># How big the bar can be, we don&#39;t use last column</span>
+    <span style="color:#66d9ef">my</span> $unit<span style="color:#f92672">-</span>size <span style="color:#f92672">=</span> $max<span style="color:#f92672">-</span>bar ?? ($spread <span style="color:#f92672">/</span> $max<span style="color:#f92672">-</span>bar) <span style="color:#f92672">!!</span> <span style="color:#ae81ff">0</span>;  <span style="color:#75715e"># What a &#39;#&#39; represents</span>
 
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/joelle-maslak/perl6/ch-2.p6">Joelle Maslak</a> scaled the graph according to the spread between the min  and max values:</p>
+    <span style="color:#66d9ef">for</span> @words <span style="color:#f92672">-&gt;</span> $ele {
+        <span style="color:#66d9ef">my</span> $hashes <span style="color:#f92672">=</span> (($ele[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> $min<span style="color:#f92672">-</span>value) <span style="color:#f92672">/</span> $unit<span style="color:#f92672">-</span>size)<span style="color:#f92672">.</span>Int;
+        $hashes <span style="color:#f92672">=</span> $max<span style="color:#f92672">-</span>bar <span style="color:#66d9ef">if</span> $unit<span style="color:#f92672">-</span>size <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
 
-<pre><code class="language-Perl6">    my $spread    = $max-value - $min-value;            # How far apart are max and min?
-    my $max-bar   = $screen-width - $max-len - 4;       # How big the bar can be, we don't use last column
-    my $unit-size = $max-bar ?? ($spread / $max-bar) !! 0;  # What a '#' represents
-
-    for @words -&gt; $ele {
-        my $hashes = (($ele[1] - $min-value) / $unit-size).Int;
-        $hashes = $max-bar if $unit-size == 0;
-
-        say $ele[0].fmt(&quot;%-{$max-len}s&quot;) ~ &quot; | &quot; ~ &quot;#&quot; x $hashes;
+        say $ele[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>fmt(<span style="color:#e6db74">&#34;%-{$max-len}s&#34;</span>) <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34; | &#34;</span> <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34;#&#34;</span> x $hashes;
     }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/ruben-westerberg/perl6/ch-2.p6">Ruben Westerberg</a> wrote a <code>histogram</code> subroutine that sorts the keys of the hash and then sorts them again if the <code>$valueSort</code> parameter is <code>True</code>.</p>
-
-<pre><code class="language-Perl6">sub histogram(%h,$valueSort,$chart) {
-    my @keys=%h.keys.sort;#(*.chars &lt; *.chars);
-    my $maxKeyLength=@keys&gt;&gt;.chars.max;
-    put &quot;&quot;;
-    if ($valueSort) {
-        @keys=%h.keys.sort(-&gt; $a,$b {%h{$a} &lt; %h{$b}});
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-032/ruben-westerberg/perl6/ch-2.p6">Ruben Westerberg</a> wrote a <code>histogram</code> subroutine that sorts the keys of the hash and then sorts them again if the <code>$valueSort</code> parameter is <code>True</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">histogram</span>(%h,$valueSort,$chart) {
+    <span style="color:#66d9ef">my</span> @keys<span style="color:#f92672">=</span>%h<span style="color:#f92672">.</span>keys<span style="color:#f92672">.</span>sort;<span style="color:#75715e">#(*.chars &lt; *.chars);</span>
+    <span style="color:#66d9ef">my</span> $maxKeyLength<span style="color:#f92672">=</span>@keys<span style="color:#f92672">&gt;&gt;.</span>chars<span style="color:#f92672">.</span>max;
+    put <span style="color:#e6db74">&#34;&#34;</span>;
+    <span style="color:#66d9ef">if</span> ($valueSort) {
+        @keys<span style="color:#f92672">=</span>%h<span style="color:#f92672">.</span>keys<span style="color:#f92672">.</span>sort(<span style="color:#f92672">-&gt;</span> $a,$b {%h{$a} <span style="color:#f92672">&lt;</span> %h{$b}});
     }
-    for @keys {
-        my $v=%h{$_}.Str;
-        $v=&quot;#&quot; x %h{$_} if $chart;
-        printf(&quot;%&quot;~$maxKeyLength~&quot;s| %s\n&quot;,$_,$v);
+    <span style="color:#66d9ef">for</span> @keys {
+        <span style="color:#66d9ef">my</span> $v<span style="color:#f92672">=</span>%h{$_}<span style="color:#f92672">.</span>Str;
+        $v<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;#&#34;</span> x %h{$_} <span style="color:#66d9ef">if</span> $chart;
+        printf(<span style="color:#e6db74">&#34;%&#34;</span><span style="color:#f92672">~</span>$maxKeyLength<span style="color:#f92672">~</span><span style="color:#e6db74">&#34;s| %s\n&#34;</span>,$_,$v);
     }
 }
-</code></pre>
-
-<hr />
-
-<hr />
-
+</code></pre></div><hr>
+<hr>
 <h2 id="see-also">SEE ALSO</h2>
-
-<hr />
-
-<hr />
-
+<hr>
+<hr>
 <p>Four blog posts this time:</p>
-
 <ul>
-<li><p>Arne Sommer: <a href="https://raku-musings.com/instance-bar.html">https://raku-musings.com/instance-bar.html</a>;</p></li>
-
-<li><p>Adam Russell: <a href="https://adamcrussell.livejournal.com/10802.html">https://adamcrussell.livejournal.com/10802.html</a>;</p></li>
-
-<li><p>Jaldhar H. Vyas: <a href="https://www.braincells.com/perl/2019/11/perl_weekly_challenge_week_32.html">https://www.braincells.com/perl/2019/11/perl_weekly_challenge_week_32.html</a>;</p></li>
-
-<li><p>Javier Luque: <a href="https://perlchallenges.wordpress.com/2019/10/31/perl-weekly-challenge-032/">https://perlchallenges.wordpress.com/2019/10/31/perl-weekly-challenge-032/</a>;</p></li>
+<li>
+<p>Arne Sommer: <a href="https://raku-musings.com/instance-bar.html;">https://raku-musings.com/instance-bar.html;</a></p>
+</li>
+<li>
+<p>Adam Russell: <a href="https://adamcrussell.livejournal.com/10802.html;">https://adamcrussell.livejournal.com/10802.html;</a></p>
+</li>
+<li>
+<p>Jaldhar H. Vyas: <a href="https://www.braincells.com/perl/2019/11/perl_weekly_challenge_week_32.html;">https://www.braincells.com/perl/2019/11/perl_weekly_challenge_week_32.html;</a></p>
+</li>
+<li>
+<p>Javier Luque: <a href="https://perlchallenges.wordpress.com/2019/10/31/perl-weekly-challenge-032/;">https://perlchallenges.wordpress.com/2019/10/31/perl-weekly-challenge-032/;</a></p>
+</li>
 </ul>
-
 <h2 id="wrapping-up">Wrapping up</h2>
-
 <p>Please let me know if I forgot any of the challengers or if you think my explanation of your code misses something important (send me an e-mail or just raise an issue against this GitHub page).</p>
 
                 </div>

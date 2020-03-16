@@ -16,7 +16,7 @@
 
     <meta name="description" content="Ryan Thompson › Perl Weekly Review: Challenge - #047">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.55.0-DEV" />
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -41,6 +41,8 @@
     <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
     <!-- hover -->
     <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
     <!-- template main css file -->
     
     <link rel="stylesheet" href="https://perlweeklychallenge.org/css/style.min.css" integrity="" media="screen">
@@ -149,1222 +151,915 @@
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
-                    
-
-<p>Continues from <a href="/blog/review-challenge-046/">previous week</a>.</p>
-
+                    <p>Continues from <a href="/blog/review-challenge-046/">previous week</a>.</p>
 <p>Welcome to the Perl review for Week 047 of the Weekly Challenge! For a quick overview, go through the <a href="/blog/perl-weekly-challenge-047/">original tasks</a> and <a href="/blog/recap-challenge-047/">recap</a> of the weekly challenge.</p>
-
 <h2 id="getting-in-touch">Getting in Touch</h2>
-
 <p><a href="mailto:rjt@cpan.org"><img src="http://ry.ca/misc/Email.svg" height="50" width="50"> Email</a> › Email me (Ryan) with any feedback about this review.</p>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge"><img src="http://ry.ca/misc/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request for any issues you may find with this page.</p>
-
 <p><a href="https://twitter.com/perlwchallenge"><img src="http://ry.ca/misc/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!</p>
-
 <p>We&rsquo;d greatly appreciate any feedback you&rsquo;d like to give.</p>
-
 <h2 id="table-of-contents">Table of Contents</h2>
-
-<h3 id="task-1-task1"><a href="#task1">Task 1</a></h3>
-
+<h3 id="task-1task1"><a href="#task1">Task 1</a></h3>
 <p>[ <a href="#alicia-bielsa1">Alicia Bielsa</a>  | <a href="#andrezgz1">Andrezgz</a>  | <a href="#athanasius1">Athanasius</a>  | <a href="#cheok-yin-fung1">Cheok-Yin Fung</a>  | <a href="#dave-cross1">Dave Cross</a>  | <a href="#dave-jacoby1">Dave Jacoby</a>  | <a href="#duane-powell1">Duane Powell</a>  | <a href="#duncan-c-white1">Duncan C. White</a>  | <a href="#e-choroba1">E. Choroba</a>  | <a href="#jaldhar-h-vyas1">Jaldhar H. Vyas</a>  | <a href="#javier-luque1">Javier Luque</a>  | <a href="#laurent-rosenfeld1">Laurent Rosenfeld</a>  | <a href="#lubos-kolouch1">Lubos Kolouch</a>  | <a href="#phillip-harris1">Phillip Harris</a>  | <a href="#ruben-westerberg1">Ruben Westerberg</a>  | <a href="#ryan-thompson1">Ryan Thompson</a>  | <a href="#saiftynet1">Saif Ahmed</a>  | <a href="#user-person1">User Person</a>  | <a href="#wanderdoc1">Wanderdoc</a>  ]</p>
-
-<h3 id="task-2-task2"><a href="#task2">Task 2</a></h3>
-
+<h3 id="task-2task2"><a href="#task2">Task 2</a></h3>
 <p>[ <a href="#alicia-bielsa2">Alicia Bielsa</a>  | <a href="#andrezgz2">Andrezgz</a>  | <a href="#athanasius2">Athanasius</a>  | <a href="#cheok-yin-fung2">Cheok-Yin Fung</a>  | <a href="#colin-crain2">Colin Crain</a>  | <a href="#cristian-heredia2">Cristina Heredia</a>  | <a href="#dave-cross2">Dave Cross</a>  | <a href="#dave-jacoby2">Dave Jacoby</a>  | <a href="#duane-powell2">Duane Powell</a>  | <a href="#duncan-c-white2">Duncan C. White</a>  | <a href="#e-choroba2">E. Choroba</a>  | <a href="#jaldhar-h-vyas2">Jaldhar H. Vyas</a>  | <a href="#javier-luque2">Javier Luque</a>  | <a href="#laurent-rosenfeld2">Laurent Rosenfeld</a>  | <a href="#lubos-kolouch2">Lubos Kolouch</a>  | <a href="#mohammad-anwar2">Mohammad S Anwar</a>  | <a href="#phillip-harris2">Phillip Harris</a>  | <a href="#ruben-westerberg2">Ruben Westerberg</a>  | <a href="#ryan-thompson2">Ryan Thompson</a>  | <a href="#saiftynet2">Saif Ahmed</a>  | <a href="#steven-wilson2">Steven Wilson</a>  | <a href="#ulrich-rieke2">Ulrich Rieke</a>  | <a href="#user-person2">User Person</a>  | <a href="#wanderdoc2">Wanderdoc</a>  ]</p>
-
-<h3 id="blogs-blogs"><a href="#blogs">Blogs</a></h3>
-
-<hr />
-
-<hr />
-
+<h3 id="blogsblogs"><a href="#blogs">Blogs</a></h3>
+<hr>
+<hr>
 <h1 id="task1">Task #1 - Roman Calculator</h1>
-
 <p>The first task is to write a script that accepts two Roman numbers and an arithmetic operator. It should then calculate the result and return it as another Roman number. For example:</p>
-
 <pre><code>perl ch-1.pl V + VI
 XI
-</code></pre>
-
-<p>This challenge tends to require a fair amount of code. The average solution length was 90 lines (for comparison, Task #2 averaged 29 lines), with several nearing 200 lines. The average would have been higher if not for several hackers&rsquo; use of CPAN modules and code from <a href="/blog/review-challenge-010/">Week 010</a>.</p>
-
+</code></pre><p>This challenge tends to require a fair amount of code. The average solution length was 90 lines (for comparison, Task #2 averaged 29 lines), with several nearing 200 lines. The average would have been higher if not for several hackers&rsquo; use of CPAN modules and code from <a href="/blog/review-challenge-010/">Week 010</a>.</p>
 <p>As such, I will have to be more selective in the code that I highlight. Please remember you can always click the solution link for the full code. If I didn&rsquo;t highlight a part of your code you believe is worth looking at more closely in the context of this review, please <a href="mailto:rjt@cpan.org">let me know</a>!</p>
-
-<hr />
-
+<hr>
 <h2 id="alicia-bielsa1">Alicia Bielsa</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/alicia-bielsa/perl/ch-1.pl">Alicia Bielsa&rsquo;s solution</a> uses <a href="https://metacpan.org/pod/Readonly"><code>Readonly::Hash</code></a>es to map the Roman numerals to their Arabic values (e.g., <code>X =&gt; 10</code>), and takes the <code>reverse</code> to map in the other direction. She writes <code>romanToDecimal</code> and <code>decimalToRoman</code> subroutines so the solution can be calculated. Here is the <code>romanToDecimal</code> sub:</p>
-
-<pre><code class="language-perl">sub romanToDecimal {
-    my $romanNumber = shift;
-    my $previousValue = 0;
-    my $decimalNumber = 0;
-    foreach my $romanSymbol (split('',$romanNumber)) {
-        if ($HASH_ROMAN_DECIMAL{$romanSymbol} &gt; $previousValue ){
-            #Previous value was substractive mode, we substract twice.
-            $decimalNumber -= $previousValue * 2;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">romanToDecimal</span> {
+    <span style="color:#66d9ef">my</span> $romanNumber <span style="color:#f92672">=</span> shift;
+    <span style="color:#66d9ef">my</span> $previousValue <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">my</span> $decimalNumber <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $romanSymbol (split(<span style="color:#e6db74">&#39;&#39;</span>,$romanNumber)) {
+        <span style="color:#66d9ef">if</span> ($HASH_ROMAN_DECIMAL{$romanSymbol} <span style="color:#f92672">&gt;</span> $previousValue ){
+            <span style="color:#75715e">#Previous value was substractive mode, we substract twice.</span>
+            $decimalNumber <span style="color:#f92672">-=</span> $previousValue <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span>;
         }
-        $decimalNumber += $HASH_ROMAN_DECIMAL{$romanSymbol};
-        $previousValue = $HASH_ROMAN_DECIMAL{$romanSymbol};
+        $decimalNumber <span style="color:#f92672">+=</span> $HASH_ROMAN_DECIMAL{$romanSymbol};
+        $previousValue <span style="color:#f92672">=</span> $HASH_ROMAN_DECIMAL{$romanSymbol};
     }
-    return $decimalNumber;
+    <span style="color:#66d9ef">return</span> $decimalNumber;
 }
-</code></pre>
-
-<p>Alicia also included error checking for the arguments, with and <code>isOperationAccepted</code> and <code>isRomanNumber</code>. Here is the latter:</p>
-
-<pre><code class="language-perl">sub isRomanNumber {
-    my $numberToCheck = shift;
-    my $isRoman = 0;
-    my $romanDigits = join ( '', keys %HASH_ROMAN_DECIMAL);
-    if ($numberToCheck =~ /^[$romanDigits]+$/ ){
-        $isRoman = 1;
+</code></pre></div><p>Alicia also included error checking for the arguments, with and <code>isOperationAccepted</code> and <code>isRomanNumber</code>. Here is the latter:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">isRomanNumber</span> {
+    <span style="color:#66d9ef">my</span> $numberToCheck <span style="color:#f92672">=</span> shift;
+    <span style="color:#66d9ef">my</span> $isRoman <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">my</span> $romanDigits <span style="color:#f92672">=</span> join ( <span style="color:#e6db74">&#39;&#39;</span>, keys %HASH_ROMAN_DECIMAL);
+    <span style="color:#66d9ef">if</span> ($numberToCheck <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^[$romanDigits]+$/</span> ){
+        $isRoman <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
     }
-    return $isRoman;
+    <span style="color:#66d9ef">return</span> $isRoman;
 }
-</code></pre>
-
-<p>Overall, Alicia&rsquo;s solution feels complete and robust.</p>
-
+</code></pre></div><p>Overall, Alicia&rsquo;s solution feels complete and robust.</p>
 <h2 id="andrezgz1">Andrezgz</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/andrezgz/perl/ch-1.pl">Andrezgz&rsquo;s solution</a> wisely re-uses code from previous challenges (dispatch tables from week 39, and Roman numeral encoding from week 10).</p>
-
 <p>Andrezgz&rsquo;s check for a valid Roman number is a regex, and checks for reasonable counts of each numeral:</p>
-
-<pre><code class="language-perl">sub _is_valid_roman {
-    return $_[0] =~ /
-        ^                       # String start
-        M{0,3}                  # Matching from 1000 to 3000
-        (?:CM|CD|D|D?C{0,3})?   # Matching from 100 to 900
-        (?:XC|XL|L|L?X{0,3})?   # Matching from 10 to 90
-        (?:IX|IV|V|V?I{0,3})?   # Matching from 1 to 9
-        $                       # String end
-    /xi;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_is_valid_roman</span> {
+    <span style="color:#66d9ef">return</span> $_[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=~</span><span style="color:#e6db74"> /
+</span><span style="color:#e6db74">        ^                       # String start
+</span><span style="color:#e6db74">        M{0,3}                  # Matching from 1000 to 3000
+</span><span style="color:#e6db74">        (?:CM|CD|D|D?C{0,3})?   # Matching from 100 to 900
+</span><span style="color:#e6db74">        (?:XC|XL|L|L?X{0,3})?   # Matching from 10 to 90
+</span><span style="color:#e6db74">        (?:IX|IV|V|V?I{0,3})?   # Matching from 1 to 9
+</span><span style="color:#e6db74">        $                       # String end
+</span><span style="color:#e6db74">    /xi</span>;
 }
-</code></pre>
-
-<p>I know this code is the same as Andrezgz&rsquo;s week 10 solution, but it did not get highlighted in that review.</p>
-
+</code></pre></div><p>I know this code is the same as Andrezgz&rsquo;s week 10 solution, but it did not get highlighted in that review.</p>
 <p>Thanks to the re-used code, the new code that Andrezgz wrote this week ended up being quite short:</p>
-
-<pre><code class="language-perl">my $operations = {
-    '+' =&gt; sub { $_[0] + $_[1] },
-    '-' =&gt; sub { $_[0] - $_[1] },
-    'x' =&gt; sub { $_[0] * $_[1] },
-    '/' =&gt; sub { $_[0] / $_[1] },
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $operations <span style="color:#f92672">=</span> {
+    <span style="color:#e6db74">&#39;+&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { $_[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+</span> $_[<span style="color:#ae81ff">1</span>] },
+    <span style="color:#e6db74">&#39;-&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { $_[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">-</span> $_[<span style="color:#ae81ff">1</span>] },
+    <span style="color:#e6db74">&#39;x&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { $_[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">*</span> $_[<span style="color:#ae81ff">1</span>] },
+    <span style="color:#e6db74">&#39;/&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { $_[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">/</span> $_[<span style="color:#ae81ff">1</span>] },
 };
-my $rn1 = shift;
-my $op = shift;
-my $rn2 = shift;
-my $result = $operations-&gt;{$op}-&gt;( decode_roman(uc $rn1) , decode_roman(uc $rn2) );
-print encode_roman($result);
-</code></pre>
-
-<p>The solution itself has comprehensive error checking, which I omitted for brevity.</p>
-
+<span style="color:#66d9ef">my</span> $rn1 <span style="color:#f92672">=</span> shift;
+<span style="color:#66d9ef">my</span> $op <span style="color:#f92672">=</span> shift;
+<span style="color:#66d9ef">my</span> $rn2 <span style="color:#f92672">=</span> shift;
+<span style="color:#66d9ef">my</span> $result <span style="color:#f92672">=</span> $operations<span style="color:#f92672">-&gt;</span>{$op}<span style="color:#f92672">-&gt;</span>( decode_roman(uc $rn1) , decode_roman(uc $rn2) );
+<span style="color:#66d9ef">print</span> encode_roman($result);
+</code></pre></div><p>The solution itself has comprehensive error checking, which I omitted for brevity.</p>
 <h2 id="athanasius1">Athanasius</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/athanasius/perl/ch-1.pl">Athanasius&rsquo;s solution</a> uses <a href="https://metacpan.org/pod/Math::Roman"><code>Math::Roman</code></a> to convert to and from Roman numbers. The top-level logic looks like this, using string <code>eval</code> for the calculation itself:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @OPERATIONS   <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">qw( + - * / % )</span>;      <span style="color:#75715e"># &#39;/&#39; denotes *integer* division</span>
+<span style="color:#66d9ef">my</span> @ROMAN_DIGITS <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">qw( I V X L C D M )</span>;
 
-<pre><code class="language-perl">my @OPERATIONS   =&gt; qw( + - * / % );      # '/' denotes *integer* division
-my @ROMAN_DIGITS =&gt; qw( I V X L C D M );
-
-my $args = scalar @ARGV;
-$args == 3 or die &quot;ERROR: Expected 3 command-line args but found $args\n&quot;;
-my $lhs  = validate_roman(uc $ARGV[0]);
-my $op   = $ARGV[1];
-any { $op eq $_ } @OPERATIONS or die &quot;ERROR: Unknown operator '$op'\n&quot;;
-my $rhs  = validate_roman(uc $ARGV[2]);
-my $rslt = roman(int eval &quot;$lhs $op $rhs&quot;);
-printf &quot;%s %s %s = %s\n&quot;, uc $ARGV[0], $op, uc $ARGV[2], $rslt;
-</code></pre>
-
-<p>The <code>validate_roman</code> sub checks whether a string is a valid Roman number, and,
+<span style="color:#66d9ef">my</span> $args <span style="color:#f92672">=</span> scalar @ARGV;
+$args <span style="color:#f92672">==</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;ERROR: Expected 3 command-line args but found $args\n&#34;</span>;
+<span style="color:#66d9ef">my</span> $lhs  <span style="color:#f92672">=</span> validate_roman(uc $ARGV[<span style="color:#ae81ff">0</span>]);
+<span style="color:#66d9ef">my</span> $op   <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">1</span>];
+any { $op <span style="color:#f92672">eq</span> $_ } @OPERATIONS <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;ERROR: Unknown operator &#39;$op&#39;\n&#34;</span>;
+<span style="color:#66d9ef">my</span> $rhs  <span style="color:#f92672">=</span> validate_roman(uc $ARGV[<span style="color:#ae81ff">2</span>]);
+<span style="color:#66d9ef">my</span> $rslt <span style="color:#f92672">=</span> roman(int eval <span style="color:#e6db74">&#34;$lhs $op $rhs&#34;</span>);
+printf <span style="color:#e6db74">&#34;%s %s %s = %s\n&#34;</span>, uc $ARGV[<span style="color:#ae81ff">0</span>], $op, uc $ARGV[<span style="color:#ae81ff">2</span>], $rslt;
+</code></pre></div><p>The <code>validate_roman</code> sub checks whether a string is a valid Roman number, and,
 if so, takes it through <code>Math::Roman</code>:</p>
-
-<pre><code class="language-perl">sub validate_roman {
-    my ($roman) = @_;
-    for my $digit (split //, $roman) {
-        any { $digit eq $_ } @ROMAN_DIGITS
-            or die &quot;ERROR: Unknown Roman digit '$digit'\n&quot;;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">validate_roman</span> {
+    <span style="color:#66d9ef">my</span> ($roman) <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $digit (split <span style="color:#e6db74">//</span>, $roman) {
+        any { $digit <span style="color:#f92672">eq</span> $_ } @ROMAN_DIGITS
+            <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;ERROR: Unknown Roman digit &#39;$digit&#39;\n&#34;</span>;
     }
-    my $math_roman = roman($roman);
-       $math_roman-&gt;is_nan() and die 'ERROR: ', Math::Roman::error(), &quot;\n&quot;;
-    return $math_roman-&gt;as_number();
+    <span style="color:#66d9ef">my</span> $math_roman <span style="color:#f92672">=</span> roman($roman);
+       $math_roman<span style="color:#f92672">-&gt;</span>is_nan() <span style="color:#f92672">and</span> die <span style="color:#e6db74">&#39;ERROR: &#39;</span>, Math::Roman::error(), <span style="color:#e6db74">&#34;\n&#34;</span>;
+    <span style="color:#66d9ef">return</span> $math_roman<span style="color:#f92672">-&gt;</span>as_number();
 }
-</code></pre>
-
-<h2 id="cheok-yin-fung1">Cheok-Yin Fung</h2>
-
+</code></pre></div><h2 id="cheok-yin-fung1">Cheok-Yin Fung</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/cheok-yin-fung/perl/ch-1.pl">Cheok-Yin Fung&rsquo;s solution</a> uses string <code>eval</code> as well:</p>
-
-<pre><code class="language-perl">my $formula;
-chomp($_ = &lt;STDIN&gt;);
-if (/([A-Z]+)(\s*)([\+,\-,\*])(\s*)([A-Z]+)/) {
-    $formula = roman_to_dec($1).$3.roman_to_dec($5);
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $formula;
+chomp($_ <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;STDIN&gt;</span>);
+<span style="color:#66d9ef">if</span> (<span style="color:#e6db74">/([A-Z]+)(\s*)([\+,\-,\*])(\s*)([A-Z]+)/</span>) {
+    $formula <span style="color:#f92672">=</span> roman_to_dec($1)<span style="color:#f92672">.</span>$3<span style="color:#f92672">.</span>roman_to_dec($5);
 }
-my $result = eval $formula;
-print dec_to_roman($result), &quot;\n&quot;;
-</code></pre>
-
-<p>The regex to extract the arguments would be the perfect place to add error checking, so that arbitrary code is not passed to the <code>eval</code>.</p>
-
+<span style="color:#66d9ef">my</span> $result <span style="color:#f92672">=</span> eval $formula;
+<span style="color:#66d9ef">print</span> dec_to_roman($result), <span style="color:#e6db74">&#34;\n&#34;</span>;
+</code></pre></div><p>The regex to extract the arguments would be the perfect place to add error checking, so that arbitrary code is not passed to the <code>eval</code>.</p>
 <p>Cheok-Yin Fung&rsquo;s <code>roman_to_dec</code> is interesting (<code>%sk</code> maps Roman numerals to Arabic values):</p>
-
-<pre><code class="language-perl">sub roman_to_dec {
-    my $total = 0;
-    my @char = split //, $_[0];
-    for my $i (0..$#char-1) {
-        $total += $sk{$char[$i]};
-        if ($sk{$char[$i]} &lt; $sk{$char[$i+1]}) {
-            $total = $total - 2*$sk{$char[$i]};
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">roman_to_dec</span> {
+    <span style="color:#66d9ef">my</span> $total <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">my</span> @char <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, $_[<span style="color:#ae81ff">0</span>];
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#char<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
+        $total <span style="color:#f92672">+=</span> $sk{$char[$i]};
+        <span style="color:#66d9ef">if</span> ($sk{$char[$i]} <span style="color:#f92672">&lt;</span> $sk{$char[$i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]}) {
+            $total <span style="color:#f92672">=</span> $total <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>$sk{$char[$i]};
         }
     }
-    $total += $sk{$char[$#char]};
+    $total <span style="color:#f92672">+=</span> $sk{$char[$#char]};
     $total;
 }
-</code></pre>
-
-<p>There is a <code>dec_to_roman</code> as well that I won&rsquo;t show here, as it is long. It subtracts the value of the next digit (or pair) it can, in a loop, until it reaches zero.</p>
-
+</code></pre></div><p>There is a <code>dec_to_roman</code> as well that I won&rsquo;t show here, as it is long. It subtracts the value of the next digit (or pair) it can, in a loop, until it reaches zero.</p>
 <h2 id="dave-cross1">Dave Cross</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/dave-cross/perl/ch-1.pl">Dave Cross&rsquo;s solution</a> also taps into CPAN, using <a href="https://metacpan.org/pod/Roman"><code>Roman</code></a> for a concise solution with dispatch tables:</p>
-
-<pre><code class="language-perl">use Roman;
-my %ops = (
-    '+' =&gt; sub { $_[0] + $_[1] },
-    '-' =&gt; sub { $_[0] - $_[1] },
-    '/' =&gt; sub { $_[0] / $_[1] },
-    'x' =&gt; sub { $_[0] * $_[1] },
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> Roman;
+<span style="color:#66d9ef">my</span> %ops <span style="color:#f92672">=</span> (
+    <span style="color:#e6db74">&#39;+&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { $_[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+</span> $_[<span style="color:#ae81ff">1</span>] },
+    <span style="color:#e6db74">&#39;-&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { $_[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">-</span> $_[<span style="color:#ae81ff">1</span>] },
+    <span style="color:#e6db74">&#39;/&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { $_[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">/</span> $_[<span style="color:#ae81ff">1</span>] },
+    <span style="color:#e6db74">&#39;x&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { $_[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">*</span> $_[<span style="color:#ae81ff">1</span>] },
 );
-my ($l, $op, $r) = @ARGV;
-unless (exists $ops{$op}) {
-    warn &quot;'$op' is  not a recognised operation\n&quot;;
-    die 'Valid operations are: ', join(', ', keys %ops), &quot;\n&quot;;
+<span style="color:#66d9ef">my</span> ($l, $op, $r) <span style="color:#f92672">=</span> @ARGV;
+<span style="color:#66d9ef">unless</span> (exists $ops{$op}) {
+    warn <span style="color:#e6db74">&#34;&#39;$op&#39; is  not a recognised operation\n&#34;</span>;
+    die <span style="color:#e6db74">&#39;Valid operations are: &#39;</span>, join(<span style="color:#e6db74">&#39;, &#39;</span>, keys %ops), <span style="color:#e6db74">&#34;\n&#34;</span>;
 }
-say Roman( $ops{$op}-&gt;(arabic($l), arabic($r)) );
-</code></pre>
-
-<h2 id="dave-jacoby1">Dave Jacoby</h2>
-
+say Roman( $ops{$op}<span style="color:#f92672">-&gt;</span>(arabic($l), arabic($r)) );
+</code></pre></div><h2 id="dave-jacoby1">Dave Jacoby</h2>
 <p>It seems both Daves opted to <a href="https://metacpan.org/pod/Roman"><code>use Roman</code></a> this week! <a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/dave-jacoby/perl/ch-1.pl">Dave Jacoby&rsquo;s solution</a> defines a map of valid operators, and then starts converting:</p>
-
-<pre><code class="language-perl">use Roman;
-my %operators = map { $_ =&gt; 1 } qw{ + - / * };
-if ( scalar @ARGV &gt; 2 ) {
-    my ( $r1, $op, $r2 ) = @ARGV;
-    if ( !$operators{$op} ) {
-        say 'not an operator';
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> Roman;
+<span style="color:#66d9ef">my</span> %operators <span style="color:#f92672">=</span> map { $_ <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> } <span style="color:#e6db74">qw{ + - / * }</span>;
+<span style="color:#66d9ef">if</span> ( scalar @ARGV <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">2</span> ) {
+    <span style="color:#66d9ef">my</span> ( $r1, $op, $r2 ) <span style="color:#f92672">=</span> @ARGV;
+    <span style="color:#66d9ef">if</span> ( <span style="color:#f92672">!</span>$operators{$op} ) {
+        say <span style="color:#e6db74">&#39;not an operator&#39;</span>;
         exit;
     }
-    if ( !isroman($r1) ) { say qq{&quot;$r1&quot; is not a roman numeral}; exit; }
-    if ( !isroman($r2) ) { say qq{&quot;$r2&quot; is not a roman numeral}; exit; }
-    my $a1 = arabic($r1);
-    my $a2 = arabic($r2);
-    my $a3 = 0;
-    if ( $op eq '+' ) { $a3 =  $a1 + $a2 }
-    if ( $op eq '-' ) { $a3 =  $a1 - $a2 }
-    if ( $op eq '*' ) { $a3 =  $a1 * $a2 }
-    if ( $op eq '/' ) { $a3 =  $a1 / $a2 }
-    my $r3 = uc roman($a3);
-    say qq{ $r1 $op $r2 = $r3 };
+    <span style="color:#66d9ef">if</span> ( <span style="color:#f92672">!</span>isroman($r1) ) { say <span style="color:#e6db74">qq{&#34;$r1&#34; is not a roman numeral}</span>; exit; }
+    <span style="color:#66d9ef">if</span> ( <span style="color:#f92672">!</span>isroman($r2) ) { say <span style="color:#e6db74">qq{&#34;$r2&#34; is not a roman numeral}</span>; exit; }
+    <span style="color:#66d9ef">my</span> $a1 <span style="color:#f92672">=</span> arabic($r1);
+    <span style="color:#66d9ef">my</span> $a2 <span style="color:#f92672">=</span> arabic($r2);
+    <span style="color:#66d9ef">my</span> $a3 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">if</span> ( $op <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;+&#39;</span> ) { $a3 <span style="color:#f92672">=</span>  $a1 <span style="color:#f92672">+</span> $a2 }
+    <span style="color:#66d9ef">if</span> ( $op <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;-&#39;</span> ) { $a3 <span style="color:#f92672">=</span>  $a1 <span style="color:#f92672">-</span> $a2 }
+    <span style="color:#66d9ef">if</span> ( $op <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;*&#39;</span> ) { $a3 <span style="color:#f92672">=</span>  $a1 <span style="color:#f92672">*</span> $a2 }
+    <span style="color:#66d9ef">if</span> ( $op <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;/&#39;</span> ) { $a3 <span style="color:#f92672">=</span>  $a1 <span style="color:#f92672">/</span> $a2 }
+    <span style="color:#66d9ef">my</span> $r3 <span style="color:#f92672">=</span> uc roman($a3);
+    say <span style="color:#e6db74">qq{ $r1 $op $r2 = $r3 }</span>;
 }
-else { say 'We need an operator and two roman numbers' }
-</code></pre>
-
-<p><strong>Blog</strong> › <a href="https://jacoby.github.io/2020/02/12/counting-from-100-is-the-fun-part.html">Counting from 100 is the Fun Part</a></p>
-
+<span style="color:#66d9ef">else</span> { say <span style="color:#e6db74">&#39;We need an operator and two roman numbers&#39;</span> }
+</code></pre></div><p><strong>Blog</strong> › <a href="https://jacoby.github.io/2020/02/12/counting-from-100-is-the-fun-part.html">Counting from 100 is the Fun Part</a></p>
 <h2 id="duane-powell1">Duane Powell</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/duane-powell/perl/ch-1.pl">Duane Powell&rsquo;s solution</a> defines <code>arabic</code> and <code>roman</code> functions to convert between Arabic and Roman numbers. <code>roman</code> is essentially an <code>if</code> chain in a <code>while</code> loop to greedily build the Roman number from the largest to smallest digits, shown here, in part:</p>
-
-<pre><code class="language-perl">sub roman {
-    my $arabic = shift;
-    $arabic = int($arabic);
-    my $roman = '';
-    while ($arabic &gt; 0) {
-        if ($arabic &gt;= 1000) {
-            $roman .= $roman{1000};
-            $arabic -= 1000;
-            next;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">roman</span> {
+    <span style="color:#66d9ef">my</span> $arabic <span style="color:#f92672">=</span> shift;
+    $arabic <span style="color:#f92672">=</span> int($arabic);
+    <span style="color:#66d9ef">my</span> $roman <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
+    <span style="color:#66d9ef">while</span> ($arabic <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
+        <span style="color:#66d9ef">if</span> ($arabic <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">1000</span>) {
+            $roman <span style="color:#f92672">.=</span> $roman{<span style="color:#ae81ff">1000</span>};
+            $arabic <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1000</span>;
+            <span style="color:#66d9ef">next</span>;
         }
-        if ($arabic &gt;= 900) {
-            $roman .= $roman{900};
-            $arabic -= 900;
-            next;
+        <span style="color:#66d9ef">if</span> ($arabic <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">900</span>) {
+            $roman <span style="color:#f92672">.=</span> $roman{<span style="color:#ae81ff">900</span>};
+            $arabic <span style="color:#f92672">-=</span> <span style="color:#ae81ff">900</span>;
+            <span style="color:#66d9ef">next</span>;
         }
-        ...
-        if ($arabic &gt;= 1) {
-            $roman .= $roman{1};
-            $arabic -= 1;
-            next;
+        <span style="color:#f92672">...</span>
+        <span style="color:#66d9ef">if</span> ($arabic <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">1</span>) {
+            $roman <span style="color:#f92672">.=</span> $roman{<span style="color:#ae81ff">1</span>};
+            $arabic <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1</span>;
+            <span style="color:#66d9ef">next</span>;
         }
     }
-    return $roman;
+    <span style="color:#66d9ef">return</span> $roman;
 }
-</code></pre>
-
-<p>The <code>arabic</code> function <code>split</code>s the input Roman number, and then looks for patterns of numerals like <code>IX</code> that need to be considered together, before considering numerals individually:</p>
-
-<pre><code class="language-perl">sub arabic {
-    my @roman = split(//, uc(shift));
-    my ($arabic, $next, $error, $min) = (0, '', '', 1000);
-    while (scalar @roman and not $error) {
-        # Check for matching pair of Roman numerals, eg 'IV'
-        if (scalar @roman &gt; 1) {
-            $next = $roman[0].$roman[1];
-            if ( defined($arabic{$next}) ) {
-                $arabic += $arabic{$next};
-                $error = &quot;Roman numeral out of sequence at $next&quot; if ($arabic{$next} &gt; $min);
-                $min = $arabic{$next};
+</code></pre></div><p>The <code>arabic</code> function <code>split</code>s the input Roman number, and then looks for patterns of numerals like <code>IX</code> that need to be considered together, before considering numerals individually:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">arabic</span> {
+    <span style="color:#66d9ef">my</span> @roman <span style="color:#f92672">=</span> split(<span style="color:#e6db74">//</span>, uc(shift));
+    <span style="color:#66d9ef">my</span> ($arabic, $next, $error, $min) <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>, <span style="color:#e6db74">&#39;&#39;</span>, <span style="color:#e6db74">&#39;&#39;</span>, <span style="color:#ae81ff">1000</span>);
+    <span style="color:#66d9ef">while</span> (scalar @roman <span style="color:#f92672">and</span> <span style="color:#f92672">not</span> $error) {
+        <span style="color:#75715e"># Check for matching pair of Roman numerals, eg &#39;IV&#39;</span>
+        <span style="color:#66d9ef">if</span> (scalar @roman <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>) {
+            $next <span style="color:#f92672">=</span> $roman[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>$roman[<span style="color:#ae81ff">1</span>];
+            <span style="color:#66d9ef">if</span> ( defined($arabic{$next}) ) {
+                $arabic <span style="color:#f92672">+=</span> $arabic{$next};
+                $error <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Roman numeral out of sequence at $next&#34;</span> <span style="color:#66d9ef">if</span> ($arabic{$next} <span style="color:#f92672">&gt;</span> $min);
+                $min <span style="color:#f92672">=</span> $arabic{$next};
                 shift @roman;
                 shift @roman;
-                next;
+                <span style="color:#66d9ef">next</span>;
              }
         }
-        # Pair not found, maybe there is one matching numeral, eg 'I'
-        if (scalar @roman &gt; 0) {
-            $next = $roman[0];
-            if ( defined($arabic{$next}) ) {
-                $arabic += $arabic{$next};
-                $error = &quot;Roman numeral out of sequence at $next&quot; if ($arabic{$next} &gt; $min);
-                $min = $arabic{$next};
+        <span style="color:#75715e"># Pair not found, maybe there is one matching numeral, eg &#39;I&#39;</span>
+        <span style="color:#66d9ef">if</span> (scalar @roman <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
+            $next <span style="color:#f92672">=</span> $roman[<span style="color:#ae81ff">0</span>];
+            <span style="color:#66d9ef">if</span> ( defined($arabic{$next}) ) {
+                $arabic <span style="color:#f92672">+=</span> $arabic{$next};
+                $error <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Roman numeral out of sequence at $next&#34;</span> <span style="color:#66d9ef">if</span> ($arabic{$next} <span style="color:#f92672">&gt;</span> $min);
+                $min <span style="color:#f92672">=</span> $arabic{$next};
                 shift @roman;
-                next;
+                <span style="color:#66d9ef">next</span>;
              }
-            else {
-                $error = &quot;Invalid Roman numeral at $next&quot;;
+            <span style="color:#66d9ef">else</span> {
+                $error <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Invalid Roman numeral at $next&#34;</span>;
             }
         }
     }
-    if ($error) {
+    <span style="color:#66d9ef">if</span> ($error) {
         say $error;
         exit;
     }
-    return $arabic;
+    <span style="color:#66d9ef">return</span> $arabic;
 }
-</code></pre>
-
-<p>The main logic is then simple:</p>
-
-<pre><code class="language-perl">my $n = arabic($r1);
-my $m = arabic($r2);
-my $a = eval &quot;$n $op $m&quot;;
-my $r = roman($a);
-say $r, &quot; (&quot;, $a, &quot;)&quot;;
-</code></pre>
-
-<h2 id="duncan-c-white1">Duncan C. White</h2>
-
+</code></pre></div><p>The main logic is then simple:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> arabic($r1);
+<span style="color:#66d9ef">my</span> $m <span style="color:#f92672">=</span> arabic($r2);
+<span style="color:#66d9ef">my</span> $a <span style="color:#f92672">=</span> eval <span style="color:#e6db74">&#34;$n $op $m&#34;</span>;
+<span style="color:#66d9ef">my</span> $r <span style="color:#f92672">=</span> roman($a);
+say $r, <span style="color:#e6db74">&#34; (&#34;</span>, $a, <span style="color:#e6db74">&#34;)&#34;</span>;
+</code></pre></div><h2 id="duncan-c-white1">Duncan C. White</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/duncan-c-white/perl/ch-1.pl">Duncan C. White&rsquo;s solution</a> uses <code>Roman</code> as well:</p>
-
-<pre><code class="language-perl">use Roman;
-die &quot;Usage: romancalc R1 OP R2    [R1 and R2 are Roman numerals or integers]\n&quot;.
-    &quot;or:    romancalc test\n&quot;
-    unless @ARGV==3 || (@ARGV==1 &amp;&amp; $ARGV[0] eq &quot;test&quot;);
-my( $r1, $op, $r2 ) = @ARGV;
-my $origr1 = $r1;
-my $origr2 = $r2;
-$r1 = fromroman($r1) if $r1 =~ /^[MCDLXVI]+$/;
-$r2 = fromroman($r2) if $r2 =~ /^[MCDLXVI]+$/;
-die &quot;romancalc: bad r1: $r1\n&quot; unless $r1 &gt; 1 &amp;&amp; $r1 &lt; 4000;
-die &quot;romancalc: bad r2: $r2\n&quot; unless $r2 &gt; 1 &amp;&amp; $r2 &lt; 4000;
-my $n = eval &quot;$r1 $op $r2&quot; || die &quot;romancalc: bad operator $op\n&quot;;
-$n = int($n);
-my $r = toroman($n);
-say &quot;result of $origr1 ($r1) $op $origr2 ($r2): $r ($n)&quot;;
-</code></pre>
-
-<h2 id="e-choroba1">E. Choroba</h2>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> Roman;
+die <span style="color:#e6db74">&#34;Usage: romancalc R1 OP R2    [R1 and R2 are Roman numerals or integers]\n&#34;</span><span style="color:#f92672">.</span>
+    <span style="color:#e6db74">&#34;or:    romancalc test\n&#34;</span>
+    <span style="color:#66d9ef">unless</span> @ARGV<span style="color:#f92672">==</span><span style="color:#ae81ff">3</span> <span style="color:#f92672">||</span> (@ARGV<span style="color:#f92672">==</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;&amp;</span> $ARGV[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#34;test&#34;</span>);
+<span style="color:#66d9ef">my</span>( $r1, $op, $r2 ) <span style="color:#f92672">=</span> @ARGV;
+<span style="color:#66d9ef">my</span> $origr1 <span style="color:#f92672">=</span> $r1;
+<span style="color:#66d9ef">my</span> $origr2 <span style="color:#f92672">=</span> $r2;
+$r1 <span style="color:#f92672">=</span> fromroman($r1) <span style="color:#66d9ef">if</span> $r1 <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^[MCDLXVI]+$/</span>;
+$r2 <span style="color:#f92672">=</span> fromroman($r2) <span style="color:#66d9ef">if</span> $r2 <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^[MCDLXVI]+$/</span>;
+die <span style="color:#e6db74">&#34;romancalc: bad r1: $r1\n&#34;</span> <span style="color:#66d9ef">unless</span> $r1 <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;&amp;</span> $r1 <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">4000</span>;
+die <span style="color:#e6db74">&#34;romancalc: bad r2: $r2\n&#34;</span> <span style="color:#66d9ef">unless</span> $r2 <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;&amp;</span> $r2 <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">4000</span>;
+<span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> eval <span style="color:#e6db74">&#34;$r1 $op $r2&#34;</span> <span style="color:#f92672">||</span> die <span style="color:#e6db74">&#34;romancalc: bad operator $op\n&#34;</span>;
+$n <span style="color:#f92672">=</span> int($n);
+<span style="color:#66d9ef">my</span> $r <span style="color:#f92672">=</span> toroman($n);
+say <span style="color:#e6db74">&#34;result of $origr1 ($r1) $op $origr2 ($r2): $r ($n)&#34;</span>;
+</code></pre></div><h2 id="e-choroba1">E. Choroba</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/e-choroba/perl/ch-1.pl">E. Choroba&rsquo;s solution</a> reuses his Roman/Arabic code from Week 10, adding a dispatch table to handle the arithmetic:</p>
-
-<pre><code class="language-perl">use lib '.';
-use MyRoman qw{ to_roman from_roman }; # Extracted from PWC010/1.
-my ($n1, $op, $n2) = @ARGV;
-my $function = { '+' =&gt; sub { $_[0] + $_[1] },
-                 '-' =&gt; sub { $_[0] - $_[1] },
-                 '*' =&gt; sub { $_[0] * $_[1] },
-                 '/' =&gt; sub { int($_[0] / $_[1]) }
-               }-&gt;{$op}
-    or die &quot;Unknown operator $op.&quot;;
-say to_roman($function-&gt;(map from_roman($_), $n1, $n2));
-</code></pre>
-
-<h2 id="jaldhar-h-vyas1">Jaldhar H. Vyas</h2>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> lib <span style="color:#e6db74">&#39;.&#39;</span>;
+<span style="color:#66d9ef">use</span> MyRoman <span style="color:#e6db74">qw{ to_roman from_roman }</span>; <span style="color:#75715e"># Extracted from PWC010/1.</span>
+<span style="color:#66d9ef">my</span> ($n1, $op, $n2) <span style="color:#f92672">=</span> @ARGV;
+<span style="color:#66d9ef">my</span> $function <span style="color:#f92672">=</span> { <span style="color:#e6db74">&#39;+&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { $_[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+</span> $_[<span style="color:#ae81ff">1</span>] },
+                 <span style="color:#e6db74">&#39;-&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { $_[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">-</span> $_[<span style="color:#ae81ff">1</span>] },
+                 <span style="color:#e6db74">&#39;*&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { $_[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">*</span> $_[<span style="color:#ae81ff">1</span>] },
+                 <span style="color:#e6db74">&#39;/&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { int($_[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">/</span> $_[<span style="color:#ae81ff">1</span>]) }
+               }<span style="color:#f92672">-&gt;</span>{$op}
+    <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;Unknown operator $op.&#34;</span>;
+say to_roman($function<span style="color:#f92672">-&gt;</span>(map from_roman($_), $n1, $n2));
+</code></pre></div><h2 id="jaldhar-h-vyas1">Jaldhar H. Vyas</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/jaldhar-h-vyas/perl/ch-1.pl">Jaldhar H. Vyas&rsquo;s solution</a> goes through a multi-step procedure whereby each Arabic number is converted naïvely to the simplest expression of Roman numerals. E.g, 4 would be <code>IIII</code>, and is then <code>normalize</code>d to <code>IV</code>. A similar process happens in the reverse order.</p>
-
 <p>There is also a <code>reorder</code> function that puts the numerals in their proper order, just before the <code>normalize</code> step:</p>
-
-<pre><code class="language-perl">sub reorder {
-    my ($num) = @_;
-    my %order = (
-        'M' =&gt; 0, 'D' =&gt; 1, 'C' =&gt; 2, 'L' =&gt; 3, 'X' =&gt; 4, 'V' =&gt; 5, 'I' =&gt; 6
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">reorder</span> {
+    <span style="color:#66d9ef">my</span> ($num) <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">my</span> %order <span style="color:#f92672">=</span> (
+        <span style="color:#e6db74">&#39;M&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">0</span>, <span style="color:#e6db74">&#39;D&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;C&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>, <span style="color:#e6db74">&#39;L&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>, <span style="color:#e6db74">&#39;X&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">4</span>, <span style="color:#e6db74">&#39;V&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5</span>, <span style="color:#e6db74">&#39;I&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">6</span>
     );
-    return join q{}, sort { $order{$a} &lt;=&gt; $order{$b} } split //, $num;
+    <span style="color:#66d9ef">return</span> join <span style="color:#e6db74">q{}</span>, sort { $order{$a} <span style="color:#e6db74">&lt;=&gt;</span> $order{$b} } split <span style="color:#e6db74">//</span>, $num;
 }
 
-sub normalize {
-    my ($num) = @_;
-    my @from = qw/ IIIII IIII VV VIV XXXXX XXXX LL LXL CCCCC CCCC DD DCD /;
-    my @to =   qw/ V     IV   X  IX  L     XL   C  XC  D     CD   M  CM  /;
-    for my $i (0 .. scalar @from - 1) {
-        $num =~ s/$from[$i]/$to[$i]/g;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">normalize</span> {
+    <span style="color:#66d9ef">my</span> ($num) <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">my</span> @from <span style="color:#f92672">=</span> <span style="color:#e6db74">qw/ IIIII IIII VV VIV XXXXX XXXX LL LXL CCCCC CCCC DD DCD /</span>;
+    <span style="color:#66d9ef">my</span> @to <span style="color:#f92672">=</span>   <span style="color:#e6db74">qw/ V     IV   X  IX  L     XL   C  XC  D     CD   M  CM  /</span>;
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> scalar @from <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) {
+        $num <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/$from[$i]/$to[$i]/g</span>;
     }
-    return $num;
+    <span style="color:#66d9ef">return</span> $num;
 }
-</code></pre>
-
-<p>The main logic supports addition and subtraction. Pay close attention to how these operations are implemented:</p>
-
-<pre><code class="language-perl">my ($num1, $op, $num2) = @ARGV;
-if ($op eq '+') {
-    say normalize(reorder(unprefix($num1) . unprefix($num2)));
-} elsif ($op eq '-') {
-    my $un1 = unprefix($num1);
-    my $un2 = unprefix($num2);
-    while (length $un2) {
-        ($un1, $un2) = expandLargest(removeCommon($un1, $un2));
+</code></pre></div><p>The main logic supports addition and subtraction. Pay close attention to how these operations are implemented:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> ($num1, $op, $num2) <span style="color:#f92672">=</span> @ARGV;
+<span style="color:#66d9ef">if</span> ($op <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;+&#39;</span>) {
+    say normalize(reorder(unprefix($num1) <span style="color:#f92672">.</span> unprefix($num2)));
+} <span style="color:#66d9ef">elsif</span> ($op <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;-&#39;</span>) {
+    <span style="color:#66d9ef">my</span> $un1 <span style="color:#f92672">=</span> unprefix($num1);
+    <span style="color:#66d9ef">my</span> $un2 <span style="color:#f92672">=</span> unprefix($num2);
+    <span style="color:#66d9ef">while</span> (length $un2) {
+        ($un1, $un2) <span style="color:#f92672">=</span> expandLargest(removeCommon($un1, $un2));
     }
     say normalize($un1);
-} else {
+} <span style="color:#66d9ef">else</span> {
     usage();
 }
-</code></pre>
-
-<p>And now we see the reason Jaldhar needed those &ldquo;extra&rdquo; subroutines: he never converts the numbers to Arabic at all! For example, the addition operator simply expands and concatenates the Roman numbers, and then normalizes them again so the answer is in proper Roman format. I like this approach a lot.</p>
-
+</code></pre></div><p>And now we see the reason Jaldhar needed those &ldquo;extra&rdquo; subroutines: he never converts the numbers to Arabic at all! For example, the addition operator simply expands and concatenates the Roman numbers, and then normalizes them again so the answer is in proper Roman format. I like this approach a lot.</p>
 <h2 id="javier-luque1">Javier Luque</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/javier-luque/perl/ch-1.pl">Javier Luque&rsquo;s solution</a> uses <a href="https://metacpan.org/pod/Number::Convert::Roman"><code>Number::Convert::Roman</code></a> to do the conversion, so the code is relatively short:</p>
-
-<pre><code class="language-perl">use Number::Convert::Roman;
-my $input_string = join ' ', @ARGV;
-my $c = Number::Convert::Roman-&gt;new;
-my %operations = (
-    '+' =&gt; sub {return ($c-&gt;arabic($_[0]) + $c-&gt;arabic($_[1]))},
-    '-' =&gt; sub {return ($c-&gt;arabic($_[0]) - $c-&gt;arabic($_[1]))},
-    'x' =&gt; sub {return ($c-&gt;arabic($_[0]) * $c-&gt;arabic($_[1]))},
-    '/' =&gt; sub {return ($c-&gt;arabic($_[0]) / $c-&gt;arabic($_[1]))},
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> Number::Convert::Roman;
+<span style="color:#66d9ef">my</span> $input_string <span style="color:#f92672">=</span> join <span style="color:#e6db74">&#39; &#39;</span>, @ARGV;
+<span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> Number::Convert::Roman<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
+<span style="color:#66d9ef">my</span> %operations <span style="color:#f92672">=</span> (
+    <span style="color:#e6db74">&#39;+&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> {<span style="color:#66d9ef">return</span> ($c<span style="color:#f92672">-&gt;</span>arabic($_[<span style="color:#ae81ff">0</span>]) <span style="color:#f92672">+</span> $c<span style="color:#f92672">-&gt;</span>arabic($_[<span style="color:#ae81ff">1</span>]))},
+    <span style="color:#e6db74">&#39;-&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> {<span style="color:#66d9ef">return</span> ($c<span style="color:#f92672">-&gt;</span>arabic($_[<span style="color:#ae81ff">0</span>]) <span style="color:#f92672">-</span> $c<span style="color:#f92672">-&gt;</span>arabic($_[<span style="color:#ae81ff">1</span>]))},
+    <span style="color:#e6db74">&#39;x&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> {<span style="color:#66d9ef">return</span> ($c<span style="color:#f92672">-&gt;</span>arabic($_[<span style="color:#ae81ff">0</span>]) <span style="color:#f92672">*</span> $c<span style="color:#f92672">-&gt;</span>arabic($_[<span style="color:#ae81ff">1</span>]))},
+    <span style="color:#e6db74">&#39;/&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> {<span style="color:#66d9ef">return</span> ($c<span style="color:#f92672">-&gt;</span>arabic($_[<span style="color:#ae81ff">0</span>]) <span style="color:#f92672">/</span> $c<span style="color:#f92672">-&gt;</span>arabic($_[<span style="color:#ae81ff">1</span>]))},
 );
-if ($input_string =~ /^(\w+)\s*([\+\-x\/])\s*(\w+)$/) {
-    say $c-&gt;roman(int($operations{$2}-&gt;($1, $3)));
-} else {
-    say &quot;Invalid input&quot;;
+<span style="color:#66d9ef">if</span> ($input_string <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^(\w+)\s*([\+\-x\/])\s*(\w+)$/</span>) {
+    say $c<span style="color:#f92672">-&gt;</span>roman(int($operations{$2}<span style="color:#f92672">-&gt;</span>($1, $3)));
+} <span style="color:#66d9ef">else</span> {
+    say <span style="color:#e6db74">&#34;Invalid input&#34;</span>;
 }
-</code></pre>
-
-<p>Javier uses a dispatch table in <code>%operations</code> for simple yet extensible code, and the <code>$input_string</code> regexp serves to help parse and validate the input.</p>
-
+</code></pre></div><p>Javier uses a dispatch table in <code>%operations</code> for simple yet extensible code, and the <code>$input_string</code> regexp serves to help parse and validate the input.</p>
 <p><strong>Blog</strong> › <a href="https://perlchallenges.wordpress.com/2020/02/10/perl-weekly-challenge-047/">047 – Perl Weekly Challenge</a></p>
-
 <h2 id="laurent-rosenfeld1">Laurent Rosenfeld</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/laurent-rosenfeld/perl/ch-1.pl">Laurent Rosenfeld&rsquo;s solution</a> also re-uses his <code>from_roman</code> and <code>to_roman</code> subroutines from Week 10. However, I would like to highlight his <code>from_roman</code> subroutine in particular, as it uses a less common algorithm:</p>
-
-<pre><code class="language-perl">my %rom_tab = (I =&gt; 1,  V =&gt; 5, X =&gt; 10, L =&gt; 50, C =&gt; 100, D =&gt; 500, M =&gt; 1000);
-sub from_roman {
-    my $roman = uc shift;
-    my $numeric = 0;
-    my $prev_letter = &quot;M&quot;;
-    for my $letter (split //, $roman) {
-        $numeric -= 2 * $rom_tab{$prev_letter}
-            if $rom_tab{$letter} &gt; $rom_tab{$prev_letter};
-        $numeric += $rom_tab{$letter};
-        $prev_letter = $letter;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> %rom_tab <span style="color:#f92672">=</span> (I <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>,  V <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5</span>, X <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">10</span>, L <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">50</span>, C <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">100</span>, D <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">500</span>, M <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1000</span>);
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">from_roman</span> {
+    <span style="color:#66d9ef">my</span> $roman <span style="color:#f92672">=</span> uc shift;
+    <span style="color:#66d9ef">my</span> $numeric <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">my</span> $prev_letter <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;M&#34;</span>;
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $letter (split <span style="color:#e6db74">//</span>, $roman) {
+        $numeric <span style="color:#f92672">-=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $rom_tab{$prev_letter}
+            <span style="color:#66d9ef">if</span> $rom_tab{$letter} <span style="color:#f92672">&gt;</span> $rom_tab{$prev_letter};
+        $numeric <span style="color:#f92672">+=</span> $rom_tab{$letter};
+        $prev_letter <span style="color:#f92672">=</span> $letter;
     }
-    return $numeric;
+    <span style="color:#66d9ef">return</span> $numeric;
 }
-</code></pre>
-
-<p>Since Roman numbers are additive (i.e., you simply add the values of each numeral) <em>unless</em> the following numeral is greater than the current one (e.g., <code>IV</code>: <code>I</code> (1) is less than <code>V</code> (5)), in which case that relationship is a subtractive one.</p>
-
+</code></pre></div><p>Since Roman numbers are additive (i.e., you simply add the values of each numeral) <em>unless</em> the following numeral is greater than the current one (e.g., <code>IV</code>: <code>I</code> (1) is less than <code>V</code> (5)), in which case that relationship is a subtractive one.</p>
 <p>What Laurent does here, when building up the answer in <code>$numeric</code>, is to <em>always</em> add the numbers, <em>and</em> if <code>$letter</code> is greater than the <code>$prev_letter</code>, subtract it twice, to make up for the addition.</p>
-
 <p>Laurent&rsquo;s main logic is similarly concise:</p>
-
-<pre><code class="language-perl">my @input;
-for (@ARGV) {
-    push @input, $_ if /[-+*\/]/;
-    push @input, from_roman $_ if /[ivxlcdm]+/i;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @input;
+<span style="color:#66d9ef">for</span> (@ARGV) {
+    push @input, $_ <span style="color:#66d9ef">if</span> <span style="color:#e6db74">/[-+*\/]/</span>;
+    push @input, from_roman $_ <span style="color:#66d9ef">if</span> <span style="color:#e6db74">/[ivxlcdm]+/i</span>;
 }
-die &quot;Need at least three parameters&quot; if @input &lt; 3; # we need at least 1 operator and two operands
-my $result = eval join ' ', @input;
-say &quot;@ARGV = &quot;, to_roman $result;
-</code></pre>
-
-<p><strong>Blog</strong> › <a href="http://blogs.perl.org/users/laurent_r/2020/02/perl-weekly-challenge-47-roman-calculator-and-gapful-numbers.html">Roman Calculator and Gapful Numbers</a></p>
-
+die <span style="color:#e6db74">&#34;Need at least three parameters&#34;</span> <span style="color:#66d9ef">if</span> @input <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">3</span>; <span style="color:#75715e"># we need at least 1 operator and two operands</span>
+<span style="color:#66d9ef">my</span> $result <span style="color:#f92672">=</span> eval join <span style="color:#e6db74">&#39; &#39;</span>, @input;
+say <span style="color:#e6db74">&#34;@ARGV = &#34;</span>, to_roman $result;
+</code></pre></div><p><strong>Blog</strong> › <a href="http://blogs.perl.org/users/laurent_r/2020/02/perl-weekly-challenge-47-roman-calculator-and-gapful-numbers.html">Roman Calculator and Gapful Numbers</a></p>
 <h2 id="lubos-kolouch1">Lubos Kolouch</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/lubos-kolouch/perl/ch-1.pl">Lubos Kolouch&rsquo;s solution</a> also uses <code>Roman</code>. Lubos has a <code>roman_magic</code> sub that does the, well, <em>magic</em> step of taking two Roman numbers and an operator, and returning the result in Roman form:</p>
-
-<pre><code class="language-perl">use Roman;
-sub roman_magic {
-    my ($v1, $op, $v2) = @_;
-    my $rom_v1 = arabic($v1);
-    my $rom_v2 = arabic($v2);
-    return uc(roman(eval &quot;$rom_v1 $op $rom_v2&quot;))
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> Roman;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">roman_magic</span> {
+    <span style="color:#66d9ef">my</span> ($v1, $op, $v2) <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">my</span> $rom_v1 <span style="color:#f92672">=</span> arabic($v1);
+    <span style="color:#66d9ef">my</span> $rom_v2 <span style="color:#f92672">=</span> arabic($v2);
+    <span style="color:#66d9ef">return</span> uc(roman(eval <span style="color:#e6db74">&#34;$rom_v1 $op $rom_v2&#34;</span>))
 }
-</code></pre>
-
-<p>His main code is then, simply:</p>
-
-<pre><code class="language-perl">my ($v1, $op, $v2) = @ARGV;
-print roman_magic($v1, $op, $v2).&quot;\n&quot;;
-</code></pre>
-
-<h2 id="phillip-harris1">Phillip Harris</h2>
-
+</code></pre></div><p>His main code is then, simply:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> ($v1, $op, $v2) <span style="color:#f92672">=</span> @ARGV;
+<span style="color:#66d9ef">print</span> roman_magic($v1, $op, $v2)<span style="color:#f92672">.</span><span style="color:#e6db74">&#34;\n&#34;</span>;
+</code></pre></div><h2 id="phillip-harris1">Phillip Harris</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/phillip-harris/perl/ch-1.pl">Phillip Harris&rsquo;s solution</a> uses an <code>if ... elsif</code> chain to perform the desired arithmetic operation:</p>
-
-<pre><code class="language-perl">my $input = join( &quot; &quot;, @ARGV );
-if ( $input !~ /.*?([IVXLCDM]+)(.*?)([IVXLCDM]+)/ ) { die &quot;Invalid input&quot; }
-my $number1  = $1;
-my $operator = $2;
-my $number2  = $3;
-$operator =~ s/[^\+\-\*\/]//g;
-if ( $operator eq '+' ) {
-    print dec2rom( rom2dec($number1) + rom2dec($number2) );
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $input <span style="color:#f92672">=</span> join( <span style="color:#e6db74">&#34; &#34;</span>, @ARGV );
+<span style="color:#66d9ef">if</span> ( $input <span style="color:#f92672">!~</span> <span style="color:#e6db74">/.*?([IVXLCDM]+)(.*?)([IVXLCDM]+)/</span> ) { die <span style="color:#e6db74">&#34;Invalid input&#34;</span> }
+<span style="color:#66d9ef">my</span> $number1  <span style="color:#f92672">=</span> $1;
+<span style="color:#66d9ef">my</span> $operator <span style="color:#f92672">=</span> $2;
+<span style="color:#66d9ef">my</span> $number2  <span style="color:#f92672">=</span> $3;
+$operator <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/[^\+\-\*\/]//g</span>;
+<span style="color:#66d9ef">if</span> ( $operator <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;+&#39;</span> ) {
+    <span style="color:#66d9ef">print</span> dec2rom( rom2dec($number1) <span style="color:#f92672">+</span> rom2dec($number2) );
 }
-elsif ( $operator eq '-' ) {
-    print dec2rom( rom2dec($number1) - rom2dec($number2) );
+<span style="color:#66d9ef">elsif</span> ( $operator <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;-&#39;</span> ) {
+    <span style="color:#66d9ef">print</span> dec2rom( rom2dec($number1) <span style="color:#f92672">-</span> rom2dec($number2) );
 }
-elsif ( $operator eq '*' ) {
-    print dec2rom( rom2dec($number1) * rom2dec($number2) );
+<span style="color:#66d9ef">elsif</span> ( $operator <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;*&#39;</span> ) {
+    <span style="color:#66d9ef">print</span> dec2rom( rom2dec($number1) <span style="color:#f92672">*</span> rom2dec($number2) );
 }
-elsif ( $operator eq '/' ) {
-    print dec2rom( int( rom2dec($number1) / rom2dec($number2) + .5 ) );
+<span style="color:#66d9ef">elsif</span> ( $operator <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;/&#39;</span> ) {
+    <span style="color:#66d9ef">print</span> dec2rom( int( rom2dec($number1) <span style="color:#f92672">/</span> rom2dec($number2) <span style="color:#f92672">+</span> <span style="color:#ae81ff">.5</span> ) );
 }
-else { die &quot;Invalid operator&quot; }
-print &quot;\n&quot;;
-</code></pre>
-
-<p>Phillip&rsquo;s <code>dec2rom</code> and <code>rom2dec</code> subs do the heavy lifting. I&rsquo;d like to show the <code>dec2rom</code> sub:</p>
-
-<pre><code class="language-perl">sub dec2rom {
-    my @rdb = qw(I IV V IX X  XL L  XC C   CD  D   CM  M);
-    my @ddb = qw(1 4  5 9  10 40 50 90 100 400 500 900 1000);
-    my $dec = $_[0];
-    my $rom;
-    for ( my $x = $#ddb ; $x &gt;= 0 ; $x-- ) {
-        if ( $dec / $ddb[$x] &gt;= 1 ) {
-            $rom .= $rdb[$x] x int( $dec / $ddb[$x] );
-            $dec = $dec - ( $ddb[$x] * int( $dec / $ddb[$x] ) );
+<span style="color:#66d9ef">else</span> { die <span style="color:#e6db74">&#34;Invalid operator&#34;</span> }
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
+</code></pre></div><p>Phillip&rsquo;s <code>dec2rom</code> and <code>rom2dec</code> subs do the heavy lifting. I&rsquo;d like to show the <code>dec2rom</code> sub:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">dec2rom</span> {
+    <span style="color:#66d9ef">my</span> @rdb <span style="color:#f92672">=</span> <span style="color:#e6db74">qw(I IV V IX X  XL L  XC C   CD  D   CM  M)</span>;
+    <span style="color:#66d9ef">my</span> @ddb <span style="color:#f92672">=</span> <span style="color:#e6db74">qw(1 4  5 9  10 40 50 90 100 400 500 900 1000)</span>;
+    <span style="color:#66d9ef">my</span> $dec <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>];
+    <span style="color:#66d9ef">my</span> $rom;
+    <span style="color:#66d9ef">for</span> ( <span style="color:#66d9ef">my</span> $x <span style="color:#f92672">=</span> $#ddb ; $x <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> ; $x<span style="color:#f92672">--</span> ) {
+        <span style="color:#66d9ef">if</span> ( $dec <span style="color:#f92672">/</span> $ddb[$x] <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">1</span> ) {
+            $rom <span style="color:#f92672">.=</span> $rdb[$x] x int( $dec <span style="color:#f92672">/</span> $ddb[$x] );
+            $dec <span style="color:#f92672">=</span> $dec <span style="color:#f92672">-</span> ( $ddb[$x] <span style="color:#f92672">*</span> int( $dec <span style="color:#f92672">/</span> $ddb[$x] ) );
         }
     }
-    return $rom;
+    <span style="color:#66d9ef">return</span> $rom;
 }
-</code></pre>
-
-<p>Phillip&rsquo;s algorithm here is an efficient and concise variant of the subtraction method we&rsquo;ve seen before. Phillip realizes that once you have used a numeral (or subtractive group like <code>IV</code>), it can&rsquo;t appear again, so he checks for each of them in turn (from largest to smallest), subtracting from the input number while the output string is built up.</p>
-
+</code></pre></div><p>Phillip&rsquo;s algorithm here is an efficient and concise variant of the subtraction method we&rsquo;ve seen before. Phillip realizes that once you have used a numeral (or subtractive group like <code>IV</code>), it can&rsquo;t appear again, so he checks for each of them in turn (from largest to smallest), subtracting from the input number while the output string is built up.</p>
 <h2 id="ruben-westerberg1">Ruben Westerberg</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/ruben-westerberg/perl/ch-1.pl">Ruben Westerberg&rsquo;s solution</a> contains <code>romanToDecimal</code> and <code>decimalToRoman</code> subs. <code>romanToDecimal</code> is interesting:</p>
-
-<pre><code class="language-perl">sub romanToDecimal {
-    my %r=(M=&gt;1000, D=&gt;500, C=&gt;100, L=&gt;50, X=&gt;10, V=&gt;5, I=&gt;1);
-    my @c=split '', shift;
-    my $diff=0;
-    my $sum=0;
-    for (my $i=0; $i&lt;@c; $i++) {
-        if (($i+1) &lt; @c) {
-            if ($r{$c[$i+1]} &gt; $r{$c[$i]}) {
-                $diff=$r{$c[$i]};
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">romanToDecimal</span> {
+    <span style="color:#66d9ef">my</span> %r<span style="color:#f92672">=</span>(M<span style="color:#f92672">=&gt;</span><span style="color:#ae81ff">1000</span>, D<span style="color:#f92672">=&gt;</span><span style="color:#ae81ff">500</span>, C<span style="color:#f92672">=&gt;</span><span style="color:#ae81ff">100</span>, L<span style="color:#f92672">=&gt;</span><span style="color:#ae81ff">50</span>, X<span style="color:#f92672">=&gt;</span><span style="color:#ae81ff">10</span>, V<span style="color:#f92672">=&gt;</span><span style="color:#ae81ff">5</span>, I<span style="color:#f92672">=&gt;</span><span style="color:#ae81ff">1</span>);
+    <span style="color:#66d9ef">my</span> @c<span style="color:#f92672">=</span>split <span style="color:#e6db74">&#39;&#39;</span>, shift;
+    <span style="color:#66d9ef">my</span> $diff<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">my</span> $sum<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; $i<span style="color:#f92672">&lt;</span>@c; $i<span style="color:#f92672">++</span>) {
+        <span style="color:#66d9ef">if</span> (($i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">&lt;</span> @c) {
+            <span style="color:#66d9ef">if</span> ($r{$c[$i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]} <span style="color:#f92672">&gt;</span> $r{$c[$i]}) {
+                $diff<span style="color:#f92672">=</span>$r{$c[$i]};
             }
-            else {
-                $sum+= $r{$c[$i]} -$diff;
-                $diff=0;
+            <span style="color:#66d9ef">else</span> {
+                $sum<span style="color:#f92672">+=</span> $r{$c[$i]} <span style="color:#f92672">-</span>$diff;
+                $diff<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
             }
         }
-        else {
-            $sum+=$r{$c[$i]} -$diff;
+        <span style="color:#66d9ef">else</span> {
+            $sum<span style="color:#f92672">+=</span>$r{$c[$i]} <span style="color:#f92672">-</span>$diff;
         }
     }
-    return $sum;
+    <span style="color:#66d9ef">return</span> $sum;
 }
-</code></pre>
-
-<p>The input Roman number is <code>split</code> into a <code>@c</code> character array. Similar to Laruent&rsquo;s solution, above, Ruben looks at the current character and the next character. If the next character is greater, the current character is subtracted from it on the <em>next</em> iteration. Otherwise, <code>$diff</code> will be zero.</p>
-
+</code></pre></div><p>The input Roman number is <code>split</code> into a <code>@c</code> character array. Similar to Laruent&rsquo;s solution, above, Ruben looks at the current character and the next character. If the next character is greater, the current character is subtracted from it on the <em>next</em> iteration. Otherwise, <code>$diff</code> will be zero.</p>
 <p>The main logic uses <code>given ... when</code> to perform the correct operation:</p>
-
-<pre><code class="language-perl">use v5.26;
-no warnings qw&lt;experimental&gt;;
-my ($operand1,$operator, $operand2)=@ARGV;
-($operand1,$operand2)=map {
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.26</span>;
+<span style="color:#66d9ef">no</span> warnings <span style="color:#e6db74">qw&lt;experimental&gt;</span>;
+<span style="color:#66d9ef">my</span> ($operand1,$operator, $operand2)<span style="color:#f92672">=</span>@ARGV;
+($operand1,$operand2)<span style="color:#f92672">=</span>map {
     given ($_) {
-        romanToDecimal($_) when /[MDCLXVI]/;
-        $_ when /\d+/;
-        &quot;Not a digit or roman numeral&quot;;
+        romanToDecimal($_) when <span style="color:#e6db74">/[MDCLXVI]/</span>;
+        $_ when <span style="color:#e6db74">/\d+/</span>;
+        <span style="color:#e6db74">&#34;Not a digit or roman numeral&#34;</span>;
     }
 } ($operand1,$operand2);
-my $result = do {
+<span style="color:#66d9ef">my</span> $result <span style="color:#f92672">=</span> <span style="color:#66d9ef">do</span> {
     given ($operator) {
-        $operand1+$operand2 when /\+/;
-        $operand1-$operand2 when /\-/;
-        $operand1*$operand2 when /\*/;
-        int ($operand1/$operand2) when /\//;
-        &quot;Unkown&quot;;
+        $operand1<span style="color:#f92672">+</span>$operand2 when <span style="color:#e6db74">/\+/</span>;
+        $operand1<span style="color:#f92672">-</span>$operand2 when <span style="color:#e6db74">/\-/</span>;
+        $operand1<span style="color:#f92672">*</span>$operand2 when <span style="color:#e6db74">/\*/</span>;
+        int ($operand1<span style="color:#e6db74">/$operand2) when /</span><span style="color:#f92672">\</span><span style="color:#e6db74">//</span>;
+        <span style="color:#e6db74">&#34;Unkown&#34;</span>;
     }
 };
-print decimalToRoman($result);
-</code></pre>
-
-<h2 id="ryan-thompson1">Ryan Thompson</h2>
-
+<span style="color:#66d9ef">print</span> decimalToRoman($result);
+</code></pre></div><h2 id="ryan-thompson1">Ryan Thompson</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/ryan-thompson/perl/ch-1.pl">My solution</a> is partly re-used from some code I wrote years ago. After defining a <code>%rom</code> hash which maps every single and double character to its value (e.g., <code>I =&gt; 1, IV =&gt; 4, ...</code>), conversion is easy. (<code>@mor</code> is all the pairs in <code>%rom</code>, sorted in descending order of their value:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @mor <span style="color:#f92672">=</span> map { [ $rom{$_} <span style="color:#f92672">=&gt;</span> $_ ] } sort { $rom{$b} <span style="color:#e6db74">&lt;=&gt;</span> $rom{$a} } keys %rom;
 
-<pre><code class="language-perl">my @mor = map { [ $rom{$_} =&gt; $_ ] } sort { $rom{$b} &lt;=&gt; $rom{$a} } keys %rom;
-
-sub arabic_to_roman {
-    my $n = shift;
-    my $r = '';
-    while ($n) {
-        my ($val, $rom) = @{( first { $_-&gt;[0] &lt;= $n } @mor )};
-        $n -= $val;
-        $r .= $rom;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">arabic_to_roman</span> {
+    <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> shift;
+    <span style="color:#66d9ef">my</span> $r <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
+    <span style="color:#66d9ef">while</span> ($n) {
+        <span style="color:#66d9ef">my</span> ($val, $rom) <span style="color:#f92672">=</span> @{( first { $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&lt;=</span> $n } @mor )};
+        $n <span style="color:#f92672">-=</span> $val;
+        $r <span style="color:#f92672">.=</span> $rom;
     }
     $r;
 }
-</code></pre>
-
-<p>As you can see, the <code>$r</code> result is built by greedily subtracting the highest value possible, until the number, <code>$n</code> reaches zero. Since <code>@mor</code> contains pairs like <code>IV</code> and <code>XL</code>, it just works.</p>
-
+</code></pre></div><p>As you can see, the <code>$r</code> result is built by greedily subtracting the highest value possible, until the number, <code>$n</code> reaches zero. Since <code>@mor</code> contains pairs like <code>IV</code> and <code>XL</code>, it just works.</p>
 <p>Going the other way is even easier:</p>
-
-<pre><code class="language-perl">sub roman_to_arabic {
-    sum map { $rom{$_} } pop =~ /(I[VX]|X[LC]|C[DM]|[IVXLCDM])/g
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">roman_to_arabic</span> {
+    sum map { $rom{$_} } pop <span style="color:#f92672">=~</span><span style="color:#e6db74"> /(I[VX]|X[LC]|C[DM]|[IVXLCDM])/g</span>
 }
-</code></pre>
-
-<p>The regex pulls out any single numerals <em>and</em> also pulls out pairs, so it will sum the correct fragments of the string.</p>
-
+</code></pre></div><p>The regex pulls out any single numerals <em>and</em> also pulls out pairs, so it will sum the correct fragments of the string.</p>
 <p>My main logic uses string <code>eval</code> with some sanitization of the input, so it can handle arbitrary arithmetic expressions, not just a single operator:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">say roman_expr(join <span style="color:#e6db74">&#39; &#39;</span>, @ARGV) <span style="color:#f92672">and</span> exit <span style="color:#66d9ef">if</span> @ARGV;
 
-<pre><code class="language-perl">say roman_expr(join ' ', @ARGV) and exit if @ARGV;
-
-# Perform arbitrary expressions using Roman numerals
-sub roman_expr {
-    my $expr = shift;
-    $expr =~ s/\b([IVXLCDM]+)\b/roman_to_arabic($1)/eg;
-    die &quot;Invalid expression&quot; if $expr =~ m![^ 0-9+*%/()-]!;
+<span style="color:#75715e"># Perform arbitrary expressions using Roman numerals</span>
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">roman_expr</span> {
+    <span style="color:#66d9ef">my</span> $expr <span style="color:#f92672">=</span> shift;
+    $expr <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/\b([IVXLCDM]+)\b/roman_to_arabic($1)/eg</span>;
+    die <span style="color:#e6db74">&#34;Invalid expression&#34;</span> <span style="color:#66d9ef">if</span> $expr <span style="color:#f92672">=~</span> <span style="color:#e6db74">m![^ 0-9+*%/()-]!</span>;
     arabic_to_roman( eval $expr );
 }
-</code></pre>
-
-<p><strong>Blog</strong> › <a href="http://www.ry.ca/2020/02/roman-calculator/">Roman Calculator</a></p>
-
+</code></pre></div><p><strong>Blog</strong> › <a href="http://www.ry.ca/2020/02/roman-calculator/">Roman Calculator</a></p>
 <h2 id="saiftynet1">Saif Ahmed</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/saiftynet/perl/ch-1.pl">Saif Ahmed&rsquo;s solution</a>, as I&rsquo;ve come to expect, is comprehensive, and interesting. Saif went to some effort to support larger Roman numbers, which are typically depicted with an overline, which means &ldquo;multiply this digit by 1000&rdquo;. So, when I put <code>MCM * X</code> into Saif&rsquo;s prompt, it shows (roughly):</p>
-
 <pre><code>         _ _
 Answer = XMX
-</code></pre>
-
-<p>Saif uses the ANSI &ldquo;overline&rdquo; sequence <code>\e[0;53m</code>, so I can&rsquo;t show it exactly, here. You can turn this off in his script, and it&rsquo;s automatically disabled on Windows.</p>
-
+</code></pre><p>Saif uses the ANSI &ldquo;overline&rdquo; sequence <code>\e[0;53m</code>, so I can&rsquo;t show it exactly, here. You can turn this off in his script, and it&rsquo;s automatically disabled on Windows.</p>
 <p>Saif uses string <code>eval</code> to calculate the result after converting the Roman numbers to Arabic with the <code>arabic</code> sub:</p>
-
-<pre><code class="language-perl">our @converter=(
-   [900 ,&quot;CM&quot;],   [1000,&quot;M&quot; ], [400 ,&quot;CD&quot;],   [500 ,&quot;D&quot; ],
-   [90  ,&quot;XC&quot;],   [100 ,&quot;C&quot; ], [40  ,&quot;XL&quot;],   [50  ,&quot;L&quot; ],
-   [9   ,&quot;IX&quot;],   [10  ,&quot;X&quot; ], [4   ,&quot;IV&quot;],   [5   ,&quot;V&quot; ],
-   [1   ,&quot;I&quot; ],
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">our</span> @converter<span style="color:#f92672">=</span>(
+   [<span style="color:#ae81ff">900</span> ,<span style="color:#e6db74">&#34;CM&#34;</span>],   [<span style="color:#ae81ff">1000</span>,<span style="color:#e6db74">&#34;M&#34;</span> ], [<span style="color:#ae81ff">400</span> ,<span style="color:#e6db74">&#34;CD&#34;</span>],   [<span style="color:#ae81ff">500</span> ,<span style="color:#e6db74">&#34;D&#34;</span> ],
+   [<span style="color:#ae81ff">90</span>  ,<span style="color:#e6db74">&#34;XC&#34;</span>],   [<span style="color:#ae81ff">100</span> ,<span style="color:#e6db74">&#34;C&#34;</span> ], [<span style="color:#ae81ff">40</span>  ,<span style="color:#e6db74">&#34;XL&#34;</span>],   [<span style="color:#ae81ff">50</span>  ,<span style="color:#e6db74">&#34;L&#34;</span> ],
+   [<span style="color:#ae81ff">9</span>   ,<span style="color:#e6db74">&#34;IX&#34;</span>],   [<span style="color:#ae81ff">10</span>  ,<span style="color:#e6db74">&#34;X&#34;</span> ], [<span style="color:#ae81ff">4</span>   ,<span style="color:#e6db74">&#34;IV&#34;</span>],   [<span style="color:#ae81ff">5</span>   ,<span style="color:#e6db74">&#34;V&#34;</span> ],
+   [<span style="color:#ae81ff">1</span>   ,<span style="color:#e6db74">&#34;I&#34;</span> ],
 );
 
-sub arabic {
-    my $roman = shift;
-    return 0 if !$roman;
-    my $arabic = 0;
-    foreach my $conv (@converter) {
-        my $re = $$conv[1];
-        $arabic += $$conv[0] while $roman =~ s/$re//i;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">arabic</span> {
+    <span style="color:#66d9ef">my</span> $roman <span style="color:#f92672">=</span> shift;
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> <span style="color:#f92672">!</span>$roman;
+    <span style="color:#66d9ef">my</span> $arabic <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $conv (@converter) {
+        <span style="color:#66d9ef">my</span> $re <span style="color:#f92672">=</span> $$conv[<span style="color:#ae81ff">1</span>];
+        $arabic <span style="color:#f92672">+=</span> $$conv[<span style="color:#ae81ff">0</span>] <span style="color:#66d9ef">while</span> $roman <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/$re//i</span>;
     }
-    return $arabic;
+    <span style="color:#66d9ef">return</span> $arabic;
 }
-</code></pre>
-
-<p>This is a nicely compact implementation, taking the next highest pair <code>@converter</code> that matches the input string.</p>
-
+</code></pre></div><p>This is a nicely compact implementation, taking the next highest pair <code>@converter</code> that matches the input string.</p>
 <h2 id="user-person1">User Person</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/user-person/perl/ch-1.pl">User Person&rsquo;s solution</a> uses <code>Roman</code> to convert to and from Roman numbers. Here&rsquo;s the main logic:</p>
-
-<pre><code class="language-perl">print STDERR &quot;[Arabic number detected in input]\n&quot; if $argString =~ m{\d+};
-$argString =~ s{(\s*[-+*/%]\s*)}{ $1 }g;
-$argString =~ s{([MDCLXVI]+)}{arabic $1}ge;
-my $result = eval $argString;
-my $oldResult = $result;
-$result = int $result;
-my $decimal = $oldResult - $result;
-print STDERR &quot;Calculation result had a decimal $decimal that was truncated.\n&quot; if $decimal;
-if ( $result == 0) {
-    print &quot;N (no formal zero)\n&quot;; # https://en.wikipedia.org/wiki/Roman_numerals#Zero
-} elsif ($result &gt; 3_999) {
-    die &quot;Calculation result $result exceeds MMMCMXCIX (3,999) the maximum value of the Roman number format.\n&quot;;
-} elsif ($result &lt; 0) {
-    die &quot;Calculation result $result is negative. Roman numbers are positive integers.\n&quot;;
-} else {
-    $result = Roman(int $result);
-    print &quot;$result\n&quot;;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">print</span> STDERR <span style="color:#e6db74">&#34;[Arabic number detected in input]\n&#34;</span> <span style="color:#66d9ef">if</span> $argString <span style="color:#f92672">=~</span> <span style="color:#e6db74">m{\d+}</span>;
+$argString <span style="color:#f92672">=~</span> <span style="color:#e6db74">s{(\s*[-+*/%]\s*)}{ $1 }g</span>;
+$argString <span style="color:#f92672">=~</span> <span style="color:#e6db74">s{([MDCLXVI]+)}{arabic $1}ge</span>;
+<span style="color:#66d9ef">my</span> $result <span style="color:#f92672">=</span> eval $argString;
+<span style="color:#66d9ef">my</span> $oldResult <span style="color:#f92672">=</span> $result;
+$result <span style="color:#f92672">=</span> int $result;
+<span style="color:#66d9ef">my</span> $decimal <span style="color:#f92672">=</span> $oldResult <span style="color:#f92672">-</span> $result;
+<span style="color:#66d9ef">print</span> STDERR <span style="color:#e6db74">&#34;Calculation result had a decimal $decimal that was truncated.\n&#34;</span> <span style="color:#66d9ef">if</span> $decimal;
+<span style="color:#66d9ef">if</span> ( $result <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;N (no formal zero)\n&#34;</span>; <span style="color:#75715e"># https://en.wikipedia.org/wiki/Roman_numerals#Zero</span>
+} <span style="color:#66d9ef">elsif</span> ($result <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">3_999</span>) {
+    die <span style="color:#e6db74">&#34;Calculation result $result exceeds MMMCMXCIX (3,999) the maximum value of the Roman number format.\n&#34;</span>;
+} <span style="color:#66d9ef">elsif</span> ($result <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>) {
+    die <span style="color:#e6db74">&#34;Calculation result $result is negative. Roman numbers are positive integers.\n&#34;</span>;
+} <span style="color:#66d9ef">else</span> {
+    $result <span style="color:#f92672">=</span> Roman(int $result);
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$result\n&#34;</span>;
 }
-</code></pre>
-
-<p>The logic is quite comprehensive, even going so far as to disallow Arabic numbers in the input, even though <code>eval</code> would handle them. I respect User Person&rsquo;s strict adherence to the business logic!</p>
-
+</code></pre></div><p>The logic is quite comprehensive, even going so far as to disallow Arabic numbers in the input, even though <code>eval</code> would handle them. I respect User Person&rsquo;s strict adherence to the business logic!</p>
 <h2 id="wanderdoc1">Wanderdoc</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/wanderdoc/perl/ch-1.pl">Wanderdoc&rsquo;s solution</a> contains the comment that the code was <code>Way too cumbersome, I think.</code>. At 133 lines (~108 SLOC), it is lengthy, but I disagree with &ldquo;cumbersome,&rdquo; as it is written in a modular style with several short (5-10 line) subroutines that all serve a purpose.</p>
-
-<pre><code class="language-perl"># Some basic data.
-my %romans = (I =&gt; 1, V =&gt; 5, X =&gt; 10,
-              L =&gt; 50, C =&gt; 100, D =&gt; 500,
-              M =&gt; 1000);
-my %arabic = reverse %romans;
-my %expand = ('I~V' =&gt; 'I', 'V~X' =&gt; 'I', 'X~L' =&gt; 'X', 'L~C' =&gt; 'X', 'C~D' =&gt; 'C', 'D~M' =&gt; 'C',
-              'M~M'=&gt; 'M');
-my %before;
-for my $key ( sort { $romans{$expand{$a}} &lt;=&gt; $romans{$expand{$b}} } keys %expand ) {
-     my ($left, $right) = split(/~/, $key);
-     $before{ $right } = $expand{$key} if not exists $before{ $right };
-     $before{ $left }  = $expand{$key} if not exists $before{ $left };
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e"># Some basic data.</span>
+<span style="color:#66d9ef">my</span> %romans <span style="color:#f92672">=</span> (I <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>, V <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5</span>, X <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">10</span>,
+              L <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">50</span>, C <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">100</span>, D <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">500</span>,
+              M <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1000</span>);
+<span style="color:#66d9ef">my</span> %arabic <span style="color:#f92672">=</span> reverse %romans;
+<span style="color:#66d9ef">my</span> %expand <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#39;I~V&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;I&#39;</span>, <span style="color:#e6db74">&#39;V~X&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;I&#39;</span>, <span style="color:#e6db74">&#39;X~L&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;X&#39;</span>, <span style="color:#e6db74">&#39;L~C&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;X&#39;</span>, <span style="color:#e6db74">&#39;C~D&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;C&#39;</span>, <span style="color:#e6db74">&#39;D~M&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;C&#39;</span>,
+              <span style="color:#e6db74">&#39;M~M&#39;</span><span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;M&#39;</span>);
+<span style="color:#66d9ef">my</span> %before;
+<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $key ( sort { $romans{$expand{$a}} <span style="color:#e6db74">&lt;=&gt;</span> $romans{$expand{$b}} } keys %expand ) {
+     <span style="color:#66d9ef">my</span> ($left, $right) <span style="color:#f92672">=</span> split(<span style="color:#e6db74">/~/</span>, $key);
+     $before{ $right } <span style="color:#f92672">=</span> $expand{$key} <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> exists $before{ $right };
+     $before{ $left }  <span style="color:#f92672">=</span> $expand{$key} <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> exists $before{ $left };
 }
-</code></pre>
-
-<p>The data structures in Wanderdoc&rsquo;s solution were interesting. As you can see, the <code>%expand</code> hash contains the pairings of subtractive numerals, and maps them to the numerals that would follow them (e.g., <code>VX</code> would always come before <code>I</code>), which is helpful to Wanderdoc&rsquo;s subs.</p>
-
+</code></pre></div><p>The data structures in Wanderdoc&rsquo;s solution were interesting. As you can see, the <code>%expand</code> hash contains the pairings of subtractive numerals, and maps them to the numerals that would follow them (e.g., <code>VX</code> would always come before <code>I</code>), which is helpful to Wanderdoc&rsquo;s subs.</p>
 <p>Below is the main logic (I&rsquo;ve removed some input validation, for brevity). I respect Wanderdoc&rsquo;s willingness to credit others for techniques used. After all, re-use and sharing of code and ideas is what makes the whole field of computer science better overall.</p>
-
-<pre><code class="language-perl"># Roman numerals regex - e.g. here: https://stackoverflow.com/questions/267399
-my $rom_re = qr/^M{0,3}(?:C[MD]|D?C{0,3})(?:X[CL]|L?X{0,3})(?:I[XV]|V?I{0,3})$/;
-my $re_opr = qr#^(?:[+-/]|\*{1,2})$#;
-my ($op_1, $opr, $op_2) = @ARGV;
-# Dispatch table for calculations, learned from choroba.
-my %calc = (
-     '+' =&gt; sub { return $_[0] + $_[1]; },
-     '-' =&gt; sub { return $_[0] - $_[1]; },
-     '*' =&gt; sub { return $_[0] * $_[1]; },
-     '/' =&gt; sub { # Well, there is no 0 in Roman numerals :-)
-                  return &quot;ERROR: Division by zero!&quot; if 0 == $_[1];
-                  return int($_[0] / $_[1]); },
-     '**' =&gt; sub { return $_[0] ** $_[1]; },
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e"># Roman numerals regex - e.g. here: https://stackoverflow.com/questions/267399</span>
+<span style="color:#66d9ef">my</span> $rom_re <span style="color:#f92672">=</span> <span style="color:#e6db74">qr/^M{0,3}(?:C[MD]|D?C{0,3})(?:X[CL]|L?X{0,3})(?:I[XV]|V?I{0,3})$/</span>;
+<span style="color:#66d9ef">my</span> $re_opr <span style="color:#f92672">=</span> <span style="color:#e6db74">qr#^(?:[+-/]|\*{1,2})$#</span>;
+<span style="color:#66d9ef">my</span> ($op_1, $opr, $op_2) <span style="color:#f92672">=</span> @ARGV;
+<span style="color:#75715e"># Dispatch table for calculations, learned from choroba.</span>
+<span style="color:#66d9ef">my</span> %calc <span style="color:#f92672">=</span> (
+     <span style="color:#e6db74">&#39;+&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { <span style="color:#66d9ef">return</span> $_[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+</span> $_[<span style="color:#ae81ff">1</span>]; },
+     <span style="color:#e6db74">&#39;-&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { <span style="color:#66d9ef">return</span> $_[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">-</span> $_[<span style="color:#ae81ff">1</span>]; },
+     <span style="color:#e6db74">&#39;*&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { <span style="color:#66d9ef">return</span> $_[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">*</span> $_[<span style="color:#ae81ff">1</span>]; },
+     <span style="color:#e6db74">&#39;/&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { <span style="color:#75715e"># Well, there is no 0 in Roman numerals :-)</span>
+                  <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;ERROR: Division by zero!&#34;</span> <span style="color:#66d9ef">if</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">==</span> $_[<span style="color:#ae81ff">1</span>];
+                  <span style="color:#66d9ef">return</span> int($_[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">/</span> $_[<span style="color:#ae81ff">1</span>]); },
+     <span style="color:#e6db74">&#39;**&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { <span style="color:#66d9ef">return</span> $_[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">**</span> $_[<span style="color:#ae81ff">1</span>]; },
 );
-# Transformation, calculation and back-transformation.
-($op_1, $op_2) = map rom2int($_) , ($op_1, $op_2);
-my $result = $calc{$opr}-&gt;($op_1, $op_2);
-$result = int2rom($result);
-print $result, $/;
-</code></pre>
-
-<hr />
-
-<hr />
-
+<span style="color:#75715e"># Transformation, calculation and back-transformation.</span>
+($op_1, $op_2) <span style="color:#f92672">=</span> map rom2int($_) , ($op_1, $op_2);
+<span style="color:#66d9ef">my</span> $result <span style="color:#f92672">=</span> $calc{$opr}<span style="color:#f92672">-&gt;</span>($op_1, $op_2);
+$result <span style="color:#f92672">=</span> int2rom($result);
+<span style="color:#66d9ef">print</span> $result, $/;
+</code></pre></div><hr>
+<hr>
 <h1 id="task2">Task #2 - Gapful Numbers</h1>
-
 <p>The Gapful numbers are defined by <a href="https://oeis.org/A108343">OEIS sequence A108343</a></p>
-
 <p>This task had us write a script to print the first 20 Gapful numbers. Gapful numbers are numbers, 100 or greater, that are divisible by the concatenation of their first and last digits. So, for example, 100 is a gapful number because 100 is divisible by 10. 102 is not, because 102 is not divisible by 12.</p>
-
-<hr />
-
+<hr>
 <p>The solutions to this were considerably shorter than Task 1&rsquo;s solutions, so I&rsquo;ll be able to showcase more of the exceptional talent we have participating in this challenge.</p>
-
 <p>The solutions were all quite similar, as there are only a few reasonable ways to get the first and last digits of a number and check for divisibility. Still, there are a couple solutions you&rsquo;ll see that iterate in interesting ways.</p>
-
 <h2 id="alicia-bielsa2">Alicia Bielsa</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/alicia-bielsa/perl/ch-2.pl">Alicia Bielsa&rsquo;s solution</a> uses <code>split</code> to get the <code>$firstDigit</code> and <code>$lastDigit</code>, and then the modulo operator to test for divisibility:</p>
-
-<pre><code class="language-perl">my $totalGapfulNumbers = 20;
-my $totalGapfulNumbersFound = 0;
-my $currentNumber = 100;
-while ($totalGapfulNumbersFound &lt; $totalGapfulNumbers ) {
-    my ($firstDigit, $lastDigit ) = (split('',$currentNumber))[0, length($currentNumber)-1];
-    my $firstLastNumber = $firstDigit.$lastDigit;
-    if ($currentNumber % $firstLastNumber   == 0) {
-        print &quot;Gapful number found: $currentNumber\n&quot;;
-        $totalGapfulNumbersFound++;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $totalGapfulNumbers <span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span>;
+<span style="color:#66d9ef">my</span> $totalGapfulNumbersFound <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+<span style="color:#66d9ef">my</span> $currentNumber <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>;
+<span style="color:#66d9ef">while</span> ($totalGapfulNumbersFound <span style="color:#f92672">&lt;</span> $totalGapfulNumbers ) {
+    <span style="color:#66d9ef">my</span> ($firstDigit, $lastDigit ) <span style="color:#f92672">=</span> (split(<span style="color:#e6db74">&#39;&#39;</span>,$currentNumber))[<span style="color:#ae81ff">0</span>, length($currentNumber)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+    <span style="color:#66d9ef">my</span> $firstLastNumber <span style="color:#f92672">=</span> $firstDigit<span style="color:#f92672">.</span>$lastDigit;
+    <span style="color:#66d9ef">if</span> ($currentNumber % <span style="color:#960050;background-color:#1e0010">$</span>firstLastNumber   <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Gapful number found: $currentNumber\n&#34;</span>;
+        $totalGapfulNumbersFound<span style="color:#f92672">++</span>;
     }
-    $currentNumber++;
+    $currentNumber<span style="color:#f92672">++</span>;
 }
-</code></pre>
-
-<p>We will definitely be seeing this approach again!</p>
-
+</code></pre></div><p>We will definitely be seeing this approach again!</p>
 <h2 id="andrezgz2">Andrezgz</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/andrezgz/perl/ch-2.pl">Andrezgz&rsquo;s solution</a> uses <code>substr</code> to pull out the first and last characters:</p>
-
-<pre><code class="language-perl">use strict;
-use warnings;
-my $n = 99;
-my $gapfuls = 0;
-while ($gapfuls &lt; 20) {
-    print $n.$/ if ++$n % ( substr($n, 0, 1) . substr($n, -1) ) == 0 &amp;&amp; $gapfuls++;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> <span style="color:#ae81ff">99</span>;
+<span style="color:#66d9ef">my</span> $gapfuls <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+<span style="color:#66d9ef">while</span> ($gapfuls <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">20</span>) {
+    <span style="color:#66d9ef">print</span> $n<span style="color:#f92672">.</span>$/ <span style="color:#66d9ef">if</span> <span style="color:#f92672">++</span>$n % <span style="color:#960050;background-color:#1e0010">(</span> substr($n, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>) <span style="color:#f92672">.</span> substr($n, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) ) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> $gapfuls<span style="color:#f92672">++</span>;
 }
-</code></pre>
-
-<p>Note the negative index to <code>substr</code> means &ldquo;from the right&rdquo;, so -1 is the last character in the string. Perl&rsquo;s array indexing works the same way.</p>
-
+</code></pre></div><p>Note the negative index to <code>substr</code> means &ldquo;from the right&rdquo;, so -1 is the last character in the string. Perl&rsquo;s array indexing works the same way.</p>
 <h2 id="athanasius2">Athanasius</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/athanasius/perl/ch-2.pl">Athanasius&rsquo;s solution</a> uses <code>split</code> to get the first character, and <code>$num % 10</code> to get the last character, then checks divisibility with the modulo operator:</p>
-
-<pre><code class="language-perl">while ( $count &lt; $TARGET ) {
-    my $div = ( split //, $num )[0] * 10 + $num % 10;
-    if ( $num++ % $div == 0 ) {
-        push @gapfuls, $num - 1;
-        ++$count;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">while</span> ( $count <span style="color:#f92672">&lt;</span> $TARGET ) {
+    <span style="color:#66d9ef">my</span> $div <span style="color:#f92672">=</span> ( split <span style="color:#e6db74">//</span>, $num )[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">*</span> <span style="color:#ae81ff">10</span> <span style="color:#f92672">+</span> $num % 10;
+    <span style="color:#66d9ef">if</span> ( $num<span style="color:#f92672">++</span> % <span style="color:#960050;background-color:#1e0010">$</span>div <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> ) {
+        push @gapfuls, $num <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+        <span style="color:#f92672">++</span>$count;
     }
 }
-printf &quot;The first %d Gapful Numbers greater than or equal to %d are:\n%s\n&quot;,
-    $TARGET, $MINIMUM, join ', ', @gapfuls;
-</code></pre>
-
-<h2 id="cheok-yin-fung2">Cheok-Yin Fung</h2>
-
+printf <span style="color:#e6db74">&#34;The first %d Gapful Numbers greater than or equal to %d are:\n%s\n&#34;</span>,
+    $TARGET, $MINIMUM, join <span style="color:#e6db74">&#39;, &#39;</span>, @gapfuls;
+</code></pre></div><h2 id="cheok-yin-fung2">Cheok-Yin Fung</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/cheok-yin-fung/perl/ch-2.pl">Cheok-Yin Fung&rsquo;s solution</a> gets the first and last digits with integer arithmetic, with the following justification for the maximum length of the 20th gapful number:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e"># All integers with the pattern _ABAB_ is gapful(_AB_*101) and there are</span>
+<span style="color:#75715e"># 10*9/2 + 9 = 54 (A runs from 0 to 9, B runs from 0 to 9, 0000 is not counted)</span>
+<span style="color:#75715e"># such integers. In short, all 20 first &gt;= 100 gapful numbers are larger than</span>
+<span style="color:#75715e"># 99 and smaller than 9999.</span>
 
-<pre><code class="language-perl"># All integers with the pattern _ABAB_ is gapful(_AB_*101) and there are
-# 10*9/2 + 9 = 54 (A runs from 0 to 9, B runs from 0 to 9, 0000 is not counted)
-# such integers. In short, all 20 first &gt;= 100 gapful numbers are larger than
-# 99 and smaller than 9999.
-
-my $th;
-my $c = 0;
-for my $N (100..999) {
-    $th = 10 * int($N / 100) + ($N % 10);
-    if ($N % $th == 0) {$c++; print $c, &quot;. &quot;, $N , &quot;\n&quot;;}
-    if ($c==20) {exit;}
+<span style="color:#66d9ef">my</span> $th;
+<span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $N (<span style="color:#ae81ff">100</span><span style="color:#f92672">..</span><span style="color:#ae81ff">999</span>) {
+    $th <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span> <span style="color:#f92672">*</span> int($N <span style="color:#f92672">/</span> <span style="color:#ae81ff">100</span>) <span style="color:#f92672">+</span> ($N % 10);
+    <span style="color:#66d9ef">if</span> ($N % <span style="color:#960050;background-color:#1e0010">$</span>th <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {$c<span style="color:#f92672">++</span>; <span style="color:#66d9ef">print</span> $c, <span style="color:#e6db74">&#34;. &#34;</span>, $N , <span style="color:#e6db74">&#34;\n&#34;</span>;}
+    <span style="color:#66d9ef">if</span> ($c<span style="color:#f92672">==</span><span style="color:#ae81ff">20</span>) {exit;}
 }
-for my $N (1000..9999) {
-    $th = 10 * int($N / 1000) + ($N % 10);
-    if ($N % $th == 0) {$c++; print $c, &quot;. &quot;, $N , &quot;\n&quot;;}
-    if ($c==20) {exit;}
+<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $N (<span style="color:#ae81ff">1000</span><span style="color:#f92672">..</span><span style="color:#ae81ff">9999</span>) {
+    $th <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span> <span style="color:#f92672">*</span> int($N <span style="color:#f92672">/</span> <span style="color:#ae81ff">1000</span>) <span style="color:#f92672">+</span> ($N % 10);
+    <span style="color:#66d9ef">if</span> ($N % <span style="color:#960050;background-color:#1e0010">$</span>th <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {$c<span style="color:#f92672">++</span>; <span style="color:#66d9ef">print</span> $c, <span style="color:#e6db74">&#34;. &#34;</span>, $N , <span style="color:#e6db74">&#34;\n&#34;</span>;}
+    <span style="color:#66d9ef">if</span> ($c<span style="color:#f92672">==</span><span style="color:#ae81ff">20</span>) {exit;}
 }
-</code></pre>
-
-<h2 id="colin-crain2">Colin Crain</h2>
-
+</code></pre></div><h2 id="colin-crain2">Colin Crain</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/colin-crain/perl/ch-2.pl">Colin Crain&rsquo;s solution</a> uses <code>substr</code> to get the first and last digits:</p>
-
-<pre><code class="language-perl">my $testval = 99;
-my @output;
-while (scalar @output &lt; 20 &amp;&amp; $testval++ ) {
-    my $gap = substr( $testval, 0, 1 ) . substr( $testval, -1, 1 );
-    push @output, $testval if $testval % $gap == 0;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $testval <span style="color:#f92672">=</span> <span style="color:#ae81ff">99</span>;
+<span style="color:#66d9ef">my</span> @output;
+<span style="color:#66d9ef">while</span> (scalar @output <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">20</span> <span style="color:#f92672">&amp;&amp;</span> $testval<span style="color:#f92672">++</span> ) {
+    <span style="color:#66d9ef">my</span> $gap <span style="color:#f92672">=</span> substr( $testval, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span> ) <span style="color:#f92672">.</span> substr( $testval, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span> );
+    push @output, $testval <span style="color:#66d9ef">if</span> $testval % <span style="color:#960050;background-color:#1e0010">$</span>gap <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
 }
-say for @output;
-</code></pre>
-
-<h2 id="cristian-heredia2">Cristina Heredia</h2>
-
+say <span style="color:#66d9ef">for</span> @output;
+</code></pre></div><h2 id="cristian-heredia2">Cristina Heredia</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/cristian-heredia/perl/ch-2.pl">Cristina Heredia&rsquo;s solution</a>
 uses <code>split</code> to get the digits of the number:</p>
-
-<pre><code class="language-perl">my $max = 20;
-my $counter = 0;
-my @divided;
-my @solution;
-for (my $number = 100; $counter &lt; $max; $number++) {
-    my $newNumber;
-    @divided = split(/d?/, $number);
-    $newNumber = @divided[0].@divided[@divided-1];
-    if (($number % $newNumber) == 0) {
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $max <span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span>;
+<span style="color:#66d9ef">my</span> $counter <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+<span style="color:#66d9ef">my</span> @divided;
+<span style="color:#66d9ef">my</span> @solution;
+<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $number <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>; $counter <span style="color:#f92672">&lt;</span> $max; $number<span style="color:#f92672">++</span>) {
+    <span style="color:#66d9ef">my</span> $newNumber;
+    @divided <span style="color:#f92672">=</span> split(<span style="color:#e6db74">/d?/</span>, $number);
+    $newNumber <span style="color:#f92672">=</span> @divided[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>@divided[@divided<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+    <span style="color:#66d9ef">if</span> (($number % <span style="color:#960050;background-color:#1e0010">$</span>newNumber) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
         push(@solution, $number);
-        $counter++;
+        $counter<span style="color:#f92672">++</span>;
     }
 }
-print &quot;The first $max Gapful Numbers are:\n&quot;;
-for (my $i = 0; $i &lt; @solution; $i++) {
-    print &quot;@solution[$i]\n&quot;;
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;The first $max Gapful Numbers are:\n&#34;</span>;
+<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; $i <span style="color:#f92672">&lt;</span> @solution; $i<span style="color:#f92672">++</span>) {
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;@solution[$i]\n&#34;</span>;
 }
-</code></pre>
-
-<p>The <code>split /d?/, $number</code> works, but most likely does so in an unintended way: The regex matches zero or one literal <code>d</code> characters, so in this case (where no literal <code>d</code> characters are expected in the input), it will have the same effect as <code>split //</code>, which is to split on every character.</p>
-
+</code></pre></div><p>The <code>split /d?/, $number</code> works, but most likely does so in an unintended way: The regex matches zero or one literal <code>d</code> characters, so in this case (where no literal <code>d</code> characters are expected in the input), it will have the same effect as <code>split //</code>, which is to split on every character.</p>
 <p>I would also use <code>$solution[$i]</code> to reference a single array element instead of <code>@solution[$i]</code>.</p>
-
 <h2 id="dave-cross2">Dave Cross</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/dave-cross/perl/ch-2.pl">Dave Cross&rsquo;s solution</a> builds up an array of <code>@gapful</code> numbers, using a slice of <code>split</code> for the first and last characters:</p>
-
-<pre><code class="language-perl">my @gapful;
-$_ = 100;
-while (@gapful &lt; 20) {
-  push @gapful, $_ unless $_ % join '', (split //)[0, -1];
-  ++$_;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @gapful;
+$_ <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>;
+<span style="color:#66d9ef">while</span> (@gapful <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">20</span>) {
+  push @gapful, $_ <span style="color:#66d9ef">unless</span> $_ % join <span style="color:#e6db74">&#39;&#39;</span>, (split <span style="color:#e6db74">//</span>)[<span style="color:#ae81ff">0</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+  <span style="color:#f92672">++</span>$_;
 }
-say &quot;@gapful&quot;;
-</code></pre>
-
-<h2 id="dave-jacoby2">Dave Jacoby</h2>
-
+say <span style="color:#e6db74">&#34;@gapful&#34;</span>;
+</code></pre></div><h2 id="dave-jacoby2">Dave Jacoby</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/dave-jacoby/perl/ch-2.pl">Dave Jacoby&rsquo;s solution</a> showcases a few different methods of attacking this problem. The first is Dave&rsquo;s &ldquo;readable&rdquo; solution:</p>
-
-<pre><code class="language-perl">my @x;
-my $n = 100;
-while ( scalar @x &lt; 20 ) {
-    my @n = split //, $n;
-    my $i = join '', $n[0], $n[-1];
-    push @x, $n if $n % $i == 0;
-    $n++;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @x;
+<span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>;
+<span style="color:#66d9ef">while</span> ( scalar @x <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">20</span> ) {
+    <span style="color:#66d9ef">my</span> @n <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, $n;
+    <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> join <span style="color:#e6db74">&#39;&#39;</span>, $n[<span style="color:#ae81ff">0</span>], $n[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+    push @x, $n <span style="color:#66d9ef">if</span> $n % <span style="color:#960050;background-color:#1e0010">$</span>i <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+    $n<span style="color:#f92672">++</span>;
 }
-say join &quot;\n&quot;, @x;
-say '-' x 30;
-</code></pre>
-
-<p>Dave also included a &ldquo;way cool&rdquo; functional version:</p>
-
-<pre><code class="language-perl">say join &quot;\n&quot;, grep { state $c = 0; $c++ &lt; 20 }
-    grep { my $i = join '', substr( $_, 0, 1 ), substr( $_, -1 ); $_ % $i == 0 }100 .. 1000;
-</code></pre>
-
-<p>Dave, I agree, it&rsquo;s way cool.</p>
-
+say join <span style="color:#e6db74">&#34;\n&#34;</span>, @x;
+say <span style="color:#e6db74">&#39;-&#39;</span> x <span style="color:#ae81ff">30</span>;
+</code></pre></div><p>Dave also included a &ldquo;way cool&rdquo; functional version:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">say join <span style="color:#e6db74">&#34;\n&#34;</span>, grep { state $c <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; $c<span style="color:#f92672">++</span> <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">20</span> }
+    grep { <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> join <span style="color:#e6db74">&#39;&#39;</span>, substr( $_, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span> ), substr( $_, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> ); $_ % <span style="color:#960050;background-color:#1e0010">$</span>i <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> }<span style="color:#ae81ff">100</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">1000</span>;
+</code></pre></div><p>Dave, I agree, it&rsquo;s way cool.</p>
 <p>And finally, an iterator, which is a good fit for this problem:</p>
-
-<pre><code class="language-perl">my $next = make_iterator(100);
-while ( my $n = $next-&gt;() ) {
-    state $c = 0;
-    my $i =  my $i = join '', substr( $n, 0, 1 ), substr( $n, -1 );
-    if ( 0==$n%$i){
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $next <span style="color:#f92672">=</span> make_iterator(<span style="color:#ae81ff">100</span>);
+<span style="color:#66d9ef">while</span> ( <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> $next<span style="color:#f92672">-&gt;</span>() ) {
+    state $c <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span>  <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> join <span style="color:#e6db74">&#39;&#39;</span>, substr( $n, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span> ), substr( $n, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> );
+    <span style="color:#66d9ef">if</span> ( <span style="color:#ae81ff">0</span><span style="color:#f92672">==</span>$n%$i){
         say $n;
-        $c++;
+        $c<span style="color:#f92672">++</span>;
     }
-    last if $c &gt;19;
+    <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $c <span style="color:#f92672">&gt;</span><span style="color:#ae81ff">19</span>;
 }
 
-sub make_iterator ( $start ) {
-    return sub {
-        state $i = $start;
-        return $i++;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">make_iterator</span> ( $start ) {
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">sub</span> {
+        state $i <span style="color:#f92672">=</span> $start;
+        <span style="color:#66d9ef">return</span> $i<span style="color:#f92672">++</span>;
     }
 }
-</code></pre>
-
-<p><strong>Blog</strong> › <a href="https://jacoby.github.io/2020/02/12/counting-from-100-is-the-fun-part.html">Counting from 100 is the Fun Part</a></p>
-
+</code></pre></div><p><strong>Blog</strong> › <a href="https://jacoby.github.io/2020/02/12/counting-from-100-is-the-fun-part.html">Counting from 100 is the Fun Part</a></p>
 <h2 id="duane-powell2">Duane Powell</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/duane-powell/perl/ch-2.pl">Duane Powell&rsquo;s solution</a> uses <code>split</code> to get the first and last digits of a three-digit number, and concatenates them into <code>$x</code>. He then uses <code>int</code>eger division to check for divisibility:</p>
-
-<pre><code class="language-perl">my @gap;
-my $n = 100;
-while (scalar @gap &lt; 20) {
-    my ($a,undef,$b) = split(//,$n);
-    my $x = &quot;$a$b&quot;; # form new number by combining first and last digit of $n
-    push @gap, $n if ($n/$x == int($n/$x));
-    $n++;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @gap;
+<span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>;
+<span style="color:#66d9ef">while</span> (scalar @gap <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">20</span>) {
+    <span style="color:#66d9ef">my</span> ($a,undef,$b) <span style="color:#f92672">=</span> split(<span style="color:#e6db74">//</span>,$n);
+    <span style="color:#66d9ef">my</span> $x <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;$a$b&#34;</span>; <span style="color:#75715e"># form new number by combining first and last digit of $n</span>
+    push @gap, $n <span style="color:#66d9ef">if</span> ($n<span style="color:#e6db74">/$x == int($n/</span>$x));
+    $n<span style="color:#f92672">++</span>;
 }
-say join(',',@gap);
-</code></pre>
-
-<h2 id="duncan-c-white2">Duncan C. White</h2>
-
+say join(<span style="color:#e6db74">&#39;,&#39;</span>,@gap);
+</code></pre></div><h2 id="duncan-c-white2">Duncan C. White</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/duncan-c-white/perl/ch-2.pl">Duncan C. White&rsquo;s solution</a> uses a regex with captures to get the first and last digits, combines them arithmetically, and then returns the result of a modulo operation to test for divisibility:</p>
-
-<pre><code class="language-perl">use Function::Parameters;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> Function::Parameters;
 fun gapful( $i ) {
-    $i =~ /^(\d).*(\d)$/;    # find first and largest digits
-    my $div = 10*$1 + $2;
-    return $i % $div == 0 ? 1 : 0;
+    $i <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^(\d).*(\d)$/</span>;    <span style="color:#75715e"># find first and largest digits</span>
+    <span style="color:#66d9ef">my</span> $div <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span><span style="color:#f92672">*</span>$1 <span style="color:#f92672">+</span> $2;
+    <span style="color:#66d9ef">return</span> $i % <span style="color:#960050;background-color:#1e0010">$</span>div <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> ? <span style="color:#ae81ff">1</span> : <span style="color:#ae81ff">0</span>;
 }
-die &quot;Usage: ch-2.pl [FirstN]\n&quot; if @ARGV&gt;1;
-my $n = shift // 20;
-my $found = 0;
-for( my $i = 100; $found&lt;$n; $i++ ) {
-    next unless gapful( $i );
+die <span style="color:#e6db74">&#34;Usage: ch-2.pl [FirstN]\n&#34;</span> <span style="color:#66d9ef">if</span> @ARGV<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">1</span>;
+<span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> shift <span style="color:#e6db74">//</span> <span style="color:#ae81ff">20</span>;
+<span style="color:#66d9ef">my</span> $found <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+<span style="color:#66d9ef">for</span>( <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>; $found<span style="color:#f92672">&lt;</span>$n; $i<span style="color:#f92672">++</span> ) {
+    <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> gapful( $i );
     say $i;
-    $found++;
+    $found<span style="color:#f92672">++</span>;
 }
-</code></pre>
-
-<h2 id="e-choroba2">E. Choroba</h2>
-
+</code></pre></div><h2 id="e-choroba2">E. Choroba</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/e-choroba/perl/ch-2.pl">E. Choroba&rsquo;s solution</a> creates an iterator that returns the next gapful number, lazily:</p>
-
-<pre><code class="language-perl">sub gapful_iterator {
-    my ($n) = @_;
-    my $iterator = sub {
-        $n++ until 0 == $n % join &quot;&quot;, $n =~ /^(.)/, $n=~ /(.)$/;
-        $n++
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">gapful_iterator</span> {
+    <span style="color:#66d9ef">my</span> ($n) <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">my</span> $iterator <span style="color:#f92672">=</span> <span style="color:#66d9ef">sub</span> {
+        $n<span style="color:#f92672">++</span> <span style="color:#66d9ef">until</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">==</span> $n % join <span style="color:#e6db74">&#34;&#34;</span>, $n <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^(.)/</span>, $n<span style="color:#f92672">=~</span><span style="color:#e6db74"> /(.)$/</span>;
+        $n<span style="color:#f92672">++</span>
     };
 }
-my $iter = gapful_iterator(100);
-say $iter-&gt;() for 1 .. 20;
-</code></pre>
-
-<h2 id="jaldhar-h-vyas2">Jaldhar H. Vyas</h2>
-
+<span style="color:#66d9ef">my</span> $iter <span style="color:#f92672">=</span> gapful_iterator(<span style="color:#ae81ff">100</span>);
+say $iter<span style="color:#f92672">-&gt;</span>() <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">20</span>;
+</code></pre></div><h2 id="jaldhar-h-vyas2">Jaldhar H. Vyas</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/jaldhar-h-vyas/perl/ch-2.pl">Jaldhar H. Vyas&rsquo;s solution</a> uses <code>split</code> and modulo in a loop to build the list of <code>@gapfuls</code>:</p>
-
-<pre><code class="language-perl">my @gapfuls;
-my $number = 100;
-while (scalar @gapfuls != 20) {
-    my @digits = split //, $number;
-    my $divisor = join q{}, ($digits[0], $digits[-1]);
-    if ($number % $divisor == 0) {
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @gapfuls;
+<span style="color:#66d9ef">my</span> $number <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>;
+<span style="color:#66d9ef">while</span> (scalar @gapfuls <span style="color:#f92672">!=</span> <span style="color:#ae81ff">20</span>) {
+    <span style="color:#66d9ef">my</span> @digits <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, $number;
+    <span style="color:#66d9ef">my</span> $divisor <span style="color:#f92672">=</span> join <span style="color:#e6db74">q{}</span>, ($digits[<span style="color:#ae81ff">0</span>], $digits[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]);
+    <span style="color:#66d9ef">if</span> ($number % <span style="color:#960050;background-color:#1e0010">$</span>divisor <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
         push @gapfuls, $number;
     }
-    $number++;
+    $number<span style="color:#f92672">++</span>;
 }
-say join ', ', @gapfuls;
-</code></pre>
-
-<h2 id="javier-luque2">Javier Luque</h2>
-
+say join <span style="color:#e6db74">&#39;, &#39;</span>, @gapfuls;
+</code></pre></div><h2 id="javier-luque2">Javier Luque</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/javier-luque/perl/ch-2.pl">Javier Luque&rsquo;s solution</a> uses a capturing regex, concatenates the first and last digits, and then uses mod arithmetic:</p>
-
-<pre><code class="language-perl">my $n = 100;
-my $p = 0;
-while ($p &lt; 20) {
-    $n =~ /^(\d)\d*(\d)$/;
-    my $g_divisor = $1 . $2;
-    if ($n % $g_divisor == 0){
-        $p++;
-        say $n . ' / ' . $g_divisor . ' = ' .
-            ($n / $g_divisor);
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>;
+<span style="color:#66d9ef">my</span> $p <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+<span style="color:#66d9ef">while</span> ($p <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">20</span>) {
+    $n <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^(\d)\d*(\d)$/</span>;
+    <span style="color:#66d9ef">my</span> $g_divisor <span style="color:#f92672">=</span> $1 <span style="color:#f92672">.</span> $2;
+    <span style="color:#66d9ef">if</span> ($n % <span style="color:#960050;background-color:#1e0010">$</span>g_divisor <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>){
+        $p<span style="color:#f92672">++</span>;
+        say $n <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39; / &#39;</span> <span style="color:#f92672">.</span> $g_divisor <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39; = &#39;</span> <span style="color:#f92672">.</span>
+            ($n <span style="color:#f92672">/</span> $g_divisor);
     }
-    $n++;
+    $n<span style="color:#f92672">++</span>;
 }
-</code></pre>
-
-<p><strong>Blog</strong> › <a href="https://perlchallenges.wordpress.com/2020/02/10/perl-weekly-challenge-047/">047 – Perl Weekly Challenge</a></p>
-
+</code></pre></div><p><strong>Blog</strong> › <a href="https://perlchallenges.wordpress.com/2020/02/10/perl-weekly-challenge-047/">047 – Perl Weekly Challenge</a></p>
 <h2 id="laurent-rosenfeld2">Laurent Rosenfeld</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/laurent-rosenfeld/perl/ch-2.pl">Laurent Rosenfeld&rsquo;s solution</a> builds up a list of <code>@gapful</code> numbers with the help of a capturing regex and our best friend in this task, the modulo operator:</p>
-
-<pre><code class="language-perl">my @gapful = ();
-my $current = 100;
-do {
-    my ($start, $end) = $current =~ /^(\d)\d+(\d)$/;
-    push @gapful, $current unless $current % ($start . $end);
-    $current ++;
-} until $#gapful &gt;= 19;
-say &quot;@gapful&quot;;
-</code></pre>
-
-<p><strong>Blog</strong> › <a href="http://blogs.perl.org/users/laurent_r/2020/02/perl-weekly-challenge-47-roman-calculator-and-gapful-numbers.html">Roman Calculator and Gapful Numbers</a></p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @gapful <span style="color:#f92672">=</span> ();
+<span style="color:#66d9ef">my</span> $current <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>;
+<span style="color:#66d9ef">do</span> {
+    <span style="color:#66d9ef">my</span> ($start, $end) <span style="color:#f92672">=</span> $current <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^(\d)\d+(\d)$/</span>;
+    push @gapful, $current <span style="color:#66d9ef">unless</span> $current % <span style="color:#960050;background-color:#1e0010">($</span>start <span style="color:#f92672">.</span> $end);
+    $current <span style="color:#f92672">++</span>;
+} <span style="color:#66d9ef">until</span> $#gapful <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">19</span>;
+say <span style="color:#e6db74">&#34;@gapful&#34;</span>;
+</code></pre></div><p><strong>Blog</strong> › <a href="http://blogs.perl.org/users/laurent_r/2020/02/perl-weekly-challenge-47-roman-calculator-and-gapful-numbers.html">Roman Calculator and Gapful Numbers</a></p>
 <h2 id="lubos-kolouch2">Lubos Kolouch</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/lubos-kolouch/perl/ch-2.pl">Lubos Kolouch&rsquo;s solution</a> uses <code>substr</code> to get the first and third digits:</p>
-
-<pre><code class="language-perl">my $count = 0;
-for (100..10000) {
-    if ($_ % int(substr($_,0,1).substr($_,2,1)) == 0) {
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+<span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">100</span><span style="color:#f92672">..</span><span style="color:#ae81ff">10000</span>) {
+    <span style="color:#66d9ef">if</span> ($_ % int(substr($_,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span>substr($_,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>)) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
         say;
-        $count++;
-        last if $count == 20;
+        $count<span style="color:#f92672">++</span>;
+        <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $count <span style="color:#f92672">==</span> <span style="color:#ae81ff">20</span>;
     }
 }
-</code></pre>
-
-<p>Lubos&rsquo; loop goes to 10000, so <code>substr($_,2,1)</code> will not always return the last digit. Fortunately, the first 20 gapful numbers are all three digit numbers, so it works in this case.</p>
-
+</code></pre></div><p>Lubos&rsquo; loop goes to 10000, so <code>substr($_,2,1)</code> will not always return the last digit. Fortunately, the first 20 gapful numbers are all three digit numbers, so it works in this case.</p>
 <h2 id="mohammad-anwar2">Mohammad S Anwar</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/mohammad-anwar/perl/ch-2.pl">Mohammad S Anwar&rsquo;s solution</a> also works on three digit numbers, using <code>split</code>, and then <code>sprintf</code> to combine the first and third digits:</p>
-
-<pre><code class="language-perl">my $start = 99;
-my $count = 0;
-while ($count &lt;= 20) {
-    $start++;
-    my ($d1, $d2, $d3) = split //, $start;
-    my $divisor = sprintf(&quot;%d%d&quot;, $d1, $d3);
-    if ($start % $divisor != 0) {
-        next;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $start <span style="color:#f92672">=</span> <span style="color:#ae81ff">99</span>;
+<span style="color:#66d9ef">my</span> $count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+<span style="color:#66d9ef">while</span> ($count <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">20</span>) {
+    $start<span style="color:#f92672">++</span>;
+    <span style="color:#66d9ef">my</span> ($d1, $d2, $d3) <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, $start;
+    <span style="color:#66d9ef">my</span> $divisor <span style="color:#f92672">=</span> sprintf(<span style="color:#e6db74">&#34;%d%d&#34;</span>, $d1, $d3);
+    <span style="color:#66d9ef">if</span> ($start % <span style="color:#960050;background-color:#1e0010">$</span>divisor <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>) {
+        <span style="color:#66d9ef">next</span>;
     }
-    else {
-        $count++;
-        print sprintf(&quot;%d / %d\n&quot;, $start, $divisor);
+    <span style="color:#66d9ef">else</span> {
+        $count<span style="color:#f92672">++</span>;
+        <span style="color:#66d9ef">print</span> sprintf(<span style="color:#e6db74">&#34;%d / %d\n&#34;</span>, $start, $divisor);
     }
 }
-</code></pre>
-
-<h2 id="phillip-harris2">Phillip Harris</h2>
-
+</code></pre></div><h2 id="phillip-harris2">Phillip Harris</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/phillip-harris/perl/ch-2.pl">Phillip Harris&rsquo;s solution</a> uses
 <code>substr</code> with <code>0</code> and <code>-1</code> for indicies to get the first and last digits:</p>
-
-<pre><code class="language-perl">$x = 100;
-while ( $gaps &lt; 20 ) {
-    if ( $x % ( substr( $x, 0, 1 ) . substr( $x, -1 ) ) == 0 ) {
-        print &quot;$x\n&quot;;
-        $gaps++;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">$x <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>;
+<span style="color:#66d9ef">while</span> ( $gaps <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">20</span> ) {
+    <span style="color:#66d9ef">if</span> ( $x % <span style="color:#960050;background-color:#1e0010">(</span> substr( $x, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span> ) <span style="color:#f92672">.</span> substr( $x, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> ) ) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> ) {
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$x\n&#34;</span>;
+        $gaps<span style="color:#f92672">++</span>;
     }
-    $x++;
+    $x<span style="color:#f92672">++</span>;
 }
-</code></pre>
-
-<h2 id="ruben-westerberg2">Ruben Westerberg</h2>
-
+</code></pre></div><h2 id="ruben-westerberg2">Ruben Westerberg</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/ruben-westerberg/perl/ch-2.pl">Ruben Westerberg&rsquo;s solution</a> uses <code>split</code> and an array slice of the result to get the first and last digits:</p>
-
-<pre><code class="language-perl">my @gapful;
-while (@gapful &lt; 20) {
-    state $i=99;
-    push @gapful, $i unless ++$i % int join &quot;&quot;, do {my @a=split(&quot;&quot;,$i);@a[0,-1]};
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @gapful;
+<span style="color:#66d9ef">while</span> (@gapful <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">20</span>) {
+    state $i<span style="color:#f92672">=</span><span style="color:#ae81ff">99</span>;
+    push @gapful, $i <span style="color:#66d9ef">unless</span> <span style="color:#f92672">++</span>$i % int join <span style="color:#e6db74">&#34;&#34;</span>, <span style="color:#66d9ef">do</span> {<span style="color:#66d9ef">my</span> @a<span style="color:#f92672">=</span>split(<span style="color:#e6db74">&#34;&#34;</span>,$i);@a[<span style="color:#ae81ff">0</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]};
 }
-print join &quot; &quot;,@gapful;
-</code></pre>
-
-<h2 id="ryan-thompson2">Ryan Thompson</h2>
-
+<span style="color:#66d9ef">print</span> join <span style="color:#e6db74">&#34; &#34;</span>,@gapful;
+</code></pre></div><h2 id="ryan-thompson2">Ryan Thompson</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/ryan-thompson/perl/ch-2.pl">My solution</a> first defines an <code>is_gapful</code> sub that uses <code>split</code> and a slice:</p>
-
-<pre><code class="language-perl">sub is_gapful(_) { $_ = pop; not $_ % join '', (split '')[0,-1] }
-</code></pre>
-
-<p>Then I gather the <code>@r</code>esult in the following <code>for</code> loop:</p>
-
-<pre><code class="language-perl">sub first_n_gapful {
-    my $N = shift;
-    my @r;
-    for ($_ = 100; @r &lt; $N; $_++) {
-        push @r, $_ if is_gapful;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_gapful</span>(_) { $_ <span style="color:#f92672">=</span> pop; <span style="color:#f92672">not</span> $_ % join <span style="color:#e6db74">&#39;&#39;</span>, (split <span style="color:#e6db74">&#39;&#39;</span>)[<span style="color:#ae81ff">0</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] }
+</code></pre></div><p>Then I gather the <code>@r</code>esult in the following <code>for</code> loop:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">first_n_gapful</span> {
+    <span style="color:#66d9ef">my</span> $N <span style="color:#f92672">=</span> shift;
+    <span style="color:#66d9ef">my</span> @r;
+    <span style="color:#66d9ef">for</span> ($_ <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>; @r <span style="color:#f92672">&lt;</span> $N; $_<span style="color:#f92672">++</span>) {
+        push @r, $_ <span style="color:#66d9ef">if</span> is_gapful;
     }
     @r;
 }
-say for first_n_gapful(shift // 20);
-</code></pre>
-
-<p><strong>Blog</strong> › <a href="http://www.ry.ca/2020/02/gapful-numbers/">Gapful Numbers</a></p>
-
+say <span style="color:#66d9ef">for</span> first_n_gapful(shift <span style="color:#e6db74">//</span> <span style="color:#ae81ff">20</span>);
+</code></pre></div><p><strong>Blog</strong> › <a href="http://www.ry.ca/2020/02/gapful-numbers/">Gapful Numbers</a></p>
 <h2 id="saiftynet2">Saif Ahmed</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/saiftynet/perl/ch-2.pl">Saif Ahmed&rsquo;s solution</a> concatenates two <code>substr</code> results:</p>
-
-<pre><code class="language-perl">my $test=99;
-my $found=0;
-while ($found++&lt;20) {
-    while( ++$test % (substr($test,0,1).substr($test,-1,1))) { }
-    print $found,&quot; &quot;,$test,&quot;\n&quot;;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $test<span style="color:#f92672">=</span><span style="color:#ae81ff">99</span>;
+<span style="color:#66d9ef">my</span> $found<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+<span style="color:#66d9ef">while</span> ($found<span style="color:#f92672">++&lt;</span><span style="color:#ae81ff">20</span>) {
+    <span style="color:#66d9ef">while</span>( <span style="color:#f92672">++</span>$test % <span style="color:#960050;background-color:#1e0010">(</span>substr($test,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span>substr($test,<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>))) { }
+    <span style="color:#66d9ef">print</span> $found,<span style="color:#e6db74">&#34; &#34;</span>,$test,<span style="color:#e6db74">&#34;\n&#34;</span>;
 }
-</code></pre>
-
-<h2 id="steven-wilson2">Steven Wilson</h2>
-
+</code></pre></div><h2 id="steven-wilson2">Steven Wilson</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/steven-wilson/perl/ch-2.pl">Steven Wilson&rsquo;s solution</a> concatenates <code>substr</code> calls as well:</p>
-
-<pre><code class="language-perl">my @gapful_numbers;
-my $current_number = 100;
-while ( scalar @gapful_numbers &lt; 20 ) {
-    my $divisor = ( substr $current_number, 0, 1 )
-        . ( substr $current_number, -1, 1 );
-    if ( $current_number % $divisor == 0 ) {
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @gapful_numbers;
+<span style="color:#66d9ef">my</span> $current_number <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>;
+<span style="color:#66d9ef">while</span> ( scalar @gapful_numbers <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">20</span> ) {
+    <span style="color:#66d9ef">my</span> $divisor <span style="color:#f92672">=</span> ( substr $current_number, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span> )
+        <span style="color:#f92672">.</span> ( substr $current_number, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span> );
+    <span style="color:#66d9ef">if</span> ( $current_number % <span style="color:#960050;background-color:#1e0010">$</span>divisor <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> ) {
         push @gapful_numbers, $current_number;
     }
-    $current_number++;
+    $current_number<span style="color:#f92672">++</span>;
 }
-say join ' ', @gapful_numbers;
-</code></pre>
-
-<h2 id="ulrich-rieke2">Ulrich Rieke</h2>
-
+say join <span style="color:#e6db74">&#39; &#39;</span>, @gapful_numbers;
+</code></pre></div><h2 id="ulrich-rieke2">Ulrich Rieke</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/ulrich-rieke/perl/ch-2.pl">Ulrich Rieke&rsquo;s solution</a> defines an <code>isGapful</code> sub that uses a capturing regex:</p>
-
-<pre><code class="language-perl">sub isGapful {
-  my $number = shift ;
-  $number =~ /(\d)\d+(\d)/ ;
-  my $first = $1 ;
-  my $last = $2 ;
-  return ( ($number % ( $first . $last )) == 0 ) ;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">isGapful</span> {
+  <span style="color:#66d9ef">my</span> $number <span style="color:#f92672">=</span> shift ;
+  $number <span style="color:#f92672">=~</span><span style="color:#e6db74"> /(\d)\d+(\d)/</span> ;
+  <span style="color:#66d9ef">my</span> $first <span style="color:#f92672">=</span> $1 ;
+  <span style="color:#66d9ef">my</span> $last <span style="color:#f92672">=</span> $2 ;
+  <span style="color:#66d9ef">return</span> ( ($number % <span style="color:#960050;background-color:#1e0010">(</span> <span style="color:#960050;background-color:#1e0010">$</span>first <span style="color:#f92672">.</span> $last )) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> ) ;
 }
-</code></pre>
-
-<p>The results are then gathered with the following <code>while</code> loop, then printed:</p>
-
-<pre><code class="language-perl">my @numbers ;
-my $start = 99 ;
-while ( scalar @numbers != 20 ) {
-  $start++ ;
-  if ( isGapful( $start ) ) {
+</code></pre></div><p>The results are then gathered with the following <code>while</code> loop, then printed:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @numbers ;
+<span style="color:#66d9ef">my</span> $start <span style="color:#f92672">=</span> <span style="color:#ae81ff">99</span> ;
+<span style="color:#66d9ef">while</span> ( scalar @numbers <span style="color:#f92672">!=</span> <span style="color:#ae81ff">20</span> ) {
+  $start<span style="color:#f92672">++</span> ;
+  <span style="color:#66d9ef">if</span> ( isGapful( $start ) ) {
       push( @numbers, $start ) ;
   }
 }
-map { print &quot;$_ &quot; } @numbers ;
-print &quot;\n&quot; ;
-</code></pre>
-
-<h2 id="user-person2">User Person</h2>
-
+map { <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$_ &#34;</span> } @numbers ;
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\n&#34;</span> ;
+</code></pre></div><h2 id="user-person2">User Person</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/user-person/perl/ch-2.pl">User Person&rsquo;s solution</a> defines a <code>firstDigit</code> helper sub to return the first digit of a number (there is no <code>lastDigit</code> sub, as a simple <code>% 10</code> is used for that):</p>
-
-<pre><code class="language-perl">sub firstDigit {
-    my $number = $_[0];
-    while ($number &gt;= 10) {
-        $number /= 10;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">firstDigit</span> {
+    <span style="color:#66d9ef">my</span> $number <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>];
+    <span style="color:#66d9ef">while</span> ($number <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">10</span>) {
+        $number <span style="color:#f92672">/=</span> <span style="color:#ae81ff">10</span>;
     }
-    return int($number);
+    <span style="color:#66d9ef">return</span> int($number);
 }
-</code></pre>
-
-<p>The numbers are then printed in the body of the following <code>for</code> loop:</p>
-
-<pre><code class="language-perl">my $QUANTITY = 20;
-my ($first, $last);
-my $count = 0;
-for (my $i = 100; $count &lt; $QUANTITY ; ++$i) {
-    $first = firstDigit $i;
-    $last  = $i % 10;
-    my $formedBy = ($first * 10) + $last;
-    if ( $i % $formedBy == 0 ) {
-        print &quot;$i &quot;;
-        ++$count;
+</code></pre></div><p>The numbers are then printed in the body of the following <code>for</code> loop:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $QUANTITY <span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span>;
+<span style="color:#66d9ef">my</span> ($first, $last);
+<span style="color:#66d9ef">my</span> $count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>; $count <span style="color:#f92672">&lt;</span> $QUANTITY ; <span style="color:#f92672">++</span>$i) {
+    $first <span style="color:#f92672">=</span> firstDigit $i;
+    $last  <span style="color:#f92672">=</span> $i % 10;
+    <span style="color:#66d9ef">my</span> $formedBy <span style="color:#f92672">=</span> ($first <span style="color:#f92672">*</span> <span style="color:#ae81ff">10</span>) <span style="color:#f92672">+</span> $last;
+    <span style="color:#66d9ef">if</span> ( $i % <span style="color:#960050;background-color:#1e0010">$</span>formedBy <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> ) {
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$i &#34;</span>;
+        <span style="color:#f92672">++</span>$count;
     }
 }
-print &quot;\n&quot;;
-</code></pre>
-
-<h2 id="wanderdoc2">Wanderdoc</h2>
-
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
+</code></pre></div><h2 id="wanderdoc2">Wanderdoc</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-047/wanderdoc/perl/ch-2.pl">Wanderdoc&rsquo;s solution</a> also has a <code>gapful</code> sub, using a <code>split</code> slice:</p>
-
-<pre><code class="language-perl">sub gapful {
-     my $num = $_[0];
-     my $div = join('',(split(//,$num))[0, -1]);
-     return 0 == $num % $div;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">gapful</span> {
+     <span style="color:#66d9ef">my</span> $num <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>];
+     <span style="color:#66d9ef">my</span> $div <span style="color:#f92672">=</span> join(<span style="color:#e6db74">&#39;&#39;</span>,(split(<span style="color:#e6db74">//</span>,$num))[<span style="color:#ae81ff">0</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]);
+     <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">==</span> $num % <span style="color:#960050;background-color:#1e0010">$</span>div;
 }
-</code></pre>
-
-<p>The results are then printed in this <code>while</code> loop:</p>
-
-<pre><code class="language-perl">my $number = 100;
-my $counter = 0;
-while ( $counter &lt; 20 ) {
-     gapful($number) and print join(' ', ++$counter,$number), $/;
-     $number++;
+</code></pre></div><p>The results are then printed in this <code>while</code> loop:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $number <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>;
+<span style="color:#66d9ef">my</span> $counter <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+<span style="color:#66d9ef">while</span> ( $counter <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">20</span> ) {
+     gapful($number) <span style="color:#f92672">and</span> <span style="color:#66d9ef">print</span> join(<span style="color:#e6db74">&#39; &#39;</span>, <span style="color:#f92672">++</span>$counter,$number), $/;
+     $number<span style="color:#f92672">++</span>;
 }
-</code></pre>
-
-<hr />
-
-<hr />
-
+</code></pre></div><hr>
+<hr>
 <h2 id="blogs">See Also</h2>
-
 <h3 id="perl-blogs-this-week">Perl blogs this week:</h3>
-
 <p><strong>Dave Jacoby</strong> › <a href="https://jacoby.github.io/2020/02/12/counting-from-100-is-the-fun-part.html">Counting from 100 is the Fun Part</a></p>
-
 <p><strong>Javier Luque</strong> › <a href="https://perlchallenges.wordpress.com/2020/02/10/perl-weekly-challenge-047/">047 – Perl Weekly Challenge</a></p>
-
 <p><strong>Laurent Rosenfeld</strong> › <a href="http://blogs.perl.org/users/laurent_r/2020/02/perl-weekly-challenge-47-roman-calculator-and-gapful-numbers.html">Roman Calculator and Gapful Numbers</a></p>
-
 <p><strong>Ryan Thompson</strong> › <a href="http://www.ry.ca/2020/02/roman-calculator/">Roman Calculator</a> | <a href="http://www.ry.ca/2020/02/gapful-numbers/">Gapful Numbers</a></p>
 
                 </div>

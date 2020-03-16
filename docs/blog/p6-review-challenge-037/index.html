@@ -16,7 +16,7 @@
 
     <meta name="description" content="Laurent Rosenfeld Weekly Review: Challenge - #037.">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.55.0-DEV" />
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -41,6 +41,8 @@
     <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
     <!-- hover -->
     <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
     <!-- template main css file -->
     
     <link rel="stylesheet" href="https://perlweeklychallenge.org/css/style.min.css" integrity="" media="screen">
@@ -149,30 +151,17 @@
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
-                    
-
-<hr />
-
+                    <hr>
 <h1 id="raku-solutions-weekly-review">Raku Solutions Weekly Review</h1>
-
-<hr />
-
+<hr>
 <h2 id="task-1-daylight-loss-or-gain">Task #1: Daylight Loss or Gain</h2>
-
 <p>This is derived in part from my <a href="http://blogs.perl.org/users/laurent_r/2019/12/perl-weekly-challenge-37-week-days-in-each-month-and-daylight-gainloss.html">blog post</a> made in answer to the <a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-037/">Week 37 of the Perl Weekly Challenge</a> organized by  <a href="http://blogs.perl.org/users/mohammad_s_anwar/">Mohammad S. Anwar</a> as well as answers made by others to the same challenge.</p>
-
 <p>The challenge reads as follows:</p>
-
 <p><em>Write a script to find out the Daylight gain/loss in the month of December 2019 as compared to November 2019 in the city of London. You can find out sunrise and sunset data for <a href="https://www.timeanddate.com/sun/uk/london?month=11&amp;year=2019">November 2019</a> and <a href="https://www.timeanddate.com/sun/uk/london?month=12&amp;year=2019">December 2019</a> for London.</em></p>
-
 <p>A look at the links provided reveals that the linked pages provide not only sunrise and sunset data, but also daylight duration, which is really the input data we&rsquo;re looking for. Not only is it going to be slightly easier to use directly daylight duration, but daylight values are also sixty times more accurate: sunrise and sunset have an accuracy of a minute, whereas daylight duration are precise to the second (so that, in fact, it won&rsquo;t really be easier, since our calculations will need to be more accurate (and that&rsquo;s a bit of a pain in the neck when values are given in sexagesimal or base-60 notation).</p>
-
 <p>Otherwise, the requirement is not very clear, but I&rsquo;ll take it to mean that we want to compute the daylight gain or loss between each day of December 2019 and the corresponding day in November 2019. Since November has only 30 days, we won&rsquo;t be able to say anything about December 31, 2019, as there is no corresponding day in November. We will also compute the average daylight gain or loss (well, it&rsquo;s obviously a loss, but we&rsquo;ll assume we don&rsquo;t know and will let the computer program find this out).</p>
-
 <h2 id="my-solutions">My solutions</h2>
-
 <p>For the sake of this task, we just copied and pasted the data into two separate text files (one for November and one for December) and edited them to remove useless data and fix the format; and we then use those text files as input for my programs. The text file for November 2019 looks as follows:</p>
-
 <pre><code>1   06h53   16h34   9:40:44
 2   06h55   16h32   9:37:10
 3   06h56   16h30   9:33:37
@@ -183,35 +172,27 @@
 29  07h40   15h56   8:16:09
 30  07h41   15h55   8:13:59
 </code></pre>
-
 <p>The December file has the same format. Even though the text file includes sunrise and sunset times, we&rsquo;ll use only the last column (day light duration) of these files, as it is more accurate.</p>
-
 <p>In order to compute differences between values in sexagesimal notation (in base 60, i.e. expressed in hours/minutes/seconds), we will convert everything to seconds, perform arithmetic operations on values in seconds, and convert the result back into HMS sexagesimal values if needed. The <code>sec2hrs</code> and <code>hrs2sec</code> subroutines perform the necessary conversions from and to seconds.</p>
-
 <p>The program first reads through the input data and stores the daylight data into an <code>@nov</code>and an <code>@dec</code> arrays. Then it loops through the <code>1..30</code> range and, for each day, subtract the November daylight value from the December daylight value. The program also computes an average change over 30 days.</p>
-
 <p>The <code>sec2hrs</code> subroutine is much simpler than what I had to do for solving the same task in Perl 5 because it uses the multiple modulo <a href="https://docs.raku.org/routine/polymod">polymod</a> method to convert directly seconds into hours, minutes and seconds. Also, we used the <code>Z-</code> <a href="https://docs.raku.org/language/operators#index-entry-Z_(zip_metaoperator)">zip</a> metaoperator along with the <code>-</code> subtract operator to compute all the duration differences in just one single statement.</p>
-
-<pre><code class="language-Perl">use v6;
-sub hrs2sec ($hms) {
-    my ($hrs, $min, $sec) = split /\:/, $hms;
-    return $hrs * 60² + $min * 60 + $sec;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl" data-lang="Perl"><span style="color:#66d9ef">use</span> v6;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">hrs2sec</span> ($hms) {
+    <span style="color:#66d9ef">my</span> ($hrs, $min, $sec) <span style="color:#f92672">=</span> split <span style="color:#e6db74">/\:/</span>, $hms;
+    <span style="color:#66d9ef">return</span> $hrs <span style="color:#f92672">*</span> <span style="color:#ae81ff">60</span><span style="color:#960050;background-color:#1e0010">²</span> <span style="color:#f92672">+</span> $min <span style="color:#f92672">*</span> <span style="color:#ae81ff">60</span> <span style="color:#f92672">+</span> $sec;
 }
-sub sec2hrs (Numeric $sec) {
-    my @duration = $sec.abs.polymod(60, 60);
-    my $fmt = ($sec &lt; 0 ?? &quot;-&quot; !! &quot;&quot;) ~ &quot;%d:%02d:%02d&quot;;
-    return sprintf $fmt, @duration[2, 1, 0];
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">sec2hrs</span> (Numeric $sec) {
+    <span style="color:#66d9ef">my</span> @duration <span style="color:#f92672">=</span> $sec<span style="color:#f92672">.</span>abs<span style="color:#f92672">.</span>polymod(<span style="color:#ae81ff">60</span>, <span style="color:#ae81ff">60</span>);
+    <span style="color:#66d9ef">my</span> $fmt <span style="color:#f92672">=</span> ($sec <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> ?? <span style="color:#e6db74">&#34;-&#34;</span> <span style="color:#f92672">!!</span> <span style="color:#e6db74">&#34;&#34;</span>) <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34;%d:%02d:%02d&#34;</span>;
+    <span style="color:#66d9ef">return</span> sprintf $fmt, @duration[<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>];
 }
-my @nov = 'november_2019.txt'.IO.lines[0..29].map({(.split(/\s+/))[3]});
-my @dec = 'december_2019.txt'.IO.lines[0..29].map({(.split(/\s+/))[3]});
-my @diff = @dec.map({hrs2sec $_}) Z- @nov.map({hrs2sec $_});
-say &quot;Daylight changes between Dec and Nov:&quot;;
-for @diff.kv -&gt; $k, $v { printf &quot;%2d: %s\n&quot;, $k + 1, sec2hrs( $v) };
-say &quot;\nAverage change between Nov and Dec: &quot;, sec2hrs ([+] @diff) / 30;
-</code></pre>
-
-<p>This program displays the following output:</p>
-
+<span style="color:#66d9ef">my</span> @nov <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;november_2019.txt&#39;</span><span style="color:#f92672">.</span>IO<span style="color:#f92672">.</span>lines[<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">29</span>]<span style="color:#f92672">.</span>map({(<span style="color:#f92672">.</span>split(<span style="color:#e6db74">/\s+/</span>))[<span style="color:#ae81ff">3</span>]});
+<span style="color:#66d9ef">my</span> @dec <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;december_2019.txt&#39;</span><span style="color:#f92672">.</span>IO<span style="color:#f92672">.</span>lines[<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">29</span>]<span style="color:#f92672">.</span>map({(<span style="color:#f92672">.</span>split(<span style="color:#e6db74">/\s+/</span>))[<span style="color:#ae81ff">3</span>]});
+<span style="color:#66d9ef">my</span> @diff <span style="color:#f92672">=</span> @dec<span style="color:#f92672">.</span>map({hrs2sec $_}) Z<span style="color:#f92672">-</span> @nov<span style="color:#f92672">.</span>map({hrs2sec $_});
+say <span style="color:#e6db74">&#34;Daylight changes between Dec and Nov:&#34;</span>;
+<span style="color:#66d9ef">for</span> @diff<span style="color:#f92672">.</span>kv <span style="color:#f92672">-&gt;</span> $k, $v { printf <span style="color:#e6db74">&#34;%2d: %s\n&#34;</span>, $k <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, sec2hrs( $v) };
+say <span style="color:#e6db74">&#34;\nAverage change between Nov and Dec: &#34;</span>, sec2hrs ([<span style="color:#f92672">+</span>] @diff) <span style="color:#f92672">/</span> <span style="color:#ae81ff">30</span>;
+</code></pre></div><p>This program displays the following output:</p>
 <pre><code>$ perl6  day_light.p6
 Daylight changes between Dec and Nov:
  1: -1:28:51
@@ -247,276 +228,239 @@ Daylight changes between Dec and Nov:
 
 Average change between Nov and Dec: -0:58:20
 </code></pre>
-
 <h2 id="alternative-solutions">Alternative Solutions</h2>
-
 <p>I said at the beginning that I found the requirement not to be very clear. This is confirmed by the fact that the challengers interpreted the task in at least three different ways.</p>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/arne-sommer/perl6/ch-2.p6">Arne Sommer</a> used the <code>LWP::Simple</code> module to retrieve the data directly from the Web page, but also cached the pages locally to avoid waste of time and resources. His program also converts durations in HMS into seconds to perform the calculations and back to HMS when needed (see the <code>hms2s</code>and <code>s2hms</code> subroutine below). This is the part of Arne&rsquo;s code for comparing the monthly data:</p>
-
-<pre><code class="language-Perl">for 1..31 -&gt; $day
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/arne-sommer/perl6/ch-2.p6">Arne Sommer</a> used the <code>LWP::Simple</code> module to retrieve the data directly from the Web page, but also cached the pages locally to avoid waste of time and resources. His program also converts durations in HMS into seconds to perform the calculations and back to HMS when needed (see the <code>hms2s </code>and <code>s2hms</code> subroutine below). This is the part of Arne&rsquo;s code for comparing the monthly data:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl" data-lang="Perl"><span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">31</span> <span style="color:#f92672">-&gt;</span> $day
 {
-  my $left-value  = %data{$left}{$day};
-  my $right-value = %data{$right}{$day};
-  ! $left-value &amp;&amp; ! $right-value &amp;&amp; last;
-  print $day.fmt('%2d') ~ ' ';
-  print $left-value
-    ?? $left-value.fmt('%9s') ~ '  '
-    !! ' ' x 11;
-   print $right-value
-   ?? $right-value.fmt('%9s') ~ '  '
-   !! ' ' x 11;
-  print &quot;{ (s2hms( hms2s($right-value) - hms2s($left-value))).fmt('%10s') }&quot; if $left-value &amp;&amp; $right-value;
-  say '';
+  <span style="color:#66d9ef">my</span> $left<span style="color:#f92672">-</span>value  <span style="color:#f92672">=</span> %data{$left}{$day};
+  <span style="color:#66d9ef">my</span> $right<span style="color:#f92672">-</span>value <span style="color:#f92672">=</span> %data{$right}{$day};
+  <span style="color:#f92672">!</span> $left<span style="color:#f92672">-</span>value <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span> $right<span style="color:#f92672">-</span>value <span style="color:#f92672">&amp;&amp;</span> <span style="color:#66d9ef">last</span>;
+  <span style="color:#66d9ef">print</span> $day<span style="color:#f92672">.</span>fmt(<span style="color:#e6db74">&#39;%2d&#39;</span>) <span style="color:#f92672">~</span> <span style="color:#e6db74">&#39; &#39;</span>;
+  <span style="color:#66d9ef">print</span> $left<span style="color:#f92672">-</span>value
+    ?? $left<span style="color:#f92672">-</span>value<span style="color:#f92672">.</span>fmt(<span style="color:#e6db74">&#39;%9s&#39;</span>) <span style="color:#f92672">~</span> <span style="color:#e6db74">&#39;  &#39;</span>
+    <span style="color:#f92672">!!</span> <span style="color:#e6db74">&#39; &#39;</span> x <span style="color:#ae81ff">11</span>;
+   <span style="color:#66d9ef">print</span> $right<span style="color:#f92672">-</span>value
+   ?? $right<span style="color:#f92672">-</span>value<span style="color:#f92672">.</span>fmt(<span style="color:#e6db74">&#39;%9s&#39;</span>) <span style="color:#f92672">~</span> <span style="color:#e6db74">&#39;  &#39;</span>
+   <span style="color:#f92672">!!</span> <span style="color:#e6db74">&#39; &#39;</span> x <span style="color:#ae81ff">11</span>;
+  <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;{ (s2hms( hms2s($right-value) - hms2s($left-value))).fmt(&#39;%10s&#39;) }&#34;</span> <span style="color:#66d9ef">if</span> $left<span style="color:#f92672">-</span>value <span style="color:#f92672">&amp;&amp;</span> $right<span style="color:#f92672">-</span>value;
+  say <span style="color:#e6db74">&#39;&#39;</span>;
 }
-sub hms2s ($hms)
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">hms2s</span> ($hms)
 {
-  my @parts = $hms.split(':') // return 0;
-  return @parts[0] * 60 * 60 + @parts[1] * 60 + @parts[2];
+  <span style="color:#66d9ef">my</span> @parts <span style="color:#f92672">=</span> $hms<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39;:&#39;</span>) <span style="color:#e6db74">//</span> <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+  <span style="color:#66d9ef">return</span> @parts[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">*</span> <span style="color:#ae81ff">60</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">60</span> <span style="color:#f92672">+</span> @parts[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">*</span> <span style="color:#ae81ff">60</span> <span style="color:#f92672">+</span> @parts[<span style="color:#ae81ff">2</span>];
 }
-sub s2hms ($s is copy)
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">s2hms</span> ($s is copy)
 {
-  my $sign = &quot;&quot;;
-  if $s &lt; 0 { $s = -$s; $sign = &quot;-&quot;; }
-  my $h = $s div 3600; $s -=  $h * 3600;
-  my $m = $s div   60; $s -=  $m *   60;
-  return &quot;$sign$h:{ $m.fmt('%02d') }:{ $s.fmt('%02d') }&quot; if $h;
-  return &quot;$sign$m:{ $s.fmt('%02d') }&quot; if $s;
-  return &quot;$sign$s&quot;;
+  <span style="color:#66d9ef">my</span> $sign <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
+  <span style="color:#66d9ef">if</span> $s <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> { $s <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>$s; $sign <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;-&#34;</span>; }
+  <span style="color:#66d9ef">my</span> $h <span style="color:#f92672">=</span> $s div <span style="color:#ae81ff">3600</span>; $s <span style="color:#f92672">-=</span>  $h <span style="color:#f92672">*</span> <span style="color:#ae81ff">3600</span>;
+  <span style="color:#66d9ef">my</span> $m <span style="color:#f92672">=</span> $s div   <span style="color:#ae81ff">60</span>; $s <span style="color:#f92672">-=</span>  $m <span style="color:#f92672">*</span>   <span style="color:#ae81ff">60</span>;
+  <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;$sign$h:{ $m.fmt(&#39;%02d&#39;) }:{ $s.fmt(&#39;%02d&#39;) }&#34;</span> <span style="color:#66d9ef">if</span> $h;
+  <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;$sign$m:{ $s.fmt(&#39;%02d&#39;) }&#34;</span> <span style="color:#66d9ef">if</span> $s;
+  <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;$sign$s&#34;</span>;
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/kevin-colyer/perl6/ch-2.p6">Kevin Colyer</a> used the day-length difference data from the web pages and obviously did not understand the task in the same way as me and Arne: if I understand correctly, he computed the daylight gain or loss in the course of November (i.e. between Nov. 1 and Nov. 30) and likewise in December. This is his code doing the computations from the daily day-length difference column of the Web pages:</p>
-
-<pre><code class="language-Perl">sub parse-duration($s) {
-    my $sign=$s.substr(0,1);
-    my @min-secs = $s.substr(1..*).split(&quot;:&quot;); # assumes no hours... not robust!
-    return ( @min-secs[0] * 60 + @min-secs[1] ) * ( $sign eq &quot;-&quot; ?? -1 !! 1 );
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/kevin-colyer/perl6/ch-2.p6">Kevin Colyer</a> used the day-length difference data from the web pages and obviously did not understand the task in the same way as me and Arne: if I understand correctly, he computed the daylight gain or loss in the course of November (i.e. between Nov. 1 and Nov. 30) and likewise in December. This is his code doing the computations from the daily day-length difference column of the Web pages:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl" data-lang="Perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">parse</span>-duration($s) {
+    <span style="color:#66d9ef">my</span> $sign<span style="color:#f92672">=</span>$s<span style="color:#f92672">.</span>substr(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>);
+    <span style="color:#66d9ef">my</span> @min<span style="color:#f92672">-</span>secs <span style="color:#f92672">=</span> $s<span style="color:#f92672">.</span>substr(<span style="color:#ae81ff">1</span><span style="color:#f92672">..*</span>)<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34;:&#34;</span>); <span style="color:#75715e"># assumes no hours... not robust!</span>
+    <span style="color:#66d9ef">return</span> ( @min<span style="color:#f92672">-</span>secs[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">*</span> <span style="color:#ae81ff">60</span> <span style="color:#f92672">+</span> @min<span style="color:#f92672">-</span>secs[<span style="color:#ae81ff">1</span>] ) <span style="color:#f92672">*</span> ( $sign <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#34;-&#34;</span> ?? <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">!!</span> <span style="color:#ae81ff">1</span> );
 }
 
-sub say-duration($d) {
-    my $sign = $d &lt; 0 ?? &quot;-&quot; !! &quot;&quot;;
-    # concats '-' if negative, then forces positive value, modular divides by 60 twice, reverses the list then sends each item to be formatted for printing and joins them with ':'. Phew!
-    return $sign ~ $d.abs.polymod(60, 60).reverse&gt;&gt;.fmt(&quot;%02d&quot;).join(&quot;:&quot;);
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">say</span>-duration($d) {
+    <span style="color:#66d9ef">my</span> $sign <span style="color:#f92672">=</span> $d <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> ?? <span style="color:#e6db74">&#34;-&#34;</span> <span style="color:#f92672">!!</span> <span style="color:#e6db74">&#34;&#34;</span>;
+    <span style="color:#75715e"># concats &#39;-&#39; if negative, then forces positive value, modular divides by 60 twice, reverses the list then sends each item to be formatted for printing and joins them with &#39;:&#39;. Phew!</span>
+    <span style="color:#66d9ef">return</span> $sign <span style="color:#f92672">~</span> $d<span style="color:#f92672">.</span>abs<span style="color:#f92672">.</span>polymod(<span style="color:#ae81ff">60</span>, <span style="color:#ae81ff">60</span>)<span style="color:#f92672">.</span>reverse<span style="color:#f92672">&gt;&gt;.</span>fmt(<span style="color:#e6db74">&#34;%02d&#34;</span>)<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34;:&#34;</span>);
 }
 
-say &quot;Nov (gain/loss) hh:mm:ss &quot; ~ say-duration [+] ( parse-duration $_ for %n.values ) ;
-say &quot;Dec (gain/loss) hh:mm:ss &quot; ~ say-duration [+] ( parse-duration $_ for %d.values ) ;
-</code></pre>
+say <span style="color:#e6db74">&#34;Nov (gain/loss) hh:mm:ss &#34;</span> <span style="color:#f92672">~</span> say<span style="color:#f92672">-</span>duration [<span style="color:#f92672">+</span>] ( parse<span style="color:#f92672">-</span>duration $_ <span style="color:#66d9ef">for</span> %n<span style="color:#f92672">.</span>values ) ;
+say <span style="color:#e6db74">&#34;Dec (gain/loss) hh:mm:ss &#34;</span> <span style="color:#f92672">~</span> say<span style="color:#f92672">-</span>duration [<span style="color:#f92672">+</span>] ( parse<span style="color:#f92672">-</span>duration $_ <span style="color:#66d9ef">for</span> %d<span style="color:#f92672">.</span>values ) ;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/rnuttall/perl6/ch-2.p6">Richard Nuttall</a>, who is new to the challenge if I am not wrong, apparently also understood that the task was to compute the daylight loss in November and the daylight loss in December. He used the <code>LWP::Simple</code> and <code>HTML::Parser::XML</code> modules to fetch and parse the Web page data. This is his code to parse the input data and perform the relevant calculations:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl" data-lang="Perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">GetDaytime</span>($url,$fn --&gt; Int:D) {
+    <span style="color:#66d9ef">my</span> $parser  <span style="color:#f92672">=</span> HTML::Parser::XML<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>;
+    <span style="color:#66d9ef">my</span> $xmldoc  <span style="color:#f92672">=</span> $parser<span style="color:#f92672">.</span>parse(GetPage($url,$fn));
+    <span style="color:#66d9ef">my</span> $daytime <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
 
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/rnuttall/perl6/ch-2.p6">Richard Nuttall</a>, who is new to the challenge if I am not wrong, apparently also understood that the task was to compute the daylight loss in November and the daylight loss in December. He used the <code>LWP::Simple</code> and <code>HTML::Parser::XML</code> modules to fetch and parse the Web page data. This is his code to parse the input data and perform the relevant calculations:</p>
-
-<pre><code class="language-Perl">sub GetDaytime($url,$fn --&gt; Int:D) {
-    my $parser  = HTML::Parser::XML.new;
-    my $xmldoc  = $parser.parse(GetPage($url,$fn));
-    my $daytime = 0;
-
-    my $table = $xmldoc.root.elements(:TAG&lt;table&gt;, :RECURSE)[0]; # There is only one table
-    for $table.elements(:TAG&lt;tr&gt;, :RECURSE) -&gt; $tr {
-        my $td = $tr.elements(:TAG&lt;td&gt;, :RECURSE);
-        next unless $td.elems == 12;                             # Ignore header row
-        my $daylen = $td[2].nodes[0].text;                       # Daylength is in 3rd column ...
-        $td[2].nodes[0].text ~~ /(\d+) ':' (\d+) ':' (\d+)/;     # ... as HH:MM:SS
-        $daytime += $0*60*60 + $1*60 + $2;
+    <span style="color:#66d9ef">my</span> $table <span style="color:#f92672">=</span> $xmldoc<span style="color:#f92672">.</span>root<span style="color:#f92672">.</span>elements(:TAG<span style="color:#e6db74">&lt;table&gt;</span>, :RECURSE)[<span style="color:#ae81ff">0</span>]; <span style="color:#75715e"># There is only one table</span>
+    <span style="color:#66d9ef">for</span> $table<span style="color:#f92672">.</span>elements(:TAG<span style="color:#e6db74">&lt;tr&gt;</span>, :RECURSE) <span style="color:#f92672">-&gt;</span> $tr {
+        <span style="color:#66d9ef">my</span> $td <span style="color:#f92672">=</span> $tr<span style="color:#f92672">.</span>elements(:TAG<span style="color:#e6db74">&lt;td&gt;</span>, :RECURSE);
+        <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> $td<span style="color:#f92672">.</span>elems <span style="color:#f92672">==</span> <span style="color:#ae81ff">12</span>;                             <span style="color:#75715e"># Ignore header row</span>
+        <span style="color:#66d9ef">my</span> $daylen <span style="color:#f92672">=</span> $td[<span style="color:#ae81ff">2</span>]<span style="color:#f92672">.</span>nodes[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>text;                       <span style="color:#75715e"># Daylength is in 3rd column ...</span>
+        $td[<span style="color:#ae81ff">2</span>]<span style="color:#f92672">.</span>nodes[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>text <span style="color:#f92672">~~</span> <span style="color:#e6db74">/(\d+) &#39;:&#39; (\d+) &#39;:&#39; (\d+)/</span>;     <span style="color:#75715e"># ... as HH:MM:SS</span>
+        $daytime <span style="color:#f92672">+=</span> $0<span style="color:#f92672">*</span><span style="color:#ae81ff">60</span><span style="color:#f92672">*</span><span style="color:#ae81ff">60</span> <span style="color:#f92672">+</span> $1<span style="color:#f92672">*</span><span style="color:#ae81ff">60</span> <span style="color:#f92672">+</span> $2;
     }
-    return $daytime;
+    <span style="color:#66d9ef">return</span> $daytime;
 }
-sub MAIN($year = 2019) {
-    my $daytimeDec = GetDaytime('https://www.timeanddate.com/sun/uk/london?month=12&amp;year=2019','London-2019-12');
-    my $daytimeNov = GetDaytime('https://www.timeanddate.com/sun/uk/london?month=11&amp;year=2019','London-2019-11');
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>($year = 2019) {
+    <span style="color:#66d9ef">my</span> $daytimeDec <span style="color:#f92672">=</span> GetDaytime(<span style="color:#e6db74">&#39;https://www.timeanddate.com/sun/uk/london?month=12&amp;year=2019&#39;</span>,<span style="color:#e6db74">&#39;London-2019-12&#39;</span>);
+    <span style="color:#66d9ef">my</span> $daytimeNov <span style="color:#f92672">=</span> GetDaytime(<span style="color:#e6db74">&#39;https://www.timeanddate.com/sun/uk/london?month=11&amp;year=2019&#39;</span>,<span style="color:#e6db74">&#39;London-2019-11&#39;</span>);
 
-    say &quot;December $year has a total of $daytimeDec seconds daylength in London&quot;;
-    say &quot;November $year has a total of $daytimeNov seconds daylength in London&quot;;
-    my $diff = $daytimeNov - $daytimeDec;
-    say &quot;November is longer by $diff seconds, or &quot;, ($diff.polymod(60, 60, 24, 7) Z &lt;sec min hr d wk&gt;).grep(*[0]).reverse.join(&quot;, &quot;);
+    say <span style="color:#e6db74">&#34;December $year has a total of $daytimeDec seconds daylength in London&#34;</span>;
+    say <span style="color:#e6db74">&#34;November $year has a total of $daytimeNov seconds daylength in London&#34;</span>;
+    <span style="color:#66d9ef">my</span> $diff <span style="color:#f92672">=</span> $daytimeNov <span style="color:#f92672">-</span> $daytimeDec;
+    say <span style="color:#e6db74">&#34;November is longer by $diff seconds, or &#34;</span>, ($diff<span style="color:#f92672">.</span>polymod(<span style="color:#ae81ff">60</span>, <span style="color:#ae81ff">60</span>, <span style="color:#ae81ff">24</span>, <span style="color:#ae81ff">7</span>) Z <span style="color:#f92672">&lt;</span>sec min hr d wk<span style="color:#f92672">&gt;</span>)<span style="color:#f92672">.</span>grep(<span style="color:#f92672">*</span>[<span style="color:#ae81ff">0</span>])<span style="color:#f92672">.</span>reverse<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34;, &#34;</span>);
 }
-</code></pre>
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/ulrich-rieke/perl6/ch-2.p6">Ulrich Rieke</a> apparently also understood that the task was to compute the daylight loss in November and the daylight loss in December. He created <code>DateTime</code> objects for sunrise and sunset on the first and last day of each month, for example:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl" data-lang="Perl"><span style="color:#66d9ef">my</span> $novemberstart_sunrise <span style="color:#f92672">=</span> DateTime<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>( year <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2019</span> ,
+                                          month <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">11</span> ,
+                      day <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> ,
+                      hour <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">6</span> ,
+                      minute <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">53</span> ,
+                      second <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">0</span> ,
+                      timezone <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> ) ;
+</code></pre></div><p>and then simply used subtraction between <code>DateTime</code> objects to find the November and the December loss:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl" data-lang="Perl"><span style="color:#66d9ef">my</span> $daylength1 <span style="color:#f92672">=</span> $novemberstart_sunset <span style="color:#f92672">-</span> $novemberstart_sunrise ;
+<span style="color:#66d9ef">my</span> $daylength2 <span style="color:#f92672">=</span> $novemberend_sunset <span style="color:#f92672">-</span> $novemberend_sunrise ;
+<span style="color:#66d9ef">my</span> $novemberloss <span style="color:#f92672">=</span> $daylength1 <span style="color:#f92672">-</span> $daylength2 ;
+say <span style="color:#e6db74">&#34;Loss of daylength in november : &#34;</span> <span style="color:#f92672">~</span> $novemberloss<span style="color:#f92672">.</span>Str <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34; seconds!&#34;</span> ;
+$daylength1 <span style="color:#f92672">=</span> $decemberstart_sunset <span style="color:#f92672">-</span> $decemberstart_sunrise ;
+$daylength2 <span style="color:#f92672">=</span> $decemberend_sunset <span style="color:#f92672">-</span> $decemberend_sunrise ;
+<span style="color:#66d9ef">my</span> $decemberloss <span style="color:#f92672">=</span> $daylength1 <span style="color:#f92672">-</span> $daylength2 ;
+say <span style="color:#e6db74">&#34;Loss of daylength in december : &#34;</span> <span style="color:#f92672">~</span> $decemberloss<span style="color:#f92672">.</span>Str <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34; seconds!&#34;</span> ;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/daniel-mita/perl6/ch-2.p6">Daniel Mita</a> apparently understood the challenge the same way as Kevin, Richard and Ulrich, but I&rsquo;m not entirely sure, since his program uses a JSON file as source data, and I&rsquo;m not quite sure where this JSON file is coming from and what it contains. Anyway, this is Daniel&rsquo;s code:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> %data <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;sun-data.json&#39;</span><span style="color:#f92672">.</span>IO<span style="color:#f92672">.</span>slurp<span style="color:#f92672">.&amp;</span>from<span style="color:#f92672">-</span>json<span style="color:#f92672">.</span>map(<span style="color:#f92672">|*</span>);
+<span style="color:#66d9ef">my</span> Duration ( $nov, $dec );
 
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/ulrich-rieke/perl6/ch-2.p6">Ulrich Rieke</a> apparently also understood that the task was to compute the daylight loss in November and the daylight loss in December. He created <code>DateTime</code> objects for sunrise and sunset on the first and last day of each month, for example:</p>
-
-<pre><code class="language-Perl">my $novemberstart_sunrise = DateTime.new( year =&gt; 2019 ,
-                                          month =&gt; 11 ,
-                      day =&gt; 1 ,
-                      hour =&gt; 6 ,
-                      minute =&gt; 53 ,
-                      second =&gt; 0 ,
-                      timezone =&gt; 1 ) ;
-</code></pre>
-
-<p>and then simply used subtraction between <code>DateTime</code> objects to find the November and the December loss:</p>
-
-<pre><code class="language-Perl">my $daylength1 = $novemberstart_sunset - $novemberstart_sunrise ;
-my $daylength2 = $novemberend_sunset - $novemberend_sunrise ;
-my $novemberloss = $daylength1 - $daylength2 ;
-say &quot;Loss of daylength in november : &quot; ~ $novemberloss.Str ~ &quot; seconds!&quot; ;
-$daylength1 = $decemberstart_sunset - $decemberstart_sunrise ;
-$daylength2 = $decemberend_sunset - $decemberend_sunrise ;
-my $decemberloss = $daylength1 - $daylength2 ;
-say &quot;Loss of daylength in december : &quot; ~ $decemberloss.Str ~ &quot; seconds!&quot; ;
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/daniel-mita/perl6/ch-2.p6">Daniel Mita</a> apparently understood the challenge the same way as Kevin, Richard and Ulrich, but I&rsquo;m not entirely sure, since his program uses a JSON file as source data, and I&rsquo;m not quite sure where this JSON file is coming from and what it contains. Anyway, this is Daniel&rsquo;s code:</p>
-
-<pre><code class="language-Perl6">my %data = 'sun-data.json'.IO.slurp.&amp;from-json.map(|*);
-my Duration ( $nov, $dec );
-
-for %data.keys -&gt; $k {
-  my $d := Date.new($k);
-  my &amp;adder := -&gt; $month is rw {
-    $month += [-] %data{$k}&lt;sunset sunrise&gt;.map({ DateTime.new($_) })
+<span style="color:#66d9ef">for</span> %data<span style="color:#f92672">.</span>keys <span style="color:#f92672">-&gt;</span> $k {
+  <span style="color:#66d9ef">my</span> $d :<span style="color:#f92672">=</span> Date<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>($k);
+  <span style="color:#66d9ef">my</span> <span style="color:#f92672">&amp;</span>adder :<span style="color:#f92672">=</span> <span style="color:#f92672">-&gt;</span> $month is rw {
+    $month <span style="color:#f92672">+=</span> [<span style="color:#f92672">-</span>] %data{$k}<span style="color:#f92672">&lt;</span>sunset sunrise<span style="color:#f92672">&gt;.</span>map({ DateTime<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>($_) })
   };
 
-  given $d.month {
-    when 11 {
-      $nov.&amp;adder;
+  given $d<span style="color:#f92672">.</span>month {
+    when <span style="color:#ae81ff">11</span> {
+      $nov<span style="color:#f92672">.&amp;</span>adder;
     }
-    when 12 {
-      $dec.&amp;adder;
+    when <span style="color:#ae81ff">12</span> {
+      $dec<span style="color:#f92672">.&amp;</span>adder;
     }
   }
 }
 
-say &quot;Daylight in November: $nov seconds&quot;;
-say &quot;Daylight in December: $dec seconds&quot;;
-say &quot;Difference: {($nov - $dec).abs} seconds&quot;;
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/javier-luque/perl6/ch-2.p6">Javier Luque</a> understood yet some other thing. If I understand his program well, it computes the cumulated daylight time in November and in December, and then computes the difference between the two months. The main part of Javier&rsquo;s program is as follows:</p>
-
-<pre><code class="language-Perl6">sub compare_lengths(Date $date1, Date $date2) {
-    # Months
-    my @mon = (
-        'Jan', 'Feb', 'Mar', 'Apr',
-        'May', 'Jun', 'Jul', 'Aug',
-        'Sep', 'Oct', 'Nov', 'Dec'
+say <span style="color:#e6db74">&#34;Daylight in November: $nov seconds&#34;</span>;
+say <span style="color:#e6db74">&#34;Daylight in December: $dec seconds&#34;</span>;
+say <span style="color:#e6db74">&#34;Difference: {($nov - $dec).abs} seconds&#34;</span>;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/javier-luque/perl6/ch-2.p6">Javier Luque</a> understood yet some other thing. If I understand his program well, it computes the cumulated daylight time in November and in December, and then computes the difference between the two months. The main part of Javier&rsquo;s program is as follows:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">compare_lengths</span>(Date $date1, Date $date2) {
+    <span style="color:#75715e"># Months</span>
+    <span style="color:#66d9ef">my</span> @mon <span style="color:#f92672">=</span> (
+        <span style="color:#e6db74">&#39;Jan&#39;</span>, <span style="color:#e6db74">&#39;Feb&#39;</span>, <span style="color:#e6db74">&#39;Mar&#39;</span>, <span style="color:#e6db74">&#39;Apr&#39;</span>,
+        <span style="color:#e6db74">&#39;May&#39;</span>, <span style="color:#e6db74">&#39;Jun&#39;</span>, <span style="color:#e6db74">&#39;Jul&#39;</span>, <span style="color:#e6db74">&#39;Aug&#39;</span>,
+        <span style="color:#e6db74">&#39;Sep&#39;</span>, <span style="color:#e6db74">&#39;Oct&#39;</span>, <span style="color:#e6db74">&#39;Nov&#39;</span>, <span style="color:#e6db74">&#39;Dec&#39;</span>
     );
 
-    # Get the data from the web
-    my @date1_data =
-        get-data($date1);
-    my @date2_data =
-        get-data($date2);
+    <span style="color:#75715e"># Get the data from the web</span>
+    <span style="color:#66d9ef">my</span> @date1_data <span style="color:#f92672">=</span>
+        get<span style="color:#f92672">-</span>data($date1);
+    <span style="color:#66d9ef">my</span> @date2_data <span style="color:#f92672">=</span>
+        get<span style="color:#f92672">-</span>data($date2);
 
-    # Calculate totals
-    my $date1_total = calculate-daylight-total(@date1_data);
-    my $date2_total = calculate-daylight-total(@date2_data);
-    my $difference = $date1_total - $date2_total;
+    <span style="color:#75715e"># Calculate totals</span>
+    <span style="color:#66d9ef">my</span> $date1_total <span style="color:#f92672">=</span> calculate<span style="color:#f92672">-</span>daylight<span style="color:#f92672">-</span>total(@date1_data);
+    <span style="color:#66d9ef">my</span> $date2_total <span style="color:#f92672">=</span> calculate<span style="color:#f92672">-</span>daylight<span style="color:#f92672">-</span>total(@date2_data);
+    <span style="color:#66d9ef">my</span> $difference <span style="color:#f92672">=</span> $date1_total <span style="color:#f92672">-</span> $date2_total;
 
-    # Print the output
-    say @mon[$date1.month - 1] ~ ' ' ~ $date1.year ~ ' has ' ~
-        convert-seconds-to-string($date1_total) ~
-        ' of daylight.';
+    <span style="color:#75715e"># Print the output</span>
+    say @mon[$date1<span style="color:#f92672">.</span>month <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">~</span> <span style="color:#e6db74">&#39; &#39;</span> <span style="color:#f92672">~</span> $date1<span style="color:#f92672">.</span>year <span style="color:#f92672">~</span> <span style="color:#e6db74">&#39; has &#39;</span> <span style="color:#f92672">~</span>
+        convert<span style="color:#f92672">-</span>seconds<span style="color:#f92672">-</span>to<span style="color:#f92672">-</span>string($date1_total) <span style="color:#f92672">~</span>
+        <span style="color:#e6db74">&#39; of daylight.&#39;</span>;
 
-    # Print the output
-    say @mon[$date2.month - 1] ~ ' ' ~ $date2.year ~ ' has ' ~
-        convert-seconds-to-string($date2_total) ~
-        ' of daylight.';
+    <span style="color:#75715e"># Print the output</span>
+    say @mon[$date2<span style="color:#f92672">.</span>month <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">~</span> <span style="color:#e6db74">&#39; &#39;</span> <span style="color:#f92672">~</span> $date2<span style="color:#f92672">.</span>year <span style="color:#f92672">~</span> <span style="color:#e6db74">&#39; has &#39;</span> <span style="color:#f92672">~</span>
+        convert<span style="color:#f92672">-</span>seconds<span style="color:#f92672">-</span>to<span style="color:#f92672">-</span>string($date2_total) <span style="color:#f92672">~</span>
+        <span style="color:#e6db74">&#39; of daylight.&#39;</span>;
 
-    say &quot;The difference is: &quot; ~
-        convert-seconds-to-string($difference) ~ '.';
+    say <span style="color:#e6db74">&#34;The difference is: &#34;</span> <span style="color:#f92672">~</span>
+        convert<span style="color:#f92672">-</span>seconds<span style="color:#f92672">-</span>to<span style="color:#f92672">-</span>string($difference) <span style="color:#f92672">~</span> <span style="color:#e6db74">&#39;.&#39;</span>;
 }
 
-# Calculates the total daylight hours from data
-sub calculate-daylight-total(@data) {
-    my $total = 0;
-    for (@data) -&gt; $daylight {
-        $total += convert-time-to-seconds($daylight).Int;
+<span style="color:#75715e"># Calculates the total daylight hours from data</span>
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">calculate</span>-daylight-total(@data) {
+    <span style="color:#66d9ef">my</span> $total <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">for</span> (@data) <span style="color:#f92672">-&gt;</span> $daylight {
+        $total <span style="color:#f92672">+=</span> convert<span style="color:#f92672">-</span>time<span style="color:#f92672">-</span>to<span style="color:#f92672">-</span>seconds($daylight)<span style="color:#f92672">.</span>Int;
     }
-    return $total
+    <span style="color:#66d9ef">return</span> $total
 }
-</code></pre>
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/mark-anderson/perl6/ch-2.p6">Mark Anserson</a> used the <code>HTTP::UserAgent</code> and <code>DOM::Tiny</code>module to fetch and process the input data. His program is among the most concise ones:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl" data-lang="Perl"><span style="color:#66d9ef">use</span> HTTP::UserAgent;
+<span style="color:#66d9ef">use</span> DOM::Tiny;
 
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/mark-anderson/perl6/ch-2.p6">Mark Anserson</a> used the <code>HTTP::UserAgent</code> and <code>DOM::Tiny</code>module to fetch and process the input data. His program is among the most concise ones:</p>
+<span style="color:#66d9ef">my</span> $dt <span style="color:#f92672">=</span> DateTime<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(secs(<span style="color:#ae81ff">11</span>) <span style="color:#f92672">-</span> secs(<span style="color:#ae81ff">12</span>));
 
-<pre><code class="language-Perl">use HTTP::UserAgent;
-use DOM::Tiny;
+say <span style="color:#e6db74">&#34;Dec has &#34;</span> <span style="color:#f92672">~</span> ($dt<span style="color:#f92672">.</span>hour,$dt<span style="color:#f92672">.</span>minute,$dt<span style="color:#f92672">.</span>second)<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34;:&#34;</span>) <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34; less daylight&#34;</span>;
 
-my $dt = DateTime.new(secs(11) - secs(12));
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">secs</span>($month) {
+    <span style="color:#66d9ef">my</span> $link <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;https://www.timeanddate.com/sun/uk/london?month=$month&amp;year=2019&#34;</span>;
 
-say &quot;Dec has &quot; ~ ($dt.hour,$dt.minute,$dt.second).join(&quot;:&quot;) ~ &quot; less daylight&quot;;
+    <span style="color:#66d9ef">my</span> $ua <span style="color:#f92672">=</span> HTTP::UserAgent<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>;
 
-sub secs($month) {
-    my $link = &quot;https://www.timeanddate.com/sun/uk/london?month=$month&amp;year=2019&quot;;
+    <span style="color:#66d9ef">my</span> $dom <span style="color:#f92672">=</span> DOM::Tiny<span style="color:#f92672">.</span>parse($ua<span style="color:#f92672">.</span>get($link)<span style="color:#f92672">.</span>content);
 
-    my $ua = HTTP::UserAgent.new;
+    <span style="color:#75715e"># load the &#39;Length&#39; column values</span>
+    <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> $dom<span style="color:#f92672">.</span>find(<span style="color:#e6db74">&#39;td[class=&#34;c tr sep-l&#34;]&#39;</span>)<span style="color:#f92672">.</span>map(<span style="color:#f92672">*.</span>text);
 
-    my $dom = DOM::Tiny.parse($ua.get($link).content);
-
-    # load the 'Length' column values
-    my $c = $dom.find('td[class=&quot;c tr sep-l&quot;]').map(*.text);
-
-    # convert the hh::mm::ss to seconds and sum them
-    $c.map({DateTime.new(&quot;1970-01-01T$_.subst(/^(\d):/, {0 ~ $0})&quot;).posix}).sum;
+    <span style="color:#75715e"># convert the hh::mm::ss to seconds and sum them</span>
+    $c<span style="color:#f92672">.</span>map({DateTime<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(<span style="color:#e6db74">&#34;1970-01-01T$_.subst(/^(\d):/, {0 ~ $0})&#34;</span>)<span style="color:#f92672">.</span>posix})<span style="color:#f92672">.</span>sum;
 }
-</code></pre>
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/roger-bell-west/perl6/ch-2.p6">Roger Bell West</a> used the <a href="https://github.com/Skarsnik/perl6-gumbo">Gombo</a> module, which is a binding to the C <a href="https://github.com/google/gumbo-parser">Gombo</a> library to parse HTML5 and which I had not heard about before. This module provides a <code>parse-html</code> routine that parses an input HTML string and returns a <code>XML::Document</code> object.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl" data-lang="Perl"><span style="color:#66d9ef">use</span> Gumbo;
 
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/roger-bell-west/perl6/ch-2.p6">Roger Bell West</a> used the <a href="https://github.com/Skarsnik/perl6-gumbo">Gombo</a> module, which is a binding to the C <a href="https://github.com/google/gumbo-parser">Gombo</a> library to parse HTML5 and which I had not heard about before. This module provides a <code>parse-html</code> routine that parses an input HTML string and returns a <code>XML::Document</code> object.</p>
+<span style="color:#66d9ef">my</span> @dtime;
 
-<pre><code class="language-Perl">use Gumbo;
-
-my @dtime;
-
-for ('2019-11-london.html','2019-12-london.html') -&gt; $file {
-  my $dlt=0;
-  my $fh=open :r,$file;
-  my $text='';
-  for $fh.lines {
-    $text ~= $_;
+<span style="color:#66d9ef">for</span> (<span style="color:#e6db74">&#39;2019-11-london.html&#39;</span>,<span style="color:#e6db74">&#39;2019-12-london.html&#39;</span>) <span style="color:#f92672">-&gt;</span> $file {
+  <span style="color:#66d9ef">my</span> $dlt<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+  <span style="color:#66d9ef">my</span> $fh<span style="color:#f92672">=</span>open :r,$file;
+  <span style="color:#66d9ef">my</span> $text<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;&#39;</span>;
+  <span style="color:#66d9ef">for</span> $fh<span style="color:#f92672">.</span>lines {
+    $text <span style="color:#f92672">~=</span> $_;
   }
   close $fh;
-  my $xml=parse-html($text);
-  my $tab=$xml.root.elements(:TAG&lt;table&gt;, :RECURSE)[0];
-  for $tab.elements(:TAG&lt;tr&gt;, :RECURSE) -&gt; $tr {
-    my @td=$tr.elements(:TAG&lt;td&gt;, :RECURSE);
-    if (@td.elems==12) {
-      my $dl=@td[2].nodes[0].text;
-      $dl ~~ /(\d+) ':' (\d+) ':' (\d+)/;
-      $dlt+=$0*3600+$1*60+$2;
+  <span style="color:#66d9ef">my</span> $xml<span style="color:#f92672">=</span>parse<span style="color:#f92672">-</span>html($text);
+  <span style="color:#66d9ef">my</span> $tab<span style="color:#f92672">=</span>$xml<span style="color:#f92672">.</span>root<span style="color:#f92672">.</span>elements(:TAG<span style="color:#e6db74">&lt;table&gt;</span>, :RECURSE)[<span style="color:#ae81ff">0</span>];
+  <span style="color:#66d9ef">for</span> $tab<span style="color:#f92672">.</span>elements(:TAG<span style="color:#e6db74">&lt;tr&gt;</span>, :RECURSE) <span style="color:#f92672">-&gt;</span> $tr {
+    <span style="color:#66d9ef">my</span> @td<span style="color:#f92672">=</span>$tr<span style="color:#f92672">.</span>elements(:TAG<span style="color:#e6db74">&lt;td&gt;</span>, :RECURSE);
+    <span style="color:#66d9ef">if</span> (@td<span style="color:#f92672">.</span>elems<span style="color:#f92672">==</span><span style="color:#ae81ff">12</span>) {
+      <span style="color:#66d9ef">my</span> $dl<span style="color:#f92672">=</span>@td[<span style="color:#ae81ff">2</span>]<span style="color:#f92672">.</span>nodes[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>text;
+      $dl <span style="color:#f92672">~~</span> <span style="color:#e6db74">/(\d+) &#39;:&#39; (\d+) &#39;:&#39; (\d+)/</span>;
+      $dlt<span style="color:#f92672">+=</span>$0<span style="color:#f92672">*</span><span style="color:#ae81ff">3600</span><span style="color:#f92672">+</span>$1<span style="color:#f92672">*</span><span style="color:#ae81ff">60</span><span style="color:#f92672">+</span>$2;
     }
   }
   push @dtime,$dlt;
 }
-say 'delta ',@dtime[1]-@dtime[0],' s';
-</code></pre>
+say <span style="color:#e6db74">&#39;delta &#39;</span>,@dtime[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">-</span>@dtime[<span style="color:#ae81ff">0</span>],<span style="color:#e6db74">&#39; s&#39;</span>;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/ruben-westerberg/perl6/ch-2.p6">Ruben Westerberg</a> used the <code>HTTP::UserAgent</code> module to fetch the two needed Web pages. Roger&rsquo;s interpretation of the task was apparently to compute the total day light duration in December with the total daylight duration in November (which is sort of unfair to November since it has one day less).</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl" data-lang="Perl"><span style="color:#66d9ef">use</span> HTTP::UserAgent;
 
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/ruben-westerberg/perl6/ch-2.p6">Ruben Westerberg</a> used the <code>HTTP::UserAgent</code> module to fetch the two needed Web pages. Roger&rsquo;s interpretation of the task was apparently to compute the total day light duration in December with the total daylight duration in November (which is sort of unfair to November since it has one day less).</p>
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Downloading November Data...\n&#34;</span>;
+<span style="color:#66d9ef">my</span> $res<span style="color:#f92672">=</span>HTTP::UserAgent<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span><span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#34;https://www.timeanddate.com/sun/uk/london?month=11&amp;year=2019&#34;</span>);
+<span style="color:#66d9ef">my</span> $nov<span style="color:#f92672">=</span>$res<span style="color:#f92672">.</span>content;
 
-<pre><code class="language-Perl">use HTTP::UserAgent;
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Downloading December Data...\n&#34;</span>;
+$res<span style="color:#f92672">=</span>HTTP::UserAgent<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span><span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#34;https://www.timeanddate.com/sun/uk/london?month=12&amp;year=2019&#34;</span>);
+<span style="color:#66d9ef">my</span> $dec<span style="color:#f92672">=</span> $res<span style="color:#f92672">.</span>content;
 
-print &quot;Downloading November Data...\n&quot;;
-my $res=HTTP::UserAgent.new.get(&quot;https://www.timeanddate.com/sun/uk/london?month=11&amp;year=2019&quot;);
-my $nov=$res.content;
+<span style="color:#66d9ef">my</span> $delta<span style="color:#f92672">=</span>extractDaylight($dec)<span style="color:#f92672">-</span> extractDaylight($nov);
+<span style="color:#66d9ef">my</span> $sign<span style="color:#f92672">=</span> $delta<span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">0</span>??<span style="color:#e6db74">&#34;+&#34;</span><span style="color:#f92672">!!</span><span style="color:#e6db74">&#34;-&#34;</span>; $delta<span style="color:#f92672">=</span>abs($delta);
+<span style="color:#66d9ef">my</span> $hours<span style="color:#f92672">=</span>($delta <span style="color:#f92672">/</span> <span style="color:#ae81ff">3600</span>)<span style="color:#f92672">.</span>Int; $delta<span style="color:#f92672">-=</span>$hours<span style="color:#f92672">*</span><span style="color:#ae81ff">3600</span>;
+<span style="color:#66d9ef">my</span> $mins<span style="color:#f92672">=</span>($delta<span style="color:#f92672">/</span><span style="color:#ae81ff">60</span>)<span style="color:#f92672">.</span>Int; $delta<span style="color:#f92672">-=</span>$mins<span style="color:#f92672">*</span><span style="color:#ae81ff">60</span>;
 
-print &quot;Downloading December Data...\n&quot;;
-$res=HTTP::UserAgent.new.get(&quot;https://www.timeanddate.com/sun/uk/london?month=12&amp;year=2019&quot;);
-my $dec= $res.content;
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;December gained $sign$hours:$mins:$delta (H:M:S) compared to November\n&#34;</span>;
 
-my $delta=extractDaylight($dec)- extractDaylight($nov);
-my $sign= $delta&gt;=0??&quot;+&quot;!!&quot;-&quot;; $delta=abs($delta);
-my $hours=($delta / 3600).Int; $delta-=$hours*3600;
-my $mins=($delta/60).Int; $delta-=$mins*60;
-
-print &quot;December gained $sign$hours:$mins:$delta (H:M:S) compared to November\n&quot;;
-
-sub extractDaylight($text) {
-    my $total =0;
-    my @matches= $text~~ m:g/\&lt;td\sclass\=\&quot;c\str\ssep\-l\&quot;[.*?]\&gt;(.*?)\&lt;\/td\&gt;/;
-    for @matches {
-        my ($h,$m,$s)=split &quot;:&quot;,$_[0].Str;
-        $total+=$h*3600+$m*60+$s;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">extractDaylight</span>($text) {
+    <span style="color:#66d9ef">my</span> $total <span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">my</span> @matches<span style="color:#f92672">=</span> $text<span style="color:#f92672">~~</span> m:g<span style="color:#e6db74">/\&lt;td\sclass\=\&#34;c\str\ssep\-l\&#34;[.*?]\&gt;(.*?)\&lt;\/td\&gt;/</span>;
+    <span style="color:#66d9ef">for</span> @matches {
+        <span style="color:#66d9ef">my</span> ($h,$m,$s)<span style="color:#f92672">=</span>split <span style="color:#e6db74">&#34;:&#34;</span>,$_[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>Str;
+        $total<span style="color:#f92672">+=</span>$h<span style="color:#f92672">*</span><span style="color:#ae81ff">3600</span><span style="color:#f92672">+</span>$m<span style="color:#f92672">*</span><span style="color:#ae81ff">60</span><span style="color:#f92672">+</span>$s;
     }
     $total;
 }
-</code></pre>
-
-<h2 id="task-2-week-days-in-each-month">Task #2: Week Days in Each Month</h2>
-
+</code></pre></div><h2 id="task-2-week-days-in-each-month">Task #2: Week Days in Each Month</h2>
 <p>This is derived in part from my <a href="http://blogs.perl.org/users/laurent_r/2019/12/perl-weekly-challenge-37-week-days-in-each-month-and-daylight-gainloss.html">blog post</a> made in answer to the <a href="https://perlweeklychallenge.org/blog/perl-weekly-challenge-037/">Week 37 of the Perl Weekly Challenge</a> organized by  <a href="http://blogs.perl.org/users/mohammad_s_anwar/">Mohammad S. Anwar</a> as well as answers made by others to the same challenge.</p>
-
 <p>The challenge reads as follows:</p>
-
 <p><em>Write a script to calculate the total number of weekdays (Mon-Fri) in each month of the year 2019.</em></p>
-
 <pre><code>Jan: 23 days
 Feb: 20 days
 Mar: 21 days
@@ -524,15 +468,10 @@ Mar: 21 days
 Nov: 21 days
 Dec: 22 days
 </code></pre>
-
 <p>Although the challenge speaks only of year 2019, I&rsquo;ll expand it a bit to compute the total number of weekdays in each month of any year passed as a parameter (defaulted to 2019 if no year is passed).</p>
-
 <h2 id="my-solutions-1">My solutions</h2>
-
 <p>Raku (formerly known as Perl 6) has many expressive and efficient built-in features for date manipulations in the <a href="https://docs.raku.org/type/Date">Date</a> class.</p>
-
 <p>This is an example under the REPL:</p>
-
 <pre><code>&gt; my $date = Date.new(2019, 1, 1)
 2019-01-01
 &gt; say $date.month;
@@ -540,21 +479,15 @@ Dec: 22 days
 &gt; say $date.day-of-week;
 2
 </code></pre>
-
 <p>So, Jan., 1st, 2019 fell on a Tuesday (day-in-week 2), and it is the first month (January).</p>
-
 <p>Thus, using the <code>Date</code> methods demonstrated above, we could write simple a one-liner (formatted here over 2 lines to make more readable on this blog post) to find the result:</p>
-
 <pre><code>$ perl6 -e 'my @a; for Date.new(2019, 1, 1) .. Date.new(2019, 12, 31) -&gt; $day
 &gt; { @a[$day.month]++ if $day.day-of-week == (1..5).any}; say @a[1..12];
 '
 (23 20 21 22 23 20 23 22 21 23 21 22)
 </code></pre>
-
 <p>For every date in the year, we increment a counter for the date&rsquo;s month if that data is a weekday. Note the use of the <code>(1..5).any</code> junction to simplify comparisons with the <code>1..5</code> range.</p>
-
 <p>We could even add a little bit of sugar to improve the output:</p>
-
 <pre><code>$ perl6 -e 'my @a; for Date.new(2019, 1, 1) .. Date.new(2019, 12, 31) -&gt; $day
 &gt; { @a[$day.month]++ if $day.day-of-week == (1..5).any};
 &gt;  for @a[1..12].kv -&gt; $k, $v {printf &quot;%02d/2019: %d week days\n&quot;, $k+1, $v};
@@ -572,30 +505,22 @@ Dec: 22 days
 11/2019: 21 week days
 12/2019: 22 week days
 </code></pre>
-
 <p>But that&rsquo;s perhaps getting a bit long for a one-liner. Let&rsquo;s do a real program. But, for the sake of  fun, we&rsquo;ll use a different method that doesn&rsquo;t need to iterate over every single day of the year.</p>
-
 <p>If we have the number of days for each month of any year (including February), then it is fairly easy to compute the day in the week of any date in the year. We don&rsquo;t really need to do that for every single date because any month, including February, has four weeks, and thus 20 weekdays, between the 1st and the 28th day. Thus, we only need to figure out the day in week of days between the 29th day and the month end.</p>
-
 <p>We will iterate only over the days after the 28th day of any month to find the number of weekdays in that interval, and the <code>Date</code> class has numerous numerous method to make this simple. The <code>Date</code> class also provides a <a href="https://docs.raku.org/type/Date#(Dateish)_method_days-in-month">days-in-month method</a> returning directly what we need: the number of days in a given month.</p>
-
 <p>The program is very simple:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> v6;
 
-<pre><code class="language-Perl6">use v6;
-
-sub MAIN (UInt $yr = 2019) {
-    for 1..12 -&gt; $mth {
-        my $weekdays = 20;
-        for 29..Date.new($yr, $mth, 1).days-in-month -&gt; $day {
-            $weekdays++ if Date.new($yr, $mth, $day).day-of-week == (1..5).any;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> (UInt $yr = 2019) {
+    <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">12</span> <span style="color:#f92672">-&gt;</span> $mth {
+        <span style="color:#66d9ef">my</span> $weekdays <span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span>;
+        <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">29</span><span style="color:#f92672">..</span>Date<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>($yr, $mth, <span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span>days<span style="color:#f92672">-</span>in<span style="color:#f92672">-</span>month <span style="color:#f92672">-&gt;</span> $day {
+            $weekdays<span style="color:#f92672">++</span> <span style="color:#66d9ef">if</span> Date<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>($yr, $mth, $day)<span style="color:#f92672">.</span>day<span style="color:#f92672">-</span>of<span style="color:#f92672">-</span>week <span style="color:#f92672">==</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">5</span>)<span style="color:#f92672">.</span>any;
         }
-        printf &quot;%02d/%d has $weekdays week days.\n&quot;, $mth, $yr;
+        printf <span style="color:#e6db74">&#34;%02d/%d has $weekdays week days.\n&#34;</span>, $mth, $yr;
     }
 }
-</code></pre>
-
-<p>This program displays the following output:</p>
-
+</code></pre></div><p>This program displays the following output:</p>
 <pre><code>$ perl6 weekdays.p6 2019
 01/2019 has 23 week days.
 02/2019 has 20 week days.
@@ -610,237 +535,196 @@ sub MAIN (UInt $yr = 2019) {
 11/2019 has 21 week days.
 12/2019 has 22 week days.
 </code></pre>
-
 <p>And it works fine with another year passed as an argument. If no argument is passed, the program correctly displays the result for the default input value, year 2019. Note that I didn&rsquo;t care about writing the month names in English, but it would be very simple to create an array with the month names in order to convert from month numbers to month names.</p>
-
 <h2 id="alternative-solutions-1">Alternative Solutions</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/arne-sommer/perl6/ch-1.p6">Arne Sommer</a> used the <code>day-of-week</code> and <code>later</code> methods of the <code>Date</code> class and iterated over all the days of the year, similarly to what I did in my one-liner solutions:</p>
-
-<pre><code class="language-Perl6">unit sub MAIN (Int $year = 2019, Bool :$sum);
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6">unit <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> (Int $year = 2019, Bool :$sum);
 
 my @day-count;
-my @month-name = (&quot;&quot;, &quot;Jan&quot;, &quot;Feb&quot;, &quot;Mar&quot;, &quot;Apr&quot;, &quot;May&quot;, &quot;Jun&quot;, &quot;Jul&quot;, &quot;Aug&quot;, &quot;Sep&quot;, &quot;Oct&quot;, &quot;Nov&quot;, &quot;Dec&quot;);
+my @month-name = (&#34;&#34;, &#34;Jan&#34;, &#34;Feb&#34;, &#34;Mar&#34;, &#34;Apr&#34;, &#34;May&#34;, &#34;Jun&#34;, &#34;Jul&#34;, &#34;Aug&#34;, &#34;Sep&#34;, &#34;Oct&#34;, &#34;Nov&#34;, &#34;Dec&#34;);
 my $date = Date.new($year, 1, 1);
 
 while $date.year == $year
 {
-  @day-count[$date.month]++ if $date.day-of-week &lt;= 5;
-  $date.=later(days =&gt; 1);
+  @day<span style="color:#f92672">-</span>count[$date<span style="color:#f92672">.</span>month]<span style="color:#f92672">++</span> <span style="color:#66d9ef">if</span> $date<span style="color:#f92672">.</span>day<span style="color:#f92672">-</span>of<span style="color:#f92672">-</span>week <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">5</span>;
+  $date<span style="color:#f92672">.=</span>later(days <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>);
 }
-say &quot;Year: $year&quot; unless $year == 2019;
-say &quot;@month-name[$_]: @day-count[$_] days&quot; for 1 .. 12;
-say &quot;Total: { @day-count.sum}&quot; if $sum;
-</code></pre>
+say <span style="color:#e6db74">&#34;Year: $year&#34;</span> <span style="color:#66d9ef">unless</span> $year <span style="color:#f92672">==</span> <span style="color:#ae81ff">2019</span>;
+say <span style="color:#e6db74">&#34;@month-name[$_]: @day-count[$_] days&#34;</span> <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">12</span>;
+say <span style="color:#e6db74">&#34;Total: { @day-count.sum}&#34;</span> <span style="color:#66d9ef">if</span> $sum;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/kevin-colyer/perl6/ch-1.p6">Kevin Colyer</a> did something similar using the <code>day-of-week</code> and <code>later</code> methods of the <code>DateTime</code> class to iterate over all days of the each month:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> @month<span style="color:#f92672">-</span>abbrv<span style="color:#f92672">=&lt;</span>Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec<span style="color:#f92672">&gt;</span>;
 
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/kevin-colyer/perl6/ch-1.p6">Kevin Colyer</a> did something similar using the <code>day-of-week</code> and <code>later</code> methods of the <code>DateTime</code> class to iterate over all days of the each month:</p>
-
-<pre><code class="language-Perl6">my @month-abbrv=&lt;Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec&gt;;
-
-sub weekdays-in-month(DateTime $date) {
-    my $count=0;
-    for ^$date.days-in-month -&gt; $day {
-        $count++ unless $date.later(days =&gt; $day).day-of-week &gt;= 6;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">weekdays</span>-in-month(DateTime $date) {
+    <span style="color:#66d9ef">my</span> $count<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">for</span> <span style="color:#f92672">^</span>$date<span style="color:#f92672">.</span>days<span style="color:#f92672">-</span>in<span style="color:#f92672">-</span>month <span style="color:#f92672">-&gt;</span> $day {
+        $count<span style="color:#f92672">++</span> <span style="color:#66d9ef">unless</span> $date<span style="color:#f92672">.</span>later(days <span style="color:#f92672">=&gt;</span> $day)<span style="color:#f92672">.</span>day<span style="color:#f92672">-</span>of<span style="color:#f92672">-</span>week <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">6</span>;
     }
-    return $count;
+    <span style="color:#66d9ef">return</span> $count;
 }
 
-for 1..12 -&gt; $month {
-    say sprintf &quot;%s: %02d days&quot;, @month-abbrv[$month-1],  weekdays-in-month(DateTime.new(year =&gt; 2019, month=&gt; $month, day =&gt; 1 ));
+<span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">12</span> <span style="color:#f92672">-&gt;</span> $month {
+    say sprintf <span style="color:#e6db74">&#34;%s: %02d days&#34;</span>, @month<span style="color:#f92672">-</span>abbrv[$month<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>],  weekdays<span style="color:#f92672">-</span>in<span style="color:#f92672">-</span>month(DateTime<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(year <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2019</span>, month<span style="color:#f92672">=&gt;</span> $month, day <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> ));
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/noud/perl6/ch-1.p6">Noud</a> also used the <code>day-of-week</code> and <code>later</code> methods of the <code>Date</code> class to iterate over all days of the year:</p>
-
-<pre><code class="language-Perl6">my @a = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-for ^365 -&gt; $day {
-    my $now = Date.new(2019, 1, 1).later(days =&gt; $day);
-    if (0 &lt; $now.day-of-week &lt; 6) {
-        @a[$now.month - 1]++;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/noud/perl6/ch-1.p6">Noud</a> also used the <code>day-of-week</code> and <code>later</code> methods of the <code>Date</code> class to iterate over all days of the year:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">my</span> @a <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>];
+<span style="color:#66d9ef">for</span> <span style="color:#f92672">^</span><span style="color:#ae81ff">365</span> <span style="color:#f92672">-&gt;</span> $day {
+    <span style="color:#66d9ef">my</span> $now <span style="color:#f92672">=</span> Date<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(<span style="color:#ae81ff">2019</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span>later(days <span style="color:#f92672">=&gt;</span> $day);
+    <span style="color:#66d9ef">if</span> (<span style="color:#ae81ff">0</span> <span style="color:#f92672">&lt;</span> $now<span style="color:#f92672">.</span>day<span style="color:#f92672">-</span>of<span style="color:#f92672">-</span>week <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">6</span>) {
+        @a[$now<span style="color:#f92672">.</span>month <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]<span style="color:#f92672">++</span>;
     }
 }
 
-for &lt;Jan Feb Mar Apr May Jun
-     Jul Aug Sep Oct Nov Dec&gt; Z @a -&gt; ($month, $work-days) {
-    say &quot;$month: $work-days days&quot;;
+<span style="color:#66d9ef">for</span> <span style="color:#f92672">&lt;</span>Jan Feb Mar Apr May Jun
+     Jul Aug Sep Oct Nov Dec<span style="color:#f92672">&gt;</span> Z @a <span style="color:#f92672">-&gt;</span> ($month, $work<span style="color:#f92672">-</span>days) {
+    say <span style="color:#e6db74">&#34;$month: $work-days days&#34;</span>;
 }
-</code></pre>
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/rnuttall/perl6/ch-1.p6">Richard Nuttall</a>, who is new to the challenge if I am not wrong, wrote a nice data pipeline computing for each month the number of days in the month in a single chained-methods statement. Note the interesting use of the <code>strftime</code> function of the <a href="https://github.com/supernovus/perl6-datetime-format/blob/master/lib/DateTime/Format.pm6">DateTime::Format</a> module to provide the month names.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl6" data-lang="Perl6"><span style="color:#66d9ef">use</span> v6;
+<span style="color:#66d9ef">use</span> DateTime::Format;
 
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/rnuttall/perl6/ch-1.p6">Richard Nuttall</a>, who is new to the challenge if I am not wrong, wrote a nice data pipeline computing for each month the number of days in the month in a single chained-methods statement. Note the interesting use of the <code>strftime</code> function of the <a href="https://github.com/supernovus/perl6-datetime-format/blob/master/lib/DateTime/Format.pm6">DateTime::Format</a> module to provide the month names.</p>
-
-<pre><code class="language-Perl6">use v6;
-use DateTime::Format;
-
-sub MAIN(Int() $year = Date.today().year()) {
-    for 1..12 -&gt; $month {
-        my $d    = DateTime.new(year =&gt; $year, month =&gt; $month, day =&gt; 1);
-        say strftime('%b', $d) ~ &quot;: &quot; ~
-                map({Date.new(2019, $month, $_).day-of-week()},1 .. $d.days-in-month())
-                .grep({$_ &lt;= 5})
-                .elems;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(Int() $year = Date.today().year()) {
+    <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">12</span> <span style="color:#f92672">-&gt;</span> $month {
+        <span style="color:#66d9ef">my</span> $d    <span style="color:#f92672">=</span> DateTime<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(year <span style="color:#f92672">=&gt;</span> $year, month <span style="color:#f92672">=&gt;</span> $month, day <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>);
+        say strftime(<span style="color:#e6db74">&#39;%b&#39;</span>, $d) <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34;: &#34;</span> <span style="color:#f92672">~</span>
+                map({Date<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(<span style="color:#ae81ff">2019</span>, $month, $_)<span style="color:#f92672">.</span>day<span style="color:#f92672">-</span>of<span style="color:#f92672">-</span>week()},<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $d<span style="color:#f92672">.</span>days<span style="color:#f92672">-</span>in<span style="color:#f92672">-</span>month())
+                <span style="color:#f92672">.</span>grep({$_ <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">5</span>})
+                <span style="color:#f92672">.</span>elems;
     }
 }
-</code></pre>
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/simon-proctor/perl6/ch-1.p6">Simon Proctor</a> also wrote a data pipeline of chained methods. Note the use of the <code>weekday-of-month</code> method of the <a href="https://docs.raku.org/type/Dateish#method_weekday-of-month">Dateish</a> role:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl" data-lang="Perl">constant %MONTHS :<span style="color:#f92672">=</span> Map<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>( (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">12</span>) Z <span style="color:#f92672">&lt;</span>Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec<span style="color:#f92672">&gt;</span> );
 
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/simon-proctor/perl6/ch-1.p6">Simon Proctor</a> also wrote a data pipeline of chained methods. Note the use of the <code>weekday-of-month</code> method of the <a href="https://docs.raku.org/type/Dateish#method_weekday-of-month">Dateish</a> role:</p>
-
-<pre><code class="language-Perl">constant %MONTHS := Map.new( (1..12) Z &lt;Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec&gt; );
-
-sub MAIN(
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(
     Int() $year = Date.today().year() #= Year to display data for, defaults to this year
 ) {
-    for (1..12) -&gt; $month {
-        my $end = Date.new( :1day, :$month, :$year ).days-in-month();
-        my $total = [+] (0..6).map( { Date.new( :day($end-$_), :$month, :$year ) } ).grep( { $_.day-of-week !~~ 6|7 } ).map( { $_.weekday-of-month } );
-        say &quot;{%MONTHS{$month}} : {$total} days&quot;;
+    <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">12</span>) <span style="color:#f92672">-&gt;</span> $month {
+        <span style="color:#66d9ef">my</span> $end <span style="color:#f92672">=</span> Date<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>( :<span style="color:#ae81ff">1</span>day, :$month, :$year )<span style="color:#f92672">.</span>days<span style="color:#f92672">-</span>in<span style="color:#f92672">-</span>month();
+        <span style="color:#66d9ef">my</span> $total <span style="color:#f92672">=</span> [<span style="color:#f92672">+</span>] (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">6</span>)<span style="color:#f92672">.</span>map( { Date<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>( :day($end<span style="color:#f92672">-</span>$_), :$month, :$year ) } )<span style="color:#f92672">.</span>grep( { $_<span style="color:#f92672">.</span>day<span style="color:#f92672">-</span>of<span style="color:#f92672">-</span>week <span style="color:#f92672">!~~</span> <span style="color:#ae81ff">6</span><span style="color:#f92672">|</span><span style="color:#ae81ff">7</span> } )<span style="color:#f92672">.</span>map( { $_<span style="color:#f92672">.</span>weekday<span style="color:#f92672">-</span>of<span style="color:#f92672">-</span>month } );
+        say <span style="color:#e6db74">&#34;{%MONTHS{$month}} : {$total} days&#34;</span>;
     }
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/ulrich-rieke/perl6/ch-1.p6">Ulrich Rielke</a> wrote two nested loops (over months and over days of the month) to iterate over all days of the year and used the <code>day-of-week</code> method of the <code>Date</code> class to populate a weekday counter for each month:</p>
-
-<pre><code class="language-Perl">my %daycount = &quot;Jan&quot; =&gt; 31 , &quot;Feb&quot; =&gt; 28 , &quot;Mar&quot; =&gt; 31 , &quot;Apr&quot; =&gt; 30 ,
-  &quot;May&quot; =&gt; 31 , &quot;Jun&quot; =&gt; 30 , &quot;Jul&quot; =&gt; 31 , &quot;Aug&quot; =&gt; 31 , &quot;Sep&quot; =&gt; 30 ,
-  &quot;Oct&quot; =&gt; 31 , &quot;Nov&quot; =&gt; 30 , &quot;Dec&quot; =&gt; 31 ;
-my @months = &lt;Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec&gt; ;
-my %weekdaycount ;
-my $weekdays ;
-for (1..12) -&gt; $month {
-  my $mon = @months[ $month - 1 ] ;
-  for (1..%daycount{$mon}) -&gt; $day {
-      my $date = Date.new( 2019 , $month , $day ) ;
-      if ( 1 &lt;= $date.day-of-week &lt;= 5 ) {
-    $weekdays++ ;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/ulrich-rieke/perl6/ch-1.p6">Ulrich Rielke</a> wrote two nested loops (over months and over days of the month) to iterate over all days of the year and used the <code>day-of-week</code> method of the <code>Date</code> class to populate a weekday counter for each month:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl" data-lang="Perl"><span style="color:#66d9ef">my</span> %daycount <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Jan&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">31</span> , <span style="color:#e6db74">&#34;Feb&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">28</span> , <span style="color:#e6db74">&#34;Mar&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">31</span> , <span style="color:#e6db74">&#34;Apr&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">30</span> ,
+  <span style="color:#e6db74">&#34;May&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">31</span> , <span style="color:#e6db74">&#34;Jun&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">30</span> , <span style="color:#e6db74">&#34;Jul&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">31</span> , <span style="color:#e6db74">&#34;Aug&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">31</span> , <span style="color:#e6db74">&#34;Sep&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">30</span> ,
+  <span style="color:#e6db74">&#34;Oct&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">31</span> , <span style="color:#e6db74">&#34;Nov&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">30</span> , <span style="color:#e6db74">&#34;Dec&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">31</span> ;
+<span style="color:#66d9ef">my</span> @months <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;</span>Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec<span style="color:#f92672">&gt;</span> ;
+<span style="color:#66d9ef">my</span> %weekdaycount ;
+<span style="color:#66d9ef">my</span> $weekdays ;
+<span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">12</span>) <span style="color:#f92672">-&gt;</span> $month {
+  <span style="color:#66d9ef">my</span> $mon <span style="color:#f92672">=</span> @months[ $month <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ] ;
+  <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>%daycount{$mon}) <span style="color:#f92672">-&gt;</span> $day {
+      <span style="color:#66d9ef">my</span> $date <span style="color:#f92672">=</span> Date<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>( <span style="color:#ae81ff">2019</span> , $month , $day ) ;
+      <span style="color:#66d9ef">if</span> ( <span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;=</span> $date<span style="color:#f92672">.</span>day<span style="color:#f92672">-</span>of<span style="color:#f92672">-</span>week <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">5</span> ) {
+    $weekdays<span style="color:#f92672">++</span> ;
       }
   }
-  %weekdaycount{ $mon } = $weekdays ;
-  $weekdays = 0 ;
+  %weekdaycount{ $mon } <span style="color:#f92672">=</span> $weekdays ;
+  $weekdays <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> ;
 }
-for @months -&gt; $month {
-  say &quot;$month: {%weekdaycount{ $month }} days&quot; ;
+<span style="color:#66d9ef">for</span> @months <span style="color:#f92672">-&gt;</span> $month {
+  say <span style="color:#e6db74">&#34;$month: {%weekdaycount{ $month }} days&#34;</span> ;
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/daniel-mita/perl6/ch-1.p6">Daniel Mita</a>&rsquo;s solution is quite innovative in several respects, and I must admit that I have some trouble understanding parts of his solution. I leave it to you to discover it:</p>
-
-<pre><code class="language-Perl">enum Months «
-  :Jan(1) Feb Mar
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/daniel-mita/perl6/ch-1.p6">Daniel Mita</a>&lsquo;s solution is quite innovative in several respects, and I must admit that I have some trouble understanding parts of his solution. I leave it to you to discover it:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl" data-lang="Perl">enum Months <span style="color:#960050;background-color:#1e0010">«</span>
+  :Jan(<span style="color:#ae81ff">1</span>) Feb Mar
    Apr    May Jun
    Jul    Aug Sep
    Oct    Nov Dec
-»;
-&quot;$_.key(): $_.value()&quot;.say for (gather {
-  given Date.new(:2019year) {
-    take Months(.month) if .day-of-week ≠ 6|7;
-    &amp;?BLOCK(.succ) if .succ.year == .year;
+<span style="color:#960050;background-color:#1e0010">»</span>;
+<span style="color:#e6db74">&#34;$_.key(): $_.value()&#34;</span><span style="color:#f92672">.</span>say <span style="color:#66d9ef">for</span> (gather {
+  given Date<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(:<span style="color:#ae81ff">2019</span>year) {
+    take Months(<span style="color:#f92672">.</span>month) <span style="color:#66d9ef">if</span> <span style="color:#f92672">.</span>day<span style="color:#f92672">-</span>of<span style="color:#f92672">-</span>week <span style="color:#960050;background-color:#1e0010">≠</span> <span style="color:#ae81ff">6</span><span style="color:#f92672">|</span><span style="color:#ae81ff">7</span>;
+    <span style="color:#f92672">&amp;</span>?BLOCK(<span style="color:#f92672">.</span>succ) <span style="color:#66d9ef">if</span> <span style="color:#f92672">.</span>succ<span style="color:#f92672">.</span>year <span style="color:#f92672">==</span> <span style="color:#f92672">.</span>year;
   }
-}).Bag.pairs.sort({ ::{$^a.key} &lt;=&gt; ::{$^b.key} });
-</code></pre>
-
-<p>This is probably the first time that I see an enumeration used in Perl 6 (well at least in real code whose purpose is not to demonstrate enumerations).</p>
-
+})<span style="color:#f92672">.</span>Bag<span style="color:#f92672">.</span>pairs<span style="color:#f92672">.</span>sort({ <span style="color:#f92672">::</span>{$<span style="color:#960050;background-color:#1e0010">^</span>a<span style="color:#f92672">.</span>key} <span style="color:#e6db74">&lt;=&gt;</span> <span style="color:#f92672">::</span>{$<span style="color:#960050;background-color:#1e0010">^</span>b<span style="color:#f92672">.</span>key} });
+</code></pre></div><p>This is probably the first time that I see an enumeration used in Perl 6 (well at least in real code whose purpose is not to demonstrate enumerations).</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/javier-luque/perl6/ch-1.p6">Javier Luque</a> wrote a program that iterates over all day of the year and increments a counter in a hash of monthly counters each time a date corresponds to a week day:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl" data-lang="Perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">show</span>-weekdays-per-year(Int $year) {
+    <span style="color:#66d9ef">my</span> $current <span style="color:#f92672">=</span> Date<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>($year, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>);
+    <span style="color:#66d9ef">my</span> %months{Int};
 
-<pre><code class="language-Perl">sub show-weekdays-per-year(Int $year) {
-    my $current = Date.new($year, 1, 1);
-    my %months{Int};
-
-    my @mon = (
-        'Jan', 'Feb', 'Mar', 'Apr',
-        'May', 'Jun', 'Jul', 'Aug',
-        'Sep', 'Oct', 'Nov', 'Dec'
+    <span style="color:#66d9ef">my</span> @mon <span style="color:#f92672">=</span> (
+        <span style="color:#e6db74">&#39;Jan&#39;</span>, <span style="color:#e6db74">&#39;Feb&#39;</span>, <span style="color:#e6db74">&#39;Mar&#39;</span>, <span style="color:#e6db74">&#39;Apr&#39;</span>,
+        <span style="color:#e6db74">&#39;May&#39;</span>, <span style="color:#e6db74">&#39;Jun&#39;</span>, <span style="color:#e6db74">&#39;Jul&#39;</span>, <span style="color:#e6db74">&#39;Aug&#39;</span>,
+        <span style="color:#e6db74">&#39;Sep&#39;</span>, <span style="color:#e6db74">&#39;Oct&#39;</span>, <span style="color:#e6db74">&#39;Nov&#39;</span>, <span style="color:#e6db74">&#39;Dec&#39;</span>
     );
 
-    while ($current.year == $year) {
-        %months{$current.month}++
-            if ($current.day-of-week == (1 .. 5).any);
-        $current++;
+    <span style="color:#66d9ef">while</span> ($current<span style="color:#f92672">.</span>year <span style="color:#f92672">==</span> $year) {
+        %months{$current<span style="color:#f92672">.</span>month}<span style="color:#f92672">++</span>
+            <span style="color:#66d9ef">if</span> ($current<span style="color:#f92672">.</span>day<span style="color:#f92672">-</span>of<span style="color:#f92672">-</span>week <span style="color:#f92672">==</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">5</span>)<span style="color:#f92672">.</span>any);
+        $current<span style="color:#f92672">++</span>;
     }
 
-    for %months.keys.sort -&gt; $key {
-        say @mon[$key - 1] ~ ': ' ~
-            %months{$key} ~ ' days';
+    <span style="color:#66d9ef">for</span> %months<span style="color:#f92672">.</span>keys<span style="color:#f92672">.</span>sort <span style="color:#f92672">-&gt;</span> $key {
+        say @mon[$key <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">~</span> <span style="color:#e6db74">&#39;: &#39;</span> <span style="color:#f92672">~</span>
+            %months{$key} <span style="color:#f92672">~</span> <span style="color:#e6db74">&#39; days&#39;</span>;
     }
 }
-</code></pre>
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/mark-anderson/perl6/ch-1.p6">Mark Anderson</a> used two nested <code>while</code> loops to iterate over each day of each month and the <code>day-of-week</code> method of the <code>Date</code> class to increment a counter for each weekday. Note the use of the <a href="https://github.com/tbrowder/Date-Names-Perl6">Date::Names</a> module to handle month names.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl" data-lang="Perl"><span style="color:#66d9ef">use</span> Date::Names;
 
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/mark-anderson/perl6/ch-1.p6">Mark Anderson</a> used two nested <code>while</code> loops to iterate over each day of each month and the <code>day-of-week</code> method of the <code>Date</code> class to increment a counter for each weekday. Note the use of the <a href="https://github.com/tbrowder/Date-Names-Perl6">Date::Names</a> module to handle month names.</p>
+<span style="color:#66d9ef">my</span> $dt <span style="color:#f92672">=</span> DateTime<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(year <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2019</span>, month <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>);
+<span style="color:#66d9ef">my</span> $dn <span style="color:#f92672">=</span> Date::Names<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>;
 
-<pre><code class="language-Perl">use Date::Names;
+<span style="color:#66d9ef">while</span> ($dt<span style="color:#f92672">.</span>year <span style="color:#f92672">==</span> <span style="color:#ae81ff">2019</span>) {
+    <span style="color:#66d9ef">my</span> $count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">my</span> $mon <span style="color:#f92672">=</span> $dn<span style="color:#f92672">.</span>mon($dt<span style="color:#f92672">.</span>month, <span style="color:#ae81ff">3</span>);
 
-my $dt = DateTime.new(year =&gt; 2019, month =&gt; 1);
-my $dn = Date::Names.new;
-
-while ($dt.year == 2019) {
-    my $count = 0;
-    my $mon = $dn.mon($dt.month, 3);
-
-    while ($dn.mon($dt.month, 3) eq $mon) {
-        if ($dt.day-of-week &lt; 6) {
-            $count++;
+    <span style="color:#66d9ef">while</span> ($dn<span style="color:#f92672">.</span>mon($dt<span style="color:#f92672">.</span>month, <span style="color:#ae81ff">3</span>) <span style="color:#f92672">eq</span> $mon) {
+        <span style="color:#66d9ef">if</span> ($dt<span style="color:#f92672">.</span>day<span style="color:#f92672">-</span>of<span style="color:#f92672">-</span>week <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">6</span>) {
+            $count<span style="color:#f92672">++</span>;
         }
 
-        $dt = $dt.later(:day1);
+        $dt <span style="color:#f92672">=</span> $dt<span style="color:#f92672">.</span>later(:day1);
     }
 
-    say &quot;$mon:$count days&quot;;
+    say <span style="color:#e6db74">&#34;$mon:$count days&#34;</span>;
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/roger-bell-west/perl6/ch-1.p6">Roger Bell West</a> made a program based on the same observation as I did for my last solution: any month had 20 weekdays in its first 28 days, and it is therefore sufficient to count the weekdays after the 28th of each month, using the <code>day-of-week</code> method (starting the counter at 20). This being said, his detailed implementation is quite different from mine and works its way backward from the last day of the month using the <code>earlier</code> method:</p>
-
-<pre><code class="language-Perl">my $y=2019;
-for (1..12) -&gt; $m {
-  my $mm=$m+1;
-  my $yy=$y;
-  if ($mm&gt;12) {
-    $mm-=12;
-    $yy++;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/roger-bell-west/perl6/ch-1.p6">Roger Bell West</a> made a program based on the same observation as I did for my last solution: any month had 20 weekdays in its first 28 days, and it is therefore sufficient to count the weekdays after the 28th of each month, using the <code>day-of-week</code> method (starting the counter at 20). This being said, his detailed implementation is quite different from mine and works its way backward from the last day of the month using the <code>earlier</code> method:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl" data-lang="Perl"><span style="color:#66d9ef">my</span> $y<span style="color:#f92672">=</span><span style="color:#ae81ff">2019</span>;
+<span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">12</span>) <span style="color:#f92672">-&gt;</span> $m {
+  <span style="color:#66d9ef">my</span> $mm<span style="color:#f92672">=</span>$m<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>;
+  <span style="color:#66d9ef">my</span> $yy<span style="color:#f92672">=</span>$y;
+  <span style="color:#66d9ef">if</span> ($mm<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">12</span>) {
+    $mm<span style="color:#f92672">-=</span><span style="color:#ae81ff">12</span>;
+    $yy<span style="color:#f92672">++</span>;
   }
-  my $d=Date.new($yy,$mm,1).earlier(:1day);
-  my $wd=20;
-  while ($d.day&gt;28) {
-    if ($d.day-of-week &lt; 6) {
-      $wd++;
+  <span style="color:#66d9ef">my</span> $d<span style="color:#f92672">=</span>Date<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>($yy,$mm,<span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span>earlier(:<span style="color:#ae81ff">1</span>day);
+  <span style="color:#66d9ef">my</span> $wd<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>;
+  <span style="color:#66d9ef">while</span> ($d<span style="color:#f92672">.</span>day<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">28</span>) {
+    <span style="color:#66d9ef">if</span> ($d<span style="color:#f92672">.</span>day<span style="color:#f92672">-</span>of<span style="color:#f92672">-</span>week <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">6</span>) {
+      $wd<span style="color:#f92672">++</span>;
     }
-    $d=$d.earlier(:1day);
+    $d<span style="color:#f92672">=</span>$d<span style="color:#f92672">.</span>earlier(:<span style="color:#ae81ff">1</span>day);
   }
-  say &quot;$m: $wd days&quot;;
+  say <span style="color:#e6db74">&#34;$m: $wd days&#34;</span>;
 }
-</code></pre>
-
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/ruben-westerberg/perl6/ch-1.p6">Ruben Westerberg</a> made one of shortest implementations among the challengers, despite the fact that his use of the <code>DateTime</code> class made it slightly more complicated than it would have been using the <code>Date</code> class.</p>
-
-<pre><code class="language-Perl">my $t=DateTime.new(:2019year);
-my %months;
-my @names= &lt;January February March April May June July August September October November December&gt;;
-while $t.year == 2019 {
-    $t+=Duration.new(60*60*24);;
-    %months{@names[$t.month-1]}++ if $t.day-of-week == any (1..5);
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/ruben-westerberg/perl6/ch-1.p6">Ruben Westerberg</a> made one of shortest implementations among the challengers, despite the fact that his use of the <code>DateTime</code> class made it slightly more complicated than it would have been using the <code>Date</code> class.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Perl" data-lang="Perl"><span style="color:#66d9ef">my</span> $t<span style="color:#f92672">=</span>DateTime<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(:<span style="color:#ae81ff">2019</span>year);
+<span style="color:#66d9ef">my</span> %months;
+<span style="color:#66d9ef">my</span> @names<span style="color:#f92672">=</span> <span style="color:#f92672">&lt;</span>January February March April May June July August September October November December<span style="color:#f92672">&gt;</span>;
+<span style="color:#66d9ef">while</span> $t<span style="color:#f92672">.</span>year <span style="color:#f92672">==</span> <span style="color:#ae81ff">2019</span> {
+    $t<span style="color:#f92672">+=</span>Duration<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>(<span style="color:#ae81ff">60</span><span style="color:#f92672">*</span><span style="color:#ae81ff">60</span><span style="color:#f92672">*</span><span style="color:#ae81ff">24</span>);;
+    %months{@names[$t<span style="color:#f92672">.</span>month<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]}<span style="color:#f92672">++</span> <span style="color:#66d9ef">if</span> $t<span style="color:#f92672">.</span>day<span style="color:#f92672">-</span>of<span style="color:#f92672">-</span>week <span style="color:#f92672">==</span> any (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">5</span>);
 }
-for  @names {
-    put &quot;$_: %months{$_} week days&quot;
+<span style="color:#66d9ef">for</span>  @names {
+    put <span style="color:#e6db74">&#34;$_: %months{$_} week days&#34;</span>
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="see-also">SEE ALSO</h2>
-
-<hr />
-
+<hr>
 <p>Only two blog posts (besides mine) this time:</p>
-
 <ul>
-<li><p>Arne Sommer: <a href="https://raku-musings.com/weekdays-daylight.html">https://raku-musings.com/weekdays-daylight.html</a>;</p></li>
-
-<li><p>Javier Luque: <a href="https://perlchallenges.wordpress.com/2019/12/02/perl-weekly-challenge-037/">https://perlchallenges.wordpress.com/2019/12/02/perl-weekly-challenge-037/</a>.</p></li>
+<li>
+<p>Arne Sommer: <a href="https://raku-musings.com/weekdays-daylight.html;">https://raku-musings.com/weekdays-daylight.html;</a></p>
+</li>
+<li>
+<p>Javier Luque: <a href="https://perlchallenges.wordpress.com/2019/12/02/perl-weekly-challenge-037/">https://perlchallenges.wordpress.com/2019/12/02/perl-weekly-challenge-037/</a>.</p>
+</li>
 </ul>
-
 <h2 id="wrapping-up">Wrapping up</h2>
-
 <p>Please let me know if I forgot any of the challengers or if you think my explanation of your code misses something important (send me an e-mail or just raise an issue against this GitHub page).</p>
-
 <p>If you want to participate to the Perl Weekly Challenge, please connect to <a href="https://perlweeklychallenge.org/">this site</a>.</p>
 
                 </div>

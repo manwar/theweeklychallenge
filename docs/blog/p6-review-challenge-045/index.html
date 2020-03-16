@@ -16,7 +16,7 @@
 
     <meta name="description" content="Ryan Thompson › Raku Weekly Review: Challenge - #045">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.55.0-DEV" />
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -41,6 +41,8 @@
     <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
     <!-- hover -->
     <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
     <!-- template main css file -->
     
     <link rel="stylesheet" href="https://perlweeklychallenge.org/css/style.min.css" integrity="" media="screen">
@@ -149,605 +151,372 @@
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
-                    
-
-<p>Welcome to the Raku review for Week 045 of the Weekly Challenge! For a quick overview, go through the <a href="/blog/perl-weekly-challenge-045/">original tasks</a> and <a href="/blog/recap-challenge-045/">recap</a> of the weekly challenge.</p>
-
+                    <p>Welcome to the Raku review for Week 045 of the Weekly Challenge! For a quick overview, go through the <a href="/blog/perl-weekly-challenge-045/">original tasks</a> and <a href="/blog/recap-challenge-045/">recap</a> of the weekly challenge.</p>
 <p>I&rsquo;m filling in for Laurent this week with the Raku review.</p>
-
 <h2 id="getting-in-touch">Getting in Touch</h2>
-
 <p><a href="mailto:rjt@cpan.org"><img src="http://ry.ca/misc/Email.svg" height="50" width="50"> Email</a> › Email me (Ryan) with any feedback about this review.</p>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge"><img src="http://ry.ca/misc/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request for any issues you may find with this page.</p>
-
 <p><a href="https://twitter.com/perlwchallenge"><img src="http://ry.ca/misc/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!</p>
-
 <p>We&rsquo;d greatly appreciate any feedback you&rsquo;d like to give.</p>
-
 <h2 id="table-of-contents">Table of Contents</h2>
-
 <ul>
 <li><a href="#task1">Task 1</a></li>
 <li><a href="#task2">Task 2</a></li>
 <li><a href="#blogs">Blogs</a></li>
 </ul>
-
-<hr />
-
+<hr>
 <h1 id="task1">Task #1 › Square Secret Code</h1>
-
-<hr />
-
+<hr>
 <h2 id="original-task-description">Original task description</h2>
-
 <p>The square secret code mechanism first removes any space from the original message. Then it lays down the message in a row of 8 columns. The coded message is then obtained by reading down the columns going left to right.</p>
-
 <p>For example, the message is <strong>“The quick brown fox jumps over the lazy dog”.</strong></p>
-
 <p>Then the message would be laid out as below:</p>
-
 <pre><code>thequick
 brownfox
 jumpsove
 rthelazy
 dog
-</code></pre>
-
-<p><strong>Figure 1</strong> › Partitioned Plaintext</p>
-
+</code></pre><p><strong>Figure 1</strong> › Partitioned Plaintext</p>
 <p>The code message would be as below:</p>
-
 <pre><code>tbjrd hruto eomhg qwpe unsl ifoa covz kxey
-</code></pre>
-
-<hr />
-
+</code></pre><hr>
 <h2 id="my-general-observations">My general observations</h2>
-
 <p>There were three key ways people approached this task:</p>
-
 <h3 id="1-partitioning-and-looping">1. Partitioning and Looping</h3>
-
 <p>By first splitting the plaintext into column-width substrings, you end up with <strong>Figure 1</strong> (above). From there, you can simply append the first character of each string to your output, then the second character, and so on.</p>
-
 <p>This method is perhaps the most obvious implementation of the problem description, as it follows the wording quite closely.</p>
-
 <h3 id="2-zip-z-or-roundrobin">2. <code>zip</code>, <code>[Z~]</code> or <code>roundrobin</code></h3>
-
 <p>This method builds on the first by taking advantage of these Raku builtins. After partitioning the string into 8-character arrays, those arrays can be simply fed through any of <code>zip</code>, <code>[Z~]</code> or <code>roundrobin</code>, and then <code>join</code>ed together.</p>
-
 <h3 id="3-comb-and-modulo-arithmetic">3. <code>.comb</code> and Modulo Arithmetic</h3>
-
 <p>For this method, you first split the plaintext into a list of chars with <code>.comb</code>. Then, you loop over the plaintext array, appending each character into its <code>$index % $columns</code> string in an array of <code>@columns</code>. Finally, you simply <code>join</code> the columns together.</p>
-
-<hr />
-
+<hr>
 <p>If my plain English descriptions don&rsquo;t make complete sense yet, don&rsquo;t worry; there will be plenty of code examples below.</p>
-
 <h2 id="arne-sommer">Arne Sommer</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/arne-sommer/raku/ch-1.p6">Arne Sommer&rsquo;s solution</a> removes spaces (and also removes double quotes) and then splits the input into a character array. Finally, he uses a nested loop to print the solution character by character:</p>
-
-<pre><code class="language-raku">unit sub MAIN ($string is copy = &quot;The quick brown fox jumps over the lazy dog&quot;, :$verbose);
-$string ~~ tr/&quot; &quot;//;
-say &quot;: { $string.lc }&quot; if $verbose;
-my @a = $string.lc.comb;
-
-for 0 .. 7 -&gt; $word {
-  my $index = $word;
-  loop {
-    @a[$index]:exists
-      ?? print  @a[$index]
-      !! ( print &quot; &quot;; last);
-
-    $index += 8;
-  }
-}
-say &quot;&quot;;
-</code></pre>
-
-<p>Arne&rsquo;s loops allow him to scan over <code>@a</code> 8 characters at a time, shifting the starting position from 0 to 7, so he scans each column.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku">unit <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> ($string is copy = &#34;The quick brown fox jumps over the lazy dog&#34;, :$verbose);
+$string ~~ tr/&#34; &#34;//;
+say &#34;: { $string<span style="color:#f92672">.</span>lc }<span style="color:#e6db74">&#34; if $verbose;
+</span><span style="color:#e6db74">my @a = $string.lc.comb;
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">for 0 .. 7 -&gt; $word {
+</span><span style="color:#e6db74">  my $index = $word;
+</span><span style="color:#e6db74">  loop {
+</span><span style="color:#e6db74">    @a[$index]:exists
+</span><span style="color:#e6db74">      ?? print  @a[$index]
+</span><span style="color:#e6db74">      !! ( print &#34;</span> <span style="color:#e6db74">&#34;; last);
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">    $index += 8;
+</span><span style="color:#e6db74">  }
+</span><span style="color:#e6db74">}
+</span><span style="color:#e6db74">say &#34;</span><span style="color:#960050;background-color:#1e0010">&#34;</span>;
+</code></pre></div><p>Arne&rsquo;s loops allow him to scan over <code>@a</code> 8 characters at a time, shifting the starting position from 0 to 7, so he scans each column.</p>
 <p><strong>Blog</strong> › <a href="https://raku-musings.com/square-dumper.html">Square Dumper with Raku</a></p>
-
 <h2 id="burkhard-nickels">Burkhard Nickels</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/burkhard-nickels/raku/ch-1.p6">Burkhard Nickels&rsquo; solution</a> uses a C-style <code>loop</code> to advance 8 characters at a time:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku">$msg <span style="color:#f92672">~~</span> s:g<span style="color:#e6db74">/\s/</span><span style="color:#f92672">/</span>;
+$msg <span style="color:#f92672">=</span> $msg<span style="color:#f92672">.</span>lc;
+<span style="color:#66d9ef">my</span> @l <span style="color:#f92672">=</span> split(<span style="color:#e6db74">&#34;&#34;</span>,$msg);
 
-<pre><code class="language-raku">$msg ~~ s:g/\s//;
-$msg = $msg.lc;
-my @l = split(&quot;&quot;,$msg);
-
-my $coded_msg;
-for (1 .. 8) {
-    loop (my $j = $_; $j &lt;= @l.end; $j += 8) {
-        $coded_msg ~= @l[ $j ];
+<span style="color:#66d9ef">my</span> $coded_msg;
+<span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">8</span>) {
+    loop (<span style="color:#66d9ef">my</span> $j <span style="color:#f92672">=</span> $_; $j <span style="color:#f92672">&lt;=</span> @l<span style="color:#f92672">.</span>end; $j <span style="color:#f92672">+=</span> <span style="color:#ae81ff">8</span>) {
+        $coded_msg <span style="color:#f92672">~=</span> @l[ $j ];
     }
-    $coded_msg ~= &quot; &quot;;
+    $coded_msg <span style="color:#f92672">~=</span> <span style="color:#e6db74">&#34; &#34;</span>;
 }
-print &quot;Coded   : $coded_msg\n&quot;;
-</code></pre>
-
-<p><strong>Blog</strong> › <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/burkhard-nickels/perl/ch-1.pod">Square Secret Code</a></p>
-
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Coded   : $coded_msg\n&#34;</span>;
+</code></pre></div><p><strong>Blog</strong> › <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/burkhard-nickels/perl/ch-1.pod">Square Secret Code</a></p>
 <h2 id="colin-crain">Colin Crain</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/colin-crain/raku/ch-1.p6">Colin Crain&rsquo;s solution</a> is a first example we&rsquo;ll see of a <code>zip</code> or <code>roundrobin</code> solution:</p>
-
-<pre><code class="language-raku">sub MAIN (Str:D $raw = &quot;The quick brown fox jumps over the lazy dog&quot; ) {
-    my $input = $raw.comb.grep( /\w/ ).join( '' ).lc;
-    my @output = roundrobin ($input.comb(8)).map({ .comb });
-    say join ' ', @output.map({ .join });
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> (Str:D $raw = &#34;The quick brown fox jumps over the lazy dog&#34; ) {
+    <span style="color:#66d9ef">my</span> $input <span style="color:#f92672">=</span> $raw<span style="color:#f92672">.</span>comb<span style="color:#f92672">.</span>grep(<span style="color:#e6db74"> /\w/</span> )<span style="color:#f92672">.</span>join( <span style="color:#e6db74">&#39;&#39;</span> )<span style="color:#f92672">.</span>lc;
+    <span style="color:#66d9ef">my</span> @output <span style="color:#f92672">=</span> roundrobin ($input<span style="color:#f92672">.</span>comb(<span style="color:#ae81ff">8</span>))<span style="color:#f92672">.</span>map({ <span style="color:#f92672">.</span>comb });
+    say join <span style="color:#e6db74">&#39; &#39;</span>, @output<span style="color:#f92672">.</span>map({ <span style="color:#f92672">.</span>join });
 }
-</code></pre>
-
-<p>Colin first strips all non-word characters and converts the input to lowercase.</p>
-
+</code></pre></div><p>Colin first strips all non-word characters and converts the input to lowercase.</p>
 <p>He then uses <code>comb(8)</code> to split the strings into 8-character strings, and <code>.comb</code> on each of those to convert them to character arrays. And then it gets interesting:</p>
-
 <p>The <a href="https://docs.perl6.org/routine/roundrobin">roundrobin</a> routine (which is similar to <a href="https://docs.perl6.org/type/List#routine_zip">zip</a>, except it handles lists of uneven lengths) takes the first character from each list, then the second, then the third, and so on. That&rsquo;s the exact ordering we need.</p>
-
 <h2 id="jaldhar-h-vyas">Jaldhar H. Vyas</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/jaldhar-h-vyas/raku/ch-1.p6">Jaldhar H. Vyas&rsquo; solution</a> is another very compact one:</p>
-
-<pre><code class="language-raku">multi sub MAIN(*@ARGS) {
-    my $input = @*ARGS.lc.join(q{ }).subst(/\s+/, q{}, :g);
-    $input ~= q{ } x 8 - ($input.chars % 8);
-    ([Z~] $input.comb.rotor(8)).join(q{ }).subst(/' '+/, q{ }, :g).say;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku">multi <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(*@ARGS) {
+    <span style="color:#66d9ef">my</span> $input <span style="color:#f92672">=</span> @<span style="color:#960050;background-color:#1e0010">*</span>ARGS<span style="color:#f92672">.</span>lc<span style="color:#f92672">.</span>join(<span style="color:#e6db74">q{ }</span>)<span style="color:#f92672">.</span>subst(<span style="color:#e6db74">/\s+/</span>, <span style="color:#e6db74">q{}</span>, :g);
+    $input <span style="color:#f92672">~=</span> <span style="color:#e6db74">q{ }</span> x <span style="color:#ae81ff">8</span> <span style="color:#f92672">-</span> ($input<span style="color:#f92672">.</span>chars % 8);
+    ([Z<span style="color:#f92672">~</span>] $input<span style="color:#f92672">.</span>comb<span style="color:#f92672">.</span>rotor(<span style="color:#ae81ff">8</span>))<span style="color:#f92672">.</span>join(<span style="color:#e6db74">q{ }</span>)<span style="color:#f92672">.</span>subst(<span style="color:#e6db74">/&#39; &#39;+/</span>, <span style="color:#e6db74">q{ }</span>, :g)<span style="color:#f92672">.</span>say;
 }
-</code></pre>
-
-<p>The first line joins the arguments, converting them to lowercase removing spaces. The second line then pads the input string to be a multiple of 8 characters.</p>
-
+</code></pre></div><p>The first line joins the arguments, converting them to lowercase removing spaces. The second line then pads the input string to be a multiple of 8 characters.</p>
 <p>The third line first splits <code>$input</code> into a character array with <code>.comb</code>, and then uses <code>rotor(8)</code> for the array the same way Colin used <code>.comb(8)</code> for a string. Jaldhar then <code>.join</code>s them with spaces, and trims repeated spaces. The result of all of this is then fed through the reduction metaoperator <code>[Z~]</code> to do the zip operation.</p>
-
 <p><strong>Blog</strong> › <a href="https://www.braincells.com/perl/2020/02/perl_weekly_challenge_week_45.html">Perl Weekly Challenge 045</a></p>
-
 <h2 id="javier-luque">Javier Luque</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/javier-luque/raku/ch-1.p6">Javier Luque&rsquo;s solution</a> uses the <code>.comb</code> and modulo arithmetic approach to build up <code>@new_words</code> character by character:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(Str $string) {
+    <span style="color:#66d9ef">my</span> @new_words;
+    @new_words[$_] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span> <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">7</span>);
 
-<pre><code class="language-raku">sub MAIN(Str $string) {
-    my @new_words;
-    @new_words[$_] = '' for (0..7);
+    <span style="color:#66d9ef">my</span> $clean_string <span style="color:#f92672">=</span> $string;
+    $clean_string <span style="color:#f92672">~~</span> s:g<span style="color:#e6db74">/\s/</span><span style="color:#f92672">/</span>;
+    <span style="color:#66d9ef">my</span> @chars <span style="color:#f92672">=</span> $clean_string<span style="color:#f92672">.</span>comb;
 
-    my $clean_string = $string;
-    $clean_string ~~ s:g/\s//;
-    my @chars = $clean_string.comb;
-
-    for (0 .. @chars.elems - 1) -&gt; $i {
-        @new_words[$i % 8] =
-            @new_words[$i % 8] ~ @chars[$i];
+    <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> @chars<span style="color:#f92672">.</span>elems <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">-&gt;</span> $i {
+        @new_words[$i % 8] <span style="color:#f92672">=</span>
+            @new_words[$i % 8] <span style="color:#f92672">~</span> @chars[$i];
     }
 
-    say @new_words.join(' ');
+    say @new_words<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#39; &#39;</span>);
 }
-</code></pre>
-
-<p><strong>Blog</strong> › <a href="https://perlchallenges.wordpress.com/2020/01/30/perl-weekly-challenge-045/">PERL WEEKLY CHALLENGE – 045 – Perl Weekly Challenge</a></p>
-
+</code></pre></div><p><strong>Blog</strong> › <a href="https://perlchallenges.wordpress.com/2020/01/30/perl-weekly-challenge-045/">PERL WEEKLY CHALLENGE – 045 – Perl Weekly Challenge</a></p>
 <h2 id="jan-ole-kraft">Jan Ole Kraft</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/jokraft/raku/ch-1.p6">Jan Ole Kraft&rsquo;s solution</a> splits the string into characters, and then uses a nested loop with indexing arithmetic to build up the output, character by character:</p>
-
-<pre><code class="language-raku">$str = $str.subst(&quot; &quot;,&quot;&quot;,:g);
-my @arr = $str.split(&quot;&quot;, :skip-empty);
-my $out = &quot;&quot;;
-for (0..7) -&gt; $i {
-  my $c = 0;
-  while $c * 8 + $i &lt; @arr.elems {
-    $out = $out ~ @arr[$i + $c*8];
-    $c++;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku">$str <span style="color:#f92672">=</span> $str<span style="color:#f92672">.</span>subst(<span style="color:#e6db74">&#34; &#34;</span>,<span style="color:#e6db74">&#34;&#34;</span>,:g);
+<span style="color:#66d9ef">my</span> @arr <span style="color:#f92672">=</span> $str<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34;&#34;</span>, :skip<span style="color:#f92672">-</span>empty);
+<span style="color:#66d9ef">my</span> $out <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
+<span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">7</span>) <span style="color:#f92672">-&gt;</span> $i {
+  <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+  <span style="color:#66d9ef">while</span> $c <span style="color:#f92672">*</span> <span style="color:#ae81ff">8</span> <span style="color:#f92672">+</span> $i <span style="color:#f92672">&lt;</span> @arr<span style="color:#f92672">.</span>elems {
+    $out <span style="color:#f92672">=</span> $out <span style="color:#f92672">~</span> @arr[$i <span style="color:#f92672">+</span> $c<span style="color:#f92672">*</span><span style="color:#ae81ff">8</span>];
+    $c<span style="color:#f92672">++</span>;
   }
-  $out = $out ~ &quot; &quot;;
+  $out <span style="color:#f92672">=</span> $out <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34; &#34;</span>;
 }
 say $out;
-</code></pre>
-
-<h2 id="laurent-rosenfeld">Laurent Rosenfeld</h2>
-
+</code></pre></div><h2 id="laurent-rosenfeld">Laurent Rosenfeld</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/laurent-rosenfeld/raku/ch-1.p6">Laurent Rosenfeld&rsquo;s solution</a> chunks the input into 8-character strings, and then loops over each column. Laurent prints each <code>join</code>ed segment together, built up from the <code>$i</code>th character of each 8-character string via <code>substr</code>:</p>
-
-<pre><code class="language-raku">my $msg = @*ARGS ?? shift @*ARGS
-    !! &quot;The quick brown fox jumps over the lazy dog&quot;;
-$msg ~~ s:g/\s+//;
-my @letters = map { ~ $_}, $msg ~~ m:g/ .**1..8/;
-for 0..7 -&gt; $i {
-    print &quot; &quot;, join &quot;&quot;, map { substr  $_, $i, 1 if .chars &gt;= $i}, @letters;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">my</span> $msg <span style="color:#f92672">=</span> @<span style="color:#960050;background-color:#1e0010">*</span>ARGS ?? shift @<span style="color:#960050;background-color:#1e0010">*</span>ARGS
+    <span style="color:#f92672">!!</span> <span style="color:#e6db74">&#34;The quick brown fox jumps over the lazy dog&#34;</span>;
+$msg <span style="color:#f92672">~~</span> s:g<span style="color:#e6db74">/\s+/</span><span style="color:#f92672">/</span>;
+<span style="color:#66d9ef">my</span> @letters <span style="color:#f92672">=</span> map { <span style="color:#f92672">~</span> $_}, $msg <span style="color:#f92672">~~</span> m:g<span style="color:#e6db74">/ .**1..8/</span>;
+<span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">7</span> <span style="color:#f92672">-&gt;</span> $i {
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34; &#34;</span>, join <span style="color:#e6db74">&#34;&#34;</span>, map { substr  $_, $i, <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> <span style="color:#f92672">.</span>chars <span style="color:#f92672">&gt;=</span> $i}, @letters;
 }
-</code></pre>
-
-<p><strong>Blog</strong> › <a href="http://blogs.perl.org/users/laurent_r/2020/02/perl-weekly-challenge-45-square-secret-code-and-source-dumper.html">Perl Weekly Challenge 45: Square Secret Code and Source Dumper</a></p>
-
+</code></pre></div><p><strong>Blog</strong> › <a href="http://blogs.perl.org/users/laurent_r/2020/02/perl-weekly-challenge-45-square-secret-code-and-source-dumper.html">Perl Weekly Challenge 45: Square Secret Code and Source Dumper</a></p>
 <h2 id="luca-ferrari">Luca Ferrari</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/luca-ferrari/raku/ch-1.p6">Luca Ferrari&rsquo;s solution</a> is another that uses <code>rotor</code> to chunk the filtered input into <code>$columns</code>-character arrays:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">my</span> @matrix <span style="color:#f92672">=</span> $message<span style="color:#f92672">.</span>lc<span style="color:#f92672">.</span>comb(<span style="color:#e6db74"> /\w/</span> )<span style="color:#f92672">.</span>rotor: $columns, :partial;
 
-<pre><code class="language-raku">my @matrix = $message.lc.comb( /\w/ ).rotor: $columns, :partial;
-
-say &quot;Your original message is \n\t$message\n and encoded results:\n&quot;;
-@matrix.join( &quot;\n&quot; ).say;
-say &quot;\nthat leads to\n&quot;;
-for 0 .. $columns -&gt; $start {
-    ( @matrix[ $_ ][ $start ] // '' ).print for 0 .. @matrix.elems;
+say <span style="color:#e6db74">&#34;Your original message is \n\t$message\n and encoded results:\n&#34;</span>;
+@matrix<span style="color:#f92672">.</span>join( <span style="color:#e6db74">&#34;\n&#34;</span> )<span style="color:#f92672">.</span>say;
+say <span style="color:#e6db74">&#34;\nthat leads to\n&#34;</span>;
+<span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $columns <span style="color:#f92672">-&gt;</span> $start {
+    ( @matrix[ $_ ][ $start ] <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#39;&#39;</span> )<span style="color:#f92672">.</span><span style="color:#66d9ef">print</span> <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> @matrix<span style="color:#f92672">.</span>elems;
 }
-</code></pre>
-
-<p>Luca&rsquo;s nested loop takes care of the indexing into both arrays to print out the solution in the correct order.</p>
-
+</code></pre></div><p>Luca&rsquo;s nested loop takes care of the indexing into both arrays to print out the solution in the correct order.</p>
 <p><strong>Blog</strong> › <a href="https://fluca1978.github.io/2020/01/29/PerlWeeklyChallenge45.html">Perl Weekly Challenge 45: encoded messages and self-source-code-printing</a></p>
-
 <h2 id="mark-anderson">Mark Anderson</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/mark-anderson/raku/ch-1.p6">Mark Anderson&rsquo;s solution</a> uses the <code>zip</code> method to elegant effect:</p>
-
-<pre><code class="language-raku">my @array.push: [.split({}, :skip-empty)] for $string.comb(8);
-@array[*-1].push: &quot; &quot; for @array[*-1].elems..7;
-@array = [Z] @array;
-$_ = .join.trim-trailing for @array;
-say @array.join: &quot; &quot;;
-</code></pre>
-
-<p>Once the <code>@array</code> has been put through <code>[Z]</code>, each of the sub-arrays may contain trailing spaces if the input wasn&rsquo;t a multiple of 8 characters in length, so Mark uses <code>.trim-trailing</code> in-place to clean those up, before printing the result.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">my</span> @array<span style="color:#f92672">.</span>push: [<span style="color:#f92672">.</span>split({}, :skip<span style="color:#f92672">-</span>empty)] <span style="color:#66d9ef">for</span> $string<span style="color:#f92672">.</span>comb(<span style="color:#ae81ff">8</span>);
+@array[<span style="color:#f92672">*-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>push: <span style="color:#e6db74">&#34; &#34;</span> <span style="color:#66d9ef">for</span> @array[<span style="color:#f92672">*-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>elems<span style="color:#f92672">..</span><span style="color:#ae81ff">7</span>;
+@array <span style="color:#f92672">=</span> [Z] @array;
+$_ <span style="color:#f92672">=</span> <span style="color:#f92672">.</span>join<span style="color:#f92672">.</span>trim<span style="color:#f92672">-</span>trailing <span style="color:#66d9ef">for</span> @array;
+say @array<span style="color:#f92672">.</span>join: <span style="color:#e6db74">&#34; &#34;</span>;
+</code></pre></div><p>Once the <code>@array</code> has been put through <code>[Z]</code>, each of the sub-arrays may contain trailing spaces if the input wasn&rsquo;t a multiple of 8 characters in length, so Mark uses <code>.trim-trailing</code> in-place to clean those up, before printing the result.</p>
 <h2 id="markus-holzer">Markus Holzer</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/markus-holzer/raku/ch-1.p6">Markus Holzer&rsquo;s solution</a> is another good example of the <code>zip</code> or <code>roundrobin</code> method:</p>
-
-<pre><code class="language-raku">sub encrypt-squarely( $message ) {
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">encrypt</span>-squarely( $message ) {
     roundrobin(
       $message
-      .subst(' ', '', :g)
-      .lc
-      .comb(/ . **! {1..8} /)
-      .map({ .split('', :skip-empty) })
+      <span style="color:#f92672">.</span>subst(<span style="color:#e6db74">&#39; &#39;</span>, <span style="color:#e6db74">&#39;&#39;</span>, :g)
+      <span style="color:#f92672">.</span>lc
+      <span style="color:#f92672">.</span>comb(<span style="color:#e6db74">/ . **! {1..8} /</span>)
+      <span style="color:#f92672">.</span>map({ <span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39;&#39;</span>, :skip<span style="color:#f92672">-</span>empty) })
     )
-    .map({ .join })
+    <span style="color:#f92672">.</span>map({ <span style="color:#f92672">.</span>join })
 }
-</code></pre>
-
-<p>As you can see, after removing spaces and converting to lowercase, <code>$message</code> is partitioned with <code>.comb</code> using a regex. It&rsquo;s then split into characters before <code>roundrobin</code> can do its magic.</p>
-
+</code></pre></div><p>As you can see, after removing spaces and converting to lowercase, <code>$message</code> is partitioned with <code>.comb</code> using a regex. It&rsquo;s then split into characters before <code>roundrobin</code> can do its magic.</p>
 <h2 id="noud-aldenhoven">Noud Aldenhoven</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/noud/raku/ch-1.p6">Noud Aldenhoven&rsquo;s solution</a> once again uses <code>[Z~]</code> to make short work of this problem:</p>
-
-<pre><code class="language-raku">sub encode($str) {
-    my $stripped = $str.lc.subst(/\s/, '', :g);
-    my @r = ($stripped ~ &quot; &quot; x (8 - $stripped.chars % 8)).comb.rotor(8, :partial);
-    return ([Z~] @r).map({ $_.trim }).join(' ');
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">encode</span>($str) {
+    <span style="color:#66d9ef">my</span> $stripped <span style="color:#f92672">=</span> $str<span style="color:#f92672">.</span>lc<span style="color:#f92672">.</span>subst(<span style="color:#e6db74">/\s/</span>, <span style="color:#e6db74">&#39;&#39;</span>, :g);
+    <span style="color:#66d9ef">my</span> @r <span style="color:#f92672">=</span> ($stripped <span style="color:#f92672">~</span> <span style="color:#e6db74">&#34; &#34;</span> x (<span style="color:#ae81ff">8</span> <span style="color:#f92672">-</span> $stripped<span style="color:#f92672">.</span>chars % 8))<span style="color:#f92672">.</span>comb<span style="color:#f92672">.</span>rotor(<span style="color:#ae81ff">8</span>, :partial);
+    <span style="color:#66d9ef">return</span> ([Z<span style="color:#f92672">~</span>] @r)<span style="color:#f92672">.</span>map({ $_<span style="color:#f92672">.</span>trim })<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#39; &#39;</span>);
 }
-</code></pre>
-
-<h2 id="roger-bell-west">Roger Bell West</h2>
-
+</code></pre></div><h2 id="roger-bell-west">Roger Bell West</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/roger-bell-west/raku/ch-1.p6">Roger Bell West&rsquo;s solution</a> first joins the input into <code>$in</code>:</p>
-
-<pre><code class="language-raku">my $n=8;
-my $in='';
-for lines() {
-  .chomp;
-  my $t=$_;
-  $t ~~ s:g/\s+//;
-  $in~=$t;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">my</span> $n<span style="color:#f92672">=</span><span style="color:#ae81ff">8</span>;
+<span style="color:#66d9ef">my</span> $in<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;&#39;</span>;
+<span style="color:#66d9ef">for</span> lines() {
+  <span style="color:#f92672">.</span>chomp;
+  <span style="color:#66d9ef">my</span> $t<span style="color:#f92672">=</span>$_;
+  $t <span style="color:#f92672">~~</span> s:g<span style="color:#e6db74">/\s+/</span><span style="color:#f92672">/</span>;
+  $in<span style="color:#f92672">~=</span>$t;
 }
-</code></pre>
-
-<p>From there, Roger&rsquo;s nested loop advances <code>$n = 8</code> characters at a time, from all 8 starting positions, to build up the output one character at a time:</p>
-
-<pre><code class="language-raku">my $l=chars($in)-1;
-my @out;
-for (0..$n-1) -&gt; $c {
-  my $out;
-  my $k=$c;
-  while ($k &lt;= $l) {
-    $out~=substr($in,$k,1);
-    $k+=$n;
+</code></pre></div><p>From there, Roger&rsquo;s nested loop advances <code>$n = 8</code> characters at a time, from all 8 starting positions, to build up the output one character at a time:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">my</span> $l<span style="color:#f92672">=</span>chars($in)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+<span style="color:#66d9ef">my</span> @out;
+<span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">-&gt;</span> $c {
+  <span style="color:#66d9ef">my</span> $out;
+  <span style="color:#66d9ef">my</span> $k<span style="color:#f92672">=</span>$c;
+  <span style="color:#66d9ef">while</span> ($k <span style="color:#f92672">&lt;=</span> $l) {
+    $out<span style="color:#f92672">~=</span>substr($in,$k,<span style="color:#ae81ff">1</span>);
+    $k<span style="color:#f92672">+=</span>$n;
   }
   push @out,$out;
 }
 
-say @out.join(' ');
-</code></pre>
-
-<h2 id="ruben-westerberg">Ruben Westerberg</h2>
-
+say @out<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#39; &#39;</span>);
+</code></pre></div><h2 id="ruben-westerberg">Ruben Westerberg</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/ruben-westerberg/raku/ch-1.p6">Ruben Westerberg&rsquo;s solution</a> is a beautiful example of the <code>[Z~]</code> method:</p>
-
-<pre><code class="language-raku">my $string=&quot;The quick brown fox jumps over the lazy dog&quot;;
-my $padded=$string.trans(&quot; &quot;=&gt;&quot;&quot;);
-my $a=$padded.comb.rotor: 8;
-put ([Z~] $a).join: &quot; &quot;;
-</code></pre>
-
-<p>While we&rsquo;re all sometimes tempted to chain together as many things as possible, Ruben&rsquo;s code is an excellent case study on why it&rsquo;s sometimes better to split those long chains into separate statements.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">my</span> $string<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;The quick brown fox jumps over the lazy dog&#34;</span>;
+<span style="color:#66d9ef">my</span> $padded<span style="color:#f92672">=</span>$string<span style="color:#f92672">.</span>trans(<span style="color:#e6db74">&#34; &#34;</span><span style="color:#f92672">=&gt;</span><span style="color:#e6db74">&#34;&#34;</span>);
+<span style="color:#66d9ef">my</span> $a<span style="color:#f92672">=</span>$padded<span style="color:#f92672">.</span>comb<span style="color:#f92672">.</span>rotor: <span style="color:#ae81ff">8</span>;
+put ([Z<span style="color:#f92672">~</span>] $a)<span style="color:#f92672">.</span>join: <span style="color:#e6db74">&#34; &#34;</span>;
+</code></pre></div><p>While we&rsquo;re all sometimes tempted to chain together as many things as possible, Ruben&rsquo;s code is an excellent case study on why it&rsquo;s sometimes better to split those long chains into separate statements.</p>
 <h2 id="ryan-thompson">Ryan Thompson</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/ryan-thompson/raku/ch-1.p6">My solution</a> uses the <code>.comb</code> and modulo arithmetic approach:</p>
-
-<pre><code class="language-raku">my @s;
-$plain.lc.subst(/\s/,'',:g).comb.kv.map: { @s[$^i % $width] ~= $^str };
-@s.join(' ')
-</code></pre>
-
-<p>I used <code>.kv</code> so I could conveniently access both the character and its index.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">my</span> @s;
+$plain<span style="color:#f92672">.</span>lc<span style="color:#f92672">.</span>subst(<span style="color:#e6db74">/\s/</span>,<span style="color:#e6db74">&#39;&#39;</span>,:g)<span style="color:#f92672">.</span>comb<span style="color:#f92672">.</span>kv<span style="color:#f92672">.</span>map: { @s[$<span style="color:#960050;background-color:#1e0010">^</span>i % <span style="color:#960050;background-color:#1e0010">$</span>width] <span style="color:#f92672">~=</span> $<span style="color:#960050;background-color:#1e0010">^</span>str };
+@s<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#39; &#39;</span>)
+</code></pre></div><p>I used <code>.kv</code> so I could conveniently access both the character and its index.</p>
 <p><strong>Blog</strong> › <a href="http://www.ry.ca/2020/01/square-secret-code/">Square Secret Code</a></p>
-
 <h2 id="simon-proctor">Simon Proctor</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/simon-proctor/raku/ch-1.p6">Simon Proctor&rsquo;s solution</a> gives us an encoder and decoder using <code>roundrobin</code>, and packages this up in two <code>multi</code> main subs. Here&rsquo;s the encoder:</p>
-
-<pre><code class="language-raku">#| Given a string encoded it using the square code
-multi sub MAIN(
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#75715e">#| Given a string encoded it using the square code</span>
+multi <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(
     *@clear-text #= Phrase to encode
 ) {
-    roundrobin( @clear-text.map(*.lc.comb).flat.rotor( 8, :partial ) ).map(*.join(&quot;&quot;)).join(&quot; &quot;).say;
+    roundrobin( @clear<span style="color:#f92672">-</span>text<span style="color:#f92672">.</span>map(<span style="color:#f92672">*.</span>lc<span style="color:#f92672">.</span>comb)<span style="color:#f92672">.</span>flat<span style="color:#f92672">.</span>rotor( <span style="color:#ae81ff">8</span>, :partial ) )<span style="color:#f92672">.</span>map(<span style="color:#f92672">*.</span>join(<span style="color:#e6db74">&#34;&#34;</span>))<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34; &#34;</span>)<span style="color:#f92672">.</span>say;
 }
-</code></pre>
-
-<p>And here is the decoder:</p>
-
-<pre><code class="language-raku">#| Given a square encoded string decode it
-multi sub MAIN(
+</code></pre></div><p>And here is the decoder:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#75715e">#| Given a square encoded string decode it</span>
+multi <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(
     Bool :d(:$decode)!, #= Turn on decode mode
     *@encoded #= Encoded phrase
 ) {
-    roundrobin( @encoded.map(*.comb(&quot;&quot;)) ).flat.join(&quot;&quot;).say;
+    roundrobin( @encoded<span style="color:#f92672">.</span>map(<span style="color:#f92672">*.</span>comb(<span style="color:#e6db74">&#34;&#34;</span>)) )<span style="color:#f92672">.</span>flat<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34;&#34;</span>)<span style="color:#f92672">.</span>say;
 }
-</code></pre>
-
-<p>This is the first example of a decoder we&rsquo;ve seen in Raku, and I&rsquo;m impressed by how simple it turns out to be for Simon.</p>
-
+</code></pre></div><p>This is the first example of a decoder we&rsquo;ve seen in Raku, and I&rsquo;m impressed by how simple it turns out to be for Simon.</p>
 <h2 id="ulrich-rieke">Ulrich Rieke</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/ulrich-rieke/raku/ch-1.p6">Ulrich Rieke&rsquo;s solution</a> partitions the string using <code>.rotor</code>, and then uses <code>substr</code> in a nested loop to build up <code>$encoded</code> character by character:</p>
-
-<pre><code class="language-raku">sub convertString( Str $str is copy ) {
-    $str ~~ s:g/\s+// ;
-    my @strings = $str.comb.rotor( 8, :partial).map( {.join} ).Array ;
-    my $encoded ;
-    for (0..7) -&gt; $i {
-        for @strings -&gt; $word {
-            my $len = $word.chars ;
-            $encoded ~= $word.substr( $i , 1 ) if $len &gt; $i ;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">convertString</span>( Str $str is copy ) {
+    $str <span style="color:#f92672">~~</span> s:g<span style="color:#e6db74">/\s+/</span><span style="color:#f92672">/</span> ;
+    <span style="color:#66d9ef">my</span> @strings <span style="color:#f92672">=</span> $str<span style="color:#f92672">.</span>comb<span style="color:#f92672">.</span>rotor( <span style="color:#ae81ff">8</span>, :partial)<span style="color:#f92672">.</span>map( {<span style="color:#f92672">.</span>join} )<span style="color:#f92672">.</span>Array ;
+    <span style="color:#66d9ef">my</span> $encoded ;
+    <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">7</span>) <span style="color:#f92672">-&gt;</span> $i {
+        <span style="color:#66d9ef">for</span> @strings <span style="color:#f92672">-&gt;</span> $word {
+            <span style="color:#66d9ef">my</span> $len <span style="color:#f92672">=</span> $word<span style="color:#f92672">.</span>chars ;
+            $encoded <span style="color:#f92672">~=</span> $word<span style="color:#f92672">.</span>substr( $i , <span style="color:#ae81ff">1</span> ) <span style="color:#66d9ef">if</span> $len <span style="color:#f92672">&gt;</span> $i ;
         }
     }
-    my $len = @strings.elems ;
-</code></pre>
-
-<p>At this point, we have the characters in the right order, but each column needs to now be separated by spaces:</p>
-
-<pre><code class="language-raku">    my $lastwordlen = @strings[$len - 1].chars ;
-    my @cycle ;
-    for (1..$lastwordlen) {
-        @cycle.push( $len ) ;
+    <span style="color:#66d9ef">my</span> $len <span style="color:#f92672">=</span> @strings<span style="color:#f92672">.</span>elems ;
+</code></pre></div><p>At this point, we have the characters in the right order, but each column needs to now be separated by spaces:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku">    <span style="color:#66d9ef">my</span> $lastwordlen <span style="color:#f92672">=</span> @strings[$len <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>chars ;
+    <span style="color:#66d9ef">my</span> @cycle ;
+    <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$lastwordlen) {
+        @cycle<span style="color:#f92672">.</span>push( $len ) ;
     }
-    for ( 1..8 - $lastwordlen) {
-        @cycle.push( $len - 1 ) ;
+    <span style="color:#66d9ef">for</span> ( <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">8</span> <span style="color:#f92672">-</span> $lastwordlen) {
+        @cycle<span style="color:#f92672">.</span>push( $len <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ) ;
     }
-    return $encoded.comb.rotor( @cycle ).map( {.join} ).Array ;
+    <span style="color:#66d9ef">return</span> $encoded<span style="color:#f92672">.</span>comb<span style="color:#f92672">.</span>rotor( @cycle )<span style="color:#f92672">.</span>map( {<span style="color:#f92672">.</span>join} )<span style="color:#f92672">.</span>Array ;
 }
-</code></pre>
-
-<p>Ulrich accomplishes this by building up an array <code>@cycle</code> to contain the length of the string in each column. He is then able to pass that to <code>rotor</code> to split <code>$encoded</code> at the correct intervals.</p>
-
-<hr />
-
+</code></pre></div><p>Ulrich accomplishes this by building up an array <code>@cycle</code> to contain the length of the string in each column. He is then able to pass that to <code>rotor</code> to split <code>$encoded</code> at the correct intervals.</p>
+<hr>
 <h1 id="task2">Task #2 - Source Dumper</h1>
-
 <p>Write a script that dumps its own source code. For example, say, the script name is <code>ch-2.p6</code>. The following command should return nothing:</p>
-
-<pre><code class="language-sh">$ perl6 ch-2.p6 | diff - ch-2.p6
-</code></pre>
-
-<hr />
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ perl6 ch-2.p6 | diff - ch-2.p6
+</code></pre></div><hr>
 <h2 id="my-observations">My observations</h2>
-
 <p>There are two ways to interpret this problem, resulting in very different solutions.</p>
-
 <h3 id="1-source-code-reader">1. Source Code Reader</h3>
-
 <p>A straight reading of the challenge, with no additional constraints, means our script can simply read its own source file and print it. For example, here is my first solution:</p>
-
-<pre><code class="language-raku">$*PROGRAM.lines».say
-</code></pre>
-
-<p>Literally everyone implemented something similar.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku">$<span style="color:#960050;background-color:#1e0010">*</span>PROGRAM<span style="color:#f92672">.</span>lines<span style="color:#960050;background-color:#1e0010">»</span><span style="color:#f92672">.</span>say
+</code></pre></div><p>Literally everyone implemented something similar.</p>
 <h3 id="2-quine">2. Quine</h3>
-
 <p>However, one of the hackers this week has the perhaps dubious distinction of taking the task a step further, being the only Raku hacker this week to produce a full <a href="https://en.wikipedia.org/wiki/Quine_(computing)">quine</a>. That hacker is also the one writing this review.</p>
-
 <p>For the uninitiated, quines are computer programs that not only produce a copy of their own source code, but they also have the additional constraint of <em>taking no input,</em> meaning, reading your own source code is not allowed.</p>
-
 <p>Several of the Perl solutions this week were quines, so if you&rsquo;d like to see more examples, check out my <a href="/blog/review-challenge-045#task2">Perl review</a> for a showcase.</p>
-
 <h2 id="arne-sommer-1">Arne Sommer</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/arne-sommer/raku/ch-2.p6">Arne Sommer&rsquo;s solution</a> uses the compile-time <code>$?FILE</code> variable to get the script name, then converts it to an IO object, and <code>.slurp</code>s its contents:</p>
-
-<pre><code class="language-raku">print $?FILE.IO.slurp;
-</code></pre>
-
-<p><strong>Blog</strong> › <a href="https://raku-musings.com/square-dumper.html">Square Dumper with Raku</a></p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">print</span> $<span style="color:#960050;background-color:#1e0010">?</span>FILE<span style="color:#f92672">.</span>IO<span style="color:#f92672">.</span>slurp;
+</code></pre></div><p><strong>Blog</strong> › <a href="https://raku-musings.com/square-dumper.html">Square Dumper with Raku</a></p>
 <h2 id="burkhard-nickels-1">Burkhard Nickels</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/burkhard-nickels/raku/ch-2.p6">Burkhard Nickels&rsquo;s solution</a> is not quite as feature-packed as <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/burkhard-nickels/perl/ch-2.pl">his Perl version</a>, but Chuck still produces a complete program:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#75715e"># print &#34;ch-2.p6 - PWC #45 Task #2: Source Dumper\n&#34;;</span>
+<span style="color:#75715e"># print $*PROGRAM, &#34;, &#34;, $*PROGRAM-NAME, &#34;\n&#34;;</span>
 
-<pre><code class="language-raku"># print &quot;ch-2.p6 - PWC #45 Task #2: Source Dumper\n&quot;;
-# print $*PROGRAM, &quot;, &quot;, $*PROGRAM-NAME, &quot;\n&quot;;
+<span style="color:#66d9ef">my</span> $fh <span style="color:#f92672">=</span> open :r, $<span style="color:#960050;background-color:#1e0010">*</span>PROGRAM;
 
-my $fh = open :r, $*PROGRAM;
-
-my $str;
-while ( ! $fh.eof; ) {
-    $str = $fh.get;
-    $str.print; print &quot;\n&quot;;
+<span style="color:#66d9ef">my</span> $str;
+<span style="color:#66d9ef">while</span> ( <span style="color:#f92672">!</span> $fh<span style="color:#f92672">.</span>eof; ) {
+    $str <span style="color:#f92672">=</span> $fh<span style="color:#f92672">.</span>get;
+    $str<span style="color:#f92672">.</span><span style="color:#66d9ef">print</span>; <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
 }
-$fh.close;
-</code></pre>
-
-<p>Chuck uses <code>$*PROGRAM</code> to get the <code>IO::Path</code> object of the program.</p>
-
+$fh<span style="color:#f92672">.</span>close;
+</code></pre></div><p>Chuck uses <code>$*PROGRAM</code> to get the <code>IO::Path</code> object of the program.</p>
 <p><strong>Blog</strong> › <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/burkhard-nickels/perl/ch-2.pod">Source Dumper</a></p>
-
 <h2 id="colin-crain-1">Colin Crain</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/colin-crain/raku/ch-2.p6">Colin Crain&rsquo;s solution</a> again uses <code>$*PROGRAM</code>, but avoids the loop by reading the contents into a string with <code>slurp</code>:</p>
-
-<pre><code class="language-raku">sub MAIN () {
-    print $*PROGRAM.open.slurp.gist;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> () {
+    <span style="color:#66d9ef">print</span> $<span style="color:#960050;background-color:#1e0010">*</span>PROGRAM<span style="color:#f92672">.</span>open<span style="color:#f92672">.</span>slurp<span style="color:#f92672">.</span>gist;
 }
-</code></pre>
-
-<h2 id="jaldhar-h-vyas-1">Jaldhar H. Vyas</h2>
-
+</code></pre></div><h2 id="jaldhar-h-vyas-1">Jaldhar H. Vyas</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/jaldhar-h-vyas/raku/ch-2.p6">Jaldhar H. Vyas&rsquo; solution</a> is another slurpy one:</p>
-
-<pre><code class="language-raku">open(:r, $*PROGRAM).slurp.print;
-</code></pre>
-
-<p><strong>Blog</strong> › <a href="https://www.braincells.com/perl/2020/02/perl_weekly_challenge_week_45.html">Perl Weekly Challenge Week 45</a></p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku">open(:r, $<span style="color:#960050;background-color:#1e0010">*</span>PROGRAM)<span style="color:#f92672">.</span>slurp<span style="color:#f92672">.</span><span style="color:#66d9ef">print</span>;
+</code></pre></div><p><strong>Blog</strong> › <a href="https://www.braincells.com/perl/2020/02/perl_weekly_challenge_week_45.html">Perl Weekly Challenge Week 45</a></p>
 <h2 id="javier-luque-1">Javier Luque</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/javier-luque/raku/ch-2.p6">Javier Luque&rsquo;s solution</a> instead uses <code>$*PROGRAM-NAME.IO</code> to get the IO object needed to print the lines:</p>
-
-<pre><code class="language-raku">sub MAIN () {
-    for $*PROGRAM-NAME.IO.lines -&gt; $line {
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> () {
+    <span style="color:#66d9ef">for</span> $<span style="color:#960050;background-color:#1e0010">*</span>PROGRAM<span style="color:#f92672">-</span>NAME<span style="color:#f92672">.</span>IO<span style="color:#f92672">.</span>lines <span style="color:#f92672">-&gt;</span> $line {
         say $line;
     }
 }
-</code></pre>
-
-<p><strong>Blog</strong> › <a href="https://perlchallenges.wordpress.com/2020/01/30/perl-weekly-challenge-045/">PERL WEEKLY CHALLENGE – 045 – Perl Weekly Challenge</a></p>
-
+</code></pre></div><p><strong>Blog</strong> › <a href="https://perlchallenges.wordpress.com/2020/01/30/perl-weekly-challenge-045/">PERL WEEKLY CHALLENGE – 045 – Perl Weekly Challenge</a></p>
 <h2 id="jan-ole-kraft-1">Jan Ole Kraft</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/jokraft/raku/ch-2.p6">Jan Ole Kraft&rsquo;s solution</a> is another example of using the compile-time variable <code>$?FILE</code>. Instead of using <code>.IO</code>, the more explicit <code>.open</code> is used. After that, <code>readchars</code> reads up to 64KiB characters, and <code>prints</code> those:</p>
-
-<pre><code class="language-raku">IO::Path.new($?FILE).open().readchars().print();
-</code></pre>
-
-<p>The 64KiB number comes from <code>$*DEFAULT-READ-ELEMS</code>, which is 65536 on my version, but <a href="https://docs.perl6.org/routine/readchars">the documentation</a> notes it is implementation-specific, so, if in doubt, supply your own value or read in a loop to avoid surprises.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku">IO::Path<span style="color:#f92672">.</span><span style="color:#66d9ef">new</span>($<span style="color:#960050;background-color:#1e0010">?</span>FILE)<span style="color:#f92672">.</span>open()<span style="color:#f92672">.</span>readchars()<span style="color:#f92672">.</span><span style="color:#66d9ef">print</span>();
+</code></pre></div><p>The 64KiB number comes from <code>$*DEFAULT-READ-ELEMS</code>, which is 65536 on my version, but <a href="https://docs.perl6.org/routine/readchars">the documentation</a> notes it is implementation-specific, so, if in doubt, supply your own value or read in a loop to avoid surprises.</p>
 <h2 id="laurent-rosenfeld-1">Laurent Rosenfeld</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/laurent-rosenfeld/raku/ch-2.p6">Laurent Rosenfeld&rsquo;s solution</a> pulls the filename from <code>$?FILE</code> uses the <code>IO</code> role of Str to enable <code>slurp</code>ing its contents:</p>
-
-<pre><code class="language-raku">$?FILE.IO.slurp.say;
-</code></pre>
-
-<p><strong>Blog</strong> › <a href="http://blogs.perl.org/users/laurent_r/2020/02/perl-weekly-challenge-45-square-secret-code-and-source-dumper.html">Perl Weekly Challenge 45: Square Secret Code and Source Dumper</a></p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku">$<span style="color:#960050;background-color:#1e0010">?</span>FILE<span style="color:#f92672">.</span>IO<span style="color:#f92672">.</span>slurp<span style="color:#f92672">.</span>say;
+</code></pre></div><p><strong>Blog</strong> › <a href="http://blogs.perl.org/users/laurent_r/2020/02/perl-weekly-challenge-45-square-secret-code-and-source-dumper.html">Perl Weekly Challenge 45: Square Secret Code and Source Dumper</a></p>
 <h2 id="luca-ferrari-1">Luca Ferrari</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/luca-ferrari/raku/ch-2.p6">Luca Ferrari&rsquo;s solution</a> uses the ready-made <code>$*PROGRAM</code> IO object to <code>say</code> each line:</p>
-
-<pre><code class="language-raku">sub MAIN {
-    .say for $*PROGRAM.lines;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> {
+    <span style="color:#f92672">.</span>say <span style="color:#66d9ef">for</span> $<span style="color:#960050;background-color:#1e0010">*</span>PROGRAM<span style="color:#f92672">.</span>lines;
 }
-</code></pre>
-
-<p><strong>Blog</strong> › <a href="https://fluca1978.github.io/2020/01/29/PerlWeeklyChallenge45.html">Perl Weekly Challenge 45: encoded messages and self-source-code-printing</a></p>
-
+</code></pre></div><p><strong>Blog</strong> › <a href="https://fluca1978.github.io/2020/01/29/PerlWeeklyChallenge45.html">Perl Weekly Challenge 45: encoded messages and self-source-code-printing</a></p>
 <h2 id="markus-holzer-1">Markus Holzer</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/markus-holzer/raku/ch-2.p6">Markus Holzer&rsquo;s solution</a> goes with <code>$*PROGRAM-NAME</code>, but the effect is the same as using <code>$?FILE</code>:</p>
-
-<pre><code class="language-raku">$*PROGRAM-NAME.IO.slurp.say;
-</code></pre>
-
-<h2 id="noud-aldenhoven-1">Noud Aldenhoven</h2>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku">$<span style="color:#960050;background-color:#1e0010">*</span>PROGRAM<span style="color:#f92672">-</span>NAME<span style="color:#f92672">.</span>IO<span style="color:#f92672">.</span>slurp<span style="color:#f92672">.</span>say;
+</code></pre></div><h2 id="noud-aldenhoven-1">Noud Aldenhoven</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/noud/raku/ch-2.p6">Noud Aldenhoven&rsquo;s solution</a> is another <code>$?FILE</code> solution:</p>
-
-<pre><code class="language-raku">$?FILE.IO.slurp.trim.say;
-</code></pre>
-
-<h2 id="roger-bell-west-1">Roger Bell West</h2>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku">$<span style="color:#960050;background-color:#1e0010">?</span>FILE<span style="color:#f92672">.</span>IO<span style="color:#f92672">.</span>slurp<span style="color:#f92672">.</span>trim<span style="color:#f92672">.</span>say;
+</code></pre></div><h2 id="roger-bell-west-1">Roger Bell West</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/roger-bell-west/raku/ch-2.p6">Roger Bell West&rsquo;s solution</a> uses the more explicit <code>open</code> symtax:</p>
-
-<pre><code class="language-raku">my $f=open :r,$*PROGRAM-NAME;
-for $f.lines {
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">my</span> $f<span style="color:#f92672">=</span>open :r,$<span style="color:#960050;background-color:#1e0010">*</span>PROGRAM<span style="color:#f92672">-</span>NAME;
+<span style="color:#66d9ef">for</span> $f<span style="color:#f92672">.</span>lines {
   say $_;
 }
-</code></pre>
-
-<h2 id="ruben-westerberg-1">Ruben Westerberg</h2>
-
+</code></pre></div><h2 id="ruben-westerberg-1">Ruben Westerberg</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/ruben-westerberg/raku/ch-2.p6">Ruben Westerberg&rsquo;s solution</a> uses <code>$*PROGRAM</code>:</p>
-
-<pre><code class="language-raku">$*PROGRAM.IO.lines.map: *.put;
-</code></pre>
-
-<h2 id="ryan-thompson-1">Ryan Thompson</h2>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku">$<span style="color:#960050;background-color:#1e0010">*</span>PROGRAM<span style="color:#f92672">.</span>IO<span style="color:#f92672">.</span>lines<span style="color:#f92672">.</span>map: <span style="color:#f92672">*.</span>put;
+</code></pre></div><h2 id="ryan-thompson-1">Ryan Thompson</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/ryan-thompson/raku/ch-2.p6">My file read solution</a> uses <code>$*PROGRAM</code>, and a hyper operator to call <code>.say</code> on each line:</p>
-
-<pre><code class="language-raku">$*PROGRAM.lines».say
-</code></pre>
-
-<p>However, I also submitted a <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/ryan-thompson/raku/ch-2a.p6">full quine</a>:</p>
-
-<pre><code class="language-raku">{.printf($_)}(&lt;{.printf($_)}(&lt;%s&gt;)&gt;)
-</code></pre>
-
-<p>You can see that the <code>&lt;&gt;</code> quote contains a copy of the program, and the <code>printf</code> will duly expand the <code>%s</code>, so the output is the full program source, and passes the <code>diff</code> test as well.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku">$<span style="color:#960050;background-color:#1e0010">*</span>PROGRAM<span style="color:#f92672">.</span>lines<span style="color:#960050;background-color:#1e0010">»</span><span style="color:#f92672">.</span>say
+</code></pre></div><p>However, I also submitted a <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/ryan-thompson/raku/ch-2a.p6">full quine</a>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku">{<span style="color:#f92672">.</span>printf($_)}(<span style="color:#e6db74">&lt;{.printf($_)}(&lt;%s&gt;</span>)<span style="color:#f92672">&gt;</span>)
+</code></pre></div><p>You can see that the <code>&lt;&gt;</code> quote contains a copy of the program, and the <code>printf</code> will duly expand the <code>%s</code>, so the output is the full program source, and passes the <code>diff</code> test as well.</p>
 <p><strong>Blog</strong> › <a href="http://www.ry.ca/2020/02/quine/">Quine</a></p>
-
 <h2 id="simon-proctor-1">Simon Proctor</h2>
-
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/simon-proctor/raku/ch-2.p6">Simon Proctor&rsquo;s solution</a> <code>slurps</code> right from <code>$*PROGRAM</code>:</p>
-
-<pre><code class="language-raku">$*PROGRAM.slurp.print;
-</code></pre>
-
-<h2 id="ulrich-rieke-1">Ulrich Rieke</h2>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku">$<span style="color:#960050;background-color:#1e0010">*</span>PROGRAM<span style="color:#f92672">.</span>slurp<span style="color:#f92672">.</span><span style="color:#66d9ef">print</span>;
+</code></pre></div><h2 id="ulrich-rieke-1">Ulrich Rieke</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/ulrich-rieke/raku/ch-2.p6">Ulrich Rieke&rsquo;s solution</a> is another example of a more explicit approach with <code>open</code>:</p>
-
-<pre><code class="language-raku">my $fh = open $?FILE , :r ;
-.say for $fh.lines ;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-raku" data-lang="raku"><span style="color:#66d9ef">my</span> $fh <span style="color:#f92672">=</span> open $<span style="color:#960050;background-color:#1e0010">?</span>FILE , :r ;
+<span style="color:#f92672">.</span>say <span style="color:#66d9ef">for</span> $fh<span style="color:#f92672">.</span>lines ;
 close $fh ;
-</code></pre>
-
-<hr />
-
-<hr />
-
+</code></pre></div><hr>
+<hr>
 <h2 id="blogs">SEE ALSO</h2>
-
-<hr />
-
+<hr>
 <h3 id="blogs-this-week">Blogs this week:</h3>
-
 <p><strong>Adam Russell</strong> › <a href="https://adamcrussell.livejournal.com/15213.html">Perl Fun</a></p>
-
 <p><strong>Arne Sommer</strong> › <a href="https://raku-musings.com/square-dumper.html">Square Dumper with Raku</a></p>
-
 <p><strong>Burkhard Nickels</strong> › <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/burkhard-nickels/perl/ch-1.pod">Square Secret Code</a> | <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-045/burkhard-nickels/perl/ch-2.pod">Source Dumper</a></p>
-
 <p><strong>Dave Jacoby</strong> › <a href="https://jacoby.github.io/2020/01/29/challenge-45-cyphers-and-quines.html">Challenge 45: Cyphers and Quines</a></p>
-
 <p><strong>E. Choroba</strong> › <a href="http://blogs.perl.org/users/e_choroba/2020/01/perl-weekly-challenge-045-square-secret-code-source-dumper.html">Square Secret Code &amp; Source Dumper</a></p>
-
 <p><strong>Jaldhar H. Vyas</strong> › <a href="https://www.braincells.com/perl/2020/02/perl_weekly_challenge_week_45.html">Perl Weekly Challenge 45</a></p>
-
 <p><strong>Javier Luque</strong> › <a href="https://perlchallenges.wordpress.com/2020/01/30/perl-weekly-challenge-045/">Perl Weekly Challenge</a></p>
-
 <p><strong>Luca Ferrari</strong> › <a href="https://fluca1978.github.io/2020/01/29/PerlWeeklyChallenge45.html">encoded messages and self-source-code-printing</a></p>
-
 <p><strong>Laurent Rosenfeld</strong> › <a href="http://blogs.perl.org/users/laurent_r/2020/02/perl-weekly-challenge-45-square-secret-code-and-source-dumper.html">Square Secret Code and Source Dumper</a></p>
-
 <p><strong>Ryan Thompson</strong> › <a href="http://www.ry.ca/2020/01/square-secret-code/">Square Secret Code</a> | <a href="http://www.ry.ca/2020/02/quine/">Quine</a></p>
 
                 </div>

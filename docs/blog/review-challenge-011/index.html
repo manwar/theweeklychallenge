@@ -16,7 +16,7 @@
 
     <meta name="description" content="Kian-Meng Ang Weekly Review: Challenge - #011.">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.55.0-DEV" />
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -41,6 +41,8 @@
     <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
     <!-- hover -->
     <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
     <!-- template main css file -->
     
     <link rel="stylesheet" href="https://perlweeklychallenge.org/css/style.min.css" integrity="" media="screen">
@@ -149,24 +151,14 @@
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
-                    
-
-<p>Continues from <a href="/blog/review-challenge-011">previous week</a>.</p>
-
+                    <p>Continues from <a href="/blog/review-challenge-011">previous week</a>.</p>
 <p>For a quick overview, read through all <a href="/blog/perl-weekly-challenge-011/">questions</a> and <a href="/blog/recap-challenge-011/">recap</a> of the challenge first.</p>
-
 <p>For those who are new to the weekly review post, the main purpose of weekly review is to document down interesting approaches of using Perl programming language to solve each week challenges. Code reading or review allows us to learn / relearn, discover / rediscover, and appreciate / reappreciate (some participants uses other programming languages in their day job) new, interesting, and quirky things accomplished with Perl (unfortunately Perl 5 for now). At the end of the day, everyone have fun, shared their knowledge, and learned something along the way.</p>
-
-<hr />
-
+<hr>
 <h2 id="challenge-1">Challenge #1</h2>
-
-<hr />
-
+<hr>
 <p>Most of the submitted solutions were well documented or written in a self-documented way thus making code reading easier and more approachable. Most of the solutions were using <a href="https://www.mathsisfun.com/temperature-conversion.html">direct algebra calculation</a>, <a href="https://en.wikipedia.org/wiki/Bisection_method">Bisection method</a>, and <a href="https://www.mathopenref.com/coordintersection.html">intersection between two lines or points</a>.</p>
-
 <p><strong>Andrezgz</strong> caught our attention, as what he commented, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/andrezgz/perl5/ch-1.pl">&ldquo;simple, but effective&rdquo;</a> way of using while loop without additional variable to store the <a href="https://en.wikipedia.org/wiki/Guard_(computer_science)">guard condition</a>.</p>
-
 <pre><code>use strict;
 use warnings;
 
@@ -174,29 +166,19 @@ my $f = 212;
 while ( $f - ($f - 32) * (100-0)/(212-32) ) { $f-- }; #Simple, but effective
 print $f;
 </code></pre>
-
 <p>Notable <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/gustavo-chaves/perl5/ch-1.pl">solution</a> by <strong>Gustavo Chaves</strong> where he used the same module, <a href="https://metacpan.org/pod/Math::MatrixReal"><code>Math::MatrixReal</code></a> to solve both Challenge #1 and #2. As they said, <a href="https://dictionary.cambridge.org/dictionary/english/kill-two-birds-with-one-stone">&ldquo;kill two birds with one stone&rdquo;</a>. He also submitted <a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-011/gustavo-chaves/perl5">an unofficial shortest answer</a> to this challenge or to any challenges ever.</p>
-
 <pre><code>#!/usr/bin/env perl
 print &quot;40\n&quot;;
 </code></pre>
-
 <p>Jokes aside, it&rsquo;s good that some participants were having fun and writing witty comments in their solutions. You know who you are.</p>
-
-<hr />
-
+<hr>
 <h2 id="challenge-2">Challenge #2</h2>
-
-<hr />
-
+<hr>
 <p>This is a very straight forward question and simple question will always lead to creative and unique solutions. There are several approaches which includes simple loop, loop through <a href="https://perldoc.perl.org/functions/map.html"><code>map</code></a> function or repeating (*) characters, or using CPAN modules like <a href="https://metacpan.org/pod/Math::Matrix"><code>Math::Matrix</code></a>, <a href="https://metacpan.org/pod/Math::MatrixReal"><code>Math::MatrixReal</code></a>, <a href="https://metacpan.org/pod/PDL"><code>PDL</code></a>, or <a href="https://metacpan.org/pod/PDL::MatrixOps"><code>PDL::MatrixOps</code></a>. <strong>Laurent Rosenfeld</strong> demonstrated this through <a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-011/laurent-rosenfeld/perl5">different iterations of his solutions</a>. Read his <a href="http://blogs.perl.org/users/laurent_r/2019/06/perl-weekly-challenge-11-fahrenheit-celsius-and-identity-matrix.html">blog post</a> for walk through of each iteration. Again, <strong>Andrezgz&rsquo;s</strong> <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/andrezgz/perl5/ch-2.pl">solution</a> caught our attention, while it&rsquo;s not really an array of matrix, it&rsquo;s just a creative way to print out an Identity Matrix.</p>
-
 <pre><code>my $n = int($ARGV[0]) - 1;
 for (0..$n) { print &quot; 0&quot; x $_ . &quot; 1&quot; . &quot; 0&quot; x ($n - $_) . $/; }
 </code></pre>
-
 <p>As usual, shortest answer went to <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/e-choroba/perl5/ch-2.pl">E. Choroba</a>, even though he used a CPAN module.</p>
-
 <pre><code>#!/usr/bin/perl
 use warnings;
 use strict;
@@ -206,27 +188,18 @@ use PDL::MatrixOps;
 
 print identity(shift);
 </code></pre>
-
-<hr />
-
+<hr>
 <h2 id="challenge-3">Challenge #3</h2>
-
-<hr />
-
+<hr>
 <p>There were five participants (<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/dave-jacoby/perl5/ch-3.pl">Dave Jacoby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/athanasius/perl5/ch-3.pl">Trevor Vaughan (athanasius)</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/feng-chang/perl5/ch-3.pl">Feng Chang</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/steven-wilson/perl5/ch-3.pl">Steve Wilson</a>, and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/joelle-maslak/perl5/ch-3.pl">Joelle Maslak</a>) who submitted their answer to challenge #3 for this week. Hopefully we can see even more in coming weeks. One thing you will notice during code reading is that some participants don&rsquo;t mind using the latest and non-default Perl&rsquo;s features through <a href="https://perldoc.perl.org/feature.html"><code>feature</code> pragma</a>. Or also known as &ldquo;I know what I&rsquo;m doing&rdquo;. From <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/dave-jacoby/perl5/ch-3.pl">Dave Jacoby</a>.</p>
-
 <pre><code>use feature qw{ postderef say signatures state switch fc };
 no warnings qw{ experimental::postderef experimental::smartmatch experimental::signatures };
 </code></pre>
-
 <p>Or from <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/joelle-maslak/perl5/ch-3.pl">Joelle Maslak</a>.</p>
-
 <pre><code>use feature 'signatures';
 no warnings 'experimental::signatures';
 </code></pre>
-
 <p>Or non-core feature like <a href="https://metacpan.org/pod/Switch"><code>Switch</code></a> module as coded by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/steven-wilson/perl5/ch-3.pl">Steve Wilson</a>, which I believed was used to substitute the missing feature of <a href="https://perldoc.perl.org/perlsyn.html#Switch-Statements"><code>switch</code></a> in core Perl.</p>
-
 <pre><code>switch ( $weather{&quot;weather&quot;}[0]{id} ) {
     case [ 200 .. 232 ] { $condition = &quot;thundery&quot;; $item = &quot;golf club&quot; }
     case [ 300 .. 321 ] { $condition = &quot;drizzly&quot;;  $item = &quot;lemon cake&quot; }
@@ -243,31 +216,18 @@ no warnings 'experimental::signatures';
     }
 }
 </code></pre>
-
 <p>What are the common HTTP client modules used among the participant? The module name with count in parenthesis are <a href="https://metacpan.org/pod/Mojo::UserAgent"><code>Mojo::UserAgent</code></a> (2), <a href="https://metacpan.org/pod/LWP::UserAgent"><code>LWP::UserAgent</code></a> (1), <a href="https://metacpan.org/pod/WWW::Mechanize"><code>WWW::Mechanize</code></a> (1), and <a href="https://metacpan.org/pod/LWP::Simple"><code>LWP::Simple</code></a> (1). Neil Bowers have made a comprehensive comparison of <a href="http://neilb.org/reviews/http-requesters.html">CPAN modules for making HTTP requests</a> and yet nobody is using <a href="https://metacpan.org/pod/HTTP::Tiny"><code>HTTP::Tiny</code></a>? One issue Perl programmer faced is the enormous amount of CPAN modules and it&rsquo;s difficulty to <a href="http://blog.kablamo.org/2018/03/10/recommended-modules/">choose a suitable and recommended module</a>.</p>
-
 <p>For the amount of codes and features added by <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/athanasius/perl5/ch-3.pl">Athanasius</a>, perhaps it would be suitable to turn it into a full blown CPAN module like <code>App::OpenWeatherMap</code>?</p>
-
-<hr />
-
+<hr>
 <h2 id="blog-posts">Blog Posts</h2>
-
-<hr />
-
+<hr>
 <p>Additional blog posts by some of the participants for more intricate details.</p>
-
 <p>(1) <a href="https://perl6.eu/fc-matrix.html">FC Matrix with Perl 6</a> by <a href="https://bbop.org/">Arne Sommer</a>. If you want to read line-by-line explanation of Perl 6 solutions to these challenges, his post is a must read.</p>
-
 <p>(2) <a href="https://adamcrussell.livejournal.com/3900.html">Perl Weekly Challenge 011</a> by <a href="https://adamcrussell.livejournal.com/">Adam Russell</a>. Regular post on challenge.</p>
-
 <p>(3) <a href="https://jacoby.github.io//2019/06/04/two-technical-posts-about-temperature-kinda.html">Two Technical Posts about Temperature, Kinda</a> by <a href="https://jacoby.github.io/about/">Dave Jacoby</a>. Look into his write-up on the third challenge regarding API. He took another approach compare to Joelle Maslak.</p>
-
 <p>(4) <a href="http://blogs.perl.org/users/laurent_r/2019/06/perl-weekly-challenge-11-fahrenheit-celsius-and-identity-matrix.html">Perl Weekly Challenge # 11: Fahrenheit Celsius and Identity Matrix</a> by <a href="https://laurent-rosenfeld.developpez.com/">Laurent Rosenfeld</a>. If you need a comparison of Perl 11 (Perl 5 and Perl 6) solutions, then his blog is a good place to start.</p>
-
 <p>(5) <a href="https://medium.com/@jcoterhals/perl-6-small-stuff-20-from-anonymous-one-line-functions-to-full-length-mains-with-type-and-error-3d3a69faabda">Perl 6 Small Stuff #20: From anonymous one-line functions to full length MAINs with type and error checking</a> by <a href="https://medium.com/@jcoterhals">Jo Christian Oterhals</a>. Another discussion on using Perl 6.</p>
-
 <p>(6) <a href="https://yzhernand.github.io/posts/perl-weekly-challenge-11/">Perl Weekly Challenge 11: Temperature Scales And Identity Matrices</a> by <a href="https://yzhernand.github.io/">Yozen Hernandez</a>. Write-up on the mathematical solution and different approaches.</p>
-
 <p>(7) <a href="http://blogs.perl.org/users/e_choroba/2019/06/perl-weekly-challenge-011-fahrenheit-celsius-and-an-identity-matrix.html">Perl Weekly Challenge 011: Fahrenheit, Celsius, and an Identity Matrix</a> by <a href="https://www.perlmonks.org/?node_id=832495">E. Choroba</a>. For introduced <a href="https://metacpan.org/pod/PDL"><code>PDL</code></a> module to us when working with matrix.</p>
 
                 </div>

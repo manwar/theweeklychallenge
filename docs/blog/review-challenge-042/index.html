@@ -16,7 +16,7 @@
 
     <meta name="description" content="Perl Weekly Review: Challenge - 042.">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.55.0-DEV" />
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -41,6 +41,8 @@
     <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
     <!-- hover -->
     <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
     <!-- template main css file -->
     
     <link rel="stylesheet" href="https://perlweeklychallenge.org/css/style.min.css" integrity="" media="screen">
@@ -149,1345 +151,1097 @@
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
-                    
-
-<hr />
-
-<hr />
-
+                    <hr>
+<hr>
 <p>Continues from <a href="/blog/review-challenge-041/"><strong>previous week</strong></a>.</p>
-
 <p>Feel free to <a href="https://github.com/manwar/perlweeklychallenge"><strong>submit a merge request or open a ticket</strong></a> if you found any issues with this post. We highly appreciate and welcome your feedback.</p>
-
 <p>For a quick overview, go through the <a href="/blog/perl-weekly-challenge-042/"><strong>original tasks</strong></a> and <a href="/blog/recap-challenge-042/"><strong>recap</strong></a> of the weekly challenge.</p>
-
 <p>Additional feedback to our Perl Weekly Challenge’s <a href="https://twitter.com/perlwchallenge?lang=en"><strong>Twitter account</strong></a> is much appreciated.</p>
-
-<hr />
-
-<hr />
-
+<hr>
+<hr>
 <h2 id="task-1">Task #1</h2>
-
-<hr />
-
-<hr />
-
+<hr>
+<hr>
 <h3 id="octal-number-system">Octal Number System</h3>
-
 <p>Write a script to print decimal number 0 to 50 in <strong>Octal Number System</strong>.</p>
-
 <p>For example:</p>
-
-<h5 id="decimal-0-octal-0">Decimal 0  = Octal 0</h5>
-
-<h5 id="decimal-1-octal-1">Decimal 1  = Octal 1</h5>
-
-<h5 id="decimal-2-octal-2">Decimal 2  = Octal 2</h5>
-
-<h5 id="decimal-3-octal-3">Decimal 3  = Octal 3</h5>
-
-<h5 id="decimal-4-octal-4">Decimal 4  = Octal 4</h5>
-
-<h5 id="decimal-5-octal-5">Decimal 5  = Octal 5</h5>
-
-<h5 id="decimal-6-octal-6">Decimal 6  = Octal 6</h5>
-
-<h5 id="decimal-7-octal-7">Decimal 7  = Octal 7</h5>
-
-<h5 id="decimal-8-octal-10">Decimal 8  = Octal 10</h5>
-
+<h5 id="decimal-0---octal-0">Decimal 0  = Octal 0</h5>
+<h5 id="decimal-1---octal-1">Decimal 1  = Octal 1</h5>
+<h5 id="decimal-2---octal-2">Decimal 2  = Octal 2</h5>
+<h5 id="decimal-3---octal-3">Decimal 3  = Octal 3</h5>
+<h5 id="decimal-4---octal-4">Decimal 4  = Octal 4</h5>
+<h5 id="decimal-5---octal-5">Decimal 5  = Octal 5</h5>
+<h5 id="decimal-6---octal-6">Decimal 6  = Octal 6</h5>
+<h5 id="decimal-7---octal-7">Decimal 7  = Octal 7</h5>
+<h5 id="decimal-8---octal-10">Decimal 8  = Octal 10</h5>
 <p>and so on.</p>
-
-<hr />
-
-<hr />
-
+<hr>
+<hr>
 <h2 id="adam-russell">Adam Russell</h2>
-
 <p><strong>Adam</strong> shared the power of <strong>sprintf()</strong> in his solution.</p>
-
-<pre><code class="language-perl">use strict;
-use warnings;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
 MAIN:{
-    for my $x (0..50){
-        print &quot;Decimal $x = Octal &quot; . sprintf(&quot;%o&quot;, $x) . &quot;\n&quot;;
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $x (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">50</span>){
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Decimal $x = Octal &#34;</span> <span style="color:#f92672">.</span> sprintf(<span style="color:#e6db74">&#34;%o&#34;</span>, $x) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
     }
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="alicia-bielsa">Alicia Bielsa</h2>
-
 <p><strong>Alicia</strong> followed similar path like <strong>Adam</strong> but used <strong>printf()</strong> instead. More compact, good job.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
 
-<pre><code class="language-perl">use strict;
-use warnings;
-
-foreach my $i ( 1..50 ) {
-    printf(&quot;Decimal $i = Octal %o\n&quot;,$i);
+<span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i ( <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">50</span> ) {
+    printf(<span style="color:#e6db74">&#34;Decimal $i = Octal %o\n&#34;</span>,$i);
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="burkhard-nickels">Burkhard Nickels</h2>
-
 <p><strong>Burkhard</strong> shared both <strong>printf()</strong> and <strong>sprintf()</strong> version. Ideal for someone new to learn <strong>Perl</strong>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
 
-<pre><code class="language-perl">use strict;
-use warnings;
-
-# Version 1: foreach loop with printf
-foreach (0 .. 50) {
-    printf(&quot;Decimal: %d - Octal: %o\n&quot;,$_,$_);
+<span style="color:#75715e"># Version 1: foreach loop with printf</span>
+<span style="color:#66d9ef">foreach</span> (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">50</span>) {
+    printf(<span style="color:#e6db74">&#34;Decimal: %d - Octal: %o\n&#34;</span>,$_,$_);
 }
 
-# Version 2: map with sprintf
-print my @res = map { sprintf(&quot;Dec %d - Oct %o\n&quot;,$_,$_) } (0 .. 50);
-</code></pre>
-
-<hr />
-
+<span style="color:#75715e"># Version 2: map with sprintf</span>
+<span style="color:#66d9ef">print</span> <span style="color:#66d9ef">my</span> @res <span style="color:#f92672">=</span> map { sprintf(<span style="color:#e6db74">&#34;Dec %d - Oct %o\n&#34;</span>,$_,$_) } (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">50</span>);
+</code></pre></div><hr>
 <h2 id="colin-crain">Colin Crain</h2>
-
 <p><strong>Colin</strong> likes to the difficult path and manually solved the task. It reminds me my learning days.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">&#34;:5.26&#34;</span>;
 
-<pre><code class="language-perl">use warnings;
-use strict;
-use feature &quot;:5.26&quot;;
+printf <span style="color:#e6db74">&#34;Decimal %-2d = Octal %-2d\n&#34;</span>, $_, octal($_) <span style="color:#66d9ef">for</span> (<span style="color:#f92672">-</span><span style="color:#ae81ff">50</span><span style="color:#f92672">..</span><span style="color:#ae81ff">50</span>);
 
-printf &quot;Decimal %-2d = Octal %-2d\n&quot;, $_, octal($_) for (-50..50);
-
-sub octal {
-    my $num = shift;
-    my $sign = ($num &gt;= 0) ? &quot;&quot; : '-';
-    $num = abs($num);
-    my $out = &quot;&quot;;
-    my $rem;
-    while ( $num &gt; 0 ) {
-          ($num, $rem) = (int( $num/8 ), $num % 8);
-        $out = $rem . $out;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">octal</span> {
+    <span style="color:#66d9ef">my</span> $num <span style="color:#f92672">=</span> shift;
+    <span style="color:#66d9ef">my</span> $sign <span style="color:#f92672">=</span> ($num <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>) ? <span style="color:#e6db74">&#34;&#34;</span> : <span style="color:#e6db74">&#39;-&#39;</span>;
+    $num <span style="color:#f92672">=</span> abs($num);
+    <span style="color:#66d9ef">my</span> $out <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
+    <span style="color:#66d9ef">my</span> $rem;
+    <span style="color:#66d9ef">while</span> ( $num <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> ) {
+          ($num, $rem) <span style="color:#f92672">=</span> (int( $num<span style="color:#f92672">/</span><span style="color:#ae81ff">8</span> ), $num % 8);
+        $out <span style="color:#f92672">=</span> $rem <span style="color:#f92672">.</span> $out;
     }
-    $out = $sign . $out;
-    return $out ? $out : 0;  ## needs to output 0 for 0
+    $out <span style="color:#f92672">=</span> $sign <span style="color:#f92672">.</span> $out;
+    <span style="color:#66d9ef">return</span> $out ? $out : <span style="color:#ae81ff">0</span>;  <span style="color:#75715e">## needs to output 0 for 0</span>
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="cristina-heredia">Cristina Heredia</h2>
-
 <p><strong>Cristina</strong>, new member of the team shared the first contribution. Looking forward to many more magical solutions.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/perl</span>
 
-<pre><code class="language-perl">#!/usr/bin/perl
+<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; $i <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">50</span>; $i<span style="color:#f92672">++</span>) {
 
-for (my $i = 0; $i &lt;= 50; $i++) {
-
-    print &quot;Decimal $i = Octal &quot;;
-    printf(&quot;%o\n&quot;,$_)for &quot;$i&quot;;
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Decimal $i = Octal &#34;</span>;
+    printf(<span style="color:#e6db74">&#34;%o\n&#34;</span>,$_)<span style="color:#66d9ef">for</span> <span style="color:#e6db74">&#34;$i&#34;</span>;
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="dave-jacoby">Dave Jacoby</h2>
-
 <p><strong>Dave</strong> also took the help from <strong>sprintf()</strong> like others. I wonder how many knows the real power of <strong>sprintf()</strong>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">qw{ say }</span>;
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
 
-<pre><code class="language-perl">use feature qw{ say };
-use strict;
-use warnings;
-
-for my $d ( 0 .. 50 ) {
-    my $o = sprintf '%o', $d;
-    say qq{Decimal $d = Octal $o};
+<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $d ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">50</span> ) {
+    <span style="color:#66d9ef">my</span> $o <span style="color:#f92672">=</span> sprintf <span style="color:#e6db74">&#39;%o&#39;</span>, $d;
+    say <span style="color:#e6db74">qq{Decimal $d = Octal $o}</span>;
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="duane-powell">Duane Powell</h2>
-
 <p><strong>Duane</strong> came up with handmade complete solution.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">qw( say )</span>;
 
-<pre><code class="language-perl">use warnings;
-use strict;
-use feature qw( say );
-
-my $decimal_no = shift;
-if ($decimal_no) {
+<span style="color:#66d9ef">my</span> $decimal_no <span style="color:#f92672">=</span> shift;
+<span style="color:#66d9ef">if</span> ($decimal_no) {
     say convert_to_octal($decimal_no);
 }
-else {
-    for (0 .. 50) {
+<span style="color:#66d9ef">else</span> {
+    <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">50</span>) {
         say convert_to_octal($_);
     }
 }
 
-sub convert_to_octal {
-    my $n = shift;
-    return 0 if ($n == 0);
-    my @oct;
-    while ($n &gt; 0) {
-        my $remainder = $n/8 - int($n/8);
-        push @oct, $remainder * 8;
-        $n = int($n/8);
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">convert_to_octal</span> {
+    <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> shift;
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> ($n <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>);
+    <span style="color:#66d9ef">my</span> @oct;
+    <span style="color:#66d9ef">while</span> ($n <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
+        <span style="color:#66d9ef">my</span> $remainder <span style="color:#f92672">=</span> $n<span style="color:#e6db74">/8 - int($n/</span><span style="color:#ae81ff">8</span>);
+        push @oct, $remainder <span style="color:#f92672">*</span> <span style="color:#ae81ff">8</span>;
+        $n <span style="color:#f92672">=</span> int($n<span style="color:#f92672">/</span><span style="color:#ae81ff">8</span>);
     }
-    return join('',reverse @oct);
+    <span style="color:#66d9ef">return</span> join(<span style="color:#e6db74">&#39;&#39;</span>,reverse @oct);
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="duncan-c-white">Duncan C. White</h2>
-
 <p><strong>Duncan</strong> introduced <strong>bit</strong> operator in a very elegant way to solve the task. I loved it.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.10</span>;  <span style="color:#75715e"># to get &#34;say&#34;</span>
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
 
-<pre><code class="language-perl">use v5.10;  # to get &quot;say&quot;
-use strict;
-use warnings;
+die <span style="color:#e6db74">&#34;Usage: ch-1.pl [N//50]\n&#34;</span> <span style="color:#66d9ef">if</span> @ARGV<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">1</span>;
 
-die &quot;Usage: ch-1.pl [N//50]\n&quot; if @ARGV&gt;1;
+<span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> shift <span style="color:#e6db74">//</span> <span style="color:#ae81ff">50</span>;
 
-my $n = shift // 50;
-
-#
-# my $o = to_oct_str( $x );
-#   Convert x to an octal string, eg. 8 is &quot;10&quot;
-#
-sub to_oct_str
+<span style="color:#75715e">#</span>
+<span style="color:#75715e"># my $o = to_oct_str( $x );</span>
+<span style="color:#75715e">#   Convert x to an octal string, eg. 8 is &#34;10&#34;</span>
+<span style="color:#75715e">#</span>
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">to_oct_str</span>
 {
-    my( $x ) = @_;
-    my $result = &quot;&quot;;
-    if( $x &gt; 7 )
+    <span style="color:#66d9ef">my</span>( $x ) <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">my</span> $result <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
+    <span style="color:#66d9ef">if</span>( $x <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">7</span> )
     {
-        $result = to_oct_str( $x&gt;&gt;3 );
+        $result <span style="color:#f92672">=</span> to_oct_str( $x<span style="color:#f92672">&gt;&gt;</span><span style="color:#ae81ff">3</span> );
     }
-    $result .= $x&amp;7;
-    return $result;
+    $result <span style="color:#f92672">.=</span> $x<span style="color:#f92672">&amp;</span><span style="color:#ae81ff">7</span>;
+    <span style="color:#66d9ef">return</span> $result;
 }
 
 
-foreach my $x (0..$n)
+<span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $x (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$n)
 {
-    # convert x to octal..
-    my $o = to_oct_str( $x );
-    say &quot;$x\t$o&quot;;
+    <span style="color:#75715e"># convert x to octal..</span>
+    <span style="color:#66d9ef">my</span> $o <span style="color:#f92672">=</span> to_oct_str( $x );
+    say <span style="color:#e6db74">&#34;$x\t$o&#34;</span>;
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="e-choroba">E. Choroba</h2>
-
 <p><strong>Choroba</strong> didn&rsquo;t try to be clever and kept it simple.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> strict;
 
-<pre><code class="language-perl">use warnings;
-use strict;
-
-printf &quot;Decimal %d = Octal %o\n&quot;, $_, $_
-    for 0 .. 50;
-</code></pre>
-
-<hr />
-
+printf <span style="color:#e6db74">&#34;Decimal %d = Octal %o\n&#34;</span>, $_, $_
+    <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">50</span>;
+</code></pre></div><hr>
 <h2 id="fabrizio-poggi">Fabrizio Poggi</h2>
-
 <p><strong>Fabrizio</strong> also got his hand dirty while solving the task. Good job.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
 
-<pre><code class="language-perl">use strict;
-use warnings;
+<span style="color:#66d9ef">my</span> $x;
+<span style="color:#66d9ef">my</span> $y;
+<span style="color:#66d9ef">my</span> $mod;
+<span style="color:#66d9ef">my</span> $oct;
+<span style="color:#66d9ef">my</span> @array;
 
-my $x;
-my $y;
-my $mod;
-my $oct;
-my @array;
-
-foreach $x (0..50){
-    print &quot;Decimal $x = &quot;;
-    if ($x &lt; 8) {
-        $oct = $x;
-    } else {
-        do {
-            $y = int($x / 8);
-            $mod = $x % 8;
+<span style="color:#66d9ef">foreach</span> $x (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">50</span>){
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Decimal $x = &#34;</span>;
+    <span style="color:#66d9ef">if</span> ($x <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">8</span>) {
+        $oct <span style="color:#f92672">=</span> $x;
+    } <span style="color:#66d9ef">else</span> {
+        <span style="color:#66d9ef">do</span> {
+            $y <span style="color:#f92672">=</span> int($x <span style="color:#f92672">/</span> <span style="color:#ae81ff">8</span>);
+            $mod <span style="color:#f92672">=</span> $x % 8;
             push (@array, $mod);
-            $x = $y;
-            } while ($x &gt; 8);
+            $x <span style="color:#f92672">=</span> $y;
+            } <span style="color:#66d9ef">while</span> ($x <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">8</span>);
         push (@array, $x);
-        $oct = reverse @array;
+        $oct <span style="color:#f92672">=</span> reverse @array;
     }
-print &quot;Octal $oct \n&quot;;
-@array=();
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Octal $oct \n&#34;</span>;
+@array<span style="color:#f92672">=</span>();
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="jaldhar-h-vyas">Jaldhar H. Vyas</h2>
-
 <p><strong>Jaldhar</strong> made it look cool with the use of <strong>map{}</strong>. Smart Cookie.</p>
-
-<pre><code class="language-perl">perl -e 'map { printf &quot;Decimal %d = Octal %o\n&quot;, $_, $_ } (0 .. 50);'
-</code></pre>
-
-<hr />
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">perl <span style="color:#f92672">-</span>e <span style="color:#e6db74">&#39;map { printf &#34;Decimal %d = Octal %o\n&#34;, $_, $_ } (0 .. 50);&#39;</span>
+</code></pre></div><hr>
 <h2 id="javier-luque">Javier Luque</h2>
-
 <p><strong>Javier</strong> back to basics, yet powerful.</p>
-
-<pre><code class="language-perl">use strict;
-use warnings;
-use feature qw /say/;
-
-for my $i (1..50) {
-    say 'Decimal '  . $i .
-        ' = Octal ' . to_octal($i);
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">qw /say/;
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">for </span><span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">50</span>) {
+    say <span style="color:#e6db74">&#39;Decimal &#39;</span>  <span style="color:#f92672">.</span> $i <span style="color:#f92672">.</span>
+        <span style="color:#e6db74">&#39; = Octal &#39;</span> <span style="color:#f92672">.</span> to_octal($i);
 }
 
-sub to_octal {
-    return sprintf('%o', shift);
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">to_octal</span> {
+    <span style="color:#66d9ef">return</span> sprintf(<span style="color:#e6db74">&#39;%o&#39;</span>, shift);
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="kivanc-yazan">Kivanc Yazan</h2>
-
 <p><strong>Kivanc</strong> also followed the straight forward path and reached the target without any issue.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> strict;
 
-<pre><code class="language-perl">use warnings;
-use strict;
-
-# Write a script to print decimal number 0 to 50 in Octal Number System.
-for my $i (0..50){
-  printf &quot;Decimal %d = Octal %o\n&quot;, $i, $i;
+<span style="color:#75715e"># Write a script to print decimal number 0 to 50 in Octal Number System.</span>
+<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">50</span>){
+  printf <span style="color:#e6db74">&#34;Decimal %d = Octal %o\n&#34;</span>, $i, $i;
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="laurent-rosenfeld">Laurent Rosenfeld</h2>
-
-<p><strong>Laurent</strong> one-liner is always the best, usage of <strong>$_</strong> twice makes it interesting.</p>
-
-<pre><code class="language-perl">perl -e 'printf &quot;Decimal: %2d  =  Octal %2o \n&quot;, $_, $_ for 0..50;'
-</code></pre>
-
-<hr />
-
+<p><strong>Laurent</strong> one-liner is always the best, usage of **$_** twice makes it interesting.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">perl <span style="color:#f92672">-</span>e <span style="color:#e6db74">&#39;printf &#34;Decimal: %2d  =  Octal %2o \n&#34;, $_, $_ for 0..50;&#39;</span>
+</code></pre></div><hr>
 <h2 id="nazareno-delucca">Nazareno Delucca</h2>
-
 <p><strong>Nazareno</strong> solutions really hard to follow first time. I had to run the script to see the end result.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
 
-<pre><code class="language-perl">use strict;
-use warnings;
+<span style="color:#66d9ef">my</span> $top <span style="color:#f92672">=</span> shift @ARGV <span style="color:#f92672">||</span> <span style="color:#ae81ff">50</span>;
+<span style="color:#66d9ef">my</span> $holder <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
 
-my $top = shift @ARGV || 50;
-my $holder = 0;
-
-for (0..$top){
-    print &quot;dec: $_ -&gt; oct: &quot;. $holder++ . &quot;\n&quot;;
-    $holder+=2 if 8 == substr $holder, -1;
+<span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$top){
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;dec: $_ -&gt; oct: &#34;</span><span style="color:#f92672">.</span> $holder<span style="color:#f92672">++</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
+    $holder<span style="color:#f92672">+=</span><span style="color:#ae81ff">2</span> <span style="color:#66d9ef">if</span> <span style="color:#ae81ff">8</span> <span style="color:#f92672">==</span> substr $holder, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="peter-scott">Peter Scott</h2>
-
 <p><strong>Peter</strong> is a man of few words. You know why I say that, checkout his solution.</p>
-
-<pre><code class="language-perl">perl -E 'say sprintf &quot;Decimal %d = Octal %o&quot;, $_, $_ for 0 .. 50'
-</code></pre>
-
-<hr />
-
-<h2 id="roger-bell-west">Roger Bell_West</h2>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">perl <span style="color:#f92672">-</span>E <span style="color:#e6db74">&#39;say sprintf &#34;Decimal %d = Octal %o&#34;, $_, $_ for 0 .. 50&#39;</span>
+</code></pre></div><hr>
+<h2 id="roger-bell_west">Roger Bell_West</h2>
 <p><strong>Roger</strong> kept it simple and easy this time.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
 
-<pre><code class="language-perl">use strict;
-use warnings;
-
-foreach (0..50) {
-  printf('Decimal %d = Octal %o'.&quot;\n&quot;,$_,$_);
+<span style="color:#66d9ef">foreach</span> (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">50</span>) {
+  printf(<span style="color:#e6db74">&#39;Decimal %d = Octal %o&#39;</span><span style="color:#f92672">.</span><span style="color:#e6db74">&#34;\n&#34;</span>,$_,$_);
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="ruben-westerberg">Ruben Westerberg</h2>
-
 <p><strong>Ruben</strong> followed the same path like many.</p>
-
-<pre><code class="language-perl">perl -e 'printf &quot;Decimal: %4d Octal: %4o\n&quot;,$_,$_ for 0..50';
-</code></pre>
-
-<hr />
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">perl <span style="color:#f92672">-</span>e <span style="color:#e6db74">&#39;printf &#34;Decimal: %4d Octal: %4o\n&#34;,$_,$_ for 0..50&#39;</span>;
+</code></pre></div><hr>
 <h2 id="ryan-thompson">Ryan Thompson</h2>
-
 <p><strong>Ryan</strong> didn&rsquo;t lost the path either.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">printf <span style="color:#e6db74">&#34;Decimal %2d = Octal %2o\n&#34;</span>, $_, $_ <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">50</span>;
 
-<pre><code class="language-perl">printf &quot;Decimal %2d = Octal %2o\n&quot;, $_, $_ for 0..50;
-
-# This printf feature will be important for our Raku solution:
-printf 'Decimal %1$2d = Octal %1$2o'.&quot;\n&quot;, $_ for 0..50;
-</code></pre>
-
-<hr />
-
+<span style="color:#75715e"># This printf feature will be important for our Raku solution:</span>
+printf <span style="color:#e6db74">&#39;Decimal %1$2d = Octal %1$2o&#39;</span><span style="color:#f92672">.</span><span style="color:#e6db74">&#34;\n&#34;</span>, $_ <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">50</span>;
+</code></pre></div><hr>
 <h2 id="saif-ahmed">Saif Ahmed</h2>
-
 <p><strong>Saif</strong> is known for his documented solution. This time also it is no different.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict; <span style="color:#66d9ef">use</span> warnings;
 
-<pre><code class="language-perl">use strict; use warnings;
+<span style="color:#66d9ef">my</span> $base<span style="color:#f92672">=</span><span style="color:#ae81ff">8</span>;
 
-my $base=8;
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Converting from decimal to octal (base 8)\n&#34;</span>;
 
-print &quot;Converting from decimal to octal (base 8)\n&quot;;
-
-for my $n (1..50){
-  printf (&quot;Decimal %2s is %2s in base %1s\n&quot;,$n, decimalTobaseN($base,$n), $base) ;
+<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $n (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">50</span>){
+  printf (<span style="color:#e6db74">&#34;Decimal %2s is %2s in base %1s\n&#34;</span>,$n, decimalTobaseN($base,$n), $base) ;
 }
 
-sub decimalTobaseN{
-   my ($base,$number)=@_;                   # Function receives base and the number to convert
-   my @digits=(0..9,'A'..'Z');              # potential output characters
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">decimalTobaseN</span>{
+   <span style="color:#66d9ef">my</span> ($base,$number)<span style="color:#f92672">=</span>@_;                   <span style="color:#75715e"># Function receives base and the number to convert</span>
+   <span style="color:#66d9ef">my</span> @digits<span style="color:#f92672">=</span>(<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">9</span>,<span style="color:#e6db74">&#39;A&#39;</span><span style="color:#f92672">..</span><span style="color:#e6db74">&#39;Z&#39;</span>);              <span style="color:#75715e"># potential output characters</span>
 
-   my $string=&quot;&quot;;                           # holds the output as string of characters
+   <span style="color:#66d9ef">my</span> $string<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>;                           <span style="color:#75715e"># holds the output as string of characters</span>
 
-   while ($number&gt;0){                       # continue until no more required
-      my $remainder=$number % $base;        # get the remainder after division with base
-      $string=$digits[$remainder].$string;  # add that to the left most side of string
-      $number=($number-$remainder)/$base;   # divide the residual number by base
+   <span style="color:#66d9ef">while</span> ($number<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span>){                       <span style="color:#75715e"># continue until no more required</span>
+      <span style="color:#66d9ef">my</span> $remainder<span style="color:#f92672">=</span>$number % <span style="color:#960050;background-color:#1e0010">$</span>base;        <span style="color:#75715e"># get the remainder after division with base</span>
+      $string<span style="color:#f92672">=</span>$digits[$remainder]<span style="color:#f92672">.</span>$string;  <span style="color:#75715e"># add that to the left most side of string</span>
+      $number<span style="color:#f92672">=</span>($number<span style="color:#f92672">-</span>$remainder)<span style="color:#f92672">/</span>$base;   <span style="color:#75715e"># divide the residual number by base</span>
    }
 
-   return $string                           # return the result
+   <span style="color:#66d9ef">return</span> $string                           <span style="color:#75715e"># return the result</span>
 }
 
-# The following section describes a function inverse of decimalToBaseN()
-# Goal is to convert baseN string generated above back to decimal
+<span style="color:#75715e"># The following section describes a function inverse of decimalToBaseN()</span>
+<span style="color:#75715e"># Goal is to convert baseN string generated above back to decimal</span>
 
-print &quot;\n\nPress any key to continue\n&quot;;
-&lt;STDIN&gt;;
-print &quot;Converting decimal 100 into bases 2 to 36 and then back again\n\n&quot;;
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\n\nPress any key to continue\n&#34;</span>;
+<span style="color:#e6db74">&lt;STDIN&gt;</span>;
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Converting decimal 100 into bases 2 to 36 and then back again\n\n&#34;</span>;
 
-for $base (2..36){                         # for each valid base
-      my $a = decimalTobaseN($base,100);   # convert decimal 100 into that base
-      my $b = baseNToDecimal($base,$a);    # then convert result back to decimal
+<span style="color:#66d9ef">for</span> $base (<span style="color:#ae81ff">2</span><span style="color:#f92672">..</span><span style="color:#ae81ff">36</span>){                         <span style="color:#75715e"># for each valid base</span>
+      <span style="color:#66d9ef">my</span> $a <span style="color:#f92672">=</span> decimalTobaseN($base,<span style="color:#ae81ff">100</span>);   <span style="color:#75715e"># convert decimal 100 into that base</span>
+      <span style="color:#66d9ef">my</span> $b <span style="color:#f92672">=</span> baseNToDecimal($base,$a);    <span style="color:#75715e"># then convert result back to decimal</span>
 
-      printf (&quot;Decimal 100 in base %2s is %2s and converted back is %2s\n&quot;,$base, $a, $b) ;
+      printf (<span style="color:#e6db74">&#34;Decimal 100 in base %2s is %2s and converted back is %2s\n&#34;</span>,$base, $a, $b) ;
 }
 
-sub baseNToDecimal{
-   my ($base,$string)=@_;                   # Function receives base and the string to convert
-   my %baseValues;                          # the base characters to decimal value are
-   @baseValues{(0..9,'A'..'Z')}=(0..36);    # stored in a hash
-   my $result=0;                            # initial value is zero
-   foreach (split //,$string){              # go over each character in the string
-                                            # multiplying result by the base before adding
-       $result=$result*$base+$baseValues{$_};  # next character value to result
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">baseNToDecimal</span>{
+   <span style="color:#66d9ef">my</span> ($base,$string)<span style="color:#f92672">=</span>@_;                   <span style="color:#75715e"># Function receives base and the string to convert</span>
+   <span style="color:#66d9ef">my</span> %baseValues;                          <span style="color:#75715e"># the base characters to decimal value are</span>
+   @baseValues{(<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">9</span>,<span style="color:#e6db74">&#39;A&#39;</span><span style="color:#f92672">..</span><span style="color:#e6db74">&#39;Z&#39;</span>)}<span style="color:#f92672">=</span>(<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">36</span>);    <span style="color:#75715e"># stored in a hash</span>
+   <span style="color:#66d9ef">my</span> $result<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;                            <span style="color:#75715e"># initial value is zero</span>
+   <span style="color:#66d9ef">foreach</span> (split <span style="color:#e6db74">//</span>,$string){              <span style="color:#75715e"># go over each character in the string</span>
+                                            <span style="color:#75715e"># multiplying result by the base before adding</span>
+       $result<span style="color:#f92672">=</span>$result<span style="color:#f92672">*</span>$base<span style="color:#f92672">+</span>$baseValues{$_};  <span style="color:#75715e"># next character value to result</span>
    }
-   return $result;                          # return the result
+   <span style="color:#66d9ef">return</span> $result;                          <span style="color:#75715e"># return the result</span>
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="steven-wilson">Steven Wilson</h2>
-
 <p><strong>Steven</strong> not only solved the task but also added handy unit test as well.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">qw/ say /</span>;
+<span style="color:#66d9ef">use</span> Test::More tests <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>;
 
-<pre><code class="language-perl">use strict;
-use warnings;
-use feature qw/ say /;
-use Test::More tests =&gt; 1;
+ok( decimal_to_octal(<span style="color:#ae81ff">1792</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">3400</span>, <span style="color:#e6db74">&#34;test decimal 1792 is octal 3400&#34;</span> );
 
-ok( decimal_to_octal(1792) == 3400, &quot;test decimal 1792 is octal 3400&quot; );
-
-sub decimal_to_octal {
-    my $dec = shift;
-    my $result;
-    while ( $dec &gt; 7 ) {
-        $result .= $dec % 8;
-        $dec = int( $dec / 8 );
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">decimal_to_octal</span> {
+    <span style="color:#66d9ef">my</span> $dec <span style="color:#f92672">=</span> shift;
+    <span style="color:#66d9ef">my</span> $result;
+    <span style="color:#66d9ef">while</span> ( $dec <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">7</span> ) {
+        $result <span style="color:#f92672">.=</span> $dec % 8;
+        $dec <span style="color:#f92672">=</span> int( $dec <span style="color:#f92672">/</span> <span style="color:#ae81ff">8</span> );
     }
-    $result .= $dec;
-    return scalar reverse $result;
+    $result <span style="color:#f92672">.=</span> $dec;
+    <span style="color:#66d9ef">return</span> scalar reverse $result;
 }
 
-for ( 0 .. 50 ) {
-    say &quot;Decimal $_ = Octal &quot;, decimal_to_octal($_);
+<span style="color:#66d9ef">for</span> ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">50</span> ) {
+    say <span style="color:#e6db74">&#34;Decimal $_ = Octal &#34;</span>, decimal_to_octal($_);
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="walt-mankowski">Walt Mankowski</h2>
-
 <p><strong>Walt</strong> is now regular with his solutions. This time with a one-liner.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
 
-<pre><code class="language-perl">use strict;
-use warnings;
-
-printf &quot;Decimal %d = Octal %o\n&quot;, $_, $_ for 0..50;
-</code></pre>
-
-<hr />
-
+printf <span style="color:#e6db74">&#34;Decimal %d = Octal %o\n&#34;</span>, $_, $_ <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">50</span>;
+</code></pre></div><hr>
 <h2 id="wanderdoc">Wanderdoc</h2>
-
 <p><strong>Wanderdoc</strong>, one of <strong>Early Bird Club</strong> members, presented the result as expected.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings FATAL <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">qw(all)</span>;
 
-<pre><code class="language-perl">use strict;
-use warnings FATAL =&gt; qw(all);
-
-for my $number ( 0 .. 50 )
+<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $number ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">50</span> )
 {
-     print join(' = ', join(' ', 'Decimal', $number),
-                       join(' ', 'Octal', sprintf(&quot;%o&quot;, $number))), $/;
+     <span style="color:#66d9ef">print</span> join(<span style="color:#e6db74">&#39; = &#39;</span>, join(<span style="color:#e6db74">&#39; &#39;</span>, <span style="color:#e6db74">&#39;Decimal&#39;</span>, $number),
+                       join(<span style="color:#e6db74">&#39; &#39;</span>, <span style="color:#e6db74">&#39;Octal&#39;</span>, sprintf(<span style="color:#e6db74">&#34;%o&#34;</span>, $number))), $/;
 }
-</code></pre>
-
-<hr />
-
-<hr />
-
+</code></pre></div><hr>
+<hr>
 <h2 id="task-2">Task #2</h2>
-
-<hr />
-
-<hr />
-
+<hr>
+<hr>
 <h3 id="balanced-brackets">Balanced Brackets</h3>
-
 <p>Write a script to generate a string with random number of <strong>(</strong> and <strong>)</strong> brackets. Then make the script validate the string if it has balanced brackets.</p>
-
 <p>For example:</p>
-
-<h5 id="ok">() - OK</h5>
-
-<h5 id="ok-1">(()) - OK</h5>
-
-<h5 id="not-ok">)( - NOT OK</h5>
-
-<h5 id="not-ok-1">())() - NOT OK</h5>
-
-<hr />
-
-<hr />
-
+<h5 id="---ok">() - OK</h5>
+<h5 id="---ok-1">(()) - OK</h5>
+<h5 id="---not-ok">)( - NOT OK</h5>
+<h5 id="---not-ok-1">())() - NOT OK</h5>
+<hr>
+<hr>
 <h2 id="adam-russell-1">Adam Russell</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#75715e">##</span>
+<span style="color:#75715e"># Write a script to generate a string with a random</span>
+<span style="color:#75715e"># number of ( and ) parentheses. Make the script validate</span>
+<span style="color:#75715e"># the string for balanced parentheses.</span>
+<span style="color:#75715e">##</span>
+<span style="color:#66d9ef">use</span> boolean;
+<span style="color:#66d9ef">use</span> constant LENGTH <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">4</span>;
+<span style="color:#66d9ef">use</span> constant OPEN <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;(&#34;</span>;
+<span style="color:#66d9ef">use</span> constant CLOSE <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;)&#34;</span>;
 
-<pre><code class="language-perl">use strict;
-use warnings;
-##
-# Write a script to generate a string with a random
-# number of ( and ) parentheses. Make the script validate
-# the string for balanced parentheses.
-##
-use boolean;
-use constant LENGTH =&gt; 4;
-use constant OPEN =&gt; &quot;(&quot;;
-use constant CLOSE =&gt; &quot;)&quot;;
-
-sub build{
-    my $s;
-    for (0 .. (LENGTH - 1)){
-        my $p = rand() &lt; 0.5 ? OPEN : CLOSE;
-        $s .= $p;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">build</span>{
+    <span style="color:#66d9ef">my</span> $s;
+    <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> (LENGTH <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)){
+        <span style="color:#66d9ef">my</span> $p <span style="color:#f92672">=</span> rand() <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0.5</span> ? OPEN : CLOSE;
+        $s <span style="color:#f92672">.=</span> $p;
     }
-    return $s;
+    <span style="color:#66d9ef">return</span> $s;
 }
 
-sub validate{
-    my($s) = @_;
-    my @a;
-    for my $c (split(//, $s)){
-        push @a, $c if($c eq OPEN);
-        if($c eq CLOSE){
-            return false if(!@a || pop @a ne OPEN);
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">validate</span>{
+    <span style="color:#66d9ef">my</span>($s) <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">my</span> @a;
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $c (split(<span style="color:#e6db74">//</span>, $s)){
+        push @a, $c <span style="color:#66d9ef">if</span>($c <span style="color:#f92672">eq</span> OPEN);
+        <span style="color:#66d9ef">if</span>($c <span style="color:#f92672">eq</span> CLOSE){
+            <span style="color:#66d9ef">return</span> false <span style="color:#66d9ef">if</span>(<span style="color:#f92672">!</span>@a <span style="color:#f92672">||</span> pop @a <span style="color:#f92672">ne</span> OPEN);
         }
     }
-    return true if !@a;
-    return false;
+    <span style="color:#66d9ef">return</span> true <span style="color:#66d9ef">if</span> <span style="color:#f92672">!</span>@a;
+    <span style="color:#66d9ef">return</span> false;
 }
 
 MAIN:{
-    my $s = build();
-    my $r = validate($s) ?  &quot;balanced&quot; : &quot;not balanced&quot;;
-    print &quot;$s is $r\n&quot;;
+    <span style="color:#66d9ef">my</span> $s <span style="color:#f92672">=</span> build();
+    <span style="color:#66d9ef">my</span> $r <span style="color:#f92672">=</span> validate($s) ?  <span style="color:#e6db74">&#34;balanced&#34;</span> : <span style="color:#e6db74">&#34;not balanced&#34;</span>;
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$s is $r\n&#34;</span>;
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="alicia-bielsa-1">Alicia Bielsa</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
 
-<pre><code class="language-perl">use strict;
-use warnings;
+<span style="color:#66d9ef">my</span> $openingBracket <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;(&#39;</span>;
+<span style="color:#66d9ef">my</span> $closingBracket <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;)&#39;</span>;
+<span style="color:#66d9ef">my</span> @aBracketSymbols <span style="color:#f92672">=</span> ($openingBracket, $closingBracket);
+<span style="color:#66d9ef">my</span> $bracketString <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
 
-my $openingBracket = '(';
-my $closingBracket = ')';
-my @aBracketSymbols = ($openingBracket, $closingBracket);
-my $bracketString = '';
-
-my $lengthString = int(rand(10));
-foreach my $i (0..$lengthString){
-    $bracketString .= $aBracketSymbols[int(rand(2))];
+<span style="color:#66d9ef">my</span> $lengthString <span style="color:#f92672">=</span> int(rand(<span style="color:#ae81ff">10</span>));
+<span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$lengthString){
+    $bracketString <span style="color:#f92672">.=</span> $aBracketSymbols[int(rand(<span style="color:#ae81ff">2</span>))];
 }
 
-my $balanceResult  = isStringBalanced($bracketString);
-print &quot;$bracketString - $balanceResult\n&quot;;
+<span style="color:#66d9ef">my</span> $balanceResult  <span style="color:#f92672">=</span> isStringBalanced($bracketString);
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$bracketString - $balanceResult\n&#34;</span>;
 
-sub isStringBalanced {
-    my $stringToCkeck = shift;
-    my $balanceCount = 0;
-    foreach my $bracket (split ('',$stringToCkeck)){
-        if ($bracket eq $closingBracket ){
-            if ( $balanceCount == 0){
-                return 'KO';
-            } else {
-                $balanceCount --;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">isStringBalanced</span> {
+    <span style="color:#66d9ef">my</span> $stringToCkeck <span style="color:#f92672">=</span> shift;
+    <span style="color:#66d9ef">my</span> $balanceCount <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $bracket (split (<span style="color:#e6db74">&#39;&#39;</span>,$stringToCkeck)){
+        <span style="color:#66d9ef">if</span> ($bracket <span style="color:#f92672">eq</span> $closingBracket ){
+            <span style="color:#66d9ef">if</span> ( $balanceCount <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>){
+                <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;KO&#39;</span>;
+            } <span style="color:#66d9ef">else</span> {
+                $balanceCount <span style="color:#f92672">--</span>;
             }
-        } elsif ($bracket eq $openingBracket){
-            $balanceCount ++;
+        } <span style="color:#66d9ef">elsif</span> ($bracket <span style="color:#f92672">eq</span> $openingBracket){
+            $balanceCount <span style="color:#f92672">++</span>;
         }
     }
-    if ($balanceCount == 0 ){
-        return 'OK';
-    } else {
-        return 'KO';
+    <span style="color:#66d9ef">if</span> ($balanceCount <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> ){
+        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;OK&#39;</span>;
+    } <span style="color:#66d9ef">else</span> {
+        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;KO&#39;</span>;
     }
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="burkhard-nickels-1">Burkhard Nickels</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
 
-<pre><code class="language-perl">use strict;
-use warnings;
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;ch-2.pl (Version 1.0) PWC #42 Task #2: Balanced Brackets\n&#34;</span>;
 
-print &quot;ch-2.pl (Version 1.0) PWC #42 Task #2: Balanced Brackets\n&quot;;
-
-sub create_brackets {
-    my ($nr) = @_;
-    my $s;
-    for( my $i=0; $i&lt;=$nr; $i++ )  {
-        my $br = int(rand(2));
-        if($br) { $s .= &quot;)&quot;; } else { $s .= &quot;(&quot;; }
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">create_brackets</span> {
+    <span style="color:#66d9ef">my</span> ($nr) <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">my</span> $s;
+    <span style="color:#66d9ef">for</span>( <span style="color:#66d9ef">my</span> $i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; $i<span style="color:#f92672">&lt;=</span>$nr; $i<span style="color:#f92672">++</span> )  {
+        <span style="color:#66d9ef">my</span> $br <span style="color:#f92672">=</span> int(rand(<span style="color:#ae81ff">2</span>));
+        <span style="color:#66d9ef">if</span>($br) { $s <span style="color:#f92672">.=</span> <span style="color:#e6db74">&#34;)&#34;</span>; } <span style="color:#66d9ef">else</span> { $s <span style="color:#f92672">.=</span> <span style="color:#e6db74">&#34;(&#34;</span>; }
     }
-    return $s;
+    <span style="color:#66d9ef">return</span> $s;
 }
 
-my $ok;
-do {
-    my $nr = int(rand(10));
-    my $str = create_brackets($nr);
-    $ok  = balanced_brackets($str);
-    my $rs  = &quot;NOT OK&quot;;
-    $rs = &quot;OK&quot; if $ok;
-    print $str, &quot; - &quot;, $rs, &quot;\n&quot;;
-} while( ! $ok );
+<span style="color:#66d9ef">my</span> $ok;
+<span style="color:#66d9ef">do</span> {
+    <span style="color:#66d9ef">my</span> $nr <span style="color:#f92672">=</span> int(rand(<span style="color:#ae81ff">10</span>));
+    <span style="color:#66d9ef">my</span> $str <span style="color:#f92672">=</span> create_brackets($nr);
+    $ok  <span style="color:#f92672">=</span> balanced_brackets($str);
+    <span style="color:#66d9ef">my</span> $rs  <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;NOT OK&#34;</span>;
+    $rs <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;OK&#34;</span> <span style="color:#66d9ef">if</span> $ok;
+    <span style="color:#66d9ef">print</span> $str, <span style="color:#e6db74">&#34; - &#34;</span>, $rs, <span style="color:#e6db74">&#34;\n&#34;</span>;
+} <span style="color:#66d9ef">while</span>( <span style="color:#f92672">!</span> $ok );
 
-sub balanced_brackets {
-    my $str = shift;
-    my $found = $str =~ s/\(\)//;
-    my $ok;
-    if($found) {
-        $ok = balanced_brackets($str);
-        return $ok;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">balanced_brackets</span> {
+    <span style="color:#66d9ef">my</span> $str <span style="color:#f92672">=</span> shift;
+    <span style="color:#66d9ef">my</span> $found <span style="color:#f92672">=</span> $str <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/\(\)//</span>;
+    <span style="color:#66d9ef">my</span> $ok;
+    <span style="color:#66d9ef">if</span>($found) {
+        $ok <span style="color:#f92672">=</span> balanced_brackets($str);
+        <span style="color:#66d9ef">return</span> $ok;
     }
-    else {
-        if( $str=~/\(|\)/ ) { return 0; }
-        else { return 1; }
+    <span style="color:#66d9ef">else</span> {
+        <span style="color:#66d9ef">if</span>( $str<span style="color:#f92672">=~</span><span style="color:#e6db74">/\(|\)/</span> ) { <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>; }
+        <span style="color:#66d9ef">else</span> { <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>; }
     }
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="colin-crain-1">Colin Crain</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">&#34;:5.26&#34;</span>;
 
-<pre><code class="language-perl">use warnings;
-use strict;
-use feature &quot;:5.26&quot;;
+<span style="color:#66d9ef">my</span> $upper <span style="color:#f92672">=</span> shift @ARGV <span style="color:#e6db74">//</span> <span style="color:#ae81ff">10</span>;
+$upper <span style="color:#f92672">=</span> int(rand($upper)) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
 
-my $upper = shift @ARGV // 10;
-$upper = int(rand($upper)) + 1;
-
-my $str = make_string($upper);
+<span style="color:#66d9ef">my</span> $str <span style="color:#f92672">=</span> make_string($upper);
 say $str;
 say validate( $str );
 
-sub make_string {
-    return join '', map { ['(',')']-&gt;[int(rand(2))] } (1..$_[0]);
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">make_string</span> {
+    <span style="color:#66d9ef">return</span> join <span style="color:#e6db74">&#39;&#39;</span>, map { [<span style="color:#e6db74">&#39;(&#39;</span>,<span style="color:#e6db74">&#39;)&#39;</span>]<span style="color:#f92672">-&gt;</span>[int(rand(<span style="color:#ae81ff">2</span>))] } (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$_[<span style="color:#ae81ff">0</span>]);
 }
 
-sub validate {
-    my $str = shift;
-    unless (length($str)%2==0) { return &quot;IMBALANCED - odd number of parens&quot;};
-    while ( $str =~ s/ \( (.*?) \) /$1/x) {
-        if ($-[0] != 0){ return &quot;IMBALANCED - remaining group starts with right paren : $str&quot; }
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">validate</span> {
+    <span style="color:#66d9ef">my</span> $str <span style="color:#f92672">=</span> shift;
+    <span style="color:#66d9ef">unless</span> (length($str)%2<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>) { <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;IMBALANCED - odd number of parens&#34;</span>};
+    <span style="color:#66d9ef">while</span> ( $str <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/ \( (.*?) \) /$1/x</span>) {
+        <span style="color:#66d9ef">if</span> ($-[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>){ <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;IMBALANCED - remaining group starts with right paren : $str&#34;</span> }
     }
-    return (length $str == 0) ? &quot;BALANCED&quot; : &quot;IMBALANCED - $str remaining&quot;;
+    <span style="color:#66d9ef">return</span> (length $str <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) ? <span style="color:#e6db74">&#34;BALANCED&#34;</span> : <span style="color:#e6db74">&#34;IMBALANCED - $str remaining&#34;</span>;
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="cristina-heredia-1">Cristina Heredia</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
 
-<pre><code class="language-perl">use strict;
-
-#Variables
-my $random;
-my @array;
-my $i = 0;
-my $text;
-my $code = 0;
+<span style="color:#75715e">#Variables</span>
+<span style="color:#66d9ef">my</span> $random;
+<span style="color:#66d9ef">my</span> @array;
+<span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+<span style="color:#66d9ef">my</span> $text;
+<span style="color:#66d9ef">my</span> $code <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
 
 
 generateString();
 validation();
 result();
 
-#Fuctions
+<span style="color:#75715e">#Fuctions</span>
 
-#Create the string of parenthesis by generates random numbers between 0-2 (0 = '(', 1 = ')' and 2 = end).
-sub generateString {
-    $random = int rand(2);
+<span style="color:#75715e">#Create the string of parenthesis by generates random numbers between 0-2 (0 = &#39;(&#39;, 1 = &#39;)&#39; and 2 = end).</span>
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">generateString</span> {
+    $random <span style="color:#f92672">=</span> int rand(<span style="color:#ae81ff">2</span>);
     convertParenthesis();
-    while ($random != 2) {
-        $random = int rand(3);
+    <span style="color:#66d9ef">while</span> ($random <span style="color:#f92672">!=</span> <span style="color:#ae81ff">2</span>) {
+        $random <span style="color:#f92672">=</span> int rand(<span style="color:#ae81ff">3</span>);
         convertParenthesis();
     }
 }
 
-#Converts the numbers generated into parenthesis
-sub convertParenthesis{
+<span style="color:#75715e">#Converts the numbers generated into parenthesis</span>
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">convertParenthesis</span>{
 
-        if ($random == '0') {
-            @array[$i] = $random;
-            $text .= '(';
-            $i++;
+        <span style="color:#66d9ef">if</span> ($random <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;0&#39;</span>) {
+            @array[$i] <span style="color:#f92672">=</span> $random;
+            $text <span style="color:#f92672">.=</span> <span style="color:#e6db74">&#39;(&#39;</span>;
+            $i<span style="color:#f92672">++</span>;
         }
-        elsif ($random == '1') {
-            @array[$i] = $random;
-            $text .= ')';
-            $i++;
+        <span style="color:#66d9ef">elsif</span> ($random <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;1&#39;</span>) {
+            @array[$i] <span style="color:#f92672">=</span> $random;
+            $text <span style="color:#f92672">.=</span> <span style="color:#e6db74">&#39;)&#39;</span>;
+            $i<span style="color:#f92672">++</span>;
         }
 
 }
 
-#Checks if the string has balanced brackets
-sub validation {
-    my $length = @array;
-    for (my $j = 0; $j &lt; $length; $j++) {
-        if (@array[$j] == 0) {
-            $code++;
+<span style="color:#75715e">#Checks if the string has balanced brackets</span>
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">validation</span> {
+    <span style="color:#66d9ef">my</span> $length <span style="color:#f92672">=</span> @array;
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; $j <span style="color:#f92672">&lt;</span> $length; $j<span style="color:#f92672">++</span>) {
+        <span style="color:#66d9ef">if</span> (@array[$j] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+            $code<span style="color:#f92672">++</span>;
         }
-        elsif (@array[$j] == 1 and $code != 0) {
-            $code--;
+        <span style="color:#66d9ef">elsif</span> (@array[$j] <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">and</span> $code <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>) {
+            $code<span style="color:#f92672">--</span>;
         }
-        else {
-            $code = 1;
-            last;
+        <span style="color:#66d9ef">else</span> {
+            $code <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+            <span style="color:#66d9ef">last</span>;
         }
     }
 }
 
-#Write the string and indicate if it's ok or not
-sub result {
-    if ($code == 0) {
-        print &quot;$text - OK\n&quot;;
+<span style="color:#75715e">#Write the string and indicate if it&#39;s ok or not</span>
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">result</span> {
+    <span style="color:#66d9ef">if</span> ($code <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$text - OK\n&#34;</span>;
     }
-    else {
-        print &quot;$text - NOT OK\n&quot;;
+    <span style="color:#66d9ef">else</span> {
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$text - NOT OK\n&#34;</span>;
     }
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="dave-jacoby-1">Dave Jacoby</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">qw{ say signatures }</span>;
+<span style="color:#66d9ef">no</span> warnings <span style="color:#e6db74">qw{ experimental::signatures }</span>;
 
-<pre><code class="language-perl">use strict;
-use warnings;
-use feature qw{ say signatures };
-no warnings qw{ experimental::signatures };
-
-# generate the string of braces
-my $string;
-for ( 0 .. 1 + int rand 9 ) {
-    $string .= int rand 2 ? '(' : ')';
+<span style="color:#75715e"># generate the string of braces</span>
+<span style="color:#66d9ef">my</span> $string;
+<span style="color:#66d9ef">for</span> ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> int rand <span style="color:#ae81ff">9</span> ) {
+    $string <span style="color:#f92672">.=</span> int rand <span style="color:#ae81ff">2</span> ? <span style="color:#e6db74">&#39;(&#39;</span> : <span style="color:#e6db74">&#39;)&#39;</span>;
 }
 
-# test if the string has matched braces
-my $t = test_braces($string);
-my $response = $t == 0 ? 'OK' : 'NOT OK';
-say qq{$string - $response};
-</code></pre>
-
-<hr />
-
+<span style="color:#75715e"># test if the string has matched braces</span>
+<span style="color:#66d9ef">my</span> $t <span style="color:#f92672">=</span> test_braces($string);
+<span style="color:#66d9ef">my</span> $response <span style="color:#f92672">=</span> $t <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> ? <span style="color:#e6db74">&#39;OK&#39;</span> : <span style="color:#e6db74">&#39;NOT OK&#39;</span>;
+say <span style="color:#e6db74">qq{$string - $response}</span>;
+</code></pre></div><hr>
 <h2 id="duane-powell-1">Duane Powell</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">qw( say )</span>;
 
-<pre><code class="language-perl">use warnings;
-use strict;
-use feature qw( say );
-
-use constant {
-        L_PAREN =&gt; '(',
-        R_PAREN =&gt; ')',
+<span style="color:#66d9ef">use</span> constant {
+        L_PAREN <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;(&#39;</span>,
+        R_PAREN <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;)&#39;</span>,
 };
 
-my $paren = shift;
-if ($paren) {
-    say &quot;Given paren string = $paren&quot;;
+<span style="color:#66d9ef">my</span> $paren <span style="color:#f92672">=</span> shift;
+<span style="color:#66d9ef">if</span> ($paren) {
+    say <span style="color:#e6db74">&#34;Given paren string = $paren&#34;</span>;
 }
-else {
-    my $lower_limit = 2;
-    my $upper_limit = 7;
-    my $random_number = int(rand($upper_limit-$lower_limit)) + $lower_limit;
-    for (1 .. $random_number) {
-        # coin toss left or right paren
-        $paren .= (rand() &lt; 0.5) ? L_PAREN : R_PAREN;
+<span style="color:#66d9ef">else</span> {
+    <span style="color:#66d9ef">my</span> $lower_limit <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;
+    <span style="color:#66d9ef">my</span> $upper_limit <span style="color:#f92672">=</span> <span style="color:#ae81ff">7</span>;
+    <span style="color:#66d9ef">my</span> $random_number <span style="color:#f92672">=</span> int(rand($upper_limit<span style="color:#f92672">-</span>$lower_limit)) <span style="color:#f92672">+</span> $lower_limit;
+    <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $random_number) {
+        <span style="color:#75715e"># coin toss left or right paren</span>
+        $paren <span style="color:#f92672">.=</span> (rand() <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0.5</span>) ? L_PAREN : R_PAREN;
     }
-    say &quot;Random paren string = $paren&quot;;
+    say <span style="color:#e6db74">&#34;Random paren string = $paren&#34;</span>;
 }
 
-my $msg;
-my $paren_count = 0;
-foreach (split(//,$paren)) {
-    $paren_count-- if ($_ eq R_PAREN);
-    $paren_count++ if ($_ eq L_PAREN);
-    if ($paren_count &lt; 0) {
-        $msg = &quot;Parens are not balanced.&quot;;
-        last;
+<span style="color:#66d9ef">my</span> $msg;
+<span style="color:#66d9ef">my</span> $paren_count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+<span style="color:#66d9ef">foreach</span> (split(<span style="color:#e6db74">//</span>,$paren)) {
+    $paren_count<span style="color:#f92672">--</span> <span style="color:#66d9ef">if</span> ($_ <span style="color:#f92672">eq</span> R_PAREN);
+    $paren_count<span style="color:#f92672">++</span> <span style="color:#66d9ef">if</span> ($_ <span style="color:#f92672">eq</span> L_PAREN);
+    <span style="color:#66d9ef">if</span> ($paren_count <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>) {
+        $msg <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Parens are not balanced.&#34;</span>;
+        <span style="color:#66d9ef">last</span>;
     }
 }
-$msg = 'Parens are balanced.'   if ($paren_count == 0);
-$msg = 'Parens are not closed.' if ($paren_count  &gt; 0);
+$msg <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Parens are balanced.&#39;</span>   <span style="color:#66d9ef">if</span> ($paren_count <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>);
+$msg <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Parens are not closed.&#39;</span> <span style="color:#66d9ef">if</span> ($paren_count  <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>);
 say $msg;
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="duncan-c-white-1">Duncan C. White</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.10</span>;  <span style="color:#75715e"># to get &#34;say&#34;</span>
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
 
-<pre><code class="language-perl">use v5.10;  # to get &quot;say&quot;
-use strict;
-use warnings;
-
-sub gen_bracketed_string
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">gen_bracketed_string</span>
 {
-    my $len = 20+int(rand(20));
-    my $result=&quot;&quot;;
-    foreach (1..$len)
+    <span style="color:#66d9ef">my</span> $len <span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span><span style="color:#f92672">+</span>int(rand(<span style="color:#ae81ff">20</span>));
+    <span style="color:#66d9ef">my</span> $result<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>;
+    <span style="color:#66d9ef">foreach</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$len)
     {
-        $result .= int(rand(2))==0?'(':')';
+        $result <span style="color:#f92672">.=</span> int(rand(<span style="color:#ae81ff">2</span>))<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>?<span style="color:#e6db74">&#39;(&#39;</span>:<span style="color:#e6db74">&#39;)&#39;</span>;
     }
-    return $result;
+    <span style="color:#66d9ef">return</span> $result;
 }
 
-sub validate
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">validate</span>
 {
-    my( $brackstr ) = @_;
-    my( $origlen, $len );
-    do
+    <span style="color:#66d9ef">my</span>( $brackstr ) <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">my</span>( $origlen, $len );
+    <span style="color:#66d9ef">do</span>
     {
-        $origlen = length($brackstr);
-        $brackstr =~ s/\(\)//g;
-        $len = length($brackstr);
-    } while( $len &lt; $origlen );
-    return $len==0?1:0;
+        $origlen <span style="color:#f92672">=</span> length($brackstr);
+        $brackstr <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/\(\)//g</span>;
+        $len <span style="color:#f92672">=</span> length($brackstr);
+    } <span style="color:#66d9ef">while</span>( $len <span style="color:#f92672">&lt;</span> $origlen );
+    <span style="color:#66d9ef">return</span> $len<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>?<span style="color:#ae81ff">1</span>:<span style="color:#ae81ff">0</span>;
 }
 
 
-srand( $$ ^ time() );
+srand( $$ <span style="color:#f92672">^</span> time() );
 
-die &quot;Usage: ch-2.pl [BRACKSTR]\n&quot; if @ARGV&gt;1;
-my $brackstr = shift // gen_bracketed_string();
+die <span style="color:#e6db74">&#34;Usage: ch-2.pl [BRACKSTR]\n&#34;</span> <span style="color:#66d9ef">if</span> @ARGV<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">1</span>;
+<span style="color:#66d9ef">my</span> $brackstr <span style="color:#f92672">=</span> shift <span style="color:#e6db74">//</span> gen_bracketed_string();
 
-my $isvalid = validate( $brackstr );
+<span style="color:#66d9ef">my</span> $isvalid <span style="color:#f92672">=</span> validate( $brackstr );
 
-say &quot;$brackstr valid? $isvalid&quot;;
-</code></pre>
-
-<hr />
-
+say <span style="color:#e6db74">&#34;$brackstr valid? $isvalid&#34;</span>;
+</code></pre></div><hr>
 <h2 id="e-choroba-1">E. Choroba</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">qw{ say }</span>;
 
-<pre><code class="language-perl">use warnings;
-use strict;
-use feature qw{ say };
-
-sub generate {
-    return join &quot;&quot;, map +('(', ')')[rand 2], 1 .. int rand 80
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">generate</span> {
+    <span style="color:#66d9ef">return</span> join <span style="color:#e6db74">&#34;&#34;</span>, map <span style="color:#f92672">+</span>(<span style="color:#e6db74">&#39;(&#39;</span>, <span style="color:#e6db74">&#39;)&#39;</span>)[rand <span style="color:#ae81ff">2</span>], <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> int rand <span style="color:#ae81ff">80</span>
 }
 
-sub is_valid {
-    my ($s) = @_;
-    $s =~ s/\(\)//g while -1 != index $s, '()';
-    return ! length $s
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_valid</span> {
+    <span style="color:#66d9ef">my</span> ($s) <span style="color:#f92672">=</span> @_;
+    $s <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/\(\)//g</span> <span style="color:#66d9ef">while</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">!=</span> index $s, <span style="color:#e6db74">&#39;()&#39;</span>;
+    <span style="color:#66d9ef">return</span> <span style="color:#f92672">!</span> length $s
 }
 
 
-use Test::More tests =&gt; 4;
-ok(is_valid('()'));
-ok(is_valid('(())'));
-ok(! is_valid(')('));
-ok(! is_valid('())()'));
+<span style="color:#66d9ef">use</span> Test::More tests <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">4</span>;
+ok(is_valid(<span style="color:#e6db74">&#39;()&#39;</span>));
+ok(is_valid(<span style="color:#e6db74">&#39;(())&#39;</span>));
+ok(<span style="color:#f92672">!</span> is_valid(<span style="color:#e6db74">&#39;)(&#39;</span>));
+ok(<span style="color:#f92672">!</span> is_valid(<span style="color:#e6db74">&#39;())()&#39;</span>));
 
-my $s = generate();
-say $s, ' ', is_valid($s) ? &quot;&quot; : 'in', 'valid';
-</code></pre>
-
-<hr />
-
+<span style="color:#66d9ef">my</span> $s <span style="color:#f92672">=</span> generate();
+say $s, <span style="color:#e6db74">&#39; &#39;</span>, is_valid($s) ? <span style="color:#e6db74">&#34;&#34;</span> : <span style="color:#e6db74">&#39;in&#39;</span>, <span style="color:#e6db74">&#39;valid&#39;</span>;
+</code></pre></div><hr>
 <h2 id="fabrizio-poggi-1">Fabrizio Poggi</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
 
-<pre><code class="language-perl">use strict;
-use warnings;
+<span style="color:#66d9ef">my</span> @chars  <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#39;(&#39;</span>, <span style="color:#e6db74">&#39;)&#39;</span>);
+<span style="color:#66d9ef">my</span> $lenght;
+<span style="color:#66d9ef">my</span> $rands;
+<span style="color:#66d9ef">my</span> $countr;
+<span style="color:#66d9ef">my</span> $countl;
 
-my @chars  = ('(', ')');
-my $lenght;
-my $rands;
-my $countr;
-my $countl;
-
-$lenght = int(rand(15)) + 1;
-while ($lenght--){ $rands.= $chars[rand @chars] };
-print &quot;$rands&quot;;
-$countr = () = $rands =~ /\(/g;
-$countl = () = $rands =~ /\)/g;
-if ($countr - $countl == 0) {
-    print &quot; - OK\n&quot;;
-    } else {
-    print &quot; - NOT OK\n&quot;;
+$lenght <span style="color:#f92672">=</span> int(rand(<span style="color:#ae81ff">15</span>)) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+<span style="color:#66d9ef">while</span> ($lenght<span style="color:#f92672">--</span>){ $rands<span style="color:#f92672">.=</span> $chars[rand @chars] };
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$rands&#34;</span>;
+$countr <span style="color:#f92672">=</span> () <span style="color:#f92672">=</span> $rands <span style="color:#f92672">=~</span><span style="color:#e6db74"> /\(/g</span>;
+$countl <span style="color:#f92672">=</span> () <span style="color:#f92672">=</span> $rands <span style="color:#f92672">=~</span><span style="color:#e6db74"> /\)/g</span>;
+<span style="color:#66d9ef">if</span> ($countr <span style="color:#f92672">-</span> $countl <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34; - OK\n&#34;</span>;
+    } <span style="color:#66d9ef">else</span> {
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34; - NOT OK\n&#34;</span>;
     }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="jaldhar-h-vyas-1">Jaldhar H. Vyas</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> <span style="color:#ae81ff">5.010</span>;
 
-<pre><code class="language-perl">use warnings;
-use strict;
-use 5.010;
-
-sub isBalanced {
-    my ($brackets) = @_;
-    my @stack;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">isBalanced</span> {
+    <span style="color:#66d9ef">my</span> ($brackets) <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">my</span> @stack;
 
     map {
-        if ( $brackets-&gt;[$_] eq '(' ) {
-            push @stack, '(';
-        } else {
-            if (!scalar @stack) {
-                return undef;
+        <span style="color:#66d9ef">if</span> ( $brackets<span style="color:#f92672">-&gt;</span>[$_] <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;(&#39;</span> ) {
+            push @stack, <span style="color:#e6db74">&#39;(&#39;</span>;
+        } <span style="color:#66d9ef">else</span> {
+            <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>scalar @stack) {
+                <span style="color:#66d9ef">return</span> undef;
             }
             pop @stack;
         }
-    } (0 .. scalar @{$brackets} - 1);
+    } (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> scalar @{$brackets} <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>);
 
-    return scalar @stack == 0;
+    <span style="color:#66d9ef">return</span> scalar @stack <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
 }
 
-my @brackets;
+<span style="color:#66d9ef">my</span> @brackets;
 
-for (1 .. ((int rand 3) + 1) * 2) {
-    push @brackets, (int rand 2 ? '(' : ')');
+<span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> ((int rand <span style="color:#ae81ff">3</span>) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span>) {
+    push @brackets, (int rand <span style="color:#ae81ff">2</span> ? <span style="color:#e6db74">&#39;(&#39;</span> : <span style="color:#e6db74">&#39;)&#39;</span>);
 }
 
-printf &quot;%s - %s%s\n&quot;,
-    (join q{}, @brackets),
-    isBalanced(\@brackets) ? q{} : 'NOT ',
-    'OK';
-</code></pre>
-
-<hr />
-
+printf <span style="color:#e6db74">&#34;%s - %s%s\n&#34;</span>,
+    (join <span style="color:#e6db74">q{}</span>, @brackets),
+    isBalanced(<span style="color:#f92672">\</span>@brackets) ? <span style="color:#e6db74">q{}</span> : <span style="color:#e6db74">&#39;NOT &#39;</span>,
+    <span style="color:#e6db74">&#39;OK&#39;</span>;
+</code></pre></div><hr>
 <h2 id="javier-luque-1">Javier Luque</h2>
-
-<pre><code class="language-perl">use strict;
-use warnings;
-use feature qw /say/;
-use constant {
-    MAX_STRING_LENGTH =&gt; 4
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">qw /say/;
+</span><span style="color:#e6db74">use </span>constant {
+    MAX_STRING_LENGTH <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">4</span>
 };
 
-for my $i ( 1 .. 20 ) {
-    my $string = generate_random_string();
-    my $ok = (validate_string($string)) ? 'OK ' : 'NOT OK';
-    say $string . ' - ' . $ok;
+<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i ( <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">20</span> ) {
+    <span style="color:#66d9ef">my</span> $string <span style="color:#f92672">=</span> generate_random_string();
+    <span style="color:#66d9ef">my</span> $ok <span style="color:#f92672">=</span> (validate_string($string)) ? <span style="color:#e6db74">&#39;OK &#39;</span> : <span style="color:#e6db74">&#39;NOT OK&#39;</span>;
+    say $string <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39; - &#39;</span> <span style="color:#f92672">.</span> $ok;
 }
 
-sub generate_random_string {
-    my $length = int(rand(MAX_STRING_LENGTH - 1) + 2);
-    my $string;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">generate_random_string</span> {
+    <span style="color:#66d9ef">my</span> $length <span style="color:#f92672">=</span> int(rand(MAX_STRING_LENGTH <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>);
+    <span style="color:#66d9ef">my</span> $string;
 
-    for my $i (1 .. $length ) {
-        $string .= (int(rand(2))) ? '(' : ')';
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $length ) {
+        $string <span style="color:#f92672">.=</span> (int(rand(<span style="color:#ae81ff">2</span>))) ? <span style="color:#e6db74">&#39;(&#39;</span> : <span style="color:#e6db74">&#39;)&#39;</span>;
     }
 
-    return $string;
+    <span style="color:#66d9ef">return</span> $string;
 }
 
-sub validate_string {
-    my $open_p;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">validate_string</span> {
+    <span style="color:#66d9ef">my</span> $open_p;
 
-    for my $char (split('', shift)) {
-        $open_p++ if ($char eq '(');
-        $open_p-- if ($char eq ')');
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $char (split(<span style="color:#e6db74">&#39;&#39;</span>, shift)) {
+        $open_p<span style="color:#f92672">++</span> <span style="color:#66d9ef">if</span> ($char <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;(&#39;</span>);
+        $open_p<span style="color:#f92672">--</span> <span style="color:#66d9ef">if</span> ($char <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;)&#39;</span>);
 
-        return 0 if ($open_p &lt; 0);
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> ($open_p <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>);
     }
 
-    return ($open_p == 0);
+    <span style="color:#66d9ef">return</span> ($open_p <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>);
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="kivanc-yazan-1">Kivanc Yazan</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw/shuffle/</span>;
 
-<pre><code class="language-perl">use warnings;
-use strict;
-use List::Util qw/shuffle/;
+<span style="color:#66d9ef">my</span> $count <span style="color:#f92672">=</span> rand(<span style="color:#ae81ff">10</span>)<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>; <span style="color:#75715e"># Could be as low as 1, as high as 10</span>
+<span style="color:#66d9ef">my</span> @chars <span style="color:#f92672">=</span> ( <span style="color:#e6db74">&#39;(&#39;</span>, <span style="color:#e6db74">&#39;)&#39;</span> ) x $count;
+@chars    <span style="color:#f92672">=</span> shuffle(@chars);
+<span style="color:#66d9ef">print</span> join(<span style="color:#e6db74">&#39;&#39;</span>,@chars)<span style="color:#f92672">.</span><span style="color:#e6db74">&#34;\n&#34;</span>;
 
-my $count = rand(10)+1; # Could be as low as 1, as high as 10
-my @chars = ( '(', ')' ) x $count;
-@chars    = shuffle(@chars);
-print join('',@chars).&quot;\n&quot;;
-
-# Walk through to validate
-my $current_open = 0;
-for my $char (@chars){
-  if ($char eq '('){
-    $current_open++;
-  } elsif ($current_open == 0){
-    print &quot;Not Valid\n&quot;;
+<span style="color:#75715e"># Walk through to validate</span>
+<span style="color:#66d9ef">my</span> $current_open <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $char (@chars){
+  <span style="color:#66d9ef">if</span> ($char <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;(&#39;</span>){
+    $current_open<span style="color:#f92672">++</span>;
+  } <span style="color:#66d9ef">elsif</span> ($current_open <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>){
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Not Valid\n&#34;</span>;
     exit;
-  } else {
-    $current_open--;
+  } <span style="color:#66d9ef">else</span> {
+    $current_open<span style="color:#f92672">--</span>;
   }
 }
-print &quot;Valid\n&quot;;
-</code></pre>
-
-<hr />
-
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Valid\n&#34;</span>;
+</code></pre></div><hr>
 <h2 id="laurent-rosenfeld-1">Laurent Rosenfeld</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">qw/say/</span>;
 
-<pre><code class="language-perl">use strict;
-use warnings;
-use feature qw/say/;
-
-sub check_parens {
-    my $expr = shift;
-    my @stack;
-    $expr =~ s/\s+//g; # remove spaces
-    for (split //, $expr) {
-        push @stack, $_ if $_ eq '(';
-        if ($_ eq ')') {
-            return 0 if @stack == 0;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">check_parens</span> {
+    <span style="color:#66d9ef">my</span> $expr <span style="color:#f92672">=</span> shift;
+    <span style="color:#66d9ef">my</span> @stack;
+    $expr <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/\s+//g</span>; <span style="color:#75715e"># remove spaces</span>
+    <span style="color:#66d9ef">for</span> (split <span style="color:#e6db74">//</span>, $expr) {
+        push @stack, $_ <span style="color:#66d9ef">if</span> $_ <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;(&#39;</span>;
+        <span style="color:#66d9ef">if</span> ($_ <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;)&#39;</span>) {
+            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> @stack <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
             pop @stack;
         }
     }
-    return scalar @stack == 0 ? 1 : 0;
+    <span style="color:#66d9ef">return</span> scalar @stack <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> ? <span style="color:#ae81ff">1</span> : <span style="color:#ae81ff">0</span>;
 }
 
-for (&quot;()&quot;, &quot;(  )&quot;, &quot;(())&quot;, &quot;( ( ))&quot;, &quot;)(&quot;, &quot;())()&quot;,
-    &quot;((( ( ()))))&quot;,  &quot;()()()()&quot;, &quot;(())(())&quot;) {
-        say &quot;$_: &quot;, check_parens($_) ? &quot;OK&quot; : &quot;Not OK&quot;;
+<span style="color:#66d9ef">for</span> (<span style="color:#e6db74">&#34;()&#34;</span>, <span style="color:#e6db74">&#34;(  )&#34;</span>, <span style="color:#e6db74">&#34;(())&#34;</span>, <span style="color:#e6db74">&#34;( ( ))&#34;</span>, <span style="color:#e6db74">&#34;)(&#34;</span>, <span style="color:#e6db74">&#34;())()&#34;</span>,
+    <span style="color:#e6db74">&#34;((( ( ()))))&#34;</span>,  <span style="color:#e6db74">&#34;()()()()&#34;</span>, <span style="color:#e6db74">&#34;(())(())&#34;</span>) {
+        say <span style="color:#e6db74">&#34;$_: &#34;</span>, check_parens($_) ? <span style="color:#e6db74">&#34;OK&#34;</span> : <span style="color:#e6db74">&#34;Not OK&#34;</span>;
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="nazareno-delucca-1">Nazareno Delucca</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
 
-<pre><code class="language-perl">use strict;
-use warnings;
+<span style="color:#66d9ef">my</span> $range <span style="color:#f92672">=</span> shift @ARGV <span style="color:#f92672">||</span> rand(<span style="color:#ae81ff">24</span>);
 
-my $range = shift @ARGV || rand(24);
+<span style="color:#75715e"># String Length</span>
+<span style="color:#66d9ef">my</span> $len <span style="color:#f92672">=</span> rand($range);
 
-# String Length
-my $len = rand($range);
+<span style="color:#75715e"># String Generator</span>
+<span style="color:#66d9ef">my</span> $lisp <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
+$lisp <span style="color:#f92672">.=</span> rand() <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0.5</span> ? <span style="color:#e6db74">&#39;(&#39;</span> : <span style="color:#e6db74">&#39;)&#39;</span> <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $len;
 
-# String Generator
-my $lisp = '';
-$lisp .= rand() &lt; 0.5 ? '(' : ')' for 0 .. $len;
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Generated: $lisp\n&#34;</span>;
 
-print &quot;Generated: $lisp\n&quot;;
+<span style="color:#66d9ef">my</span> $paired_matches <span style="color:#f92672">=</span> $lisp <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/\(\)//g</span>;
+$paired_matches <span style="color:#f92672">=</span> $lisp <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/\(\)//g</span> <span style="color:#66d9ef">while</span> $paired_matches;
 
-my $paired_matches = $lisp =~ s/\(\)//g;
-$paired_matches = $lisp =~ s/\(\)//g while $paired_matches;
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Un-paired brackets: $lisp\n&#34;</span>;
+<span style="color:#66d9ef">print</span> length ($lisp) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> ? <span style="color:#e6db74">&#34;It&#39;s NOT balanced\n&#34;</span> : <span style="color:#e6db74">&#34;It&#39;s balanced!\n&#34;</span>;
 
-print &quot;Un-paired brackets: $lisp\n&quot;;
-print length ($lisp) &gt; 0 ? &quot;It's NOT balanced\n&quot; : &quot;It's balanced!\n&quot;;
+<span style="color:#75715e"># Turns out it&#39;s very difficult to get balanced strings</span>
+<span style="color:#75715e"># I used 2 and 4 for demonstration</span>
 
-# Turns out it's very difficult to get balanced strings
-# I used 2 and 4 for demonstration
+<span style="color:#75715e"># $ perl ch-2.pl 2</span>
+<span style="color:#75715e"># Generated: ()</span>
+<span style="color:#75715e"># Un-paired brackets:</span>
+<span style="color:#75715e"># It&#39;s balanced!</span>
 
-# $ perl ch-2.pl 2
-# Generated: ()
-# Un-paired brackets:
-# It's balanced!
+<span style="color:#75715e"># $ perl ch-2.pl 2</span>
+<span style="color:#75715e"># Generated: )(</span>
+<span style="color:#75715e"># Un-paired brackets: )(</span>
+<span style="color:#75715e"># It&#39;s NOT balanced</span>
 
-# $ perl ch-2.pl 2
-# Generated: )(
-# Un-paired brackets: )(
-# It's NOT balanced
+<span style="color:#75715e"># $ perl ch-2.pl 4</span>
+<span style="color:#75715e"># Generated: ()()</span>
+<span style="color:#75715e"># Un-paired brackets:</span>
+<span style="color:#75715e"># It&#39;s balanced!</span>
 
-# $ perl ch-2.pl 4
-# Generated: ()()
-# Un-paired brackets:
-# It's balanced!
+<span style="color:#75715e"># $ perl ch-2.pl 4</span>
+<span style="color:#75715e"># Generated: (((</span>
+<span style="color:#75715e"># Un-paired brackets: (((</span>
+<span style="color:#75715e"># It&#39;s NOT balanced</span>
 
-# $ perl ch-2.pl 4
-# Generated: (((
-# Un-paired brackets: (((
-# It's NOT balanced
+<span style="color:#75715e"># $ perl ch-2.pl 4</span>
+<span style="color:#75715e"># Generated: (()</span>
+<span style="color:#75715e"># Un-paired brackets: (</span>
+<span style="color:#75715e"># It&#39;s NOT balanced</span>
 
-# $ perl ch-2.pl 4
-# Generated: (()
-# Un-paired brackets: (
-# It's NOT balanced
+<span style="color:#75715e"># $ perl ch-2.pl 4</span>
+<span style="color:#75715e"># Generated: ))((</span>
+<span style="color:#75715e"># Un-paired brackets: ))((</span>
+<span style="color:#75715e"># It&#39;s NOT balanced</span>
 
-# $ perl ch-2.pl 4
-# Generated: ))((
-# Un-paired brackets: ))((
-# It's NOT balanced
+<span style="color:#75715e"># $ perl ch-2.pl 4</span>
+<span style="color:#75715e"># Generated: ))()</span>
+<span style="color:#75715e"># Un-paired brackets: ))</span>
+<span style="color:#75715e"># It&#39;s NOT balanced</span>
 
-# $ perl ch-2.pl 4
-# Generated: ))()
-# Un-paired brackets: ))
-# It's NOT balanced
-
-# $ perl ch-2.pl 4
-# Generated: (())
-# Un-paired brackets:
-# It's balanced!
-</code></pre>
-
-<hr />
-
+<span style="color:#75715e"># $ perl ch-2.pl 4</span>
+<span style="color:#75715e"># Generated: (())</span>
+<span style="color:#75715e"># Un-paired brackets:</span>
+<span style="color:#75715e"># It&#39;s balanced!</span>
+</code></pre></div><hr>
 <h2 id="peter-scott-1">Peter Scott</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> <span style="color:#ae81ff">5.016</span>;
 
-<pre><code class="language-perl">use 5.016;
+<span style="color:#66d9ef">my</span> ($MIN_STR_LEN, $MAX_STR_LEN) <span style="color:#f92672">=</span> (<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">10</span>);
+<span style="color:#66d9ef">my</span> $string_length <span style="color:#f92672">=</span> int( rand( $MAX_STR_LEN <span style="color:#f92672">-</span> $MIN_STR_LEN ) ) <span style="color:#f92672">+</span> $MIN_STR_LEN;
+<span style="color:#66d9ef">my</span> $string <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
+$string <span style="color:#f92672">.=</span> @{[<span style="color:#e6db74">qw{ ( ) }</span>]}[rand <span style="color:#ae81ff">2</span>] <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $string_length;
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$string - &#34;</span>;
+<span style="color:#ae81ff">1</span> <span style="color:#66d9ef">while</span> $string <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/\(\)//</span>;
+say $string ? <span style="color:#e6db74">&#34;NOT OK&#34;</span> : <span style="color:#e6db74">&#34;OK&#34;</span>;
+</code></pre></div><hr>
+<h2 id="roger-bell_west-1">Roger Bell_West</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
 
-my ($MIN_STR_LEN, $MAX_STR_LEN) = (4,10);
-my $string_length = int( rand( $MAX_STR_LEN - $MIN_STR_LEN ) ) + $MIN_STR_LEN;
-my $string = '';
-$string .= @{[qw{ ( ) }]}[rand 2] for 1 .. $string_length;
-print &quot;$string - &quot;;
-1 while $string =~ s/\(\)//;
-say $string ? &quot;NOT OK&quot; : &quot;OK&quot;;
-</code></pre>
-
-<hr />
-
-<h2 id="roger-bell-west-1">Roger Bell_West</h2>
-
-<pre><code class="language-perl">use strict;
-use warnings;
-
-my $s='';
-foreach (-1..2*(int(rand()*4))) {
-  $s .= (rand()&lt;0.5)?'(':')';
+<span style="color:#66d9ef">my</span> $s<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;&#39;</span>;
+<span style="color:#66d9ef">foreach</span> (<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>(int(rand()<span style="color:#f92672">*</span><span style="color:#ae81ff">4</span>))) {
+  $s <span style="color:#f92672">.=</span> (rand()<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">0.5</span>)?<span style="color:#e6db74">&#39;(&#39;</span>:<span style="color:#e6db74">&#39;)&#39;</span>;
 }
 
-print &quot;$s\n&quot;;
+<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$s\n&#34;</span>;
 
-while ($s =~ s/\(\)//g) {
+<span style="color:#66d9ef">while</span> ($s <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/\(\)//g</span>) {
 }
 
-if ($s) {
-  print &quot;Invalid: $s\n&quot;;
-} else {
-  print &quot;Valid.\n&quot;;
+<span style="color:#66d9ef">if</span> ($s) {
+  <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Invalid: $s\n&#34;</span>;
+} <span style="color:#66d9ef">else</span> {
+  <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Valid.\n&#34;</span>;
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="ruben-westerberg-1">Ruben Westerberg</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> POSIX <span style="color:#e6db74">qw&lt;round&gt;</span>;
 
-<pre><code class="language-perl">use strict;
-use warnings;
-use POSIX qw&lt;round&gt;;
+<span style="color:#66d9ef">my</span> $maxLength<span style="color:#f92672">=</span>$ARGV[<span style="color:#ae81ff">0</span>]<span style="color:#e6db74">//</span><span style="color:#ae81ff">20</span>; <span style="color:#75715e">#If no max on command line use 20</span>
+<span style="color:#66d9ef">while</span> () {
+    <span style="color:#66d9ef">my</span> $str<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>;
+    <span style="color:#75715e">#make a random length string of up to $maxLength long</span>
+    $str<span style="color:#f92672">.=</span>chr round rand()<span style="color:#f92672">+</span><span style="color:#ae81ff">40</span> <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>int rand $maxLength;
 
-my $maxLength=$ARGV[0]//20; #If no max on command line use 20
-while () {
-    my $str=&quot;&quot;;
-    #make a random length string of up to $maxLength long
-    $str.=chr round rand()+40 for 0..int rand $maxLength;
-
-    my $v=0;
-    for (split &quot;&quot;,$str) {
-        $v+=(ord($_)-40)*-2+1;
-        last unless $v &gt;=0;
+    <span style="color:#66d9ef">my</span> $v<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">for</span> (split <span style="color:#e6db74">&#34;&#34;</span>,$str) {
+        $v<span style="color:#f92672">+=</span>(ord($_)<span style="color:#f92672">-</span><span style="color:#ae81ff">40</span>)<span style="color:#f92672">*-</span><span style="color:#ae81ff">2</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">unless</span> $v <span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">0</span>;
     }
 
-    if($v==0) {
-        print(&quot;balanced: $str\n&quot;);
-        sleep 1;
-        next;
+    <span style="color:#66d9ef">if</span>($v<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>) {
+        <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;balanced: $str\n&#34;</span>);
+        sleep <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">next</span>;
     }
-    print(&quot;unbalanced: $str\n&quot;);
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;unbalanced: $str\n&#34;</span>);
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="ryan-thompson-1">Ryan Thompson</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> <span style="color:#ae81ff">5.010</span>;
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">&#39;shuffle&#39;</span>;
 
-<pre><code class="language-perl">use 5.010;
-use warnings;
-use strict;
-use List::Util 'shuffle';
+<span style="color:#75715e"># To have any hope of being balanced, the string must be of even length,</span>
+<span style="color:#75715e"># and must contain the same number of ( and ) brackets, so that&#39;s what we do.</span>
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">gen_str</span> { join <span style="color:#e6db74">&#39;&#39;</span>, shuffle map { ($_) x $_[<span style="color:#ae81ff">0</span>] } <span style="color:#e6db74">qw&lt;( )&gt;</span> }
 
-# To have any hope of being balanced, the string must be of even length,
-# and must contain the same number of ( and ) brackets, so that's what we do.
-sub gen_str { join '', shuffle map { ($_) x $_[0] } qw&lt;( )&gt; }
+<span style="color:#75715e"># This type of balance checking is trivial with a regex</span>
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">balanced_tiny</span>(_) { $_[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^(\((?1)*\))*$/</span> }
 
-# This type of balance checking is trivial with a regex
-sub balanced_tiny(_) { $_[0] =~ /^(\((?1)*\))*$/ }
-
-# Same sub, less line noise
-sub balanced(_) {
-    $_[0] =~ /^         # Start of string
-        (               # Match group 1
-            \(          # Opening bracket
-                (?1)*   # Recurse to start of group 1
-            \)          # Closing bracket
-        )*              # Group 1, zero or more times
-    $/x                 # End of string
+<span style="color:#75715e"># Same sub, less line noise</span>
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">balanced</span>(_) {
+    $_[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^         # Start of string
+</span><span style="color:#e6db74">        (               # Match group 1
+</span><span style="color:#e6db74">            \(          # Opening bracket
+</span><span style="color:#e6db74">                (?1)*   # Recurse to start of group 1
+</span><span style="color:#e6db74">            \)          # Closing bracket
+</span><span style="color:#e6db74">        )*              # Group 1, zero or more times
+</span><span style="color:#e6db74">    $/x</span>                 <span style="color:#75715e"># End of string</span>
 }
 
-# And now we'll check a few
-for my $n (0..5) {
-    say &quot;$_ - &quot; . (balanced ? 'OK' : 'NOT OK') for map { gen_str($n) } 1..5;
+<span style="color:#75715e"># And now we&#39;ll check a few</span>
+<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $n (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">5</span>) {
+    say <span style="color:#e6db74">&#34;$_ - &#34;</span> <span style="color:#f92672">.</span> (balanced ? <span style="color:#e6db74">&#39;OK&#39;</span> : <span style="color:#e6db74">&#39;NOT OK&#39;</span>) <span style="color:#66d9ef">for</span> map { gen_str($n) } <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">5</span>;
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="saif-ahmed-1">Saif Ahmed</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict; <span style="color:#66d9ef">use</span> warnings;
 
-<pre><code class="language-perl">use strict; use warnings;
-
-for (1..100){
-    my $testString=randomString();          # generate random string
-    printf (&quot;  %-12s&quot;, $testString);        # display it
-    print  findError($testString),  &quot;\n&quot;;   # validate it
+<span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">100</span>){
+    <span style="color:#66d9ef">my</span> $testString<span style="color:#f92672">=</span>randomString();          <span style="color:#75715e"># generate random string</span>
+    printf (<span style="color:#e6db74">&#34;  %-12s&#34;</span>, $testString);        <span style="color:#75715e"># display it</span>
+    <span style="color:#66d9ef">print</span>  findError($testString),  <span style="color:#e6db74">&#34;\n&#34;</span>;   <span style="color:#75715e"># validate it</span>
 }
 
-sub randomString{
-    my $string=&quot;&quot;;                          # start with empty string
-    for (0..(rand()*5+1)){                  # for a random length (2 - 7)
-        $string.=(&quot;(&quot;,&quot;)&quot;)[rand()*2];       # keep adding a random bracket
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">randomString</span>{
+    <span style="color:#66d9ef">my</span> $string<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>;                          <span style="color:#75715e"># start with empty string</span>
+    <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>(rand()<span style="color:#f92672">*</span><span style="color:#ae81ff">5</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)){                  <span style="color:#75715e"># for a random length (2 - 7)</span>
+        $string<span style="color:#f92672">.=</span>(<span style="color:#e6db74">&#34;(&#34;</span>,<span style="color:#e6db74">&#34;)&#34;</span>)[rand()<span style="color:#f92672">*</span><span style="color:#ae81ff">2</span>];       <span style="color:#75715e"># keep adding a random bracket</span>
     }
-    $string;                                # return the string
+    $string;                                <span style="color:#75715e"># return the string</span>
 }
 
-sub findError{
-    my $str=shift;
-    while ($str =~s/\((-*)\)/-\1-/){};      # keep replacing matched braces with
-                                            # hyphens. What is left are string
-                                            # contaning unmatched brackets
-                                            # If these exist, they show locations
-                                            # of errors
-    if ($str=~/\(|\)/){ return &quot;Not ok unmatched brackets at $str &quot;};
-    &quot;OK, Balanced brackets&quot;;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">findError</span>{
+    <span style="color:#66d9ef">my</span> $str<span style="color:#f92672">=</span>shift;
+    <span style="color:#66d9ef">while</span> ($str <span style="color:#f92672">=~</span><span style="color:#e6db74">s/\((-*)\)/-\1-/</span>){};      <span style="color:#75715e"># keep replacing matched braces with</span>
+                                            <span style="color:#75715e"># hyphens. What is left are string</span>
+                                            <span style="color:#75715e"># contaning unmatched brackets</span>
+                                            <span style="color:#75715e"># If these exist, they show locations</span>
+                                            <span style="color:#75715e"># of errors</span>
+    <span style="color:#66d9ef">if</span> ($str<span style="color:#f92672">=~</span><span style="color:#e6db74">/\(|\)/</span>){ <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Not ok unmatched brackets at $str &#34;</span>};
+    <span style="color:#e6db74">&#34;OK, Balanced brackets&#34;</span>;
 
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="walt-mankowski-1">Walt Mankowski</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">qw(:5.30)</span>;
+<span style="color:#66d9ef">use</span> experimental <span style="color:#e6db74">qw(signatures)</span>;
 
-<pre><code class="language-perl">use strict;
-use warnings;
-use feature qw(:5.30);
-use experimental qw(signatures);
+<span style="color:#66d9ef">my</span> $MAX_LEN <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>;
 
-my $MAX_LEN = 10;
-
-# return a random string of parens of length $len
-sub rand_str($len) {
-    return join '', map { rand(2) &lt; 1 ? '(' : ')' } 1..$len;
+<span style="color:#75715e"># return a random string of parens of length $len</span>
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">rand_str</span>($len) {
+    <span style="color:#66d9ef">return</span> join <span style="color:#e6db74">&#39;&#39;</span>, map { rand(<span style="color:#ae81ff">2</span>) <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">1</span> ? <span style="color:#e6db74">&#39;(&#39;</span> : <span style="color:#e6db74">&#39;)&#39;</span> } <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$len;
 }
 
-# return true if the parens are balanced, else false
-sub balanced($s) {
-    my $cnt = 0;
-    for my $c (split //, $s) {
-        $cnt += $c eq '(' ? 1 : -1;
-        return 0 if $cnt &lt; 0; # too many right parens
+<span style="color:#75715e"># return true if the parens are balanced, else false</span>
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">balanced</span>($s) {
+    <span style="color:#66d9ef">my</span> $cnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $c (split <span style="color:#e6db74">//</span>, $s) {
+        $cnt <span style="color:#f92672">+=</span> $c <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;(&#39;</span> ? <span style="color:#ae81ff">1</span> : <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $cnt <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>; <span style="color:#75715e"># too many right parens</span>
     }
-    return $cnt == 0;
+    <span style="color:#66d9ef">return</span> $cnt <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
 }
 
-for (1..100) {
-    my $rs = rand_str(int(rand($MAX_LEN)) + 1);
-    say $rs, balanced($rs) ? &quot; - OK&quot; : &quot; - NOT OK&quot;;
+<span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">100</span>) {
+    <span style="color:#66d9ef">my</span> $rs <span style="color:#f92672">=</span> rand_str(int(rand($MAX_LEN)) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>);
+    say $rs, balanced($rs) ? <span style="color:#e6db74">&#34; - OK&#34;</span> : <span style="color:#e6db74">&#34; - NOT OK&#34;</span>;
 }
-</code></pre>
-
-<hr />
-
+</code></pre></div><hr>
 <h2 id="wanderdoc-1">Wanderdoc</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">qw(:5.30)</span>;
+<span style="color:#66d9ef">use</span> experimental <span style="color:#e6db74">qw(signatures)</span>;
 
-<pre><code class="language-perl">use strict;
-use warnings;
-use feature qw(:5.30);
-use experimental qw(signatures);
+<span style="color:#66d9ef">my</span> $MAX_LEN <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>;
 
-my $MAX_LEN = 10;
-
-# return a random string of parens of length $len
-sub rand_str($len) {
-    return join '', map { rand(2) &lt; 1 ? '(' : ')' } 1..$len;
+<span style="color:#75715e"># return a random string of parens of length $len</span>
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">rand_str</span>($len) {
+    <span style="color:#66d9ef">return</span> join <span style="color:#e6db74">&#39;&#39;</span>, map { rand(<span style="color:#ae81ff">2</span>) <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">1</span> ? <span style="color:#e6db74">&#39;(&#39;</span> : <span style="color:#e6db74">&#39;)&#39;</span> } <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$len;
 }
 
-# return true if the parens are balanced, else false
-sub balanced($s) {
-    my $cnt = 0;
-    for my $c (split //, $s) {
-        $cnt += $c eq '(' ? 1 : -1;
-        return 0 if $cnt &lt; 0; # too many right parens
+<span style="color:#75715e"># return true if the parens are balanced, else false</span>
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">balanced</span>($s) {
+    <span style="color:#66d9ef">my</span> $cnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $c (split <span style="color:#e6db74">//</span>, $s) {
+        $cnt <span style="color:#f92672">+=</span> $c <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;(&#39;</span> ? <span style="color:#ae81ff">1</span> : <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $cnt <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>; <span style="color:#75715e"># too many right parens</span>
     }
-    return $cnt == 0;
+    <span style="color:#66d9ef">return</span> $cnt <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
 }
 
-for (1..100) {
-    my $rs = rand_str(int(rand($MAX_LEN)) + 1);
-    say $rs, balanced($rs) ? &quot; - OK&quot; : &quot; - NOT OK&quot;;
+<span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">100</span>) {
+    <span style="color:#66d9ef">my</span> $rs <span style="color:#f92672">=</span> rand_str(int(rand($MAX_LEN)) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>);
+    say $rs, balanced($rs) ? <span style="color:#e6db74">&#34; - OK&#34;</span> : <span style="color:#e6db74">&#34; - NOT OK&#34;</span>;
 }
-</code></pre>
-
-<hr />
-
-<hr />
-
+</code></pre></div><hr>
+<hr>
 <h2 id="see-also">SEE ALSO</h2>
-
-<hr />
-
-<hr />
-
+<hr>
+<hr>
 <p>(1) <a href="https://adamcrussell.livejournal.com/14160.html"><strong>Perl Weekly Challenge 042</strong></a> by <strong>Adam Russell</strong></p>
 
                 </div>

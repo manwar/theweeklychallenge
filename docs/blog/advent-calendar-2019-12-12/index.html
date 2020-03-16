@@ -16,7 +16,7 @@
 
     <meta name="description" content="Advent Calendar - December 12, 2019">
     <meta name="author" content="Perl Weekly Challenge Team">
-    <meta name="generator" content="Hugo 0.55.0-DEV" />
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
@@ -41,6 +41,8 @@
     <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
     <!-- hover -->
     <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
     <!-- template main css file -->
     
     <link rel="stylesheet" href="https://perlweeklychallenge.org/css/style.min.css" integrity="" media="screen">
@@ -149,49 +151,35 @@
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
-                    
-
-<p><a href="/blog/advent-calendar-2019"><strong>Advent Calendar 2019</strong></a></p>
-
-<hr />
-
-<p>The gift is presented by <a href="/blog/meet-the-champion-013"><strong>Laurent Rosenfeld</strong></a>. Today he is talking about his solutions to <strong>Task #1: nth Order Difference Series</strong> of <a href="/blog/perl-weekly-challenge-023"><strong>&ldquo;The Weekly Challenge - 023&rdquo;</strong></a>.</p>
-
+                    <p><a href="/blog/advent-calendar-2019"><strong>Advent Calendar 2019</strong></a></p>
+<hr>
+<p>The gift is presented by <a href="/blog/meet-the-champion-013"><strong>Laurent Rosenfeld</strong></a>. Today he is talking about his solutions to <strong>Task #1: nth Order Difference Series** of </strong>&ldquo;The Weekly Challenge - 023&rdquo;**<a href="/blog/perl-weekly-challenge-023"></a>.</p>
 <h4 id="create-a-script-that-prints-nth-order-forward-difference-series-you-should-be-a-able-to-pass-the-list-of-numbers-and-order-number-as-command-line-parameters-let-me-show-you-with-an-example">Create a script that prints nth order forward difference series. You should be a able to pass the list of numbers and order number as command line parameters. Let me show you with an example.</h4>
-
 <p>Suppose we have list (X) of numbers: 5, 9, 2, 8, 1, 6 and we would like to create 1st order forward difference series (Y). So using the formula Y(i) = X(i+1) - X(i), we get the following numbers: (9-5), (2-9), (8-2), (1-8), (6-1). In short, the final series would be: 4, -7, 6, -7, 5. If you noticed, it has one less number than the original series. Similarly you can carry on 2nd order forward difference series like: (-7-4), (6+7), (-7-6), (5+7) =&gt; -11, 13, -13, 12.</p>
-
-<hr />
-
+<hr>
 <h2 id="perl-solution">PERL SOLUTION</h2>
-
 <p>For this, we will write a simple <strong>fwd_diff</strong> subroutine to compute the first order difference series of the list of values passed as arguments to it. We do that with map on the indexes of the arguments list (starting at 1).</p>
-
 <p>Then, we use a for loop to call this subroutine the number of times required by the first parameter (the order) passed to the script. Note that if the order is larger than the count of the other items passed to the script, then we cannot compute the result.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/perl</span>
+<span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">qw/say/</span>;
 
-<pre><code class="language-perl">#!/usr/bin/perl
-use strict;
-use warnings;
-use feature qw/say/;
-
-sub fwd_diff {
-        return map $_[$_] - $_[$_ - 1], 1..$#_;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">fwd_diff</span> {
+        <span style="color:#66d9ef">return</span> map $_[$_] <span style="color:#f92672">-</span> $_[$_ <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>], <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$#_;
 }
 
-my ($order, @values) = @ARGV;
-my $count = scalar @values;
-if ($count &lt;= $order) {
-        die &quot;Can't calculate ${order}th series of $count values&quot;;
+<span style="color:#66d9ef">my</span> ($order, @values) <span style="color:#f92672">=</span> @ARGV;
+<span style="color:#66d9ef">my</span> $count <span style="color:#f92672">=</span> scalar @values;
+<span style="color:#66d9ef">if</span> ($count <span style="color:#f92672">&lt;=</span> $order) {
+        die <span style="color:#e6db74">&#34;Can&#39;t calculate ${order}th series of $count values&#34;</span>;
 }
-my @result = @values;
-for (1..$order) {
-        @result = fwd_diff @result;
+<span style="color:#66d9ef">my</span> @result <span style="color:#f92672">=</span> @values;
+<span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$order) {
+        @result <span style="color:#f92672">=</span> fwd_diff @result;
 }
-say &quot;${order} forward diff of @values is: @result&quot;;
-</code></pre>
-
-<p>Testing with 6 values the forward difference series with orders 1 to 6 displays the following output:</p>
-
+say <span style="color:#e6db74">&#34;${order} forward diff of @values is: @result&#34;</span>;
+</code></pre></div><p>Testing with 6 values the forward difference series with orders 1 to 6 displays the following output:</p>
 <pre><code>$ perl  fwd_diff.pl 1 5 9 2 8 1 6
 1th forward diff of 5 9 2 8 1 6 is: 4 -7 6 -7 5
 
@@ -210,75 +198,55 @@ $ perl  fwd_diff.pl 5 5 9 2 8 1 6
 $ perl  fwd_diff.pl 6 5 9 2 8 1 6
 Can't calculate 6th series of 6 values at fwd_diff.pl line 13.
 </code></pre>
-
 <h2 id="raku-solution">RAKU SOLUTION</h2>
-
 <p>I would have liked to be able to use a pointy block syntax with two parameters, but that does not work because the loop will consume two values at each step, as shown under the REPL:</p>
-
 <pre><code>&gt; for &lt;5 9 2 8 1 6&gt; -&gt; $a, $b {say $b - $a}
 4
 6
 5
 </code></pre>
-
 <p>So we would need to pre-process the input data in order to get twice all values except those at both ends of the input list.</p>
-
 <p>We&rsquo;ll use the rotor built-in function</p>
-
 <p>These are two examples using rotor under the REPL:</p>
-
 <pre><code>&gt; &lt;5 9 2 8 1 6&gt;.rotor(1)
 ((5) (9) (2) (8) (1) (6))
 &gt; &lt;5 9 2 8 1 6&gt;.rotor(2)
 ((5 9) (2 8) (1 6))
 </code></pre>
-
 <p>In these examples, rotor groups the elements of the invocant into groups of 1 and 2 elements respectively.</p>
-
 <p>The rotor method can take as parameter a key-value pair, whose value (the second item) specifies a gap between the various matches:</p>
-
 <pre><code>&gt; (1..10).rotor(2 =&gt; 1)
 ((1 2) (4 5) (7 8))
 </code></pre>
-
 <p>As you can see, we obtain pairs of values, with a gap of 1 between the pairs (item 3, 6 and 9 are omitted from the list). Now, the gap can also be negative and, with a gap of -1, we get all successive pairs from the range:</p>
-
 <pre><code>&gt; &lt;5 9 2 8 1 6&gt;.rotor(2 =&gt; -1)
 ((5 9) (9 2) (2 8) (8 1) (1 6))
 </code></pre>
-
 <p>This is exactly what we need: we can now subtract the first item from the second one in each sublist.</p>
-
 <p>Continuing under the REPL, we can define the fwd-diff subroutine and use it as follows:</p>
-
 <pre><code>&gt; sub fwd-diff (*@in) { map {$_[1] - $_[0]},  (@in).rotor(2 =&gt; -1)}
 &amp;fwd-diff
 &gt; say fwd-diff &lt;5 9 2 8 1 6&gt;
 [4 -7 6 -7 5]
 &gt;
 </code></pre>
-
 <p>OK, enough experimenting with the REPL, we now know how to solve the challenge and can write our program:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">use</span> v6;
 
-<pre><code class="language-perl6">use v6;
-
-sub fwd-diff (*@in) {
-    map {$_[1] - $_[0]},  (@in).rotor(2 =&gt; -1)
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">fwd</span>-diff (*@in) {
+    map {$_[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> $_[<span style="color:#ae81ff">0</span>]},  (@in)<span style="color:#f92672">.</span>rotor(<span style="color:#ae81ff">2</span> <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
 }
-sub MAIN (Int $order, *@values) {
-    if @values.elems &lt;= $order {
-        die &quot;Can't compute {$order}th series of {@values.elems} values&quot;;
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span> (Int $order, *@values) {
+    <span style="color:#66d9ef">if</span> @values<span style="color:#f92672">.</span>elems <span style="color:#f92672">&lt;=</span> $order {
+        die <span style="color:#e6db74">&#34;Can&#39;t compute {$order}th series of {@values.elems} values&#34;</span>;
     }
-    my @result = @values;
-    for 1 .. $order {
-        @result = fwd-diff @result;
+    <span style="color:#66d9ef">my</span> @result <span style="color:#f92672">=</span> @values;
+    <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $order {
+        @result <span style="color:#f92672">=</span> fwd<span style="color:#f92672">-</span>diff @result;
     }
-    say &quot;{$order}th forward diff of @values[] is: @result[]&quot;;
+    say <span style="color:#e6db74">&#34;{$order}th forward diff of @values[] is: @result[]&#34;</span>;
 }
-</code></pre>
-
-<p>Testing with 6 values the forward difference series with orders 1 to 6 displays the following output:</p>
-
+</code></pre></div><p>Testing with 6 values the forward difference series with orders 1 to 6 displays the following output:</p>
 <pre><code>$ fwd-diff.p6 1 5 9 2 8 1 6
 1th forward diff of 5 9 2 8 1 6 is: 4 -7 6 -7 5
 
@@ -299,18 +267,12 @@ Can't compute 6th series of 6 values
   in sub MAIN at fwd-diff.p6 line 9
   in block &lt;unit&gt; at fwd-diff.p6 line 1
 </code></pre>
-
 <p>Note that I was hoping to get rid of the if @values.elems &lt;= $order test and related die block by using a constraint in the signature of the MAIN subroutine, for example something like this:</p>
-
 <pre><code>sub MAIN (Int $order, *@values where @values.elems &gt; $order) { # ...
 </code></pre>
-
 <p>but that does not appear to work properly.</p>
-
-<hr />
-
+<hr>
 <p>If you have any suggestion then please do share with us <a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a>.</p>
-
 <p><a href="/blog/advent-calendar-2019"><strong>Advent Calendar 2019</strong></a></p>
 
                 </div>
