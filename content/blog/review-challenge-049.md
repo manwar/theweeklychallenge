@@ -1,10 +1,11 @@
 ---
 author:       Ryan Thompson
-date:         2020-03-04T01:39:15
+date:         2020-03-16T00:00:00
 description:  "Ryan Thompson › Perl Weekly Review #049"
 tags:         ["perl"]
 title:        "Ryan Thompson › Perl Weekly Review #049"
 type:         post
+image:        images/blog/p5-review-challenge-049.jpg
 ---
 
 Continues from [previous week](/blog/review-challenge-048/).
@@ -509,7 +510,7 @@ sub method1 {
                  "Multiples of 9 are quicker with method2\n"
                       unless $input % 9;
     my $multiplier = 1;
-    while ( ( ( $input * $multiplier ) . "" ) =~ /[2-9]/ ) { $multiplier++ }; increment unt 
+    while ( ( ( $input * $multiplier ) . "" ) =~ /[2-9]/ ) { $multiplier++ }; increment unt
     print "Input: $input, Multiplier: $multiplier Result: ",
         $input * $multiplier, "\n";
 }
