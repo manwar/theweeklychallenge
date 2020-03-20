@@ -1,10 +1,11 @@
 ---
 author:       Ryan Thompson
-date:         2020-03-16T10:49:27
+date:         2020-03-20T00:00:00
 description:  "Ryan Thompson › Perl Weekly Review #050"
 tags:         ["perl"]
 title:        "Ryan Thompson › Perl Weekly Review #050"
 type:         post
+image:        images/blog/p5-review-challenge-050.jpg
 ---
 
 Continues from [previous week](/blog/review-challenge-049/).
