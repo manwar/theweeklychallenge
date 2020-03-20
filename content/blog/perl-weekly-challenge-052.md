@@ -43,6 +43,8 @@ Quick recap of the [**"Perl Weekly Challenge - 051"**](/blog/recap-challenge-051
 ***
 ***
 
+Please checkout **Perl** solutions review of the [**"Perl Weekly Challenge - 049"**](/blog/review-challenge-049) by **Ryan Thompson**.
+
 If you missed any past reviews then please checkout the [**collection**](/p5-reviews).
 
 ***
