@@ -5,10 +5,10 @@ description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
 author: Mohammad S Anwar
-tags: ["C++", "Go", "Haskell", "Javascript", "Python", "Postscript", "Prolog", "R", "Rust", "HTML"]
+tags: ["APL", "C++", "Go", "Haskell", "Javascript", "Python", "Postscript", "Prolog", "R", "Rust", "HTML"]
 ---
 
-As you know, **"Perl Weekly Challenge"**, primarily focus on **Perl** and **Raku**. During the **Week #018**, we received the solution to **["Perl Weekly Challenge - 018"](/blog/perl-we$ekly-challenge-018)** by **Orestis Zekai** in **Python**. It was a pleasant surprise to receive solution in something other than **Perl** and **Raku**. Ever since regular team members also started contributing in other languages like **C++**, **Go**, **Haskell**, **Javascript**, **Postscript**, **Prolog**, **R**, **Rust** and **HTML**.
+As you know, **"Perl Weekly Challenge"**, primarily focus on **Perl** and **Raku**. During the **Week #018**, we received the solution to **["Perl Weekly Challenge - 018"](/blog/perl-we$ekly-challenge-018)** by **Orestis Zekai** in **Python**. It was a pleasant surprise to receive solution in something other than **Perl** and **Raku**. Ever since regular team members also started contributing in other languages like **APL**, **C++**, **Go**, **Haskell**, **Javascript**, **Postscript**, **Prolog**, **R**, **Rust** and **HTML**.
 
 Please find below guest contributions.
 
@@ -18,6 +18,8 @@ Please find below guest contributions.
 ----
 
 ##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-052/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-052/lubos-kolouch/python/ch-2.py) in **Python**.
+
+##### **Richard Park** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-052/richard-park/apl/ch-1.aplf) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-052/richard-park/apl/ch-2.aplf) in **APL**.
 
 ##### **User Person** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-052/user-person/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-052/user-person/python/ch-2.py) in **Python**.
 
