@@ -1,9 +1,10 @@
 ---
 author:       Ryan Thompson
-date:         2020-03-23T21:08:17
+date:         2020-03-24T00:00:00
 description:  "Ryan Thompson › Perl Weekly Review #051"
 tags:         ["perl"]
 title:        "Ryan Thompson › Perl Weekly Review #051"
+image:        images/blog/p5-review-challenge-051.jpg
 type:         post
 ---
 
@@ -699,7 +700,7 @@ for         ( my $i =    0; $i <= $#L-2; ++$i ) {
 
 ## Walt Mankowski {#walt-mankowski1}
 
-[Walt Mankowski's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-051/walt-mankowski/perl/ch-1.pl) uses [`Algorithm::Combinatorics`](https://metacpan.org/pod/Algorithm::Combinatorics) 
+[Walt Mankowski's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-051/walt-mankowski/perl/ch-1.pl) uses [`Algorithm::Combinatorics`](https://metacpan.org/pod/Algorithm::Combinatorics)
 
 ```perl
 use Algorithm::Combinatorics qw(combinations);
