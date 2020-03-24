@@ -1,16 +1,25 @@
 ---
 title: "Perl Weekly Challenge - Guest Contributions"
-date: 2020-03-22T00:00:00+00:00
+date: 2020-03-24T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
 author: Mohammad S Anwar
-tags: ["APL", "C++", "Go", "Haskell", "Javascript", "Python", "Postscript", "Prolog", "R", "Rust", "HTML"]
+tags: ["APL", "C++", "Go", "Haskell", "Javascript", "Node", "Python", "Postscript", "Prolog", "R", "Rust", "HTML"]
 ---
 
-As you know, **"Perl Weekly Challenge"**, primarily focus on **Perl** and **Raku**. During the **Week #018**, we received the solution to **["Perl Weekly Challenge - 018"](/blog/perl-we$ekly-challenge-018)** by **Orestis Zekai** in **Python**. It was a pleasant surprise to receive solution in something other than **Perl** and **Raku**. Ever since regular team members also started contributing in other languages like **APL**, **C++**, **Go**, **Haskell**, **Javascript**, **Postscript**, **Prolog**, **R**, **Rust** and **HTML**.
+As you know, **"Perl Weekly Challenge"**, primarily focus on **Perl** and **Raku**. During the **Week #018**, we received the solution to **["Perl Weekly Challenge - 018"](/blog/perl-we$ekly-challenge-018)** by **Orestis Zekai** in **Python**. It was a pleasant surprise to receive solution in something other than **Perl** and **Raku**. Ever since regular team members also started contributing in other languages like **APL**, **C++**, **Go**, **Haskell**, **Javascript**, **Node**, **Postscript**, **Prolog**, **R**, **Rust** and **HTML**.
 
 Please find below guest contributions.
+
+----
+----
+#### [Perl Weekly Challenge - 053](/blog/perl-weekly-challenge-053)
+----
+
+#### **Dave Jacoby** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-053/dave-jacoby/node/ch-1.js) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-053/dave-jacoby/node/ch-2.js) in **Node**.
+
+#### **Dave Jacoby** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-053/dave-jacoby/rust/ch-1.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-053/dave-jacoby/rust/ch-2.rs) in **Rust**.
 
 ----
 ----
