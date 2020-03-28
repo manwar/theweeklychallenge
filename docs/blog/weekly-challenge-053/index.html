@@ -215,13 +215,13 @@ done_testing;
 <h2 id="task-2-vowel-string">Task #2: Vowel String</h2>
 <hr>
 <hr>
-<p>For this task, I just did standalone solution. The best part of the solution is the use of <strong>CPAN</strong> module <strong>Algorithm::Combinatorics</strong>. The module did most of the work for me. The only thing left for me to do apply the rule and print the string that passes the test.</p>
+<p>For this task, I just did standalone solution. The best part of the solution is the use of <strong>CPAN</strong> module <strong>Algorithm::Combinatorics</strong>. The module did most of the work for me. The only thing left for me to do is apply the rule and print the string that passes the test.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/perl</span>
 
 <span style="color:#66d9ef">use</span> strict;
 <span style="color:#66d9ef">use</span> warnings;
 
-<span style="color:#66d9ef">use</span> Algorithm::Combinatorics <span style="color:#e6db74">qw(combinations)</span>;
+<span style="color:#66d9ef">use</span> Algorithm::Combinatorics <span style="color:#e6db74">qw(variations_with_repetition)</span>;
 
 <span style="color:#66d9ef">my</span> $count <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">0</span>] <span style="color:#e6db74">//</span> <span style="color:#ae81ff">2</span>;
 die <span style="color:#e6db74">&#34;ERROR: Invalid count $count.\n&#34;</span>
@@ -235,7 +235,7 @@ die <span style="color:#e6db74">&#34;ERROR: Invalid count $count.\n&#34;</span>
     exit;
 }
 
-<span style="color:#66d9ef">my</span> $iter  <span style="color:#f92672">=</span> combinations($chars, $count);
+<span style="color:#66d9ef">my</span> $iter  <span style="color:#f92672">=</span> variations_with_repetition($chars, $count);
 
 <span style="color:#66d9ef">my</span> $char_sets <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>;
 <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">my</span> $char <span style="color:#f92672">=</span> $iter<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">next</span>) {

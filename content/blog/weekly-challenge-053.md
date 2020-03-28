@@ -85,7 +85,7 @@ sub rotate_matrix {
 ***
 ***
 
-For this task, I just did standalone solution. The best part of the solution is the use of **CPAN** module **Algorithm::Combinatorics**. The module did most of the work for me. The only thing left for me to do apply the rule and print the string that passes the test.
+For this task, I just did standalone solution. The best part of the solution is the use of **CPAN** module **Algorithm::Combinatorics**. The module did most of the work for me. The only thing left for me to do is apply the rule and print the string that passes the test.
 
 ```perl
 #!/usr/bin/perl
@@ -93,7 +93,7 @@ For this task, I just did standalone solution. The best part of the solution is 
 use strict;
 use warnings;
 
-use Algorithm::Combinatorics qw(combinations);
+use Algorithm::Combinatorics qw(variations_with_repetition);
 
 my $count = $ARGV[0] // 2;
 die "ERROR: Invalid count $count.\n"
@@ -107,7 +107,7 @@ if ($count == 1) {
     exit;
 }
 
-my $iter  = combinations($chars, $count);
+my $iter  = variations_with_repetition($chars, $count);
 
 my $char_sets = [];
 while (my $char = $iter->next) {
