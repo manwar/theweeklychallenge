@@ -12,7 +12,7 @@ tags: ["Perl"]
 
 Welcome to the monthly series **"Meet The Champion"**.
 
-Last month we spoke to **Wanderdoc**, the winner of **[January 2020](/blog/meet-the-champion-2020-01)**.
+Last month we spoke to **Wanderdoc**, the winner of **January 2020**.
 
 Today we are talking to **Saif Ahmed**, the winner of **February 2020** of **"Perl Weekly Challenge"***. I hope you are going to enjoy the interview.
 
