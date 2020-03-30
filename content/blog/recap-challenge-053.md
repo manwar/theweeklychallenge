@@ -82,7 +82,7 @@ New member, **Shahed Nooshmand**, joined the **Team PWC**. He shared **[solution
 
 #### 5) R: 6
 
-#### 6) PostscriptB%: 5
+#### 6) Postscript: 5
 
 #### 7) APL: 4
 
