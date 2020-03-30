@@ -158,6 +158,23 @@ $("#pwc_current").click(function() {
     $('#pwc-challenges-spinner').hide();
 });
 
+$("#pwc_challenge_053").click(function() {
+    $('#pwc-challenges-spinner').show();
+
+    var xobj = new XMLHttpRequest();
+    xobj.overrideMimeType("application/json");
+    xobj.open('GET', 'pwc-challenge-053.json', true);
+    xobj.onreadystatechange = function () {
+        if (xobj.readyState == 4 && xobj.status == "200") {
+            var response = JSON.parse(xobj.responseText);
+            $('#pwc_challenge_053_stats').highcharts(response);
+        }
+    };
+    xobj.send(null);
+
+    $('#pwc-challenges-spinner').hide();
+});
+
 $("#pwc_challenge_052").click(function() {
     $('#pwc-challenges-spinner').show();
 
