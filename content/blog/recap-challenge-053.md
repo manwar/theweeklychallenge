@@ -48,15 +48,15 @@ New member, **Shahed Nooshmand**, joined the **Team PWC**. He shared **[solution
 
 #### 9) Kivanc Yazan: Python (4).
 
-#### 10) Duncan C. White: Postscript (3).
+#### 10) Richard Park: APL (4).
 
-#### 11) Jonas Berlin: Rust (3).
+#### 11) Duncan C. White: Postscript (3).
 
-#### 12) Rage311: Rust (3).
+#### 12) Jonas Berlin: Rust (3).
 
-#### 13) Daniel Mita: Go (1), Javascript (1).
+#### 13) Rage311: Rust (3).
 
-#### 14) Richard Park: APL (2).
+#### 14) Daniel Mita: Go (1), Javascript (1).
 
 #### 15) Roger Bell_West: Postscript (2).
 
@@ -84,7 +84,7 @@ New member, **Shahed Nooshmand**, joined the **Team PWC**. He shared **[solution
 
 #### 6) PostscriptB%: 5
 
-#### 7) APL: 2
+#### 7) APL: 4
 
 #### 8) Node: 2
 
@@ -124,7 +124,7 @@ With last week contributions, I have now moved up to the **rank #039**.
 
 #### 5) Arne Sommer (**328**)
 
-#### 6) Roger Bell_West (**326**)
+#### 6) Roger Bell_West (**326**)
 
 #### 7) Adam Russell (**306**)
 
@@ -334,6 +334,13 @@ Checkout the masterpiece collection of [**blogs**](https://perlweeklychallenge.o
 
 [[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-053/noud/raku/ch-1.p6)]
 [[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-053/noud/raku/ch-2.p6)]
+
+***
+
+### Richard Park
+![Richard Park](/images/team/user.jpg)
+
+[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-053/richard-park/raku/ch-1.p6)]
 
 ***
 
