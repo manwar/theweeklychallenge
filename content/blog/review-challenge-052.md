@@ -1,9 +1,10 @@
 ---
 author:       Ryan Thompson
-date:         2020-03-29T09:59:25
+date:         2020-03-31T00:00:00
 description:  "Ryan Thompson › Perl Weekly Review #052"
 tags:         ["perl"]
 title:        "Ryan Thompson › Perl Weekly Review #052"
+image:        images/blog/p5-review-challenge-052.jpg
 type:         post
 ---
 
@@ -1187,7 +1188,7 @@ sub playerTime {
 ```
 
 `pcTime` has some similar code, but replaces the user input with a call to
-`compareResults`, which we'll look at in a minute. Here is `pcTime`: 
+`compareResults`, which we'll look at in a minute. Here is `pcTime`:
 
 ```perl
 sub pcTime {
@@ -1412,7 +1413,7 @@ The base case (no coins remaining) calculates the score for the computer and hum
 
 Finally, the end of the function takes the result from both the left and right recursive calls, and returns `L` or `R` plus the winning score. 10 is added to the score if there is a winner, otherwise nothing is added in the case of a draw.
 
-You can see this subroutine called from the main loop of Dave's program: 
+You can see this subroutine called from the main loop of Dave's program:
 
 ```perl
 while ( scalar @coins ) {
