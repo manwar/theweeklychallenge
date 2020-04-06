@@ -1,9 +1,10 @@
 ---
 author:       Ryan Thompson
-date:         2020-04-04T18:24:57
+date:         2020-04-06T00:00:00
 description:  "Ryan Thompson › Perl Weekly Review #053"
 tags:         ["perl"]
 title:        "Ryan Thompson › Perl Weekly Review #053"
+image:        images/blog/p5-review-challenge-053.jpg
 type:         post
 ---
 
@@ -249,11 +250,11 @@ And finally, here is how all of the above routines come together to actually per
 
 ```perl
 for $i (1..$N*$N) {
-    $newmatrix->[$i] = xy->new($matrix->[$i]->value, 
+    $newmatrix->[$i] = xy->new($matrix->[$i]->value,
         translation_add_negT(rcaqx ((translation_add_T(
                         $matrix->[$i]->x, $matrix->[$i]->y) ), $ANGLE/90 )) );
 
-    $coordinateplane[position( $newmatrix->[$i]->x, $newmatrix->[$i]->y )] 
+    $coordinateplane[position( $newmatrix->[$i]->x, $newmatrix->[$i]->y )]
          = $newmatrix->[$i]->value;
 }
 ```
