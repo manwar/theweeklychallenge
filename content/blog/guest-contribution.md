@@ -25,6 +25,8 @@ Please find below guest contributions.
 
 ##### **Ulrich Rieke** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-055/ulrich-rieke/haskell/ch-2.hs) in **Haskell**.
 
+##### **User Person** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-055/user-person/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-055/user-person/python/ch-2.py) in **Python**.
+
 ##### **Yet Ebreo** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-055/yet-ebreo/ruby/ch-1.rb) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-055/yet-ebreo/ruby/ch-2.rb) in **Ruby**.
 
 ##### **Yet Ebreo** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-055/yet-ebreo/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-055/yet-ebreo/python/ch-2.py) in **Python**.
