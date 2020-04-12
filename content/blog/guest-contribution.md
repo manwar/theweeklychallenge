@@ -1,6 +1,6 @@
 ---
 title: "Perl Weekly Challenge - Guest Contributions"
-date: 2020-04-11T00:00:00+00:00
+date: 2020-04-12T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -26,6 +26,8 @@ Please find below guest contributions.
 ##### **Ulrich Rieke** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-055/ulrich-rieke/haskell/ch-2.hs) in **Haskell**.
 
 ##### **Yet Ebreo** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-055/yet-ebreo/ruby/ch-1.rb) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-055/yet-ebreo/ruby/ch-2.rb) in **Ruby**.
+
+##### **Yet Ebreo** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-055/yet-ebreo/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-055/yet-ebreo/python/ch-2.py) in **Python**.
 
 ----
 ----
