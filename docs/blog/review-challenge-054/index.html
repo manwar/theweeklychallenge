@@ -337,7 +337,7 @@ push @result, join(<span style="color:#e6db74">&#34;&#34;</span>, @char);
 <span style="color:#66d9ef">my</span> @result <span style="color:#f92672">=</span> sort {$a <span style="color:#e6db74">&lt;=&gt;</span> $b} @result;
 
 <span style="color:#66d9ef">print</span> $result[$k<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
-</code></pre></div><p>Cheok Yin mentions that he wrote this code as an exercise a long time ago, so I won&rsquo;t do an in-depth review, as Cheok Yin&rsquo;s skills have evolved since then.</p>
+</code></pre></div><p>Cheok Yin mentions that she wrote this code as an exercise a long time ago, so I won&rsquo;t do an in-depth review, as her skills have evolved since then.</p>
 <p><strong>Blog</strong> › <a href="http://blogs.perl.org/users/c_y_fung/2020/04/cys-take-on-pwc054.html">CY&rsquo;s take on PWC#054</a></p>
 <h2 id="colin-crain1">Colin Crain</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-054/colin-crain/perl/ch-1.pl">Colin Crain&rsquo;s solution</a> includes two methods of generating permutations. First up is the recursive method:</p>
@@ -525,7 +525,25 @@ fun fact( $n ) {
 say kth_perm($n, $k);
 </code></pre></div><p><strong>Blog</strong> › <a href="http://blogs.perl.org/users/e_choroba/2020/04/perl-weekly-challenge-054-kth-permutation-sequence-collatz-conjecture.html">Kth Permutation Sequence + Collatz Conjecture</a></p>
 <h2 id="jaldhar-h-vyas1">Jaldhar H. Vyas</h2>
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-054/jaldhar-h-vyas/perl/ch-1.pl">Jaldhar H. Vyas&rsquo;s solution</a> is directly from <a href="https://learn.perl.org/faq/perlfaq4.html#How-do-I-permute-N-elements-of-a-list"><code>perlfaq4</code></a>, so there is no original code to review. (Please remember to attribute your sources.)</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-054/jaldhar-h-vyas/perl/ch-1.pl">Jaldhar H. Vyas&rsquo;s solution</a> takes the permutation code directly from <a href="https://learn.perl.org/faq/perlfaq4.html#How-do-I-permute-N-elements-of-a-list"><code>perlfaq4</code></a>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">permute</span> (&amp;@) {
+    <span style="color:#66d9ef">my</span> $code <span style="color:#f92672">=</span> shift;
+    <span style="color:#66d9ef">my</span> @idx <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#_;
+    <span style="color:#66d9ef">while</span> ( $code<span style="color:#f92672">-&gt;</span>(@_[@idx]) ) {
+        <span style="color:#66d9ef">my</span> $p <span style="color:#f92672">=</span> $#idx;
+        <span style="color:#f92672">--</span>$p <span style="color:#66d9ef">while</span> $idx[$p<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&gt;</span> $idx[$p];
+        <span style="color:#66d9ef">my</span> $q <span style="color:#f92672">=</span> $p <span style="color:#f92672">or</span> <span style="color:#66d9ef">return</span>;
+        push @idx, reverse splice @idx, $p;
+        <span style="color:#f92672">++</span>$q <span style="color:#66d9ef">while</span> $idx[$p<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&gt;</span> $idx[$q];
+        @idx[$p<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,$q]<span style="color:#f92672">=</span>@idx[$q,$p<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+    }
+}
+</code></pre></div><p>Jaldhar provides a callback that simply pushes a reference to each permutation
+onto <code>@permutations</code>, and then prints the <code>$k</code>th permutation:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @permutations;
+permute { push @permutations, <span style="color:#f92672">\</span>@_; } (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $n);
+say join <span style="color:#e6db74">q{}</span>, @{ $permutations[$k <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] };
+</code></pre></div><p><strong>Blog</strong> › <a href="https://www.braincells.com/perl/2020/04/perl_weekly_challenge_week_54.html">Jaldhar&rsquo;s Week #054 Blog</a></p>
 <h2 id="javier-luque1">Javier Luque</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-054/javier-luque/perl/ch-1.pl">Javier Luque&rsquo;s solution</a> uses <a href="https://metacpan.org/pod/Algorithm::Combinatorics"><code>Algorithm::Combinatorics</code></a> to generate permutations:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> Algorithm::Combinatorics <span style="color:#e6db74">qw(permutations)</span>;
@@ -1311,6 +1329,7 @@ $h<span style="color:#f92672">-&gt;</span>add($_, scalar collatz($_)) <span styl
     say $long<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>], <span style="color:#e6db74">&#39;: &#39;</span>, $long<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>];
 }
 </code></pre></div><p>Jaldhar <code>sort</code>s the <code>@longest</code> array every time a sequence is inserted, and then <code>pop</code>s off an element if the array has more than 20 elements. Jaldhar&rsquo;s code runs in 50 seconds, which is not bad for a brute force implementation.</p>
+<p><strong>Blog</strong> › <a href="https://www.braincells.com/perl/2020/04/perl_weekly_challenge_week_54.html">Jaldhar&rsquo;s Week #054 Blog</a></p>
 <h2 id="javier-luque2">Javier Luque</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-054/javier-luque/perl/ch-2.pl">Javier Luque&rsquo;s solution</a> cuts to the chase with a <code>collatz</code> sub that returns the sequence length:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">collatz</span> {
@@ -1851,6 +1870,7 @@ OUTER_LOOP:
 <p><strong>Cheok-Yin Fung</strong> › <a href="http://blogs.perl.org/users/c_y_fung/2020/04/cys-take-on-pwc054.html">CY&rsquo;s take on PWC#054</a></p>
 <p><strong>Dave Jacoby</strong> › <a href="https://jacoby.github.io/2020/03/30/permutations-and-conjectures.html">Permutations and Conjectures</a></p>
 <p><strong>E. Choroba</strong> › <a href="http://blogs.perl.org/users/e_choroba/2020/04/perl-weekly-challenge-054-kth-permutation-sequence-collatz-conjecture.html">Kth Permutation Sequence + Collatz Conjecture</a></p>
+<p><strong>Jaldhar H. Vyas</strong> › <a href="https://www.braincells.com/perl/2020/04/perl_weekly_challenge_week_54.html">Jaldhar&rsquo;s Week #054 Blog</a></p>
 <p><strong>Javier Luque</strong> › <a href="https://perlchallenges.wordpress.com/2020/03/30/perl-weekly-challenge-054/">054 – Perl Weekly Challenge</a></p>
 <p><strong>Kevin Colyer</strong> › <a href="https://kevincolyer.wordpress.com/2020/04/05/perl-weekly-challenge-week-54/">Perl Weekly Challenge – Week 54</a></p>
 <p><strong>Laurent Rosenfeld</strong> › <a href="http://blogs.perl.org/users/laurent_r/2020/04/perl-weekly-challenge-54-k-th-permutation-sequence-and-the-collatz-conjecture.html">k-th Permutation Sequence and the Collatz Conjecture</a></p>
