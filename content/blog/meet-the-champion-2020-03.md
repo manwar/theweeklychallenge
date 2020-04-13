@@ -5,7 +5,7 @@ description: "Get to know about Alicia Bielsa."
 type: post
 image: images/blog/meet-the-champion.jpg
 author: Mohammad S Anwar
-tags: ["Perl"]
+tags: ["Perl","Raku"]
 ---
 ---
 ---
