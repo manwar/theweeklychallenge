@@ -259,7 +259,7 @@ for $i (1..$N*$N) {
 }
 ```
 
-Cheok Yin is now blogging twice per week about the PWC! (See Cheok Yin's [Task #2 solution](#cheok-yin-fung2) for a link to his second blog post.)
+Cheok Yin is now blogging twice per week about the PWC! (See Cheok Yin's [Task #2 solution](#cheok-yin-fung2) for a link to her second blog post.)
 
 **Blog** › [Rotation in R^2 - CY's take on PWC#053 Task 1](http://blogs.perl.org/users/c_y_fung/2020/03/rotation-in-r2---cys-take-on-pwc053-task-1.html)
 
@@ -602,6 +602,8 @@ The code operates by spiraling inward from all four corners, in the following or
 
 The numbers shown are a simple count of the number of times the inner loop has run. The `13` in the middle is a side-effect of the loop bounds.
 
+**Blog** › [Jaldhar's Week #053 Blog](https://www.braincells.com/perl/2020/03/perl_weekly_challenge_week_52.html)
+
 ## Javier Luque {#javier-luque1}
 
 [Javier Luque's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-053/javier-luque/perl/ch-1.pl) supports NxN square matrices, and is called multiple times to effect rotations in multiples of 90 degrees:
@@ -631,7 +633,7 @@ This rotation also spirals inward.
 
 ## Laurent Rosenfeld {#laurent-rosenfeld1}
 
-[Laurent Rosenfeld's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-053/laurent-rosenfeld/perl/ch-1.pl) supports 3x3 matrices, via repeated calls to `rotate_90`:
+[Laurent Rosenfeld's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-053/laurent-rosenfeld/perl/ch-1.pl) supports NxN matrices, via repeated calls to `rotate_90`:
 
 ```perl
 sub rotate_90 {
@@ -1535,6 +1537,8 @@ sub generate {
 }
 ```
 
+**Blog** › [Jaldhar's Week #053 Blog](https://www.braincells.com/perl/2020/03/perl_weekly_challenge_week_52.html)
+
 ## Javier Luque {#javier-luque2}
 
 [Javier Luque's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-053/javier-luque/perl/ch-2.pl) uses [`Algorithm::Combinatorics`](https://metacpan.org/pod/Algorithm::Combinatorics)' [`variations_with_repetition`](https://metacpan.org/pod/Algorithm::Combinatorics#variations_with_repetition(\@data,-$k)) function. `v_w_r(\@data, $k)` returns an iterator that will generate all tuples of length `$k` from `@data`. Thus:
@@ -2050,6 +2054,8 @@ The use of `glob` here is fantastic.
 **Dave Jacoby** › [Rotate Your Matrix and String Your Vowels](https://jacoby.github.io/2020/03/23/rotate-your-matrix-and-string-your-vowels.html)
 
 **E. Choroba** › [Perl Weekly Challenge 053: Rotate Matrix and Vowel Strings](http://blogs.perl.org/users/e_choroba/2020/03/perl-weekly-challenge-053-rotate-matrix-and-vowel-strings.html)
+
+**Jaldhar H. Vyas** › [Jaldhar's Week #053 Blog](https://www.braincells.com/perl/2020/03/perl_weekly_challenge_week_52.html)
 
 **Javier Luque** › [053 – Perl Weekly Challenge](https://perlchallenges.wordpress.com/2020/03/23/perl-weekly-challenge-053/)
 

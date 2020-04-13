@@ -248,7 +248,7 @@ my @result = sort {$a <=> $b} @result;
 print $result[$k-1];
 ```
 
-Cheok Yin mentions that he wrote this code as an exercise a long time ago, so I won't do an in-depth review, as Cheok Yin's skills have evolved since then.
+Cheok Yin mentions that she wrote this code as an exercise a long time ago, so I won't do an in-depth review, as her skills have evolved since then.
 
 **Blog** › [CY's take on PWC#054](http://blogs.perl.org/users/c_y_fung/2020/04/cys-take-on-pwc054.html)
 
@@ -485,7 +485,33 @@ say kth_perm($n, $k);
 
 ## Jaldhar H. Vyas {#jaldhar-h-vyas1}
 
-[Jaldhar H. Vyas's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-054/jaldhar-h-vyas/perl/ch-1.pl) is directly from [`perlfaq4`](https://learn.perl.org/faq/perlfaq4.html#How-do-I-permute-N-elements-of-a-list), so there is no original code to review. (Please remember to attribute your sources.)
+[Jaldhar H. Vyas's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-054/jaldhar-h-vyas/perl/ch-1.pl) takes the permutation code directly from [`perlfaq4`](https://learn.perl.org/faq/perlfaq4.html#How-do-I-permute-N-elements-of-a-list):
+
+```perl
+sub permute (&@) {
+    my $code = shift;
+    my @idx = 0..$#_;
+    while ( $code->(@_[@idx]) ) {
+        my $p = $#idx;
+        --$p while $idx[$p-1] > $idx[$p];
+        my $q = $p or return;
+        push @idx, reverse splice @idx, $p;
+        ++$q while $idx[$p-1] > $idx[$q];
+        @idx[$p-1,$q]=@idx[$q,$p-1];
+    }
+}
+```
+
+Jaldhar provides a callback that simply pushes a reference to each permutation
+onto `@permutations`, and then prints the `$k`th permutation:
+
+```perl
+my @permutations;
+permute { push @permutations, \@_; } (1 .. $n);
+say join q{}, @{ $permutations[$k - 1] };
+```
+
+**Blog** › [Jaldhar's Week #054 Blog](https://www.braincells.com/perl/2020/04/perl_weekly_challenge_week_54.html)
 
 ## Javier Luque {#javier-luque1}
 
@@ -1518,6 +1544,8 @@ for my $long (@longest) {
 
 Jaldhar `sort`s the `@longest` array every time a sequence is inserted, and then `pop`s off an element if the array has more than 20 elements. Jaldhar's code runs in 50 seconds, which is not bad for a brute force implementation.
 
+**Blog** › [Jaldhar's Week #054 Blog](https://www.braincells.com/perl/2020/04/perl_weekly_challenge_week_54.html)
+
 ## Javier Luque {#javier-luque2}
 
 [Javier Luque's solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-054/javier-luque/perl/ch-2.pl) cuts to the chase with a `collatz` sub that returns the sequence length:
@@ -2222,6 +2250,8 @@ for my $n (2..1e6) {
 **Dave Jacoby** › [Permutations and Conjectures](https://jacoby.github.io/2020/03/30/permutations-and-conjectures.html)
 
 **E. Choroba** › [Kth Permutation Sequence + Collatz Conjecture](http://blogs.perl.org/users/e_choroba/2020/04/perl-weekly-challenge-054-kth-permutation-sequence-collatz-conjecture.html)
+
+**Jaldhar H. Vyas** › [Jaldhar's Week #054 Blog](https://www.braincells.com/perl/2020/04/perl_weekly_challenge_week_54.html)
 
 **Javier Luque** › [054 – Perl Weekly Challenge](https://perlchallenges.wordpress.com/2020/03/30/perl-weekly-challenge-054/)
 

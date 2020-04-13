@@ -956,7 +956,7 @@ Cheok Yin's comments, above, highlight an issue with the pound symbol (£): it i
 
 ***
 
-Back to Cheok Yin's solution, the bulk of the code is the computer algorithm for choosing coins. Cheok Yin wanted to unleash some real game theory, and did so with an iterative game tree traversal, which assigns a value to each node. Each top-level branch is compared, and the best one is chosen. Cheok Yin cites a [Coursera course on Combinatorial Game Theory](https://www.coursera.org/learn/combinatorial-game-theory/), as well as one of his textbooks. I always like seeing the resources that people found helpful in solving the challenges.
+Back to Cheok Yin's solution, the bulk of the code is the computer algorithm for choosing coins. Cheok Yin wanted to unleash some real game theory, and did so with an iterative game tree traversal, which assigns a value to each node. Each top-level branch is compared, and the best one is chosen. Cheok Yin cites a [Coursera course on Combinatorial Game Theory](https://www.coursera.org/learn/combinatorial-game-theory/), as well as one of her textbooks. I always like seeing the resources that people found helpful in solving the challenges.
 
 Here is the iterative step:
 
