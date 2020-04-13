@@ -200,6 +200,7 @@ Checkout the masterpiece collection of [**blogs**](https://perlweeklychallenge.o
 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-055/cheok-yin-fung/perl/ch-1.pl)]
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-055/cheok-yin-fung/perl/ch-2.pl)]
+[[**BLOG #1**](http://blogs.perl.org/users/c_y_fung/2020/04/cys-take-perl-weekly-challenge-on-055.html)]
 
 ***
 
