@@ -209,6 +209,7 @@ Checkout the masterpiece collection of [**blogs**](https://perlweeklychallenge.o
 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-055/dave-jacoby/perl/ch-1.pl)]
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-055/dave-jacoby/perl/ch-2.pl)]
+[[**BLOG #1**](https://jacoby.github.io/2020/04/06/challenge-55-flipping-and-waving.html)]
 
 ***
 
