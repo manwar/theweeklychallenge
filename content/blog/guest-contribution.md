@@ -19,6 +19,8 @@ Please find below guest contributions.
 
 ##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-056/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-056/lubos-kolouch/python/ch-2.py) in **Python**.
 
+##### **User Person** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-056/user-person/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-056/user-person/python/ch-2.py) in **Python**.
+
 ----
 ----
 #### [Perl Weekly Challenge - 055](/blog/perl-weekly-challenge-055)
