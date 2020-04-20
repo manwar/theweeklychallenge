@@ -230,6 +230,7 @@ Checkout the masterpiece collection of [**blogs**](https://perlweeklychallenge.o
 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-056/e-choroba/perl/ch-1.pl)]
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-056/e-choroba/perl/ch-2.pl)]
+[[**BLOG #1**](http://blogs.perl.org/users/e_choroba/2020/04/perl-weekly-challenge-056-diff-k-and-path-sum.html)]
 
 ***
 
