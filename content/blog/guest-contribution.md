@@ -1,6 +1,6 @@
 ---
 title: "Perl Weekly Challenge - Guest Contributions"
-date: 2020-04-22T00:00:00+00:00
+date: 2020-04-26T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -18,6 +18,8 @@ Please find below guest contributions.
 ----
 
 #### **Ben Davies** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-057/ben-davies/idris/ch-1.idr) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-057/ben-davies/idris/ch-2.idr) in **Idris**.
+
+##### **Richard Park** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-057/richard-park/apl/ch-1.aplf) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-057/richard-park/apl/ch-2.aplf) in **APL**.
 
 ----
 ----
