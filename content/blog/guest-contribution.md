@@ -17,9 +17,9 @@ Please find below guest contributions.
 #### [Perl Weekly Challenge - 057](/blog/perl-weekly-challenge-057)
 ----
 
-#### **Ben Davies** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-057/ben-davies/idris/ch-1.idr) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-057/ben-davies/idris/ch-2.idr) in **Idris**.
+##### **Ben Davies** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-057/ben-davies/idris/ch-1.idr) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-057/ben-davies/idris/ch-2.idr) in **Idris**.
 
-#### **Leo Manfredi** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-057/manfredi/python/ch-2.py) in **Python**.
+##### **Leo Manfredi** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-057/manfredi/python/ch-2.py) in **Python**.
 
 ##### **Richard Park** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-057/richard-park/apl/ch-1.aplf) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-057/richard-park/apl/ch-2.aplf) in **APL**.
 
