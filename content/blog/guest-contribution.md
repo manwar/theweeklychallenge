@@ -17,6 +17,14 @@ Please find below guest contributions.
 #### [Perl Weekly Challenge - 058](/blog/perl-weekly-challenge-058)
 ----
 
+##### **Arne Sommer** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-058/arne-sommer/bash/ch-1.sh) in **Bash**.
+
+##### **Arne Sommer** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-058/arne-sommer/php/ch-1.php) in **PHP**.
+
+##### **Arne Sommer** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-058/arne-sommer/python/ch-1.py) in **Python**.
+
+##### **Arne Sommer** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-058/arne-sommer/ruby/ch-1.rb) in **Ruby**.
+
 ##### **Leo Manfredi** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-058/manfredi/bash/ch-1.sh) in **Bash**.
 
 ##### **Leo Manfredi** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-058/manfredi/python/ch-1.py) in **Python**.
