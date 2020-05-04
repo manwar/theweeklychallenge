@@ -14,8 +14,8 @@ tags: ["Perl", "Raku"]
 
 Today is the first **Monday** of the month and time to declare the winner of last month **Champion of the Weekly Challenge**. With great pleasure we announce **Luca Ferrari** from **Italy** as the winner of **April 2020**. Congratulations Luca. He has been a valuable member of the **Team PWC**. Looking at his contributions below, he always dealt with **Raku** and regularly blogged as well. He is currently ranked **#026** in the **Centurion Club**. He hasn't missed a week since he joined the team, well done.
 
-        Perl Weekly Challenge - 043: Raku (2)
-        Perl Weekly Challenge - 044: Raku (2)
+        Perl Weekly Challenge - 043: Raku (2), Blog (1)
+        Perl Weekly Challenge - 044: Raku (2), Blog (1)
         Perl Weekly Challenge - 045: Raku (2), Blog (1)
         Perl Weekly Challenge - 046: Raku (2), Blog (1)
         Perl Weekly Challenge - 047: Raku (2), Blog (2)
@@ -25,7 +25,7 @@ Today is the first **Monday** of the month and time to declare the winner of las
         Perl Weekly Challenge - 051: Raku (2), Blog (2)
         Perl Weekly Challenge - 052: Raku (2), Blog (2)
         Perl Weekly Challenge - 053: Raku (2), Blog (2)
-        Perl Weekly Challenge - 054: Raku (2)
+        Perl Weekly Challenge - 054: Raku (2), Blog (2)
         Perl Weekly Challenge - 055: Raku (2), Blog (2)
         Perl Weekly Challenge - 056: Raku (2), Blog (2)
         Perl Weekly Challenge - 057: Raku (2), Blog (2)
