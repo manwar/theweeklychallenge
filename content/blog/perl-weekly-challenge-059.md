@@ -51,8 +51,6 @@ If you missed any past reviews then please checkout the [**collection**](/p5-rev
 
 ***
 
-Please checkout **Raku** solutions review of the **["Perl Weekly Challenge - 054"](/blog/p6-review-challenge-054)** by **Laurent Rosenfeld**.
-
 If you missed any past reviews then please checkout the [**collection**](/p6-reviews).
 
 ## CHART
