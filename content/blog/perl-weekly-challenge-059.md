@@ -73,6 +73,20 @@ Please give it a try to an excellent tool [**EZPWC**](https://github.com/saiftyn
 
 ***
 
+**Arne Sommer** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-058/arne-sommer/bash/ch-1.sh) in **Bash**.
+
+**Arne Sommer** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-058/arne-sommer/php/ch-1.php) in **PHP**.
+
+**Arne Sommer** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-058/arne-sommer/python/ch-1.py) in **Python**.
+
+**Arne Sommer** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-058/arne-sommer/ruby/ch-1.rb) in **Ruby**.
+
+**Leo Manfredi** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-058/manfredi/bash/ch-1.sh) in **Bash**.
+
+**Leo Manfredi** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-058/manfredi/python/ch-1.py) in **Python**.
+
+**Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-058/lubos-kolouch/python/ch-1.py) in **Python**.
+
 Please find out [**past solutions**](/blog/guest-contribution) by respected **guests**. Please do share your creative solutions in other languages.
 
 ## TASK #1 › Linked List
