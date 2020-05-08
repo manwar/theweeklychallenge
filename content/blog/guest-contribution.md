@@ -1,6 +1,6 @@
 ---
 title: "Perl Weekly Challenge - Guest Contributions"
-date: 2020-05-06T00:00:00+00:00
+date: 2020-05-08T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -16,6 +16,8 @@ Please find below guest contributions.
 ----
 #### [Perl Weekly Challenge - 059](/blog/perl-weekly-challenge-059)
 ----
+
+##### **Leo Manfredi** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-059/manfredi/python/ch-2.py) in **Python**.
 
 ##### **Shawak** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-059/shawak/ruby/ch-2.rb) in **Ruby**.
 
