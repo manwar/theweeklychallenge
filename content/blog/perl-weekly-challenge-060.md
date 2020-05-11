@@ -74,31 +74,33 @@ Please give it a try to an excellent tool [**EZPWC**](https://github.com/saiftyn
 
 Please find out [**past solutions**](/blog/guest-contribution) by respected **guests**. Please do share your creative solutions in other languages.
 
-***
-
 ## TASK #1 › Excel Column
 ##### **Reviewed by:** [Ryan Thompson](https://ry.ca)
+
+***
 
 Write a script that accepts a number and returns the **Excel Column Name** it represents and vice-versa.
 
 Excel columns start at **A** and increase lexicographically using the 26 letters of the English alphabet, **A**..**Z**. After **Z**, the columns pick up an extra "digit", going from **AA**, **AB**, etc., which could (in theory) continue to an arbitrary number of digits. In practice, Excel sheets are limited to 16,384 columns.
 
-## Example
+### Example
 
-Input Number: 28
-Output: AB
+    Input Number: 28
+    Output: AB
 
-Input Column Name: AD
-Output: 30
+    Input Column Name: AD
+    Output: 30
 
 ## TASK #2 › Find Numbers
 ##### **Reviewed by:** [Ryan Thompson](https://ry.ca)
+
+***
 
 Write a script that accepts list of positive numbers (`@L`) and two positive numbers `$X` and `$Y`.
 
 The script should print all possible numbers made by concatenating the numbers from `@L`, whose length is exactly `$X` but value is less than `$Y`.
 
-## Example
+### Example
 
 Input:
 
