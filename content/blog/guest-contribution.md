@@ -1,6 +1,6 @@
 ---
 title: "Perl Weekly Challenge - Guest Contributions"
-date: 2020-05-16T00:00:00+00:00
+date: 2020-05-17T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -15,6 +15,8 @@ Please find below guest contributions.
 ----
 ## [Perl Weekly Challenge - 060](/blog/perl-weekly-challenge-060)
 <br>
+
+##### **Adam Russell** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-060/adam-russell/prolog/ch-1.p) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-060/adam-russell/prolog/ch-2.p) in **Prolog**.
 
 ##### **Leo Manfredi** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-060/manfredi/bash/ch-1.sh) in **Bash**.
 
