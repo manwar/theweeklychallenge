@@ -20,6 +20,8 @@ Please find below guest contributions.
 
 ##### **Leo Manfredi** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-060/manfredi/bash/ch-1.sh) in **Bash**.
 
+##### **Leo Manfredi** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-060/manfredi/python/ch-1.py) in **Python**.
+
 ##### **Shawak** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-060/shawak/ruby/ch-1.rb) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-060/shawak/ruby/ch-2.rb) in **Ruby**.
 
 ----
