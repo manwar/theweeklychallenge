@@ -22,6 +22,8 @@ Please find below guest contributions.
 
 ##### **Leo Manfredi** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-060/manfredi/python/ch-1.py) in **Python**.
 
+##### **Richard Park** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-060/richard-park/apl/ch-1.aplf) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-060/richard-park/apl/ch-2.aplf) in **APL**.
+
 ##### **Shawak** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-060/shawak/ruby/ch-1.rb) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-060/shawak/ruby/ch-2.rb) in **Ruby**.
 
 ----
