@@ -79,6 +79,8 @@ Please find out [**past solutions**](/blog/guest-contribution) by respected **gu
 ## TASK #1 › Sort Email Addresses
 ##### **Submitted by:** [Neil Bowers](http://neilb.org)
 ##### **Reviewed by:** [Ryan Thompson](https://ry.ca)
+
+***
 <br>
 
 Write a script that takes a list of email addresses (one per line) and sorts them first by the domain part of the email address, and then by the part to the left of the @ (known as the mailbox).
