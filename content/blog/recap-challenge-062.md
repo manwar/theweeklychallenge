@@ -157,7 +157,7 @@ Changes to the ranking in the **Centurion Club** last week listed below:
 
 #### 11) Athanasius (**276**)
 
-#### 12) Colin Crain (**246**)
+#### 12) Colin Crain (**248**)
 
 #### 13) Simon Proctor (**240**)
 
@@ -345,6 +345,7 @@ Please checkout the masterpiece collection of [**blogs**](https://perlweeklychal
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-062/colin-crain/perl/ch-1.pl)]
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-062/colin-crain/perl/ch-2.pl)]
 [[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-062/colin-crain/raku/ch-1.p6)]
+[[**BLOG #1**](https://colincrain.wordpress.com/2020/06/01/the-spacequeens-sordid-emails/)]
 
 ***
 
