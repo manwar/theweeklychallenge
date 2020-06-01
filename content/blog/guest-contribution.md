@@ -16,7 +16,7 @@ Please find below guest contributions.
 ## [Perl Weekly Challenge - 062](/blog/perl-weekly-challenge-062)
 <br>
 
-##### **Richard Park** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-062/richard-park/apl/ch-1.aplf) in **APL**.
+##### **Richard Park** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-062/richard-park/apl/ch-1.aplf) in **APL**.
 
 ##### **Sangeet Kar** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-062/sangeet-kar/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-062/sangeet-kar/python/ch-2.py) in **Python**.
 
