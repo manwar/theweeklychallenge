@@ -122,7 +122,7 @@ Input: `$word = 'xyxx';`
  * **Rotation 4:** you get `xxxy` by moving nothing as 4 % length(`xyxx`) == 0.
  * **Rotation 5:** you get `xxyx` by moving `x` to the end.
  * **Rotation 6:** you get `yxxx` by moving `xx` to the end.
- * **Rotation 7:** you get `xyxx` by moving `yxxx` to the end which is same as the given word.
+ * **Rotation 7:** you get `xyxx` by moving `yxx` to the end which is same as the given word.
 
 Output: **7**
 
