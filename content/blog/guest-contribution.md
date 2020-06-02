@@ -1,6 +1,6 @@
 ---
 title: "Perl Weekly Challenge - Guest Contributions"
-date: 2020-05-31T00:00:00+00:00
+date: 2020-06-02T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -11,6 +11,14 @@ tags: ["APL", "Bash", "C++", "Go", "Haskell", "Idris", "Javascript", "Node", "Py
 As you know, **"Perl Weekly Challenge"**, primarily focus on **Perl** and **Raku**. During the **Week #018**, we received the solution to **["Perl Weekly Challenge - 018"](/blog/perl-we$ekly-challenge-018)** by **Orestis Zekai** in **Python**. It was a pleasant surprise to receive solution in something other than **Perl** and **Raku**. Ever since regular team members also started contributing in other languages like **APL**, **Bash**, **C++**, **Go**, **Haskell**, **Idris**, **Javascript**, **Node**, **Postscript**, **Prolog**, **R**, **Ruby**, **Rust** and **HTML**.
 
 Please find below guest contributions.
+
+----
+## [Perl Weekly Challenge - 063](/blog/perl-weekly-challenge-063)
+<br>
+
+##### **Sangeet Kar** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-063/sangeet-kar/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-063/sangeet-kar/python/ch-2.py) in **Python**.
+
+##### **Ulrich Rieke** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-063/ulrich-rieke/cpp/ch-2.cpp) in **C++**.
 
 ----
 ## [Perl Weekly Challenge - 062](/blog/perl-weekly-challenge-062)
@@ -104,7 +112,7 @@ Please find below guest contributions.
 
 ##### **Richard Park** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-055/richard-park/apl/ch-1.aplf) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-055/richard-park/apl/ch-2.aplf) in **APL**.
 
-##### **Ulrich Rieke** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-055/ulrich-rieke/cpp/ch-5.cpp) in **C++**.
+##### **Ulrich Rieke** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-055/ulrich-rieke/cpp/ch-2.cpp) in **C++**.
 
 ##### **Ulrich Rieke** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-055/ulrich-rieke/haskell/ch-2.hs) in **Haskell**.
 
