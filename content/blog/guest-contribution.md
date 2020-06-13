@@ -16,9 +16,9 @@ Please find below guest contributions.
 ## [Perl Weekly Challenge - 064](/blog/perl-weekly-challenge-064)
 <br>
 
-##### **Sangeet Kar** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-064/sangeet-kar/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-064/sangeet-kar/python/ch-2.py) in **Python**.
-
 ##### **Leo Manfredi** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-064/manfredi/python/ch-2.py) in **Python**.
+
+##### **Sangeet Kar** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-064/sangeet-kar/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-064/sangeet-kar/python/ch-2.py) in **Python**.
 
 ----
 ## [Perl Weekly Challenge - 063](/blog/perl-weekly-challenge-063)
