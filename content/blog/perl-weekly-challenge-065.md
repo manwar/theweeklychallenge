@@ -124,7 +124,10 @@ Please make sure, partition should not overlap. For example, for given string "a
 ## Example 1
 
     Input: $S = 'aabaab'
-    Ouput: 'aa', 'baab'
+    Ouput:
+     There are 2 possible solutions.
+     a) 'aabaa'
+     b) 'aa', 'baab'
 
 ## Example 2
 
