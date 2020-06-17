@@ -125,17 +125,19 @@ Please make sure, partition should not overlap. For example, for given string "a
 
     Input: $S = 'aabaab'
     Ouput:
-     There are 2 possible solutions.
+     There are 3 possible solutions.
      a) 'aabaa'
      b) 'aa', 'baab'
+     c) 'aba'
 
 ## Example 2
 
     Input: $S = 'abbaba'
     Output:
-     There are 2 possible solutions.
+     There are 3 possible solutions.
      a) 'abba'
      b) 'bb', 'aba'
+     c) 'bab'
 
 ***
 
