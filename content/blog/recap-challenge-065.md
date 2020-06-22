@@ -36,11 +36,11 @@ Last but not the least, please take care of yourself and your family.
 
 ***
 
-The total contributions in the **Week #065** was **67**. Well done **Team PWC**. I would like to thank **Raku** contributors for catching up.
+The total contributions in the **Week #065** was **70**. Well done **Team PWC**. I would like to thank **Raku** contributors for catching up.
 
-#### Perl: 31
-#### Raku: 23
-#### Blog: 13
+#### Perl: 32
+#### Raku: 24
+#### Blog: 14
 
 <br>
 
@@ -112,7 +112,7 @@ Changes to the ranking in the **Centurion Club** last week listed below:
 
 <br>
 
-#### 1) Laurent Rosenfeld (**746**)
+#### 1) Laurent Rosenfeld (**752**)
 #### 2) Jaldhar H. Vyas (**522**)
 #### 3) Ruben Westerberg (**452**)
 #### 4) Roger Bell_West (**430**)
@@ -337,6 +337,15 @@ Please checkout the masterpiece collection of [**blogs**](https://perlweeklychal
 [[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-065/javier-luque/raku/ch-1.p6)]
 [[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-065/javier-luque/raku/ch-2.p6)]
 [[**BLOG #1**](https://perlchallenges.wordpress.com/2020/06/15/perl-weekly-challenge-065/)]
+
+***
+
+### Laurent Rosenfeld
+![Laurent Rosenfeld](/images/team/laurent_rosenfeld.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-065/laurent-rosenfeld/perl/ch-1.pl)]
+[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-065/laurent-rosenfeld/raku/ch-1.p6)]
+[[**BLOG #1**](http://blogs.perl.org/users/laurent_r/2020/06/perl-weekly-challenge-65-digit-sum.html)]
 
 ***
 
