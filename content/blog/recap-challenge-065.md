@@ -36,11 +36,11 @@ Last but not the least, please take care of yourself and your family.
 
 ***
 
-The total contributions in the **Week #065** was **62**. Well done **Team PWC**. I would like to thank **Raku** contributors for catching up.
+The total contributions in the **Week #065** was **67**. Well done **Team PWC**. I would like to thank **Raku** contributors for catching up.
 
-#### Perl: 29
-#### Raku: 21
-#### Blog: 12
+#### Perl: 31
+#### Raku: 23
+#### Blog: 13
 
 <br>
 
@@ -315,6 +315,17 @@ Please checkout the masterpiece collection of [**blogs**](https://perlweeklychal
 [[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-065/colin-crain/raku/ch-1.p6)]
 [[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-065/colin-crain/raku/ch-2.p6)]
 [[**BLOG #1**](https://colincrain.wordpress.com/2020/06/19/digital-value-at-the-palindrome-thunderdome)]
+
+***
+
+### Jaldhar H. Vyas
+![Jaldhar H. Vyas](/images/team/jaldhar_vyas.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-065/jaldhar-h-vyas/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-065/jaldhar-h-vyas/perl/ch-2.pl)]
+[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-065/jaldhar-h-vyas/raku/ch-1.p6)]
+[[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-065/jaldhar-h-vyas/raku/ch-2.p6)]
+[[**BLOG #1**](https://www.braincells.com/perl/2020/06/perl_weekly_challenge_week_65.html)]
 
 ***
 
