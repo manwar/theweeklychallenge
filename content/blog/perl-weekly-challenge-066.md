@@ -98,7 +98,7 @@ Write a script to divide the given two integers i.e. `$M / $N` without using mul
 ## Example 2:
 
     Input: $M = -5, $N = 2
-    Output: -2
+    Output: -3
 
 ## Example 3:
 
