@@ -36,9 +36,9 @@ Last but not the least, please take care of yourself and your family.
 
 ***
 
-The total contributions in the **Week #065** was **61**. Well done **Team PWC**. I would like to thank **Raku** contributors for catching up.
+The total contributions in the **Week #065** was **62**. Well done **Team PWC**. I would like to thank **Raku** contributors for catching up.
 
-#### Perl: 28
+#### Perl: 29
 #### Raku: 21
 #### Blog: 12
 
@@ -172,6 +172,13 @@ Please checkout the masterpiece collection of [**blogs**](https://perlweeklychal
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-065/cheok-yin-fung/perl/ch-1.pl)]
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-065/cheok-yin-fung/perl/ch-2.pl)]
 [[**BLOG #1**](http://blogs.perl.org/users/c_y_fung/2020/06/cys-take-on-pwc065.html)]
+
+***
+
+### Craig
+![Craig](/images/team/user.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-065/craig/perl/ch-1.pl)]
 
 ***
 
