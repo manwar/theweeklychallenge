@@ -36,11 +36,11 @@ Last but not the least, please take care of yourself and your family.
 
 ***
 
-The total contributions in the **Week #065** was **70**. Well done **Team PWC**. I would like to thank **Raku** contributors for catching up.
+The total contributions in the **Week #065** was **71**. Well done **Team PWC**. I would like to thank **Raku** contributors for catching up.
 
 #### Perl: 32
 #### Raku: 24
-#### Blog: 14
+#### Blog: 15
 
 <br>
 
@@ -115,7 +115,7 @@ Changes to the ranking in the **Centurion Club** last week listed below:
 #### 1) Laurent Rosenfeld (**752**)
 #### 2) Jaldhar H. Vyas (**522**)
 #### 3) Ruben Westerberg (**452**)
-#### 4) Roger Bell_West (**430**)
+#### 4) Roger Bell_West (**432**)
 #### 5) Arne Sommer (**412**)
 #### 6) Javier Luque (**350**)
 #### 7) E. Choroba (**348**)
@@ -367,6 +367,7 @@ Please checkout the masterpiece collection of [**blogs**](https://perlweeklychal
 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-065/roger-bell-west/perl/ch-1.pl)]
 [[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-065/roger-bell-west/raku/ch-1.p6)]
+[[**BLOG #1**](https://blog.firedrake.org/archive/2020/06/Perl_Weekly_Challenge_65__summing_digits_and_finding_palindromes.html)]
 
 ***
 
