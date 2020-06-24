@@ -126,15 +126,15 @@ Please make sure `m > 1` and `n > 1`.
 
 ## Example 1:
 
-For given $N = 9, it should print 3<sup>2</sup> or `3^2`.
+For given `$N = 9`, it should print 3<sup>2</sup> or `3^2`.
 
 ## Example 2:
 
-For given $N = 45, it should print **0**.
+For given `$N = 45`, it should print `0`.
 
 ## Example 3:
 
-For given $N = 64, it should print all or one of `8^2` or `2^6` or `4^3`.
+For given `$N = 64`, it should print all or one of `8^2` or `2^6` or `4^3`.
 
 ***
 
