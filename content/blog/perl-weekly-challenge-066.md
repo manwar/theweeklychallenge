@@ -134,7 +134,7 @@ For given $N = 45, it should print **0**.
 
 ## Example 3:
 
-For given $N = 64, it should print all or one of **8^2** or **2^6** or **4^3** .
+For given $N = 64, it should print all or one of `8^2` or `2^6` or `4^3`.
 
 ***
 
