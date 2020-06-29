@@ -35,11 +35,11 @@ Thanks **Andrew Shitov** solving past challenges and [**blogging**](https://andr
 
 ***
 
-The total contributions in the **Week #066** was **80**. Well done **Team PWC**. I would like to thank **Raku** contributors for catching up.
+The total contributions in the **Week #066** was **81**. Well done **Team PWC**. I would like to thank **Raku** contributors for catching up.
 
 #### Perl: 39
 #### Raku: 29
-#### Blog: 12
+#### Blog: 13
 
 <br>
 
@@ -115,7 +115,7 @@ Changes to the ranking in the **Centurion Club** last week listed below:
 #### 1) Laurent Rosenfeld (**760**)
 #### 2) Jaldhar H. Vyas (**542**)
 #### 3) Ruben Westerberg (**452**)
-#### 4) Roger Bell_West (**440**)
+#### 4) Roger Bell_West (**442**)
 #### 5) Arne Sommer (**422**)
 #### 6) Javier Luque (**360**)
 #### 7) E. Choroba (**352**)
@@ -413,6 +413,7 @@ Please checkout the masterpiece collection of [**blogs**](https://perlweeklychal
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-066/roger-bell-west/perl/ch-2.pl)]
 [[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-066/roger-bell-west/raku/ch-1.p6)]
 [[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-066/roger-bell-west/raku/ch-2.p6)]
+[[**BLOG #1**](https://blog.firedrake.org/archive/2020/06/Perl_Weekly_Challenge_66__dividing_and_factorising.html)]
 
 ***
 
