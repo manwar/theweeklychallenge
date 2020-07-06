@@ -110,13 +110,10 @@ Let me come out and say I don't feel it's my place to call anybody out for mista
 
 * Another class of bugs may have come from the specific examples given, in that 5 does not evenly divide into 2 parts -- it has a remainder of 1. This resulted in several people making code like that shown below. See the error? If the denominator divides in evenly, the remainder will be 0, which is perfectly valid. The operator should be **greater than or equal to** to allow for this possibility. Not gonna lie, I think I may have done this at some point as well when figuring it out. A number of people only tested for the given examples and let this slip.
 
-```perl
         while ($numerator - $denominator > 0) {
                 $numerator = $numerator - $denominator;
                 $quotient++;
         }
-
-```
 
 * The third, final and most devious bug came from the floor function itself, and its relationship to negative numbers. Not actually restricted, some people used `POSIX::floor` and avoided the issues completely, but most reversed the sign on their own, and, when doing that, realized they needed to subtract 1. The problem arises in the fact that this is a hack, and what really happens when you reverse the sign on the **floor(*x*)** function is that you get the **ceiling(*x*)** function. But, you say, if the floor is the largest integer below, and the ceiling the smallest integer above, isn't the difference between the two the very 1 you are subtracting? Why yes, yes it is, **except when floor is equal to the ceiling**. This case is true when *x* is an integer, which in turn affects our calculation when the division works out evenly. In that case we subtract nothing. This bug, again, showed up several times.
 
@@ -124,7 +121,7 @@ I'll leave it to the individual authors to decide whether they need to smack the
 
 ## UNIQUE approaches and other THINGS THAT CAUGHT MY EYE
 
-[**Athanasius**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-066/athanasius/perl/ch-1.pl)
+[**Monk Athanasius**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-066/athanasius/perl/ch-1.pl)
 
 With the code block
 
