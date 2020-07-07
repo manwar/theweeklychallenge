@@ -28,12 +28,12 @@ As you all know, we propose two tasks each week and hope that members would atte
 
 ***
 
-#### 1) Colin Crain
-#### 2) Jaldhar H. Vyas
-#### 3) Javier Luque
-#### 4) Laurent Rosenfeld
-#### 5) Mohammad S Anwar
-#### 6) Roger Bell_West
+#### 1) Arne Sommer
+#### 2) Colin Crain
+#### 3) Jaldhar H. Vyas
+#### 4) Javier Luque
+#### 5) Laurent Rosenfeld
+#### 6) Mohammad S Anwar
 
 <br>
 
