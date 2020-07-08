@@ -1,6 +1,6 @@
 ---
 title: "Perl Weekly Challenge - Guest Contributions"
-date: 2020-07-05T00:00:00+00:00
+date: 2020-07-07T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -11,6 +11,14 @@ tags: ["APL", "Bash", "C++", "Go", "Haskell", "Idris", "Javascript", "Node", "Py
 As you know, **"Perl Weekly Challenge"**, primarily focus on **Perl** and **Raku**. During the **Week #018**, we received the solution to **["Perl Weekly Challenge - 018"](/blog/perl-we$ekly-challenge-018)** by **Orestis Zekai** in **Python**. It was a pleasant surprise to receive solution in something other than **Perl** and **Raku**. Ever since regular team members also started contributing in other languages like **APL**, **Bash**, **C++**, **Go**, **Haskell**, **Idris**, **Javascript**, **Node**, **Postscript**, **Prolog**, **R**, **Ruby**, **Rust** and **HTML**.
 
 Please find below guest contributions.
+
+----
+## [Perl Weekly Challenge - 068](/blog/perl-weekly-challenge-068)
+<br>
+
+##### **Ulrich Rieke** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-068/ulrich-rieke/haskell/ch-2.hs) in **Haskell**.
+
+##### **Walt Mankowski** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-068/walt-mankowski/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-068/walt-mankowski/python/ch-2.py) in **Python**.
 
 ----
 ## [Perl Weekly Challenge - 067](/blog/perl-weekly-challenge-067)
