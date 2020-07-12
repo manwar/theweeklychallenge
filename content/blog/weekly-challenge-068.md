@@ -356,7 +356,7 @@ sub reorder_list {
 ```
 For the first time, I am creating **Raku** class as far as the weekly challenge is concerned.
 
-I must confess, what you see down below is no what I wrote in the first place. It has gone through few changes, thanks to many experts. Let me share in details. At first I didn't have `is rw` assigned to the attribute, instead I had setter method. **Jonathan Worthington** suggested the change to make it cleaner.
+I must confess, what you see down below is not what I wrote in the first place. It has gone through few changes, thanks to many experts. Let me share in details. At first I didn't have `is rw` assigned to the attribute, instead I had setter method. **Jonathan Worthington** suggested the change to make it cleaner.
 
 `@khalidelboray` suggested instead of `my @v = ($!v)`, I could simply do something like `my @v = $!v`.
 
