@@ -109,7 +109,7 @@ Write a script to print all strobogrammatic numbers between the given two number
 
 A `0/1 string` is a string in which every character is either 0 or 1.
 
-Write a script to perform `switch` and `reverse` to generate `S1000` as described below:
+Write a script to perform `switch` and `reverse` to generate `S30` as described below:
 
     switch:
 
@@ -119,7 +119,11 @@ Write a script to perform `switch` and `reverse` to generate `S1000` as describe
 
     The string is reversed. For example, "001” becomes “100”.
 
-To generate `S1000` string, please follow the rule as below:
+<br>
+
+### UPDATE (2020-07-13 17:00:00):
+
+It was brought to my notice that generating `S1000` string would be nearly impossible. So I have decided to lower it down to `S30`. Please follow the rule as below:
 
     S0 = “”
     S1 = “0”
