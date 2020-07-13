@@ -28,6 +28,8 @@ Quick recap of the [**"Perl Weekly Challenge - 068"**](/blog/recap-challenge-068
 
 ***
 
+Please checkout **Perl** solutions review of the **["Perl Weekly Challenge - 067"](/blog/review-challenge-067)** by **Colin Crain**.
+
 If you missed any past reviews then please checkout the [**collection**](/p5-reviews).
 
 ## RAKU REVIEW
