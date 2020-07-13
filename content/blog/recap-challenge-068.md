@@ -41,11 +41,11 @@ These members shared solutions to both tasks in **Perl** and **Raku** as well as
 
 ***
 
-The total contributions in the **Week #068** is **63**. Well done **Team PWC**. I would like to thank **Raku** contributors for catching up.
+The total contributions in the **Week #068** is **66**. Well done **Team PWC**. I would like to thank **Raku** contributors for catching up.
 
-#### PERL: 30
-#### RAKU: 24
-#### BLOG: 09
+#### PERL: 31
+#### RAKU: 25
+#### BLOG: 10
 
 <br>
 
@@ -117,7 +117,7 @@ Changes to the ranking in the **Centurion Club** last week listed below:
 
 <br>
 
-#### 1) Laurent Rosenfeld (**772**)
+#### 1) Laurent Rosenfeld (**778**)
 #### 2) Jaldhar H. Vyas (**552**)
 #### 3) Roger Bell_West (**454**)
 #### 4) Ruben Westerberg (**452**)
@@ -343,6 +343,15 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 [[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-068/javier-luque/raku/ch-1.p6)]
 [[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-068/javier-luque/raku/ch-2.p6)]
 [[**BLOG #1**](https://perlchallenges.wordpress.com/2020/07/06/perl-weekly-challenge-068/)]
+
+***
+
+### Laurent Rosenfeld
+![Laurent Rosenfeld](/images/team/laurent_rosenfeld.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-068/laurent-rosenfeld/perl/ch-1.pl)]
+[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-068/laurent-rosenfeld/raku/ch-1.p6)]
+[[**BLOG #1**](http://blogs.perl.org/users/laurent_r/2020/07/-perl-weekly-challenge-68-zero-matrix.html)]
 
 ***
 
