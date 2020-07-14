@@ -1,6 +1,6 @@
 ---
 title: "Perl Weekly Challenge - Guest Contributions"
-date: 2020-07-13T00:00:00+00:00
+date: 2020-07-14T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -17,6 +17,8 @@ Please find below guest contributions.
 <br>
 
 ##### **Andrew Shitov** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-069/ash/cpp/ch-2.cpp) in **C++**.
+
+##### **Ulrich Rieke** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-069/ulrich-rieke/cpp/ch-2.cpp) in **C++**.
 
 ----
 ## [Perl Weekly Challenge - 068](/blog/perl-weekly-challenge-068)
