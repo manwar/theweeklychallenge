@@ -10,8 +10,6 @@ tags: ["Perl", "Raku"]
 
 # HEADLINE
 
-....headline
-
 The **Task #1** of **[Perl Weekly Challenge - 069](/blog/perl-weekly-challenge-069)** raised a very interesting question i.e. is 1 strobogrammatic number? So far, I got mixed response some says yes and some not. My first thought was Yes, it is but later changed my mind. It is controversial and I don't want loose the focus on the task itself. Please remember the objective is to have fun and not to get into controversial domain. I am also very flexible and not tied to any thing. Some even discussed that **"upside down"** is not same as **"180 degree rotation"**. I am staying away from it. I like the open culture of **Perl Weekly Challenge** as you are free to take the route you are comfortable with. There are no compulsion.
 
 The **Task #2** posed another challenge where getting the 0/1 string `S1000` generating seems nearly impossible running on regalar machine. Midweek, it was dropped down to `S30` to make it possible. Even then it took a long time and generated a very very large 0/1 string.
