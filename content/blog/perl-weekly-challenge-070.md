@@ -92,7 +92,14 @@ Please find out [**past solutions**](/blog/guest-contribution) by respected **gu
 
 You are given a string `$S` of size `$N`.
 
-You are also given swap count `$C` and offset `$O` such that $C >= 1, $O >= 1 and $C + $O <= $N.
+You are also given swap count `$C` and offset `$O` such that $C >= 1, $O >= 1, $C <= $O and $C + $O <= $N.
+
+<br>
+
+#### UPDATE: 2020-07-20 16:10:00
+#### Pete Houston suggested to put additional constraint i.e. `$C <= $O`. He presented the use case `$S = 'abcd'`, `$C = 2`, `$O = 1`.
+
+<br>
 
 Write a script to perform character swapping like below:
 
