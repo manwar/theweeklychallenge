@@ -143,7 +143,7 @@ Although it mostly dwells on his Raku solution, in his [blog](https://raku-musin
 
 ### [**Bartosz Jarzyna**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-068/brtastic/perl/ch-1.pl)
 
-**Bartotz** has outdone himself, creating an intricate system of interconnected first-order functions to do his work for him. Rather than collect flags signifying the locations of the 0s on traversal, he collects code references, which he calls 'rules' that will return the correct values on execution. To resolve the matrix we traverse again, evaluating these stored routines and inserting the new values.
+**Bartosz** has outdone himself, creating an intricate system of interconnected first-order functions to do his work for him. Rather than collect flags signifying the locations of the 0s on traversal, he collects code references, which he calls 'rules' that will return the correct values on execution. To resolve the matrix we traverse again, evaluating these stored routines and inserting the new values.
 
 I couldn't figure out how to pull out just a piece of this mosaic as a sample, so here's the bulk of it in all its functional self-reflexive glory. Things to notice are that the subroutines have subroutines, and the the ```make_rule()``` routine, being generic, doesn't really belong encapsulated in with the other task-specific ```zero_matrix()``` stuff so it rests outside. Oh, and `transform_forth()` is applied before `transform_back()`, in case that doesn't make sense.
 
