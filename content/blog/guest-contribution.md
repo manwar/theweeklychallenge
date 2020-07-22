@@ -1,6 +1,6 @@
 ---
 title: "Perl Weekly Challenge - Guest Contributions"
-date: 2020-07-20T00:00:00+00:00
+date: 2020-07-22T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -17,6 +17,8 @@ Please find below guest contributions.
 <br>
 
 ##### **Ulrich Rieke** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-070/ulrich-rieke/cpp/ch-1.cpp) in **C++**.
+
+##### **Walt Mankowski** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-070/walt-mankowski/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-070/walt-mankowski/python/ch-2.py) in **Python**.
 
 ----
 ## [Perl Weekly Challenge - 069](/blog/perl-weekly-challenge-069)
