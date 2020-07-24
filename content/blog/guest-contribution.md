@@ -72,6 +72,8 @@ Please find below guest contributions.
 ## [Perl Weekly Challenge - 066](/blog/perl-weekly-challenge-066)
 <br>
 
+##### **Mohammad S Anwar** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-066/mohammad-anwar/swift/ch-1.swift) in **Swift**.
+
 ##### **Steven Wilson** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-066/steven-wilson/rust/ch-1.rs) in **Rust**.
 
 ##### **Walt Mankowski** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-066/walt-mankowski/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-066/walt-mankowski/python/ch-2.py) in **Python**.
