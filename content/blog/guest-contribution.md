@@ -1,14 +1,14 @@
 ---
 title: "Perl Weekly Challenge - Guest Contributions"
-date: 2020-07-25T00:00:00+00:00
+date: 2020-07-26T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
 author: Mohammad S Anwar
-tags: ["APL", "Bash", "C", "C++", "Go", "Haskell", "Idris", "Javascript", "Node", "Python", "Postscript", "Prolog", "R", "Ruby", "Rust", "Swift", "HTML"]
+tags: ["APL", "Bash", "C", "C++", "Go", "Haskell", "Idris", "Javascript", "Lisp", "Node", "Python", "Postscript", "Prolog", "R", "Ruby", "Rust", "Swift", "HTML"]
 ---
 
-As you know, **"Perl Weekly Challenge"**, primarily focus on **Perl** and **Raku**. During the **Week #018**, we received the solution to **["Perl Weekly Challenge - 018"](/blog/perl-we$ekly-challenge-018)** by **Orestis Zekai** in **Python**. It was a pleasant surprise to receive solution in something other than **Perl** and **Raku**. Ever since regular team members also started contributing in other languages like **APL**, **Bash**, **C**, **C++**, **Go**, **Haskell**, **Idris**, **Javascript**, **Node**, **Postscript**, **Prolog**, **R**, **Ruby**, **Rust**, **Swift** and **HTML**.
+As you know, **"Perl Weekly Challenge"**, primarily focus on **Perl** and **Raku**. During the **Week #018**, we received the solution to **["Perl Weekly Challenge - 018"](/blog/perl-we$ekly-challenge-018)** by **Orestis Zekai** in **Python**. It was a pleasant surprise to receive solution in something other than **Perl** and **Raku**. Ever since regular team members also started contributing in other languages like **APL**, **Bash**, **C**, **C++**, **Go**, **Haskell**, **Idris**, **Javascript**, **Lisp**, **Node**, **Postscript**, **Prolog**, **R**, **Ruby**, **Rust**, **Swift** and **HTML**.
 
 Please find below guest contributions.
 
@@ -17,6 +17,8 @@ Please find below guest contributions.
 <br>
 
 ##### **Arne Sommer** shared solutions to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-070/arne-sommer/node/ch-2.js) in **Node**.
+
+##### **Cheok-Yin Fung** shared solutions to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-070/cheok-yin-fung/common-lisp/ch-2.lsp) in **Lisp**.
 
 ##### **Mohammad S Anwar** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-070/mohammad-anwar/swift/ch-1.swift) in **Swift**.
 
