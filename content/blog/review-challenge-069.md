@@ -36,13 +36,11 @@ I'm always curious as to what the people think of these efforts. Everyone here a
 
 ---
 
-## •   &nbsp;  &nbsp;  &nbsp;   [TASK #1](#PWC069TASK1)       &nbsp;  &nbsp;  &nbsp;   •   &nbsp;  &nbsp;  &nbsp;   [TASK #2](#PWC069TASK2)   &nbsp;  &nbsp;  &nbsp;       •   &nbsp;  &nbsp;  &nbsp;   [BLOGS](#PWC069BLOGS)    &nbsp;  &nbsp;  &nbsp;       •
+# •   &nbsp;  &nbsp;  &nbsp;   [TASK #1](#PWC069TASK1)       &nbsp;  &nbsp;  &nbsp;   •   &nbsp;  &nbsp;  &nbsp;   [TASK #2](#PWC069TASK2)   &nbsp;  &nbsp;  &nbsp;       •   &nbsp;  &nbsp;  &nbsp;   [BLOGS](#PWC069BLOGS)    &nbsp;  &nbsp;  &nbsp;       •
 
 ---
 
-{#PWC069TASK1}
-
-# TASK #1 › Strobogrammatic Number
+# TASK #1 › Strobogrammatic Number {#PWC069TASK1}
 A strobogrammatic number is a number that looks the same
 when looked at upside down.
 
@@ -63,7 +61,7 @@ One of the first things to notice about strobogrammatic numbers is how much they
 
 The digit 1 was mostly accepted but not universally. It's a funny case, because of that short stroke at the top. It isn't technically a serif, per se, and is usually found in examples from sans serif fonts. But nor is is strictly required in constructing the number, and is often omitted by fonts, leaving just the body stroke. I can't seem to find a proper name for this typographical figure, and put it in the same class as crossing one's sevens and slashing zeros. I believe this is because 1, like 0, is bound by outside forces to distinguish itself from a similar alphabetic character, in this case the lower case L, and that type designers must allow for this to avoid confusion. I notice that sometimes even a vestige of the serif at the bottom of the stroke sometimes survives on sans serif fonts, for, I believe again, this same reason. I myself chose to consider the optional nature of this stroke as indicating it was a flourish, non-essential, and as such this justified including the digit. Others did not. I can see it both ways.
 
-Several people noticed that on a 7-segment LED display the 2 and 5 digits seemed to reverse, but only [**Arne Sommer**](#ARNESOMMER1) implemented it as a command line option.
+Several people noticed that on a 7-segment LED display the 2 and 5 digits seemed to reverse, but only [**Arne Sommer**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-069/arne-sommer/perl/ch-1.pl) implemented it as a command line option.
 
 One last note, I said several people noticed 2 and 5, from the 7-segment displays of a bygone era. When you think about it, it's impressive how the human brain can manipulate familiar text shapes around when reading, allowing us to read vertical book spines, or upside down documents, or even things, if sufficiently simple, reflected in a mirror. All this happens automatically, and your brain just reads it, without having to explain exactly what it did to get there. Such is the case with 2 and 5. I myself thought they mapped to each other when turned upside down. It was obvious. Every other person who commented did this too. But the thing is, they don't. They map to themselves. Try it. They get mapped to each other when reflected in a mirror, but that's not what we're doing here. So were they to be included, they should be be grouped with 1, 0 and 8, not 6 and 9. I find this case of mental shenanigans fascinating, much like an optical illusion, which I suppose it is.
 
@@ -90,7 +88,8 @@ I like the way he's rolled digit validation in with the translation function her
 [**Laurent Rosenfeld**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-069/laurent-rosenfeld/perl/ch-1.pl) also took this method. Why not keep it simple?
 
 Both
-[**Arne Sommer**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-069/arne-sommer/perl/ch-1.pl) {#ARNESOMMER1} and
+
+[**Arne Sommer**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-069/arne-sommer/perl/ch-1.pl) and
 [**Ulrich Rieke**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-069/ulrich-rieke/perl/ch-1.pl) do something very similar, first converting to an array so they can use `map` and then stringifying again using `join` before doing the comparison.
 
 However, it wasn't necessary to reverse the string, alternately one could reverse the act of examining it.
@@ -465,10 +464,7 @@ sub _generate_number ($$) {
 
 ---
 
-
-{#PWC069TASK2}
-
-# TASK #2 › 0/1 String
+# TASK #2 › 0/1 String {#PWC069TASK2}
 
 A 0/1 string is a string in which every character is either 0 or 1.
 
@@ -769,35 +765,53 @@ sub nextseq {
 
 ***( don't think,  just do it ... )***
 
-**Andrew Shitov**
- * [Raku challenge Week 69, issue 1 &#8211; Andrew Shitov](https://andrewshitov.com/2020/07/13/raku-challenge-week-69-issue-1/) ( *Raku* )
- * [Raku challenge Week 69, issue 2 &#8211; Andrew Shitov](https://andrewshitov.com/2020/07/13/raku-challenge-week-69-issue-2/) ( *Raku* )
+### Andrew Shitov
+#### [Raku challenge Week 69, issue 1 &#8211; Andrew Shitov](https://andrewshitov.com/2020/07/13/raku-challenge-week-69-issue-1/) (*Raku*)
+#### [Raku challenge Week 69, issue 2 &#8211; Andrew Shitov](https://andrewshitov.com/2020/07/13/raku-challenge-week-69-issue-2/) (*Raku*)
 
-**Arne Sommer**
- * [Binary Strobe with Raku & Perl](https://raku-musings.com/binary-strobe.html) ( *Perl* )
+<br>
 
-**Colin Crain**
- * [Strobelight: One-Zero-One-Zero &#8211; Programming Excursions in Perl and Raku](https://colincrain.wordpress.com/2020/07/18/strobelight-one-zero-one-zero/) ( *Perl* )
+### Arne Sommer
+#### [Binary Strobe with Raku & Perl](https://raku-musings.com/binary-strobe.html) (*Perl*)
 
-**Javier Luque**
- * [PERL WEEKLY CHALLENGE &#8211; 069 &#8211; Perl Weekly Challenge](https://perlchallenges.wordpress.com/2020/07/13/perl-weekly-challenge-069/) ( *Perl* )
+<br>
 
-**Laurent Rosenfeld**
- * [Perl Weekly Challenge 69:  Strobogrammatic Numbers and 0/1 Strings ](http://blogs.perl.org/users/laurent_r/2020/07/perl-weekly-challenge-69-strobogrammatic-numbers-and-01-strings.html) ( *Perl* )
+### Colin Crain
+#### [Strobelight: One-Zero-One-Zero &#8211; Programming Excursions in Perl and Raku](https://colincrain.wordpress.com/2020/07/18/strobelight-one-zero-one-zero/) (*Perl*)
 
-**Luca Ferrari**
- * [Perl Weekly Challenge 69: Strobogrammatic and 0-1 numbers – Luca Ferrari ](https://fluca1978.github.io/2020/07/13/PerlWeeklyChallenge69.html#task1) ( *Raku* )
+<br>
 
-**Mohammad S Anwar**
- * [Perl Weekly Challenge - 069 (Task #1: Perl) - YouTube](https://www.youtube.com/watch?v=GZNgsB6Bplc) ( *Perl* )
- * [Perl Weekly Challenge - 069 (Task #2: Perl) - YouTube](https://www.youtube.com/watch?v=Sp7dko3Q5sQ) ( *Perl* )
- * [BLOG: The Weekly Challenge #069 | Mohammad S Anwar [blogs.perl.org]](http://blogs.perl.org/users/mohammad_s_anwar/2020/07/blog-the-weekly-challenge-069.html) ( *Perl* )
+### Javier Luque
+#### [PERL WEEKLY CHALLENGE &#8211; 069 &#8211; Perl Weekly Challenge](https://perlchallenges.wordpress.com/2020/07/13/perl-weekly-challenge-069/) (*Perl*)
 
-**Roger Bell_West**
- * [RogerBW&#39;s Blog: Perl Weekly Challenge 69: invertible numbers and very long strings](https://blog.firedrake.org/archive/2020/07/Perl_Weekly_Challenge_69__invertible_numbers_and_very_long_strings.html) ( *Perl* )
+<br>
 
-**Shahed Nooshmand**
- * [Perl Weekly Challenge: week 69 ― Rafraîchissoir](https://rafraichisso.ir/2020/07/18/pwc-69) ( *Raku* )
+### Laurent Rosenfeld
+#### [Perl Weekly Challenge 69:  Strobogrammatic Numbers and 0/1 Strings ](http://blogs.perl.org/users/laurent_r/2020/07/perl-weekly-challenge-69-strobogrammatic-numbers-and-01-strings.html) (*Perl*)
 
-**Simon Green**
- * [Perl Weekly Challenge 069](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-069/sgreen/README.md) ( *Perl* )
+<br>
+
+### Luca Ferrari
+#### [Perl Weekly Challenge 69: Strobogrammatic and 0-1 numbers – Luca Ferrari ](https://fluca1978.github.io/2020/07/13/PerlWeeklyChallenge69.html#task1) (*Raku*)
+
+<br>
+
+### Mohammad S Anwar
+#### [Perl Weekly Challenge - 069 (Task #1: Perl) - YouTube](https://www.youtube.com/watch?v=GZNgsB6Bplc) (*Perl*)
+#### [Perl Weekly Challenge - 069 (Task #2: Perl) - YouTube](https://www.youtube.com/watch?v=Sp7dko3Q5sQ) (*Perl*)
+#### [BLOG: The Weekly Challenge #069](http://blogs.perl.org/users/mohammad_s_anwar/2020/07/blog-the-weekly-challenge-069.html) (*Perl*)
+
+<br>
+
+### Roger Bell_West
+#### [RogerBW&#39;s Blog: Perl Weekly Challenge 69: invertible numbers and very long strings](https://blog.firedrake.org/archive/2020/07/Perl_Weekly_Challenge_69__invertible_numbers_and_very_long_strings.html) (*Perl*)
+
+<br>
+
+### Shahed Nooshmand
+#### [Perl Weekly Challenge: week 69 ― Rafraîchissoir](https://rafraichisso.ir/2020/07/18/pwc-69) (*Raku*)
+
+<br>
+
+### Simon Green
+#### [Perl Weekly Challenge 069](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-069/sgreen/README.md) (*Perl*)
