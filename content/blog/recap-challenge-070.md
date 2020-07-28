@@ -43,7 +43,7 @@ These members shared solutions to both tasks in **Perl** and **Raku** as well as
 #### 3) Jaldhar H. Vyas
 #### 4) Javier Luque
 #### 5) Laurent Rosenfeld
-#### 7) Mohammad S Anwar
+#### 6) Mohammad S Anwar
 #### 7) Roger Bell_West
 
 <br>
@@ -52,9 +52,9 @@ These members shared solutions to both tasks in **Perl** and **Raku** as well as
 
 ***
 
-The total contributions in the **Week #070** is **78**, a jump of `18%` compare to previous week. Well done **Team PWC**. I would like to thank **Raku** contributors for catching up.
+The total contributions in the **Week #070** is **90**, a jump of `12.5%` compare to previous week. Well done **Team PWC**. I would like to thank **Raku** contributors for catching up.
 
-#### PERL: 40
+#### PERL: 42
 #### RAKU: 32
 #### BLOG: 16
 
@@ -189,6 +189,14 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 <br>
 
 # PERL SOLUTIONS
+
+***
+
+### Bob Lied
+![Bob Lied](/images/team/bob-lied.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-070/bob-lied/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-070/bob-lied/perl/ch-2.pl)]
 
 ***
 
