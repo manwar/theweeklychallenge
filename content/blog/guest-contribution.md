@@ -1,6 +1,6 @@
 ---
 title: "Perl Weekly Challenge - Guest Contributions"
-date: 2020-07-28T00:00:00+00:00
+date: 2020-07-29T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -17,6 +17,8 @@ Please find below guest contributions.
 <br>
 
 ##### **Mohammad S Anwar** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-071/mohammad-anwar/swift/ch-1.swift) in **Swift**.
+
+##### **Wanderdoc** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-071/wanderdoc/R/ch-1.R)  in **R**.
 
 ----
 ## [Perl Weekly Challenge - 070](/blog/perl-weekly-challenge-070)
