@@ -1,6 +1,6 @@
 ---
 title: "Perl Weekly Challenge - Guest Contributions"
-date: 2020-07-29T00:00:00+00:00
+date: 2020-07-30T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -16,6 +16,8 @@ Please find below guest contributions.
 ## [Perl Weekly Challenge - 071](/blog/perl-weekly-challenge-071)
 <br>
 
+##### **Dave Jacoby** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-071/dave-jacoby/node/ch-1.js) in **Node**.
+
 ##### **Mohammad S Anwar** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-071/mohammad-anwar/swift/ch-1.swift) in **Swift**.
 
 ##### **Walt Mankowski** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-071/walt-mankowski/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-071/walt-mankowski/c/ch-2.c) in **C**.
@@ -28,7 +30,7 @@ Please find below guest contributions.
 ## [Perl Weekly Challenge - 070](/blog/perl-weekly-challenge-070)
 <br>
 
-##### **Arne Sommer** shared solutions to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-070/arne-sommer/node/ch-2.js) in **Node**.
+##### **Arne Sommer** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-070/arne-sommer/node/ch-2.js) in **Node**.
 
 ##### **Cheok-Yin Fung** shared solutions to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-070/cheok-yin-fung/common-lisp/ch-2.lsp) in **Lisp**.
 
