@@ -22,6 +22,8 @@ Please find below guest contributions.
 
 ##### **Mohammad S Anwar** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-071/mohammad-anwar/swift/ch-1.swift) in **Swift**.
 
+##### **Richard Park** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-071/richard-park/apl/ch-1.aplf) in **APL**.
+
 ##### **Walt Mankowski** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-071/walt-mankowski/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-071/walt-mankowski/c/ch-2.c) in **C**.
 
 ##### **Walt Mankowski** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-071/walt-mankowski/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-071/walt-mankowski/python/ch-2.py) in **Python**.
