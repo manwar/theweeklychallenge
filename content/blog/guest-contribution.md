@@ -18,6 +18,10 @@ Please find below guest contributions.
 
 ##### **Mohammad S Anwar** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/mohammad-anwar/swift/ch-1.swift) in **Swift**.
 
+##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/ulrich-rieke/cpp/ch-1.cpp) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/ulrich-rieke/cpp/ch-2.cpp) in **C++**.
+
+##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/ulrich-rieke/haskell/ch-1.hs) in **Haskell**.
+
 ----
 ## [Perl Weekly Challenge - 071](/blog/perl-weekly-challenge-071)
 <br>
