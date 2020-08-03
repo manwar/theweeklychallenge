@@ -1,6 +1,6 @@
 ---
 title: "Perl Weekly Challenge - Guest Contributions"
-date: 2020-08-02T00:00:00+00:00
+date: 2020-08-03T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -13,10 +13,16 @@ As you know, **"Perl Weekly Challenge"**, primarily focus on **Perl** and **Raku
 Please find below guest contributions.
 
 ----
+## [Perl Weekly Challenge - 072](/blog/perl-weekly-challenge-072)
+<br>
+
+##### **Mohammad S Anwar** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/mohammad-anwar/swift/ch-1.swift) in **Swift**.
+
+----
 ## [Perl Weekly Challenge - 071](/blog/perl-weekly-challenge-071)
 <br>
 
-##### **Cheok-Yin Fung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-071/cheok-yin-fung/common-lisp/ch-1.lsp) in **Lisp**.
+##### **Cheok-Yin Fung** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-071/cheok-yin-fung/common-lisp/ch-1.lsp) in **Lisp**.
 
 ##### **Dave Jacoby** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-071/dave-jacoby/node/ch-1.js) in **Node**.
 
@@ -36,7 +42,7 @@ Please find below guest contributions.
 
 ##### **Arne Sommer** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-070/arne-sommer/node/ch-2.js) in **Node**.
 
-##### **Cheok-Yin Fung** shared solutions to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-070/cheok-yin-fung/common-lisp/ch-2.lsp) in **Lisp**.
+##### **Cheok-Yin Fung** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-070/cheok-yin-fung/common-lisp/ch-2.lsp) in **Lisp**.
 
 ##### **Mohammad S Anwar** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-070/mohammad-anwar/swift/ch-1.swift) in **Swift**.
 
