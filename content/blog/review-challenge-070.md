@@ -25,11 +25,11 @@ For context, before we begin, you may wish to revisit either of the pages for th
 
 ### Getting in Touch with Us
 
-<a href="mailto:pwc.perfectwave.com"><img src="http://ry.ca/misc/Email.svg" height="50" width="50"> Email</a> › Please email me (Colin) with any feedback, notes, clarifications or whatnot about this review.
+<a href="mailto:pwc.perfectwave.com"><img src="/images/blog/Email.svg" height="50" width="50"> Email</a> › Please email me (Colin) with any feedback, notes, clarifications or whatnot about this review.
 
-<a href="https://github.com/manwar/perlweeklychallenge"><img src="http://ry.ca/misc/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request to us for any issues you may find with this page.
+<a href="https://github.com/manwar/perlweeklychallenge"><img src="/images/blog/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request to us for any issues you may find with this page.
 
-<a href="https://twitter.com/perlwchallenge"><img src="http://ry.ca/misc/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!
+<a href="https://twitter.com/perlwchallenge"><img src="/images/blog/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!
 
 I'm always curious as to what the people think of these efforts. Everyone here at the PWC would like to hear any feedback you'd like to give.
 
