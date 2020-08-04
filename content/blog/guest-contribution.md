@@ -26,6 +26,8 @@ Please find below guest contributions.
 
 ##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/ulrich-rieke/haskell/ch-1.hs) in **Haskell**.
 
+##### **Wanderdoc** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/wanderdoc/R/ch-1.R) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/wanderdoc/R/ch-2.R) in **R**.
+
 ----
 ## [Perl Weekly Challenge - 071](/blog/perl-weekly-challenge-071)
 <br>
