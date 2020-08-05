@@ -41,11 +41,11 @@ These members shared solutions to both tasks in **Perl** and **Raku** as well as
 
 ***
 
-The total contributions in the **Week #071** is **73**. Well done **Team PWC**. I would like to thank **Raku** contributors for catching up.
+The total contributions in the **Week #071** is **75**. Well done **Team PWC**. I would like to thank **Raku** contributors for catching up.
 
 #### PERL: 31
 #### RAKU: 30
-#### BLOG: 12
+#### BLOG: 14
 
 <br>
 
@@ -135,7 +135,7 @@ Changes to the ranking in the **Centurion Club** last week listed below:
 #### 12) Ryan Thompson (**278**)
 #### 13) Simon Proctor (**272**)
 #### 14) Dave Jacoby (**270**)
-#### 15) Mohammad S Anwar (**270**)
+#### 15) Mohammad S Anwar (**274**)
 #### 16) Duncan C. White (**246**)
 #### 17) Andrezgz (**230**)
 #### 18) Luca Ferrari (**228**)
@@ -381,6 +381,8 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 [[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-071/mohammad-anwar/raku/ch-1.raku)]
 [[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-071/mohammad-anwar/raku/ch-2.raku)]
 [[**BLOG #1**](https://perlweeklychallenge.org/blog/weekly-challenge-071/)]
+[[**BLOG #2**](https://www.youtube.com/watch?v=To7KuXBGg0s)]
+[[**BLOG #3**](https://www.youtube.com/watch?v=bIwfVTwKa4s)]
 
 ***
 
