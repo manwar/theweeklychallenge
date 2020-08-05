@@ -146,6 +146,8 @@ Please find below guest contributions.
 ## [Perl Weekly Challenge - 063](/blog/perl-weekly-challenge-063)
 <br>
 
+##### **Mohammad S Anwar** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-063/mohammad-anwar/swift/ch-2.swift) in **Swift**.
+
 ##### **Richard Park** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-063/richard-park/apl/ch-1.aplf) and  [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-062/richard-park/apl/ch-2.aplf) in **APL**.
 
 ##### **Sangeet Kar** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-063/sangeet-kar/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-063/sangeet-kar/python/ch-2.py) in **Python**.
