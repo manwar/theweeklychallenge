@@ -334,9 +334,9 @@ sub create_linked_list {
     my $tail = $node;
 
     while (@$list) {
-        my $node = Node->new(v => pop @$list);
-        $tail->p($node);
-        $tail = $node;
+        my $_node = Node->new(v => pop @$list);
+        $tail->p($_node);
+        $tail = $_node;
     }
 
     print $node->show, "\n";
@@ -416,9 +416,9 @@ sub create-linked-list(Str $list is copy) {
     my $tail = $node;
 
     while @list {
-        my $node = Node.new(v => @list.pop.Int);
-        $tail.p = $node;
-        $tail = $node;
+        my $_node = Node.new(v => @list.pop.Int);
+        $tail.p = $_node;
+        $tail = $_node;
     }
 
     $node.show.say;
@@ -556,9 +556,9 @@ sub create_linked_list {
     my $tail = $node;
 
     while (@$list) {
-        my $node = Node->new(v => pop @$list);
-        $tail->p($node);
-        $tail = $node;
+        my $_node = Node->new(v => pop @$list);
+        $tail->p($_node);
+        $tail = $_node;
     }
 
     $node->show->say;
