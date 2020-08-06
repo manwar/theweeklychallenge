@@ -5,10 +5,10 @@ description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
 author: Mohammad S Anwar
-tags: ["APL", "Bash", "C", "C++", "Go", "Haskell", "Idris", "Java", "Javascript", "Lisp", "Node", "Python", "Postscript", "Prolog", "R", "Ruby", "Rust", "Swift", "HTML"]
+tags: ["APL", "Awk", "Bash", "C", "C++", "Go", "Haskell", "Idris", "Java", "Javascript", "Lisp", "Node", "Python", "Postscript", "Prolog", "R", "Ruby", "Rust", "Swift", "HTML"]
 ---
 
-As you know, **"Perl Weekly Challenge"**, primarily focus on **Perl** and **Raku**. During the **Week #018**, we received the solution to **["Perl Weekly Challenge - 018"](/blog/perl-we$ekly-challenge-018)** by **Orestis Zekai** in **Python**. It was a pleasant surprise to receive solution in something other than **Perl** and **Raku**. Ever since regular team members also started contributing in other languages like **APL**, **Bash**, **C**, **C++**, **Go**, **Haskell**, **Idris**, **Java**, **Javascript**, **Lisp**, **Node**, **Postscript**, **Prolog**, **R**, **Ruby**, **Rust**, **Swift** and **HTML**.
+As you know, **"Perl Weekly Challenge"**, primarily focus on **Perl** and **Raku**. During the **Week #018**, we received the solution to **["Perl Weekly Challenge - 018"](/blog/perl-we$ekly-challenge-018)** by **Orestis Zekai** in **Python**. It was a pleasant surprise to receive solution in something other than **Perl** and **Raku**. Ever since regular team members also started contributing in other languages like **APL**, **Awk**, **Bash**, **C**, **C++**, **Go**, **Haskell**, **Idris**, **Java**, **Javascript**, **Lisp**, **Node**, **Postscript**, **Prolog**, **R**, **Ruby**, **Rust**, **Swift** and **HTML**.
 
 Please find below guest contributions.
 
@@ -21,6 +21,8 @@ Please find below guest contributions.
 ##### **Myoungjin Jeon** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/jeongoon/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/jeongoon/haskell/ch-2.hs) in **Haskell**.
 
 ##### **Myoungjin Jeon** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/jeongoon/common-lisp/ch-1.lsp) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/jeongoon/common-lisp/ch-2.lsp) in **Lisp**.
+
+##### **Pete Houston** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/pete-houston/awk/ch-1.awk) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/pete-houston/awk/ch-2.awk) in **Awk**.
 
 ##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/ulrich-rieke/cpp/ch-1.cpp) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/ulrich-rieke/cpp/ch-2.cpp) in **C++**.
 
