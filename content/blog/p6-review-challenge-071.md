@@ -224,7 +224,7 @@ In the case your list only keeps data and references to the next items, you can 
 
 To find the element to be removed, we need to scan the list again :-)
 
-This week’s task 2 is a relatively difficult task by itself, and it brought very different solutions. You can watch the review of all submitted solution in this long video: https://www.youtube.com/watch?v=-brg8AAucrY.
+This week’s task 2 is a relatively difficult task by itself, and it brought very different solutions. You can watch the review of all submitted solution in this long video: https://www.youtube.com/watch?v=8RW2FHK1GSU.
 
 As a bonus track, examine [the solution by Ben Davies](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-071/ben-davies/raku/ch-2.raku) to see how differently a Raku program can look like if you use the elements for making the code as strict as possible, which you usually omit in a dynamic language.
 
