@@ -14,11 +14,11 @@ Welcome to the Perl review for Week 067 of the Weekly Challenge! For a quick ove
 
 ## Getting in Touch
 
-<a href="mailto:pwc.perfectwave@gmail.com"><img src="http://ry.ca/misc/Email.svg" height="50" width="50"> Email</a> › Email me (Colin) with any feedback about this review.
+<a href="mailto:pwc.perfectwave@gmail.com"><img src="/images/blog/Email.svg" height="50" width="50"> Email</a> › Email me (Colin) with any feedback about this review.
 
-<a href="https://github.com/manwar/perlweeklychallenge"><img src="http://ry.ca/misc/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request for any issues you may find with this page.
+<a href="https://github.com/manwar/perlweeklychallenge"><img src="/images/blog/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request for any issues you may find with this page.
 
-<a href="https://twitter.com/perlwchallenge"><img src="http://ry.ca/misc/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!
+<a href="https://twitter.com/perlwchallenge"><img src="/images/blog/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!
 
 We'd greatly appreciate any feedback you'd like to give.
 
