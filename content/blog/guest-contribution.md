@@ -16,6 +16,8 @@ Please find below guest contributions.
 ## [Perl Weekly Challenge - 072](/blog/perl-weekly-challenge-072)
 <br>
 
+##### **Cheok-Yin Fung** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/cheok-yin-fung/common-lisp/ch-1.lsp) in **Lisp**.
+
 ##### **Lance Wicks** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/lance-wicks/elm/src/Main.elm) in **Elm**.
 
 ##### **Mohammad S Anwar** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/mohammad-anwar/swift/ch-1.swift) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/mohammad-anwar/swift/ch-2.swift) in **Swift**.
