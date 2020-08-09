@@ -1,6 +1,6 @@
 ---
 title: "Perl Weekly Challenge - Guest Contributions"
-date: 2020-08-07T00:00:00+00:00
+date: 2020-08-09T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -81,6 +81,8 @@ Please find below guest contributions.
 ##### **Andrew Shitov** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-069/ash/cpp/ch-2.cpp) in **C++**.
 
 ##### **Mohammad S Anwar** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-069/mohammad-anwar/swift/ch-1.swift) in **Swift**.
+
+##### **Myoungjin Jeon** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-069/jeongoon/haskell/ch-1.hs) in **Haskell**.
 
 ##### **Richard Park** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-069/richard-park/apl/ch-1.aplf) and  [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-069/richard-park/apl/ch-2.aplf) in **APL**.
 
