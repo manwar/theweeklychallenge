@@ -14,7 +14,7 @@ tags: ["Perl", "Raku"]
 
 Welcome back **Adam Russell** after short break. Thanks for sharing not just one but two blogs.
 
-I would also like thank to **Lance Wicks** for the regular [**live session**](https://www.twitch.tv/videos/700396743?t=0h0m16s).
+I would also like to thank **Lance Wicks** for the regular [**live session**](https://www.twitch.tv/videos/700396743?t=0h0m16s).
 
 **Scimon Proctor** also wrote two blogs, one for each task. Thanks for your support and encouragement.
 
