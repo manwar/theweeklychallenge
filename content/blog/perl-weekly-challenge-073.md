@@ -164,7 +164,7 @@ Write a script to create an array of min from each sliding window.
 
 You are given an array of integers `@A`.
 
-Write a script to create an array that represents the smaller element to the left of each corresponding index. If none found then use 0.
+Write a script to create an array that represents the smallest element to the left of each corresponding index. If none found then use 0.
 
 ## Example 1
 
