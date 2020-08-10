@@ -1,16 +1,22 @@
 ---
 title: "Perl Weekly Challenge - Guest Contributions"
-date: 2020-08-09T00:00:00+00:00
+date: 2020-08-10T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
 author: Mohammad S Anwar
-tags: ["APL", "Awk", "Bash", "C", "C++", "Elm", "Go", "Haskell", "Idris", "Java", "Javascript", "Lisp", "Node", "Python", "Postscript", "Prolog", "R", "Ruby", "Rust", "Swift", "HTML"]
+tags: ["APL", "Awk", "Bash", "C", "C++", "Elm", "Go", "Haskell", "HTML", "Idris", "Java", "Javascript", "Lisp", "Node", "Python", "Postscript", "Prolog", "R", "Ruby", "Rust", "Swift", "Tcl"]
 ---
 
-As you know, **"Perl Weekly Challenge"**, primarily focus on **Perl** and **Raku**. During the **Week #018**, we received the solution to **["Perl Weekly Challenge - 018"](/blog/perl-we$ekly-challenge-018)** by **Orestis Zekai** in **Python**. It was a pleasant surprise to receive solution in something other than **Perl** and **Raku**. Ever since regular team members also started contributing in other languages like **APL**, **Awk**, **Bash**, **C**, **C++**, **Elm**, **Go**, **Haskell**, **Idris**, **Java**, **Javascript**, **Lisp**, **Node**, **Postscript**, **Prolog**, **R**, **Ruby**, **Rust**, **Swift** and **HTML**.
+As you know, **"Perl Weekly Challenge"**, primarily focus on **Perl** and **Raku**. During the **Week #018**, we received the solution to **["Perl Weekly Challenge - 018"](/blog/perl-we$ekly-challenge-018)** by **Orestis Zekai** in **Python**. It was a pleasant surprise to receive solution in something other than **Perl** and **Raku**. Ever since regular team members also started contributing in other languages like **APL**, **Awk**, **Bash**, **C**, **C++**, **Elm**, **Go**, **Haskell**, **HTML**, **Idris**, **Java**, **Javascript**, **Lisp**, **Node**, **Postscript**, **Prolog**, **R**, **Ruby**, **Rust**, **Swift** and **Tcl**.
 
 Please find below guest contributions.
+
+----
+## [Perl Weekly Challenge - 073](/blog/perl-weekly-challenge-073)
+<br>
+
+##### **Shawn Wagner** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-073/shawn-wagner/tcl/ch-1.tcl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-073/shawn-wagner/tcl/ch-2.tcl) in **Tcl**.
 
 ----
 ## [Perl Weekly Challenge - 072](/blog/perl-weekly-challenge-072)
