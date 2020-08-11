@@ -173,11 +173,11 @@ Write a script to create an array that represents the smallest element to the le
 
 <br>
 
-#### For index 0, the smallest number to the left of $A[0] is none, so we put 0.
-#### For index 1, the smallest number to the left of $A[1] in (7),          is 7     so we put 7.
-#### For index 2, the smallest number to the left of $A[2] in (7, 8)        is none, so we put 0.
-#### For index 3, the smallest number to the left of $A[3] in (7, 8, 3)     is 3,    so we put 3.
-#### For index 4, the smallest number to the left of $A[4] is (7, 8, 3, 12) is 3,    so we put 3 again.
+#### For index 0, the smallest number to the left of $A[0] i.e. 7 is none, so we put 0.
+#### For index 1, the smallest number to the left of $A[1] as compare to 8, in (7) is 7 so we put 7.
+#### For index 2, the smallest number to the left of $A[2] as compare to 3, in (7, 8) is none, so we put 0.
+#### For index 3, the smallest number to the left of $A[3] as compare to 12, in (7, 8, 3) is 3, so we put 3.
+#### For index 4, the smallest number to the left of $A[4] as compare to 10, in (7, 8, 3, 12) is 3, so we put 3 again.
 
 <br>
 
@@ -189,8 +189,8 @@ Write a script to create an array that represents the smallest element to the le
 <br>
 
 #### For index 0, the smallest number to the left of $A[0] is none, so we put 0.
-#### For index 1, the smallest number to the left of $A[1] in (4)    is 4, so we put 4.
-#### For index 2, the smallest number to the left of $A[2] in (4, 6) is 4, so we put 4 again.
+#### For index 1, the smallest number to the left of $A[1] as compare to 6, in (4) is 4, so we put 4.
+#### For index 2, the smallest number to the left of $A[2] as compare to 5, in (4, 6) is 4, so we put 4 again.
 
 ***
 
