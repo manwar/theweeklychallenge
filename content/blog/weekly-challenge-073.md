@@ -26,7 +26,7 @@ Having done **Raku** for some time now, I am getting the hang of it. In fact, I 
 
 > You really don't want to miss Andrew Shitov weekly review ...
 
-I have been coding in **Perl** for over **20 years** now but I noticed there is a clarity in my coding style, thanks to **"The Weekly Challenge"**. I have never liked my own code so much before. But now every time, I read my solution the weekly challenges, I fall in love again. Doing **unit test** every week with the regulary solution also made a big difference how I design my solution. Because I do unit test in **Raku**, I get so much ideas by doing weekly tasks in **Raku**.
+I have been coding in **Perl** for over **20 years** now but I noticed there is a clarity in my coding style, thanks to **"The Weekly Challenge"**. I have never liked my own code so much before. But now every time, I read my past solutions to the weekly challenge, I fall in love again. Doing **unit test** every week with the regulary solution also made a big difference how I design my solution. Because I do unit test in **Raku**, I get so much ideas by doing weekly tasks in **Raku**.
 
 If you are interested then please checkout my **Swift** solutions to this week tasks.
 
