@@ -318,10 +318,10 @@ done<span style="color:#f92672">-</span>testing;
     <span style="color:#66d9ef">print</span> $lines[$_] <span style="color:#66d9ef">for</span> <span style="color:#f92672">--</span>$a<span style="color:#f92672">..--</span>$b;
 }
 </code></pre></div><p>I don&rsquo;t get to work with file when it comes to <strong>Raku</strong>. I use the weekly challenge to keep practicing it. Use of <code>Empty</code> is elegant. Also <code>$file.IO</code> is such powerful statement.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">lines</span>-range(Str $file, Int $A, Int $B) {
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">lines</span>-range(Str $file, Int $A is copy, Int $B is copy) {
 
     <span style="color:#66d9ef">my</span> @lines <span style="color:#f92672">=</span> Empty;
-    <span style="color:#66d9ef">for</span> $A<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $B<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">-&gt;</span> $i {
+    <span style="color:#66d9ef">for</span> <span style="color:#f92672">--</span>$A <span style="color:#f92672">..</span> <span style="color:#f92672">--</span>$B <span style="color:#f92672">-&gt;</span> $i {
         @lines<span style="color:#f92672">.</span>push: $file<span style="color:#f92672">.</span>IO<span style="color:#f92672">.</span>lines[$i];
     }
 

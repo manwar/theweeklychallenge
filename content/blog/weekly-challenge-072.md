@@ -239,10 +239,10 @@ sub lines_range {
 I don't get to work with file when it comes to **Raku**. I use the weekly challenge to keep practicing it. Use of `Empty` is elegant. Also `$file.IO` is such powerful statement.
 
 ```perl6
-sub lines-range(Str $file, Int $A, Int $B) {
+sub lines-range(Str $file, Int $A is copy, Int $B is copy) {
 
     my @lines = Empty;
-    for $A-1 .. $B-1 -> $i {
+    for --$A .. --$B -> $i {
         @lines.push: $file.IO.lines[$i];
     }
 
