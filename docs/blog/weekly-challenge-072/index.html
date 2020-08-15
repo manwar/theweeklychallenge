@@ -307,15 +307,15 @@ done<span style="color:#f92672">-</span>testing;
     <span style="color:#66d9ef">my</span> ($file, $a, $b) <span style="color:#f92672">=</span> @_;
 
     die <span style="color:#e6db74">&#34;ERROR: Invalid file [$file].\n&#34;</span>     <span style="color:#66d9ef">unless</span> (<span style="color:#f92672">-</span>e $file <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">-</span>f _ <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">-</span>r _ <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">-</span>T _);
-    die <span style="color:#e6db74">&#34;ERROR: Missing A.\n&#34;</span>                <span style="color:#66d9ef">unless</span> defined $A;
-    die <span style="color:#e6db74">&#34;ERROR: Missing B.\n&#34;</span>                <span style="color:#66d9ef">unless</span> defined $B;
-    die <span style="color:#e6db74">&#34;ERROR: Invalid range [$A \- $B].\n&#34;</span> <span style="color:#66d9ef">unless</span> ($A <span style="color:#f92672">&lt;=</span> $B);
+    die <span style="color:#e6db74">&#34;ERROR: Missing A.\n&#34;</span>                <span style="color:#66d9ef">unless</span> defined $a;
+    die <span style="color:#e6db74">&#34;ERROR: Missing B.\n&#34;</span>                <span style="color:#66d9ef">unless</span> defined $b;
+    die <span style="color:#e6db74">&#34;ERROR: Invalid range [$a \- $b].\n&#34;</span> <span style="color:#66d9ef">unless</span> ($a <span style="color:#f92672">&lt;=</span> $b);
 
     open(<span style="color:#66d9ef">my</span> $F, <span style="color:#e6db74">&#34;&lt;&#34;</span>, $file) <span style="color:#f92672">||</span> die <span style="color:#e6db74">&#34;ERROR: Failed to open [$!]\n&#34;</span>;
     <span style="color:#66d9ef">my</span> @lines <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;$F&gt;</span>;
     close($F);
 
-    <span style="color:#66d9ef">print</span> $lines[$_] <span style="color:#66d9ef">for</span> $A<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$B<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">print</span> $lines[$_] <span style="color:#66d9ef">for</span> <span style="color:#f92672">--</span>$a<span style="color:#f92672">..--</span>$b;
 }
 </code></pre></div><p>I don&rsquo;t get to work with file when it comes to <strong>Raku</strong>. I use the weekly challenge to keep practicing it. Use of <code>Empty</code> is elegant. Also <code>$file.IO</code> is such powerful statement.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">lines</span>-range(Str $file, Int $A, Int $B) {
@@ -335,7 +335,7 @@ done<span style="color:#f92672">-</span>testing;
 <span style="color:#66d9ef">my</span> $A <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">1</span>];
 <span style="color:#66d9ef">my</span> $B <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">2</span>];
 
-<span style="color:#66d9ef">print</span> lines_range($F, $A, $B), <span style="color:#e6db74">&#34;\n&#34;</span>;
+lines_range($F, $A, $B);
 </code></pre></div><p>With <code>MAIN()</code> taking care of parameter validation, the one-liner body is enough to deal with the task.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">use</span> v6<span style="color:#f92672">.</span>d;
 
