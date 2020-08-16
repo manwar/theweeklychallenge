@@ -1,6 +1,6 @@
 ---
 title: "Perl Weekly Challenge - Guest Contributions"
-date: 2020-08-15T00:00:00+00:00
+date: 2020-08-16T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -66,7 +66,7 @@ Please find below guest contributions.
 
 ##### **Mohammad S Anwar** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-071/mohammad-anwar/java/Node.java) in **Java**.
 
-##### **Mohammad S Anwar** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-071/mohammad-anwar/swift/ch-1.swift) in **Swift**.
+##### **Mohammad S Anwar** shared solutions to  [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-071/mohammad-anwar/swift/ch-1.swift) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-071/mohammad-anwar/swift/ch-2.swift) in **Swift**.
 
 ##### **Richard Park** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-071/richard-park/apl/ch-1.aplf) in **APL**.
 
