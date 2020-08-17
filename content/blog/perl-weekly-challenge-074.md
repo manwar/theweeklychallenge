@@ -171,7 +171,7 @@ Write a script to find the majority element. If none found then print -1.
 
 You are given a string `$S`.
 
-Write a script to print the series of first non-repeating character for the given string. Print `#` if none found.
+Write a script to print the series of first non-repeating character (left -> right) for the given string. Print `#` if none found.
 
 ## Example 1
 
