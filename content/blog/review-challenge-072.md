@@ -67,7 +67,7 @@ There ended up being two basic approaches to the task: the direct approach, to c
 
 ## CALCULATING and COUNTING
 
-Most of the field calculated the fatorial and counted the zeros. I did; it seemed a good way to go about things. From there, that breaks down the problem into two processes right away: **compute** and **count**. Lets' look at each side.
+Most of the field calculated the fatorial and counted the zeros. I did; it seemed a good way to go about things. From there, that breaks down the problem into two processes right away: **compute** and **count**. Let's look at each side.
 
 ### Compute the Factorial
 
@@ -75,7 +75,9 @@ To compute the factorial, iteration was the most popular.
 
 Looping through and multiplying up the factorial has much to say for it for speed and simplicity, although I ran some tests and found my own recursive solution ran within a few percentage points as fast within even large sizes of *n*.
 
-Here is an example from [**Jaldhar H. Vyas**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/jaldhar-h-vyas/perl/ch-1.pl). It's simple, direct and to the point.
+Here is an example from
+[**Jaldhar H. Vyas**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/jaldhar-h-vyas/perl/ch-1.pl).
+It's simple, direct and to the point.
 
 ```perl
 my $factorial = 1;
@@ -84,7 +86,8 @@ for my $i (2 .. $N) {
 }
 ```
 
-The factorial is a classic problem used to demonstrate recursion, as it is so well suited to this approach, here demonstrated by [**Adam Russell**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/adam-russell/perl/ch-1.pl):
+The factorial is a classic problem used to demonstrate recursion, as it is so well suited to this approach, here demonstrated by
+[**Adam Russell**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/adam-russell/perl/ch-1.pl):
 
 ```perl
 sub factorial{
@@ -106,11 +109,12 @@ reduce { $a * $b } 1 .. $n;
 ```
 
 who decided to go out and make a separate Moo module to hold his logic;
-[**Dave Jacoby**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/dave-jacoby/perl/ch-1.pl) used an identical `reduce` as well.
+[**Dave Jacoby**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/dave-jacoby/perl/ch-1.pl)
+used an identical `reduce` as well.
 
 I like `reduce`. It get the job done in a broad range of situations, and can be used to create a gamut of more specific operations, like `min`, `max` or `sum`. All of these functional listwise operators relate to the same core mathematical concepts, so as `sum` can be constructed from `reduce`, even `reduce` can be constructed in turn from parts. For example,
 
-### [**Ulrich Rieke**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/ulrich-rieke/perl/ch-1.pl)
+[**Ulrich Rieke**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/ulrich-rieke/perl/ch-1.pl)
 
 does the same thing using `map` to apply the function `{$product *= $_}`, while wrangling his own accumulator, `$product`:
 
@@ -122,12 +126,15 @@ Rooted in Abstract Algebra and Container Theory, with functional programming the
 
 
 Even this list of methods is not exhaustive; as the range of the problem, from 1 to 10, was so limited it was quite easy to just provide a lookup table of 10 values. No one said to actually *compute* the factorial, after all. Or even compute the answer, for that matter.
-
-[**Wanderdoc**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/wanderdoc/perl/ch-1.pl) provided a trivial answer that amounts to a lookup table, before adding a counting solution, as does [**Adam Russell**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/adam-russell/perl/ch-1.pl).
+[**Wanderdoc**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/wanderdoc/perl/ch-1.pl) provided a trivial answer that amounts to a lookup table, before adding a counting solution, as does
+[**Adam Russell**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/adam-russell/perl/ch-1.pl).
 
 And since we're riffing here, another way was to import `Math::BigInt` or `Math::GMP`,  which gives you a `bfac` function and just call that. If you found yourself, as I did, wanting to explore the larger factorials (which get big fast), you'd have to at least use the `bigint` pragma anyways, which in turn uses `Math::BigInt`. Have we covered everything *now*? I think so. Let's just report in final form there were quite a few ways to do the same thing, for those who chose to compute the factorial.
 
-In an aside, I also learned a linguistic oddity along the way, when I noticed both [**Arne Sommer**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/arne-sommer/perl/ch-1.pl) and [**Ulrich Rieke**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/ulrich-rieke/perl/ch-1.pl) landed on the variable name `$faculty` for their factorial. Once caught my eye, twice meant something was up. It seems the word la faculté, 'faculty' was a coinage of what we now know as the factorial by French mathematician Christian Kramp, the man who brought you the ! notation. The French, and Kramp, ultimately adopted 'la factorielle' a few years later, as being "more French", but Kramp's term lived on in translation in the Germanic languages. Although not, notably, English. Both the German word Fakultät and the Norwegian word Fakultet translate to the English word 'faculty' for the staff of an institution of learning, presumably leading our members, in turn, to choose this English word. A truly curious circle of translation; I wonder if Niels van Dijke would have picked it had he not sidestepped the discussion by using `bfac`. The truly global nature of our group is rarely so well highlighted. And I dearly hope I got that summary right because I'm certain there are folks out there who will notice any error.
+In an aside, I also learned a linguistic oddity along the way, when I noticed both
+[**Arne Sommer**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/arne-sommer/perl/ch-1.pl) and
+[**Ulrich Rieke**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/ulrich-rieke/perl/ch-1.pl)
+landed on the variable name `$faculty` for their factorial. Once caught my eye, twice meant something was up. It seems the word la faculté, 'faculty' was a coinage of what we now know as the factorial by French mathematician Christian Kramp, the man who brought you the ! notation. The French, and Kramp, ultimately adopted 'la factorielle' a few years later, as being "more French", but Kramp's term lived on in translation in the Germanic languages. Although not, notably, English. Both the German word Fakultät and the Norwegian word Fakultet translate to the English word 'faculty' for the staff of an institution of learning, presumably leading our members, in turn, to choose this English word. A truly curious circle of translation; I wonder if Niels van Dijke would have picked it had he not sidestepped the discussion by using `bfac`. The truly global nature of our group is rarely so well highlighted. And I dearly hope I got that summary right because I'm certain there are folks out there who will notice any error.
 
 Icelandic, incidentally, appears to have been out of the loop and now just uses the word 'factorial'. Any Icelanders out there are welcome to chime in on this.
 
@@ -138,7 +145,7 @@ And this, my friends, is the kind of rabbit hole that sucks up all my free time.
 The usual way to count the zeros was to capture them with a regex and measure the string with `length`. A few folks, included, chose to run `split //` on the string and evaluate the array as a scalar.  You say 'po-TAY-toe' I say 'po-TAH-toe'.
 
 Here's
-### [**Simon Green's**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/sgreen/perl/ch-1.pl) version:
+[**Simon Green's**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/sgreen/perl/ch-1.pl) version:
 
 ```perl
 # Strip out everything except the last zeros (if any)
@@ -147,7 +154,7 @@ $total =~ /^.*?(0*)$/;
 say length($1);
 ```
 
-### [**Cristina Heredia**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/cristian-heredia/perl/ch-1.pl)
+[**Cristina Heredia**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/cristian-heredia/perl/ch-1.pl)
 did come up with her own version, clipping a single zeros off the end of the number recursively, and counting the calling loops. When finished the edge case is printing the count to output.
 
 ```perl
@@ -164,7 +171,9 @@ sub trailingZeros {
 }
 ```
 
-[**Duncan C. White**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/duncan-c-white/perl/ch-1.pl) and [**Walt Mankowski**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/walt-mankowski/perl/ch-1.pl) both take a similar approach, dividing out 10s in a loop as long as the remainder is 0. This is Duncan's version:
+[**Duncan C. White**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/duncan-c-white/perl/ch-1.pl) and
+[**Walt Mankowski**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/walt-mankowski/perl/ch-1.pl)
+both take a similar approach, dividing out 10s in a loop as long as the remainder is 0. This is Duncan's version:
 
 ```perl
 while( $i % 10 == 0 )
@@ -185,7 +194,16 @@ while ($n % $pwr == 0) {
 ```
 
 The other members who followed this calculate and count methodology were
-[**Arne Sommer**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/arne-sommer/perl/ch-1.pl), [**My Own Solution**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/colin-crain/perl/ch-1.pl), [**E. Choroba**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/e-choroba/perl/ch-1.pl), as one of his two submissions, [**Mohammad S Anwar**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/mohammad-anwar/perl/ch-1.pl), [**Myoungjin Jeon**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/jeongoon/perl/ch-1.pl), [**Pete Houston**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/pete-houston/perl/ch-1.pl), [**Roger Bell_West**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/roger-bell-west/perl/ch-1.pl), [**Simon Green**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/sgreen/perl/ch-1.pl), [**Simon Miner**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/simon-miner/perl/ch-1.pl) and [**Wanderdoc**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/wanderdoc/perl/ch-1.pl), for their second solution.
+[**Arne Sommer**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/arne-sommer/perl/ch-1.pl),
+[**My Own Solution**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/colin-crain/perl/ch-1.pl),
+[**E. Choroba**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/e-choroba/perl/ch-1.pl), as one of his two submissions,
+[**Mohammad S Anwar**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/mohammad-anwar/perl/ch-1.pl),
+[**Myoungjin Jeon**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/jeongoon/perl/ch-1.pl),
+[**Pete Houston**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/pete-houston/perl/ch-1.pl),
+[**Roger Bell_West**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/roger-bell-west/perl/ch-1.pl),
+[**Simon Green**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/sgreen/perl/ch-1.pl),
+[**Simon Miner**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/simon-miner/perl/ch-1.pl) and
+[**Wanderdoc**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/wanderdoc/perl/ch-1.pl), for their second solution.
 
 ## USING the POWER of MATH
 
@@ -208,7 +226,7 @@ sub fac_trailing_zeroes {
 
 Got that? No? Ok, it is a little tricky before it comes clear. Because of the nature of the factorial, we already know the factorization of the number, at least on the first level. If every 5 we find in the list of factors will combine to make a 10, and hence a trailing 0, all we need to do is count the 5s. But be careful because 25 = 5 * 5 and that throws an additional 5 into the mix for every number over 24. Likewise when we get to 5<sup>3</sup>. In the end we count the integer division of of 5<sup>1</sup>, add the factors of 5<sup>2</sup>, then the factors of 5<sup>3</sup>, until our power of 5 exceeds our base number.
 
-### [**Javier Luque**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/javier-luque/perl/ch-1.pl)
+[**Javier Luque**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/javier-luque/perl/ch-1.pl)
 found us this phrasing, which makes the last part a little clearer:
 
 > "Trailing 0s in n! = Count of 5s in prime factors of n!
@@ -236,11 +254,16 @@ Now there's nothing wrong with providing a routine that gives the correct respon
 
 In the end, as the oft quoted *Futurama* reference goes, **"Technically correct is the best kind of correct"**. As a joke. In a clever, animated television comedy. You can decide for yourselves what that means to you.
 
-Filling out the field with (robust) mathematical solutions were [**Athanasius**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/athanasius/perl/ch-1.pl) (who nicely credits his sources), [**Cheok-Yin Fung**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/cheok-yin-fung/perl/ch-1.pl), and [**E. Choroba**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/e-choroba/perl/ch-1.pl), who also provided a counting solution.
+Filling out the field with (robust) mathematical solutions were
+[**Athanasius**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/athanasius/perl/ch-1.pl) (who nicely credits his sources),
+[**Cheok-Yin Fung**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/cheok-yin-fung/perl/ch-1.pl), and
+[**E. Choroba**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/e-choroba/perl/ch-1.pl), who also provided a counting solution.
 
 ## on the SUBJECT of PLURALS
 
-As the three examples given pluralize the expression "has *x* trailing zero[s]", several submissions addressed this task as well. In [**My Own Solution**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/colin-crain/perl/ch-1.pl) I got a little bored with the simplicity of only using the numbers 1 through 10, so decided to print out a whole gamut of factorials, which put this issue into sharp relief. I made a little piece of logic to handle the cases:
+As the three examples given pluralize the expression "has *x* trailing zero[s]", several submissions addressed this task as well. In
+[**My Own Solution**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/colin-crain/perl/ch-1.pl)
+I got a little bored with the simplicity of only using the numbers 1 through 10, so decided to print out a whole gamut of factorials, which put this issue into sharp relief. I made a little piece of logic to handle the cases:
 
 ```perl
 my @plurals = $count == 1 ? ("is ", " ") : ("are", "s");
@@ -251,7 +274,8 @@ say "there $plurals[0] $count trailing zero${plurals[1]} on "
 
 For one simple case this approach works perfectly well, but for anything larger but there does exist a robust, general purpose solution in Damian Conway's wonderful [`Lingua::EN::Inflexion`](https://metacpan.org/pod/Lingua::EN::Inflexion) (and earlier [`Lingua::EN::Inflect`](https://metacpan.org/pod/Lingua::EN::Inflect)) modules. I didn't feel like using it for a single line but several others did, and power to them. I cannot emphasize enough how brilliant it is. 10/10 would buy again.
 
-[**Pete Houston**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/pete-houston/perl/ch-1.pl) shows us how it's done; he does quite a lot in these few lines of code. The validation works the way you think it does. [`Math::GMP`](https://metacpan.org/pod/Math::GMP) is comparable to the core Math::BigInt math library, but claims to be faster; `bfac` is a "big" factorial function. And you can have a look at how to properly pluralize the output, too. This isn't an excerpt, it's the whole shebang.
+[**Pete Houston**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/pete-houston/perl/ch-1.pl)
+shows us how it's done; he does quite a lot in these few lines of code. The validation works the way you think it does. [`Math::GMP`](https://metacpan.org/pod/Math::GMP) is comparable to the core Math::BigInt math library, but claims to be faster; `bfac` is a "big" factorial function. And you can have a look at how to properly pluralize the output, too. This isn't an excerpt, it's the whole shebang.
 
 ```perl
 use Math::GMP;
@@ -267,7 +291,7 @@ for my $n (@ARGV) {
 
 ## ONE-LINERS and a DIGRESSION into PERLGUTS
 
-### [**Laurent Rosenfeld**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/laurent-rosenfeld/perl/ch-1.pl)
+[**Laurent Rosenfeld**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/laurent-rosenfeld/perl/ch-1.pl)
 
 Laurent has been busy writing one-liners. As noted above,
 
@@ -399,9 +423,17 @@ while (my $line = <$fn>) {
 close $fn;
 ```
 
-[**Arne Sommer**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/arne-sommer/perl/ch-2.pl), [**Athanasius**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/athanasius/perl/ch-2.pl), [**Cheok-Yin Fung**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/cheok-yin-fung/perl/ch-2.pl), [**Cristina Heredia**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/cristian-heredia/perl/ch-2.pl), [**Myoungjin Jeon**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/jeongoon/perl/ch-2.pl), [**Roger Bell_West**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/roger-bell-west/perl/ch-2.pl), and [**Simon Green**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/sgreen/perl/ch-2.pl) also took this "no frills" approach.
+[**Arne Sommer**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/arne-sommer/perl/ch-2.pl),
+[**Athanasius**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/athanasius/perl/ch-2.pl),
+[**Cheok-Yin Fung**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/cheok-yin-fung/perl/ch-2.pl),
+[**Cristina Heredia**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/cristian-heredia/perl/ch-2.pl),
+[**Myoungjin Jeon**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/jeongoon/perl/ch-2.pl),
+[**Roger Bell_West**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/roger-bell-west/perl/ch-2.pl), and
+[**Simon Green**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/sgreen/perl/ch-2.pl)
+also took this "no frills" approach.
 
-[**Dave Jacoby**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/dave-jacoby/perl/ch-2.pl) and [**Ulrich Rieke**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/ulrich-rieke/perl/ch-2.pl) make only the slightest variation, slurping down all the lines to a temporary variable before iterating through that array.
+[**Dave Jacoby**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/dave-jacoby/perl/ch-2.pl) and
+[**Ulrich Rieke**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/ulrich-rieke/perl/ch-2.pl) make only the slightest variation, slurping down all the lines to a temporary variable before iterating through that array.
 
 But there are a variety of means available to shortcut and streamline from this base format. Lets walk through them and see where we end up.
 
@@ -409,7 +441,8 @@ But there are a variety of means available to shortcut and streamline from this 
 
 also known as **$.** and defined as “Current line number for the last filehandle accessed.” Here's the thing about Perl special variables: it's generally safe to assume that when thinking through the mechanics of an internal process, any parameter Perl may need to carry out that process is going to be made accessable to us in the form of some sort of special variable. I by no means have the whole list of sigilled punctuation memorized, but I know enough to think it through: if Perl is reading a file line-by-line, it needs to keep track of the line number for that file. So I looked it up and there we were. As it's automatically there for the taking, some people utilized this as their self-incrementing counter.
 
-So keeping the basic pattern but adding $. we come up with, as per [**Wanderdoc**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/wanderdoc/perl/ch-2.pl):
+So keeping the basic pattern but adding `$.` we come up with, as per
+[**Wanderdoc**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/wanderdoc/perl/ch-2.pl):
 
 ```perl
  open my $in, "<", $tempfile or die "$!";
@@ -421,9 +454,11 @@ So keeping the basic pattern but adding $. we come up with, as per [**Wanderdoc*
  }
 ```
 
-[**Bob Lied**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/bob-lied/perl/ch-2.pl) and [**Simon Miner**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/simon-miner/perl/ch-2.pl) also used $. in a comparable way.
+[**Bob Lied**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/bob-lied/perl/ch-2.pl) and
+[**Simon Miner**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/simon-miner/perl/ch-2.pl) also used `$.` in a comparable way.
 
-[**Javier Luque**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/javier-luque/perl/ch-2.pl) and [**Niels van Dijke**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/perlboy1967/perl/ch-2.pl) did as well, and in addition both consolidated the comparisons into a single line, something we will see more of later.
+[**Javier Luque**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/javier-luque/perl/ch-2.pl) and
+[**Niels van Dijke**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/perlboy1967/perl/ch-2.pl) did as well, and in addition both consolidated the comparisons into a single line, something we will see more of later.
 
 Here's Javier's example:
 
@@ -442,7 +477,8 @@ This leads to a natural segue into the next trick,
 
 ### use the Flip-Flop Operator
 
-[**Walt Mankowski**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/walt-mankowski/perl/ch-2.pl) gives us the following code:
+[**Walt Mankowski**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/walt-mankowski/perl/ch-2.pl)
+gives us the following code:
 
 ```perl
 open my $f, '<', $fname;
@@ -461,7 +497,7 @@ it works at least just as well. By the way, that rewritten line of Javier's code
 
 What looks like the more familiar list range operator is in fact a more generalized, boolean form of that same idea; instead of evaluating to a list of numbers or strings from the lower bound to the upper, it evaluates to true from the lower bound to the upper, and decides when those bounds are reached when they it turn evaluate to true. In other words, it becomes true when the left hand value is true and stays that way until *after* the right hand value becomes true. In this manner it includes both bounds in the truth table.
 
-There is even a further, special-case hack on this "flip-flop" mode of the range operator, which is that when a constant is present in either the left or right position, that contant is evaluated for equality against $. Now you can see how the connections between these tricks begin to form. This automatic assignment, however, will only take place when there is a constant, so for our purposes here we will still need to make an explicit boolean expression against $. It took me a little while to figure this one out, as I'll explain in a minute.
+There is even a further, special-case hack on this "flip-flop" mode of the range operator, which is that when a constant is present in either the left or right position, that contant is evaluated for equality against `$.` Now you can see how the connections between these tricks begin to form. This automatic assignment, however, will only take place when there is a constant, so for our purposes here we will still need to make an explicit boolean expression against `$.` It took me a little while to figure this one out, as I'll explain in a minute.
 
 This variant on the "normal" range operator is usually found in situations like these, in combination with the `<$filehandle>` form of the `readline()` function. But it's a handy thing to remember and has a valid role to play elsewhere from time to time when playing with booleans. But its true colors really shine when combined with a special variant of that readline operator.
 
@@ -475,7 +511,7 @@ In any case we have seen a lot of this operator throughout, reading either a sin
 
 Combining all these techniques lead to the following construction, by
 
-### [**E. Choroba**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/e-choroba/perl/ch-2.pl)
+[**E. Choroba**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/e-choroba/perl/ch-2.pl)
 
 ```perl
 my ($from, $to) = (shift, shift);
@@ -494,7 +530,8 @@ that is in fact the whole logic. Note that by using `shift` twice on @ARGV the i
 
 works just fine without the second set of parens.
 
-My little incremental progression, adding one trick at a time, breaks a bit here as [**Duncan C. White**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/duncan-c-white/perl/ch-2.pl) gives us another very similar solution, using a comparison line:
+My little incremental progression, adding one trick at a time, breaks a bit here as
+[**Duncan C. White**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/duncan-c-white/perl/ch-2.pl) gives us another very similar solution, using a comparison line:
 
 ```perl
 while( <> )
@@ -505,7 +542,7 @@ while( <> )
 
 as does
 
-### [**Yary Hluchan**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/yary-h/perl/ch-2.pl)
+[**Yary Hluchan**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/yary-h/perl/ch-2.pl)
 
 who explains that he is choosing *not* to use the flip-flop, preferring to exit after the upper bound. Honestly this is probably the best way to really implement this, allowing to clip out the minimal reading from possibly monster files.
 
@@ -520,12 +557,19 @@ while (<>) {
 }
 ```
 
+
+
+
+
+
 ### Honorable Mention for Completeness
 
 Several people went the extra mile and went ahead and wrote the $index.txt file to make sure it was there to open and process.
-[**Cristina Heredia**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/cristian-heredia/perl/ch-2.pl) provides a handy routine should we wish to wire it in, but [**Wanderdoc**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/wanderdoc/perl/ch-2.pl) eschews the input file altogether and creates a demonstration file automatically.
+[**Cristina Heredia**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/cristian-heredia/perl/ch-2.pl) provides a handy routine should we wish to wire it in, but
+[**Wanderdoc**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/wanderdoc/perl/ch-2.pl) eschews the input file altogether and creates a demonstration file automatically.
 
-[**Laurent Rosenfeld**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/laurent-rosenfeld/perl/ch-2.pl), in addition to his solution one-liner, provides us with a companion *creation* one-liner:
+[**Laurent Rosenfeld**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/laurent-rosenfeld/perl/ch-2.pl), in addition to his solution one-liner,
+provides us with a companion *creation* one-liner:
 ```shell
     perl -E 'say "L$_" for 1..100' > input.txt
 ```
@@ -533,7 +577,7 @@ Several people went the extra mile and went ahead and wrote the $index.txt file 
 
 ## One Liners, Unique Thinking and Other Shiny Objects
 
-### [**Adam Russell**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/adam-russell/perl/ch-2.pl)
+[**Adam Russell**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/adam-russell/perl/ch-2.pl)
 
 Adam give us this,
 
@@ -543,7 +587,9 @@ perl -s -n -e 'print if $. >= $A && $. <= $B' -- -A=4 -B=12  < input.txt
 
 being a one-liner version of the shorthand form. Nice.
 
-### [**Jorg Sommrey**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/jo-37/perl/ch-2.pl)
+
+
+[**Jorg Sommrey**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/jo-37/perl/ch-2.pl)
 
 Jorg sends us a wonderfully bent solution, being simultaneously by now comfortably  familiar and yet oddly puzzling:
 
@@ -568,7 +614,7 @@ EOS
 }
 ```
 
-Wait, why would he `eval` that? What exactly is going on here? Then the penny dropped: after the eval the expression is in the ideal shortcut form. The flip-flop now has constants and will magically work on $. without the need to specify anything. I find this solution deeply metaphysically satisfying.
+Wait, why would he `eval` that? What exactly is going on here? Then the penny dropped: after the eval the expression is in the ideal shortcut form. The flip-flop now has constants and will magically work on `$.` without the need to specify anything. I find this solution deeply metaphysically satisfying.
 
 ```perl
 while (<$fh>) {
@@ -579,7 +625,7 @@ while (<$fh>) {
 In all this dancing around getting closer and closer I'm glad someone actually achieved the final form. Bravo, sir, bravo. *(slow clap to crescendo)*
 
 
-### [**Laurent Rosenfeld**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/laurent-rosenfeld/perl/ch-2.pl)
+[**Laurent Rosenfeld**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/laurent-rosenfeld/perl/ch-2.pl)
 
 Laurent is working on one-liners this week, and has come up with this:
 
@@ -589,7 +635,7 @@ perl -ne 'print if 7..10' input.txt
 
 I will surmise Laurent is working under the theory that if you can type in literal constants on the command line, you can type them into the one-liner. Sounds reasonable to me.
 
-### [**Mohammad S Anwar**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/mohammad-anwar/perl/ch-2.pl)
+[**Mohammad S Anwar**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/mohammad-anwar/perl/ch-2.pl)
 
 Mohammad, much like Ulrich, uses the array return option for the \<readline> operator to immediately slurp down the contents of his filehandle, but diverges from there in a new and exciting way
 
@@ -620,7 +666,7 @@ print for (<$F>)[$A-1..$B-1];
 before we close the file. The tricky part is forcing the array context on `<$F>` without explicit assignment, but indexing the parens gets around this. No comparisons required. Sweet.
 
 
-### [**Pete Houston**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/pete-houston/perl/ch-2.pl)
+[**Pete Houston**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/pete-houston/perl/ch-2.pl)
 
 *"I'm built for comfort, I ain't built for speed"*
 
@@ -651,7 +697,7 @@ and these little hacks exist solely to feed the Laziness, Impatience and Hubris 
 
 <br>
 
-## BLOGS {#PWC072BLOGS}
+# BLOGS {#PWC072BLOGS}
 
 ***
 
@@ -663,78 +709,50 @@ and these little hacks exist solely to feed the Laziness, Impatience and Hubris 
 ***( don't think, trust your training, you're in the zone, just do it ... )***
 
 
-### [Adam Russell](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/adam-russell/perl/ch-2.pl)
-#### [Using -s with Perl One Liners](https://adamcrussell.livejournal.com/16759.html) ( *Perl* )
-#### [n! has how many trailing zeroes?](https://adamcrussell.livejournal.com/17058.html) ( *Perl* )
+**Adam Russell**
+ * [Using -s with Perl One Liners](https://adamcrussell.livejournal.com/16759.html) ( *Perl* )
+ * [n! has how many trailing zeroes?](https://adamcrussell.livejournal.com/17058.html) ( *Perl* )
 
-<br>
+**Andrew Shitov**
+ * [Raku challenge week 72](https://andrewshitov.com/2020/08/04/raku-challenge-week-72/) ( *Raku* )
 
-### [Andrew Shitov](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/ash/perl/ch-2.pl)
-#### [Raku challenge week 72](https://andrewshitov.com/2020/08/04/raku-challenge-week-72/) ( *Raku* )
+**Arne Sommer**
+ * [Zero Lines with Raku & Perl](https://raku-musings.com/zero-lines.html) ( *Perl & Raku* )
 
-<br>
+**Colin Crain**
+ * [Flip-Flops Leaving a Trail of Zeros &#8211; Programming Excursions in Perl and Raku](https://colincrain.wordpress.com/2020/08/07/flip-flops-leaving-a-trail-of-zeros/) ( *Perl & Raku* )
 
-### [Arne Sommer](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/arne-sommer/perl/ch-2.pl)
-#### [Zero Lines with Raku & Perl](https://raku-musings.com/zero-lines.html) ( *Perl & Raku* )
+**Dave Jacoby**
+ * [Committed to Memory | Perl Weekly Challenge #72](https://jacoby.github.io/2020/08/03/perl-weekly-challenge-72.html) ( *Perl* )
 
-<br>
+**Jaldhar H. Vyas**
+ * [Perl Weekly Challenge: Week 72](https://www.braincells.com/perl/2020/08/perl_weekly_challenge_week_72.html) ( *Perl & Raku* )
 
-### [Colin Crain](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/colin-crain/perl/ch-2.pl)
-#### [Flip-Flops Leaving a Trail of Zeros &#8211; Programming Excursions in Perl and Raku](https://colincrain.wordpress.com/2020/08/07/flip-flops-leaving-a-trail-of-zeros/) ( *Perl & Raku* )
+**Javier Luque**
+ * [PERL WEEKLY CHALLENGE &#8211; 072 &#8211; Perl Weekly Challenge](https://perlchallenges.wordpress.com/2020/08/03/perl-weekly-challenge-072/) ( *Perl & Raku* )
 
-<br>
+**Lance Wicks**
+ * [Live Programming today. #Perl... Perl Weekly Challenge #72](https://www.twitch.tv/videos/702391523) ( *Perl* )
 
-### [Dave Jacoby](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/dave-jacoby/perl/ch-2.pl)
-#### [Committed to Memory | Perl Weekly Challenge #72](https://jacoby.github.io/2020/08/03/perl-weekly-challenge-72.html) ( *Perl* )
+**Laurent Rosenfeld**
+ * [Perl Weekly Challenge 72: One-Liners for Trailing Zeros and Line Ranges](http://blogs.perl.org/users/laurent_r/2020/08/perl-weekly-challenge-72-one-liners-for-trailing-zeros-and-line-ranges.html) ( *Perl & Raku* )
 
-<br>
+**Luca Ferrari**
+ * [Perl Weekly Challenge 72: trailing zeros](https://fluca1978.github.io/2020/08/03/PerlWeeklyChallenge72.html#task1) ( *Raku* )
+ * [Perl Weekly Challenge 72: line filter](https://fluca1978.github.io/2020/08/03/PerlWeeklyChallenge72.html#task2) ( *Raku* )
 
-### [Jaldhar H. Vyas](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/jaldhar-h-vyas/perl/ch-2.pl)
-#### [Perl Weekly Challenge: Week 72](https://www.braincells.com/perl/2020/08/perl_weekly_challenge_week_72.html) ( *Perl & Raku* )
+**Mohammad S Anwar**
+ * [BLOG: The Weekly Challenge #072](https://perlweeklychallenge.org/blog/weekly-challenge-072/) ( *Perl & Raku* )
 
-<br>
+**Roger Bell_West**
+ * [RogerBW&#39;s Blog: Perl Weekly Challenge 72: factorial zeroes and line ranges](https://blog.firedrake.org/archive/2020/08/Perl_Weekly_Challenge_72__factorial_zeroes_and_line_ranges.html) ( *Perl & Raku* )
 
-### [Javier Luque](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/javier-luque/perl/ch-2.pl)
-#### [PERL WEEKLY CHALLENGE &#8211; 072 &#8211; Perl Weekly Challenge](https://perlchallenges.wordpress.com/2020/08/03/perl-weekly-challenge-072/) ( *Perl & Raku* )
+**Simon Green**
+ * [Perl Weekly Challenge 072](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/sgreen/README.md) ( *Perl* )
 
-<br>
+**Simon Proctor**
+ * [The Weekly Challenge in Raku : Week 72 (Part 1)](https://dev.to/scimon/the-weekly-challenge-in-raku-week-72-part-1-2i0g) ( *Raku* )
+ * [The Weekly Challenge in Raku : Week 72 (Part 2)](https://dev.to/scimon/the-weekly-challenge-in-raku-week-72-part-2-12oh) ( *Raku* )
 
-### [Lance Wicks](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/lance-wicks/perl/ch-2.pl)
-#### [Live Programming today. #Perl... Perl Weekly Challenge #72](https://www.twitch.tv/videos/702391523) ( *Perl* )
-
-<br>
-
-### [Laurent Rosenfeld](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/laurent-rosenfeld/perl/ch-2.pl)
-#### [Perl Weekly Challenge 72: One-Liners for Trailing Zeros and Line Ranges](http://blogs.perl.org/users/laurent_r/2020/08/perl-weekly-challenge-72-one-liners-for-trailing-zeros-and-line-ranges.html) ( *Perl & Raku* )
-
-<br>
-
-### [Luca Ferrari](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/luca-ferrari/perl/ch-2.pl)
-#### [Perl Weekly Challenge 72: trailing zeros](https://fluca1978.github.io/2020/08/03/PerlWeeklyChallenge72.html#task1) ( *Raku* )
-#### [Perl Weekly Challenge 72: line filter](https://fluca1978.github.io/2020/08/03/PerlWeeklyChallenge72.html#task2) ( *Raku* )
-
-<br>
-
-### [Mohammad S Anwar](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/mohammad-anwar/perl/ch-2.pl)
-#### [BLOG: The Weekly Challenge #072](https://perlweeklychallenge.org/blog/weekly-challenge-072/) ( *Perl & Raku* )
-
-<br>
-
-### [Roger Bell_West](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/roger-bell-west/perl/ch-2.pl)
-#### [RogerBW&#39;s Blog: Perl Weekly Challenge 72: factorial zeroes and line ranges](https://blog.firedrake.org/archive/2020/08/Perl_Weekly_Challenge_72__factorial_zeroes_and_line_ranges.html) ( *Perl & Raku* )
-
-<br>
-
-### [Simon Green](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/sgreen/perl/ch-2.pl)
-#### [Perl Weekly Challenge 072](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/sgreen/README.md) ( *Perl* )
-
-<br>
-
-### [Simon Proctor](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/simon-proctor/perl/ch-2.pl)
-#### [The Weekly Challenge in Raku : Week 72 (Part 1)](https://dev.to/scimon/the-weekly-challenge-in-raku-week-72-part-1-2i0g) ( *Raku* )
-#### [The Weekly Challenge in Raku : Week 72 (Part 2)](https://dev.to/scimon/the-weekly-challenge-in-raku-week-72-part-2-12oh) ( *Raku* )
-
-<br>
-
-### [Walt Mankowski](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/walt-mankowski/perl/ch-2.pl)
-#### [Perl Weekly Challenge #72 - Walt Mankowski](http://www.mawode.com/blog/blog/2020/08/04/perl-weekly-challenge-72/) ( *Perl* )
+**Walt Mankowski**
+ * [Perl Weekly Challenge #72 - Walt Mankowski](http://www.mawode.com/blog/blog/2020/08/04/perl-weekly-challenge-72/) ( *Perl* )
