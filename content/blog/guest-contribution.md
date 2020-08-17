@@ -20,6 +20,10 @@ Please find below guest contributions.
 
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/roger-bell-west/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/roger-bell-west/python/ch-2.py) in **Python**.
 
+##### **Shawn Wagner** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/shawn-wagner/java/ch1.java) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/shawn-wagner/java/ch2.java) in **Java**.
+
+##### **Shawn Wagner** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/shawn-wagner/tcl/ch-1.tcl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/shawn-wagner/tcl/ch-2.tcl) in **Tcl**.
+
 ----
 ## [Perl Weekly Challenge - 073](/blog/perl-weekly-challenge-073)
 <br>
