@@ -95,10 +95,10 @@ The total contributions in the week is **105**. Well done **Team PWC**. I would 
 #### 14) Dave Jacoby: HTML (1), Node (3), Rust (2).
 #### 15) Shawak: Ruby (6).
 #### 16) Arne Sommer: Bash (1), Node (1), PHP (1), Python (1), Ruby (1).
-#### 17) Jonas Berlin: Rust (4).
-#### 18) Kivanc Yazan: Python (4).
-#### 19) Yet Ebreo: Python (2), Ruby (2).
-#### 20) Cheok-Yin Fung: Lisp (3).
+#### 17) Cheok-Yin Fung: Lisp (4).
+#### 18) Jonas Berlin: Rust (4).
+#### 19) Kivanc Yazan: Python (4).
+#### 20) Yet Ebreo: Python (2), Ruby (2).
 #### 21) Duncan C. White: Postscript (3).
 #### 22) Rage311: Rust (3).
 #### 23) Ben Davies: Idris (2).
@@ -127,7 +127,7 @@ The total contributions in the week is **105**. Well done **Team PWC**. I would 
 #### 6) R: 11
 #### 7) Rust: 10
 #### 8) Ruby: 9
-#### 9) Lisp: 7
+#### 9) Lisp: 8
 #### 10) C: 6
 #### 11) Postscript: 5
 #### 12) Node: 4

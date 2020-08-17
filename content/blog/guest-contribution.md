@@ -1,6 +1,6 @@
 ---
 title: "Perl Weekly Challenge - Guest Contributions"
-date: 2020-08-16T00:00:00+00:00
+date: 2020-08-17T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -13,8 +13,16 @@ As you know, **"Perl Weekly Challenge"**, primarily focus on **Perl** and **Raku
 Please find below guest contributions.
 
 ----
+## [Perl Weekly Challenge - 074](/blog/perl-weekly-challenge-074)
+<br>
+
+##### **Mohammad S Anwar** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/mohammad-anwar/swift/ch-1.swift) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/mohammad-anwar/swift/ch-2.swift) in **Swift**.
+
+----
 ## [Perl Weekly Challenge - 073](/blog/perl-weekly-challenge-073)
 <br>
+
+##### **Cheok-Yin Fung** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-073/cheok-yin-fung/common-lisp/ch-1.lsp) in **Lisp**.
 
 ##### **E. Choroba** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-073/e-choroba/erlang/ch-1.erl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-073/e-choroba/erlang/ch-2.erl) in **Erlang**.
 
