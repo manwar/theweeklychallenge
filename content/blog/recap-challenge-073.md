@@ -67,11 +67,11 @@ These members shared solutions to both tasks in **Perl** and **Raku** as well as
 
 ***
 
-The total contributions in the week is **105**. Well done **Team PWC**. I would also like to thank **Raku** contributors for catching up.
+The total contributions in the week is **108**. Well done **Team PWC**. I would also like to thank **Raku** contributors for catching up.
 
-#### 1) PERL: 51
+#### 1) PERL: 53
 #### 2) RAKU: 38
-#### 3) BLOG: 16
+#### 3) BLOG: 17
 
 <br>
 
@@ -211,6 +211,14 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 <br>
 
 # PERL SOLUTIONS
+
+***
+
+### Bob Lied
+![Bob Lied](/images/team/bob-lied.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-073/bob-lied/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-073/bob-lied/perl/ch-2.pl)]
 
 ***
 
@@ -530,6 +538,7 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-073/roger-bell-west/perl/ch-2.pl)]
 [[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-073/roger-bell-west/raku/ch-1.p6)]
 [[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-073/roger-bell-west/raku/ch-2.p6)]
+[[**BLOG #1**](https://blog.firedrake.org/archive/2020/08/Perl_Weekly_Challenge_73__fun_with_minima.html)]
 
 ***
 
