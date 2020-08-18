@@ -1,7 +1,7 @@
 ---
-title: "Perl Weekly Challenge - 036"
+title: "The Weekly Challenge - 036"
 date: 2019-11-24T00:00:00+00:00
-description: "Perl Weekly Challenge - 036"
+description: The Weekly Challenge - 036"
 type: post
 image: images/blog/pwc-base.svg
 author: Mohammad S Anwar
@@ -15,7 +15,7 @@ tags: ["Perl", "Raku"]
 ***
 ***
 
-With great pleasure, we announce **Steven Wilson** as the winner of [**"Perl Weekly Challenge - 035"**](/blog/perl-weekly-challenge-035). Congratulations **Steven**, you should soon hear from **[Perl Careers](https://perl.careers/)** about your reward. For rest of the participants, I would say **Good Luck** for next time. Keep sending in your solutions and share your knowledge with each other.
+With great pleasure, we announce **Steven Wilson** as the winner of **["The Weekly Challenge - 035"](/blog/perl-weekly-challenge-035)**. Congratulations **Steven**, you should soon hear from **[Perl Careers](https://perl.careers/)** about your reward. For rest of the participants, I would say **Good Luck** for next time. Keep sending in your solutions and share your knowledge with each other.
 
 A gentle reminder to all members, please send us your nominated solutions for the **Advent Calendar 2019**. It would be a great help. So far we have shortlisted 4 solutions, 20 more to go for the **Advent Calendar 2019**. You could email (**perlweeklychallenge@yahoo.com**) us or PM on [**twitter**](https://twitter.com/PerlWChallenge).
 
@@ -27,7 +27,7 @@ A gentle reminder to all members, please send us your nominated solutions for th
 ***
 ***
 
-Here is the recap of last week [**"Perl Weekly Challenge - 035"**](/blog/recap-challenge-035).
+Here is the recap of last week **["The Weekly Challenge - 035"](/blog/recap-challenge-035)**.
 
 ***
 ***
@@ -37,7 +37,7 @@ Here is the recap of last week [**"Perl Weekly Challenge - 035"**](/blog/recap-c
 ***
 ***
 
-Please checkout **Perl** solutions review of the [**"Perl Weekly Challenge - 034"**](/blog/review-challenge-034) by **Kian-Meng Ang**.
+Please checkout **Perl** solutions review of the **["The Weekly Challenge - 034"](/blog/review-challenge-034)** by **Kian-Meng Ang**.
 
 If you missed any past reviews then please checkout the [**collection**](/p5-reviews).
 
@@ -49,9 +49,9 @@ If you missed any past reviews then please checkout the [**collection**](/p5-rev
 ***
 ***
 
-Please checkout **Raku** solutions review of the [**"Perl Weekly Challenge - 034"**](/blog/p6-review-challenge-034) by **Laurent Rosenfeld**.
+Please checkout **Raku** solutions review of the **["The Weekly Challenge - 034"](/blog/p6-review-challenge-034)** by **Laurent Rosenfeld**.
 
-**Laurent** also reviewed **Task #1** of [**"Perl Weekly Challenge - 005"**](/blog/p6-review-challenge-005).
+**Laurent** also reviewed **Task #1** of **["The Weekly Challenge - 005"](/blog/p6-review-challenge-005)**.
 
 If you missed any past reviews then please checkout the [**collection**](/p6-reviews).
 

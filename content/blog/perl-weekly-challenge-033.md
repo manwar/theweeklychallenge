@@ -1,7 +1,7 @@
 ---
-title: "Perl Weekly Challenge - 033"
+title: "The Weekly Challenge - 033"
 date: 2019-11-03T00:00:00+00:00
-description: "Perl Weekly Challenge - 033"
+description: "The Weekly Challenge - 033"
 type: post
 image: images/blog/pwc-base.svg
 author: Mohammad S Anwar
@@ -15,7 +15,7 @@ tags: ["Perl", "Raku"]
 ***
 ***
 
-With great pleasure, we announce **Prajith P.** as the winner of [**"Perl Weekly Challenge - 032"**](/blog/perl-weekly-challenge-032). Congratulations **Prajith**, you should soon hear from **[Perl Careers](https://perl.careers/)** about your reward. For rest of the participants, I would say **Good Luck** for next time. Keep sending in your solutions and share your knowledge with each other.
+With great pleasure, we announce **Prajith P.** as the winner of **["The Weekly Challenge - 032"](/blog/perl-weekly-challenge-032)**. Congratulations **Prajith**, you should soon hear from **[Perl Careers](https://perl.careers/)** about your reward. For rest of the participants, I would say **Good Luck** for next time. Keep sending in your solutions and share your knowledge with each other.
 
 ***
 ***
@@ -25,7 +25,7 @@ With great pleasure, we announce **Prajith P.** as the winner of [**"Perl Weekly
 ***
 ***
 
-Here is the recap of last week [**"Perl Weekly Challenge - 032"**](/blog/recap-challenge-032).
+Here is the recap of last week **["The Weekly Challenge - 032"](/blog/recap-challenge-032)**.
 
 ***
 ***
@@ -35,7 +35,7 @@ Here is the recap of last week [**"Perl Weekly Challenge - 032"**](/blog/recap-c
 ***
 ***
 
-Please checkout **Perl** solutions review of the [**"Perl Weekly Challenge - 031"**](/blog/review-challenge-031) by **Kian-Meng Ang**.
+Please checkout **Perl** solutions review of the **["The Weekly Challenge - 031"](/blog/review-challenge-031)** by **Kian-Meng Ang**.
 
 If you missed any past reviews then please checkout the [**collection**](/p5-reviews).
 
@@ -47,7 +47,7 @@ If you missed any past reviews then please checkout the [**collection**](/p5-rev
 ***
 ***
 
-Please checkout **Raku** solutions review of the [**"Perl Weekly Challenge - 031"**](/blog/p6-review-challenge-031) by **Laurent Rosenfeld**.
+Please checkout **Raku** solutions review of the **["The Weekly Challenge - 031"](/blog/p6-review-challenge-031)** by **Laurent Rosenfeld**.
 
 If you missed any past reviews then please checkout the [**collection**](/p6-reviews).
 
@@ -89,9 +89,9 @@ Please find out [**How to contribute?**](/blog/how-to-contribute), if you have a
 ***
 ***
 
-1) **Adam Russell** shared **C++** solutions for [**"Perl Weekly Challenge - 032"**](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-032/adam-russell/cxx).
+1) **Adam Russell** shared **C++** solutions for **["The Weekly Challenge - 032"](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-032/adam-russell/cxx)**.
 
-2) **Ulrich Rieke** shared **C++** solutions for [**"Perl Weekly Challenge - 032"**](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-032/ulrich-rieke/cpp).
+2) **Ulrich Rieke** shared **C++** solutions for **["The Weekly Challenge - 032"](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-032/ulrich-rieke/cpp)**.
 
 Please do share your creative solutions in other languages.
 

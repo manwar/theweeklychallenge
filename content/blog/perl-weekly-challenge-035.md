@@ -1,7 +1,7 @@
 ---
-title: "Perl Weekly Challenge - 035"
+title: "The Weekly Challenge - 035"
 date: 2019-11-17T00:00:00+00:00
-description: "Perl Weekly Challenge - 035"
+description: "The Weekly Challenge - 035"
 type: post
 image: images/blog/pwc-base.svg
 author: Mohammad S Anwar
@@ -15,7 +15,7 @@ tags: ["Perl", "Raku"]
 ***
 ***
 
-With great pleasure, we announce **Burkhard Nickels** as the winner of [**"Perl Weekly Challenge - 034"**](/blog/perl-weekly-challenge-034). Congratulations **Burkhard**, you should soon hear from **[Perl Careers](https://perl.careers/)** about your reward. For rest of the participants, I would say **Good Luck** for next time. Keep sending in your solutions and share your knowledge with each other.
+With great pleasure, we announce **Burkhard Nickels** as the winner of **["The Weekly Challenge - 034"](/blog/perl-weekly-challenge-034)**. Congratulations **Burkhard**, you should soon hear from **[Perl Careers](https://perl.careers/)** about your reward. For rest of the participants, I would say **Good Luck** for next time. Keep sending in your solutions and share your knowledge with each other.
 
 A gentle reminder to all members, please send us your nominated solutions for the **Advent Calendar 2019**. It would be a great help. We would then select the top **24** most popular solutions for the **Advent Calendar 2019**. You could email (**perlweeklychallenge@yahoo.com**) us or PM on [**twitter**](https://twitter.com/PerlWChallenge).
 
@@ -29,7 +29,7 @@ After going through the last week solutions by **Burkhard Nickels**, I have deci
 ***
 ***
 
-Here is the recap of last week [**"Perl Weekly Challenge - 034"**](/blog/recap-challenge-034).
+Here is the recap of last week **["The Weekly Challenge - 034"](/blog/recap-challenge-034)**.
 
 ***
 ***
@@ -39,7 +39,7 @@ Here is the recap of last week [**"Perl Weekly Challenge - 034"**](/blog/recap-c
 ***
 ***
 
-Please checkout **Perl** solutions review of the [**"Perl Weekly Challenge - 033"**](/blog/review-challenge-033) by **Kian-Meng Ang**.
+Please checkout **Perl** solutions review of the **["The Weekly Challenge - 033"](/blog/review-challenge-033)** by **Kian-Meng Ang**.
 
 If you missed any past reviews then please checkout the [**collection**](/p5-reviews).
 
@@ -51,9 +51,9 @@ If you missed any past reviews then please checkout the [**collection**](/p5-rev
 ***
 ***
 
-Please checkout **Raku** solutions review of the [**"Perl Weekly Challenge - 033"**](/blog/p6-review-challenge-033) by **Laurent Rosenfeld**.
+Please checkout **Raku** solutions review of the **["The Weekly Challenge - 033"](/blog/p6-review-challenge-033)** by **Laurent Rosenfeld**.
 
-**Laurent** also reviewed **Task #2** of [**"Perl Weekly Challenge - 011"**](/blog/p6-review-challenge-011).
+**Laurent** also reviewed **Task #2** of **["The Weekly Challenge - 011"](/blog/p6-review-challenge-011)**.
 
 If you missed any past reviews then please checkout the [**collection**](/p6-reviews).
 
@@ -91,7 +91,7 @@ Please find out [**How to contribute?**](/blog/how-to-contribute), if you have a
 ***
 ***
 
-**Adam Russell** shared **C++** solutions for [**"Perl Weekly Challenge - 034"**](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-034/adam-russell/cxx).
+**Adam Russell** shared **C++** solutions for **["The Weekly Challenge - 034"](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-034/adam-russell/cxx)**.
 
 Please find out [**past solutions**](/blog/guest-contribution) by respected **guests**. Please do share your creative solutions in other languages.
 
