@@ -24,7 +24,7 @@ Please find below guest contributions.
 
 ##### **Shawn Wagner** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/shawn-wagner/tcl/ch-1.tcl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/shawn-wagner/tcl/ch-2.tcl) in **Tcl**.
 
-##### **Ulrich Rieke** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/ulrich-rieke/cpp/ch-2.cpp) in **C++**.
+##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/ulrich-rieke/cpp/ch-1.cpp) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/ulrich-rieke/cpp/ch-2.cpp) in **C++**.
 
 ##### **Ulrich Rieke** shared solution to [**task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/ulrich-rieke/haskell/ch-1.hs) in **haskell**.
 
