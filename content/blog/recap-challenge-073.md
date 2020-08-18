@@ -86,7 +86,7 @@ The total contributions in the week is **105**. Well done **Team PWC**. I would 
 #### 5) User Person: Python (21).
 #### 6) Orestis Zekai: Python (16).
 #### 7) Mohammad S Anwar: Java (1), Swift (12).
-#### 8) Wanderdoc: R (11).
+#### 8) Wanderdoc: R (12).
 #### 9) Adam Russell: C++ (8), Prolog (2).
 #### 10) Myoungjin Jeon: Haskell (5), Lisp (4).
 #### 11) Burkhard Nickels: Python (8).
@@ -123,8 +123,8 @@ The total contributions in the week is **105**. Well done **Team PWC**. I would 
 #### 2) C++: 31
 #### 3) APL: 30
 #### 4) Haskell: 27
-#### 5) Swift: 12
-#### 6) R: 11
+#### 5) R: 12
+#### 6) Swift: 12
 #### 7) Rust: 10
 #### 8) Ruby: 9
 #### 9) Lisp: 8

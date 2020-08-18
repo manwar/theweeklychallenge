@@ -28,7 +28,7 @@ I must make this clear that we don't count the guest contributions towards the t
 
 I would like to specially mention, **Lance Wicks**, a dear friend of mine, for the [live streaming](https://www.youtube.com/watch?v=OA7dCY7vDJo) of weekly challenge.
 
-Lets talk about the guest contributions this week. We had **18 contributions** in **8 different** languages as listed below:
+Lets talk about the guest contributions this week. We had **19 contributions** in **9 different** languages as listed below:
 
 #### 1) Haskell: 4 ([Myoungjin Jeon](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-073/jeongoon/haskell), [Ulrich Rieke](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-073/ulrich-rieke/haskell))
 #### 2) Lisp: 3 ([Cheok-Yin Fung](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-073/cheok-yin-fung/common-lisp), [Myoungjin Jeon](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-073/jeongoon/common-lisp))
@@ -37,7 +37,8 @@ Lets talk about the guest contributions this week. We had **18 contributions** i
 #### 5) Ruby: 2 ([Shawak](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-073/shawak/ruby))
 #### 6) Swift: 2 ([Mohammad S Anwar](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-073/mohammad-anwar/swift))
 #### 7) Tcl: 2 ([Shawn Wagner](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-073/shawn-wagner/tcl))
-#### 8) Rust: 1 ([Jonas Berlin](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-073/xkr47/rust))
+#### 8) R: 1 ([Wanderdoc](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-073/wanderdoc/R))
+#### 9) Rust: 1 ([Jonas Berlin](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-073/xkr47/rust))
 
 <br>
 
