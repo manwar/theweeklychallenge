@@ -40,6 +40,10 @@ Please find below guest contributions.
 
 ##### **Ulrich Rieke** shared solution to [**task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/ulrich-rieke/haskell/ch-1.hs) in **Haskell**.
 
+##### **Walt Mankowski** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/walt-mankowski/cpp/ch-1.cpp) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/walt-mankowski/cpp/ch-2.cpp) in **C++**.
+
+##### **Walt Mankowski** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/walt-mankowski/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/walt-mankowski/python/ch-2.py) in **Python**.
+
 ----
 ## [The Weekly Challenge - 073](/blog/perl-weekly-challenge-073)
 <br>
