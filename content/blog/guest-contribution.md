@@ -13,7 +13,7 @@ As you know, **"The Weekly Challenge"**, primarily focus on **Perl** and **Raku*
 Please find below guest contributions.
 
 ----
-## [The Weekly Challenge - 074](/blog/perl-weekly-challenge-074)
+## [The Weekly Challenge - 075](/blog/perl-weekly-challenge-075)
 <br>
 
 ##### **Mohammad S Anwar** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/mohammad-anwar/swift/ch-1.swift) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/mohammad-anwar/swift/ch-2.swift) in **Swift**.
