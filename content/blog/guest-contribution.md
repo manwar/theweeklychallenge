@@ -16,6 +16,8 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 075](/blog/perl-weekly-challenge-075)
 <br>
 
+##### **Jonas Berlin** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/xkr47/rust/ch-1.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/xkr47/rust/ch-2.rs) in **Rust**.
+
 ##### **Mohammad S Anwar** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/mohammad-anwar/swift/ch-1.swift) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/mohammad-anwar/swift/ch-2.swift) in **Swift**.
 
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/roger-bell-west/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/roger-bell-west/python/ch-2.py) in **Python**.
