@@ -190,7 +190,7 @@ Write a script to find how many ways you make sum `$S` using the coins from the 
 
 You are given an array of positive numbers `@A`.
 
-Write a script to find the larget rectangle histogram created by the given array.
+Write a script to find the largest rectangle histogram created by the given array.
 
 #### BONUS: Try to print the histogram as shown in the example, if possible.
 
