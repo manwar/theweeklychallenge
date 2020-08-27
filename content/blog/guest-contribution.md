@@ -20,6 +20,10 @@ Please find below guest contributions.
 
 ##### **Mohammad S Anwar** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/mohammad-anwar/swift/ch-1.swift) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/mohammad-anwar/swift/ch-2.swift) in **Swift**.
 
+##### **Myoungjin Jeon** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/jeongoon/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/jeongoon/haskell/ch-2.hs) in **Haskell**.
+
+##### **Myoungjin Jeon** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/jeongoon/common-lisp/ch-1.lsp) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/jeongoon/common-lisp/ch-2.lsp) in **Lisp**.
+
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/roger-bell-west/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/roger-bell-west/python/ch-2.py) in **Python**.
 
 ##### **Tyler Wardhaugh** shard solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/tyler-wardhaugh/clojure/src/tw/weekly/ch-1.clj) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/tyler-wardhaugh/clojure/src/tw/weekly/ch-2.clj) in **Clojure**.
