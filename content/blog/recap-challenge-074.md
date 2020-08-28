@@ -192,7 +192,7 @@ Changes to the ranking in the **Centurion Club** last week listed below:
 #### 17) Luca Ferrari (**252**)
 #### 18) Andrezgz (**230**)
 #### 19) Ulrich Rieke (**226**)
-#### 20) Yet Ebreo (**206**)
+#### 20) Yet Ebreo (**210**)
 #### 21) Noud Aldenhoven (**184**)
 #### 22) Kevin Colyer (**176**)
 #### 23) Kian-Meng Ang (**162**)
@@ -372,7 +372,7 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 ### Walt Mankowski
 ![Walt Mankowski](/images/team/walt-mankowski.jpg)
 
-[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/walt-mankowski/perl/ch-1.pl)]
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-/walt-mankowski/perl/ch-1.pl)]
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/walt-mankowski/perl/ch-2.pl)]
 [[**BLOG #1**](http://www.mawode.com/blog/blog/2020/08/23/perl-weekly-challenge-74/)]
 
@@ -383,6 +383,14 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/wanderdoc/perl/ch-1.pl)]
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/wanderdoc/perl/ch-2.pl)]
+
+***
+
+### Yet Ebreo
+![Yet Ebreo](/images/team/yet-ebreo.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/yet-ebreo/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/yet-ebreo/perl/ch-2.pl)]
 
 <br>
 

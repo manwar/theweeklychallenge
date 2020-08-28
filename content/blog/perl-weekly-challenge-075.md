@@ -29,7 +29,7 @@ It took us **74 weeks** to break the record of **2 consecutive** weeks of **100+
 #### 5) Week #046: 106
 #### 6) Week #072: 109
 #### 7) Week #073: 108
-#### 8) Week #074: 110
+#### 8) Week #074: 112
 
 <br>
 
