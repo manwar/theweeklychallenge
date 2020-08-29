@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2020-08-28T00:00:00+00:00
+date: 2020-08-29T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -15,6 +15,12 @@ Please find below guest contributions.
 ----
 ## [The Weekly Challenge - 075](/blog/perl-weekly-challenge-075)
 <br>
+
+##### **Cheok-Yin Fung** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/cheok-yin-fung/java/coinsum.java) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/cheok-yin-fung/java/histogram.java) in **Java**.
+
+##### **Cheok-Yin Fung** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/cheok-yin-fung/common-lisp/ch-1.lsp) in **Lisp**.
+
+##### **Cheok-Yin Fung** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/cheok-yin-fung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/cheok-yin-fung/python/ch-2.py) in **Python**.
 
 ##### **Jonas Berlin** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/xkr47/rust/ch-1.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/xkr47/rust/ch-2.rs) in **Rust**.
 
