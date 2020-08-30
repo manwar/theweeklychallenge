@@ -18,7 +18,7 @@ Please find below guest contributions.
 
 ##### **Cheok-Yin Fung** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/cheok-yin-fung/java/coinsum.java) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/cheok-yin-fung/java/histogram.java) in **Java**.
 
-##### **Cheok-Yin Fung** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/cheok-yin-fung/common-lisp/ch-1.lsp) in **Lisp**.
+##### **Cheok-Yin Fung** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/cheok-yin-fung/common-lisp/ch-1.lsp) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/cheok-yin-fung/common-lisp/ch-2.lsp) in **Lisp**.
 
 ##### **Cheok-Yin Fung** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/cheok-yin-fung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/cheok-yin-fung/python/ch-2.py) in **Python**.
 
