@@ -5,16 +5,18 @@ description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
 author: Mohammad S Anwar
-tags: ["APL", "Awk", "Bash", "C", "C++", "Clojure", "Elm", "Erlang", "Gembase", "Go", "Haskell", "HTML", "Idris", "Java", "Javascript", "Lisp", "Node", "Ocaml", "Python", "Postscript", "Prolog", "R", "Ruby", "Rust", "Swift", "Tcl"]
+tags: ["APL", "Awk", "Bash", "C", "C++", "Clojure", "Elm", "Erlang", "Gembase", "Go", "Haskell", "HTML", "Idris", "Java", "Javascript", "Lisp", "Node", "OCaml", "Python", "Postscript", "Prolog", "R", "Ruby", "Rust", "Swift", "Tcl"]
 ---
 
-As you know, **"The Weekly Challenge"**, primarily focus on **Perl** and **Raku**. During the **Week #018**, we received the solution to **["The Weekly Challenge - 018"](/blog/perl-we$ekly-challenge-018)** by **Orestis Zekai** in **Python**. It was a pleasant surprise to receive solution in something other than **Perl** and **Raku**. Ever since regular team members also started contributing in other languages like **APL**, **Awk**, **Bash**, **C**, **C++**, **Clojure**, **Elm**, **Erlang**, **Gembase**, **Go**, **Haskell**, **HTML**, **Idris**, **Java**, **Javascript**, **Lisp**, **Node**, **Ocaml**, **Postscript**, **Prolog**, **R**, **Ruby**, **Rust**, **Swift** and **Tcl**.
+As you know, **"The Weekly Challenge"**, primarily focus on **Perl** and **Raku**. During the **Week #018**, we received the solution to **["The Weekly Challenge - 018"](/blog/perl-we$ekly-challenge-018)** by **Orestis Zekai** in **Python**. It was a pleasant surprise to receive solution in something other than **Perl** and **Raku**. Ever since regular team members also started contributing in other languages like **APL**, **Awk**, **Bash**, **C**, **C++**, **Clojure**, **Elm**, **Erlang**, **Gembase**, **Go**, **Haskell**, **HTML**, **Idris**, **Java**, **Javascript**, **Lisp**, **Node**, **OCaml**, **Postscript**, **Prolog**, **R**, **Ruby**, **Rust**, **Swift** and **Tcl**.
 
 Please find below guest contributions.
 
 ----
 ## [The Weekly Challenge - 075](/blog/perl-weekly-challenge-075)
 <br>
+
+##### **Adam Russell** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/adam-russell/prolog/ch-1.p) in **Prolog**.
 
 ##### **Cheok-Yin Fung** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/cheok-yin-fung/java/coinsum.java) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/cheok-yin-fung/java/histogram.java) in **Java**.
 
@@ -36,7 +38,7 @@ Please find below guest contributions.
 
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/roger-bell-west/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/roger-bell-west/python/ch-2.py) in **Python**.
 
-##### **Shawn Wagner** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/shawn-wagner/ocaml/ch-1.ml) in **Ocaml**.
+##### **Shawn Wagner** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/shawn-wagner/ocaml/ch-1.ml) in **OCaml**.
 
 ##### **Tyler Wardhaugh** shard solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/tyler-wardhaugh/clojure/src/tw/weekly/ch-1.clj) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/tyler-wardhaugh/clojure/src/tw/weekly/ch-2.clj) in **Clojure**.
 
