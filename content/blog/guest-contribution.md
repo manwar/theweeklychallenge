@@ -1,14 +1,14 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2020-08-29T00:00:00+00:00
+date: 2020-08-30T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
 author: Mohammad S Anwar
-tags: ["APL", "Awk", "Bash", "C", "C++", "Clojure", "Elm", "Erlang", "Gembase", "Go", "Haskell", "HTML", "Idris", "Java", "Javascript", "Lisp", "Node", "Python", "Postscript", "Prolog", "R", "Ruby", "Rust", "Swift", "Tcl"]
+tags: ["APL", "Awk", "Bash", "C", "C++", "Clojure", "Elm", "Erlang", "Gembase", "Go", "Haskell", "HTML", "Idris", "Java", "Javascript", "Lisp", "Node", "Ocaml", "Python", "Postscript", "Prolog", "R", "Ruby", "Rust", "Swift", "Tcl"]
 ---
 
-As you know, **"The Weekly Challenge"**, primarily focus on **Perl** and **Raku**. During the **Week #018**, we received the solution to **["The Weekly Challenge - 018"](/blog/perl-we$ekly-challenge-018)** by **Orestis Zekai** in **Python**. It was a pleasant surprise to receive solution in something other than **Perl** and **Raku**. Ever since regular team members also started contributing in other languages like **APL**, **Awk**, **Bash**, **C**, **C++**, **Clojure**, **Elm**, **Erlang**, **Gembase**, **Go**, **Haskell**, **HTML**, **Idris**, **Java**, **Javascript**, **Lisp**, **Node**, **Postscript**, **Prolog**, **R**, **Ruby**, **Rust**, **Swift** and **Tcl**.
+As you know, **"The Weekly Challenge"**, primarily focus on **Perl** and **Raku**. During the **Week #018**, we received the solution to **["The Weekly Challenge - 018"](/blog/perl-we$ekly-challenge-018)** by **Orestis Zekai** in **Python**. It was a pleasant surprise to receive solution in something other than **Perl** and **Raku**. Ever since regular team members also started contributing in other languages like **APL**, **Awk**, **Bash**, **C**, **C++**, **Clojure**, **Elm**, **Erlang**, **Gembase**, **Go**, **Haskell**, **HTML**, **Idris**, **Java**, **Javascript**, **Lisp**, **Node**, **Ocaml**, **Postscript**, **Prolog**, **R**, **Ruby**, **Rust**, **Swift** and **Tcl**.
 
 Please find below guest contributions.
 
@@ -35,6 +35,8 @@ Please find below guest contributions.
 ##### **Myoungjin Jeon** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/jeongoon/common-lisp/ch-1.lsp) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/jeongoon/common-lisp/ch-2.lsp) in **Lisp**.
 
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/roger-bell-west/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/roger-bell-west/python/ch-2.py) in **Python**.
+
+##### **Shawn Wagner** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/shawn-wagner/ocaml/ch-1.ml) in **Ocaml**.
 
 ##### **Tyler Wardhaugh** shard solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/tyler-wardhaugh/clojure/src/tw/weekly/ch-1.clj) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/tyler-wardhaugh/clojure/src/tw/weekly/ch-2.clj) in **Clojure**.
 
