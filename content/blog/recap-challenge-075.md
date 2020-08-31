@@ -55,11 +55,11 @@ These members shared solutions to both tasks in **Perl** and **Raku** as well as
 
 ***
 
-The total contributions in the week is **104**. Well done **Team PWC**. I would also like to thank **Raku** contributors for catching up.
+The total contributions in the week is **107**. Well done **Team PWC**. I would also like to thank **Raku** contributors for catching up.
 
 #### 1) PERL: 53
-#### 2) RAKU: 32
-#### 3) BLOG: 19
+#### 2) RAKU: 34
+#### 3) BLOG: 20
 
 <br>
 
@@ -158,7 +158,7 @@ Changes to the ranking in the **Centurion Club** last week listed below:
 #### 1) Laurent Rosenfeld (**844**)
 #### 2) Jaldhar H. Vyas (**642**)
 #### 3) Roger Bell_West (**520**)
-#### 4) Arne Sommer (**496**)
+#### 4) Arne Sommer (**502**)
 #### 5) Ruben Westerberg (**452**)
 #### 6) Javier Luque (**450**)
 #### 7) E. Choroba (**388**)
@@ -389,6 +389,15 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 [[**BLOG #1**](https://andrewshitov.com/2020/08/29/coins-sum-the-raku-challenge-week-75-task-1/)]
 [[**BLOG #2**](https://andrewshitov.com/2020/08/29/largest-rectangle-histogram-the-raku-challenge-week-75-task-2/)]
 [[**BLOG #3**](https://andrewshitov.com/2020/08/30/a-more-idiomatic-raku-solution/)]
+
+***
+
+### Arne Sommer
+![Arne Sommer](/images/team/arne-sommer.jpg)
+
+[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/arne-sommer/raku/ch-1.raku)]
+[[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/arne-sommer/raku/ch-2.raku)]
+[[**BLOG #1**](https://raku-musings.com/coins-rectangles.html)]
 
 ***
 
