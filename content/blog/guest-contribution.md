@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2020-08-30T00:00:00+00:00
+date: 2020-08-31T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -15,6 +15,8 @@ Please find below guest contributions.
 ----
 ## [The Weekly Challenge - 075](/blog/perl-weekly-challenge-075)
 <br>
+
+##### **Andrew Shitov** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/ash/cpp/ch-2.cpp) in **C++**.
 
 ##### **Adam Russell** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/adam-russell/prolog/ch-1.p) in **Prolog**.
 
