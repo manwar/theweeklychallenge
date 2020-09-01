@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2020-08-31T00:00:00+00:00
+date: 2020-09-01T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -11,6 +11,12 @@ tags: ["APL", "Awk", "Bash", "C", "C++", "Clojure", "Elm", "Erlang", "Gembase", 
 As you know, **"The Weekly Challenge"**, primarily focus on **Perl** and **Raku**. During the **Week #018**, we received the solution to **["The Weekly Challenge - 018"](/blog/perl-we$ekly-challenge-018)** by **Orestis Zekai** in **Python**. It was a pleasant surprise to receive solution in something other than **Perl** and **Raku**. Ever since regular team members also started contributing in other languages like **APL**, **Awk**, **Bash**, **C**, **C++**, **Clojure**, **Elm**, **Erlang**, **Gembase**, **Go**, **Haskell**, **HTML**, **Idris**, **Java**, **Javascript**, **Lisp**, **Node**, **OCaml**, **Postscript**, **Prolog**, **R**, **Ruby**, **Rust**, **Swift** and **Tcl**.
 
 Please find below guest contributions.
+
+----
+## [The Weekly Challenge - 076](/blog/perl-weekly-challenge-076)
+<br>
+
+##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-076/roger-bell-west/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-076/roger-bell-west/python/ch-2.py) in **Python**.
 
 ----
 ## [The Weekly Challenge - 075](/blog/perl-weekly-challenge-075)
