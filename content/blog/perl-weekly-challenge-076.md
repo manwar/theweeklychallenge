@@ -222,9 +222,9 @@ D R S M P C U U N E L T E S I L
 
 ## Output
 
-Found 55 words of length 5 or more when checked against the local dictionary. You may or may not get the same result but that is fine.
+Found 54 words of length 5 or more when checked against the local dictionary. You may or may not get the same result but that is fine.
 
-argos, constitution, margo, patna, traci, tracie, aimed, align, antes, arose, ashed, blunt, blunts, broad, buries, clove, cloven, constitution, constitutions, croon, depart, departed, enter, filch, garlic, goats, grieve, grieves, hazard, liens, malign, malignant, malls, midst, ought, ovary, parted, pudgiest, quash, quashed, raped, ruses, shrine, shrines, social, socializing, spasm, spasmodic, succor, succors, theorem, theorems, virus, viruses, wigged
+aimed, align, antes, argos, arose, ashed, blunt, blunts, broad, buries, clove, cloven, constitution, constitutions, croon, depart, departed, enter, filch, garlic, goats, grieve, grieves, hazard, liens, malign, malignant, malls, margo, midst, ought, ovary, parted, patna, pudgiest, quash, quashed, raped, ruses, shrine, shrines, social, socializing, spasm, spasmodic, succor, succors, theorem, theorems, traci, tracie, virus, viruses, wigged
 
 ***
 
