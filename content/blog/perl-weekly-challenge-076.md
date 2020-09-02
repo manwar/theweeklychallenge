@@ -8,11 +8,23 @@ author: Mohammad S Anwar
 tags: ["Perl", "Raku"]
 ---
 
-## HEADLINES
-
+## TABLE OF CONTENTS
 ***
 
+### 1. [HEADLINES](#HEADLINES)
+### 2. [RECAP](#RECAP)
+### 3. [PERL REVIEW](#PERLREVIEW)
+### 4. [RAKU REVIEW](#RAKUREVIEW)
+### 5. [CHART](#CHART)
+### 6. [NEW MEMBERS](#NEWMEMBERS)
+### 7. [GUESTS](#GUESTS)
+### 8. [TASK #1: Prime Sum](#TASK1)
+### 9. [TASK #2: Word Search](#TASK2)
+
 <br>
+
+## HEADLINES {#HEADLINES}
+***
 
 **Team PWC**, you did it once again. Congratulations to each and every member. We have now created a record of **4 consecutive** weeks of **100+ contributions**. I wasn't hopeful of breaking at the end of **Friday** looking at the numbers to be honest. But for some reason, I knew weekends might create magic.
 
@@ -62,16 +74,14 @@ Last but not the least, I would like to thank each and every member for their su
 
 <br>
 
-## RECAP
-
+## RECAP {#RECAP}
 ***
 
 Quick recap of the [**"The Weekly Challenge - 075"**](/blog/recap-challenge-075) by **Mohammad S Anwar**.
 
 <br>
 
-## PERL REVIEW
-
+## PERL REVIEW {#PERLREVIEW}
 ***
 
 Please checkout **Perl** solutions review of the **["The Weekly Challenge - 074"](/blog/review-challenge-074)** by **Colin Crain**.
@@ -80,8 +90,7 @@ If you missed any past reviews then please checkout the [**collection**](/p5-rev
 
 <br>
 
-## RAKU REVIEW
-
+## RAKU REVIEW {#RAKUREVIEW}
 ***
 
 Please checkout **Raku** solutions review of the **["The Weekly Challenge - 074"](/blog/p6-review-challenge-074)** by **Andrew Shitov**.
@@ -90,8 +99,7 @@ If you missed any past reviews then please checkout the [**collection**](/p6-rev
 
 <br>
 
-## CHART
-
+## CHART {#CHART}
 ***
 
 Please take a look at the [**charts**](/chart) showing interesting data.
@@ -100,7 +108,7 @@ I would like to thank every member of the team for their valuable suggestions. P
 
 <br>
 
-## NEW MEMBERS
+## NEW MEMBERS {#NEWMEMBERS}
 
 ***
 
@@ -123,7 +131,7 @@ Please give it a try to an excellent tool [**EZPWC**](https://github.com/saiftyn
 
 <br>
 
-## GUESTS
+## GUESTS {#GUESTS}
 
 ***
 
@@ -165,8 +173,10 @@ Please give it a try to an excellent tool [**EZPWC**](https://github.com/saiftyn
 
 Please find out [**past solutions**](/blog/guest-contribution) by respected **guests**. Please do share your creative solutions in other languages.
 
+<br>
+
 ***
-## TASK #1 › Prime Sum
+## TASK #1 › Prime Sum {#TASK1}
 ##### **Submitted by:** [Mohammad S Anwar](http://www.manwar.org)
 ##### **Reviewed by:** [Ryan Thompson](https://ry.ca)
 ***
@@ -187,7 +197,7 @@ For the sake of this task, please assume `1` is not a prime number.
 <br>
 
 ***
-## TASK #2 › Word Search
+## TASK #2 › Word Search {#TASK2}
 ##### **Submitted by:** [Neil Bowers](http://neilb.org)
 ##### **Reviewed by:** [Ryan Thompson](https://ry.ca)
 ***
