@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2020-09-01T00:00:00+00:00
+date: 2020-09-03T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -15,6 +15,8 @@ Please find below guest contributions.
 ----
 ## [The Weekly Challenge - 076](/blog/perl-weekly-challenge-076)
 <br>
+
+##### **Myoungjin Jeon** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-076/jeongoon/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-076/jeongoon/haskell/ch-2.hs) in **Haskell**.
 
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-076/roger-bell-west/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-076/roger-bell-west/python/ch-2.py) in **Python**.
 
