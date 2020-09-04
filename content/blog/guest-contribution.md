@@ -22,6 +22,8 @@ Please find below guest contributions.
 
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-076/roger-bell-west/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-076/roger-bell-west/python/ch-2.py) in **Python**.
 
+##### **Tyler Wardhaugh** shard solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-076/tyler-wardhaugh/clojure/src/tw/weekly/ch-1.clj) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-076/tyler-wardhaugh/clojure/src/tw/weekly/ch-2.clj) in **Clojure**.
+
 ----
 ## [The Weekly Challenge - 075](/blog/perl-weekly-challenge-075)
 <br>
