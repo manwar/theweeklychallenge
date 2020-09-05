@@ -209,7 +209,7 @@ done-testing;
 #### Submitted by **[Mohammad S Anwar](http://www.manwar.org)**
 ***
 
-You are given a text file name `$file` and range `$A - $B` where `$A <= $B.
+You are given a text file name `$file` and range `$A - $B` where `$A <= $B`.
 
 Write a script to display lines range $A and $B in the given file.
 
