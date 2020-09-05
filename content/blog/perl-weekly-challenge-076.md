@@ -139,13 +139,13 @@ Please give it a try to an excellent tool [**EZPWC**](https://github.com/saiftyn
 
 #### 2) Adam Russell shared solution to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/adam-russell/prolog/ch-1.p) in Prolog.
 
-#### 3) Cheok-Yin Fung shared solution to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/cheok-yin-fung/java/coinsum.java) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/cheok-yin-fung/java/histogram.java) in Java.
+#### 3) Cheok-Yin Fung shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/cheok-yin-fung/java/coinssum.java) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/cheok-yin-fung/java/histogram.java) in Java.
 
-#### 4) Cheok-Yin Fung shared solution to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/cheok-yin-fung/common-lisp/ch-1.lsp) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/cheok-yin-fung/common-lisp/ch-2.lsp) in Lisp.
+#### 4) Cheok-Yin Fung shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/cheok-yin-fung/common-lisp/ch-1.lsp) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/cheok-yin-fung/common-lisp/ch-2.lsp) in Lisp.
 
-#### 5) Cheok-Yin Fung shared solution to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/cheok-yin-fung/python/ch-1.py) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/cheok-yin-fung/python/ch-2.py) in Python.
+#### 5) Cheok-Yin Fung shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/cheok-yin-fung/python/ch-1.py) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/cheok-yin-fung/python/ch-2.py) in Python.
 
-#### 6) Jonas Berlin shared solution to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/xkr47/rust/ch-1.rs) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/xkr47/rust/ch-2.rs) in Rust.
+#### 6) Jonas Berlin shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/xkr47/rust/ch-1.rs) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/xkr47/rust/ch-2.rs) in Rust.
 
 #### 7) Laurent Rosenfeld shared solution to [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/laurent-rosenfeld/gembase/ch-2.dml) in Gembase.
 
