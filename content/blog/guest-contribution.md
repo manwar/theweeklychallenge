@@ -16,7 +16,9 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 076](/blog/perl-weekly-challenge-076)
 <br>
 
-##### **Lubos Kolouch** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-076/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-076/lubos-kolouch/python/ch-2.py) in **Python**.
+##### **Jonas Berlin** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/xkr47/rust/ch-2.rs) in **Rust**.
+
+##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-076/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-076/lubos-kolouch/python/ch-2.py) in **Python**.
 
 ##### **Myoungjin Jeon** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-076/jeongoon/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-076/jeongoon/haskell/ch-2.hs) in **Haskell**.
 
@@ -32,13 +34,13 @@ Please find below guest contributions.
 
 ##### **Adam Russell** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/adam-russell/prolog/ch-1.p) in **Prolog**.
 
-##### **Cheok-Yin Fung** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/cheok-yin-fung/java/coinsum.java) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/cheok-yin-fung/java/histogram.java) in **Java**.
+##### **Cheok-Yin Fung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/cheok-yin-fung/java/coinsum.java) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/cheok-yin-fung/java/histogram.java) in **Java**.
 
-##### **Cheok-Yin Fung** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/cheok-yin-fung/common-lisp/ch-1.lsp) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/cheok-yin-fung/common-lisp/ch-2.lsp) in **Lisp**.
+##### **Cheok-Yin Fung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/cheok-yin-fung/common-lisp/ch-1.lsp) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/cheok-yin-fung/common-lisp/ch-2.lsp) in **Lisp**.
 
-##### **Cheok-Yin Fung** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/cheok-yin-fung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/cheok-yin-fung/python/ch-2.py) in **Python**.
+##### **Cheok-Yin Fung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/cheok-yin-fung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/cheok-yin-fung/python/ch-2.py) in **Python**.
 
-##### **Jonas Berlin** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/xkr47/rust/ch-1.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/xkr47/rust/ch-2.rs) in **Rust**.
+##### **Jonas Berlin** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/xkr47/rust/ch-1.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/xkr47/rust/ch-2.rs) in **Rust**.
 
 ##### **Laurent Rosenfeld** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/laurent-rosenfeld/gembase/ch-2.dml) in **Gembase**.
 
