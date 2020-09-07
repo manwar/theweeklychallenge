@@ -55,9 +55,9 @@ These members shared solutions to both tasks in **Perl** and **Raku** as well as
 
 ***
 
-The total contributions in the week is **107**. Well done **Team PWC**. I would also like to thank **Raku** contributors for catching up.
+The total contributions in the week is **109**. Well done **Team PWC**. I would also like to thank **Raku** contributors for catching up.
 
-#### 1) PERL: 53
+#### 1) PERL: 55
 #### 2) RAKU: 34
 #### 3) BLOG: 20
 
@@ -235,6 +235,14 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/alexander-pankoff/perl/ch-1.pl)]
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/alexander-pankoff/perl/ch-2.pl)]
+
+***
+
+### Bob Lied
+![Bob Lied](/images/team/bob-lied.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/bob-lied/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/bob-lied/perl/ch-2.pl)]
 
 ***
 

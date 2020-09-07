@@ -163,16 +163,16 @@ You are **NOT** allowed to repeat a number. Print 0 if none found.
     Input: $N = 6
 
     Output:
-        a) 1 + 2 + 3 = 6
-        b) 1 + 5 = 6
+        1 + 2 + 3 = 6
+        1 + 5 = 6
 
 ## Example 2:
 
     Input: $N = 9
 
     Output:
-        a) 1 + 8 = 9
-        b) 1 + 3 + 5 = 9
+        1 + 8 = 9
+        1 + 3 + 5 = 9
 
 <br>
 
