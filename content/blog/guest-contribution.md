@@ -16,9 +16,9 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 076](/blog/perl-weekly-challenge-076)
 <br>
 
-##### **Adam Russell** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/adam-russell/prolog/ch-1.p) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/adam-russell/prolog/ch-2.p) in **Prolog**.
+##### **Adam Russell** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-076/adam-russell/prolog/ch-1.p) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-076/adam-russell/prolog/ch-2.p) in **Prolog**.
 
-##### **Jonas Berlin** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/xkr47/rust/ch-2.rs) in **Rust**.
+##### **Jonas Berlin** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-076/xkr47/rust/ch-2.rs) in **Rust**.
 
 ##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-076/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-076/lubos-kolouch/python/ch-2.py) in **Python**.
 
