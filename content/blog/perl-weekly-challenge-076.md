@@ -40,7 +40,7 @@ I am tired and exhausted now after the marathon of **4 weeks**. Havind said that
 #### 6) Week #072: 109
 #### 7) Week #073: 108
 #### 8) Week #074: 112
-#### 9) Week #075: 107
+#### 9) Week #075: 109
 
 <br>
 
