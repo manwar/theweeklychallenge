@@ -79,6 +79,8 @@ Quick recap of the [**"The Weekly Challenge - 076"**](/blog/recap-challenge-076)
 ## PERL REVIEW {#PERLREVIEW}
 ***
 
+Please checkout **Perl** solutions review of the **["The Weekly Challenge - 075"](/blog/review-challenge-075)** by **Colin Crain**.
+
 If you missed any past reviews then please checkout the [**collection**](/p5-reviews).
 
 <br>
