@@ -148,21 +148,29 @@ Please find out [**past solutions**](/blog/guest-contribution) by respected **gu
 ##### **Submitted by:** [Mohammad S Anwar](http://www.manwar.org)
 ***
 
-You are given a positive integer $N.
+You are given a positive integer `$N`.
 
-Write a script to find the total number of Fibonacci Numbers required to get $N on addition. You are NOT allowed to repeat a number. Print 0 if none found.
+##### UPDATE: 2020-09-07 09:00:00
+
+Write a script to find out all possible combination of Fibonacci Numbers required to get `$N` on addition.
+
+You are **NOT** allowed to repeat a number. Print 0 if none found.
 
 ## Example 1:
 
     Input: $N = 6
 
-    Output: 3 as (1 + 2 + 3 = 6)
+    Output:
+        a) 1 + 2 + 3 = 6
+        b) 1 + 5 = 6
 
 ## Example 2:
 
     Input: $N = 9
 
-    Output: 2 as (1 + 8 = 9)
+    Output:
+        a) 1 + 8 = 9
+        b) 1 + 3 + 5 = 9
 
 <br>
 
