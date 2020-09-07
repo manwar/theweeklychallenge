@@ -178,17 +178,17 @@ Write a script to count the total number of `X` surrounded by `O` only. Print `0
 ## Example 1:
 
     Input: [ O O X ]
-           [ X 0 0 ]
-           [ X 0 0 ]
+           [ X O O ]
+           [ X O O ]
 
     Output: 1 as there is only one X at the first row last column surrounded by only O.
 
 ## Example 2:
 
-    Input: [ O O X 0 ]
-           [ X 0 0 O ]
-           [ X 0 0 X ]
-           [ 0 X O 0 ]
+    Input: [ O O X O ]
+           [ X O O O ]
+           [ X O O X ]
+           [ O X O O ]
 
     Output: 2
 
