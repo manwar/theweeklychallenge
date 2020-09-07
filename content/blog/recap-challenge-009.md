@@ -42,6 +42,12 @@ Daniel solution to the square number challenge is like a poetry. For ranking cha
 
 For ranking challenge, Dave tried different approach. He never shy away from using Perl magical opertaor. He solved the ranking challenge with plenty of documentation, It is such a fun reading his code. [[#1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/dave-jacoby/perl5/ch-1.pl)] [[#2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/dave-jacoby/perl5/ch-2.pl)] [[BLOG1](https://jacoby.github.io//2019/05/21/ranking-in-perl.html)] [[BLOG2](https://jacoby.github.io//2019/05/21/finding-first-square-with-five-distinct-digits-plus.html)].
 
+### Feng Chang
+![Feng Chang](/images/team/user.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/feng-chang/perl/ch-1.pl)]
+[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-009/feng-chang/raku/ch-1.p6)]
+
 ### Francis Whittle
 ![Francis Whittle](/images/team/user.jpg)
 

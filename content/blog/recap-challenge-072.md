@@ -57,10 +57,10 @@ These members shared solutions to both tasks in **Perl** and **Raku** as well as
 
 ***
 
-The total contributions in the week is **108**. Well done **Team PWC**. I would like to thank **Raku** contributors for catching up.
+The total contributions in the week is **109**. Well done **Team PWC**. I would like to thank **Raku** contributors for catching up.
 
 #### 1) PERL: 51
-#### 2) RAKU: 39
+#### 2) RAKU: 40
 #### 3) BLOG: 18
 
 <br>
@@ -354,6 +354,13 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 
 [[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/ben-davies/raku/ch-1.raku)]
 [[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/ben-davies/raku/ch-2.raku)]
+
+***
+
+### Feng Chang
+![Feng Chang](/images/team/user.jpg)
+
+[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/feng-chang/raku/ch-1.raku)]
 
 ***
 

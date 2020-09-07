@@ -53,6 +53,14 @@ I like the use of **Date::Manip** and **Function::Parameters**. It makes code so
 
 Choroba always blog about the weekly challenge solution. I always learn something new from his blog. Please do check his blog. [[#1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-013/e-choroba/perl5/ch-1.pl)] [[#2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-013/e-choroba/perl5/ch-2.pl)] [[BLOG](http://blogs.perl.org/users/e_choroba/2019/06/perl-weekly-challenge-013-last-fridays-and-hofstadter-female-and-male-sequences.html)]
 
+### Feng Chang
+![Feng Chang](/images/team/user.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-013/feng-chang/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-013/feng-chang/perl/ch-2.pl)]
+[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-013/feng-chang/raku/ch-1.p6)]
+[[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-013/feng-chang/raku/ch-2.p6)]
+
 ### Guillermo Ramos
 ![Guillermo Ramos](/images/team/user.jpg)
 

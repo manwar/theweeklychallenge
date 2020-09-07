@@ -74,10 +74,10 @@ These members shared solutions to both tasks in **Perl** and **Raku** as well as
 
 ***
 
-The total contributions in the week is **110**. Well done **Team PWC**. I would also like to thank **Raku** contributors for catching up.
+The total contributions in the week is **113**. Well done **Team PWC**. I would also like to thank **Raku** contributors for catching up.
 
-#### 1) PERL: 54
-#### 2) RAKU: 36
+#### 1) PERL: 56
+#### 2) RAKU: 37
 #### 3) BLOG: 20
 
 <br>
@@ -413,6 +413,13 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 [[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/arne-sommer/raku/ch-1.raku)]
 [[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/arne-sommer/raku/ch-2.raku)]
 [[**BLOG #1**](https://raku-musings.com/majority-character.html)]
+
+***
+
+### Feng Chang
+![Feng Chang](/images/team/user.jpg)
+
+[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/feng-chang/raku/ch-1.raku)]
 
 ***
 

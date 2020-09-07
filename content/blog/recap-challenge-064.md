@@ -40,10 +40,10 @@ Last but not the least, please take care of yourself and your family.
 
 ***
 
-The total contributions in the **Week #064** was **73**. Well done **Team PWC**. I would like to thank **Raku** contributors for catching up.
+The total contributions in the **Week #064** was **75**. Well done **Team PWC**. I would like to thank **Raku** contributors for catching up.
 
 #### Perl: 33
-#### Raku: 25
+#### Raku: 27
 #### Blog: 15
 
 <br>
@@ -258,6 +258,14 @@ Please checkout the masterpiece collection of [**blogs**](https://perlweeklychal
 [[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-064/arne-sommer/raku/ch-1.p6)]
 [[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-064/arne-sommer/raku/ch-2.p6)]
 [[**BLOG #1**](https://raku-musings.com/minimum-break.html)]
+
+***
+
+### Feng Chang
+![Feng Chang](/images/team/user.jpg)
+
+[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-064/feng-chang/raku/ch-1.raku)]
+[[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-064/feng-chang/raku/ch-2.raku)]
 
 ***
 
