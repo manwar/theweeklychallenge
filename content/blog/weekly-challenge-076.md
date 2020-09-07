@@ -32,7 +32,7 @@ Last but not the least, I would to love hear your **view/opinion** with regard t
 
 Please get in touch with me by email: <mohammad.anwar@yahoo.com>.
 
-Let me share my solutions to the **[The Weekly Challenge - 075](/perl-weekly-challenge-075)**.
+Let me share my solutions to the **[The Weekly Challenge - 076](/perl-weekly-challenge-076)**.
 
 ***
 ## TASK #1 › Prime Sum
