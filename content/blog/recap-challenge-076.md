@@ -68,9 +68,9 @@ Following members shared solutions to both tasks in **Perl** and **Raku** as wel
 
 ***
 
-The total contributions in the week is **87**. Well done **Team PWC**. I would also like to thank **Raku** contributors for catching up.
+The total contributions in the week is **89**. Well done **Team PWC**. I would also like to thank **Raku** contributors for catching up.
 
-#### 1) PERL: 43
+#### 1) PERL: 45
 #### 2) RAKU: 28
 #### 3) BLOG: 16
 
@@ -194,7 +194,7 @@ Changes to the ranking in the **Centurion Club** last week listed below:
 #### 11) Mohammad S Anwar (**338**)
 #### 12) Joelle Maslak (**334**)
 #### 13) Simon Proctor (**296**)
-#### 14) Dave Jacoby (**288**)
+#### 14) Dave Jacoby (**292**)
 #### 15) Ryan Thompson (**278**)
 #### 16) Luca Ferrari (**268**)
 #### 17) Duncan C. White (**262**)
@@ -266,6 +266,14 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-076/cheok-yin-fung/perl/ch-1.pl)]
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-076/cheok-yin-fung/perl/ch-2.pl)]
 [[**BLOG #1**](http://blogs.perl.org/users/c_y_fung/2020/09/cys-take-on-pwc076.html)]
+
+***
+
+### Dave Jacoby
+![Dave Jacoby](/images/team/dave-jacoby.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-076/dave-jacoby/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-076/dave-jacoby/perl/ch-2.pl)]
 
 ***
 
