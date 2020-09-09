@@ -16,6 +16,8 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 077](/blog/perl-weekly-challenge-077)
 <br>
 
+##### **Andrew Shitov** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/ash/cpp/ch-2.cpp) in **C++**.
+
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/roger-bell-west/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/roger-bell-west/python/ch-2.py) in **Python**.
 
 ##### **Tyler Wardhaugh** shard solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/tyler-wardhaugh/clojure/src/tw/weekly/ch_1.clj) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/tyler-wardhaugh/clojure/src/tw/weekly/ch_2.clj) in **Clojure**.
