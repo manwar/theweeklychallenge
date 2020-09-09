@@ -68,9 +68,9 @@ Following members shared solutions to both tasks in **Perl** and **Raku** as wel
 
 ***
 
-The total contributions in the week is **89**. Well done **Team PWC**. I would also like to thank **Raku** contributors for catching up.
+The total contributions in the week is **91**. Well done **Team PWC**. I would also like to thank **Raku** contributors for catching up.
 
-#### 1) PERL: 45
+#### 1) PERL: 47
 #### 2) RAKU: 28
 #### 3) BLOG: 16
 
@@ -260,6 +260,14 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 
 ***
 
+### Bob Lied
+![Bob Lied](/images/team/bob-lied.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-076/bob-lied/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-076/bob-lied/perl/ch-2.pl)]
+
+***
+
 ### Cheok-Yin Fung
 ![Cheok-Yin Fung](/images/team/cheok-yin-fung.jpg)
 
@@ -270,7 +278,7 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 ***
 
 ### Dave Jacoby
-![Dave Jacoby](/images/team/dave-jacoby.jpg)
+![Dave Jacoby](/images/team/dave_jacoby.jpg)
 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-076/dave-jacoby/perl/ch-1.pl)]
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-076/dave-jacoby/perl/ch-2.pl)]
