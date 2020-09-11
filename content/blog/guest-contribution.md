@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2020-09-10T00:00:00+00:00
+date: 2020-09-11T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -17,6 +17,8 @@ Please find below guest contributions.
 <br>
 
 ##### **Andrew Shitov** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/ash/cpp/ch-2.cpp) in **C++**.
+
+##### **Andrew Shitov** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/ash/html/ch-2.html) in **HTML**.
 
 ##### **Andrew Shitov** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/ash/xslt/ch-2.xslt) in **XSLT**.
 
