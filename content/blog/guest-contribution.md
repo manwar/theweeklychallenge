@@ -32,6 +32,8 @@ Please find below guest contributions.
 
 ##### **Tyler Wardhaugh** shard solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/tyler-wardhaugh/clojure/src/tw/weekly/ch_1.clj) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/tyler-wardhaugh/clojure/src/tw/weekly/ch_2.clj) in **Clojure**.
 
+##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/ulrich-rieke/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/ulrich-rieke/haskell/ch-2.hs) in **Haskell**.
+
 ----
 ## [The Weekly Challenge - 076](/blog/perl-weekly-challenge-076)
 <br>
