@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2020-09-12T00:00:00+00:00
+date: 2020-09-13T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -24,7 +24,7 @@ Please find below guest contributions.
 
 ##### **Aviral Goel** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/aviral-goel/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/aviral-goel/haskell/ch-2.hs) in **Haskell**.
 
-##### **Lubos Kolouch** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/lubos-kolouch/python/ch-1.py) in **Python**.
+##### **Lubos Kolouch** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/lubos-kolouch/python/ch-2.py) in **Python**.
 
 ##### **Myoungjin Jeon** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/jeongoon/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/jeongoon/haskell/ch-2.hs) in **Haskell**.
 
