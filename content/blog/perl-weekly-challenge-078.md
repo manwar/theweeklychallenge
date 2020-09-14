@@ -147,6 +147,8 @@ If you missed any past reviews then please checkout the [**collection**](/p5-rev
 ## RAKU REVIEW {#RAKUREVIEW}
 ***
 
+Please checkout **Raku** solutions review of the **["Perl Weekly Challenge - 076"](/blog/p6-review-challenge-076)** by `Andrew Shitov`.
+
 If you missed any past reviews then please checkout the [**collection**](/p6-reviews).
 
 <br>
