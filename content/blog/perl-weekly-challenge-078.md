@@ -12,14 +12,14 @@ tags: ["Perl", "Raku"]
 ***
 
 ### 1. [HEADLINES](#HEADLINES)
-### 2. [RECAP](#RECAP)
-### 3. [PERL REVIEW](#PERLREVIEW)
-### 4. [RAKU REVIEW](#RAKUREVIEW)
-### 5. [CHART](#CHART)
-### 6. [NEW MEMBERS](#NEWMEMBERS)
-### 7. [GUESTS](#GUESTS)
-### 8. [TASK #1: Leader Element](#TASK1)
-### 9. [TASK #2: Left Rotation](#TASK2)
+### 2. [TASK #1: Leader Element](#TASK1)
+### 3. [TASK #2: Left Rotation](#TASK2)
+### 4. [RECAP](#RECAP)
+### 5. [PERL REVIEW](#PERLREVIEW)
+### 6. [RAKU REVIEW](#RAKUREVIEW)
+### 7. [CHART](#CHART)
+### 8. [NEW MEMBERS](#NEWMEMBERS)
+### 9. [GUESTS](#GUESTS)
 
 <br>
 
@@ -53,96 +53,6 @@ While we are talking about contributions, lets share some interesting stats from
 <br>
 
 Last but not the least, I would like to thank each and every member for their support and encouragement.
-
-<br>
-
-## RECAP {#RECAP}
-***
-
-Quick recap of the [**"The Weekly Challenge - 077"**](/blog/recap-challenge-077) by `Mohammad S Anwar`.
-
-<br>
-
-## PERL REVIEW {#PERLREVIEW}
-***
-
-If you missed any past reviews then please checkout the [**collection**](/p5-reviews).
-
-<br>
-
-## RAKU REVIEW {#RAKUREVIEW}
-***
-
-If you missed any past reviews then please checkout the [**collection**](/p6-reviews).
-
-<br>
-
-## CHART {#CHART}
-***
-
-Please take a look at the [**charts**](/chart) showing interesting data.
-
-I would like to thank every member of the team for their valuable suggestions. Please do share your experience with us.
-
-<br>
-
-## NEW MEMBERS {#NEWMEMBERS}
-
-***
-
-#### [Shasank Shah](https://github.com/shasank-shah), an experienced Perl hacker.
-
-#### [P6steve](https://github.com/p6steve), an experienced Raku hacker.
-
-#### [Flavio Poletti](https://github.polettix.it/ETOOBUSY)
-
-> Perl Hacker from Roma, Italia. I mainly use Perl for my own interests and stuff, trying to blog about it when possible at https://github.polettix.it/ETOOBUSY/.
-
-<br>
-
-With the above additions, we now have `188 members` in the **Team PWC**.
-
-#### [Aviral Goel](https://github.com/aviralg), Programming Languages student at Northeastern University, Boston, MA joined as guest.
-
-Please find out [**How to contribute?**](/blog/how-to-contribute), if you have any doubts.
-
-Please give it a try to an excellent tool [**EZPWC**](https://github.com/saiftynet/EZPWC) created by respected member `Saif Ahmed` of **Team PWC**.
-
-<br>
-
-## GUESTS {#GUESTS}
-
-***
-
-#### 1) Andrew Shitov shared solution to [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/ash/cpp/ch-2.cpp) in C++.
-
-#### 2) Andrew Shitov shared solution to [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/ash/html/ch-2.html) in HTML.
-
-#### 3) Andrew Shitov shared solution to [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/ash/xslt/ch-2.xslt) in XSLT.
-
-#### 4) Aviral Goel shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/aviral-goel/haskell/ch-1.hs) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/aviral-goel/haskell/ch-2.hs) in Haskell.
-
-#### 5) Cheok-Yin Fung shared solution to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/cheok-yin-fung/common-lisp/ch-1.lsp) in Lisp.
-
-#### 6) Cheok-Yin Fung shared solution to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/cheok-yin-fung/python/ch-1.py) in Python.
-
-#### 7) Lubos Kolouch shared solution to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/lubos-kolouch/python/ch-1.py) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/lubos-kolouch/python/ch-2.py) in Python.
-
-#### 8) Myoungjin Jeon shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/jeongoon/haskell/ch-1.hs) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/jeongoon/haskell/ch-2.hs) in Haskell.
-
-#### 9) Myoungjin Jeon shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/jeongoon/common-lisp/ch-1.lsp) in Lisp.
-
-#### 10) Roger Bell_West shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/roger-bell-west/python/ch-1.py) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/roger-bell-west/python/ch-2.py) in Python.
-
-#### 11) Tyler Wardhaugh shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/tyler-wardhaugh/clojure/src/tw/weekly/ch_1.clj) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/tyler-wardhaugh/clojure/src/tw/weekly/ch_2.clj) in Clojure.
-
-#### 12) Ulrich Rieke shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/ulrich-rieke/haskell/ch-1.hs) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/ulrich-rieke/haskell/ch-2.hs) in Haskell.
-
-<br>
-
-Please find out [**past solutions**](/blog/guest-contribution) by respected **guests**. Please do share your creative solutions in other languages.
-
-<br>
 
 ***
 ## TASK #1 › Leader Element {#TASK1}
@@ -215,6 +125,98 @@ Write a script to left rotate `@A` so that the number at the first index of `@B`
         [4 2 6 3 7]
         [6 3 7 5 2]
         [3 7 4 2 6]
+
+<br>
+
+## RECAP {#RECAP}
+***
+
+Quick recap of the [**"The Weekly Challenge - 077"**](/blog/recap-challenge-077) by `Mohammad S Anwar`.
+
+<br>
+
+## PERL REVIEW {#PERLREVIEW}
+***
+
+Please checkout **Perl** solutions review of the **["The Weekly Challenge - 076"](/blog/review-challenge-076)** by `Colin Crain`.
+
+If you missed any past reviews then please checkout the [**collection**](/p5-reviews).
+
+<br>
+
+## RAKU REVIEW {#RAKUREVIEW}
+***
+
+If you missed any past reviews then please checkout the [**collection**](/p6-reviews).
+
+<br>
+
+## CHART {#CHART}
+***
+
+Please take a look at the [**charts**](/chart) showing interesting data.
+
+I would like to thank every member of the team for their valuable suggestions. Please do share your experience with us.
+
+<br>
+
+## NEW MEMBERS {#NEWMEMBERS}
+
+***
+
+#### 1) [Shasank Shah](https://github.com/shasank-shah), an experienced Perl hacker.
+
+#### 2) [P6steve](https://github.com/p6steve), an experienced Raku hacker.
+
+#### 3) [Flavio Poletti](https://github.polettix.it/ETOOBUSY)
+
+> Perl Hacker from Roma, Italia. I mainly use Perl for my own interests and stuff, trying to blog about it when possible at https://github.polettix.it/ETOOBUSY/.
+
+<br>
+
+With the above additions, we now have `188 members` in the **Team PWC**.
+
+#### [Aviral Goel](https://github.com/aviralg), Programming Languages student at Northeastern University, Boston, MA joined as guest.
+
+<br>
+
+Please find out [**How to contribute?**](/blog/how-to-contribute), if you have any doubts.
+
+Please give it a try to an excellent tool [**EZPWC**](https://github.com/saiftynet/EZPWC) created by respected member `Saif Ahmed` of **Team PWC**.
+
+<br>
+
+## GUESTS {#GUESTS}
+
+***
+
+#### 1) Andrew Shitov shared solution to [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/ash/cpp/ch-2.cpp) in C++.
+
+#### 2) Andrew Shitov shared solution to [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/ash/html/ch-2.html) in HTML.
+
+#### 3) Andrew Shitov shared solution to [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/ash/xslt/ch-2.xslt) in XSLT.
+
+#### 4) Aviral Goel shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/aviral-goel/haskell/ch-1.hs) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/aviral-goel/haskell/ch-2.hs) in Haskell.
+
+#### 5) Cheok-Yin Fung shared solution to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/cheok-yin-fung/common-lisp/ch-1.lsp) in Lisp.
+
+#### 6) Cheok-Yin Fung shared solution to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/cheok-yin-fung/python/ch-1.py) in Python.
+
+#### 7) Lubos Kolouch shared solution to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/lubos-kolouch/python/ch-1.py) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/lubos-kolouch/python/ch-2.py) in Python.
+
+#### 8) Myoungjin Jeon shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/jeongoon/haskell/ch-1.hs) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/jeongoon/haskell/ch-2.hs) in Haskell.
+
+#### 9) Myoungjin Jeon shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/jeongoon/common-lisp/ch-1.lsp) in Lisp.
+
+#### 10) Roger Bell_West shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/roger-bell-west/python/ch-1.py) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/roger-bell-west/python/ch-2.py) in Python.
+
+#### 11) Tyler Wardhaugh shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/tyler-wardhaugh/clojure/src/tw/weekly/ch_1.clj) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/tyler-wardhaugh/clojure/src/tw/weekly/ch_2.clj) in Clojure.
+
+#### 12) Ulrich Rieke shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/ulrich-rieke/haskell/ch-1.hs) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/ulrich-rieke/haskell/ch-2.hs) in Haskell.
+
+<br>
+
+Please find out [**past solutions**](/blog/guest-contribution) by respected **guests**. Please do share your creative solutions in other languages.
 
 ***
 
