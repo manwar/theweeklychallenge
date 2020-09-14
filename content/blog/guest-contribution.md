@@ -18,6 +18,8 @@ Please find below guest contributions.
 
 ##### **Andrew Shitov** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/ash/cpp/ch-1.cpp) in **C++**.
 
+##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/roger-bell-west/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/roger-bell-west/python/ch-2.py) in **Python**.
+
 ----
 ## [The Weekly Challenge - 077](/blog/perl-weekly-challenge-077)
 <br>
