@@ -20,10 +20,13 @@ I am happy with my effort this week. It gives me immense pleasure when I do **Ra
 
 ### YouTube Weekly
 
-Like last week, this time also I made just one video for the task **Fibonacci Sum** but couldn't upload to **YouTube** because of dog slow internet connection. I will upload it sometime later this week.
+I present live coding session of mine for the tasks of the week. Please do comment the video if you have any suggestions. And if you like the video then please consider subscribing my **[YouTube Channel](https://www.youtube.com/channel/UCT91RkThBWByo1NL_M8R8Ig)**.
 
-You can still browse through past videos, if you want. Please checkout my **[YouTube Channel](https://www.youtube.com/channel/UCT91RkThBWByo1NL_M8R8Ig)**.
+#### Task #1: Fibonacci Sum
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/dgz4T4GwKxQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<br>
 <br>
 
 Last but not the least, I would to love hear your **view/opinion** with regard to anything I do.

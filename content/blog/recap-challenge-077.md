@@ -58,6 +58,15 @@ Welcome back **Feng Chang**. Thanks for sharing solutions to the following weeks
 <br>
 <br>
 
+Please checkout my live coding session dealing with **Fibonacci Sum** task.
+
+<br>
+
+<iframe width="500" height="300" src="https://www.youtube.com/embed/dgz4T4GwKxQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<br>
+<br>
+
 ## STAR CONTRIBUTORS {#STARCONTRIBUTORS}
 ***
 
@@ -74,11 +83,11 @@ Following members shared solutions to both tasks in **Perl** and **Raku** as wel
 
 ***
 
-The total contributions in the week is **91**. Well done **Team PWC**. I would also like to thank **Raku** contributors for catching up.
+The total contributions in the week is **92**. Well done **Team PWC**. I would also like to thank **Raku** contributors for catching up.
 
 #### 1) PERL: 46
 #### 2) RAKU: 32
-#### 3) BLOG: 13
+#### 3) BLOG: 14
 
 <br>
 
@@ -183,7 +192,7 @@ Changes to the ranking in the **Centurion Club** last week listed below:
 #### 8) E. Choroba (**396**)
 #### 9) Athanasius (**384**)
 #### 10) Adam Russell (**356**)
-#### 11) Mohammad S Anwar (**348**)
+#### 11) Mohammad S Anwar (**350**)
 #### 12) Joelle Maslak (**334**)
 #### 13) Simon Proctor (**300**)
 #### 14) Dave Jacoby (**296**)
@@ -502,6 +511,7 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 [[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/mohammad-anwar/raku/ch-1.raku)]
 [[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/mohammad-anwar/raku/ch-2.raku)]
 [[**BLOG #1**](https://perlweeklychallenge.org/blog/weekly-challenge-077/)]
+[[**BLOG #2**](https://www.youtube.com/watch?v=dgz4T4GwKxQ)]
 
 ***
 
