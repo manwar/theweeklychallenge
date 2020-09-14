@@ -159,7 +159,7 @@
 <hr>
 <p><strong><big>For context</big></strong>  before we begin, you may wish to revisit either of the pages for the <a href="/blog/perl-weekly-challenge-076/"><strong>original tasks</strong></a> or the summary <a href="/blog/recap-challenge-076/"><strong>recap</strong></a> of the challenge. But don&rsquo;t worry, the challenges themselves will be briefly summarized, presented below as we progress from task by task. Oh, and one more thing before we get started:</p>
 <h3 id="getting-in-touch-with-us">Getting in Touch with Us</h3>
-<p><a href="mailto:pwc.perfectwave.com"><img src="/images/blog/Email.svg" height="50" width="50"> Email</a> › Please email me (Colin) with any feedback, notes, clarifications or whatnot about this review.</p>
+<p><a href="mailto:pwc.perfectwave@gmail.com"><img src="/images/blog/Email.svg" height="50" width="50"> Email</a> › Please email me (Colin) with any feedback, notes, clarifications or whatnot about this review.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge"><img src="/images/blog/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request to us for any issues you may find with this page.</p>
 <p><a href="https://twitter.com/perlwchallenge"><img src="/images/blog/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!</p>
 <p>I&rsquo;m always curious as to what the people think of these efforts. Everyone here at the PWC would like to hear any feedback you&rsquo;d like to give.</p>
@@ -260,18 +260,18 @@
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-076/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a></p>
 <p>who gives us a little trick with <code>goto</code> to silently slip in a bit of extra code warning us on the potential failure of the Goldbach conjecture.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">num_prime_summands</span> {
-    <span style="color:#66d9ef">my</span> ($n) <span style="color:#f92672">=</span> @_;            		<span style="color:#75715e"># keep @_</span>
-    $_[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;            			<span style="color:#75715e"># provide default retcode</span>
+    <span style="color:#66d9ef">my</span> ($n) <span style="color:#f92672">=</span> @_;                	<span style="color:#75715e"># keep @_</span>
+    $_[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;                		<span style="color:#75715e"># provide default retcode</span>
 
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $n <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">2</span>;            	<span style="color:#75715e"># not a sum of primes</span>
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $n <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">2</span>;                <span style="color:#75715e"># not a sum of primes</span>
     <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> $n <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span>;            <span style="color:#75715e"># 2 is prime</span>
     goto <span style="color:#f92672">&amp;</span>assure <span style="color:#66d9ef">if</span> $n % 2 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;    <span style="color:#75715e"># Goldbach&#39;s conjecture</span>
     <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> is_prime $n;        <span style="color:#75715e"># $n is prime</span>
     <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">2</span> <span style="color:#66d9ef">if</span> is_prime $n <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>;    <span style="color:#75715e"># $n - 2 is prime</span>
 
     $_[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">++</span>; goto <span style="color:#f92672">&amp;</span>assure;            <span style="color:#75715e"># Else: $n minus any odd prime is even,</span>
-                					<span style="color:#75715e"># where Goldbach&#39;s conjecture is</span>
-                					<span style="color:#75715e"># applied again.</span>
+                    				<span style="color:#75715e"># where Goldbach&#39;s conjecture is</span>
+                    				<span style="color:#75715e"># applied again.</span>
 }
 
 <span style="color:#75715e"># Warn about results that cannot be assured.</span>

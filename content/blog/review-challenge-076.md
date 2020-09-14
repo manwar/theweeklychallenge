@@ -24,7 +24,7 @@ Let's have a look and see what we can find.
 
 ### Getting in Touch with Us
 
-<a href="mailto:pwc.perfectwave.com"><img src="/images/blog/Email.svg" height="50" width="50"> Email</a> › Please email me (Colin) with any feedback, notes, clarifications or whatnot about this review.
+<a href="mailto:pwc.perfectwave@gmail.com"><img src="/images/blog/Email.svg" height="50" width="50"> Email</a> › Please email me (Colin) with any feedback, notes, clarifications or whatnot about this review.
 
 <a href="https://github.com/manwar/perlweeklychallenge"><img src="/images/blog/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request to us for any issues you may find with this page.
 
@@ -159,18 +159,18 @@ who gives us a little trick with `goto` to silently slip in a bit of extra code 
 
 ```perl
 sub num_prime_summands {
-    my ($n) = @_;            		# keep @_
-    $_[1] = 2;            			# provide default retcode
+    my ($n) = @_;                	# keep @_
+    $_[1] = 2;                		# provide default retcode
 
-    return 0 if $n < 2;            	# not a sum of primes
+    return 0 if $n < 2;                # not a sum of primes
     return 1 if $n == 2;            # 2 is prime
     goto &assure if $n % 2 == 0;    # Goldbach's conjecture
     return 1 if is_prime $n;        # $n is prime
     return 2 if is_prime $n - 2;    # $n - 2 is prime
 
     $_[1]++; goto &assure;            # Else: $n minus any odd prime is even,
-                					# where Goldbach's conjecture is
-                					# applied again.
+                    				# where Goldbach's conjecture is
+                    				# applied again.
 }
 
 # Warn about results that cannot be assured.
