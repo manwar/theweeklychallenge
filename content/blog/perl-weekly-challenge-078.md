@@ -28,10 +28,9 @@ tags: ["Perl", "Raku"]
 
 Last week we announced the winner of `August 2020` and today we have the [interview](/blog/meet-the-champion-2020-08) with `Cheok-Yin Fung` available for everyone.
 
-
 <br>
 
-This week, we had guest `18 contributions` in **7** different languages. I would like to **THANK** each and every guest contributors.
+This week, we had `18 contributions` by guests in **7** different languages. I would like to **THANK** each and every guest contributors.
 
 #### 1) Haskell: 6
 #### 2) Python: 5
