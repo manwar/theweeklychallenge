@@ -121,16 +121,17 @@ The total contributions in the week is **94**. Well done **Team PWC**. I would a
 #### 24) Yet Ebreo: Python (2), Ruby (2).
 #### 25) Duncan C. White: Postscript (3).
 #### 26) Rage311: Rust (3).
-#### 27) Aviral Goel: Haskell (2).
-#### 28) Ben Davies: Idris (2).
-#### 29) Daniel Mita: Go (1), Javascript (1).
-#### 30) E. Choroba: Erlang (2).
-#### 31) Pete Houston: Awk (2).
-#### 32) Darren Bottin: Prolog (1).
-#### 33) Jaldhar H. Vyas: C++ (1).
-#### 34) Lance Wicks: Elm (1).
-#### 35) Laurent Rosenfeld: Gembase (1).
-#### 36) Steven Wilson: Rust (1).
+#### 27) Abigail: Node (2).
+#### 28) Aviral Goel: Haskell (2).
+#### 29) Ben Davies: Idris (2).
+#### 30) Daniel Mita: Go (1), Javascript (1).
+#### 31) E. Choroba: Erlang (2).
+#### 32) Pete Houston: Awk (2).
+#### 33) Darren Bottin: Prolog (1).
+#### 34) Jaldhar H. Vyas: C++ (1).
+#### 35) Lance Wicks: Elm (1).
+#### 36) Laurent Rosenfeld: Gembase (1).
+#### 37) Steven Wilson: Rust (1).
 
 <br>
 
@@ -149,10 +150,10 @@ The total contributions in the week is **94**. Well done **Team PWC**. I would a
 #### 9) Clojure: 10
 #### 10) Ruby: 9
 #### 11) C: 6
-#### 12) Prolog: 6
-#### 13) Java: 5
-#### 14) Postscript: 5
-#### 15) Node: 4
+#### 12) Node: 6
+#### 13) Prolog: 6
+#### 14) Java: 5
+#### 15) Postscript: 5
 #### 16) Tcl: 4
 #### 17) Bash: 3
 #### 18) Elm: 3
