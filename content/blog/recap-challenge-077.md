@@ -83,9 +83,9 @@ Following members shared solutions to both tasks in **Perl** and **Raku** as wel
 
 ***
 
-The total contributions in the week is **92**. Well done **Team PWC**. I would also like to thank **Raku** contributors for catching up.
+The total contributions in the week is **94**. Well done **Team PWC**. I would also like to thank **Raku** contributors for catching up.
 
-#### 1) PERL: 46
+#### 1) PERL: 48
 #### 2) RAKU: 32
 #### 3) BLOG: 14
 
@@ -237,6 +237,14 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 <br>
 
 # PERL SOLUTIONS
+
+***
+
+### Abigail
+![Abigail](/images/team/user.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/abigail/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/abigail/perl/ch-2.pl)]
 
 ***
 
