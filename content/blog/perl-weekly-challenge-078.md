@@ -123,7 +123,7 @@ Write a script to left rotate `@A` so that the number at the first index of `@B`
 
     Output:
         [4 2 6 3 7]
-        [6 3 7 5 2]
+        [6 3 7 4 2]
         [3 7 4 2 6]
 
 <br>
