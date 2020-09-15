@@ -38,6 +38,8 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 077](/blog/perl-weekly-challenge-077)
 <br>
 
+##### **Abigail** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/abigail/node/ch-1.js) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/abigail/node/ch-2.js) in **Node**.
+
 ##### **Andrew Shitov** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/ash/cpp/ch-2.cpp) in **C++**.
 
 ##### **Andrew Shitov** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-077/ash/html/ch-2.html) in **HTML**.
