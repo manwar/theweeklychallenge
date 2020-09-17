@@ -5,10 +5,10 @@ description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
 author: Mohammad S Anwar
-tags: ["APL", "Awk", "Bash", "C", "C++", "Clojure", "Elm", "Erlang", "Gembase", "Go", "Haskell", "HTML", "Idris", "Java", "Javascript", "Lisp", "Node", "OCaml", "Python", "Postscript", "Prolog", "R", "Ruby", "Rust", "Swift", "Tcl", "XSLT"]
+tags: ["APL", "Awk", "Bash", "C", "C++", "Clojure", "Elm", "Erlang", "Gembase", "Go", "Haskell", "HTML", "Idris", "Java", "Javascript", "Lisp", "Lua", "Node", "OCaml", "Python", "Postscript", "Prolog", "R", "Ruby", "Rust", "Swift", "Tcl", "XSLT"]
 ---
 
-As you know, **"The Weekly Challenge"**, primarily focus on **Perl** and **Raku**. During the **Week #018**, we received the solution to **["The Weekly Challenge - 018"](/blog/perl-we$ekly-challenge-018)** by **Orestis Zekai** in **Python**. It was a pleasant surprise to receive solution in something other than **Perl** and **Raku**. Ever since regular team members also started contributing in other languages like **APL**, **Awk**, **Bash**, **C**, **C++**, **Clojure**, **Elm**, **Erlang**, **Gembase**, **Go**, **Haskell**, **HTML**, **Idris**, **Java**, **Javascript**, **Lisp**, **Node**, **OCaml**, **Postscript**, **Prolog**, **R**, **Ruby**, **Rust**, **Swift**, **Tcl** and **XSLT**.
+As you know, **"The Weekly Challenge"**, primarily focus on **Perl** and **Raku**. During the **Week #018**, we received the solution to **["The Weekly Challenge - 018"](/blog/perl-we$ekly-challenge-018)** by **Orestis Zekai** in **Python**. It was a pleasant surprise to receive solution in something other than **Perl** and **Raku**. Ever since regular team members also started contributing in other languages like **APL**, **Awk**, **Bash**, **C**, **C++**, **Clojure**, **Elm**, **Erlang**, **Gembase**, **Go**, **Haskell**, **HTML**, **Idris**, **Java**, **Javascript**, **Lisp**, **Lua**, **Node**, **OCaml**, **Postscript**, **Prolog**, **R**, **Ruby**, **Rust**, **Swift**, **Tcl** and **XSLT**.
 
 Please find below guest contributions.
 
@@ -33,6 +33,8 @@ Please find below guest contributions.
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/roger-bell-west/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/roger-bell-west/python/ch-2.py) in **Python**.
 
 ##### **Tyler Wardhaugh** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/tyler-wardhaugh/clojure/src/tw/weekly/c78/t1.clj) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/tyler-wardhaugh/clojure/src/tw/weekly/c78/t2.clj) in **Clojure**.
+
+##### **Tyler Wardhaugh** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/tyler-wardhaugh/lua/ch-1.lua) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/tyler-wardhaugh/lua/ch-2.lua) in **Lua**.
 
 ##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/ulrich-rieke/cpp/ch-1.cpp) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/ulrich-rieke/cpp/ch-2.cpp) in **C++**.
 
