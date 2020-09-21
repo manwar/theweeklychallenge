@@ -170,7 +170,7 @@ The total contributions in the week is **94**. Well done **Team PWC**. I would a
 
 <br>
 
-# CENTURION CLUB
+## CENTURION CLUB {#CENTURIONCLUB}
 
 ***
 
@@ -221,7 +221,7 @@ Changes to the ranking in the **Centurion Club** last week listed below:
 
 <br>
 
-# DAMIAN CONWAY's CORNER
+## DAMIAN CONWAY's CORNER {#DAMIANCONWAYCORNER}
 
 ***
 
@@ -229,7 +229,7 @@ Please checkout the masterpiece collection of [**blogs**](https://perlweeklychal
 
 <br>
 
-# ANDREW SHITOV's CORNER
+## ANDREW SHITOV's CORNER {#ANDREWSHITOVCORNER}
 
 ***
 
@@ -237,7 +237,7 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 
 <br>
 
-# PERL SOLUTIONS
+## PERL SOLUTIONS {#PERLSOLUTIONS}
 
 ***
 
@@ -388,7 +388,7 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 
 <br>
 
-# RAKU SOLUTIONS
+## RAKU SOLUTIONS {#RAKUSOLUTIONS}
 
 ***
 
@@ -465,7 +465,7 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 
 <br>
 
-# PERL & RAKU SOLUTIONS
+## PERL & RAKU SOLUTIONS {#PERLRAKUSOLUTIONS}
 
 ***
 
