@@ -100,6 +100,8 @@ Quick recap of the [**"The Weekly Challenge - 078"**](/blog/recap-challenge-078)
 ## PERL REVIEW {#PERLREVIEW}
 ***
 
+Please checkout **Perl** solutions review of the **["The Weekly Challenge - 077"](/blog/review-challenge-077)** by `Colin Crain`.
+
 If you missed any past reviews then please checkout the [**collection**](/p5-reviews).
 
 <br>
@@ -107,7 +109,7 @@ If you missed any past reviews then please checkout the [**collection**](/p5-rev
 ## RAKU REVIEW {#RAKUREVIEW}
 ***
 
-Please checkout **Raku** solutions review of the **["Perl Weekly Challenge - 077"](/blog/p6-review-challenge-077)** by `Andrew Shitov`.
+Please checkout **Raku** solutions review of the **["The Weekly Challenge - 077"](/blog/p6-review-challenge-077)** by `Andrew Shitov`.
 
 If you missed any past reviews then please checkout the [**collection**](/p6-reviews).
 
