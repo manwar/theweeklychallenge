@@ -77,9 +77,10 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 
 #### 1) Arne Sommer
 #### 2) Colin Crain
-#### 3) Laurent Rosenfeld
-#### 4) Mohammad S Anwar
-#### 5) Roger Bell_West
+#### 3) Jaldhar H. Vyas
+#### 4) Laurent Rosenfeld
+#### 5) Mohammad S Anwar
+#### 6) Roger Bell_West
 
 <br>
 
@@ -87,11 +88,11 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 
 ***
 
-The total contributions in the week is `116`. Well done **Team PWC**. I would also like to thank `Raku` contributors for catching up.
+The total contributions in the week is `121`. Well done **Team PWC**. I would also like to thank `Raku` contributors for catching up.
 
-#### 1) PERL: 64
-#### 2) RAKU: 35
-#### 3) BLOG: 17
+#### 1) PERL: 66
+#### 2) RAKU: 37
+#### 3) BLOG: 18
 
 <br>
 
@@ -196,7 +197,7 @@ Changes to the ranking in the **Centurion Club** last week listed below:
 Finally I made it to `Top 10` at the end of **Week #78**.
 
 #### 1) Laurent Rosenfeld (**870**)
-#### 2) Jaldhar H. Vyas (**642**)
+#### 2) Jaldhar H. Vyas (**652**)
 #### 3) Roger Bell_West (**550**)
 #### 4) Arne Sommer (**524**)
 #### 5) Javier Luque (**460**)
@@ -546,6 +547,17 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 [[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/colin-crain/raku/ch-1.raku)]
 [[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/colin-crain/raku/ch-2.raku)]
 [[**BLOG #1**](https://colincrain.wordpress.com/2020/09/18/follow-the-leader-and-swing-to-the-left/)]
+
+***
+
+### Jaldhar H. Vyas
+![Jaldhar H. Vyas](/images/team/laurent_rosenfeld.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/jaldhar-h-vyas/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/jaldhar-h-vyas/perl/ch-2.pl)]
+[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/jaldhar-h-vyas/raku/ch-1.sh)]
+[[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/jaldhar-h-vyas/raku/ch-2.p6)]
+[[**BLOG #1**](https://www.braincells.com/perl/2020/09/perl_weekly_challenge_week_78.html)]
 
 ***
 
