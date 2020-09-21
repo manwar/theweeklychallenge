@@ -32,6 +32,8 @@ Please find below guest contributions.
 
 ##### **Aviral Goel** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/aviral-goel/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/aviral-goel/haskell/ch-2.hs) in **Haskell**.
 
+##### **Cheok-Yin Fung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/cheok-yin-fung/common-lisp/ch-1.lsp) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/cheok-yin-fung/common-lisp/ch-2.lsp) in **Lisp**.
+
 ##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/lubos-kolouch/python/ch-2.py) in **Python**.
 
 ##### **Mohammad S Anwar** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/mohammad-anwar/swift/ch-1.swift) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/mohammad-anwar/swift/ch-2.swift) in **Swift**.
