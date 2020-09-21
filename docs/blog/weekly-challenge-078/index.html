@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="The Weekly Challenge - Perl & Raku"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://perlweeklychallenge.org/"/>
+    <meta property="og:image"       content="https://perlweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="You do not have to be an expert."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://perlweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Blog for the weekly challenge #078.">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BLOG: The Weekly Challenge #078</title>
+    <link rel="icon" href="https://perlweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://perlweeklychallenge.org/">
+                        <img src="https://perlweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navgation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>BLOG: The Weekly Challenge #078</h2>
+                    <div class="portfolio-meta">
+                        <span>Sunday, Sep 20, 2020</span>|
+                        <span> Tags:
+                            Perl, Raku
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://perlweeklychallenge.org/images/blog/weekly-challenge-078.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <h2 id="table-of-contents">TABLE OF CONTENTS</h2>
+<hr>
+<h3 id="1-headlinesheadlines">1. <a href="#HEADLINES">HEADLINES</a></h3>
+<h3 id="2-youtube-weeklyyoutubeweekly">2. <a href="#YOUTUBEWEEKLY">YouTube WEEKLY</a></h3>
+<h3 id="3-task-1-leader-elementtask1">3. <a href="#TASK1">TASK #1: Leader Element</a></h3>
+<h3 id="4-task-2-left-rotationtask2">4. <a href="#TASK2">TASK #2: Left Rotation</a></h3>
+<br>
+<h2 id="HEADLINES">HEADLINES</h2>
+<hr>
+<p>First thing first, I managed to do video session for both tasks this week. It is so satisfying when everything goes as per the plan. For the last couple of weeks, I could only do one video session. One day, I would like to video with PIP. At the moment, I am little uncomfortable showing my face in the video. There is another reason why I can&rsquo;t do it now. I don&rsquo;t have my personal office in the house. I have been working from home since mid-March, nearly 6 months, sitting on sofa, 9-5. I must confess it is not easy. I miss my office chair and noise-free environment. I have 3 years twin girls. Luckily the school started last week, I get no-noise moment for few hours during the day. Also this week, I found time to do coding in <strong>Swift</strong>.</p>
+<p>Did you notice any changes in your mood during the lockdown?</p>
+<p>I did.</p>
+<p>I become very moody. I avoid human contact as much as possible even on the phone. But I love interacting on social platform. I joined Twitter <code>@cpan_author</code> at the start of <strong>CPAN Pull Request Challenge</strong> in <strong>January 2015</strong> but only started using actively with the launch of <strong>The Weekly Challenge</strong>. Luckily I found myself surrounded by great intellects. I always get to learn something new everyday.</p>
+<p>Enough of story telling, lets get back to the serious talk.</p>
+<br>
+<h2 id="YOUTUBEWEEKLY">YouTube WEEKLY</h2>
+<hr>
+<p>I present video session of mine for the tasks of the week. Please do comment on the video if you have any suggestions. And if you like the video then please do consider subscribing my <strong><a href="https://www.youtube.com/channel/UCT91RkThBWByo1NL_M8R8Ig">YouTube CHANNEL</a></strong>.</p>
+<h4 id="task-1-leader-element">Task #1: Leader Element</h4>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/EmZ8rzgLXp0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<br>
+<br>
+<h4 id="task-2-left-rotation">Task #2: Left Rotation</h4>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/zXvirywoA58" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<br>
+<br>
+<p>Last but not the least, I would to love hear your <strong>views/opinions</strong> with regard to anything I do.</p>
+<p>Please get in touch with me by email: <a href="mailto:mohammad.anwar@yahoo.com">mohammad.anwar@yahoo.com</a>.</p>
+<p>Let me share my solutions to the <strong><a href="/perl-weekly-challenge-078">The Weekly Challenge - 078</a></strong>.</p>
+<hr>
+<h2 id="TASK1">TASK #1 › Leader Element</h2>
+<h4 id="submitted-by-mohammad-s-anwarhttpwwwmanwarorg">Submitted by <strong><a href="http://www.manwar.org">Mohammad S Anwar</a></strong></h4>
+<hr>
+<p>You are given an array <code>@A</code> containing distinct integers.</p>
+<p>Write a script to find all leader elements in the array <code>@A</code>.</p>
+<hr>
+<br>
+<p>The <strong>Leader Element</strong> task is best suited for beginners. I never done <code>array slicing</code> in my current job. So when I decided to do for this task, I had to lookup documentation. I have used it few times in the recent week, so it was fresh. Once that is sorted, rest is just walk in the park as you see in the code below.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">leader_elements</span> {
+    <span style="color:#66d9ef">my</span> ($list) <span style="color:#f92672">=</span> @_;
+
+    <span style="color:#66d9ef">my</span> @leaders <span style="color:#f92672">=</span> ();
+    <span style="color:#66d9ef">my</span> $i       <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">my</span> @array   <span style="color:#f92672">=</span> @$list;
+    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $n (@array) {
+        <span style="color:#66d9ef">if</span> ($i <span style="color:#f92672">==</span> $#array) {
+            push @leaders, $n;
+        }
+        <span style="color:#66d9ef">else</span> {
+            push @leaders, $n
+                <span style="color:#66d9ef">if</span> ($n <span style="color:#f92672">&gt;</span> max(@array[$i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $#array]));
+        }
+        $i<span style="color:#f92672">++</span>;
+    }
+
+    <span style="color:#66d9ef">return</span> @leaders;
+}
+</code></pre></div><p>For this task, I created <code>sub get_list()</code> to help with user input validation and converting the input string into array ref.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get_list</span> {
+    <span style="color:#66d9ef">my</span> ($l) <span style="color:#f92672">=</span> @_;
+
+    die <span style="color:#e6db74">&#34;ERROR: Missing list.\n&#34;</span>      <span style="color:#66d9ef">unless</span> defined $l;
+    die <span style="color:#e6db74">&#34;ERROR: Invalid list [$l].\n&#34;</span> <span style="color:#66d9ef">unless</span> ($l <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^[\-?\d\,?\s?]+$/</span>);
+
+    $l <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/\s//g</span>;
+    <span style="color:#66d9ef">return</span> [ split <span style="color:#e6db74">/\,/</span>, $l ];
+}
+</code></pre></div><br>
+<p>For <strong>Raku</strong>, I didn&rsquo;t create any helper method. Everything needed for the task brought together in the following <code>sub leader-element()</code>.</p>
+<p>My favourite line is below, which coverts the given string into an array of integers.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">my</span> @array <span style="color:#f92672">=</span> $list<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39;,&#39;</span>)<span style="color:#f92672">.</span>map: { <span style="color:#f92672">.</span>Int };
+</code></pre></div><p>and one small magic is array slicing and max combined.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6">@array[$index<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> @array<span style="color:#f92672">.</span>elems<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>max;
+</code></pre></div><br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">leader</span>-elements(Str $list) {
+
+    die <span style="color:#e6db74">&#34;ERROR: Invalid list [$list].\n&#34;</span> <span style="color:#66d9ef">unless</span> $list <span style="color:#f92672">~~</span> <span style="color:#e6db74">/^[\-?\d\,?\s?]+$/</span>;
+
+    <span style="color:#66d9ef">my</span> @array <span style="color:#f92672">=</span> $list<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39;,&#39;</span>)<span style="color:#f92672">.</span>map: { <span style="color:#f92672">.</span>Int };
+    <span style="color:#66d9ef">my</span> $index <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">my</span> @leader<span style="color:#f92672">-</span>elements <span style="color:#f92672">=</span> Empty;
+    <span style="color:#66d9ef">for</span> @array <span style="color:#f92672">-&gt;</span> $n {
+        <span style="color:#66d9ef">if</span> $index <span style="color:#f92672">==</span> @array<span style="color:#f92672">.</span>elems<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> {
+            @leader<span style="color:#f92672">-</span>elements<span style="color:#f92672">.</span>push: $n;
+        }
+        <span style="color:#66d9ef">else</span> {
+            @leader<span style="color:#f92672">-</span>elements<span style="color:#f92672">.</span>push: $n
+                <span style="color:#66d9ef">if</span> $n <span style="color:#f92672">&gt;</span> @array[$index<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> @array<span style="color:#f92672">.</span>elems<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>max;
+        }
+        $index<span style="color:#f92672">++</span>;
+    }
+
+    <span style="color:#66d9ef">return</span> <span style="color:#f92672">|</span>@leader<span style="color:#f92672">-</span>elements;
+}
+</code></pre></div><br>
+<p>Time for one-liner solution to the <strong>Leader Element</strong> task.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw(max)</span>;
+
+printf(<span style="color:#e6db74">&#34;%s\n&#34;</span>, join(<span style="color:#e6db74">&#34;, &#34;</span>, leader_elements(get_list($ARGV[<span style="color:#ae81ff">0</span>]))));
+</code></pre></div><br>
+<p>Same goes to <strong>Raku</strong> as well. Here I present my one-liner solution in <strong>Raku</strong>.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">use</span> v6<span style="color:#f92672">.</span>d;
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(Str :$L = &#34;9, 10, 7, 5, 6, 1&#34;) {
+    leader<span style="color:#f92672">-</span>elements($L)<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34;, &#34;</span>)<span style="color:#f92672">.</span>say;
+}
+</code></pre></div><br>
+<p>Standard unit test using the examples in the given tasks. Sorry.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> Test::More;
+<span style="color:#66d9ef">use</span> Test::Deep;
+<span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw(max)</span>;
+
+is_deeply([leader_elements([<span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">1</span>])],
+          [<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">1</span>],
+          <span style="color:#e6db74">&#34;testing example 1&#34;</span>);
+
+is_deeply([leader_elements([<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>])],
+          [<span style="color:#ae81ff">5</span>],
+          <span style="color:#e6db74">&#34;testing example 2&#34;</span>);
+
+done_testing;
+</code></pre></div><br>
+<p><strong>Raku</strong> follows the same path as <strong>Perl</strong>.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">use</span> Test;
+
+is<span style="color:#f92672">-</span>deeply leader<span style="color:#f92672">-</span>elements(<span style="color:#e6db74">&#34;9, 10, 7, 5, 6, 1&#34;</span>),
+          (<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">1</span>),
+          <span style="color:#e6db74">&#34;testing example 1&#34;</span>;
+
+is<span style="color:#f92672">-</span>deeply leader<span style="color:#f92672">-</span>elements(<span style="color:#e6db74">&#34;3, 4, 5&#34;</span>),
+          (<span style="color:#ae81ff">5</span>),
+          <span style="color:#e6db74">&#34;testing example 2&#34;</span>;
+
+done<span style="color:#f92672">-</span>testing;
+</code></pre></div><br>
+<hr>
+<h2 id="TASK2">TASK #2 › Left Rotation</h2>
+<h4 id="submitted-by-mohammad-s-anwarhttpwwwmanwarorg-1">Submitted by <strong><a href="http://www.manwar.org">Mohammad S Anwar</a></strong></h4>
+<hr>
+<p>You are given array <code>@A</code> containing positive numbers and <code>@B</code> containing one or more indices from the array <code>@A</code>.</p>
+<p>Write a script to left rotate <code>@A</code> so that the number at the first index of <code>@B</code> becomes the first element in the array. Similary, left rotate <code>@A</code> again so that the number at the second index of <code>@B</code> becomes the first element in the array.</p>
+<hr>
+<br>
+<p>I missed the <code>rotate</code> feature of <strong>Raku</strong> in <strong>Perl</strong>. However, we can still play with array directly and get the job done. I could have used <code>array slicing</code> here but didn&rsquo;t want repeat myself.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">left_rotation</span> {
+    <span style="color:#66d9ef">my</span> ($source, $index) <span style="color:#f92672">=</span> @_;
+
+    <span style="color:#66d9ef">my</span> $left_rotation <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>;
+    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i (@$index) {
+        <span style="color:#66d9ef">my</span> $array <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>;
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $j ($i <span style="color:#f92672">..</span> $#$source) {
+            push @$array, $source<span style="color:#f92672">-&gt;</span>[$j];
+        }
+        <span style="color:#66d9ef">if</span> ($i <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
+            <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $k (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
+                push @$array, $source<span style="color:#f92672">-&gt;</span>[$k];
+            }
+        }
+        push @$left_rotation, $array;
+    }
+
+    <span style="color:#66d9ef">return</span> $left_rotation;
+}
+</code></pre></div><p>The output of the task was not easy to print as is. Therefore I created the <code>sub p()</code> to take care of the printing the output job.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">p</span> {
+    <span style="color:#66d9ef">my</span> ($data) <span style="color:#f92672">=</span> @_;
+
+    <span style="color:#66d9ef">foreach</span> (@$data) {
+        printf(<span style="color:#e6db74">&#34;%s\n&#34;</span>, join <span style="color:#e6db74">&#34;, &#34;</span>, @$_);
+    }
+}
+</code></pre></div><p>Another helper <code>sub get_list()</code> to process the input string and return the array ref.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get_list</span> {
+    <span style="color:#66d9ef">my</span> ($l) <span style="color:#f92672">=</span> @_;
+
+    die <span style="color:#e6db74">&#34;ERROR: Missing list.\n&#34;</span>      <span style="color:#66d9ef">unless</span> defined $l;
+    die <span style="color:#e6db74">&#34;ERROR: Invalid list [$l].\n&#34;</span> <span style="color:#66d9ef">unless</span> ($l <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^[\-?\d\,?\s?]+$/</span>);
+
+    $l <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/\s//g</span>;
+    <span style="color:#66d9ef">return</span> [ split <span style="color:#e6db74">/\,/</span>, $l ];
+}
+</code></pre></div><br>
+<p>Once again, <strong>Raku</strong>, self contained single <code>sub left-rotation()</code> does the job.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">left</span>-rotation(Str $source, Str $index) {
+
+    die <span style="color:#e6db74">&#34;ERROR: Invalid source [$source].\n&#34;</span>
+        <span style="color:#66d9ef">unless</span> $source <span style="color:#f92672">~~</span> <span style="color:#e6db74">/^[\-?\d\,?\s?]+$/</span>;
+    die <span style="color:#e6db74">&#34;ERROR: Invalid index  [$index].\n&#34;</span>
+        <span style="color:#66d9ef">unless</span> $index  <span style="color:#f92672">~~</span> <span style="color:#e6db74">/^[\-?\d\,?\s?]+$/</span>;
+
+    <span style="color:#66d9ef">my</span> @source <span style="color:#f92672">=</span> $source<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39;,&#39;</span>)<span style="color:#f92672">.</span>map: { <span style="color:#f92672">.</span>Int };
+    <span style="color:#66d9ef">my</span> @index  <span style="color:#f92672">=</span> $index<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39;,&#39;</span>)<span style="color:#f92672">.</span>map:  { <span style="color:#f92672">.</span>Int };
+
+    <span style="color:#66d9ef">my</span> @left<span style="color:#f92672">-</span>rotation <span style="color:#f92672">=</span> Empty;
+    <span style="color:#66d9ef">for</span> @index <span style="color:#f92672">-&gt;</span> $i {
+        <span style="color:#66d9ef">my</span> @array <span style="color:#f92672">=</span> Empty;
+        <span style="color:#66d9ef">for</span> $i<span style="color:#f92672">..</span>@source<span style="color:#f92672">.</span>elems<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">-&gt;</span> $j {
+            @array<span style="color:#f92672">.</span>push: @source<span style="color:#f92672">.</span>[$j];
+        }
+        <span style="color:#66d9ef">if</span> $i <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> {
+            <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">-&gt;</span> $k {
+                @array<span style="color:#f92672">.</span>push: @source<span style="color:#f92672">.</span>[$k];
+            }
+        }
+
+        @left<span style="color:#f92672">-</span>rotation<span style="color:#f92672">.</span>push: @array;
+    }
+
+    <span style="color:#66d9ef">return</span> <span style="color:#f92672">|</span>@left<span style="color:#f92672">-</span>rotation;
+}
+</code></pre></div><br>
+<p>One-liner <strong>Perl</strong> solution to the <strong>&ldquo;Left Rotation&rdquo;</strong> task.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+
+<span style="color:#66d9ef">my</span> $A <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">||</span> <span style="color:#e6db74">&#34;10, 20, 30, 40, 50&#34;</span>;
+<span style="color:#66d9ef">my</span> $B <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">||</span> <span style="color:#e6db74">&#34;3, 4&#34;</span>;
+
+p(left_rotation(get_list($A), get_list($B)));
+</code></pre></div><br>
+<p><strong>Raku</strong> solution with the combined power of <code>MAIN()</code>.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">use</span> v6<span style="color:#f92672">.</span>d;
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(Str :$A = &#34;10, 20, 30, 40, 50&#34;, Str :$B = &#34;3, 4&#34;) {
+    left<span style="color:#f92672">-</span>rotation($A, $B)<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34;\n&#34;</span>)<span style="color:#f92672">.</span>say;
+}
+</code></pre></div><br>
+<p>Standard unit test again using the given example in the task.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> Test::More;
+<span style="color:#66d9ef">use</span> Test::Deep;
+
+is_deeply(left_rotation([<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">30</span>, <span style="color:#ae81ff">40</span>, <span style="color:#ae81ff">50</span>], [<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>]),
+          [[<span style="color:#ae81ff">40</span>, <span style="color:#ae81ff">50</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">30</span>], [<span style="color:#ae81ff">50</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">30</span>, <span style="color:#ae81ff">40</span>]],
+          <span style="color:#e6db74">&#34;testing example 1&#34;</span>);
+
+is_deeply(left_rotation([<span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">3</span>], [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>]),
+          [[<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">7</span>], [<span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">2</span>], [<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">6</span>]],
+          <span style="color:#e6db74">&#34;testing example 2&#34;</span>);
+
+done_testing;
+</code></pre></div><br>
+<p><strong>Raku</strong> did the same.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">use</span> Test;
+
+is<span style="color:#f92672">-</span>deeply [left<span style="color:#f92672">-</span>rotation(<span style="color:#e6db74">&#34;10, 20, 30, 40, 50&#34;</span>, <span style="color:#e6db74">&#34;3, 4&#34;</span>)],
+          [[<span style="color:#ae81ff">40</span>, <span style="color:#ae81ff">50</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">30</span>], [<span style="color:#ae81ff">50</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">30</span>, <span style="color:#ae81ff">40</span>]],
+          <span style="color:#e6db74">&#34;testing example 1&#34;</span>;
+
+is<span style="color:#f92672">-</span>deeply [left<span style="color:#f92672">-</span>rotation(<span style="color:#e6db74">&#34;7, 4, 2, 6, 3&#34;</span>, <span style="color:#e6db74">&#34;1, 3, 4&#34;</span>)],
+          [[<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">7</span>], [<span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">2</span>], [<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">6</span>]],
+          <span style="color:#e6db74">&#34;testing example 2&#34;</span>;
+
+done<span style="color:#f92672">-</span>testing;
+</code></pre></div><br>
+<p>That&rsquo;s it for this week. Speak to you soon.</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="/contact" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2020
+                    </span> PerlWeeklyChallenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.nomtimes.co.uk/site/shop.do?cref=PerlBooks" title="Free Perl Books" rel="noreferrer" target="_blank">
+                            <img src="/images/NomTimes.jpg" style="width:22px; height: 18px;" alt=""/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://perlweeklychallenge.org/plugins/jQurey/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://perlweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://perlweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://perlweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://perlweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://perlweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://perlweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://perlweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://perlweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-136524905-1', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+
+</html>
+
