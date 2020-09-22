@@ -24,6 +24,8 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 079](/blog/perl-weekly-challenge-079) {#079}
 <br>
 
+##### **Abigail** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/abigail/awk/ch-1.awk) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/abigail/awk/ch-2.awk) in **Awk**.
+
 ##### **Abigail** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/abigail/node/ch-1.js) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/abigail/node/ch-2.js) in **Node**.
 
 ##### **Abigail** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/abigail/bc/ch-1.bc) in **Bc**.
