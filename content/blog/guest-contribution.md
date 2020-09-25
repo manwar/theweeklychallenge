@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2020-09-23T00:00:00+00:00
+date: 2020-09-25T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -35,6 +35,10 @@ Please find below guest contributions.
 ##### **Aviral Goel** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/aviral-goel/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/aviral-goel/haskell/ch-2.hs) in **Haskell**.
 
 ##### **Jonas Berlin** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/xkr47/rust/ch-1.rs) in **Rust**.
+
+##### **Myoungjin Jeon** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/jeongoon/haskell/ch-2.hs) in **Haskell**.
+
+##### **Myoungjin Jeon** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/jeongoon/common-lisp/ch-2.lsp) in **Lisp**.
 
 ##### **Nuno Vieira** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/nunovieira220/js/ch-1.js) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/nunovieira220/js/ch-2.js) in **JavaScript**.
 
