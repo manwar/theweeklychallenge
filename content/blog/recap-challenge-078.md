@@ -551,7 +551,7 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 ***
 
 ### Jaldhar H. Vyas
-![Jaldhar H. Vyas](/images/team/laurent_rosenfeld.jpg)
+![Jaldhar H. Vyas](/images/team/jaldhar_vyas.jpg)
 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/jaldhar-h-vyas/perl/ch-1.pl)]
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/jaldhar-h-vyas/perl/ch-2.pl)]
