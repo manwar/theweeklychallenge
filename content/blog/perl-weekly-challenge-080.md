@@ -206,7 +206,7 @@ Write a script to find out the smallest positive number missing.
 ##### **Submitted by:** [Mohammad S Anwar](http://www.manwar.org)
 ***
 
-You are given rankings of `$N` candidates.
+You are given rankings of `@N` candidates.
 
 Write a script to find out the total candies needed for all candidates. You are asked to follow the rules below:
 
