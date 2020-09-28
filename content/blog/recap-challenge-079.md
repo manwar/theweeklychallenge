@@ -54,21 +54,22 @@ End of **Week #079**, we have now created and shared exactly `1000 blogs`. Well 
 
 Following members shared solutions to both tasks in `Perl` and `Raku` as well as blogged about it.
 
-#### 1) Mohammad S Anwar
-#### 2) Jaldhar H. Vyas
-#### 3) Myoungjin Jeon
-#### 4) Laurent Rosenfeld
-#### 5) Roger Bell_West
+#### 1) Colin Crain
+#### 2) Mohammad S Anwar
+#### 3) Jaldhar H. Vyas
+#### 4) Myoungjin Jeon
+#### 5) Laurent Rosenfeld
+#### 6) Roger Bell_West
 
 <br>
 
 ## CONTRIBUTION STATS {#CONTRIBUTIONSTATS}
 ***
 
-The total contributions in the week is `110`.Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
+The total contributions in the week is `114`.Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
 
-#### 1. PERL: 63
-#### 2. RAKU: 31
+#### 1. PERL: 65
+#### 2. RAKU: 33
 #### 3. BLOG: 16
 
 <br>
@@ -513,6 +514,17 @@ Please checkout the technical class of `Andrew`'s **Raku** Knowledge. You can fi
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/athanasius/perl/ch-2.pl)]
 [[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/athanasius/raku/ch-1.raku)]
 [[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/athanasius/raku/ch-2.raku)]
+
+***
+
+### Colin Crain
+![Colin Crain](/images/team/user.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/colin-crain/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/colin-crain/perl/ch-2.pl)]
+[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/colin-crain/raku/ch-1.raku)]
+[[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/colin-crain/raku/ch-2.raku)]
+[[**BLOG #1**](https://colincrain.wordpress.com/2020/09/26/count-set-match-standing-water-in-mountain-pools/)]
 
 ***
 
