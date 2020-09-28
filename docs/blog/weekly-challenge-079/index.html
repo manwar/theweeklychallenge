@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="The Weekly Challenge - Perl & Raku"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://perlweeklychallenge.org/"/>
+    <meta property="og:image"       content="https://perlweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="You do not have to be an expert."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://perlweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Blog for the weekly challenge #079.">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BLOG: The Weekly Challenge #079</title>
+    <link rel="icon" href="https://perlweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://perlweeklychallenge.org/">
+                        <img src="https://perlweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navgation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>BLOG: The Weekly Challenge #079</h2>
+                    <div class="portfolio-meta">
+                        <span>Sunday, Sep 27, 2020</span>|
+                        <span> Tags:
+                            Perl, Raku
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://perlweeklychallenge.org/images/blog/weekly-challenge-079.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <h2 id="table-of-contents">TABLE OF CONTENTS</h2>
+<hr>
+<h3 id="1-headlinesheadlines">1. <a href="#HEADLINES">HEADLINES</a></h3>
+<h3 id="2-youtube-weeklyyoutubeweekly">2. <a href="#YOUTUBEWEEKLY">YouTube WEEKLY</a></h3>
+<h3 id="3-task-1-count-set-bitstask1">3. <a href="#TASK1">TASK #1: Count Set Bits</a></h3>
+<h3 id="4-task-2-trapped-rain-watertask2">4. <a href="#TASK2">TASK #2: Trapped Rain Water</a></h3>
+<br>
+<h2 id="HEADLINES">HEADLINES</h2>
+<br>
+<p>I really enjoyed this week task. I had lots of fun working with the <code>Trapped Rain Water</code> task.</p>
+<p>This week, I was too busy with my <code>$work</code>, so couldn&rsquo;t do either <code>Swift</code> coding or live video session. However I promise, I will catch up next week.</p>
+<br>
+<h2 id="YOUTUBEWEEKLY">YouTube WEEKLY</h2>
+<p>Sorry, I couldn&rsquo;t make video for this week tasks.</p>
+<p>However, you can take a look at my past week videos by visiting my <strong><a href="https://www.youtube.com/channel/UCT91RkThBWByo1NL_M8R8Ig">YouTube Channel</a></strong>.</p>
+<p>Last but not the least, I would to love hear your <strong>views/opinions</strong> with regard to anything I do.</p>
+<p>Please get in touch with me by email: <a href="mailto:mohammad.anwar@yahoo.com">mohammad.anwar@yahoo.com</a>.</p>
+<p>Let me share my solutions to the <strong><a href="/perl-weekly-challenge-079">The Weekly Challenge - 079</a></strong>.</p>
+<hr>
+<h2 id="TASK1">TASK #1 › Count Set Bits</h2>
+<h4 id="submitted-by-mohammad-s-anwarhttpwwwmanwarorg">Submitted by <strong><a href="http://www.manwar.org">Mohammad S Anwar</a></strong></h4>
+<hr>
+<p>You are given a positive number <code>$N</code>.</p>
+<p>Write a script to count the total numbrer of set bits of the binary representations of all numbers from <code>1</code> to <code>$N</code> and return <code>$total_count_set_bit % 1000000007</code>.</p>
+<hr>
+<br>
+<p>Because of the simplicity of the task, I tried to make it as short as possible. Code is self explanatory.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">count_set_bits</span> {
+    <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    $c   <span style="color:#f92672">+=</span> (sprintf <span style="color:#e6db74">&#34;%b&#34;</span>, $_) <span style="color:#f92672">=~</span> tr<span style="color:#e6db74">/1/</span><span style="color:#ae81ff">1</span><span style="color:#f92672">/</span> <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>shift;
+    <span style="color:#66d9ef">return</span> $c % 1000000007;
+}
+</code></pre></div><br>
+<p>For <strong>Raku</strong> solution, I had to consult the document to remind myself how to get binary of given decimal. Apart from that, nothing special about this solution.</p>
+<p>Having said that it still look elegant, at least to me.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">count</span>-set-bits(Int $n) {
+    <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$n)<span style="color:#f92672">.</span>map( <span style="color:#f92672">-&gt;</span> $i { $c <span style="color:#f92672">+=</span> [<span style="color:#f92672">+</span>] $i<span style="color:#f92672">.</span>base(<span style="color:#ae81ff">2</span>)<span style="color:#f92672">.</span>comb; });
+    <span style="color:#66d9ef">return</span> $c % 1000000007;
+}
+</code></pre></div><br>
+<p>Time to stitch together everything and solve the task.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+
+<span style="color:#66d9ef">my</span> $N <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">||</span> <span style="color:#ae81ff">4</span>;
+die <span style="color:#e6db74">&#34;ERROR: Invalid number [$N].\n&#34;</span> <span style="color:#66d9ef">unless</span> ($N <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^\d+$/</span>);
+<span style="color:#66d9ef">print</span> count_set_bits($N), <span style="color:#e6db74">&#34;\n&#34;</span>;
+</code></pre></div><br>
+<p>and here goes <strong>Raku</strong> solution.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">use</span> v6<span style="color:#f92672">.</span>d;
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(Int :$N = 4) { count<span style="color:#f92672">-</span>set<span style="color:#f92672">-</span>bits($N)<span style="color:#f92672">.</span>say }
+</code></pre></div><br>
+<p>with some standard unit testing to make keep happy the developer inside me.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> Test::More;
+
+is(count_set_bits(<span style="color:#ae81ff">4</span>), <span style="color:#ae81ff">5</span>, <span style="color:#e6db74">&#34;testing example 1&#34;</span>);
+is(count_set_bits(<span style="color:#ae81ff">3</span>), <span style="color:#ae81ff">4</span>, <span style="color:#e6db74">&#34;testing example 2&#34;</span>);
+
+done_testing;
+</code></pre></div><br>
+<p>along with <strong>Raku</strong> unit test as well.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">use</span> Test;
+
+is count<span style="color:#f92672">-</span>set<span style="color:#f92672">-</span>bits(<span style="color:#ae81ff">4</span>), <span style="color:#ae81ff">5</span>, <span style="color:#e6db74">&#34;testing example 1&#34;</span>;
+is count<span style="color:#f92672">-</span>set<span style="color:#f92672">-</span>bits(<span style="color:#ae81ff">3</span>), <span style="color:#ae81ff">4</span>, <span style="color:#e6db74">&#34;testing example 2&#34;</span>;
+
+done<span style="color:#f92672">-</span>testing;
+</code></pre></div><br>
+<hr>
+<h2 id="TASK2">TASK #2 › Trapped Rain Water</h2>
+<h4 id="submitted-by-mohammad-s-anwarhttpwwwmanwarorg-1">Submitted by <strong><a href="http://www.manwar.org">Mohammad S Anwar</a></strong></h4>
+<hr>
+<p>You are given an array of positive numbers <code>@N</code>.</p>
+<p>Write a script to represent it as Histogram Chart and find out how much water it can trap.</p>
+<hr>
+<br>
+<p>Fun task of the week, I really enjoyed playing with algorithm that came to my mind first.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">trapped_rain_water</span> {
+    <span style="color:#66d9ef">my</span> ($arrayref) <span style="color:#f92672">=</span> @_;
+
+    <span style="color:#66d9ef">my</span> @a   <span style="color:#f92672">=</span> ();
+    <span style="color:#66d9ef">my</span> $p   <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">my</span> $trw <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $n (@$arrayref) {
+        <span style="color:#66d9ef">if</span> ($p <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> $p <span style="color:#f92672">&gt;=</span> $n) {
+            $p <span style="color:#f92672">=</span> $n <span style="color:#66d9ef">if</span> (@a <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> ($p <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> $n <span style="color:#f92672">&gt;</span> $p));
+            push @a, $n;
+        }
+        <span style="color:#66d9ef">else</span> {
+            push @a, $n;
+            $trw <span style="color:#f92672">+=</span> fetch_trapped_water(@a);
+            @a <span style="color:#f92672">=</span> ($n);
+            $p <span style="color:#f92672">=</span> $n <span style="color:#66d9ef">if</span> ($p <span style="color:#f92672">&lt;</span> $n);
+        }
+    }
+
+    <span style="color:#75715e"># are there any left over to be processed?</span>
+    <span style="color:#66d9ef">if</span> (@a <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>) {
+        $trw <span style="color:#f92672">+=</span> fetch_trapped_water(@a);
+    }
+
+    <span style="color:#66d9ef">return</span> $trw;
+}
+</code></pre></div><p>The real work done in the following <code>sub fetch_trapped_water()</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">fetch_trapped_water</span> {
+    <span style="color:#66d9ef">my</span> (@array) <span style="color:#f92672">=</span> @_;
+
+    <span style="color:#75715e"># remove any smaller tower from the start</span>
+    <span style="color:#66d9ef">do</span> {
+        <span style="color:#66d9ef">if</span> ($array[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+            shift @array;
+        }
+    } <span style="color:#66d9ef">until</span> ($array[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>);
+
+    <span style="color:#75715e"># remove any smaller tower from the end</span>
+    <span style="color:#66d9ef">do</span> {
+        <span style="color:#66d9ef">if</span> ($array[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;</span> $array[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>]) {
+            pop @array;
+        }
+    }
+    <span style="color:#66d9ef">until</span> ($array[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&gt;</span> $array[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>]);
+
+    <span style="color:#66d9ef">my</span> $max <span style="color:#f92672">=</span> min($array[<span style="color:#ae81ff">0</span>], $array[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]) <span style="color:#f92672">*</span> (@array <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>);
+    $max <span style="color:#f92672">-=</span> $array[$_] <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>@array<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>;
+
+    <span style="color:#66d9ef">return</span> $max;
+}
+</code></pre></div><p>I nicked the following <code>sub histogram()</code> from my earlier week solution. Didn&rsquo;t want to go through the pain again.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">histogram</span> {
+    <span style="color:#66d9ef">my</span> ($arrayref) <span style="color:#f92672">=</span> @_;
+
+    <span style="color:#66d9ef">my</span> $max   <span style="color:#f92672">=</span> max(@$arrayref);
+    <span style="color:#66d9ef">my</span> $chart <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>;
+    <span style="color:#66d9ef">my</span> $row   <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">foreach</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$max) {
+        <span style="color:#66d9ef">my</span> $data <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#$arrayref) {
+            <span style="color:#66d9ef">if</span> ($row <span style="color:#f92672">&lt;=</span> $arrayref<span style="color:#f92672">-&gt;</span>[$i]) {
+                $data <span style="color:#f92672">.=</span> <span style="color:#e6db74">&#34; #&#34;</span>;
+            }
+            <span style="color:#66d9ef">else</span> {
+                $data <span style="color:#f92672">.=</span> <span style="color:#e6db74">&#34;  &#34;</span>;
+            }
+        }
+        $row<span style="color:#f92672">++</span>;
+        push @$chart, sprintf(<span style="color:#e6db74">&#34;%d%s&#34;</span>, $_, $data);
+    }
+
+    <span style="color:#66d9ef">my</span> ($histogram, $line, $size) <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#34;&#34;</span>, <span style="color:#e6db74">&#34;&#34;</span>, <span style="color:#e6db74">&#34;  &#34;</span>);
+    $histogram <span style="color:#f92672">=</span> join <span style="color:#e6db74">&#34;\n&#34;</span>, (reverse @$chart);
+    $line <span style="color:#f92672">.=</span> <span style="color:#e6db74">&#34;_ &#34;</span> <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#$arrayref <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>);
+    $size <span style="color:#f92672">.=</span> join <span style="color:#e6db74">&#34; &#34;</span>, @$arrayref;
+
+    <span style="color:#66d9ef">return</span> join <span style="color:#e6db74">&#34;\n&#34;</span>, $histogram, $line, $size;
+}
+</code></pre></div><p>Helper <code>sub to_arrayref()</code> to convert the command line string to array ref.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">to_arrayref</span> {
+    <span style="color:#66d9ef">my</span> ($l) <span style="color:#f92672">=</span> @_;
+
+    die <span style="color:#e6db74">&#34;ERROR: Missing list.\n&#34;</span>      <span style="color:#66d9ef">unless</span> defined $l;
+    die <span style="color:#e6db74">&#34;ERROR: Invalid list [$l].\n&#34;</span> <span style="color:#66d9ef">unless</span> ($l <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^[\-?\d\,?\s?]+$/</span>);
+
+    $l <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/\s//g</span>;
+    <span style="color:#66d9ef">return</span> [ split <span style="color:#e6db74">/\,/</span>, $l ];
+}
+</code></pre></div><br>
+<p>Literal translation of <strong>Perl</strong> solution.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">trapped</span>-rain-water(*@array where .all ~~ PositiveInt) {
+
+    <span style="color:#66d9ef">my</span> @a   <span style="color:#f92672">=</span> ();
+    <span style="color:#66d9ef">my</span> $p   <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">my</span> $trw <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">for</span> @array <span style="color:#f92672">-&gt;</span> $n {
+        <span style="color:#66d9ef">if</span> $p <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> $p <span style="color:#f92672">&gt;=</span> $n {
+            $p <span style="color:#f92672">=</span> $n <span style="color:#66d9ef">if</span> @a <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> ($p <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> $n <span style="color:#f92672">&gt;</span> $p);
+            @a<span style="color:#f92672">.</span>push: $n;
+        }
+        <span style="color:#66d9ef">else</span> {
+            @a<span style="color:#f92672">.</span>push: $n;
+            $trw <span style="color:#f92672">+=</span> fetch<span style="color:#f92672">-</span>trapped<span style="color:#f92672">-</span>water(@a);
+            @a <span style="color:#f92672">=</span> $n;
+            $p <span style="color:#f92672">=</span> $n <span style="color:#66d9ef">if</span> $p <span style="color:#f92672">&lt;</span> $n;
+        }
+    }
+
+    <span style="color:#75715e"># are there any left over to be processed?</span>
+    <span style="color:#66d9ef">if</span> @a<span style="color:#f92672">.</span>elems <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> {
+        $trw <span style="color:#f92672">+=</span> fetch<span style="color:#f92672">-</span>trapped<span style="color:#f92672">-</span>water(@a);
+    }
+
+    <span style="color:#66d9ef">return</span> $trw;
+}
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">fetch</span>-trapped-water(*@array where .all ~~ PositiveInt) {
+
+    <span style="color:#75715e"># remove any smaller tower from the start</span>
+    repeat {
+        <span style="color:#66d9ef">if</span> @array[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
+            @array<span style="color:#f92672">.</span>shift;
+        }
+    } <span style="color:#66d9ef">until</span> @array[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>;
+
+    <span style="color:#75715e"># remove any smaller tower from the end</span>
+    repeat {
+        <span style="color:#66d9ef">if</span> @array[<span style="color:#f92672">*-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;</span> @array[<span style="color:#f92672">*-</span><span style="color:#ae81ff">2</span>] {
+            @array<span style="color:#f92672">.</span>pop;
+        }
+    }
+    <span style="color:#66d9ef">until</span> @array[<span style="color:#f92672">*-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&gt;</span> @array[<span style="color:#f92672">*-</span><span style="color:#ae81ff">2</span>];
+
+    <span style="color:#66d9ef">my</span> $max <span style="color:#f92672">=</span> (@array[<span style="color:#ae81ff">0</span>], @array[<span style="color:#f92672">*-</span><span style="color:#ae81ff">1</span>])<span style="color:#f92672">.</span>min <span style="color:#f92672">*</span> (@array<span style="color:#f92672">.</span>elems <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>);
+    $max <span style="color:#f92672">-=</span> @array[$_] <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>@array<span style="color:#f92672">.</span>elems <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>;
+
+    <span style="color:#66d9ef">return</span> $max;
+}
+</code></pre></div><p>Here also I borrowed this <code>sub chart()</code> from my past week solutions.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">chart</span>(*@list where @list.elems &gt; 1 &amp;&amp; all(@list) ~~ PositiveInt --&gt; Str) {
+
+    <span style="color:#66d9ef">my</span> $max   <span style="color:#f92672">=</span> @list<span style="color:#f92672">.</span>max;
+    <span style="color:#66d9ef">my</span> $chart <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>;
+    <span style="color:#66d9ef">my</span> $row   <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $max <span style="color:#f92672">-&gt;</span> $n {
+        <span style="color:#66d9ef">my</span> Str $data <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
+        <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> @list<span style="color:#f92672">.</span>elems<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">-&gt;</span> $i {
+            <span style="color:#66d9ef">if</span> $row <span style="color:#f92672">&lt;=</span> @list[$i] {
+                $data <span style="color:#f92672">~=</span> <span style="color:#e6db74">&#34; #&#34;</span>;
+            }
+            <span style="color:#66d9ef">else</span> {
+                $data <span style="color:#f92672">~=</span> <span style="color:#e6db74">&#34;  &#34;</span>;
+            }
+        }
+
+        $row <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
+
+        $chart<span style="color:#f92672">.</span>push: sprintf(<span style="color:#e6db74">&#34;%d%s&#34;</span>, $n, $data);
+    }
+
+    <span style="color:#66d9ef">my</span> (Str $histogram, Str $line, Str $size) <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#34;&#34;</span>, <span style="color:#e6db74">&#34;&#34;</span>, <span style="color:#e6db74">&#34;  &#34;</span>);
+    $histogram <span style="color:#f92672">=</span> $chart<span style="color:#f92672">.</span>reverse<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34;\n&#34;</span>);
+    $line <span style="color:#f92672">~=</span> <span style="color:#e6db74">&#34;_ &#34;</span> <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> @list<span style="color:#f92672">.</span>elems;
+    $size <span style="color:#f92672">~=</span> @list<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34; &#34;</span>);
+
+    <span style="color:#66d9ef">return</span> ($histogram, $line, $size)<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34;\n&#34;</span>);
+}
+</code></pre></div><br>
+<p>Time to solve the task in <strong>Perl</strong>.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw(min max)</span>;
+
+<span style="color:#66d9ef">my</span> $L <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">||</span> <span style="color:#e6db74">&#34;2, 1, 4, 1, 2, 5&#34;</span>;
+printf(<span style="color:#e6db74">&#34;%s\n\n&#34;</span>, histogram(to_arrayref($L)));
+printf(<span style="color:#e6db74">&#34;Trapped Rain Water: %d\n&#34;</span>, trapped_rain_water(to_arrayref($L)));
+</code></pre></div><br>
+<p>Followed by <strong>Raku</strong>.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">use</span> v6<span style="color:#f92672">.</span>d;
+
+subset PositiveInt of Int where <span style="color:#f92672">*</span> <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>;
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">MAIN</span>(*@N where @N.elems &gt; 1 &amp;&amp; all(@N) ~~ PositiveInt) {
+    chart(@N)<span style="color:#f92672">.</span>say;
+    trapped<span style="color:#f92672">-</span>rain<span style="color:#f92672">-</span>water(@N)<span style="color:#f92672">.</span>say;
+}
+</code></pre></div><br>
+<p>Good set of test cases to make it complete.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> strict;
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> Test::More;
+<span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw(min)</span>;
+
+is( trapped_rain_water([<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>]),
+    <span style="color:#ae81ff">0</span>, <span style="color:#e6db74">&#34;testing [0, 1, 2, 3, 4, 5]&#34;</span>);
+
+is( trapped_rain_water([<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">5</span>]),
+    <span style="color:#ae81ff">6</span>, <span style="color:#e6db74">&#34;testing [2, 1, 4, 1, 2, 5]&#34;</span>);
+
+is( trapped_rain_water([<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">5</span>]),
+    <span style="color:#ae81ff">6</span>, <span style="color:#e6db74">&#34;testing [3, 1, 3, 1, 1, 5]&#34;</span>);
+
+is( trapped_rain_water([<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>]),
+    <span style="color:#ae81ff">6</span>, <span style="color:#e6db74">&#34;testing [0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]&#34;</span>);
+
+done_testing;
+</code></pre></div><br>
+<p>Unit testing in <strong>Raku</strong> as well.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">use</span> Test;
+
+subset PositiveInt of Int where <span style="color:#f92672">*</span> <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>;
+
+is trapped<span style="color:#f92672">-</span>rain<span style="color:#f92672">-</span>water(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>),
+   <span style="color:#ae81ff">0</span>, <span style="color:#e6db74">&#34;testing: 0, 1, 2, 3, 4, 5&#34;</span>;
+is trapped<span style="color:#f92672">-</span>rain<span style="color:#f92672">-</span>water(<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">5</span>),
+   <span style="color:#ae81ff">6</span>, <span style="color:#e6db74">&#34;testing: 3, 1, 3, 1, 1, 5&#34;</span>;
+is trapped<span style="color:#f92672">-</span>rain<span style="color:#f92672">-</span>water(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">5</span>),
+   <span style="color:#ae81ff">6</span>, <span style="color:#e6db74">&#34;testing: 2, 1, 4, 1, 2, 5&#34;</span>;
+is trapped<span style="color:#f92672">-</span>rain<span style="color:#f92672">-</span>water(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>),
+   <span style="color:#ae81ff">6</span>, <span style="color:#e6db74">&#34;testing: 0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1&#34;</span>;
+
+done<span style="color:#f92672">-</span>testing;
+</code></pre></div><br>
+<p>That&rsquo;s it for this week. Speak to you soon.</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="/contact" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2020
+                    </span> PerlWeeklyChallenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.nomtimes.co.uk/site/shop.do?cref=PerlBooks" title="Free Perl Books" rel="noreferrer" target="_blank">
+                            <img src="/images/NomTimes.jpg" style="width:22px; height: 18px;" alt=""/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://perlweeklychallenge.org/plugins/jQurey/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://perlweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://perlweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://perlweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://perlweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://perlweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://perlweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://perlweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://perlweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-136524905-1', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+
+</html>
+
