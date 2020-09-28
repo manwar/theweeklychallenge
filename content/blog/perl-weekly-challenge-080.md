@@ -215,7 +215,7 @@ Write a script to find out the total candies needed for all candidates. You are 
 
 ## Example 1:
 
-    Input: $N = (1, 2, 2)
+    Input: @N = (1, 2, 2)
 
 #### Explanation:
 
@@ -225,11 +225,11 @@ Write a script to find out the total candies needed for all candidates. You are 
 
 ## Example 2:
 
-    Input: $N = (1, 4, 3, 2)
+    Input: @N = (1, 4, 3, 2)
 
 #### Explanation:
 
-    Applying rule #a, each candidate will get one candy. So total candies needed so far 4. Now applying rule #b, the first candidate do not get any more candy as its rank is lower than it's neighbours. The second candidate gets two more candy as it's ranking is higher than it's both neighbour. The third candidate gets one more candy as it's ranking is higher than it's neighbour. Finally the fourth candidate do not get any extra candy as it's ranking is not higher than neighbour. Therefore total candies required is 6.
+    Applying rule #a, each candidate will get one candy. So total candies needed so far 4. Now applying rule #b, the first candidate do not get any more candy as its rank is lower than it's neighbours. The second candidate gets two more candies as it's ranking is higher than it's both neighbour. The third candidate gets one more candy as it's ranking is higher than it's neighbour. Finally the fourth candidate do not get any extra candy as it's ranking is not higher than neighbour. Therefore total candies required is 7.
 
     Output: 7
 
