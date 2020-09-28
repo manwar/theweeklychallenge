@@ -121,7 +121,7 @@ I would like to `THANK` every member of the team for their valuable suggestions.
 
 #### 3) Kai Burgdorf
 
-> I am Kai Burgdorf from Hanover, Germany and just startet programming a few years ago. At the moment I am studying Compuer Science at the Leibniz University and work as a Software Developer. Perl is quiet new for me so I will do my best to solve every challenge.
+> I am Kai Burgdorf from Hanover, Germany and just startet programming a few years ago. At the moment I am studying Computer Science at the Leibniz University and work as a Software Developer. Perl is quiet new for me so I will do my best to solve every challenge.
 
 #### 4) Pham Dao An
 
