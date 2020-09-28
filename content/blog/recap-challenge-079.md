@@ -173,7 +173,7 @@ Changes to the ranking in the **Centurion Club** last week listed below:
 #### 4) Arne Sommer (**532**)
 #### 5) Javier Luque (**460**)
 #### 6) Ruben Westerberg (**452**)
-#### 7) Colin Crain (**412**)
+#### 7) Colin Crain (**420**)
 #### 8) E. Choroba (**404**)
 #### 9) Athanasius (**400**)
 #### 10) Mohammad S Anwar (**374**)
