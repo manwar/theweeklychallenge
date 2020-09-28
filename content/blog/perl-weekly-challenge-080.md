@@ -211,7 +211,7 @@ You are given rankings of `$N` candidates.
 Write a script to find out the total candies needed for all candidates. You are asked to follow the rules below:
 
 ##### a) You must given at least one candy to each candidate.
-##### b) Candidate with higher ranking get more candies than their neighbours.
+##### b) Candidate with higher ranking get more candies than their mmediate neighbors on either side.
 
 ## Example 1:
 
