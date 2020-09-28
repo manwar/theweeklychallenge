@@ -117,7 +117,7 @@ I would like to `THANK` every member of the team for their valuable suggestions.
 
 #### 1) [Rakulius](https://github.com/rakulius), an experienced Raku hacker from France.
 
-#### 2) [Ted Leahy](https://github.com/tedleahy), an experience Perl hacker.
+#### 2) [Ted Leahy](https://github.com/tedleahy), an experienced Perl hacker.
 
 #### 3) Kai Burgdorf
 
