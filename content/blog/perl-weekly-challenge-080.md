@@ -219,7 +219,7 @@ Write a script to find out the total candies needed for all candidates. You are 
 
 #### Explanation:
 
-    Applying rule #a, each candidate will get one candy. So total candies needed so far 3. Now applying rule #b, the first candidate do not get any more candy as its rank is lower than it's neighbours. The second candidate get one more candy as it's ranking is higher than it's neighbour. Finally the third candidate do not get any extra candy as it's ranking is not higher than neighbour. Therefore total candies required is 4.
+    Applying rule #a, each candidate will get one candy. So total candies needed so far 3. Now applying rule #b, the first candidate do not get any more candy as its rank is lower than it's neighbours. The second candidate gets one more candy as it's ranking is higher than it's neighbour. Finally the third candidate do not get any extra candy as it's ranking is not higher than neighbour. Therefore total candies required is 4.
 
     Output: 4
 
@@ -229,9 +229,9 @@ Write a script to find out the total candies needed for all candidates. You are 
 
 #### Explanation:
 
-    Applying rule #a, each candidate will get one candy. So total candies needed so far 4. Now applying rule #b, the first candidate do not get any more candy as its rank is lower than it's neighbours. The second candidate get one more candy as it's ranking is higher than it's neighbour. The third candidate also get one more candy as it's ranking is higher than it's neighbour. Finally the fourth candidate do not get any extra candy as it's ranking is not higher than neighbour. Therefore total candies required is 6.
+    Applying rule #a, each candidate will get one candy. So total candies needed so far 4. Now applying rule #b, the first candidate do not get any more candy as its rank is lower than it's neighbours. The second candidate gets two more candy as it's ranking is higher than it's both neighbour. The third candidate gets one more candy as it's ranking is higher than it's neighbour. Finally the fourth candidate do not get any extra candy as it's ranking is not higher than neighbour. Therefore total candies required is 6.
 
-    Output: 6
+    Output: 7
 
 <br>
 
