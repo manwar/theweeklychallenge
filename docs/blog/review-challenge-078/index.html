@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="The Weekly Challenge - Perl & Raku"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://perlweeklychallenge.org/"/>
+    <meta property="og:image"       content="https://perlweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="You do not have to be an expert."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://perlweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Colin Crain › Perl Weekly Review #078">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Colin Crain › Perl Weekly Review #078</title>
+    <link rel="icon" href="https://perlweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://perlweeklychallenge.org/">
+                        <img src="https://perlweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navgation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Colin Crain › Perl Weekly Review #078</h2>
+                    <div class="portfolio-meta">
+                        <span>Monday, Sep 28, 2020</span>|
+                        <span> Tags:
+                            perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://perlweeklychallenge.org/images/blog/p5-review-challenge-078.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <p>( <em>&hellip;continues from <a href="/blog/review-challenge-077/">previous week</a>.</em> )</p>
+<p>Welcome to the Perl review for <strong>Week 078</strong> of the Weekly Challenge! Here we will take the time to discuss the  submissions offered by the team, factor out the common methodologies that came up in those solutions, and highlight some of the unique approaches and unusual code created.</p>
+<hr>
+<p><strong>Week over week the response to the Challenge has grown, which to all of us here is a wonderful thing. This week we have 33 submissions for the first task, 31 for the second, which I believe is a new record for this page.</strong></p>
+<p>With the large upswing of submissions from new and returning members, I&rsquo;m going to have to change the format somewhat, as I unfortunately will never have time to give each and every submission its proper due. I&rsquo;d rather go further in depth with fewer techniques than gloss over everything, which to me doesn&rsquo;t sound very helpful in the end. With that said, I will do my best not let it become a judged competition for who can be the cleverest, but rather try and select examples from across the board, with perhaps a bit of randomness and whimsey guiding me as well. Cleverness isn&rsquo;t everything, and people choose their own reasoning when they choose how to realize their ideas. I&rsquo;m open to suggestion on the subject, and of course if anyone wishes to opt out of being reviewed for whatever reason, by all means just let me know. And further, if any newcomers have specific questions on a submission or technique I will do my best to accommodate, just drop me a line. Really. It&rsquo;s cool.</p>
+<hr>
+<p>Every week there is an enormous global collective effort made by the team, analyzing and creatively coding the submissions, and that effort deserves credit due. And that&rsquo;s why I&rsquo;m here, to try and figure out how to do that.</p>
+<p>Let&rsquo;s have a look and see what we can find.</p>
+<hr>
+<p><strong><big>For context</big></strong>  before we begin, you may wish to revisit either of the pages for the <a href="/blog/perl-weekly-challenge-078/"><strong>original tasks</strong></a> or the summary <a href="/blog/recap-challenge-078/"><strong>recap</strong></a> of the challenge. But don&rsquo;t worry, the challenges themselves will be briefly summarized, presented below as we progress from task by task. Oh, and one more thing before we get started:</p>
+<h3 id="getting-in-touch-with-us">Getting in Touch with Us</h3>
+<p><a href="mailto:pwc.perfectwave@gmail.com"><img src="/images/blog/Email.svg" height="50" width="50"> Email</a> › Please email me (Colin) with any feedback, notes, clarifications or whatnot about this review.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge"><img src="/images/blog/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request to us for any issues you may find with this page.</p>
+<p><a href="https://twitter.com/perlwchallenge"><img src="/images/blog/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!</p>
+<p>I&rsquo;m always curious as to what the people think of these efforts. Everyone here at the PWC would like to hear any feedback you&rsquo;d like to give.</p>
+<p><strong>So finally, without further ado&hellip;</strong></p>
+<hr>
+<h2 id="---nbsp--nbsp--nbsp---task-1pwc078task1-------nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---task-2pwc078task2---nbsp--nbsp--nbsp----------nbsp--nbsp--nbsp---blogspwc078blogs----nbsp--nbsp--nbsp-------">•             <a href="#PWC078TASK1">Task 1</a>                 •             <a href="#PWC078TASK2">Task 2</a>                 •             <a href="#PWC078BLOGS">BLOGS</a>                  •</h2>
+<hr>
+<h1 id="PWC078TASK1">TASK #1 › Leader Element</h1>
+<p>You are given an array @A containing distinct integers.
+Write a script to find all leader elements in the array @A.
+Print (0) if none found.</p>
+<p>An element is leader if it is greater than all the elements to its right side.</p>
+<p>Example 1:</p>
+<pre><code>    Input: @A = (9, 10, 7, 5, 6, 1)
+    Output: (10, 7, 6, 1)
+</code></pre><p>Example 2:</p>
+<pre><code>    Input: @A = (3, 4, 5)
+    Output: (5)
+</code></pre><h2 id="about-the-solutions">about the solutions</h2>
+<p>Among the 33 submissions to the first task, there seemed to be two basic forms: to traverse the array from left to right, or from right to left. These worked out to be  about evenly divided. For such a seemingly simple task there proved to be quite a few different ways of actually deciding whether a given element was a leader or not.</p>
+<h2 id="working-left-to-right-across-the-array">working LEFT to RIGHT across the array</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/andinus/perl/ch-1.pl"><strong>Andinus</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/anton-fedotov/perl/ch-1.pl"><strong>Anton Fedotov</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/arne-sommer/perl/ch-1.pl"><strong>Arne Sommer</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/bob-lied/perl/ch-1.pl"><strong>Bob Lied</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/dave-cross/perl/ch-1.pl"><strong>Dave Cross</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/nunovieira220/perl/ch-1.pl"><strong>Nuno Vieira</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/shawn-wagner/perl/ch-1.pl"><strong>Shawn Wagner</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/vinod-k/perl/ch-1.pl"><strong>Vinod Kumar K</strong></a></p>
+<p>a straightforward approach is to use an index iterator to examine the individual elements, using that index value to construct an array slice for the values to the right and determining the maximum value of the resultant list. If that maximum is larger than the given indexed value, that index contains a leader, and the result is pushed to an output array.</p>
+<p>Well, that&rsquo;s <strong>one</strong> way at least.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a> shows us how:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $index ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#array <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ) {
+    <span style="color:#75715e"># Get the current value, and the maximum of the remaining values</span>
+    <span style="color:#66d9ef">my</span> $value <span style="color:#f92672">=</span> $array[$index];
+    <span style="color:#66d9ef">my</span> $max   <span style="color:#f92672">=</span> max @array[ $index <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $#array ];
+    push @leader, $value <span style="color:#66d9ef">if</span> $value <span style="color:#f92672">&gt;</span> $max;
+}
+</code></pre></div><p>It&rsquo;s nice.
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a> and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a> also took this practical approach.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/anton-fedotov/perl/ch-1.pl"><strong>Anton Fedotov</strong></a></p>
+<p>gives us an unusual twist on this though, using <code>eval()</code> and a <code>state</code> variable to determine whether the element at an auto-incrementing index is the largest member of a sorted list from the sliced segment beyond:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">eval {  state $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        push @L, $_ <span style="color:#66d9ef">if</span> $_ <span style="color:#f92672">==</span> shift @{[ sort {$b <span style="color:#e6db74">&lt;=&gt;</span> $a} @A[$i<span style="color:#f92672">++..</span>$#A] ]}
+     } <span style="color:#66d9ef">for</span> @A;
+</code></pre></div><p>It&rsquo;s certainly compact. I feel this could also be done with <code>do{ EXPR } for @A</code> and an external index, but you say tomato, I say tomato.</p>
+<p>Of course a slice is not the only way to look to the right. As we know the index of a given element as we traverse, we can create a second interator to examine the remainder, as shown to us here by the Perlmonk</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">OUTER_FOR: <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#A)
+{
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $j ($i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $#A)
+    {
+        <span style="color:#66d9ef">next</span> OUTER_FOR <span style="color:#66d9ef">unless</span> $A[$i] <span style="color:#f92672">&gt;</span> $A[$j];
+    }
+    push @leaders, $A[$i];
+}
+</code></pre></div><p>See how that works? Here&rsquo;s another example by</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/vinod-k/perl/ch-1.pl"><strong>Vinod Kumar K</strong></a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i(<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$length<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>){
+    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $j($i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$length){
+        <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span>($array_elements[$i] <span style="color:#f92672">&lt;</span> $array_elements[$j]);
+        push(@result, $array_elements[$i]) <span style="color:#66d9ef">if</span>($j <span style="color:#f92672">==</span> $length<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
+    }
+}
+<span style="color:#66d9ef">my</span> $max_from_right <span style="color:#f92672">=</span> $array_elements[$length<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+push (@result, $max_from_right);
+</code></pre></div><p>Yet another way is, if we&rsquo;re willing, to destroy the array as we work through it, shifting elements off one at a time. If done this way the remaining array will always comprise the elements to the right. This list can be then be evaluated using an imported listwise function like <code>max</code> or <code>all</code>.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/arne-sommer/perl/ch-1.pl"><strong>Arne Sommer</strong></a> uses <code>all</code> from <code>List::Util</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">while</span> (@A)
+{
+  <span style="color:#66d9ef">my</span> $a <span style="color:#f92672">=</span> shift @A;
+  push(@B, $a) <span style="color:#66d9ef">if</span> $a <span style="color:#f92672">&gt;</span> all(@A);
+}
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/dave-cross/perl/ch-1.pl"><strong>Dave Cross</strong></a></p>
+<p>takes a little more complicated route to the same goal using a <code>map</code>/<code>grep</code> combo to do the looping for him. I&rsquo;m not sure if I&rsquo;ve mentioned before how much I like his use of <code>$needle</code> and <code>@haystack</code> variables. He again uses <code>all</code> to do the comparison check.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @leaders <span style="color:#f92672">=</span> map  { $ARGV[$_] }
+              grep { is_leader($_, @ARGV) } <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#ARGV;
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_leader</span> {
+  <span style="color:#66d9ef">my</span> ($needle, @haystack) <span style="color:#f92672">=</span> @_;
+  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> $needle <span style="color:#f92672">==</span> $#haystack;
+
+  <span style="color:#66d9ef">return</span> all { $haystack[$needle] <span style="color:#f92672">&gt;</span> $_ } @haystack[$needle <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $#haystack];
+}
+</code></pre></div><p>Alternately,</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>,</p>
+<p>employs a variation on the same sequence of events using <code>max</code>, again from <code>List::Util</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">while</span> (@arr) {
+    <span style="color:#66d9ef">my</span> $max <span style="color:#f92672">=</span> max @arr;
+    push @output, $arr[<span style="color:#ae81ff">0</span>] <span style="color:#66d9ef">if</span> $max <span style="color:#f92672">==</span> $arr[<span style="color:#ae81ff">0</span>];
+    shift @arr;
+}
+</code></pre></div><h2 id="traveling-right-to-left-instead">traveling RIGHT to LEFT instead</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/abigail/perl/ch-1.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/alexander-pankoff/perl/ch-1.pl"><strong>Alexander Pankoff</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/markus-holzer/perl/ch-1.pl"><strong>Markus Holzer</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/jeongoon/perl/ch-1.pl"><strong>Myoungjin Jeon</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/pete-houston/perl/ch-1.pl"><strong>Pete Houston</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/steven-wilson/perl/ch-1.pl"><strong>Steven Wilson</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/walt-mankowski/perl/ch-1.pl"><strong>Walt Mankowski</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/wanderdoc/perl/ch-1.pl"><strong>Wanderdoc</strong></a></p>
+<p>If we traverse the array back to front, then every element we will need to know the value of to make our leadership decisions will have already been examined by the time we get to it. This is quite convenient.</p>
+<p>To be a successful leader we already know it will be larger than any element to its right. All we need to do is keep track of a local maximum as we travel; if the element to be evaluated is larger than the running maximum, then it is both declared a leader and also becomes the updated maximum going forward.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/walt-mankowski/perl/ch-1.pl"><strong>Walt Mankowski</strong></a></p>
+<p>uses a descending iterator to pick out the individual elements:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> $#a; $i <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>; $i<span style="color:#f92672">--</span>) {
+    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>defined $max <span style="color:#f92672">||</span> $a[$i] <span style="color:#f92672">&gt;</span> $max) {
+        unshift @out, $a[$i];
+        $max <span style="color:#f92672">=</span> $a[$i];
+    }
+}
+</code></pre></div><p>This has the last-element initialization built in, as you see. But if we&rsquo;re willing to work destructively, we can remove the elements one-by-one. I do this in</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/colin-crain/perl/ch-1.pl"><strong>My Own Solution</strong></a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @output <span style="color:#f92672">=</span> <span style="color:#66d9ef">my</span> ($max) <span style="color:#f92672">=</span> (pop @input);
+
+<span style="color:#66d9ef">while</span> (@input) {
+    <span style="color:#66d9ef">my</span> $ele <span style="color:#f92672">=</span> pop @input;
+    <span style="color:#66d9ef">if</span> ($ele <span style="color:#f92672">&gt;</span> $max) {
+        $max <span style="color:#f92672">=</span> $ele;
+        unshift @output, $ele;
+    }
+}
+</code></pre></div><p>I find this <code>pop</code>/<code>max</code>/<code>unshift</code> combination to be quite satisfying. It&rsquo;s clean and easy on the eyes.
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung&rsquo;s</strong></a>
+submission is quite similar.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a></p>
+<p>applies <code>reverse</code> to the array before starting, allowing a straight <code>for</code> loop across the data.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">foreach</span> ( reverse @_ ) {
+    unshift @R, $max <span style="color:#f92672">=</span> $_ <span style="color:#66d9ef">if</span> $max <span style="color:#f92672">&lt;</span> $_;
+}
+</code></pre></div><p>But several people noticed that keeping a separate <code>$max</code> variable wasn&rsquo;t really necessary, as the head of the <code>@leaders</code> array will always already hold that value. Ok, sure thing. Lets look to</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/lubos-kolouch/perl/ch-1.pl"><strong>Lubos Kolouch</strong></a>
+to bring this all back home:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $elem (reverse @$arr) {
+    unshift @leaders, $elem <span style="color:#66d9ef">if</span> $elem <span style="color:#f92672">&gt;</span> $leaders[<span style="color:#ae81ff">0</span>];
+}
+</code></pre></div><h3 id="some-functional-right-to-left-solutions">some FUNCTIONAL right-to-left solutions</h3>
+<p>the simplicity of the right-to-left mechanism lent itself well to a number of functional solutions, a machine inhaling arrays at one end and breathing out leaders at the other.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/alexander-pankoff/perl/ch-1.pl"><strong>Alexander Pankoff</strong></a></p>
+<p>employs <code>reduce</code>, from over in <code>List::Util</code>, for the task:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $leaders <span style="color:#f92672">=</span> reduce {
+    <span style="color:#66d9ef">my</span> @leaders <span style="color:#f92672">=</span> @$a;
+    <span style="color:#66d9ef">my</span> $current <span style="color:#f92672">=</span> $b;
+
+    ( all { $current <span style="color:#f92672">&gt;</span> $_ } @leaders ) ? [ $current, @leaders ] : $a
+}
+<span style="color:#f92672">[]</span>, reverse @list;
+</code></pre></div><p>Likewise</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">leading</span> {
+    (@{(reduce {
+        unshift @$a, $b <span style="color:#66d9ef">if</span> $b <span style="color:#f92672">&gt;</span> ($a<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#39;-inf&#39;</span>);
+        $a;
+    } <span style="color:#f92672">[]</span>, reverse @_)}, (<span style="color:#ae81ff">0</span>) x <span style="color:#f92672">!</span>@_) ;
+}
+</code></pre></div><p>I have to say I&rsquo;m still struggling with finding the most readable formatting for these complex functions. I like Alexander&rsquo;s clear layout more but I think I&rsquo;d drop down and indent the <code>reduce {</code> and following brackets, because I&rsquo;m finding myself looking to the argument list, <code>[], reverse @list</code>, as a separate operation. Keen observers will have noticed I&rsquo;m not above reformatting stuff for clarity, but for these I have left them as written.</p>
+<p>For those of you wondering what&rsquo;s going on, in the list reduction the accumulator [] is unshifted with the argument if it passes the conditional for leadership status. The fiddly bit at the end of Jorg&rsquo;s code combines with the outer dereferencing to give an array containing <code>(0)</code> if the input array has no values. It&rsquo;s cool: if that&rsquo;s the case, then the reduction will yield [], dereferenced to the null set, and the fiddly bit (0) x 1, or a single 0, all listified by the outermost parens. If that&rsquo;s not the case, the fiddly bit evaluates to 0 x 0, and no extra zeros are added to the list.</p>
+<p>This is all very cool, but Marcus, Pete and Abigail show us really all we need is <code>grep</code>. Because they&rsquo;re short, here we are served three ways:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/markus-holzer/perl/ch-1.pl"><strong>Markus Holzer</strong></a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">leader_elements</span> {
+    <span style="color:#66d9ef">my</span> $first <span style="color:#f92672">=</span> <span style="color:#66d9ef">my</span> $max <span style="color:#f92672">=</span> pop @_;
+    defined $first
+        ? reverse $first, grep { $_ <span style="color:#f92672">&gt;</span> $max ? [$max <span style="color:#f92672">=</span> $_] : <span style="color:#ae81ff">0</span> } reverse @_
+        : <span style="color:#ae81ff">0</span> }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/pete-houston/perl/ch-1.pl"><strong>Pete Houston</strong></a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @out <span style="color:#f92672">=</span> reverse grep { $_ <span style="color:#f92672">&gt;</span> $max <span style="color:#f92672">and</span> $max <span style="color:#f92672">=</span> $_, <span style="color:#ae81ff">1</span> } reverse @ARGV;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/abigail/perl/ch-1.pl"><strong>Abigail</strong></a>,</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">say reverse
+    grep {<span style="color:#f92672">!</span>defined $max <span style="color:#f92672">||</span> $_ <span style="color:#f92672">&gt;</span> $max ? <span style="color:#66d9ef">do</span> {$max <span style="color:#f92672">=</span> $_; <span style="color:#ae81ff">1</span>} : <span style="color:#ae81ff">0</span>}
+    reverse @A;
+</code></pre></div><p>I do very much like that last formatting, BTW.</p>
+<h2 id="-print-0-if-none-found">⎯→ Print (0) if none found.</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/abigail/perl/ch-1.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/alexander-pankoff/perl/ch-1.pl"><strong>Alexander Pankoff</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/juliodcs/perl/ch-1.pl"><strong>Julio de Castro</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/markus-holzer/perl/ch-1.pl"><strong>Markus Holzer</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/jeongoon/perl/ch-1.pl"><strong>Myoungjin Jeon</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/shawn-wagner/perl/ch-1.pl"><strong>Shawn Wagner</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/steven-wilson/perl/ch-1.pl"><strong>Steven Wilson</strong></a></p>
+<p>As the rightmost element of any array is by definition the leader of none, but a bona fide leader nonetheless, the only way for no solution to be found is in the pathological edge case where the empty array is input. It could be well argued that an empty @ARGV is the same as no input at all, which is to say no array at all, which should reasonably considered invalid input.  On the other hand, an array is a data structure distinct from the list of data it contains, and passing an array reference into a routine, perhaps in a module, that happened to contain no data makes perfect sense as a valid option. The reference pointer is certainly a real entity.</p>
+<p>Returning 0 for the case of an empty array can also be considered a rather arbitrary response, as the only criteria listed in the definition is that the integers given be distinct; there is no qualification that the integers be positive or even non-zero. Without this qualification, the results for the two arrays <code>[]</code> and <code>[-2,-1,0]</code> are both 0, even though only one of these arrays contains real data. <strong>Jorg Sommrey</strong> gives us specific examples to point this ambiguity out, as does <strong>Athanasius</strong>, who goes to length to state why they specifically chose <em>not</em> to implement this. Thank you both for these notes, sometimes I feel like I&rsquo;m getting outside the lines with this sort of reasoning. Data pollution makes me feel dirty, and not in a good way.</p>
+<p>Depending on the specific context, this could be considered introducing spurious data, polluting the data set. Or perhaps, such as the case where all the data is in fact always greater than 0, it just indicates an error state, providing a known null value that can be flagged and dealt with.</p>
+<p>This whole matter might well be regarded as a trick question, with a fair bit of disagreement on people implementing it. I didn&rsquo;t, for instance, as I hold a strong distrust of introducing spurious data. However, as noted by my hypothetical case studies, YMMV.</p>
+<h2 id="shiny-objects-in-the-cabinet-of-curioities">SHINY OBJECTS in the CABINET of CURIOITIES</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/juliodcs/perl/ch-1.pl"><strong>Julio de Castro</strong></a></p>
+<p>Julio gives us a unique methodology, to break down literally every logical unit he can find into its own anonymous subroutine. Thus subroutines are constructed in turn calling other routines descending in a tree-like structure some 4 levels deep. The result is&hellip; &ldquo;interesting&rdquo;, if not exactly easy to follow. I see the impulse, and even agree with it to some degree. &ldquo;Baroque&rdquo; might be a better word, or perhaps &ldquo;rococo&rdquo;. Or perhaps a simple &ldquo;too far&rdquo; will do, but I suspect Julio knows this already, and it is an interesting experiment, and it does in fact work. I say let the people decide:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get_leaders</span> {
+    <span style="color:#66d9ef">my</span> @A           <span style="color:#f92672">=</span>               ( <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">1</span> );
+    <span style="color:#66d9ef">my</span> $a_indexes   <span style="color:#f92672">=</span> <span style="color:#66d9ef">sub</span>           { <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> @A <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> };
+    <span style="color:#66d9ef">my</span> $is_last     <span style="color:#f92672">=</span> sub($i)       { $i <span style="color:#f92672">==</span> @A <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> };
+    <span style="color:#66d9ef">my</span> $current     <span style="color:#f92672">=</span> sub($i)       { $A[$i] };
+    <span style="color:#66d9ef">my</span> $following   <span style="color:#f92672">=</span> sub($i)       { $A[$i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>] };
+    <span style="color:#66d9ef">my</span> $is_leading  <span style="color:#f92672">=</span> sub($i)       { $current<span style="color:#f92672">-&gt;</span>($i) <span style="color:#f92672">&gt;</span> $following<span style="color:#f92672">-&gt;</span>($i) };
+    <span style="color:#66d9ef">my</span> $is_leader   <span style="color:#f92672">=</span> sub($i)       { $is_last<span style="color:#f92672">-&gt;</span>($i) <span style="color:#f92672">||</span> $is_leading<span style="color:#f92672">-&gt;</span>($i) };
+    <span style="color:#66d9ef">my</span> $if_leader   <span style="color:#f92672">=</span> sub($i)       { $is_leader<span style="color:#f92672">-&gt;</span>($i) ? $current<span style="color:#f92672">-&gt;</span>($i) : () };
+    <span style="color:#66d9ef">my</span> $push_leader <span style="color:#f92672">=</span> sub($lst, $i) { push @{$lst}, $if_leader<span style="color:#f92672">-&gt;</span>($i); $lst };
+
+    <span style="color:#66d9ef">my</span> $result <span style="color:#f92672">=</span> reduce { $push_leader<span style="color:#f92672">-&gt;</span>($a, $b) } <span style="color:#f92672">[]</span>, $a_indexes<span style="color:#f92672">-&gt;</span>();
+
+    @A <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> ? (<span style="color:#ae81ff">0</span>) : $result<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+<span style="color:#960050;background-color:#1e0010">}</span>
+</code></pre></div><p>I am open to discussion here. At what point <em>does</em> functional abstraction go too far?</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/nunovieira220/perl/ch-1.pl"><strong>Nuno Vieira</strong></a></p>
+<p>Nuno traverses the list from left to right, adding each element to a list of leaders, but also filtering that list on every pass to only elements larger than the element being added. Why does this work? Well one quality of the leader list is that leadership is recursive: every leader element to the left of any other element is larger. So filtering the list will never remove a true leader, but serves as a check to remove candidates added that later are superseded. The last element, which will always be a leader, is never questioned.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @arr <span style="color:#f92672">=</span> ();
+<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $item (@list) {
+  @arr <span style="color:#f92672">=</span> grep { $_ <span style="color:#f92672">&gt;</span> $item } @arr;
+  push @arr, $item;
+}
+</code></pre></div><hr>
+<h1 id="PWC078TASK2">TASK #2 › Left Rotation</h1>
+<p>You are given array @A containing positive numbers and @B containing one or more indices from the array @A.</p>
+<p>Write a script to left rotate @A so that the number at the first index of @B becomes the first element in the array. Similary, left rotate @A again so that the number at the second index of @B becomes the first element in the array.</p>
+<p>Example 1:</p>
+<pre><code>    Input:
+        @A = (10 20 30 40 50)
+        @B = (3 4)
+
+    Output:
+        [40 50 10 20 30]
+        [50 10 20 30 40]
+</code></pre><h2 id="solutions">solutions</h2>
+<p>There was a big boost in submissions this week, up to 31 for this challenge.</p>
+<p>The first thing to note is that some people found surprise in that the rotations were to be applied sequentially, rather than consecutively; a quick read of the description seemed to suggest that that was where things were going. Carefully paying attention to the examples, however, proved that theory wrong, in that each index in the second list is clearly intended to be its own independant rotation from the base state. It does remain ambiguous how to get there, though.</p>
+<p>This immediately breaks down into two parts to the task: to create a way to transform the array to a new state for output, and how to apply that function across the elements of the second array. Some took this to its furthest extension, supplying first one function to do the rotation, then another to call it for the members of the second array. Others went the other way and inlined both activities.</p>
+<p>There were a few basic strategies that fell out:</p>
+<h2 id="construct-a-rotate-function">construct a ROTATE function</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/alexander-pankoff/perl/ch-2.pl"><strong>Alexander Pankoff</strong></a>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/andinus/perl/ch-2.pl"><strong>Andinus</strong></a>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/arne-sommer/perl/ch-2.pl"><strong>Arne Sommer</strong></a>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/juliodcs/perl/ch-2.pl"><strong>Julio de Castro</strong></a></p>
+<p>A left rotation is the act of removing the leading element of an array and moving it to the end, as though the two ends were connected on a loop. So by applying <code>shift</code> to the array, immediately followed by <code>push</code> on the element produced, a single left rotation is enacted.</p>
+<p>Place this structure in a loop and this single action can be repeated multiple times as required. Usually these actions were combined in their own function, although because the main control flow is so linear, inlining the loop is pretty basic. So we saw a bit of variety here.</p>
+<p>For a nice example of a repeating rotation function, we can look to the submission provided by</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/alexander-pankoff/perl/ch-2.pl"><strong>Alexander Pankoff</strong></a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $index (@B) {
+    say <span style="color:#e6db74">&#39;[&#39;</span> <span style="color:#f92672">.</span> join( <span style="color:#e6db74">&#39;, &#39;</span>, left_rotate( $index, @A ) ) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;]&#39;</span>;
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">left_rotate</span> ( $index, @array ) {
+    <span style="color:#66d9ef">while</span> ( $index<span style="color:#f92672">--</span> ) {
+        <span style="color:#66d9ef">my</span> $top <span style="color:#f92672">=</span> shift @array;
+        push @array, $top;
+    }
+
+    <span style="color:#66d9ef">return</span> @array;
+}
+</code></pre></div><p>As you can see, it lays out pretty clearly. But as we mentioned, we don&rsquo;t <em>really</em> need a separate function, and can inline everything, as done here by</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/andinus/perl/ch-2.pl"><strong>Andinus</strong></a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">foreach</span> (@B) {
+    <span style="color:#66d9ef">my</span> @tmp <span style="color:#f92672">=</span> @A;
+    <span style="color:#66d9ef">foreach</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">...</span> scalar @tmp <span style="color:#f92672">-</span> $_) {
+        unshift @tmp, pop @tmp;
+    }
+    <span style="color:#66d9ef">print</span> join(<span style="color:#e6db74">&#39;, &#39;</span>, @tmp), <span style="color:#e6db74">&#34;\n&#34;</span>;
+}
+</code></pre></div><p>By creating a temporary array they can easily restart the process, here curiously done to the right to the same effect. As we will see, almost everyone focused on creating arrays holding the correct <em>results</em>, rather than creating a specifically <em>left</em> rotation.</p>
+<p>Even the temporary array isn&rsquo;t strictly speaking required, as demonstrated here by</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/juliodcs/perl/ch-2.pl"><strong>Julio de Castro</strong></a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">rotate</span> {
+    <span style="color:#66d9ef">my</span> @A <span style="color:#f92672">=</span> (<span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">3</span>);
+    <span style="color:#66d9ef">my</span> @B <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>);
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $rot (@B) {
+        say join <span style="color:#e6db74">q(, )</span>, map { $A[($_ <span style="color:#f92672">+</span> $rot) % <span style="color:#960050;background-color:#1e0010">@</span>A] } <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> @A <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+    }
+}
+</code></pre></div><p>the <code>map</code> function re-rolls the array on the fly in this impressively compact derivation of the form. That sub&rsquo;s the whole thing.</p>
+<p>But that, too, is not of course the only way to go about this task.</p>
+<h2 id="manufacture-the-correct-sequence">MANUFACTURE the CORRECT SEQUENCE</h2>
+<p>By careful examination of the arrays constructed, it&rsquo;s plain to see the new, rotated array as a rearrangement of the original, now starting at the given new index, proceeding to the end, followed by the remaining segment starting at 0. Instead of explicitly shifting the elements in a skeuomorphic approximation of a spinning wheel counter, what if we just constructed an array composed in the correct fashion instead, by whatever means?</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/mohammad-anwar/perl/ch-2.pl"><strong>Mohammad S Anwar</strong></a></p>
+<p>provides us an example of this philosophy, using two iterators to selectively copy the elements of the input to an output array. The first iterator loops through the tail, from the given index on, then a second iterator adds the rest of elements at the head, from index 0 up to the splice.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i (@$index) {
+    <span style="color:#66d9ef">my</span> $array <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>;
+    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $j ($i <span style="color:#f92672">..</span> $#$source) {
+        push @$array, $source<span style="color:#f92672">-&gt;</span>[$j];
+    }
+    <span style="color:#66d9ef">if</span> ($i <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $k (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
+            push @$array, $source<span style="color:#f92672">-&gt;</span>[$k];
+        }
+    }
+    push @$left_rotation, $array;
+}
+</code></pre></div><p>Pretty easy, right? The back goes to the front, the front to the back. Easy peasy.</p>
+<p>If only we had a tool for that&hellip; I kid, of course we do; a few in fact. What we described just now is splicing an array, so why not use that? When we described Mohammad&rsquo;s discreet iterators, we even used the word &ldquo;splice&rdquo;, right there at the end.</p>
+<h3 id="use-splice">use SPLICE</h3>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/lubos-kolouch/perl/ch-2.pl"><strong>Lubos Kolouch</strong></a></p>
+<p>does just that, supplying the following tidbit:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">@new_arr <span style="color:#f92672">=</span> (splice(@arr_copy, $first), @arr_copy);
+</code></pre></div><p>This is the driver for the action, with <code>$first</code> being the given index. <code>splice</code> cuts the array before <code>$first</code>, removing and returning the segment from that index to the end. That is paired in a new array followed by the remains of the original <code>@arr_copy</code> to make the</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/shawn-wagner/perl/ch-2.pl"><strong>Shawn Wagner</strong></a></p>
+<p>does much the same thing with his <code>rotate_left()</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">rotate_left</span> :prototype(\@$) {
+  <span style="color:#66d9ef">my</span> ($A, $idx) <span style="color:#f92672">=</span> @_;
+  <span style="color:#66d9ef">my</span> @A <span style="color:#f92672">=</span> @$A;
+  <span style="color:#66d9ef">my</span> @left <span style="color:#f92672">=</span> splice @A, <span style="color:#ae81ff">0</span>, $idx;
+  push @A, @left;
+  <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@A;
+}
+</code></pre></div><p>He follows with a <code>rotate_left_multi()</code> function, that applies <code>rotate_left()</code> to the input using each element of @B in turn.</p>
+<h3 id="rearrange-the-array-using-one-or-more-slices">REARRANGE the array using one or more SLICES</h3>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/abigail/perl/ch-2.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/anton-fedotov/perl/ch-2.pl"><strong>Anton Fedotov</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/bob-lied/perl/ch-2.pl"><strong>Bob Lied</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/dave-cross/perl/ch-2.pl"><strong>Dave Cross</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/markus-holzer/perl/ch-2.pl"><strong>Markus Holzer</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/jeongoon/perl/ch-2.pl"><strong>Myoungjin Jeon</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/perlboy1967/perl/ch-2.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/pete-houston/perl/ch-2.pl"><strong>Pete Houston</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/walt-mankowski/perl/ch-2.pl"><strong>Walt Mankowski</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/wanderdoc/perl/ch-2.pl"><strong>Wanderdoc</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/colin-crain/perl/ch-2.pl"><strong>My Own Solution</strong></a></p>
+<p>Which brings us finally to the star of the show. When dealing with rearranging array elements, or taking views of arrays if you will, there is a very powerful tool available in the form of array slices. By simply establishing a sequence of indices within brackets, any arbitrary list rearrangements are possible. The only requirement is that the expression within the brackets resolves to a list of indexes.</p>
+<p>For many people, myself included, this was the go-to method.</p>
+<p>Simply put, the two parts of the <code>splice</code> methods above can be replaced with slices instead. Here</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a></p>
+<p>wraps the whole thing up in a <code>map</code> to do everything in one statement</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">left_rotation</span> {
+    <span style="color:#66d9ef">my</span> ($list, $rotations) <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">return</span> [ map {
+        [ @$list[$_ <span style="color:#f92672">..</span> $#$list], @$list[<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $_ <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] ]
+    } @$rotations ]
+}
+</code></pre></div><p>It really does make things easy. In another example</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/anton-fedotov/perl/ch-2.pl"><strong>Anton Fedotov</strong></a></p>
+<p>reduces the logic to a single line:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">for</span> (@B) { say join <span style="color:#e6db74">&#39; &#39;</span>, (@A[$_<span style="color:#f92672">..</span>$#A],@A[<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$_<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]) };
+</code></pre></div><p>After this, you may wonder where else we can go? Well one point worthy of reiterating is that whatever goes in the index brackets need only resolve to a list of indices. This not only includes ranges as we see above, but also lists, single values, list of ranges, and even calculated values and all listy combinations of these. Which is turn means there&rsquo;s no reason to use two slices at all.</p>
+<p>Have a look at
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/abigail/perl/ch-2.pl"><strong>Abigail&rsquo;s</strong></a>
+version:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $index (@B) {
+    local $, <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34; &#34;</span>;
+    say @A [$index <span style="color:#f92672">..</span> @A <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $index <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>];
+}
+</code></pre></div><p>Oh, and that little trick she&rsquo;s pulling there with <code>$,</code> is messing with the &ldquo;output field separator&rdquo;; setting it to a single space inserts that character between each element in the array being printed. Nice.</p>
+<p>While we&rsquo;re on the subject,</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a></p>
+<p>uses the <a href="https://metacpan.org/pod/distribution/perlsecret/lib/perlsecret.pod">&ldquo;babycart&rdquo;</a> operator to much the same end, to force list interpolation of the array before printing.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;  [@{[ @{$a}[ $_..(@{$a}-1), 0..($_-1) ] ]}]\n&#34;</span> <span style="color:#66d9ef">foreach</span> @_;
+</code></pre></div><p>It does end up a little noisy, with all that referencing and dereferencing going on, I must admit. He&rsquo;s taking a complex slice of an array reference, then referencing that list in an anonymous array, then dereferencing that again (forcing list interpolation), then, just to add an extra level of prettiness and confusion, surrounds the result in a pair of square brackets that are literally just a pair of square brackets. Ahh, prettiness and confusion. Sounds like a band I was in once. Good times.</p>
+<p>There were even a few more noteworthy related variants on the basic idea of slices, working around the idea of selecting an offset list.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a></p>
+<p>Roger uses a single slice, but in his case he&rsquo;s first doubled a copy of the input array to draw from, concatenating them one after the other. Now all he need do is select the correct number of elements starting at a specified offset. The <code>my @t=(@{$a},@{$a});</code> line is a cool trick that avoids introducing bugs from any index calculations.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">leftrot</span> {
+    <span style="color:#66d9ef">my</span> $a <span style="color:#f92672">=</span> shift;
+    <span style="color:#66d9ef">my</span> $b <span style="color:#f92672">=</span> shift;
+    <span style="color:#66d9ef">my</span> $l <span style="color:#f92672">=</span> scalar( @{ $a } )<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">my</span> @t <span style="color:#f92672">=</span> ( @{ $a }, @{ $a } );
+    <span style="color:#66d9ef">my</span> @o;
+    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $c ( @{ $b } ) {
+        push @o, [@t[$c<span style="color:#f92672">..</span>$c<span style="color:#f92672">+</span>$l]];
+    }
+    <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@o;
+}
+</code></pre></div><p>and finally</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/wanderdoc/perl/ch-2.pl"><strong>Wanderdoc</strong></a></p>
+<p>addresses this idea as well, but constructing his list of indexes for the slice by adding the offset and applying a modulo to the array length, accomplishing the same end.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">rotate_left</span>
+{
+     <span style="color:#66d9ef">my</span> ( $aref, $num) <span style="color:#f92672">=</span> @_;
+     <span style="color:#66d9ef">return</span> @$aref[ map { ($_ <span style="color:#f92672">+</span> $num) % <span style="color:#960050;background-color:#1e0010">@$</span>aref} <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#$aref ];
+}
+</code></pre></div><h2 id="unique-approaches-and-other-things-that-caught-my-eye">UNIQUE approaches and other THINGS THAT CAUGHT MY EYE</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a></p>
+<p>CY appears to have taken this potentially rather simple challenge as an excuse to pursue a little adventure in data modeling. That is, given the task of &ldquo;rotating&rdquo; a list, well that list should be circular, no? So she has opted to use <code>Struct::Dumb</code> to help her construct a circular linked list. Ok. It&rsquo;s kind of taking the long way around but why not? It is circle in the end&hellip;</p>
+<p>Once she&rsquo;s constructed her list, rotation is as simple as traversing it up to the offset and printing the elements starting from that point. I  think the more interesting code chunk here is the creation of the circular list in the first place:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">create_circ_list</span> {
+
+    <span style="color:#66d9ef">my</span> @v <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">my</span> $sizev <span style="color:#f92672">=</span> scalar @v;
+
+    <span style="color:#66d9ef">my</span> $head <span style="color:#f92672">=</span> Node( val <span style="color:#f92672">=&gt;</span> $v[<span style="color:#ae81ff">0</span>], <span style="color:#66d9ef">next</span> <span style="color:#f92672">=&gt;</span> undef );
+    <span style="color:#66d9ef">my</span> $coming <span style="color:#f92672">=</span> <span style="color:#f92672">\</span>($head<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">next</span>);
+    <span style="color:#66d9ef">my</span> $node;
+
+    <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$sizev<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>) {
+        $node <span style="color:#f92672">=</span> Node( val <span style="color:#f92672">=&gt;</span> $v[$_], <span style="color:#66d9ef">next</span> <span style="color:#f92672">=&gt;</span> undef );
+        $$coming <span style="color:#f92672">=</span> $node;
+        $coming <span style="color:#f92672">=</span> <span style="color:#f92672">\</span>($node<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">next</span>);
+    }
+
+    <span style="color:#66d9ef">my</span> $endnode <span style="color:#f92672">=</span> Node( val <span style="color:#f92672">=&gt;</span> $v[$sizev<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>], <span style="color:#66d9ef">next</span> <span style="color:#f92672">=&gt;</span> undef);
+    $$coming <span style="color:#f92672">=</span> $endnode;
+    $coming <span style="color:#f92672">=</span> <span style="color:#f92672">\</span>($endnode<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">next</span>);
+    $$coming <span style="color:#f92672">=</span> $head;
+
+    <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>$head;
+}
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a></p>
+<p>In another victory for the PDL, Jorg provides us a three line solution bulked up by extensive commenting.</p>
+<p>I always approve of commenting. I&rsquo;ll let him explain things.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> PDL;
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">multi_rotate</span> {
+    <span style="color:#75715e"># convert 1st arg to a piddle</span>
+    <span style="color:#66d9ef">my</span> $a <span style="color:#f92672">=</span> long(shift);
+    <span style="color:#75715e"># 2nd arg: pack the array elements into arrays of length one.</span>
+    <span style="color:#66d9ef">my</span> $b <span style="color:#f92672">=</span> [map [$_], @{(shift)}];
+
+    <span style="color:#75715e"># The range method returns rectangular parts of the input piddle</span>
+    <span style="color:#75715e"># starting at the given positions.  With the full length of $a as</span>
+    <span style="color:#75715e"># the parts&#39; length and periodic boundary conditions it actually</span>
+    <span style="color:#75715e"># performs multiple rotations just as required by this task.  The</span>
+    <span style="color:#75715e"># source dimension needs to be moved to the front.</span>
+    $a<span style="color:#f92672">-&gt;</span>range($b, $a<span style="color:#f92672">-&gt;</span>dim(<span style="color:#ae81ff">0</span>), <span style="color:#e6db74">&#39;periodic&#39;</span>)<span style="color:#f92672">-&gt;</span>reorder(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>)<span style="color:#f92672">-&gt;</span>unpdl;
+}
+</code></pre></div><p>I remain impressed by Perl&rsquo;s grand data language project. Munge away, Jorg, munge away.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/nunovieira220/perl/ch-2.pl"><strong>Nuno Vieira</strong></a></p>
+<p>Nuno&rsquo;s vision caught my eye because they were the only soul who braved the problem in the most literal way possible: that is to say keeping track of the bookkeeping to rotate the original starting list, then rotate that same list again the correct number of times to reorient the leading element. Something inside me says that that very literal interpretation may have been the intent all along, I don&rsquo;t know. Rather than start again with a fresh copy of the array, with this approach we need only carry over a second offset between transformations. The math isn&rsquo;t particularly hard or anything, but it&rsquo;s a clever solution keeping track of the <code>$jump</code> value; it&rsquo;s noteworthy no one else tried this.</p>
+<p>It&rsquo;s all contained in a single loop, over the <code>@B</code> array; in this method we rotate the array, print it, and then rotate it again until done.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i ( @B ) {
+    <span style="color:#66d9ef">my</span> $jump <span style="color:#f92672">=</span> $i <span style="color:#f92672">-</span> $index;
+
+    <span style="color:#66d9ef">for</span>( <span style="color:#66d9ef">my</span> $j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; $j <span style="color:#f92672">&lt;</span> $jump; $j<span style="color:#f92672">++</span> ) {
+        <span style="color:#66d9ef">my</span> $val <span style="color:#f92672">=</span> shift @A;
+        push @A, $val;
+    }
+
+    $index <span style="color:#f92672">+=</span> $jump;
+
+    <span style="color:#75715e"># Output</span>
+    <span style="color:#66d9ef">my</span> $res <span style="color:#f92672">=</span> join <span style="color:#e6db74">&#34;, &#34;</span>, @A;
+    <span style="color:#66d9ef">print</span> $res<span style="color:#f92672">.</span><span style="color:#e6db74">&#34;\n&#34;</span>;
+}
+</code></pre></div><hr>
+<br>
+<h1 id="PWC078BLOGS">BLOGS</h1>
+<hr>
+<p><strong>That&rsquo;s it for me this week, people! Undaunted, I have maintained. Looking forward to when next massive influx, I am your humble servant.</strong></p>
+<h2 id="PWC078BLOGS">But if Your <em>THIRST</em> for <em>KNOWLEDGE</em> is not <em>SLAKED</em>,</h2>
+<h2 id="then-run-dont-walk-to-the-watering-hole">then <em>RUN</em> <em>(dont walk!)</em> to the <em>WATERING HOLE</em></h2>
+<h2 id="and-read-these-blog-links">and <em>READ</em> these <em>BLOG</em> <em>LINKS</em>:</h2>
+<p><em><strong>( don&rsquo;t think, trust your training, you&rsquo;re in the zone, just do it &hellip; )</strong></em></p>
+<p><strong>Adam Russell</strong></p>
+<ul>
+<li><a href="http://www.rabbitfarm.com/cgi-bin/blosxom/2020/09/20#pwc078">Perl Weekly Challenge 078 - RabbitFarm</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Andinus</strong></p>
+<ul>
+<li><a href="https://andinus.tilde.institute/pwc/challenge-078/#org6981fcd">Challenge 078 - Task 1 - Leader Element</a> ( <em>Perl</em> )</li>
+<li><a href="https://andinus.tilde.institute/pwc/challenge-078/#org473ab7c">Challenge 078 - Task 2 - Left Rotation</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Andrew Shitov</strong></p>
+<ul>
+<li><a href="https://andrewshitov.com/2020/09/14/the-weekly-challenge-078/">The weekly challenge 078: Leader element and Left rotation</a> ( <em>Raku</em> )</li>
+</ul>
+<p><strong>Arne Sommer</strong></p>
+<ul>
+<li><a href="https://raku-musings.com/rotating-leader.html">Rotating Leader with Raku and Perl</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Colin Crain</strong></p>
+<ul>
+<li><a href="https://colincrain.wordpress.com/2020/09/18/follow-the-leader-and-swing-to-the-left/">Follow the Leader and Swing to the Left - Programming Excursions in Perl and Raku</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Flavio Poletti</strong></p>
+<ul>
+<li><a href="https://github.polettix.it/ETOOBUSY/2020/09/18/pwc078-leader-element/">Leader element - ETOOBUSY</a> ( <em>Perl</em> )</li>
+<li><a href="https://github.polettix.it/ETOOBUSY/2020/09/19/pwc078-left-rotation/">PWC - Left Rotation - ETOOBUSY</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Laurent Rosenfeld</strong></p>
+<ul>
+<li><a href="http://blogs.perl.org/users/laurent_r/2020/09/perl-weekly-challenge-leader-element-and-left-rotation.html">Perl Weekly Challenge 78: Leader Element and Left Rotation</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Mohammad S Anwar</strong></p>
+<ul>
+<li><a href="https://perlweeklychallenge.org/blog/weekly-challenge-078/">BLOG: The Weekly Challenge #078</a> ( <em>Perl &amp; Raku</em> )</li>
+<li><a href="https://www.youtube.com/watch?v=EmZ8rzgLXp0">Perl Weekly Challenge - 078 (Task #1: Perl) - YouTube</a> ( <em>Perl &amp; Raku</em> )</li>
+<li><a href="https://www.youtube.com/watch?v=zXvirywoA58">Perl Weekly Challenge - 078 (Task #2: Perl) - YouTube</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Richard Park</strong></p>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=hRKRT3wCLrA">Perl Weekly Challenge - Week 78 in APL - YouTube</a> ( <em>APL</em> )</li>
+</ul>
+<p><strong>Roger Bell_West</strong></p>
+<ul>
+<li><a href="https://blog.firedrake.org/archive/2020/09/Perl_Weekly_Challenge_78__Leaders_and_Rotation.html">RogerBW's Blog: Perl Weekly Challenge 78: Leaders and Rotation</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Shahed Nooshmand</strong></p>
+<ul>
+<li><a href="https://rafraichisso.ir/2020/09/16/pwc-78">The Weekly Challenge: week 78</a> ( <em>Raku</em> )</li>
+</ul>
+<p><strong>Simon Green</strong></p>
+<ul>
+<li><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-078/sgreen/README.md">The Weekly Challenge 078</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Walt Mankowski</strong></p>
+<ul>
+<li><a href="http://www.mawode.com/blog/blog/2020/09/14/perl-weekly-challenge-78/">Perl Weekly Challenge #78</a> ( <em>Perl</em> )</li>
+</ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="/contact" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2020
+                    </span> PerlWeeklyChallenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.nomtimes.co.uk/site/shop.do?cref=PerlBooks" title="Free Perl Books" rel="noreferrer" target="_blank">
+                            <img src="/images/NomTimes.jpg" style="width:22px; height: 18px;" alt=""/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://perlweeklychallenge.org/plugins/jQurey/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://perlweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://perlweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://perlweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://perlweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://perlweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://perlweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://perlweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://perlweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-136524905-1', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+
+</html>
+
