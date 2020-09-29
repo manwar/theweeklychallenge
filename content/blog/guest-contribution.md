@@ -32,6 +32,8 @@ Please find below guest contributions.
 
 ##### **Tyler Wardhaugh** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-080/tyler-wardhaugh/clojure/src/tw/weekly/c80/t1.clj) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-080/tyler-wardhaugh/clojure/src/tw/weekly/c80/t2.clj) in **Clojure**.
 
+##### **Walt Mankowski** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-080/walt-mankowski/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-080/walt-mankowski/python/ch-2.py) in **Python**.
+
 ----
 ## [The Weekly Challenge - 079](/blog/perl-weekly-challenge-079) {#079}
 <br>
