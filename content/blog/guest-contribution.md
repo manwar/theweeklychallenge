@@ -24,6 +24,8 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 080](/blog/perl-weekly-challenge-080) {#080}
 <br>
 
+##### **Aviral Goel** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-080/aviral-goel/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-080/aviral-goel/haskell/ch-2.hs) in **Haskell**.
+
 ##### **Kang-min Liu** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-080/gugod/kotlin/ch-1.kts) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-080/gugod/kotlin/ch-2.kts) in **Kotlin**.
 
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-080/roger-bell-west/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-080/roger-bell-west/python/ch-2.py) in **Python**.
