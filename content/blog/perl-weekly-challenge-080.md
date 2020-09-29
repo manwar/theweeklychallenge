@@ -176,7 +176,7 @@ Please give it a try to an excellent tool [**EZPWC**](https://github.com/saiftyn
 Please find out [**past solutions**](/blog/guest-contribution) by respected **guests**. Please do share your creative solutions in other languages.
 
 ***
-## TASK #1 › Smallest Positive Number Bits {#TASK1}
+## TASK #1 › Smallest Positive Number {#TASK1}
 ##### **Submitted by:** [Mohammad S Anwar](http://www.manwar.org)
 ***
 
