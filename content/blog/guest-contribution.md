@@ -30,6 +30,8 @@ Please find below guest contributions.
 
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-080/roger-bell-west/ruby/ch-1.rb) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-080/roger-bell-west/ruby/ch-2.rb) in **Ruby**.
 
+##### **Shawn Wagner** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-080/shawn-wagner/tcl/ch-1.tcl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-080/shawn-wagner/tcl/ch-2.tcl) in **Tcl**.
+
 ##### **Tyler Wardhaugh** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-080/tyler-wardhaugh/clojure/src/tw/weekly/c80/t1.clj) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-080/tyler-wardhaugh/clojure/src/tw/weekly/c80/t2.clj) in **Clojure**.
 
 ##### **Walt Mankowski** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-080/walt-mankowski/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-080/walt-mankowski/python/ch-2.py) in **Python**.
