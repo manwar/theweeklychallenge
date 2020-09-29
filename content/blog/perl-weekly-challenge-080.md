@@ -237,6 +237,6 @@ Write a script to find out the total candies needed for all candidates. You are 
 
 ***
 
-Last date to submit the solution **23:59 (UK Time) Sunday 27th September 2020**.
+Last date to submit the solution **23:59 (UK Time) Sunday 4th October 2020**.
 
 ***
