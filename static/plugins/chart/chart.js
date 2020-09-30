@@ -259,3 +259,20 @@ $("#pwc_language_breakdown").click(function() {
 
     $('#pwc-language-breakdown-spinner').hide();
 });
+
+$("#guest_lang_breakdown").click(function() {
+    $('#guest-leaders-spinner').show();
+
+    var xobj = new XMLHttpRequest();
+    xobj.overrideMimeType("application/json");
+    xobj.open('GET', 'guest-language-breakdown.json', true);
+    xobj.onreadystatechange = function () {
+        if (xobj.readyState == 4 && xobj.status == "200") {
+            var response = JSON.parse(xobj.responseText);
+            $('#guest_lang_breakdown_stats').highcharts(response);
+        }
+    };
+    xobj.send(null);
+
+    $('#guest-leaders-spinner').hide();
+});
