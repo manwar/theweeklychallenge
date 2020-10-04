@@ -24,6 +24,10 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 080](/blog/perl-weekly-challenge-080) {#080}
 <br>
 
+##### **Adam Russell** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-080/adam-russell/cpp/ch-1.cpp) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-080/adam-russell/cpp/ch-2.cpp) in **C++**.
+
+##### **Adam Russell** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-080/adam-russell/prolog/ch-1.p) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-080/adam-russell/prolog/ch-2.p) in **Prolog**.
+
 ##### **Alexander Pankoff** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-080/alexander-pankoff/haskell/ch-1.hs) in **Haskell**.
 
 ##### **Andrew Shitov** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-080/ash/cpp/ch-1.cpp) in **C++**.
