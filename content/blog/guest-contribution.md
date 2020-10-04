@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2020-10-03T00:00:00+00:00
+date: 2020-10-04T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -23,6 +23,8 @@ Please find below guest contributions.
 ----
 ## [The Weekly Challenge - 080](/blog/perl-weekly-challenge-080) {#080}
 <br>
+
+##### **Alexander Pankoff** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-080/alexander-pankoff/haskell/ch-1.hs) in **Haskell**.
 
 ##### **Andrew Shitov** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-080/ash/cpp/ch-1.cpp) in **C++**.
 
