@@ -151,7 +151,7 @@ Please find out [**past solutions**](/blog/guest-contribution) by respected **gu
 
 You are given 2 strings, `$A` and `$B`.
 
-Write a script to find out common base string in `$A` and `$B`.
+Write a script to find out common base strings in `$A` and `$B`.
 
 > A substring of a string `$S` is called base string if repeated concatenation of the substring results in the string.
 
