@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2020-10-06T00:00:00+00:00
+date: 2020-10-07T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -31,6 +31,8 @@ Please find below guest contributions.
 ##### **Shawn Wagner** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-081/shawn-wagner/ocaml/ch-1.ml) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-081/shawn-wagner/ocaml/ch-2.ml) in **OCaml**.
 
 ##### **Shawn Wagner** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-081/shawn-wagner/tcl/ch-1.tcl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-081/shawn-wagner/tcl/ch-2.tcl) in **Tcl**.
+
+##### **Tyler Wardhaugh** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-081/tyler-wardhaugh/clojure/src/tw/weekly/c81/t1.clj) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-081/tyler-wardhaugh/clojure/src/tw/weekly/c81/t2.clj) in **Clojure**.
 
 ##### **Ulrich Rieke** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-081/ulrich-rieke/haskell/ch-1.hs) in **Haskell**.
 
