@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2020-10-09T00:00:00+00:00
+date: 2020-10-11T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -45,6 +45,8 @@ Please find below guest contributions.
 ##### **Tyler Wardhaugh** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-081/tyler-wardhaugh/clojure/src/tw/weekly/c81/t1.clj) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-081/tyler-wardhaugh/clojure/src/tw/weekly/c81/t2.clj) in **Clojure**.
 
 ##### **Ulrich Rieke** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-081/ulrich-rieke/haskell/ch-1.hs) in **Haskell**.
+
+##### **Walt Mankowski** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-081/walt-mankowski/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-081/walt-mankowski/python/ch-2.py) in **Python**.
 
 ----
 ## [The Weekly Challenge - 080](/blog/perl-weekly-challenge-080) {#080}
