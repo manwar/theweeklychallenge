@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="The Weekly Challenge - Perl & Raku"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://perlweeklychallenge.org/"/>
+    <meta property="og:image"       content="https://perlweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="You do not have to be an expert."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://perlweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Colin Crain › Perl Weekly Review #079">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Colin Crain › Perl Weekly Review #079</title>
+    <link rel="icon" href="https://perlweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://perlweeklychallenge.org/">
+                        <img src="https://perlweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navgation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Colin Crain › Perl Weekly Review #079</h2>
+                    <div class="portfolio-meta">
+                        <span>Monday, Oct 5, 2020</span>|
+                        <span> Tags:
+                            perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://perlweeklychallenge.org/images/blog/p5-review-challenge-079.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <p>( <em>&hellip;continues from <a href="/blog/review-challenge-078/">previous week</a>.</em> )</p>
+<p>Welcome to the Perl review for <strong>Week 079</strong> of the Weekly Challenge! Here we will take the time to discuss the  submissions offered by the team, factor out the common methodologies that came up in those solutions, and highlight some of the unique approaches and unusual code created.</p>
+<hr>
+<p>With the large upswing of submissions from new and returning members, the format continues to evolve week to week. Again I unfortunately will never have time to give each and every submission its proper due, and this week life has caught up with my time especially badly.</p>
+<p>I&rsquo;d rather go further in depth with fewer techniques than gloss over everything, which to me doesn&rsquo;t sound very helpful in the end. With that said, I will do my best not let it become a judged competition for who can be the cleverest, but rather try and get to the root of the solution space and try and select representative examples from across the board.  Ok, with perhaps a bit of randomness and whimsey guiding me as well. I will absolutely reserve that right.</p>
+<p>Cleverness isn&rsquo;t everything, you know, and people have their own reasoning when they choose exactly how to realize their ideas. In a sense that is what the spirit of this page, and the Weekly Challenge itself, is all about. I&rsquo;m quite open to suggestion on the subject, and of course if anyone wishes to opt out of being reviewed for whatever reason, by all means just let me know. And further, if any newcomers have specific questions on a submission or technique I will do my best to accommodate, just drop me a line. Really. It&rsquo;s cool.</p>
+<hr>
+<p>Every week there is an enormous global collective effort made by the team, analyzing and creatively coding the submissions, and that effort deserves credit due. And that&rsquo;s why I&rsquo;m here, to try and figure out how to do that.</p>
+<p>Let&rsquo;s have a look and see what we can find.</p>
+<hr>
+<p><strong><big>For context</big></strong>  before we begin, you may wish to revisit either of the pages for the <a href="/blog/perl-weekly-challenge-079/"><strong>original tasks</strong></a> or the summary <a href="/blog/recap-challenge-079/"><strong>recap</strong></a> of the challenge. But don&rsquo;t worry, the challenges themselves will be briefly summarized, presented below as we progress from task by task. Oh, and one more thing before we get started:</p>
+<h3 id="getting-in-touch-with-us">Getting in Touch with Us</h3>
+<p><a href="mailto:pwc.perfectwave@gmail.com"><img src="/images/blog/Email.svg" height="50" width="50"> Email</a> › Please email me (Colin) with any feedback, notes, clarifications or whatnot about this review.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge"><img src="/images/blog/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request to us for any issues you may find with this page.</p>
+<p><a href="https://twitter.com/perlwchallenge"><img src="/images/blog/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!</p>
+<p>I&rsquo;m always curious as to what the people think of these efforts. Everyone here at the PWC would like to hear any feedback you&rsquo;d like to give.</p>
+<p><strong>So finally, without further ado&hellip;</strong></p>
+<hr>
+<h2 id="---nbsp--nbsp--nbsp---task-1pwc079task1-------nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---blogspwc079blogs----nbsp--nbsp--nbsp-------">•             <a href="#PWC079TASK1">Task 1</a>                 •             <a href="#PWC079BLOGS">BLOGS</a>                  •</h2>
+<hr>
+<h1 id="PWC079TASK1">TASK #1</h1>
+<h1 id="count-set-bits">Count Set Bits</h1>
+<p>You are given a positive number $N.
+Write a script to count the total number of set bits of the binary representations of all numbers from 1 to $N and return $total_count_set_bit % 1000000007.</p>
+<p>Example 1:</p>
+<pre><code>    Input: $N = 4
+        Binary: 001
+            Set Bit Counts: 1
+        Binary: 010
+            Set Bit Counts: 1
+        Binary: 011
+            Set Bit Counts: 2
+        Binary: 100
+            Set Bit Counts: 1
+                Total set bit count: 1 + 1 + 2 + 1 = 5
+
+    Output: 5
+</code></pre><h2 id="about-the-solutions">about the solutions</h2>
+<p>There were 35 submissions for the task 1 challenge this last week. Perhaps because the problem has a long and storied history in computer science, once we got past simple tallying algorithms there were a large and varied sampling of solutions, using a number of techniques and algorithms that have been developed through the years. First we&rsquo;ll look at the less-complicated solutions, and then have a look into some of the more elaborate ones.</p>
+<h2 id="convert-to-binary-and-count-the-bits">convert to BINARY and COUNT the bits</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/arne-sommer/perl/ch-1.pl"><strong>Arne Sommer</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/cristian-heredia/perl/ch-1.pl"><strong>Cristina Heredia</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/daniel-mantovani/perl/ch-1.pl"><strong>Daniel Mantovani</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/dave-cross/perl/ch-1.pl"><strong>Dave Cross</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/jaldhar-h-vyas/perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/manfredi/perl/ch-1.pl"><strong>Leo Manfredi</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/lubos-kolouch/perl/ch-1.pl"><strong>Lubos Kolouch</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/nunovieira220/perl/ch-1.pl"><strong>Nuno Vieira</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/steven-wilson/perl/ch-1.pl"><strong>Steven Wilson</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/ted-leahy/perl/ch-1.pl"><strong>Ted Leahy</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/vinod-k/perl/ch-1.pl"><strong>Vinod Kumar K</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/walt-mankowski/perl/ch-1.pl"><strong>Walt Mankowski</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/wanderdoc/perl/ch-1.pl"><strong>Wanderdoc</strong></a></p>
+<p>Well, yea. That would do it. Over the range from one to the target, convert that number to binary, count the bits and keep a running total. Most folks went about some version of this general plan, with variations arising on now exactly each step was taken.</p>
+<p>To convert to binary, <code>sprintf &quot;%b&quot;</code> was the overwhelming favorite for bit-stringing afficianados, but of note we did find a few old-school holdouts who brought out the <code>unpack(&quot;B32&quot;, pack(&quot;N&quot;, $_))</code> formation from the <em>Perl Cookbook</em>. I&rsquo;m not exactly sure <em>when</em> the <code>%b</code> format became available to sprintf, but I note that it&rsquo;s expressly noted on its <em>absence</em> in that venerable tomb<sup>1</sup>.</p>
+<p>Moving forward, so now our number is in binary representation. Now what? This is where is where people started to get quite creative. Broadly, people chose either to <em>count</em> the 1s, generally with a regex, or <em>sum</em> the 1s, because, you know, they will just add up to the count.</p>
+<hr>
+<p><sup>1</sup> &ldquo;We can’t solve either problem with sprintf (which doesn’t have a “print this in binary” format)&rdquo;
+&ndash;Perl Cookbook, p81, <em>2.4. Converting Between Binary and Decimal</em></p>
+<hr>
+<h3 id="counting-1s-as-characters">counting 1s as CHARACTERS</h3>
+<p>By repeatedly matching against the character &ldquo;1&rdquo;, we can count the matches to find the quantity. A nice compact demonstration of this is provided by</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/nunovieira220/perl/ch-1.pl"><strong>Nuno Vieira</strong></a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">for</span> ((<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$N)) {
+    <span style="color:#66d9ef">my</span> $bin <span style="color:#f92672">=</span> sprintf (<span style="color:#e6db74">&#34;%b&#34;</span>, $_);
+    $counter <span style="color:#f92672">+=</span> () <span style="color:#f92672">=</span> $bin <span style="color:#f92672">=~</span><span style="color:#e6db74"> /1/g</span>;
+}
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/lubos-kolouch/perl/ch-1.pl"><strong>Lubos Kolouch</strong></a> gave us a very similar solution using <code>unpack</code> as well.</p>
+<p>The final line of this construction incorporates what is known informally as the <a href="https://metacpan.org/pod/distribution/perlsecret/lib/perlsecret.pod#Goatse">Saturn operator</a>. Being not really a single operator per se, it provides a list context to the right and the scalar number of elements provided by that context the left, in this case incrementing a counter. The <code>/g</code> in list context will return a list of matches, and the rest follows.</p>
+<p>One of the qualities of this particular match is that it&rsquo;s both simple and we don&rsquo;t care about capturing anything, only the fact that it matched at all. So the more popular version was not the <code>m//</code> operator but rather its cousin <code>tr///</code>. The translate operator, because it need not fire up the whole regex engine to do its magic, is considerably faster. Right out of the box it returns the number of translations made as well, so we no longer need to provide list context.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/ted-leahy/perl/ch-1.pl"><strong>Ted Leahy</strong></a></p>
+<p>shows off this form nicely:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $n (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$N) {
+    <span style="color:#75715e"># Convert to binary</span>
+    <span style="color:#66d9ef">my</span> $binary_n <span style="color:#f92672">=</span> sprintf(<span style="color:#e6db74">&#34;%b&#34;</span>, $n);
+    <span style="color:#75715e"># Count the number of set bits (&#39;1&#39;s)</span>
+    <span style="color:#66d9ef">my</span> $set_bit_count <span style="color:#f92672">=</span> ($binary_n <span style="color:#f92672">=~</span> tr<span style="color:#e6db74">/1/</span><span style="color:#f92672">/</span>);
+
+    $total_set_bit_count <span style="color:#f92672">+=</span> $set_bit_count;
+}
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/daniel-mantovani/perl/ch-1.pl"><strong>Daniel Mantovani</strong></a></p>
+<p>wraps it up in a bow, with <code>$bigprime</code> as our 1,000,000,007 modulo.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $n (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> shift) {    <span style="color:#75715e"># or $ARGV[0]</span>
+  $total_count_set_bit <span style="color:#f92672">+=</span> sprintf(<span style="color:#e6db74">&#34;%b&#34;</span>, $n) <span style="color:#f92672">=~</span> tr<span style="color:#e6db74">/1/</span><span style="color:#f92672">/</span>;
+  $total_count_set_bit %<span style="color:#960050;background-color:#1e0010">=</span> <span style="color:#960050;background-color:#1e0010">$</span>big_prime;
+}
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/anton-fedotov/perl/ch-1.pl"><strong>Anton Fedotov</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/dave-cross/perl/ch-1.pl"><strong>Dave Cross</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/jaldhar-h-vyas/perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/manfredi/perl/ch-1.pl"><strong>Leo Manfredi</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/walt-mankowski/perl/ch-1.pl"><strong>Walt Mankowski</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/wanderdoc/perl/ch-1.pl"><strong>Wanderdoc</strong></a>
+went about things in this manner too. I did say it was popular way to go.</p>
+<h3 id="add-up-the-numbers">add up the NUMBERS</h3>
+<p>Alternately, if we consider the 1s (and perhaps the 0s, too) as integers rather than characters, we can add them up to get a count. This involved breaking the string into an array and summing the elements.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a></p>
+<p>demonstrates this for us in succinct, compact form:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$N) {
+    $ans <span style="color:#f92672">+=</span> sum split <span style="color:#e6db74">//</span>, (sprintf <span style="color:#e6db74">&#34;%0b&#34;</span>, $_);
+}
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/cristian-heredia/perl/ch-1.pl"><strong>Cristina Heredia</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/steven-wilson/perl/ch-1.pl"><strong>Steven Wilson</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/vinod-k/perl/ch-1.pl"><strong>Vinod Kumar K</strong></a>
+also gave us split arrays, implementing this function combination in pretty much the same manner. In very simple forms there isn&rsquo;t much room for variation.</p>
+<h3 id="conditionally-parse-substrings">conditionally parse SUBSTRINGS</h3>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/colin-crain/perl/ch-1.pl"><strong>My Own Solution</strong></a></p>
+<p>There was one more way that didn&rsquo;t really fit either of these categories very well, and that is my own. At first I came up with a quick solution splitting and summing as above, but had a chance to revisit it later. On reflection I determined that making intermediate arrays in a loop really spent a lot of effort recopying data just to do some arithmetic before tossing it away again. For smaller numbers this was a negligible effect but for larger sums, repeated over and over, it really began to add up. So instead of recopying I decided to use <code>substr</code> to directly iterate over the binary strings in place, incrementing a count on a conditional. This ended up speeding things up considerably.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$input) {
+    <span style="color:#66d9ef">my</span> $bin <span style="color:#f92672">=</span> sprintf <span style="color:#e6db74">&#34;%b&#34;</span>, $i;
+    <span style="color:#66d9ef">my</span> $j <span style="color:#f92672">=</span> length $bin;
+    <span style="color:#66d9ef">while</span> (<span style="color:#f92672">--</span>$j <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> ) {
+        substr( $bin, $j, <span style="color:#ae81ff">1</span> ) <span style="color:#f92672">and</span> $tot<span style="color:#f92672">++</span>;
+    }
+}
+</code></pre></div><h2 id="popcount-or-use-a-module">popcount(), or, USE A MODULE</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a> and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/shawn-wagner/perl/ch-1.pl"><strong>Shawn Wagner</strong></a></p>
+<p>Since the days of Big iron, there has been the need to count the 1s in a bit vector, to the degree that originally extra hardware could be added to implement an instruction called <code>popcount</code>, for &ldquo;population count&rdquo;. Software has replaced hardware in the ensuing decades, but the instruction remains and is now part of many math libraries. Since that speaks exactly to the core of what we&rsquo;re asking for today, several members of the team have brought us solutions based on this function.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/shawn-wagner/perl/ch-1.pl"><strong>Shawn Wagner</strong></a>
+uses a module called <a href="https://metacpan.org/pod/Bit::Fast"><code>Bit::Fast</code></a>, which promises a very fast implementation:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">require</span> Bit::Fast;
+Bit::Fast<span style="color:#f92672">-&gt;</span>import(<span style="color:#e6db74">qw/popcount/</span>);
+
+<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $n (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $_[<span style="color:#ae81ff">0</span>]) {
+    <span style="color:#66d9ef">my</span> $bits <span style="color:#f92672">=</span> popcount $n;
+    $total <span style="color:#f92672">+=</span> $bits;
+}
+</code></pre></div><p>Shawn nicely codes his require to use Bit::fast should it be available, or if not to default to a routine using <code>unpack</code> and <code>tr///</code>.</p>
+<p>In an alternative to <code>Bit::Fast</code>,</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a></p>
+<p>draws of the the awesome power of the The GNU Multiple Precision Arithmetic Library, via <code>Math::GMPz</code>, a wrapper for its integer functions.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">csb</span> {
+    <span style="color:#66d9ef">my</span> $tot <span style="color:#f92672">=</span> shift;
+    <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> Math::GMPz<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>( <span style="color:#ae81ff">1</span> );
+    <span style="color:#66d9ef">my</span> $bits <span style="color:#f92672">=</span> Math::GMPz<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>( <span style="color:#ae81ff">0</span> );
+    <span style="color:#66d9ef">my</span> $m <span style="color:#f92672">=</span> Math::GMPz<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>( <span style="color:#ae81ff">1000000007</span> );
+    <span style="color:#66d9ef">while</span> ( $n <span style="color:#f92672">&lt;=</span> $tot ) {
+        Rmpz_add_ui( $bits, $bits, Rmpz_popcount( Math::GMPz<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>( $n ) ) );
+        Rmpz_mod( $bits, $bits, $m );
+        Rmpz_add_ui( $n, $n, <span style="color:#ae81ff">1</span> );
+    }
+    <span style="color:#66d9ef">return</span> Rmpz_get_str( $bits, <span style="color:#ae81ff">10</span> );
+}
+</code></pre></div><p>A third version was brought out by</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/pete-houston/perl/ch-1.pl"><strong>Pete Houston</strong></a></p>
+<p>who used <code>Bit::Manip</code>, which provides a &lsquo;bit_count&rsquo; function that, well, counts bits. Giving this function an optional second argument counts 1s, which is what we want, right?</p>
+<p>Anyway, here you go:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">$tot <span style="color:#f92672">+=</span> bit_count ($target, <span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $n);
+</code></pre></div><p>As I said, does what we want.</p>
+<h2 id="sundry-binary-operations">sundry BINARY operations</h2>
+<p>With the popularity of the population count operator over the years there have been scores of algorithms developed to implement the concept in varying forms, mostly built on, as might be expected, bitwise operations and powers of two.</p>
+<p>To start us off, a bitwise AND with 1 will reveal the contents of the Least Significant Bit (LSB). Repeatedly tallying this value while bitshifting right allows us to examine each individual bit individually, as shown here by</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">count_bits</span>{
+    <span style="color:#66d9ef">my</span>($n) <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">my</span> $total_count_set_bit <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $x (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $n){
+        <span style="color:#66d9ef">while</span>($x){
+            <span style="color:#66d9ef">my</span> $b <span style="color:#f92672">=</span> $x <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span>;
+            $total_count_set_bit<span style="color:#f92672">++</span> <span style="color:#66d9ef">if</span> $b;
+            $x <span style="color:#f92672">=</span> $x <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">1</span>;
+        }
+    }
+    <span style="color:#66d9ef">return</span> $total_count_set_bit;
+}
+</code></pre></div><h3 id="brian-kernighans-algorithm">Brian Kernighan’s Algorithm</h3>
+<p><a href="https://www.techiedelight.com/brian-kernighans-algorithm-count-set-bits-integer/">https://www.techiedelight.com/brian-kernighans-algorithm-count-set-bits-integer/</a></p>
+<p>Brian Kernighan improved the naive algorithm by noting that for any given binary number with the least significant bits ending in (&hellip;1000&hellip;), after subtracting 1 from the number the tail will become (&hellip;0111&hellip;). The set bits of these two sections are mutually exclusive, so by applying a bitwise AND to these numbers, the result is to &ldquo;turn off&rdquo; the single LSB set, one bit per iteration. With the bit turned off, the tail becomes a contiuous string of 0s again, and the the process is repeated until there are no more set bits and the result is 0. The number of iterations, then, becomes the number of bits set in the original number, and this count is the result.</p>
+<p>Here&rsquo;s</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/bob-lied/perl/ch-1.pl"><strong>Bob Lied&rsquo;s</strong></a>
+implimentation in his <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/bob-lied/perl/lib/CountSetBit.pm">CountSetBit.pm</a> module</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_bitsOf</span>($self, $n)a
+{
+    <span style="color:#66d9ef">my</span> $count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+    <span style="color:#66d9ef">while</span> ( $n <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> )
+    {
+        $count<span style="color:#f92672">++</span>;
+        $n <span style="color:#f92672">=</span> $n <span style="color:#f92672">&amp;</span> ($n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
+    }
+    <span style="color:#66d9ef">return</span> $count;
+}
+</code></pre></div><h2 id="oeis-a000778">OEIS A000778</h2>
+<p>Taken together, the results for summing the set bits over the span from 0 to the given number can be viewed as an integer sequence, and a good place to look for any and all things having to do with integer sequences is the OEIS, the Online Encyclopedia of Integer Sequences.</p>
+<p>After computing a few values, we can search for the sequence and a small effort produces OEIS A000788 &ldquo;Total number of 1&rsquo;s in binary expansions of 0, &hellip;, n. &quot;</p>
+<p>These pages serve as a physical, now virtual compendium of information and results surrounding hundreds of thousands of catalogued sequences, and this is no exception, providing many examples of formulae mathematicians have come up with through the years to define its values. A few members adapted some of those listed; here is a sampling of the implementations.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/abigail/perl/ch-1.pl"><strong>Abigail</strong></a></p>
+<p>Abigail writes:</p>
+<p>&ldquo;This is A000778 (<a href="https://oeis.org/A000788)">https://oeis.org/A000788)</a>. There&rsquo;s a recursive formala
+for the number of bits in the binary representation of 0 .. $N:&rdquo;&rdquo;</p>
+<blockquote>
+<p>bits (0) = 0
+bits (2 * N)     =     bits (N) + bits (N - 1) + N
+bits (2 * N + 1) = 2 * bits (N)                + N + 1</p>
+</blockquote>
+<p>And here&rsquo;s her implementation of it:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">bits</span> ($n) {
+    state $bits;
+    $$bits {$n} <span style="color:#f92672">||=</span>
+        $n <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> ? <span style="color:#ae81ff">0</span>
+      : <span style="color:#66d9ef">do</span> {
+            <span style="color:#66d9ef">my</span> $half <span style="color:#f92672">=</span> int ($n <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>);
+            bits ($half) <span style="color:#f92672">+</span> $half <span style="color:#f92672">+</span> ($n % 2 ? bits ($half) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+                                           : bits ($half <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>))
+      }
+}
+</code></pre></div><p>Nice.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a>
+David W. Wilson, &ldquo;Fast C++ function for computing a(n)&quot;,
+<a href="https://oeis.org/A000788/a000788.txt">https://oeis.org/A000788/a000788.txt</a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">unsigned</span> <span style="color:#a6e22e">A000788</span>(<span style="color:#66d9ef">unsigned</span> n)
+{
+    <span style="color:#66d9ef">unsigned</span> v <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">unsigned</span> bit <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; bit <span style="color:#f92672">&lt;=</span> n; bit <span style="color:#f92672">&lt;&lt;=</span> <span style="color:#ae81ff">1</span>)
+       v <span style="color:#f92672">+=</span> ((n<span style="color:#f92672">&gt;&gt;</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">&amp;~</span>(bit<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)) <span style="color:#f92672">+</span> ((n<span style="color:#f92672">&amp;</span>bit) <span style="color:#f92672">?</span> (n<span style="color:#f92672">&amp;</span>((bit<span style="color:#f92672">&lt;&lt;</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>))<span style="color:#f92672">-</span>(bit<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>);
+    <span style="color:#66d9ef">return</span> v;
+}
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $bit <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; $bit <span style="color:#f92672">&lt;=</span> $N; $bit <span style="color:#f92672">&lt;&lt;=</span> <span style="color:#ae81ff">1</span>)
+{
+    $total_count_set_bit <span style="color:#f92672">+=</span> ($N <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">&amp;</span> <span style="color:#f92672">~</span>($bit <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>);
+
+    $total_count_set_bit <span style="color:#f92672">+=</span> ($N <span style="color:#f92672">&amp;</span> (($bit <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)) <span style="color:#f92672">-</span> ($bit <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)
+        <span style="color:#66d9ef">if</span> $N <span style="color:#f92672">&amp;</span> $bit;
+}
+</code></pre></div><h2 id="other-sundry-ways-of-summing-based-on-powers-of-two">other SUNDRY ways of SUMMING, based on POWERS of TWO</h2>
+<p>There were a number of other solutions submitted that hinged in general around dividing the number up into more easily digested components, then acting upon those.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/alexander-pankoff/perl/ch-1.pl"><strong>Alexander Pankoff</strong></a></p>
+<p>gives us successive powers of 2 using bitshifts to partition his elements</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">while</span> ( (<span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;&lt;</span> $i) <span style="color:#f92672">&lt;=</span> $n ) {
+    <span style="color:#66d9ef">my</span> $set          <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">my</span> $change_after <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;&lt;</span> $i;
+    <span style="color:#66d9ef">for</span> ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $n ) {
+        $count <span style="color:#f92672">+=</span> $set;
+        <span style="color:#66d9ef">if</span> ( $change_after <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> ) {
+            $set          <span style="color:#f92672">=</span> <span style="color:#f92672">!</span>$set;
+            $change_after <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;&lt;</span> $i;
+        }
+        <span style="color:#66d9ef">else</span> {
+            $change_after<span style="color:#f92672">--</span>;
+        }
+    }
+    $i<span style="color:#f92672">++</span>;
+}
+<span style="color:#66d9ef">return</span> $count;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a></p>
+<p>calculates the nearest power of two using logarithms, then partitions and recursive acts on the remainder component.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">count_set_bits</span> {
+    <span style="color:#66d9ef">my</span> ($n) <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">my</span> ($nearest_power2) <span style="color:#f92672">=</span> int(log($n) <span style="color:#f92672">/</span> log(<span style="color:#ae81ff">2</span>));
+    <span style="color:#66d9ef">my</span> $s <span style="color:#f92672">=</span> ($nearest_power2 <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">**</span> ($nearest_power2 <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>);
+    <span style="color:#66d9ef">my</span> $rest <span style="color:#f92672">=</span> $n <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">**</span> $nearest_power2;
+    $s <span style="color:#f92672">+=</span> $rest <span style="color:#f92672">+</span> count_set_bits($rest) <span style="color:#66d9ef">if</span> $rest <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">return</span> int($s % 1000000007)
+}
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a></p>
+<p>Flavio explains his methodology in his <a href="https://github.polettix.it/ETOOBUSY/2020/09/22/pwc079-count-set-bits/">blog</a>, which is quite artful.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">count_bits</span> ($n, $m = 1000000007) {
+   <span style="color:#66d9ef">my</span> $mask     <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+   <span style="color:#66d9ef">my</span> $mask_bit <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+   <span style="color:#66d9ef">while</span> (($n <span style="color:#f92672">&amp;</span> <span style="color:#f92672">~</span>$mask) <span style="color:#f92672">&gt;</span> $mask) { <span style="color:#75715e"># scan for highest set bit</span>
+      $mask <span style="color:#f92672">&lt;&lt;=</span> <span style="color:#ae81ff">1</span>;
+      $mask_bit<span style="color:#f92672">++</span>;
+   }
+   <span style="color:#66d9ef">my</span> $n_bits <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+   <span style="color:#66d9ef">while</span> ($n) {
+      <span style="color:#66d9ef">while</span> (($n <span style="color:#f92672">&amp;</span> $mask) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {    <span style="color:#75715e"># scan for next high bit</span>
+         $mask_bit<span style="color:#f92672">--</span>;
+         $mask <span style="color:#f92672">&gt;&gt;=</span> <span style="color:#ae81ff">1</span>;
+      }
+      $n <span style="color:#f92672">&amp;=</span> <span style="color:#f92672">~</span>$mask;    <span style="color:#75715e"># this makes $n less than half of itself</span>
+      $n_bits <span style="color:#f92672">=</span> ($n_bits <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> $n <span style="color:#f92672">+</span> $mask_bit <span style="color:#f92672">*</span> ($mask <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">1</span>) % <span style="color:#960050;background-color:#1e0010">$</span>m) % <span style="color:#960050;background-color:#1e0010">$</span>m;
+   } <span style="color:#75715e">## end while ($n)</span>
+   <span style="color:#66d9ef">return</span> $n_bits;
+} <span style="color:#75715e">## end sub count_bits</span>
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a></p>
+<p>James give a very detailed explanation for his method in his comments. Always welcome and appreciated.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">count_set_bits</span> {
+  <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> shift;
+  <span style="color:#66d9ef">my</span> @q <span style="color:#f92672">=</span> split <span style="color:#e6db74">m{}</span>, sprintf <span style="color:#e6db74">&#39;%b&#39;</span>, $i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>;
+  <span style="color:#66d9ef">my</span> $t <span style="color:#f92672">=</span> <span style="color:#66d9ef">my</span> $s <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+  <span style="color:#66d9ef">while</span> (@q) {
+    <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> shift @q;
+    $t <span style="color:#f92672">+=</span> ($s <span style="color:#f92672">+</span> @q<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>)<span style="color:#f92672">*</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>@q);
+    $t %<span style="color:#960050;background-color:#1e0010">=</span> 1000000007;
+    $s<span style="color:#f92672">++</span>;
+  }
+  <span style="color:#66d9ef">return</span> $t;
+}
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a></p>
+<p>Jorg breaks his number into 2<sup>n</sup> chunks and recursively tracks the remainder downward using a well-annotated divide and conquer Algorithm</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">bitsum</span> {
+    <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> shift;
+
+    <span style="color:#75715e"># Break recursion.</span>
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">unless</span> $n;
+
+    <span style="color:#75715e"># Get the largest number of the form 2^k - 1 that is (strictly) less</span>
+    <span style="color:#75715e"># than n.</span>
+    <span style="color:#66d9ef">my</span> $allone <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">**</span>(($n <span style="color:#f92672">+</span> <span style="color:#ae81ff">0</span>)<span style="color:#f92672">-&gt;</span>blog(<span style="color:#ae81ff">2</span>)) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+
+    <span style="color:#75715e"># Get the offset from the above number to n.</span>
+    <span style="color:#66d9ef">my</span> $offset <span style="color:#f92672">=</span> $n <span style="color:#f92672">-</span> $allone;
+
+    <span style="color:#75715e"># Split the numbers from 0 to n into two parts:</span>
+    <span style="color:#75715e"># - a maximum power-of-two block having zero as the highest bit.</span>
+    <span style="color:#75715e">#   Recursing into this part to get the bit sum.</span>
+    <span style="color:#75715e"># - a remaining block having one as the highest bit.  These leading</span>
+    <span style="color:#75715e">#   bits are added to the bit sum.  The bit-sum of the second part</span>
+    <span style="color:#75715e">#   with the leading bit set to zero is calculated by recursion.</span>
+    <span style="color:#75715e"># When splitting a full power-of-two part, both sub-parts to be</span>
+    <span style="color:#75715e"># recursed into are the same.  This leads to a shortcut for at least</span>
+    <span style="color:#75715e"># half of the calculations.</span>
+    $offset <span style="color:#f92672">+</span> ($allone <span style="color:#f92672">==</span> $offset <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ?
+        <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> bitsum($allone) :
+        bitsum($allone) <span style="color:#f92672">+</span> bitsum($offset <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>));
+}
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/juliodcs/perl/ch-1.pl"><strong>Julio de Castro</strong></a></p>
+<p>Julio gives us a recursive implementation of his algorithm using tail-call optimization.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e"># Given a number, it calculates the flips of the most-significant-bit number</span>
+<span style="color:#75715e"># e.g., ms-flips of 13 (1101) returns the number of flips for number 8 (1000)</span>
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">ms_flips</span>($number) {
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> $number <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> ( length_bin($number) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ) <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">**</span>( length_bin($number) <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span> );
+}
+
+<span style="color:#75715e"># Remove most significat bit and return number</span>
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">next_number</span>($number) {
+    $number <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">**</span>( length_bin($number) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> );
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">calculate</span> ( $number, $total = 0 ) {
+    <span style="color:#66d9ef">return</span> $total % MODULE <span style="color:#66d9ef">if</span> $number <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+
+    <span style="color:#75715e"># All bits besides the first need extra flips</span>
+    <span style="color:#75715e"># extra flips are equal to the number itself</span>
+    <span style="color:#66d9ef">my</span> $extra <span style="color:#f92672">=</span> $total <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> ? <span style="color:#ae81ff">0</span> : $number;
+
+    <span style="color:#75715e"># Use tail call optimization</span>
+    @_ <span style="color:#f92672">=</span> ( next_number($number), $total <span style="color:#f92672">+</span> ms_flips($number) <span style="color:#f92672">+</span> $extra );
+    goto <span style="color:#f92672">&amp;</span>calculate;
+}
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/jeongoon/perl/ch-1.pl"><strong>Myoungjin Jeon</strong></a></p>
+<p>Another recursive algorithm from Jeon.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">countSetBits</span> ($) {
+    $_[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">and</span> <span style="color:#66d9ef">return</span> $_[<span style="color:#ae81ff">0</span>];
+    <span style="color:#66d9ef">my</span> $N <span style="color:#f92672">=</span> shift;
+
+    <span style="color:#66d9ef">my</span> $N1 <span style="color:#f92672">=</span> $N;
+
+    <span style="color:#66d9ef">my</span> ( $sum, $pow );
+    <span style="color:#f92672">++</span>$pow <span style="color:#66d9ef">while</span> ( $N1 <span style="color:#f92672">&gt;&gt;=</span> <span style="color:#ae81ff">1</span> );
+
+    $N1 <span style="color:#f92672">=</span> $N <span style="color:#f92672">-</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>$pow);
+
+    $sum <span style="color:#f92672">+=</span> sumUptoPow2 $pow;
+    $N1 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> ? $sum : ( $sum
+                       <span style="color:#f92672">+</span> $N1 <span style="color:#75715e"># the number ( 1..$N1 ) always has one set bit</span>
+                       <span style="color:#f92672">+</span> countSetBits($N1)    <span style="color:#75715e"># count without first set bit</span>
+                     );
+    <span style="color:#75715e"># go recursive until meets 0&lt;= N &lt;= 2</span>
+}
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-079/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a></p>
+<p>Simon uses a power of two multiplier to examine successive bit positions, summing the contents for each position over the range.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">main</span> {
+    <span style="color:#66d9ef">my</span> $N     <span style="color:#f92672">=</span> shift;
+    <span style="color:#66d9ef">my</span> $count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+    <span style="color:#75715e"># Sanity check</span>
+    die <span style="color:#e6db74">&#34;Please enter a positive integer\n&#34;</span> <span style="color:#66d9ef">unless</span> $N;
+    die <span style="color:#e6db74">&#34;The value &#39;$N&#39; is not a positive integer\n&#34;</span>
+      <span style="color:#66d9ef">unless</span> $N <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^[1-9][0-9]*$/</span>;
+
+    <span style="color:#66d9ef">my</span> $b <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">while</span> ( $b <span style="color:#f92672">&lt;</span> $N ) {
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i ( <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $N ) {
+            $count<span style="color:#f92672">++</span> <span style="color:#66d9ef">if</span> $i <span style="color:#f92672">&amp;</span> $b;
+        }
+        $b <span style="color:#f92672">*=</span> <span style="color:#ae81ff">2</span>;
+    }
+
+    printf <span style="color:#e6db74">qq(%d %% %d = %d\n)</span>, $count, <span style="color:#ae81ff">1000000007</span>, $count % 1000000007;
+}
+</code></pre></div><br>
+<h1 id="PWC080BLOGS">BLOGS</h1>
+<hr>
+<p><strong>That’s it for me this week, people! Unbroken by the torrential influx, I have maintained my bearings. Looking forward to next wave! I am, your humble servant.</strong></p>
+<h2 id="PWC079BLOGS">But if Your <em>THIRST</em> for <em>KNOWLEDGE</em> is not <em>SLAKED</em>,</h2>
+<h2 id="then-run-dont-walk-to-the-watering-hole">then <em>RUN</em> <em>(dont walk!)</em> to the <em>WATERING HOLE</em></h2>
+<h2 id="and-read-these-blog-links">and <em>READ</em> these <em>BLOG</em> <em>LINKS</em>:</h2>
+<p><em><strong>( don&rsquo;t think, trust your training, you&rsquo;re in the zone, just do it &hellip; )</strong></em></p>
+<p><strong>Adam Russell</strong></p>
+<ul>
+<li><a href="http://www.rabbitfarm.com/cgi-bin/blosxom/2020/09/27#pwc079">Perl Weekly Challenge 079 - RabbitFarm</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Arne Sommer</strong></p>
+<ul>
+<li><a href="https://raku-musings.com/counting-water.html">Counting Water with Raku and Perl</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Colin Crain</strong></p>
+<ul>
+<li><a href="https://colincrain.wordpress.com/2020/09/26/count-set-match-standing-water-in-mountain-pools/">Count, Set, Match: Standing Water in Mountain Pools – Programming Excursions in Perl and Raku</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Daniel Mantovani</strong></p>
+<ul>
+<li><a href="https://dev.to/dmanto/perl-weekly-challenge-3269">Perl Weekly Challenge #79, Task #1</a> ( <em>Perl</em> )</li>
+<li><a href="https://dev.to/dmanto/perl-weekly-challenge-79-task-2-4n1c">Perl Weekly Challenge #79, Task #2</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Flavio Poletti</strong></p>
+<ul>
+<li><a href="https://github.polettix.it/ETOOBUSY/2020/09/22/pwc079-count-set-bits/">PWC079 - Count Set Bits - ETOOBUSY</a> ( <em>Perl</em> )</li>
+<li><a href="https://github.polettix.it/ETOOBUSY/2020/09/23/pwc079-trapped-rain-water/">PWC079 - Trapped Rain Water - ETOOBUSY</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Jaldhar H. Vyas</strong></p>
+<ul>
+<li><a href="https://www.braincells.com/perl/2020/09/perl_weekly_challenge_week_79.html">Perl Weekly Challenge: Week 79</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Laurent Rosenfeld</strong></p>
+<ul>
+<li><a href="http://blogs.perl.org/users/laurent_r/2020/09/perl-weekly-challenge-79-count-set-bits-and-trapped-rain-water.html">Perl Weekly Challenge 79: Count Set Bits and Trapped Rain Water</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Mohammad S Anwar</strong></p>
+<ul>
+<li><a href="https://perlweeklychallenge.org/blog/weekly-challenge-079/">BLOG: The Weekly Challenge #079</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Myoungjin Jeon</strong></p>
+<ul>
+<li><a href="https://dev.to/jeongoon/the-perl-weekly-challenge-079-9ij">The (Perl) Weekly Challenge - 079</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Roger Bell_West</strong></p>
+<ul>
+<li><a href="https://blog.firedrake.org/archive/2020/09/Perl_Weekly_Challenge_79__cumulative_bit_count_and_water_capacity.html">RogerBW's Blog: Perl Weekly Challenge 79: cumulative bit count and water capacity</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Simon Green</strong></p>
+<ul>
+<li><a href="https://dev.to/simongreennet/the-weekly-challenge-079-1jel">The Weekly Challenge 079</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Steven Wilson</strong></p>
+<ul>
+<li><a href="https://tilde.town/~wlsn/pwc079.html">Perl Weekly Challenge Week 079 - Trapped Rain Water</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Walt Mankowski</strong></p>
+<ul>
+<li><a href="http://www.mawode.com/blog/blog/2020/09/26/perl-weekly-challenge-79/">Perl Weekly Challenge #79 - Walt Mankowski</a> ( <em>Perl</em> )</li>
+</ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="/contact" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2020
+                    </span> PerlWeeklyChallenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.nomtimes.co.uk/site/shop.do?cref=PerlBooks" title="Free Perl Books" rel="noreferrer" target="_blank">
+                            <img src="/images/NomTimes.jpg" style="width:22px; height: 18px;" alt=""/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://perlweeklychallenge.org/plugins/jQurey/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://perlweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://perlweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://perlweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://perlweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://perlweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://perlweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://perlweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://perlweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-136524905-1', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+
+</html>
+
