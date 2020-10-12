@@ -325,7 +325,7 @@ for the number of bits in the binary representation of 0 .. $N:""
 >   bits (2 * N)     =     bits (N) + bits (N - 1) + N
 >   bits (2 * N + 1) = 2 * bits (N)                + N + 1
 
-And here's her implementation of it:
+And here's his implementation of it:
 
 ```perl
 sub bits ($n) {
