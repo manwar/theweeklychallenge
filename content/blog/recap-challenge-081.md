@@ -43,15 +43,16 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 
 #### 1) Roger Bell_West
 #### 2) Colin Crain
-#### 3) Mohammad S Anwar
-#### 4) Myoungjin Jeon
+#### 3) Jaldhar H. Vyas
+#### 4) Mohammad S Anwar
+#### 5) Myoungjin Jeon
 
 <br>
 
 ## CONTRIBUTION STATS {#CONTRIBUTIONSTATS}
 ***
 
-The total contributions in the week is `101`.Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
+The total contributions in the week is `106`.Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
 
 ![Language Breakdown](/images/blog/languages-breakdown-81.png)
 
@@ -400,6 +401,17 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 [[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-081/colin-crain/raku/ch-1.raku)]
 [[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-081/colin-crain/raku/ch-2.raku)]
 [[**BLOG #1**](https://colincrain.wordpress.com/2020/10/10/finding-common-basis-with-a-bag-of-sharks/)]
+
+***
+
+### Jaldhar H. Vyas
+![Jaldhar H. Vyas](/images/team/jaldhar_vyas.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-081/jaldhar-h-vyas/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-081/jaldhar-h-vyas/perl/ch-2.pl)]
+[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-081/jaldhar-h-vyas/raku/ch-1.p6)]
+[[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-081/jaldhar-h-vyas/raku/ch-2.p6)]
+[[**BLOG #1**](https://www.braincells.com/perl/2020/10/perl_weekly_challenge_week_81.html)]
 
 ***
 
