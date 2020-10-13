@@ -618,7 +618,7 @@ foreach my $index (@B) {
 }
 ```
 
-Oh, and that little trick she's pulling there with `$,` is messing with the "output field separator"; setting it to a single space inserts that character between each element in the array being printed. Nice.
+Oh, and that little trick he's pulling there with `$,` is messing with the "output field separator"; setting it to a single space inserts that character between each element in the array being printed. Nice.
 
 While we're on the subject,
 
