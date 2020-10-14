@@ -1,3 +1,4 @@
+
 ---
 author:       Colin Crain
 date:         2020-10-12T00:00:00
@@ -24,11 +25,11 @@ Let's have a look and see what we can find.
 
 ### Getting in Touch with Us
 
-<a href="mailto:pwc.perfectwave@gmail.com"><img src="/images/blog/Email.svg" height="50" width="50"> Email</a> › Please email me (Colin) with any feedback, notes, clarifications or whatnot about this review.
+<a href="mailto:pwc.perfectwave@gmail.com"><img src="http://ry.ca/misc/Email.svg" height="50" width="50"> Email</a> › Please email me (Colin) with any feedback, notes, clarifications or whatnot about this review.
 
-<a href="https://github.com/manwar/perlweeklychallenge"><img src="/images/blog/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request to us for any issues you may find with this page.
+<a href="https://github.com/manwar/perlweeklychallenge"><img src="http://ry.ca/misc/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request to us for any issues you may find with this page.
 
-<a href="https://twitter.com/perlwchallenge"><img src="/images/blog/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!
+<a href="https://twitter.com/perlwchallenge"><img src="http://ry.ca/misc/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!
 
 I'm always curious as to what the people think of these efforts. Everyone here at the PWC would like to hear any feedback you'd like to give.
 
@@ -36,13 +37,14 @@ I'm always curious as to what the people think of these efforts. Everyone here a
 
 ---
 
-## •   &nbsp;  &nbsp;  &nbsp;   [Task 1](#PWC080TASK1)       &nbsp;  &nbsp;  &nbsp;   •   &nbsp;  &nbsp;  &nbsp;   [Task 2](#PWC080TASK2)   &nbsp;  &nbsp;  &nbsp;       •   &nbsp;  &nbsp;  &nbsp;   [BLOGS](#PWC080BLOGS)    &nbsp;  &nbsp;  &nbsp;       •
+## •   &nbsp;  &nbsp;  &nbsp;   [Task 1](#PWC080TASK1)       &nbsp;  &nbsp;  &nbsp;   •   &nbsp;  &nbsp;  &nbsp;   [Task 2](#PWC080TASK2)   &nbsp;  &nbsp;  &nbsp;       •   &nbsp;  &nbsp;  &nbsp;   [BLOGS](#PWC080BLOGS)    &nbsp;  &nbsp;  &nbsp;   	•
 
 ---
 
-# TASK #1 {#PWC080TASK1}
-# Smallest Positive Number Bits
+---
 
+# TASK 1 {#PWC080TASK1}
+# Smallest Positive Number Bits
 You are given unsorted list of integers @N.
 Write a script to find out the smallest positive number missing.
 
@@ -382,11 +384,12 @@ sub smallest_positive_missing
      return index($bits, 0) + 1;
 }
 ```
+
+
 ---
 
-# TASK #2 {#PWC080TASK2}
+# TASK 2 {#PWC080TASK2}
 # Count Candies
-
 You are given rankings of $N candidates.
 Write a script to find out the total candies needed for all candidates. You are asked to follow the rules below:
 
@@ -509,6 +512,7 @@ All of the viable solutions given hinged around the idea of the setting the cand
 ### make PASSES until NO MORE CHANGES are made
 [**Athanasius**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-080/athanasius/perl/ch-2.pl),
 [**Cheok-Yin Fung**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-080/cheok-yin-fung/perl/ch-2.pl),
+[**E. Choroba**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-080/e-choroba/perl/ch-2.pl),
 [**Flavio Poletti**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-080/polettix/perl/ch-2.pl), and
 [**Steven Wilson**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-080/steven-wilson/perl/ch-2.pl)
 
@@ -567,6 +571,35 @@ sub candies_for_candidates (@N) {
 }
 ```
 
+[**E. Choroba**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-080/e-choroba/perl/ch-2.pl)
+
+Choroba names his flag `$solved` and works until the loop no longer advances it, combining all of the logic into one grand conditional below the comment:
+
+```perl
+    while ($solved_before != $solved) {
+        $solved_before = $solved;
+        for my $pos (0 .. $#$n) {
+            for my $neighbour ($pos - 1, $pos + 1) {
+                next if $neighbour < 0 || $neighbour > $#$n;
+
+                # Derive the candies for the current candidate on their
+                # neighbour. If the candidate has a higher rank, it should get
+                # one more than the neighbour. If the other neighbour has a
+                # lower rank than the candidate but gets more candies, the
+                # candidate should get one more.
+                ++$solved, $candies[$pos] = $candies[$neighbour] + 1
+                    if defined $candies[$neighbour]
+                    && $n->[$neighbour] < $n->[$pos]
+                    && (! defined $candies[$pos]
+                        || $candies[$pos] <= $candies[$neighbour]);
+            }
+        }
+    }
+    return @$n + sum @candies;
+```
+
+One should note that the loop code above does not calculate the number of candies allocated directly, but rather an offset of *additional* candies starting from 0. As we have required a baseline of one candy per setting, that number still needs to be added to obtain the correct sum. In this case we add the count of the candidates to sum of the additional candies distributed to obtain our final total.
+
 ### sweep once FORWARD then BACK
 [**Jorg Sommrey**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-080/jo-37/perl/ch-2.pl), and
 [**Mohammad S Anwar**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-080/mohammad-anwar/perl/ch-2.pl)
@@ -587,7 +620,7 @@ sub candies {
     # neighbor, she gets one more candy than he.
     foreach (1 .. $#_) {
         $candies[$_] = $candies[$_ - 1] + 1
-            if $_[$_] > $_[$_ - 1];
+        	if $_[$_] > $_[$_ - 1];
     }
 
     # Backward: If the candidate has a higher ranking than his right
@@ -596,7 +629,7 @@ sub candies {
     # symmetry to the forward block.
     foreach (2 .. @_) {
         $candies[-$_] = max $candies[-$_], $candies[-$_ + 1] + 1
-            if $_[-$_] > $_[-$_ + 1];
+        	if $_[-$_] > $_[-$_ + 1];
     }
 
     sum @candies;
@@ -758,9 +791,6 @@ sub count_candies(@candidates) {
     return sum0(@candies);
 }
 ```
-
----
-
 <br>
 
 # BLOGS {#PWC080BLOGS}

@@ -208,15 +208,16 @@
 <hr>
 <p><strong><big>For context</big></strong>  before we begin, you may wish to revisit either of the pages for the <a href="/blog/perl-weekly-challenge-080/"><strong>original tasks</strong></a> or the summary <a href="/blog/recap-challenge-080/"><strong>recap</strong></a> of the challenge. But don&rsquo;t worry, the challenges themselves will be briefly summarized, presented below as we progress from task by task. Oh, and one more thing before we get started:</p>
 <h3 id="getting-in-touch-with-us">Getting in Touch with Us</h3>
-<p><a href="mailto:pwc.perfectwave@gmail.com"><img src="/images/blog/Email.svg" height="50" width="50"> Email</a> › Please email me (Colin) with any feedback, notes, clarifications or whatnot about this review.</p>
-<p><a href="https://github.com/manwar/perlweeklychallenge"><img src="/images/blog/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request to us for any issues you may find with this page.</p>
-<p><a href="https://twitter.com/perlwchallenge"><img src="/images/blog/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!</p>
+<p><a href="mailto:pwc.perfectwave@gmail.com"><img src="http://ry.ca/misc/Email.svg" height="50" width="50"> Email</a> › Please email me (Colin) with any feedback, notes, clarifications or whatnot about this review.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge"><img src="http://ry.ca/misc/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request to us for any issues you may find with this page.</p>
+<p><a href="https://twitter.com/perlwchallenge"><img src="http://ry.ca/misc/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!</p>
 <p>I&rsquo;m always curious as to what the people think of these efforts. Everyone here at the PWC would like to hear any feedback you&rsquo;d like to give.</p>
 <p><strong>So finally, without further ado&hellip;</strong></p>
 <hr>
-<h2 id="---nbsp--nbsp--nbsp---task-1pwc080task1-------nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---task-2pwc080task2---nbsp--nbsp--nbsp----------nbsp--nbsp--nbsp---blogspwc080blogs----nbsp--nbsp--nbsp-------">•             <a href="#PWC080TASK1">Task 1</a>                 •             <a href="#PWC080TASK2">Task 2</a>                 •             <a href="#PWC080BLOGS">BLOGS</a>                  •</h2>
+<h2 id="---nbsp--nbsp--nbsp---task-1pwc080task1-------nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---task-2pwc080task2---nbsp--nbsp--nbsp----------nbsp--nbsp--nbsp---blogspwc080blogs----nbsp--nbsp--nbsp---">•             <a href="#PWC080TASK1">Task 1</a>                 •             <a href="#PWC080TASK2">Task 2</a>                 •             <a href="#PWC080BLOGS">BLOGS</a>              	•</h2>
 <hr>
-<h1 id="PWC080TASK1">TASK #1</h1>
+<hr>
+<h1 id="PWC080TASK1">TASK 1</h1>
 <h1 id="smallest-positive-number-bits">Smallest Positive Number Bits</h1>
 <p>You are given unsorted list of integers @N.
 Write a script to find out the smallest positive number missing.</p>
@@ -439,7 +440,7 @@ demonstrates with a couple of nested loops. He does remove found items fromthe s
      <span style="color:#66d9ef">return</span> index($bits, <span style="color:#ae81ff">0</span>) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
 }
 </code></pre></div><hr>
-<h1 id="PWC080TASK2">TASK #2</h1>
+<h1 id="PWC080TASK2">TASK 2</h1>
 <h1 id="count-candies">Count Candies</h1>
 <p>You are given rankings of $N candidates.
 Write a script to find out the total candies needed for all candidates. You are asked to follow the rules below:</p>
@@ -514,6 +515,7 @@ b) Candidate with higher ranking get more candies than their immediate neighbors
 <h3 id="make-passes-until-no-more-changes-are-made">make PASSES until NO MORE CHANGES are made</h3>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-080/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a>,
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-080/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-080/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a>,
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-080/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a>, and
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-080/steven-wilson/perl/ch-2.pl"><strong>Steven Wilson</strong></a></p>
 <p>After constructing a matching array for the number of candies at each position, the first method is to make successive passes over the data indices, comparing the input array values using rule (b), assessing and increasing individual counts to satisfy the rule. When increments are found necessary and changes are made, that action in turn could cause conflicts requiring a further resolution so a flag is set and the cycle is repeated. This continues until a pass is finished without further changes. At that point the system is stable and the sum, and if desired the array created, is output.</p>
@@ -559,7 +561,30 @@ b) Candidate with higher ranking get more candies than their immediate neighbors
    }
    <span style="color:#66d9ef">return</span> sum @candies;
 }
-</code></pre></div><h3 id="sweep-once-forward-then-back">sweep once FORWARD then BACK</h3>
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-080/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a></p>
+<p>Choroba names his flag <code>$solved</code> and works until the loop no longer advances it, combining all of the logic into one grand conditional below the comment:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">while</span> ($solved_before <span style="color:#f92672">!=</span> $solved) {
+        $solved_before <span style="color:#f92672">=</span> $solved;
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $pos (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#$n) {
+            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $neighbour ($pos <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, $pos <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) {
+                <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $neighbour <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> $neighbour <span style="color:#f92672">&gt;</span> $#$n;
+
+                <span style="color:#75715e"># Derive the candies for the current candidate on their</span>
+                <span style="color:#75715e"># neighbour. If the candidate has a higher rank, it should get</span>
+                <span style="color:#75715e"># one more than the neighbour. If the other neighbour has a</span>
+                <span style="color:#75715e"># lower rank than the candidate but gets more candies, the</span>
+                <span style="color:#75715e"># candidate should get one more.</span>
+                <span style="color:#f92672">++</span>$solved, $candies[$pos] <span style="color:#f92672">=</span> $candies[$neighbour] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+                    <span style="color:#66d9ef">if</span> defined $candies[$neighbour]
+                    <span style="color:#f92672">&amp;&amp;</span> $n<span style="color:#f92672">-&gt;</span>[$neighbour] <span style="color:#f92672">&lt;</span> $n<span style="color:#f92672">-&gt;</span>[$pos]
+                    <span style="color:#f92672">&amp;&amp;</span> (<span style="color:#f92672">!</span> defined $candies[$pos]
+                        <span style="color:#f92672">||</span> $candies[$pos] <span style="color:#f92672">&lt;=</span> $candies[$neighbour]);
+            }
+        }
+    }
+    <span style="color:#66d9ef">return</span> @$n <span style="color:#f92672">+</span> sum @candies;
+</code></pre></div><p>One should note that the loop code above does not calculate the number of candies allocated directly, but rather an offset of <em>additional</em> candies starting from 0. As we have required a baseline of one candy per setting, that number still needs to be added to obtain the correct sum. In this case we add the count of the candidates to sum of the additional candies distributed to obtain our final total.</p>
+<h3 id="sweep-once-forward-then-back">sweep once FORWARD then BACK</h3>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-080/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a>, and
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-080/mohammad-anwar/perl/ch-2.pl"><strong>Mohammad S Anwar</strong></a></p>
 <p>Making successive passes over the data and correcting until no more candies need be added makes a natural intuitive sense, mimicking the way a person would go about manually solving the problem. Somewhat less intuitively, though, some people figured out that by applying a rule the changes can be made in one forward iteration followed by a reverse iteration backwards. The rule applied is that should a position be higher the one preceding it in the iteration, it gets the greater of its current value or one more than the previous. Here</p>
@@ -574,7 +599,7 @@ b) Candidate with higher ranking get more candies than their immediate neighbors
     <span style="color:#75715e"># neighbor, she gets one more candy than he.</span>
     <span style="color:#66d9ef">foreach</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $#_) {
         $candies[$_] <span style="color:#f92672">=</span> $candies[$_ <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
-            <span style="color:#66d9ef">if</span> $_[$_] <span style="color:#f92672">&gt;</span> $_[$_ <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>];
+        	<span style="color:#66d9ef">if</span> $_[$_] <span style="color:#f92672">&gt;</span> $_[$_ <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>];
     }
 
     <span style="color:#75715e"># Backward: If the candidate has a higher ranking than his right</span>
@@ -583,7 +608,7 @@ b) Candidate with higher ranking get more candies than their immediate neighbors
     <span style="color:#75715e"># symmetry to the forward block.</span>
     <span style="color:#66d9ef">foreach</span> (<span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> @_) {
         $candies[<span style="color:#f92672">-</span>$_] <span style="color:#f92672">=</span> max $candies[<span style="color:#f92672">-</span>$_], $candies[<span style="color:#f92672">-</span>$_ <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
-            <span style="color:#66d9ef">if</span> $_[<span style="color:#f92672">-</span>$_] <span style="color:#f92672">&gt;</span> $_[<span style="color:#f92672">-</span>$_ <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>];
+        	<span style="color:#66d9ef">if</span> $_[<span style="color:#f92672">-</span>$_] <span style="color:#f92672">&gt;</span> $_[<span style="color:#f92672">-</span>$_ <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>];
     }
 
     sum @candies;
@@ -713,8 +738,7 @@ figured this out as well. I&rsquo;m glad they did, because I&rsquo;m quite fond 
     }
     <span style="color:#66d9ef">return</span> sum0(@candies);
 }
-</code></pre></div><hr>
-<br>
+</code></pre></div><br>
 <h1 id="PWC080BLOGS">BLOGS</h1>
 <hr>
 <p><strong>That’s it for me this week, people! Unbroken by the torrential influx, I have maintained my bearings. Looking forward to next wave, I am, your humble servant.</strong></p>
