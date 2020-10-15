@@ -24,9 +24,9 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 082](/blog/perl-weekly-challenge-082) {#082}
 <br>
 
-##### **Myoungjin Jeon** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-082/jeongoon/elm/src/Ch2.elm) in **Elm**.
+##### **Myoungjin Jeon** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-082/jeongoon/elm/src/Ch1.elm) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-082/jeongoon/elm/src/Ch2.elm) in **Elm**.
 
-##### **Myoungjin Jeon** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-082/jeongoon/haskell/ch-2.hs) in **Haskell**.
+##### **Myoungjin Jeon** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-082/jeongoon/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-082/jeongoon/haskell/ch-2.hs) in **Haskell**.
 
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-082/roger-bell-west/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-082/roger-bell-west/python/ch-2.py) in **Python**.
 
