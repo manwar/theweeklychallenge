@@ -28,6 +28,8 @@ Please find below guest contributions.
 
 ##### **Myoungjin Jeon** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-082/jeongoon/elm/src/Ch1.elm) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-082/jeongoon/elm/src/Ch2.elm) in **Elm**.
 
+##### **Myoungjin Jeon** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-082/jeongoon/go/ch-1.go) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-082/jeongoon/go/ch-2.go) in **Go**.
+
 ##### **Myoungjin Jeon** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-082/jeongoon/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-082/jeongoon/haskell/ch-2.hs) in **Haskell**.
 
 ##### **Nuno Vieira** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-082/nunovieira220/js/ch-1.js) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-082/nunovieira220/js/ch-2.js) in **JavaScript**.
