@@ -36,7 +36,7 @@ Checkout the interview with the [**Champion: Myoungjin Jeon**](https://perlweekl
 
 Welcome [Philip Hood](https://github.com/pkmnx) and [Dieter Dobbelaere](https://github.com/ddobbelaere) to the **Team PWC**.
 
-This week, we had `26 contributions` by guests in **11** different languages. I would like to `THANK` each and every guest contributors.
+This week, we had `28 contributions` by guests in **12** different languages. I would like to `THANK` each and every guest contributors.
 
 **GNAT** is the new language introduced this week by `Philip Hood`.
 

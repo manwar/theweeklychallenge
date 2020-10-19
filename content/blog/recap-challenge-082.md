@@ -87,9 +87,9 @@ The total contributions in the week is `112`.Well done **Team PWC**. I would als
 #### 18) C: 6
 #### 19) Java: 5
 #### 20) Postscript: 5
-#### 21) Awk: 4
-#### 22) Bash: 3
-#### 23) OCaml: 3
+#### 21) OCaml: 5
+#### 22) Awk: 4
+#### 23) Bash: 3
 #### 24) Erlang: 2
 #### 25) HTML: 2
 #### 26) Idris: 2
