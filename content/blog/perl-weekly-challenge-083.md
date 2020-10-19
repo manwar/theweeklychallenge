@@ -18,8 +18,8 @@ tags: ["Perl", "Raku"]
 ### 5. [CHART](#CHART)
 ### 6. [NEW MEMBERS](#NEWMEMBERS)
 ### 7. [GUESTS](#GUESTS)
-### 8. [TASK #1: Common Factors](#TASK1)
-### 9. [TASK #2: Interleave String](#TASK2)
+### 8. [TASK #1: Words Length](#TASK1)
+### 9. [TASK #2: Flip Array](#TASK2)
 
 <br>
 
