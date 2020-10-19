@@ -139,93 +139,61 @@ Please give it a try to an excellent tool [**EZPWC**](https://github.com/saiftyn
 Please find out [**past solutions**](/blog/guest-contribution) by respected **guests**. Please do share your creative solutions in other languages.
 
 ***
-## TASK #1 › Common Factors {#TASK1}
-##### **Submitted by:** [Niels van Dijke](https://github.com/PerlBoy1967)
-***
-
-You are given 2 positive numbers `$M` and `$N`.
-
-Write a script to list all common factors of the given numbers.
-
-## Example 1:
-
-    Input:
-        $M = 12
-        $N = 18
-
-    Output:
-        (1, 2, 3, 6)
-
-    Explanation:
-        Factors of 12: 1, 2, 3, 4, 6
-        Factors of 18: 1, 2, 3, 6, 9
-
-## Example 2:
-
-    Input:
-        $M = 18
-        $N = 23
-
-    Output:
-        (1)
-
-    Explanation:
-        Factors of 18: 1, 2, 3, 6, 9
-        Factors of 23: 1
-
-<br>
-
-***
-## TASK #2 › Interleave String {#TASK2}
+## TASK #1 › Words Length {#TASK1}
 ##### **Submitted by:** [Mohammad S Anwar](http://www.manwar.org)
 ***
 
-You are given 3 strings; `$A`, `$B` and `$C`.
+You are given a string `$S` with 3 or more words.
 
-Write a script to check if `$C` is created by interleave `$A` and `$B`.
-
-Print `1` if check is success otherwise `0`.
+Write a script to find the length of the string except the first and last words ignoring whitespace.
 
 ## Example 1:
 
-    Input:
-        $A = "XY"
-        $B = "X"
-        $C = "XXY"
+    Input: $S = "The Weekly Challenge"
 
-    Output: 1
-
-### EXPLANATION
-
-    "X" (from $B) + "XY" (from $A) = $C
+    Output: 6
 
 ## Example 2:
 
-    Input:
-        $A = "XXY"
-        $B = "XXZ"
-        $C = "XXXXZY"
+    Input: $S = "The purpose of our lives is to be happy"
 
+    Output: 23
+
+<br>
+
+***
+## TASK #2 › Flip Array {#TASK2}
+##### **Submitted by:** [Mohammad S Anwar](http://www.manwar.org)
+***
+
+You are given an array `@A` of positive numbers.
+
+Write a script to flip the sign of some members of the given array so that the sum of the all members is minimum non-negative.
+
+Given an array of positive elements, you have to flip the sign of some of its elements such that the resultant sum of the elements of array should be minimum non-negative(as close to zero as possible). Return the minimum no. of elements whose sign needs to be flipped such that the resultant sum is minimum non-negative.
+
+## Example 1:
+
+    Input: @A = (3, 10, 8)
     Output: 1
 
-### EXPLANATION
+### Explanation:
 
-    "XX" (from $A) + "XXZ" (from $B) + "Y" (from $A) = $C
+    Flipping the sign of just one element 10 gives the result 1 i.e. (3) + (-10) + (8) = 1
 
+## Example 2:
 
-## Example 3:
+    Input: @A = (12, 2, 10)
+    Output: 1
 
-    Input:
-        $A = "YX"
-        $B = "X"
-        $C = "XXY"
+### Explanation:
 
-    Output: 0
+    Flipping the sign of just one element 12 gives the result 0 i.e. (-12) + (2) + (10) = 0
 
 <br>
 
 ***
 
-Last date to submit the solution **23:59 (UK Time) Sunday 18th October 2020**.
+Last date to submit the solution **23:59 (UK Time) Sunday 25th October 2020**.
 
 ***
