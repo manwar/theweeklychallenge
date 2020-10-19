@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2020-10-18T00:00:00+00:00
+date: 2020-10-19T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -41,6 +41,8 @@ Please find below guest contributions.
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-082/roger-bell-west/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-082/roger-bell-west/python/ch-2.py) in **Python**.
 
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-082/roger-bell-west/ruby/ch-1.rb) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-082/roger-bell-west/ruby/ch-2.rb) in **Ruby**.
+
+##### **Shawn Wagner** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-082/shawn-wagner/ocaml/ch-1.ml) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-082/shawn-wagner/ocaml/ch-2.ml) in **OCaml**.
 
 ##### **Tyler Wardhaugh** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-082/tyler-wardhaugh/clojure/src/tw/weekly/c82/t1.clj) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-082/tyler-wardhaugh/clojure/src/tw/weekly/c82/t2.clj) in **Clojure**.
 
