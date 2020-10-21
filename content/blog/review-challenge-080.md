@@ -25,11 +25,11 @@ Let's have a look and see what we can find.
 
 ### Getting in Touch with Us
 
-<a href="mailto:pwc.perfectwave@gmail.com"><img src="http://ry.ca/misc/Email.svg" height="50" width="50"> Email</a> › Please email me (Colin) with any feedback, notes, clarifications or whatnot about this review.
+<a href="mailto:pwc.perfectwave@gmail.com"><img src="/images/blog/Email.svg" height="50" width="50"> Email</a> › Please email me (Colin) with any feedback, notes, clarifications or whatnot about this review.
 
-<a href="https://github.com/manwar/perlweeklychallenge"><img src="http://ry.ca/misc/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request to us for any issues you may find with this page.
+<a href="https://github.com/manwar/perlweeklychallenge"><img src="/images/blog/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request to us for any issues you may find with this page.
 
-<a href="https://twitter.com/perlwchallenge"><img src="http://ry.ca/misc/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!
+<a href="https://twitter.com/perlwchallenge"><img src="/images/blog/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!
 
 I'm always curious as to what the people think of these efforts. Everyone here at the PWC would like to hear any feedback you'd like to give.
 
@@ -37,7 +37,7 @@ I'm always curious as to what the people think of these efforts. Everyone here a
 
 ---
 
-## •   &nbsp;  &nbsp;  &nbsp;   [Task 1](#PWC080TASK1)       &nbsp;  &nbsp;  &nbsp;   •   &nbsp;  &nbsp;  &nbsp;   [Task 2](#PWC080TASK2)   &nbsp;  &nbsp;  &nbsp;       •   &nbsp;  &nbsp;  &nbsp;   [BLOGS](#PWC080BLOGS)    &nbsp;  &nbsp;  &nbsp;   	•
+## •   &nbsp;  &nbsp;  &nbsp;   [Task 1](#PWC080TASK1)       &nbsp;  &nbsp;  &nbsp;   •   &nbsp;  &nbsp;  &nbsp;   [Task 2](#PWC080TASK2)   &nbsp;  &nbsp;  &nbsp;       •   &nbsp;  &nbsp;  &nbsp;   [BLOGS](#PWC080BLOGS)    &nbsp;  &nbsp;  &nbsp;       •
 
 ---
 
@@ -620,7 +620,7 @@ sub candies {
     # neighbor, she gets one more candy than he.
     foreach (1 .. $#_) {
         $candies[$_] = $candies[$_ - 1] + 1
-        	if $_[$_] > $_[$_ - 1];
+            if $_[$_] > $_[$_ - 1];
     }
 
     # Backward: If the candidate has a higher ranking than his right
@@ -629,7 +629,7 @@ sub candies {
     # symmetry to the forward block.
     foreach (2 .. @_) {
         $candies[-$_] = max $candies[-$_], $candies[-$_ + 1] + 1
-        	if $_[-$_] > $_[-$_ + 1];
+            if $_[-$_] > $_[-$_ + 1];
     }
 
     sum @candies;
