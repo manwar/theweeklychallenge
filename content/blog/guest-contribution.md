@@ -30,6 +30,8 @@ Please find below guest contributions.
 
 ##### **Nuno Vieira** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-083/nunovieira220/js/ch-1.js) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-083/nunovieira220/js/ch-2.js) in **JavaScript**.
 
+##### **Pete Houston** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-083/pete-houston/awk/ch-1.awk) in **Awk**.
+
 ##### **Philip Hood** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-083/pkmnx/c/ch-1.c) in **C**.
 
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-083/roger-bell-west/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-083/roger-bell-west/python/ch-2.py) in **Python**.
