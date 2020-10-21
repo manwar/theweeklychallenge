@@ -66,12 +66,16 @@ Quick recap of the [**"The Weekly Challenge - 082"**](/blog/recap-challenge-082)
 ## PERL REVIEW {#PERLREVIEW}
 ***
 
+Please checkout **Perl** solutions review of the **["The Weekly Challenge - 081"](/blog/review-challenge-081)** by `Colin Crain`.
+
 If you missed any past reviews then please checkout the [**collection**](/p5-reviews).
 
 <br>
 
 ## RAKU REVIEW {#RAKUREVIEW}
 ***
+
+Please checkout **Raku** solutions review of the **["The Weekly Challenge - 081"](/blog/p6-review-challenge-081)** by `Andrew Shitov`.
 
 If you missed any past reviews then please checkout the [**collection**](/p6-reviews).
 
