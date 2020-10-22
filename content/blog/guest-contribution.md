@@ -42,6 +42,10 @@ Please find below guest contributions.
 
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-083/roger-bell-west/ruby/ch-1.rb) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-083/roger-bell-west/ruby/ch-2.rb) in **Ruby**.
 
+##### **Tyler Wardhaugh** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-083/tyler-wardhaugh/clojure/src/tw/weekly/c83/t1.clj) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-083/tyler-wardhaugh/clojure/src/tw/weekly/c83/t2.clj) in **Clojure**.
+
+##### **Tyler Wardhaugh** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-083/tyler-wardhaugh/lua/ch-1.lua) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-083/tyler-wardhaugh/lua/ch-2.lua) in **Lua**.
+
 ##### **Shawn Wagner** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-083/shawn-wagner/ocaml/ch-1.ml) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-083/shawn-wagner/ocaml/ch-2.ml) in **OCaml**.
 
 ##### **Shawn Wagner** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-083/shawn-wagner/tcl/ch-1.tcl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-083/shawn-wagner/tcl/ch-2.tcl) in **Tcl**.
