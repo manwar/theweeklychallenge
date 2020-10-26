@@ -62,6 +62,8 @@ Quick recap of the [**"The Weekly Challenge - 083"**](/blog/recap-challenge-083)
 ## PERL REVIEW {#PERLREVIEW}
 ***
 
+Please checkout **Perl** solutions review of the **["The Weekly Challenge - 082"](/blog/review-challenge-082)** by `Colin Crain`.
+
 If you missed any past reviews then please checkout the [**collection**](/p5-reviews).
 
 <br>
