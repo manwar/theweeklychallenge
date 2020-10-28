@@ -505,8 +505,8 @@ return $i;
 </code></pre></div><p>Of course we can still see the components of the square root solution we discussed earlier, rearranged. So in a sense, the GCD solution does kind of just kick the can down the road a bit, and we still end up needing to brute force, albeit optimally, the final factoring job.</p>
 <p>Only</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-082/abigail/perl/ch-1.pl"><strong>Abigail</strong></a></p>
-<p>really addressed this last issue. In fact, she seems to have thought through this problem quite extensively, as far as examining all aspects. Fortunately she has shared those thoughts with us in an extensive commentary, which I will only reference, rather than try to summarize.</p>
-<p>First off, she&rsquo;s worked a different algorithm to render the GCD, <a href="https://en.wikipedia.org/wiki/Binary_GCD_algorithm">Stein&rsquo;s Algorithm</a>. That worth a look in itself:</p>
+<p>really addressed this last issue. In fact, he seems to have thought through this problem quite extensively, as far as examining all aspects. Fortunately he has shared those thoughts with us in an extensive commentary, which I will only reference, rather than try to summarize.</p>
+<p>First off, he&rsquo;s worked a different algorithm to render the GCD, <a href="https://en.wikipedia.org/wiki/Binary_GCD_algorithm">Stein&rsquo;s Algorithm</a>. That worth a look in itself:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">stein</span> ($u, $v) {
     <span style="color:#66d9ef">return</span> $u <span style="color:#66d9ef">if</span> $u <span style="color:#f92672">==</span> $v <span style="color:#f92672">||</span> <span style="color:#f92672">!</span>$v;
     <span style="color:#66d9ef">return</span> $v <span style="color:#66d9ef">if</span>             <span style="color:#f92672">!</span>$u;
@@ -518,7 +518,7 @@ return $i;
     <span style="color:#66d9ef">return</span> stein ($u <span style="color:#f92672">-</span> $v, $v)           <span style="color:#66d9ef">if</span>  $u     <span style="color:#f92672">&gt;</span>   $v;
     <span style="color:#66d9ef">return</span> stein ($v <span style="color:#f92672">-</span> $u, $u);
 }
-</code></pre></div><p>Once the GCD is obtained, she then applies some very clever math to assault the problem space to construct the factors out of their own prime factors. It&rsquo;s rather involved:</p>
+</code></pre></div><p>Once the GCD is obtained, he then applies some very clever math to assault the problem space to construct the factors out of their own prime factors. It&rsquo;s rather involved:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> @factors <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>);
 <span style="color:#66d9ef">my</span> $p <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;
 <span style="color:#66d9ef">while</span> ($p <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">&lt;=</span> $gcd) {
@@ -658,7 +658,7 @@ $C = &quot;AXXYXZXZ&quot;;
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-082/lubos-kolouch/perl/ch-2.pl"><strong>Lubos Kolouch</strong></a></p>
 <p>Because the interleaving process can be considered a series of simple choices, to pick one string or the other, the possible outcomes can be looked at as a binary tree of possible outcomes. A tree in turn suggested a recursive solution to descend into it to map the pathways. This proved to be the most popular choice, and those that were successful all wrapped around the same core structure.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-082/abigail/perl/ch-2.pl"><strong>Abigail</strong></a></p>
-<p>in her commentary gives a nice outline of the flow:</p>
+<p>in his commentary gives a nice outline of the flow:</p>
 <blockquote>
 <p>&quot;Now we can recurse; if the first character of unmatched part of C matches the first character of the unmatched part of either A or B, we match the first character of C and the first character of either A or B, and recurse. If the first character of the unmatched part of C matches the first character of unmatched parts of both A and B, we first recurse first by matching against A, and if this doesn&rsquo;t provide a match, we recurse by matching against B.&rdquo;</p>
 </blockquote>
@@ -754,8 +754,8 @@ lays these steps out pretty clearly:</p>
         pairs( $a, $b, $b, $a )
     );
 </code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-082/abigail/perl/ch-2.pl"><strong>Abigail</strong></a></p>
-<p>Rather than use substr, Abigail splits her input strings into arrays, where she can
-address the individual elements non-destructively. The control flow and the action moves essentially the same as the substr solution, chipping away from the front. Note $A, $B and $C are array references at this point. Here&rsquo;s her routine, sans the comment from above:</p>
+<p>Rather than use substr, Abigail splits his input strings into arrays, where he can
+address the individual elements non-destructively. The control flow and the action moves essentially the same as the substr solution, chipping away from the front. Note $A, $B and $C are array references at this point. Here&rsquo;s his routine, sans the comment from above:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_interleaved</span> ($A, $B, $C, $ai = 0, $bi = 0, $ci = 0) {
     state $cache;
     local $&#34; <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;

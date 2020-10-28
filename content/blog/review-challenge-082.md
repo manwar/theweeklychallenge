@@ -473,9 +473,9 @@ Only
 
 [**Abigail**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-082/abigail/perl/ch-1.pl)
 
-really addressed this last issue. In fact, she seems to have thought through this problem quite extensively, as far as examining all aspects. Fortunately she has shared those thoughts with us in an extensive commentary, which I will only reference, rather than try to summarize.
+really addressed this last issue. In fact, he seems to have thought through this problem quite extensively, as far as examining all aspects. Fortunately he has shared those thoughts with us in an extensive commentary, which I will only reference, rather than try to summarize.
 
-First off, she's worked a different algorithm to render the GCD, [Stein's Algorithm](https://en.wikipedia.org/wiki/Binary_GCD_algorithm). That worth a look in itself:
+First off, he's worked a different algorithm to render the GCD, [Stein's Algorithm](https://en.wikipedia.org/wiki/Binary_GCD_algorithm). That worth a look in itself:
 
 ```perl
 sub stein ($u, $v) {
@@ -491,7 +491,7 @@ sub stein ($u, $v) {
 }
 ```
 
-Once the GCD is obtained, she then applies some very clever math to assault the problem space to construct the factors out of their own prime factors. It's rather involved:
+Once the GCD is obtained, he then applies some very clever math to assault the problem space to construct the factors out of their own prime factors. It's rather involved:
 
 ```perl
 my @factors = (1);
@@ -689,7 +689,7 @@ Because the interleaving process can be considered a series of simple choices, t
 
 [**Abigail**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-082/abigail/perl/ch-2.pl)
 
-in her commentary gives a nice outline of the flow:
+in his commentary gives a nice outline of the flow:
 
 >"Now we can recurse; if the first character of unmatched part of C matches the first character of the unmatched part of either A or B, we match the first character of C and the first character of either A or B, and recurse. If the first character of the unmatched part of C matches the first character of unmatched parts of both A and B, we first recurse first by matching against A, and if this doesn't provide a match, we recurse by matching against B."
 
@@ -817,8 +817,8 @@ $go = sub ( $target, $a, $b ) {
 
 [**Abigail**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-082/abigail/perl/ch-2.pl)
 
-Rather than use substr, Abigail splits her input strings into arrays, where she can
-address the individual elements non-destructively. The control flow and the action moves essentially the same as the substr solution, chipping away from the front. Note $A, $B and $C are array references at this point. Here's her routine, sans the comment from above:
+Rather than use substr, Abigail splits his input strings into arrays, where he can
+address the individual elements non-destructively. The control flow and the action moves essentially the same as the substr solution, chipping away from the front. Note $A, $B and $C are array references at this point. Here's his routine, sans the comment from above:
 
 ```perl
 sub is_interleaved ($A, $B, $C, $ai = 0, $bi = 0, $ci = 0) {
