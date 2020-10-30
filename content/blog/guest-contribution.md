@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2020-10-28T00:00:00+00:00
+date: 2020-10-30T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -23,6 +23,8 @@ Please find below guest contributions.
 ----
 ## [The Weekly Challenge - 084](/blog/perl-weekly-challenge-084) {#084}
 <br>
+
+##### **Abigail** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-084/abigail/awk/ch-1.awk) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-084/abigail/awk/ch-2.awk) in **Awk**.
 
 ##### **Frank Oosterhuis** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-084/frankivo/scala/ReverseInteger.scala) in **Scala**.
 
