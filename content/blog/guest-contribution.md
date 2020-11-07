@@ -36,6 +36,8 @@ Please find below guest contributions.
 
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/roger-bell-west/ruby/ch-1.rb) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/roger-bell-west/ruby/ch-2.rb) in **Ruby**.
 
+##### **Shawak** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/shawak/ruby/ch-1.rb) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/shawak/ruby/ch-2.rb) in **Ruby**.
+
 ##### **Shawn Wagner** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/shawn-wagner/ocaml/ch1.ml) in **OCaml**.
 
 ----
