@@ -24,6 +24,8 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 085](/blog/perl-weekly-challenge-085) {#085}
 <br>
 
+##### **Abigail** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/abigail/c/ch-1.c) in **C**.
+
 ##### **Andrew Shitov** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/ash/cpp/ch-1.cpp) in **C++**.
 
 ##### **Andrew Shitov** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/ash/python/ch-1.py) in **Python**.
