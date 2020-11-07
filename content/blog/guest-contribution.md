@@ -28,6 +28,8 @@ Please find below guest contributions.
 
 ##### **Andrew Shitov** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/ash/python/ch-1.py) in **Python**.
 
+##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/lubos-kolouch/python/ch-2.py) in **Python**.
+
 ##### **Nuno Vieira** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/nunovieira220/js/ch-1.js) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/nunovieira220/js/ch-2.js) in **JavaScript**.
 
 ##### **Philip Hood** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/pkmnx/c++/ch-1.cpp) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/pkmnx/c++/ch-2.cpp) in **C++**.
