@@ -48,6 +48,10 @@ Please find below guest contributions.
 
 ##### **Shawn Wagner** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/shawn-wagner/ocaml/ch1.ml) in **OCaml**.
 
+##### **Tyler Wardhaugh** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/tyler-wardhaugh/clojure/src/tw/weekly/c85/t1.clj) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/tyler-wardhaugh/clojure/src/tw/weekly/c85/t2.clj) in **Clojure**.
+
+##### **Tyler Wardhaugh** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/tyler-wardhaugh/lua/ch-1.lua) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/tyler-wardhaugh/lua/ch-2.lua) in **Lua**.
+
 ----
 ## [The Weekly Challenge - 084](/blog/perl-weekly-challenge-084) {#084}
 <br>
