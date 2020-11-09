@@ -44,17 +44,18 @@ tags: ["Perl", "Raku"]
 Following members shared solutions to both tasks in `Perl` and `Raku` as well as blogged about it.
 
 #### 1) Arne Sommer
-#### 2) Jaldhar H. Vyas
-#### 3) Laurent Rosenfeld
-#### 4) Myoungjin Jeon
-#### 5) Roger Bell_West
+#### 2) Colin Crain
+#### 3) Jaldhar H. Vyas
+#### 4) Laurent Rosenfeld
+#### 5) Myoungjin Jeon
+#### 6) Roger Bell_West
 
 <br>
 
 ## CONTRIBUTION STATS {#CONTRIBUTIONSTATS}
 ***
 
-The total contributions in the week is `105`.Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
+The total contributions in the week is `109`.Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
 
 ![Language Breakdown](/images/blog/languages-breakdown-85.png)
 
@@ -398,6 +399,17 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/athanasius/perl/ch-2.pl)]
 [[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/athanasius/raku/ch-1.raku)]
 [[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/athanasius/raku/ch-2.raku)]
+
+***
+
+### Colin Crain
+![Colin Crain](/images/team/user.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/colin-crain/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/colin-crain/perl/ch-2.pl)]
+[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/colin-crain/raku/ch-1.raku)]
+[[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/colin-crain/raku/ch-2.raku)]
+[[**BLOG #1**](https://colincrain.com/2020/11/08/triple-combo-power-to-the-whole/)]
 
 ***
 
