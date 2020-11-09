@@ -1,14 +1,14 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2020-11-08T00:00:00+00:00
+date: 2020-11-09T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
 author: Mohammad S Anwar
-tags: ["APL", "Awk", "Bash", "Bc", "C", "C++", "Clojure", "Elm", "Erlang", "Gembase", "GNAT", "Go", "Haskell", "HTML", "Idris", "Java", "Javascript", "Kotlin", "Lisp", "Lua", "Node", "OCaml", "Python", "Postscript", "Prolog", "R", "Ruby", "Rust", "Scala", "Swift", "Tcl", "XSLT"]
+tags: ["APL", "Awk", "Bash", "Bc", "C", "C++", "Clojure", "Elm", "Erlang", "Gembase", "GNAT", "Go", "Haskell", "HTML", "Idris", "Java", "Javascript", "Kotlin", "Lisp", "Lua", "Node", "OCaml", "Python", "Postscript", "Prolog", "R", "Ruby", "Rust", "Scala", "SQL", "Swift", "Tcl", "XSLT"]
 ---
 
-As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. During the **Week #018**, we received solutions to **["The Weekly Challenge - 018"](/blog/perl-weekly-challenge-018)** by `Orestis Zekai` in **Python**. It was pleasant surprise to receive solutions in something other than **Perl** and **Raku**. Ever since regular team members also started contributing in other languages like **APL**, **Awk**, **Bash**, **Bc**, **C**, **C++**, **Clojure**, **Elm**, **Erlang**, **Gembase**, **GNAT**, **Go**, **Haskell**, **HTML**, **Idris**, **Java**, **Javascript**, **Kotlin**, **Lisp**, **Lua**, **Node**, **OCaml**, **Postscript**, **Prolog**, **R**, **Ruby**, **Rust**, **Scala**, **Swift**, **Tcl** and **XSLT**.
+As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. During the **Week #018**, we received solutions to **["The Weekly Challenge - 018"](/blog/perl-weekly-challenge-018)** by `Orestis Zekai` in **Python**. It was pleasant surprise to receive solutions in something other than **Perl** and **Raku**. Ever since regular team members also started contributing in other languages like **APL**, **Awk**, **Bash**, **Bc**, **C**, **C++**, **Clojure**, **Elm**, **Erlang**, **Gembase**, **GNAT**, **Go**, **Haskell**, **HTML**, **Idris**, **Java**, **Javascript**, **Kotlin**, **Lisp**, **Lua**, **Node**, **OCaml**, **Postscript**, **Prolog**, **R**, **Ruby**, **Rust**, **Scala**, **SQL**, **Swift**, **Tcl** and **XSLT**.
 
 Please find below guest contributions.
 
@@ -25,6 +25,8 @@ Please find below guest contributions.
 <br>
 
 ##### **Abigail** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/abigail/c/ch-1.c) in **C**.
+
+##### **Abigail** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/abigail/sql/ch-1.sql) in **SQL**.
 
 ##### **Andrew Shitov** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/ash/cpp/ch-1.cpp) in **C++**.
 
