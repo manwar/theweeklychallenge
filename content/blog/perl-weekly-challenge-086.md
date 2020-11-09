@@ -30,7 +30,7 @@ Congratulations **Team PWC** for crossing the magic number `8th consecutive week
 
 ![Contributions Summary](/images/blog/contributions-summary-85.png)
 
-This week, we had `29 contributions` by guests in `11` different languages. I would like to `THANK` each and every guest contributors.
+This week, we had `30 contributions` by guests in `12` different languages. I would like to `THANK` each and every guest contributors.
 
 ![Languages Summary](/images/blog/languages-summary-85.png)
 
@@ -96,37 +96,39 @@ Please give it a try to an excellent tool [**EZPWC**](https://github.com/saiftyn
 
 #### 1) Abigail shared solution to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/abigail/c/ch-1.c) in C.
 
-#### 2) Andrew Shitov shared solution to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/ash/cpp/ch-1.cpp) in C++.
+#### 2) Abigail shared solution to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/abigail/sql/ch-1.sql) in SQL.
 
-#### 3) Andrew Shitov shared solution to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/ash/python/ch-1.py) in Python.
+#### 3) Andrew Shitov shared solution to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/ash/cpp/ch-1.cpp) in C++.
 
-#### 4) Lubos Kolouch shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/lubos-kolouch/python/ch-1.py) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/lubos-kolouch/python/ch-2.py) in Python.
+#### 4) Andrew Shitov shared solution to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/ash/python/ch-1.py) in Python.
 
-#### 5) Myoungjin Jeon shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/jeongoon/go/ch-1.go) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/jeongoon/go/ch-2.go) in Go.
+#### 5) Lubos Kolouch shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/lubos-kolouch/python/ch-1.py) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/lubos-kolouch/python/ch-2.py) in Python.
 
-#### 6) Myoungjin Jeon shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/jeongoon/haskell/ch-1.hs) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/jeongoon/haskell/ch-2.hs) in Haskell.
+#### 6) Myoungjin Jeon shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/jeongoon/go/ch-1.go) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/jeongoon/go/ch-2.go) in Go.
 
-#### 7) Myoungjin Jeon shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/jeongoon/common-lisp/ch-1.lsp) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/jeongoon/common-lisp/ch-2.lsp) in Lisp.
+#### 7) Myoungjin Jeon shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/jeongoon/haskell/ch-1.hs) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/jeongoon/haskell/ch-2.hs) in Haskell.
 
-#### 8) Nuno Vieira shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/nunovieira220/js/ch-1.js) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/nunovieira220/js/ch-2.js) in JavaScript.
+#### 8) Myoungjin Jeon shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/jeongoon/common-lisp/ch-1.lsp) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/jeongoon/common-lisp/ch-2.lsp) in Lisp.
 
-#### 9) Philip Hood shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/pkmnx/c++/ch-1.cpp) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/pkmnx/c++/ch-2.cpp) in C++.
+#### 9) Nuno Vieira shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/nunovieira220/js/ch-1.js) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/nunovieira220/js/ch-2.js) in JavaScript.
 
-#### 10) Roger Bell_West shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/roger-bell-west/python/ch-1.py) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/roger-bell-west/python/ch-2.py) in Python.
+#### 10) Philip Hood shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/pkmnx/c++/ch-1.cpp) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/pkmnx/c++/ch-2.cpp) in C++.
 
-#### 11) Roger Bell_West shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/roger-bell-west/ruby/ch-1.rb) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/roger-bell-west/ruby/ch-2.rb) in Ruby.
+#### 11) Roger Bell_West shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/roger-bell-west/python/ch-1.py) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/roger-bell-west/python/ch-2.py) in Python.
 
-#### 12) Shawak shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/shawak/ruby/ch-1.rb) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/shawak/ruby/ch-2.rb) in Ruby.
+#### 12) Roger Bell_West shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/roger-bell-west/ruby/ch-1.rb) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/roger-bell-west/ruby/ch-2.rb) in Ruby.
 
-#### 13) Shawn Wagner shared solution to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/shawn-wagner/ocaml/ch1.ml) in OCaml.
+#### 13) Shawak shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/shawak/ruby/ch-1.rb) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/shawak/ruby/ch-2.rb) in Ruby.
 
-#### 14) Tyler Wardhaugh shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/tyler-wardhaugh/clojure/src/tw/weekly/c85/t1.clj) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/tyler-wardhaugh/clojure/src/tw/weekly/c85/t2.clj) in Clojure.
+#### 14) Shawn Wagner shared solution to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/shawn-wagner/ocaml/ch1.ml) in OCaml.
 
-#### 15) Tyler Wardhaugh shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/tyler-wardhaugh/lua/ch-1.lua) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/tyler-wardhaugh/lua/ch-2.lua) in Lua.
+#### 15) Tyler Wardhaugh shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/tyler-wardhaugh/clojure/src/tw/weekly/c85/t1.clj) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/tyler-wardhaugh/clojure/src/tw/weekly/c85/t2.clj) in Clojure.
 
-#### 16) Ulrich Rieke shared solution to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/ulrich-rieke/cpp/ch-1.cpp) in C++.
+#### 16) Tyler Wardhaugh shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/tyler-wardhaugh/lua/ch-1.lua) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/tyler-wardhaugh/lua/ch-2.lua) in Lua.
 
-#### 17) Ulrich Rieke shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/ulrich-rieke/haskell/ch-1.hs) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/ulrich-rieke/haskell/ch-2.hs) in Haskell.
+#### 17) Ulrich Rieke shared solution to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/ulrich-rieke/cpp/ch-1.cpp) in C++.
+
+#### 18) Ulrich Rieke shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/ulrich-rieke/haskell/ch-1.hs) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/ulrich-rieke/haskell/ch-2.hs) in Haskell.
 
 <br>
 

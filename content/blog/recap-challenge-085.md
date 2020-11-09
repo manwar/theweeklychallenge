@@ -104,7 +104,8 @@ The total contributions in the week is `109`.Well done **Team PWC**. I would als
 #### 31) Gembase: 1
 #### 32) Javascript: 1
 #### 33) PHP: 1
-#### 34) XSLT: 1
+#### 34) SQL: 1
+#### 35) XSLT: 1
 
 <br>
 
