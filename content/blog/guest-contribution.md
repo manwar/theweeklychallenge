@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2020-11-11T00:00:00+00:00
+date: 2020-11-14T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -23,6 +23,10 @@ Please find below guest contributions.
 ----
 ## [The Weekly Challenge - 086](/blog/perl-weekly-challenge-086) {#086}
 <br>
+
+##### **Abigail** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-086/abigail/c/ch-1.c) in **C**.
+
+##### **Abigail** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-086/abigail/node/ch-1.js) in **Node**.
 
 ##### **Roger Bell_West** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-086/roger-bell-west/python/ch-1.py) in **Python**.
 
