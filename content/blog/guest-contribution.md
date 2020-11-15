@@ -36,6 +36,8 @@ Please find below guest contributions.
 
 ##### **Roger Bell_West** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-086/roger-bell-west/rust/ch-1.rs) in **Rust**.
 
+##### **Tejas** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-086/hstejas/cpp/ch-1.cpp) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-086/hstejas/cpp/ch-2.cpp) in **C++**.
+
 ##### **Tyler Wardhaugh** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-086/tyler-wardhaugh/clojure/src/tw/weekly/c86/t1.clj) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-086/tyler-wardhaugh/clojure/src/tw/weekly/c86/t2.clj) in **Clojure**.
 
 ##### **Ulrich Rieke** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-086/ulrich-rieke/haskell/ch-1.hs) in **Haskell**.
