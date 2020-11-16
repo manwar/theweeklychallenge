@@ -52,7 +52,7 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 ## CONTRIBUTION STATS {#CONTRIBUTIONSTATS}
 ***
 
-The total contributions in the week is `89`.Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
+The total contributions in the week is `91`.Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
 
 ![Language Breakdown](/images/blog/languages-breakdown-86.png)
 
@@ -191,6 +191,14 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-086/dave-jacoby/perl/ch-1.pl)]
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-086/dave-jacoby/perl/ch-2.pl)]
+
+***
+
+### Duncan C. White
+![Duncan C. White](/images/team/duncan_white.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-086/duncan-c-white/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-086/duncan-c-white/perl/ch-2.pl)]
 
 ***
 
