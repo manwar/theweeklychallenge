@@ -44,15 +44,16 @@ Welcome back `Richard Park` and thanks for sharing [**APL**](https://github.com/
 Following members shared solutions to both tasks in `Perl` and `Raku` as well as blogged about it.
 
 #### 1) Arne Sommer
-#### 2) Laurent Rosenfeld
-#### 3) Myoungjin Jeon
+#### 2) Jaldhar H. Vyas
+#### 3) Laurent Rosenfeld
+#### 4) Myoungjin Jeon
 
 <br>
 
 ## CONTRIBUTION STATS {#CONTRIBUTIONSTATS}
 ***
 
-The total contributions in the week is `94`.Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
+The total contributions in the week is `99`.Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
 
 ![Language Breakdown](/images/blog/languages-breakdown-86.png)
 
@@ -403,6 +404,17 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-086/colin-crain/perl/ch-1.pl)]
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-086/colin-crain/perl/ch-2.pl)]
 [[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-086/colin-crain/raku/ch-1.raku)]
+
+***
+
+### Jaldhar H. Vyas
+![Jaldhar H. Vyas](/images/team/jaldhar_vyas.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-086/jaldhar-h-vyas/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-086/jaldhar-h-vyas/perl/ch-2.pl)]
+[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-086/jaldhar-h-vyas/raku/ch-1.p6)]
+[[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-086/jaldhar-h-vyas/raku/ch-2.p6)]
+[[**BLOG #1**](http://www.braincells.com/perl/2020/11/perl_weekly_challenge_week_86.html)]
 
 ***
 
