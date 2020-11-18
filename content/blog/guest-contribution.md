@@ -26,6 +26,8 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 087](/blog/perl-weekly-challenge-087) {#087}
 <br>
 
+##### **Lubos Kolouch** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-087/lubos-kolouch/python/ch-1.py) in **Python**.
+
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-087/roger-bell-west/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-087/roger-bell-west/python/ch-2.py) in **Python**.
 
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-087/roger-bell-west/ruby/ch-1.rb) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-087/roger-bell-west/ruby/ch-2.rb) in **Ruby**.
