@@ -250,6 +250,7 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/lubos-kolouch/perl/ch-1.pl)]
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/lubos-kolouch/perl/ch-2.pl)]
+[[**BLOG #1**](https://egroup.kolouch.org/nextcloud/index.php/apps/cms_pico/pico/lubos/202021108_perl_weekly_085)]
 
 ***
 
