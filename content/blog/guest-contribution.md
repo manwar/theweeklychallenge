@@ -34,6 +34,12 @@ Please find below guest contributions.
 
 ##### **Lubos Kolouch** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-087/lubos-kolouch/python/ch-1.py) in **Python**.
 
+##### **Myoungjin Jeon** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-087/jeongoon/go/ch-1.go) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-087/jeongoon/go/ch-2.go) in **Go**.
+
+##### **Myoungjin Jeon** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-087/jeongoon/haskell/ch-1.hs) in **Haskell**.
+
+##### **Myoungjin Jeon** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-087/jeongoon/common-lisp/ch-1.lsp) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-087/jeongoon/common-lisp/ch-2.lsp) in **Lisp**.
+
 ##### **Nuno Vieira** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-087/nunovieira220/js/ch-1.js) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-087/nunovieira220/js/ch-2.js) in **JavaScript**.
 
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-087/roger-bell-west/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-087/roger-bell-west/python/ch-2.py) in **Python**.
@@ -61,6 +67,10 @@ Please find below guest contributions.
 ##### **E. Choroba** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-086/e-choroba/c/ch-2.c) in **C**.
 
 ##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-086/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-086/lubos-kolouch/python/ch-2.py) in **Python**.
+
+##### **Myoungjin Jeon** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-086/jeongoon/go/ch-1.go) in **Go**.
+
+##### **Myoungjin Jeon** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-086/jeongoon/common-lisp/ch-1.lsp) in **Lisp**.
 
 ##### **Nuno Vieira** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-086/nunovieira220/js/ch-1.js) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-086/nunovieira220/js/ch-2.js) in **JavaScript**.
 
@@ -627,6 +637,8 @@ Please find below guest contributions.
 <br>
 
 ##### **Leo Manfredi** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-067/manfredi/python/ch-1.py) in **Python**.
+
+##### **Myoungjin Jeon** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-067/jeongoon/go/ch-1.go) in **Go**.
 
 ##### **Myoungjin Jeon** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-067/jeongoon/common-lisp/ch-1.lsp) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-067/jeongoon/common-lisp/ch-2.lsp) in **Lisp**.
 
