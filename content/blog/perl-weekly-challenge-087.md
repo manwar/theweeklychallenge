@@ -18,7 +18,7 @@ tags: ["Perl", "Raku"]
 ### 5. [CHART](#CHART)
 ### 6. [NEW MEMBERS](#NEWMEMBERS)
 ### 7. [GUESTS](#GUESTS)
-### 8. [TASK #1: Largest Consecutive Sequence](#TASK1)
+### 8. [TASK #1: Longest Consecutive Sequence](#TASK1)
 ### 9. [TASK #2: Largest Rectangle](#TASK2)
 
 <br>
