@@ -26,6 +26,10 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 088](/blog/perl-weekly-challenge-088) {#088}
 <br>
 
+##### **Abigail** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-088/abigail/c/ch-1.c) in **C**.
+
+##### **Abigail** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-088/abigail/node/ch-1.js) in **Node**.
+
 ##### **Henry Wong** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-088/henry-wong/php/ch-1.php) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-088/henry-wong/php/ch-2.php) in **PHP**.
 
 ##### **Nuno Vieira** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-088/nunovieira220/js/ch-1.js) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-088/nunovieira220/js/ch-2.js) in **JavaScript**.
