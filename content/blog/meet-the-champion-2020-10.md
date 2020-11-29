@@ -49,7 +49,7 @@ The second thing — rather on a personal development level — I think it real
 
 **Andrew:** I started solving the tasks since around Week 65, and then [retrospectively solved many assignments from earlier weeks](https://andrewshitov.com/raku-challenges-index/). My original idea was to spend half an hour per task at maximum including writing a blog post about the solution.
 
-Then I decided to make [weekly reviews of the Raku solutions](https://www.youtube.com/playlist?list=LLLrXBcpJG38drbQtZMRjfQg), which broke the initial plan, so it now takes a bit more than half an hour, which makes it more difficult to follow the schedule diligently.
+Then I decided to make [weekly reviews of the Raku solutions](https://www.youtube.com/playlist?list=PLEb1rjf07ffnUNZCxWQzbtxuGqTiIchNg), which broke the initial plan, so it now takes a bit more than half an hour, which makes it more difficult to follow the schedule diligently.
 
 ---
 
