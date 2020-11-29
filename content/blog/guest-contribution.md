@@ -26,6 +26,8 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 088](/blog/perl-weekly-challenge-088) {#088}
 <br>
 
+##### **Adam Russell** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-088/adam-russell/prolog/ch-2.p) in **Prolog**.
+
 ##### **Abigail** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-088/abigail/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-088/abigail/c/ch-2.c) in **C**.
 
 ##### **Abigail** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-088/abigail/node/ch-1.js) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-088/abigail/node/ch-2.js) in **Node**.
