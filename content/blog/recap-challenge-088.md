@@ -57,14 +57,15 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 #### 1) Arne Sommer
 #### 2) Jaldhar H. Vyas
 #### 3) Laurent Rosenfeld
-#### 4) Roger Bell_West
+#### 4) Myoungjin Jeon
+#### 5) Roger Bell_West
 
 <br>
 
 ## CONTRIBUTION STATS {#CONTRIBUTIONSTATS}
 ***
 
-The total contributions in the week is `118`.Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
+The total contributions in the week is `119`.Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
 
 ![Language Breakdown](/images/blog/languages-breakdown-88.png)
 
@@ -494,6 +495,7 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-088/jeongoon/perl/ch-2.pl)]
 [[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-088/jeongoon/raku/ch-1.raku)]
 [[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-088/jeongoon/raku/ch-2.raku)]
+[[**BLOG #1**](https://dev.to/jeongoon/weekly-challenge-088-task-1-perl-raku-and-more-1nlf)]
 
 ***
 
