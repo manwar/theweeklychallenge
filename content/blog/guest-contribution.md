@@ -5,10 +5,10 @@ description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
 author: Mohammad S Anwar
-tags: ["APL", "Awk", "Bash", "Bc", "C", "C++", "Clojure", "Elm", "Erlang", "Fish", "Gembase", "GNAT", "Go", "Haskell", "HTML", "Idris", "Java", "Javascript", "Kotlin", "Lisp", "Lua", "Node", "OCaml", "PHP", "Python", "Postscript", "Prolog", "R", "Ruby", "Rust", "Scala", "SQL", "Swift", "Tcl", "XSLT"]
+tags: ["APL", "Awk", "Bash", "Bc", "C", "C++", "Clojure", "Elm", "Erlang", "Fish", "Gembase", "GNAT", "Go", "Haskell", "HTML", "Idris", "Java", "JavaScript", "Kotlin", "Lisp", "Lua", "Node", "OCaml", "PHP", "Python", "Postscript", "Prolog", "R", "Ruby", "Rust", "Scala", "SQL", "Swift", "Tcl", "XSLT"]
 ---
 
-As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. During the **Week #018**, we received solutions to **["The Weekly Challenge - 018"](/blog/perl-weekly-challenge-018)** by `Orestis Zekai` in **Python**. It was pleasant surprise to receive solutions in something other than **Perl** and **Raku**. Ever since regular team members also started contributing in other languages like **APL**, **Awk**, **Bash**, **Bc**, **C**, **C++**, **Clojure**, **Elm**, **Erlang**, **Fish**, **Gembase**, **GNAT**, **Go**, **Haskell**, **HTML**, **Idris**, **Java**, **Javascript**, **Kotlin**, **Lisp**, **Lua**, **Node**, **OCaml**, **PHP**, **Python**, **Postscript**, **Prolog**, **R**, **Ruby**, **Rust**, **Scala**, **SQL**, **Swift**, **Tcl** and **XSLT**.
+As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. During the **Week #018**, we received solutions to **["The Weekly Challenge - 018"](/blog/perl-weekly-challenge-018)** by `Orestis Zekai` in **Python**. It was pleasant surprise to receive solutions in something other than **Perl** and **Raku**. Ever since regular team members also started contributing in other languages like **APL**, **Awk**, **Bash**, **Bc**, **C**, **C++**, **Clojure**, **Elm**, **Erlang**, **Fish**, **Gembase**, **GNAT**, **Go**, **Haskell**, **HTML**, **Idris**, **Java**, **JavaScript**, **Kotlin**, **Lisp**, **Lua**, **Node**, **OCaml**, **PHP**, **Python**, **Postscript**, **Prolog**, **R**, **Ruby**, **Rust**, **Scala**, **SQL**, **Swift**, **Tcl** and **XSLT**.
 
 Please find below guest contributions.
 
