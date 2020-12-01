@@ -1,0 +1,29 @@
+---
+title: "Advent Calendar 2020"
+date: 2020-12-01T00:00:00+00:00
+description: "Advent Calendar 2020."
+type: post
+image: images/blog/advent-calendar-2020.jpg
+author: Mohammad S Anwar
+tags: ["Perl", "Raku"]
+---
+***
+
+##### Here we go, back with the second **Advent Calendar**. I promise to present interesting topic every day contributed by esteemed members of **Team PWC**.
+
+***
+
+| <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MON<br><br> | &nbsp;&nbsp;&nbsp;TUE | &nbsp;&nbsp;&nbsp;WED | &nbsp;&nbsp;&nbsp;THU | &nbsp;&nbsp;&nbsp;FRI | &nbsp;&nbsp;&nbsp;SAT | &nbsp;&nbsp;&nbsp;SUN |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| | | | | | | |
+| <br><br><br>             | [**`1`**](/blog/advent-calendar-2020-12-01)             | **2**               | **3**                   | **4**                   | **5**                   | **6**            |
+| <br>**7**<br><br>       | **8**             | **9**             | **10**                   | **11**                   | **12**                   | **13**                   |
+| | | | | | | |
+| <br>**14**<br><br>       | **15**             | **16**             | **17**                   | **18**                   | **19**                   | **20**                   |
+| | | | | | | |
+| <br>**21**<br><br>       | **22**             | **23**             | **24**                   | **25**                   | **26**                   | **27**                   |
+| | | | | | | |
+| <br>**28**<br><br>       | **29**             | **30**             | **31**                   |                    |                    |                    |
+| | | | | | | |
+
+***
