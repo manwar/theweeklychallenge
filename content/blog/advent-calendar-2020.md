@@ -9,7 +9,7 @@ tags: ["Perl", "Raku"]
 ---
 ***
 
-##### Here we go, back with the second **Advent Calendar**. I promise to present interesting topic every day contributed by esteemed members of **Team PWC**.
+##### Here we go, we are back with the second **Advent Calendar 2020**. I promise to present interesting topic every day contributed by esteemed members of **Team PWC**.
 
 ***
 
