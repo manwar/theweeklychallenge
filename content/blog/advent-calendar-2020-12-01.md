@@ -11,7 +11,7 @@ tags: ["Perl", "Raku"]
 [**Advent Calendar 2020**](/blog/advent-calendar-2020)
 ***
 
-The gift is presented by [**Jaldhar H. Vyas**](https://perlweeklychallenge.org/blog/meet-the-champion-014). Today he is talking about his solutions to [**"The Weekly Challenge - 042"**](/blog/perl-weekly-challenge-042).
+The gift is presented by [**Jaldhar H. Vyas**](https://perlweeklychallenge.org/blog/meet-the-champion-014). Today he is talking about his solutions to [**"The Weekly Challenge - 042"**](/blog/perl-weekly-challenge-042). This is re-produced for **Advent Calendar 2020** from the original [**post**](https://www.braincells.com/perl/2020/01/perl_weekly_challenge_week_42.html) by **Jaldhar H. Vyas**.
 
 ***
 
