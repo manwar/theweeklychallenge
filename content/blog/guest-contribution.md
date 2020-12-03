@@ -1,14 +1,14 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2020-12-02T00:00:00+00:00
+date: 2020-12-03T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
 author: Mohammad S Anwar
-tags: ["APL", "Awk", "Bash", "Bc", "C", "C++", "Clojure", "Elm", "Erlang", "Fish", "Gembase", "GNAT", "Go", "Haskell", "HTML", "Idris", "Java", "JavaScript", "Kotlin", "Lisp", "Lua", "Node", "OCaml", "PHP", "Python", "Postscript", "Prolog", "R", "Ruby", "Rust", "Scala", "SQL", "Swift", "Tcl", "XSLT"]
+tags: ["APL", "Awk", "Basic", "Bash", "Bc", "Befunge", "Brainfuck", "C", "Chef", "Cobol", "C Shell", "C++", "Clojure", "Elm", "Erlang", "Fish", "Forth", "Fortran", "Gembase", "GNAT", "Go", "Haskell", "HTML", "Idris", "Java", "JavaScript", "Kotlin", "Lisp", "Lua", "Mumps", "Node", "OCaml", "Ook", "Pascal", "PHP", "Python", "Postscript", "Prolog", "R", "Ruby", "Rust", "Scala", "SQL", "Swift", "Tcl", "XSLT"]
 ---
 
-As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. During the **Week #018**, we received solutions to **["The Weekly Challenge - 018"](/blog/perl-weekly-challenge-018)** by `Orestis Zekai` in **Python**. It was pleasant surprise to receive solutions in something other than **Perl** and **Raku**. Ever since regular team members also started contributing in other languages like **APL**, **Awk**, **Bash**, **Bc**, **C**, **C++**, **Clojure**, **Elm**, **Erlang**, **Fish**, **Gembase**, **GNAT**, **Go**, **Haskell**, **HTML**, **Idris**, **Java**, **JavaScript**, **Kotlin**, **Lisp**, **Lua**, **Node**, **OCaml**, **PHP**, **Python**, **Postscript**, **Prolog**, **R**, **Ruby**, **Rust**, **Scala**, **SQL**, **Swift**, **Tcl** and **XSLT**.
+As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. During the **Week #018**, we received solutions to **["The Weekly Challenge - 018"](/blog/perl-weekly-challenge-018)** by `Orestis Zekai` in **Python**. It was pleasant surprise to receive solutions in something other than **Perl** and **Raku**. Ever since regular team members also started contributing in other languages like **APL**, **Awk**, **Basic**, **Bash**, **Bc**, **Befunge**, **Brainfuck**, **C**, **Chef**, **Cobol**, **C Shell**, **C++**, **Clojure**, **Elm**, **Erlang**, **Fish**, **Forth**, **Fortran**, **Gembase**, **GNAT**, **Go**, **Haskell**, **HTML**, **Idris**, **Java**, **JavaScript**, **Kotlin**, **Lisp**, **Lua**, **Mumps**, **Node**, **OCaml**, **Ook**, **Pascal**, **PHP**, **Python**, **Postscript**, **Prolog**, **R**, **Ruby**, **Rust**, **Scala**, **SQL**, **Swift**, **Tcl** and **XSLT**.
 
 Please find below guest contributions.
 
@@ -25,6 +25,44 @@ Please find below guest contributions.
 ----
 ## [The Weekly Challenge - 089](/blog/perl-weekly-challenge-089) {#089}
 <br>
+
+##### **Abigail** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-089/abigail/awk/ch-2.awk) in **Awk**.
+
+##### **Abigail** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-089/abigail/bash/ch-2.sh) in **Bash**.
+
+##### **Abigail** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-089/abigail/basic/ch-2.bas) in **Basic**.
+
+##### **Abigail** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-089/abigail/bc/ch-2.bc) in **Bc**.
+
+##### **Abigail** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-089/abigail/befunge-93/ch-2.bf93) in **Befunge**.
+
+##### **Abigail** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-089/abigail/brainfuck/ch-2.bf) in **Brainfuck**.
+
+##### **Abigail** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-089/abigail/c/ch-2.c) in **C**.
+
+##### **Abigail** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-089/abigail/chef/ch-2.chef) in **Chef**.
+
+##### **Abigail** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-089/abigail/cobol/ch-2.cb) in **Cobol**.
+
+##### **Abigail** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-089/abigail/csh/ch-2.csh) in **C Shell**.
+
+##### **Abigail** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-089/abigail/forth/ch-2.fs) in **Forth**.
+
+##### **Abigail** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-089/abigail/fortran/ch-2.f90) in **Fortran**.
+
+##### **Abigail** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-089/abigail/mumps/ch-2.mps) in **Mumps**.
+
+##### **Abigail** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-089/abigail/node/ch-2.js) in **Node**.
+
+##### **Abigail** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-089/abigail/ook/ch-2.ook) in **Ook**.
+
+##### **Abigail** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-089/abigail/pascal/ch-2.p) in **Pascal**.
+
+##### **Abigail** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-089/abigail/python/ch-2.py) in **Python**.
+
+##### **Abigail** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-089/abigail/ruby/ch-2.rb) in **Ruby**.
+
+##### **Abigail** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-089/abigail/sql/ch-2.sql) in **SQL**.
 
 ##### **Henry Wong** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-089/henry-wong/php/ch-1.php) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-089/henry-wong/php/ch-2.php) in **PHP**.
 
