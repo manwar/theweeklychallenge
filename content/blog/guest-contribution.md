@@ -64,6 +64,46 @@ Please find below guest contributions.
 
 ##### **Abigail** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-089/abigail/sql/ch-2.sql) in **SQL**.
 
+##### **Andrew Shitov** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-089/ash/bash/ch-1.bash) in **Bash**.
+
+##### **Andrew Shitov** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-089/ash/c/ch-1.c) in **C**.
+
+##### **Andrew Shitov** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-089/ash/cpp/ch-1.cpp) in **C++**.
+
+##### **Andrew Shitov** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-089/ash/csharp/ch-1.cs) in **C#**.
+
+##### **Andrew Shitov** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-089/ash/d/ch-1.d) in **D**.
+
+##### **Andrew Shitov** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-089/ash/dart/ch-1.dart) in **Dart**.
+
+##### **Andrew Shitov** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-089/ash/fortran/ch-1.f95) in **Fortran**.
+
+##### **Andrew Shitov** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-089/ash/go/ch-1.go) in **Go**.
+
+##### **Andrew Shitov** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-089/ash/java/ch-1.java) in **Java**.
+
+##### **Andrew Shitov** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-089/ash/javascript/ch-1.js) in **JavaScript**.
+
+##### **Andrew Shitov** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-089/ash/julia/ch-1.jl) in **Julia**.
+
+##### **Andrew Shitov** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-089/ash/kotlin/ch-1.kt) in **Kotlin**.
+
+##### **Andrew Shitov** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-089/ash/lisp/ch-1.lisp) in **Lisp**.
+
+##### **Andrew Shitov** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-089/ash/lua/ch-1.lua) in **Lua**.
+
+##### **Andrew Shitov** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-089/ash/pascal/ch-1.pas) in **Pascal**.
+
+##### **Andrew Shitov** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-089/ash/php/ch-1.php) in **PHP**.
+
+##### **Andrew Shitov** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-089/ash/python/ch-1.py) in **Python**.
+
+##### **Andrew Shitov** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-089/ash/ruby/ch-1.rb) in **Ruby**.
+
+##### **Andrew Shitov** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-089/ash/rust/ch-1.rs) in **Rust**.
+
+##### **Andrew Shitov** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-089/ash/scala/ch-1.scala) in **Scala**.
+
 ##### **Henry Wong** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-089/henry-wong/php/ch-1.php) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-089/henry-wong/php/ch-2.php) in **PHP**.
 
 ##### **Jan Krnavek** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-089/wambash/scala/ch-1.scala) in **Scala**.
