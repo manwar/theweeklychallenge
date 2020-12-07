@@ -14,13 +14,23 @@ Please find below guest contributions.
 
 ***
 
-#### &nbsp; * &nbsp; [[089](#089)] &nbsp; * &nbsp; [[088](#088)] &nbsp; * &nbsp; [[087](#087)] &nbsp; * &nbsp; [[086](#086)] &nbsp; * &nbsp; [[085](#085)] &nbsp; * &nbsp; [[084](#084)] &nbsp; * &nbsp; [[083](#083)] &nbsp; * &nbsp; [[082](#082)] &nbsp; * &nbsp; [[081](#081)] &nbsp; * &nbsp; [[080](#080)] &nbsp; * &nbsp; [[079](#079)] &nbsp; * &nbsp; [[078](#078)] &nbsp; * &nbsp; [[077](#077)] &nbsp; * &nbsp; [[076](#076)] &nbsp; * &nbsp; [[075](#075)] &nbsp; * &nbsp; [[074](#074)] &nbsp; * &nbsp; [[073](#073)] &nbsp; * &nbsp; [[072](#072)] &nbsp; * &nbsp; [[071](#071)] &nbsp; *
+#### &nbsp; * &nbsp; [[090](#090)] &nbsp; * &nbsp; [[089](#089)] &nbsp; * &nbsp; [[088](#088)] &nbsp; * &nbsp; [[087](#087)] &nbsp; * &nbsp; [[086](#086)] &nbsp; * &nbsp; [[085](#085)] &nbsp; * &nbsp; [[084](#084)] &nbsp; * &nbsp; [[083](#083)] &nbsp; * &nbsp; [[082](#082)] &nbsp; * &nbsp; [[081](#081)] &nbsp; * &nbsp; [[080](#080)] &nbsp; * &nbsp; [[079](#079)] &nbsp; * &nbsp; [[078](#078)] &nbsp; * &nbsp; [[077](#077)] &nbsp; * &nbsp; [[076](#076)] &nbsp; * &nbsp; [[075](#075)] &nbsp; * &nbsp; [[074](#074)] &nbsp; * &nbsp; [[073](#073)] &nbsp; * &nbsp; [[072](#072)] &nbsp; *
 
-#### &nbsp; * &nbsp; [[070](#070)] &nbsp; * &nbsp; [[069](#069)] &nbsp; * &nbsp; [[068](#068)] &nbsp; * &nbsp; [[067](#067)] &nbsp; * &nbsp; [[066](#066)] &nbsp; * &nbsp; [[065](#065)] &nbsp; * &nbsp; [[064](#064)] &nbsp; * &nbsp; [[063](#063)] &nbsp; * &nbsp; [[062](#062)] &nbsp; * &nbsp; [[061](#061)] &nbsp; * &nbsp; [[060](#060)] &nbsp; * &nbsp; [[059](#059)] &nbsp; * &nbsp; [[058](#058)] &nbsp; * &nbsp; [[057](#057)] &nbsp; * &nbsp; [[056](#056)] &nbsp; * &nbsp; [[055](#055)] &nbsp; * &nbsp; [[054](#054)] &nbsp; * &nbsp; [[053](#053)] &nbsp; * &nbsp; [[052](#071)] &nbsp; *
+#### &nbsp; * &nbsp; [[071](#071)] &nbsp; * &nbsp; [[070](#070)] &nbsp; * &nbsp; [[069](#069)] &nbsp; * &nbsp; [[068](#068)] &nbsp; * &nbsp; [[067](#067)] &nbsp; * &nbsp; [[066](#066)] &nbsp; * &nbsp; [[065](#065)] &nbsp; * &nbsp; [[064](#064)] &nbsp; * &nbsp; [[063](#063)] &nbsp; * &nbsp; [[062](#062)] &nbsp; * &nbsp; [[061](#061)] &nbsp; * &nbsp; [[060](#060)] &nbsp; * &nbsp; [[059](#059)] &nbsp; * &nbsp; [[058](#058)] &nbsp; * &nbsp; [[057](#057)] &nbsp; * &nbsp; [[056](#056)] &nbsp; * &nbsp; [[055](#055)] &nbsp; * &nbsp; [[054](#054)] &nbsp; * &nbsp; [[053](#053)] &nbsp; *
 
-#### &nbsp; * &nbsp; [[051](#051)] &nbsp; * &nbsp; [[050](#050)] &nbsp; * &nbsp; [[049](#049)] &nbsp; * &nbsp; [[048](#048)] &nbsp; * &nbsp; [[047](#047)] &nbsp; * &nbsp; [[046](#046)] &nbsp; * &nbsp; [[045](#045)] &nbsp; * &nbsp; [[044](#044)] &nbsp; * &nbsp; [[043](#043)] &nbsp; * &nbsp; [[042](#042)] &nbsp; * &nbsp; [[041](#041)] &nbsp; * &nbsp; [[040](#040)] &nbsp; * &nbsp; [[037](#037)] &nbsp; * &nbsp; [[036](#036)] &nbsp; * &nbsp; [[034](#034)] &nbsp; * &nbsp; [[033](#033)] &nbsp; * &nbsp; [[032](#032)] &nbsp; * &nbsp; [[031](#031)] &nbsp; * &nbsp; [[028](#028)] &nbsp; *
+#### &nbsp; * &nbsp; [[052](#052)] &nbsp; * &nbsp; [[051](#051)] &nbsp; * &nbsp; [[050](#050)] &nbsp; * &nbsp; [[049](#049)] &nbsp; * &nbsp; [[048](#048)] &nbsp; * &nbsp; [[047](#047)] &nbsp; * &nbsp; [[046](#046)] &nbsp; * &nbsp; [[045](#045)] &nbsp; * &nbsp; [[044](#044)] &nbsp; * &nbsp; [[043](#043)] &nbsp; * &nbsp; [[042](#042)] &nbsp; * &nbsp; [[041](#041)] &nbsp; * &nbsp; [[040](#040)] &nbsp; * &nbsp; [[037](#037)] &nbsp; * &nbsp; [[036](#036)] &nbsp; * &nbsp; [[034](#034)] &nbsp; * &nbsp; [[033](#033)] &nbsp; * &nbsp; [[032](#032)] &nbsp; * &nbsp; [[031](#031)] &nbsp; *
 
-#### &nbsp; * &nbsp; [[027](#027)] &nbsp; * &nbsp; [[023](#023)] &nbsp; * &nbsp; [[018](#018)] &nbsp; *
+#### &nbsp; * &nbsp; [[028](#028)] &nbsp; * &nbsp; [[027](#027)] &nbsp; * &nbsp; [[023](#023)] &nbsp; * &nbsp; [[018](#018)] &nbsp; *
+
+----
+## [The Weekly Challenge - 090](/blog/perl-weekly-challenge-090) {#090}
+<br>
+
+##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/roger-bell-west/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/roger-bell-west/python/ch-2.py) in **Python**.
+
+##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/roger-bell-west/ruby/ch-1.rb) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/roger-bell-west/ruby/ch-2.rb) in **Ruby**.
+
+##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/roger-bell-west/rust/ch-1.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/roger-bell-west/rust/ch-1.rs) in **Rust**.
 
 ----
 ## [The Weekly Challenge - 089](/blog/perl-weekly-challenge-089) {#089}
