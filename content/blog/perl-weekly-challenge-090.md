@@ -189,7 +189,7 @@ Please give it a try to an excellent tool [**EZPWC**](https://github.com/saiftyn
 
 #### 35) Andrew Shitov shared solution to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-089/ash/pascal/ch-1.pas) in Pascal.
 
-#### 36) Andrew Shitov shared solution to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-089/ash/php/ch-1.php) in PHP*
+#### 36) Andrew Shitov shared solution to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-089/ash/php/ch-1.php) in PHP.
 
 #### 37) Andrew Shitov shared solution to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-089/ash/python/ch-1.py) in Python.
 
