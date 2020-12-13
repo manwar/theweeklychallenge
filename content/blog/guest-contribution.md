@@ -28,6 +28,8 @@ Please find below guest contributions.
 
 ##### **Henry Wong** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/henry-wong/php/ch-1.php) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/henry-wong/php/ch-2.php) in **PHP**.
 
+##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/laurent-rosenfeld/scala/ch-1.scala) in **Scala**.
+
 ##### **Mohammad Meraj Zia** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/ziameraj16/java/EthiopianMultiplication.java) in **Java**.
 
 ##### **Nuno Vieira** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/nunovieira220/js/ch-1.js) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/nunovieira220/js/ch-2.js) in **JavaScript**.
