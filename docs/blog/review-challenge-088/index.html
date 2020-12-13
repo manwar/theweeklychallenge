@@ -217,13 +217,38 @@
 <p><a href="mailto:pwc.perfectwave@gmail.com"><img src="/images/blog/Email.svg" height="50" width="50"> Email</a> › Please email me (Colin) with any feedback, notes, clarifications or whatnot about this review.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge"><img src="/images/blog/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request to us for any issues you may find with this page.</p>
 <p><a href="https://twitter.com/perlwchallenge"><img src="/images/blog/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!</p>
-<p>I&rsquo;m always curious as to what the people think of these efforts. Everyone here at the PWC would like to hear any feedback you&rsquo;d like to give.
-<strong>So finally, without further ado&hellip;</strong></p>
+<p>I&rsquo;m always curious as to what the people think of these efforts. Everyone here at the PWC would like to hear any feedback you&rsquo;d like to give.</p>
+<p><strong>So finally, without further ado&hellip;</strong></p>
 <hr>
-<h2 id="---nbsp--nbsp--nbsp---task-1pwc088task1-------nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---task-2pwc088task2---nbsp--nbsp--nbsp----------nbsp--nbsp--nbsp---blogspwc088blogs----nbsp--nbsp--nbsp-------">•             <a href="#PWC088TASK1">Task 1</a>                 •             <a href="#PWC088TASK2">Task 2</a>                 •             <a href="#PWC088BLOGS">BLOGS</a>                  •</h2>
+<h2 id="---nbsp--nbsp--nbsp---task-1pwc088task1-------nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---task-2pwc088task2---nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---blogspwc088blogs----nbsp--nbsp--nbsp---">•             <a href="#PWC088TASK1">Task 1</a>                 •             <a href="#PWC088TASK2">Task 2</a>             	•             <a href="#PWC088BLOGS">BLOGS</a>              	•</h2>
 <hr>
 <h1 id="PWC088TASK1">TASK 1</h1>
-<h2 id="about-the-solutions">about the solutions</h2>
+<h1 id="array-of-product">Array of Product</h1>
+<p><em>Submitted by: Mohammad S Anwar</em></p>
+<p>You are given an array of positive integers @N.</p>
+<p>Write a script to return an array @M where $M[i] is the product of all elements of @N except the index $N[i].</p>
+<h4 id="example-1">Example 1:</h4>
+<p>Input:</p>
+<pre><code>    @N = (5, 2, 1, 4, 3)
+</code></pre><p>Output:</p>
+<pre><code>    @M = (24, 60, 120, 30, 40)
+
+    $M[0] = 2 x 1 x 4 x 3 = 24
+    $M[1] = 5 x 1 x 4 x 3 = 60
+    $M[2] = 5 x 2 x 4 x 3 = 120
+    $M[3] = 5 x 2 x 1 x 3 = 30
+    $M[4] = 5 x 2 x 1 x 4 = 40
+</code></pre><h4 id="example-2">Example 2:</h4>
+<p>Input:</p>
+<pre><code>    @N = (2, 1, 4, 3)
+</code></pre><p>Output:</p>
+<pre><code>    @M = (12, 24, 6, 8)
+
+    $M[0] = 1 x 4 x 3 = 12
+    $M[1] = 2 x 4 x 3 = 24
+    $M[2] = 2 x 1 x 3 = 6
+    $M[3] = 2 x 1 x 4 = 8
+</code></pre><h2 id="about-the-solutions">about the solutions</h2>
 <p>There were 32 submissions for the first task this past week. The pack broke along two basic approaches, to either actively construct the product for each element, or to create an intermediary value and derive the subproducts from this through division. There were also a few renegades, out there on the hoary fringes, blazing new paths across the uncharted wilderness. We&rsquo;ll get to them.</p>
 <p>The question of overflows came up several times. By my thinking, I figure that if you&rsquo;re riding so close to the edge that a single multiplication will send you over it then likely your whole approach needs a rework. Not necessarily, mind you, but generally one should have a pretty good idea of the range of one&rsquo;s data, and whether the number 6x10^53 is liable to show up in a list of single-digit values. On the other hand if you were writing a general command line utility this case would need to be gracefully handled. So it really depends on how you choose to interpret the goal of the task. Me, I generally focus on the puzzle and the underlying logic more than constructing a robust app. Obviously others here have different priorities, which is as it should be. For a more thorough examination of this idea look down to the end where Abigail and Flavio address it.</p>
 <h2 id="additive-or-subtractive">ADDITIVE or SUBTRACTIVE?</h2>
@@ -385,7 +410,7 @@
 </code></pre></div><p>And</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-088/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a></p>
 <p>has opted for using the more generic <code>reduce</code> with a multiplication function to create the initial product.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span>   $product <span style="color:#f92672">=</span> reduce { $a <span style="color:#f92672">*</span> $b } @N;                     <span style="color:#75715e"># List reduction</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span>   $product <span style="color:#f92672">=</span> reduce { $a <span style="color:#f92672">*</span> $b } @N;                     <span style="color:#75715e"># List reduction</span>
     <span style="color:#66d9ef">my</span>   @M;
     push @M, $product <span style="color:#f92672">/</span> $N[$_] <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#N;
 </code></pre></div><p>Working on lists of data to output transformed versions of those lists naturally lends itself to functional paradigms, as in the <code>reduce</code> function above, where we apply a basic multiplication to the list as a data structure rather than a composite of parts. This in turn led to the widespread use of <code>map</code> to act on the list rather than crafting a more traditional loop. With the use of <code>map</code>, though, the already concise code becomes even more compact.</p>
@@ -427,16 +452,16 @@
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-088/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a></p>
 <p>In addition to some basic input validation, Simon has chosen to include a special case for when @N only has one element, deciding this should return 0. Hmmm&hellip; Ok, he says&hellip; As with Julio, above, I&rsquo;m not convinced such a case can even be considered to be meaningful in the context of the challenge as given. I mean, if you have one element, what <em>is</em> the product of the list excluding that element, being the entirety of the list? I find contemplating the whole idea of calculating the product of «nothing» immediately leads me into deeply vague ontological territory. I&rsquo;ve written here before in a similar vein about leading zeros and placeholders for nothingness, but this takes that discussion to a whole new level. There&rsquo;s even a seemingly mystical resonance to this particular instance as well, much like the sound of one hand clapping. I don&rsquo;t think a solid answer is within the scope of this report, so, as I said before, make sure it makes it to the documentation.</p>
 <p>In other remarks I must applaud his commenting. Code may well be self-explanatory, but it&rsquo;s hubris to <em>assume</em> it is, and a little guidance and consideration can go a long way in this world. So be like Simon. Simon&rsquo;s got it going on.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># Special case if there is only one number</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># Special case if there is only one number</span>
     <span style="color:#66d9ef">if</span> ( scalar(@N) <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> ) {
         say <span style="color:#e6db74">&#39;0&#39;</span>;
         <span style="color:#66d9ef">return</span>;
     }
 
-    <span style="color:#75715e"># Calculate the product of all numbers</span>
+    <span style="color:#75715e"># Calculate the product of all numbers</span>
     <span style="color:#66d9ef">my</span> $product <span style="color:#f92672">=</span> product(@N);
 
-    <span style="color:#75715e"># The solution for each number is product divided by the number</span>
+    <span style="color:#75715e"># The solution for each number is product divided by the number</span>
     say join <span style="color:#e6db74">&#39;, &#39;</span>, map { $product <span style="color:#f92672">/</span> $_ } @N;
 </code></pre></div><h2 id="off-the-beaten-path-into-the-wilderness-onward">off the BEATEN PATH, into the WILDERNESS! ONWARD!</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-088/abigail/perl/ch-1.pl"><strong>Abigail</strong></a> and
@@ -447,12 +472,12 @@
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-088/abigail/perl/ch-1.pl"><strong>Abigail</strong></a></p>
 <p>Abigail has given us an interesting strategy to avoid possible overflows by calculating each successive instance of @M from the previous. First he calculates $M[0] from multiplying out the array slice following the first element, using <code>product</code> from <code>List::Util</code>. Then for the following value, he takes this product, divides out $N[$i] (which will compose part of it), then multiplies back in $N[$i-1], the part previously left out. Each successive value is then calculated from the previous in this manner. The active principle here being to never exceed the maximum value contained in the result @M at any intermediate point within the calculation.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">while</span> (<span style="color:#f92672">&lt;&gt;</span>) {
-        <span style="color:#75715e"># Read in a line of data.</span>
+        <span style="color:#75715e"># Read in a line of data.</span>
         <span style="color:#66d9ef">my</span> @N <span style="color:#f92672">=</span> <span style="color:#e6db74">/[1-9][0-9]*/g</span>;
-        <span style="color:#75715e"># Calculate M [0], and print it.</span>
+        <span style="color:#75715e"># Calculate M [0], and print it.</span>
         printf <span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#66d9ef">my</span> $P <span style="color:#f92672">=</span> product @N [<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $#N];
-        <span style="color:#75715e"># For each i &gt; 0, calculate M [i] from M [i - 1], N [i] and N [i - 1],</span>
-        <span style="color:#75715e"># and print it.</span>
+        <span style="color:#75715e"># For each i &gt; 0, calculate M [i] from M [i - 1], N [i] and N [i - 1],</span>
+        <span style="color:#75715e"># and print it.</span>
         printf <span style="color:#e6db74">&#34;, %d&#34;</span>, $P <span style="color:#f92672">=</span> $P <span style="color:#f92672">/</span> $N [$_] <span style="color:#f92672">*</span> $N [$_ <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $#N;
         <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
     }
@@ -465,19 +490,19 @@
     }
 </code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-088/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a></p>
 <p>CY has given us a unique version of a filtered constructive solution, in the form of one-liner:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">perl -e <span style="color:#e6db74">&#39;for $j (0..scalar @ARGV-1) {$a = 1; eval {$a *= $ARGV[$_] if $_ != $j} for (0..scalar @ARGV-1); print &#34;$a &#34;; }&#39;</span> <span style="color:#ae81ff">5</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">4</span> 3
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">perl -e <span style="color:#e6db74">&#39;for $j (0..scalar @ARGV-1) {$a = 1; eval {$a *= $ARGV[$_] if $_ != $j} for (0..scalar @ARGV-1); print &#34;$a &#34;; }&#39;</span> <span style="color:#ae81ff">5</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">3</span>
 </code></pre></div><p>It&rsquo;s nice. I like it.</p>
 <p>And finally, someone has brought us a solution using the Perl Data Language!</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-088/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
 <p>I&rsquo;m always excited when the enormous power of the PDL is brought to bear on our little tasks. Somewhat akin to putting advanced rocket fuels in a go-kart, or perhaps bringing a hand grenade to a knife-fight, the PDL appears to be able to make short work of arbitrarily complex problems in a seemingly effortless manner.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">array_of_products</span> {
-        <span style="color:#66d9ef">use</span> PDL;                                        <span style="color:#75715e">#use the perl data language</span>
+        <span style="color:#66d9ef">use</span> PDL;                                        <span style="color:#75715e">#use the perl data language</span>
         <span style="color:#66d9ef">use</span> PDL::NiceSlice;
-        <span style="color:#66d9ef">my</span> $input <span style="color:#f92672">=</span> pdl(@_);                            <span style="color:#75715e">#input piddle (PDL array)</span>
-        <span style="color:#66d9ef">my</span> $matrix <span style="color:#f92672">=</span> $input(:,<span style="color:#f92672">*</span>$input<span style="color:#f92672">-&gt;</span>dim(<span style="color:#ae81ff">0</span>))<span style="color:#f92672">-&gt;</span>copy;   <span style="color:#75715e">#replicate row to produce a matrix</span>
-        $matrix<span style="color:#f92672">-&gt;</span>diagonal(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>) <span style="color:#f92672">.=</span> <span style="color:#ae81ff">1</span>;                    <span style="color:#75715e">#replace diagonal by 1&#39;s</span>
-        <span style="color:#66d9ef">my</span> $output <span style="color:#f92672">=</span> $matrix<span style="color:#f92672">-&gt;</span>prodover;                 <span style="color:#75715e">#multiply elements row-wise</span>
-        <span style="color:#66d9ef">return</span> $output<span style="color:#f92672">-&gt;</span>list;                           <span style="color:#75715e">#convert to perl list</span>
+        <span style="color:#66d9ef">my</span> $input <span style="color:#f92672">=</span> pdl(@_);                            <span style="color:#75715e">#input piddle (PDL array)</span>
+        <span style="color:#66d9ef">my</span> $matrix <span style="color:#f92672">=</span> $input(:,<span style="color:#f92672">*</span>$input<span style="color:#f92672">-&gt;</span>dim(<span style="color:#ae81ff">0</span>))<span style="color:#f92672">-&gt;</span>copy;   <span style="color:#75715e">#replicate row to produce a matrix</span>
+        $matrix<span style="color:#f92672">-&gt;</span>diagonal(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>) <span style="color:#f92672">.=</span> <span style="color:#ae81ff">1</span>;                    <span style="color:#75715e">#replace diagonal by 1&#39;s</span>
+        <span style="color:#66d9ef">my</span> $output <span style="color:#f92672">=</span> $matrix<span style="color:#f92672">-&gt;</span>prodover;                 <span style="color:#75715e">#multiply elements row-wise</span>
+        <span style="color:#66d9ef">return</span> $output<span style="color:#f92672">-&gt;</span>list;                           <span style="color:#75715e">#convert to perl list</span>
     }
 </code></pre></div><p>I think interested parties should be able to follow the action quite nicely. Replacing the diagonal with 1s is an amazing piece of functionality that eliminates one value from the product of each row in a progressive manner, being exactly what we want. It&rsquo;s a beautiful thing to behold.</p>
 <p>For a more detailed introduction to and description of advanced rocket fuels, poke around and locate a copy of  <em>Ignition! An Informal History of Liquid Rocket Propellants</em> by John D. Clark (Rutgers University Press, 1972), which contains many passages like the following tidbit:</p>
@@ -486,7 +511,26 @@
 </blockquote>
 <hr>
 <h1 id="PWC088TASK2">TASK 2</h1>
-<h2 id="about-the-solutions-1">about the solutions</h2>
+<h1 id="spiral-matrix">Spiral Matrix</h1>
+<p><em>Submitted by: Mohammad S Anwar</em></p>
+<p>You are given m x n matrix of positive integers.</p>
+<p>Write a script to print spiral matrix as list.</p>
+<h4 id="example-1-1">Example 1:</h4>
+<pre><code>    Input:
+        [ 1, 2, 3 ]
+        [ 4, 5, 6 ]
+        [ 7, 8, 9 ]
+    Ouput:
+        [ 1, 2, 3, 6, 9, 8, 7, 4, 5 ]
+</code></pre><h5 id="example-2-1">Example 2:</h5>
+<pre><code>    Input:
+        [  1,  2,  3,  4 ]
+        [  5,  6,  7,  8 ]
+        [  9, 10, 11, 12 ]
+        [ 13, 14, 15, 16 ]
+    Output:
+        [ 1, 2, 3, 4, 8, 12, 16, 15, 14, 13, 9, 5, 6, 7, 11, 10 ]
+</code></pre><h2 id="about-the-solutions-1">about the solutions</h2>
 <p>There were 31 submissions for the second task this past week. With that many variations it&rsquo;s unfortunately not possible to review each and every one, but on examination some broader categories emerged.</p>
 <p>The basic progression, as specified, was to read along the top, down the right side, reversed along the bottom and then up the left side to complete one looping of the spiral. At that point, once one complete ring was circumnavigated, the process could then be repeated on the inner matrix remaining. The cycling could be tracked to constrict by means of an offset to the edges, or a dummy parallel matrix identifying boundaries, or in some methods the cells were physically removed. In any case the process is repeated, either through a loop or recursion, until there are no more cells to be read.</p>
 <h2 id="take-a-walk">take a WALK</h2>
@@ -535,19 +579,19 @@
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $rows <span style="color:#f92672">=</span> scalar(@array);
     <span style="color:#66d9ef">my</span> $cols <span style="color:#f92672">=</span> scalar( @{ $array[<span style="color:#ae81ff">0</span>] } );
 
-    <span style="color:#75715e"># Right, down, left and up</span>
+    <span style="color:#75715e"># Right, down, left and up</span>
     <span style="color:#66d9ef">my</span> @directions <span style="color:#f92672">=</span> ( [ <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span> ], [ <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span> ], [ <span style="color:#ae81ff">0</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> ], [ <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span> ] );
 
-    <span style="color:#75715e"># Map out the values we&#39;ve used</span>
+    <span style="color:#75715e"># Map out the values we&#39;ve used</span>
     <span style="color:#66d9ef">my</span> @used <span style="color:#f92672">=</span> ( map { [ (<span style="color:#ae81ff">0</span>) x $cols ] } ( <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $rows ) );
 
-    <span style="color:#75715e"># We start at the top left, moving right</span>
+    <span style="color:#75715e"># We start at the top left, moving right</span>
     <span style="color:#66d9ef">my</span> $x         <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
     <span style="color:#66d9ef">my</span> $y         <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
     <span style="color:#66d9ef">my</span> $direction <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
     <span style="color:#66d9ef">my</span> @solutions <span style="color:#f92672">=</span> ();
 
-    <span style="color:#75715e"># Loop until we&#39;ve found all the numbers</span>
+    <span style="color:#75715e"># Loop until we&#39;ve found all the numbers</span>
     <span style="color:#66d9ef">while</span> ( scalar(@solutions) <span style="color:#f92672">&lt;</span> $rows <span style="color:#f92672">*</span> $cols ) {
         push @solutions, $array[$x][$y];
         $used[$x][$y] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
@@ -555,8 +599,8 @@
         <span style="color:#66d9ef">my</span> $next_x <span style="color:#f92672">=</span> $x <span style="color:#f92672">+</span> $directions[$direction][<span style="color:#ae81ff">0</span>];
         <span style="color:#66d9ef">my</span> $next_y <span style="color:#f92672">=</span> $y <span style="color:#f92672">+</span> $directions[$direction][<span style="color:#ae81ff">1</span>];
 
-        <span style="color:#75715e"># If we&#39;ve reached the bounds of our grid, or found a value</span>
-        <span style="color:#75715e">#  we&#39;ve already used, we need to switch direction</span>
+        <span style="color:#75715e"># If we&#39;ve reached the bounds of our grid, or found a value</span>
+        <span style="color:#75715e">#  we&#39;ve already used, we need to switch direction</span>
         <span style="color:#66d9ef">if</span> (   $next_x <span style="color:#f92672">==</span> $cols
             <span style="color:#f92672">or</span> $next_y <span style="color:#f92672">==</span> $rows
             <span style="color:#f92672">or</span> $next_x <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>
@@ -600,7 +644,7 @@
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> @turns <span style="color:#f92672">=</span> ([<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>], [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>], [<span style="color:#ae81ff">0</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>], [<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>]);
     <span style="color:#66d9ef">my</span> @out;
 
-    <span style="color:#75715e"># Start at top left, moving right</span>
+    <span style="color:#75715e"># Start at top left, moving right</span>
     <span style="color:#66d9ef">my</span> ($r, $c) <span style="color:#f92672">=</span> ($rmin, $cmin);
     <span style="color:#66d9ef">my</span> $move <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
 
@@ -611,7 +655,7 @@
             $rnext <span style="color:#f92672">&gt;</span> $rmax <span style="color:#f92672">||</span>
             $cnext <span style="color:#f92672">&lt;</span> $cmin <span style="color:#f92672">||</span>
             $cnext <span style="color:#f92672">&gt;</span> $cmax) {
-            <span style="color:#75715e"># Turn right</span>
+            <span style="color:#75715e"># Turn right</span>
             <span style="color:#66d9ef">if</span>    ($rnext <span style="color:#f92672">&lt;</span> $rmin) { $cmin<span style="color:#f92672">++</span>; }
             <span style="color:#66d9ef">elsif</span> ($rnext <span style="color:#f92672">&gt;</span> $rmax) { $cmax<span style="color:#f92672">--</span>; }
             <span style="color:#66d9ef">elsif</span> ($cnext <span style="color:#f92672">&gt;</span> $cmax) { $rmin<span style="color:#f92672">++</span>; }
@@ -663,7 +707,7 @@
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get_row</span> ($M, $r, $c, $n) { $M<span style="color:#f92672">-&gt;</span>[$r]<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">[$</span>c <span style="color:#f92672">..</span> $c <span style="color:#f92672">+</span> $n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] }
     <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get_col</span> ($M, $r, $c, $n) { map { $M<span style="color:#f92672">-&gt;</span>[$r <span style="color:#f92672">+</span> $_][$c] } <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> }
     <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get_frame</span> ($M, $r, $c, $nr, $nc) {
-       ($nr, $nc) <span style="color:#f92672">=</span> ($nr <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, $nc <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>); <span style="color:#75715e"># more useful like this</span>
+       ($nr, $nc) <span style="color:#f92672">=</span> ($nr <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, $nc <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>); <span style="color:#75715e"># more useful like this</span>
        <span style="color:#66d9ef">return</span> (
           get_row(        $M, $r      , $c      , $nc),
           get_col(        $M, $r      , $c <span style="color:#f92672">+</span> $nc, $nr),
@@ -690,25 +734,25 @@
         <span style="color:#66d9ef">my</span> ($mat) <span style="color:#f92672">=</span> @_;
         <span style="color:#66d9ef">my</span> $cols  <span style="color:#f92672">=</span> $mat<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
         my $rows  <span style="color:#f92672">=</span> $mat<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
-        my $rank  <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;           <span style="color:#75715e">## loop count of spiral, 0-based</span>
+        my $rank  <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;           <span style="color:#75715e">## loop count of spiral, 0-based</span>
         <span style="color:#66d9ef">my</span> $out   <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>;
 
         <span style="color:#66d9ef">while</span> (<span style="color:#f92672">-</span>spiraling) {
-            <span style="color:#75715e">## upper - left to right</span>
+            <span style="color:#75715e">## upper - left to right</span>
             <span style="color:#66d9ef">return</span> $out <span style="color:#66d9ef">if</span> $rank <span style="color:#f92672">&gt;</span> ceil( $rows <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>);
             push $out<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, $mat<span style="color:#f92672">-&gt;</span>[$rank]<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">[$</span>rank<span style="color:#f92672">..</span>$cols<span style="color:#f92672">-</span>$rank<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
 
-            <span style="color:#75715e">## right - top to bottom</span>
+            <span style="color:#75715e">## right - top to bottom</span>
             <span style="color:#66d9ef">return</span> $out <span style="color:#66d9ef">if</span> $rank <span style="color:#f92672">&gt;</span> ceil( $cols <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>);
             <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $row ( $rank<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$rows<span style="color:#f92672">-</span>$rank<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span> ) {
                 push $out<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, $mat<span style="color:#f92672">-&gt;</span>[$row][$cols<span style="color:#f92672">-</span>$rank<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
             }
 
-            <span style="color:#75715e">## lower - right to left</span>
+            <span style="color:#75715e">## lower - right to left</span>
             <span style="color:#66d9ef">return</span> $out <span style="color:#66d9ef">if</span> $rank <span style="color:#f92672">&gt;</span> floor( $rows <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>);
             push $out<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, reverse $mat<span style="color:#f92672">-&gt;</span>[$rows<span style="color:#f92672">-</span>$rank<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">[$</span>rank<span style="color:#f92672">..</span>$cols<span style="color:#f92672">-</span>$rank<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] ;
 
-            <span style="color:#75715e">## left - bottom to top</span>
+            <span style="color:#75715e">## left - bottom to top</span>
             <span style="color:#66d9ef">return</span> $out <span style="color:#66d9ef">if</span> $rank <span style="color:#f92672">&gt;</span> floor( $cols <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>);
             <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $row ( reverse $rank<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$rows<span style="color:#f92672">-</span>$rank<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span> ) {
                 push $out<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, $mat<span style="color:#f92672">-&gt;</span>[$row][$rank];
@@ -721,34 +765,34 @@
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">matrix_spiral</span> {
         <span style="color:#66d9ef">my</span> $matrix <span style="color:#f92672">=</span> shift;
 
-        <span style="color:#75715e"># Spiral around the matrix by traversing: east, south, west and then north.</span>
-        <span style="color:#75715e"># We will contract the bounding box when we turn north.</span>
-            <span style="color:#75715e"># Determine dimensions of this matrix and its bounding box.</span>
+        <span style="color:#75715e"># Spiral around the matrix by traversing: east, south, west and then north.</span>
+        <span style="color:#75715e"># We will contract the bounding box when we turn north.</span>
+            <span style="color:#75715e"># Determine dimensions of this matrix and its bounding box.</span>
         <span style="color:#66d9ef">my</span> ($a, $b, $c, $d) <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, scalar( @{$matrix} )<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, scalar( @{$matrix<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]} )<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
 
-        <span style="color:#66d9ef">my</span> $out; <span style="color:#75715e"># printed output</span>
-        <span style="color:#66d9ef">my</span> $element_max <span style="color:#f92672">=</span> ($c <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">*</span> ($d <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>); <span style="color:#75715e"># total possible element of the spiral</span>
+        <span style="color:#66d9ef">my</span> $out; <span style="color:#75715e"># printed output</span>
+        <span style="color:#66d9ef">my</span> $element_max <span style="color:#f92672">=</span> ($c <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">*</span> ($d <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>); <span style="color:#75715e"># total possible element of the spiral</span>
         <span style="color:#66d9ef">my</span> $element_count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
 
-        <span style="color:#75715e"># (x,y) are the current element.</span>
-        <span style="color:#75715e"># Start traversing from just outside the matrix at north-west corner (-1, d+1)</span>
+        <span style="color:#75715e"># (x,y) are the current element.</span>
+        <span style="color:#75715e"># Start traversing from just outside the matrix at north-west corner (-1, d+1)</span>
         <span style="color:#66d9ef">my</span> ($x, $y) <span style="color:#f92672">=</span> (<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, $d<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>);
         LAST: <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
-            <span style="color:#75715e"># traverse east</span>
-            ($x, $y) <span style="color:#f92672">=</span> ($x<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>, $y<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>); <span style="color:#75715e"># (x,y) = (0,d) if this is the very first element</span>
+            <span style="color:#75715e"># traverse east</span>
+            ($x, $y) <span style="color:#f92672">=</span> ($x<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>, $y<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>); <span style="color:#75715e"># (x,y) = (0,d) if this is the very first element</span>
             <span style="color:#66d9ef">while</span> ($x <span style="color:#f92672">&lt;=</span> $c) {
                 $out <span style="color:#f92672">.=</span> $matrix<span style="color:#f92672">-&gt;</span>[$y][$x] <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;,&#34;</span>;
                 <span style="color:#66d9ef">last</span> LAST <span style="color:#66d9ef">if</span> (<span style="color:#f92672">++</span>$element_count <span style="color:#f92672">==</span> $element_max);
                 $x<span style="color:#f92672">++</span>;
             }
-            <span style="color:#75715e"># traverse south</span>
+            <span style="color:#75715e"># traverse south</span>
             ($x, $y) <span style="color:#f92672">=</span> ($c, $y<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
             <span style="color:#66d9ef">while</span> ($y <span style="color:#f92672">&gt;=</span> $b) {
                 $out <span style="color:#f92672">.=</span> $matrix<span style="color:#f92672">-&gt;</span>[$y][$x] <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;,&#34;</span>;
                 <span style="color:#66d9ef">last</span> LAST <span style="color:#66d9ef">if</span> (<span style="color:#f92672">++</span>$element_count <span style="color:#f92672">==</span> $element_max);
                 $y<span style="color:#f92672">--</span>;
             }
-            <span style="color:#75715e"># traverse west</span>
+            <span style="color:#75715e"># traverse west</span>
             ($x, $y) <span style="color:#f92672">=</span> ($x<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, $y<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>);
             <span style="color:#66d9ef">while</span> ($x <span style="color:#f92672">&gt;=</span> $a) {
                 $out <span style="color:#f92672">.=</span> $matrix<span style="color:#f92672">-&gt;</span>[$y][$x] <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;,&#34;</span>;
@@ -756,10 +800,10 @@
                 $x<span style="color:#f92672">--</span>;
             }
 
-            <span style="color:#75715e"># tighten the spiral&#39;s bounding box</span>
+            <span style="color:#75715e"># tighten the spiral&#39;s bounding box</span>
             $a<span style="color:#f92672">++</span>; $b<span style="color:#f92672">++</span>, $c<span style="color:#f92672">--</span>; $d<span style="color:#f92672">--</span>;
 
-            <span style="color:#75715e"># traverse north</span>
+            <span style="color:#75715e"># traverse north</span>
             ($x, $y) <span style="color:#f92672">=</span> ($x<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>, $y<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>);
             <span style="color:#66d9ef">while</span> ($y <span style="color:#f92672">&lt;=</span> $d) {
                 $out <span style="color:#f92672">.=</span> $matrix<span style="color:#f92672">-&gt;</span>[$y][$x] <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;,&#34;</span>;
@@ -874,15 +918,15 @@
 <p>James demonstrates how simple the &lsquo;destructive method&rsquo; as he puts it, can be.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">spiral_matrix</span> {
       <span style="color:#66d9ef">my</span> @rows <span style="color:#f92672">=</span> map { [@{$_}] } @_;
-      <span style="color:#75715e">## Note this is a destructive method... So we take a copy of the elements of the array ## o/w we will blow contents of sub-arrays away.</span>
+      <span style="color:#75715e">## Note this is a destructive method... So we take a copy of the elements of the array ## o/w we will blow contents of sub-arrays away.</span>
       <span style="color:#66d9ef">my</span> @res;
       <span style="color:#66d9ef">while</span>( @rows <span style="color:#f92672">&amp;&amp;</span> @{$rows[<span style="color:#ae81ff">0</span>]} ) {
-        <span style="color:#75715e">## We work around the square.....</span>
-        <span style="color:#75715e">## TOP      &gt;&gt;&gt;&gt; we just push to the answers... (and remove them from the array!)</span>
-        <span style="color:#75715e">## RIGHT    vvvv Remaining rows we take off the last element... and push to the answer array</span>
-        <span style="color:#75715e">## BOTTOM   &lt;&lt;&lt;&lt; (if there is one) we add it to the answers in reverse and remove from the array</span>
-        <span style="color:#75715e">## LEFT     ^^^^ Finally we push the first element of each row into the answers {note we go up the array</span>
-        <span style="color:#75715e">## Repeat until the array is empty (either has no rows or no columns [entries in first row])</span>
+        <span style="color:#75715e">## We work around the square.....</span>
+        <span style="color:#75715e">## TOP      &gt;&gt;&gt;&gt; we just push to the answers... (and remove them from the array!)</span>
+        <span style="color:#75715e">## RIGHT    vvvv Remaining rows we take off the last element... and push to the answer array</span>
+        <span style="color:#75715e">## BOTTOM   &lt;&lt;&lt;&lt; (if there is one) we add it to the answers in reverse and remove from the array</span>
+        <span style="color:#75715e">## LEFT     ^^^^ Finally we push the first element of each row into the answers {note we go up the array</span>
+        <span style="color:#75715e">## Repeat until the array is empty (either has no rows or no columns [entries in first row])</span>
         push @res,         @{shift @rows};
         push @res, pop     @{$_         } <span style="color:#66d9ef">foreach</span> grep { @{$_} }         @rows;
         push @res, reverse @{pop   @rows} <span style="color:#66d9ef">if</span>                             @rows;
@@ -895,44 +939,44 @@
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">return_spiral</span> {
         <span style="color:#66d9ef">my</span> @array <span style="color:#f92672">=</span> @_;
         <span style="color:#66d9ef">my</span> @spiral;
-    <span style="color:#75715e"># handle special cases</span>
-    <span style="color:#75715e"># just one row</span>
+    <span style="color:#75715e"># handle special cases</span>
+    <span style="color:#75715e"># just one row</span>
         <span style="color:#66d9ef">if</span> (scalar(@array) <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>) {
             <span style="color:#66d9ef">return</span> ( @{$array[<span style="color:#ae81ff">0</span>]} );
-    <span style="color:#75715e"># just one column</span>
+    <span style="color:#75715e"># just one column</span>
         } <span style="color:#66d9ef">elsif</span> ( scalar ( @{$array[<span style="color:#ae81ff">0</span>]} ) <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> ) {
             <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; $i <span style="color:#f92672">&lt;</span> scalar(@array); $i<span style="color:#f92672">++</span>) {
                 push ( @spiral, @{$array[$i]}[<span style="color:#ae81ff">0</span>] );
             }
             <span style="color:#66d9ef">return</span> ( @spiral );
-    <span style="color:#75715e"># we have at least a 2 x 2 array</span>
+    <span style="color:#75715e"># we have at least a 2 x 2 array</span>
         } <span style="color:#66d9ef">else</span> {
-    <span style="color:#75715e"># get first row</span>
+    <span style="color:#75715e"># get first row</span>
             push ( @spiral, @{$array[<span style="color:#ae81ff">0</span>]} );
-    <span style="color:#75715e"># get right column</span>
+    <span style="color:#75715e"># get right column</span>
             <span style="color:#66d9ef">my</span> $right_ci <span style="color:#f92672">=</span> scalar ( @{$array[<span style="color:#ae81ff">0</span>]} ) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
             <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $y <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; $y <span style="color:#f92672">&lt;</span> scalar ( @array ); $y<span style="color:#f92672">++</span>) {
                 push ( @spiral, @{$array[$y]}[$right_ci] );
             }
-    <span style="color:#75715e"># remove last element from last row</span>
+    <span style="color:#75715e"># remove last element from last row</span>
             pop ( @{$array[$#array]} );
-    <span style="color:#75715e"># get last row in reversed order</span>
+    <span style="color:#75715e"># get last row in reversed order</span>
             push ( @spiral, reverse ( @{$array[$#array]} ) );
-    <span style="color:#75715e"># get left column</span>
+    <span style="color:#75715e"># get left column</span>
             <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> ($#array <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>); $i <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>; $i<span style="color:#f92672">--</span>) {
                 push ( @spiral, @{$array[$i]}[<span style="color:#ae81ff">0</span>] );
             }
-    <span style="color:#75715e"># check if resulting array is empty (i.e. we were originally sent</span>
-    <span style="color:#75715e"># just a two-row or two-column array to begin with</span>
+    <span style="color:#75715e"># check if resulting array is empty (i.e. we were originally sent</span>
+    <span style="color:#75715e"># just a two-row or two-column array to begin with</span>
             <span style="color:#66d9ef">if</span> (scalar( @array ) <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">||</span> scalar ( @{$array[<span style="color:#ae81ff">0</span>]} ) <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span>) {
                 <span style="color:#66d9ef">return</span> ( @spiral );
             } <span style="color:#66d9ef">else</span> {
-    <span style="color:#75715e"># trim array</span>
-    <span style="color:#75715e"># trim top row:</span>
+    <span style="color:#75715e"># trim array</span>
+    <span style="color:#75715e"># trim top row:</span>
                 shift @array;
-    <span style="color:#75715e"># trim bottom row:</span>
+    <span style="color:#75715e"># trim bottom row:</span>
                 pop @array;
-    <span style="color:#75715e"># remove first and last element from remaining rows</span>
+    <span style="color:#75715e"># remove first and last element from remaining rows</span>
                 <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; $i <span style="color:#f92672">&lt;</span> scalar(@array); $i<span style="color:#f92672">++</span>) {
                     shift ( @{$array[$i]} );
                     pop   ( @{$array[$i]} );
@@ -993,16 +1037,16 @@
 
         <span style="color:#66d9ef">return</span> () <span style="color:#66d9ef">if</span> <span style="color:#f92672">!</span>@matrix;
 
-        <span style="color:#75715e"># get top and bottom row  an remove them from the input</span>
+        <span style="color:#75715e"># get top and bottom row  an remove them from the input</span>
         <span style="color:#66d9ef">my</span> ( $top, $bot );
         ( $top, @matrix ) <span style="color:#f92672">=</span> @$matrix;
         ( $bot, @matrix ) <span style="color:#f92672">=</span> ( $matrix[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>], @matrix[ <span style="color:#ae81ff">0</span> <span style="color:#f92672">...</span> ( $#matrix <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ) ] );
 
-        <span style="color:#75715e"># get left and right side from the remaining rows</span>
+        <span style="color:#75715e"># get left and right side from the remaining rows</span>
         <span style="color:#66d9ef">my</span> @left_side  <span style="color:#f92672">=</span> map { $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] } @matrix;
         <span style="color:#66d9ef">my</span> @right_side <span style="color:#f92672">=</span> map { $_<span style="color:#f92672">-&gt;</span>[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] } @matrix;
 
-        <span style="color:#75715e"># remove left and right side from the matrix</span>
+        <span style="color:#75715e"># remove left and right side from the matrix</span>
         @matrix <span style="color:#f92672">=</span> map { [ @{$_}[ <span style="color:#ae81ff">1</span> <span style="color:#f92672">...</span> ( $#$_ <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ) ] ] } @matrix;
 
         <span style="color:#66d9ef">return</span> ( @$top, @right_side, reverse( @{ $bot <span style="color:#e6db74">//</span> <span style="color:#f92672">[]</span> } ),
@@ -1046,67 +1090,67 @@ Very nice.</p>
 <h3 id="unleash-the-pdl">unleash the PDL!</h3>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-088/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a> and
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-088/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
-<p>I don&rsquo;t hold back on my pleasure in discovering solutions utilizing the Perl Data Language. Every opportunity dissecting them teaches me a little more about the data processing power of this amazing tool.</p>
+<p>I don&rsquo;t hold back on my pleasure in discovering solutions utilizing the Perl Data Language. Every opportunity dissecting these gems teaches me a little more about the data processing power of this amazing tool.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-088/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a></p>
 <p>In our opening argument, Jorg takes his matrix and sections off parts using the PDL <code>slice</code> function, advancing around in a clockwise fashion and reconstructing the matrix along the way from the remaining sections after slicing. This is akin to the archetypical encircle and remove after reading method.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># Instructions for the unrolling engine:</span>
-    <span style="color:#75715e"># - edge (as slice arg)</span>
-    <span style="color:#75715e"># - remaining matrix (as slice arg)</span>
-    <span style="color:#75715e"># - affected dimension (row or column)</span>
-    <span style="color:#75715e"># by direction.</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># Instructions for the unrolling engine:</span>
+    <span style="color:#75715e"># - edge (as slice arg)</span>
+    <span style="color:#75715e"># - remaining matrix (as slice arg)</span>
+    <span style="color:#75715e"># - affected dimension (row or column)</span>
+    <span style="color:#75715e"># by direction.</span>
     <span style="color:#66d9ef">my</span> @instr <span style="color:#f92672">=</span> (
-        [<span style="color:#e6db74">&#39;X,(0)&#39;</span>, <span style="color:#e6db74">&#39;X,1:-1&#39;</span>, <span style="color:#ae81ff">1</span>],        <span style="color:#75715e"># first row, east</span>
-        [<span style="color:#e6db74">&#39;(-1),X&#39;</span>, <span style="color:#e6db74">&#39;0:-2,X&#39;</span>, <span style="color:#ae81ff">0</span>],    <span style="color:#75715e"># last column, south</span>
-        [<span style="color:#e6db74">&#39;-1:0,(-1)&#39;</span>, <span style="color:#e6db74">&#39;X,0:-2&#39;</span>, <span style="color:#ae81ff">1</span>],    <span style="color:#75715e"># last row, west</span>
-        [<span style="color:#e6db74">&#39;(0),-1:0&#39;</span>, <span style="color:#e6db74">&#39;1:-1,X&#39;</span>, <span style="color:#ae81ff">0</span>]);    <span style="color:#75715e"># first column, north</span>
+    	[<span style="color:#e6db74">&#39;X,(0)&#39;</span>, <span style="color:#e6db74">&#39;X,1:-1&#39;</span>, <span style="color:#ae81ff">1</span>],		<span style="color:#75715e"># first row, east</span>
+    	[<span style="color:#e6db74">&#39;(-1),X&#39;</span>, <span style="color:#e6db74">&#39;0:-2,X&#39;</span>, <span style="color:#ae81ff">0</span>],	<span style="color:#75715e"># last column, south</span>
+    	[<span style="color:#e6db74">&#39;-1:0,(-1)&#39;</span>, <span style="color:#e6db74">&#39;X,0:-2&#39;</span>, <span style="color:#ae81ff">1</span>],	<span style="color:#75715e"># last row, west</span>
+    	[<span style="color:#e6db74">&#39;(0),-1:0&#39;</span>, <span style="color:#e6db74">&#39;1:-1,X&#39;</span>, <span style="color:#ae81ff">0</span>]);	<span style="color:#75715e"># first column, north</span>
 
-    <span style="color:#75715e"># Unroll given matrix, i.e. return the elements as a 1-d list in</span>
-    <span style="color:#75715e"># spiral form.</span>
+    <span style="color:#75715e"># Unroll given matrix, i.e. return the elements as a 1-d list in</span>
+    <span style="color:#75715e"># spiral form.</span>
     <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">unroll</span> {
-        <span style="color:#75715e"># Input matrix, starting direction and result.</span>
-        <span style="color:#66d9ef">my</span> ($m, $dir, $unrolled) <span style="color:#f92672">=</span> (long(shift), <span style="color:#ae81ff">0</span>, PDL<span style="color:#f92672">-&gt;</span>null);
+    	<span style="color:#75715e"># Input matrix, starting direction and result.</span>
+    	<span style="color:#66d9ef">my</span> ($m, $dir, $unrolled) <span style="color:#f92672">=</span> (long(shift), <span style="color:#ae81ff">0</span>, PDL<span style="color:#f92672">-&gt;</span>null);
 
-        say $m;
-        die <span style="color:#e6db74">&#34;not a matrix&#34;</span> <span style="color:#66d9ef">unless</span> $m<span style="color:#f92672">-&gt;</span>ndims <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span>;
+    	say $m;
+    	die <span style="color:#e6db74">&#34;not a matrix&#34;</span> <span style="color:#66d9ef">unless</span> $m<span style="color:#f92672">-&gt;</span>ndims <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span>;
 
-        <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
-            <span style="color:#75715e"># Get the instructions.</span>
-            <span style="color:#66d9ef">my</span> ($edge, $remaining, $dim) <span style="color:#f92672">=</span> $instr[$dir]<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+    	<span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
+    		<span style="color:#75715e"># Get the instructions.</span>
+    		<span style="color:#66d9ef">my</span> ($edge, $remaining, $dim) <span style="color:#f92672">=</span> $instr[$dir]<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
 
-            <span style="color:#960050;background-color:#1e0010">#</span> Append current edge to the result<span style="color:#f92672">.</span>
-            $unrolled <span style="color:#f92672">=</span> $unrolled<span style="color:#f92672">-&gt;</span>append($m<span style="color:#f92672">-&gt;</span>slice($edge));
+    		<span style="color:#960050;background-color:#1e0010">#</span> Append current edge to the result<span style="color:#f92672">.</span>
+    		$unrolled <span style="color:#f92672">=</span> $unrolled<span style="color:#f92672">-&gt;</span>append($m<span style="color:#f92672">-&gt;</span>slice($edge));
 
-            <span style="color:#75715e"># Stop if the current edge was the last remaining dimension.</span>
-            <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $m<span style="color:#f92672">-&gt;</span>dim($dim) <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>;
+    		<span style="color:#75715e"># Stop if the current edge was the last remaining dimension.</span>
+    		<span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $m<span style="color:#f92672">-&gt;</span>dim($dim) <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>;
 
-            <span style="color:#75715e"># Take the remaining matrix.</span>
-            $m <span style="color:#f92672">=</span> $m<span style="color:#f92672">-&gt;</span>slice($remaining);
+    		<span style="color:#75715e"># Take the remaining matrix.</span>
+    		$m <span style="color:#f92672">=</span> $m<span style="color:#f92672">-&gt;</span>slice($remaining);
 
-            <span style="color:#75715e"># Switch direction.</span>
-            $dir <span style="color:#f92672">=</span> ($dir <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) % 4;
-        }
+    		<span style="color:#75715e"># Switch direction.</span>
+    		$dir <span style="color:#f92672">=</span> ($dir <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) % 4;
+    	}
 
-        say $unrolled;
-        $unrolled<span style="color:#f92672">-&gt;</span>unpdl;
+    	say $unrolled;
+    	$unrolled<span style="color:#f92672">-&gt;</span>unpdl;
     }
 </code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-088/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
 <p>Welcoming Luis to the party, we find him bringing us a PDL analogue to the slice and rotate method, reading the top row, removing it, rotating the matrix underfoot and repeating until the matrix is consumed.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">spiral_matrix</span> {
-        <span style="color:#66d9ef">use</span> PDL;                                    <span style="color:#75715e"># use the perl data language</span>
+        <span style="color:#66d9ef">use</span> PDL;                                    <span style="color:#75715e"># use the perl data language</span>
         <span style="color:#66d9ef">use</span> PDL::NiceSlice;
-        <span style="color:#66d9ef">my</span> $input <span style="color:#f92672">=</span> pdl(@_);                        <span style="color:#75715e"># input piddle (PDL 2D array)</span>
+        <span style="color:#66d9ef">my</span> $input <span style="color:#f92672">=</span> pdl(@_);                        <span style="color:#75715e"># input piddle (PDL 2D array)</span>
         <span style="color:#66d9ef">my</span> @output;
-        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">if</span> $input<span style="color:#f92672">-&gt;</span>dim(<span style="color:#ae81ff">1</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;              <span style="color:#75715e"># 0 rows no elements</span>
-        <span style="color:#66d9ef">while</span> ($input<span style="color:#f92672">-&gt;</span>dim(<span style="color:#ae81ff">0</span>) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {                <span style="color:#75715e"># until no more columns</span>
-            push @output, $input<span style="color:#f92672">-&gt;</span>(:,(<span style="color:#ae81ff">0</span>))<span style="color:#f92672">-&gt;</span>list;    <span style="color:#75715e"># walk through row</span>
-            <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $input<span style="color:#f92672">-&gt;</span>dim(<span style="color:#ae81ff">1</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>;            <span style="color:#75715e"># no more rows</span>
-            $input <span style="color:#f92672">=</span> $input<span style="color:#f92672">-&gt;</span>(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>:<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>:<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)            <span style="color:#75715e"># reflect rows, remove one row</span>
-                <span style="color:#f92672">-&gt;</span>transpose;                        <span style="color:#75715e"># rotate</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">if</span> $input<span style="color:#f92672">-&gt;</span>dim(<span style="color:#ae81ff">1</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;              <span style="color:#75715e"># 0 rows no elements</span>
+        <span style="color:#66d9ef">while</span> ($input<span style="color:#f92672">-&gt;</span>dim(<span style="color:#ae81ff">0</span>) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {                <span style="color:#75715e"># until no more columns</span>
+            push @output, $input<span style="color:#f92672">-&gt;</span>(:,(<span style="color:#ae81ff">0</span>))<span style="color:#f92672">-&gt;</span>list;    <span style="color:#75715e"># walk through row</span>
+            <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $input<span style="color:#f92672">-&gt;</span>dim(<span style="color:#ae81ff">1</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>;            <span style="color:#75715e"># no more rows</span>
+            $input <span style="color:#f92672">=</span> $input<span style="color:#f92672">-&gt;</span>(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>:<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>:<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)            <span style="color:#75715e"># reflect rows, remove one row</span>
+                <span style="color:#f92672">-&gt;</span>transpose;                        <span style="color:#75715e"># rotate</span>
         }
         <span style="color:#66d9ef">return</span> @output
     }
-</code></pre></div><br>
-<h1 id="PWC080BLOGS">BLOGS</h1>
+</code></pre></div><hr>
+<h1 id="PWC088BLOGS">BLOGS</h1>
 <hr>
 <p><strong>That&rsquo;s it for me this week, people! Resolute and unbroken by the torrential influx, I have maintained my bearings. Looking forward to next wave, the perfect wave, I am: your humble servant.</strong></p>
 <h2 id="PWC088BLOGS">But if Your <em>THIRST</em> for <em>KNOWLEDGE</em> is not <em>SLAKED</em>,</h2>
@@ -1115,8 +1159,8 @@ Very nice.</p>
 <p><em><strong>( don&rsquo;t think, trust your training, you&rsquo;re in the zone, just do it &hellip; )</strong></em></p>
 <p><strong>Abigail</strong></p>
 <ul>
-<li><a href="https://wp.me/pcxd30-7I">Perl Weekly Challenge 88, Part 1 – Abigail�s Programming Blog</a> ( <em>Perl</em> )</li>
-<li><a href="https://wp.me/pcxd30-8Z">Perl Weekly Challenge 88, Part 2 – Abigail�s Programming Blog</a> ( <em>Perl</em> )</li>
+<li><a href="https://wp.me/pcxd30-7I">Perl Weekly Challenge 88, Part 1 – Abigail's Programming Blog</a> ( <em>Perl</em> )</li>
+<li><a href="https://wp.me/pcxd30-8Z">Perl Weekly Challenge 88, Part 2 – Abigail's Programming Blog</a> ( <em>Perl</em> )</li>
 </ul>
 <p><strong>Adam Russell</strong></p>
 <ul>

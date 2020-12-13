@@ -44,15 +44,62 @@ Let's have a look and see what we can find.
 <a href="https://twitter.com/perlwchallenge"><img src="/images/blog/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!
 
 I'm always curious as to what the people think of these efforts. Everyone here at the PWC would like to hear any feedback you'd like to give.
+
 **So finally, without further ado...**
 
 ---
 
-## •   &nbsp;  &nbsp;  &nbsp;   [Task 1](#PWC088TASK1)       &nbsp;  &nbsp;  &nbsp;   •   &nbsp;  &nbsp;  &nbsp;   [Task 2](#PWC088TASK2)   &nbsp;  &nbsp;  &nbsp;       •   &nbsp;  &nbsp;  &nbsp;   [BLOGS](#PWC088BLOGS)    &nbsp;  &nbsp;  &nbsp;       •
+## •   &nbsp;  &nbsp;  &nbsp;   [Task 1](#PWC088TASK1)       &nbsp;  &nbsp;  &nbsp;   •   &nbsp;  &nbsp;  &nbsp;   [Task 2](#PWC088TASK2)   &nbsp;  &nbsp;  &nbsp;   	•   &nbsp;  &nbsp;  &nbsp;   [BLOGS](#PWC088BLOGS)    &nbsp;  &nbsp;  &nbsp;   	•
 
 ---
 
 # TASK 1 {#PWC088TASK1}
+
+# Array of Product
+*Submitted by: Mohammad S Anwar*
+
+You are given an array of positive integers @N.
+
+Write a script to return an array @M where $M[i] is the product of all elements of @N except the index $N[i].
+
+#### Example 1:
+
+Input:
+
+```
+    @N = (5, 2, 1, 4, 3)
+```
+Output:
+
+```
+    @M = (24, 60, 120, 30, 40)
+
+    $M[0] = 2 x 1 x 4 x 3 = 24
+    $M[1] = 5 x 1 x 4 x 3 = 60
+    $M[2] = 5 x 2 x 4 x 3 = 120
+    $M[3] = 5 x 2 x 1 x 3 = 30
+    $M[4] = 5 x 2 x 1 x 4 = 40
+```
+
+#### Example 2:
+
+Input:
+
+```
+    @N = (2, 1, 4, 3)
+```
+
+Output:
+
+```
+    @M = (12, 24, 6, 8)
+
+    $M[0] = 1 x 4 x 3 = 12
+    $M[1] = 2 x 4 x 3 = 24
+    $M[2] = 2 x 1 x 3 = 6
+    $M[3] = 2 x 1 x 4 = 8
+```
+
 ## about the solutions
 
 There were 32 submissions for the first task this past week. The pack broke along two basic approaches, to either actively construct the product for each element, or to create an intermediary value and derive the subproducts from this through division. There were also a few renegades, out there on the hoary fringes, blazing new paths across the uncharted wilderness. We'll get to them.
@@ -492,6 +539,35 @@ For a more detailed introduction to and description of advanced rocket fuels, po
 ---
 
 # TASK 2 {#PWC088TASK2}
+
+# Spiral Matrix
+*Submitted by: Mohammad S Anwar*
+
+You are given m x n matrix of positive integers.
+
+Write a script to print spiral matrix as list.
+
+#### Example 1:
+```
+    Input:
+        [ 1, 2, 3 ]
+        [ 4, 5, 6 ]
+        [ 7, 8, 9 ]
+    Ouput:
+        [ 1, 2, 3, 6, 9, 8, 7, 4, 5 ]
+```
+
+##### Example 2:
+```
+    Input:
+        [  1,  2,  3,  4 ]
+        [  5,  6,  7,  8 ]
+        [  9, 10, 11, 12 ]
+        [ 13, 14, 15, 16 ]
+    Output:
+        [ 1, 2, 3, 4, 8, 12, 16, 15, 14, 13, 9, 5, 6, 7, 11, 10 ]
+```
+
 ## about the solutions
 
 There were 31 submissions for the second task this past week. With that many variations it's unfortunately not possible to review each and every one, but on examination some broader categories emerged.
@@ -1167,7 +1243,7 @@ sub rotator($matrix) {
 [**Jorg Sommrey**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-088/jo-37/perl/ch-2.pl) and
 [**W. Luis Mochan**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-088/wlmb/perl/ch-2.pl)
 
-I don't hold back on my pleasure in discovering solutions utilizing the Perl Data Language. Every opportunity dissecting them teaches me a little more about the data processing power of this amazing tool.
+I don't hold back on my pleasure in discovering solutions utilizing the Perl Data Language. Every opportunity dissecting these gems teaches me a little more about the data processing power of this amazing tool.
 
 [**Jorg Sommrey**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-088/jo-37/perl/ch-2.pl)
 
@@ -1180,39 +1256,39 @@ In our opening argument, Jorg takes his matrix and sections off parts using the 
     # - affected dimension (row or column)
     # by direction.
     my @instr = (
-        ['X,(0)', 'X,1:-1', 1],        # first row, east
-        ['(-1),X', '0:-2,X', 0],    # last column, south
-        ['-1:0,(-1)', 'X,0:-2', 1],    # last row, west
-        ['(0),-1:0', '1:-1,X', 0]);    # first column, north
+    	['X,(0)', 'X,1:-1', 1],		# first row, east
+    	['(-1),X', '0:-2,X', 0],	# last column, south
+    	['-1:0,(-1)', 'X,0:-2', 1],	# last row, west
+    	['(0),-1:0', '1:-1,X', 0]);	# first column, north
 
     # Unroll given matrix, i.e. return the elements as a 1-d list in
     # spiral form.
     sub unroll {
-        # Input matrix, starting direction and result.
-        my ($m, $dir, $unrolled) = (long(shift), 0, PDL->null);
+    	# Input matrix, starting direction and result.
+    	my ($m, $dir, $unrolled) = (long(shift), 0, PDL->null);
 
-        say $m;
-        die "not a matrix" unless $m->ndims == 2;
+    	say $m;
+    	die "not a matrix" unless $m->ndims == 2;
 
-        while (1) {
-            # Get the instructions.
-            my ($edge, $remaining, $dim) = $instr[$dir]->@*;
+    	while (1) {
+    		# Get the instructions.
+    		my ($edge, $remaining, $dim) = $instr[$dir]->@*;
 
-            # Append current edge to the result.
-            $unrolled = $unrolled->append($m->slice($edge));
+    		# Append current edge to the result.
+    		$unrolled = $unrolled->append($m->slice($edge));
 
-            # Stop if the current edge was the last remaining dimension.
-            last if $m->dim($dim) == 1;
+    		# Stop if the current edge was the last remaining dimension.
+    		last if $m->dim($dim) == 1;
 
-            # Take the remaining matrix.
-            $m = $m->slice($remaining);
+    		# Take the remaining matrix.
+    		$m = $m->slice($remaining);
 
-            # Switch direction.
-            $dir = ($dir + 1) % 4;
-        }
+    		# Switch direction.
+    		$dir = ($dir + 1) % 4;
+    	}
 
-        say $unrolled;
-        $unrolled->unpdl;
+    	say $unrolled;
+    	$unrolled->unpdl;
     }
 ```
 
@@ -1237,11 +1313,11 @@ Welcoming Luis to the party, we find him bringing us a PDL analogue to the slice
     }
 ```
 
-<br>
+---
 
-# BLOGS {#PWC080BLOGS}
+# BLOGS {#PWC088BLOGS}
 
-***
+---
 
 **That's it for me this week, people! Resolute and unbroken by the torrential influx, I have maintained my bearings. Looking forward to next wave, the perfect wave, I am: your humble servant.**
 
@@ -1254,8 +1330,8 @@ Welcoming Luis to the party, we find him bringing us a PDL analogue to the slice
 
 **Abigail**
 
- * [Perl Weekly Challenge 88, Part 1 &#8211; Abigail&#039;s Programming Blog](https://wp.me/pcxd30-7I) ( *Perl* )
- * [Perl Weekly Challenge 88, Part 2 &#8211; Abigail&#039;s Programming Blog](https://wp.me/pcxd30-8Z) ( *Perl* )
+ * [Perl Weekly Challenge 88, Part 1 &#8211; Abigail&#39;s Programming Blog](https://wp.me/pcxd30-7I) ( *Perl* )
+ * [Perl Weekly Challenge 88, Part 2 &#8211; Abigail&#39;s Programming Blog](https://wp.me/pcxd30-8Z) ( *Perl* )
 
 **Adam Russell**
 
