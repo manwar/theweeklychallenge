@@ -83,8 +83,8 @@ The total contributions in the week is `110`.Well done **Team PWC**. I would als
 #### 10) Node: 22
 #### 11) Lua: 21
 #### 12) Go: 20
-#### 13) Swift: 18
-#### 14) C: 17
+#### 13) C: 19
+#### 14) Swift: 18
 #### 15) Prolog: 15
 #### 16) R: 12
 #### 17) Elm: 11

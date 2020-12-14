@@ -33,7 +33,7 @@ We have 3 new members joining the **Team PWC** this week, `Garrett Goebel`, `Mih
 
 ![Contributions Summary](/images/blog/contributions-summary-90.png)
 
-This week, we had `25 contributions` by guests in `14` different languages. I would like to `THANK` each and every guest contributors.
+This week, we had `27 contributions` by guests in `15` different languages. I would like to `THANK` each and every guest contributors.
 
 ![Languages Summary](/images/blog/languages-summary-90.png)
 
@@ -126,33 +126,35 @@ Please give it a try to an excellent tool [**EZPWC**](https://github.com/saiftyn
 
 #### 3) Abigail shared solution to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/abigail/befunge-93/ch-1.bf93) in Befunge.
 
-#### 4) Abigail shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/abigail/node/ch-1.js) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/abigail/node/ch-2.js) in Node.
+#### 4) Abigail shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/abigail/c/ch-1.c) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/abigail/c/ch-2.c) in C.
 
-#### 5) Abigail shared solution to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/abigail/python/ch-1.py) in Python.
+#### 5) Abigail shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/abigail/node/ch-1.js) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/abigail/node/ch-2.js) in Node.
 
-#### 6) Abigail shared solution to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/abigail/ruby/ch-1.rb) in Ruby.
+#### 6) Abigail shared solution to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/abigail/python/ch-1.py) in Python.
 
-#### 7) Abigail shared solution to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/abigail/sql/ch-1.sql) in SQL.
+#### 7) Abigail shared solution to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/abigail/ruby/ch-1.rb) in Ruby.
 
-#### 8) Henry Wong shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/henry-wong/php/ch-1.php) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/henry-wong/php/ch-2.php) in PHP.
+#### 8) Abigail shared solution to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/abigail/sql/ch-1.sql) in SQL.
 
-#### 9) Laurent Rosenfeld shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/laurent-rosenfeld/scala/ch-1.scala) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/laurent-rosenfeld/scala/ch-2.scala) in Scala.
+#### 9) Henry Wong shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/henry-wong/php/ch-1.php) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/henry-wong/php/ch-2.php) in PHP.
 
-#### 10) Mohammad Meraj Zia shared solution to [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/ziameraj16/java/EthiopianMultiplication.java) in Java.
+#### 10) Laurent Rosenfeld shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/laurent-rosenfeld/scala/ch-1.scala) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/laurent-rosenfeld/scala/ch-2.scala) in Scala.
 
-#### 11) Nuno Vieira shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/nunovieira220/js/ch-1.js) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/nunovieira220/js/ch-2.js) in JavaScript.
+#### 11) Mohammad Meraj Zia shared solution to [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/ziameraj16/java/EthiopianMultiplication.java) in Java.
 
-#### 12) Pete Houston shared solution to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/pete-houston/awk/ch-1.awk) in Awk.
+#### 12) Nuno Vieira shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/nunovieira220/js/ch-1.js) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/nunovieira220/js/ch-2.js) in JavaScript.
 
-#### 13) Roger Bell_West shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/roger-bell-west/python/ch-1.py) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/roger-bell-west/python/ch-2.py) in Python.
+#### 13) Pete Houston shared solution to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/pete-houston/awk/ch-1.awk) in Awk.
 
-#### 14) Roger Bell_West shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/roger-bell-west/ruby/ch-1.rb) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/roger-bell-west/ruby/ch-2.rb) in Ruby.
+#### 14) Roger Bell_West shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/roger-bell-west/python/ch-1.py) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/roger-bell-west/python/ch-2.py) in Python.
 
-#### 15) Roger Bell_West shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/roger-bell-west/rust/ch-1.rs) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/roger-bell-west/rust/ch-1.rs) in Rust.
+#### 15) Roger Bell_West shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/roger-bell-west/ruby/ch-1.rb) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/roger-bell-west/ruby/ch-2.rb) in Ruby.
 
-#### 16) Tyler Wardhaugh shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/tyler-wardhaugh/lua/ch-1.lua) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/tyler-wardhaugh/lua/ch-2.lua) in Lua.
+#### 16) Roger Bell_West shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/roger-bell-west/rust/ch-1.rs) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/roger-bell-west/rust/ch-1.rs) in Rust.
 
-#### 17) Ulrich Rieke shared solution to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/ulrich-rieke/haskell/ch-1.hs) in Haskell.
+#### 17) Tyler Wardhaugh shared solutions to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/tyler-wardhaugh/lua/ch-1.lua) and [Task #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/tyler-wardhaugh/lua/ch-2.lua) in Lua.
+
+#### 18) Ulrich Rieke shared solution to [Task #1](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/ulrich-rieke/haskell/ch-1.hs) in Haskell.
 
 <br>
 
