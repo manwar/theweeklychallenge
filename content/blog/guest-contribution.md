@@ -26,6 +26,8 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 091](/blog/perl-weekly-challenge-091) {#091}
 <br>
 
+##### **Laurent Rosenfeld** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-091/laurent-rosenfeld/scala/ch-1.scala) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-091/laurent-rosenfeld/scala/ch-2.scala) in **Scala**.
+
 ##### **Nuno Vieira** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-091/nunovieira220/js/ch-1.js) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-091/nunovieira220/js/ch-2.js) in **JavaScript**.
 
 ##### **Ulrich Rieke** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-091/ulrich-rieke/cpp/ch-2.cpp) in **C++**.
