@@ -551,7 +551,7 @@ James gives us Euclid again for the GCD, but in the summing portion provides som
 
 [**Jorg Sommrey**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-089/jo-37/perl/ch-1.pl)
 
-Jorg cleverly wraps up the two loops in his combination generator into pair of `reduce` functions borrowed from `Lisrt::Util`. Much like `map`, `reduce` acts on successive elements of a list, replacing an accumulator with the result of a function applied to the accumulator and the next element in the sequence. It's a powerful core idea in functional programming, a sort of melding of a `map` with it's own variable that can "reduce" a list to a single value. Think of the way `sum` applies addition across a list to produce a single value. `reduce` is the generalized archetype for that more specific function.
+Jorg cleverly wraps up the two loops in his combination generator into pair of `reduce` functions borrowed from `List::Util`. Much like `map`, `reduce` acts on successive elements of a list, replacing an accumulator with the result of a function applied to the accumulator and the next element in the sequence. It's a powerful core idea in functional programming, a sort of melding of a `map` with it's own variable that can "reduce" a list to a single value. Think of the way `sum` applies addition across a list to produce a single value. `reduce` is the generalized archetype for that more specific function.
 
 ```perl
     use Math::Utils 'gcd';
