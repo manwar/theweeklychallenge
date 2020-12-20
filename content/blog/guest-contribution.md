@@ -5,10 +5,10 @@ description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
 author: Mohammad S Anwar
-tags: ["APL", "Awk", "Basic", "Bash", "Bc", "Befunge", "Brainfuck", "C", "Chef", "Cobol", "C Shell", "C++", "Clojure", "Elm", "Erlang", "Fish", "Forth", "Fortran", "Gembase", "Gforth", "GNAT", "Go", "Haskell", "HTML", "Idris", "Java", "JavaScript", "Kotlin", "Lisp", "Lua", "Mumps", "Node", "OCaml", "Ook", "Pascal", "PHP", "Python", "Postscript", "Prolog", "R", "Ruby", "Rust", "Scala", "SQL", "Swift", "Tcl", "XSLT"]
+tags: ["APL", "Awk", "Basic", "Bash", "Bc", "Befunge", "Brainfuck", "C", "Chef", "Cobol", "C Shell", "C++", "Clojure", "Elm", "Erlang", "Fish", "Forth", "Fortran", "Gembase", "GNAT", "Go", "Haskell", "HTML", "Idris", "Java", "JavaScript", "Kotlin", "Lisp", "Lua", "Mumps", "Node", "OCaml", "Ook", "Pascal", "PHP", "Python", "Postscript", "Prolog", "R", "Ruby", "Rust", "Scala", "SQL", "Swift", "Tcl", "XSLT"]
 ---
 
-As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. During the **Week #018**, we received solutions to **["The Weekly Challenge - 018"](/blog/perl-weekly-challenge-018)** by `Orestis Zekai` in **Python**. It was pleasant surprise to receive solutions in something other than **Perl** and **Raku**. Ever since regular team members also started contributing in other languages like **APL**, **Awk**, **Basic**, **Bash**, **Bc**, **Befunge**, **Brainfuck**, **C**, **Chef**, **Cobol**, **C Shell**, **C++**, **Clojure**, **Elm**, **Erlang**, **Fish**, **Forth**, **Fortran**, **Gembase**, **Gforth**, **GNAT**, **Go**, **Haskell**, **HTML**, **Idris**, **Java**, **JavaScript**, **Kotlin**, **Lisp**, **Lua**, **Mumps**, **Node**, **OCaml**, **Ook**, **Pascal**, **PHP**, **Python**, **Postscript**, **Prolog**, **R**, **Ruby**, **Rust**, **Scala**, **SQL**, **Swift**, **Tcl** and **XSLT**.
+As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. During the **Week #018**, we received solutions to **["The Weekly Challenge - 018"](/blog/perl-weekly-challenge-018)** by `Orestis Zekai` in **Python**. It was pleasant surprise to receive solutions in something other than **Perl** and **Raku**. Ever since regular team members also started contributing in other languages like **APL**, **Awk**, **Basic**, **Bash**, **Bc**, **Befunge**, **Brainfuck**, **C**, **Chef**, **Cobol**, **C Shell**, **C++**, **Clojure**, **Elm**, **Erlang**, **Fish**, **Forth**, **Fortran**, **Gembase**, **GNAT**, **Go**, **Haskell**, **HTML**, **Idris**, **Java**, **JavaScript**, **Kotlin**, **Lisp**, **Lua**, **Mumps**, **Node**, **OCaml**, **Ook**, **Pascal**, **PHP**, **Python**, **Postscript**, **Prolog**, **R**, **Ruby**, **Rust**, **Scala**, **SQL**, **Swift**, **Tcl** and **XSLT**.
 
 Please find below guest contributions.
 
@@ -32,7 +32,7 @@ Please find below guest contributions.
 
 ##### **Nuno Vieira** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-091/nunovieira220/js/ch-1.js) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-091/nunovieira220/js/ch-2.js) in **JavaScript**.
 
-##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-091/paulo-custodio/gforth/ch-1.fth) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-091/paulo-custodio/gforth/ch-2.fth) in **Gforth**.
+##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-091/paulo-custodio/forth/ch-1.fs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-091/paulo-custodio/forth/ch-2.fs) in **Forth**.
 
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-091/roger-bell-west/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-091/roger-bell-west/python/ch-2.py) in **Python**.
 
@@ -76,7 +76,7 @@ Please find below guest contributions.
 
 ##### **Nuno Vieira** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/nunovieira220/js/ch-1.js) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/nunovieira220/js/ch-2.js) in **JavaScript**.
 
-##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/paulo-custodio/gforth/ch-1.fth) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/paulo-custodio/gforth/ch-2.fth) in **Gforth**.
+##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/paulo-custodio/forth/ch-1.fs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/paulo-custodio/forth/ch-2.fs) in **Forth**.
 
 ##### **Pete Houston** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/pete-houston/awk/ch-1.awk) in **Awk**.
 
