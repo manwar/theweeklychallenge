@@ -4,8 +4,8 @@ date: 2020-12-20T00:00:00+00:00
 description: "Advent Calendar - December 12, 2020."
 type: post
 image: images/blog/2020-12-12.jpg
-author: Javier Luque
-tags: ["Perl","Raku"]
+author: Cheok-Yin Fung
+tags: ["Perl"]
 ---
 
 [**Advent Calendar 2020**](/blog/advent-calendar-2020)
