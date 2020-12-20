@@ -124,6 +124,23 @@ $("#pwc_summary_181_210").click(function() {
     $('#pwc-members-spinner').hide();
 });
 
+$("#pwc_summary_211_240").click(function() {
+    $('#pwc-members-spinner').show();
+
+    var xobj = new XMLHttpRequest();
+    xobj.overrideMimeType("application/json");
+    xobj.open('GET', 'pwc-summary-211-240.json', true);
+    xobj.onreadystatechange = function () {
+        if (xobj.readyState == 4 && xobj.status == "200") {
+            var response = JSON.parse(xobj.responseText);
+            $('#pwc_summary_211_240_stats').highcharts(response);
+        }
+    };
+    xobj.send(null);
+
+    $('#pwc-members-spinner').hide();
+});
+
 $("#pwc_summary_151_180").click(function() {
     $('#pwc-members-spinner').show();
 
