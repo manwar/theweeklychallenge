@@ -206,6 +206,8 @@ Please find below guest contributions.
 
 ##### **Henry Wong** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-088/henry-wong/php/ch-1.php) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-088/henry-wong/php/ch-2.php) in **PHP**.
 
+##### **Laurent Rosenfeld** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-088/laurent-rosenfeld/scala/ch-1.scala) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-088/laurent-rosenfeld/scala/ch-2.scala) in **Scala**.
+
 ##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-088/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-088/lubos-kolouch/python/ch-2.py) in **Python**.
 
 ##### **Myoungjin Jeon** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-088/jeongoon/elm/src/Ch1.elm) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-088/jeongoon/elm/src/Ch2.elm) in **Elm**.
