@@ -35,7 +35,7 @@ Take the prime decomposition of `N`
 
 ![image-a](/images/blog/ch-46-02-a.png)
 
-The number of divisors of  is given by ![image-b](/images/blog/ch-46-02-b.png)
+The number of divisors of `N` is given by ![image-b](/images/blog/ch-46-02-b.png)
 
 Using the prime decomposition of `N`, the number of divisors of `N` is odd if and only if *k<sub>1</sub>,k<sub>2</sub>,...,k<sub>i</sub>* are all even. Because, if some *k<sub>j</sub>* would be odd, *k<sub>j</sub>+1* is even, hence every product with *k<sub>j</sub>+1* (such as the number of divisors of `N`) is even. But if *k<sub>1</sub>, k<sub>2</sub>, ..., k<sub>j</sub>* are all even, `N` is a squared number.
 
