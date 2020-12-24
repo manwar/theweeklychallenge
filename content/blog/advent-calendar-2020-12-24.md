@@ -4,7 +4,7 @@ date: 2020-12-24T00:00:00+00:00
 description: "Advent Calendar - December 24, 2020."
 type: post
 image: images/blog/2020-12-24.jpg
-author: James Smith
+author: Mohammad S Anwar
 tags: ["Perl","Raku"]
 ---
 
