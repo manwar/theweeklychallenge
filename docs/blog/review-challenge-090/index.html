@@ -266,7 +266,7 @@
 <p>Which is to say, the length of the base string and it&rsquo;s complement.</p>
 <p>I&rsquo;m not going to make any attempt at explaining <em>why</em> any particular team member read the discription in either way, other than to acknowlege that I did it myself at first and a solid third of the submissions came up with the simple interpretation. <em>Que sera, sera.</em> That said, there did seem to be a soft correlation with calling the translation operator by its <code>sed</code> antecedent, <code>y///</code>, and this reading, for what it&rsquo;s worth.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a></p>
-<p>Adam gives us a hash table and a simple mapping to crete his complement:</p>
+<p>Adam gives us a hash table and a simple mapping to create his complement:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> %nucleotide_map <span style="color:#f92672">=</span> (
         <span style="color:#e6db74">&#34;T&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;A&#34;</span>,
         <span style="color:#e6db74">&#34;A&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;T&#34;</span>,
@@ -286,7 +286,7 @@
 </code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a></p>
 <p>Niels harnesses a regular expression to do his substitution:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> %dnaMapping <span style="color:#f92672">=</span> (<span style="color:#e6db74">qw(T A A T G C C G)</span>);
-    $D <span style="color:#f92672">=~</span> s<span style="color:#75715e">#(.)#$dnaMapping{$1}#g;</span>
+    $D <span style="color:#f92672">=~</span> s<span style="color:#75715e">#(.)#$dnaMapping{$1}#g;</span>
 
     printf <span style="color:#e6db74">&#34;Output: %s\n&#34;</span>, $D;
 </code></pre></div><p>and
@@ -345,7 +345,7 @@
 Both these we&rsquo;ve always used <code>tr</code> for as the fastest way to compute the
 DNA count and to get reverse complement of sequence</p>
 </blockquote>
-<p>Well there you have it. I believe that perhaps because of its syntax the translation operator gets tossed in with the regular expression functions it so much resembles, and then gets relegated to being substitution&rsquo;s less capable sibling. As everything you can do with <code>tr///</code> you can do with <code>s///</code>, what&rsquo;s the use of using it? Aside fromt the factual incorrectness of that statement, there is a very real use case: speed. The thing is that translation really only <em>looks</em> like a regular expression tool. In fact it doesn&rsquo;t spin up the complex regular expression engine at all, and consequently its overhead is considerably smaller compared to the bringing out the big guns of regex. The difference between s/// in speed ranges from smallish to vast depending on the use case, but in tests I&rsquo;ve done it was about 10x faster. YMMV.</p>
+<p>Well there you have it. I believe that perhaps because of its syntax the translation operator gets tossed in with the regular expression functions it so much resembles, and then gets relegated to being substitution&rsquo;s less capable sibling. As everything you can do with <code>tr///</code> you can do with <code>s///</code>, what&rsquo;s the use of using it? Aside from the factual incorrectness of that statement, there is a very real use case: speed. The thing is that translation really only <em>looks</em> like a regular expression tool. In fact it doesn&rsquo;t spin up the complex regular expression engine at all, and consequently its overhead is considerably smaller compared to the bringing out the big guns of regex. The difference between s/// in speed ranges from smallish to vast depending on the use case, but in tests I&rsquo;ve done it was about 10x faster. YMMV.</p>
 <p>So that is why it&rsquo;s useful.</p>
 <p>Oh, and it returns the number of transformations it makes, which makes it quite convenient to count things, like nucleotide bases. So that&rsquo;s another reason to keep it around.</p>
 <p>The specific challenge here, though, does present a certain &ldquo;chicken and egg&rdquo; problem. One convenient aspect of the translation operator is the simultaneity of action: if you translate tr/AB/BA/ then all As will be changed to Bs and Bs to As in-place at once, without the parser getting confused by the changes being made as it proceeds. So tr/TAGC/ATCG/ works to make the complement sequence. But if you break that into 4 separate translations to count the bases, then suddenly your new As are getting mixed in with your old As and everything goes haywire.</p>
@@ -593,7 +593,7 @@ DNA count and to get reverse complement of sequence</p>
 
 </code></pre><p>Here in his &ldquo;decomposition&rdquo; step refers to a binary decomposition, and in it he carries out a series of subtractions, in each identifying the largest power of two less than the current total — in this case 128, 16, 4 and 1. These powers of two are those that make up the multiplicand, 149. These bits are also those expressed by 1s in the binary representation of that number, 10010101. Remember this detail. Multiplying these values by the multiplier, 127, gives a list that when summed yields the product.</p>
 <p>I&rsquo;m not sure we&rsquo;re still doing <em>Ethiopian</em> multiplication here per se, but we <em>are</em> doing binary long multiplication, which, as we shall see, is the same thing.</p>
-<p>Joel&rsquo;s code contains may different parts to perform the various tasks, but here is his code to build and print the third table:</p>
+<p>Joel&rsquo;s code contains many different parts to perform the various tasks, but here is his code to build and print the third table:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> @second_twos_table <span style="color:#f92672">=</span> ($second_input);
     map { push(@second_twos_table, $second_twos_table[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span>) }
         (<span style="color:#ae81ff">2</span><span style="color:#f92672">..</span>scalar(@twos_table));
@@ -690,14 +690,14 @@ DNA count and to get reverse complement of sequence</p>
 <pre><code>        m 149
         n 127
 
-    0        1		1		149		127
-    127        0		2		74		254
-    127        1		4		37		508
-    635        0		8		18		1016
-    635        1		16		9		2032
-    2667    0    	32		4		4064
-    2667    0    	64		2		8128
-    2667    1    	128		1		16256
+    0       1       1       149     127
+    127     0       2       74      254
+    127     1       4       37      508
+    635     0       8       18      1016
+    635     1       16      9       2032
+    2667    0       32      4       4064
+    2667    0       64      2       8128
+    2667    1       128     1       16256
     18923
     18923
 
@@ -754,25 +754,25 @@ DNA count and to get reverse complement of sequence</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">while</span> (<span style="color:#f92672">&lt;&gt;</span>) {
         <span style="color:#66d9ef">use</span> integer;
         <span style="color:#66d9ef">my</span> ($A, $B) <span style="color:#f92672">=</span> <span style="color:#e6db74">/([0-9]+) \s+ ([0-9]+)/x</span> <span style="color:#f92672">or</span> <span style="color:#66d9ef">next</span>;
-        <span style="color:#75715e">#</span>
-        <span style="color:#75715e"># Max width of the left and right columns.</span>
-        <span style="color:#75715e">#</span>
+        <span style="color:#75715e">#</span>
+        <span style="color:#75715e"># Max width of the left and right columns.</span>
+        <span style="color:#75715e">#</span>
         <span style="color:#66d9ef">my</span> $w1 <span style="color:#f92672">=</span> length $A;
         <span style="color:#66d9ef">my</span> $w2 <span style="color:#f92672">=</span> length (<span style="color:#66d9ef">my</span> $product <span style="color:#f92672">=</span> $A <span style="color:#f92672">*</span> $B);
         <span style="color:#66d9ef">while</span> ($A) {
-            <span style="color:#75715e">#</span>
-            <span style="color:#75715e"># Print a line, add a tick mark if the left column is odd</span>
-            <span style="color:#75715e">#</span>
+            <span style="color:#75715e">#</span>
+            <span style="color:#75715e"># Print a line, add a tick mark if the left column is odd</span>
+            <span style="color:#75715e">#</span>
             printf <span style="color:#e6db74">&#34;%${w1}d  %${w2}d %s\n&#34;</span> <span style="color:#f92672">=&gt;</span> $A, $B, $A % 2 ? $TICK : <span style="color:#e6db74">&#34;&#34;</span>;
-            <span style="color:#75715e">#</span>
-            <span style="color:#75715e"># Divide and double</span>
-            <span style="color:#75715e">#</span>
+            <span style="color:#75715e">#</span>
+            <span style="color:#75715e"># Divide and double</span>
+            <span style="color:#75715e">#</span>
             $A <span style="color:#f92672">/=</span> <span style="color:#ae81ff">2</span>;
             $B <span style="color:#f92672">*=</span> <span style="color:#ae81ff">2</span>;
         }
-        <span style="color:#75715e">#</span>
-        <span style="color:#75715e"># Print the sum</span>
-        <span style="color:#75715e">#</span>
+        <span style="color:#75715e">#</span>
+        <span style="color:#75715e"># Print the sum</span>
+        <span style="color:#75715e">#</span>
         say <span style="color:#e6db74">&#34; &#34;</span> x $w1, <span style="color:#e6db74">&#34;  &#34;</span>, <span style="color:#e6db74">&#34;-&#34;</span> x $w2, <span style="color:#e6db74">&#34; +&#34;</span>;
         say <span style="color:#e6db74">&#34; &#34;</span> x $w1, <span style="color:#e6db74">&#34;  &#34;</span>, $product;
     }
@@ -783,7 +783,7 @@ DNA count and to get reverse complement of sequence</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> ($c, $d) <span style="color:#f92672">=</span> @ARGV;
     <span style="color:#66d9ef">my</span> $result <span style="color:#f92672">=</span> $c % 2 ? $d : <span style="color:#ae81ff">0</span>;
     <span style="color:#66d9ef">while</span> ($c <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>) {
-        $c <span style="color:#f92672">=</span> $c <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">1</span>; <span style="color:#75715e"># right shift 1 bit = div by 2</span>
+        $c <span style="color:#f92672">=</span> $c <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">1</span>; <span style="color:#75715e"># right shift 1 bit = div by 2</span>
         $d <span style="color:#f92672">*=</span> <span style="color:#ae81ff">2</span>;
         $result <span style="color:#f92672">+=</span> $d <span style="color:#66d9ef">if</span> $c % 2;
     }

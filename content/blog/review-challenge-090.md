@@ -116,7 +116,7 @@ I'm not going to make any attempt at explaining *why* any particular team member
 
 [**Adam Russell**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-090/adam-russell/perl/ch-1.pl)
 
-Adam gives us a hash table and a simple mapping to crete his complement:
+Adam gives us a hash table and a simple mapping to create his complement:
 
 ```perl
     my %nucleotide_map = (
@@ -245,7 +245,7 @@ I'll let the words of James Smith do the talking here:
 >Both these we've always used `tr` for as the fastest way to compute the
 >DNA count and to get reverse complement of sequence
 
-Well there you have it. I believe that perhaps because of its syntax the translation operator gets tossed in with the regular expression functions it so much resembles, and then gets relegated to being substitution's less capable sibling. As everything you can do with `tr///` you can do with `s///`, what's the use of using it? Aside fromt the factual incorrectness of that statement, there is a very real use case: speed. The thing is that translation really only *looks* like a regular expression tool. In fact it doesn't spin up the complex regular expression engine at all, and consequently its overhead is considerably smaller compared to the bringing out the big guns of regex. The difference between s/// in speed ranges from smallish to vast depending on the use case, but in tests I've done it was about 10x faster. YMMV.
+Well there you have it. I believe that perhaps because of its syntax the translation operator gets tossed in with the regular expression functions it so much resembles, and then gets relegated to being substitution's less capable sibling. As everything you can do with `tr///` you can do with `s///`, what's the use of using it? Aside from the factual incorrectness of that statement, there is a very real use case: speed. The thing is that translation really only *looks* like a regular expression tool. In fact it doesn't spin up the complex regular expression engine at all, and consequently its overhead is considerably smaller compared to the bringing out the big guns of regex. The difference between s/// in speed ranges from smallish to vast depending on the use case, but in tests I've done it was about 10x faster. YMMV.
 
 So that is why it's useful.
 
@@ -600,7 +600,7 @@ Here in his "decomposition" step refers to a binary decomposition, and in it he 
 
 I'm not sure we're still doing *Ethiopian* multiplication here per se, but we *are* doing binary long multiplication, which, as we shall see, is the same thing.
 
-Joel's code contains may different parts to perform the various tasks, but here is his code to build and print the third table:
+Joel's code contains many different parts to perform the various tasks, but here is his code to build and print the third table:
 
 ```perl
     my @second_twos_table = ($second_input);
@@ -725,14 +725,14 @@ Dave is lighter on commentary, but adds more information to his table, which wou
         m 149
         n 127
 
-    0        1		1		149		127
-    127        0		2		74		254
-    127        1		4		37		508
-    635        0		8		18		1016
-    635        1		16		9		2032
-    2667    0    	32		4		4064
-    2667    0    	64		2		8128
-    2667    1    	128		1		16256
+    0       1       1       149     127
+    127     0       2       74      254
+    127     1       4       37      508
+    635     0       8       18      1016
+    635     1       16      9       2032
+    2667    0       32      4       4064
+    2667    0       64      2       8128
+    2667    1       128     1       16256
     18923
     18923
 
