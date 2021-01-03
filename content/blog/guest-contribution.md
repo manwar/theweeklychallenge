@@ -46,6 +46,8 @@ Please find below guest contributions.
 
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-093/roger-bell-west/rust/ch-1.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-093/roger-bell-west/rust/ch-1.rs) in **Rust**.
 
+##### **Tyler Wardhaugh** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-093/tyler-wardhaugh/clojure/src/tw/weekly/c93/t1.clj) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-093/tyler-wardhaugh/clojure/src/tw/weekly/c93/t2.clj) in **Clojure**.
+
 ----
 ## [The Weekly Challenge - 092](/blog/perl-weekly-challenge-092) {#092}
 <br>
