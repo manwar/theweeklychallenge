@@ -152,7 +152,7 @@ Write a script to group `Anagrams` together in any random order.
 
 ## Example 2:
         Input: ("x")
-        Output: [ ("x" ]
+        Output: [ ("x") ]
 
 <br>
 
