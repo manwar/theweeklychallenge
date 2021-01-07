@@ -26,6 +26,8 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 094](/blog/perl-weekly-challenge-094) {#094}
 <br>
 
+##### **Laurent Rosenfeld** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-094/laurent-rosenfeld/scala/ch-1.scala) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-094/laurent-rosenfeld/scala/ch-2.scala) in **Scala**.
+
 ##### **Mohammad Meraj Zia** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-094/ziameraj16/java/BinaryTreeToLinkedList.java) in **Java**.
 
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-094/roger-bell-west/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-094/roger-bell-west/python/ch-2.py) in **Python**.
