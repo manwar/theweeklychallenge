@@ -41,7 +41,7 @@ Let's have a look and see what we can find.
 
 <a href="https://github.com/manwar/perlweeklychallenge"><img src="/images/blog/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request to us for any issues you may find with this page.
 
-<a href="https://twitter.com/perlwchallenge"><img src="/imagess/blog/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!
+<a href="https://twitter.com/perlwchallenge"><img src="/images/blog/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!
 
 I'm always curious as to what the people think of these efforts. Everyone here at the PWC would like to hear any feedback you'd like to give.
 
@@ -804,8 +804,8 @@ Here is his merging routine:
             while ($i+1 < @intervals) {
                 my $this = $intervals[$i];
                 my $next = $intervals[$i+1];
-                if ($this->[1] < $next->[0]) {            		# not overlapping
-                    last;            							# next interval
+                if ($this->[1] < $next->[0]) {                	# not overlapping
+                    last;                						# next interval
                 }
                 else {
                     splice(@intervals, $i, 2, [$this->[0], $next->[1]]);    # merge and test again
