@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="The Weekly Challenge - Perl & Raku"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://perlweeklychallenge.org/"/>
+    <meta property="og:image"       content="https://perlweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="You do not have to be an expert."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://perlweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Colin Crain › Perl Weekly Review #092">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Colin Crain › Perl Weekly Review #092</title>
+    <link rel="icon" href="https://perlweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://perlweeklychallenge.org/">
+                        <img src="https://perlweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navgation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Colin Crain › Perl Weekly Review #092</h2>
+                    <div class="portfolio-meta">
+                        <span>Saturday, Jan 9, 2021</span>|
+                        <span> Tags:
+                            perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://perlweeklychallenge.org/images/blog/p5-review-challenge-092.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <p>( <em>&hellip;continues from <a href="/blog/review-challenge-091/">previous week</a>.</em> )</p>
+<p>Welcome to the Perl review for <strong>Week 092</strong> of the Weekly Challenge! Here we will take the time to discuss the  submissions offered by the team, factor out the common methodologies that came up in those solutions, and highlight some of the unique approaches and unusual code created.</p>
+<hr>
+<h3 id="why-do-we-do-these-challenges">Why do we do these challenges?</h3>
+<p>I suppose any answers to that would be as wide ranging and varied as the people who choose to join the team. One thing is clear: it&rsquo;s not a competition, and there are no judges, even if there is a &ldquo;prize&rdquo; of sorts. About that &ndash; I think of it more as an honorarium periodically awarded to acknowledge the efforts we make towards this strange goal. So there&rsquo;s no determination to find the <em>fastest</em>, or the <em>shortest</em>, or even, in some abstract way, the <em>best</em> way to go about things, although I&rsquo;m certain the individuals have their own aspirations and personal drives. As Perl is such a wonderfully expressive language, this provides quite a bit of fodder to the core idea of TMTOWTDI, producing a gamut of wonderfully varied techniques and solutions.</p>
+<p>Even the tasks themselves are often open to a certain amount of discretionary interpretation. What we end up with is a situation where each participant is producing something in the manner they find the most interesting or satisfying. Some team members focus on carefully crafted complete applications that thoroughly vet input data and handle every use case they can think up. Others chose to apply themselves to the logic of the underlying puzzle and making it work in the most elegant way they can. Some eschew modules they would ordinarily reach for, others embrace them, bringing to light wheels perhaps invented years ago that happen to exactly solve the problem in front of them today.</p>
+<p>I&rsquo;ve been considering this question for some time and have found one binding commonality between all of us solving these challenges each week, in that however we normally live our lives, the task in front of us more than likely has nothing to do with any of that . And I think this has great value. We all do what we do, out in the real world, and hopefully we do it well. The Weekly Challenge provides a opportunity to do something germane to that life yet distinctly different; if we only do the things we already know how to do we only do the same things over and over. This is where the &ldquo;challenge&rdquo; aspect comes into play.</p>
+<p>So we can consider the Weekly Challenge as providing a problem space outside of our comfort zone, as far out from comfort as we wish to take things. From those reaches we can gather and learn things and bring what we want back into our lives. Personally, I think that&rsquo;s its greatest value of all.</p>
+<hr>
+<p>Every week there is an enormous global collective effort made by the team, analyzing and creatively coding the submissions, and that effort deserves credit due. And that&rsquo;s why I&rsquo;m here, to try and figure out how to do that.</p>
+<p>Let&rsquo;s have a look and see what we can find.</p>
+<hr>
+<p><strong><big>For context</big></strong>  before we begin, you may wish to revisit either of the pages for the <a href="/blog/perl-weekly-challenge-092/"><strong>original tasks</strong></a> or the summary <a href="/blog/recap-challenge-092/"><strong>recap</strong></a> of the challenge. But don&rsquo;t worry, the challenges themselves will be briefly summarized, presented below as we progress from task by task. Oh, and one more thing before we get started:</p>
+<h3 id="getting-in-touch-with-us">Getting in Touch with Us</h3>
+<p><a href="mailto:pwc.perfectwave@gmail.com"><img src="/images/blog/Email.svg" height="50" width="50"> Email</a> › Please email me (Colin) with any feedback, notes, clarifications or whatnot about this review.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge"><img src="/images/blog/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request to us for any issues you may find with this page.</p>
+<p><a href="https://twitter.com/perlwchallenge"><img src="/imagess/blog/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!</p>
+<p>I&rsquo;m always curious as to what the people think of these efforts. Everyone here at the PWC would like to hear any feedback you&rsquo;d like to give.</p>
+<p><strong>So finally, without further ado&hellip;</strong></p>
+<hr>
+<h2 id="---nbsp--nbsp--nbsp---task-1pwc092task1-------nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---task-2pwc092task2---nbsp--nbsp--nbsp----------nbsp--nbsp--nbsp---blogspwc092blogs----nbsp--nbsp--nbsp-------">•             <a href="#PWC092TASK1">Task 1</a>                 •             <a href="#PWC092TASK2">Task 2</a>                 •             <a href="#PWC092BLOGS">BLOGS</a>                  •</h2>
+<hr>
+<h1 id="PWC092TASK1">TASK 1</h1>
+<h1 id="isomorphic-strings">Isomorphic Strings</h1>
+<p><em>Submitted by: Mohammad S Anwar</em></p>
+<p>You are given two strings $A and $B.</p>
+<p>Write a script to check if the given strings are Isomorphic. Print 1 if they are otherwise 0.</p>
+<p><strong>Example 1:</strong></p>
+<pre><code>    Input : $A = &quot;abc&quot;; $B = &quot;xyz&quot;
+    Output: 1
+</code></pre><p><strong>Example 2:</strong></p>
+<pre><code>    Input : $A = &quot;abb&quot;; $B = &quot;xyy&quot;
+    Output: 1
+</code></pre><p><strong>Example 3:</strong></p>
+<pre><code>    Input : $A = &quot;sum&quot;; $B = &quot;add&quot;
+    Output: 0
+</code></pre><h2 id="about-the-solutions">about the solutions</h2>
+<p>There were 23 successful submissions for the first task this past week. A few folks seem to have made incorrect assumptions about the relationship between the strings, but most of the solutions were robust.</p>
+<h2 id="using-two-hashes">using two hashes</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/alexander-karelas/perl/ch-1.pl"><strong>Alexander Karelas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/alexander-pankoff/perl/ch-1.pl"><strong>Alexander Pankoff</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/lubos-kolouch/perl/ch-1.pl"><strong>Lubos Kolouch</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/paulo-custodio/perl/ch-1.pl"><strong>Paulo Custodio</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/kordaff/perl/ch-1.pl"><strong>Phillip Hartfield Sr</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/wanderdoc/perl/ch-1.pl"><strong>Wanderdoc</strong></a></p>
+<p>By far the most common method was to traverse the first string letter-by-letter, assigning a mapping of characters found to their complement in the second, bailing out if any inconsistency is found. A second hash is required to keep track of the reverse mapping, from the second string to the first, to make sure only one letter is mapped to each character found. There were a few ways to use this second hash, as we shall see.</p>
+<p>To traverse the string people either used <code>split</code> to create arrays or created an iterator for the length and accessed individual characters using <code>substr</code>.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/kordaff/perl/ch-1.pl"><strong>Phillip Hartfield Sr</strong></a></p>
+<p>Slightly more folks chose to access the characters using <code>substr</code>, so we&rsquo;ll start there. Here Phillip lays out the general technique. Two characters are grabbed, and first the A-to-B hash is checked to see if a relationship has already been established, and if so then whether it&rsquo;s consistent. If the letter from the first string is newly seen, a key-value pair is set in that hash. Then we check a second, reverse mapping hash in the same manner: if a key exists for the character in the second string make sure it maps back to its complement in the first. Nice and symmetrical like, you know?</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">  <span style="color:#66d9ef">foreach</span> $x (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$len)
+    {
+    $char1 <span style="color:#f92672">=</span> substr($var1,$x<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>);
+    $char2 <span style="color:#f92672">=</span> substr($var2,$x<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>);
+    <span style="color:#66d9ef">if</span> (exists $isomapAB{$char1} )
+      {
+      <span style="color:#66d9ef">if</span> ($char2 <span style="color:#f92672">ne</span> $isomapAB{$char1})
+        { <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> }
+      }
+    <span style="color:#66d9ef">else</span>
+      {
+      $isomapAB{$char1} <span style="color:#f92672">=</span> $char2;
+      }
+    <span style="color:#66d9ef">if</span> (exists $isomapBA{$char2} )
+      {
+      <span style="color:#66d9ef">if</span> ($char1 <span style="color:#f92672">ne</span> $isomapBA{$char2})
+        { <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> }
+      }
+    <span style="color:#66d9ef">else</span>
+      {
+      $isomapBA{$char2} <span style="color:#f92672">=</span> $char1;
+      }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a></p>
+<p>Flavio condenses the method, packing a lot of steps into a few lines. I can&rsquo;t say I&rsquo;ve ever seen that particular construction for assigning both hashes in the same line before. Remember assignment returns the value assigned, so, indirectly, both assignments get made. Indirectly. We&rsquo;ll leave it at that.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">   <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> length($A) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) {
+      <span style="color:#66d9ef">my</span> ($cA, $cB) <span style="color:#f92672">=</span> map { substr $_, $i, <span style="color:#ae81ff">1</span> } ($A, $B);
+      <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>
+        <span style="color:#66d9ef">if</span> (exists($B_for{$cA}) <span style="color:#f92672">&amp;&amp;</span> ($B_for{$cA} <span style="color:#f92672">ne</span> $cB))
+        <span style="color:#f92672">||</span> (exists($A_for{$cB}) <span style="color:#f92672">&amp;&amp;</span> ($A_for{$cB} <span style="color:#f92672">ne</span> $cA));
+      $B_for{$A_for{$cB} <span style="color:#f92672">=</span> $cA} <span style="color:#f92672">=</span> $cB;
+   } <span style="color:#75715e">## end for my $i (0 .. length(...))</span>
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/alexander-karelas/perl/ch-1.pl"><strong>Alexander Karelas</strong></a></p>
+<p>Karelas condenses the two hash solution quite compactly, in a manner I still find clear.
+I like how all the conditional logic is in all together, with any failure immediately exiting the program.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">while</span> (@a) {
+        <span style="color:#66d9ef">my</span> $x <span style="color:#f92672">=</span> shift @a;
+        <span style="color:#66d9ef">my</span> $y <span style="color:#f92672">=</span> shift @b;
+
+        <span style="color:#66d9ef">if</span> (exists $a_to_b{$x} <span style="color:#f92672">or</span> exists $b_to_a{$y}) {
+            ($a_to_b{$x} <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#39;&#39;</span>) <span style="color:#f92672">eq</span> $y <span style="color:#f92672">and</span> ($b_to_a{$y} <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#39;&#39;</span>) <span style="color:#f92672">eq</span> $x <span style="color:#f92672">or</span> say(<span style="color:#ae81ff">0</span>), exit;
+        }
+
+        $a_to_b{$x} <span style="color:#e6db74">//</span><span style="color:#f92672">=</span> $y;
+        $b_to_a{$y} <span style="color:#e6db74">//</span><span style="color:#f92672">=</span> $x;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a> and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/lubos-kolouch/perl/ch-1.pl"><strong>Lubos Kolouch</strong></a>
+have similar examples in their solutions.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/alexander-pankoff/perl/ch-1.pl"><strong>Alexander Pankoff</strong></a></p>
+<p>Pankoff delivers a slight variant on the algorithm, adding the detail that we only need check the reverse hash if a mapping isn&rsquo;t found, and in that the presence of a key means that character from the second string has already been assigned. Only if no key is found then we establish a relationship with new hash assignments. As the code is so well commented I have decided to leave them in to guide you.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_isomorphic</span> ( $a, $b ) {
+
+        <span style="color:#75715e"># there is no isomorphism if both strings have different lengths</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> length( $a ) <span style="color:#f92672">!=</span> length( $b );
+
+        <span style="color:#75715e"># we will store the mapping from $a to $b in here</span>
+        <span style="color:#66d9ef">my</span> %a2b;
+
+        <span style="color:#75715e"># we use another hash to keep track of the inverse mapping</span>
+        <span style="color:#66d9ef">my</span> %b2a;
+
+        <span style="color:#75715e"># we will check each character in $a and $b for conflicts with the isomorphism coditions</span>
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">...</span> length( $a ) ) {
+            <span style="color:#66d9ef">my</span> $c_a <span style="color:#f92672">=</span> substr( $a, $i, <span style="color:#ae81ff">1</span> );
+            <span style="color:#66d9ef">my</span> $c_b <span style="color:#f92672">=</span> substr( $b, $i, <span style="color:#ae81ff">1</span> );
+
+            <span style="color:#75715e"># there is already an entry for the current char from a</span>
+            <span style="color:#66d9ef">if</span> ( exists $a2b{$c_a} ) {
+
+                <span style="color:#75715e"># if the character from a was mapped to a different character from</span>
+                <span style="color:#75715e"># $c_b before we have a conflict.</span>
+                <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $a2b{$c_a} <span style="color:#f92672">ne</span> $c_b;
+            }
+
+            <span style="color:#75715e"># no mapping for $c_a found</span>
+            <span style="color:#66d9ef">else</span> {
+
+                <span style="color:#75715e"># if $c_b was mapped to a different character before we have a conflict.</span>
+                <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> exists $b2a{$c_b};
+
+                <span style="color:#75715e"># no conflict found. Store the mappings.</span>
+                $a2b{$c_a} <span style="color:#f92672">=</span> $c_b;
+                $b2a{$c_b} <span style="color:#f92672">=</span> $c_a;
+            }
+        }
+
+        <span style="color:#75715e"># no conflict could be found. $a and $b are isomorphic</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+    }
+</code></pre></div><p>Of note here he nicely cites his sources:</p>
+<blockquote>
+<p>this algorithm was taken from the explanation link given in the challenge:
+<a href="https://www.educative.io/edpresso/how-to-check-if-two-strings-are-isomorphic">https://www.educative.io/edpresso/how-to-check-if-two-strings-are-isomorphic</a></p>
+</blockquote>
+<p>I might add I generally avoid looking up algorithms myself for these challenges, preferring to go at the puzzles blind, but that is a personal preference, surely, and hardly the best way to go about things. Practically, researching knowledge is a valuable skill and to be lauded. After the fact, or sometimes before, I often spend absurd amounts of time researching rabbit-holes for the write-ups I make. Like, ridiculous, crazy time. It&rsquo;s fun, really. Don&rsquo;t look at me like that.</p>
+<p>Back to the task at hand,</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/colin-crain/perl/ch-1.pl"><strong>My Own Solution</strong></a></p>
+<p>The thing about the second hash is that ultimately, we don&rsquo;t really need a hash at all, per se. We never need to actually <em>use</em> the reverse mapping. All we need to know is whether or not it <em>exists</em>.</p>
+<p>What we really need is a set. When assigning a character from the <em>second</em> string, should we find a letter we&rsquo;ve seen before we need to make sure it matches the mapping we made the last time we saw it. But to do that we only really need to know whether we&rsquo;ve seen it before — if the mapping from the first set checks out we&rsquo;ll have already noticed that and moved on. So if we check <em>after</em> that verification and still recognize an already seen character, we know immediately something has gone wrong and we&rsquo;re done. A actual reverse lookup isn&rsquo;t required.</p>
+<p>There isn&rsquo;t a built-in &ldquo;Set&rdquo; datatype in Perl, but the keys to a hash make a fine set model: an unordered collection where we can determine whether something is in the collection or not.  Using <code>exists</code> on the keys can make that determination quickly and easily, and so that was generally the tool people reached for. The values are unimportant, and the code below, assigning &ldquo;undef&rdquo; to the key, works just fine. Gets rid of some of the chaff, you know?</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>length $str_A) {
+        <span style="color:#66d9ef">my</span> $char_A <span style="color:#f92672">=</span> substr $str_A, $_, <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">my</span> $char_B <span style="color:#f92672">=</span> substr $str_B, $_, <span style="color:#ae81ff">1</span>;
+
+        <span style="color:#75715e">## key already in invert</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> exists $invert{$char_B} <span style="color:#f92672">and</span> <span style="color:#f92672">not</span> exists $forward{$char_A};
+
+        <span style="color:#75715e">## key in forward matches char B</span>
+        <span style="color:#66d9ef">if</span> (exists $forward{$char_A} ) {
+            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $forward{$char_A} <span style="color:#f92672">ne</span> $char_B;
+        }
+        <span style="color:#66d9ef">else</span> {             <span style="color:#75715e">## make new key</span>
+            $forward{$char_A} <span style="color:#f92672">=</span> $char_B;
+            $invert{$char_B}  <span style="color:#f92672">=</span> undef;
+        }
+    }
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p>Laurent treats the second hash as a set as well. I think it&rsquo;s clear that storing the reverse mapping value ultimately detracts from the purpose of the second hash in this form of the algorithm, where logically we no longer need it.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_isomorphic</span> {
+        <span style="color:#66d9ef">my</span> ($str1, $str2) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> length $str1 <span style="color:#f92672">!=</span> length $str2;
+        <span style="color:#66d9ef">my</span> (%transcode, %seen);
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>length($str1) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) {
+            <span style="color:#66d9ef">my</span> $char1 <span style="color:#f92672">=</span> substr $str1, $i, <span style="color:#ae81ff">1</span>;
+            <span style="color:#66d9ef">my</span> $char2 <span style="color:#f92672">=</span> substr $str2, $i, <span style="color:#ae81ff">1</span>;;
+            <span style="color:#66d9ef">if</span> (exists $transcode{$char1}) {
+                <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $transcode{$char1} <span style="color:#f92672">ne</span> $char2;
+            } <span style="color:#66d9ef">else</span> {
+                <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> exists $seen{$char2};
+                $transcode{$char1} <span style="color:#f92672">=</span> $char2;
+                $seen{$char2} <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+            }
+        }
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/paulo-custodio/perl/ch-1.pl"><strong>Paulo Custodio</strong></a>
+also uses his second hash as a set.</p>
+<h3 id="other-ideas-for-a-set">OTHER ideas for a SET</h3>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a> and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/cristian-heredia/perl/ch-1.pl"><strong>Cristina Heredia</strong></a></p>
+<p>This brings us to the next category, being other ideas for implementing a set to keep track of already assigned characters in the second string.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/cristian-heredia/perl/ch-1.pl"><strong>Cristina Heredia</strong></a></p>
+<p>Christina uses a Perl array for collecting allocated characters, and <code>grep</code> to determine existence.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">checkHash</span> {
+        <span style="color:#66d9ef">if</span>(<span style="color:#f92672">!</span>exists $hash{$C1}) {
+            <span style="color:#66d9ef">if</span>(grep $_ <span style="color:#f92672">eq</span> $C2, @sets) {
+                <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Output: 0\n&#34;</span>;
+                exit;
+            }
+            <span style="color:#66d9ef">else</span> {
+                push @sets, $C2;
+                addIntoHash();
+            }
+        }
+        <span style="color:#66d9ef">elsif</span> ($hash{$C1} <span style="color:#f92672">eq</span> $C2) {
+            addIntoHash();
+        }
+        <span style="color:#66d9ef">else</span> {
+            <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Output: 0\n&#34;</span>;
+            exit;
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a></p>
+<p>The monk Athanasius opts for a proper set, importing <code>Set::Scalar</code> to provide the functionality. Once that is done, the logic is quite clear:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $set <span style="color:#f92672">=</span> Set::Scalar<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
+
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#A)
+    {
+        <span style="color:#66d9ef">my</span> $c1 <span style="color:#f92672">=</span> $A[$i];
+        <span style="color:#66d9ef">my</span> $c2 <span style="color:#f92672">=</span> $B[$i];
+
+        <span style="color:#66d9ef">if</span> (exists $map{$c1})
+        {
+            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $map{$c1} <span style="color:#f92672">ne</span> $c2;
+        }
+        <span style="color:#66d9ef">else</span>
+        {
+            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $set<span style="color:#f92672">-&gt;</span>has($c2);
+
+            $map{$c1} <span style="color:#f92672">=</span>  $c2;
+            $set<span style="color:#f92672">-&gt;</span>insert($c2);
+        }
+    }
+</code></pre></div><h2 id="using-a-single-hash">using a SINGLE HASH</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/abigail/perl/ch-1.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/nunovieira220/perl/ch-1.pl"><strong>Nuno Vieira</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/pete-houston/perl/ch-1.pl"><strong>Pete Houston</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/wanderdoc/perl/ch-1.pl"><strong>Wanderdoc</strong></a></p>
+<p>The problem with using a single hash to map the letters of the first string to the second, checking for consistency, is that a letter assigned from the second string could later be reassigned to another mapping, as &ldquo;abc&rdquo; -&gt; &ldquo;aba&rdquo;. Here each letter in the first string is mapped to only one letter, but more than one letter is mapped to &ldquo;a&rdquo; in the second.</p>
+<p>This would be where a second hash would come in handy, but there are other ways to ensure there is no repetition in assignment for the characters in the second string.</p>
+<p>For example,</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/nunovieira220/perl/ch-1.pl"><strong>Nuno Vieira</strong></a></p>
+<p>Nuno will only assign a new key-value pair to his mapping if there is no current key and the value cannot be found among the existing values in the hash. To pull off this trick he imports <code>any</code> from <code>List::Util</code>. Didn&rsquo;t see that one coming.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$len <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) {
+      <span style="color:#66d9ef">my</span> $cA <span style="color:#f92672">=</span> substr($A, $i, <span style="color:#ae81ff">1</span>);
+      <span style="color:#66d9ef">my</span> $cB <span style="color:#f92672">=</span> substr($B, $i, <span style="color:#ae81ff">1</span>);
+
+      $map{$cA} <span style="color:#f92672">=</span> $cB <span style="color:#66d9ef">if</span>(<span style="color:#f92672">!</span>defined $map{$cA} <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span>(any { $_ <span style="color:#f92672">eq</span> $cB } values %map));
+      <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> (defined $map{$cA} <span style="color:#f92672">&amp;&amp;</span> $map{$cA} <span style="color:#f92672">eq</span> $cB);
+
+      $res <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+      <span style="color:#66d9ef">last</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a></p>
+<p>Simon, on the other hand uses only a single function, <code>is_isomorphic()</code>, which only establishes a single hash mapping from the letters of the first string to the second, an injective function. Then to establish reciprocity he calls the same routine again with the parameters switched, to determine whether the reverse is injective as well. If true, then the mapping is bijective and the strings are isomorphic.</p>
+<p>One could say this is like the 2 hash solution, restructured as doing one hash twice in two ways. The single mapping is much as we&rsquo;ve seen. The unusual part is the parameter swap to check the viability in the other direction.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">main</span> {
+        <span style="color:#66d9ef">my</span> ( $A, $B ) <span style="color:#f92672">=</span> @_;
+        say _is_isomorphic( $A, $B ) <span style="color:#f92672">&amp;&amp;</span> _is_isomorphic( $B, $A ) ? <span style="color:#ae81ff">1</span> : <span style="color:#ae81ff">0</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/pete-houston/perl/ch-1.pl"><strong>Pete Houston</strong></a>
+single hash</p>
+<p>Pete gives us an interesting twist by only establishing a single, injective association from the characters in the first string to the second. Should that test succeed, that is each letter is only mapped to one character, he then <em>reverses</em> the hash using a <code>map</code> function and applies the mapping to the second string using a regular expression.</p>
+<p>If the remapped string is equal to the first the mapping is one-to-one onto, or bijective, and the two strings are isomorphic. On the other hand if multiple characters from the first get mapped to the same character in the second things will go south quickly as the reversed hash will only reflect one of the values.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> length ($str[<span style="color:#ae81ff">0</span>]) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) {
+        <span style="color:#66d9ef">my</span> $x <span style="color:#f92672">=</span> substr ($str[<span style="color:#ae81ff">0</span>], $i, <span style="color:#ae81ff">1</span>);
+        <span style="color:#66d9ef">my</span> $y <span style="color:#f92672">=</span> substr ($str[<span style="color:#ae81ff">1</span>], $i, <span style="color:#ae81ff">1</span>);
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;1 = $x   2 = $y $seen{$x}\n&#34;</span>;
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> exists $seen{$x} <span style="color:#f92672">&amp;&amp;</span> $seen{$x} <span style="color:#f92672">ne</span> $y;
+        <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> exists $seen{$x};
+        $seen{$x} <span style="color:#f92672">=</span> $y;
+    }
+    %seen <span style="color:#f92672">=</span> map { $seen{$_} <span style="color:#f92672">=&gt;</span> $_ } keys %seen;
+    $str[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/(.)/$seen{$1}/sg</span>;
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;str1 $str[0]   str2 $str[1]\n&#34;</span>;
+    <span style="color:#66d9ef">return</span> $str[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">eq</span> $str[<span style="color:#ae81ff">1</span>] ? <span style="color:#ae81ff">1</span> : <span style="color:#ae81ff">0</span>;
+</code></pre></div><p>This leads us to the final form down this road, as demonstrated by</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/wanderdoc/perl/ch-1.pl"><strong>Wanderdoc</strong></a></p>
+<p>So what we have here a really nice, compact solution from the Wandering Doctor.</p>
+<p>First off, love the hash slice assignment. That&rsquo;s inspired.</p>
+<p>I wasn&rsquo;t sure where to put these solutions because they do use two hashes, but not in the conventional sense we&rsquo;ve seen before. The second hash only enters the picture at the very end, as a value-key reversal of the original. In such a case duplicates — once values, now keys — will be overwritten, and the number of keys in the two hashes will no longer match. And that&rsquo;s all we need to know.</p>
+<p>In Set Theory, the keys of the first hash are the domain, the keys of the second, the codomain. To prove the mapping is &ldquo;one-to-one onto&rdquo;, or bijective, the size of the domain and codomain must be equal, and this little trick accomplishes that test beautifully.</p>
+<p>The whole routine:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_isomorphic</span>
+    {
+         <span style="color:#66d9ef">my</span> ($str_1, $str_2) <span style="color:#f92672">=</span> @_;
+         <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> length($str_1) <span style="color:#f92672">!=</span> length($str_2);
+         <span style="color:#66d9ef">my</span> %hash_1;
+
+         @hash_1{split(<span style="color:#e6db74">//</span>,$str_1)} <span style="color:#f92672">=</span> split(<span style="color:#e6db74">//</span>,$str_2);
+         <span style="color:#66d9ef">my</span> %hash_2 <span style="color:#f92672">=</span> reverse %hash_1;
+
+         <span style="color:#66d9ef">return</span> scalar keys %hash_1 <span style="color:#f92672">==</span> scalar keys %hash_2 ? <span style="color:#ae81ff">1</span> : <span style="color:#ae81ff">0</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/abigail/perl/ch-1.pl"><strong>Abigail</strong></a></p>
+<p>provides a very similar solution, with a little added mathematical commentary:</p>
+<blockquote>
+<p>What we want is to show there is a bijection f between the letters
+of $A and the letters of $B.</p>
+<p>For a bijection, we need to show that:
+f and f^-1 (the inverse of f) are total
+f (x) == f (y)  &lt;=&gt; x == y</p>
+<ol>
+<li>we check that $A and $B have the same length, otherwise either
+f or f^-1 isn&rsquo;t total.</li>
+<li>x == y =&gt; f (x) == f (y)</li>
+<li>|dom (f)| = |img (f)|  (Size of the domain of f is the
+size of the image of f)</li>
+</ol>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">solve</span> ($A, $B) {
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">unless</span> length ($A) <span style="color:#f92672">==</span> length ($B);      <span style="color:#75715e"># 1)</span>
+        <span style="color:#66d9ef">my</span> @A <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span> <span style="color:#f92672">=&gt;</span> $A;
+        <span style="color:#66d9ef">my</span> @B <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span> <span style="color:#f92672">=&gt;</span> $B;
+        <span style="color:#66d9ef">my</span> %mapping;
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i (keys @A) {
+            <span style="color:#66d9ef">my</span> $A <span style="color:#f92672">=</span> $A [$i];
+            <span style="color:#66d9ef">my</span> $B <span style="color:#f92672">=</span> $B [$i];
+            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $B <span style="color:#f92672">ne</span> ($mapping {$A} <span style="color:#e6db74">//</span><span style="color:#f92672">=</span> $B);    <span style="color:#75715e"># 2)</span>
+        }
+        <span style="color:#66d9ef">my</span> %reverse <span style="color:#f92672">=</span> reverse %mapping;
+        keys %reverse <span style="color:#f92672">==</span> keys %mapping;                  <span style="color:#75715e"># 3)</span>
+    }
+</code></pre></div><p>as did</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">  <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $len <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ) {
+      $mapped_from{ substr( $A, $i , <span style="color:#ae81ff">1</span> ) } <span style="color:#f92672">=</span> substr( $B , $i , <span style="color:#ae81ff">1</span> ) ;
+      $mapped_to{ substr( $B, $i , <span style="color:#ae81ff">1</span> ) }<span style="color:#f92672">++</span> ;
+  }
+  <span style="color:#66d9ef">if</span> ( scalar keys %mapped_from <span style="color:#f92672">==</span> scalar keys %mapped_to ) {
+      <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;1\n&#34;</span> ;
+  }
+  <span style="color:#66d9ef">else</span> {
+      <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;0\n&#34;</span> ;
+  }
+</code></pre></div><h2 id="create-a-canonical-intermediate-form">create a CANONICAL intermediate form</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>There was another was to go about this affair, and that was to reduce the stings to their essential natures and directly compare them. Which is to say create a transformation function that takes a string and normalizes it to a canonical form. Rather than attempt to find a mapping from one string to the other directly, we can see whether both strings in canonical form are the same.</p>
+<p>The canonical form identifies each character by its first appearance: the first character is given the first token, the second the second, if the third should be the same as the first it would get the first token again as expected. The tokens are assigned sequentially in some predefined, easily identifiable pattern, such as sequential letters of the alphabet, picking sucessive letters starting with &ldquo;a&rdquo;.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a></p>
+<p>James and Luis both demonstrate the idea with nearly identical methods in a functional pardigm. In it two <code>map</code> routines are nested, the outer processing each of the two strings, the inner mapping each of the split letters of the string in question to eather an already identified character or the next squential alphabetic choice.</p>
+<p>It&rsquo;s not often I see character postfix incrementation, either. Every call on the inner map function returns either the hashed mapping or if undefined completes the assignment (returning the letter assigned) and increments the character for the next time it&rsquo;s required. It&rsquo;s simple and powerful.</p>
+<p>Because the transforming function acts in the same way on each string, the same result will be produced from different strings with the same underlying structure, in this case isomorphism. I find this a very clever application of functional programming.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">iso</span> {
+        <span style="color:#66d9ef">my</span> ( $a, $b ) <span style="color:#f92672">=</span> map {
+            <span style="color:#75715e">## Initialise letter cache and &#34;counter&#34;</span>
+            <span style="color:#66d9ef">my</span> ( $x, %m ) <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;a&#39;</span>;
+            join <span style="color:#e6db74">&#39;&#39;</span>,                                <span style="color:#75715e">## Stitch back the word and return it....</span>
+                map {  $m{ $_ } <span style="color:#f92672">||=</span> $x<span style="color:#f92672">++</span>  }         <span style="color:#75715e">## Return letter from cache ( or next letter )</span>
+                    split <span style="color:#e6db74">m{}</span>, $_                   <span style="color:#75715e">## Split into individual characters</span>
+        } @_;
+        <span style="color:#66d9ef">return</span> $a <span style="color:#f92672">eq</span> $b <span style="color:#f92672">||</span> <span style="color:#ae81ff">0</span>;                       <span style="color:#75715e">## Check to see if generated words are isomorphic</span>
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>Luis&rsquo;s method is nearly identical, as I noted, using the &ldquo;defined OR&rdquo; operator instead of OR assignment but otherwise the same. Because I like these two solutions so much I&rsquo;ve left them in, but my seemingly compulsive need to break things seems unable to leave well enough alone.</p>
+<p>So I got to thinking: &ldquo;What happens after we use 26 tokens?&rdquo; Well, the incrementation simply begins again with &ldquo;aa&rdquo;, &ldquo;ab&rdquo;, &ldquo;ac&rdquo;&hellip; Which actually works fine&hellip; well, most of the time.</p>
+<p>What about the two strings &ldquo;abcdefghijklmnopqrstuvwxyzABC&rdquo; (29 letters) and &ldquo;abcdefghijklmnopqrstuvwxyzaaabac&rdquo; (32 letters)? Yea, about that&hellip; both solutions, Luis&rsquo; and James&rsquo;, succumb to this rather extreme case, creating the same canonical form: &ldquo;abcdefghijklmnopqrstuvwxyzaaabac&rdquo; (notice this is the same as the second string, which I know because I copied and pasted it in). By checking for string length, as was standard elsewhere, this could have been avoided, as any jumping to two-character tokens will always find itself at the end of the canonical string, and thus the token delineation will remain in sync. Only by substituting two characters from the original mapping can we duplicate the pattern, which necessarily throws off the character count.</p>
+<p>This might demonstrate an oversight in the purely functional paradigm — in a quest for a compact wholeness we have overlooked a simple check not easily rolled into a single pure function, and a little imperitive framework might help us out here. I&rsquo;ve been finding a functional core logic within an imperitive wrapper to be a nice compromise, and often easier to read. Just an idea. YMMV.</p>
+<p>But with that caviat, I love this solution. It&rsquo;s beautiful.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">canonical_form_of</span> {
+    <span style="color:#66d9ef">my</span> %map;
+    <span style="color:#66d9ef">my</span> $current_letter<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;a&#34;</span>;
+    <span style="color:#66d9ef">my</span> $canon<span style="color:#f92672">=</span>join <span style="color:#e6db74">&#39;&#39;</span>, map {$map{$_}<span style="color:#e6db74">//</span>($map{$_}<span style="color:#f92672">=</span>$current_letter<span style="color:#f92672">++</span>)} split <span style="color:#e6db74">//</span>, shift;
+}
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a></p>
+<blockquote>
+<p>The task appears to be very easy, especially because the specification
+comes along with a detailed description of an optimal implementation.
+This invites to go the extra mile.</p>
+</blockquote>
+<p>There&rsquo;s alot going on in Jorg&rsquo;s method. He avoids the sequence overflow complexity (and its trip-ups) by numbering his tokens and keeping them in an array, and creating a message digest form to compare results.</p>
+<p>The extra mile taken here is to incorporate <a href="https://www.unicode.org/reports/tr29/#Grapheme_Cluster_Boundaries">Unicode Grapheme Clusters</a> into the model of isomorphism, specifically tackling the complexity that grapheme components can sometimes be grouped in multiple ways to produce the same character. By using Extended Grapheme Cluster Boundaries as the basis for letter constructions, and then applying a common transformative function to the strings to make a canonical version. Then these canonical versions can be compared and if equivalent the strings are isomorphic.</p>
+<p>Here&rsquo;s the bulk of it, a little edited for clarity. There&rsquo;s more commentary in the original. As I said, there&rsquo;s a lot going on.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Unicode::Normalize;
+    <span style="color:#66d9ef">use</span> Digest;
+    <span style="color:#66d9ef">use</span> constant DIGEST <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;SHA-1&#39;</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">uni_iso_digest</span> {
+        <span style="color:#75715e"># Normalize input (Normalization Form D - canonical decomposition)</span>
+        local $_ <span style="color:#f92672">=</span> NFD shift;
+
+        <span style="color:#66d9ef">my</span> $digest <span style="color:#f92672">=</span> Digest<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(DIGEST);
+        <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">my</span> %chars;
+        <span style="color:#66d9ef">my</span> @canon;
+
+        <span style="color:#75715e"># Assign an ascending number to every new character appearing in the</span>
+        <span style="color:#75715e"># string and append the current number&#39;s bits to the message.</span>
+        <span style="color:#75715e"># Use \X to grab for a grapheme cluster.</span>
+        <span style="color:#66d9ef">while</span> (<span style="color:#e6db74">s/(\X)//</span>) {
+            $chars{$1} <span style="color:#f92672">=</span> $n<span style="color:#f92672">++</span> <span style="color:#66d9ef">unless</span> exists $chars{$1};
+            $digest<span style="color:#f92672">-&gt;</span>add_bits(pack(<span style="color:#e6db74">&#39;L&#39;</span>, $chars{$1}), <span style="color:#ae81ff">32</span>);
+            push @canon, $chars{$1};
+        }
+
+        <span style="color:#75715e"># Return the canonicalization and the message digest in list</span>
+        <span style="color:#75715e"># context.  Returns solely the digest in scalar context.</span>
+        (<span style="color:#f92672">\</span>@canon, $digest<span style="color:#f92672">-&gt;</span>hexdigest);
+    }
+</code></pre></div><p>To give a better idea of what this does, he compared the teo isomorphic strings &ldquo;xxyy&rdquo; and</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> $str <span style="color:#f92672">=</span>
+    <span style="color:#e6db74">&#34;\N{LATIN CAPITAL LETTER A WITH DIAERESIS}&#34;</span> <span style="color:#f92672">.</span>
+
+    <span style="color:#e6db74">&#34;\N{LATIN CAPITAL LETTER A}&#34;</span> <span style="color:#f92672">.</span>
+    <span style="color:#e6db74">&#34;\N{COMBINING DIAERESIS}&#34;</span> <span style="color:#f92672">.</span>
+
+    <span style="color:#e6db74">&#34;\N{LATIN CAPITAL LETTER A}&#34;</span> <span style="color:#f92672">.</span>
+    <span style="color:#e6db74">&#34;\N{COMBINING DIAERESIS}&#34;</span> <span style="color:#f92672">.</span>
+    <span style="color:#e6db74">&#34;\N{COMBINING LONG STROKE OVERLAY}&#34;</span> <span style="color:#f92672">.</span>
+
+    <span style="color:#e6db74">&#34;\N{LATIN CAPITAL LETTER A}&#34;</span> <span style="color:#f92672">.</span>
+    <span style="color:#e6db74">&#34;\N{COMBINING LONG STROKE OVERLAY}&#34;</span> <span style="color:#f92672">.</span>
+    <span style="color:#e6db74">&#34;\N{COMBINING DIAERESIS}&#34;</span>;
+</code></pre></div><p>which is two complex characters described each two ways. Neat.</p>
+<hr>
+<p> &nbsp; </p>
+<p> &nbsp; </p>
+<p> &nbsp; </p>
+<p> &nbsp; </p>
+<hr>
+<h1 id="PWC092TASK2">TASK 2</h1>
+<h1 id="insert-interval">Insert Interval</h1>
+<p><em>Submitted by: Mohammad S Anwar</em>
+You are given a set of sorted non-overlapping intervals and a new interval.</p>
+<p>Write a script to merge the new interval to the given set of intervals.</p>
+<p><strong>Example 1:</strong></p>
+<pre><code>    Input $S = (1,4), (8,10); $N = (2,6)
+    Output: (1,6), (8,10)
+</code></pre><p><strong>Example 2:</strong></p>
+<pre><code>    Input $S = (1,2), (3,7), (8,10); $N = (5,8)
+    Output: (1,2), (3,10)
+</code></pre><p><strong>Example 3:</strong></p>
+<pre><code>    Input $S = (1,5), (7,9); $N = (10,11)
+    Output: (1,5), (7,9), (10,11)
+</code></pre><h2 id="about-the-solutions-1">about the solutions</h2>
+<p>There were 21 successful submissions for the second task this past week.</p>
+<p>The requirement that the given list of intervals be sorted and non-overlapping greatly simplified the insertion process and was universally capitalized on. Because of this, any element whose upper bound was below that of the newly inserted element could be immediately, safely excluded from the calculation. Likewise the grou[ of overlapped intervals has a clear boundary as well, when the lower bound of the next interval lies above that of the inserted. Because of the ordering, no interval above that point can be affected.</p>
+<p>So the mission became to insert the bull into the china shop, then fix any damage it caused. Even though the actions were highly similar, the specific method for bringing them about varied greatly. Wildly, one might say.</p>
+<p>I found a few mistakes as well, large and small.</p>
+<p>I&rsquo;m afraid this became another one of those moments where my febrile mind takes charge over the cool, analytical component and just needs to break things. I don&rsquo;t hate the team, I swear - I care about each and every one of you, I really do. It&rsquo;s just sometimes I look at something and find myself saying: &ldquo;What happens when we do this? Doen&rsquo;t it fail if we do that?&rdquo; And once started I can&rsquo;t seem to stop getting more and more Baroque in my pathological data constructions. What can I say? I have a knack for it.</p>
+<p>Sometimes adding a <code>use lib '.'</code> is all it took and I just hand-wave those away. Other times, well, there weren&rsquo;t may of them, but the bookkeeping could get complicated, and the cases, though easy to accommodate, were manyfold.</p>
+<p>But lets just get on to it.</p>
+<h2 id="categories-categories-what-is-this-thing-you-speak-of">Categories? CATEGORIES? What is this THING you speak of?</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/abigail/perl/ch-2.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/alexander-karelas/perl/ch-2.pl"><strong>Alexander Karelas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/alexander-pankoff/perl/ch-2.pl"><strong>Alexander Pankoff</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/jcrosswh/perl/ch-2.pl"><strong>Joel Crosswhite</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/perlboy1967/perl/ch-2.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/paulo-custodio/perl/ch-2.pl"><strong>Paulo Custodio</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/pete-houston/perl/ch-2.pl"><strong>Pete Houston</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/wanderdoc/perl/ch-2.pl"><strong>Wanderdoc</strong></a></p>
+<p>It seems that everyone had their own take on implementing the same basic steps, defying easy categorization this time. I mean, two people using an object does not a category make.</p>
+<p>And here I thought I might finally have gotten this format finally figured out. Oh well.</p>
+<p>So instead I submit to you a semi-random, non-exhaustive sampling of approaches we saw, with a slight emphasis toward the well explained and unusual. I can try and draw a bit of a through-narrative as we go, but I guarantee it won&rsquo;t be as tight as usual. Perhaps something will develop. Welcome to my mind.</p>
+<p>Let&rsquo;s try and start from a position of clarity:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/jcrosswh/perl/ch-2.pl"><strong>Joel Crosswhite</strong></a></p>
+<p>Joel has given us what is perhaps the most thorough and systematic breakdown of the steps required to properly resolve any conflicts surrounding an insertion.</p>
+<ol>
+<li>Does the new interval just go to the beginning of the set.</li>
+<li>Does the new interval just go to the end of the set.</li>
+<li>Does the new interval span all other intervals, so it just becomes the new
+interval.</li>
+<li>The new interval needs to go into the existing set, so starts looping
+through existing intervals:
+<ul>
+<li>Checks if the new interval lands in between the current and the next
+interval.</li>
+<li>Checks if the start of the new interval is before the existing interval, if
+so, then set the current interval start to the new interval start.</li>
+<li>Checks if the end of the new interval is after the existing interval, if so,
+then set the end of the current interval to the new interval end.</li>
+<li>If the new interval connects two intervals, then set the correct beginning
+and end, then delete the second interval from the current set.</li>
+</ul>
+</li>
+</ol>
+<p>So following the rules laid out, he gives us his solution:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># if new interval is before all others....</span>
+    <span style="color:#66d9ef">if</span> ($new_interval_end <span style="color:#f92672">&lt;</span> $intervals_ds[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>]) {
+        splice(@intervals_ds, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, [$new_interval_start, $new_interval_end]);
+
+    <span style="color:#75715e"># if new inteval is after all others....</span>
+    } <span style="color:#66d9ef">elsif</span> ($new_interval_start <span style="color:#f92672">&gt;</span> $intervals_ds[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">1</span>]) {
+        splice(@intervals_ds, scalar(@intervals_ds), <span style="color:#ae81ff">0</span>,
+            [$new_interval_start, $new_interval_end]);
+
+    <span style="color:#75715e"># if new interval spans all intervals....</span>
+    } <span style="color:#66d9ef">elsif</span> ($new_interval_start <span style="color:#f92672">&lt;</span> $intervals_ds[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>]
+        <span style="color:#f92672">&amp;&amp;</span> $new_interval_end <span style="color:#f92672">&gt;</span> $intervals_ds[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">1</span>]) {
+        @intervals_ds <span style="color:#f92672">=</span> [$new_interval_start, $new_interval_end];
+    } <span style="color:#66d9ef">else</span> {
+
+        <span style="color:#75715e"># go through all existing intervals to see where new one should land</span>
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; $i <span style="color:#f92672">&lt;</span> scalar(@intervals_ds) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>; $i<span style="color:#f92672">++</span>) {
+
+            <span style="color:#75715e"># new interval falls in between existing intervals</span>
+            <span style="color:#66d9ef">if</span> ($new_interval_start <span style="color:#f92672">&gt;</span> $intervals_ds[$i][<span style="color:#ae81ff">1</span>]
+                <span style="color:#f92672">&amp;&amp;</span> $new_interval_end <span style="color:#f92672">&lt;</span> $intervals_ds[$i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">0</span>]) {
+                splice(@intervals_ds, $i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>,
+                    [$new_interval_start, $new_interval_end]);
+                <span style="color:#66d9ef">last</span>;
+            }
+
+            <span style="color:#75715e"># new interval will extend existing interval forward</span>
+            <span style="color:#66d9ef">if</span> ($new_interval_start <span style="color:#f92672">&lt;</span> $intervals_ds[$i][<span style="color:#ae81ff">0</span>]
+                <span style="color:#f92672">&amp;&amp;</span> $new_interval_end <span style="color:#f92672">&gt;</span> $intervals_ds[$i][<span style="color:#ae81ff">0</span>]) {
+                $intervals_ds[$i][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> $new_interval_start;
+            }
+
+            <span style="color:#75715e"># new interval will extend existing interval further back</span>
+            <span style="color:#66d9ef">if</span> ($new_interval_end <span style="color:#f92672">&gt;</span> $intervals_ds[$i][<span style="color:#ae81ff">1</span>]
+                <span style="color:#f92672">&amp;&amp;</span> $new_interval_end <span style="color:#f92672">&lt;</span> $intervals_ds[$i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">0</span>]) {
+                $intervals_ds[$i][<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> $new_interval_end;
+            }
+
+            <span style="color:#75715e"># new interval &#39;connects&#39; two intervals, requiring the removal of one</span>
+            <span style="color:#66d9ef">if</span> ($new_interval_start <span style="color:#f92672">&lt;</span> $intervals_ds[$i][<span style="color:#ae81ff">1</span>]
+                <span style="color:#f92672">&amp;&amp;</span> $new_interval_end <span style="color:#f92672">&gt;</span> $intervals_ds[$i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">0</span>]) {
+                $intervals_ds[$i][<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> $intervals_ds[$i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">1</span>];
+                splice(@intervals_ds, $i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>);
+            }
+        }
+    }
+</code></pre></div><p>So far so good. Now let&rsquo;s do me:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a></p>
+<p>For my own solution, I broke the process into two steps, the first locating the proper spot to splice in the new interval, the second to resolve any conflicts that may have arisen. This resulted in two routines, one to walk the list looking for the correct opening, and a second, enclosed in a loop, that expands the interval, absorbing the one following, until the lower bound of the next interval is beyond the upper bound of the new.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
+        <span style="color:#66d9ef">if</span> (defined $S<span style="color:#f92672">-&gt;</span>[$idx<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">and</span> $S<span style="color:#f92672">-&gt;</span>[$idx][<span style="color:#ae81ff">1</span>] <span style="color:#f92672">&gt;=</span> $S<span style="color:#f92672">-&gt;</span>[$idx<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">0</span>]) {
+            merge($S, $idx);
+        }
+
+        <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $idx <span style="color:#f92672">==</span> $S<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">-</span> 1;
+        <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $S<span style="color:#f92672">-&gt;</span>[$idx][<span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;</span> $S<span style="color:#f92672">-&gt;</span>[$idx<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">0</span>];
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">insert_and_find_merge</span> {
+        <span style="color:#66d9ef">my</span> ($list, $new) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> $idx <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">my</span> $merge;
+        <span style="color:#66d9ef">while</span> ($idx <span style="color:#f92672">&lt;</span> $list<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>) {
+            <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $list<span style="color:#f92672">-&gt;</span>[$idx][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&gt;=</span> $new<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>];
+            $idx<span style="color:#f92672">++</span>;
+        }
+        splice $list<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, $idx, <span style="color:#ae81ff">0</span>, $new;
+
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $idx <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">return</span> $idx<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> $list<span style="color:#f92672">-&gt;</span>[$idx<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">1</span>] <span style="color:#f92672">&gt;=</span> $new<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>];
+        <span style="color:#66d9ef">return</span> $idx;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">merge</span> {
+    <span style="color:#75715e">## given list ref and index, merges index and index + 1</span>
+        <span style="color:#66d9ef">my</span> ($list, $idx) <span style="color:#f92672">=</span> @_;
+        $list<span style="color:#f92672">-&gt;</span>[$idx][<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> $list<span style="color:#f92672">-&gt;</span>[$idx][<span style="color:#ae81ff">1</span>] <span style="color:#f92672">&gt;</span> $list<span style="color:#f92672">-&gt;</span>[$idx<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">1</span>] ? $list<span style="color:#f92672">-&gt;</span>[$idx][<span style="color:#ae81ff">1</span>]
+                                                                 : $list<span style="color:#f92672">-&gt;</span>[$idx<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">1</span>];
+        splice $list<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, $idx<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/paulo-custodio/perl/ch-2.pl"><strong>Paulo Custodio</strong></a></p>
+<p>Paulo takes a similar course, adding his new interval and later merging to resolve conflicts.</p>
+<p>Here is his merging routine:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">merge_intervals</span> {
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; $i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;</span> @intervals; $i<span style="color:#f92672">++</span>) {
+            <span style="color:#66d9ef">while</span> ($i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;</span> @intervals) {
+                <span style="color:#66d9ef">my</span> $this <span style="color:#f92672">=</span> $intervals[$i];
+                <span style="color:#66d9ef">my</span> $next <span style="color:#f92672">=</span> $intervals[$i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>];
+                <span style="color:#66d9ef">if</span> ($this<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;</span> $next<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]) {            		<span style="color:#75715e"># not overlapping</span>
+                    <span style="color:#66d9ef">last</span>;            							<span style="color:#75715e"># next interval</span>
+                }
+                <span style="color:#66d9ef">else</span> {
+                    splice(@intervals, $i, <span style="color:#ae81ff">2</span>, [$this<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>], $next<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]]);    <span style="color:#75715e"># merge and test again</span>
+                }
+            }
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/pete-houston/perl/ch-2.pl"><strong>Pete Houston</strong></a>
+Let&rsquo;s start with saying Pete gets points for providing a usage example for input. You&rsquo;d be surprised at how many people forget this simple step. I already spend <em>way</em> too much time dissecting these scripts, and little things like this endear you to me. On rare occations I have even given up on reviews because I couldn&rsquo;t figure out how to feed data into the thing from the command line. Seriously. Matrices, binary trees — I&rsquo;m looking at <strong>you</strong>.</p>
+<p>Anyway, Pete gives us a nicely commented and broken up procedure to find the insertion point, then propagate through a sequence of logical decisions to expand the intervals around the newcomer to accommodate it. Using a call-and-response running commentary (<em>can I get an ay-men!</em>) he brings us through each choice as it is made. Here he is after insertion, resolving overlap issues:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">unless</span> ($finished) {
+        <span style="color:#66d9ef">my</span> $this <span style="color:#f92672">=</span> $pair;
+        <span style="color:#75715e"># Pick off more entries until we don&#39;t finish after the</span>
+        <span style="color:#75715e"># upper bound</span>
+        <span style="color:#66d9ef">while</span> (defined ($this) <span style="color:#f92672">&amp;&amp;</span> $new[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">&gt;</span> $this<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]) {
+            $this <span style="color:#f92672">=</span> shift @old;
+        }
+        <span style="color:#75715e"># Are we beyond the very last pair?</span>
+        <span style="color:#66d9ef">unless</span> (defined $this) {
+            $pair<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> $new[<span style="color:#ae81ff">1</span>];
+            push @ranges, $pair;
+            $finished <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+            <span style="color:#66d9ef">last</span>;
+        }
+        <span style="color:#75715e"># Do we finish before the next pair starts?</span>
+        <span style="color:#66d9ef">if</span> ($new[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;</span> $this<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]) {
+            $pair<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> $new[<span style="color:#ae81ff">1</span>];
+            push @ranges, $pair, $this, @old;
+            $finished <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+            <span style="color:#66d9ef">last</span>;
+        }
+        <span style="color:#75715e"># Nothing more to do, just append the rest</span>
+        $pair<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> $this<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>];
+        push @ranges, $pair, @old;
+        $finished <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">last</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/perlboy1967/perl/ch-2.pl"><strong>Niels van Dijke</strong></a></p>
+<p>Niels provides an Interval object type, with accessor methods and handy boolean functions governing containment and overlapping with others of its kind.</p>
+<p>He make his amalgamated insertion with two passes on the array. The first, using a <code>map</code> function, identifies any overlapping intervals and expands their boundaries as required to the limits of the added interval. Then a second pass is made to extract any absorbed intervals using a loop and <code>splice</code>. Quite clear and neat in execution.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">while</span>(<span style="color:#e6db74">&lt;DATA&gt;</span>) {
+    chomp;
+    <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> <span style="color:#e6db74">/#/</span>;
+    <span style="color:#66d9ef">my</span> @d <span style="color:#f92672">=</span> split(<span style="color:#e6db74">/\s+/</span>);
+    <span style="color:#66d9ef">my</span> @i <span style="color:#f92672">=</span> map { Interval<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(split(<span style="color:#e6db74">/,/</span>,$_)) } @d;
+    <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> pop(@i);
+
+  Print(<span style="color:#e6db74">&#39;Input&#39;</span>, @i, $n);
+
+  <span style="color:#66d9ef">my</span> $ext <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">my</span> @o <span style="color:#f92672">=</span> map {
+        <span style="color:#75715e"># Extend when overlaps</span>
+        <span style="color:#66d9ef">if</span> ($_<span style="color:#f92672">-&gt;</span>overlaps($n)) {
+            $_ <span style="color:#f92672">=</span> Interval<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(min($_<span style="color:#f92672">-&gt;</span>min,$n<span style="color:#f92672">-&gt;</span>min), max($_<span style="color:#f92672">-&gt;</span>max,$n<span style="color:#f92672">-&gt;</span>max));
+            $ext<span style="color:#f92672">++</span>;
+        }
+        $_;
+    } @i;
+
+  push(@o, $n) <span style="color:#66d9ef">unless</span> $ext;
+
+  @o <span style="color:#f92672">=</span> sort { $a<span style="color:#f92672">-&gt;</span><span style="color:#f92672">cmp</span>($b) } @o;
+
+  <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">while</span> ($i <span style="color:#f92672">&lt;=</span> scalar(@o) <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>) {
+        <span style="color:#75715e"># splice overlapping entries</span>
+        <span style="color:#66d9ef">if</span> ($o[$i]<span style="color:#f92672">-&gt;</span>overlaps($o[$i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>])) {
+            splice(@o, $i, <span style="color:#ae81ff">2</span>,
+                     Interval<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(min($o[$i]<span style="color:#f92672">-&gt;</span>min,$o[$i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">-&gt;</span>min),  max($o[$i]<span style="color:#f92672">-&gt;</span>max,$o[$i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">-&gt;</span>max)));
+        } <span style="color:#66d9ef">else</span> {
+            $i<span style="color:#f92672">++</span>;
+        }
+    }
+
+  Print(<span style="color:#e6db74">&#39;Output&#39;</span>, @o);
+}
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a></p>
+<p>The monk also uses an Interval object type to handle all things interval, like where it starts, stops, whether it overlaps with another and how to handle reverse mitosis should the need arise.</p>
+<p>His algorithm makes a single pass, however, building the output array from first unaltered preliminary elements, then the inserted element with all others absorbed, followed by the remaining portion of the original array that remained out of harm&rsquo;s way. We will see this three part construct again later.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $interval (@$S)
+    {
+        <span style="color:#66d9ef">if</span> ($merged <span style="color:#f92672">||</span> $interval<span style="color:#f92672">-&gt;</span>precedes($N))
+        {
+            push @out, $interval;
+        }
+        <span style="color:#66d9ef">elsif</span> ($N<span style="color:#f92672">-&gt;</span>precedes($interval))
+        {
+            push @out, $N, $interval;
+            $merged <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+        }
+        <span style="color:#66d9ef">else</span>
+        {
+            $N <span style="color:#f92672">=</span> $N<span style="color:#f92672">-&gt;</span>merge($interval);
+        }
+    }
+
+    push @out, $N <span style="color:#66d9ef">unless</span> $merged;
+
+    <span style="color:#66d9ef">return</span> @out;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/abigail/perl/ch-2.pl"><strong>Abigail</strong></a></p>
+<p>Abigail uses a series of <code>grep</code> functions to divide the interval list into segments, those before, those overlapping, and those after the new interval. The overlapping conflicts are resolved and the list reassembled. I&rsquo;ll let his excellent commentary speak for itself.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e">#</span>
+    <span style="color:#75715e"># Partition the intervals into three sets:</span>
+    <span style="color:#75715e">#    - Intervals completely to the left of $N</span>
+    <span style="color:#75715e">#    - Intervals intersecting $N</span>
+    <span style="color:#75715e">#    - Intervals completely to the right of $N</span>
+    <span style="color:#75715e">#</span>
+    <span style="color:#75715e"># Each set my be empty. The first and last set will be unmodified.</span>
+    <span style="color:#75715e">#</span>
+    <span style="color:#66d9ef">my</span> @pre  <span style="color:#f92672">=</span> grep {$$_ [<span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;</span>  $$N [<span style="color:#ae81ff">0</span>]} @intervals;
+    <span style="color:#66d9ef">my</span> @mid  <span style="color:#f92672">=</span> grep {$$_ [<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&lt;=</span> $$N [<span style="color:#ae81ff">1</span>] <span style="color:#f92672">&amp;&amp;</span>
+                     $$_ [<span style="color:#ae81ff">1</span>] <span style="color:#f92672">&gt;=</span> $$N [<span style="color:#ae81ff">0</span>]} @intervals;
+    <span style="color:#66d9ef">my</span> @post <span style="color:#f92672">=</span> grep {$$_ [<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&gt;</span>  $$N [<span style="color:#ae81ff">1</span>]} @intervals;
+
+    <span style="color:#75715e">#</span>
+    <span style="color:#75715e"># Merge the middle set will be with $N, the result is a single interval:</span>
+    <span style="color:#75715e">#    - If the middle set is not empty, and the start of the</span>
+    <span style="color:#75715e">#      first interval in the set is to the left of the start</span>
+    <span style="color:#75715e">#      of $N, the start point of the merged interval is the start</span>
+    <span style="color:#75715e">#      point of the merged interval, else it&#39;s the start point of $N.</span>
+    <span style="color:#75715e">#    - For the endpoint, we compare the end points of last interval</span>
+    <span style="color:#75715e">#      in the middle set with the end point of $N.</span>
+    <span style="color:#75715e">#</span>
+    <span style="color:#66d9ef">my</span> $mid  <span style="color:#f92672">=</span> [@mid <span style="color:#f92672">&amp;&amp;</span> $mid  [<span style="color:#ae81ff">0</span>] [<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&lt;</span> $$N [<span style="color:#ae81ff">0</span>] ? $mid  [<span style="color:#ae81ff">0</span>] [<span style="color:#ae81ff">0</span>] : $$N [<span style="color:#ae81ff">0</span>],
+                @mid <span style="color:#f92672">&amp;&amp;</span> $mid [<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] [<span style="color:#ae81ff">1</span>] <span style="color:#f92672">&gt;</span> $$N [<span style="color:#ae81ff">1</span>] ? $mid [<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] [<span style="color:#ae81ff">1</span>] : $$N [<span style="color:#ae81ff">1</span>]];
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a></p>
+<p>Both Flavio and James make a single pass through list to find their insert point, shifting elements off one list and pushing them onto another.</p>
+<p>For his go at it, Flavio immediately destroys the abstraction of the new interval, breaking it apart into isolated low and high boundary values. After shifting over all intervals that end before the lower value, then the problem is resolving the lower and upper boundaries to fit cleanly within the new array. The $l and $h variables are adjusted and any absorbed intervals are again shifted and not transferred to remove them.</p>
+<p>The resultant array becomes a concatenation of those intervals before the insert, a newly reconstructed interval from the low and high values, and anything from the remaining input array untouched by the changes.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">insert_interval</span> ($S, $N) {
+       <span style="color:#66d9ef">my</span> @S <span style="color:#f92672">=</span> map { [$_<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*]</span> <span style="color:#960050;background-color:#1e0010">}</span> <span style="color:#960050;background-color:#1e0010">$</span>S<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+       my ($l, $h) <span style="color:#f92672">=</span> $N<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+       my @retval;
+
+       <span style="color:#75715e"># first of all, &#34;transfer&#34; all preceding intervals</span>
+       push @retval, shift(@S) <span style="color:#66d9ef">while</span> @S <span style="color:#f92672">&amp;&amp;</span> $S[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;</span> $l;
+       <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span> @S) { <span style="color:#75715e"># all intervals were preceding, easy</span>
+          push @retval, [$l, $h];
+          <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@retval;
+       }
+
+       <span style="color:#75715e"># now $S[0] might be after the new interval</span>
+       <span style="color:#66d9ef">if</span> ($S[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&gt;</span> $h) {
+          push @retval, [$l, $h], @S;
+          <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@retval;
+       }
+
+       <span style="color:#75715e"># now there is some overlap between $S[0] and $N. We can fix the start</span>
+       $l <span style="color:#f92672">=</span> min($l, $S[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>]);
+
+       <span style="color:#75715e"># ... and look for the end...</span>
+       <span style="color:#66d9ef">while</span> (@S <span style="color:#f92672">&amp;&amp;</span> $h <span style="color:#f92672">&gt;=</span> $S[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>]) {
+          $h <span style="color:#f92672">=</span> max($h, $S[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">1</span>]);
+          shift @S;
+       }
+
+       push @retval, [$l, $h], @S;
+       <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@retval;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a></p>
+<p>In James&rsquo; example the lower bound of the new element is moved to absorb a single element before if required (there will be at max one), then the upper element is adjusted from the upper bounds of the remaining elements. Instead of splicing, completely absorbed elements can be shifted off the old for examination and simply not pushed on the new to remove them.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">  <span style="color:#66d9ef">while</span>(<span style="color:#66d9ef">my</span> $e <span style="color:#f92672">=</span> shift @list) {
+    <span style="color:#66d9ef">return</span> [ @new_list, $new, $e, @list ] <span style="color:#66d9ef">if</span> $e<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&gt;</span> $new<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>];
+          <span style="color:#75715e">## The start of the next element is after the end of the new element - so we can safely</span>
+          <span style="color:#75715e">## push the new element and the rest of the list (and return it)</span>
+    <span style="color:#66d9ef">if</span>( $e<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;</span> $new<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] ) { <span style="color:#75715e">## Next element is to the left of the new element so push</span>
+      push @new_list,$e;        <span style="color:#75715e">## and continue</span>
+      <span style="color:#66d9ef">next</span>;
+    }
+    $new<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> $e<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#66d9ef">if</span> $e<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&lt;</span> $new<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>];
+    $new<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> $e<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#66d9ef">if</span> $e<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">&gt;</span> $new<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>];           <span style="color:#75715e">## Get start/end of first overlap...</span>
+    <span style="color:#66d9ef">while</span>( @list <span style="color:#f92672">&amp;&amp;</span> $new<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">&gt;=</span> $list[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>] ) {          <span style="color:#75715e">## this also overlaps the next list element</span>
+      $new<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> $list[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">1</span>] <span style="color:#66d9ef">if</span> $list[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">1</span>] <span style="color:#f92672">&gt;</span> $new<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]; <span style="color:#75715e">## If goes beyond next list element we extend new</span>
+      shift @list;                                        <span style="color:#75715e">## Remove element from list;</span>
+    }
+    <span style="color:#66d9ef">return</span> [ @new_list, $new, @list ];                    <span style="color:#75715e">## The rest of the list will be after the &#34;new&#34; element now</span>
+  }                                                         <span style="color:#75715e">## So we can safely push and return it....</span>
+  <span style="color:#66d9ef">return</span> [ @new_list, $new ];                             <span style="color:#75715e">## The new element must be after the list so we just</span>
+                                                            <span style="color:#75715e">## return it on the end of the list...</span>
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/alexander-karelas/perl/ch-2.pl"><strong>Alexander Karelas</strong></a></p>
+<p>Karelas sorts his interval list by the lower bound, and then uses <code>redo LABEL</code> inside a block to produce a  structure that loops over all pairs to see if they overlap. Should he find a conflict it is then resolved.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    LOOP:
+    {
+        <span style="color:#75715e"># check all pairs of intervals, whether they merge</span>
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; $i <span style="color:#f92672">&lt;</span> @S <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>; $i<span style="color:#f92672">++</span>) {
+            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $j <span style="color:#f92672">=</span> $i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>; $j <span style="color:#f92672">&lt;</span> @S; $j<span style="color:#f92672">++</span>) {
+                <span style="color:#66d9ef">my</span> $pair_a <span style="color:#f92672">=</span> $S[$i];
+                <span style="color:#66d9ef">my</span> $pair_b <span style="color:#f92672">=</span> $S[$j];
+
+                <span style="color:#75715e"># do they touch?</span>
+                <span style="color:#66d9ef">if</span> ($pair_a<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">&gt;=</span> $pair_b<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">and</span> $pair_a<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&lt;=</span> $pair_b<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]) {
+                    <span style="color:#75715e"># merge the two intervals and start over</span>
+                    <span style="color:#66d9ef">my</span> $min <span style="color:#f92672">=</span> min($pair_a<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>], $pair_b<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]);
+                    <span style="color:#66d9ef">my</span> $max <span style="color:#f92672">=</span> max($pair_a<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>], $pair_b<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]);
+                    splice @S, $j, <span style="color:#ae81ff">1</span>;
+                    splice @S, $i, <span style="color:#ae81ff">1</span>;
+                    push @S, [$min, $max];
+
+                    <span style="color:#66d9ef">redo</span> LOOP;
+                }
+            }
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a></p>
+<p>Not using an object <em>per se</em>, Simon takes an unusual course to regard intervals as mappings in a hash, with the lower bound as key pointing to the upper as value. This works of course because we know the existing list is non-overlapping, so no two lower bounds can be the same. There&rsquo;s no need (or meaning) to keep the hash keys sorted until we output, and so instead of splicing and array we only need to <code>delete</code> keys. Here&rsquo;s the section that handles the overlaps:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># Get all intervals that intersect the new interval</span>
+    <span style="color:#66d9ef">my</span> @grab <span style="color:#f92672">=</span> grep { $_ <span style="color:#f92672">&gt;=</span> $start <span style="color:#f92672">&amp;&amp;</span> $_ <span style="color:#f92672">&lt;=</span> $new_end }  sort { $a <span style="color:#e6db74">&lt;=&gt;</span> $b } keys %intervals;
+
+    <span style="color:#75715e"># This interval ends at the greater of the new interval or the</span>
+    <span style="color:#75715e">#  end of the last interval we used.</span>
+    $intervals{$start} <span style="color:#f92672">=</span> max( $new_end, $intervals{ $grab[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] } );
+
+    <span style="color:#66d9ef">if</span> ( scalar(@grab) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> ) {
+        <span style="color:#75715e"># We subsumed some other intervals, so delete them</span>
+        shift @grab;
+        delete $intervals{$_} <span style="color:#66d9ef">foreach</span> @grab;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a></p>
+<p>After shifting off the new interval, Jorg uses <code>map</code> to sequence through the remaining interval list, applying a deciding function <code>pass_merge</code> that either passes through an unchanged pair-array, the new interval or a new array segment comprising the topic and merged interval. I don&rsquo;t believe we see this approach elsewhere; it&rsquo;s quite interesting.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">pass_merge</span> {
+        <span style="color:#66d9ef">my</span> ($base, $insert) <span style="color:#f92672">=</span> @_;
+
+        <span style="color:#75715e"># No insertion: just pass the base.</span>
+        <span style="color:#66d9ef">return</span> [$base] <span style="color:#66d9ef">unless</span> $insert;
+
+        <span style="color:#75715e"># Base below insertion: pass the base and keep the insertion.</span>
+        <span style="color:#66d9ef">return</span> ([$base], $insert) <span style="color:#66d9ef">if</span> $base<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;</span> $insert<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>];
+
+        <span style="color:#75715e"># Insertion below base: pass insertion and base, clear insertion.</span>
+        <span style="color:#66d9ef">return</span> [$insert, $base] <span style="color:#66d9ef">if</span> $insert<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;</span> $base<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>];
+
+        <span style="color:#75715e"># Overlapping intervals: pass nothing and use merged intervals as</span>
+        <span style="color:#75715e"># new insertion.</span>
+        (<span style="color:#f92672">[]</span>, [minmax $base<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, $insert<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*]</span>);
+    }
+
+    <span style="color:#75715e"># Insert the new interval (1st arg) into the list of given intervals by</span>
+    <span style="color:#75715e"># sliding the insertion over the list of intervals and performing the</span>
+    <span style="color:#75715e"># operations as provided by pass_merge.</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">insert</span> {
+        <span style="color:#66d9ef">my</span> $insert <span style="color:#f92672">=</span> shift;
+
+        ((map {
+                (<span style="color:#66d9ef">my</span> $pass, $insert) <span style="color:#f92672">=</span> pass_merge $_, $insert;
+                $pass<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+                <span style="color:#960050;background-color:#1e0010">}</span> <span style="color:#960050;background-color:#1e0010">@</span>_),
+            <span style="color:#75715e"># Append the insertion if it still exists.</span>
+            ($insert) x <span style="color:#f92672">!!</span>$insert);
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/wanderdoc/perl/ch-2.pl"><strong>Wanderdoc</strong></a></p>
+<p>The Wanderdoc gives us a rather profoundly weird algorithm, importing the <code>Bit::Vector</code> module to abstract his intervals a sort of unary notation: a single string of bits in a vector the size of the whole range spanned. In other words a quite literal model of an interval. He can then use a bitwise OR from the module to map the intervals to a result vector, with any overlaps accounted for.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">insert_interval</span>
+    {
+         <span style="color:#66d9ef">my</span> @intervals <span style="color:#f92672">=</span> @_;
+
+         @intervals <span style="color:#f92672">=</span> sort { $a<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#e6db74">&lt;=&gt;</span> $b<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] } @intervals;
+         <span style="color:#66d9ef">my</span> $max <span style="color:#f92672">=</span> max(map @$_, @intervals);
+
+         <span style="color:#66d9ef">my</span> @veclist <span style="color:#f92672">=</span> Bit::Vector<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>($max <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, scalar @intervals);
+         $veclist[$_]<span style="color:#f92672">-&gt;</span>Interval_Fill(@{$intervals[$_]}) <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#veclist;
+
+         <span style="color:#66d9ef">my</span> @results;
+         <span style="color:#66d9ef">my</span> $res <span style="color:#f92672">=</span> $veclist[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-&gt;</span>Shadow();
+
+         <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $v ( @veclist )
+         {
+              <span style="color:#66d9ef">if</span> ($res<span style="color:#f92672">-&gt;</span>is_empty())
+              {
+                   $res<span style="color:#f92672">-&gt;</span>Or($res, $v);
+              }
+              <span style="color:#66d9ef">else</span>
+              {
+                   <span style="color:#66d9ef">if</span> ( $v<span style="color:#f92672">-&gt;</span>Min() <span style="color:#f92672">&lt;=</span> $res<span style="color:#f92672">-&gt;</span>Max() )
+                   {
+
+                        $res<span style="color:#f92672">-&gt;</span>Or($res, $v);
+                   }
+                   <span style="color:#66d9ef">else</span>
+                   {
+                        <span style="color:#66d9ef">my</span> $res_p <span style="color:#f92672">=</span> $res<span style="color:#f92672">-&gt;</span>Clone();
+                        push @results, [$res_p<span style="color:#f92672">-&gt;</span>Min(), $res_p<span style="color:#f92672">-&gt;</span>Max()];
+                        $res<span style="color:#f92672">-&gt;</span>Empty();
+                        $res<span style="color:#f92672">-&gt;</span>Or($res, $v);
+
+                   }
+              }
+         }
+         push @results, [$res<span style="color:#f92672">-&gt;</span>Min(), $res<span style="color:#f92672">-&gt;</span>Max()];
+
+         <span style="color:#66d9ef">return</span> @results;
+    }
+</code></pre></div><p>and finally,</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a></p>
+<p>On seeing his short submission, I was initially intrigued by Choroba&rsquo;s seeming ability for concise distillation of complex processes, only to find he has reused PWC 050 as-is. Well, that <em>is</em> one way to do it, and an entirely correct allocation of resources. My hat is off to you sir — I have done this myself. I usually take the time to refactor some details or even rework everything from a different angle. Other times I don&rsquo;t. This appears to be one of those times for Choroba.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">do</span> <span style="color:#e6db74">&#34;$FindBin::Bin/../../../challenge-050/e-choroba/perl/ch-1.pl&#34;</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">insert_interval</span> {
+        <span style="color:#66d9ef">my</span> ($intervals, $new) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> $skip <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;MyInterval&#39;</span><span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
+        $skip<span style="color:#f92672">-&gt;</span>insert(@$_) <span style="color:#66d9ef">for</span> @$intervals, $new;
+        <span style="color:#66d9ef">return</span> $skip<span style="color:#f92672">-&gt;</span>out
+    }
+</code></pre></div><hr>
+<h1 id="PWC092BLOGS">BLOGS</h1>
+<hr>
+<p><strong>That’s it for me this week, people! Resolute and unbroken by the torrential influx, I have maintained my bearings. Looking forward to next wave, the perfect wave, I am: your humble servant.</strong></p>
+<h2 id="PWC092BLOGS">But if Your <em>THIRST</em> for <em>KNOWLEDGE</em> is not <em>SLAKED</em>,</h2>
+<h2 id="then-run-dont-walk-to-the-watering-hole">then <em>RUN</em> <em>(dont walk!)</em> to the <em>WATERING HOLE</em></h2>
+<h2 id="and-read-these-blog-links">and <em>READ</em> these <em>BLOG</em> <em>LINKS</em>:</h2>
+<p><em><strong>( don&rsquo;t think, trust your training, you&rsquo;re in the zone, just do it &hellip; )</strong></em></p>
+<p><strong>Aaron Smith</strong></p>
+<ul>
+<li><a href="https://aaronreidsmith.github.io/blog/perl-weekly-challenge-092/">Perl Weekly Challenge 92 - Aaron Smith</a> ( <em>Raku</em> )</li>
+</ul>
+<p><strong>Abigail</strong></p>
+<ul>
+<li><a href="https://wp.me/pcxd30-jK">Perl Weekly Challenge 92, Part 1 – Abigail�s Programming Blog</a> ( <em>Perl</em> )</li>
+<li><a href="https://wp.me/pcxd30-ka">Perl Weekly Challenge 92, Part 2 – Abigail�s Programming Blog</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Andrew Shitov</strong></p>
+<ul>
+<li><a href="https://andrewshitov.com/2020/12/22/raku-challenge-week-92-issue-1/">Raku Challenge, Week 92, Issue 1 – Andrew Shitov</a> ( <em>Raku</em> )</li>
+</ul>
+<p><strong>Arne Sommer</strong></p>
+<ul>
+<li><a href="https://raku-musings.com/isomorphic-insert.html">Isomorphic Insertation with Raku</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Colin Crain</strong></p>
+<ul>
+<li><a href="https://colincrain.com/2020/12/27/my-lava-lamp-pulsates-in-harmony-with-the-string-section/">My Lava Lamp Pulsates in Harmony with the String Section – Programming Excursions in Perl and Raku</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Flavio Poletti</strong></p>
+<ul>
+<li><a href="https://github.polettix.it/ETOOBUSY/2020/12/22/pwc092-isomorphic-strings/">PWC092 - Isomorphic Strings - ETOOBUSY</a> ( <em>Perl</em> )</li>
+<li><a href="https://github.polettix.it/ETOOBUSY/2020/12/23/pwc092-insert-interval/">PWC092 - Insert Interval - ETOOBUSY</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>James Smith</strong></p>
+<ul>
+<li><a href="http://blogs.perl.org/users/james_curtis-smith/2020/12/perl-weekly-challenge-92.html">Perl weekly challenge 92 | James Curtis-Smith</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Kang-min Liu</strong></p>
+<ul>
+<li><a href="https://gugod.org/2020/12/pwc-092/">解 Perl Weekly Challenge 092 &ndash; 同構字串與合併範圍</a> ( <em>Raku</em> )</li>
+<li><a href="https://gugod.org/2020/12/pwc-092-en/">Solving Perl Weekly Challenge 092 &ndash; Isomorphic Strings and Insert Interval</a> ( <em>Raku</em> )</li>
+</ul>
+<p><strong>Laurent Rosenfeld</strong></p>
+<ul>
+<li><a href="http://blogs.perl.org/users/laurent_r/2020/12/perl-weekly-challenge-92-isomorphic-strings-and-insert-intervals.html">Perl Weekly Challenge 92: Isomorphic Strings and Insert Intervals</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Roger Bell_West</strong></p>
+<ul>
+<li><a href="https://blog.firedrake.org/archive/2020/12/Perl_Weekly_Challenge_92__Isomorphic_Interval.html">RogerBW's Blog: Perl Weekly Challenge 92: Isomorphic Interval</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Simon Green</strong></p>
+<ul>
+<li><a href="https://dev.to/simongreennet/weekly-challenge-092-1kim">Weekly Challenge 092</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>W. Luis Mochan</strong></p>
+<ul>
+<li><a href="https://wlmb.github.io/2020/12/22/PWC92/">Perl Weekly Challenge 92</a> ( <em>Perl</em> )</li>
+</ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="/contact" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2020
+                    </span> PerlWeeklyChallenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.nomtimes.co.uk/site/shop.do?cref=PerlBooks" title="Free Perl Books" rel="noreferrer" target="_blank">
+                            <img src="/images/NomTimes.jpg" style="width:22px; height: 18px;" alt=""/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://perlweeklychallenge.org/plugins/jQurey/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://perlweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://perlweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://perlweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://perlweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://perlweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://perlweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://perlweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://perlweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-136524905-1', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+
+</html>
+
