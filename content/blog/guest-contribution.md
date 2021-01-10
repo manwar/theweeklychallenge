@@ -26,6 +26,8 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 094](/blog/perl-weekly-challenge-094) {#094}
 <br>
 
+##### **Abigail** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-094/abigail/node/ch-1.js) in **Node**.
+
 ##### **Adam Russell** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-094/adam-russell/prolog/ch-1.p) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-094/adam-russell/prolog/ch-2.p) in **Prolog**.
 
 ##### **Cheok-Yin Fung** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-094/cheok-yin-fung/java/BT2LL.java) in **Java**.
