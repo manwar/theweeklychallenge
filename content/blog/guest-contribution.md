@@ -1,14 +1,14 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2021-01-12T00:00:00+00:00
+date: 2021-01-13T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
 author: Mohammad S Anwar
-tags: ["APL", "Awk", "Basic", "Bash", "Bc", "Befunge", "Brainfuck", "C", "Chef", "Cobol", "C Shell", "C++", "Clojure", "Elm", "Erlang", "Fish", "Forth", "Fortran", "Gembase", "GNAT", "Go", "Haskell", "HTML", "Idris", "Java", "JavaScript", "Kotlin", "Lisp", "Lua", "Mumps", "Node", "OCaml", "Ook", "Pascal", "PHP", "Python", "Postscript", "Prolog", "R", "Ruby", "Rust", "Scala", "SQL", "Swift", "Tcl", "XSLT"]
+tags: ["APL", "Awk", "Basic", "Bash", "Bc", "Befunge", "Brainfuck", "C", "Chef", "Cobol", "C Shell", "C++", "Clojure", "Elm", "Erlang", "Fish", "Forth", "Fortran", "Gembase", "GNAT", "Go", "Haskell", "HTML", "Idris", "Janet", "Java", "JavaScript", "Kotlin", "Lisp", "Lua", "Mumps", "Node", "OCaml", "Ook", "Pascal", "PHP", "Python", "Postscript", "Prolog", "R", "Ruby", "Rust", "Scala", "SQL", "Swift", "Tcl", "XSLT"]
 ---
 
-As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. During the **Week #018**, we received solutions to **["The Weekly Challenge - 018"](/blog/perl-weekly-challenge-018)** by `Orestis Zekai` in **Python**. It was pleasant surprise to receive solutions in something other than **Perl** and **Raku**. Ever since regular team members also started contributing in other languages like **APL**, **Awk**, **Basic**, **Bash**, **Bc**, **Befunge**, **Brainfuck**, **C**, **Chef**, **Cobol**, **C Shell**, **C++**, **Clojure**, **Elm**, **Erlang**, **Fish**, **Forth**, **Fortran**, **Gembase**, **GNAT**, **Go**, **Haskell**, **HTML**, **Idris**, **Java**, **JavaScript**, **Kotlin**, **Lisp**, **Lua**, **Mumps**, **Node**, **OCaml**, **Ook**, **Pascal**, **PHP**, **Python**, **Postscript**, **Prolog**, **R**, **Ruby**, **Rust**, **Scala**, **SQL**, **Swift**, **Tcl** and **XSLT**.
+As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. During the **Week #018**, we received solutions to **["The Weekly Challenge - 018"](/blog/perl-weekly-challenge-018)** by `Orestis Zekai` in **Python**. It was pleasant surprise to receive solutions in something other than **Perl** and **Raku**. Ever since regular team members also started contributing in other languages like **APL**, **Awk**, **Basic**, **Bash**, **Bc**, **Befunge**, **Brainfuck**, **C**, **Chef**, **Cobol**, **C Shell**, **C++**, **Clojure**, **Elm**, **Erlang**, **Fish**, **Forth**, **Fortran**, **Gembase**, **GNAT**, **Go**, **Haskell**, **HTML**, **Idris**, **Janet**, **Java**, **JavaScript**, **Kotlin**, **Lisp**, **Lua**, **Mumps**, **Node**, **OCaml**, **Ook**, **Pascal**, **PHP**, **Python**, **Postscript**, **Prolog**, **R**, **Ruby**, **Rust**, **Scala**, **SQL**, **Swift**, **Tcl** and **XSLT**.
 
 Please find below guest contributions.
 
@@ -35,6 +35,8 @@ Please find below guest contributions.
 ##### **Abigail** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-095/abigail/node/ch-1.js) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-095/abigail/node/ch-2.js) in **Node**.
 
 ##### **Abigail** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-095/abigail/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-095/abigail/python/ch-2.py) in **Python**.
+
+##### **Kang-min Liu** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-095/gugod/janet/ch-1.janet) in **Janet**.
 
 ##### **Nuno Vieira** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-095/nunovieira220/js/ch-1.js) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-095/nunovieira220/js/ch-2.js) in **JavaScript**.
 
