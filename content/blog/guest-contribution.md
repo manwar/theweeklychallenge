@@ -20,9 +20,9 @@ Please find below guest contributions.
 
 #### &nbsp; * &nbsp; [[057](#057)] &nbsp; * &nbsp; [[056](#056)] &nbsp; * &nbsp; [[055](#055)] &nbsp; * &nbsp; [[054](#054)] &nbsp; * &nbsp; [[053](#053)] &nbsp; * &nbsp; [[052](#052)] &nbsp; * &nbsp; [[051](#051)] &nbsp; * &nbsp; [[050](#050)] &nbsp; * &nbsp; [[049](#049)] &nbsp; * &nbsp; [[048](#048)] &nbsp; * &nbsp; [[047](#047)] &nbsp; * &nbsp; [[046](#046)] &nbsp; * &nbsp; [[045](#045)] &nbsp; * &nbsp; [[044](#044)] &nbsp; * &nbsp; [[043](#043)] &nbsp; * &nbsp; [[042](#042)] &nbsp; * &nbsp; [[041](#041)] &nbsp; * &nbsp; [[040](#040)] &nbsp; * &nbsp; [[038](#038)] &nbsp; *
 
-#### &nbsp; * &nbsp; [[037](#037)] &nbsp; * &nbsp; [[036](#036)] &nbsp; * &nbsp; [[034](#034)] &nbsp; * &nbsp; [[033](#033)] &nbsp; * &nbsp; [[032](#032)] &nbsp; * &nbsp; [[031](#031)] &nbsp; * &nbsp; [[028](#028)] &nbsp; * &nbsp; [[027](#027)] &nbsp; * &nbsp; [[026](#026)] &nbsp; * &nbsp; [[024](#024)] &nbsp; * &nbsp; [[023](#023)] &nbsp; * &nbsp; [[020](#020)] &nbsp; * &nbsp; [[018](#018)] &nbsp; * &nbsp; [[012](#012)] &nbsp; * &nbsp; [[011](#011)] &nbsp; * &nbsp; [[009](#009)] &nbsp; * &nbsp; [[008](#008)] &nbsp; * &nbsp; [[007](#007)] &nbsp; * &nbsp; [[006](#006)] &nbsp; *
+#### &nbsp; * &nbsp; [[037](#037)] &nbsp; * &nbsp; [[036](#036)] &nbsp; * &nbsp; [[034](#034)] &nbsp; * &nbsp; [[033](#033)] &nbsp; * &nbsp; [[032](#032)] &nbsp; * &nbsp; [[031](#031)] &nbsp; * &nbsp; [[030](#030)] &nbsp; * &nbsp; [[028](#028)] &nbsp; * &nbsp; [[027](#027)] &nbsp; * &nbsp; [[026](#026)] &nbsp; * &nbsp; [[024](#024)] &nbsp; * &nbsp; [[023](#023)] &nbsp; * &nbsp; [[020](#020)] &nbsp; * &nbsp; [[018](#018)] &nbsp; * &nbsp; [[012](#012)] &nbsp; * &nbsp; [[011](#011)] &nbsp; * &nbsp; [[009](#009)] &nbsp; * &nbsp; [[008](#008)] &nbsp; * &nbsp; [[007](#007)] &nbsp; *
 
-#### &nbsp; * &nbsp; [[005](#005)] &nbsp; * &nbsp; [[004](#004)] &nbsp; * &nbsp; [[003](#003)] &nbsp; * &nbsp; [[002](#002)] &nbsp; * &nbsp; [[001](#001)] &nbsp; *
+#### &nbsp; * &nbsp; [[006](#006)] &nbsp; * &nbsp; [[005](#005)] &nbsp; * &nbsp; [[004](#004)] &nbsp; * &nbsp; [[003](#003)] &nbsp; * &nbsp; [[002](#002)] &nbsp; * &nbsp; [[001](#001)] &nbsp; *
 
 ----
 ## [The Weekly Challenge - 095](/blog/perl-weekly-challenge-095) {#095}
@@ -1004,6 +1004,8 @@ Please find below guest contributions.
 
 ##### **Richard Park** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-068/richard-park/apl/ch-1.aplf) and  [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-068/richard-park/apl/ch-2.aplf) in **APL**.
 
+##### **Stuart Little** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-068/stuart-little/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-068/stuart-little/haskell/ch-2.hs) in **Haskell**.
+
 ##### **Ulrich Rieke** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-068/ulrich-rieke/cpp/ch-2.cpp) in **C++**.
 
 ##### **Ulrich Rieke** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-068/ulrich-rieke/haskell/ch-2.hs) in **Haskell**.
@@ -1356,6 +1358,8 @@ Please find below guest contributions.
 
 ##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-041/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-041/lubos-kolouch/python/ch-2.py) in **Python**.
 
+##### **Stuart Little** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-041/stuart-little/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-041/stuart-little/haskell/ch-2.hs) in **Haskell**.
+
 ##### **Wanderdoc** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-041/wanderdoc/R/ch-1.R) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-041/wanderdoc/R/ch-2.R) in **R**.
 
 ----
@@ -1416,6 +1420,8 @@ Please find below guest contributions.
 
 ##### **Roger Bell_West** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/roger-bell-west/postscript/ch-2.ps) in **Postscript**.
 
+##### **Stuart Little** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/stuart-little/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/stuart-little/haskell/ch-2.hs) in **Haskell**.
+
 ##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/ulrich-rieke/cpp/ch-1.cpp) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-033/ulrich-rieke/cpp/ch-2.cpp) in **C++**.
 
 ----
@@ -1433,6 +1439,12 @@ Please find below guest contributions.
 ##### **Adam Russell** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/adam-russell/cxx/ch-1.cxx) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/adam-russell/cxx/ch-2.cxx) in **C++**.
 
 ##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/lubos-kolouch/python/ch_1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-031/lubos-kolouch/python/ch_2.py) in **Python**.
+
+----
+## [The Weekly Challenge - 030](/blog/perl-weekly-challenge-030) {#030}
+<br>
+
+##### **Stuart Little** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/stuart-little/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/stuart-little/haskell/ch-2.hs) in **Haskell**.
 
 ----
 ## [The Weekly Challenge - 028](/blog/perl-weekly-challenge-028) {#028}
@@ -1507,6 +1519,8 @@ Please find below guest contributions.
 <br>
 
 ##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-007/paulo-custodio/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-007/paulo-custodio/python/ch-2.py) in **Python**.
+
+##### **Stuart Little** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-007/stuart-little/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-007/stuart-little/haskell/ch-2.hs) in **Haskell**.
 
 ----
 ## [The Weekly Challenge - 006](/blog/perl-weekly-challenge-006) {#006}
