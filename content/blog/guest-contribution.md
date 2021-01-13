@@ -1130,6 +1130,8 @@ Please find below guest contributions.
 
 ##### **Shawak** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-059/shawak/ruby/ch-2.rb) in **Ruby**.
 
+##### **Stuart Little** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-059/stuart-little/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-059/stuart-little/haskell/ch-2.hs) in **Haskell**.
+
 ----
 ## [The Weekly Challenge - 058](/blog/perl-weekly-challenge-058) {#058}
 <br>
