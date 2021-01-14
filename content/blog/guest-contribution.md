@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2021-01-13T00:00:00+00:00
+date: 2021-01-14T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -20,9 +20,9 @@ Please find below guest contributions.
 
 #### &nbsp; * &nbsp; [[057](#057)] &nbsp; * &nbsp; [[056](#056)] &nbsp; * &nbsp; [[055](#055)] &nbsp; * &nbsp; [[054](#054)] &nbsp; * &nbsp; [[053](#053)] &nbsp; * &nbsp; [[052](#052)] &nbsp; * &nbsp; [[051](#051)] &nbsp; * &nbsp; [[050](#050)] &nbsp; * &nbsp; [[049](#049)] &nbsp; * &nbsp; [[048](#048)] &nbsp; * &nbsp; [[047](#047)] &nbsp; * &nbsp; [[046](#046)] &nbsp; * &nbsp; [[045](#045)] &nbsp; * &nbsp; [[044](#044)] &nbsp; * &nbsp; [[043](#043)] &nbsp; * &nbsp; [[042](#042)] &nbsp; * &nbsp; [[041](#041)] &nbsp; * &nbsp; [[040](#040)] &nbsp; * &nbsp; [[038](#038)] &nbsp; *
 
-#### &nbsp; * &nbsp; [[037](#037)] &nbsp; * &nbsp; [[036](#036)] &nbsp; * &nbsp; [[034](#034)] &nbsp; * &nbsp; [[033](#033)] &nbsp; * &nbsp; [[032](#032)] &nbsp; * &nbsp; [[031](#031)] &nbsp; * &nbsp; [[030](#030)] &nbsp; * &nbsp; [[028](#028)] &nbsp; * &nbsp; [[027](#027)] &nbsp; * &nbsp; [[026](#026)] &nbsp; * &nbsp; [[024](#024)] &nbsp; * &nbsp; [[023](#023)] &nbsp; * &nbsp; [[020](#020)] &nbsp; * &nbsp; [[018](#018)] &nbsp; * &nbsp; [[012](#012)] &nbsp; * &nbsp; [[011](#011)] &nbsp; * &nbsp; [[009](#009)] &nbsp; * &nbsp; [[008](#008)] &nbsp; * &nbsp; [[007](#007)] &nbsp; *
+#### &nbsp; * &nbsp; [[037](#037)] &nbsp; * &nbsp; [[036](#036)] &nbsp; * &nbsp; [[034](#034)] &nbsp; * &nbsp; [[033](#033)] &nbsp; * &nbsp; [[032](#032)] &nbsp; * &nbsp; [[031](#031)] &nbsp; * &nbsp; [[030](#030)] &nbsp; * &nbsp; [[028](#028)] &nbsp; * &nbsp; [[027](#027)] &nbsp; * &nbsp; [[026](#026)] &nbsp; * &nbsp; [[024](#024)] &nbsp; * &nbsp; [[023](#023)] &nbsp; * &nbsp; [[020](#020)] &nbsp; * &nbsp; [[018](#018)] &nbsp; * &nbsp; [[014](#013)] &nbsp; * &nbsp; [[013](#013)] &nbsp; * &nbsp; [[012](#012)] &nbsp; * &nbsp; [[011](#011)] &nbsp; * &nbsp; [[009](#009)] &nbsp; *
 
-#### &nbsp; * &nbsp; [[006](#006)] &nbsp; * &nbsp; [[005](#005)] &nbsp; * &nbsp; [[004](#004)] &nbsp; * &nbsp; [[003](#003)] &nbsp; * &nbsp; [[002](#002)] &nbsp; * &nbsp; [[001](#001)] &nbsp; *
+#### &nbsp; * &nbsp; [[008](#008)] &nbsp; * &nbsp; [[007](#007)] &nbsp; * &nbsp; [[006](#006)] &nbsp; * &nbsp; [[005](#005)] &nbsp; * &nbsp; [[004](#004)] &nbsp; * &nbsp; [[003](#003)] &nbsp; * &nbsp; [[002](#002)] &nbsp; * &nbsp; [[001](#001)] &nbsp; *
 
 ----
 ## [The Weekly Challenge - 095](/blog/perl-weekly-challenge-095) {#095}
@@ -808,6 +808,8 @@ Please find below guest contributions.
 
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-076/roger-bell-west/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-076/roger-bell-west/python/ch-2.py) in **Python**.
 
+##### **Stuart Little** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-076/stuart-little/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-076/stuart-little/haskell/ch-2.hs) in **Haskell**.
+
 ##### **Tyler Wardhaugh** shard solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-076/tyler-wardhaugh/clojure/src/tw/weekly/ch_1.clj) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-076/tyler-wardhaugh/clojure/src/tw/weekly/ch_2.clj) in **Clojure**.
 
 ----
@@ -840,6 +842,8 @@ Please find below guest contributions.
 
 ##### **Shawn Wagner** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/shawn-wagner/ocaml/ch-1.ml) in **OCaml**.
 
+##### **Stuart Little** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/stuart-little/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/stuart-little/haskell/ch-2.hs) in **Haskell**.
+
 ##### **Tyler Wardhaugh** shard solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/tyler-wardhaugh/clojure/src/tw/weekly/ch_1.clj) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/tyler-wardhaugh/clojure/src/tw/weekly/ch_2.clj) in **Clojure**.
 
 ##### **Ulrich Rieke** shared solutions to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-075/ulrich-rieke/cpp/ch-2.cpp) in **C++**.
@@ -871,6 +875,8 @@ Please find below guest contributions.
 ##### **Shawn Wagner** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/shawn-wagner/java/ch1.java) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/shawn-wagner/java/ch2.java) in **Java**.
 
 ##### **Shawn Wagner** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/shawn-wagner/tcl/ch-1.tcl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/shawn-wagner/tcl/ch-2.tcl) in **Tcl**.
+
+##### **Stuart Little** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/stuart-little/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/stuart-little/haskell/ch-2.hs) in **Haskell**.
 
 ##### **Tyler Wardhaugh** shard solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/tyler-wardhaugh/clojure/src/tw/weekly/ch_1.clj) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-074/tyler-wardhaugh/clojure/src/tw/weekly/ch_2.clj) in **Clojure**.
 
@@ -955,6 +961,8 @@ Please find below guest contributions.
 ##### **Mohammad S Anwar** shared solutions to  [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-071/mohammad-anwar/swift/ch-1.swift) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-071/mohammad-anwar/swift/ch-2.swift) in **Swift**.
 
 ##### **Richard Park** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-071/richard-park/apl/ch-1.aplf) in **APL**.
+
+##### **Stuart Little** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-071/stuart-little/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-071/stuart-little/haskell/ch-2.hs) in **Haskell**.
 
 ##### **Walt Mankowski** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-071/walt-mankowski/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-071/walt-mankowski/c/ch-2.c) in **C**.
 
@@ -1493,6 +1501,18 @@ Please find below guest contributions.
 <br>
 
 ##### **Orestis Zekai** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/orestis-zekai/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/orestis-zekai/python/ch-2.py) in **Python**.
+
+----
+## [The Weekly Challenge - 014](/blog/perl-weekly-challenge-014) {#014}
+<br>
+
+##### **Stuart Little** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-014/stuart-little/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-014/stuart-little/haskell/ch-2.hs) in **Haskell**.
+
+----
+## [The Weekly Challenge - 013](/blog/perl-weekly-challenge-013) {#013}
+<br>
+
+##### **Stuart Little** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-013/stuart-little/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-013/stuart-little/haskell/ch-2.hs) in **Haskell**.
 
 ----
 ## [The Weekly Challenge - 012](/blog/perl-weekly-challenge-012) {#012}
