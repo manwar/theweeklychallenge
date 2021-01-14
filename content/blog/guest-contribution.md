@@ -1560,7 +1560,7 @@ Please find below guest contributions.
 
 ##### **Mohammad Foda** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-001/mfoda/haxe/ch1.hx) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-001/mfoda/haxe/ch2.hx) in **Haxe**.
 
-##### **Mohammad Foda** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-001/mfoda/nim/ch1.nim) in **Nim**.
+##### **Mohammad Foda** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-001/mfoda/nim/ch1.nim) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-001/mfoda/nim/ch2.nim) in **Nim**.
 
 ##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-001/paulo-custodio/forth/ch-1.fs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-001/paulo-custodio/forth/ch-2.fs) in **Forth**.
 
