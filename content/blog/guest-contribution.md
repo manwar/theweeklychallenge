@@ -38,6 +38,8 @@ Please find below guest contributions.
 
 ##### **Kang-min Liu** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-095/gugod/janet/ch-1.janet) in **Janet**.
 
+##### **Laurent Rosenfeld** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-095/laurent-rosenfeld/scala/ch-1.scala) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-095/laurent-rosenfeld/scala/ch-2.scala) in **Scala**.
+
 ##### **Mohammad Meraj Zia** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-095/ziameraj16/java/PalindromeNumber.java) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-094/ziameraj16/java/DemoStack.java) in **Java**.
 
 ##### **Nuno Vieira** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-095/nunovieira220/js/ch-1.js) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-095/nunovieira220/js/ch-2.js) in **JavaScript**.
