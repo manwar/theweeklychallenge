@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2021-01-15T00:00:00+00:00
+date: 2021-01-16T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -39,6 +39,8 @@ Please find below guest contributions.
 ##### **Kang-min Liu** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-095/gugod/janet/ch-1.janet) in **Janet**.
 
 ##### **Laurent Rosenfeld** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-095/laurent-rosenfeld/scala/ch-1.scala) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-095/laurent-rosenfeld/scala/ch-2.scala) in **Scala**.
+
+##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-095/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-095/lubos-kolouch/python/ch-2.py) in **Python**.
 
 ##### **Mohammad Meraj Zia** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-095/ziameraj16/java/PalindromeNumber.java) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-094/ziameraj16/java/DemoStack.java) in **Java**.
 
