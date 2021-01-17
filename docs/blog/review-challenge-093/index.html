@@ -276,8 +276,8 @@
             }
         }
 </code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-093/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a></p>
-<p>Simon also goes looking for adjacent chains of points, tis time establishing an intermediate grid data structure with 1s a the given points to verify against. Because he&rsquo;s done it this way however, we get a diagram of the grid almost for free, which he provides.</p>
-<p>Much like Laurent he iterates through the points, looking along the axes for continuous chains. Again we need only look at half the directions, as we will eventually start at the furthest extant. His code is well documented and quite a bit longer, but here is the iteration core:</p>
+<p>Simon also goes looking for chains of adjacent points, this time first establishing an intermediate grid structure with 1s at the given points to verify against. Because he&rsquo;s done it this way however, we get a diagram of the grid almost for free, which he provides.</p>
+<p>Much like Laurent he iterates through the points, looking along the axes for continuous chains. Again we need only look at half the directions, as we will eventually start at the furthest extant of every line. His code is well documented and quite a bit longer, but here is the iteration core:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># Now work through each point, in each direction</span>
     <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $x ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $max_x ) {
         <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $y ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $max_y ) {
@@ -617,11 +617,11 @@
 <p>⎥ <em>x</em><sub>1</sub> <em>y</em><sub>1</sub> 1 ⎥
 ⎥ <em>x</em><sub>2</sub> <em>y</em><sub>2</sub> 1 ⎥
 ⎥ <em>x</em><sub>3</sub> <em>y</em><sub>3</sub> 1 ⎥</p>
-<p>Expanded, this is</p>
+<p>Expanded, the determinant is:</p>
 <p><em>x</em><sub>1</sub>(<em>y</em><sub>2</sub> - <em>y</em><sub>3</sub>) + <em>x</em><sub>2</sub>(<em>y</em><sub>3</sub> - <em>y</em><sub>1</sub>) + <em>x</em><sub>3</sub>(<em>y</em><sub>1</sub> - <em>y</em><sub>2</sub>)</p>
-<p>So if that equation equals 0, the points can are colinear.</p>
+<p>So if that equation equals 0, the points are colinear.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-093/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a></p>
-<p>Dave uses <code>Algorithm::Permute</code> to section his point list into subsets of varying lengths, then systematically applies the equation to sets of three points within those subsets to set whether the set is colinear. The largest subset found wins.</p>
+<p>Dave uses <code>Algorithm::Permute</code> to section his point list into subsets of varying lengths, then systematically applies the equation to groups of three points within those subsets to see whether the set is colinear. The largest subset found wins.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">collinear</span> ( $p1, $p2, $p3 ) {
         <span style="color:#66d9ef">my</span> $area <span style="color:#f92672">=</span>
             $p1<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">*</span> ( $p2<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> $p3<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] ) <span style="color:#f92672">+</span>
@@ -629,7 +629,7 @@
             $p3<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">*</span> ( $p1<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> $p2<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] );
         <span style="color:#66d9ef">return</span> $area <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> ? <span style="color:#ae81ff">1</span> : <span style="color:#ae81ff">0</span>;
     }
-</code></pre></div><p>It sound computationally complex but Dave employs several large optimizations to prune the potential search tree rather radically. Here is one example of such a pruning. If we find a single 3-set of points, then the total is at least 3. We can immediately stop searching further and start looking at 4-sets of points.</p>
+</code></pre></div><p>It sound computationally complex but Dave employs several large optimizations to prune the potential search tree rather radically. Here is one example of such a pruning: if we find a single 3-set of points, then the total is at least 3, and so we can immediately stop searching further within that group and start looking at 4-sets of points.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># we test every subset, and if we fine a positive, that</span>
     <span style="color:#75715e"># means there is a line of this length, and then we go onto</span>
     <span style="color:#75715e"># the next length, because we don&#39;t care how many i-length</span>
@@ -753,7 +753,7 @@
 <p>The team came up with 22 submissions for the second task this past week.</p>
 <p>A binary tree structure in Perl is not actually <em>hard</em> to represent. Ultimately every node is a structured array or hash, with elements or keys designating values and child nodes left and right. So a tree becomes a hash of hashes or an array of arrays. Defining and populating such a structure from raw data is a decidedly less-clear task.</p>
 <p>Random-access to tree nodes is non-trivial, as the nodes exist anonymously, in relation only to their parent and children, but traversing from the root downward is only a matter of following links from parent to child, and is well suited to a recursive routine.</p>
-<p>Thus the near-universal solution to walk the paths was recursion based, with a sum complied along the way, either through an external package variable, through a working accumulator carried with the recursion instances, or even, in the case of Abigail, computed from the tail forward as the instances return.</p>
+<p>Thus the near-universal solution to walk the paths was recursion based, with a sum complied along the way, either using an external package variable, or through a working accumulator carried along with the recursion instances, or even, in the case of Abigail, compiled from the tail forward as the instances return.</p>
 <p>Because of the extraordinarily diverse set of methods I have presented in front of me, grouping and categorization seems unusually difficult. Instead I&rsquo;ll break from my usual, more expository form and try visiting each solution in turn with noteworthy observations.</p>
 <h3 id="ways-presented-to-encode-a-binary-tree">ways presented to ENCODE a BINARY TREE</h3>
 <ul>
@@ -763,11 +763,14 @@
 <li>an array of arrays</li>
 <li>a serialized structured list of node values</li>
 </ul>
-<p>In the case of arrays of arrays, several members uses a data format of the value followed by either one child or two, with a single child occupying index 1 regardless of whether it is the &ldquo;left&rdquo; or &ldquo;right&rdquo; node. In most cases of using a tree this would not matter, as once a child is spawned all interconnectedness for the nodes below is always funneled through that one point, regardless of its chirality. Sometimes a branch is just a branch.</p>
+<h3 id="an-note-on-ordering">an note on ORDERING</h3>
+<p>A binary tree is generally, but not exclusively, considered to be an ordered thing.</p>
+<p>In the case of defining an arrays-of-arrays model for the tree, several members used a data format of the value followed by either one child or two, with a single child occupying index 1 regardless of whether it is the &ldquo;left&rdquo; or &ldquo;right&rdquo; node. In many cases of using a tree this would not matter, as once a child is spawned all interconnectedness for the nodes below is always still funneled through that one point, regardless of its chirality. Sometimes a branch is just a branch.</p>
 <p>It occurs to me that this is not unlike the mobile in front of me right now hanging from the ceiling, where two pterodactyls and a counterweight fly unfettered and spin freely. No matter their momentary physical orientation, their relation to each other remains unchanged.</p>
-<p>This equivalence may not always be the case, however, and the data in specifically directional child nodes may indeed have underlying external associations, such as in a binary search tree. In this case the common formal definition of a node as an ordered set {<em>left</em>, <em>value</em>, <em>right</em>} would be more applicable, with an explicit NULL value allowed for either child. As the only action here is to total the paths, what-whether their zigging and zagging along the way, these considerations do not apply.</p>
+<p>This equivalence may not always be the case, however, and the data in specifically directional child nodes may indeed have underlying external associations, such as in a binary search tree. In this case the common formal definition of a node as an ordered set {<em>left</em>, <em>value</em>, <em>right</em>} would be more applicable, with an explicit NULL value allowed, and even required if necessary, for either child. As the only action here is to total the paths, what-whether their meander zigging and zagging along the way, these considerations do not apply.</p>
+<p>So we&rsquo;re good, if that wasn&rsquo;t clear.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-093/abigail/perl/ch-2.pl"><strong>Abigail</strong></a></p>
-<p>Abigail avoids the use of an external package variable to accumulate his running total, compiling subtotals returned from recursive iterations, working backwards from the tail as the instances return.</p>
+<p>Abigail avoids the use of an external package variable to accumulate his running total, compiling subtotals returned from recursive iterations, working backwards from the tail as the instances return. It&rsquo;s quite clever as is often the case.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">sum_tree</span> ($tree) {
         <span style="color:#66d9ef">return</span> (<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>) <span style="color:#66d9ef">unless</span> @$tree;  <span style="color:#75715e"># Empty tree</span>
 
@@ -793,7 +796,7 @@
 <blockquote>
 <p>this module is for creating abstract data structures called graphs, and for doing various operations on those</p>
 </blockquote>
-<p>Ok, then. Seems a good fit for an interconnected structure of nodes. His method has few unusual qualities about it, most notable that is is not overtly recursive, with the traversal wrapped up in and taken case of by the Graph object itself.</p>
+<p>Ok, then. Seems a good fit for an interconnected structure of nodes. His method has few unusual qualities about it, most notable that is is not overtly recursive, with the traversal wrapped up in and taken care of by the Graph object itself.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">travserse_sum</span>{
     <span style="color:#66d9ef">my</span>($tree) <span style="color:#f92672">=</span> @_;
     <span style="color:#66d9ef">my</span> @paths <span style="color:#f92672">=</span> build_paths($tree);
@@ -831,7 +834,7 @@ MAIN:{
     <span style="color:#66d9ef">print</span> travserse_sum($Tree) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
 }
 </code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-093/alexander-karelas/perl/ch-2.pl"><strong>Alexander Karelas</strong></a></p>
-<p>After hard-coding his tree as a hash of hashes, Karelas descends using a recursive routine that carries a running total for the path taken with it. On reaching the base case the sum is returned, and ultimately the sums are collected in an array which is then summed itself.</p>
+<p>After hard-coding his tree as a hash of hashes, Karelas descends using a recursive routine that carries a running total for the path taken with it. On reaching the base case the sum is returned, and ultimately these totals are collected in an array which is then summed itself.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">find_path_sums</span> {
         <span style="color:#66d9ef">my</span> ($tree, $node_key, $path_sum) <span style="color:#f92672">=</span> @_;
 
@@ -873,7 +876,7 @@ MAIN:{
         }
         <span style="color:#66d9ef">return</span> $total;
     }
-</code></pre></div><p>I&rsquo;m just going to assume it works, and suggest reading from <code>&lt;DATA&gt;</code> and putting the serialized object there. Whatever it looks like.</p>
+</code></pre></div><p>I&rsquo;m just going to assume it works, and suggest reading from <code>&lt;DATA&gt;</code> and putting the serialized object there. (Whatever it looks like.)</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-093/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a></p>
 <p>Encoding her tree as a structured Perl array, CY is able to reduce the list using a breadth-first search. Example 2 in this format would look like</p>
 <pre><code>    (1, 2, 3, 4, undef, 5, 6)
@@ -946,7 +949,7 @@ MAIN:{
         <span style="color:#66d9ef">return</span> $sum;
     }
 </code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-093/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a></p>
-<p>Duncan uses his own BinTree package to define a binary tree object, with a <code>parse()</code> method to input serialized data as a string depicting a nested list:</p>
+<p>Duncan uses his own <code>BinTree</code> package to define a binary tree object, with a <code>parse()</code> method to input serialized data as a string depicting a nested list:</p>
 <pre><code>'(1,(2,l4,n),(3,l5,l6))'
 </code></pre>
 <p>Note he is using &ldquo;n&rdquo; as a null value. His <code>parse</code> method uses an internal method <code>parse_rec</code> to recursively extract the nodes. This recursion is found again to descend the constructed tree, as <code>find_all_rec()</code>. Note Duncan prefers the <code>Function::Parameters</code> module to provide his subroutine signatures, which it calls functions, or <code>fun</code>.</p>
@@ -1086,7 +1089,7 @@ MAIN:{
             <span style="color:#66d9ef">if</span> defined $node<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">2</span>];
     }
 </code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-093/lubos-kolouch/perl/ch-2.pl"><strong>Lubos Kolouch</strong></a></p>
-<p>Lubos uses <code>Moose</code> to create a <code>Point</code> object,  a tree node that also contains an attribute to hold partial sums, and a <code>SumPath</code> object which knows how to recursively walk a tree and set the <code>total_value</code> attributes it finds along the way. The base case for the recursion adds the <code>total_value</code> at the last <code>Point</code> to a <code>total_sum</code> atribute, which is ultimately the value requested. Nice.</p>
+<p>Lubos uses <code>Moose</code> to first create a <code>Point</code> object,  a tree node that also contains an attribute to hold partial sums, and then a <code>SumPath</code> object, which knows how to recursively walk a tree and set the <code>total_value</code> attributes it finds in the Points along the way. The base case for recursion adds the <code>total_value</code> at the last <code>Point</code> to a <code>total_sum</code> atribute, which is ultimately the value requested. Nice.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">package</span> SumPath;
     <span style="color:#66d9ef">use</span> Moose;
 
@@ -1146,7 +1149,7 @@ MAIN:{
             <span style="color:#f92672">-&gt;</span> setLeft(Tree::Binary<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(<span style="color:#e6db74">&#39;5&#39;</span>))
             <span style="color:#f92672">-&gt;</span> setRight(Tree::Binary<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(<span style="color:#e6db74">&#39;6&#39;</span>))
     );
-</code></pre></div><p>After this recursion is set up in what is by now the familiar pattern, carrying along a working sum that is returned on reaching the base case.</p>
+</code></pre></div><p>After the objects are created recursion is set up in what is by now the familiar pattern, carrying along a working sum that is returned on reaching the base case.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-093/paulo-custodio/perl/ch-2.pl"><strong>Paulo Custodio</strong></a></p>
 <p>Paulo uses <code>Object::Tiny:RW</code> to create a tree node in a few deft strokes.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    {
@@ -1169,7 +1172,7 @@ MAIN:{
         }
     }
 </code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-093/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a></p>
-<p>Roger accepts input in a linear, serialized form as a list, with each level of the tree successively enumerated, with null spacers inserted to keep the structure synchronized. Thus the root is at index 0, the first level 1 and 2, the second 3, 4, 5, and 6, et cetera. He then uses a pair of nested loops to access the serialized elements directly keeping the incomplete paths in a working array until completed.</p>
+<p>Roger accepts input in a linear, serialized form as a list, with each level of the tree successively enumerated, and null spacers inserted to keep the structure synchronized. Thus the root is at index 0, the first level 1 and 2, the second 3, 4, 5, and 6, et cetera. He then uses a pair of nested loops to access the serialized elements directly, keeping the incomplete paths in a working array until complete.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">sp</span> {
       <span style="color:#66d9ef">my</span> @t<span style="color:#f92672">=</span>@_;
       <span style="color:#66d9ef">my</span> $s<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
@@ -1190,7 +1193,7 @@ MAIN:{
       <span style="color:#66d9ef">return</span> $s;
     }
 </code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-093/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a></p>
-<p>After figuring out he wants a file with an ascii drawing of the tree from the examples as input (about that, Simon&hellip;) the act of parsing the data is wrapped up in recursively traversing the tree levels, calling a <code>_next_line()</code> routine as required to look forward and see what happens next. It&rsquo;s complicated, but an admirable effort. And as I&rsquo;ve said elsewhere, the ability to verify the accuracy of the data is undeniable.</p>
+<p>After figuring out that he wants a file with an ascii drawing of the tree, as pictured in the examples, as input (about that, Simon&hellip;) the act of parsing the data is combined with recursively traversing the tree levels, calling a <code>_next_line()</code> routine as required to peek forward and see what happens next. It&rsquo;s complicated, but an admirable effort. And as I&rsquo;ve said elsewhere, the ability to verify the accuracy of the data is undeniable. I mean, it&rsquo;s right there drawn if front of you.</p>
 <p>But what happens with a larger tree? In the absence of an explicit data definition it&rsquo;s hard to say.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_next_line</span> {
         <span style="color:#66d9ef">my</span> ( $lines, $x, $y, $direction ) <span style="color:#f92672">=</span> @_;
@@ -1230,7 +1233,7 @@ MAIN:{
 <p>which is a rather terse way of defining a depth-first traversal. Fortunately he does provide examples:</p>
 <pre><code>&quot;[1,[2,[4]],[3,[5],[6]]]&quot;
 </code></pre>
-<p>Note this differs from Duncan&rsquo;s input format. Following the paths in this format is somewhat simpler as it can be read left to right to some degree.</p>
+<p>Note this differs from Duncan&rsquo;s stringified input, being the other way to do it. Following the paths in this format is somewhat simpler as it can be read left to right to some degree.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">sum_path</span> {
         <span style="color:#66d9ef">my</span> $tree<span style="color:#f92672">=</span>shift;
         die Dumper($tree),  <span style="color:#e6db74">&#34; is not an array&#34;</span> <span style="color:#66d9ef">unless</span> ref $tree <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#34;ARRAY&#34;</span>;
@@ -1248,7 +1251,7 @@ MAIN:{
         <span style="color:#66d9ef">return</span>($sum_of_paths, $number_of_paths);
     }
 </code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-093/wanderdoc/perl/ch-2.pl"><strong>Wanderdoc</strong></a></p>
-<p>The Doc choses to use <a href="https://metacpan.org/pod/Struct::Dumb"><code>Struct::Dumb</code></a> to create a simple emulation of a C struct. From there a <code>_collect_paths()</code> routine walks the valid combinations down the Node structs, gathering a list of values in an array for each path. Once gathered, a nested construct flattens and sums the gathered value lists.</p>
+<p>The Doc choses to use <a href="https://metacpan.org/pod/Struct::Dumb"><code>Struct::Dumb</code></a> to create a simple emulation of a C struct, a named <code>Node</code>. From there a <code>_collect_paths()</code> routine walks the valid combinations down the Nodes, gathering a list of values in an array for each path. Once gathered, a nested construct flattens and sums the gathered value lists.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_collect_paths</span>
     {
          <span style="color:#66d9ef">my</span> $node <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>];
@@ -1276,7 +1279,7 @@ MAIN:{
 </code></pre></div><hr>
 <h1 id="PWC093BLOGS">BLOGS</h1>
 <hr>
-<p><strong>That’s it for me this week, people! Warped by the rain, driven by the snow, resolute and unbroken by the torrential influx, I somehow continue to maintain my bearings. Looking forward to next wave, the perfect wave, I am: your humble servant.</strong></p>
+<p><strong>That’s it for me this week, people! Warped by the rain, driven by the snow, resolute and unbroken by the torrential influx, I somehow continue to maintain my bearings. Looking forward to next wave, the perfect wave, I am: <em>your humble servant</em>.</strong></p>
 <h1 id="PWC093BLOGS">But if Your <em>THIRST</em> for <em>KNOWLEDGE</em> is not <em>SLAKED</em>,</h1>
 <h1 id="then-run-dont-walk-to-the-watering-hole">then <em>RUN</em> <em>(dont walk!)</em> to the <em>WATERING HOLE</em></h1>
 <h1 id="and-read-these-blog-links">and <em>READ</em> these <em>BLOG</em> <em>LINKS</em>:</h1>

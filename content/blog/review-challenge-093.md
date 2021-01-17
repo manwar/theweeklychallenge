@@ -128,9 +128,9 @@ He only needs to check half the directions at each point, as by exhaustively che
 
 [**Simon Green**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-093/sgreen/perl/ch-1.pl)
 
-Simon also goes looking for adjacent chains of points, tis time establishing an intermediate grid data structure with 1s a the given points to verify against. Because he's done it this way however, we get a diagram of the grid almost for free, which he provides.
+Simon also goes looking for chains of adjacent points, this time first establishing an intermediate grid structure with 1s at the given points to verify against. Because he's done it this way however, we get a diagram of the grid almost for free, which he provides.
 
-Much like Laurent he iterates through the points, looking along the axes for continuous chains. Again we need only look at half the directions, as we will eventually start at the furthest extant. His code is well documented and quite a bit longer, but here is the iteration core:
+Much like Laurent he iterates through the points, looking along the axes for continuous chains. Again we need only look at half the directions, as we will eventually start at the furthest extant of every line. His code is well documented and quite a bit longer, but here is the iteration core:
 
 ```perl
     # Now work through each point, in each direction
@@ -548,19 +548,19 @@ to determine colinearity, matching individual points against a growing collectio
 
 Several submissions were developed around the idea of calculating the area of a triangle from three points, and if that area is 0 then the points must by necessity be colinear. The calculation of the area from points comes from linear algebra, where the area is found to be one-half the determinant of a 3x3 matrix with rows composed of the x and y coordinates for each point and 1.
 
-⎥ *x*<sub>1</sub> *y*<sub>1</sub> 1 ⎥
-⎥ *x*<sub>2</sub> *y*<sub>2</sub> 1 ⎥
-⎥ *x*<sub>3</sub> *y*<sub>3</sub> 1 ⎥
+ ⎥ *x*<sub>1</sub> *y*<sub>1</sub> 1 ⎥
+ ⎥ *x*<sub>2</sub> *y*<sub>2</sub> 1 ⎥
+ ⎥ *x*<sub>3</sub> *y*<sub>3</sub> 1 ⎥
 
-Expanded, this is
+Expanded, the determinant is:
 
 *x*<sub>1</sub>(*y*<sub>2</sub> - *y*<sub>3</sub>) + *x*<sub>2</sub>(*y*<sub>3</sub> - *y*<sub>1</sub>) + *x*<sub>3</sub>(*y*<sub>1</sub> - *y*<sub>2</sub>)
 
-So if that equation equals 0, the points can are colinear.
+So if that equation equals 0, the points are colinear.
 
 [**Dave Jacoby**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-093/dave-jacoby/perl/ch-1.pl)
 
-Dave uses `Algorithm::Permute` to section his point list into subsets of varying lengths, then systematically applies the equation to sets of three points within those subsets to set whether the set is colinear. The largest subset found wins.
+Dave uses `Algorithm::Permute` to section his point list into subsets of varying lengths, then systematically applies the equation to groups of three points within those subsets to see whether the set is colinear. The largest subset found wins.
 
 ```perl
     sub collinear ( $p1, $p2, $p3 ) {
@@ -572,7 +572,7 @@ Dave uses `Algorithm::Permute` to section his point list into subsets of varying
     }
 ```
 
-It sound computationally complex but Dave employs several large optimizations to prune the potential search tree rather radically. Here is one example of such a pruning. If we find a single 3-set of points, then the total is at least 3. We can immediately stop searching further and start looking at 4-sets of points.
+It sound computationally complex but Dave employs several large optimizations to prune the potential search tree rather radically. Here is one example of such a pruning: if we find a single 3-set of points, then the total is at least 3, and so we can immediately stop searching further within that group and start looking at 4-sets of points.
 
 ```perl
     # we test every subset, and if we fine a positive, that
@@ -737,7 +737,7 @@ A binary tree structure in Perl is not actually *hard* to represent. Ultimately 
 
 Random-access to tree nodes is non-trivial, as the nodes exist anonymously, in relation only to their parent and children, but traversing from the root downward is only a matter of following links from parent to child, and is well suited to a recursive routine.
 
-Thus the near-universal solution to walk the paths was recursion based, with a sum complied along the way, either through an external package variable, through a working accumulator carried with the recursion instances, or even, in the case of Abigail, computed from the tail forward as the instances return.
+Thus the near-universal solution to walk the paths was recursion based, with a sum complied along the way, either using an external package variable, or through a working accumulator carried along with the recursion instances, or even, in the case of Abigail, compiled from the tail forward as the instances return.
 
 Because of the extraordinarily diverse set of methods I have presented in front of me, grouping and categorization seems unusually difficult. Instead I'll break from my usual, more expository form and try visiting each solution in turn with noteworthy observations.
 
@@ -749,19 +749,23 @@ Because of the extraordinarily diverse set of methods I have presented in front 
 * an array of arrays
 * a serialized structured list of node values
 
-In the case of arrays of arrays, several members uses a data format of the value followed by either one child or two, with a single child occupying index 1 regardless of whether it is the "left" or "right" node. In most cases of using a tree this would not matter, as once a child is spawned all interconnectedness for the nodes below is always funneled through that one point, regardless of its chirality. Sometimes a branch is just a branch.
+### an note on ORDERING
+
+A binary tree is generally, but not exclusively, considered to be an ordered thing.
+
+In the case of defining an arrays-of-arrays model for the tree, several members used a data format of the value followed by either one child or two, with a single child occupying index 1 regardless of whether it is the "left" or "right" node. In many cases of using a tree this would not matter, as once a child is spawned all interconnectedness for the nodes below is always still funneled through that one point, regardless of its chirality. Sometimes a branch is just a branch.
 
 It occurs to me that this is not unlike the mobile in front of me right now hanging from the ceiling, where two pterodactyls and a counterweight fly unfettered and spin freely. No matter their momentary physical orientation, their relation to each other remains unchanged.
 
-This equivalence may not always be the case, however, and the data in specifically directional child nodes may indeed have underlying external associations, such as in a binary search tree. In this case the common formal definition of a node as an ordered set {*left*, *value*, *right*} would be more applicable, with an explicit NULL value allowed for either child. As the only action here is to total the paths, what-whether their zigging and zagging along the way, these considerations do not apply.
+This equivalence may not always be the case, however, and the data in specifically directional child nodes may indeed have underlying external associations, such as in a binary search tree. In this case the common formal definition of a node as an ordered set {*left*, *value*, *right*} would be more applicable, with an explicit NULL value allowed, and even required if necessary, for either child. As the only action here is to total the paths, what-whether their meander zigging and zagging along the way, these considerations do not apply.
 
-
+So we're good, if that wasn't clear.
 
 
 
 [**Abigail**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-093/abigail/perl/ch-2.pl)
 
-Abigail avoids the use of an external package variable to accumulate his running total, compiling subtotals returned from recursive iterations, working backwards from the tail as the instances return.
+Abigail avoids the use of an external package variable to accumulate his running total, compiling subtotals returned from recursive iterations, working backwards from the tail as the instances return. It's quite clever as is often the case.
 
 ```perl
     sub sum_tree ($tree) {
@@ -793,7 +797,7 @@ Adam uses [`Graph`](https://metacpan.org/pod/distribution/Graph/lib/Graph.pod) t
 
 >this module is for creating abstract data structures called graphs, and for doing various operations on those
 
-Ok, then. Seems a good fit for an interconnected structure of nodes. His method has few unusual qualities about it, most notable that is is not overtly recursive, with the traversal wrapped up in and taken case of by the Graph object itself.
+Ok, then. Seems a good fit for an interconnected structure of nodes. His method has few unusual qualities about it, most notable that is is not overtly recursive, with the traversal wrapped up in and taken care of by the Graph object itself.
 
 ```perl
 sub travserse_sum{
@@ -838,7 +842,7 @@ MAIN:{
 
 [**Alexander Karelas**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-093/alexander-karelas/perl/ch-2.pl)
 
-After hard-coding his tree as a hash of hashes, Karelas descends using a recursive routine that carries a running total for the path taken with it. On reaching the base case the sum is returned, and ultimately the sums are collected in an array which is then summed itself.
+After hard-coding his tree as a hash of hashes, Karelas descends using a recursive routine that carries a running total for the path taken with it. On reaching the base case the sum is returned, and ultimately these totals are collected in an array which is then summed itself.
 
 ```perl
     sub find_path_sums {
@@ -890,7 +894,7 @@ Ben expects his tree to come encoded in a file as a JSON object. Ok.
     }
 ```
 
-I'm just going to assume it works, and suggest reading from `<DATA>` and putting the serialized object there. Whatever it looks like.
+I'm just going to assume it works, and suggest reading from `<DATA>` and putting the serialized object there. (Whatever it looks like.)
 
 [**Cheok-Yin Fung**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-093/cheok-yin-fung/perl/ch-2.pl)
 
@@ -989,7 +993,7 @@ A recursive routine systematically walks all possible paths and computes a runni
 
 [**Duncan C. White**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-093/duncan-c-white/perl/ch-2.pl)
 
-Duncan uses his own BinTree package to define a binary tree object, with a `parse()` method to input serialized data as a string depicting a nested list:
+Duncan uses his own `BinTree` package to define a binary tree object, with a `parse()` method to input serialized data as a string depicting a nested list:
 
     '(1,(2,l4,n),(3,l5,l6))'
 
@@ -1187,7 +1191,7 @@ Laurent instantiates his trees as arrays of arrays, with a node defined as (*val
 
 [**Lubos Kolouch**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-093/lubos-kolouch/perl/ch-2.pl)
 
-Lubos uses `Moose` to create a `Point` object,  a tree node that also contains an attribute to hold partial sums, and a `SumPath` object which knows how to recursively walk a tree and set the `total_value` attributes it finds along the way. The base case for the recursion adds the `total_value` at the last `Point` to a `total_sum` atribute, which is ultimately the value requested. Nice.
+Lubos uses `Moose` to first create a `Point` object,  a tree node that also contains an attribute to hold partial sums, and then a `SumPath` object, which knows how to recursively walk a tree and set the `total_value` attributes it finds in the Points along the way. The base case for recursion adds the `total_value` at the last `Point` to a `total_sum` atribute, which is ultimately the value requested. Nice.
 
 ```perl
     package SumPath;
@@ -1262,7 +1266,7 @@ Nuno uses `Tree:Binary` for his object creation, which looks something like this
     );
 ```
 
-After this recursion is set up in what is by now the familiar pattern, carrying along a working sum that is returned on reaching the base case.
+After the objects are created recursion is set up in what is by now the familiar pattern, carrying along a working sum that is returned on reaching the base case.
 
 
 [**Paulo Custodio**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-093/paulo-custodio/perl/ch-2.pl)
@@ -1299,7 +1303,7 @@ From there he creates a set of recursive `parse_tree()` routines to input data a
 
 [**Roger Bell_West**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-093/roger-bell-west/perl/ch-2.pl)
 
-Roger accepts input in a linear, serialized form as a list, with each level of the tree successively enumerated, with null spacers inserted to keep the structure synchronized. Thus the root is at index 0, the first level 1 and 2, the second 3, 4, 5, and 6, et cetera. He then uses a pair of nested loops to access the serialized elements directly keeping the incomplete paths in a working array until completed.
+Roger accepts input in a linear, serialized form as a list, with each level of the tree successively enumerated, and null spacers inserted to keep the structure synchronized. Thus the root is at index 0, the first level 1 and 2, the second 3, 4, 5, and 6, et cetera. He then uses a pair of nested loops to access the serialized elements directly, keeping the incomplete paths in a working array until complete.
 
 ```perl
     sub sp {
@@ -1326,7 +1330,7 @@ Roger accepts input in a linear, serialized form as a list, with each level of t
 
 [**Simon Green**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-093/sgreen/perl/ch-2.pl)
 
-After figuring out he wants a file with an ascii drawing of the tree from the examples as input (about that, Simon...) the act of parsing the data is wrapped up in recursively traversing the tree levels, calling a `_next_line()` routine as required to look forward and see what happens next. It's complicated, but an admirable effort. And as I've said elsewhere, the ability to verify the accuracy of the data is undeniable.
+After figuring out that he wants a file with an ascii drawing of the tree, as pictured in the examples, as input (about that, Simon...) the act of parsing the data is combined with recursively traversing the tree levels, calling a `_next_line()` routine as required to peek forward and see what happens next. It's complicated, but an admirable effort. And as I've said elsewhere, the ability to verify the accuracy of the data is undeniable. I mean, it's right there drawn if front of you.
 
 But what happens with a larger tree? In the absence of an explicit data definition it's hard to say.
 
@@ -1375,7 +1379,7 @@ which is a rather terse way of defining a depth-first traversal. Fortunately he 
 
     "[1,[2,[4]],[3,[5],[6]]]"
 
-Note this differs from Duncan's input format. Following the paths in this format is somewhat simpler as it can be read left to right to some degree.
+Note this differs from Duncan's stringified input, being the other way to do it. Following the paths in this format is somewhat simpler as it can be read left to right to some degree.
 
 ```perl
     sub sum_path {
@@ -1401,7 +1405,7 @@ Note this differs from Duncan's input format. Following the paths in this format
 
 [**Wanderdoc**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-093/wanderdoc/perl/ch-2.pl)
 
-The Doc choses to use [`Struct::Dumb`](https://metacpan.org/pod/Struct::Dumb) to create a simple emulation of a C struct. From there a `_collect_paths()` routine walks the valid combinations down the Node structs, gathering a list of values in an array for each path. Once gathered, a nested construct flattens and sums the gathered value lists.
+The Doc choses to use [`Struct::Dumb`](https://metacpan.org/pod/Struct::Dumb) to create a simple emulation of a C struct, a named `Node`. From there a `_collect_paths()` routine walks the valid combinations down the Nodes, gathering a list of values in an array for each path. Once gathered, a nested construct flattens and sums the gathered value lists.
 
 ```perl
     sub _collect_paths
@@ -1436,7 +1440,7 @@ The Doc choses to use [`Struct::Dumb`](https://metacpan.org/pod/Struct::Dumb) to
 
 ---
 
-**That’s it for me this week, people! Warped by the rain, driven by the snow, resolute and unbroken by the torrential influx, I somehow continue to maintain my bearings. Looking forward to next wave, the perfect wave, I am: your humble servant.**
+**That’s it for me this week, people! Warped by the rain, driven by the snow, resolute and unbroken by the torrential influx, I somehow continue to maintain my bearings. Looking forward to next wave, the perfect wave, I am: *your humble servant*.**
 
 # But if Your *THIRST* for *KNOWLEDGE* is not *SLAKED*, {#PWC093BLOGS}
 # then *RUN* *(dont walk!)* to the *WATERING HOLE*
