@@ -128,7 +128,7 @@ He only needs to check half the directions at each point, as by exhaustively che
 
 [**Simon Green**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-093/sgreen/perl/ch-1.pl)
 
-Simon also goes looking for chains of adjacent points, this time first establishing an intermediate grid structure with 1s at the given points to verify against. Because he's done it this way however, we get a diagram of the grid almost for free, which he provides.
+Simon also goes looking for chains of adjacent points, this time first establishing an intermediate grid structure with 1s at the given points to verify point locations against. Because he's done it this way however, we get a diagram of the grid almost for free, which he provides.
 
 Much like Laurent he iterates through the points, looking along the axes for continuous chains. Again we need only look at half the directions, as we will eventually start at the furthest extant of every line. His code is well documented and quite a bit longer, but here is the iteration core:
 
@@ -549,7 +549,9 @@ to determine colinearity, matching individual points against a growing collectio
 Several submissions were developed around the idea of calculating the area of a triangle from three points, and if that area is 0 then the points must by necessity be colinear. The calculation of the area from points comes from linear algebra, where the area is found to be one-half the determinant of a 3x3 matrix with rows composed of the x and y coordinates for each point and 1.
 
  ⎥ *x*<sub>1</sub> *y*<sub>1</sub> 1 ⎥
+
  ⎥ *x*<sub>2</sub> *y*<sub>2</sub> 1 ⎥
+
  ⎥ *x*<sub>3</sub> *y*<sub>3</sub> 1 ⎥
 
 Expanded, the determinant is:
@@ -1434,6 +1436,7 @@ The Doc choses to use [`Struct::Dumb`](https://metacpan.org/pod/Struct::Dumb) to
     }
 ```
 
+
 ---
 
 # BLOGS {#PWC093BLOGS}
@@ -1446,7 +1449,7 @@ The Doc choses to use [`Struct::Dumb`](https://metacpan.org/pod/Struct::Dumb) to
 # then *RUN* *(dont walk!)* to the *WATERING HOLE*
 # and *READ* these *BLOG* *LINKS*:
 
-***( don't think, trust your training, you're in the zone, just do it ... )***
+**( *don't think, trust your training, you're in the zone, just do it ...* )**
 
 
 **Aaron Smith**
