@@ -528,6 +528,8 @@ Please find below guest contributions.
 
 ##### **Shawn Wagner** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-086/shawn-wagner/tcl/ch-1.tcl) in **Tcl**.
 
+##### **Stuart Little** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-086/stuart-little/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-086/stuart-little/haskell/ch-2.hs) in **Haskell**.
+
 ##### **Tejas** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-086/hstejas/cpp/ch-1.cpp) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-086/hstejas/cpp/ch-2.cpp) in **C++**.
 
 ##### **Tyler Wardhaugh** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-086/tyler-wardhaugh/clojure/src/tw/weekly/c86/t1.clj) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-086/tyler-wardhaugh/clojure/src/tw/weekly/c86/t2.clj) in **Clojure**.
@@ -1449,6 +1451,8 @@ Please find below guest contributions.
 ##### **Darren Bottin** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/darren-bottin/prolog/ch-1.pro) in **Prolog**.
 
 ##### **Jaldhar H. Vyas** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/jaldhar-h-vyas/c%2B%2B/ch-2.cpp) in **C++**.
+
+##### **Stuart Little** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/stuart-little/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/stuart-little/haskell/ch-2.hs) in **Haskell**.
 
 ----
 ## [The Weekly Challenge - 043](/blog/perl-weekly-challenge-043) {#043}
