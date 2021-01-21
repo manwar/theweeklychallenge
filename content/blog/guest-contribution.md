@@ -42,6 +42,10 @@ Please find below guest contributions.
 
 ##### **Abigail** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-096/abigail/ruby/ch-1.rb) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-096/abigail/ruby/ch-2.rb) in **Ruby**.
 
+##### **Kang-min Liu** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-096/gugod/janet/ch-1.janet) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-096/gugod/janet/ch-2.janet) in **Janet**.
+
+##### **Kang-min Liu** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-096/gugod/rust/ch-1.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-096/gugod/rust/ch-2.rs) in **Rust**.
+
 ##### **Mohammad Meraj Zia** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-096/ziameraj16/java/ReserveWords.java) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-096/ziameraj16/java/EditDistance.java) in **Java**.
 
 ##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-096/paulo-custodio/basic/ch-1.bas) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-096/paulo-custodio/basic/ch-2.bas) in **Basic**.
