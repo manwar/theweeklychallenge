@@ -48,6 +48,8 @@ Please find below guest contributions.
 
 ##### **Mohammad Meraj Zia** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-096/ziameraj16/java/ReserveWords.java) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-096/ziameraj16/java/EditDistance.java) in **Java**.
 
+##### **Mohammad Meraj Zia** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-096/ziameraj16/kotlin/ReverseWordsKotlin.kt) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-096/ziameraj16/kotlin/EditDistanceKotlin.kt) in **Kotlin**.
+
 ##### **Nuno Vieira** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-096/nunovieira220/js/ch-1.js) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-096/nunovieira220/js/ch-2.js) in **JavaScript**.
 
 ##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-096/paulo-custodio/basic/ch-1.bas) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-096/paulo-custodio/basic/ch-2.bas) in **Basic**.
