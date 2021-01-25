@@ -215,7 +215,7 @@ Write a script to encrypt the given string `$S` using [`Caesar Cipher`](https://
 <br>
 
 ***
-## TASK #2 › Binary Substings {#TASK2}
+## TASK #2 › Binary Substrings {#TASK2}
 ##### **Submitted by:** [Mohammad S Anwar](http://www.manwar.org)
 ***
 
