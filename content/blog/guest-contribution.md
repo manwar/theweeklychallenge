@@ -1576,6 +1576,8 @@ Please find below guest contributions.
 
 ##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-036/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-036/lubos-kolouch/python/ch-2.py) in **Python**.
 
+##### **Stuart Little** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-036/stuart-little/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-036/stuart-little/haskell/ch-2.hs) in **Haskell**.
+
 ##### **Ulrich Rieke** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-036/ulrich-rieke/haskell/ch-2.hs) in **Haskell**.
 
 ----
