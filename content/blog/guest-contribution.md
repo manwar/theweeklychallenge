@@ -1814,6 +1814,18 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 003](/blog/perl-weekly-challenge-003) {#003}
 <br>
 
+##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-003/paulo-custodio/basic/ch-1.bas) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-003/paulo-custodio/basic/ch-2.bas) in **Basic**.
+
+##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-003/paulo-custodio/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-003/paulo-custodio/c/ch-2.c) in **C**.
+
+##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-003/paulo-custodio/cpp/ch-1.cpp) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-003/paulo-custodio/cpp/ch-2.cpp) in **C++**.
+
+##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-003/paulo-custodio/forth/ch-1.fs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-003/paulo-custodio/forth/ch-2.fs) in **Forth**.
+
+##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-003/paulo-custodio/lua/ch-1.lua) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-003/paulo-custodio/lua/ch-2.lua) in **Lua**.
+
+##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-003/paulo-custodio/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-003/paulo-custodio/python/ch-2.py) in **Python**.
+
 ##### **Stuart Little** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-003/stuart-little/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-003/stuart-little/haskell/ch-2.hs) in **Haskell**.
 
 ----
