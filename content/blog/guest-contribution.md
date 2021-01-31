@@ -1130,6 +1130,8 @@ Please find below guest contributions.
 
 ##### **Cheok-Yin Fung** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-071/cheok-yin-fung/common-lisp/ch-1.lsp) in **Lisp**.
 
+##### **Cheok-Yin Fung** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-071/cheok-yin-fung/smalltalk/ch-2.st) in **Smalltalk**.
+
 ##### **Dave Jacoby** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-071/dave-jacoby/node/ch-1.js) in **Node**.
 
 ##### **Mohammad S Anwar** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-071/mohammad-anwar/java/Node.java) in **Java**.
@@ -1189,6 +1191,8 @@ Please find below guest contributions.
 ----
 ## [The Weekly Challenge - 068](/blog/perl-weekly-challenge-068) {#068}
 <br>
+
+##### **Cheok-Yin Fung** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-068/cheok-yin-fung/smalltalk/ch-2.st) in **Smalltalk**.
 
 ##### **Mohammad S Anwar** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-068/mohammad-anwar/swift/ch-1.swift) in **Swift**.
 
@@ -1490,6 +1494,8 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 047](/blog/perl-weekly-challenge-047) {#047}
 <br>
 
+##### **Cheok-Yin Fung** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-047/cheok-yin-fung/smalltalk/ch-1.st) in **Smalltalk**.
+
 ##### **Duncan C. White** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-047/duncan-c-white/postscript/ch-2.ps) in **Postscript**.
 
 ##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-047/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-047/lubos-kolouch/python/ch-2.py) in **Python**.
@@ -1551,6 +1557,8 @@ Please find below guest contributions.
 ----
 ## [The Weekly Challenge - 042](/blog/perl-weekly-challenge-042) {#042}
 <br>
+
+##### **Cheok-Yin Fung** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/cheok-yin-fung/smalltalk/ch-1.st) in **Smalltalk**.
 
 ##### **Burkhard Nickels** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/burkhard-nickels/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/burkhard-nickels/python/ch-2.py) in **Python**.
 
