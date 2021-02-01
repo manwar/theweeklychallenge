@@ -28,9 +28,11 @@ tags: ["Perl", "Raku"]
 ## HEADLINES {#HEADLINES}
 ***
 
-Welcome back `Lance Wicks` and `Alexander Pankoff` after the break.
+Welcome back `Lance Wicks`, `Richard Park` and `Alexander Pankoff` after the break.
 
-Thanks `Cheok-Yin Fung` for introducing `Smalltalk`.
+Thanks `Cheok-Yin Fung` for introducing `Smalltalk` language.
+
+Thanks `Richard Park` for introducing `BQN` language.
 
 I would like to thank **Team PWC** for showing interest in the past challenges.
 
