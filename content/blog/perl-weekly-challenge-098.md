@@ -100,6 +100,8 @@ Quick recap of the [**"The Weekly Challenge - 097"**](/blog/recap-challenge-097)
 ## PERL REVIEW {#PERLREVIEW}
 ***
 
+Please check out **Perl** solutions review of the **["Perl Weekly Challenge - 095"](/blog/review-challenge-095)** by `Colin Crain`.
+
 If you missed any past reviews then please check out the [**collection**](/p5-reviews).
 
 <br>
