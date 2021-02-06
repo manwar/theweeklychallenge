@@ -30,6 +30,8 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 098](/blog/perl-weekly-challenge-098) {#098}
 <br>
 
+##### **Cristina Heredia** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/cristian-heredia/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/cristian-heredia/python/ch-2.py) in **Python**.
+
 ##### **Frank Oosterhuis** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/frankivo/scala/SearchInsertPosition.scala) in **Scala**.
 
 ##### **Mohammad Meraj Zia** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/ziameraj16/java/SearchInsertPosition.java) in **Java**.
