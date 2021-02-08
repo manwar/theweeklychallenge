@@ -223,15 +223,18 @@ You are given two strings `$S` and `$T`.
 
 Write a script to find out count of different unique subsequences matching `$T` without changing the position of characters.
 
+### UPDATE: 2021-02-08 09:00AM (UK TIME) suggested by Jonas Berlin, missing entry [5].
+
 ## Example 1:
 
     Input: $S = "littleit', $T = 'lit'
-    Output: 4
+    Output: 5
 
         1: [lit] tleit
         2: [li] t [t] leit
         3: [li] ttlei [t]
         4: litt [l] e [it]
+        5: [l] ittle [it]
 
 ## Example 2:
 
