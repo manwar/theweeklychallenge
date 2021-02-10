@@ -32,6 +32,10 @@ Please find below guest contributions.
 
 ##### **Jonas Berlin** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-099/xkr47/rust/ch-1.rs) in **Rust**.
 
+##### **Mohammad Meraj Zia** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-099/ziameraj16/java/PatternMatcher.java) in **Java**.
+
+##### **Mohammad Meraj Zia** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-099/ziameraj16/kotlin/PatternMatcherKotlin.kt) in **Kotlin**.
+
 ##### **Stuart Little** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-099/stuart-little/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-099/stuart-little/haskell/ch-2.hs) in **Haskell**.
 
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-099/roger-bell-west/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-099/roger-bell-west/python/ch-2.py) in **Python**.
