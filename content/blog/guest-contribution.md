@@ -30,6 +30,8 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 099](/blog/perl-weekly-challenge-099) {#099}
 <br>
 
+##### **Cristina Heredia** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-099/cristian-heredia/python/ch-1.py) in **Python**.
+
 ##### **Jonas Berlin** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-099/xkr47/rust/ch-1.rs) in **Rust**.
 
 ##### **Mohammad Meraj Zia** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-099/ziameraj16/java/PatternMatcher.java) in **Java**.
