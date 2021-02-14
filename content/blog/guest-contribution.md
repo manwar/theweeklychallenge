@@ -1986,6 +1986,8 @@ Please find below guest contributions.
 
 ##### **Abigail** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-003/abigail/ruby/ch-1.rb) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-003/abigail/ruby/ch-2.rb) in **Ruby**.
 
+##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-003/paulo-custodio/awk/ch-1.awk) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-003/paulo-custodio/awk/ch-2.awk) in **Awk**.
+
 ##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-003/paulo-custodio/basic/ch-1.bas) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-003/paulo-custodio/basic/ch-2.bas) in **Basic**.
 
 ##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-003/paulo-custodio/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-003/paulo-custodio/c/ch-2.c) in **C**.
@@ -2022,6 +2024,8 @@ Please find below guest contributions.
 
 ##### **Abigail** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-002/abigail/ruby/ch-1.rb) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-002/abigail/ruby/ch-2.rb) in **Ruby**.
 
+##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-002/paulo-custodio/awk/ch-1.awk) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-002/paulo-custodio/awk/ch-2.awk) in **Awk**.
+
 ##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-002/paulo-custodio/basic/ch-1.bas) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-002/paulo-custodio/basic/ch-2.bas) in **Basic**.
 
 ##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-002/paulo-custodio/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-002/paulo-custodio/c/ch-2.c) in **C**.
@@ -2057,6 +2061,8 @@ Please find below guest contributions.
 ##### **Mohammad Foda** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-001/mfoda/haxe/ch1.hx) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-001/mfoda/haxe/ch2.hx) in **Haxe**.
 
 ##### **Mohammad Foda** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-001/mfoda/nim/ch1.nim) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-001/mfoda/nim/ch2.nim) in **Nim**.
+
+##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-001/paulo-custodio/awk/ch-1.awk) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-001/paulo-custodio/awk/ch-2.awk) in **Awk**.
 
 ##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-001/paulo-custodio/basic/ch-1.bas) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-001/paulo-custodio/basic/ch-2.bas) in **Basic**.
 
