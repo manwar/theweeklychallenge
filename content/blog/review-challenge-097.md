@@ -1,7 +1,7 @@
 
 ---
 author:       Colin Crain
-date:         2021-02-15T00:00:00
+date:         2021-02-08T00:00:00
 description:  "Colin Crain › Perl Weekly Review #097"
 tags:         ["perl"]
 title:        "Colin Crain › Perl Weekly Review #097"
@@ -49,7 +49,7 @@ I'm always curious as to what the people think of these efforts. Everyone here a
 
 ---
 
-## •   &nbsp;  &nbsp;  &nbsp;   [Task 1](#PWC097TASK1)       &nbsp;  &nbsp;  &nbsp;   •   &nbsp;  &nbsp;  &nbsp;   [Task 2](#PWC097TASK2)   &nbsp;  &nbsp;  &nbsp;       •   &nbsp;  &nbsp;  &nbsp;   [BLOGS](#PWC097BLOGS)    &nbsp;  &nbsp;  &nbsp;   	•
+## •   &nbsp;  &nbsp;  &nbsp;   [Task 1](#PWC097TASK1)       &nbsp;  &nbsp;  &nbsp;   •   &nbsp;  &nbsp;  &nbsp;   [Task 2](#PWC097TASK2)   &nbsp;  &nbsp;  &nbsp;   	•   &nbsp;  &nbsp;  &nbsp;   [BLOGS](#PWC097BLOGS)    &nbsp;  &nbsp;  &nbsp;   	•
 
 ---
 
@@ -216,15 +216,15 @@ Finally Luis performes a bit of modulo math to create the whole shift in one exp
 
 
 ## use ord() and some MATH
-[**Adam Russell**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/adam-russell/perl/ch-1.pl)
-[**Arne Sommer**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/arne-sommer/perl/ch-1.pl)
-[**Cheok-Yin Fung**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/cheok-yin-fung/perl/ch-1.pl)
-[**Kai Burgdorf**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/kai-burgdorf/perl/ch-1.pl)
-[**Laurent Rosenfeld**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/laurent-rosenfeld/perl/ch-1.pl)
-[**Lubos Kolouch**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/lubos-kolouch/perl/ch-1.pl)
-[**Paulo Custodio**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/paulo-custodio/perl/ch-1.pl)
-[**Robbie Hatley**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/LoneWolfiNTj/perl/ch-1.pl)
-[**Stuart Little**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/stuart-little/perl/ch-1.pl)
+[**Adam Russell**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/adam-russell/perl/ch-1.pl),
+[**Arne Sommer**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/arne-sommer/perl/ch-1.pl),
+[**Cheok-Yin Fung**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/cheok-yin-fung/perl/ch-1.pl),
+[**Kai Burgdorf**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/kai-burgdorf/perl/ch-1.pl),
+[**Laurent Rosenfeld**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/laurent-rosenfeld/perl/ch-1.pl),
+[**Lubos Kolouch**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/lubos-kolouch/perl/ch-1.pl),
+[**Paulo Custodio**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/paulo-custodio/perl/ch-1.pl),
+[**Robbie Hatley**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/LoneWolfiNTj/perl/ch-1.pl),
+[**Stuart Little**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/stuart-little/perl/ch-1.pl), and
 [**Ulrich Rieke**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/ulrich-rieke/perl/ch-1.pl)
 
 One recurring theme of constructing a character hash mapping is making parallel plaintext and ciphertext arrays to establish the alignment, then referring across them using a common index value. However, we can note that rather than assign a reference index to the letter, each letter *already* has a unique number attached to it, being the numerical representation stored in memory — the ASCII text value. By use of the two functions `ord()` and `chr()` we can effortlessly flip back and forth between the representations, and when we're in numerical form we can uses mathematics to perform our transformation directly, without the need for a lookup table.
@@ -386,13 +386,13 @@ But to speak to Robbie's code, he's gone through the trouble to handle both uppe
 
 
 ## use the TRANSLATION operator
-[**Athanasius**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/athanasius/perl/ch-1.pl)
-[**Duncan C. White**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/duncan-c-white/perl/ch-1.pl)
-[**E. Choroba**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/e-choroba/perl/ch-1.pl)
-[**Flavio Poletti**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/polettix/perl/ch-1.pl)
-[**Gustavo Chaves**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/gustavo-chaves/perl/ch-1.pl)
-[**Jan Hoogenraad**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/jan-perl/perl/ch-1.pl)
-[**Jorg Sommrey**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/jo-37/perl/ch-1.pl)
+[**Athanasius**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/athanasius/perl/ch-1.pl),
+[**Duncan C. White**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/duncan-c-white/perl/ch-1.pl),
+[**E. Choroba**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/e-choroba/perl/ch-1.pl),
+[**Flavio Poletti**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/polettix/perl/ch-1.pl),
+[**Gustavo Chaves**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/gustavo-chaves/perl/ch-1.pl),
+[**Jan Hoogenraad**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/jan-perl/perl/ch-1.pl),
+[**Jorg Sommrey**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/jo-37/perl/ch-1.pl), and
 [**Pete Houston**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/pete-houston/perl/ch-1.pl)
 
 Although it may at first seem made-to-order, the translation operator `tr///` comes with one important caveat: it needs to construct its translation table at compile time, before the script is run. Producing a chicken-and-egg problem, we can't use the script to calculate the configuration of the translation string before we declare the operation. Practically, this means the operator works very fast, but only on string literals.
@@ -485,9 +485,9 @@ In fact, any of the techniques first brought up for that similar task could be a
 
 
 ## use a REGULAR EXPRESSION
-[**Abigail**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/abigail/perl/ch-1.pl)
-[**Colin Crain**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/colin-crain/perl/ch-1.pl)
-[**James Smith**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/james-smith/perl/ch-1.pl)
+[**Abigail**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/abigail/perl/ch-1.pl),
+[**Colin Crain**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/colin-crain/perl/ch-1.pl),
+[**James Smith**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/james-smith/perl/ch-1.pl), and
 [**Niels van Dijke**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/perlboy1967/perl/ch-1.pl)
 
 The regular expression parser provides a powerful way to scan across a string of text, identifying specific characters, capturing the matches and performing transformations. This certainly *sounds* up to the task, and several members took up this angle.
@@ -748,7 +748,7 @@ As for the bit flipping, an XOR product will reveal all differing bits, and summ
 [**Nuno Vieira**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/nunovieira220/perl/ch-2.pl),
 [**Simon Green**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/sgreen/perl/ch-2.pl),
 [**Stuart Little**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/stuart-little/perl/ch-2.pl), and
-
+[**Wanderdoc**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/wanderdoc/perl/ch-2.pl)
 
 [**Niels van Dijke**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/perlboy1967/perl/ch-2.pl)
 
@@ -924,18 +924,18 @@ Duncan seems to have taken a rather different interpretation of the given criter
 ```perl
     foreach my $goal (@distinct)
     {
-        # find @flips: nflips(goal,chunk) forall chunks
-        my @flips = map { nflips( $goal, $_ ) } @chunk;
-        print "#flips of all chunks to goal $goal are: ",
-        	join(',',@flips) if $debug;
-        # add max( flips ) to @maxflips
-        my $maxflips = max @flips;
-        say ", max $maxflips" if $debug;
-        push @maxflips, $maxflips;
+    	# find @flips: nflips(goal,chunk) forall chunks
+    	my @flips = map { nflips( $goal, $_ ) } @chunk;
+    	print "#flips of all chunks to goal $goal are: ",
+    		join(',',@flips) if $debug;
+    	# add max( flips ) to @maxflips
+    	my $maxflips = max @flips;
+    	say ", max $maxflips" if $debug;
+    	push @maxflips, $maxflips;
     }
 
     say "maximum #flips for all goal chunks are: ",
-        join(',',@maxflips) if $debug;
+    	join(',',@maxflips) if $debug;
 
     # now calculate min( @maxflips)
     my $min = min(@maxflips);
@@ -1002,8 +1002,7 @@ Of note he memoizes `cost`, because, you know, why not? Given the limited range 
 [**Kai Burgdorf**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/kai-burgdorf/perl/ch-2.pl),
 [**Paulo Custodio**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/paulo-custodio/perl/ch-2.pl) ,
 [**Robbie Hatley**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/LoneWolfiNTj/perl/ch-2.pl),
-[**Roger Bell_West**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/roger-bell-west/perl/ch-2.pl),
-, and
+[**Roger Bell_West**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/roger-bell-west/perl/ch-2.pl), and
 [**W. Luis Mochan**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/wlmb/perl/ch-2.pl)
 
 As the binary input provided is in string form, that is to say simply sequences of 1 and 0 characters written out, rather that real numbers, a simple approach to comparing individual digits would be to iterate across the positions and directly determine whether they were the same or different. Differing values require a flip to equalize them.
@@ -1069,8 +1068,9 @@ In other notes, lovely verbose output is provided once more, and there's also a 
 
 
 ### XOR - a very *exclusive* or
-[**Adam Russell**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/adam-russell/perl/ch-2.pl)[**Colin Crain**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/colin-crain/perl/ch-2.pl),
-[**Jorg Sommrey**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/jo-37/perl/ch-2.pl),
+[**Adam Russell**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/adam-russell/perl/ch-2.pl),
+[**Colin Crain**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/colin-crain/perl/ch-2.pl),
+[**Niels van Dijke**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/perlboy1967/perl/ch-2.pl),
 [**Nuno Vieira**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/nunovieira220/perl/ch-2.pl),
 [**Stuart Little**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/stuart-little/perl/ch-2.pl)
 and
@@ -1080,9 +1080,9 @@ and
 
 The strings provided, being just 1s and 0s, rather than bits, can be easily converted into numbers, where their representations will match these bits in memory. Once that is done, an exclusive-or operation will reveal which bits differ between two compared sequences. This result is itself a sequence of bits, and various schemes are available to count the 1s to find out how many places differ.
 
-[**Jorg Sommrey**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/jo-37/perl/ch-2.pl)
+[**Niels van Dijke**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/perlboy1967/perl/ch-2.pl)
 
-Here Jorg uses `sprinf` to convert his values back into strings after doing the XOR bitwise operation on the numbers. The binary representation string is then split and the values summed.
+Here Niels uses `sprinf` to convert his values back into strings after doing the XOR bitwise operation on the numbers. The binary representation string is then split and the values summed.
 
 ```perl
     for (my $i = 0; $i < scalar(@bitStringChunks); $i++) {
@@ -1260,7 +1260,11 @@ And that little bit of wizardry is very cool indeed.
 [**Alexander Pankoff**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/alexander-pankoff/perl/ch-2.pl),
 [**Dave Jacoby**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/dave-jacoby/perl/ch-2.pl),
 [**Gustavo Chaves**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/gustavo-chaves/perl/ch-2.pl), and
-[**James Smith**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/james-smith/perl/ch-2.pl)
+[**James Smith**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/james-smith/perl/ch-2.pl),
+[**Jorg Sommrey**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/jo-37/perl/ch-2.pl)
+
+
+
 
 [**Gustavo Chaves**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/gustavo-chaves/perl/ch-2.pl)
 
@@ -1374,6 +1378,57 @@ What makes his presentation unique is that in comparing the binary strings he no
         return $d[@a][@b];
     }
 ```
+
+[**Jorg Sommrey**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/jo-37/perl/ch-2.pl)
+
+On a final note, Jorg brings us another excellent submission from the manifold matrices for the PDL — the Perl Data Language.
+
+After bringing in his segments using `unpack` and the familiar format, he hands the array of subsequences off the land of matrix manipulation:
+
+```perl
+sub minimum_flips (@bitstring) {
+
+    # Create 2-d byte piddle as bit matrix from bitstrings.
+    my $bits = byte map [split //], @bitstring;
+
+    # Calculate the target bitstring: Set a target bit to one if the bit
+    # is set at this position in more than half the bitstrings.
+    my $target = $bits->transpose->sumover > $bits->dim(1) / 2;
+
+    explain_bits($bits, $target) if $verbose;
+
+    # The total number of bits to be flipped is the number of bits that
+    # deviate from the target over all bitstrings.
+    sum $bits ^ $target;
+}
+```
+
+I don't think this one is too terribly hard to get the gist of, even if you don't exactly speak the dialect. Remember we're working on the matrix a whole here, as `$bits`. The `transpose` function swaps the rows and columns, so the first column becomes the top row, etc. `sumover` then adds the rows values to reduce the row to a single value. After that, the obvious next step is "magic". Perhaps a look at the output under the `-verbose` flag will help assist. For the bitsting `111011011011` and size 4:
+
+    bitstrings:
+    [
+     [1 1 1 0]
+     [1 1 0 1]
+     [1 0 1 1]
+    ]
+
+    target:
+     [1 1 1 1]
+
+    flipbits:
+    [
+     [0 0 0 1]
+     [0 0 1 0]
+     [0 1 0 0]
+    ]
+
+    total flips: 3
+    3
+
+Piece of cake, in what amounts to 4 lines of processing. I do believe this sort of bit manipulation goes to the core of the PDL's design spec. It's really quite amazing to see it in its element.
+
+
+
 
 ---
 

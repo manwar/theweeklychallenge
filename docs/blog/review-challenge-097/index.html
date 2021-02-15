@@ -179,7 +179,7 @@
                 <div class="block">
                     <h2>Colin Crain › Perl Weekly Review #097</h2>
                     <div class="portfolio-meta">
-                        <span>Monday, Feb 15, 2021</span>|
+                        <span>Monday, Feb 8, 2021</span>|
                         <span> Tags:
                             perl
                         </span>
@@ -220,7 +220,7 @@
 <p>I&rsquo;m always curious as to what the people think of these efforts. Everyone here at the PWC would like to hear any feedback you&rsquo;d like to give.</p>
 <p><strong>So finally, without further ado&hellip;</strong></p>
 <hr>
-<h2 id="---nbsp--nbsp--nbsp---task-1pwc097task1-------nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---task-2pwc097task2---nbsp--nbsp--nbsp----------nbsp--nbsp--nbsp---blogspwc097blogs----nbsp--nbsp--nbsp---">•             <a href="#PWC097TASK1">Task 1</a>                 •             <a href="#PWC097TASK2">Task 2</a>                 •             <a href="#PWC097BLOGS">BLOGS</a>              	•</h2>
+<h2 id="---nbsp--nbsp--nbsp---task-1pwc097task1-------nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---task-2pwc097task2---nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---blogspwc097blogs----nbsp--nbsp--nbsp---">•             <a href="#PWC097TASK1">Task 1</a>                 •             <a href="#PWC097TASK2">Task 2</a>             	•             <a href="#PWC097BLOGS">BLOGS</a>              	•</h2>
 <hr>
 <h1 id="PWC097TASK1">TASK 1</h1>
 <h1 id="caesar-cipher">Caesar Cipher</h1>
@@ -296,17 +296,17 @@
                split(<span style="color:#e6db74">//</span>,$str);
 </code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a></p>
 <p>Simon eschews the use of arrays at all, but still follows the same general pattern, only holding his alignment data in a pair of strings instead, using <code>substr</code> to access the individual characters.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># Work out the plain text cipher</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># Work out the plain text cipher</span>
     <span style="color:#66d9ef">my</span> $plain  <span style="color:#f92672">=</span> join <span style="color:#e6db74">&#39;&#39;</span>, ( <span style="color:#e6db74">&#39;A&#39;</span> <span style="color:#f92672">..</span> <span style="color:#e6db74">&#39;Z&#39;</span> );
     <span style="color:#66d9ef">my</span> $cipher <span style="color:#f92672">=</span> substr( $plain, <span style="color:#f92672">-</span>$offset ) <span style="color:#f92672">.</span> substr( $plain, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">26</span> <span style="color:#f92672">-</span> $offset );
 
-    <span style="color:#75715e"># Create a mapping table</span>
+    <span style="color:#75715e"># Create a mapping table</span>
     <span style="color:#66d9ef">my</span> %mapping <span style="color:#f92672">=</span> ( <span style="color:#e6db74">&#39; &#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39; &#39;</span> );
     <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">25</span> ) {
         $mapping{ substr( $plain, $i, <span style="color:#ae81ff">1</span> ) } <span style="color:#f92672">=</span> substr( $cipher, $i, <span style="color:#ae81ff">1</span> );
     }
 
-    <span style="color:#75715e"># Translate</span>
+    <span style="color:#75715e"># Translate</span>
     <span style="color:#66d9ef">my</span> $ciphertext <span style="color:#f92672">=</span> join <span style="color:#e6db74">&#39;&#39;</span>, map { $mapping{$_} } split <span style="color:#e6db74">//</span>, $string;
 </code></pre></div><p>Of course constructing a pair of aligned lists wasn&rsquo;t the ony way to proceed. The assignments can also be calculated mathematically from the indices of a single array and directly loaded into a hash keys.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/cristian-heredia/perl/ch-1.pl"><strong>Cristina Heredia</strong></a></p>
@@ -325,15 +325,15 @@
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> @plain<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;A&#34;</span><span style="color:#f92672">..</span><span style="color:#e6db74">&#34;Z&#34;</span>;
     <span style="color:#66d9ef">my</span> %translation_of <span style="color:#f92672">=</span> map { ($plain[$_] <span style="color:#f92672">=&gt;</span> $plain[($_<span style="color:#f92672">-</span>$displacement)%@plain]) <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>@plain<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
 </code></pre></div><h2 id="use-ord-and-some-math">use ord() and some MATH</h2>
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a>
-<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/arne-sommer/perl/ch-1.pl"><strong>Arne Sommer</strong></a>
-<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a>
-<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/kai-burgdorf/perl/ch-1.pl"><strong>Kai Burgdorf</strong></a>
-<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a>
-<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/lubos-kolouch/perl/ch-1.pl"><strong>Lubos Kolouch</strong></a>
-<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/paulo-custodio/perl/ch-1.pl"><strong>Paulo Custodio</strong></a>
-<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/LoneWolfiNTj/perl/ch-1.pl"><strong>Robbie Hatley</strong></a>
-<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/stuart-little/perl/ch-1.pl"><strong>Stuart Little</strong></a>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/arne-sommer/perl/ch-1.pl"><strong>Arne Sommer</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/kai-burgdorf/perl/ch-1.pl"><strong>Kai Burgdorf</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/lubos-kolouch/perl/ch-1.pl"><strong>Lubos Kolouch</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/paulo-custodio/perl/ch-1.pl"><strong>Paulo Custodio</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/LoneWolfiNTj/perl/ch-1.pl"><strong>Robbie Hatley</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/stuart-little/perl/ch-1.pl"><strong>Stuart Little</strong></a>, and
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a></p>
 <p>One recurring theme of constructing a character hash mapping is making parallel plaintext and ciphertext arrays to establish the alignment, then referring across them using a common index value. However, we can note that rather than assign a reference index to the letter, each letter <em>already</em> has a unique number attached to it, being the numerical representation stored in memory — the ASCII text value. By use of the two functions <code>ord()</code> and <code>chr()</code> we can effortlessly flip back and forth between the representations, and when we&rsquo;re in numerical form we can uses mathematics to perform our transformation directly, without the need for a lookup table.</p>
 <p>Because we remove the steps to construct the intermediate hash mapping, these solutions had a tendency to be quite compact and to the point.</p>
@@ -392,8 +392,8 @@
 
       $code <span style="color:#f92672">-=</span> $shift;
 
-      $code <span style="color:#f92672">+=</span> <span style="color:#ae81ff">26</span> <span style="color:#66d9ef">if</span> $code <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">65</span>;  <span style="color:#75715e"># &#39;A&#39;</span>
-      $code <span style="color:#f92672">-=</span> <span style="color:#ae81ff">26</span> <span style="color:#66d9ef">if</span> $code <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">90</span>;  <span style="color:#75715e"># &#39;Z&#39;</span>
+      $code <span style="color:#f92672">+=</span> <span style="color:#ae81ff">26</span> <span style="color:#66d9ef">if</span> $code <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">65</span>;  <span style="color:#75715e"># &#39;A&#39;</span>
+      $code <span style="color:#f92672">-=</span> <span style="color:#ae81ff">26</span> <span style="color:#66d9ef">if</span> $code <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">90</span>;  <span style="color:#75715e"># &#39;Z&#39;</span>
 
       <span style="color:#66d9ef">return</span> chr($code);
     }
@@ -433,7 +433,7 @@
 
        END_OF_ERROR
        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
-    } <span style="color:#75715e"># end sub error</span>
+    } <span style="color:#75715e"># end sub error</span>
 </code></pre></div><p>But to speak to Robbie&rsquo;s code, he&rsquo;s gone through the trouble to handle both upper and lower case in a robust manner. From a cryptographic point of view this is a bit absurd, as codes and ciphers as enacted are generally designed to remove any externally identifiable information and homogenize the ciphertext. As an illogical extension of our already toy cipher here, though, it&rsquo;s a nice and welcome addition to observe the implementation.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> @upper   <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>,<span style="color:#e6db74">&#39;ABCDEFGHIJKLMNOPQRSTUVWXYZ&#39;</span>;
     <span style="color:#66d9ef">my</span> @lower   <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>,<span style="color:#e6db74">&#39;abcdefghijklmnopqrstuvwxyz&#39;</span>;
@@ -452,13 +452,13 @@
        <span style="color:#66d9ef">print</span> $S;
     }
 </code></pre></div><h2 id="use-the-translation-operator">use the TRANSLATION operator</h2>
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a>
-<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a>
-<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>
-<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>
-<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/gustavo-chaves/perl/ch-1.pl"><strong>Gustavo Chaves</strong></a>
-<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/jan-perl/perl/ch-1.pl"><strong>Jan Hoogenraad</strong></a>
-<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/gustavo-chaves/perl/ch-1.pl"><strong>Gustavo Chaves</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/jan-perl/perl/ch-1.pl"><strong>Jan Hoogenraad</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a>, and
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/pete-houston/perl/ch-1.pl"><strong>Pete Houston</strong></a></p>
 <p>Although it may at first seem made-to-order, the translation operator <code>tr///</code> comes with one important caveat: it needs to construct its translation table at compile time, before the script is run. Producing a chicken-and-egg problem, we can&rsquo;t use the script to calculate the configuration of the translation string before we declare the operation. Practically, this means the operator works very fast, but only on string literals.</p>
 <p>What to do? Well we can in fact use the operator with an interpolated string, it&rsquo;s just that we need to first use <code>eval</code> to construct the code to be executed. This form of the <code>eval</code> statement is known as &ldquo;string eval&rdquo;.</p>
@@ -516,16 +516,16 @@ also takes this sensical, straightforward  approach, as does
 
     eval <span style="color:#e6db74">&#34;\$text =~ tr/$src/$dest/;&#34;</span>;
 </code></pre></div><h2 id="use-a-regular-expression">use a REGULAR EXPRESSION</h2>
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/abigail/perl/ch-1.pl"><strong>Abigail</strong></a>
-<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>
-<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/abigail/perl/ch-1.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a>, and
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a></p>
 <p>The regular expression parser provides a powerful way to scan across a string of text, identifying specific characters, capturing the matches and performing transformations. This certainly <em>sounds</em> up to the task, and several members took up this angle.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a></p>
 <p>Niels creates a lookup hash from two array slices, the uses a global substitution capturing any character as a key to the lookup. Each character is either replaced by a cipher value or an undefined, empty string.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> @cc <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#39;A&#39;</span> <span style="color:#f92672">..</span> <span style="color:#e6db74">&#39;Z&#39;</span>);
     <span style="color:#66d9ef">my</span> %cc <span style="color:#f92672">=</span> map {shift(@cc) <span style="color:#f92672">=&gt;</span> $_} (@cc[<span style="color:#ae81ff">26</span><span style="color:#f92672">-</span>$N <span style="color:#f92672">..</span> <span style="color:#ae81ff">25</span>], @cc[<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">26</span><span style="color:#f92672">-</span>$N<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]);
-    <span style="color:#75715e"># Map space to space</span>
+    <span style="color:#75715e"># Map space to space</span>
     $cc{<span style="color:#e6db74">&#39; &#39;</span>} <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39; &#39;</span>;
 
     $s <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/(.)/$cc{$1}/g</span>;
@@ -605,20 +605,20 @@ also takes this sensical, straightforward  approach, as does
 
         $n %<span style="color:#960050;background-color:#1e0010">=</span> length $plain;
         <span style="color:#66d9ef">my</span> $cipher <span style="color:#f92672">=</span> $n ?
-                <span style="color:#75715e"># last $n chars + first chars except last $n chars.</span>
+                <span style="color:#75715e"># last $n chars + first chars except last $n chars.</span>
                 substr($plain, <span style="color:#f92672">-</span>$n, $n) <span style="color:#f92672">.</span> substr($plain, <span style="color:#ae81ff">0</span>, <span style="color:#f92672">-</span>$n) :
                 $plain;
 
         say <span style="color:#e6db74">&#34;Offset: $n\nPlain:  $plain\nCipher: $cipher&#34;</span> <span style="color:#66d9ef">if</span> $verbose;
 
-        <span style="color:#75715e"># Encode string(s) using Caesar Cipher. All characters outside plain</span>
-        <span style="color:#75715e"># capital latin letters and SPACE are silently discarded.  The SPACE</span>
-        <span style="color:#75715e"># character will be passed unencoded.  Does not rely on a contiguous</span>
-        <span style="color:#75715e"># character encoding of letters. (EBCDIC!)</span>
+        <span style="color:#75715e"># Encode string(s) using Caesar Cipher. All characters outside plain</span>
+        <span style="color:#75715e"># capital latin letters and SPACE are silently discarded.  The SPACE</span>
+        <span style="color:#75715e"># character will be passed unencoded.  Does not rely on a contiguous</span>
+        <span style="color:#75715e"># character encoding of letters. (EBCDIC!)</span>
         <span style="color:#66d9ef">sub</span> (@s) {
             local $_ <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;@s&#34;</span>;
 
-            <span style="color:#75715e"># tr/// does not interpolate.</span>
+            <span style="color:#75715e"># tr/// does not interpolate.</span>
             eval <span style="color:#e6db74">&#34;tr/ $plain//cd&#34;</span>;
             eval <span style="color:#e6db74">&#34;tr/ $plain/ $cipher/r&#34;</span>;
         }
@@ -715,7 +715,8 @@ Binary Substrings:
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/perlboy1967/perl/ch-2.pl"><strong>Niels van Dijke</strong></a>,
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/nunovieira220/perl/ch-2.pl"><strong>Nuno Vieira</strong></a>,
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a>,
-<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/stuart-little/perl/ch-2.pl"><strong>Stuart Little</strong></a>, and</p>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/stuart-little/perl/ch-2.pl"><strong>Stuart Little</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/wanderdoc/perl/ch-2.pl"><strong>Wanderdoc</strong></a></p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/perlboy1967/perl/ch-2.pl"><strong>Niels van Dijke</strong></a></p>
 <p>Niels gracefully treats our input string as raw data to be processed, and shows us how to use <code>unpack</code> to dice it up into segments of the required length:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> @bitStringChunks <span style="color:#f92672">=</span> unpack(<span style="color:#e6db74">&#34;(A$s)*&#34;</span>, $b);
@@ -812,20 +813,20 @@ Binary Substrings:
 <p>Duncan seems to have taken a rather different interpretation of the given criteria, and come up with a unique perspective: of all the various pairs with a particular subset as the model, find the <strong>maximum</strong> bit flips amongst its peers to construct it and assign it that value, then find the minimum of those calculated maximums as the answer. As I said before, I&rsquo;m just going to toss my hand up and say: &ldquo;Why not?&quot;. Obviously the core logic for this plan is going to be a little different than the others. But variety is the spice of life, after all.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $goal (@distinct)
     {
-        <span style="color:#75715e"># find @flips: nflips(goal,chunk) forall chunks</span>
-        <span style="color:#66d9ef">my</span> @flips <span style="color:#f92672">=</span> map { nflips( $goal, $_ ) } @chunk;
-        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;#flips of all chunks to goal $goal are: &#34;</span>,
-        	join(<span style="color:#e6db74">&#39;,&#39;</span>,@flips) <span style="color:#66d9ef">if</span> $debug;
-        <span style="color:#75715e"># add max( flips ) to @maxflips</span>
-        <span style="color:#66d9ef">my</span> $maxflips <span style="color:#f92672">=</span> max @flips;
-        say <span style="color:#e6db74">&#34;, max $maxflips&#34;</span> <span style="color:#66d9ef">if</span> $debug;
-        push @maxflips, $maxflips;
+    	<span style="color:#75715e"># find @flips: nflips(goal,chunk) forall chunks</span>
+    	<span style="color:#66d9ef">my</span> @flips <span style="color:#f92672">=</span> map { nflips( $goal, $_ ) } @chunk;
+    	<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;#flips of all chunks to goal $goal are: &#34;</span>,
+    		join(<span style="color:#e6db74">&#39;,&#39;</span>,@flips) <span style="color:#66d9ef">if</span> $debug;
+    	<span style="color:#75715e"># add max( flips ) to @maxflips</span>
+    	<span style="color:#66d9ef">my</span> $maxflips <span style="color:#f92672">=</span> max @flips;
+    	say <span style="color:#e6db74">&#34;, max $maxflips&#34;</span> <span style="color:#66d9ef">if</span> $debug;
+    	push @maxflips, $maxflips;
     }
 
     say <span style="color:#e6db74">&#34;maximum #flips for all goal chunks are: &#34;</span>,
-        join(<span style="color:#e6db74">&#39;,&#39;</span>,@maxflips) <span style="color:#66d9ef">if</span> $debug;
+    	join(<span style="color:#e6db74">&#39;,&#39;</span>,@maxflips) <span style="color:#66d9ef">if</span> $debug;
 
-    <span style="color:#75715e"># now calculate min( @maxflips)</span>
+    <span style="color:#75715e"># now calculate min( @maxflips)</span>
     <span style="color:#66d9ef">my</span> $min <span style="color:#f92672">=</span> min(@maxflips);
     say <span style="color:#e6db74">&#34;minimum maximum #flips = $min&#34;</span> <span style="color:#66d9ef">if</span> $debug;
 </code></pre></div><h3 id="using-split">using split()</h3>
@@ -866,8 +867,7 @@ Binary Substrings:
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/kai-burgdorf/perl/ch-2.pl"><strong>Kai Burgdorf</strong></a>,
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/paulo-custodio/perl/ch-2.pl"><strong>Paulo Custodio</strong></a> ,
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/LoneWolfiNTj/perl/ch-2.pl"><strong>Robbie Hatley</strong></a>,
-<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a>,
-, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a>, and
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
 <p>As the binary input provided is in string form, that is to say simply sequences of 1 and 0 characters written out, rather that real numbers, a simple approach to comparing individual digits would be to iterate across the positions and directly determine whether they were the same or different. Differing values require a flip to equalize them.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a></p>
@@ -914,15 +914,16 @@ Binary Substrings:
           {$best_fls <span style="color:#f92672">=</span> $flips[$index]; $best_idx <span style="color:#f92672">=</span> $index;}
     }
 </code></pre></div><h3 id="xor---a-very-exclusive-or">XOR - a very <em>exclusive</em> or</h3>
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a>,
-<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a>,
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/perlboy1967/perl/ch-2.pl"><strong>Niels van Dijke</strong></a>,
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/nunovieira220/perl/ch-2.pl"><strong>Nuno Vieira</strong></a>,
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/stuart-little/perl/ch-2.pl"><strong>Stuart Little</strong></a>
 and
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/wanderdoc/perl/ch-2.pl"><strong>Wanderdoc</strong></a></p>
 <p>The strings provided, being just 1s and 0s, rather than bits, can be easily converted into numbers, where their representations will match these bits in memory. Once that is done, an exclusive-or operation will reveal which bits differ between two compared sequences. This result is itself a sequence of bits, and various schemes are available to count the 1s to find out how many places differ.</p>
-<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a></p>
-<p>Here Jorg uses <code>sprinf</code> to convert his values back into strings after doing the XOR bitwise operation on the numbers. The binary representation string is then split and the values summed.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/perlboy1967/perl/ch-2.pl"><strong>Niels van Dijke</strong></a></p>
+<p>Here Niels uses <code>sprinf</code> to convert his values back into strings after doing the XOR bitwise operation on the numbers. The binary representation string is then split and the values summed.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; $i <span style="color:#f92672">&lt;</span> scalar(@bitStringChunks); $i<span style="color:#f92672">++</span>) {
         <span style="color:#66d9ef">my</span> $bitFlips <span style="color:#f92672">=</span> sum(split(<span style="color:#e6db74">//</span>, sprintf(<span style="color:#e6db74">&#39;%b&#39;</span>, $intValues[$i] <span style="color:#f92672">^</span> $bestValue)));
         push(@f, sprintf(<span style="color:#e6db74">qq(&#34;%s&#34;: %d flip(s))</span>, $bitStringChunks[$i], $bitFlips));
@@ -931,7 +932,7 @@ and
 </code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/colin-crain/perl/ch-2.pl"><strong>My Own Solution</strong></a></p>
 <p>I took the same approach, breaking apart the process in a slightly different manner.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $sect (@sections) {
-        <span style="color:#66d9ef">my</span> $xored <span style="color:#f92672">=</span> sprintf <span style="color:#e6db74">&#34;%b&#34;</span>, $sections[$idx] <span style="color:#f92672">^</span> $sect;  <span style="color:#75715e">## sections are numbers here</span>
+        <span style="color:#66d9ef">my</span> $xored <span style="color:#f92672">=</span> sprintf <span style="color:#e6db74">&#34;%b&#34;</span>, $sections[$idx] <span style="color:#f92672">^</span> $sect;  <span style="color:#75715e">## sections are numbers here</span>
         $flips <span style="color:#f92672">+=</span> $_ <span style="color:#66d9ef">for</span> split <span style="color:#e6db74">//</span>, $xored;
     }
 </code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/wanderdoc/perl/ch-2.pl"><strong>Wanderdoc</strong></a></p>
@@ -1040,7 +1041,8 @@ and
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/alexander-pankoff/perl/ch-2.pl"><strong>Alexander Pankoff</strong></a>,
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a>,
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/gustavo-chaves/perl/ch-2.pl"><strong>Gustavo Chaves</strong></a>, and
-<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a></p>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a></p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/gustavo-chaves/perl/ch-2.pl"><strong>Gustavo Chaves</strong></a></p>
 <p>Gustavo uses a variety of imported list functions we haven&rsquo;t seen elsewhere.</p>
 <p>After first using a regular expression to divide his input, he brings in a trio of  functions from <code>List::AllUtils</code> to help him with further processing. Further splitting his substrings into arrays, he uses <code>pairwise</code> to make the element comparisons, then employing <code>sum0</code> to add the results up. Later, <code>reduce</code> is used to create his own minimum function.</p>
@@ -1048,8 +1050,8 @@ and
 
     <span style="color:#66d9ef">my</span> (@distance, @flips);
 
-    <span style="color:#75715e"># Calculate the distances between each pair of substrings and the total number</span>
-    <span style="color:#75715e"># of flips to change all of them to be equal to each one.</span>
+    <span style="color:#75715e"># Calculate the distances between each pair of substrings and the total number</span>
+    <span style="color:#75715e"># of flips to change all of them to be equal to each one.</span>
     <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#substrings) {
         <span style="color:#66d9ef">my</span> @from <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, $substrings[$i];
         <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $j (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#substrings) {
@@ -1059,12 +1061,12 @@ and
         $flips[$i] <span style="color:#f92672">=</span> sum0 @{$distance[$i]};
     }
 
-    <span style="color:#75715e"># Find the index of the substring which requires the minimum number of flips.</span>
+    <span style="color:#75715e"># Find the index of the substring which requires the minimum number of flips.</span>
     <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> reduce {$flips[$a] <span style="color:#f92672">&lt;</span> $flips[$b] ? $a : $b} <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#flips;
 </code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a></p>
 <p>James&rsquo;, er, <em>unique</em> submission is presented here in full so that it may be studied by future generations. Readers are encouraged to try and figure out whatever is going on here on their own, however be aware there is a legend available both within the source file and externally on <a href="http://blogs.perl.org/users/james_curtis-smith/2021/01/perl-weekly-challenge-97.html">his blog</a>.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">min_flips</span> {
-      <span style="color:#75715e">## Golf mode on...</span>
+      <span style="color:#75715e">## Golf mode on...</span>
       [
         local$/,
         local$\<span style="color:#f92672">=</span>length($_[<span style="color:#ae81ff">0</span>])<span style="color:#f92672">/</span>$_[<span style="color:#ae81ff">1</span>],
@@ -1102,8 +1104,8 @@ and
         <span style="color:#66d9ef">my</span> @a <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, $f;
         <span style="color:#66d9ef">my</span> @b <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, $g;
 
-        <span style="color:#75715e"># There is an extra row and column in the matrix. This is the</span>
-        <span style="color:#75715e"># distance from the empty string to a substring of the target.</span>
+        <span style="color:#75715e"># There is an extra row and column in the matrix. This is the</span>
+        <span style="color:#75715e"># distance from the empty string to a substring of the target.</span>
         <span style="color:#66d9ef">my</span> @d;
         $d[$_][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> $_ <span style="color:#66d9ef">for</span> ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> @a );
         $d[<span style="color:#ae81ff">0</span>][$_] <span style="color:#f92672">=</span> $_ <span style="color:#66d9ef">for</span> ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> @b );
@@ -1123,7 +1125,47 @@ and
         }
         <span style="color:#66d9ef">return</span> $d[@a][@b];
     }
-</code></pre></div><hr>
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-097/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a></p>
+<p>On a final note, Jorg brings us another excellent submission from the manifold matrices for the PDL — the Perl Data Language.</p>
+<p>After bringing in his segments using <code>unpack</code> and the familiar format, he hands the array of subsequences off the land of matrix manipulation:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">minimum_flips</span> (@bitstring) {
+
+    <span style="color:#75715e"># Create 2-d byte piddle as bit matrix from bitstrings.</span>
+    <span style="color:#66d9ef">my</span> $bits <span style="color:#f92672">=</span> byte map [split <span style="color:#e6db74">//</span>], @bitstring;
+
+    <span style="color:#75715e"># Calculate the target bitstring: Set a target bit to one if the bit</span>
+    <span style="color:#75715e"># is set at this position in more than half the bitstrings.</span>
+    <span style="color:#66d9ef">my</span> $target <span style="color:#f92672">=</span> $bits<span style="color:#f92672">-&gt;</span>transpose<span style="color:#f92672">-&gt;</span>sumover <span style="color:#f92672">&gt;</span> $bits<span style="color:#f92672">-&gt;</span>dim(<span style="color:#ae81ff">1</span>) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>;
+
+    explain_bits($bits, $target) <span style="color:#66d9ef">if</span> $verbose;
+
+    <span style="color:#75715e"># The total number of bits to be flipped is the number of bits that</span>
+    <span style="color:#75715e"># deviate from the target over all bitstrings.</span>
+    sum $bits <span style="color:#f92672">^</span> $target;
+}
+</code></pre></div><p>I don&rsquo;t think this one is too terribly hard to get the gist of, even if you don&rsquo;t exactly speak the dialect. Remember we&rsquo;re working on the matrix a whole here, as <code>$bits</code>. The <code>transpose</code> function swaps the rows and columns, so the first column becomes the top row, etc. <code>sumover</code> then adds the rows values to reduce the row to a single value. After that, the obvious next step is &ldquo;magic&rdquo;. Perhaps a look at the output under the <code>-verbose</code> flag will help assist. For the bitsting <code>111011011011</code> and size 4:</p>
+<pre><code>bitstrings:
+[
+ [1 1 1 0]
+ [1 1 0 1]
+ [1 0 1 1]
+]
+
+target:
+ [1 1 1 1]
+
+flipbits:
+[
+ [0 0 0 1]
+ [0 0 1 0]
+ [0 1 0 0]
+]
+
+total flips: 3
+3
+</code></pre>
+<p>Piece of cake, in what amounts to 4 lines of processing. I do believe this sort of bit manipulation goes to the core of the PDL&rsquo;s design spec. It&rsquo;s really quite amazing to see it in its element.</p>
+<hr>
 <h1 id="PWC097BLOGS">BLOGS</h1>
 <hr>
 <p><strong>That’s it for me this week, people! Warped by the rain, driven by the snow, resolute and unbroken by the torrential influx, I somehow continue to maintain my bearings. Looking forward to next wave, the perfect wave, I am: <em>your humble servant</em>.</strong></p>
