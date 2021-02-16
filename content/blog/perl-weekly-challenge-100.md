@@ -96,7 +96,7 @@ Please find below review stats as of today:
 #### 31. [Andrew Shitov](/blog/meet-the-champion-2020-10)
 #### 31. [Simon Green](/blog/meet-the-champion-2020-11)
 #### 31. [Niels van Dijke](/blog/meet-the-champion-2020-12)
-#### 32. Stuart Little
+#### 32. [Stuart Little](/blog/meet-the-champion-2021-01)
 
 ***
 <br>
