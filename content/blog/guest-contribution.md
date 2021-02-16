@@ -30,6 +30,8 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 100](/blog/perl-weekly-challenge-100) {#100}
 <br>
 
+##### **Dave Jacoby** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-100/dave-jacoby/node/ch-2.js) in **Node**.
+
 ##### **Frank Oosterhuis** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-100/frankivo/scala/FunTime.scala) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-100/frankivo/scala/TriangleSum.scala) in **Scala**.
 
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-100/roger-bell-west/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-100/roger-bell-west/python/ch-2.py) in **Python**.
