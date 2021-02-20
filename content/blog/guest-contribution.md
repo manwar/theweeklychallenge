@@ -52,6 +52,8 @@ Please find below guest contributions.
 
 ##### **Lance Wicks** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-100/lance-wicks/elm/src/Fun.elm) in **Elm**.
 
+##### **Mohammad Meraj Zia** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-100/ziameraj16/java/FunTime.java) in **Java**.
+
 ##### **Mohammad Meraj Zia** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-100/ziameraj16/java/TriangleSum.java) in **Java**.
 
 ##### **Mohammad Meraj Zia** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-100/ziameraj16/kotlin/TriangleSumKotlin.kt) in **Kotlin**.
