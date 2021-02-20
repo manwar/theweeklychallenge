@@ -114,7 +114,7 @@ Apart from the above **Champions**, we decided to award the following **Team PWC
 <br>
 
 ## PWC Prolific Contributor Award (Raku)
-#### 1. Jan Krnavik
+#### 1. Jan Krnavek
 #### 2. Markus Holzer
 #### 3. Athanasius
 
