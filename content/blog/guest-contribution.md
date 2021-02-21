@@ -46,6 +46,8 @@ Please find below guest contributions.
 
 ##### **Abigail** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-100/abigail/ruby/ch-1.rb) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-100/abigail/ruby/ch-2.rb) in **Ruby**.
 
+##### **Adam Russell** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-100/adam-russell/prolog/ch-1.p) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-100/adam-russell/prolog/ch-2.p) in **Prolog**.
+
 ##### **Dave Jacoby** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-100/dave-jacoby/node/ch-2.js) in **Node**.
 
 ##### **Frank Oosterhuis** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-100/frankivo/scala/FunTime.scala) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-100/frankivo/scala/TriangleSum.scala) in **Scala**.
