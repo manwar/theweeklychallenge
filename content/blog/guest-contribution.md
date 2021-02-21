@@ -92,7 +92,7 @@ Please find below guest contributions.
 
 ##### **Ulrich Rieke** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-100/ulrich-rieke/cpp/ch-2.cpp) in **C++**.
 
-##### **Ulrich Rieke** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/ulrich-rieke/haskell/ch-1.hs) in **Haskell**.
+##### **Ulrich Rieke** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-100/ulrich-rieke/haskell/ch-1.hs) in **Haskell**.
 
 ---
 ## [The Weekly Challenge - 099](/blog/perl-weekly-challenge-099) {#099}
@@ -319,6 +319,8 @@ Please find below guest contributions.
 ##### **Mohammad Meraj Zia** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-096/ziameraj16/kotlin/ReverseWordsKotlin.kt) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-096/ziameraj16/kotlin/EditDistanceKotlin.kt) in **Kotlin**.
 
 ##### **Nuno Vieira** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-096/nunovieira220/js/ch-1.js) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-096/nunovieira220/js/ch-2.js) in **JavaScript**.
+
+##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-096/paulo-custodio/ada/ch_1.adb) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-096/paulo-custodio/ada/ch_2.adb) in **Ada**.
 
 ##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-096/paulo-custodio/basic/ch-1.bas) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-096/paulo-custodio/basic/ch-2.bas) in **Basic**.
 
