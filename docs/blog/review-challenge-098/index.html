@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="The Weekly Challenge - Perl & Raku"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://perlweeklychallenge.org/"/>
+    <meta property="og:image"       content="https://perlweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="You do not have to be an expert."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://perlweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Colin Crain › Perl Weekly Review #098">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Colin Crain › Perl Weekly Review #098</title>
+    <link rel="icon" href="https://perlweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://perlweeklychallenge.org/">
+                        <img src="https://perlweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navgation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Colin Crain › Perl Weekly Review #098</h2>
+                    <div class="portfolio-meta">
+                        <span>Tuesday, Feb 23, 2021</span>|
+                        <span> Tags:
+                            perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://perlweeklychallenge.org/images/blog/p5-review-challenge-098.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <p>( <em>&hellip;continues from <a href="/blog/review-challenge-097/">previous week</a>.</em> )</p>
+<p>Welcome to the Perl review for <strong>Week 098</strong> of the Weekly Challenge! Here we will take the time to discuss the  submissions offered by the team, factor out the common methodologies that came up in those solutions, and highlight some of the unique approaches and unusual code created.</p>
+<hr>
+<h3 id="why-do-we-do-these-challenges">Why do we do these challenges?</h3>
+<p>I suppose any answers to that would be as wide ranging and varied as the people who choose to join the team. One thing is clear: it&rsquo;s not a competition, and there are no judges, even if there is a &ldquo;prize&rdquo; of sorts. About that &ndash; I think of it more as an honorarium periodically awarded to acknowledge the efforts we make towards this strange goal. So there&rsquo;s no determination to find the <em>fastest</em>, or the <em>shortest</em>, or even, in some abstract way, the <em>best</em> way to go about things, although I&rsquo;m certain the individuals have their own aspirations and personal drives. As Perl is such a wonderfully expressive language, this provides quite a bit of fodder to the core idea of TMTOWTDI, producing a gamut of wonderfully varied techniques and solutions.</p>
+<p>Even the tasks themselves are often open to a certain amount of discretionary interpretation. What we end up with is a situation where each participant is producing something in the manner they find the most interesting or satisfying. Some team members focus on carefully crafted complete applications that thoroughly vet input data and handle every use case they can think up. Others chose to apply themselves to the logic of the underlying puzzle and making it work in the most elegant way they can. Some eschew modules they would ordinarily reach for, others embrace them, bringing to light wheels perhaps invented years ago that happen to exactly solve the problem in front of them today.</p>
+<p>I&rsquo;ve been considering this question for some time and have found one binding commonality between all of us solving these challenges each week, in that however we normally live our lives, the task in front of us more than likely has nothing to do with any of that . And I think this has great value. We all do what we do, out in the real world, and hopefully we do it well. The Weekly Challenge provides a opportunity to do something germane to that life yet distinctly different; if we only do the things we already know how to do we only do the same things over and over. This is where the &ldquo;challenge&rdquo; aspect comes into play.</p>
+<p>So we can consider the Weekly Challenge as providing a problem space outside of our comfort zone, as far out from comfort as we wish to take things. From those reaches we can gather and learn things and bring what we want back into our lives. Personally, I think that&rsquo;s its greatest value of all.</p>
+<hr>
+<p>Every week there is an enormous global collective effort made by the team, analyzing and creatively coding the submissions, and that effort deserves credit due. And that&rsquo;s why I&rsquo;m here, to try and figure out how to do that.</p>
+<p>Let&rsquo;s have a look and see what we can find.</p>
+<hr>
+<p><strong><big>For context</big></strong>  before we begin, you may wish to revisit either of the pages for the <a href="/blog/perl-weekly-challenge-098/"><strong>original tasks</strong></a> or the summary <a href="/blog/recap-challenge-098/"><strong>recap</strong></a> of the challenge. But don&rsquo;t worry, the challenges themselves will be briefly summarized, presented below as we progress from task by task. Oh, and one more thing before we get started:</p>
+<h3 id="getting-in-touch-with-us">Getting in Touch with Us</h3>
+<p><a href="mailto:pwc.perfectwave@gmail.com"><img src="/images/blog/Email.svg" height="50" width="50"> Email</a> › Please email me (Colin) with any feedback, notes, clarifications or whatnot about this review.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge"><img src="/images/blog/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request to us for any issues you may find with this page.</p>
+<p><a href="https://twitter.com/perlwchallenge"><img src="/images/blog/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!</p>
+<p>I&rsquo;m always curious as to what the people think of these efforts. Everyone here at the PWC would like to hear any feedback you&rsquo;d like to give.</p>
+<p><strong>So finally, without further ado&hellip;</strong></p>
+<hr>
+<h2 id="---nbsp--nbsp--nbsp---task-1pwc098task1-------nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---task-2pwc098task2---nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---blogspwc098blogs----nbsp--nbsp--nbsp---">•             <a href="#PWC098TASK1">Task 1</a>                 •             <a href="#PWC098TASK2">Task 2</a>             	•             <a href="#PWC098BLOGS">BLOGS</a>              	•</h2>
+<hr>
+<h1 id="PWC098TASK1">TASK 1</h1>
+<h1 id="read-n-characters">Read N-characters</h1>
+<p><em>Submitted by: Mohammad S Anwar</em></p>
+<p>You are given file $FILE.</p>
+<p>Create subroutine readN($FILE, $number) returns the first n-characters and moves the pointer to the (n+1)th character.</p>
+<p><strong>Example:</strong></p>
+<p>Input: Suppose the file (input.txt) contains &ldquo;1234567890&rdquo;</p>
+<p>Output:</p>
+<pre><code>    print readN(&quot;input.txt&quot;, 4); # returns &quot;1234&quot;
+    print readN(&quot;input.txt&quot;, 4); # returns &quot;5678&quot;
+    print readN(&quot;input.txt&quot;, 4); # returns &quot;90&quot;
+</code></pre><h2 id="about-the-solutions">about the solutions</h2>
+<p>There were 26 submissions for the first task this past week.</p>
+<p>The crux of the task was on the function input. It&rsquo;s stated we are given a file <code>$FILE</code>, without clarification, and only in the example can it be inferred that what we are to be given is a file <em>name</em>, rather than the contents or a handle to that file.</p>
+<p>The task, thus, morphs from simply reading a file from a given point to managing an index of filenames to keep track of the offsets (or something like that).</p>
+<p>In practice, that would often be a hash lookup of either offsets or the filehandles themselves, which unless otherwise bothered will keep track of their own file seek points for reading.</p>
+<p>To actually do the reading, <code>read</code> was a common choice, seeing as that&rsquo;s what it&rsquo;s made for. Well, that and <code>sysread</code>, coming in second. We did see some alternatives though, including going big: reading a line or even the slurping in the whole file and chopping off pieces with <code>substr</code>; or going small with  <code>getc()</code> and taking it one character at a time.</p>
+<h2 id="a-note-on-persistence">a note on PERSISTENCE</h2>
+<p>Varying ideas arose around the notion of persistence, that is, when calling the function again that the reading would pick up where it had previously left off. In the example given, however, only one file is ever called upon. Thus keeping only one current filehandle open as a package variable, for instance, could replicate the example behavior without allowing free ability to <em>switch</em> files and maintaining state. As presented, the task never requires this, nor is it even mentioned less explained. Consequently multiple schemes arose. Because of this confusion we&rsquo;ll try and avoid labeling anyone&rsquo;s contributions as actually <em>broken</em> per se, but instead will try and give more airtime to the more robust solutions.</p>
+<p>Sometimes this cache was kept in scope in the outer package, but using an internal <code>state</code> variable within the <code>readN</code> routine itself was a popular choice.</p>
+<h2 id="a-cache-a-hash-a-filehandle">a CACHE, a HASH, a FILEHANDLE</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/arne-sommer/perl/ch-1.pl"><strong>Arne Sommer</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/dave-cross/perl/ch-1.pl"><strong>Dave Cross</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/gustavo-chaves/perl/ch-1.pl"><strong>Gustavo Chaves</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/paulo-custodio/perl/ch-1.pl"><strong>Paulo Custodio</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a></p>
+<p>To maintain an idea of the current file position across multiple files, a need for some sort of lookup arose — to see whether a given file had been read from previously, so that the read postion could be picked up properly from where it had been left off. Within reason, keeping files open for reading has no great cost in Perl, so maintaining a cache of open filehandles against their filenames was an efficient way of proceeding. When a filename is given to be read from, it is first checked against the cache to see if there is already an open handle for it. If found, that filehandle is used, if not, one is created and stored. Filehandles already keep track of their current position, so read persistence is automatically taken care of.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a></p>
+<p>Simon demonstrates the use of a cached database of filehandles to draw on. Done this way the solution can be quite compact, but Simon&rsquo;s example is exceptionally well laid out. All wheat, no chaff.</p>
+<p>The <code>state</code> variable lexically scopes the cache completely within the subroutine itself, keeping the mechanism opaque to the outside observer, as it arguably should be, making the routine self-contained. This declaration has been a welcome addition to the core since v.5.10.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">readN</span> {
+        <span style="color:#66d9ef">my</span> ( $filename, $length ) <span style="color:#f92672">=</span> @_;
+        state $fh <span style="color:#f92672">=</span> {};
+
+        <span style="color:#75715e"># Map the file name to a file handle if not already done</span>
+        <span style="color:#66d9ef">if</span> ( <span style="color:#f92672">not</span> exists $fh<span style="color:#f92672">-&gt;</span>{$filename} ) {
+            open( $fh<span style="color:#f92672">-&gt;</span>{$filename}, <span style="color:#e6db74">&#34;&lt;:encoding(UTF-8)&#34;</span>, $filename )
+              <span style="color:#f92672">||</span> die <span style="color:#e6db74">&#34;Can&#39;t open UTF-8 encoded $filename: $!&#34;</span>;
+        }
+
+        <span style="color:#75715e"># Read $length characters into $output and display it</span>
+        <span style="color:#66d9ef">my</span> $output <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
+        read( $fh<span style="color:#f92672">-&gt;</span>{$filename}, $output, $length );
+        say $output;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/dave-cross/perl/ch-1.pl"><strong>Dave Cross</strong></a></p>
+<p>Perhaps even cleaner we have Dave Cross&rsquo; version:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">readN</span> ($filename, $n) {
+      state %fh;
+
+      <span style="color:#66d9ef">unless</span> ($fh{$filename}) {
+        open $fh{$filename}, <span style="color:#e6db74">&#39;&lt;&#39;</span>, $filename
+          <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;Cannot open &#39;$filename&#39;: $!\n&#34;</span>;
+      }
+
+      read $fh{$filename}, <span style="color:#66d9ef">my</span> ($buf), $n;
+
+      <span style="color:#66d9ef">return</span> $buf;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a></p>
+<p>Choroba raises a very valid point:</p>
+<blockquote>
+<p>This is very unusual. What should happen if we refer to the same file
+in a different way, e.g. C&lt;file.txt&gt; versus C&lt;./file.txt&gt;? Creating an
+object for each file would have made more sense.</p>
+</blockquote>
+<p>One systemic ambiguity of simply handing in filenames to determine where to read from is that a single file on disk can be referred to by any number of valid paths to locate it, so hashing against the input file name as given may fail if that naming convention is inconsistent. An object, encapsulating code to address this, would make a whole lot more sense, and Choroba was not the only one with this suggestion.</p>
+<p>Here the hash is initialized in the scope of the outer block, rather than by declaring a <code>state</code> variable. This method is more compatible, surely, and either way it makes little difference in the end, but I do like lexically scoping a <code>state</code> variable within the routine itself — it&rsquo;s just that much less potential for namespace conflict.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    {   <span style="color:#66d9ef">my</span> %fh;
+        <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">readN</span> {
+            <span style="color:#66d9ef">my</span> ($file, $chars) <span style="color:#f92672">=</span> @_;
+            <span style="color:#66d9ef">unless</span> (exists $fh{$file}) {
+                open $fh{$file}, <span style="color:#e6db74">&#39;&lt;:encoding(UTF-8)&#39;</span>, $file;
+            }
+            read $fh{$file}, <span style="color:#66d9ef">my</span> ($buffer), $chars;
+            <span style="color:#66d9ef">return</span> $buffer
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a></p>
+<p>Niels gives us a quite robust and fully-featured little module, <code>readN.pm</code>, which in turn  exports its one function, <code>readN()</code>. In it he maintains a pair of hashes, one to cache filehandles, the other keeping track of whether or not an EOF condition has occured. If the end of the file is found, a flag is set in this hash which is checked on every call to the routine. If found, the open filehandle is closed and then reopened, resetting the file pointer to 0.</p>
+<p>Did I mention it&rsquo;s robust? It&rsquo;s robust.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">readN</span> ($$) {
+      <span style="color:#66d9ef">my</span> ($fileName, $length) <span style="color:#f92672">=</span> @_;
+
+      <span style="color:#75715e"># Close the file when eof is reached</span>
+      <span style="color:#66d9ef">if</span> (exists $EOF{$fileName}) {
+        delete $FH{$fileName};
+        delete $EOF{$fileName};
+        <span style="color:#66d9ef">return</span>;
+      }
+
+      <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>exists ($FH{$fileName})) {
+        sysopen($FH{$fileName}, $fileName, O_RDONLY) <span style="color:#e6db74">//</span>
+          die <span style="color:#e6db74">&#34;Can&#39;t open &#39;$fileName&#39; ($!)&#34;</span>;
+        binmode($FH{$fileName});
+      }
+
+      <span style="color:#66d9ef">my</span> $return;
+      <span style="color:#66d9ef">my</span> $retry <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>;
+      <span style="color:#66d9ef">do</span> {
+        <span style="color:#66d9ef">my</span> $buf;
+        <span style="color:#66d9ef">my</span> $nread <span style="color:#f92672">=</span> sysread($FH{$fileName}, $buf, $length);
+        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>defined $nread) {
+          $retry<span style="color:#f92672">--</span>; usleep <span style="color:#ae81ff">1_000</span>;
+        } <span style="color:#66d9ef">elsif</span> ($nread <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+          $EOF{$fileName}<span style="color:#f92672">++</span>;
+        } <span style="color:#66d9ef">elsif</span> ($nread <span style="color:#f92672">&lt;=</span> $length) {
+          $return <span style="color:#f92672">.=</span> $buf;
+        }
+      } <span style="color:#66d9ef">while</span> (<span style="color:#f92672">!</span>exists  $EOF{$fileName} <span style="color:#f92672">and</span> length($return <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#39;&#39;</span>) <span style="color:#f92672">!=</span> $length <span style="color:#f92672">and</span> $retry);
+
+      <span style="color:#66d9ef">return</span> $return;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a></p>
+<p>Duncan similarly handles running out of road during a read by closing out the filehandle, requiring it to be reopened from the beginning should we need it again.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> %filename2fh;
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">readN</span>
+    {
+        <span style="color:#66d9ef">my</span>( $filename, $nchars ) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> $fh <span style="color:#f92672">=</span> $filename2fh{$filename};
+        <span style="color:#66d9ef">unless</span>( defined $fh )
+        {
+            open( $fh, <span style="color:#e6db74">&#39;&lt;&#39;</span>, $filename ) <span style="color:#f92672">||</span>
+                die <span style="color:#e6db74">&#34;readN: can&#39;t open $filename\n&#34;</span>;
+            $filename2fh{$filename} <span style="color:#f92672">=</span> $fh;
+        }
+        <span style="color:#66d9ef">my</span> $s <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
+        <span style="color:#66d9ef">my</span> $nread <span style="color:#f92672">=</span> sysread( $fh, $s, $nchars );
+
+        <span style="color:#75715e"># if hit eof, close filehandle for neatness</span>
+        <span style="color:#75715e"># (this would case future calls to readN from this</span>
+        <span style="color:#75715e"># same filename will simply reread the file from the</span>
+        <span style="color:#75715e"># beginning.  But if we don&#39;t do this, we never</span>
+        <span style="color:#75715e"># close any filehandles.</span>
+        <span style="color:#66d9ef">if</span>( $nchars <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> $nread <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> )
+        {
+            close $fh;
+            delete $filename2fh{$filename};
+        }
+        <span style="color:#66d9ef">return</span> $s;
+    }
+</code></pre></div><h2 id="save-the-positions-to-return-to">save the POSITIONS to return to</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/lubos-kolouch/perl/ch-1.pl"><strong>Lubos Kolouch</strong></a></p>
+<p>Another way to go about preserving read state was to just keep track of the current read position for each filename. Then when called, every file is opened, the file pointer is moved, the file read from at the correct position, then closed again. Or something like that.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a></p>
+<p>Flavio ultimately chose this path to walk, after much thorough analysis and a bit of hand-wringing, as detailed on his <a href="https://github.polettix.it/ETOOBUSY/2021/02/03/pwc098-readn/">blog post</a>.</p>
+<p>The upshot on whether to keep a cache of filehandles or file positions seems to fall on the relative merits of resource management; either the expense of the file handles themselves or the effort used to establish them repeatedly. There seem to be multiple places to land on the subject and in non-pathological cases I&rsquo;m inclined to say it doesn&rsquo;t matter much if at all. Perhaps should we require our toy <code>readN()</code> function to operate on tens of thousands of files in hundreds of thousands of calls we might wish to revisit our optimization, which sounds like a good thing under those circumstances whatever we do.</p>
+<p>Flavio also choses to avoid any possibility of unflushed buffering by going directly to <code>sysopen</code> and <code>sysread</code> to do his dirty work sub rosa. This in turn requires him to use <code>sysseek</code> before reading to properly reposition the file pointer. It sounds complex but isn&rsquo;t really as bad as all that.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">readN</span> ($FILE, $number) {
+       state $at <span style="color:#f92672">=</span> {};
+       sysopen <span style="color:#66d9ef">my</span> $fh, $FILE, O_RDONLY <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;sysopen(&#39;$FILE&#39;): $!\n&#34;</span>;
+       sysseek $fh, $at<span style="color:#f92672">-&gt;</span>{$FILE} <span style="color:#e6db74">//</span> <span style="color:#ae81ff">0</span>, SEEK_SET;
+       <span style="color:#66d9ef">my</span> $retval <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
+       <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> sysread $fh, $retval, $number;
+       close $fh <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;close(&#39;$FILE&#39;): $!\n&#34;</span>;
+       die <span style="color:#e6db74">&#34;sysread($FILE) \@$number: $!\n&#34;</span>  <span style="color:#66d9ef">if</span> <span style="color:#f92672">!</span> defined $n;
+       $at<span style="color:#f92672">-&gt;</span>{$FILE} <span style="color:#f92672">+=</span> $n;
+       <span style="color:#66d9ef">return</span> $retval;
+    }
+
+    <span style="color:#66d9ef">my</span> $highlight <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;\e[1;97;45m&#34;</span>; <span style="color:#66d9ef">my</span> $reset <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;\e[0m&#34;</span>;
+    <span style="color:#66d9ef">my</span> $file <span style="color:#f92672">=</span> shift <span style="color:#f92672">||</span> __FILE__;
+    <span style="color:#66d9ef">my</span> @numbers <span style="color:#f92672">=</span> @ARGV ? @ARGV : <span style="color:#e6db74">qw&lt; 4 5 2 &gt;</span>;
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $n (@numbers) {
+       <span style="color:#66d9ef">my</span> $chunk <span style="color:#f92672">=</span> readN($file, $n);
+       say <span style="color:#e6db74">&#34;got $n: $highlight$chunk$reset&#34;</span>;
+    }
+</code></pre></div><p>I almost missed the part at the end. Looking at it, I&rsquo;m asking myself: &ldquo;Is he <em>highlighting my terminal?</em>&quot;. Why yes, yes he is. Magenta. Spring is around the corner, I can feel it.</p>
+<p>In my dreams, not my toes. My toes are cold.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a></p>
+<p>Dave also keeps a database of file pointers to tell him where to read, but rather than dealing with low-level system reads he  simply slurps in the whole file,  calling <code>substr</code> with the appropriate offset and length requested. Dave was not alone in this choice, as we will see later.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">readN</span> ( $file, $chars ) {
+        state $index;
+        $index<span style="color:#f92672">-&gt;</span>{$file} <span style="color:#e6db74">//</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> $index<span style="color:#f92672">-&gt;</span>{$file};
+        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;&#39;</span> <span style="color:#66d9ef">unless</span> <span style="color:#f92672">-</span>f $file;
+        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;&#39;</span> <span style="color:#66d9ef">unless</span> <span style="color:#f92672">-</span>r $file;
+        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;&#39;</span> <span style="color:#66d9ef">if</span> $i <span style="color:#f92672">&gt;</span> <span style="color:#f92672">-</span>s $file;
+        <span style="color:#66d9ef">my</span> $output <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
+
+        <span style="color:#66d9ef">if</span> ( open <span style="color:#66d9ef">my</span> $fh, <span style="color:#e6db74">&#39;&lt;&#39;</span>, $file ) {
+            <span style="color:#66d9ef">my</span> $string <span style="color:#f92672">=</span> join <span style="color:#e6db74">&#39;&#39;</span>, <span style="color:#e6db74">&lt;$fh&gt;</span>;
+            $output <span style="color:#f92672">=</span> substr $string, $i, $chars;
+            close $fh;
+        }
+        $index<span style="color:#f92672">-&gt;</span>{$file} <span style="color:#f92672">+=</span> $chars;
+        <span style="color:#66d9ef">return</span> $output;
+    }
+</code></pre></div><h2 id="closures">CLOSURES</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a> and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>Both Choroba and Roger Bell_West suggested that in the real world, this task would be better served with an object, rather than by a subroutine handed a file path string. No one went as far as to implement this, but several people did bring us a similarly encapsulated solution, being an anonymous subroutine closed around the input path and the resultant filehandle created.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>Luis breaks his process down functionally, creating a series of components that, when given a filename, call each other, eventually yielding a coderef to a closure over the open filehandle. The closures are created as required, and kept in a hash which functions as a dispatch table.</p>
+<p>When given a new filename, it&rsquo;s handed off first to a <code>reader</code> function that determines whether it&rsquo;s been seen before. If not it hands the path off to a second routine that opens a filehandle, creating a new anonymous reader widget from it. By reading in lines using the diamond operator and chopping off bits with <code>substr</code>, this anonymous  routine wraps the filehandle and the whole reading operation up in a coderef that gets returned. The  closure is ultimately passed on and  returned by <code>reader()</code> to the <code>readN()</code> function that initiated the sequence. The closure coderef is stored in the <code>reader()</code> cache and accessed from there rather than being recreated, should it be required again.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">reader</span> { <span style="color:#75715e">#returns a reader, maybe creating it.</span>
+        state %reader; <span style="color:#75715e">#hash of readers, one per seen filename</span>
+        <span style="color:#66d9ef">my</span> $filename<span style="color:#f92672">=</span>shift;
+        $reader{$filename} <span style="color:#e6db74">//</span><span style="color:#f92672">=</span>new_reader($filename);
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">new_reader</span> {<span style="color:#75715e">#create a new reader</span>
+        <span style="color:#66d9ef">my</span> $filename<span style="color:#f92672">=</span>shift;
+        open <span style="color:#66d9ef">my</span> $fh, <span style="color:#e6db74">&#34;&lt;&#34;</span>, $filename <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;Couldn&#39;t open $filename: $!&#34;</span>;
+        <span style="color:#66d9ef">my</span> $line<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>; <span style="color:#75715e">#plays the role of a buffer</span>
+        <span style="color:#66d9ef">my</span> $reader<span style="color:#f92672">=</span> <span style="color:#66d9ef">sub</span> { <span style="color:#75715e">#This is the actual reader routine</span>
+            <span style="color:#66d9ef">my</span> $number<span style="color:#f92672">=</span>shift;
+            <span style="color:#66d9ef">while</span>($number<span style="color:#f92672">&gt;</span>length($line)){ <span style="color:#75715e">#get enough characters</span>
+                <span style="color:#66d9ef">my</span> $nextline<span style="color:#f92672">=</span><span style="color:#e6db74">&lt;$fh&gt;</span>;
+                <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">unless</span> $nextline;
+                <span style="color:#75715e">#I remove newlines. If not desired, comment the next line</span>
+                chomp($nextline);
+                $line <span style="color:#f92672">.=</span> $nextline;
+            }
+            <span style="color:#66d9ef">my</span> $result<span style="color:#f92672">=</span>substr $line,<span style="color:#ae81ff">0</span>,$number;
+            (substr $line,<span style="color:#ae81ff">0</span>,$number)<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;&#39;</span>;
+            <span style="color:#66d9ef">return</span> $result;
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a></p>
+<p>Adam provides us with solutions done two ways, both involving creating a closure around an open filehandle that takes one argument, the number of characters to be read next.</p>
+<p>The input filenames are handed to a constructor, which opens the file and uses the filehandle created to build a new, anonymous routine that knows how to read from it. This coderef is returned, and when called with a value returns that many characters from the enclosed handle.</p>
+<p>Although he gives demonstrations for both versions of his solution the coderefs are not cached, only sequentially called as in the task example. As his readers are independant object-like creatures, though, same as Luis&rsquo;, there&rsquo;s no reason why they couldn&rsquo;t be.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">read_maker1</span>{
+        <span style="color:#66d9ef">my</span> ($file) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        open(FILE, $file);
+        <span style="color:#66d9ef">return</span> sub{
+            <span style="color:#66d9ef">my</span>($x) <span style="color:#f92672">=</span> @_;
+            <span style="color:#66d9ef">my</span> $chars;
+            <span style="color:#66d9ef">my</span> $read <span style="color:#f92672">=</span> read(FILE, $chars, $x);
+            $n <span style="color:#f92672">=</span> $n <span style="color:#f92672">+</span> $x;
+            <span style="color:#66d9ef">unless</span>(seek(FILE, $n, <span style="color:#ae81ff">0</span>)){
+                close(FILE);
+            }
+            <span style="color:#66d9ef">return</span> $chars;
+        }
+    }
+</code></pre></div><h2 id="io-variations">I/O VARIATIONS</h2>
+<h3 id="read">read()</h3>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/arne-sommer/perl/ch-1.pl"><strong>Arne Sommer</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/cristian-heredia/perl/ch-1.pl"><strong>Cristina Heredia</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/dave-cross/perl/ch-1.pl"><strong>Dave Cross</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/lubos-kolouch/perl/ch-1.pl"><strong>Lubos Kolouch</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/nunovieira220/perl/ch-1.pl"><strong>Nuno Vieira</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/paulo-custodio/perl/ch-1.pl"><strong>Paulo Custodio</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/stuart-little/perl/ch-1.pl"><strong>Stuart Little</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/wanderdoc/perl/ch-1.pl"><strong>Wanderdoc</strong></a></p>
+<p>The immediate choice for reading <em>x</em> amount of characters from at filehandle should reasonably be the Perl function <code>read</code>, seeing as that is what it was made to do. Given a filehandle, a buffer and a quantity of characters, it will read that many characters from the filehandle, parking them in the buffer, returning the number of characters actually read, which can be checked against the request to make sure nothing went wrong.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/arne-sommer/perl/ch-1.pl"><strong>Arne Sommer</strong></a></p>
+<p>Using a hash to cache filehandles once they are created, Arne shows us the basics. There really need not be much to it.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">readN</span> ($FILE, $number)
+    {
+      state %handle;
+
+      open($handle{$FILE}, <span style="color:#e6db74">&#34;&lt;&#34;</span>, $FILE) <span style="color:#66d9ef">unless</span> $handle{$FILE};
+
+      <span style="color:#66d9ef">my</span> $string;
+      read $handle{$FILE}, $string, $number;
+      <span style="color:#66d9ef">return</span> $string;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a></p>
+<p>Jorg demonstrates for properly handling UTF-8 multi-byte characters. He also closes the handle and deletes the cached object should an end-of-file be reached.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    binmode STDOUT, <span style="color:#e6db74">&#39;:utf8&#39;</span>;
+
+    <span style="color:#75715e"># Read up to $n characters from named file at current position.  Will</span>
+    <span style="color:#75715e"># start over from the beginning after eof was detected for the named</span>
+    <span style="color:#75715e"># file.</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">readN</span> ($file, $n) {
+
+        <span style="color:#75715e"># Track filehandles for named files.</span>
+        state %fh;
+
+        <span style="color:#75715e"># Open filehandle for reading characters, not bytes.</span>
+        open $fh{$file}, <span style="color:#e6db74">&#39;&lt;:encoding(utf8)&#39;</span>, $file <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;$file: $!&#34;</span>
+            <span style="color:#66d9ef">unless</span> $fh{$file};
+
+        <span style="color:#66d9ef">my</span> $nchar <span style="color:#f92672">=</span> read $fh{$file}, (<span style="color:#66d9ef">my</span> $read), $n;
+        die <span style="color:#e6db74">&#34;$file: $!&#34;</span> <span style="color:#66d9ef">unless</span> defined $nchar;
+
+        <span style="color:#75715e"># Close filehandle if eof was detected.</span>
+        delete $fh{$file} <span style="color:#66d9ef">if</span> $nchar <span style="color:#f92672">&lt;</span> $n;
+
+        $read;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a></p>
+<p>Roger&rsquo;s interpretation led him to implement successive calls to the same filehandle, as shown in the example. To provide this behavior he keeps his current filehandle in block-scope outside his <code>readN()</code> routine. If the filename to be read from changes, the filehandle is closed and reopened with the new file.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    {
+      <span style="color:#66d9ef">my</span> $fh;
+      <span style="color:#66d9ef">my</span> $fn<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;&#39;</span>;
+      <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">readN</span> {
+        <span style="color:#66d9ef">my</span> $fnn<span style="color:#f92672">=</span>shift;
+        <span style="color:#66d9ef">my</span> $siz<span style="color:#f92672">=</span>shift;
+        <span style="color:#66d9ef">if</span> ($fnn <span style="color:#f92672">ne</span> $fn) {
+          $fn<span style="color:#f92672">=</span>$fnn;
+          <span style="color:#66d9ef">if</span> (defined $fh) {
+            close $fh;
+            undef $fh;
+          }
+        }
+        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>defined $fh) {
+          open $fh,<span style="color:#e6db74">&#39;&lt;&#39;</span>,$fn;
+        }
+        <span style="color:#66d9ef">my</span> $buf;
+        <span style="color:#66d9ef">my</span> $l<span style="color:#f92672">=</span>read ($fh,$buf,$siz);
+        <span style="color:#66d9ef">if</span> ($l <span style="color:#f92672">&lt;</span> $siz) {
+          close $fh;
+          undef $fh;
+          $fn<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;&#39;</span>;
+        }
+        <span style="color:#66d9ef">return</span> $buf;
+      }
+    }
+</code></pre></div><h3 id="sysread">sysread()</h3>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/gustavo-chaves/perl/ch-1.pl"><strong>Gustavo Chaves</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/pete-houston/perl/ch-1.pl"><strong>Pete Houston</strong></a></p>
+<p>Some folks wanted to avoid the Perl I/O stack and cut straight to the meat of the matter, opting to use the direct access to system calls given by <code>sysread</code>. This eliminates, among other things, all buffering of the input, assuring a more direct path for the data.</p>
+<p>When hooked up to a filehandle, either normal or <code>:utf-8</code> encoded, and reading from a standard file, <code>read()</code> and <code>sysread()</code> are pretty interchangeable. The only practical difference will be the lack of buffering, which itself shouldn&rsquo;t be obvious. There <em>are</em> differences in the underlying implementation, but they won&rsquo;t present themselves in this simple case, as long as only one form or the other is used.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/gustavo-chaves/perl/ch-1.pl"><strong>Gustavo Chaves</strong></a></p>
+<p>Gustavo delivers a straightforward solution. A hash is declared with <code>state</code> to hold the filehandles, which themselves take care of the file positions. If an end-of-file is reached, the partial result is returned and the filehandle deleted so it can be replaced if required.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">readN</span> {
+        <span style="color:#66d9ef">my</span> ($filename, $length) <span style="color:#f92672">=</span> @_;
+
+        <span style="color:#66d9ef">my</span> ($fh, $buffer);
+
+        state $cache <span style="color:#f92672">=</span> {};
+        <span style="color:#66d9ef">if</span> (exists $cache<span style="color:#f92672">-&gt;</span>{$filename}) {
+            $fh <span style="color:#f92672">=</span> $cache<span style="color:#f92672">-&gt;</span>{$filename};
+        } <span style="color:#66d9ef">else</span> {
+            <span style="color:#66d9ef">if</span> (sysopen($fh, $filename, O_RDONLY)) {
+                $cache<span style="color:#f92672">-&gt;</span>{$filename} <span style="color:#f92672">=</span> $fh;
+            } <span style="color:#66d9ef">else</span> {
+                die <span style="color:#e6db74">&#34;Failed to sysopen &#39;$filename&#39;\n&#34;</span>;
+            }
+        }
+
+        <span style="color:#66d9ef">my</span> $bytes_read <span style="color:#f92672">=</span> sysread($fh, $buffer, $length);
+        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span> defined $bytes_read) {
+            die <span style="color:#e6db74">&#34;Failed to sysread &#39;$filename&#39;\n&#34;</span>;
+        } <span style="color:#66d9ef">elsif</span> ($bytes_read <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+            delete $cache<span style="color:#f92672">-&gt;</span>{$filename};
+        }
+
+        <span style="color:#66d9ef">return</span> $buffer;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/pete-houston/perl/ch-1.pl"><strong>Pete Houston</strong></a></p>
+<p>Pete also makes allowance for reaching an end-of-file:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">readN</span> {
+        <span style="color:#66d9ef">my</span> ($filename, $len) <span style="color:#f92672">=</span> @_;
+        state %handles;
+
+        <span style="color:#66d9ef">unless</span> (exists $handles{$filename}) {
+            open $handles{$filename}, <span style="color:#e6db74">&#34;&lt;:encoding($ENC)&#34;</span>, $filename <span style="color:#f92672">or</span>
+                die <span style="color:#e6db74">&#34;Cannot open $ENC-encoded file $filename for reading: $!&#34;</span>;
+        }
+        <span style="color:#66d9ef">my</span> $chars <span style="color:#f92672">=</span> sysread $handles{$filename}, (<span style="color:#66d9ef">my</span> $text), $len;
+        <span style="color:#66d9ef">unless</span> ($chars <span style="color:#f92672">==</span> $len) {
+            <span style="color:#75715e"># We have reached the end of the file. Close the handle and</span>
+            <span style="color:#75715e"># remove it from the hash</span>
+            close $handles{$filename};
+            delete $handles{$filename};
+        }
+        <span style="color:#66d9ef">return</span> $text;
+    }
+</code></pre></div><h3 id="getc">getc()</h3>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a> and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p>The <code>getc()</code> function, as one might expect, gets a single character from an open filehandle.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a></p>
+<p>The monk here provides us with an example using <code>getc()</code>. They&rsquo;ve thought out a number of contingencies, producing a robust solution with some unusual differences. For example, if a end-of-file is reached the <code>readN()</code> routine continues to produce null strings without error, which is a diversion from the usual choice of closing and reopening the filehandle taken elsewhere. They do, however, provide an optional third <code>reset</code> parameter, which calls <code>seek</code> internally to reset the open filehandle pointer to the 0 position. A <code>%pointers</code> hash keeps track of the filehandles themselves.</p>
+<p>You know, to me calling the hash &ldquo;pointers&rdquo; brings up many existential questions about the filehandle data structure itself. What <em>is</em> a filehandle anyway? The internal name-mapping? The file pointer aspect? The file data itself? I know I&rsquo;m being a bit ridiculous (what else is new?) but I have to say there&rsquo;s quite a lot of information out there on what a filehandle <em>does</em>, but precious little about what is actually <em>is</em>. Sure, I&rsquo;m pretty sure it&rsquo;s an <code>SVt_PVGV</code>  typeglob scalar value that holds a pointer to a <code>PerlIO</code> thingy, but what&rsquo;s <em>that</em>? I am quite certain no one cares about this right now, but I do wonder.</p>
+<p>If Athanasius want to call their filehandle hash <code>%pointers</code> who am I to say?</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">readN</span>
+    {
+        state %pointers;
+
+        <span style="color:#66d9ef">my</span> ($FILE, $number, $reset) <span style="color:#f92672">=</span> @_;
+
+        $number <span style="color:#f92672">=~</span><span style="color:#e6db74"> / ^ $RE{num}{int} $ /x</span> <span style="color:#f92672">&amp;&amp;</span> $number <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>
+            <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;Invalid \$number($number): must be an integer &gt; 0\n&#34;</span>;
+
+        <span style="color:#66d9ef">if</span> (exists $pointers{ $FILE })
+        {
+            seek( $pointers{ $FILE }, <span style="color:#ae81ff">0</span>, SEEK_SET ) <span style="color:#66d9ef">if</span> $reset;
+        }
+        <span style="color:#66d9ef">else</span>
+        {
+            open( <span style="color:#66d9ef">my</span> $fh, <span style="color:#e6db74">&#39;&lt;&#39;</span>, $FILE )
+                <span style="color:#f92672">or</span> die <span style="color:#e6db74">qq[Can&#39;t open file &#34;$FILE&#34; for reading, stopped]</span>;
+
+            $pointers{ $FILE } <span style="color:#f92672">=</span> $fh;
+        }
+
+        <span style="color:#66d9ef">my</span> $fh   <span style="color:#f92672">=</span> $pointers{ $FILE };
+        <span style="color:#66d9ef">my</span> $text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
+
+        <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $number)
+        {
+            <span style="color:#66d9ef">if</span> (defined( <span style="color:#66d9ef">my</span> $char <span style="color:#f92672">=</span> getc $fh ))
+            {
+                $text <span style="color:#f92672">.=</span> $char;
+            }
+            <span style="color:#66d9ef">else</span>
+            {
+                <span style="color:#66d9ef">last</span>;
+            }
+        }
+
+        <span style="color:#66d9ef">return</span> $text;
+    }
+</code></pre></div><h3 id="various-buffers-plans">various BUFFERS plans</h3>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/abigail/perl/ch-1.pl"><strong>Abigail</strong></a> and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/abigail/perl/ch-1.pl"><strong>Abigail</strong></a></p>
+<p>Abigail presents us with no less than 13 questions as to the meaning of the challenge, pretty much breaking down every point requiring further clarification. And obviously, if you&rsquo;ve followed this far, you will also realize there are many of these.</p>
+<p>After a rather thorough exploration of the whorl of questions surrounding the description, he provides us with a unique and very interesting solution. Much like Dave Jacoby&rsquo;s example above, he settles on slurping the entire file and caching it on first read, then returning that cached string <em>n</em> characters at a time. Here the cached file contents returned are consumed in the reading process, so the next read will always recommence from last unread character.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">readN</span> ($filename, $amount) {
+        state $cache;
+        chomp ($$cache {$filename} <span style="color:#e6db74">//</span><span style="color:#f92672">=</span> <span style="color:#66d9ef">do</span> {local (@ARGV, $/) <span style="color:#f92672">=</span> $filename; <span style="color:#f92672">&lt;&gt;</span>});
+        substr $$cache {$filename} <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">0</span>, $amount, <span style="color:#e6db74">&#34;&#34;</span>
+    }
+
+</code></pre></div><hr>
+<h1 id="PWC098TASK2">TASK 2</h1>
+<h1 id="search-insert-position">Search Insert Position</h1>
+<p><em>Submitted by: Mohammad S Anwar</em></p>
+<p>You are given a sorted array of distinct integers @N and a target $N.</p>
+<p>Write a script to return the index of the given target if found otherwise place the target in the sorted array and return the index.</p>
+<p><strong>Example 1:</strong></p>
+<pre><code>    Input: @N = (1, 2, 3, 4) and $N = 3
+    Output: 2 since the target 3 is in the array at the index 2.
+</code></pre><p><strong>Example 2:</strong></p>
+<pre><code>    Input: @N = (1, 3, 5, 7) and $N = 6
+    Output: 3 since the target 6 is missing and should be placed at the index 3.
+</code></pre><p><strong>Example 3:</strong></p>
+<pre><code>    Input: @N = (12, 14, 16, 18) and $N = 10
+    Output: 0 since the target 10 is missing and should be placed at the index 0.
+</code></pre><p><strong>Example 4:</strong></p>
+<pre><code>    Input: @N = (11, 13, 15, 17) and $N = 19
+    Output: 4 since the target 19 is missing and should be placed at the index 4.
+</code></pre><h2 id="about-the-solutions-1">about the solutions</h2>
+<p>There were 25 working submissions for the second task this past week. Superficially, the task presented one fairly straightforward solution, which was to iterate up through the sorted list and locate either the value in question or the insert point. There we a number of methods based around this concept.</p>
+<p>The other root idea was to improve on this by performing a binary search: establishing a lower and an upper bound for the location, then inserting into the middle of this range, adjusting the bounds of the possible range at each pass until we have successfully homed in on the target.</p>
+<p>There were other ways presented, such as calling on the assistance of a module routine, of which there were several candidates available. In the remaining variants if the candidate is not found in the array already, in some way it&rsquo;s added and then found. Which makes more sense once you know the details.</p>
+<h2 id="a-note-on-the-directives">a note on the directives</h2>
+<p>After the target index is located, the directives call to:</p>
+<ol>
+<li>place the target in the sorted array</li>
+<li><code>return</code> the insert index</li>
+</ol>
+<p>Now, <code>return</code> is something subroutines, and only subroutines, do. So if following the letter, we need to create a subroutine that takes a value and an array, find the insert index in the array, insert the element into the array and then return only the index.</p>
+<p>So what happens to the array?</p>
+<p>On the face of it it appears that the array is abandoned. So if that is the case, why insert the element at all? As perhaps throwing away the array just seemed too sad, this seemed to lead to one of two alternatives, to either:</p>
+<ol>
+<li>ignore the insert directive, or</li>
+<li>ignore the return directive and not wrap the function up in its own routine</li>
+</ol>
+<p>A Zen koan:</p>
+<blockquote>
+<p>The master says: If you eat this bowl of rice I will hit you with this stick. If you do not eat this bowl of rice I will hit you with this stick. What do you do?
+The answer is: you take away the stick.</p>
+</blockquote>
+<p>Reminiscent of this, when faced with two seemingly incompatible negative outcomes a third way did present itself, which was to pass the array in by reference. In this way both the original array can be spliced and the index of the new element returned.</p>
+<p>As I can hardly hold thousand-year-old zen puzzles as the standard for completion, any of the three interpretations were fine.</p>
+<h2 id="a-loopy-approach">a LOOPY approach</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/dave-cross/perl/ch-2.pl"><strong>Dave Cross</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/gustavo-chaves/perl/ch-2.pl"><strong>Gustavo Chaves</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/nunovieira220/perl/ch-2.pl"><strong>Nuno Vieira</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a></p>
+<p>On the face of it, if we are given a unique, sorted array, there&rsquo;s some position any element belongs in it. And it will either already be found there, or it can be placed there. The only thing remaining is to find either the element of the interval it belongs in. By starting at the beginning and working our way through the array, eventually we will find our location, or, should we not, then the new element belongs on the far end.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a></p>
+<p>Adam starts us off with a demonstration of the technique. After a few edge cases for placement at the beginning and the end of the array, the elements are iterated through until the element or the proper hole is found.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">find_insert</span>{
+        <span style="color:#66d9ef">my</span>($list, $n) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">if</span>($n <span style="color:#f92672">&lt;</span> $list<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]){
+            unshift @{$list}, $n;
+            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+        }
+        <span style="color:#66d9ef">if</span>($n <span style="color:#f92672">&gt;</span> $list<span style="color:#f92672">-&gt;</span>[@{$list} <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]){
+            push @{$list}, $n;
+            <span style="color:#66d9ef">return</span> @{$list} <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+        }
+        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; $i <span style="color:#f92672">&lt;</span> (@{$list} <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>); $i<span style="color:#f92672">++</span>){
+            <span style="color:#66d9ef">return</span> $i <span style="color:#66d9ef">if</span> $n <span style="color:#f92672">==</span> $list<span style="color:#f92672">-&gt;</span>[$i];
+            <span style="color:#66d9ef">if</span>($n <span style="color:#f92672">&gt;</span> $list<span style="color:#f92672">-&gt;</span>[$i] <span style="color:#f92672">&amp;&amp;</span> $n <span style="color:#f92672">&lt;</span> $list<span style="color:#f92672">-&gt;</span>[$i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>]){
+                splice(@{$list}, $i, <span style="color:#ae81ff">2</span>, ($list<span style="color:#f92672">-&gt;</span>[$i], $n, $list<span style="color:#f92672">-&gt;</span>[$i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>]));
+                <span style="color:#66d9ef">return</span> $i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+            }
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a></p>
+<p>Using his preferred <code>Function::Parameters</code> to implement signatures, Duncan demonstrates traversing the array to find the insertion point. <code>fun</code> is this module&rsquo;s version of <code>sub</code>, for all practical purposes.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    fun findorinsert( $target, $values )
+    {
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $pos (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#$values)
+        {
+            <span style="color:#66d9ef">my</span> $v <span style="color:#f92672">=</span> $values<span style="color:#f92672">-&gt;</span>[$pos];
+            <span style="color:#66d9ef">if</span>( $v <span style="color:#f92672">==</span> $target )
+            {
+                say <span style="color:#e6db74">&#34;debug: found $target at pos $pos&#34;</span> <span style="color:#66d9ef">if</span> $debug;
+                <span style="color:#66d9ef">return</span> $pos;
+            }
+            <span style="color:#66d9ef">if</span>( $v <span style="color:#f92672">&gt;</span> $target )
+            {
+                say <span style="color:#e6db74">&#34;debug: inserting $target at pos $pos&#34;</span> <span style="color:#66d9ef">if</span> $debug;
+                splice( @$values, $pos, <span style="color:#ae81ff">0</span>, $target );
+                <span style="color:#66d9ef">return</span> $pos;
+            }
+        }
+        say <span style="color:#e6db74">&#34;debug: appending $target at end&#34;</span> <span style="color:#66d9ef">if</span> $debug;
+        push( @$values, $target );
+        <span style="color:#66d9ef">return</span> $#$values;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a></p>
+<p>Simon uses a <code>while ( ... each ... )</code> loop construct to parcel out both the indices and their values at each iteration through the array, which is interesting in itself. From there, he looks for the first value found that is greater than the target. Inserting there will move the remainder of the array up one position, so that locates the insertion point.</p>
+<p>In his <a href="https://dev.to/simongreennet/weekly-challenge-098-235h">blog he makes mention</a> of the function <code>firstidx</code> from <code>List::MoreUtils</code>, which will efficiently perform this same actions, that he has declined to use here. Others were not so disinclined, as we will see later.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">main</span> {
+        <span style="color:#66d9ef">my</span> ( $array, $target ) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> @array <span style="color:#f92672">=</span> ( $array <span style="color:#f92672">=~</span><span style="color:#e6db74"> /(-?\d+)/g</span> );
+
+        <span style="color:#66d9ef">while</span> ( <span style="color:#66d9ef">my</span> ( $idx, $value ) <span style="color:#f92672">=</span> each @array ) {
+            <span style="color:#66d9ef">if</span> ( $value <span style="color:#f92672">&gt;=</span> $target ) {
+                <span style="color:#75715e"># We found an equal or greater value, target is this index</span>
+                say $idx;
+                <span style="color:#66d9ef">return</span>;
+            }
+        }
+
+        <span style="color:#75715e"># The target value is greater than all the values. Display $#array + 1</span>
+        say scalar(@array);
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a></p>
+<p>James casts his loop in a somewhat unusual first line, true to form because I suppose he&rsquo;s just a sort of an unusual guy. After passing his list in by reference, he performs another somewhat unusual <code>splice</code> if the conditions are met.</p>
+<p>In a third noteworthy and unusual line he explicitly calls <code>warn</code> to discuss his changes out through STDERR, which is a considerate touch.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">insert_pos</span> {
+      <span style="color:#66d9ef">my</span>( $t, $l, $val ) <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>,@_);
+
+      <span style="color:#75715e">## Repeat unless we have got to end of list or the new entry is greater than val</span>
+      $t<span style="color:#f92672">++</span> <span style="color:#66d9ef">while</span> $t <span style="color:#f92672">&lt;</span> @{$l} <span style="color:#f92672">&amp;&amp;</span> $l<span style="color:#f92672">-&gt;</span>[$t] <span style="color:#f92672">&lt;</span> $val;
+
+      <span style="color:#75715e">## If we are after the end of the list (to avoid warning) OR</span>
+      <span style="color:#75715e">## If we haven&#39;t found the entry then we use splice to insert it</span>
+      splice @{$l},$t,<span style="color:#ae81ff">0</span>,$val <span style="color:#66d9ef">if</span> $t <span style="color:#f92672">==</span> @{$l} <span style="color:#f92672">||</span> $l<span style="color:#f92672">-&gt;</span>[$t] <span style="color:#f92672">!=</span> $val;
+
+        <span style="color:#75715e">## Warn to show splice has worked...</span>
+        warn <span style="color:#e6db74">&#34;&gt;&gt; $t ( @{$l} )\n&#34;</span>; <span style="color:#75715e">## Demonstrate splice</span>
+
+      <span style="color:#75715e">## Return the index of the number!</span>
+      <span style="color:#66d9ef">return</span> $t;
+    }
+</code></pre></div><h2 id="creating-a-binary-seach">creating a BINARY SEACH</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/arne-sommer/perl/ch-2.pl"><strong>Arne Sommer</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/paulo-custodio/perl/ch-2.pl"><strong>Paulo Custodio</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/pete-houston/perl/ch-2.pl"><strong>Pete Houston</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a></p>
+<p>Instead of starting at an extreme boundary of the array and systematically working our way across, we can instead choose to test our insert point in the middle of the array. Depending on whether the value found there is lower, higher or equal to our target element, the range of values for the correct insert location can be constrained. If the value found is lower than the target, then the lower bound of the range can be moved up to the test location; if the value is higher, than the upper bound of the range can be moved downwards instead. The resulting range available will now be half the size of that previous.The test position is then moved to the middle on the narrowed range and the evaluation is repeated. In this way, by successively halving the possible range of the correct location we can home in on the target until we find either the element itself already present, or a hole with a smaller value on one side and a larger on the other, where the new element should be inserted.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a></p>
+<p>Flavio demonstrates the technique, albeit somewhat densely. A <code>$lo</code> and <code>$hi</code> bound set is established at the ends of the array, and at every iteration one or the other is moved inward, constricting the remaining options.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">search_insert_position</span> ($aref, $new_item) {
+       <span style="color:#66d9ef">my</span> ($lo, $hi, $i) <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>, $aref<span style="color:#f92672">-&gt;</span>$#<span style="color:#960050;background-color:#1e0010">*</span>, undef);
+       <span style="color:#66d9ef">while</span> ($lo <span style="color:#f92672">&lt;=</span> $hi) {
+          $i <span style="color:#f92672">=</span> int(($lo <span style="color:#f92672">+</span> $hi) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>);
+          <span style="color:#66d9ef">my</span> $item <span style="color:#f92672">=</span> $aref<span style="color:#f92672">-&gt;</span>[$i];
+          <span style="color:#66d9ef">if</span> ($new_item <span style="color:#f92672">==</span> $item)   { <span style="color:#66d9ef">return</span> $i }
+          <span style="color:#66d9ef">elsif</span> ($new_item <span style="color:#f92672">&lt;</span> $item) { $hi <span style="color:#f92672">=</span> $i }
+          <span style="color:#66d9ef">else</span>                      { $lo <span style="color:#f92672">=</span> $i }
+          <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> ($hi <span style="color:#f92672">-</span> $lo) <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">1</span>;
+       }
+       splice $aref<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, $i, <span style="color:#ae81ff">0</span>, $new_item;
+       <span style="color:#66d9ef">return</span> $i;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/colin-crain/perl/ch-2.pl"><strong>My Own Solution</strong></a></p>
+<p>In my own solution I tried to put a little more air in it :) As you can see, the same elements are there. A few edge cases need to be addressed for the 0 and final positions, but if the target value is found to be between these extremes, there must be a place for it within the existing array.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">insert</span> {
+        <span style="color:#66d9ef">my</span> ($num, $arr) <span style="color:#f92672">=</span> @_;
+        $num <span style="color:#f92672">&gt;</span> $arr<span style="color:#f92672">-&gt;</span>[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">and</span> <span style="color:#66d9ef">do</span> { push $arr<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>,    $num; <span style="color:#66d9ef">return</span> $#$arr };
+        $num <span style="color:#f92672">&lt;</span> $arr<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]  <span style="color:#f92672">and</span> <span style="color:#66d9ef">do</span> { unshift $arr<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, $num; <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> };
+
+        <span style="color:#66d9ef">my</span> $lower <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">my</span> $upper <span style="color:#f92672">=</span> $#$arr;
+        <span style="color:#66d9ef">while</span> ( $lower <span style="color:#f92672">&lt;=</span> $upper ) {
+            <span style="color:#66d9ef">my</span> $pos <span style="color:#f92672">=</span> int( ($lower<span style="color:#f92672">+</span>$upper)<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span> );                 <span style="color:#75715e">## midpoint</span>
+
+            <span style="color:#66d9ef">return</span> $pos <span style="color:#66d9ef">if</span> $arr<span style="color:#f92672">-&gt;</span>[$pos] <span style="color:#f92672">==</span> $num;
+            <span style="color:#66d9ef">if</span> ($arr<span style="color:#f92672">-&gt;</span>[$pos<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;</span> $num <span style="color:#f92672">&lt;</span> $arr<span style="color:#f92672">-&gt;</span>[$pos]) {
+                splice( $arr<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, $pos, <span style="color:#ae81ff">0</span>, $num );
+                <span style="color:#66d9ef">return</span> $pos;
+            }
+
+            $arr<span style="color:#f92672">-&gt;</span>[$pos] <span style="color:#f92672">&gt;</span> $num ? ($upper <span style="color:#f92672">=</span> $pos<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)             <span style="color:#75715e">## restrict the range</span>
+                                : ($lower <span style="color:#f92672">=</span> $pos<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>);
+        }
+
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a></p>
+<p>Choroba provides us with a brace of solutions, one based on the simple iteration, the other on a binary search. He provides a benchmark as well, showing the binary version to run about 225% faster.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">binary_search</span> {
+        <span style="color:#66d9ef">my</span> ($array, $value) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> ($from, $to) <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>, $#$array);
+        <span style="color:#66d9ef">while</span> ($from <span style="color:#f92672">!=</span> $to) {
+            <span style="color:#66d9ef">my</span> $middle <span style="color:#f92672">=</span> int(($from <span style="color:#f92672">+</span> $to) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>);
+            <span style="color:#66d9ef">if</span> (($array<span style="color:#f92672">-&gt;</span>[$middle] <span style="color:#e6db74">//</span> $value) <span style="color:#f92672">&gt;=</span> $value) {
+                $to <span style="color:#f92672">=</span> $middle;
+            } <span style="color:#66d9ef">else</span> {
+                $from <span style="color:#f92672">=</span> $from <span style="color:#f92672">==</span> $middle ? $to : $middle;
+            }
+        }
+        <span style="color:#f92672">++</span>$from <span style="color:#66d9ef">if</span> @$array <span style="color:#f92672">&amp;&amp;</span> $value <span style="color:#f92672">&gt;</span> $array<span style="color:#f92672">-&gt;</span>[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+
+        splice @$array, $from, <span style="color:#ae81ff">0</span>, $value
+            <span style="color:#66d9ef">unless</span> $from <span style="color:#f92672">&lt;=</span> $#$array <span style="color:#f92672">&amp;&amp;</span> $array<span style="color:#f92672">-&gt;</span>[$from] <span style="color:#f92672">==</span> $value;
+        <span style="color:#66d9ef">return</span> $from
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/arne-sommer/perl/ch-2.pl"><strong>Arne Sommer</strong></a></p>
+<p>Arne takes a slightly different approach to essentially the same task. Instead of establishing upper and lower bounds to subdivide, a delta is calculated at one half the length of the array and the first try established at the delta position. At every successive iteration the delta is halved and depending on the conditionals at the try position the delta is either added or subtracted from the index.</p>
+<p>One important consideration in making this approach work is adding the 0.5 before truncating the new delta value. This ensures that asymmetries of the rounding errors do not add to the point where the delta becomes less than one before the correct location is found.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>)
+    {
+      say <span style="color:#e6db74">&#34;: try at $try&#34;</span> <span style="color:#66d9ef">if</span> $verbose;
+
+      <span style="color:#66d9ef">if</span> ($try <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> $N <span style="color:#f92672">&lt;</span> $N[<span style="color:#ae81ff">0</span>])
+      {
+        say <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">last</span>;
+      }
+      <span style="color:#66d9ef">elsif</span> ($try <span style="color:#f92672">==</span> $end <span style="color:#f92672">&amp;&amp;</span> $N <span style="color:#f92672">&gt;</span> $N[$end])
+      {
+        say $end <span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">last</span>;
+      }
+
+      <span style="color:#66d9ef">if</span> ($N[$try] <span style="color:#f92672">==</span> $N)
+      {
+        say $try;
+        <span style="color:#66d9ef">last</span>;
+      }
+      <span style="color:#66d9ef">elsif</span> ($N[$try] <span style="color:#f92672">&lt;</span> $N <span style="color:#f92672">&amp;&amp;</span> $N[$try<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&gt;</span> $N)
+      {
+        say <span style="color:#f92672">++</span>$try;
+        <span style="color:#66d9ef">last</span>;
+      }
+
+      $delta <span style="color:#f92672">=</span> int(<span style="color:#ae81ff">0.5</span> <span style="color:#f92672">+</span> $delta<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>);
+
+      <span style="color:#66d9ef">if</span> ($N[$try] <span style="color:#f92672">&lt;</span> $N)
+      {
+        $try <span style="color:#f92672">+=</span> $delta;
+      }
+      <span style="color:#66d9ef">elsif</span> ($N[$try] <span style="color:#f92672">&gt;</span> $N)
+      {
+        $try <span style="color:#f92672">-=</span> $delta;
+      }
+    }
+</code></pre></div><h2 id="not-just-any-binary-search-but-a-whole-binary-search-tree">not just any BINARY SEARCH, but a whole BINARY SEARCH TREE!</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a></p>
+<p>Never to shy from trouble, CY has taken the binary search plan to the next level by constructing a full-blown binary search <em>tree</em>. Starting with a recycled <code>BTNode</code> object grabbed off the shelf in her lab, she populates it with the data from her sorted list of values by splitting the list at every node, subdividing as required. A <code>search</code> method attached to the object will return an in-order, LNR traversal ordering of the value searched for, which, incidentally, is the index location of the inserted value.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">search</span> {
+        <span style="color:#66d9ef">my</span> $aRoot <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>];
+        <span style="color:#66d9ef">my</span> $target <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">1</span>];
+        <span style="color:#66d9ef">if</span> ($target <span style="color:#f92672">==</span> ($aRoot<span style="color:#f92672">-&gt;</span>value)) {
+            <span style="color:#66d9ef">return</span> $aRoot<span style="color:#f92672">-&gt;</span>order;
+        } <span style="color:#66d9ef">elsif</span> ( $aRoot<span style="color:#f92672">-&gt;</span>value <span style="color:#f92672">&gt;</span> $target ) {
+            <span style="color:#66d9ef">if</span> (defined($aRoot<span style="color:#f92672">-&gt;</span>leftchild<span style="color:#f92672">-&gt;</span>value)) {
+                <span style="color:#66d9ef">return</span> $aRoot<span style="color:#f92672">-&gt;</span>leftchild<span style="color:#f92672">-&gt;</span>search($target);
+            } <span style="color:#66d9ef">else</span> {
+                <span style="color:#66d9ef">return</span> ($aRoot<span style="color:#f92672">-&gt;</span>order);
+            }
+        } <span style="color:#66d9ef">elsif</span> ( $aRoot<span style="color:#f92672">-&gt;</span>value <span style="color:#f92672">&lt;</span> $target ) {
+            <span style="color:#66d9ef">if</span> (defined($aRoot<span style="color:#f92672">-&gt;</span>rightchild<span style="color:#f92672">-&gt;</span>value)) {
+                <span style="color:#66d9ef">return</span> $aRoot<span style="color:#f92672">-&gt;</span>rightchild<span style="color:#f92672">-&gt;</span>search($target);
+            } <span style="color:#66d9ef">else</span> {
+                <span style="color:#66d9ef">return</span> ($aRoot<span style="color:#f92672">-&gt;</span>order <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>);
+            }
+        }
+    }
+</code></pre></div><h2 id="use-a-module">use a MODULE</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/perlboy1967/perl/ch-2.pl"><strong>Niels van Dijke</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/wanderdoc/perl/ch-2.pl"><strong>Wanderdoc</strong></a></p>
+<p>There were a number of module routines available to make this task simple, with offerings made from <code>List::Util</code> and <code>List::MoreUtils</code>.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/perlboy1967/perl/ch-2.pl"><strong>Niels van Dijke</strong></a></p>
+<p>Perhaps it seemed too easy to do this with a presorted array, but in any case Niels has decided to purposely ignore that qualifier for his method, requiring an extra <code>sort</code> step. Then moving in with <code>firstidx</code> from <code>List::MoreUtils</code>, the first index fulfilling the condition that the value found is greater than or equal to the target is returned. As we saw previously, this index is the correct position for the element.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> ($N, @N) <span style="color:#f92672">=</span> split(<span style="color:#e6db74">/,/</span>);
+    @N <span style="color:#f92672">=</span> sort(@N);
+
+    <span style="color:#66d9ef">my</span> $idx <span style="color:#f92672">=</span> firstidx { $_ <span style="color:#f92672">&gt;=</span> $N } @N;
+    $idx <span style="color:#f92672">=</span> scalar(@N)
+        <span style="color:#66d9ef">if</span> ($idx <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>);
+
+    printf <span style="color:#e6db74">&#34;Input: \@N = (%s) and \$N = %d\n&#34;</span>, join(<span style="color:#e6db74">&#39;,&#39;</span>, @N), $N;
+    printf <span style="color:#e6db74">&#34;Output: %d\n\n&#34;</span>, $idx;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a></p>
+<p>The monk uses <code>first_index</code> (a synonym for <code>firstidx</code>, by the way) twice: once to test and look for an existing element, and then again for the next element greater to find the insert point should it not.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $idx <span style="color:#f92672">=</span> first_index { $_ <span style="color:#f92672">==</span> $N } @N;
+
+    <span style="color:#66d9ef">if</span> ($idx <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>)
+    {
+        $msg <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;missing and should be placed&#39;</span>;
+        $idx <span style="color:#f92672">=</span> first_index { $_ <span style="color:#f92672">&gt;</span> $N } @N;
+        $idx <span style="color:#f92672">=</span> $#N <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> $idx <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a></p>
+<p>Jorg brings us the very interesting <code>lower_bound</code> function from <code>List::MoreUtils</code>, which, using a sort-like binary search comparison, efficiently homes in the correct location. There is a small suite of similar functions available in the module designed to search within sorted lists. From the description for <code>lower_bound</code>:</p>
+<blockquote>
+<p>Returns the index of the first element in LIST which does not compare less than val. Technically it&rsquo;s the first element in LIST which does not return a value below zero when passed to BLOCK.</p>
+</blockquote>
+<p>A very interesting function indeed, that certainly seems to have found its place.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">find_or_insert</span> ($val, $arr) :prototype($\@) {
+
+        <span style="color:#75715e"># A binary search is the tool of choice to operate on sorted data.</span>
+        <span style="color:#75715e"># &#34;lower_bound&#34; provides the wanted index accordingly.  Select zero</span>
+        <span style="color:#75715e"># for an empty array.</span>
+        <span style="color:#66d9ef">my</span> $idx <span style="color:#f92672">=</span> @$arr ? lower_bound {$_ <span style="color:#e6db74">&lt;=&gt;</span> $val} @$arr : <span style="color:#ae81ff">0</span>;
+
+        <span style="color:#75715e"># Insert the value at the identified position if missing.  Use a</span>
+        <span style="color:#75715e"># virtually appended &#39;inf&#39; to force a &#34;push&#34; operation.</span>
+        splice @$arr, $idx, <span style="color:#ae81ff">0</span>, $val <span style="color:#66d9ef">if</span> ($arr<span style="color:#f92672">-&gt;</span>[$idx] <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#39;inf&#39;</span>) <span style="color:#f92672">&gt;</span> $val;
+        say <span style="color:#e6db74">&#34;$idx: (@$arr)&#34;</span> <span style="color:#66d9ef">if</span> $verbose;
+
+        <span style="color:#75715e"># Return a reference to the resulting array and the index.</span>
+        ($arr, $idx);
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/wanderdoc/perl/ch-2.pl"><strong>Wanderdoc</strong></a></p>
+<p>The Doctor&rsquo;s double-dose prescription hinges on the following little gem of cleverness:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">     @idx{@$aref} <span style="color:#f92672">=</span> keys @$aref;
+</code></pre></div><p>What this does is create a reverse lookup  hash with the unique sorted values of the array as keys, pointing to their array indices as values. If the target is already in the array then it will be found in the hash. If not, a search is made with <code>first</code> from <code>List::Util</code>, for the first element with a value greater than the target value. The index for this value is looked up, and that is the index returned.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">return_idx</span>
+    {
+         <span style="color:#66d9ef">my</span> ($aref, $num) <span style="color:#f92672">=</span> @_;
+         <span style="color:#66d9ef">my</span> %idx;
+         @idx{@$aref} <span style="color:#f92672">=</span> keys @$aref;
+         <span style="color:#66d9ef">return</span> $idx{$num} <span style="color:#66d9ef">if</span> exists $idx{$num};
+
+
+         <span style="color:#66d9ef">my</span> $neighbour <span style="color:#f92672">=</span> first { $_ <span style="color:#f92672">&gt;</span> $num } @$aref;
+         <span style="color:#66d9ef">my</span> $should_be_placed <span style="color:#f92672">=</span> $neighbour ? $idx{$neighbour} : scalar @$aref;
+         <span style="color:#66d9ef">return</span> $should_be_placed;
+    }
+</code></pre></div><p>Covering all bases, if an insert is required another form is provided, which brings us to our next category. With the above trick any existing element can be quickly located. So, if it is <em>not</em> present already, we need only add it and sort. Repeating the hash assignment, now it will be found.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">search_insert</span>
+    {
+         <span style="color:#66d9ef">my</span> ($aref, $num) <span style="color:#f92672">=</span> @_;
+
+         <span style="color:#66d9ef">my</span> %idx;
+         @idx{@$aref} <span style="color:#f92672">=</span> keys @$aref;
+         <span style="color:#66d9ef">return</span> $idx{$num} <span style="color:#66d9ef">if</span> exists $idx{$num};
+         @$aref <span style="color:#f92672">=</span> sort {$a <span style="color:#e6db74">&lt;=&gt;</span> $b} @$aref, $num;
+         @idx{@$aref} <span style="color:#f92672">=</span> keys @$aref;
+         <span style="color:#66d9ef">return</span> $idx{$num};
+    }
+</code></pre></div><h2 id="value-not-found-lets-add-it-and-look-again">value not found? Let&rsquo;s ADD IT and LOOK AGAIN</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/abigail/perl/ch-2.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/cristian-heredia/perl/ch-2.pl"><strong>Cristina Heredia</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/wanderdoc/perl/ch-2.pl"><strong>Wanderdoc</strong></a></p>
+<p>The gist of this method is described in Wanderdoc&rsquo;s second solution, above. Essentially the title says it all: if the element is not already in the sorted array, then add it to the array and sort again. Looking the second time will always find it.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/cristian-heredia/perl/ch-2.pl"><strong>Cristina Heredia</strong></a></p>
+<p>Christina lays out the steps in a very orderly and well-documented fashion. Her comments explain the process quite well.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e">#Call the function to search in the array</span>
+    findNumber();
+
+    <span style="color:#75715e">#If the target isn&#39;t in the array, the target will be added into the array and the &#34;new array&#34; will be sorted. Then, call the search function (with the new array)</span>
+    <span style="color:#66d9ef">if</span> (findNumber() <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> ) {
+        push @NList, $N;
+        <span style="color:#66d9ef">my</span> @sorted <span style="color:#f92672">=</span> sort { $a <span style="color:#e6db74">&lt;=&gt;</span> $b } @NList;
+        @NList <span style="color:#f92672">=</span> @sorted;
+        findNumber();
+    }
+
+    <span style="color:#75715e">#Print the position of target inside the array</span>
+    <span style="color:#66d9ef">print</span> (findNumber()<span style="color:#f92672">.</span><span style="color:#e6db74">&#34;\n&#34;</span>);
+
+    <span style="color:#75715e">#Function to check if the target is in the array</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">findNumber</span>{
+
+        <span style="color:#75715e">#walk through the array</span>
+        <span style="color:#66d9ef">foreach</span> (<span style="color:#66d9ef">my</span> $i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; $i <span style="color:#f92672">&lt;</span>@NList; $i<span style="color:#f92672">++</span>){
+            <span style="color:#75715e">#If the target is in the array, it will return its position</span>
+            <span style="color:#66d9ef">if</span> ($NList[$i] <span style="color:#f92672">==</span> $N) {
+                <span style="color:#66d9ef">return</span> $i;
+            }
+        }
+        <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/abigail/perl/ch-2.pl"><strong>Abigail</strong></a></p>
+<p>Abigail strips the logic down to the bare metal, starting by arguing a simple iterative search is likely good as any as we&rsquo;re likely in linear <strong>O</strong>(n) time anyway. From there if the value is found the index is stated and we move to the next input. If it&rsquo;s <em>not</em> found then we add it to the end and sort. Then he does a very clever trick with <code>goto LABEL</code>, in this case <code>SEARCH</code>. The control flow is redirected back to above the search steps, which, because we have inserted the element, will alway now find it.</p>
+<p>And yes, this is a very unusual thing to see in Perl. I may have never seen <code>goto</code> in this form (in Perl), but makes sense here, in this specific case, to make a single loop without any overhead. I don&rsquo;t know what I feel about it. It&rsquo;s outright weird. Which is of course lovely. But still weird.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    INPUT: <span style="color:#66d9ef">while</span> (<span style="color:#f92672">&lt;&gt;</span>) {
+        chomp;
+        <span style="color:#66d9ef">my</span> ($N, @N) <span style="color:#f92672">=</span> split <span style="color:#e6db74">&#39; &#39;</span>;
+      SEARCH:
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (keys @N) {
+            <span style="color:#66d9ef">if</span> ($N <span style="color:#f92672">==</span> $N [$i]) {
+                say $i;
+                <span style="color:#66d9ef">next</span> INPUT;
+            }
+        }
+
+        <span style="color:#75715e">#</span>
+        <span style="color:#75715e"># Not found. Insert by adding to the end and sorting.</span>
+        <span style="color:#75715e">#</span>
+        @N <span style="color:#f92672">=</span> sort {$a <span style="color:#e6db74">&lt;=&gt;</span> $b} @N, $N;
+
+        <span style="color:#75715e">#</span>
+        <span style="color:#75715e"># Now, do the search again -- this time, it will succeed.</span>
+        <span style="color:#75715e">#</span>
+        goto SEARCH;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>Already quite straightforward, by using an import module the method becomes even simpler, producing potentially very compact solutions. Just to show you how compact, here is Luis&rsquo; logic in its entirety.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">my</span> ($N, @N)<span style="color:#f92672">=</span>@ARGV;
+say <span style="color:#e6db74">&#34;Input: \@N=(&#34;</span>, join(<span style="color:#e6db74">&#34;, &#34;</span>, @N), <span style="color:#e6db74">&#34;) and \$N=$N\n&#34;</span>,
+    <span style="color:#e6db74">&#34;Output: &#34;</span>,
+    first_index {$_<span style="color:#f92672">==</span>$N} sort {$a<span style="color:#e6db74">&lt;=&gt;</span>$b} uniq (@N, $N);
+</code></pre></div><p>Essentially the logic is now a single line.</p>
+<h2 id="unique-glimpses-into-the-fragile-weak-underbelly-of-our-specification">UNIQUE GLIMPSES into the FRAGILE, WEAK UNDERBELLY of our SPECIFICATION</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a> and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/stuart-little/perl/ch-2.pl"><strong>Stuart Little</strong></a></p>
+<p>If a element is lost in a dark forest, is it really there? Revisiting our existential quandary with a few more unusual examples of finding what <em>should</em> be, instead of exactly <em>what is</em>. These things should be the same.</p>
+<p>Right guys? Guys? Hey where&rsquo;d everybody go?</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a></p>
+<p>Ulrich takes a unique approach, first making an existence hash with keys from values in the array. Checking this lookup, he can determine whether the target value is already present. If it is the array is iterated through until the value is found. If it&rsquo;s <em>not</em> found, then we grep the array for all the values smaller than the target. The quantity of these, the size of the grepped list, is the index to be inserted at. The logic is sound, and I like the indirectness of the inference.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $num ( @N ) {
+      $numhash{ $num }<span style="color:#f92672">++</span> ;
+    }
+    <span style="color:#75715e">#if $N is in the hash find the position in the array</span>
+    <span style="color:#66d9ef">if</span> ( exists $numhash{ $N } ) {
+      <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> ;
+      <span style="color:#66d9ef">do</span> {
+          $i<span style="color:#f92672">++</span> ;
+      } <span style="color:#66d9ef">until</span> ( $N[ $i ] <span style="color:#f92672">==</span> $N ) ;
+      $index <span style="color:#f92672">=</span> $i ;
+    }
+    <span style="color:#75715e">#otherwise : count the number of elements that are smaller than $N</span>
+    <span style="color:#66d9ef">else</span> {
+      $index <span style="color:#f92672">=</span> scalar( grep { $_ <span style="color:#f92672">&lt;</span> $N } @N ) ;
+    }
+    say $index ;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-098/stuart-little/perl/ch-2.pl"><strong>Stuart Little</strong></a></p>
+<p>Stuart really probes the dark corners of our understanding of the challenge as stated with his submission. It&rsquo;s short, succinct and very to-the-point. This is it:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    say scalar(grep {$_ <span style="color:#f92672">&lt;</span> $ARGV[<span style="color:#ae81ff">0</span>]} @ARGV[<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$#ARGV]);
+
+</code></pre></div><p>Again we have the number of existing  elements smaller than the target value. So the big question is: does it or doesn&rsquo;t it? Given a sorted list this will find the position the candidate <em>should</em> occupy. What it doesn&rsquo;t determine is whether it&rsquo;s actually there or not. But then again the challenge says to return the position, not the array. And if an element is added to an array and it&rsquo;s immediately thrown away, who&rsquo;s to say what was done?</p>
+<p>Does it satisfy the conditions? With the function considered a black box it does, but it also exposes a certain weakness in our specified requirements.</p>
+<h2 id="i-always-wanted-to-be-somebody-but-now-i-realize-i-should-have-been-more-specific--lily-tomlin"><strong>&ldquo;I always wanted to be somebody, but now I realize I should have been more specific.&rdquo; — Lily Tomlin</strong></h2>
+<h1 id="PWC098BLOGS">BLOGS</h1>
+<hr>
+<p><strong>That’s it for me this week, people! Warped by the rain, driven by the snow, resolute and unbroken by the torrential influx, I somehow continue to maintain my bearings. Looking forward to next wave, the perfect wave, I am: <em>your humble servant</em>.</strong></p>
+<h1 id="PWC093BLOGS">But if Your <em>THIRST</em> for <em>KNOWLEDGE</em> is not <em>SLAKED</em>,</h1>
+<h1 id="then-run-dont-walk-to-the-watering-hole">then <em>RUN</em> <em>(dont walk!)</em> to the <em>WATERING HOLE</em></h1>
+<h1 id="and-read-these-blog-links">and <em>READ</em> these <em>BLOG</em> <em>LINKS</em>:</h1>
+<p><strong>( <em>don&rsquo;t think, trust your training, you&rsquo;re in the zone, just do it &hellip;</em> )</strong></p>
+<p><strong>Aaron Smith</strong></p>
+<ul>
+<li><a href="https://aaronreidsmith.github.io/blog/perl-weekly-challenge-098/">Perl Weekly Challenge 98 - Aaron Smith</a> ( <em>Raku</em> )</li>
+</ul>
+<p><strong>Adam Russell</strong></p>
+<ul>
+<li><a href="http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2021/02/06">Perl Weekly Challenge 098 - RabbitFarm</a> ( <em>Perl</em> )</li>
+<li><a href="http://www.rabbitfarm.com/cgi-bin/blosxom/prolog/2021/02/07">Perl Weekly Challenge 098 - RabbitFarm</a> ( <em>Prolog</em> )</li>
+</ul>
+<p><strong>Andinus</strong></p>
+<ul>
+<li><a href="https://andinus.tilde.institute/pwc/challenge-098/">Challenge 098</a> ( <em>Raku</em> )</li>
+</ul>
+<p><strong>Arne Sommer</strong></p>
+<ul>
+<li><a href="https://raku-musings.com/read-n-search.html">Read &lsquo;n&rsquo; Search with Raku and Perl</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Colin Crain</strong></p>
+<ul>
+<li><a href="https://colincrain.com/2021/02/06/practicin-the-three-rs-hummin-an-homin-in-on-home/">Practicin’ the Three ‘R’s, Hummin’ an’ Homin’ in on Home – Programming Excursions in Perl and Raku</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Dave Jacoby</strong></p>
+<ul>
+<li><a href="https://jacoby.github.io/2021/02/01/various-positions-perl-weekly-challenge-98.html">Various Positions: Perl Weekly Challenge #98 | Committed to Memory</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Flavio Poletti</strong></p>
+<ul>
+<li><a href="https://github.polettix.it/ETOOBUSY/2021/02/03/pwc098-readn/">PWC098 - Read N-characters - ETOOBUSY</a> ( <em>Perl</em> )</li>
+<li><a href="https://github.polettix.it/ETOOBUSY/2021/02/04/pwc098-search-insert-position/">PWC098 - Search Insert Position - ETOOBUSY</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Laurent Rosenfeld</strong></p>
+<ul>
+<li><a href="http://blogs.perl.org/users/laurent_r/2021/02/perl-weekly-challenge-98-read-n-characters-and-search-insert-position.html">Perl Weekly Challenge 98: Read N-Characters and Search Insert Position</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Luca Ferrari</strong></p>
+<ul>
+<li><a href="https://fluca1978.github.io/2021/02/01/PerlWeeklyChallenge98.html#task1">Perl Weekly Challenge 98: reading chars and inserting in array – Luca Ferrari</a> ( <em>Raku</em> )</li>
+<li><a href="https://fluca1978.github.io/2021/02/01/PerlWeeklyChallenge98.html#task2">Perl Weekly Challenge 98: reading chars and inserting in array – Luca Ferrari</a> ( <em>Raku</em> )</li>
+</ul>
+<p><strong>Roger Bell_West</strong></p>
+<ul>
+<li><a href="https://blog.firedrake.org/archive/2021/02/Perl_Weekly_Challenge_98__Insert_N.html">RogerBW's Blog: Perl Weekly Challenge 98: Insert N</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Simon Green</strong></p>
+<ul>
+<li><a href="https://dev.to/simongreennet/weekly-challenge-098-235h">Weekly Challenge 098</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>W. Luis Mochan</strong></p>
+<ul>
+<li><a href="https://wlmb.github.io/2021/02/01/PWC098/">Perl Weekly Challenge 98 – W. Luis Mochán</a> ( <em>Perl</em> )</li>
+</ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="/contact" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2020
+                    </span> PerlWeeklyChallenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.nomtimes.co.uk/site/shop.do?cref=PerlBooks" title="Free Perl Books" rel="noreferrer" target="_blank">
+                            <img src="/images/NomTimes.jpg" style="width:22px; height: 18px;" alt=""/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://perlweeklychallenge.org/plugins/jQurey/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://perlweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://perlweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://perlweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://perlweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://perlweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://perlweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://perlweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://perlweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-136524905-1', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+
+</html>
+
