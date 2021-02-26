@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2021-02-23T00:00:00+00:00
+date: 2021-02-26T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -37,6 +37,10 @@ Please find below guest contributions.
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-101/roger-bell-west/rust/ch-1.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-101/roger-bell-west/rust/ch-1.rs) in **Rust**.
 
 ##### **Stuart Little** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-101/stuart-little/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-101/stuart-little/haskell/ch-2.hs) in **Haskell**.
+
+##### **Tyler Wardhaugh** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-101/tyler-wardhaugh/clojure/src/tw/weekly/c101/t1.clj) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-101/tyler-wardhaugh/clojure/src/tw/weekly/c101/t2.clj) in **Clojure**.
+
+##### **Tyler Wardhaugh** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-101/tyler-wardhaugh/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-101/tyler-wardhaugh/python/ch-2.py) in **Python**.
 
 ----
 ## [The Weekly Challenge - 100](/blog/perl-weekly-challenge-100) {#100}
