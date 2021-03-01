@@ -46,6 +46,10 @@ Please find below guest contributions.
 
 ##### **Abigail** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-101/abigail/ruby/ch-1.rb) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-101/abigail/ruby/ch-2.rb) in **Ruby**.
 
+##### **Mohammad Meraj Zia** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-101/ziameraj16/java/OriginContainingTriangle.java) in **Java**.
+
+##### **Mohammad Meraj Zia** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-101/ziameraj16/kotlin/OriginContainingTriangleKotlin.kt) in **Kotlin**.
+
 ##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-101/paulo-custodio/ada/ch_1.adb) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-101/paulo-custodio/ada/ch_2.adb) in **Ada**.
 
 ##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-101/paulo-custodio/basic/ch-1.bas) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-101/paulo-custodio/basic/ch-2.bas) in **Basic**.
