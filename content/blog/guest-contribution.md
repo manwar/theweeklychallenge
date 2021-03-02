@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2021-03-01T00:00:00+00:00
+date: 2021-03-02T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -29,6 +29,8 @@ Please find below guest contributions.
 ----
 ## [The Weekly Challenge - 102](/blog/perl-weekly-challenge-102) {#102}
 <br>
+
+##### **James Smith** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/james-smith/php/ch-2.php) in **PHP**.
 
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/roger-bell-west/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/roger-bell-west/python/ch-2.py) in **Python**.
 
