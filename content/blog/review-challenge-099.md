@@ -1,7 +1,7 @@
 
 ---
 author:       Colin Crain
-date:         2021-03-01T00:00:00
+date:         2021-03-03T00:00:00
 description:  "Colin Crain › Perl Weekly Review #099"
 tags:         ["perl"]
 title:        "Colin Crain › Perl Weekly Review #099"
@@ -49,7 +49,7 @@ I'm always curious as to what the people think of these efforts. Everyone here a
 
 ---
 
-## •   &nbsp;  &nbsp;  &nbsp;   [Task 1](#PWC099TASK1)       &nbsp;  &nbsp;  &nbsp;   •   &nbsp;  &nbsp;  &nbsp;   [Task 2](#PWC099TASK2)   &nbsp;  &nbsp;  &nbsp;   	•   &nbsp;  &nbsp;  &nbsp;   [BLOGS](#PWC099BLOGS)    &nbsp;  &nbsp;  &nbsp;   	•
+## •   &nbsp;  &nbsp;  &nbsp;   [Task 1](#PWC099TASK1)       &nbsp;  &nbsp;  &nbsp;   •   &nbsp;  &nbsp;  &nbsp;   [Task 2](#PWC099TASK2)   &nbsp;  &nbsp;  &nbsp;       •   &nbsp;  &nbsp;  &nbsp;   [BLOGS](#PWC099BLOGS)    &nbsp;  &nbsp;  &nbsp;   	•
 
 ---
 
@@ -95,7 +95,7 @@ There were 25 working submissions for the first task this past week.
 
 The almost unanimous decision in solving this task was to use the regular expression engine to do the final validation. This in turn required converting the toy wildcard patterns into proper Perl. This conversion was itself almost always done using regular expressions, although there were a few outliers. Ok one. One outlier. Variation did arise  from differing interpretations of the wildcards, which we'll address.
 
-Kudos to Gustavo for bucking the trend and going his own way, building us a proper parser from scratch to do his validating. It's really not as complex as you might think and we'll of course examine it.
+Kudos also to Gustavo and Chorba for bucking the trend and going their own way, building us proper parsers from scratch to do the validating. It's really not as complex as you might think and we have two examples to examine.
 
 ## a note on the WILDCARDS
 
@@ -446,6 +446,10 @@ Culminating the series, Jorg lays out his reasoning with extensive comments on h
 ```
 
 ## building a PARSER from SCRATCH
+[**Gustavo Chaves**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-099/gustavo-chaves/perl/ch-1.pl) and
+[**E. Choroba**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-099/e-choroba/perl/ch-1a.pl)
+
+
 [**Gustavo Chaves**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-099/gustavo-chaves/perl/ch-1.pl)
 
 Gustavo breaks from the pack and does something completely different: he builds a little match-engine parser to walk the string and the pattern using a pair of position locators.
@@ -482,6 +486,44 @@ As each position is compared, obviously any character is expected to match itsel
         return $p == length($pattern) && $s == length($string);
     }
 ```
+
+### BONUS!
+
+[**E. Choroba**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-099/e-choroba/perl/ch-1a.pl)
+
+It seems that lost among the GitHub repositories Choroba submitted a *second* solution, enacting a pattern parser over the subject string in a manner quite analogous to Gustavo's effort. So we have *two* parsers to examine, which I, frankly, find exciting.
+
+Here Choroba builds a dispatch table to handle his individual wildcard actions, those actions themselves defined in anonymous subroutines returning success or failure. I like this layout. Enjoy!
+
+```perl
+    sub pattern_match {
+        my ($string, $pattern) = @_;
+        return 1 if "" eq $string . $pattern;
+
+        my ($string_first,  $string_rest)  = $string  =~ /(.)(.*)/;
+        my ($pattern_first, $pattern_rest) = $pattern =~ /(.)(.*)/;
+
+        my $action = {
+            '?' => sub {
+                return 0 unless length $pattern;
+                return pattern_match($string_rest, $pattern_rest)
+            },
+            '*' => sub {
+                for my $pos (1 .. length $string) {
+                    return 1
+                        if pattern_match(substr($string, $pos), $pattern_rest);
+                }
+                return 0
+            },
+        }->{ $pattern_first // "" } || sub {
+            return 0 if ($pattern_first // "") ne ($string_first // "");
+
+            return pattern_match($string_rest, $pattern_rest)
+        };
+        return $action->()
+    }
+```
+
 
 ---
 

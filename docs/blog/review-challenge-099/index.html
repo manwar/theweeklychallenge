@@ -179,7 +179,7 @@
                 <div class="block">
                     <h2>Colin Crain › Perl Weekly Review #099</h2>
                     <div class="portfolio-meta">
-                        <span>Monday, Mar 1, 2021</span>|
+                        <span>Wednesday, Mar 3, 2021</span>|
                         <span> Tags:
                             perl
                         </span>
@@ -220,7 +220,7 @@
 <p>I&rsquo;m always curious as to what the people think of these efforts. Everyone here at the PWC would like to hear any feedback you&rsquo;d like to give.</p>
 <p><strong>So finally, without further ado&hellip;</strong></p>
 <hr>
-<h2 id="---nbsp--nbsp--nbsp---task-1pwc099task1-------nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---task-2pwc099task2---nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---blogspwc099blogs----nbsp--nbsp--nbsp---">•             <a href="#PWC099TASK1">Task 1</a>                 •             <a href="#PWC099TASK2">Task 2</a>             	•             <a href="#PWC099BLOGS">BLOGS</a>              	•</h2>
+<h2 id="---nbsp--nbsp--nbsp---task-1pwc099task1-------nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---task-2pwc099task2---nbsp--nbsp--nbsp----------nbsp--nbsp--nbsp---blogspwc099blogs----nbsp--nbsp--nbsp---">•             <a href="#PWC099TASK1">Task 1</a>                 •             <a href="#PWC099TASK2">Task 2</a>                 •             <a href="#PWC099BLOGS">BLOGS</a>              	•</h2>
 <hr>
 <h1 id="PWC099TASK1">TASK 1</h1>
 <h1 id="pattern-match">Pattern Match</h1>
@@ -247,7 +247,7 @@ You are given a string $S and a pattern $P.</p>
 </code></pre><h2 id="about-the-solutions">about the solutions</h2>
 <p>There were 25 working submissions for the first task this past week.</p>
 <p>The almost unanimous decision in solving this task was to use the regular expression engine to do the final validation. This in turn required converting the toy wildcard patterns into proper Perl. This conversion was itself almost always done using regular expressions, although there were a few outliers. Ok one. One outlier. Variation did arise  from differing interpretations of the wildcards, which we&rsquo;ll address.</p>
-<p>Kudos to Gustavo for bucking the trend and going his own way, building us a proper parser from scratch to do his validating. It&rsquo;s really not as complex as you might think and we&rsquo;ll of course examine it.</p>
+<p>Kudos also to Gustavo and Chorba for bucking the trend and going their own way, building us proper parsers from scratch to do the validating. It&rsquo;s really not as complex as you might think and we have two examples to examine.</p>
 <h2 id="a-note-on-the-wildcards">a note on the WILDCARDS</h2>
 <p>The two pattern wildcards in our toy language were delivered with two directives:</p>
 <ol>
@@ -502,6 +502,8 @@ You are given a string $S and a pattern $P.</p>
         $str <span style="color:#f92672">=~</span> $re;
     }
 </code></pre></div><h2 id="building-a-parser-from-scratch">building a PARSER from SCRATCH</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-099/gustavo-chaves/perl/ch-1.pl"><strong>Gustavo Chaves</strong></a> and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-099/e-choroba/perl/ch-1a.pl"><strong>E. Choroba</strong></a></p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-099/gustavo-chaves/perl/ch-1.pl"><strong>Gustavo Chaves</strong></a></p>
 <p>Gustavo breaks from the pack and does something completely different: he builds a little match-engine parser to walk the string and the pattern using a pair of position locators.</p>
 <p>As each position is compared, obviously any character is expected to match itself in both strings, and we will need special cases to deal with the two wildcard operators. Because the <code>?</code> wildcard always matches anything, it can be scooted across without comparison — leaving the only complexity to the variable-length wildcard matches with <code>*</code>. This is dealt with by recursively calling the validator on the remaining tails of the string and pattern. It&rsquo;s a neat little method and works well.</p>
@@ -532,6 +534,36 @@ You are given a string $S and a pattern $P.</p>
         }
 
         <span style="color:#66d9ef">return</span> $p <span style="color:#f92672">==</span> length($pattern) <span style="color:#f92672">&amp;&amp;</span> $s <span style="color:#f92672">==</span> length($string);
+    }
+</code></pre></div><h3 id="bonus">BONUS!</h3>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-099/e-choroba/perl/ch-1a.pl"><strong>E. Choroba</strong></a></p>
+<p>It seems that lost among the GitHub repositories Choroba submitted a <em>second</em> solution, enacting a pattern parser over the subject string in a manner quite analogous to Gustavo&rsquo;s effort. So we have <em>two</em> parsers to examine, which I, frankly, find exciting.</p>
+<p>Here Choroba builds a dispatch table to handle his individual wildcard actions, those actions themselves defined in anonymous subroutines returning success or failure. I like this layout. Enjoy!</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">pattern_match</span> {
+        <span style="color:#66d9ef">my</span> ($string, $pattern) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> <span style="color:#e6db74">&#34;&#34;</span> <span style="color:#f92672">eq</span> $string <span style="color:#f92672">.</span> $pattern;
+
+        <span style="color:#66d9ef">my</span> ($string_first,  $string_rest)  <span style="color:#f92672">=</span> $string  <span style="color:#f92672">=~</span><span style="color:#e6db74"> /(.)(.*)/</span>;
+        <span style="color:#66d9ef">my</span> ($pattern_first, $pattern_rest) <span style="color:#f92672">=</span> $pattern <span style="color:#f92672">=~</span><span style="color:#e6db74"> /(.)(.*)/</span>;
+
+        <span style="color:#66d9ef">my</span> $action <span style="color:#f92672">=</span> {
+            <span style="color:#e6db74">&#39;?&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> {
+                <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">unless</span> length $pattern;
+                <span style="color:#66d9ef">return</span> pattern_match($string_rest, $pattern_rest)
+            },
+            <span style="color:#e6db74">&#39;*&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> {
+                <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $pos (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> length $string) {
+                    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>
+                        <span style="color:#66d9ef">if</span> pattern_match(substr($string, $pos), $pattern_rest);
+                }
+                <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>
+            },
+        }<span style="color:#f92672">-&gt;</span>{ $pattern_first <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#34;&#34;</span> } <span style="color:#f92672">||</span> <span style="color:#66d9ef">sub</span> {
+            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> ($pattern_first <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#34;&#34;</span>) <span style="color:#f92672">ne</span> ($string_first <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#34;&#34;</span>);
+
+            <span style="color:#66d9ef">return</span> pattern_match($string_rest, $pattern_rest)
+        };
+        <span style="color:#66d9ef">return</span> $action<span style="color:#f92672">-&gt;</span>()
     }
 </code></pre></div><hr>
 <hr>
