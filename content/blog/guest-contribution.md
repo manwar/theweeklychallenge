@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2021-03-05T00:00:00+00:00
+date: 2021-03-07T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -48,6 +48,12 @@ Please find below guest contributions.
 
 ##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/paulo-custodio/ada/ch_1.adb) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/paulo-custodio/ada/ch_2.adb) in **Ada**.
 
+##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/paulo-custodio/basic/ch-1.bas) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/paulo-custodio/basic/ch-2.bas) in **Basic**.
+
+##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/paulo-custodio/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/paulo-custodio/c/ch-2.c) in **C**.
+
+##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/paulo-custodio/cpp/ch-1.cpp) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/paulo-custodio/cpp/ch-2.cpp) in **C++**.
+
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/roger-bell-west/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/roger-bell-west/python/ch-2.py) in **Python**.
 
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/roger-bell-west/ruby/ch-1.rb) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/roger-bell-west/ruby/ch-2.rb) in **Ruby**.
@@ -85,6 +91,10 @@ Please find below guest contributions.
 ##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-101/paulo-custodio/ada/ch_1.adb) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-101/paulo-custodio/ada/ch_2.adb) in **Ada**.
 
 ##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-101/paulo-custodio/basic/ch-1.bas) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-101/paulo-custodio/basic/ch-2.bas) in **Basic**.
+
+##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-101/paulo-custodio/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-101/paulo-custodio/c/ch-2.c) in **C**.
+
+##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-101/paulo-custodio/cpp/ch-1.cpp) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-101/paulo-custodio/cpp/ch-2.cpp) in **C++**.
 
 ##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-101/paulo-custodio/lua/ch-1.lua) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-101/paulo-custodio/lua/ch-2.lua) in **Lua**.
 
@@ -571,6 +581,8 @@ Please find below guest contributions.
 ##### **Mohammad Meraj Zia** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/ziameraj16/java/IsomorphicStrings.java) in **Java**.
 
 ##### **Nuno Vieira** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/nunovieira220/js/ch-1.js) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/nunovieira220/js/ch-2.js) in **JavaScript**.
+
+##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/paulo-custodio/basic/ch-1.bas) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/paulo-custodio/basic/ch-2.bas) in **Basic**.
 
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/roger-bell-west/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-092/roger-bell-west/python/ch-2.py) in **Python**.
 
