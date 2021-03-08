@@ -19,7 +19,7 @@ tags: ["Perl", "Raku"]
 ### 06. [CHART](#CHART)
 ### 07. [NEW MEMBERS](#NEWMEMBERS)
 ### 08. [GUESTS](#GUESTS)
-### 09. [TASK #1: Chinese Zodia](#TASK1)
+### 09. [TASK #1: Chinese Zodiac](#TASK1)
 ### 10. [TASK #2: What's playing?](#TASK2)
 
 <br>
