@@ -180,12 +180,14 @@ Optional: Also display the current position in the media as a time-like value.
 
 Example:
 
+### UPDATED: Input parameters as reported by many members [2021-03-08 16:20 UK TIME].
+
     Input: 3 command line parameters: start time, current time, file name
 
-        # Streamer start time: Tue Nov 24 12:22:03 2020
+        # starttime
         1606134123
 
-        # Current time:        Mon Mar  1 09:34:36 2021
+        # currenttime
         1614591276
 
         # filelist.csv
@@ -193,7 +195,7 @@ Example:
     Output:
 
         "Les Miserables Episode 1: The Bishop (broadcast date: 1937-07-23)"
-        00:17:33
+        00:10:24
 
 <br>
 
