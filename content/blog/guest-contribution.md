@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2021-03-13T00:00:00+00:00
+date: 2021-03-14T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -29,6 +29,8 @@ Please find below guest contributions.
 ----
 ## [The Weekly Challenge - 103](/blog/perl-weekly-challenge-103) {#103}
 <br>
+
+##### **Lance Wicks** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-103/lance-wicks/elm/src/Zodiac.elm) in **Elm**.
 
 ##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-103/paulo-custodio/lua/ch-1.lua) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-103/paulo-custodio/lua/ch-2.lua) in **Lua**.
 
