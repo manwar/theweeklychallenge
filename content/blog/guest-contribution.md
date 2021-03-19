@@ -30,6 +30,8 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 104](/blog/perl-weekly-challenge-104) {#104}
 <br>
 
+##### **Mohammad Meraj Zia** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-104/ziameraj16/java/NimGame.java) in **Java**.
+
 ##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-104/paulo-custodio/forth/ch-1.fs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-104/paulo-custodio/forth/ch-2.fs) in **Forth**.
 
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-104/roger-bell-west/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-104/roger-bell-west/python/ch-2.py) in **Python**.
