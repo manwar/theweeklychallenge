@@ -102,6 +102,12 @@ Please find below guest contributions.
 
 ##### **Tyler Wardhaugh** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-104/tyler-wardhaugh/clojure/src/tw/weekly/c104/t1.clj) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-104/tyler-wardhaugh/clojure/src/tw/weekly/c104/t2.clj) in **Clojure**.
 
+##### **Ulrich Rieke** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-104/ulrich-rieke/cpp/ch-1.cpp) in **C++**.
+
+##### **Ulrich Rieke** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-104/ulrich-rieke/haskell/ch-1.hs) in **Haskell**.
+
+##### **Ulrich Rieke** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-104/ulrich-rieke/lisp/ch-1.lisp) in **Lisp**.
+
 ----
 ## [The Weekly Challenge - 103](/blog/perl-weekly-challenge-103) {#103}
 <br>
