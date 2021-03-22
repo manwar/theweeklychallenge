@@ -1,0 +1,1719 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="The Weekly Challenge - Perl & Raku"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://perlweeklychallenge.org/"/>
+    <meta property="og:image"       content="https://perlweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="You do not have to be an expert."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://perlweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Colin Crain › Perl Weekly Review #102">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Colin Crain › Perl Weekly Review #102</title>
+    <link rel="icon" href="https://perlweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://perlweeklychallenge.org/">
+                        <img src="https://perlweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navgation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Colin Crain › Perl Weekly Review #102</h2>
+                    <div class="portfolio-meta">
+                        <span>Monday, Mar 22, 2021</span>|
+                        <span> Tags:
+                            perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://perlweeklychallenge.org/images/blog/p5-review-challenge-102.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <p>( <em>&hellip;continues from <a href="/blog/review-challenge-101/">previous week</a>.</em> )</p>
+<p>Welcome to the Perl review for <strong>Week 102</strong> of the Weekly Challenge! Here we will take the time to discuss the  submissions offered by the team, factor out the common methodologies that came up in those solutions, and highlight some of the unique approaches and unusual code created.</p>
+<hr>
+<h3 id="why-do-we-do-these-challenges">Why do we do these challenges?</h3>
+<p>I suppose any answers to that would be as wide ranging and varied as the people who choose to join the team. One thing is clear: it&rsquo;s not a competition, and there are no judges, even if there is a &ldquo;prize&rdquo; of sorts. About that &ndash; I think of it more as an honorarium periodically awarded to acknowledge the efforts we make towards this strange goal. So there&rsquo;s no determination to find the <em>fastest</em>, or the <em>shortest</em>, or even, in some abstract way, the <em>best</em> way to go about things, although I&rsquo;m certain the individuals have their own aspirations and personal drives. As Perl is such a wonderfully expressive language, this provides quite a bit of fodder to the core idea of TMTOWTDI, producing a gamut of wonderfully varied techniques and solutions.</p>
+<p>Even the tasks themselves are often open to a certain amount of discretionary interpretation. What we end up with is a situation where each participant is producing something in the manner they find the most interesting or satisfying. Some team members focus on carefully crafted complete applications that thoroughly vet input data and handle every use case they can think up. Others chose to apply themselves to the logic of the underlying puzzle and making it work in the most elegant way they can. Some eschew modules they would ordinarily reach for, others embrace them, bringing to light wheels perhaps invented years ago that happen to exactly solve the problem in front of them today.</p>
+<p>I&rsquo;ve been considering this question for some time and have found one binding commonality between all of us solving these challenges each week, in that however we normally live our lives, the task in front of us more than likely has nothing to do with any of that . And I think this has great value. We all do what we do, out in the real world, and hopefully we do it well. The Weekly Challenge provides a opportunity to do something germane to that life yet distinctly different; if we only do the things we already know how to do we only do the same things over and over. This is where the &ldquo;challenge&rdquo; aspect comes into play.</p>
+<p>So we can consider the Weekly Challenge as providing a problem space outside of our comfort zone, as far out from comfort as we wish to take things. From those reaches we can gather and learn things and bring what we want back into our lives. Personally, I think that&rsquo;s its greatest value of all.</p>
+<hr>
+<p>Every week there is an enormous global collective effort made by the team, analyzing and creatively coding the submissions, and that effort deserves credit due. And that&rsquo;s why I&rsquo;m here, to try and figure out how to do that.</p>
+<p>Let&rsquo;s have a look and see what we can find.</p>
+<hr>
+<p><strong><big>For context</big></strong>  before we begin, you may wish to revisit either of the pages for the <a href="/blog/perl-weekly-challenge-102/"><strong>original tasks</strong></a> or the summary <a href="/blog/recap-challenge-102/"><strong>recap</strong></a> of the challenge. But don&rsquo;t worry, the challenges themselves will be briefly summarized, presented below as we progress from task by task. Oh, and one more thing before we get started:</p>
+<h3 id="getting-in-touch-with-us">Getting in Touch with Us</h3>
+<p><a href="mailto:pwc.perfectwave@gmail.com"><img src="/images/blog/Email.svg" height="50" width="50"> Email</a> › Please email me (Colin) with any feedback, notes, clarifications or whatnot about this review.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge"><img src="/images/blog/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request to us for any issues you may find with this page.</p>
+<p><a href="https://twitter.com/perlwchallenge"><img src="/images/blog/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!</p>
+<p>I&rsquo;m always curious as to what the people think of these efforts. Everyone here at the PWC would like to hear any feedback you&rsquo;d like to give.</p>
+<p><strong>So finally, without further ado&hellip;</strong></p>
+<hr>
+<h2 id="---nbsp--nbsp--nbsp---task-1pwc102task1-------nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---task-2pwc102task2---nbsp--nbsp--nbsp----------nbsp--nbsp--nbsp---blogspwc102blogs----nbsp--nbsp--nbsp---">•             <a href="#PWC102TASK1">Task 1</a>                 •             <a href="#PWC102TASK2">Task 2</a>                 •             <a href="#PWC102BLOGS">BLOGS</a>              	•</h2>
+<hr>
+<h1 id="PWC102TASK1">TASK 1</h1>
+<h1 id="rare-numbers">Rare Numbers</h1>
+<p><em>Submitted by: Mohammad S Anwar</em></p>
+<p>You are given a positive integer $N.</p>
+<p>Write a script to generate all Rare numbers of size $N if exists.</p>
+<p>Please checkout the <a href="http://www.shyamsundergupta.com/rare.htm">page</a> for more information about it.</p>
+<p><strong>Examples</strong></p>
+<pre><code>    (a) 2 digits: 65
+    (b) 6 digits: 621770
+    (c) 9 digits: 281089082
+</code></pre><h2 id="about-the-solutions">about the solutions</h2>
+<p>There were 24 submissions for the first task this past week.</p>
+<p>Checking a candidate for rareness is a pretty straightforward operation: take the number, reverse its digits, then alternately add and subtract the reversed version from the original. If both the sum and the difference are perfect squares, then you have found a rare number.</p>
+<p>If you do this 100 times, then you will find the number 65 fits the bill. Ok, now do it a hundred billion times. Ahh, there&rsquo;s the rub, and we&rsquo;re only up to ten digits.</p>
+<p>There&rsquo;s nothing in the task specification indicating any sort of time constraints on the solution. So, if we implement the above steps in a loop, trying a value and then adding 1 and trying again, eventually we will find any rare numbers we require. Empires may rise and fall, the seas may dry up, the Sun may no longer burn, but eventually, save the coming of the heat-death of the universe, we will get our answer.</p>
+<p>So really, the focus shifts to an unbounded problem of optimization: How far are we willing to go? How many digits can we reasonably compute?</p>
+<p>Mr. Gupta claims to have constructed a program capable of computing values up to 10<sup>23</sup>, but perhaps wishing we should draw some favorable associations with Fermat, declines to publish it. He does, however, list a number of properties of the rare numbers that we can draw on to limit the candidates to check. There are also some known properties of perfect squares suggested, that can further filter out some expensive calculations.</p>
+<p>Most of the examples submitted were based around those properties listed by Gupta in the suggested web page, but there were some alternate approaches taken, too, based around properties of perfect squares. The allowance for palindromic rare numbers was left an open question, with submissions offered from both perspectives. As there are known to be an infinite number of rare palindromes, it&rsquo;s an interesting thought experiment to consider the ramifications of calling anything that there is an infinite quantity of &ldquo;rare&rdquo;. <a href="https://en.wikipedia.org/wiki/Cantor_set">Of course the idea does make sense</a>, and <a href="https://peerj.com/articles/cs-171.pdf">even has practical applications</a>, but I would argue the whole matter is <a href="https://en.wikipedia.org/wiki/Nowhere_dense_set">rather profoundly weird</a>.</p>
+<h2 id="the-basic-algorithm">the BASIC ALGORITHM</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/arne-sommer/perl/ch-1.pl"><strong>Arne Sommer</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/cristian-heredia/perl/ch-1.pl"><strong>Cristina Heredia</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/lubos-kolouch/perl/ch-1.pl"><strong>Lubos Kolouch</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/paulo-custodio/perl/ch-1.pl"><strong>Paulo Custodio</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/yet-ebreo/perl/ch-1.pl"><strong>Yet Ebreo</strong></a></p>
+<p>The basic algorithm, as outlined, involves iterating through a range of numbers, creating a digit-reversed version of each, and alternately adding and subtracting the reverse with the original. If both of these actions on a candidate produce a perfect square, then we have found a rare number.</p>
+<p>As I said before, there is nothing wrong with stopping at the base implementation. Given enough time the run will eventually finish. Or possibly catch fire. We&rsquo;ll have to watch for that.</p>
+<p>This straightforward approach was taken by a number of members.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/arne-sommer/perl/ch-1.pl"><strong>Arne Sommer</strong></a></p>
+<p>Arne kept all his optimization to his Raku solution, leaving his Perl in the starting configuration. However, left this way we can quite clearly see the progression through the steps. We will see than most of the rest of the submissions will start with this basic form, adding  increasing levels of complexity on top of it but leaving the framework intact.</p>
+<p>Looking it over, we can see establishment of some lower and upper bonds for the search range, and then iterating through the range looking at candidates. To validate we first create a reverse number and the sum and difference values. After taking the square root of a value, if the integer truncation of the result is the same as the original then we started with a perfect square.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $lower <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">.</span> <span style="color:#ae81ff">0</span> x ($N <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
+    <span style="color:#66d9ef">my</span> $upper <span style="color:#f92672">=</span> <span style="color:#ae81ff">9</span> x $N;
+
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $candidate ($lower <span style="color:#f92672">..</span> $upper)
+    {
+      say $candidate <span style="color:#66d9ef">if</span> is_rare($candidate);
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_rare</span> ($number)
+    {
+      <span style="color:#66d9ef">my</span> $reverse  <span style="color:#f92672">=</span> reverse $number;
+      <span style="color:#66d9ef">my</span> $add      <span style="color:#f92672">=</span> $number <span style="color:#f92672">+</span> $reverse;
+      <span style="color:#66d9ef">my</span> $subtract <span style="color:#f92672">=</span> $number <span style="color:#f92672">-</span> $reverse;
+
+      <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $add <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> $subtract <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>;
+
+      <span style="color:#66d9ef">my</span> $add_sqrt <span style="color:#f92672">=</span> sqrt($add);
+      <span style="color:#66d9ef">my</span> $sub_sqrt <span style="color:#f92672">=</span> sqrt($subtract);
+
+      <span style="color:#66d9ef">return</span> int($add_sqrt) <span style="color:#f92672">==</span> $add_sqrt <span style="color:#f92672">&amp;&amp;</span> int($sub_sqrt) <span style="color:#f92672">==</span> $sub_sqrt;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/cristian-heredia/perl/ch-1.pl"><strong>Cristina Heredia</strong></a></p>
+<p>Here&rsquo;s Christina&rsquo;s versions of the same steps. She introduces the idea that should the difference go negative there is no point in continuing to the validation step. There&rsquo;s no room for complex roots in rare numbers.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e">#First, create the array with the naumbers with size N</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">createNumbers</span>{
+        $max <span style="color:#f92672">.=</span> <span style="color:#e6db74">&#39;9&#39;</span> <span style="color:#66d9ef">while</span> $number <span style="color:#f92672">&gt;</span> length $max;
+        $min <span style="color:#f92672">.=</span> <span style="color:#e6db74">&#39;0&#39;</span> <span style="color:#66d9ef">while</span> $number <span style="color:#f92672">&gt;</span> length $min;
+        @array <span style="color:#f92672">=</span> ($min<span style="color:#f92672">..</span>$max);
+    }
+
+    <span style="color:#75715e">#R + R1 = X2 and R - R1 = Y2</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">operation</span> {
+        <span style="color:#66d9ef">for</span> ($i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; $i <span style="color:#f92672">&lt;</span> @array; $i<span style="color:#f92672">++</span>) {
+            $revNumber <span style="color:#f92672">=</span> reverse($array[$i]);
+            $check1 <span style="color:#f92672">=</span> $array[$i] <span style="color:#f92672">+</span> $revNumber;
+            $check2 <span style="color:#f92672">=</span> $array[$i] <span style="color:#f92672">-</span> $revNumber;
+            <span style="color:#66d9ef">if</span> ($check2 <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
+                perfectSquare();
+            }
+        }
+    }
+
+    <span style="color:#75715e">#Check that they&#39;re perfect square</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">perfectSquare</span> {
+        <span style="color:#66d9ef">my</span> $result1 <span style="color:#f92672">=</span> sqrt $check1;
+
+        <span style="color:#66d9ef">my</span> $result2 <span style="color:#f92672">=</span> sqrt $check2;
+        <span style="color:#66d9ef">if</span> ($result1 <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^\d+$/</span> <span style="color:#f92672">and</span> $result2 <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^\d+$/</span>) {
+          <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$array[$i]\n&#34;</span>;
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/lubos-kolouch/perl/ch-1.pl"><strong>Lubos Kolouch</strong></a></p>
+<p>Lobos inlines his validation but the underlying logic remains the same. He starts counting up from the first number in the range and stops when we carry over into the next order of magnitude.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get_rare_numbers</span> {
+        <span style="color:#66d9ef">my</span> $what <span style="color:#f92672">=</span> shift;
+
+        <span style="color:#66d9ef">my</span> $pos <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;0&#39;</span>x($what<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
+
+        <span style="color:#66d9ef">my</span> @output;
+        <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
+            $pos<span style="color:#f92672">++</span>;
+            <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">unless</span> (length($pos) <span style="color:#f92672">==</span> $what);
+            <span style="color:#66d9ef">my</span> $rev_num <span style="color:#f92672">=</span> reverse $pos;
+
+            <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> $pos <span style="color:#f92672">-</span> $rev_num <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>;
+            <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> sqrt($pos <span style="color:#f92672">-</span> $rev_num) <span style="color:#f92672">==</span> int(sqrt($pos <span style="color:#f92672">-</span> $rev_num));
+            <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> sqrt($pos <span style="color:#f92672">+</span> $rev_num) <span style="color:#f92672">==</span> int(sqrt($pos <span style="color:#f92672">+</span> $rev_num));
+            <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$pos \n&#34;</span>;
+
+            push @output, $pos;
+        }
+
+        <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@output;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a></p>
+<p>Ulrich takes a more functional approach, breaking the problem down into three base components: first a <code>grep</code> filter over the given range; this function applying an <code>isRare()</code>  validation function; which in turn uses an <code>isPerfectSquare()</code> function to see whether the square root is an integer.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">isPerfectSquare</span> {
+      <span style="color:#66d9ef">my</span> $num <span style="color:#f92672">=</span> shift ;
+      <span style="color:#66d9ef">if</span> ( $num <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> ) {
+          <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> ;
+      }
+      <span style="color:#66d9ef">else</span> {
+          <span style="color:#66d9ef">my</span> $root <span style="color:#f92672">=</span> sqrt( $num ) ;
+          <span style="color:#66d9ef">return</span> $root <span style="color:#f92672">==</span> int( $root ) ;
+      }
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">isRare</span> {
+      <span style="color:#66d9ef">my</span> $num <span style="color:#f92672">=</span> shift ;
+      <span style="color:#66d9ef">my</span> $reversed <span style="color:#f92672">=</span> join( <span style="color:#e6db74">&#39;&#39;</span> , reverse split(<span style="color:#e6db74"> //</span> , $num ) ) ;
+      <span style="color:#66d9ef">return</span> ( isPerfectSquare( $num <span style="color:#f92672">+</span> $reversed ) <span style="color:#f92672">and</span>
+        isPerfectSquare( $num <span style="color:#f92672">-</span> $reversed ) ) ;
+    }
+
+    <span style="color:#66d9ef">my</span> $N <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">0</span>] ;
+    say grep { isRare( $_ ) } (<span style="color:#ae81ff">10</span> <span style="color:#f92672">**</span> ( $N <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ) <span style="color:#f92672">..</span> ( <span style="color:#ae81ff">10</span> <span style="color:#f92672">**</span> $N) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ) ;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/yet-ebreo/perl/ch-1.pl"><strong>Yet Ebreo</strong></a></p>
+<p>Out for a quick round of golf, Yet capitalizes on default values when using <code>reverse</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> @rares <span style="color:#f92672">=</span> grep{($_<span style="color:#f92672">-</span>reverse<span style="color:#f92672">&gt;-</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">&amp;&amp;</span>sqrt($_<span style="color:#f92672">+</span>reverse)<span style="color:#f92672">!~</span><span style="color:#e6db74">/\./</span><span style="color:#f92672">&amp;&amp;</span>sqrt($_<span style="color:#f92672">-</span>reverse)<span style="color:#f92672">!~</span><span style="color:#e6db74">/\./</span>}<span style="color:#ae81ff">10</span><span style="color:#f92672">**~-</span>$N<span style="color:#f92672">..~-</span><span style="color:#ae81ff">10</span><span style="color:#f92672">**</span>$N;
+    say <span style="color:#e6db74">&#34;Rare with $N digits: @rares&#34;</span>
+</code></pre></div><p>Broken down, that yields, in the middle:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    grep {     ( $_ <span style="color:#f92672">-</span> reverse <span style="color:#f92672">&gt;</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> )
+            <span style="color:#f92672">&amp;&amp;</span> sqrt( $_ <span style="color:#f92672">+</span> reverse ) <span style="color:#f92672">!~</span> <span style="color:#e6db74">/\./</span>
+            <span style="color:#f92672">&amp;&amp;</span> sqrt( $_ <span style="color:#f92672">-</span> reverse ) <span style="color:#f92672">!~</span> <span style="color:#e6db74">/\./</span>
+          } <span style="color:#ae81ff">10</span><span style="color:#f92672">**~-</span>$N<span style="color:#f92672">..~-</span><span style="color:#ae81ff">10</span><span style="color:#f92672">**</span>$N;
+</code></pre></div><p>We see the familiar golfing tropes: eliminating temporary variables; drawing on default assignment; and the use of shorter, more exotic operations. For example, he checks for an integer value from the presence or absence of a decimal point. The last line utilizes the &ldquo;<a href="https://metacpan.org/pod/distribution/perlsecret/lib/perlsecret.pod#Inchworm-on-a-stick">inchworm on a stick</a>&rdquo; secret operator; the <code>~-</code> decrements positive values. Thus a less baroque way to phrase this would be</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#ae81ff">10</span><span style="color:#f92672">**</span>($N<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">..</span> (<span style="color:#ae81ff">10</span><span style="color:#f92672">**</span>$N)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</code></pre></div><p>which should be a bit more recognizable as the range span of a single number of digits.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a></p>
+<p>Finally, Simon adds one simple twist: before commencing he creates a lookup table of all possible perfect squares in the range, which he can then consult instead of applying two expensive <code>sqrt</code> operations per candidate. This isn&rsquo;t as crazy as it sounds, as there are only about
+10<sup><em>length/2</em></sup> keys in this hash to compute. Eventually the memory footprint will become cumbersome, but not until N = 18 or so.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">while</span> ( $counter<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">10</span><span style="color:#f92672">**</span>$length ) {
+        <span style="color:#f92672">++</span>$counter;
+        $squares{ $counter<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span> } <span style="color:#f92672">=</span> $counter;
+    }
+
+    <span style="color:#66d9ef">my</span> $r         <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span><span style="color:#f92672">**</span>( $length <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> );
+    <span style="color:#66d9ef">while</span> ( $r <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">10</span><span style="color:#f92672">**</span>$length ) {
+        <span style="color:#66d9ef">my</span> $r1 <span style="color:#f92672">=</span> reverse($r);
+        push @solutions, $r <span style="color:#66d9ef">if</span> ( $r <span style="color:#f92672">&gt;=</span> $r1 <span style="color:#f92672">and</span> $squares{ $r <span style="color:#f92672">-</span> $r1 } <span style="color:#f92672">and</span> $squares{ $r <span style="color:#f92672">+</span> $r1 } );
+        <span style="color:#f92672">++</span>$r;
+    }
+</code></pre></div><h2 id="the-first-and-last-digits">the FIRST and LAST digits</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a> and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a></p>
+<p>On the source page, there are a number of increasingly complex properties of rare numbers listed. These are expressed as rules, like &ldquo;the first digit must be even&rdquo;, and &ldquo;if the first digit is 2 the last digit must be 2&rdquo;. As they continue the rules get more complicated. I found that implementing the more complex rules introduced a tradeoff: adding the validation code increased the length of every loop cycle against shortening some loops by exiting early. The very broadest filter, that the first digit must be even, had a profound effect, but the most specific rules were muted by the added overhead.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a></p>
+<p>CY demonstrates the first subset of the rules, for the first and last digit, with a slight detour into the second and second-to-last as well:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">check_rare</span> {
+        <span style="color:#66d9ef">my</span> $r <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>];
+        <span style="color:#66d9ef">my</span> $a <span style="color:#f92672">=</span> substr($r,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>);
+        <span style="color:#66d9ef">my</span> $q <span style="color:#f92672">=</span> substr($r,<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>);
+        <span style="color:#66d9ef">return</span> undef <span style="color:#66d9ef">if</span> $a % 2 <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">return</span> undef <span style="color:#66d9ef">if</span>
+            $a <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span>
+            <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span>( $q <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span>
+                  <span style="color:#f92672">&amp;&amp;</span> substr($r,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>) <span style="color:#f92672">==</span> substr($r,<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>) );
+        <span style="color:#66d9ef">return</span> undef <span style="color:#66d9ef">if</span>
+            $a <span style="color:#f92672">==</span> <span style="color:#ae81ff">4</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span>($q <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>);
+        <span style="color:#66d9ef">return</span> undef <span style="color:#66d9ef">if</span>
+            $a <span style="color:#f92672">==</span> <span style="color:#ae81ff">6</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span>($q <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> $q <span style="color:#f92672">==</span> <span style="color:#ae81ff">5</span>);
+        <span style="color:#66d9ef">return</span> undef <span style="color:#66d9ef">if</span>
+            $a <span style="color:#f92672">==</span> <span style="color:#ae81ff">8</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span>($q <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">||</span> $q <span style="color:#f92672">==</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">||</span> $q <span style="color:#f92672">==</span> <span style="color:#ae81ff">7</span> <span style="color:#f92672">||</span> $q <span style="color:#f92672">==</span> <span style="color:#ae81ff">8</span>);
+       <span style="color:#75715e"># above: properties of rare number, as noted in website</span>
+       <span style="color:#75715e"># http://www.shyamsundergupta.com/rare.htm</span>
+
+        <span style="color:#66d9ef">my</span> $r1 <span style="color:#f92672">=</span> rvrse $r;
+        <span style="color:#66d9ef">return</span> undef <span style="color:#66d9ef">if</span> $r1 <span style="color:#f92672">&gt;</span> $r;
+        <span style="color:#66d9ef">return</span> check_sq($r<span style="color:#f92672">+</span>$r1) <span style="color:#f92672">&amp;&amp;</span> check_sq($r<span style="color:#f92672">-</span>$r1);
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a></p>
+<p>When optimizing my own solution, I did a test: just the simplest <code>for</code> loop iterating through 10<sup>10</sup> values, not assigning to a variable, not doing anything at all, <code>for ( 1..10**10 ) { ; }</code>, took 100 seconds. That indicated to me that using a <code>next</code> to short-circuit out of a loop cycle early wasn&rsquo;t going to be enough. We needed to jump the iterator ahead whole ranges of excluded values.</p>
+<p>For example, if the first digit of a candidate was odd: rather than loop and exit early through the next 100,000 iterations, it would be better to just jump to the lowest value in the next digit range and <em>skip</em> those 100,000 loops entirely.</p>
+<p>So I unrolled the loops, to great effect. When an invalid combination is arrived at, the value is adjusted and increased to the next valid candidate, according to an arcane set of rules I was able to calculate. It was quite tedious work, but I was able to narrow down the field 11-fold: 8999 iterations became about 800 just by applying the first and last digit checks.</p>
+<p>It felt a lot like writing assembly code, and far from anything Perlish. I stopped after the first and last values; the second and second-to-last pairings were a thicket of logic and jumping around on that playing field was making my head hurt. And to dubious benefit, as the added checks were slowing down every loop processed even as some additional loops were eliminated. I decided I had proved my point, and wasn&rsquo;t going to get another digit past 10 in any reasonable time.</p>
+<p>I can see now constructing the numbers from an iterated list <em>inside</em> valid pairs  of first and last digits is the next logical progression of this technique, without all the messy jumping mathematically. Oh well&hellip; I&rsquo;m still proud of the aggressive leanness of it all. It&rsquo;s stripped down, sleek and fast.</p>
+<p>And quite a unique approach to optimizing the algorithm, it appears. Kind of like stripping out the back seat, bumpers and the door panels of your hot rod to save weight.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">while</span> ($test <span style="color:#f92672">&lt;</span> $end) {
+
+    <span style="color:#66d9ef">my</span> $A <span style="color:#f92672">=</span> substr $test, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">if</span> ($A % 2 <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>) {                  <span style="color:#75715e">## skip odd first ranks</span>
+        $test <span style="color:#f92672">+=</span> <span style="color:#ae81ff">10</span><span style="color:#f92672">**</span>($order<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
+        <span style="color:#66d9ef">next</span>;
+    }
+
+    <span style="color:#66d9ef">my</span> $Z <span style="color:#f92672">=</span> substr $test, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>;
+
+    <span style="color:#75715e">## 2s</span>
+    <span style="color:#66d9ef">if</span> ($A <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">and</span> $Z <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+        $test <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span>;
+    }
+    <span style="color:#66d9ef">elsif</span> ($A <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">and</span> $Z <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">2</span>) {
+        <span style="color:#66d9ef">if</span> ($tens <span style="color:#f92672">==</span> <span style="color:#ae81ff">9</span>) {
+            $test <span style="color:#f92672">+=</span> <span style="color:#ae81ff">7</span>;
+            $tens <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+            <span style="color:#66d9ef">next</span>;
+        }
+        $test <span style="color:#f92672">+=</span> <span style="color:#ae81ff">9</span>;
+        $tens<span style="color:#f92672">++</span>;
+    }
+
+    <span style="color:#75715e">## 4s</span>
+    <span style="color:#66d9ef">if</span> ($A <span style="color:#f92672">==</span> <span style="color:#ae81ff">4</span> <span style="color:#f92672">and</span> $Z <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
+        <span style="color:#66d9ef">if</span> ($tens <span style="color:#f92672">==</span> <span style="color:#ae81ff">9</span>) {
+            $test <span style="color:#f92672">+=</span> <span style="color:#ae81ff">9</span>;
+            $tens <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+            <span style="color:#66d9ef">next</span>;
+        }
+        $test <span style="color:#f92672">+=</span> <span style="color:#ae81ff">9</span>;
+        $tens<span style="color:#f92672">++</span>;
+    }
+
+    <span style="color:#75715e">## 6s</span>
+    <span style="color:#66d9ef">if</span> ($A <span style="color:#f92672">==</span> <span style="color:#ae81ff">6</span> <span style="color:#f92672">and</span> $Z <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>) {
+        $test <span style="color:#f92672">+=</span> <span style="color:#ae81ff">4</span>;
+    }
+    <span style="color:#66d9ef">elsif</span> ($A <span style="color:#f92672">==</span> <span style="color:#ae81ff">6</span> <span style="color:#f92672">and</span> $Z <span style="color:#f92672">==</span> <span style="color:#ae81ff">6</span>) {
+        <span style="color:#66d9ef">if</span> ($tens <span style="color:#f92672">==</span> <span style="color:#ae81ff">9</span>) {
+            $test <span style="color:#f92672">+=</span> <span style="color:#ae81ff">4</span>;
+            $tens <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+            <span style="color:#66d9ef">next</span>;
+        }
+        $test <span style="color:#f92672">+=</span> <span style="color:#ae81ff">4</span>;
+        $tens<span style="color:#f92672">++</span>;
+    }
+
+    <span style="color:#75715e">## 8s</span>
+    <span style="color:#66d9ef">if</span>    ($A <span style="color:#f92672">==</span> <span style="color:#ae81ff">8</span> <span style="color:#f92672">and</span> $Z <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+        $test <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span>;
+    }
+    <span style="color:#66d9ef">elsif</span> ($A <span style="color:#f92672">==</span> <span style="color:#ae81ff">8</span> <span style="color:#f92672">and</span> $Z <span style="color:#f92672">==</span> <span style="color:#ae81ff">4</span>) {
+        $test <span style="color:#f92672">+=</span> <span style="color:#ae81ff">3</span>;
+    }
+    <span style="color:#66d9ef">elsif</span> ($A <span style="color:#f92672">==</span> <span style="color:#ae81ff">8</span> <span style="color:#f92672">and</span> $Z <span style="color:#f92672">==</span> <span style="color:#ae81ff">9</span>) {
+        <span style="color:#66d9ef">if</span> ($tens <span style="color:#f92672">==</span> <span style="color:#ae81ff">9</span>) {
+            $test <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
+            $tens <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+            <span style="color:#66d9ef">next</span>;
+        }
+        $test <span style="color:#f92672">+=</span><span style="color:#ae81ff">3</span>;
+        $tens<span style="color:#f92672">++</span>;
+    }
+
+    <span style="color:#66d9ef">my</span> $rev <span style="color:#f92672">=</span> reverse $test;
+    <span style="color:#66d9ef">if</span> (    $test <span style="color:#f92672">==</span> $rev               <span style="color:#75715e">## multiple opporunities to short-circuit</span>
+         <span style="color:#f92672">or</span> $test <span style="color:#f92672">-</span> $rev <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>
+         <span style="color:#f92672">or</span> int(sqrt($test<span style="color:#f92672">-</span>$rev))<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">!=</span> ($test<span style="color:#f92672">-</span>$rev)
+         <span style="color:#f92672">or</span> int(sqrt($test<span style="color:#f92672">+</span>$rev))<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">!=</span> ($test<span style="color:#f92672">+</span>$rev)  ) {
+                $test<span style="color:#f92672">++</span>;
+                <span style="color:#66d9ef">next</span>;
+    }
+
+    push @out, $test;
+    $test<span style="color:#f92672">++</span>;
+}
+</code></pre></div><h2 id="more-digit-properties">more DIGIT PROPERTIES</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a> and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a></p>
+<p>Careful implementation of all the rules was fruitful in the end of course. I tried it several ways; I just couldn&rsquo;t make it run <em>faster</em> than the lean-running method I came up with. Others pulled out all the stops.</p>
+<p>I wonder how many of you have ever even <em>heard</em> a pipe organ with all of the pipes unstoppered, open wide? It&rsquo;s a truly magnificent noise.</p>
+<p>Here all of the first and last digit restrictions are implemented, along with the some additional filters, such as that prefect squares can only end with certain numbers.</p>
+<p>As these two methods are themselves examples of everything, it seems wrong to section out one portion of the whole, as the whole is the point.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">rn</span> {
+      <span style="color:#66d9ef">my</span> $d<span style="color:#f92672">=</span>shift;
+      <span style="color:#66d9ef">my</span> @out;
+      <span style="color:#66d9ef">my</span> $mxm<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span><span style="color:#f92672">**</span>($d<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+      <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $a (<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">8</span>) {
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $q (<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">8</span>) {
+          <span style="color:#66d9ef">if</span> ($a<span style="color:#f92672">==</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">&amp;&amp;</span> $q<span style="color:#f92672">!=</span><span style="color:#ae81ff">2</span>) {
+            <span style="color:#66d9ef">next</span>;
+          }
+          <span style="color:#66d9ef">if</span> ($a<span style="color:#f92672">==</span><span style="color:#ae81ff">4</span> <span style="color:#f92672">&amp;&amp;</span> $q<span style="color:#f92672">!=</span><span style="color:#ae81ff">0</span>) {
+            <span style="color:#66d9ef">next</span>;
+          }
+          <span style="color:#66d9ef">if</span> ($a<span style="color:#f92672">==</span><span style="color:#ae81ff">6</span> <span style="color:#f92672">&amp;&amp;</span> $q<span style="color:#f92672">!=</span><span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> $q<span style="color:#f92672">!=</span><span style="color:#ae81ff">5</span>) {
+            <span style="color:#66d9ef">next</span>;
+          }
+          <span style="color:#66d9ef">if</span> ($a<span style="color:#f92672">==</span><span style="color:#ae81ff">8</span> <span style="color:#f92672">&amp;&amp;</span> $q<span style="color:#f92672">!=</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">&amp;&amp;</span> $q<span style="color:#f92672">!=</span><span style="color:#ae81ff">3</span> <span style="color:#f92672">&amp;&amp;</span> $q<span style="color:#f92672">!=</span><span style="color:#ae81ff">7</span> <span style="color:#f92672">&amp;&amp;</span> $q<span style="color:#f92672">!=</span><span style="color:#ae81ff">8</span>) {
+            <span style="color:#66d9ef">next</span>;
+          }
+          <span style="color:#66d9ef">if</span> ($d<span style="color:#f92672">==</span><span style="color:#ae81ff">2</span>) {
+            <span style="color:#66d9ef">my</span> $t<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;$a$q&#34;</span>;
+            <span style="color:#66d9ef">if</span> (is_rare($t)) {
+              push @out,$t;
+            }
+          } <span style="color:#66d9ef">else</span> {
+            <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $middledigits (map {sprintf(<span style="color:#e6db74">&#39;%0&#39;</span><span style="color:#f92672">.</span>($d<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>)<span style="color:#f92672">.</span><span style="color:#e6db74">&#39;d&#39;</span>,$_)} <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$mxm) {
+              <span style="color:#66d9ef">my</span> $b<span style="color:#f92672">=</span>substr($middledigits,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>);
+              <span style="color:#66d9ef">my</span> $p<span style="color:#f92672">=</span>substr($middledigits,<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>);
+              <span style="color:#66d9ef">if</span> ($a<span style="color:#f92672">==</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">&amp;&amp;</span> $b<span style="color:#f92672">!=</span>$p) {
+                <span style="color:#66d9ef">next</span>;
+              }
+              <span style="color:#66d9ef">if</span> ($a<span style="color:#f92672">==</span><span style="color:#ae81ff">4</span> <span style="color:#f92672">&amp;&amp;</span> abs($b<span style="color:#f92672">-</span>$p)%2 <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>) {
+                <span style="color:#66d9ef">next</span>;
+              }
+              <span style="color:#66d9ef">if</span> ($a<span style="color:#f92672">==</span><span style="color:#ae81ff">6</span> <span style="color:#f92672">&amp;&amp;</span> abs($b<span style="color:#f92672">-</span>$p)%2 <span style="color:#f92672">!=</span> <span style="color:#ae81ff">1</span>) {
+                <span style="color:#66d9ef">next</span>;
+              }
+              <span style="color:#66d9ef">if</span> ($a<span style="color:#f92672">==</span><span style="color:#ae81ff">8</span>) {
+                <span style="color:#66d9ef">if</span> ($q<span style="color:#f92672">==</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">&amp;&amp;</span> $b<span style="color:#f92672">+</span>$p <span style="color:#f92672">!=</span> <span style="color:#ae81ff">9</span>) {
+                  <span style="color:#66d9ef">next</span>;
+                } <span style="color:#66d9ef">elsif</span> ($q<span style="color:#f92672">==</span><span style="color:#ae81ff">3</span> <span style="color:#f92672">&amp;&amp;</span> $b<span style="color:#f92672">-</span>$p <span style="color:#f92672">!=</span> <span style="color:#ae81ff">7</span> <span style="color:#f92672">&amp;&amp;</span> $p<span style="color:#f92672">-</span>$b <span style="color:#f92672">!=</span> <span style="color:#ae81ff">3</span>) {
+                  <span style="color:#66d9ef">next</span>;
+                } <span style="color:#66d9ef">elsif</span> ($q<span style="color:#f92672">==</span><span style="color:#ae81ff">7</span> <span style="color:#f92672">&amp;&amp;</span> $b<span style="color:#f92672">+</span>$p <span style="color:#f92672">!=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;&amp;</span> $b<span style="color:#f92672">+</span>$p <span style="color:#f92672">!=</span> <span style="color:#ae81ff">11</span>) {
+                  <span style="color:#66d9ef">next</span>;
+                } <span style="color:#66d9ef">elsif</span> ($q<span style="color:#f92672">==</span><span style="color:#ae81ff">8</span> <span style="color:#f92672">&amp;&amp;</span> $b<span style="color:#f92672">!=</span>$p) {
+                  <span style="color:#66d9ef">next</span>;
+                }
+              }
+              <span style="color:#66d9ef">my</span> $t<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;$a$middledigits$q&#34;</span>;
+              <span style="color:#66d9ef">if</span> (is_rare($t)) {
+                push @out,$t;
+              }
+            }
+          }
+        }
+      }
+      <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@out;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_rare</span> {
+      <span style="color:#66d9ef">my</span> $t<span style="color:#f92672">=</span>shift;
+      <span style="color:#66d9ef">my</span> $d<span style="color:#f92672">=</span>join(<span style="color:#e6db74">&#39;&#39;</span>,reverse(split <span style="color:#e6db74">&#39;&#39;</span>,$t));
+      <span style="color:#66d9ef">if</span> ($d <span style="color:#f92672">&gt;=</span> $t) {
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+      }
+      <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $c ($t<span style="color:#f92672">+</span>$d,$t<span style="color:#f92672">-</span>$d) {
+        <span style="color:#66d9ef">if</span> ($c <span style="color:#f92672">=~</span><span style="color:#e6db74"> /[2378]$/</span>) {
+          <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+        }
+        <span style="color:#66d9ef">my</span> $s<span style="color:#f92672">=</span>int(sqrt($c));
+        <span style="color:#66d9ef">unless</span> ($s<span style="color:#f92672">*</span>$s<span style="color:#f92672">==</span>$c) {
+          <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+        }
+      }
+      <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a></p>
+<p>On top of everything James creates a filter for the digit sum of the number and a cache for the difference with the reverse, avoiding even more unnecessary calls to <code>sqrt</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">  const <span style="color:#66d9ef">my</span> @RARE_ENDS <span style="color:#f92672">=&gt;</span> ( [<span style="color:#ae81ff">2</span>,[<span style="color:#ae81ff">2</span>]], [<span style="color:#ae81ff">4</span>,[<span style="color:#ae81ff">0</span>]], [<span style="color:#ae81ff">6</span>,[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">5</span>]], [<span style="color:#ae81ff">8</span>,[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">8</span>]] );
+  const <span style="color:#66d9ef">my</span> @F<span style="color:#f92672">=&gt;</span>(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>); <span style="color:#75715e">## rare_numbers have a digit sum</span>
+                                    <span style="color:#75715e">## (value mod 9) of either 9/0,2,5 or 8</span>
+
+  <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_rare</span> {
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_sq</span> {
+      state %cache;
+      <span style="color:#66d9ef">return</span> $cache{$_[<span style="color:#ae81ff">0</span>]} <span style="color:#66d9ef">if</span> exists $cache{$_[<span style="color:#ae81ff">0</span>]};
+      <span style="color:#66d9ef">return</span> $cache{$_[<span style="color:#ae81ff">0</span>]} <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=~</span> <span style="color:#e6db74">m{[014569]$}</span> <span style="color:#f92672">&amp;&amp;</span>
+                             $_[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">==</span> (int sqrt $_[<span style="color:#ae81ff">0</span>])<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>;
+    }
+
+    <span style="color:#66d9ef">my</span> $x <span style="color:#f92672">=</span> shift;
+    <span style="color:#66d9ef">return</span> () <span style="color:#66d9ef">if</span> $F[$x%9]; <span style="color:#75715e">## Digit sum is wrong...</span>
+    <span style="color:#66d9ef">my</span> $y <span style="color:#f92672">=</span> reverse $x;
+    <span style="color:#66d9ef">return</span> () <span style="color:#66d9ef">if</span> $x <span style="color:#f92672">==</span> $y <span style="color:#f92672">||</span> <span style="color:#f92672">!</span> is_sq($x<span style="color:#f92672">+</span>$y); <span style="color:#75715e">## Musn&#39;t be the same back and forth</span>
+    <span style="color:#66d9ef">return</span> $y <span style="color:#66d9ef">if</span> $x<span style="color:#f92672">&lt;</span>$y <span style="color:#f92672">&amp;&amp;</span> is_sq($y<span style="color:#f92672">-</span>$x);
+    <span style="color:#66d9ef">return</span> $x <span style="color:#66d9ef">if</span> $y<span style="color:#f92672">&lt;</span>$x <span style="color:#f92672">&amp;&amp;</span> is_sq($x<span style="color:#f92672">-</span>$y);
+    <span style="color:#75715e">## Check both ways round!</span>
+    <span style="color:#66d9ef">return</span> ();
+  }
+
+  <span style="color:#66d9ef">my</span> %res;
+  <span style="color:#66d9ef">my</span> $low  <span style="color:#f92672">=</span> $size <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">4</span> ? <span style="color:#e6db74">&#39;&#39;</span> : <span style="color:#e6db74">&#39;0&#39;</span> x ($size<span style="color:#f92672">-</span><span style="color:#ae81ff">4</span>);
+  <span style="color:#66d9ef">my</span> $high <span style="color:#f92672">=</span> $size <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">4</span> ? <span style="color:#e6db74">&#39;&#39;</span> : <span style="color:#e6db74">&#39;9&#39;</span> x ($size<span style="color:#f92672">-</span><span style="color:#ae81ff">4</span>);
+  <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $tup ( @RARE_ENDS ) {
+    <span style="color:#66d9ef">my</span> $s <span style="color:#f92672">=</span> $tup<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>];             <span style="color:#75715e">## first digit has to be even 2,4,6,8</span>
+    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $e (@{$tup<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]}) { <span style="color:#75715e">## second digit has to be in list</span>
+                                   <span style="color:#75715e">## defined above</span>
+      <span style="color:#66d9ef">if</span>( $size <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span> ) {           <span style="color:#75715e">## As our method really starts at 4</span>
+                                   <span style="color:#75715e">## let us deal with 2 &amp; 3 cases first</span>
+                                   <span style="color:#75715e">## as the optimized code is for</span>
+                                   <span style="color:#75715e">## numbers of length 4 or more</span>
+        $res{$_}<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> <span style="color:#66d9ef">foreach</span> is_rare(<span style="color:#e6db74">&#34;$s$e&#34;</span>);
+        <span style="color:#66d9ef">next</span>;
+      }
+      <span style="color:#66d9ef">if</span>( $size <span style="color:#f92672">==</span> <span style="color:#ae81ff">3</span> ) {
+        $res{$_}<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> <span style="color:#66d9ef">foreach</span> map { is_rare(<span style="color:#e6db74">&#34;$s$_$e&#34;</span>) } <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">9</span>;
+        <span style="color:#66d9ef">next</span>;
+      }
+
+      <span style="color:#75715e">## Now we need to do the next group....</span>
+      <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $b (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">9</span>) {    <span style="color:#75715e">## These are filters to apply</span>
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $f (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">9</span>) {  <span style="color:#75715e">## for each group of numbers....</span>
+          <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $s<span style="color:#f92672">==</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">&amp;&amp;</span> $b<span style="color:#f92672">!=</span>$f
+            <span style="color:#f92672">||</span> $s<span style="color:#f92672">==</span><span style="color:#ae81ff">4</span> <span style="color:#f92672">&amp;&amp;</span> ($b<span style="color:#f92672">-</span>$f)%2
+            <span style="color:#f92672">||</span> $s<span style="color:#f92672">==</span><span style="color:#ae81ff">6</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span> ($b<span style="color:#f92672">-</span>$f)%2
+            <span style="color:#f92672">||</span> $s<span style="color:#f92672">==</span><span style="color:#ae81ff">8</span> <span style="color:#f92672">&amp;&amp;</span> (
+                  $e<span style="color:#f92672">==</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">&amp;&amp;</span> $b<span style="color:#f92672">+</span>$f<span style="color:#f92672">!=</span><span style="color:#ae81ff">9</span>
+               <span style="color:#f92672">||</span> $e<span style="color:#f92672">==</span><span style="color:#ae81ff">3</span> <span style="color:#f92672">&amp;&amp;</span> $b<span style="color:#f92672">-</span>$f<span style="color:#f92672">!=</span><span style="color:#ae81ff">7</span> <span style="color:#f92672">&amp;&amp;</span> $f<span style="color:#f92672">-</span>$b <span style="color:#f92672">!=</span><span style="color:#ae81ff">3</span>
+               <span style="color:#f92672">||</span> $e<span style="color:#f92672">==</span><span style="color:#ae81ff">7</span> <span style="color:#f92672">&amp;&amp;</span> $b<span style="color:#f92672">+</span>$f<span style="color:#f92672">!=</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;&amp;</span> $b<span style="color:#f92672">+</span>$f <span style="color:#f92672">!=</span><span style="color:#ae81ff">11</span>
+               <span style="color:#f92672">||</span> $e<span style="color:#f92672">==</span><span style="color:#ae81ff">8</span> <span style="color:#f92672">&amp;&amp;</span> $b<span style="color:#f92672">!=</span>$f
+            );
+          <span style="color:#75715e">## Now we try all additional numbers....</span>
+          <span style="color:#75715e">## The sequence &#39;000&#39; .. &#39;999&#39; gives all 3 digit numbers.... !</span>
+          $res{$_}<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> <span style="color:#66d9ef">foreach</span> map { is_rare(<span style="color:#e6db74">&#34;$s$b$_$f$e&#34;</span>) } $low<span style="color:#f92672">..</span>$high;
+        }
+      }
+    }
+  }
+</code></pre></div><h2 id="a-remarkably-efficient-filter">a REMARKABLY efficient FILTER</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/bob-lied/perl/ch-1.pl"><strong>Bob Lied</strong></a> and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/jaldhar-h-vyas/perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a></p>
+<p>All in all, the <code>sqrt</code> operation was by far the costliest part of whatever algorithm was presented. So keeping this operation from being unnecessarily executed became the primary focus. Although the mathematical oddities driving the leading and trailing digits got most of the attention, buried deep in the source page was one fact about perfect squares that was easily validated:</p>
+<ul>
+<li>If R consist of even number of digits, then R+R1 must be divisible by 11, So 121 must be a factor of X2.</li>
+<li>If R consist of odd number of digits, then R-R1 must be divisible by 11. Since R-R1 is always divisible by 9, So 1089 must be a factor of Y2.</li>
+</ul>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/jaldhar-h-vyas/perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a></p>
+<p>Jaldhar implements just this one filter and reduces the calls to <code>isRare()</code>, containing the square root checks, by 91%, an unexpectedly impressive drop.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $xfactor <span style="color:#f92672">=</span> $N <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">3</span> ? <span style="color:#ae81ff">11</span> : <span style="color:#ae81ff">121</span>;
+    <span style="color:#66d9ef">my</span> $yfactor <span style="color:#f92672">=</span>  $N <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">4</span> ? <span style="color:#ae81ff">11</span> : <span style="color:#ae81ff">1089</span>;
+
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $n ((<span style="color:#ae81ff">10</span> <span style="color:#f92672">**</span> ($N <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)) <span style="color:#f92672">..</span> ((<span style="color:#ae81ff">10</span> <span style="color:#f92672">**</span> $N) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)) {
+        <span style="color:#66d9ef">my</span> $r <span style="color:#f92672">=</span> $n;
+        <span style="color:#66d9ef">my</span> $r1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">+</span> reverse <span style="color:#e6db74">&#34;$n&#34;</span>;
+
+        <span style="color:#66d9ef">if</span> ($r <span style="color:#f92672">==</span> $r1) {
+            <span style="color:#66d9ef">next</span>;
+        }
+
+        <span style="color:#66d9ef">if</span> ($N % 2 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+            <span style="color:#66d9ef">if</span> (($r <span style="color:#f92672">+</span> $r1) % <span style="color:#960050;background-color:#1e0010">$</span>xfactor <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> isRare($r, $r1)) {
+                say $r;
+            }
+        } <span style="color:#66d9ef">else</span> {
+            <span style="color:#66d9ef">if</span> (($r <span style="color:#f92672">-</span> $r1) % <span style="color:#960050;background-color:#1e0010">$</span>yfactor <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> isRare($r, $r1)) {
+                say $r;
+            }
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/bob-lied/perl/ch-1.pl"><strong>Bob Lied</strong></a></p>
+<p>Bob, similarly to Jaldhar, eschews individual digit checks for the most part, however in addition to the division trick does add three others. First, he carefully constructs ranges of numbers that only start with even numbers to iterate through. After this no further validation for this requirement  is necessary within the loop. Next, as the last digit cannot be 1,4,6 or 9 he constructs a truth table, so he can look up the last digit as the index of an array and receive a 0 or 1 response. I really like the clean eficiancy of this method. Third, he has a similar table for the perfect squares, as they cannot end in 2,3,7 or 8.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># The last digit can never be 1,4,6,9</span>
+    <span style="color:#66d9ef">my</span> @mightBeRare   <span style="color:#f92672">=</span> ( <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span> );
+
+    <span style="color:#75715e"># A perfect square can never end in 2,3,7,8</span>
+    <span style="color:#66d9ef">my</span> @mightBeSquare <span style="color:#f92672">=</span> ( <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span> );
+
+    <span style="color:#66d9ef">my</span> $isNodd <span style="color:#f92672">=</span> $N % 2;    <span style="color:#75715e"># Optimization possible for even or odd digits.</span>
+
+    <span style="color:#75715e"># For example, if N = 3, max is 1000, but we want 100 at a time.</span>
+    <span style="color:#66d9ef">my</span> $scale <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span><span style="color:#f92672">**</span>($N<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
+
+    <span style="color:#75715e"># Rare numbers can never start with an odd digit, so work on</span>
+    <span style="color:#75715e"># only groups that start with an even digit.</span>
+    <span style="color:#75715e"># Creates pairs of start and end.</span>
+    <span style="color:#66d9ef">my</span> @boundary <span style="color:#f92672">=</span> map { [ $_ <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $scale, $_ <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $scale <span style="color:#f92672">+</span> $scale <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ] } <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">4</span>;
+
+    <span style="color:#75715e"># Use faster integer math everywhere except where we need the square root.</span>
+    <span style="color:#66d9ef">use</span> integer;
+
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $bound ( @boundary )
+    {
+        <span style="color:#66d9ef">my</span> $endOfRange <span style="color:#f92672">=</span> $bound<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>];   <span style="color:#75715e"># Hoist array access out of loop processing.</span>
+        R: <span style="color:#66d9ef">for</span> ( <span style="color:#66d9ef">my</span> $r <span style="color:#f92672">=</span> $bound<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] ; $r <span style="color:#f92672">&lt;=</span> $endOfRange ; $r<span style="color:#f92672">++</span> )
+        {
+            <span style="color:#75715e"># say &#34;$r &#34;, scalar(time()) if $r % 10000000 == 0; # Progress mark</span>
+
+            <span style="color:#75715e"># The last digit can never be 1,4,6,9</span>
+            <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> $mightBeRare[ $r%10 ];
+
+            <span style="color:#66d9ef">my</span> $r1;
+            $r1 <span style="color:#f92672">=</span> reverse($r);   <span style="color:#75715e"># String beats math</span>
+
+            <span style="color:#66d9ef">my</span> $y2 <span style="color:#f92672">=</span> $r <span style="color:#f92672">-</span> $r1;
+            <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $y2 <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>;    <span style="color:#75715e"># No imaginary numbers.</span>
+            <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> $mightBeSquare[ $y2 % 10];
+
+            <span style="color:#66d9ef">my</span> $x2 <span style="color:#f92672">=</span> $r <span style="color:#f92672">+</span> $r1;
+            <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> $mightBeSquare[ $x2 % 10];
+
+            <span style="color:#66d9ef">if</span> ( $isNodd )
+            {
+                <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $y2 % 1089;
+            }
+            <span style="color:#66d9ef">else</span>
+            {
+                <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $x2 % 121;
+            }
+
+            { <span style="color:#66d9ef">no</span> integer;
+                <span style="color:#66d9ef">my</span> $x <span style="color:#f92672">=</span> sqrt($x2);
+                <span style="color:#66d9ef">next</span> R <span style="color:#66d9ef">unless</span> int($x) <span style="color:#f92672">==</span> $x;
+                <span style="color:#66d9ef">my</span> $y <span style="color:#f92672">=</span> sqrt($y2);
+                <span style="color:#66d9ef">next</span> R <span style="color:#66d9ef">unless</span> int($y) <span style="color:#f92672">==</span> $y;
+            }
+
+            say <span style="color:#e6db74">&#34;R: $r&#34;</span>;
+        }
+    }
+</code></pre></div><h2 id="constructing-numbers">CONSTRUCTING numbers</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a></p>
+<p>If instead of <em>filtering</em> numbers that do not fit the leading and trailing digit requirements, another option was to synthesize sets of these segments, then only iterate  over whatever center span is required to produce the correct number of digits. The three parts are then joined somehow to form a number that is then checked. This will radically reduce the actual number of candidates evaluated to the theoretical 2.3% left over after all the digit checks with almost no overhead. At this point we&rsquo;ve gained nearly two whole orders of magnitude over the naive implementation.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a></p>
+<p>Choroba gives us an example of this constructive method. After establishing a complex hash of valid first, last, second and second-to-last digit combinations, he cycles through them, adding in a central iterator for as many digits as required to supply the correct length after concatenation.</p>
+<p>The data structure that holds his valid leading and trailing digits is quite interesting:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> %start_end <span style="color:#f92672">=</span> (
+        <span style="color:#ae81ff">2</span> <span style="color:#f92672">=&gt;</span> {<span style="color:#ae81ff">2</span> <span style="color:#f92672">=&gt;</span> [map [$_, $_], <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">9</span>]},
+        <span style="color:#ae81ff">4</span> <span style="color:#f92672">=&gt;</span> {<span style="color:#ae81ff">0</span> <span style="color:#f92672">=&gt;</span> [map {
+                        <span style="color:#66d9ef">my</span> $x <span style="color:#f92672">=</span> $_;
+                        map [$x, $_], grep <span style="color:#ae81ff">0</span> <span style="color:#f92672">==</span> abs($x <span style="color:#f92672">-</span> $_) % 2, <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">9</span>
+                    } <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">9</span> ]},
+        <span style="color:#ae81ff">6</span> <span style="color:#f92672">=&gt;</span> {map {$_ <span style="color:#f92672">=&gt;</span> [map {
+                              <span style="color:#66d9ef">my</span> $x <span style="color:#f92672">=</span> $_;
+                              map [$x, $_], grep <span style="color:#ae81ff">1</span> <span style="color:#f92672">==</span> abs($x <span style="color:#f92672">-</span> $_) % 2, <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">9</span>
+                          } <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">9</span>]} <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">5</span>},
+        <span style="color:#ae81ff">8</span> <span style="color:#f92672">=&gt;</span> {<span style="color:#ae81ff">2</span> <span style="color:#f92672">=&gt;</span> [map [$_, <span style="color:#ae81ff">9</span> <span style="color:#f92672">-</span> $_], <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">9</span>],
+              <span style="color:#ae81ff">3</span> <span style="color:#f92672">=&gt;</span> [map [$_, $_ <span style="color:#f92672">+</span> ($_ <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">7</span> ? <span style="color:#ae81ff">3</span> : <span style="color:#f92672">-</span><span style="color:#ae81ff">7</span>)], <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">9</span>],
+              <span style="color:#ae81ff">7</span> <span style="color:#f92672">=&gt;</span> [map [$_, ($_ <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> ? <span style="color:#ae81ff">11</span> : <span style="color:#ae81ff">1</span>) <span style="color:#f92672">-</span> $_], <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">9</span>],
+              <span style="color:#ae81ff">8</span> <span style="color:#f92672">=&gt;</span> [map [$_, $_], <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">9</span>]}
+    );
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a></p>
+<p>The monk has broken out the box completely with their approach, creating for us a series of 7 subroutines, each one to generate a subset of the desired range of candidates, constrained by the first and last values according to the properties laid out in the source material. Pairs or quads of number combinations are generated, with a range of unconstrained digits placed between them to produce every valid combination with the correct number of digits.</p>
+<p>For example, one routine creates all of the valid number possibilites when the first digit
+is 2 and the last digit is 2 and the second and second-to-last digits are equal: 21&hellip;12, 22&hellip;22, 23&hellip;32, etc, with all combinations of 0 through 9 placed between them to fill out the digit length. For a 7-digit number there are 10000 such central numbers.</p>
+<p>The overall winnowing reduces the number of candidates actually checked to 2.3% of the original range: 8,999,999 7-digit numbers are reduced to 209,000.</p>
+<p>Here is an example of one of the more complicated cases:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">A8_Q3</span>
+    {
+        <span style="color:#75715e"># &#34;Consider a Rare number ABCD...MNPQ with any number of digits, then ...</span>
+        <span style="color:#75715e">#  If A = 8 and Q = 3 then B - P =  7 for B &gt; P</span>
+        <span style="color:#75715e">#                      and B - P = -3 for B &lt; P</span>
+        <span style="color:#75715e">#                      and B can never be equal to P&#34;</span>
+
+        <span style="color:#66d9ef">my</span> ($N) <span style="color:#f92672">=</span> @_;
+
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $b (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">9</span>)
+        {
+            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $p (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">9</span>)
+            {
+                <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $b <span style="color:#f92672">==</span> $p;
+
+                <span style="color:#66d9ef">if</span> ($b <span style="color:#f92672">&gt;</span> $p)
+                {
+                    <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> $b <span style="color:#f92672">-</span> $p <span style="color:#f92672">==</span>  <span style="color:#ae81ff">7</span>;
+                }
+                <span style="color:#66d9ef">else</span>
+                {
+                    <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> $b <span style="color:#f92672">-</span> $p <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>;
+                }
+
+                <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $m (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">10</span> <span style="color:#f92672">**</span> ($N <span style="color:#f92672">-</span> <span style="color:#ae81ff">4</span>) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)
+                {
+                    <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> sprintf <span style="color:#e6db74">&#39;8%d%0*d%d3&#39;</span>, $b, $N <span style="color:#f92672">-</span> <span style="color:#ae81ff">4</span>, $m, $p;
+
+                    record_rare_number( $n ) <span style="color:#66d9ef">if</span> is_rare( $n );
+                }
+            }
+        }
+    }
+</code></pre></div><h2 id="the-properties-of-perfect-squares">the properties of PERFECT SQUARES</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/gustavo-chaves/perl/ch-1.pl"><strong>Gustavo Chaves</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>Maybe we&rsquo;re going about this the wrong way way. What we examined the problem starting from the end, rather than the beginning? The last step we take is determining that the number, <em>num</em>, added to its reverse, <em>rev</em>, yield some perfect square <em>x</em><sup>2</sup>. Likewise the difference also yields some number <em>y</em> squared. So we have the two equations:</p>
+<p><em>num</em> + <em>rev</em> = <em>x</em><sup>2</sup></p>
+<p><em>num</em> - <em>rev</em> = <em>y</em><sup>2</sup></p>
+<p>these equations can then be combined:</p>
+<p>—&gt; (<em>num</em> + <em>rev</em>) + (<em>num</em> - <em>rev</em>)  = <em>x</em><sup>2</sup> + <em>y</em><sup>2</sup>
+—&gt; <em>num</em> = (<em>x</em><sup>2</sup> + <em>y</em><sup>2</sup>) / 2</p>
+<p>—&gt; (<em>num</em> + <em>rev</em>) - (<em>num</em> - <em>rev</em>)  = <em>x</em><sup>2</sup> - <em>y</em><sup>2</sup>
+—&gt; <em>rev</em> = (<em>x</em><sup>2</sup> - <em>y</em><sup>2</sup>) / 2</p>
+<p>So both <em>x</em><sup>2</sup> + <em>y</em><sup>2</sup> and <em>x</em><sup>2</sup> - <em>y</em><sup>2</sup> must be even.  Further, if <em>rev</em> is even, then the last number must end in 0,2,4,6 or 8, which means <em>num</em> must start with 2,4,6,or 8, which is the explanation to why that rule exists. Now we&rsquo;re getting somewhere.</p>
+<p>If we start with a list of known squares, we could try methodically combining them to find numbers that fit the criteria. This will still end up checking roughly the same number of candidates but avoid the expensive <code>sqrt</code> operation completely.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/gustavo-chaves/perl/ch-1.pl"><strong>Gustavo Chaves</strong></a></p>
+<p>Gustavo took this approach, but notes himself that it&rsquo;s not very efficient.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> @squares <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>);
+    <span style="color:#66d9ef">while</span> ($squares[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>(<span style="color:#ae81ff">10</span><span style="color:#f92672">**</span>$digits)) {
+        push @squares, @squares <span style="color:#f92672">*</span> @squares;
+    }
+
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $r <span style="color:#f92672">=</span> $#squares; $r <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>; <span style="color:#f92672">--</span>$r) {
+        <span style="color:#66d9ef">my</span> $xx <span style="color:#f92672">=</span> $squares[$r];
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $l <span style="color:#f92672">=</span> $r<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>; $l <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">1</span>; <span style="color:#f92672">--</span>$l) {
+            <span style="color:#66d9ef">my</span> $yy <span style="color:#f92672">=</span> $squares[$l];
+
+            <span style="color:#66d9ef">my</span> $dr <span style="color:#f92672">=</span> $xx <span style="color:#f92672">+</span> $yy;
+            <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> ($dr % 2) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+
+            <span style="color:#66d9ef">my</span> $dl <span style="color:#f92672">=</span> $xx <span style="color:#f92672">-</span> $yy;
+            <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> ($dl % 2) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+
+            <span style="color:#66d9ef">my</span> $R <span style="color:#f92672">=</span> $dr <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>;
+            <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> length(<span style="color:#e6db74">&#34;$R&#34;</span>) <span style="color:#f92672">==</span> $digits;
+
+            <span style="color:#66d9ef">my</span> $L <span style="color:#f92672">=</span> sprintf <span style="color:#e6db74">&#34;%0${digits}d&#34;</span>, $dl <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>;
+            say $R <span style="color:#66d9ef">if</span> <span style="color:#e6db74">&#34;$R&#34;</span> <span style="color:#f92672">eq</span> reverse(<span style="color:#e6db74">&#34;$L&#34;</span>);
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>Luis gave us an evolution of several ideas that ultimately came to this design. In his last version, he improves the idea significantly using half-numbers in the search space and modulo math. You can read his explanation on how he got to this point on his <a href="https://wlmb.github.io/2021/03/01/PWC102/">well documented blog writeup</a>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $N( @ARGV )  {
+        <span style="color:#66d9ef">my</span> $min <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span><span style="color:#f92672">**</span>( $N <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> );
+        <span style="color:#66d9ef">my</span> $N2  <span style="color:#f92672">=</span> floor( $N <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span> );
+        <span style="color:#66d9ef">my</span> $M   <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span><span style="color:#f92672">**</span>$N2;
+        <span style="color:#66d9ef">my</span> %seen;                           <span style="color:#75715e"># distinct squares mod $M</span>
+
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $a( <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">10</span><span style="color:#f92672">**</span>$N2 ){
+            $seen{ ( $a<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span> ) % <span style="color:#960050;background-color:#1e0010">$</span>M } <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+        }
+
+        <span style="color:#66d9ef">my</span> @squares <span style="color:#f92672">=</span> sort { $a<span style="color:#e6db74">&lt;=&gt;</span>$b } keys %seen;
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $a2( @squares ){
+            <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $b2( @squares ){
+                <span style="color:#66d9ef">my</span> $xr <span style="color:#f92672">=</span> ( $a2 <span style="color:#f92672">+</span> $b2 );
+                <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> $xr % 2 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+                $xr <span style="color:#f92672">=</span> sprintf( <span style="color:#e6db74">&#34;%0${ N2 }d&#34;</span>, ( $xr <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span> ) % <span style="color:#960050;background-color:#1e0010">$</span>M );
+
+                <span style="color:#66d9ef">my</span> $xl1 <span style="color:#f92672">=</span> sprintf( <span style="color:#e6db74">&#34;%0${ N2 }d&#34;</span>, ( ( $a2 <span style="color:#f92672">-</span> $b2 )<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span> ) % <span style="color:#960050;background-color:#1e0010">$</span>M );
+
+                <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $mid( $N%2 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>?( <span style="color:#e6db74">&#39;&#39;</span> ):( <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">9</span> ) ){
+                    <span style="color:#66d9ef">my</span> $x <span style="color:#f92672">=</span> join <span style="color:#e6db74">&#39;&#39;</span>, reverse( split <span style="color:#e6db74">&#39;&#39;</span>, $xl1 ), $mid, $xr;
+                    <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> $x <span style="color:#f92672">&gt;=</span> $min;
+                    <span style="color:#66d9ef">my</span> $y <span style="color:#f92672">=</span> join <span style="color:#e6db74">&#39;&#39;</span>, reverse( split <span style="color:#e6db74">&#39;&#39;</span>, $x );
+                    <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> $x <span style="color:#f92672">&gt;</span> $y;
+                    <span style="color:#66d9ef">my</span> $s <span style="color:#f92672">=</span> $x <span style="color:#f92672">+</span> $y;
+                    <span style="color:#66d9ef">my</span> $d <span style="color:#f92672">=</span> $x <span style="color:#f92672">-</span> $y;
+                    <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> floor( sqrt( $s ) )<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">==</span> $s;
+                    <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> floor( sqrt( $d ) )<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">==</span> $d;
+                    say <span style="color:#e6db74">&#34;N = $N\tx = $x\ty = $y\tx+y = $s = &#34;</span>,
+                        sqrt( $s ), <span style="color:#e6db74">&#34;**2\tx-y = $d = &#34;</span>, sqrt( $d ), <span style="color:#e6db74">&#34;**2&#34;</span>;
+                }
+            }
+        }
+    }
+
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a></p>
+<p>Jorg has as usual gone the extra mile on this one. He offers extensive extensive commentary on some of the more exotic steps he&rsquo;s taken, pruning the search further. And this doesn&rsquo;t even address the multiprocessor extensions he&rsquo;s added. In the end I was able to calculate the 11 digit solutions (none, btw) in about three and a half minutes.</p>
+<p>We&rsquo;ll have a look at the multicore processing later. This part is well noted; it&rsquo;s a bit much to summarize and do justice.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">rare_nums_in</span> {
+        <span style="color:#66d9ef">my</span> ($low, $high, $lead) <span style="color:#f92672">=</span> @_;
+        $lead <span style="color:#e6db74">//</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">my</span> @rare;
+
+        <span style="color:#75715e"># Find the smallest x, such that there is an y &lt;= x - 2</span>
+        <span style="color:#75715e"># with (x² + y²)/2 &gt;= low.</span>
+        <span style="color:#66d9ef">my</span> $x <span style="color:#f92672">=</span> ceil(<span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> sqrt($low <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>));
+
+        <span style="color:#66d9ef">my</span> $x2 <span style="color:#f92672">=</span> $x<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>;
+
+        <span style="color:#75715e"># Single limit for x².</span>
+        <span style="color:#66d9ef">while</span> ($x2 <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $high) {
+            <span style="color:#75715e"># Skip nonmatching end digits.</span>
+            <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> ($x2 % 10) <span style="color:#f92672">=~</span> $::l2e{$lead};
+
+            <span style="color:#75715e"># smallest y between current x and lower limit</span>
+            <span style="color:#66d9ef">my</span> $y <span style="color:#f92672">=</span> $x2 <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>$low ? ceil(sqrt(<span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>$low <span style="color:#f92672">-</span> $x2)) : <span style="color:#ae81ff">0</span>;
+
+            <span style="color:#75715e"># No more floating point operations from here.  Release the</span>
+            <span style="color:#75715e"># handbreak.</span>
+            <span style="color:#66d9ef">use</span> integer;
+
+            <span style="color:#75715e"># Adjust mod 2.</span>
+            $y<span style="color:#f92672">++</span> <span style="color:#66d9ef">if</span> ($x <span style="color:#f92672">+</span> $y) % 2;
+
+            <span style="color:#75715e"># smallest y ≡ x mod 2.</span>
+            <span style="color:#66d9ef">my</span> $ymin <span style="color:#f92672">=</span> $x % 2 ? <span style="color:#ae81ff">1</span> : <span style="color:#ae81ff">2</span>;
+
+            <span style="color:#75715e"># Adjust if too small.</span>
+            $y <span style="color:#f92672">=</span> $ymin <span style="color:#66d9ef">if</span> $y <span style="color:#f92672">&lt;</span> $ymin;
+
+            <span style="color:#66d9ef">my</span> $y2 <span style="color:#f92672">=</span> $y<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>;
+
+            <span style="color:#75715e"># Two limits for y²: it must be smaller than x² and the half</span>
+            <span style="color:#75715e"># square sum must be below the upper limit.</span>
+            <span style="color:#66d9ef">my</span> $y2max <span style="color:#f92672">=</span> min $x2, <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $high <span style="color:#f92672">-</span> $x2;
+            <span style="color:#66d9ef">while</span> ($y2 <span style="color:#f92672">&lt;</span> $y2max) {
+                <span style="color:#75715e"># Check if n and r are the reverse of each other.</span>
+                <span style="color:#75715e"># Multiple usage of the same expression is cheaper than</span>
+                <span style="color:#75715e"># using an extra variable.</span>
+                push @rare, ($x2 <span style="color:#f92672">+</span> $y2)<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>
+                    <span style="color:#66d9ef">if</span> reverse(($x2 <span style="color:#f92672">+</span> $y2)<span style="color:#e6db74">/2) == ($x2 - $y2)/</span><span style="color:#ae81ff">2</span>;
+            } <span style="color:#66d9ef">continue</span> {
+                 $y2 <span style="color:#f92672">=</span> ($y <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span>)<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>;
+            }
+        } <span style="color:#66d9ef">continue</span> {
+            $x2 <span style="color:#f92672">=</span> (<span style="color:#f92672">++</span>$x)<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>;
+        }
+
+        <span style="color:#f92672">\</span>@rare;
+    }
+</code></pre></div><h2 id="m-m-m-multicore">M-M-M-MULTICORE!</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a></p>
+<p>On my machine here in the lab I have 8 cores available to me, but rarely use all of them at once, and never, in my knowledge, for a single Perl interpreter. That is, until now. Three submissions went wide to spread the workload, on top of whatever other loop tweaking they had been up to.</p>
+<p>Perl, as it&rsquo;s compiled by default, is single-threaded. It fires up an interpreter, and that instance in turn single-mindedly does its thing. And this is all well and good. Most processes involve a data pipeline that, however complicated the path may be, can be unrolled into a straight line from here to there. Although multithreaded perl options exist, they are generally discouraged as less efficient models, as they need to spend time  making sure things are always in sync, even when there&rsquo;s nothing to sync up. This ends up adding 10-15% overhead for no gain.</p>
+<p>For any process with an evolving state, where previous actions inform the current decisions, and the current decisions will inform those made next, dividing the action up into different discreet elements that can be performed simultaneously is difficult if not impossible. Dissecting problems like this for parallelism is a whole branch of computer science unto itself.</p>
+<p>Some problems, on the other hand, lend themselves well to the idea, and this is one of those situations. Rare numbers exist independently of each other, and the fact that this number is rare has no bearing whatsoever as to whether its neighbor is. So rather than ask one process to validate 10 billion candidates, we can ask 10 processes to handle 1 billion each, and in theory we&rsquo;ll be done in 1/10th the time.</p>
+<p>We have here three examples of how to use multiple processors in Perl: threads, <code>MCE</code> and <code>Parallel::Subs</code>.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a></p>
+<p>Adam brings us <a href="https://metacpan.org/pod/Thread"><code>Thread</code></a>, which provides multithreading support in Perl. It requires a Perl interpreter compiled with multithreading enabled.</p>
+<p>Adam doesn&rsquo;t prune his search tree, instead dividing his workload into <code>THREAD_COUNT</code> number of segments and operating on all of them simultaneously. To do this he first needs to define individual instances of the verification routine, set to operate on the partial data sets, and assign each to a different thread. When each sub-task completes it adds its results to a common list of rare numbers found.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $lower <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;1&#34;</span> <span style="color:#f92672">.</span> <span style="color:#ae81ff">0</span> x ($n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>);
+    <span style="color:#66d9ef">my</span> $upper <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;1&#34;</span> <span style="color:#f92672">.</span> <span style="color:#ae81ff">9</span> x ($n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>);
+    <span style="color:#66d9ef">my</span> $increment <span style="color:#f92672">=</span> $lower;
+    {
+        <span style="color:#66d9ef">my</span> @threads;
+        <span style="color:#66d9ef">for</span>(<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> THREAD_COUNT){
+            <span style="color:#66d9ef">my</span> $t <span style="color:#f92672">=</span> Thread<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(<span style="color:#f92672">\&amp;</span>rare_number_check, $lower, $upper);
+            push @threads, $t;
+            $lower <span style="color:#f92672">=</span> $upper <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+            $upper <span style="color:#f92672">=</span> $lower <span style="color:#f92672">+</span> $increment <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+            <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span>(length($upper) <span style="color:#f92672">==</span> ($n <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>));
+        }
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $t (@threads){
+            <span style="color:#66d9ef">my</span> $rares <span style="color:#f92672">=</span> $t<span style="color:#f92672">-&gt;</span>join();
+            push @rares, @{$rares};
+        }
+        <span style="color:#66d9ef">redo</span> <span style="color:#66d9ef">unless</span>(length($upper) <span style="color:#f92672">==</span> ($n <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>));
+    }
+    <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@rares;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a></p>
+<p>Niels, alternately, brings in the <a href="https://metacpan.org/pod/distribution/MCE/lib/MCE.pod"><code>MCE</code></a>, which stand for &ldquo;Multi-Core Engine&rdquo;. It does not require anything more than a standard Perl install. The <code>MCE</code> allows the spawning of worker processes that can take over subsets of the data, distributed over available cores. The <code>MCE</code> can control a pool of such workers, allocating chunks of the data set when required until the processing is complete.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $mce <span style="color:#f92672">=</span> MCE<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(
+         chunk_size <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">10_000</span>,
+         max_workers <span style="color:#f92672">=&gt;</span> MCE::Util::get_ncpu(),
+         user_func <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> {
+           <span style="color:#66d9ef">my</span> ($mce, $chunk_ref, $chunk_id) <span style="color:#f92672">=</span> @_;
+
+           <span style="color:#66d9ef">foreach</span> (@$chunk_ref) {
+             <span style="color:#66d9ef">if</span> (isRare($_)) {
+               <span style="color:#66d9ef">my</span> $elapsed <span style="color:#f92672">=</span> tv_interval ($t0);
+               printf <span style="color:#e6db74">&#34;%6.3f rare: %d\n&#34;</span>, $elapsed, $_;
+             }
+           }
+         }
+    );
+
+    <span style="color:#66d9ef">do</span> {
+      $r0<span style="color:#f92672">++</span>;
+
+      <span style="color:#75715e"># Small optimization</span>
+      <span style="color:#75715e"># (skip all numbers which start with an odd number)</span>
+      <span style="color:#66d9ef">my</span> $d <span style="color:#f92672">=</span> substr($r0,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>);
+      <span style="color:#66d9ef">if</span> (exists $rep{$d}) {
+        substr($r0,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,$rep{$d});
+      }
+
+      <span style="color:#75715e"># Create dynamic chunks with a maximum of 1M</span>
+      <span style="color:#75715e"># (to keep memory utilisation in control)</span>
+      <span style="color:#66d9ef">my</span> $step <span style="color:#f92672">=</span> min(<span style="color:#ae81ff">1_000_000</span>, <span style="color:#ae81ff">10</span><span style="color:#f92672">**</span>ceil(log($r0)<span style="color:#f92672">/</span>log(<span style="color:#ae81ff">10</span>)) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> $r0);
+      $mce<span style="color:#f92672">-&gt;</span>process([ $r0 <span style="color:#f92672">..</span> $r0<span style="color:#f92672">+</span>$step ]);
+      $r0 <span style="color:#f92672">+=</span> $step;
+
+    } <span style="color:#66d9ef">until</span> ($r0 <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">10</span><span style="color:#f92672">**</span>$N);
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a></p>
+<p>Jorg gives us yet a third way to utilize multiple cores in a Perl program: <a href="https://metacpan.org/pod/Parallel::Subs"><code>Parallel::Subs</code></a>. This module uses <code>Parallel::ForkManager</code> to fork off interpreter instances to run specific subroutine calls.</p>
+<p>Here&rsquo;s how the parallel instances are spawned by the module:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">rare_nums_len</span> ($len) {
+        <span style="color:#66d9ef">my</span> $p <span style="color:#f92672">=</span> Parallel::Subs<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $lim (split_task($len)) {
+            $p<span style="color:#f92672">-&gt;</span>add(sub{rare_nums_in($lim<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>], $lim<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>])});
+        }
+        $p<span style="color:#f92672">-&gt;</span>wait_for_all;
+
+        grep {reverse() <span style="color:#f92672">!=</span> $_} map $_<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, $p<span style="color:#f92672">-&gt;</span>results<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+    <span style="color:#960050;background-color:#1e0010">}</span>
+</code></pre></div><p>The <code>split_task()</code> routine creates a list of pairs of low and high values to feed to the parallel processing. It&rsquo;s pretty interesting stuff too:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">split_task</span> ($len) {
+
+        <span style="color:#66d9ef">my</span> $numcpu <span style="color:#f92672">=</span> Sys::Info<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span><span style="color:#f92672">-&gt;</span>device(<span style="color:#e6db74">&#39;CPU&#39;</span>)<span style="color:#f92672">-&gt;</span>count;
+        <span style="color:#66d9ef">my</span> $size <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span> <span style="color:#f92672">**</span> ($len<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">/</span> $numcpu;
+
+        gather {
+            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $lead (<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">8</span>) {
+                <span style="color:#66d9ef">my</span> $start <span style="color:#f92672">=</span> $lead <span style="color:#f92672">*</span> <span style="color:#ae81ff">10</span> <span style="color:#f92672">**</span> ($len<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
+                <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $s (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $numcpu) {
+                    take [int(($start <span style="color:#f92672">+</span> int(($s <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">*</span> $size)) <span style="color:#f92672">/</span> <span style="color:#ae81ff">100</span>) <span style="color:#f92672">*</span> <span style="color:#ae81ff">100</span>,
+                        int(($start <span style="color:#f92672">+</span> int($s <span style="color:#f92672">*</span> $size)) <span style="color:#f92672">/</span> <span style="color:#ae81ff">100</span>) <span style="color:#f92672">*</span> <span style="color:#ae81ff">100</span>];
+                }
+            }
+        };
+    }
+</code></pre></div><p>The algorithm itself that Jorg uses in a variation of the sum of perfect squares constructive approach.</p>
+<p>As usual, there&rsquo;s more to unpack here, like the <code>gather</code>/<code>take</code> keyword syntax, and a <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/jo-37/perl/ch-1a.pl">whole other implementation</a> using the more common first and last digit optimizations, which apparently runs a little faster at the expense of fun.</p>
+<h2 id="opting-not-to-play">opting NOT TO PLAY</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/abigail/perl/ch-1.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/stuart-little/perl/ch-1.pl"><strong>Stuart Little</strong></a></p>
+<p>There were several convincing arguments made to not reinvent the wheel at all.</p>
+<p>Oh, and Stuart, who brought his own completely different take on the situation.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/abigail/perl/ch-1.pl"><strong>Abigail</strong></a></p>
+<p>I have stated before that in my own pursuits on these pages, I do do not always strive to find the best, or fastest, or most efficient, or most sensible solution to a given problem when I go about solving it. As far as overarching code philosophies go, I have them; I just don&rsquo;t practice that behavior here. As a matter of fact, &ldquo;wildly inconsistent&rdquo; might well be the only guidlines I consistently obey. Here, I just enjoy the freedom do do whatever i&rsquo;m thinking about at the moment, and see how it works out.</p>
+<p>So conversely I find it refreshing and appealing when others come forth and present cold, hard practical realities while I&rsquo;m off in whatever la-la-land I&rsquo;ve created today. Yes it&rsquo;s contradictory, but, hey, &ldquo;wildly inconsistent&rdquo;, right?</p>
+<p>So, based on some previous submissions, it does not surprise me that Abigail has stepped up and carefully presented the case: &ldquo;This is stupid.&rdquo;</p>
+<p>Which, objectively, it is. Perl, an interpreted language, is just a remarkably poor choice to pursue the raw brutal number crunching required to find the quite sparsely located and certainly aptly named &ldquo;rare numbers&rdquo;.</p>
+<p>Not to belabor the point, but FORTRAN is fast. Wicked fast. Perl, crafted and honed over the years is no slouch, mind you, and still objectively reigns supreme amongst its peers, but it&rsquo;s not in the same room as FORTRAN.</p>
+<p>The lack of purpose never stopped us before. In what remains of these cold winter months my lap certainly appreciates the waste heat from the processors, so there are at least some benefits, however fleeting, to all this repetitive, systematic examination. But that&rsquo;s just me.</p>
+<p>There exists a list at the Online Encyclopedia of Integer Sequences of the first 124 rare numbers, covering up to 22 digits in length. Abigail has decided to use his submission to, rather than recompute the values, create a lookup table and return the relevant entries. Oh, and not only in Perl but also eight other languages.</p>
+<p>I think the most interesting portion of the wealth of programs he&rsquo;s uploaded to GitHub for this task to be the <a href="https://github.com/Abigail/perlweeklychallenge-club/blob/master/challenge-102/abigail/data/preprocess">Perl-based preprocessor</a> that takes the list of known rare numbers he&rsquo;s scraped off the OEIS site and trasforms it into code formatted to the requirements of the various lookups he aims to construct.</p>
+<p>I always enjoy code that writes code and this is an excellent usage of Perl, far better suited to its many capabilities than simple rote number-crunching.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">open <span style="color:#66d9ef">my</span> $fh, <span style="color:#e6db74">&#34;&lt;&#34;</span>, <span style="color:#e6db74">&#34;rare_numbers.txt&#34;</span> <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;open rare_numbers.txt: $!&#34;</span>;
+
+<span style="color:#66d9ef">my</span> @buckets;
+
+<span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">my</span> $rn <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;$fh&gt;</span>) {
+    chomp $rn;
+    $rn <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/^[0-9]+\s+//</span>;
+    push @{$buckets [length $rn]} <span style="color:#f92672">=&gt;</span> $rn;
+}
+
+<span style="color:#66d9ef">my</span> @bs <span style="color:#f92672">=</span> sort {$a <span style="color:#e6db74">&lt;=&gt;</span> $b} grep {$buckets [$_]} keys @buckets;
+
+
+open <span style="color:#66d9ef">my</span> $awk_h,    <span style="color:#e6db74">&#34;&gt;&#34;</span>, <span style="color:#e6db74">&#34;rn.awk&#34;</span>   <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;open rn.awk: $!&#34;</span>;
+open <span style="color:#66d9ef">my</span> $bash_h,   <span style="color:#e6db74">&#34;&gt;&#34;</span>, <span style="color:#e6db74">&#34;rn.sh&#34;</span>    <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;open rn.sh: $!&#34;</span>;
+open <span style="color:#66d9ef">my</span> $basic_h,  <span style="color:#e6db74">&#34;&gt;&#34;</span>, <span style="color:#e6db74">&#34;rn.bas&#34;</span>   <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;open rn.bas: $!&#34;</span>;
+open <span style="color:#66d9ef">my</span> $c_h,      <span style="color:#e6db74">&#34;&gt;&#34;</span>, <span style="color:#e6db74">&#34;rn.c&#34;</span>     <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;open rn.c: $!&#34;</span>;
+open <span style="color:#66d9ef">my</span> $lua_h,    <span style="color:#e6db74">&#34;&gt;&#34;</span>, <span style="color:#e6db74">&#34;rn.lua&#34;</span>   <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;open rn.lua: $!&#34;</span>;
+open <span style="color:#66d9ef">my</span> $node_h,   <span style="color:#e6db74">&#34;&gt;&#34;</span>, <span style="color:#e6db74">&#34;rn.js&#34;</span>    <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;open rn.js: $!&#34;</span>;
+open <span style="color:#66d9ef">my</span> $perl_h,   <span style="color:#e6db74">&#34;&gt;&#34;</span>, <span style="color:#e6db74">&#34;rn.pl&#34;</span>    <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;open rn.pl: $!&#34;</span>;
+open <span style="color:#66d9ef">my</span> $python_h, <span style="color:#e6db74">&#34;&gt;&#34;</span>, <span style="color:#e6db74">&#34;rn.py&#34;</span>    <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;open rn.py: $!&#34;</span>;
+open <span style="color:#66d9ef">my</span> $ruby_h,   <span style="color:#e6db74">&#34;&gt;&#34;</span>, <span style="color:#e6db74">&#34;rn.rb&#34;</span>    <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;open rn.rb: $!&#34;</span>;
+
+<span style="color:#66d9ef">my</span>  $basic_ln <span style="color:#f92672">=</span> <span style="color:#ae81ff">1000</span>;
+
+say $awk_h      <span style="color:#e6db74">&#34;BEGIN {&#34;</span>;
+say $bash_h     <span style="color:#e6db74">&#34;declare -a rare_numbers\n&#34;</span>;
+say $basic_h    <span style="color:#e6db74">&#34;$basic_ln INPUT length\n\n&#34;</span>;
+say $c_h        <span style="color:#e6db74">&#34;char * rare_numbers [23];\n&#34;</span>;
+say $c_h        <span style="color:#e6db74">&#34;int main () {&#34;</span>;
+say $lua_h      <span style="color:#e6db74">&#34;rare_numbers = {}\n&#34;</span>;
+say $node_h     <span style="color:#e6db74">&#34;let rare_numbers = []\n&#34;</span>;
+say $perl_h     <span style="color:#e6db74">&#34;my \@rare_numbers;\n&#34;</span>;
+say $python_h   <span style="color:#e6db74">&#34;rare_numbers = {}\n&#34;</span>;
+say $ruby_h     <span style="color:#e6db74">&#34;rare_numbers = Array . new&#34;</span>;
+
+<span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $bs (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">22</span>) {
+    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>$buckets [$bs]) {
+        printf $c_h <span style="color:#e6db74">&#34;    rare_numbers [%2d] =                       NULL;\n&#34;</span>
+                    <span style="color:#f92672">=&gt;</span> $bs;
+        <span style="color:#66d9ef">next</span>;
+    }
+
+    <span style="color:#75715e">#</span>
+    <span style="color:#75715e"># AWK</span>
+    <span style="color:#75715e">#</span>
+    printf $awk_h  <span style="color:#e6db74">&#39;    rare_numbers [%2d] = &#39;</span>, $bs;
+    <span style="color:#66d9ef">print</span>  $awk_h  join <span style="color:#e6db74">&#34; \\\n                        &#34;</span> <span style="color:#f92672">=&gt;</span>
+                   map {sprintf <span style="color:#e6db74">&#34;%26s&#34;</span>, <span style="color:#e6db74">qq {&#34;$_\\n&#34;}} </span>@{$buckets [$bs]};
+    <span style="color:#66d9ef">print</span>  $awk_h <span style="color:#e6db74">&#34;\n&#34;</span>;
+
+    <span style="color:#75715e">#</span>
+    <span style="color:#75715e"># Bash</span>
+    <span style="color:#75715e">#</span>
+    printf $bash_h <span style="color:#e6db74">&#39;rare_numbers[%2d]=&#39;</span>, $bs;
+    <span style="color:#66d9ef">print</span>  $bash_h join <span style="color:#e6db74">&#34;\\\n&#34;</span> <span style="color:#f92672">=&gt;</span>
+                   map {<span style="color:#e6db74">qq {&#34;$_\\n&#34;}} </span>@{$buckets [$bs]};
+    <span style="color:#66d9ef">print</span>  $bash_h <span style="color:#e6db74">&#34;\n&#34;</span>;
+
+    <span style="color:#75715e">#</span>
+    <span style="color:#75715e"># BASIC</span>
+    <span style="color:#75715e">#</span>
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $rn (@{$buckets [$bs]}) {
+        printf $basic_h <span style="color:#e6db74">qq {%03d </span>IF length <span style="color:#f92672">=</span> %2d THEN PRINT %24s<span style="color:#f92672">\</span>n}
+                     <span style="color:#f92672">=&gt;</span>    ($basic_ln <span style="color:#f92672">+=</span> <span style="color:#ae81ff">10</span>), $bs, <span style="color:#e6db74">qq {&#34;$rn&#34;}
+</span><span style="color:#e6db74"> </span>   }
+
+    <span style="color:#75715e">#</span>
+    <span style="color:#75715e"># C</span>
+    <span style="color:#75715e">#</span>
+    printf $c_h    <span style="color:#e6db74">&#39;    rare_numbers [%2d] = &#39;</span>, $bs;
+    <span style="color:#66d9ef">print</span>  $c_h    join <span style="color:#e6db74">&#34; \\\n                        &#34;</span> <span style="color:#f92672">=&gt;</span>
+                   map {sprintf <span style="color:#e6db74">&#34;%26s&#34;</span>, <span style="color:#e6db74">qq {&#34;$_\\n&#34;}} </span>@{$buckets [$bs]};
+    <span style="color:#66d9ef">print</span>  $c_h    <span style="color:#e6db74">&#34;;\n&#34;</span>;
+
+    <span style="color:#f92672">...</span>
+
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a></p>
+<blockquote>
+<p>&quot;How concerned should we be for the carbon footprint required by our search?&rdquo;</p>
+</blockquote>
+<p>I once worked in a shop that had an SGI Onyx2 down in the basement, on loan to do some VR work. The black beast was the size of a refrigerator and took 3-phase power just to fire it up. As it was right below the shop floor we would sometime turn it on in the winter as a space heater, albeit a noisy one.</p>
+<p>So, Flavio has come up with his own rationale for an alternative methodology. Seem reasonable to me. Similar to Abigail, he choses to scrape the OEIS page, only he has chosen to leave the data mostly in place, using <code>Mojo::UserAgent</code> to fetch the list when required. He then selects whichever results are requested, only keeping the first five values cached locally.</p>
+<p>This approach has the advantage that should the 125th value ever be found, the users of this fine application would have immediate access to the value.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get_rn_web</span> {
+       <span style="color:#66d9ef">my</span> $ua <span style="color:#f92672">=</span> Mojo::UserAgent<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(connect_timeout <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5</span>, max_redirects <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5</span>);
+       <span style="color:#66d9ef">my</span> $res <span style="color:#f92672">=</span> $ua<span style="color:#f92672">-&gt;</span>get(<span style="color:#e6db74">&#39;http://oeis.org/A035519/b035519.txt&#39;</span>)<span style="color:#f92672">-&gt;</span>res;
+       die <span style="color:#e6db74">&#34;web is not collaborating, sorry!\n&#34;</span> <span style="color:#66d9ef">unless</span> $res<span style="color:#f92672">-&gt;</span>is_success;
+       <span style="color:#66d9ef">return</span> [
+          map { <span style="color:#66d9ef">my</span> ($i, $n) <span style="color:#f92672">=</span> split <span style="color:#e6db74">m{\s+}</span>; $n } split <span style="color:#e6db74">m{\n}mxs</span>, $res<span style="color:#f92672">-&gt;</span>body
+       ];
+    }
+</code></pre></div><p>Oh, and Flavio, that would be &ldquo;he&rdquo;, by the way. Thanks for asking. Feel free to email me at any time. Carry on and have a nice day.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/stuart-little/perl/ch-1.pl"><strong>Stuart Little</strong></a></p>
+<p>Stuart takes a truly tangental, hybrid approach to getting his results. Starting with a lookup table of pre-calculated, non-palindromic rare numbers — presumably scraped from the OEIS, but that doesn&rsquo;t matter here — he than takes these values and adds palindromic rare numbers.</p>
+<p>Ok, sure, why not?</p>
+<p>Searching the set of palindrome candidates is considerably easier, as rather than being directly computed they are constructed from an iterated list of numbers half the length, reversed and coupled. Meaning the ranges we&rsquo;re dealing with are not 9 x 10<sup>N</sup>, but rather the square root of that, so generally everything moves along quite a bit quicker. Furthermore the rarity test is only applied once, for the additive case, as the subtractive case is always 0.</p>
+<p>Here&rsquo;s his constructor for the palindromes. I like the way it neatly handles both odd and even numbers of digits.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">rarePals</span>($d) {
+        <span style="color:#66d9ef">my</span> $halfDigs <span style="color:#f92672">=</span> ceil($d<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>);
+        <span style="color:#66d9ef">my</span> $rest <span style="color:#f92672">=</span> $d <span style="color:#f92672">-</span> $halfDigs;
+        <span style="color:#66d9ef">my</span> @res <span style="color:#f92672">=</span> grep { isSq(<span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>$_) }
+            map { $_ <span style="color:#f92672">.</span> (scalar reverse substr($_,<span style="color:#ae81ff">0</span>,$rest)) }
+                (<span style="color:#ae81ff">10</span><span style="color:#f92672">**</span>($halfDigs<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">..</span><span style="color:#ae81ff">10</span><span style="color:#f92672">**</span>$halfDigs<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
+        <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@res;
+    }
+</code></pre></div><hr>
+<h1 id="PWC102TASK2">TASK 2</h1>
+<h1 id="hash-counting-string">Hash-counting String</h1>
+<p><em>Submitted by: Stuart Little</em></p>
+<p>You are given a positive integer $N.</p>
+<p>Write a script to produce Hash-counting string of that length.</p>
+<p>The definition of a hash-counting string is as follows:</p>
+<ul>
+<li>the string consists only of digits 0-9 and hashes, ‘#’</li>
+<li>there are no two consecutive hashes: ‘##’ does not appear in your
+string</li>
+<li>the last character is a hash</li>
+<li>the number immediately preceding each hash (if it exists) is the
+position of that hash in the string, with the position being counted
+up from 1</li>
+</ul>
+<p>It can be shown that for every positive integer N there is exactly one such length-N string.</p>
+<p><strong>Examples:</strong></p>
+<pre><code>    (a) &quot;#&quot; is the counting string of length 1
+    (b) &quot;2#&quot; is the counting string of length 2
+    (c) &quot;#3#&quot; is the string of length 3
+    (d) &quot;#3#5#7#10#&quot; is the string of length 10
+    (e) &quot;2#4#6#8#11#14#&quot; is the string of length 14
+</code></pre><h2 id="about-the-solutions-1">about the solutions</h2>
+<p>There were 26 submissions for the second task this past week. Whereas in Task 1 the open-ended quality to the optimizations produced a wide range of methodologies, here the situation is reversed: once one figured out the &ldquo;trick&rdquo;, a very straightforward solution presented itself, leading in turn to a surfeit of self-similarity. There was still some variation to be found, of course, so we&rsquo;ll still have something to talk about, but almost every solution followed the same overarching pattern.</p>
+<h2 id="drive-there-in-reverse">drive there in REVERSE</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/abigail/perl/ch-2.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/alexander-karelas/perl/ch-2.pl"><strong>Alexander Karelas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/arne-sommer/perl/ch-2.pl"><strong>Arne Sommer</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/bob-lied/perl/ch-2.pl"><strong>Bob Lied</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/gustavo-chaves/perl/ch-2.pl"><strong>Gustavo Chaves</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/jaldhar-h-vyas/perl/ch-2.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/lubos-kolouch/perl/ch-2.pl"><strong>Lubos Kolouch</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/maxim-kolodyazhny/perl/ch-2.pl"><strong>Maxim Kolodyazhny</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/perlboy1967/perl/ch-2.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/paulo-custodio/perl/ch-2.pl"><strong>Paulo Custodio</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/stuart-little/perl/ch-2.pl"><strong>Stuart Little</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/wanderdoc/perl/ch-2.pl"><strong>Wanderdoc</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/yet-ebreo/perl/ch-2.pl"><strong>Yet Ebreo</strong></a></p>
+<p>The aforementioned trick starts with the third rule, that the very last character is a hash. This fixes one known character in the string, and so makes a good starting point. From rule 2 we then know the character before that cannot be a hash, so we must instead have a number. As we know the overall string length, then it immediately follows that that number is the length of the string. So far so good: we have successfully constructed a number-hashmark couplet at the end of our string. The big leap is then to realize that the substring before what we&rsquo;ve just filled in is just another slightly shorter hash-string, and we can repeat the process unaltered.</p>
+<p>Either by looping or recursion we will soon find ourselves at the beginning of the string, writing in segments from the back forward. The only remaining challenge is to know when to stop. Generally the entire function can be wrapped up in a few lines.</p>
+<h3 id="recursion">RECURSION</h3>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/maxim-kolodyazhny/perl/ch-2.pl"><strong>Maxim Kolodyazhny</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/stuart-little/perl/ch-2.pl"><strong>Stuart Little</strong></a></p>
+<p>The way I&rsquo;ve described the process above nearly screams recursion, as once we&rsquo;ve finished our first segment we are confronted with the exact same processing to derive the next. The only thing remaining is finding a base case.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a></p>
+<p>The monk will start us off with a clear, concise example of the method. They establish two base cases for a single leading hash and a clean finish. At each instantiation a hash character is combined with a numeric representation of the current length of the string and returned, prefixed by the return value of the calling the routine to create a new, shorter hash-string with the remaining length.</p>
+<p>Because for large values of N, that is over 100, Perl will begine to complain about a possible runaway deep recursion, those particular warnings are expressly disabled for this situation.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">make_hash_counting_string</span>
+    {
+        <span style="color:#66d9ef">no</span> warnings <span style="color:#e6db74">qw( recursion )</span>;
+
+        <span style="color:#66d9ef">my</span> ($N) <span style="color:#f92672">=</span> @_;
+
+        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;&#39;</span>  <span style="color:#66d9ef">if</span> $N <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;#&#39;</span> <span style="color:#66d9ef">if</span> $N <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>;
+
+        <span style="color:#66d9ef">my</span> $tail    <span style="color:#f92672">=</span> $N <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;#&#39;</span>;
+        <span style="color:#66d9ef">my</span> $new_len <span style="color:#f92672">=</span> $N <span style="color:#f92672">-</span> length $tail;
+        <span style="color:#66d9ef">my</span> $head    <span style="color:#f92672">=</span> make_hash_counting_string( $new_len );
+
+        <span style="color:#66d9ef">return</span> $head <span style="color:#f92672">.</span> $tail;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a></p>
+<p>CY give us an example of the same technique condensed a bit into a tighter package.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">hcs</span> {
+        <span style="color:#66d9ef">my</span> $N <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>];
+        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;#&#34;</span>  <span style="color:#66d9ef">if</span> $N <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;2#&#34;</span> <span style="color:#66d9ef">if</span> $N <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span>;
+        <span style="color:#66d9ef">my</span> $p <span style="color:#f92672">=</span> length $N;
+        <span style="color:#66d9ef">return</span> (hcs($N<span style="color:#f92672">-</span>$p<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;$N&#34;</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;#&#34;</span>);
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/adam-russell/perl/ch-2.pl"><strong>Adam Russell&rsquo;s</strong></a> and <strong>Stuart Little&rsquo;s</strong> submissions end up using different names (of course!) for nearly the same constructions.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/maxim-kolodyazhny/perl/ch-2.pl"><strong>Maxim Kolodyazhny</strong></a></p>
+<p>Maxim delivers us a recursive solution that operates what amounts to the same algorithm in a completely different manner. First of all he passes everything he needs with every instance: an evolving version of the hash-string, a running position count and the finished string length.</p>
+<p>The elephant in the room, however, is the recursion itself: the <code>__SUB__</code> token, since 5.20, will return a coderef for the currently executing subroutine, whether or not is has a name. Calling <code>goto __SUB__</code> essentially exits and restarts the <em>same</em> subroutine rather than spawning a child, so issues of deep recursion are neatly sidestepped, as there is only ever, at any one moment, one subroutine instance in existence. Of course to change the data the stack needs to be rewritten before restarting, so <code>@_</code> is assigned to with the new values before the call, and Perl re-executes the routine with the new data.</p>
+<p>As the position is always attached to new segment, a string with a hash in the first position will have an extra 1 prepended to it, throwing off the count everywhere. The <code>substr</code> truncates the final string to the requested length from the end, neatly removing the leading 1 and setting everything right again. The following final pass through the routine will return the string in its correct length.</p>
+<p>All of the recursion, nearly none of the overhead. I like it. A lot.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">h</span>( $c, $s = &#39;&#39;, $n = $c ) {
+
+        <span style="color:#66d9ef">return</span> $s <span style="color:#66d9ef">if</span> $c <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">1</span>;
+
+        $s <span style="color:#f92672">=</span> substr <span style="color:#e6db74">&#34;$c#$s&#34;</span>, <span style="color:#f92672">-</span>$n;
+        @_ <span style="color:#f92672">=</span> ( $n <span style="color:#f92672">-</span> length( $s ), $s, $n );
+
+        goto __SUB__
+    }
+</code></pre></div><h3 id="iteration">ITERATION</h3>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/arne-sommer/perl/ch-2.pl"><strong>Arne Sommer</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/bob-lied/perl/ch-2.pl"><strong>Bob Lied</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/gustavo-chaves/perl/ch-2.pl"><strong>Gustavo Chaves</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/lubos-kolouch/perl/ch-2.pl"><strong>Lubos Kolouch</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/perlboy1967/perl/ch-2.pl"><strong>Niels van Dijke</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/yet-ebreo/perl/ch-2.pl"><strong>Yet Ebreo</strong></a></p>
+<p>Of course recursion isn&rsquo;t necessary by any means, and the same processes can be gracefully implemented with a loop.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/colin-crain/perl/ch-2.pl"><strong>My Own Solution</strong></a></p>
+<p>I&rsquo;ll start the demonstration with my own version. At each iteration the position counter is set to the length of remaining hash-string to be computed. A hash character is prepended to the <code>$str</code> string, and if the position is 1, that was the final character and we are done. Otherwise we add the position number in front and loop.</p>
+<p>When the remaining string length falls below 10, the positional labels on the added hash marks will invariably become single digits. Thus the position counter will decrement by 2 until the counter reaches either 1 or 0, and we will either add an additional hash and return or the loop condition will fail and we will return the complete hash-string as-is.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get_hash_string</span> ( $num ) {
+        <span style="color:#66d9ef">my</span> $str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
+
+        <span style="color:#66d9ef">while</span> ( <span style="color:#66d9ef">my</span> $pos <span style="color:#f92672">=</span> $num <span style="color:#f92672">-</span> length $str )  {
+            $str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;#&#39;</span> <span style="color:#f92672">.</span> $str;
+            <span style="color:#66d9ef">return</span> $str <span style="color:#66d9ef">if</span> $pos <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>;
+            $str <span style="color:#f92672">=</span> $pos <span style="color:#f92672">.</span> $str;
+        }
+
+        <span style="color:#66d9ef">return</span> $str;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a></p>
+<p>Dave moves to logic around a little bit, on every pass prepending first a single hash and then a positional counter unless it&rsquo;s the last character. The counter is reset to the remaining length, and when it reaches 0 we are done.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">hash_count</span>( $i ) {
+        <span style="color:#66d9ef">my</span> $output <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
+        <span style="color:#66d9ef">my</span> $j      <span style="color:#f92672">=</span> $i;
+        <span style="color:#66d9ef">while</span> ( $j <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> ) {
+            $output <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;#&#39;</span> <span style="color:#f92672">.</span> $output;
+            $output <span style="color:#f92672">=</span> $j <span style="color:#f92672">.</span> $output <span style="color:#66d9ef">if</span> length $output <span style="color:#f92672">&lt;</span> $i;
+            $j <span style="color:#f92672">=</span> $i <span style="color:#f92672">-</span> length $output;
+        }
+        <span style="color:#66d9ef">return</span> $output;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/yet-ebreo/perl/ch-2.pl"><strong>Yet Ebreo</strong></a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">while</span> ($N) {
+        $out <span style="color:#f92672">=</span> ($N<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">1</span>?<span style="color:#e6db74">&#34;$N&#34;</span>:<span style="color:#e6db74">&#34;&#34;</span>)<span style="color:#f92672">.</span><span style="color:#e6db74">&#34;#$out&#34;</span>;
+        $N   <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">-</span> length $out;
+    }
+</code></pre></div><p>Yet&rsquo;s compact contribution to the task is not terribly cryptic this time, albeit it still quite dense. If we unpack it:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">while</span> ( $N ) {
+            $out <span style="color:#f92672">=</span> ( $N <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> ? <span style="color:#e6db74">&#34;$N&#34;</span>
+                            : <span style="color:#e6db74">&#34;&#34;</span>   ) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;#$out&#34;</span>;
+            $N     <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">-</span> length $out;
+    }
+</code></pre></div><p>we can see a ternary decision to either add a number of not in front of every hash placed, terminating when <code>$N</code> reaches 0.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/arne-sommer/perl/ch-2.pl"><strong>Arne Sommer</strong></a></p>
+<p>Arne breaks out his loop when the position is greater than 1, and then uses a ternary operator to decide whether or not to add a final leading hash before output.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">while</span> ($position <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>)
+    {
+      <span style="color:#66d9ef">my</span> $prefix <span style="color:#f92672">=</span> $position <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;#&#39;</span>;
+
+      $string <span style="color:#f92672">=</span> $prefix <span style="color:#f92672">.</span> $string;
+      $position <span style="color:#f92672">-=</span> length($prefix);
+    }
+
+    length($string) <span style="color:#f92672">==</span> $N
+        ? say $string
+        : say <span style="color:#e6db74">&#34;#$string&#34;</span>;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/gustavo-chaves/perl/ch-2.pl"><strong>Gustavo Chaves</strong></a></p>
+<p>And Gustavo takes that form and tightens is up even further.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $string <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;#&#39;</span>;
+
+    <span style="color:#66d9ef">while</span> ($N <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>) {
+        $string <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;$N$string&#34;</span>;
+        $N <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> length <span style="color:#e6db74">&#34;$N&#34;</span>;
+        $string <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;#$string&#34;</span> <span style="color:#66d9ef">if</span> $N <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a></p>
+<p>James reconfigures things into a list-processing problem, iterating over the tranformation until the character count remaining is either 0 or 1. Instead of a ternary switch, a little trick involving the string repetition operator prepends either 0 or 1 &lsquo;#&rsquo; characters before returning.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">hash_count_string</span> {
+      <span style="color:#66d9ef">my</span> ( $s, $n ) <span style="color:#f92672">=</span> ( <span style="color:#e6db74">&#39;&#39;</span>,      @_            );
+         ( $s, $n ) <span style="color:#f92672">=</span> ( <span style="color:#e6db74">&#34;$n#$s&#34;</span>, $n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">-</span>length$n ) <span style="color:#66d9ef">while</span> $n <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>;
+      <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;#&#39;</span>x$n<span style="color:#f92672">.</span>$s;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/polettix/perl/ch-2.pl"><strong>Flavio Poletti&rsquo;s</strong></a> submission was very similarly structured.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/bob-lied/perl/ch-2.pl"><strong>Bob Lied</strong></a></p>
+<p>Bob&rsquo;s technique works a little differently, continually looping and conditionally altering the action at each pass, building us a curious little state machine to oscillate back and forth between adding hash marks and position numbers.</p>
+<p>This use of a flag to keep track of which element to add next will pop up again later, being somewhat popular with the list-assembly crowd, which we&rsquo;ll look at next.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> constant HASH  <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">use</span> constant PLACE <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>;
+
+    <span style="color:#75715e"># Build backwards, last character will be #</span>
+    <span style="color:#66d9ef">my</span> $str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;#&#34;</span>;
+    <span style="color:#66d9ef">my</span> $prev <span style="color:#f92672">=</span> HASH;
+
+    <span style="color:#66d9ef">while</span> ( $place <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> )
+    {
+        <span style="color:#66d9ef">if</span> ( $prev <span style="color:#f92672">==</span> HASH ) { $str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;$place$str&#34;</span>; $place <span style="color:#f92672">-=</span> length($place); $prev <span style="color:#f92672">=</span> PLACE; }
+        <span style="color:#66d9ef">else</span>                 { $str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;#$str&#34;</span>     ; $place<span style="color:#f92672">--</span>                ; $prev <span style="color:#f92672">=</span> HASH; }
+
+        say <span style="color:#e6db74">&#34;N=[$N] place=[$place] str=[$str]&#34;</span> <span style="color:#66d9ef">if</span> $verbose;
+    }
+</code></pre></div><h3 id="using-an-intermediate-array">using an INTERMEDIATE ARRAY</h3>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/abigail/perl/ch-2.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/jaldhar-h-vyas/perl/ch-2.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/paulo-custodio/perl/ch-2.pl"><strong>Paulo Custodio</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>A few members chose to gather their individual components into an array, which is then joined into the finished string. The components are either placed onto the array from one end or the other; as there is no additional expense to the <code>unshift</code> operation in Perl, the choice came down to personal preference.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>There need be little difference in the end between concatenating onto a string and adding elements to a list which is later concatenated together. Luis gives us a familiar technique done with a twist, gathering the individual components he creates before assembling them at the end.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $length( @ARGV ) {
+        <span style="color:#66d9ef">my</span> $remaining <span style="color:#f92672">=</span> $length;
+        <span style="color:#66d9ef">my</span> @pieces;
+        <span style="color:#66d9ef">while</span>( $remaining <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> ) {
+            unshift @pieces, $remaining <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> ? <span style="color:#e6db74">&#34;#&#34;</span> : <span style="color:#e6db74">&#34;$remaining#&#34;</span>;
+            $remaining<span style="color:#f92672">-=</span>length $pieces[<span style="color:#ae81ff">0</span>];
+        }
+        say <span style="color:#e6db74">&#34;Length: $length\tString: &#34;</span>, join <span style="color:#e6db74">&#39;&#39;</span>, @pieces;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/jaldhar-h-vyas/perl/ch-2.pl"><strong>Jaldhar H. Vyas</strong></a></p>
+<p>Earlier we said we would see this idea again, of alternating actions in a loop using a flag. Although there are twice as many passes through the loop, there is a certain appeal to the clarity of performing exactly one action in each iteration.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">while</span> ($pos <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
+        <span style="color:#66d9ef">if</span> ($wasHash) {
+            unshift @hashCounting, <span style="color:#e6db74">&#34;$wasHash&#34;</span>;
+            $pos <span style="color:#f92672">-=</span> length <span style="color:#e6db74">&#34;$wasHash&#34;</span>;
+            $wasHash <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        } <span style="color:#66d9ef">else</span> {
+            unshift @hashCounting, <span style="color:#e6db74">&#39;#&#39;</span>;
+            $wasHash <span style="color:#f92672">=</span> $pos;
+            $pos<span style="color:#f92672">--</span>;
+        }
+    }
+
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/abigail/perl/ch-2.pl"><strong>Abigail</strong></a></p>
+<p>Abigail tightens up this idea a bit, introducing a few idiosyncratic variations. Remember a &ldquo;fat comma&rdquo; is just another form of the comma, so there&rsquo;s nothing fundamentally different about those <code>push</code> statements. The toggle is clever, assigning it to its binary negation serves to switch the value at every reading, and as the assigned value is returned by an assignment the condition alternately passes and fails.</p>
+<p>I&rsquo;ll say that form of <code>push</code> is starting to grow on me.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $hash <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">while</span> ($index) {
+        <span style="color:#66d9ef">if</span> ($hash <span style="color:#f92672">=</span> <span style="color:#f92672">!</span>$hash) {
+            push @out <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;#&#34;</span>;
+            $index <span style="color:#f92672">--</span>;
+        }
+        <span style="color:#66d9ef">else</span> {
+            push @out <span style="color:#f92672">=&gt;</span>      $index <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+            $index <span style="color:#f92672">-=</span> length ($index <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>);
+        }
+    }
+</code></pre></div><h3 id="substring-insertion">substring INSERTION</h3>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/alexander-karelas/perl/ch-2.pl"><strong>Alexander Karelas</strong></a> ,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/wanderdoc/perl/ch-2.pl"><strong>Wanderdoc</strong></a></p>
+<p>A curious method arose in two distinct forms, involving starting from a dummy string of the correct length and then inserting numbers, and sometimes hashes, into it using <code>substr</code>.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/alexander-karelas/perl/ch-2.pl"><strong>Alexander Karelas</strong></a></p>
+<p>In the first form of this technique, Karelas starts with a dummy string of the proper length composed of dashes. He then uses a positional counter and a pair of <code>substr</code> functions to overwrite the hash-string as it is computed.  In many ways this follows the iterative loop patterns we have seen before.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $ret <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;-&#39;</span> x $n;
+    <span style="color:#66d9ef">my</span> $pos <span style="color:#f92672">=</span> $n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">while</span> ($pos <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>) {
+        substr($ret, $pos, <span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;#&#39;</span>);
+        <span style="color:#66d9ef">my</span> $number <span style="color:#f92672">=</span> $pos <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+        $pos <span style="color:#f92672">-=</span> length($number);
+        <span style="color:#66d9ef">if</span> ($pos <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>) {
+            substr($ret, $pos, length($number), $number);
+        }
+        $pos<span style="color:#f92672">--</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a></p>
+<p>In Simon&rsquo;s variation, however, he starts with a string of hashes. Careful adjustment of the position tracker allows overwriting with only the numeric components of hash-string.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $string   <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;#&#39;</span> x $length;
+    <span style="color:#66d9ef">my</span> $position <span style="color:#f92672">=</span> $length <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;     <span style="color:#75715e"># The last character</span>
+
+    <span style="color:#66d9ef">while</span> ( $position <span style="color:#f92672">-</span> length( $position <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> ) <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> ) {
+        <span style="color:#66d9ef">my</span> $char <span style="color:#f92672">=</span> length( $position <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> );
+        substr( $string, $position <span style="color:#f92672">-</span> $char, $char, $position <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> );
+        $position <span style="color:#f92672">-=</span> ( $char <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> );
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a></p>
+<p>The in the other form of the method, no running positional counter is employed. Rather, <code>rindex</code> is used to locate the next number placement.</p>
+<p>Choroba constructs his dummy string from hashes, then searches the string from the right for incidences of two adjacent marks, an expressly disallowed state in the final form. On finding a match the relevant position number is directly inserted into the string, overwriting the existing hashes up to but not including the second of the two hashes found.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">hash_counting_string</span> {
+        <span style="color:#66d9ef">my</span> ($length) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> $s <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;#&#39;</span> x $length;
+        <span style="color:#66d9ef">while</span> (<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">!=</span> (<span style="color:#66d9ef">my</span> $pos <span style="color:#f92672">=</span> rindex $s, <span style="color:#e6db74">&#39;##&#39;</span>)) {
+            <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> $pos <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>;
+            substr $s, $pos <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> length $n, length $n, $n;
+        }
+        <span style="color:#66d9ef">return</span> $s
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/wanderdoc/perl/ch-2.pl"><strong>Wanderdoc</strong></a></p>
+<p>Finally, in the doctor&rsquo;s version of this second form, they use the second form of <code>rindex</code>, where an offset is provided. This version of the function will find the first instance of the given substring searching leftward from the offset. By feeding the previously found position to <code>rindex</code>, they can continuously find, after overwriting the previous hashes with a number, the next remaining instance of a hash for numbering.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $string <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;#&#39;</span> x $length;
+
+    <span style="color:#66d9ef">return</span> $string  <span style="color:#66d9ef">if</span> $length <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;2#&#39;</span>     <span style="color:#66d9ef">if</span> $length <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span>;
+
+    <span style="color:#66d9ef">my</span> $offset <span style="color:#f92672">=</span> $length <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+
+    <span style="color:#66d9ef">while</span> ( $offset <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> )
+    {
+         <span style="color:#66d9ef">my</span> $hash_sign_idx <span style="color:#f92672">=</span> rindex($string, <span style="color:#e6db74">&#39;#&#39;</span>, $offset);
+         <span style="color:#66d9ef">my</span> $idx_1_based <span style="color:#f92672">=</span> $hash_sign_idx <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+         <span style="color:#66d9ef">my</span> $idx_width <span style="color:#f92672">=</span> length($idx_1_based);
+         <span style="color:#66d9ef">my</span> $begin <span style="color:#f92672">=</span> $hash_sign_idx <span style="color:#f92672">-</span> $idx_width;
+
+         substr($string, $begin, $idx_width, $idx_1_based);
+         $offset <span style="color:#f92672">=</span> $begin;
+    }
+</code></pre></div><h2 id="look-forward-into-the-future">look FORWARD into the future</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a></p>
+<p>Bucking the trend, one holdout did solve the problem from the front forward. After such a consistent field of backwards solutions, I&rsquo;m sure more than one of you is curious as to even how one would proceed from the beginning of the string, as it it quickly becomes clear how dependent earlier positions and labels are to events that happen further down the line. I certainly was.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">hcs</span> {
+      <span style="color:#66d9ef">my</span> $n<span style="color:#f92672">=</span>shift;
+      <span style="color:#66d9ef">my</span> @s;
+      <span style="color:#66d9ef">my</span> @t;
+      <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
+        @s<span style="color:#f92672">=</span>();
+        <span style="color:#66d9ef">my</span> $l<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">if</span> (@t) {
+          @s<span style="color:#f92672">=</span>@{pop @t};
+          $l<span style="color:#f92672">=</span>sum(map {($_<span style="color:#f92672">==</span><span style="color:#ae81ff">1</span>?<span style="color:#ae81ff">0</span>:length($_))<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>} @s);
+        }
+        <span style="color:#66d9ef">if</span> ($l<span style="color:#f92672">==</span>$n) {
+          <span style="color:#66d9ef">last</span>;
+        }
+        <span style="color:#66d9ef">if</span> ($l <span style="color:#f92672">&gt;</span> $n) {
+          <span style="color:#66d9ef">next</span>;
+        }
+        <span style="color:#66d9ef">my</span> $c<span style="color:#f92672">=</span>$l;
+        <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
+          <span style="color:#66d9ef">my</span> $tt<span style="color:#f92672">=</span>($c<span style="color:#f92672">==</span><span style="color:#ae81ff">1</span>?<span style="color:#ae81ff">0</span>:length($c))<span style="color:#f92672">+</span>$l<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>;
+          <span style="color:#66d9ef">if</span> ($c<span style="color:#f92672">==</span>$tt) {
+            push @t,[@s,$c];
+          }
+          <span style="color:#66d9ef">if</span> ($c <span style="color:#f92672">&gt;</span> $tt) {
+            <span style="color:#66d9ef">last</span>;
+          }
+          $c<span style="color:#f92672">++</span>;
+        }
+      }
+      <span style="color:#66d9ef">return</span> join(<span style="color:#e6db74">&#39;&#39;</span>,map {($_<span style="color:#f92672">==</span><span style="color:#ae81ff">1</span>?<span style="color:#e6db74">&#39;&#39;</span>:$_)<span style="color:#f92672">.</span><span style="color:#e6db74">&#39;#&#39;</span>} @s);
+    }
+</code></pre></div><h2 id="noteworthy-goings-on-about-town">noteworthy GOINGS-ON ABOUT TOWN</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a></p>
+<p>Jorg brings us a gift from Raku, in the form of <a href="https://metacpan.org/pod/Syntax::Keyword::Gather"><code>Syntax::Keyword::Gather</code></a>, a module that brings the <code>gather/take</code> control structure over to Perl 5.</p>
+<p>From the module documentation:</p>
+<blockquote>
+<p>Within the block/closure controlled by a <code>gather</code> any call to <code>take</code> pushes that call&rsquo;s argument list to an implicitly created array. <code>take</code> returns the number of elements it took.  &hellip; At the end of the block&rsquo;s execution, the <code>gather</code> returns the list of values stored in the array (in a list context) or a reference to the array (in a scalar context).</p>
+</blockquote>
+<p>Sound useful? You betcha.</p>
+<p>Implementing a looping iterative solution, we can <code>gather</code> the created elements into a list, reverse the list and join it to create a the hash-string. Neat!</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">hashcountingstring</span> ($n) {
+        join(<span style="color:#e6db74">&#39;#&#39;</span>, reverse gather {
+                take <span style="color:#e6db74">&#39;&#39;</span>;
+                <span style="color:#66d9ef">for</span> (; $n <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>; $n <span style="color:#f92672">-=</span> length($n) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) {
+                    take $n x ($n <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>);
+                }
+            });
+    }
+</code></pre></div><p>I think I&rsquo;m gonna like this one. Keep &lsquo;em coming, Jorg, Keep &lsquo;em coming.</p>
+<h2 id="proof-you-want-proof">PROOF? You want PROOF?</h2>
+<p>In the task description it states:</p>
+<blockquote>
+<p>It can be shown that for every positive integer N there is exactly one such length-N string.</p>
+</blockquote>
+<p>Several people made comment on this last line. Flavio suggested that</p>
+<blockquote>
+<p>it would have been a plus to have a link to the demonstration that such a string can always be produced. I tried a very superficial search, but to no avail.</p>
+</blockquote>
+<p>And Roger tersely moves on with</p>
+<blockquote>
+<p>I&rsquo;ll take your word for it</p>
+</blockquote>
+<p>So in the absence of further elucidation, I took a stab at it. Note that I felt it necessary to add a fifth rule. This behavior was fully clarified in the examples given, but if we formalize it into a proper rule the examples are no longer necessary. The only remaining loose end falls in the definition of what constitutes a number, which I make note of in the second conjecture.</p>
+<p>I can&rsquo;t recall making an inductive proof exactly like this before, as it&rsquo;s not quite math, but I believe I&rsquo;ve covered it rigorously. Comments are welcome.</p>
+<hr>
+<h4 id="given">Given:</h4>
+<p>a positive number <em>N</em></p>
+<h4 id="posit">Posit:</h4>
+<ol>
+<li>For each value N there exists a hash-string <em>hs</em> conforming to the <strong>rules</strong>:
+<ol>
+<li>the string consists only of digits 0-9 and hashes, ‘#’</li>
+<li>there are no two consecutive hashes: ‘##’ does not appear</li>
+<li>the last character is a hash</li>
+<li>the number immediately preceding each hash is the position of that
+hash in the string</li>
+<li><strong>a hash in the first position is self-referential, and does not
+need a 1 to indicate position</strong></li>
+</ol>
+</li>
+<li>There exists only one such string.</li>
+</ol>
+<h4 id="first-conjecture">First Conjecture:</h4>
+<p>Assume the existence of a string <em>hs</em>, of unknown characters, of length <em>N</em>.</p>
+<p>The string <em>hs</em> can be said to be composed of <em>head</em> and <em>tail</em> substrings, which, when joined make up <em>hs</em>.</p>
+<p>The <em>tail</em> segment is defined as the characters:</p>
+<ol>
+<li><strong>from rule 3:</strong>
+<ul>
+<li>The last character of <em>tail</em> is &lsquo;#&rsquo;</li>
+</ul>
+</li>
+<li><strong>from rule 4:</strong>
+<ul>
+<li>The characters immediately before the last character compose the number <em>N</em></li>
+</ul>
+</li>
+</ol>
+<p>The remaining <em>head</em> is a hash-string of length (<em>N</em> - length <em>tail</em>) and this hash-string is subject to the same recursive definition as <em>hs</em>.</p>
+<p><strong>Three cases define the recursion:</strong></p>
+<ol>
+<li>If <em>head</em> has length 0 further subdivision is meaningless and the original string <em>hs</em> has been defined.</li>
+<li>If <em>head</em> has length 1 it is &lsquo;#', <strong>from rule 5</strong>.</li>
+<li>If <em>head</em> has length 2 or more it can continue to be recursively reduced.</li>
+</ol>
+<p>Thus the recursion will always finish.</p>
+<p>The hash-string <em>hs</em> is by induction defined by concatenating the final <em>head</em> and any number of <em>tail</em> substrings in the order going forward as they were created.</p>
+<h4 id="second-conjecture">Second Conjecture:</h4>
+<p>All segments to the string <em>hs</em> are rigidly defined as all times directly from the rules.</p>
+<p>By rule 2 the string <em>hs</em> will be composed only of alternating numbers and single &lsquo;#&rsquo; characters. Each number is uniquely determined by the position of its following hash.</p>
+<p>If we allow that in a given ordinal base there exists only one unique representation for each numeric value, then there can only be one unique number representation describing the position of each hash. [<strong>Allowing leading 0s would invalidate this conjecture.</strong>]</p>
+<p>The last hash position is determined by rule 3, which fixes its preceding number representation. There exists only one such substring. By the First Conjecture the recursive fixing of the other numerical representations follow.</p>
+<p>There can only be one such string because there exist no freedoms for any other form to exist.</p>
+<hr>
+<h1 id="PWC102BLOGS">BLOGS</h1>
+<hr>
+<p><strong>That’s it for me this week, people! Warped by the rain, driven by the snow, resolute and unbroken by the torrential influx, I somehow continue to maintain my bearings. Looking forward to next wave, the perfect wave, I am: <em>your humble servant</em>.</strong></p>
+<h1 id="PWC093BLOGS">But if Your <em>THIRST</em> for <em>KNOWLEDGE</em> is not <em>SLAKED</em>,</h1>
+<h1 id="then-run-dont-walk-to-the-watering-hole">then <em>RUN</em> <em>(dont walk!)</em> to the <em>WATERING HOLE</em></h1>
+<h1 id="and-read-these-blog-links">and <em>READ</em> these <em>BLOG</em> <em>LINKS</em>:</h1>
+<p><strong>( <em>don&rsquo;t think, trust your training, you&rsquo;re in the zone, just do it &hellip;</em> )</strong></p>
+<p><strong>Aaron Smith</strong></p>
+<ul>
+<li><a href="https://aaronreidsmith.github.io/blog/perl-weekly-challenge-102/">Perl Weekly Challenge 102 - Aaron Smith</a> ( <em>Raku</em> )</li>
+</ul>
+<p><strong>Abigail</strong></p>
+<ul>
+<li><a href="https://wp.me/pcxd30-t7">Perl Weekly Challenge 102: Rare Numbers — Abigail&rsquo;s Programming Blog</a> ( <em>Perl</em> )</li>
+<li><a href="https://wp.me/pcxd30-tZ">Perl Weekly Challenge 102: Hash-counting String — Abigail&rsquo;s Programming Blog</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Adam Russell</strong></p>
+<ul>
+<li><a href="http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2021/03/07">The Weekly Challenge 102: Threads and Recursion — Perl — RabbitFarm</a> ( <em>Perl</em> )</li>
+<li><a href="http://www.rabbitfarm.com/cgi-bin/blosxom/prolog/2021/03/07">The Weekly Challenge 102: Threads and Recursion — Prolog — RabbitFarm</a> ( <em>Prolog</em> )</li>
+</ul>
+<p><strong>Arne Sommer</strong></p>
+<ul>
+<li><a href="https://raku-musings.com/rare-counting.html">Rare Counting with Raku and Perl</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Dave Jacoby</strong></p>
+<ul>
+<li><a href="https://jacoby.github.io/2021/03/01/rare-numbers-and-hash-perl-challenge-102.html">Rare Numbers and Hash: Perl Challenge #102 | Committed to Memory</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Flavio Poletti</strong></p>
+<ul>
+<li><a href="https://github.polettix.it/ETOOBUSY/2021/03/03/pwc102-rare-numbers/">PWC102 - Rare Numbers - ETOOBUSY</a> ( <em>Perl</em> )</li>
+<li><a href="https://github.polettix.it/ETOOBUSY/2021/03/04/pwc102-hash-counting-string/">PWC102 - Hash-counting String - ETOOBUSY</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Jaldhar H. Vyas</strong></p>
+<ul>
+<li><a href="https://www.braincells.com/perl/2021/03/perl_weekly_challenge_week_102.html">Perl Weekly Challenge: Week 102</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>James Smith</strong></p>
+<ul>
+<li><a href="http://blogs.perl.org/users/james_curtis-smith/2021/03/perl-weekly-challenge-102.html">Perl weekly challenge 102 | James Curtis-Smith</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Roger Bell_West</strong></p>
+<ul>
+<li><a href="https://blog.firedrake.org/archive/2021/03/Perl_Weekly_Challenge_102__Rare_Hash.html">RogerBW&rsquo;s Blog: Perl Weekly Challenge 102: Rare Hash</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Simon Green</strong></p>
+<ul>
+<li><a href="https://dev.to/simongreennet/weekly-challenge-102-57jb">Weekly Challenge 102</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>W. Luis Mochan</strong></p>
+<ul>
+<li><a href="https://wlmb.github.io/2021/03/01/PWC102/">Perl Weekly Challenge 102 – W. Luis Mochán</a> ( <em>Perl</em> )</li>
+</ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="/contact" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2020
+                    </span> PerlWeeklyChallenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.nomtimes.co.uk/site/shop.do?cref=PerlBooks" title="Free Perl Books" rel="noreferrer" target="_blank">
+                            <img src="/images/NomTimes.jpg" style="width:22px; height: 18px;" alt=""/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://perlweeklychallenge.org/plugins/jQurey/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://perlweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://perlweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://perlweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://perlweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://perlweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://perlweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://perlweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://perlweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-136524905-1', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+
+</html>
+
