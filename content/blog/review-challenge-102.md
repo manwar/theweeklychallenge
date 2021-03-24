@@ -1,7 +1,7 @@
 
 ---
 author:       Colin Crain
-date:         2021-03-22T00:00:00
+date:         2021-03-24T00:00:00
 description:  "Colin Crain › Perl Weekly Review #102"
 tags:         ["perl"]
 title:        "Colin Crain › Perl Weekly Review #102"
@@ -49,7 +49,7 @@ I'm always curious as to what the people think of these efforts. Everyone here a
 
 ---
 
-## •   &nbsp;  &nbsp;  &nbsp;   [Task 1](#PWC102TASK1)       &nbsp;  &nbsp;  &nbsp;   •   &nbsp;  &nbsp;  &nbsp;   [Task 2](#PWC102TASK2)   &nbsp;  &nbsp;  &nbsp;       •   &nbsp;  &nbsp;  &nbsp;   [BLOGS](#PWC102BLOGS)    &nbsp;  &nbsp;  &nbsp;   	•
+## •   &nbsp;  &nbsp;  &nbsp;   [Task 1](#PWC102TASK1)       &nbsp;  &nbsp;  &nbsp;   •   &nbsp;  &nbsp;  &nbsp;   [Task 2](#PWC102TASK2)   &nbsp;  &nbsp;  &nbsp;   	•   &nbsp;  &nbsp;  &nbsp;   [BLOGS](#PWC102BLOGS)    &nbsp;  &nbsp;  &nbsp;   	•
 
 ---
 
@@ -92,7 +92,6 @@ Most of the examples submitted were based around those properties listed by Gupt
 [**Arne Sommer**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/arne-sommer/perl/ch-1.pl),
 [**Cristina Heredia**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/cristian-heredia/perl/ch-1.pl),
 [**Dave Jacoby**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/dave-jacoby/perl/ch-1.pl),
-[**Duncan C. White**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/duncan-c-white/perl/ch-1.pl),
 [**Lubos Kolouch**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/lubos-kolouch/perl/ch-1.pl),
 [**Paulo Custodio**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/paulo-custodio/perl/ch-1.pl),
 [**Simon Green**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/sgreen/perl/ch-1.pl),
@@ -666,6 +665,7 @@ Bob, similarly to Jaldhar, eschews individual digit checks for the most part, ho
 
 ## CONSTRUCTING numbers
 [**Athanasius**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/athanasius/perl/ch-1.pl),
+[**Duncan C. White**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/duncan-c-white/perl/ch-1i.pl),
 [**E. Choroba**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/e-choroba/perl/ch-1.pl), and
 [**Jorg Sommrey**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/jo-37/perl/ch-1.pl)
 
@@ -742,6 +742,36 @@ Here is an example of one of the more complicated cases:
         }
     }
 ```
+
+[**Duncan C. White**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/duncan-c-white/perl/ch-1i.pl),
+
+Duncan worked through no less than 9 evolving versions when refining his optimizations; these are viewable in [the GitHub repository](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-102/duncan-c-white/perl). There's even a helpful [key](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/duncan-c-white/OptimizingTask1) provided. In the final boss form he avoids looping over the whole range, and instead uses four individual subroutine calls to generate blocks of candidates starting with 2,4,6 and 8, respectively. Three routines are called for this work, one a generalized `rareblock()` for 2 and 4, and two optimized versions to handle leading 6s and 8s.
+
+Within the routines, the candidates themselves are constructed mathematically from a given leading digit and known valid trailing values. The consecutively iterated center is thus roughly two orders of magnitude smaller than the base interval.
+
+As an example of these candidate generators, his function `rareblock2378()` constructs numbers with the last digit 2,3,7 or 8; this function corresponds to the constraints placed on the leading digit 8.
+
+```perl
+    fun rareblock2378( $m, $f )
+    {
+        my $from = $f * $m;
+        my $to = ($f+1) * $m - 1;
+        say "$from..$to" if $debug;
+        $from /= 10;
+        $to /= 10;
+
+        foreach my $y ($from..$to)
+        {
+            # try appending 2, 3, 7 and 8 and checking for rareness
+            foreach my $d (2,3,7,8)
+            {
+                my $x = $y * 10 + $d;
+                say "rare $x" if israre($x);
+            }
+        }
+    }
+```
+
 
 
 ## the properties of PERFECT SQUARES

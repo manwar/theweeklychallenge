@@ -179,7 +179,7 @@
                 <div class="block">
                     <h2>Colin Crain › Perl Weekly Review #102</h2>
                     <div class="portfolio-meta">
-                        <span>Monday, Mar 22, 2021</span>|
+                        <span>Wednesday, Mar 24, 2021</span>|
                         <span> Tags:
                             perl
                         </span>
@@ -220,7 +220,7 @@
 <p>I&rsquo;m always curious as to what the people think of these efforts. Everyone here at the PWC would like to hear any feedback you&rsquo;d like to give.</p>
 <p><strong>So finally, without further ado&hellip;</strong></p>
 <hr>
-<h2 id="---nbsp--nbsp--nbsp---task-1pwc102task1-------nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---task-2pwc102task2---nbsp--nbsp--nbsp----------nbsp--nbsp--nbsp---blogspwc102blogs----nbsp--nbsp--nbsp---">•             <a href="#PWC102TASK1">Task 1</a>                 •             <a href="#PWC102TASK2">Task 2</a>                 •             <a href="#PWC102BLOGS">BLOGS</a>              	•</h2>
+<h2 id="---nbsp--nbsp--nbsp---task-1pwc102task1-------nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---task-2pwc102task2---nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---blogspwc102blogs----nbsp--nbsp--nbsp---">•             <a href="#PWC102TASK1">Task 1</a>                 •             <a href="#PWC102TASK2">Task 2</a>             	•             <a href="#PWC102BLOGS">BLOGS</a>              	•</h2>
 <hr>
 <h1 id="PWC102TASK1">TASK 1</h1>
 <h1 id="rare-numbers">Rare Numbers</h1>
@@ -244,7 +244,6 @@
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/arne-sommer/perl/ch-1.pl"><strong>Arne Sommer</strong></a>,
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/cristian-heredia/perl/ch-1.pl"><strong>Cristina Heredia</strong></a>,
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>,
-<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a>,
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/lubos-kolouch/perl/ch-1.pl"><strong>Lubos Kolouch</strong></a>,
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/paulo-custodio/perl/ch-1.pl"><strong>Paulo Custodio</strong></a>,
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a>,
@@ -729,6 +728,7 @@
     }
 </code></pre></div><h2 id="constructing-numbers">CONSTRUCTING numbers</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/duncan-c-white/perl/ch-1i.pl"><strong>Duncan C. White</strong></a>,
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>, and
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a></p>
 <p>If instead of <em>filtering</em> numbers that do not fit the leading and trailing digit requirements, another option was to synthesize sets of these segments, then only iterate  over whatever center span is required to produce the correct number of digits. The three parts are then joined somehow to form a number that is then checked. This will radically reduce the actual number of candidates evaluated to the theoretical 2.3% left over after all the digit checks with almost no overhead. At this point we&rsquo;ve gained nearly two whole orders of magnitude over the naive implementation.</p>
@@ -786,6 +786,28 @@ is 2 and the last digit is 2 and the second and second-to-last digits are equal:
 
                     record_rare_number( $n ) <span style="color:#66d9ef">if</span> is_rare( $n );
                 }
+            }
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/duncan-c-white/perl/ch-1i.pl"><strong>Duncan C. White</strong></a>,</p>
+<p>Duncan worked through no less than 9 evolving versions when refining his optimizations; these are viewable in <a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-102/duncan-c-white/perl">the GitHub repository</a>. There&rsquo;s even a helpful <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-102/duncan-c-white/OptimizingTask1">key</a> provided. In the final boss form he avoids looping over the whole range, and instead uses four individual subroutine calls to generate blocks of candidates starting with 2,4,6 and 8, respectively. Three routines are called for this work, one a generalized <code>rareblock()</code> for 2 and 4, and two optimized versions to handle leading 6s and 8s.</p>
+<p>Within the routines, the candidates themselves are constructed mathematically from a given leading digit and known valid trailing values. The consecutively iterated center is thus roughly two orders of magnitude smaller than the base interval.</p>
+<p>As an example of these candidate generators, his function <code>rareblock2378()</code> constructs numbers with the last digit 2,3,7 or 8; this function corresponds to the constraints placed on the leading digit 8.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    fun rareblock2378( $m, $f )
+    {
+        <span style="color:#66d9ef">my</span> $from <span style="color:#f92672">=</span> $f <span style="color:#f92672">*</span> $m;
+        <span style="color:#66d9ef">my</span> $to <span style="color:#f92672">=</span> ($f<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">*</span> $m <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+        say <span style="color:#e6db74">&#34;$from..$to&#34;</span> <span style="color:#66d9ef">if</span> $debug;
+        $from <span style="color:#f92672">/=</span> <span style="color:#ae81ff">10</span>;
+        $to <span style="color:#f92672">/=</span> <span style="color:#ae81ff">10</span>;
+
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $y ($from<span style="color:#f92672">..</span>$to)
+        {
+            <span style="color:#75715e"># try appending 2, 3, 7 and 8 and checking for rareness</span>
+            <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $d (<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">8</span>)
+            {
+                <span style="color:#66d9ef">my</span> $x <span style="color:#f92672">=</span> $y <span style="color:#f92672">*</span> <span style="color:#ae81ff">10</span> <span style="color:#f92672">+</span> $d;
+                say <span style="color:#e6db74">&#34;rare $x&#34;</span> <span style="color:#66d9ef">if</span> israre($x);
             }
         }
     }
