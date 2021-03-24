@@ -32,6 +32,10 @@ Please find below guest contributions.
 
 ##### **Dave Jacoby** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-105/dave-jacoby/node/ch-2.js) in **Node.js**.
 
+##### **Mohammad Meraj Zia** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-105/ziameraj16/java/NthRoot.java) in **Java**.
+
+##### **Mohammad Meraj Zia** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-105/ziameraj16/java/NthRoot.kt) in **Kotlin**.
+
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-105/roger-bell-west/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-105/roger-bell-west/python/ch-2.py) in **Python**.
 
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-105/roger-bell-west/ruby/ch-1.rb) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-105/roger-bell-west/ruby/ch-2.rb) in **Ruby**.
