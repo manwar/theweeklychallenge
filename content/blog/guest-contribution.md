@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2021-03-24T00:00:00+00:00
+date: 2021-03-27T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -55,6 +55,8 @@ Please find below guest contributions.
 ##### **Mohammad Meraj Zia** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-105/ziameraj16/java/NthRoot.kt) in **Kotlin**.
 
 ##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-105/paulo-custodio/awk/ch-1.awk) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-105/paulo-custodio/awk/ch-2.awk) in **Awk**.
+
+##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-105/paulo-custodio/basic/ch-1.bas) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-105/paulo-custodio/basic/ch-2.bas) in **Basic**.
 
 ##### **Paulo Custodio** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-105/paulo-custodio/bc/ch-1.bc) in **Bc**.
 
@@ -154,6 +156,8 @@ Please find below guest contributions.
 
 ##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-104/paulo-custodio/awk/ch-1.awk) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-104/paulo-custodio/awk/ch-2.awk) in **Awk**.
 
+##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-104/paulo-custodio/basic/ch-1.bas) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-104/paulo-custodio/basic/ch-2.bas) in **Basic**.
+
 ##### **Paulo Custodio** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-104/paulo-custodio/bc/ch-1.bc) in **Bc**.
 
 ##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-104/paulo-custodio/forth/ch-1.fs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-104/paulo-custodio/forth/ch-2.fs) in **Forth**.
@@ -197,6 +201,8 @@ Please find below guest contributions.
 ##### **Cristina Heredia** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-103/cristian-heredia/python/ch-1.py) in **Python**.
 
 ##### **Lance Wicks** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-103/lance-wicks/elm/src/Zodiac.elm) in **Elm**.
+
+##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-103/paulo-custodio/basic/ch-1.bas) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-103/paulo-custodio/basic/ch-2.bas) in **Basic**.
 
 ##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-103/paulo-custodio/forth/ch-1.fs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-103/paulo-custodio/forth/ch-2.fs) in **Forth**.
 
