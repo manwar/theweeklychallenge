@@ -42,9 +42,13 @@ Please find below guest contributions.
 
 ##### **Abigail** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-105/abigail/node/ch-1.js) in **Node.js**.
 
+##### **Abigail** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-105/abigail/pascal/ch-1.p) in **Pascal**.
+
 ##### **Abigail** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-105/abigail/python/ch-1.py) in **Python**.
 
 ##### **Abigail** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-105/abigail/ruby/ch-1.rb) in **Ruby**.
+
+##### **Abigail** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-105/abigail/scheme/ch-1.scm) in **Scheme**.
 
 ##### **Abigail** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-105/abigail/sql/ch-1.sql) in **SQL**.
 
