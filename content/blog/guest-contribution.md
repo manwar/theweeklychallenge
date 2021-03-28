@@ -52,6 +52,8 @@ Please find below guest contributions.
 
 ##### **Abigail** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-105/abigail/sql/ch-1.sql) in **SQL**.
 
+##### **Colin Crain** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-105/colin-crain/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-105/colin-crain/python/ch-2.py) in **Python**.
+
 ##### **Cristina Heredia** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-105/cristian-heredia/python/ch-1.py) in **Python**.
 
 ##### **Dave Jacoby** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-105/dave-jacoby/node/ch-2.js) in **Node.js**.
