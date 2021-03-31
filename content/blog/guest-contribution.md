@@ -5,10 +5,10 @@ description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
 author: Mohammad S Anwar
-tags: ["Ada", "APL", "Awk", "Basic", "Bash", "Bc", "Befunge", "BQN", "Brainfuck", "C", "Chef", "Cobol", "C Shell", "C++", "Clojure", "Elm", "Erlang", "Fish", "Forth", "Fortran", "Gembase", "GNAT", "Go", "Haskell", "Haxe", "HTML", "Idris", "Janet", "Java", "JavaScript", "Kotlin", "Lisp", "Lua", "Macro Processor", "Mumps", "Nim", "Node.js", "OCaml", "Ook", "Pascal", "PHP", "Python", "Postscript", "Prolog", "R", "Rexx", "Ruby", "Rust", "Scala", "Scheme", "Sed", "Smalltalk", "SQL", "Swift", "Tcl", "XSLT"]
+tags: ["Ada", "APL", "Awk", "Basic", "Bash", "Bc", "Befunge", "BQN", "Brainfuck", "C", "Chef", "COBOL", "C Shell", "C++", "Clojure", "D", "Dart", "Elm", "Erlang", "Fish", "Forth", "Fortran", "Gembase", "GNAT", "Go", "Haskell", "Haxe", "HTML", "Idris", "Janet", "Java", "JavaScript", "Kotlin", "Lisp", "Lua", "Macro Processor", "Mumps", "Nim", "Node.js", "OCaml", "Ook", "Pascal", "PHP", "Python", "Postscript", "Prolog", "R", "Rexx", "Ruby", "Rust", "Scala", "Scheme", "Sed", "Smalltalk", "SQL", "Swift", "Tcl", "Visual Basic", "XSLT"]
 ---
 
-As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. During the **Week #018**, we received solutions to **["The Weekly Challenge - 018"](/blog/perl-weekly-challenge-018)** by `Orestis Zekai` in **Python**. It was pleasant surprise to receive solutions in something other than **Perl** and **Raku**. Ever since regular team members also started contributing in other languages like **Ada**, **APL**, **Awk**, **Basic**, **Bash**, **Bc**, **Befunge**, **BQN**, **Brainfuck**, **C**, **Chef**, **Cobol**, **C Shell**, **C++**, **Clojure**, **Elm**, **Erlang**, **Fish**, **Forth**, **Fortran**, **Gembase**, **GNAT**, **Go**, **Haskell**, **Haxe**, **HTML**, **Idris**, **Janet**, **Java**, **JavaScript**, **Kotlin**, **Lisp**, **Lua**, **Macro Processor**, **Mumps**, **Nim**, **Node.js**, **OCaml**, **Ook**, **Pascal**, **PHP**, **Python**, **Postscript**, **Prolog**, **R**, **Rexx**, **Ruby**, **Rust**, **Scala**, **Scheme**, **Sed**, **Smalltalk**, **SQL**, **Swift**, **Tcl** and **XSLT**.
+As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. During the **Week #018**, we received solutions to **["The Weekly Challenge - 018"](/blog/perl-weekly-challenge-018)** by `Orestis Zekai` in **Python**. It was pleasant surprise to receive solutions in something other than **Perl** and **Raku**. Ever since regular team members also started contributing in other languages like **Ada**, **APL**, **Awk**, **Basic**, **Bash**, **Bc**, **Befunge**, **BQN**, **Brainfuck**, **C**, **Chef**, **COBOL**, **C Shell**, **C++**, **Clojure**, **D**, **Dart**, **Elm**, **Erlang**, **Fish**, **Forth**, **Fortran**, **Gembase**, **GNAT**, **Go**, **Haskell**, **Haxe**, **HTML**, **Idris**, **Janet**, **Java**, **JavaScript**, **Kotlin**, **Lisp**, **Lua**, **Macro Processor**, **Mumps**, **Nim**, **Node.js**, **OCaml**, **Ook**, **Pascal**, **PHP**, **Python**, **Postscript**, **Prolog**, **R**, **Rexx**, **Ruby**, **Rust**, **Scala**, **Scheme**, **Sed**, **Smalltalk**, **SQL**, **Swift**, **Tcl**, **Visual Basic** and **XSLT**.
 
 Please find below guest contributions.
 
@@ -158,7 +158,7 @@ Please find below guest contributions.
 
 ##### **Abigail** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-104/abigail/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-104/abigail/c/ch-2.c) in **C**.
 
-##### **Abigail** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-104/abigail/cobol/ch-1.cb) in **Cobol**.
+##### **Abigail** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-104/abigail/cobol/ch-1.cb) in **COBOL**.
 
 ##### **Abigail** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-104/abigail/csh/ch-1.csh) in **C Shell**.
 
@@ -988,7 +988,7 @@ Please find below guest contributions.
 
 ##### **Abigail** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-089/abigail/chef/ch-2.chef) in **Chef**.
 
-##### **Abigail** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-089/abigail/cobol/ch-2.cb) in **Cobol**.
+##### **Abigail** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-089/abigail/cobol/ch-2.cb) in **COBOL**.
 
 ##### **Abigail** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-089/abigail/csh/ch-2.csh) in **C Shell**.
 
