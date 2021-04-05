@@ -44,6 +44,8 @@ Please find below guest contributions.
 
 ##### **Abigail** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/abigail/ruby/ch-1.rb) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/abigail/ruby/ch-2.rb) in **Ruby**.
 
+##### **Colin Crain** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/colin-crain/python/ch-1.py) in **Python**.
+
 ##### **Cristina Heredia** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/cristian-heredia/python/ch-1.py) in **Python**.
 
 ##### **Guillermo Ramos** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/guillermo-ramos/go/ch-1.go) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/guillermo-ramos/go/ch-2.go) in **Go**.
