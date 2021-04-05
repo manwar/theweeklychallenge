@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="The Weekly Challenge - Perl & Raku"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://perlweeklychallenge.org/"/>
+    <meta property="og:image"       content="https://perlweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="You do not have to be an expert."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://perlweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Quick recap of Perl Weekly Challenge - 106.">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>RECAP - Perl Weekly Challenge - 106</title>
+    <link rel="icon" href="https://perlweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://perlweeklychallenge.org/">
+                        <img src="https://perlweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navgation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>RECAP - Perl Weekly Challenge - 106</h2>
+                    <div class="portfolio-meta">
+                        <span>Monday, Apr 5, 2021</span>|
+                        <span> Tags:
+                            Perl, Raku
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://perlweeklychallenge.org/images/blog/recap-challenge-106.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <h2 id="table-of-contents">TABLE OF CONTENTS</h2>
+<hr>
+<h3 id="01-headlinesheadlines">01. <a href="#HEADLINES">HEADLINES</a></h3>
+<h3 id="02-star-contributorsstarcontributors">02. <a href="#STARCONTRIBUTORS">STAR CONTRIBUTORS</a></h3>
+<h3 id="03-contribution-statscontributionstats">03. <a href="#CONTRIBUTIONSTATS">CONTRIBUTION STATS</a></h3>
+<h3 id="04-guestsguests">04. <a href="#GUESTS">GUESTS</a></h3>
+<h3 id="05-languageslanguages">05. <a href="#LANGUAGES">LANGUAGES</a></h3>
+<h3 id="06-centurion-clubcenturionclub">06. <a href="#CENTURIONCLUB">CENTURION CLUB</a></h3>
+<h3 id="07-damian-conways-cornerdamianconwaycorner">07. <a href="#DAMIANCONWAYCORNER">DAMIAN CONWAY&rsquo;s CORNER</a></h3>
+<h3 id="08-andrew-shitovs-cornerandrewshitovcorner">08. <a href="#ANDREWSHITOVCORNER">ANDREW SHITOV&rsquo;s CORNER</a></h3>
+<h3 id="09-perl-solutionsperlsolutions">09. <a href="#PERLSOLUTIONS">PERL SOLUTIONS</a></h3>
+<h3 id="10-raku-solutionsrakusolutions">10. <a href="#RAKUSOLUTIONS">RAKU SOLUTIONS</a></h3>
+<h3 id="11-perl--raku-solutionsperlrakusolutions">11. <a href="#PERLRAKUSOLUTIONS">PERL &amp; RAKU SOLUTIONS</a></h3>
+<br>
+<h2 id="HEADLINES">HEADLINES</h2>
+<hr>
+<p>Welcome back <code>Guillermo Ramos</code> and thanks for sharing solutions in  <a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-106/guillermo-ramos/go">Go lang</a>.</p>
+<p>Another member, <code>Richard Park</code>, made a comeback with solutions in <a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-106/richard-park/apl">APL</a>.</p>
+<p>Looks like this is comeback week, we have another member, <code>Ben Davies</code>, sharing the solutions in <a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-106/ben-davies/raku">Raku</a> after a long time.</p>
+<p>As always, this week also we received <a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-106/abigail">cool collections</a> of solutions from <code>Abigail</code>.</p>
+<p>Thank you everyone for your support and encouragement.</p>
+<h2 id="STARCONTRIBUTORS">STAR CONTRIBUTORS</h2>
+<hr>
+<p>Following members shared solutions to both tasks in <code>Perl</code> and <code>Raku</code> as well as blogged about it.</p>
+<h4 id="1-laurent-rosenfeld">1. Laurent Rosenfeld</h4>
+<h4 id="2-roger-bell_west">2. Roger Bell_West</h4>
+<br>
+<h2 id="CONTRIBUTIONSTATS">CONTRIBUTION STATS</h2>
+<hr>
+<p>The total contributions in the week is <code>87</code>.Well done <strong>Team PWC</strong>. I would also like to thanks <code>Raku</code> contributors for catching up.</p>
+<h4 id="1-perl-45">1. Perl: 45</h4>
+<h4 id="2-raku-27">2. Raku: 27</h4>
+<h4 id="3-blog-15">3. Blog: 15</h4>
+<br>
+<h2 id="GUESTS">GUESTS</h2>
+<hr>
+<h4 id="1-abigail-awk-36-bash-27-basic-4-bc-7-befunge-11-brainfuck-1-c-40-c-shell-2-cobol-2-chef-1-erlang-1-forth-2-fortran-3-go-1-java-1-lua-28-macro-processor-1-mumps-1-nodejs-47-ocaml-1-ook-1-php-1-pascal-4-python-31-r-2-rexx-1-ruby-29-sql-6-scheme-3-sed-1-tcl-1">1. Abigail: Awk (36), Bash (27), Basic (4), Bc (7), Befunge (11), Brainfuck (1), C (40), C Shell (2), COBOL (2), Chef (1), Erlang (1), Forth (2), Fortran (3), Go (1), Java (1), Lua (28), Macro Processor (1), Mumps (1), Node.js (47), OCaml (1), Ook (1), PHP (1), Pascal (4), Python (31), R (2), Rexx (1), Ruby (29), SQL (6), Scheme (3), Sed (1), Tcl (1).</h4>
+<h4 id="2-paulo-custodio-ada-14-awk-20-basic-36-bc-2-c-26-c-26-forth-34-lua-30-python-36">2. Paulo Custodio: Ada (14), Awk (20), Basic (36), Bc (2), C (26), C++ (26), Forth (34), Lua (30), Python (36).</h4>
+<h4 id="3-stuart-little-haskell-212-python-4">3. Stuart Little: Haskell (212), Python (4).</h4>
+<h4 id="4-roger-bell_west-postscript-2-python-65-ruby-53-rust-41">4. Roger Bell_West: Postscript (2), Python (65), Ruby (53), Rust (41).</h4>
+<h4 id="5-tyler-wardhaugh-clojure-68-lua-36-python-12">5. Tyler Wardhaugh: Clojure (68), Lua (36), Python (12).</h4>
+<h4 id="6-ulrich-rieke-c-48-haskell-60-java-1-lisp-3">6. Ulrich Rieke: C++ (48), Haskell (60), Java (1), Lisp (3).</h4>
+<h4 id="7-myoungjin-jeon-elm-10-fish-1-go-18-haskell-34-lisp-22">7. Myoungjin Jeon: Elm (10), Fish (1), Go (18), Haskell (34), Lisp (22).</h4>
+<h4 id="8-lubos-kolouch-python-64">8. Lubos Kolouch: Python (64).</h4>
+<h4 id="9-laurent-rosenfeld-awk-2-bc-1-c-2-d-1-dart-1-gembase-3-go-1-java-1-julia-2-kotlin-1-lua-1-nim-1-python-14-ruby-3-rust-2-scala-26-visual-basic-1">9. Laurent Rosenfeld: Awk (2), Bc (1), C (2), D (1), Dart (1), Gembase (3), Go (1), Java (1), Julia (2), Kotlin (1), Lua (1), Nim (1), Python (14), Ruby (3), Rust (2), Scala (26), Visual Basic (1).</h4>
+<h4 id="10-richard-park-apl-56-bqn-1-javascript-2-python-2">10. Richard Park: APL (56), BQN (1), JavaScript (2), Python (2).</h4>
+<h4 id="11-nuno-vieira-javascript-44">11. Nuno Vieira: JavaScript (44).</h4>
+<h4 id="12-adam-russell-c-11-prolog-30">12. Adam Russell: C++ (11), Prolog (30).</h4>
+<h4 id="13-walt-mankowski-c-6-c-4-python-26">13. Walt Mankowski: C (6), C++ (4), Python (26).</h4>
+<h4 id="14-andrew-shitov-bash-1-c-1-c-1-c-10-d-1-dart-1-fortran-1-go-1-html-1-java-1-javascript-1-julia-1-kotlin-1-lisp-1-lua-1-php-1-pascal-1-python-4-ruby-1-rust-1-scala-1-xslt-1">14. Andrew Shitov: Bash (1), C (1), C# (1), C++ (10), D (1), Dart (1), Fortran (1), Go (1), HTML (1), Java (1), JavaScript (1), Julia (1), Kotlin (1), Lisp (1), Lua (1), PHP (1), Pascal (1), Python (4), Ruby (1), Rust (1), Scala (1), XSLT (1).</h4>
+<h4 id="15-cheok-yin-fung-java-3-lisp-11-python-3-smalltalk-8">15. Cheok-Yin Fung: Java (3), Lisp (11), Python (3), Smalltalk (8).</h4>
+<h4 id="16-mohammad-meraj-zia-java-17-kotlin-8">16. Mohammad Meraj Zia: Java (17), Kotlin (8).</h4>
+<h4 id="17-shawn-wagner-java-2-ocaml-8-tcl-11">17. Shawn Wagner: Java (2), OCaml (8), Tcl (11).</h4>
+<h4 id="18-user-person-python-21">18. User Person: Python (21).</h4>
+<h4 id="19-mohammad-s-anwar-java-1-swift-18">19. Mohammad S Anwar: Java (1), Swift (18).</h4>
+<h4 id="20-orestis-zekai-python-16">20. Orestis Zekai: Python (16).</h4>
+<h4 id="21-wanderdoc-r-12">21. Wanderdoc: R (12).</h4>
+<h4 id="22-cristina-heredia-python-10">22. Cristina Heredia: Python (10).</h4>
+<h4 id="23-dave-jacoby-html-1-nodejs-7-rust-2">23. Dave Jacoby: HTML (1), Node.js (7), Rust (2).</h4>
+<h4 id="24-jonas-berlin-rust-9">24. Jonas Berlin: Rust (9).</h4>
+<h4 id="25-kang-min-liu-janet-3-kotlin-2-python-2-rust-2">25. Kang-min Liu: Janet (3), Kotlin (2), Python (2), Rust (2).</h4>
+<h4 id="26-aviral-goel-haskell-8">26. Aviral Goel: Haskell (8).</h4>
+<h4 id="27-burkhard-nickels-python-8">27. Burkhard Nickels: Python (8).</h4>
+<h4 id="28-leo-manfredi-bash-2-python-6">28. Leo Manfredi: Bash (2), Python (6).</h4>
+<h4 id="29-sangeet-kar-python-8">29. Sangeet Kar: Python (8).</h4>
+<h4 id="30-shawak-ruby-8">30. Shawak: Ruby (8).</h4>
+<h4 id="31-frank-oosterhuis-scala-7">31. Frank Oosterhuis: Scala (7).</h4>
+<h4 id="32-pete-houston-awk-6-bash-1">32. Pete Houston: Awk (6), Bash (1).</h4>
+<h4 id="33-henry-wong-php-6">33. Henry Wong: PHP (6).</h4>
+<h4 id="34-arne-sommer-bash-1-nodejs-1-php-1-python-1-ruby-1">34. Arne Sommer: Bash (1), Node.js (1), PHP (1), Python (1), Ruby (1).</h4>
+<h4 id="35-colin-crain-python-4">35. Colin Crain: Python (4).</h4>
+<h4 id="36-kivanc-yazan-python-4">36. Kivanc Yazan: Python (4).</h4>
+<h4 id="37-mohammad-foda-haxe-2-nim-2">37. Mohammad Foda: Haxe (2), Nim (2).</h4>
+<h4 id="38-philip-hood-c-1-c-2-gnat-1">38. Philip Hood: C (1), C++ (2), GNAT (1).</h4>
+<h4 id="39-yet-ebreo-python-2-ruby-2">39. Yet Ebreo: Python (2), Ruby (2).</h4>
+<h4 id="40-duncan-c-white-postscript-3">40. Duncan C. White: Postscript (3).</h4>
+<h4 id="41-e-choroba-c-1-erlang-2">41. E. Choroba: C (1), Erlang (2).</h4>
+<h4 id="42-lance-wicks-elm-3">42. Lance Wicks: Elm (3).</h4>
+<h4 id="43-rage311-rust-3">43. Rage311: Rust (3).</h4>
+<h4 id="44-ben-davies-idris-2">44. Ben Davies: Idris (2).</h4>
+<h4 id="45-daniel-mita-go-1-javascript-1">45. Daniel Mita: Go (1), JavaScript (1).</h4>
+<h4 id="46-guillermo-ramos-go-2">46. Guillermo Ramos: Go (2).</h4>
+<h4 id="47-tejas-c-2">47. Tejas: C++ (2).</h4>
+<h4 id="48-alexander-pankoff-haskell-1">48. Alexander Pankoff: Haskell (1).</h4>
+<h4 id="49-bob-lied-c-1">49. Bob Lied: C (1).</h4>
+<h4 id="50-darren-bottin-prolog-1">50. Darren Bottin: Prolog (1).</h4>
+<h4 id="51-jaldhar-h-vyas-c-1">51. Jaldhar H. Vyas: C++ (1).</h4>
+<h4 id="52-james-smith-php-1">52. James Smith: PHP (1).</h4>
+<h4 id="53-jan-krnavek-scala-1">53. Jan Krnavek: Scala (1).</h4>
+<h4 id="54-steven-wilson-rust-1">54. Steven Wilson: Rust (1).</h4>
+<br>
+<h2 id="LANGUAGES">LANGUAGES</h2>
+<hr>
+<h4 id="1-python-343">1. Python: 343</h4>
+<h4 id="2-haskell-315">2. Haskell: 315</h4>
+<h4 id="3-c-104">3. C++: 104</h4>
+<h4 id="4-ruby-97">4. Ruby: 97</h4>
+<h4 id="5-lua-96">5. Lua: 96</h4>
+<h4 id="6-c-78">6. C: 78</h4>
+<h4 id="7-clojure-68">7. Clojure: 68</h4>
+<h4 id="8-awk-64">8. Awk: 64</h4>
+<h4 id="9-rust-61">9. Rust: 61</h4>
+<h4 id="10-apl-56">10. APL: 56</h4>
+<h4 id="11-nodejs-55">11. Node.js: 55</h4>
+<h4 id="12-javascript-48">12. JavaScript: 48</h4>
+<h4 id="13-basic-40">13. Basic: 40</h4>
+<h4 id="14-lisp-37">14. Lisp: 37</h4>
+<h4 id="15-forth-36">15. Forth: 36</h4>
+<h4 id="16-scala-35">16. Scala: 35</h4>
+<h4 id="17-bash-32">17. Bash: 32</h4>
+<h4 id="18-prolog-31">18. Prolog: 31</h4>
+<h4 id="19-java-27">19. Java: 27</h4>
+<h4 id="20-go-24">20. Go: 24</h4>
+<h4 id="21-swift-18">21. Swift: 18</h4>
+<h4 id="22-ada-14">22. Ada: 14</h4>
+<h4 id="23-r-14">23. R: 14</h4>
+<h4 id="24-elm-13">24. Elm: 13</h4>
+<h4 id="25-kotlin-12">25. Kotlin: 12</h4>
+<h4 id="26-tcl-12">26. Tcl: 12</h4>
+<h4 id="27-befunge-11">27. Befunge: 11</h4>
+<h4 id="28-bc-10">28. Bc: 10</h4>
+<h4 id="29-php-10">29. PHP: 10</h4>
+<h4 id="30-ocaml-9">30. OCaml: 9</h4>
+<h4 id="31-smalltalk-8">31. Smalltalk: 8</h4>
+<h4 id="32-sql-6">32. SQL: 6</h4>
+<h4 id="33-pascal-5">33. Pascal: 5</h4>
+<h4 id="34-postscript-5">34. Postscript: 5</h4>
+<h4 id="35-fortran-4">35. Fortran: 4</h4>
+<h4 id="36-erlang-3">36. Erlang: 3</h4>
+<h4 id="37-gembase-3">37. Gembase: 3</h4>
+<h4 id="38-janet-3">38. Janet: 3</h4>
+<h4 id="39-julia-3">39. Julia: 3</h4>
+<h4 id="40-nim-3">40. Nim: 3</h4>
+<h4 id="41-scheme-3">41. Scheme: 3</h4>
+<h4 id="42-c-shell-2">42. C Shell: 2</h4>
+<h4 id="43-cobol-2">43. COBOL: 2</h4>
+<h4 id="44-d-2">44. D: 2</h4>
+<h4 id="45-dart-2">45. Dart: 2</h4>
+<h4 id="46-html-2">46. HTML: 2</h4>
+<h4 id="47-haxe-2">47. Haxe: 2</h4>
+<h4 id="48-idris-2">48. Idris: 2</h4>
+<h4 id="49-bqn-1">49. BQN: 1</h4>
+<h4 id="50-brainfuck-1">50. Brainfuck: 1</h4>
+<h4 id="51-c-1">51. C#: 1</h4>
+<h4 id="52-chef-1">52. Chef: 1</h4>
+<h4 id="53-fish-1">53. Fish: 1</h4>
+<h4 id="54-gnat-1">54. GNAT: 1</h4>
+<h4 id="55-macro-processor-1">55. Macro Processor: 1</h4>
+<h4 id="56-mumps-1">56. Mumps: 1</h4>
+<h4 id="57-ook-1">57. Ook: 1</h4>
+<h4 id="58-rexx-1">58. Rexx: 1</h4>
+<h4 id="59-sed-1">59. Sed: 1</h4>
+<h4 id="60-visual-basic-1">60. Visual Basic: 1</h4>
+<h4 id="61-xslt-1">61. XSLT: 1</h4>
+<br>
+<h2 id="CENTURIONCLUB">CENTURION CLUB</h2>
+<hr>
+<p>Changes to the ranking in the <strong>Centurion Club</strong> last week listed below:</p>
+<h4 id="stuart-little-moved-up-to-the-rank-009"><strong>Stuart Little</strong> moved up to the rank <strong>#009</strong>.</h4>
+<h4 id="abigail-moved-up-to-the-rank-022"><strong>Abigail</strong> moved up to the rank <strong>#022</strong>.</h4>
+<h4 id="flavio-poletti-moved-up-to-the-rank-025"><strong>Flavio Poletti</strong> moved up to the rank <strong>#025</strong>.</h4>
+<h4 id="paulo-custodio-moved-up-to-the-rank-027"><strong>Paulo Custodio</strong> moved up to the rank <strong>#027</strong>.</h4>
+<h4 id="simon-green-moved-up-to-the-rank-029"><strong>Simon Green</strong> moved up to the rank <strong>#029</strong>.</h4>
+<h4 id="jorg-sommrey-moved-up-to-the-rank-033"><strong>Jorg Sommrey</strong> moved up to the rank <strong>#033</strong>.</h4>
+<h4 id="pete-houston-moved-up-to-the-rank-037"><strong>Pete Houston</strong> moved up to the rank <strong>#037</strong>.</h4>
+<h4 id="aaron-smith-moved-up-to-the-rank-048"><strong>Aaron Smith</strong> moved up to the rank <strong>#048</strong>.</h4>
+<br>
+<h4 id="1-laurent-rosenfeld-1112">1. Laurent Rosenfeld (<strong>1112</strong>)</h4>
+<h4 id="2-jaldhar-h-vyas-892">2. Jaldhar H. Vyas (<strong>892</strong>)</h4>
+<h4 id="3-roger-bell_west-826">3. Roger Bell_West (<strong>826</strong>)</h4>
+<h4 id="4-arne-sommer-762">4. Arne Sommer (<strong>762</strong>)</h4>
+<h4 id="5-colin-crain-638">5. Colin Crain (<strong>638</strong>)</h4>
+<h4 id="6-athanasius-598">6. Athanasius (<strong>598</strong>)</h4>
+<h4 id="7-adam-russell-520">7. Adam Russell (<strong>520</strong>)</h4>
+<h4 id="8-e-choroba-512">8. E. Choroba (<strong>512</strong>)</h4>
+<h4 id="9-stuart-little-468">9. Stuart Little (<strong>468</strong>)</h4>
+<h4 id="10-javier-luque-460">10. Javier Luque (<strong>460</strong>)</h4>
+<h4 id="11-ruben-westerberg-452">11. Ruben Westerberg (<strong>452</strong>)</h4>
+<h4 id="12-dave-jacoby-448">12. Dave Jacoby (<strong>448</strong>)</h4>
+<h4 id="13-ulrich-rieke-430">13. Ulrich Rieke (<strong>430</strong>)</h4>
+<h4 id="14-mohammad-s-anwar-402">14. Mohammad S Anwar (<strong>402</strong>)</h4>
+<h4 id="15-simon-proctor-396">15. Simon Proctor (<strong>396</strong>)</h4>
+<h4 id="16-duncan-c-white-370">16. Duncan C. White (<strong>370</strong>)</h4>
+<h4 id="17-luca-ferrari-356">17. Luca Ferrari (<strong>356</strong>)</h4>
+<h4 id="18-joelle-maslak-334">18. Joelle Maslak (<strong>334</strong>)</h4>
+<h4 id="19-cheok-yin-fung-282">19. Cheok-Yin Fung (<strong>282</strong>)</h4>
+<h4 id="20-ryan-thompson-278">20. Ryan Thompson (<strong>278</strong>)</h4>
+<h4 id="21-mark-anderson-266">21. Mark Anderson (<strong>266</strong>)</h4>
+<h4 id="22-abigail-264">22. Abigail (<strong>264</strong>)</h4>
+<h4 id="23-lubos-kolouch-256">23. Lubos Kolouch (<strong>256</strong>)</h4>
+<h4 id="24-wanderdoc-250">24. Wanderdoc (<strong>250</strong>)</h4>
+<h4 id="25-flavio-poletti-238">25. Flavio Poletti (<strong>238</strong>)</h4>
+<h4 id="26-andrezgz-230">26. Andrezgz (<strong>230</strong>)</h4>
+<h4 id="27-paulo-custodio-228">27. Paulo Custodio (<strong>228</strong>)</h4>
+<h4 id="28-yet-ebreo-226">28. Yet Ebreo (<strong>226</strong>)</h4>
+<h4 id="29-simon-green-206">29. Simon Green (<strong>206</strong>)</h4>
+<h4 id="30-feng-chang-202">30. Feng Chang (<strong>202</strong>)</h4>
+<h4 id="31-james-smith-196">31. James Smith (<strong>196</strong>)</h4>
+<h4 id="32-myoungjin-jeon-192">32. Myoungjin Jeon (<strong>192</strong>)</h4>
+<h4 id="33-jorg-sommrey-192">33. Jorg Sommrey (<strong>192</strong>)</h4>
+<h4 id="34-markus-holzer-190">34. Markus Holzer (<strong>190</strong>)</h4>
+<h4 id="35-noud-aldenhoven-188">35. Noud Aldenhoven (<strong>188</strong>)</h4>
+<h4 id="36-kevin-colyer-176">36. Kevin Colyer (<strong>176</strong>)</h4>
+<h4 id="37-pete-houston-172">37. Pete Houston (<strong>172</strong>)</h4>
+<h4 id="38-niels-van-dijke-170">38. Niels van Dijke (<strong>170</strong>)</h4>
+<h4 id="39-kian-meng-ang-162">39. Kian-Meng Ang (<strong>162</strong>)</h4>
+<h4 id="40-steven-wilson-162">40. Steven Wilson (<strong>162</strong>)</h4>
+<h4 id="41-walt-mankowski-162">41. Walt Mankowski (<strong>162</strong>)</h4>
+<h4 id="42-andrew-shitov-160">42. Andrew Shitov (<strong>160</strong>)</h4>
+<h4 id="43-duane-powell-148">43. Duane Powell (<strong>148</strong>)</h4>
+<h4 id="44-shahed-nooshmand-140">44. Shahed Nooshmand (<strong>140</strong>)</h4>
+<h4 id="45-jan-krnavek-130">45. Jan Krnavek (<strong>130</strong>)</h4>
+<h4 id="46-kang-min-liu-118">46. Kang-min Liu (<strong>118</strong>)</h4>
+<h4 id="47-julio-de-castro-116">47. Julio de Castro (<strong>116</strong>)</h4>
+<h4 id="48-aaron-smith-112">48. Aaron Smith (<strong>112</strong>)</h4>
+<h4 id="49-gustavo-chaves-112">49. Gustavo Chaves (<strong>112</strong>)</h4>
+<h4 id="50-saif-ahmed-110">50. Saif Ahmed (<strong>110</strong>)</h4>
+<h4 id="51-burkhard-nickels-108">51. Burkhard Nickels (<strong>108</strong>)</h4>
+<h4 id="52-alicia-bielsa-106">52. Alicia Bielsa (<strong>106</strong>)</h4>
+<h4 id="53-dave-cross-104">53. Dave Cross (<strong>104</strong>)</h4>
+<h4 id="54-nuno-vieira-104">54. Nuno Vieira (<strong>104</strong>)</h4>
+<br>
+<h2 id="DAMIANCONWAYCORNER">DAMIAN CONWAY&rsquo;s CORNER</h2>
+<hr>
+<p>Please checkout the masterpiece collection of <a href="https://perlweeklychallenge.org/blog/damian-corner"><strong>blogs</strong></a> by <strong>Damian Conway</strong> solving the <strong><a href="/challenges">&ldquo;Perl Weekly Challenge&rdquo;</a></strong>.</p>
+<br>
+<h2 id="ANDREWSHITOVCORNER">ANDREW SHITOV&rsquo;s CORNER</h2>
+<hr>
+<p>Please checkout the technical class of <strong>Andrew</strong>&lsquo;s <strong>Raku</strong> Knowledge. You can find all his contributions to the <strong><a href="/challenges">&ldquo;Perl Weekly Challenge&rdquo;</a></strong> on this <a href="https://andrewshitov.com/raku-challenges-index/"><strong>nicely laid out page</strong></a>.</p>
+<br>
+<h2 id="PERLSOLUTIONS">PERL SOLUTIONS</h2>
+<hr>
+<h3 id="abigail">Abigail</h3>
+<p><img src="/images/team/user.jpg" alt="Abigail"></p>
+<p>[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/abigail/perl/ch-1.pl"><strong>PERL #1</strong></a>]
+[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/abigail/perl/ch-2.pl"><strong>PERL #2</strong></a>]
+[<a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-106-1.html"><strong>BLOG #1</strong></a>]
+[<a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-106-2.html"><strong>BLOG #2</strong></a>]</p>
+<hr>
+<h3 id="adam-russell">Adam Russell</h3>
+<p><img src="/images/team/adam_russell.jpg" alt="Adam Russell"></p>
+<p>[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/adam-russell/perl/ch-1.pl"><strong>PERL #1</strong></a>]
+[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/adam-russell/perl/ch-2.pl"><strong>PERL #2</strong></a>]
+[<a href="http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2021/04/04"><strong>BLOG #1</strong></a>]</p>
+<hr>
+<h3 id="cheok-yin-fung">Cheok-Yin Fung</h3>
+<p><img src="/images/team/cheok-yin-fung.jpg" alt="Cheok-Yin Fung"></p>
+<p>[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/cheok-yin-fung/perl/ch-1.pl"><strong>PERL #1</strong></a>]
+[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/cheok-yin-fung/perl/ch-2.pl"><strong>PERL #2</strong></a>]</p>
+<hr>
+<h3 id="cristina-heredia">Cristina Heredia</h3>
+<p><img src="/images/team/cristina_heredia.jpg" alt="Cristina Heredia"></p>
+<p>[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/cristian-heredia/perl/ch-1.pl"><strong>PERL #1</strong></a>]</p>
+<hr>
+<h3 id="dave-jacoby">Dave Jacoby</h3>
+<p><img src="/images/team/dave_jacoby.jpg" alt="Dave Jacoby"></p>
+<p>[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/dave-jacoby/perl/ch-1.pl"><strong>PERL #1</strong></a>]
+[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/dave-jacoby/perl/ch-2.pl"><strong>PERL #2</strong></a>]
+[<a href="https://jacoby.github.io/2021/04/03/just-got-poked-perl-weekly-challenge-106-and-other-news.html"><strong>BLOG #1</strong></a>]</p>
+<hr>
+<h3 id="e-choroba">E. Choroba</h3>
+<p><img src="/images/team/e-choroba.jpg" alt="E. Choroba"></p>
+<p>[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/e-choroba/perl/ch-1.pl"><strong>PERL #1</strong></a>]
+[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/e-choroba/perl/ch-2.pl"><strong>PERL #2</strong></a>]</p>
+<hr>
+<h3 id="flavio-poletti">Flavio Poletti</h3>
+<p><img src="/images/team/flavio-poletti.jpg" alt="Flavio Poletti"></p>
+<p>[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/polettix/perl/ch-1.pl"><strong>PERL #1</strong></a>]
+[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/polettix/perl/ch-2.pl"><strong>PERL #2</strong></a>]
+[<a href="https://github.polettix.it/ETOOBUSY/2021/03/31/pwc106-maximum-gap/"><strong>BLOG #1</strong></a>]
+[<a href="https://github.polettix.it/ETOOBUSY/2021/04/01/pwc106-decimal-string/"><strong>BLOG #2</strong></a>]</p>
+<hr>
+<h3 id="james-smith">James Smith</h3>
+<p><img src="/images/team/james-smith.jpg" alt="James Smith"></p>
+<p>[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/james-smith/perl/ch-1.pl"><strong>PERL #1</strong></a>]
+[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/james-smith/perl/ch-2.pl"><strong>PERL #2</strong></a>]</p>
+<hr>
+<h3 id="jorg-sommrey">Jorg Sommrey</h3>
+<p><img src="/images/team/user.jpg" alt="Jorg Sommrey"></p>
+<p>[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/jo-37/perl/ch-1.pl"><strong>PERL #1</strong></a>]
+[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/jo-37/perl/ch-2.pl"><strong>PERL #2</strong></a>]</p>
+<hr>
+<h3 id="lance-wicks">Lance Wicks</h3>
+<p><img src="/images/team/user.jpg" alt="Lance Wicks"></p>
+<p>[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/lance-wicks/perl/ch-1.pl"><strong>PERL #1</strong></a>]</p>
+<hr>
+<h3 id="lubos-kolouch">Lubos Kolouch</h3>
+<p><img src="/images/team/lubos_kolouch.jpg" alt="Lubos Kolouch"></p>
+<p>[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/lubos-kolouch/perl/ch-1.pl"><strong>PERL #1</strong></a>]</p>
+<hr>
+<h3 id="mohammad-s-anwar">Mohammad S Anwar</h3>
+<p><img src="/images/team/mohammad_anwar.jpg" alt="Mohammad S Anwar"></p>
+<p>[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/mohammad-anwar/perl/ch-1.pl"><strong>PERL #1</strong></a>]
+[<a href="https://youtu.be/h8NppRqAZaE"><strong>BLOG #1</strong></a>]</p>
+<hr>
+<h3 id="niels-van-dijke">Niels van Dijke</h3>
+<p><img src="/images/team/perlboy1967.jpg" alt="Niels van Dijke"></p>
+<p>[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/perlboy1967/perl/ch-1.pl"><strong>PERL #1</strong></a>]
+[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/perlboy1967/perl/ch-2.pl"><strong>PERL #2</strong></a>]</p>
+<hr>
+<h3 id="paulo-custodio">Paulo Custodio</h3>
+<p><img src="/images/team/paulo-custodio.jpg" alt="Paulo Custodio"></p>
+<p>[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/paulo-custodio/perl/ch-1.pl"><strong>PERL #1</strong></a>]
+[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/paulo-custodio/perl/ch-2.pl"><strong>PERL #2</strong></a>]</p>
+<hr>
+<h3 id="pete-houston">Pete Houston</h3>
+<p><img src="/images/team/user.jpg" alt="Pete Houston"></p>
+<p>[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/pete-houston/perl/ch-1.pl"><strong>PERL #1</strong></a>]
+[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/pete-houston/perl/ch-2.pl"><strong>PERL #2</strong></a>]</p>
+<hr>
+<h3 id="peter-mayr">Peter Mayr</h3>
+<p><img src="/images/team/user.jpg" alt="Peter Mayr"></p>
+<p>[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/hatorikibble/perl/ch-1.pl"><strong>PERL #1</strong></a>]</p>
+<hr>
+<h3 id="simon-green">Simon Green</h3>
+<p><img src="/images/team/simon-green.jpg" alt="Simon Green"></p>
+<p>[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/sgreen/perl/ch-1.pl"><strong>PERL #1</strong></a>]
+[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/sgreen/perl/ch-2.pl"><strong>PERL #2</strong></a>]
+[<a href="https://dev.to/simongreennet/weekly-challenge-106-1cn7"><strong>BLOG #1</strong></a>]</p>
+<hr>
+<h3 id="w-luis-mochan">W. Luis Mochan</h3>
+<p><img src="/images/team/user.jpg" alt="W. Luis Mochan"></p>
+<p>[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/wlmb/perl/ch-1.pl"><strong>PERL #1</strong></a>]
+[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/wlmb/perl/ch-2.pl"><strong>PERL #2</strong></a>]
+[<a href="https://wlmb.github.io/2021/03/29/PWC106/"><strong>BLOG #1</strong></a>]</p>
+<hr>
+<h3 id="wanderdoc">Wanderdoc</h3>
+<p><img src="/images/team/user.jpg" alt="Wanderdoc"></p>
+<p>[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/wanderdoc/perl/ch-1.pl"><strong>PERL #1</strong></a>]
+[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/wanderdoc/perl/ch-2.pl"><strong>PERL #2</strong></a>]</p>
+<br>
+<h2 id="RAKUSOLUTIONS">RAKU SOLUTIONS</h2>
+<hr>
+<h3 id="aaron-smith">Aaron Smith</h3>
+<p><img src="/images/team/aaron-smith.jpg" alt="Aaron Smith"></p>
+<p>[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/aaronreidsmith/raku/ch-1.raku"><strong>RAKU #1</strong></a>]
+[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/aaronreidsmith/raku/ch-2.raku"><strong>RAKU #2</strong></a>]
+[<a href="https://aaronreidsmith.github.io/blog/perl-weekly-challenge-106/"><strong>BLOG #1</strong></a>]</p>
+<hr>
+<h3 id="arne-sommer">Arne Sommer</h3>
+<p><img src="/images/team/arne-sommer.jpg" alt="Arne Sommer"></p>
+<p>[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/arne-sommer/raku/ch-1.raku"><strong>RAKU #1</strong></a>]
+[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/arne-sommer/raku/ch-2.raku"><strong>RAKU #2</strong></a>]
+[<a href="https://raku-musings.com/string-gap.html"><strong>BLOG #1</strong></a>]</p>
+<hr>
+<h3 id="ben-davies">Ben Davies</h3>
+<p><img src="/images/team/user.jpg" alt="Ben Davies"></p>
+<p>[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/ben-davies/raku/ch-1.raku"><strong>RAKU #1</strong></a>]
+[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/ben-davies/raku/ch-2.raku"><strong>RAKU #2</strong></a>]</p>
+<hr>
+<h3 id="jan-krnavek">Jan Krnavek</h3>
+<p><img src="/images/team/user.jpg" alt="Jan Krnavek"></p>
+<p>[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/wambash/raku/ch-1.raku"><strong>RAKU #1</strong></a>]
+[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/wambash/raku/ch-2.raku"><strong>RAKU #2</strong></a>]</p>
+<hr>
+<h3 id="joan-mimosinnet">Joan Mimosinnet</h3>
+<p><img src="/images/team/mimosinnet.jpg" alt="Joan Mimosinnet"></p>
+<p>[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/mimosinnet/raku/ch-1.raku"><strong>RAKU #1</strong></a>]
+[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/mimosinnet/raku/ch-2.raku"><strong>RAKU #2</strong></a>]</p>
+<hr>
+<h3 id="luca-ferrari">Luca Ferrari</h3>
+<p><img src="/images/team/luca-ferrari.jpg" alt="Luca Ferrari"></p>
+<p>[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/luca-ferrari/raku/ch-1.p6"><strong>RAKU #1</strong></a>]
+[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/luca-ferrari/raku/ch-2.p6"><strong>RAKU #2</strong></a>]
+[<a href="https://fluca1978.github.io/2021/03/29/PerlWeeklyChallenge106.html#task1"><strong>BLOG #1</strong></a>]
+[<a href="https://fluca1978.github.io/2021/03/29/PerlWeeklyChallenge106.html#task2"><strong>BLOG #2</strong></a>]</p>
+<hr>
+<h3 id="mark-anderson">Mark Anderson</h3>
+<p><img src="/images/team/user.jpg" alt="Mark Anderson"></p>
+<p>[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/mark-anderson/raku/ch-1.raku"><strong>RAKU #1</strong></a>]
+[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/mark-anderson/raku/ch-2.raku"><strong>RAKU #2</strong></a>]</p>
+<hr>
+<h3 id="simon-proctor">Simon Proctor</h3>
+<p><img src="/images/team/simon_proctor.jpg" alt="Simon Proctor"></p>
+<p>[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/simon-proctor/raku/ch-1.raku"><strong>RAKU #1</strong></a>]</p>
+<br>
+<h1 id="PERLRAKUSOLUTIONS">PERL &amp; RAKU SOLUTIONS</h1>
+<hr>
+<h3 id="athanasius">Athanasius</h3>
+<p><img src="/images/team/athanasius.jpg" alt="Athanasius"></p>
+<p>[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/athanasius/perl/ch-1.pl"><strong>PERL #1</strong></a>]
+[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/athanasius/perl/ch-2.pl"><strong>PERL #2</strong></a>]
+[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/athanasius/raku/ch-1.raku"><strong>RAKU #1</strong></a>]
+[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/athanasius/raku/ch-2.raku"><strong>RAKU #2</strong></a>]</p>
+<hr>
+<h3 id="colin-crain">Colin Crain</h3>
+<p><img src="/images/team/user.jpg" alt="Colin Crain"></p>
+<p>[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/colin-crain/perl/ch-1.pl"><strong>PERL #1</strong></a>]
+[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/colin-crain/perl/ch-2.pl"><strong>PERL #2</strong></a>]
+[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/colin-crain/raku/ch-1.raku"><strong>RAKU #1</strong></a>]
+[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/colin-crain/raku/ch-2.raku"><strong>RAKU #2</strong></a>]</p>
+<hr>
+<h3 id="laurent-rosenfeld">Laurent Rosenfeld</h3>
+<p><img src="/images/team/laurent_rosenfeld.jpg" alt="Laurent Rosenfeld"></p>
+<p>[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/laurent-rosenfeld/perl/ch-1.pl"><strong>PERL #1</strong></a>]
+[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/laurent-rosenfeld/perl/ch-2.pl"><strong>PERL #2</strong></a>]
+[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/laurent-rosenfeld/raku/ch-1.raku"><strong>RAKU #1</strong></a>]
+[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/laurent-rosenfeld/raku/ch-2.raku"><strong>RAKU #2</strong></a>]
+[<a href="http://blogs.perl.org/users/laurent_r/2021/04/perl-weekly-challenge-106-maximum-gap-and-decimal-string.html"><strong>BLOG #1</strong></a>]</p>
+<hr>
+<h3 id="roger-bell_west">Roger Bell_West</h3>
+<p><img src="/images/team/user.jpg" alt="Roger Bell_West"></p>
+<p>[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/roger-bell-west/perl/ch-1.pl"><strong>PERL #1</strong></a>]
+[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/roger-bell-west/perl/ch-2.pl"><strong>PERL #2</strong></a>]
+[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/roger-bell-west/raku/ch-1.p6"><strong>RAKU #1</strong></a>]
+[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/roger-bell-west/raku/ch-2.p6"><strong>RAKU #2</strong></a>]
+[<a href="https://blog.firedrake.org/archive/2021/03/Perl_Weekly_Challenge_106__Maximum_Decimal.html"><strong>BLOG #1</strong></a>]</p>
+<hr>
+<h3 id="stuart-little">Stuart Little</h3>
+<p><img src="/images/team/user.jpg" alt="Stuart Little"></p>
+<p>[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/stuart-little/perl/ch-1.pl"><strong>PERL #1</strong></a>]
+[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/stuart-little/perl/ch-2.pl"><strong>PERL #2</strong></a>]
+[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/stuart-little/raku/ch-1.p6"><strong>RAKU #1</strong></a>]
+[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/stuart-little/raku/ch-2.p6"><strong>RAKU #2</strong></a>]</p>
+<hr>
+<h3 id="ulrich-rieke">Ulrich Rieke</h3>
+<p><img src="/images/team/user.jpg" alt="Ulrich Rieke"></p>
+<p>[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/ulrich-rieke/perl/ch-1.pl"><strong>PERL #1</strong></a>]
+[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/ulrich-rieke/perl/ch-2.pl"><strong>PERL #2</strong></a>]
+[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/ulrich-rieke/raku/ch-1.raku"><strong>RAKU #1</strong></a>]
+[<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/ulrich-rieke/raku/ch-2.raku"><strong>RAKU #2</strong></a>]</p>
+<hr>
+<p>Last but not the least, I would like to request all members, please send us your photo, that you already use on some other web platform, to use in the weekly blog, if not already sent.</p>
+<hr>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="/contact" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2020
+                    </span> PerlWeeklyChallenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.nomtimes.co.uk/site/shop.do?cref=PerlBooks" title="Free Perl Books" rel="noreferrer" target="_blank">
+                            <img src="/images/NomTimes.jpg" style="width:22px; height: 18px;" alt=""/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://perlweeklychallenge.org/plugins/jQurey/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://perlweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://perlweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://perlweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://perlweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://perlweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://perlweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://perlweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://perlweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-136524905-1', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+
+</html>
+
