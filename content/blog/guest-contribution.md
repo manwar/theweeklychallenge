@@ -30,7 +30,7 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 107](/blog/perl-weekly-challenge-107) {#107}
 <br>
 
-##### **Mohammad Meraj Zia** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/ziameraj16/java/SelfDescriptiveNumber.java) in **Java**.
+##### **Mohammad Meraj Zia** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/ziameraj16/java/SelfDescriptiveNumber.java) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/ziameraj16/java/ListMethods.java) in **Java**.
 
 ##### **Roger Bell_West** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/roger-bell-west/python/ch-1.py) in **Python**.
 
