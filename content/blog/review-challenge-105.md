@@ -1,6 +1,6 @@
 ---
 author:       Colin Crain
-date:         2021-04-10T00:00:00
+date:         2021-04-11T00:00:00
 description:  "Colin Crain › Perl Weekly Review #105"
 tags:         ["perl"]
 title:        "Colin Crain › Perl Weekly Review #105"
@@ -48,9 +48,7 @@ I'm always curious as to what the people think of these efforts. Everyone here a
 
 ---
 
-## •   &nbsp;  &nbsp;  &nbsp;   [Task 1](#PWC105TASK1)       &nbsp;  &nbsp;  &nbsp;   •   &nbsp;  &nbsp;  &nbsp;   [Task 2](#PWC105TASK2)   &nbsp;  &nbsp;  &nbsp;   	•   &nbsp;  &nbsp;  &nbsp;   [BLOGS](#PWC105BLOGS)    &nbsp;  &nbsp;  &nbsp;   	•
-
----
+## •   &nbsp;  &nbsp;  &nbsp;   [Task 1](#PWC105TASK1)       &nbsp;  &nbsp;  &nbsp;   •   &nbsp;  &nbsp;  &nbsp;   [Task 2](#PWC105TASK2)   &nbsp;  &nbsp;  &nbsp;       •   &nbsp;  &nbsp;  &nbsp;   [BLOGS](#PWC105BLOGS)    &nbsp;  &nbsp;  &nbsp;       •
 
 ---
 
@@ -114,7 +112,7 @@ There are two "power rules" in mathematics. In the differential calculus, we hav
 
 The power rule, in algebra, states that to raise a power to another power, we need only to multiply the exponents. Thus if we want to know the what number raised to the 5th power will result in *x*, or in other words the fifth root of *x*, we can rephrase this as *x* raised to what power, then raised to the 5th power, will yield *x* again?
 
-*x*<sup>**(?)**<sup>5</sup></sup> = *x*
+<em>x</em><sup><strong>(?)</strong><sup>5</sup></sup> = <em>x</em>
 
 The reciprocal of the root exponent, in this example 5, is 1/5, and these two multiplied together, by definition, yield 1 — we end up with *x*<sup>1</sup> = *x*, which sounds right.
 
@@ -243,19 +241,19 @@ where *x* > 0, we start with our definition:
 
 we then take the logarithm of both sides. The base is not important, and *e* or 10 are both fine candidates:
 
-→ *n* log<sub>**b**</sub>(*r*) = log<sub>**b**</sub>(*x*)
+→ <em>n</em> log<sub><strong>b</strong></sub>(<em>r</em>) = log<sub><strong>b</strong></sub>(<em>x</em>)
 
-now divide both sides by *n*:
+now divide both sides by <em>n</em>:
 
-→ log<sub>**b**</sub>(*r*) = log<sub>**b**</sub>(*x*) / *n*
+→ log<sub><strong>b</strong></sub>(<em>r</em>) = log<sub><strong>b</strong></sub>(<em>x</em>) / <em>n</em>
 
-and raise **b** to the power of each side:
+and raise <strong>b</strong> to the power of each side:
 
-→ *r* = **b**<sup>log<sub>**b**</sub>(*x*) / *n*</sup>
+→ <em>r</em> = <strong>b</strong><sup>log<sub><strong>b</strong></sub>(<em>x</em>) / <em>n</em></sup>
 
-if we pick *e*, the natural logarithm, for our base, we get
+if we pick <em>e</em>, the natural logarithm, for our base, we get
 
-→ *r* = *e*<sup>log(*x*) / *n*</sup>
+→ <em>r</em> = <em>e</em><sup>log(<em>x</em>) / <em>n</em></sup>
 
 This give us another mathematical route to the solution. As it's still just a simple equation the submissions were on the whole equally compact, with the differences, again, lying in the treatments given to the I/O portions.
 
@@ -286,7 +284,7 @@ For my own solution, I took the time to pass the output through a regex filter t
 
 [**Dave Jacoby**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-105/dave-jacoby/perl/ch-1.pl)
 
-Dave provides a more robust solution, bothering to check for 0s, which is considerate. I have heard that division by zero is a leading cause of processor fires.  He also chooses base 10, perhaps because humans have 10 fingers. Familiarity breeds comfort, and in these times that's a blessing.
+Dave provides a more robust solution, bothering to check for 0s, which is considerate, as I have heard that division by zero is a leading cause of processor fires. Be safe out there people. He also chooses base 10, perhaps because humans have 10 fingers. Familiarity breeds comfort, and in these troubled times that's a welcome blessing.
 
 ```perl
     croak 'Zero in input' unless ( $n * $k ) > 0;
@@ -435,7 +433,7 @@ say $value;
 
 [**Duncan C. White**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-105/duncan-c-white/perl/ch-1.pl)
 
-Duncan's `fun` little routines are built on the `Function::Parameters` framework for subroutine signatures. His compact solution clearly demonstrates the underlying method.
+Duncan's `fun` little routines are built on the `Function::Parameters` framework for subroutine signatures. His compact solution clearly demonstrates the underlying equation and the method. Epsilon, ε, is a small quantity representing his required precision.
 
 ```perl
     my $epsilon = 1e-8;
@@ -460,12 +458,12 @@ Duncan's `fun` little routines are built on the `Function::Parameters` framework
 
 [**Cheok-Yin Fung**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-105/cheok-yin-fung/perl/ch-1.pl)
 
->"Most of you are familiar with the virtues of a programmer. There are three, of course: laziness, impatience, and hubris."
+>"Most of you are familiar with the virtues of a programmer. There are three, of course: laziness, impatience, and hubris."<br>
 > — Larry Wall
 
 CY expresses her natural tendency towards that paragon of Perl programming virtue, laziness. She acts on this virtue in two examples, a self-declared "lazy" solution and an additional version of Newton's method, with bonus laziness acknowledged in the comments. Premature optimization is of course a sin.
 
-For her "lazy" method, she brute-forces things, adding 1 to a counter until it exceeds the exponential product computed for 100 times the given value we want rooted. She then reduces this value a point if that value is closer to the estimate. Dividing the counter by 100 gives the root to 2 decimal places. It's brutal but seems to work. I'm a little uncertain on its failure modes.
+For her "lazy" method, she brute-forces things, adding 1 to a counter until it exceeds the exponential product computed for 100 times the given value we want rooted. She then reduces this value a point if that value is closer to the estimate. Dividing the counter by 100 gives the root to 2 decimal places. It's brutal but seems to work. I'm a little uncertain on its failure modes and can't be bothered to figure them out.
 
 ```perl
     sub lazy_root {
@@ -666,32 +664,32 @@ Personally, I wasn't familiar with the *Name Game* going into this challenge, ne
 
 The rules are explained in the song itself, although only for the most common cases.
 
-*Come on ev'rybody, I say now let's play a game
-I betcha I can make a rhyme out of anybody's name
-**The first letter of the name
-I treat it like it wasn't there
-But a "B" or an "F" or an "M" will appear**
-And then I say "Bo" add a "B" then I say the name
-Then "Bo-na-na fanna" and "fo"
-And then I say the name again with an ""f" very plain
-Then "fee fi" and a "mo"
-And then I say the name again with an "M" this time
-And there isn't any name that I can't rhyme*
+<em>Come on ev'rybody, I say now let's play a game  <br>
+I betcha I can make a rhyme out of anybody's name  <br>
+<strong>The first letter of the name  <br>
+I treat it like it wasn't there  <br>
+But a "B" or an "F" or an "M" will appear</strong>  <br>
+And then I say "Bo" add a "B" then I say the name  <br>
+Then "Bo-na-na fanna" and "fo"  <br>
+And then I say the name again with an ""f" very plain  <br>
+Then "fee fi" and a "mo"  <br>
+And then I say the name again with an "M" this time  <br>
+And there isn't any name that I can't rhyme</em>
 
 This states the first letter is to be removed and variably replaced with "B", "F" and "M".
 
-*But **if the first two letters are ever the same
-Crop them both, then say the name
-Like Bob, Bob, drop the "B's", Bo-ob
-Or Fred, Fred, drop the "F's", Fo-red
-Or Mary, Mary, drop the "M's", Mo-ary
-That's the only rule that is contrary**
-And then I say "Bo" add a "B" then I say the name
-Then "Bo-na-na fanna" and "fo"
-And then I say the name again with an ""f" very plain
-Then "fee fi" and a "mo"
-And then I say the name again with an "M" this time
-And there isn't any name that I can't rhyme*
+<em>But <strong>if the first two letters are ever the same  <br>
+Crop them both, then say the name  <br>
+Like Bob, Bob, drop the "B's", Bo-ob  <br>
+Or Fred, Fred, drop the "F's", Fo-red  <br>
+Or Mary, Mary, drop the "M's", Mo-ary  <br>
+That's the only rule that is contrary</strong>  <br>
+And then I say "Bo" add a "B" then I say the name  <br>
+Then "Bo-na-na fanna" and "fo"  <br>
+And then I say the name again with an ""f" very plain  <br>
+Then "fee fi" and a "mo"  <br>
+And then I say the name again with an "M" this time  <br>
+And there isn't any name that I can't rhyme</em>
 
 To my ears this verse is more obscure, but seems to mean that when the original sound is the same as the replacement sound, neither are voiced in the rhyming portion. Note there's no mention of what to do if the name starts with a vowel.
 
@@ -699,10 +697,12 @@ The Wikipedia article does expand on this however, stating to leave the name alo
 
 >A verse can be created for any name with stress on the first syllable, with *X* as the name and *Y* as the name without the first consonant sound (if it begins with a consonant), as follows:
 
->*(X)*, *(X)*, bo-b *(Y)*
->Bonana-fanna fo-f *(Y)*
->Fee fi mo-m *(Y)*
->*(X)*!
+<blockquote>
+<p><em>(X)</em>, <em>(X)</em>, bo-b <em>(Y)</em><br>
+Bonana-fanna fo-f <em>(Y)</em><br>
+Fee fi mo-m <em>(Y)</em><br>
+<em>(X)</em>!</p><br>
+</blockquote>
 
 >If the name starts with a b, f, or m, that sound simply is not repeated.
 
@@ -1000,12 +1000,12 @@ Dave's code amusingly refuses to do the song for the name "Chuck", much as Shirl
 
 This method, unlike the others we've seen, gives a pleasing result when fed the name "Cthulhu", the unspeakable tentacled horror dreaming in the benthic deeps.
 
-```perl
-    Cthulhu, Cthulhu, bo-Bulhu
-    Bonanna-fanna fo-Fulhu
-    Fee fi mo-Mulhu
-    Cthulhu!
-```
+
+<em>Cthulhu, Cthulhu, bo-Bulhu<br>
+Bonanna-fanna fo-Fulhu<br>
+Fee fi mo-Mulhu<br>
+Cthulhu!</em>
+
 
 Here is his routine:
 
@@ -1100,10 +1100,10 @@ Pete takes his improvements to the algorithm to the next level. For one, he firs
 
 Pete strips all clustered consonants from the leading part of the name, rather than the first letter, but then makes a unique and impressive alteration for the special cases of leading "b","f" or "m". He splits the consonant cluster itself into leading and trailing components, then re-inserts the trailing part where the lead matches the special case. Confused? Look at the result for Frank:
 
-*Frank, Frank, bo-bank
-Bonana-fanna fo-rank
-Fee fi mo-mank
-Frank!*
+<em>Frank, Frank, bo-bank  <br>
+Bonana-fanna fo-rank  <br>
+Fee fi mo-mank  <br>
+Frank!</em>
 
 See that "r" slipped back in? It makes the result quite pleasing.
 
@@ -1152,13 +1152,12 @@ Jorg makes the most comprehensive effort we will see today at establishing a rul
 
 There is also a clause allowing the user to input a name with an unstressed first syllable broken out with a hyphen, such as "Ma-donna". In this case the the unaccented syllable will be dropped after the first repetition, improving the meter. Note the recapitalization of the second syllable:
 
-```
-    Madonna, Donna, bo-bonna,
-    Bonana-fanna fo-fonna
-    Fee fi mo-monna
-    Madonna!
 
-```
+<em>Madonna, Donna, bo-bonna,<br>
+Bonana-fanna fo-fonna<br>
+Fee fi mo-monna<br>
+Madonna!</em>
+
 
 His `name` routine returns a hash of all the variations on a name required to produce the song verse: straight, unaccented, individual cases structured to preced a "b", "f" and "m". As I said, certainly the most elaborate set of rules we've seen here today.
 
@@ -1207,7 +1206,7 @@ His `name` routine returns a hash of all the variations on a name required to pr
 
 [**Abigail**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-105/abigail/perl/ch-2.pl)
 
-Abigail [has no time for this, and refuses to play](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-105/abigail/perl/ch-2.pl).
+Abigail [has no time for this nonsense, and refuses to play](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-105/abigail/perl/ch-2.pl).
 
 He lays out his reasoning in a lengthy missive, and is certainly welcome here with his opinion, but I don't share his conclusion. All I can say is we seem at cross-purposes on the root objectives here. Compared to the previous task, which has a mathematically correct answer (subject to some precision), this task is rooted in language, itself an irregularly defined human construct based in practical use rather than academic perfection.
 
@@ -1220,10 +1219,7 @@ Anyways, I always value his contributions, and encourage people to read his anal
 
 ---
 
-<p> &nbsp; </p>
-<p> &nbsp; </p>
-<p> &nbsp; </p>
-<p> &nbsp; </p>
+# BLOGS {#PWC105BLOGS}
 
 ---
 
