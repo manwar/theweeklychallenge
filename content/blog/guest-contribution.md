@@ -86,6 +86,8 @@ Please find below guest contributions.
 
 ##### **Abigail** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/abigail/tcl/ch-1.tcl) in **Tcl**.
 
+##### **Guillermo Ramos** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/guillermo-ramos/go/ch-1.go) in **Go**.
+
 ##### **Mohammad Meraj Zia** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/ziameraj16/java/SelfDescriptiveNumber.java) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/ziameraj16/java/ListMethods.java) in **Java**.
 
 ##### **Roger Bell_West** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/roger-bell-west/python/ch-1.py) in **Python**.
