@@ -124,7 +124,7 @@ We have a new member [`Peter Mayr`](https://github.com/hatorikibble) from **Koln
 
 Please find out [**How to contribute?**](/blog/how-to-contribute), if you have any doubts.
 
-Please try the n excellent tool [**EZPWC**](https://github.com/saiftynet/EZPWC) created by respected member `Saif Ahmed` of **Team PWC**.
+Please try the excellent tool [**EZPWC**](https://github.com/saiftynet/EZPWC) created by respected member `Saif Ahmed` of **Team PWC**.
 
 <br>
 
