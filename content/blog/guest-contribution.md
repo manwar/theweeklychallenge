@@ -30,6 +30,8 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 108](/blog/perl-weekly-challenge-108) {#108}
 <br>
 
+##### **Adam Russell** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-108/adam-russell/prolog/ch-2.p) in **Prolog**.
+
 ##### **Laurent Rosenfeld** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-108/laurent-rosenfeld/awk/ch-2.awk) in **Awk**.
 
 ##### **Laurent Rosenfeld** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-108/laurent-rosenfeld/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-108/laurent-rosenfeld/c/ch-2.c) in **C**.
