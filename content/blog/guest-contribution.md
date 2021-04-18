@@ -44,6 +44,12 @@ Please find below guest contributions.
 
 ##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-108/laurent-rosenfeld/rust/ch-1.rs) in **Rust**.
 
+##### **Pete Houston** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-108/pete-houston/c/ch-1.c) in **C**.
+
+##### **Pete Houston** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-108/pete-houston/fortran/ch-1.f95) in **Fortran**.
+
+##### **Pete Houston** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-108/pete-houston/python/ch-1.py) in **Python**.
+
 ##### **Roger Bell_West** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-108/roger-bell-west/python/ch-2.py) in **Python**.
 
 ##### **Roger Bell_West** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-108/roger-bell-west/ruby/ch-2.rb) in **Ruby**.
