@@ -181,37 +181,14 @@ The total contributions in the week is `92`.Well done **Team PWC**. I would also
 ## LANGUAGES {#LANGUAGES}
 ***
 
-    Python (357), Haskell (320), C++ (107), Ruby (103), Lua (98), C (84),
-    Clojure (72), Awk (67), Rust (64), Node.js (61), APL (56), JavaScript (48),
-    Basic (42), Forth (38), Lisp (37), Scala (36), Bash (34), Prolog (32),
-    Java (31), Go (30), Swift (18), R (17), Ada (14), Tcl (14), Befunge (13),
-    Elm (13), Bc (12), Kotlin (12), PHP (12), OCaml (11), Pascal (10),
-    Fortran (8), SQL (8), Smalltalk (8), Postscript (7), Erlang (5), Julia (5),
-    Scheme (5), C Shell (4), COBOL (4), D (4), Gembase (3), Janet (3),
-    Macro Processor (3), Nim (3), Rexx (3), Sed (3), Dart (2), HTML (2),
-    Haxe (2), Idris (2), BQN (1), Brainfuck (1), C# (1), Chef (1), Fish (1),
-    GNAT (1), Mumps (1), Ook (1), Visual Basic (1), XSLT (1).
+    Python (357), Haskell (320), C++ (107), Ruby (103), Lua (98), C (84), Clojure (72), Awk (67), Rust (64), Node.js (61), APL (56), JavaScript (48), Basic (42), Forth (38), Lisp (37), Scala (36), Bash (34), Prolog (32), Java (31), Go (30), Swift (18), R (17), Ada (14), Tcl (14), Befunge (13), Elm (13), Bc (12), Kotlin (12), PHP (12), OCaml (11), Pascal (10), Fortran (8), SQL (8), Smalltalk (8), Postscript (7), Erlang (5), Julia (5), Scheme (5), C Shell (4), COBOL (4), D (4), Gembase (3), Janet (3), Macro Processor (3), Nim (3), Rexx (3), Sed (3), Dart (2), HTML (2), Haxe (2), Idris (2), BQN (1), Brainfuck (1), C# (1), Chef (1), Fish (1), GNAT (1), Mumps (1), Ook (1), Visual Basic (1), XSLT (1).
 
 <br>
 
 ## CENTURION CLUB {#CENTURIONCLUB}
 ***
 
-    Laurent Rosenfeld (1132), Jaldhar H. Vyas (922), Roger Bell_West (846),
-    Arne Sommer (778), Colin Crain (668), Athanasius (608), Adam Russell (534),
-    E. Choroba (520), Stuart Little (484), Dave Jacoby (460), Javier Luque (460),
-    Ruben Westerberg (452), Ulrich Rieke (444), Mohammad S Anwar (416),
-    Simon Proctor (398), Duncan C. White (382), Luca Ferrari (372), Joelle Maslak (334),
-    Cheok-Yin Fung (288), Abigail (284), Ryan Thompson (278), Mark Anderson (274),
-    Wanderdoc (258), Lubos Kolouch (256), Flavio Poletti (254), Andrezgz (230),
-    Paulo Custodio (228), Yet Ebreo (226), Simon Green (218), James Smith (206),
-    Feng Chang (202), Jorg Sommrey (200), Myoungjin Jeon (192), Markus Holzer (190),
-    Noud Aldenhoven (188), Pete Houston (180), Niels van Dijke (178), Kevin Colyer (176),
-    Kian-Meng Ang (162), Steven Wilson (162), Walt Mankowski (162), Andrew Shitov (160),
-    Duane Powell (148), Shahed Nooshmand (140), Jan Krnavek (138), Aaron Smith (124),
-    Kang-min Liu (118), Julio de Castro (116), Gustavo Chaves (112), Saif Ahmed (110),
-    Burkhard Nickels (108), W. Luis Mochan (108), Alicia Bielsa (106), Dave Cross (104),
-    Nuno Vieira (104).
+    Laurent Rosenfeld (1132), Jaldhar H. Vyas (922), Roger Bell_West (846), Arne Sommer (778), Colin Crain (668), Athanasius (608), Adam Russell (534), E. Choroba (520), Stuart Little (484), Dave Jacoby (460), Javier Luque (460), Ruben Westerberg (452), Ulrich Rieke (444), Mohammad S Anwar (416), Simon Proctor (398), Duncan C. White (382), Luca Ferrari (372), Joelle Maslak (334), Cheok-Yin Fung (288), Abigail (284), Ryan Thompson (278), Mark Anderson (274), Wanderdoc (258), Lubos Kolouch (256), Flavio Poletti (254), Andrezgz (230), Paulo Custodio (228), Yet Ebreo (226), Simon Green (218), James Smith (206), Feng Chang (202), Jorg Sommrey (200), Myoungjin Jeon (192), Markus Holzer (190), Noud Aldenhoven (188), Pete Houston (180), Niels van Dijke (178), Kevin Colyer (176), Kian-Meng Ang (162), Steven Wilson (162), Walt Mankowski (162), Andrew Shitov (160), Duane Powell (148), Shahed Nooshmand (140), Jan Krnavek (138), Aaron Smith (124), Kang-min Liu (118), Julio de Castro (116), Gustavo Chaves (112), Saif Ahmed (110), Burkhard Nickels (108), W. Luis Mochan (108), Alicia Bielsa (106), Dave Cross (104), Nuno Vieira (104).
 
 <br>
 
