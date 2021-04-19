@@ -68,120 +68,113 @@ The total contributions in the week is `92`.Well done **Team PWC**. I would also
 ***
 
 #### 1. Abigail (360)
-        Awk (38), Bash (29), Basic (6), Bc (9), Befunge (13), Brainfuck (1), C (43), C Shell (4),
-        COBOL (4), Chef (1), Erlang (3), Forth (4), Fortran (6), Go (4), Java (3), Lua (30),
-        Macro Processor (3), Mumps (1), Node.js (49), OCaml (3), Ook (1), PHP (3), Pascal (7),
-        Postscript (2), Python (34), R (5), Rexx (3), Ruby (32), SQL (8), Scheme (5), Sed (3), Tcl (3).
+    Awk (38), Bash (29), Basic (6), Bc (9), Befunge (13), Brainfuck (1), C (43), C Shell (4), COBOL (4), Chef (1), Erlang (3), Forth (4), Fortran (6), Go (4), Java (3), Lua (30), Macro Processor (3), Mumps (1), Node.js (49), OCaml (3), Ook (1), PHP (3), Pascal (7), Postscript (2), Python (34), R (5), Rexx (3), Ruby (32), SQL (8), Scheme (5), Sed (3), Tcl (3).
 #### 2. Stuart Little (228)
-        Haskell (216), Node.js (4), Python (8).
+    Haskell (216), Node.js (4), Python (8).
 #### 3. Paulo Custodio (224)
-        Ada (14), Awk (20), Basic (36), Bc (2), C (26), C++ (26), Forth (34), Lua (30), Python (36).
+    Ada (14), Awk (20), Basic (36), Bc (2), C (26), C++ (26), Forth (34), Lua (30), Python (36).
 #### 4. Roger Bell_West (167)
-        Postscript (2), Python (67), Ruby (55), Rust (43).
+    Postscript (2), Python (67), Ruby (55), Rust (43).
 #### 5. Tyler Wardhaugh (120)
-        Clojure (72), Lua (36), Python (12).
+    Clojure (72), Lua (36), Python (12).
 #### 6. Ulrich Rieke (115)
-        C++ (50), Haskell (61), Java (1), Lisp (3).
+    C++ (50), Haskell (61), Java (1), Lisp (3).
 #### 7. Myoungjin Jeon (85)
-        Elm (10), Fish (1), Go (18), Haskell (34), Lisp (22).
+    Elm (10), Fish (1), Go (18), Haskell (34), Lisp (22).
 #### 8. Laurent Rosenfeld (80)
-        Awk (3), Bc (1), C (4), C++ (1), D (3), Dart (1), Gembase (3), Go (3), Java (1), Julia (4),
-        Kotlin (1), Lua (1), Nim (1), Pascal (2), Python (16), Ruby (4), Rust (3), Scala (27),
-        Visual Basic (1).
+    Awk (3), Bc (1), C (4), C++ (1), D (3), Dart (1), Gembase (3), Go (3), Java (1), Julia (4), Kotlin (1), Lua (1), Nim (1), Pascal (2), Python (16), Ruby (4), Rust (3), Scala (27), Visual Basic (1).
 #### 9. Lubos Kolouch (64)
-        Python (64).
+    Python (64).
 #### 10. Richard Park (61)
-        APL (56), BQN (1), JavaScript (2), Python (2).
+    APL (56), BQN (1), JavaScript (2), Python (2).
 #### 11. Nuno Vieira (44)
-        JavaScript (44).
+    JavaScript (44).
 #### 12. Adam Russell (42)
-        C++ (11), Prolog (31).
+    C++ (11), Prolog (31).
 #### 13. Walt Mankowski (36)
-        C (6), C++ (4), Python (26).
+    C (6), C++ (4), Python (26).
 #### 14. Andrew Shitov (34)
-        Bash (1), C (1), C# (1), C++ (10), D (1), Dart (1), Fortran (1), Go (1), HTML (1), Java (1),
-        JavaScript (1), Julia (1), Kotlin (1), Lisp (1), Lua (1), PHP (1), Pascal (1), Python (4),
-        Ruby (1), Rust (1), Scala (1), XSLT (1).
+    Bash (1), C (1), C# (1), C++ (10), D (1), Dart (1), Fortran (1), Go (1), HTML (1), Java (1), JavaScript (1), Julia (1), Kotlin (1), Lisp (1), Lua (1), PHP (1), Pascal (1), Python (4), Ruby (1), Rust (1), Scala (1), XSLT (1).
 #### 15. Mohammad Meraj Zia (27)
-        Java (19), Kotlin (8).
+    Java (19), Kotlin (8).
 #### 16. Cheok-Yin Fung (25)
-        Java (3), Lisp (11), Python (3), Smalltalk (8).
+    Java (3), Lisp (11), Python (3), Smalltalk (8).
 #### 17. Shawn Wagner (21)
-        Java (2), OCaml (8), Tcl (11).
+    Java (2), OCaml (8), Tcl (11).
 #### 18. User Person (21)
-        Python (21).
+    Python (21).
 #### 19. Mohammad S Anwar (19)
-        Java (1), Swift (18).
+    Java (1), Swift (18).
 #### 20. Orestis Zekai (16)
-        Python (16).
+    Python (16).
 #### 21. Wanderdoc (12)
-        R (12).
+    R (12).
 #### 22. Cristina Heredia (10)
-        Python (10).
+    Python (10).
 #### 23. Dave Jacoby (10)
-        HTML (1), Node.js (7), Rust (2).
+    HTML (1), Node.js (7), Rust (2).
 #### 24. Pete Houston (10)
-        Awk (6), Bash (1), C (1), Fortran (1), Python (1).
+    Awk (6), Bash (1), C (1), Fortran (1), Python (1).
 #### 25. Jonas Berlin (9)
-        Rust (9).
+    Rust (9).
 #### 26. Kang-min Liu (9)
-        Janet (3), Kotlin (2), Python (2), Rust (2).
+    Janet (3), Kotlin (2), Python (2), Rust (2).
 #### 27. Aviral Goel (8)
-        Haskell (8).
+    Haskell (8).
 #### 28. Burkhard Nickels (8)
-        Python (8).
+    Python (8).
 #### 29. Leo Manfredi (8)
-        Bash (2), Python (6).
+    Bash (2), Python (6).
 #### 30. Sangeet Kar (8)
-        Python (8).
+    Python (8).
 #### 31. Shawak (8)
-        Ruby (8).
+    Ruby (8).
 #### 32. Frank Oosterhuis (7)
-        Scala (7).
+    Scala (7).
 #### 33. Colin Crain (6)
-        Python (6).
+    Python (6).
 #### 34. Henry Wong (6)
-        PHP (6).
+    PHP (6).
 #### 35. Arne Sommer (5)
-        Bash (1), Node.js (1), PHP (1), Python (1), Ruby (1).
+    Bash (1), Node.js (1), PHP (1), Python (1), Ruby (1).
 #### 36. Kivanc Yazan (4)
-        Python (4).
+    Python (4).
 #### 37. Mohammad Foda (4)
-        Haxe (2), Nim (2).
+    Haxe (2), Nim (2).
 #### 38. Philip Hood (4)
-        C (1), C++ (2), GNAT (1).
+    C (1), C++ (2), GNAT (1).
 #### 39. Yet Ebreo (4)
-        Python (2), Ruby (2).
+    Python (2), Ruby (2).
 #### 40. Duncan C. White (3)
-        Postscript (3).
+    Postscript (3).
 #### 41. E. Choroba (3)
-        C (1), Erlang (2).
+    C (1), Erlang (2).
 #### 42. Guillermo Ramos (3)
-        Go (3).
+    Go (3).
 #### 43. Lance Wicks (3)
-        Elm (3).
+    Elm (3).
 #### 44. Rage311 (3)
-        Rust (3).
+    Rust (3).
 #### 45. Ben Davies (2)
-        Idris (2).
+    Idris (2).
 #### 46. Daniel Mita (2)
-        Go (1), JavaScript (1).
+    Go (1), JavaScript (1).
 #### 47. Tejas (2)
-        C++ (2).
+    C++ (2).
 #### 48. Alexander Pankoff (1)
-        Haskell (1).
+    Haskell (1).
 #### 49. Bob Lied (1)
-        C (1).
+    C (1).
 #### 50. Darren Bottin (1)
-        Prolog (1).
+    Prolog (1).
 #### 51. Jaldhar H. Vyas (1)
-        C++ (1).
+    C++ (1).
 #### 52. James Smith (1)
-        PHP (1).
+    PHP (1).
 #### 53. Jan Krnavek (1)
-        Scala (1).
+    Scala (1).
 #### 54. Steven Wilson (1)
-        Rust (1).
+    Rust (1).
 
 <br>
 

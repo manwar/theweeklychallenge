@@ -122,7 +122,7 @@ I would like to `THANK` every member of the team for their valuable suggestions.
 
 ***
 
-[Lakpa Tash Bhutia](https://github.com/lakpatashi), an experienced **Perl** hacker joined the team.
+[Lakpa Tashi Bhutia](https://github.com/lakpatashi), an experienced **Perl** hacker joined the team.
 
 Please find out [**How to contribute?**](/blog/how-to-contribute), if you have any doubts.
 
