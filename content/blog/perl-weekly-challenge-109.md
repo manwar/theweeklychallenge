@@ -146,7 +146,9 @@ Please find [**past solutions**](/blog/guest-contribution) by respected **guests
 
 Write a script to generate first 20 `Chowla Numbers`, named after, **Sarvadaman D. S. Chowla**, a London born Indian American mathematician. It is defined as:
 
-    C(n) = (sum of divisors of n) - 1 - n
+    C(n) = sum of divisors of n except 1 and n
+
+##### NOTE: Updated the above definition as suggested by Abigail [2021/04/19 18:40].
 
 ## Output:
 
