@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2021-04-21T00:00:00+00:00
+date: 2021-04-22T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -29,6 +29,26 @@ Please find below guest contributions.
 ----
 ## [The Weekly Challenge - 109](/blog/perl-weekly-challenge-109) {#109}
 <br>
+
+##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-109/laurent-rosenfeld/awk/ch-2.awk) in **Awk**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-109/laurent-rosenfeld/c/ch-1.c) in **C**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-109/laurent-rosenfeld/d/ch-1.d) in **D**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-109/laurent-rosenfeld/go/ch-1.go) in **Go**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-109/laurent-rosenfeld/julia/ch-1.julia) in **Julia**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-109/laurent-rosenfeld/pascal/ch-1.p) in **Pascal**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-109/laurent-rosenfeld/python/ch-1.py) in **Python**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-109/laurent-rosenfeld/ruby/ch-1.rb) in **Ruby**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-109/laurent-rosenfeld/rust/ch-1.rs) in **Rust**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-109/laurent-rosenfeld/scala/ch-1.scala) in **Scala**.
 
 ##### **Mohammad Meraj Zia** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-109/ziameraj16/java/ChowlaNumbers.java) in **Java**.
 
