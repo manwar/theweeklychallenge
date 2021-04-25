@@ -34,6 +34,8 @@ Please find below guest contributions.
 
 ##### **Dave Jacoby** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-109/dave-jacoby/node/ch-1.js) in **Node.js**.
 
+##### **Lance Wicks** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-109/lance-wicks/elm/src/Chowla.elm) in **Elm**.
+
 ##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-109/laurent-rosenfeld/awk/ch-2.awk) in **Awk**.
 
 ##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-109/laurent-rosenfeld/c/ch-1.c) in **C**.
