@@ -88,6 +88,8 @@ Please find below guest contributions.
 
 ##### **Bartosz Jarzyna** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-109/brtastic/php/ch-1.php) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-109/brtastic/php/ch-2.php) in **PHP**.
 
+##### **Cheok-Yin Fung** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-109/cheok-yin-fung/java/NBoxesJavaFX.java) in **Java**.
+
 ##### **Dave Jacoby** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-109/dave-jacoby/node/ch-1.js) in **Node.js**.
 
 ##### **Lance Wicks** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-109/lance-wicks/elm/src/Chowla.elm) in **Elm**.
