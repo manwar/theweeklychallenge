@@ -43,6 +43,13 @@ Last but not the least, welcome back `Richard Park` for sharing solutions in [**
 
 <br>
 
+### Lance Wicks: Chowla Numbers
+***
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/yWFbj7_yDow" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<br><br>
+
 ### Mohammad Anwar: Chowla Numbers
 ***
 
