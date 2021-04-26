@@ -1,0 +1,1387 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="The Weekly Challenge - Perl & Raku"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://perlweeklychallenge.org/"/>
+    <meta property="og:image"       content="https://perlweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="You do not have to be an expert."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://perlweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Colin Crain › Perl Weekly Review #107">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Colin Crain › Perl Weekly Review #107</title>
+    <link rel="icon" href="https://perlweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://perlweeklychallenge.org/">
+                        <img src="https://perlweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navgation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Colin Crain › Perl Weekly Review #107</h2>
+                    <div class="portfolio-meta">
+                        <span>Monday, Apr 26, 2021</span>|
+                        <span> Tags:
+                            perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://perlweeklychallenge.org/images/blog/p5-review-challenge-107.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <p>( <em>&hellip;continues from <a href="/blog/review-challenge-106/">previous week</a>.</em> )</p>
+<p>Welcome to the Perl review for <strong>Week 107</strong> of the Weekly Challenge! Here we will take the time to discuss the  submissions offered by the team, factor out the common methodologies that came up in those solutions, and highlight some of the unique approaches and unusual code created.</p>
+<hr>
+<h3 id="why-do-we-do-these-challenges">Why do we do these challenges?</h3>
+<p>I suppose any answers to that would be as wide ranging and varied as the people who choose to join the team. One thing is clear: it&rsquo;s not a competition, and there are no judges, even if there is a &ldquo;prize&rdquo; of sorts. About that &ndash; I think of it more as an honorarium periodically awarded to acknowledge the efforts we make towards this strange goal. So there&rsquo;s no determination to find the <em>fastest</em>, or the <em>shortest</em>, or even, in some abstract way, the <em>best</em> way to go about things, although I&rsquo;m certain the individuals have their own aspirations and personal drives. As Perl is such a wonderfully expressive language, this provides quite a bit of fodder to the core idea of TMTOWTDI, producing a gamut of wonderfully varied techniques and solutions.</p>
+<p>Even the tasks themselves are often open to a certain amount of discretionary interpretation. What we end up with is a situation where each participant is producing something in the manner they find the most interesting or satisfying. Some team members focus on carefully crafted complete applications that thoroughly vet input data and handle every use case they can think up. Others chose to apply themselves to the logic of the underlying puzzle and making it work in the most elegant way they can. Some eschew modules they would ordinarily reach for, others embrace them, bringing to light wheels perhaps invented years ago that happen to exactly solve the problem in front of them today.</p>
+<p>I&rsquo;ve been considering this question for some time and have found one binding commonality between all of us solving these challenges each week, in that however we normally live our lives, the task in front of us more than likely has nothing to do with any of that . And I think this has great value. We all do what we do, out in the real world, and hopefully we do it well. The Weekly Challenge provides a opportunity to do something germane to that life yet distinctly different; if we only do the things we already know how to do we only do the same things over and over. This is where the &ldquo;challenge&rdquo; aspect comes into play.</p>
+<p>So we can consider the Weekly Challenge as providing a problem space outside of our comfort zone, as far out from comfort as we wish to take things. From those reaches we can gather and learn things and bring what we want back into our lives. Personally, I think that&rsquo;s its greatest value of all.</p>
+<hr>
+<p>Every week there is an enormous global collective effort made by the team, analyzing and creatively coding the submissions, and that effort deserves credit due. And that&rsquo;s why I&rsquo;m here, to try and figure out how to do that.</p>
+<p>Let&rsquo;s have a look and see what we can find.</p>
+<hr>
+<p><strong><big>For context</big></strong>  before we begin, you may wish to revisit either of the pages for the <a href="/blog/perl-weekly-challenge-107/"><strong>original tasks</strong></a> or the summary <a href="/blog/recap-challenge-107/"><strong>recap</strong></a> of the challenge. But don&rsquo;t worry, the challenges themselves will be briefly summarized, presented below as we progress from task by task. Oh, and one more thing before we get started:</p>
+<h3 id="getting-in-touch-with-us">Getting in Touch with Us</h3>
+<p><a href="mailto:pwc.perfectwave@gmail.com"><img src="/images/blog/Email.svg" height="50" width="50"> Email</a> › Please email me (Colin) with any feedback, notes, clarifications or whatnot about this review.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge"><img src="/images/blog/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request to us for any issues you may find with this page.</p>
+<p><a href="https://twitter.com/perlwchallenge"><img src="/images/blog/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!</p>
+<p>I&rsquo;m always curious as to what the people think of these efforts. Everyone here at the PWC would like to hear any feedback you&rsquo;d like to give.</p>
+<p><strong>So finally, without further ado&hellip;</strong></p>
+<hr>
+<h2 id="---nbsp--nbsp--nbsp---task-1pwc107task1-------nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---task-2pwc107task2---nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---blogspwc107blogs----nbsp--nbsp--nbsp---">•             <a href="#PWC107TASK1">Task 1</a>                 •             <a href="#PWC107TASK2">Task 2</a>             	•             <a href="#PWC107BLOGS">BLOGS</a>              	•</h2>
+<hr>
+<h1 id="PWC107TASK1">TASK 1</h1>
+<h1 id="self-descriptive-numbers">Self-descriptive Numbers</h1>
+<p><em>Submitted by: Mohammad S Anwar</em><br>
+Write a script to display the first three self-descriptive numbers. As per wikipedia, the definition of Self-descriptive Number is</p>
+<p>In mathematics, a self-descriptive number is an integer m that in a given base b is b digits long in which each digit d at position n (the most significant digit being at position 0 and the least significant at position b−1) counts how many instances of digit n are in m.</p>
+<p><strong>For example:</strong></p>
+<p>1210 is a four-digit self-descriptive number:</p>
+<pre><code>    position 0 has value 1 i.e. there is only one 0 in the number
+    position 1 has value 2 i.e. there are two 1 in the number
+    position 2 has value 1 i.e. there is only one 2 in the number
+    position 3 has value 0 i.e. there is no 3 in the number
+</code></pre><p><strong>Output</strong></p>
+<pre><code>    1210, 2020, 21200
+</code></pre><h2 id="about-the-solutions">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/abigail/perl/ch-1.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/jaldhar-h-vyas/perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/lance-wicks/perl/ch-1.pl"><strong>Lance Wicks</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/pete-houston/perl/ch-1.pl"><strong>Pete Houston</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/stuart-little/perl/ch-1.pl"><strong>Stuart Little</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/wanderdoc/perl/ch-1.pl"><strong>Wanderdoc</strong></a></p>
+<p>With those returning from PWC 043:</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/jaldhar-h-vyas/perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/wanderdoc/perl/ch-1.pl"><strong>Wanderdoc</strong></a></p>
+<p>I am continually impressed by the wide range of responses that arise from these challenges; how a seemingly simple question can evoke such a breadth of interpretations. Of course there&rsquo;s variety in the nature of the questions themselves, in that some will be more precise than others, and it makes sense that the more open-ended of these specifications will produce a great deal of variation in their product. What&rsquo;s more surprising is that even when the task appears simple and well-defined, sometimes the results can and will end up all over the map.</p>
+<p>Those responding to the call can range from pedantically literal textualists to those who, insufficiently challenged with the task as given, feel the freedom to find a question they would prefer to answer and simply provide a solution to that instead. As the first group can get quite argumentative, I much prefer the company of the second. After all, these are not court cases we are making, and the descriptions laid out are not contractual work orders. They&rsquo;re ideally simple puzzles for a wide audience. Like the humor in a good children&rsquo;s show, they should be able to be viewed on multiple levels of complexity simultaneously, for both the more and less experienced alike. I find it&rsquo;s that multitimbral resonance that makes for a really interesting question, and the range of responses from the members work together to flush out the corners, seeing what&rsquo;s there. And that&rsquo;s why we&rsquo;re here, isn&rsquo;t it? To play around and see what happens? Well most of us, anyway. YMMV.</p>
+<p>For this week we had two short descriptions to the task: &ldquo;Write a script to display the first three self-descriptive numbers&rdquo;, and &ldquo;Write a script to list methods of a package/class&rdquo;. Simple, right? Oh, you sweet summer children ;)</p>
+<p>There were 23 submissions for the first task this past week. This task was notable as being a near-repeat of a previous challenge, PWC 043 task 2. The cause was just an unfortunate mix-up, nothing to make too much of, but it produced eight submissions from members who responded to both — a little over one third of the total. Sometimes these submissions were exactly the same, sometimes updated a bit, sometimes completely reworked. We&rsquo;ll look further into this unique situation.</p>
+<h2 id="looking-at-a-bunch-of-numbers">looking at a BUNCH OF NUMBERS</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/lance-wicks/perl/ch-1.pl"><strong>Lance Wicks</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/pete-houston/perl/ch-1.pl"><strong>Pete Houston</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a></p>
+<p>One of the advantages of being able to skry the future in this challenge — we know the answers required are 1210, 2020, and 21200 — is that the numbers aren&rsquo;t overly large. Even the crudest brute force application to five digits draws from a field of 99,999 candidates, and this goes down to 21200 of course if we stop looking after we&rsquo;ve found three values.</p>
+<p>Computationally that&rsquo;s small change — if we properly weigh in the unnecessary cost of over-optimizing, the &ldquo;best&rdquo; strategy might well be to loop over that list and be done with it, throwing away the values that don&rsquo;t check out.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a></p>
+<p>A simple incrementing value provides Mohammad with his candidates, which are then passed to a <code>self_descriptive()</code> validation routine. Within it, the digits of the number are first split into an array, then the individual elements are used to populate a frequency hash, also known as a &ldquo;bag&rdquo;. A second pass across the indices of the digit array will reveal if any do not match their found frequency, disqualifying the number from self-description.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">self_descriptive</span> {
+        <span style="color:#66d9ef">my</span> ($n) <span style="color:#f92672">=</span> @_;
+
+        <span style="color:#66d9ef">my</span> @n <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, $n;
+        <span style="color:#66d9ef">my</span> %m;
+        map { $m{$_}<span style="color:#f92672">++</span> } @n;
+
+        <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">while</span> ($i <span style="color:#f92672">&lt;</span> @n) {
+            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">unless</span> (($m{$i} <span style="color:#e6db74">//</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>) <span style="color:#f92672">==</span> $n[$i]);
+            $i<span style="color:#f92672">++</span>;
+        }
+
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a></p>
+<p>Simon&rsquo;s version of the technique follows much the same course, only he extracts the digit values using <code>substr</code>, storing the frequencies in an array. This array is then iterated through with the indices used to examine the numeric string positions to compare.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_is_self_descriptive</span> {
+        <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> shift;
+        <span style="color:#66d9ef">my</span> $l <span style="color:#f92672">=</span> length($n) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+
+        <span style="color:#75715e"># Get a count of each character</span>
+        <span style="color:#66d9ef">my</span> @char <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>) x <span style="color:#ae81ff">10</span>;
+        <span style="color:#f92672">++</span>$char[ substr( $n, $_, <span style="color:#ae81ff">1</span> ) ] <span style="color:#66d9ef">foreach</span> ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $l );
+
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $pos ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $l ) {
+            <span style="color:#75715e"># See how many characters we expect</span>
+            <span style="color:#66d9ef">my</span> $expect <span style="color:#f92672">=</span> substr( $n, $pos, <span style="color:#ae81ff">1</span> );
+
+            <span style="color:#75715e"># Exit if the numbers don&#39;t match</span>
+            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">if</span> $expect <span style="color:#f92672">!=</span> $char[$pos];
+        }
+
+        <span style="color:#75715e"># It&#39;s a self descriptive number</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/lance-wicks/perl/ch-1.pl"><strong>Lance Wicks</strong></a></p>
+<p>Lance bring us his work today in a module, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/lance-wicks/perl/lib/Descriptive.pm"><code>Descriptive.pm</code></a>.</p>
+<p>When looping over the values 1 t0 30000, he checks his numbers for self-description in a very clever way. Inside his <code>is_self_desc</code> validation routine the  number is matched, using a regular expression, for each of the successive digits 0 through 9, globally. This match produces a list of results when called in list context, and this list, when called in scalar context returns its length. The construct that achieves this cleverness, <code>=()=</code>, is politely called the <a href="https://metacpan.org/pod/distribution/perlsecret/lib/perlsecret.pod#Goatse">Saturn operator</a>.</p>
+<p>Here the result is a tally of the count of each digit in the number, which is concatenated into numeric string describing the digits in the number. If this assembled value is the same as the original we have a self-descriptive number. So no comparing individual digits is required for the final step, only a comparison with <code>==</code>.</p>
+<p>Note for bases less than 10 there is no need to explicitly cast the number into its base, as we are only considering numbers the length of the base, and the presence of any &ldquo;out-of-base&rdquo; digits automatically disqualifies the value from being self-descriptive. For example, in a 5-digit number the presence of a &ldquo;6&rdquo; would mean there are 6 of some digit, which is impossible under the definition.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_self_desc</span> {
+        <span style="color:#66d9ef">my</span> ($self,$num) <span style="color:#f92672">=</span> @_;
+
+        <span style="color:#66d9ef">my</span> $description;
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $int (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">9</span>) {
+            $description <span style="color:#f92672">.=</span> () <span style="color:#f92672">=</span> $num <span style="color:#f92672">=~</span><span style="color:#e6db74"> /$int/g</span>;
+        }
+        <span style="color:#66d9ef">my</span> $length_of_num <span style="color:#f92672">=</span> length $num;
+
+        $description <span style="color:#f92672">=</span> substr $description, <span style="color:#ae81ff">0</span>, $length_of_num;
+
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> $description <span style="color:#f92672">==</span> $num;
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a></p>
+<p>Dave completed the task in PWC 043, and here returns with a different, simpler algorithm of construct the three first values in the sequence, counting upwards and evaluating each candidate in turn for self-description.</p>
+<p>For the validation check, he first scans the number for its highest digit, and if it&rsquo;s greater than digit length it is immediately disqualified.</p>
+<blockquote>
+<p>There’s one optimization I added to reduce the rabbit holes I had to chase into: I found the length of the number and the highest digit in the number, and if that high digit is greater than the size, it’ll never be self-descriptive, so I exit there.</p>
+</blockquote>
+<p>After this check an array is compiled with the frequencies of each digit stored in the index slot for its value. After using a <code>map</code> to fill in undefined elements with 0, this array is joined to create a number, which can them be compared to the original to see whether they match.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">while</span> ( scalar @self_desc <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">3</span> ) {
+        <span style="color:#66d9ef">if</span> ( is_self_descriptive($n) ) {
+            push @self_desc, $n;
+            say join <span style="color:#e6db74">&#39; &#39;</span>, @self_desc;
+        }
+        $n<span style="color:#f92672">++</span>;
+        exit <span style="color:#66d9ef">if</span> $n <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1_000_000_000</span>;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_self_descriptive</span> ( $n ) {
+        <span style="color:#66d9ef">my</span> $max <span style="color:#f92672">=</span> max split <span style="color:#e6db74">m{}</span>, $n;
+        <span style="color:#66d9ef">my</span> $l   <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> length $n;
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $max <span style="color:#f92672">&gt;</span> $l;
+
+        <span style="color:#66d9ef">my</span> @arr;
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> length $n ) { $arr[$i] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> }
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i ( split <span style="color:#e6db74">m{|}</span>, $n ) {
+            $arr[$i]<span style="color:#f92672">++</span>;
+        }
+        <span style="color:#66d9ef">my</span> $r <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">+</span> ( join <span style="color:#e6db74">&#39;&#39;</span>, map { $_ <span style="color:#f92672">||</span> <span style="color:#ae81ff">0</span> } @arr );
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $r <span style="color:#f92672">!=</span> $n;
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/pete-houston/perl/ch-1.pl"><strong>Pete Houston</strong></a></p>
+<p>Pete offers us  a nice compact, succinct solution. Iterating upward in an open-ended manner, he gives us a new technique: he first throws out values where the sum of the digits does not equal the number of digits. As the frequency counts are for the number of digits with a specific value, the sum of all the frequencies must allow for every digit to be counted, so this must be true.</p>
+<p>After dividing up the candidate number into an array of digits, a bag is made from the elements. Then he only has to iterate over the array indexes to verify they are the same as the collected bag counts for that index number.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> %cinit <span style="color:#f92672">=</span> map { $_ <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">0</span> } <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">9</span>;
+
+    OUTER: <span style="color:#66d9ef">while</span> ($#sdn <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">2</span>) {
+        $x<span style="color:#f92672">++</span>;
+        <span style="color:#66d9ef">my</span> @digits <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, $x;
+        <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> @digits <span style="color:#f92672">==</span> sum (@digits);
+        <span style="color:#66d9ef">my</span> %count <span style="color:#f92672">=</span> %cinit;
+        $count{$_}<span style="color:#f92672">++</span> <span style="color:#66d9ef">for</span> @digits;
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#digits) {
+            <span style="color:#66d9ef">next</span> OUTER <span style="color:#66d9ef">unless</span> $count{$i} <span style="color:#f92672">==</span> $digits[$i];
+        }
+        push @sdn, $x;
+    }
+</code></pre></div><h2 id="targeted-application-of-force">TARGETED application of FORCE</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/jaldhar-h-vyas/perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/wanderdoc/perl/ch-1.pl"><strong>Wanderdoc</strong></a></p>
+<p>On the other hand, the brute force applied need not be completely indiscriminate; we don&rsquo;t need to look over the full range. For example, the search space is considerably constricted by the fact that we are only looking for up to <em>b</em>-digit numbers in base <em>b</em>: we only have 4 binary numbers available, 27 ternary numbers, etc. Or in other words <i>b</i><sup><i>b</i></sup> values for each base. So for <em>b</em> &lt; 6 there are only</p>
+<p>2<sup>2</sup> + 3<sup>3</sup> + 4<sup>4</sup> + 5<sup>5</sup> = 3412</p>
+<p>values to examine to completely search the space of 5 digits or less. We also note, again, that we can stop early after finding the third candidate.</p>
+<p>But wait, there&rsquo;s more! Even though the subject of leading zeros on the numbers is not well defined, in practicality the case is rendered moot as it is self-disqualifying. A leading 0 would signify that there ar no zeros in the number, which the presence of the leading 0 itself would falsify. So the real number of examples for each base is now reduced to (<i>b</i>-1)<i>b</i><sup><i>(b</i>-1)</sup>, giving us only</p>
+<p>1 × 2<sup>1</sup> + 2 × 3<sup>2</sup> + 3 × 4<sup>3</sup> + 4 × 5<sup>4</sup> = 2712 maximum values to check in 5 digits or under.</p>
+<p>There are other interesting properties of self-defining numbers that can be used to further cull the candidate pool, in that a number must be divisible by its base and by the sum of its digits. These techniques also found their way in to the submissions.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a></p>
+<p>Niels gives us a main logic loop and two routines, <code>incBaseNnumber()</code> to increment the candidate value and <code>isSelfDescriptiveBaseNnumber()</code> to validiate it. There a lot going on with these. In the main body a loop is set up to generate all numbers within a specific base up to the length of that base, then move on to the next. The numbers themselves are constructed b-length arrays of digits within the base. By using function prototypes, he can make one array of 0s of the proper length and then keep altering the digits in-place in this same array. One side-effect from this method is that the &ldquo;numbers&rdquo; are incremented left-to-right: 1000, 2000, 3000, 0100, 1100, 2100, 3100, 0200 &hellip; As the entire set of results for each base is searched, however, all values will be examined, whatever the order.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">incBaseNnumber</span> ($\@) {
+      <span style="color:#66d9ef">my</span> ($b,$arDigits) <span style="color:#f92672">=</span> @_;
+
+      <span style="color:#66d9ef">my</span> ($overflow,$d,$dMax) <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,scalar(@$arDigits));
+
+      <span style="color:#66d9ef">while</span> (<span style="color:#f92672">!</span>$overflow) {
+        $arDigits<span style="color:#f92672">-&gt;</span>[$d] <span style="color:#f92672">=</span> ($arDigits<span style="color:#f92672">-&gt;</span>[$d] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) % <span style="color:#960050;background-color:#1e0010">$</span>b;
+        <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $arDigits<span style="color:#f92672">-&gt;</span>[$d<span style="color:#f92672">++</span>];
+        <span style="color:#66d9ef">if</span> ($d <span style="color:#f92672">&gt;=</span> $dMax) {
+          push(@$arDigits,<span style="color:#ae81ff">1</span>);
+          $overflow<span style="color:#f92672">++</span>;
+        }
+      }
+
+      <span style="color:#66d9ef">return</span> $overflow;
+    }
+</code></pre></div><p>As the number is constructed as an array of digits, the validation can be done in a single costruct, using <code>grep</code> to count the occurrences of each digit and comparing it to the value found at that index.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">  <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $d (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $b <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) {
+    $checkDigit[$d] <span style="color:#f92672">=</span> scalar(grep { $_ <span style="color:#f92672">==</span> $d } @$arDigits) <span style="color:#f92672">==</span> $arDigits<span style="color:#f92672">-&gt;</span>[$d];
+  }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/jaldhar-h-vyas/perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a></p>
+<p>Jaldhar is returning to the task from his first efforts in PWC 043, this time chosing a brute force approach to look for the first small values. In a general sense these brute force approaches will bog down for the larger bases, but for these early, smaller, results they are fast and straightforward.</p>
+<p>Jaldhar calculates sequences of successive numbers in the two bases 4 and 5 to construct his candidate values, then employs a unique sieve: to be a self-descriptive number a number must be a <a href="https://en.wikipedia.org/wiki/Harshad_number">Harshad number</a>, that is, that the number must be evenly divisible by the sum of its digit values.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_harshad</span> {
+        <span style="color:#66d9ef">my</span> ($n) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> $total <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">my</span> @digits <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, $n;
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $digit (@digits) {
+            $total <span style="color:#f92672">+=</span> $digit;
+        }
+
+        <span style="color:#66d9ef">return</span>  @digits <span style="color:#f92672">==</span> $total;
+    }
+</code></pre></div><p>Using this filter he only needs to check the digit counts against their positions for 61 numbers to find the three requested values.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p>Laurent starts by only counting through the pool of numbers of the correct length in each base, which for bases 4 and 5 are much smaller than their base-10 counterparts. He then prunes the tree further with one more big optimization, that logically the last digit must be 0. This follows from the fact that a self-descriptive number must be a multiple of its base: a proof by negation is <a href="https://en.wikipedia.org/wiki/Self-descriptive_number#Properties">provided in the Wikipedia article</a>. The upshot being that the search space can further be reduced by examining each candidate with a regular expression to see whether it ends in 0. This does not lop off an order of magnitude in base 10 of course, as we are working in maximally base 5. So a 4-5 fold reduction, reducing his final verification step to 216 values.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> @digits <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, $num_in_b;
+    <span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    $sum <span style="color:#f92672">+=</span> $_ <span style="color:#66d9ef">for</span> split <span style="color:#e6db74">//</span>, $num_in_b;
+    <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $sum <span style="color:#f92672">!=</span> $base;
+    <span style="color:#66d9ef">my</span> $success <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $rank (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$base <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) {
+        <span style="color:#66d9ef">my</span> $nb_digits <span style="color:#f92672">=</span> $digits[$rank];
+        <span style="color:#66d9ef">my</span> $num_occ <span style="color:#f92672">=</span> $num_in_b <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/$rank/$rank/g</span>;
+        <span style="color:#66d9ef">if</span> ($num_occ <span style="color:#f92672">!=</span> $nb_digits) {
+            $success <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+            <span style="color:#66d9ef">last</span>;
+        }
+    }
+    <span style="color:#66d9ef">if</span> ($success) {
+        say <span style="color:#e6db74">&#34;Number in base $base: $num_in_b; decimal: $num&#34;</span> ;
+        $count<span style="color:#f92672">++</span>;
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">if</span> $count <span style="color:#f92672">&gt;=</span> MAX;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a></p>
+<p>Roger cut straight to the chase, making sure his candidates end in 0 by incrementing by 10. Sometimes the smallest things can make a world of difference.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">sdn</span> {
+      <span style="color:#66d9ef">my</span> $count<span style="color:#f92672">=</span>shift;
+      <span style="color:#66d9ef">my</span> @r;
+      <span style="color:#66d9ef">my</span> $n<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>;
+      <span style="color:#66d9ef">while</span> (scalar @r <span style="color:#f92672">&lt;</span> $count) {
+        <span style="color:#66d9ef">my</span> @ns<span style="color:#f92672">=</span>map {$_<span style="color:#f92672">+</span><span style="color:#ae81ff">0</span>} split <span style="color:#e6db74">&#39;&#39;</span>,sprintf(<span style="color:#e6db74">&#39;%d&#39;</span>,$n);
+        <span style="color:#66d9ef">my</span> @d<span style="color:#f92672">=</span>(<span style="color:#ae81ff">0</span>) x <span style="color:#ae81ff">10</span>;
+        map {$d[$_]<span style="color:#f92672">++</span>} @ns;
+
+        <span style="color:#66d9ef">my</span> $sd<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#ns) {
+          <span style="color:#66d9ef">if</span> ($d[$i] <span style="color:#f92672">!=</span> $ns[$i]) {
+            $sd<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+            <span style="color:#66d9ef">last</span>;
+          }
+        }
+        <span style="color:#66d9ef">if</span> ($sd <span style="color:#f92672">&amp;&amp;</span> $#ns<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">9</span>) {
+          <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i ($#ns<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">9</span>) {
+            <span style="color:#66d9ef">if</span> ($d[$i] <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>) {
+              $sd<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+              <span style="color:#66d9ef">last</span>;
+            }
+          }
+        }
+        <span style="color:#66d9ef">if</span> ($sd) {
+          push @r,$n;
+        }
+        $n<span style="color:#f92672">+=</span><span style="color:#ae81ff">10</span>;
+      }
+      <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@r;
+    }
+</code></pre></div><h2 id="assembling-the-numbers-from-parts">ASSEMBLING the numbers from PARTS</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>The definition of a sel-descriptive number is representational more than it is mathematical, depending on the specific placement of certain digits in the nuber considered as a string.</p>
+<p>As opposed to examining candidate numbers for self-description, various schemes were presented to directly construct valid numbers from their component parts.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a></p>
+<p>Choroba&rsquo;s offering was not to cut-and-paste his original submission from the previous challenge, but rather to call it directly:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    exec <span style="color:#e6db74">&#39;../../../challenge-043/e-choroba/perl/ch-2.pl&#39;</span>
+</code></pre></div><p>I am amused and this is fine. This <em>was</em> explicitly stated to be ok, after all. But what does <em>that</em> file do?</p>
+<p>The description for challenge 043 task 2 asks us to: &ldquo;Write a script to generate self-descriptive numbers in a given base.&rdquo; This being a more general request than for the current task, we complied with more general solutions; here Choroba&rsquo;s script provides numbers up to base-36, written in either the original base or base-10. As it works out, every solution base-7 and up follows a set pattern of digits in that base, and so rather than calculating the result the various parts can be assembled for each base. This formula is: with digits in the relative base, concatenate the value of the base minus 4, the digits &ldquo;21&rdquo;, a string of 0s the length of the base minus 7, and the digits &ldquo;1000&rdquo;.</p>
+<p>For conversion into base-10 the module <code>Convert::AnyBase</code> does the work.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#66d9ef">use</span> Convert::AnyBase;
+
+<span style="color:#66d9ef">my</span> %irregular <span style="color:#f92672">=</span> (
+    <span style="color:#ae81ff">1</span> <span style="color:#f92672">=&gt;</span> undef,
+    <span style="color:#ae81ff">2</span> <span style="color:#f92672">=&gt;</span> undef,
+    <span style="color:#ae81ff">3</span> <span style="color:#f92672">=&gt;</span> undef,
+    <span style="color:#ae81ff">4</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1210</span>,
+    <span style="color:#ae81ff">5</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">21200</span>,
+    <span style="color:#ae81ff">6</span> <span style="color:#f92672">=&gt;</span> undef,
+);
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">self_descriptive_number</span> {
+    <span style="color:#66d9ef">my</span> ($base) <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">my</span> $set <span style="color:#f92672">=</span> join <span style="color:#e6db74">&#34;&#34;</span>, (<span style="color:#e6db74">&#39;0&#39;</span> <span style="color:#f92672">..</span> <span style="color:#e6db74">&#39;9&#39;</span>, <span style="color:#e6db74">&#39;A&#39;</span> <span style="color:#f92672">..</span> <span style="color:#e6db74">&#39;Z&#39;</span>)[<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $base <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>];
+    <span style="color:#66d9ef">my</span> $convert <span style="color:#f92672">=</span> @_ <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>
+        ? <span style="color:#66d9ef">sub</span> { $_[<span style="color:#ae81ff">0</span>] }
+        : <span style="color:#66d9ef">sub</span> { <span style="color:#e6db74">&#39;Convert::AnyBase&#39;</span><span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(set <span style="color:#f92672">=&gt;</span> $set)<span style="color:#f92672">-&gt;</span>decode($_[<span style="color:#ae81ff">0</span>]) };
+
+    <span style="color:#66d9ef">if</span> (exists $irregular{$base}) {
+        die <span style="color:#e6db74">&#34;No self descriptive number in base $base.\n&#34;</span>
+            <span style="color:#66d9ef">unless</span> $irregular{$base};
+
+        <span style="color:#66d9ef">return</span> $convert<span style="color:#f92672">-&gt;</span>($irregular{$base})
+    }
+
+    <span style="color:#66d9ef">return</span> $convert<span style="color:#f92672">-&gt;</span>(join <span style="color:#e6db74">&#34;&#34;</span>,
+                      map $_ <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">9</span> ? chr <span style="color:#ae81ff">55</span> <span style="color:#f92672">+</span> $_ : $_,
+                      ($base <span style="color:#f92672">-</span> <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>, (<span style="color:#ae81ff">0</span>) x ($base <span style="color:#f92672">-</span> <span style="color:#ae81ff">7</span>), <span style="color:#ae81ff">1</span>, (<span style="color:#ae81ff">0</span>) x <span style="color:#ae81ff">3</span>))
+}
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/colin-crain/perl/ch-1.pl"><strong>My Own Solution</strong></a></p>
+<p>In the last line of Choroba&rsquo;s solution we can see the parts being assembled:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    ($base <span style="color:#f92672">-</span> <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>, (<span style="color:#ae81ff">0</span>) x ($base <span style="color:#f92672">-</span> <span style="color:#ae81ff">7</span>), <span style="color:#ae81ff">1</span>, (<span style="color:#ae81ff">0</span>) x <span style="color:#ae81ff">3</span>))
+</code></pre></div><p>For my own version I implemented the string-wise approach detailed above, and also a similar mathematical variant to the same assembly. This produces the numbers in base-10 for each base, which then need to be converted into their respective bases to see their self-descriptive nature. The formula is the first line, and you can see the relationship:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $dec <span style="color:#f92672">=</span> ($base<span style="color:#f92672">-</span><span style="color:#ae81ff">4</span>)<span style="color:#f92672">*</span>($base<span style="color:#f92672">**</span>($base<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)) <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>($base<span style="color:#f92672">**</span>($base<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>)) <span style="color:#f92672">+</span> $base<span style="color:#f92672">**</span>($base<span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>) <span style="color:#f92672">+</span> $base<span style="color:#f92672">**</span><span style="color:#ae81ff">3</span>;
+    <span style="color:#66d9ef">my</span> @alphanum <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">9</span>, <span style="color:#e6db74">&#39;A&#39;</span><span style="color:#f92672">..</span><span style="color:#e6db74">&#39;Z&#39;</span>);
+    <span style="color:#66d9ef">my</span> $out <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
+    <span style="color:#66d9ef">my</span> $rem;
+    <span style="color:#66d9ef">while</span> ( $dec <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> ) {
+        ($dec, $rem) <span style="color:#f92672">=</span> (int( $dec<span style="color:#f92672">/</span>$base ), $dec % <span style="color:#960050;background-color:#1e0010">$</span>base);
+        $out <span style="color:#f92672">=</span> $alphanum[$rem] <span style="color:#f92672">.</span> $out;
+    }
+    <span style="color:#66d9ef">return</span> $out;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
+<blockquote>
+<p>I represent [the number] as an array of its digits. For each position the lowest bound is the number of previous apparitions of the corresponding digit. The upper bound is determined by the base and the current sum of digits.</p>
+</blockquote>
+<p>Luis brings us a unique manner of constructing a number from an array of digits, restraining the incrementation of the values at various positions by not only the valid digits in the base but also by the fact that the sum of the digits must equal the base. Thus the third position filled in a base-5 number can not be larger than 3, as the two previous positions can have a minimum value of 1, totaling 5. Further, if this value is 3 then the remaining positions must be 0. The positions are mostly filled and incremented with a recursive <code>try</code> routine, leading to an out-of-order sequence.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">try</span> {
+        <span style="color:#66d9ef">my</span> ($current,$position,$base, $sum, $had)<span style="color:#f92672">=</span>@_;
+        <span style="color:#66d9ef">if</span>($position<span style="color:#f92672">==</span>$base<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>){
+            push @results, $current <span style="color:#66d9ef">if</span> check($current);
+            <span style="color:#66d9ef">return</span>;
+        }
+        <span style="color:#f92672">++</span>$position;
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $digit($had<span style="color:#f92672">-&gt;</span>[$position]<span style="color:#f92672">..</span>$base<span style="color:#f92672">-</span>$sum){
+            <span style="color:#66d9ef">my</span> $have<span style="color:#f92672">=</span>[@$had]; <span style="color:#75715e"># copy</span>
+            $have<span style="color:#f92672">-&gt;</span>[$digit]<span style="color:#f92672">++</span>;
+            try([(@$current,$digit)], $position, $base, $sum<span style="color:#f92672">+</span>$digit, $have);
+        }
+    }
+</code></pre></div><h2 id="mathematical-forays">MATHEMATICAL FORAYS</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a></p>
+<p>Defined relationships between numerical values and their digital representation blur the line between constructed, string-like assembly and mathematical formulation, as presented in my solution above. However some submissions really delved into combinatorics and number theory to find their solutions.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a></p>
+<p>The &ldquo;pitbull of Nicaea&rdquo; begins with a directed mathematical analysis for the numbers, drawing and summarizing from several cited sources. The analysis concludes:</p>
+<blockquote>
+<p>(8) &ldquo;This means, other than the first digit, the set of all other non-zero
+digits consists of several ones and 1 two.&rdquo; (Khovanova)</p>
+</blockquote>
+<p>On the basis of this, the outline for an algorithm is constructed:</p>
+<blockquote>
+<p>Candidate solutions in bases 2 up to 10 are constructed as follows:</p>
+</blockquote>
+<ul>
+<li>For each possible value of x_0, the number of 1 digits in m is calculated and
+then an array of length base-minus-2 is built from these 1-digits together
+with the required complement of 0-digits. The array is sorted with zeros
+preceding ones, i.e., in lowest numerical order.</li>
+<li>A 2-digit is placed at each possible position in m.</li>
+<li>The remaining positions are filled from the array of zeros and ones, which is
+permuted until it returns to its original order.</li>
+<li>In this way, every possible combination of x_0, one &ldquo;2&rdquo;, and the required
+number of ones and zeros is produced.</li>
+<li>Each candidate solution is tested to determine whether it meets the require-
+ments of a self-descriptive number.</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    BASE: <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $base (<span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> $MAX_BASE)
+    {
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $x0 (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $base <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)          <span style="color:#75715e"># First digit, the &#34;0&#34; digit count</span>
+        {
+            <span style="color:#66d9ef">my</span> $ones <span style="color:#f92672">=</span> $base <span style="color:#f92672">-</span> $x0 <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>;
+
+            <span style="color:#66d9ef">if</span> ($ones <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>)
+            {
+                <span style="color:#66d9ef">my</span> @binaries <span style="color:#f92672">=</span> ((<span style="color:#ae81ff">0</span>) x $x0, (<span style="color:#ae81ff">1</span>) x $ones);
+
+                <span style="color:#66d9ef">do</span>
+                {
+                    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (reverse( <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $base <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ))  <span style="color:#75715e"># Index of &#34;2&#34; digit</span>
+                    {
+                        <span style="color:#66d9ef">my</span> $m  <span style="color:#f92672">=</span> $x0;
+                           $m <span style="color:#f92672">.=</span> $binaries[ $_ ] <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $i <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>;
+                           $m <span style="color:#f92672">.=</span> <span style="color:#ae81ff">2</span>;
+                           $m <span style="color:#f92672">.=</span> $binaries[ $_ ] <span style="color:#66d9ef">for</span> $i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $#binaries;
+
+                        <span style="color:#66d9ef">if</span> (is_self_desc( $m ))
+                        {
+                            push @solutions, $m;
+                            <span style="color:#66d9ef">last</span> BASE <span style="color:#66d9ef">if</span> scalar @solutions <span style="color:#f92672">==</span> $TARGET_SOLNS;
+                        }
+
+                    }
+
+                } <span style="color:#66d9ef">while</span> (NextPermuteNum( @binaries ));
+            }
+        }
+    }
+</code></pre></div><p>The source contains the full writeup. It&rsquo;s a good read.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a></p>
+<p>CY applies combinatorics to the task, coming up with a very elaborate method that first assigning valid zero quantities in the candidate, setting the first index value, then computing combination sets of the remaining indices to assign the zeros. Any remaining positions are filled with a &ldquo;n-multisubset of X&rdquo; - a partition of the required sum value permuted across the number of remaining positions to be filled. For example, for a base-5 number with 1 zero, the first index is &ldquo;1&rdquo;. The zero can fall in any of the indices {1,2,3,4}, leaving three unfilled slots to hold partitions of the value 3 that do not include 0: {1,1,2}, {1,2,1} and {2,1,1}. The 4 possible zero positions times the three ordered partion multisets yields only 12 possibilites for a five-digit number beginning with &ldquo;1&rdquo;. In fact the entire range of candidates for base-5 is only 28 numbers to check.</p>
+<p>I find this analysis really impressive.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># math: ref to &#34;the twelvefold way&#34;</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">n_multisubset_of_X</span> {
+        <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>];
+        <span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">1</span>];
+        <span style="color:#66d9ef">my</span> %hash;
+        <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> Integer::Partition<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>($sum);
+
+        <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">my</span> $partition <span style="color:#f92672">=</span> $i<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">next</span>) {
+            <span style="color:#66d9ef">my</span> @p <span style="color:#f92672">=</span> permutations($partition);
+            <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $subp (@p) {
+                $hash{join <span style="color:#e6db74">&#34;,&#34;</span> , @$subp} <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> scalar @$subp <span style="color:#f92672">==</span> $n;
+            }
+        }
+        <span style="color:#66d9ef">my</span> @ans;
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $subp (keys %hash) {
+            push @ans, [split <span style="color:#e6db74">&#34;,&#34;</span> , $subp];
+        }
+        <span style="color:#66d9ef">return</span> @ans;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a></p>
+<p>Jorg combines several of the properties and techniques we&rsquo;ve seen elsewhere to provide a compact and elegant solution. These are:</p>
+<ol>
+<li>In the given base the sum of its digits equals the base, and</li>
+<li>the least significant digit is zero</li>
+</ol>
+<p>The idea we saw before of permutations of number partitions is known as integer composition: the various of ways to arrange a set of integers that when added together will total the target number. He notes, though, that when computing these forms 0 is not included —  it would always be possible to insert a  0 in a result to produce a new variation.</p>
+<p>He gets around this by computing compositions for 2 times the target and then subtracting 1 from each value. As we know we are using numbers of length equal to the base, adding 1 to each position will be equal to the base again, so the sum will now total twice the base.</p>
+<p>Next, using the second property listed above, the least significant digit, once we have added 1, will be 1, so we need to make compositions to fill the remaining places. There will be the base value minus 1 positions to fill, and they will need to total to twice the base minus 1, and their maximum value will be that of the unaltered base.</p>
+<p>Reaching into the very handy <code>Math::Prime::Util</code> we find a ready-made composition function <code>forcomp BLOCK value HASH</code>, which can be configured to provide exactly this. Much like <code>map</code> or other listwise functions <code>forcomp</code> applies the block of code to each of the compositions it creates, passing it in through @_.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">qw(fromdigits todigitstring forcomp)</span>;
+    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">&#39;all&#39;</span>;
+    <span style="color:#66d9ef">use</span> List::MoreUtils <span style="color:#e6db74">&#39;frequency&#39;</span>;
+
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $base (@ARGV) {
+        say todigitstring($_, $base), <span style="color:#e6db74">&#34; ($base) = $_ (10)&#34;</span> x <span style="color:#f92672">!!</span>$verbose
+            <span style="color:#66d9ef">for</span> @{self_descriptive($base)};
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">self_descriptive</span> ($base) {
+        <span style="color:#66d9ef">my</span> @sd;
+        forcomp {
+            <span style="color:#75715e"># Get the true digits in the range 0 .. $base - 1.</span>
+            <span style="color:#66d9ef">my</span> @digit <span style="color:#f92672">=</span> map $_ <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, @_, <span style="color:#ae81ff">1</span>;
+            <span style="color:#66d9ef">my</span> %freq <span style="color:#f92672">=</span> frequency @digit;
+            push @sd, fromdigits(<span style="color:#f92672">\</span>@digit, $base) <span style="color:#66d9ef">if</span> all {
+                $digit[$_] ?
+                    $freq{$_} <span style="color:#f92672">&amp;&amp;</span> $digit[$_] <span style="color:#f92672">==</span> $freq{$_} :
+                    <span style="color:#f92672">!</span>$freq{$_}
+            } <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#digit;
+        } <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $base <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, {n <span style="color:#f92672">=&gt;</span> $base <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, amax <span style="color:#f92672">=&gt;</span> $base};
+
+        <span style="color:#f92672">\</span>@sd;
+    }
+</code></pre></div><p>Inside the block the digits are returned to their proper values by subtracting 1, and the
+result bagged using <code>List::Util::frequency()</code>. If all the values at their indexes match the frequencies we&rsquo;re in, and the number in array form is passed to <code>fromdigits()</code> to be given an alphanumeric character.</p>
+<h2 id="unlit-passages-and-forbidden-fruit">unlit PASSAGES and FORBIDDEN FRUIT</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a></p>
+<p>Adam returns to the field with a update of his previous efforts, this time adding multithreading support using the <code>Thread</code> module. As we saw in in the &ldquo;Rare numbers&rdquo; challenge, PWC 102, multithreading can divvy up the search space in a brute force attack into digestable chunks for multiple processes.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    MAIN:{
+        <span style="color:#66d9ef">my</span> @threads;
+        <span style="color:#66d9ef">my</span> $count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">my</span> $lower <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">my</span> $upper <span style="color:#f92672">=</span> RANGE_SIZE;
+        <span style="color:#66d9ef">do</span>{
+            <span style="color:#66d9ef">for</span>(<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>(THREAD_COUNT <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)){
+                <span style="color:#66d9ef">my</span> $t <span style="color:#f92672">=</span> Thread<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(<span style="color:#f92672">\&amp;</span>self_describing_number, ($lower, $upper));
+                push @threads, $t;
+                $lower <span style="color:#f92672">=</span> $upper <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+                $upper <span style="color:#f92672">=</span> $lower <span style="color:#f92672">+</span>  RANGE_SIZE;
+            }
+            <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $t (@threads){
+                <span style="color:#66d9ef">my</span> $sdns <span style="color:#f92672">=</span> $t<span style="color:#f92672">-&gt;</span>join();
+                <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $sdn (@{$sdns}){
+                    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Base &#34;</span> <span style="color:#f92672">.</span> $sdn<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;:&#34;</span> <span style="color:#f92672">.</span>  $sdn<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;\n&#34;</span> <span style="color:#66d9ef">if</span> $count <span style="color:#f92672">&lt;</span> SDN_COUNT;
+                    $count<span style="color:#f92672">++</span>;
+                }
+            }
+            @threads <span style="color:#f92672">=</span> ();
+        } <span style="color:#66d9ef">while</span>($count <span style="color:#f92672">&lt;</span> SDN_COUNT);
+    }
+
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a></p>
+<p>Flavio always has a list of pertinent questions in his <a href="https://github.polettix.it/ETOOBUSY/2021/04/07/pwc107-self-descriptive-numbers/">weekly writeup</a>, and this week one stuck out as highly topical:</p>
+<blockquote>
+<p>And last another meta question - what are these challenges about? I mean, what does it mean to win the challenge? Is it the fastest to code a solution? A working solution, or any solution? I admit that I didn’t find anything to this regard (<strong>although I do the challenge for the pure fun of doing it and learn something</strong>).</p>
+</blockquote>
+<p>Well Flavio, I do believe you have answered your own question — you went seeking, but <a href="https://tvtropes.org/pmwiki/pmwiki.php/Main/ItWasWithYouAllAlong">the truth was inside you the whole time</a>.</p>
+<p>Seriously, though, I believe I am the only person on the team to have written much of anything about this subject, so my word&rsquo;s as good as any I suppose, and so I&rsquo;ll make a stab at it (with the caveat I only review, not tally the credit): I let people define the challenge the way they wish, so they respond in the way that best suits them, which ends up shining a spotlight on TMTOWTDI. You want to write the fastest code? Knock yourself out. Consider yourself encouraged. You want to engage in extremely functional programming? Use a module you just found? <a href="https://en.wikipedia.org/wiki/Gadsby_(novel)">Write a book without using the letter &ldquo;e&rdquo;</a>? You do you. Sometime when I read the scripts (and I <em>do</em> read them all) I see problems: it seems to me that the efforts don&rsquo;t do what they set out to do, so these are considered &ldquo;broken&rdquo; and I simply don&rsquo;t review them. I sometimes have opportunity to speak about errant techniques in informational generalities, but I don&rsquo;t believe in calling folks out in public so I avoid that.</p>
+<p>So to sum up: you pretty much nailed it before you even finished, then brought it all home yourself in the parenthetical comment. Good job, carry on.</p>
+<p>One more thing: I do recall my predecessor Ryan making a comment on how the variation in the scripts was welcome as it made the reviewing more interesting, and that stuck with me. He deserves credit for shaping my ideas when I was sidling up into the role.</p>
+<p>Now, about the solution he&rsquo;s brought to us today, it&rsquo;s basically a big list of numbers and a validator, much the same as others we&rsquo;ve seen. The <em>super</em> interesting part, for me, is how he creates his candidate list.</p>
+<p>Back in August 2020 I recall reading about his excursions into the functionality of the <a href="https://metacpan.org/pod/Algorithm::Loops"><code>Algorithm::Loops</code></a> module, specifically the <code>NestedLoops</code> routine. Well, more accurately I saw something that looked naggingly familiar in his code this week and it bothered me until I&rsquo;d traced it down, and sure enough, it was from <a href="https://github.polettix.it/ETOOBUSY/2020/08/02/nested-loops-iterator/">Flavio&rsquo;s blog</a>. Curiously enough, he traces his own efforts back to an exploratory series he did in April that year on <a href="https://github.polettix.it/ETOOBUSY/2020/04/08/autobiographical-numbers/">Autobiographical Numbers</a>, but that&rsquo;s not the same reference. Life is seriously intertwined with itself and extricating one piece without carrying along at least some part of the rest is well-nigh impossible.</p>
+<p>So presented below is his <code>nested_loops_iterator()</code> function, which, when carefully fed a list of lists from 0 to 1 below the base will sequence through the values, one per digit in the resulting number, creating all of the <em>n</em>-length numbers in base <em>n</em>. And when called it returns a closure that, when called, hands over the next item in the sequence. It&rsquo;s a really nice clean way to produce the candidate numbers.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">three_self_descriptive_numbers</span> {
+       <span style="color:#66d9ef">my</span> ($b, @found) <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>);
+       <span style="color:#66d9ef">while</span> (<span style="color:#e6db74">&#39;necessary&#39;</span>) {
+          <span style="color:#66d9ef">my</span> $it <span style="color:#f92672">=</span> nested_loops_iterator([map { [<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> ($b <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)]} <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $b]);
+          <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">my</span> @args <span style="color:#f92672">=</span> $it<span style="color:#f92672">-&gt;</span>()) {
+             push @found, join <span style="color:#e6db74">&#39;&#39;</span>, @args <span style="color:#66d9ef">if</span> is_self_descriptive(@args);
+             <span style="color:#66d9ef">return</span> @found <span style="color:#66d9ef">if</span> @found <span style="color:#f92672">==</span> <span style="color:#ae81ff">3</span>;
+          }
+          <span style="color:#f92672">++</span>$b;
+       }
+       <span style="color:#66d9ef">return</span> @found[<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">2</span>];
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">nested_loops_iterator</span> {
+       <span style="color:#66d9ef">my</span> ($dims, $opts, $cb, $accumulator) <span style="color:#f92672">=</span> @_;
+       <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">unless</span> scalar @{$dims};
+       ($opts, $cb) <span style="color:#f92672">=</span> ($cb, $opts) <span style="color:#66d9ef">if</span> ref($opts) <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;CODE&#39;</span>;
+       <span style="color:#66d9ef">my</span> @indexes     <span style="color:#f92672">=</span> (<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
+       <span style="color:#66d9ef">my</span> @accumulator <span style="color:#f92672">=</span> (undef) x scalar @{$dims};
+       <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">sub</span> {
+          <span style="color:#66d9ef">while</span> ((<span style="color:#66d9ef">my</span> $level <span style="color:#f92672">=</span> $#indexes) <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>) {
+             <span style="color:#66d9ef">my</span> $dimension <span style="color:#f92672">=</span> $dims<span style="color:#f92672">-&gt;</span>[$level];
+             <span style="color:#66d9ef">my</span> $i         <span style="color:#f92672">=</span> <span style="color:#f92672">++</span>$indexes[$level];
+             <span style="color:#66d9ef">if</span> ($i <span style="color:#f92672">&gt;</span> $#{$dimension}) { pop @indexes }
+             <span style="color:#66d9ef">else</span> {
+                $accumulator[$level] <span style="color:#f92672">=</span> $dimension<span style="color:#f92672">-&gt;</span>[$i];
+                <span style="color:#66d9ef">if</span>   ($level <span style="color:#f92672">==</span> $#{$dims}) { <span style="color:#66d9ef">return</span> @accumulator }
+                <span style="color:#66d9ef">else</span>                       { push @indexes, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> }
+             }
+          }
+          <span style="color:#66d9ef">return</span>;
+       }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a></p>
+<blockquote>
+<p>&ldquo;I wouldn&rsquo;t do this in &lsquo;normal&rsquo; code &hellip;&rdquo;</p>
+</blockquote>
+<p>James has delivered us another piece of artfully dense code that beggars easy description.</p>
+<p>In short, though, this is another version of a brute force approach with a verification step. All condensed into a single line. But that doen&rsquo;t really do justice to what he offers:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> ($c,@res) <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+    <span style="color:#66d9ef">while</span>( <span style="color:#f92672">++</span>$c <span style="color:#f92672">&amp;&amp;</span> @res<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">3</span> ) {
+      push @res, $c <span style="color:#66d9ef">if</span> $c <span style="color:#f92672">==</span> join <span style="color:#e6db74">q()</span>,
+        map { scalar @{[ $c<span style="color:#f92672">=~</span><span style="color:#e6db74">m{($_)}g</span> ]} } <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> length $c;
+    }
+
+    say <span style="color:#e6db74">&#34;@res&#34;</span>;
+</code></pre></div><p>Unsatisfied, he continues the relentless compacting with another version:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    ($c,@res) <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+    ( $c <span style="color:#f92672">==</span> join <span style="color:#e6db74">q()</span>,
+            map { scalar @{[ $c<span style="color:#f92672">=~</span><span style="color:#e6db74">m{($_)}g</span> ]} }
+            <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> length $c
+    ) <span style="color:#f92672">&amp;&amp;</span> push @res, $c <span style="color:#66d9ef">while</span> <span style="color:#f92672">++</span>$c <span style="color:#f92672">&amp;&amp;</span> @res<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">3</span>;
+
+    say <span style="color:#e6db74">&#34;@res&#34;</span>;
+</code></pre></div><p>Culminating in a brace of one-liners:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    perl <span style="color:#f92672">-</span>E <span style="color:#e6db74">&#39;($c-join&#34;&#34;,map{0+@{[$c=~/($_)/g]}}0..-1+length$c)||++$n&amp;&amp;say$c while++$c&amp;&amp;$n&lt;3&#39;</span>
+
+    perl <span style="color:#f92672">-</span>E <span style="color:#e6db74">&#39;($c-join&#34;&#34;,map{0+(@Q=$c=~/($_)/g)}0..-1+length$c)||++$n&amp;&amp;say$c while++$c&amp;&amp;$n&lt;3&#39;</span>
+</code></pre></div><p>There is a very thorough blow-by-blow explanation of his steps both in the source, <a href="https://github.com/drbaggy/perlweeklychallenge-club/blob/master/challenge-107/james-smith/README.md">and in his writeup</a>. I encourage everyone intrigued or overly baffled by his techniques to go and have a look. Or both intrigued <em>and</em> baffled, of course. That works too.</p>
+<hr>
+<hr>
+<h1 id="PWC107TASK2">TASK 2</h1>
+<h1 id="list-methods">List Methods</h1>
+<p><em>Submitted by: Mohammad S Anwar</em><br>
+Write a script to list methods of a package/class.</p>
+<p><strong>Example</strong></p>
+<pre><code>    package Calc;
+
+    use strict;
+    use warnings;
+
+    sub new { bless {}, shift; }
+    sub add { }
+    sub mul { }
+    sub div { }
+
+    1;
+</code></pre><p><strong>Output</strong></p>
+<pre><code>    BEGIN
+    mul
+    div
+    new
+    add
+</code></pre><h2 id="about-the-solutions-1">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/abigail/perl/ch-2.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/jaldhar-h-vyas/perl/ch-2.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/mohammad-anwar/perl/ch-2.pl"><strong>Mohammad S Anwar</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/perlboy1967/perl/ch-2.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/pete-houston/perl/ch-2.pl"><strong>Pete Houston</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/stuart-little/perl/ch-2.pl"><strong>Stuart Little</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/wanderdoc/perl/ch-2.pl"><strong>Wanderdoc</strong></a></p>
+<p>There were 20 submissions for the second task this past week. Any meaningful discussion must start on mutually understood terms, so let&rsquo;s get right to it:</p>
+<h2 id="to-begin-or-not-to-begin">to <code>BEGIN</code> or not to <code>BEGIN</code>?</h2>
+<p>There was quite a kerfuffle about the presence of <code>BEGIN</code> in the example, and why it was there.</p>
+<p>So what is it? To start with a <code>BEGIN</code> block <em>is</em> a piece of code attached to a module. But that alone doesn&rsquo;t make it a subroutine per se. <code>BEGIN</code> blocks are called and executed immediately, as soon as they get compiled, which is as soon as they are read in the script being parsed. When a module is loaded in by Perl certain things need to be done by the interpreter, and these things are placed into a <code>BEGIN</code> block. But you can&rsquo;t call it; it needs to be parsed by Perl to be run.</p>
+<p>You can put your own <code>BEGIN</code> blocks in your code. You can even put more than one, should it suit you, which should pique your interest as no matter how many there are they’re all called <code>BEGIN</code>. This has its uses, surely, generally to make sure everything is in order before a script is run or such, but the thing is, again, that it’s not really a subroutine, just a block of code.</p>
+<p><a href="https://perldoc.perl.org/perlmod#BEGIN,-UNITCHECK,-CHECK,-INIT-and-END">perlmod</a> explicitly states this:</p>
+<blockquote>
+<p>One should note that these code blocks don’t really exist as named subroutines (despite their appearance).</p>
+</blockquote>
+<p>So personally I’d argue the example is wrong, and that shouldn’t be there. You can’t call a BEGIN block. It just exists, and gets called automatically when it’s parsed. After that, it not only can’t be called, but it no longer even <a href="https://perldoc.perl.org/perlmod#BEGIN,-UNITCHECK,-CHECK,-INIT-and-END"><em>exists</em></a>:</p>
+<blockquote>
+<p>Once a BEGIN has run, it is immediately undefined and any code it used is returned to Perl’s memory pool.</p>
+</blockquote>
+<p>Which is why there can be more than one, as they&rsquo;re fleeting things that only exist to the interpreter one at a time.</p>
+<p>People responded to the existence of this wayward block in different ways: some didn&rsquo;t seemingly realize it didn&rsquo;t belong, and included it if it turned up. Others, when their solutions didn&rsquo;t provide it, purposely tried to make it appear, to match the example, right or wrong. All-in-all it&rsquo;s a curious affair. It&rsquo;s presence in the example is surely  an artifact of querying the symbol table, which we will now explore.</p>
+<h2 id="the-symbol-table">the SYMBOL TABLE</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/abigail/perl/ch-2.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/jaldhar-h-vyas/perl/ch-2.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/mohammad-anwar/perl/ch-2.pl"><strong>Mohammad S Anwar</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/perlboy1967/perl/ch-2.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/stuart-little/perl/ch-2.pl"><strong>Stuart Little</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/wanderdoc/perl/ch-2.pl"><strong>Wanderdoc</strong></a></p>
+<p>In Perl the names for all the things — arrays, scalars, subroutines, filehandles and more — all these names are stored in a hash-like data structure known the symbol table. On the surface the names are stored there, not as what they represent but as literal string keys in a hash. These hash keys in turn point to another structure which has nine slots for all the things the name can be: an array, a scalar, a filehandle or whatnot. It even has a slot that hold a pointer to the structure itself, which is where typeglobs enter the chat.</p>
+<p>We can query the names portion of the symbol table directly as though it were a hash, using keys.</p>
+<p>Most submissions queried the symbol table, and there were several ways to approach this.</p>
+<h3 id="use-keys-on-the-table">use <code>keys</code> on the table</h3>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/jaldhar-h-vyas/perl/ch-2.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/mohammad-anwar/perl/ch-2.pl"><strong>Mohammad S Anwar</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/wanderdoc/perl/ch-2.pl"><strong>Wanderdoc</strong></a></p>
+<p>As mentioned, calling <code>keys</code> on the symbol table for a package will deliver the names of all symbols attached to it. If we do this with the package specified in the example, we obtain the stated result:</p>
+<pre><code>    BEGIN
+    mul
+    div
+    new
+    add
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/mohammad-anwar/perl/ch-2.pl"><strong>Mohammad S Anwar</strong></a></p>
+<p>Mohammad demonstrated the technique:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">package</span> Calc;
+
+    <span style="color:#66d9ef">use</span> strict;
+    <span style="color:#66d9ef">use</span> warnings;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">new</span> { bless {}, shift; }
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">add</span> { }
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">mul</span> { }
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">div</span> { }
+
+    <span style="color:#66d9ef">package</span> main;
+
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$_\n&#34;</span> <span style="color:#66d9ef">for</span> (keys %Calc::);
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a></p>
+<p>There isn&rsquo;t a lot of room for variation in this basic version, as the call to <code>keys</code> says it all. Choroba did do some research into the <code>BEGIN</code> block, though, reporting the following:</p>
+<blockquote>
+<p>Inlining the package in the main file excludes the BEGIN. Not<br>
+specifying the &ldquo;no import ()&rdquo; adds &ldquo;import&rdquo; to the list.</p>
+</blockquote>
+<p>On my system I could not replicate the first behavior. Either as an external module, inlined in the script, or even inlined into the <code>main::</code> package I always saw the <code>BEGIN</code>. This may well be behavior specific to individual releases, as exactly how Perl handles things behind the scenes is subject to change between versions. For the second statement, he&rsquo;s bringing in <code>Calc</code> without importing any functions, hence the empty list. In that case no <code>import</code> code block is generated.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> warnings;
+    <span style="color:#66d9ef">use</span> strict;
+    <span style="color:#66d9ef">use</span> feature <span style="color:#e6db74">qw{ say }</span>;
+
+    <span style="color:#66d9ef">use</span> lib <span style="color:#e6db74">&#39;./lib&#39;</span>;
+    <span style="color:#66d9ef">use</span> Calc ();
+
+    say <span style="color:#66d9ef">for</span> keys %{Calc::};
+</code></pre></div><h3 id="explicitly-checking-the-code-slot">explicitly checking the <code>{CODE}</code> slot</h3>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/perlboy1967/perl/ch-2.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/stuart-little/perl/ch-2.pl"><strong>Stuart Little</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>One thing about calling <code>keys</code>, though, is that it returns <em>all</em> of the symbols from the table. This will include any subroutines attached, of course, but will also generally include other items, such as package variables or wayward codeblocks; there&rsquo;s more than just <code>BEGIN</code> that could wind their way in. <code>VERSION</code> is another good one.</p>
+<p>So how do we determine that the returned name actually signifies a real <code>&amp;name()</code> routine? Well as stated the internal data structure behind the pointer has slots for all versions of a name, but we can&rsquo;t just access those slots like we would a multidimensional hash:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    $Calc::{$name}{CODE}
+</code></pre></div><p>doesn&rsquo;t work. Rather, one thing we can do is to try and dereference it and let the symbol table sort out which version we&rsquo;re requesting, by using the <code>&amp;</code> sigil. The slot exists, this we know, but are its contents actually defined?</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/colin-crain/perl/ch-2.pl"><strong>My Own Solution</strong></a></p>
+<p>For my own solution I kept the demonstration simple, inlining a <code>Calc</code> package in the script and sorting through the symbol table entries. As you can see, I added some package variables to spice things up. A symbolic reference is made to each fully-qualified name, and then we tack on a subroutine sigil and determine whether it&rsquo;s defined. If so we print it out.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">package</span> Calc;
+
+    <span style="color:#66d9ef">use</span> strict;
+    <span style="color:#66d9ef">use</span> warnings;
+
+    <span style="color:#66d9ef">our</span> $foo;
+    <span style="color:#66d9ef">our</span> @bar;
+    <span style="color:#66d9ef">our</span> %baz;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">new</span> { bless {}, shift; }
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">add</span> { say <span style="color:#ae81ff">1</span>; }
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">mul</span> { }
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">div</span> { }
+
+    <span style="color:#ae81ff">1</span>;
+
+    <span style="color:#66d9ef">package</span> main;
+
+    say <span style="color:#e6db74">&#34; $_&#34;</span> <span style="color:#66d9ef">for</span> sort grep { defined <span style="color:#f92672">&amp;</span>{<span style="color:#e6db74">&#34;Calc::$_&#34;</span>} } keys %Calc::<span style="color:#960050;background-color:#1e0010">;</span>
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a></p>
+<p>Flavio generalizes the idea to accept the name of a package from the command line, taking the trouble of locating and loading the relevant module before asking it what it can do for us. Note the name of the symbol table for a package includes the double colon, so he needs to affix this to the package name to access the table.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">list_methods</span> ($module) {
+       <span style="color:#66d9ef">no</span> strict <span style="color:#e6db74">&#39;refs&#39;</span>;
+       <span style="color:#66d9ef">return</span> grep { defined <span style="color:#f92672">&amp;</span>{$module <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;::&#39;</span> <span style="color:#f92672">.</span> $_} } keys %{$module <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;::&#39;</span>};
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">load</span> ($module) { <span style="color:#66d9ef">require</span>(<span style="color:#e6db74">&#34;$module.pm&#34;</span> <span style="color:#f92672">=~</span> <span style="color:#e6db74">s{::}{/}g</span>rmxs); $module }
+
+    <span style="color:#66d9ef">use</span> FindBin <span style="color:#e6db74">&#39;$Bin&#39;</span>;
+    <span style="color:#66d9ef">use</span> lib $Bin;;
+    <span style="color:#66d9ef">my</span> $module <span style="color:#f92672">=</span> shift <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#39;Calc&#39;</span>;
+    say <span style="color:#66d9ef">for</span> list_methods(load($module));
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a></p>
+<p>Simon is really kicking it old-school with his reference to the antiquated, original package delimiter of a single quote in addition to the double colon. I recall always hating that; this is probably because I was using emacs the last I saw it out in the wild.</p>
+<p>This method involves two symbolic references, both for the <code>keys</code> operation and the later <code>defined</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_inc_filename</span> {
+        <span style="color:#66d9ef">my</span> $name <span style="color:#f92672">=</span> shift;
+        <span style="color:#66d9ef">return</span> join( <span style="color:#e6db74">&#39;/&#39;</span>, split <span style="color:#e6db74">/(?:\&#39;|::)/</span>, $name ) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;.pm&#39;</span>;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">main</span> {
+        <span style="color:#66d9ef">my</span> $package <span style="color:#f92672">=</span> shift <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#39;Calc&#39;</span>;
+
+        <span style="color:#75715e"># Import the package</span>
+        <span style="color:#66d9ef">my</span> $filename <span style="color:#f92672">=</span> _inc_filename($package);
+        <span style="color:#66d9ef">require</span> $filename;
+
+        <span style="color:#75715e"># Get a list of methods</span>
+        say <span style="color:#66d9ef">foreach</span> grep { defined <span style="color:#f92672">&amp;</span>{<span style="color:#e6db74">&#34;${package}::$_&#34;</span>} } keys %{<span style="color:#e6db74">&#34;${package}::&#34;</span>};
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/stuart-little/perl/ch-2.pl"><strong>Stuart Little</strong></a></p>
+<p>Stuart performs essentially the same sequence of actions, with a few twists. When we call</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    $Package::{$name}
+</code></pre></div><p>what we get back is a typeglob, which is a pointer to the symbol table struct that holds all the various type pointers. This is quite similar to referencing trick we used earlier, and using the <code>&amp;</code> sigil on the typeglob gets us to the same place.</p>
+<p>In other news, Stuart has noticed that this filters out the various extra possible code blocks from the symbol table, and to match the expected results he enumerates a list of them and adds them to the search. Voila, there you go, and the <code>BEGIN</code> block is found.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> ($base,$dir,$ext) <span style="color:#f92672">=</span> fileparse($path,<span style="color:#e6db74">qr/\.[^.]*/</span>);
+    <span style="color:#66d9ef">my</span> @special <span style="color:#f92672">=</span> <span style="color:#e6db74">qw(BEGIN END INIT CHECK UNITCHECK)</span>;
+
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $key (sort keys %{$base <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;::&#34;</span>}) {
+        <span style="color:#f92672">*</span>glob <span style="color:#f92672">=</span> ${$base <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;::&#34;</span>}{$key};
+        <span style="color:#66d9ef">if</span> ((defined <span style="color:#f92672">&amp;</span>glob) <span style="color:#f92672">||</span> (scalar grep {$_ <span style="color:#f92672">eq</span> $key} @special)) {
+            say $key;
+        }
+    }
+</code></pre></div><h3 id="more-dereferencing-typeglobs">more dereferencing typeglobs</h3>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/abigail/perl/ch-2.pl"><strong>Abigail</strong></a> and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a></p>
+<p>The symbol table, as we have seen, is a complex beast, with parts that resemble but aren&rsquo;t quite hashes. In Stuart&rsquo;s example we first looked into typeglobs, and now we will pursue that further.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a></p>
+<p>We notes earlier that directly accessing the type slots in the symbol table as though it were an multidimensional hash won&rsquo;t work, although calling <code>keys</code> on the table will return its names. We cannot access the slots in the backend directly, but it turns out that we can through the symbol&rsquo;s typeglob.</p>
+<p>There&rsquo;s a lot of unusual referencing going on here, and we need to turn off <code>strict</code> to keep Perl quiet about grabbing a typeglob for the symbol table. <code>*{$glob}{CODE}</code> will be a coderef, or not, and we can then determine whether it&rsquo;s defined.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    fun findsubs( $module )
+    {
+        <span style="color:#66d9ef">my</span> @result <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#34;BEGIN&#34;</span>);
+        <span style="color:#66d9ef">our</span> %stash;
+        <span style="color:#66d9ef">no</span> strict <span style="color:#e6db74">&#39;refs&#39;</span>;
+        <span style="color:#f92672">*</span>stash <span style="color:#f92672">=</span> <span style="color:#f92672">*</span>{<span style="color:#e6db74">&#34;${module}::&#34;</span>};
+        <span style="color:#66d9ef">while</span>( <span style="color:#66d9ef">my</span>( $symbol,$glob) <span style="color:#f92672">=</span> each %stash )
+        {
+            <span style="color:#75715e">#say &#34;symbol=$symbol, glob=&#34;,Dumper($glob);</span>
+            push @result, $symbol <span style="color:#66d9ef">if</span> defined <span style="color:#f92672">*</span>{$glob}{CODE};
+        }
+        <span style="color:#66d9ef">use</span> strict <span style="color:#e6db74">&#39;refs&#39;</span>;
+        <span style="color:#66d9ef">return</span> @result;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/abigail/perl/ch-2.pl"><strong>Abigail</strong></a></p>
+<p>Abigail&rsquo;s technique is very similar, but uses the implicit boolean of being defined to control his conditional.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $symbol_table <span style="color:#f92672">=</span> <span style="color:#66d9ef">do</span> {<span style="color:#66d9ef">no</span> strict <span style="color:#e6db74">&#39;refs&#39;</span>; <span style="color:#f92672">\</span>%{$module <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;::&#34;</span>}};
+
+    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $symbol (keys %$symbol_table) {
+           say $symbol  <span style="color:#66d9ef">if</span> <span style="color:#f92672">*</span>{$$symbol_table {$symbol}} {CODE};
+    }
+</code></pre></div><h3 id="universalcan"><code>UNIVERSAL::can()</code></h3>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a> and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/wanderdoc/perl/ch-2.pl"><strong>Wanderdoc</strong></a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a></p>
+<p>James determines whether the there are defined coderefs for his symbol table entries in a completely different way. In the grafted-on Perl object heirarchy, all packages are classes, and all classes inherit from <code>UNIVERSAL</code>, so ergo all packages have <code>can()</code> available to them.</p>
+<p>Of note he sets up a little experiment, using <code>use</code> and <code>require</code> on two otherwise identical packages to demonstrate how <code>use</code> will generate an <code>import</code> block and <code>require</code> will not.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">require</span> Calc_Require;
+    <span style="color:#66d9ef">use</span>     Calc_Use;
+
+    say join <span style="color:#e6db74">&#34;\n  &#34;</span>,<span style="color:#e6db74">&#39;Calc_Require:&#39;</span>, sort keys %Calc_Require::<span style="color:#960050;background-color:#1e0010">;</span>
+    say <span style="color:#e6db74">&#39;&#39;</span>;
+    say join <span style="color:#e6db74">&#34;\n  &#34;</span>,<span style="color:#e6db74">&#39;Calc_Use:&#39;</span>,     sort keys %Calc_Use::<span style="color:#960050;background-color:#1e0010">;</span>
+    say <span style="color:#e6db74">&#39;&#39;</span>;
+
+    <span style="color:#75715e">## If we want to hide the &#34;fake&#34; methods (import/BEGIN) we</span>
+    <span style="color:#75715e">## can use grep/can to do so</span>
+
+    say join <span style="color:#e6db74">&#34;\n  &#34;</span>,<span style="color:#e6db74">&#39;Calc_Require:&#39;</span>, sort
+                                     grep {Calc_Require<span style="color:#f92672">-&gt;</span>can($_)}
+                                     keys %Calc_Require::<span style="color:#960050;background-color:#1e0010">;</span>
+    say <span style="color:#e6db74">&#39;&#39;</span>;
+    say join <span style="color:#e6db74">&#34;\n  &#34;</span>,<span style="color:#e6db74">&#39;Calc_Use:&#39;</span>,     sort
+                                     grep {Calc_Use<span style="color:#f92672">-&gt;</span>can($_)}
+                                     keys %Calc_Use::<span style="color:#960050;background-color:#1e0010">;</span>
+    say <span style="color:#e6db74">&#39;&#39;</span>;
+
+</code></pre></div><h2 id="inspect-it-yourself">INSPECT IT YOURSELF</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a> and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p>No one ever said you couldn&rsquo;t just examine the module yourself, scouting for subroutines. When one considers how many ways the characters &ldquo;sub&rdquo; may conceivably arise, we know that this path is going to be tricky. Caveat emptor.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a></p>
+<p>CY opens the code to be consulted and scans each line with a regular expression that, well, looks for subroutines. That&rsquo;s one way to get things done.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $program <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">0</span>];
+
+    open(SCRIPT, $program) <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;Fail to read $program\n&#34;</span>;
+
+    <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">my</span> $line <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;SCRIPT&gt;</span>) {
+        <span style="color:#66d9ef">while</span> ( $line <span style="color:#f92672">=~</span><span style="color:#e6db74"> /sub(\s+)(\&amp;|\w)(\w*)/g</span> ) {
+            <span style="color:#66d9ef">print</span> $2<span style="color:#f92672">.</span>$3<span style="color:#f92672">.</span><span style="color:#e6db74">&#34;\n&#34;</span>;
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p>Private nested subroutines within a block will also hit the symbol table, so Laurent&rsquo;s addition of the leading <code>\s*</code> will find these while still anchored to the front of the line.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">while</span> (<span style="color:#f92672">&lt;&gt;</span>) {
+        say $1 <span style="color:#66d9ef">if</span> <span style="color:#e6db74">/^\s*sub\s+(\w+)/</span>;
+    }
+</code></pre></div><h2 id="use-a-module">use a MODULE</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/pete-houston/perl/ch-2.pl"><strong>Pete Houston</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/wanderdoc/perl/ch-2.pl"><strong>Wanderdoc</strong></a></p>
+<p>A variety of modules were available to assist in the task. These variously looked inside the given class, or at the code it was written in, or at the perl internals themselves to glean the answers requested.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a></p>
+<p>Adam brings us the <code>Perl::Analysis::Static</code> module, and its standalone version <code>perlanalyst</code>. As he states the module itself is stuck at a very alpha version 0.004, he offers that the standalone app version works better. Ok. The app makes an effort at analyzing the proffered code, and Adam then parses the output.</p>
+<p>One intersting thing is his take on the mysterious <code>BEGIN</code>. Noting that the bock seems to be produced by adding the package using <code>use</code>, he scans the document for <code>use</code> statements and if so adds <code>BEGIN</code> to the output. Thats&hellip; reasonable? I guess?</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">analyze</span>{
+        <span style="color:#66d9ef">my</span>($file) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> @subs;
+        <span style="color:#66d9ef">my</span> @uses;
+        <span style="color:#66d9ef">my</span> @subroutines;
+        <span style="color:#66d9ef">my</span> $subs <span style="color:#f92672">=</span> <span style="color:#e6db74">`perlanalyst $file --analysis Sub`</span>;
+        $subs <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/$file://</span>;
+        @subs <span style="color:#f92672">=</span> split(<span style="color:#e6db74">/\n/</span>, $subs);
+        <span style="color:#66d9ef">my</span> $uses <span style="color:#f92672">=</span> <span style="color:#e6db74">`perlanalyst $file --analysis Use`</span>;
+        $uses <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/$file://</span>;
+        @uses <span style="color:#f92672">=</span> split(<span style="color:#e6db74">/\n/</span>, $uses);
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $s (@subs){
+            $s <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/\s+//</span>;
+            <span style="color:#66d9ef">my</span> @fields <span style="color:#f92672">=</span> split(<span style="color:#e6db74">/:/</span>, $s);
+            push @subroutines, $fields[<span style="color:#ae81ff">1</span>] <span style="color:#66d9ef">if</span>(length($s) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>);
+        }
+        push @subroutines, <span style="color:#e6db74">&#34;BEGIN&#34;</span> <span style="color:#66d9ef">if</span>(@uses);
+        <span style="color:#66d9ef">return</span> @subroutines;
+    }
+
+    MAIN:{
+        <span style="color:#66d9ef">my</span> $FILE <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">0</span>];
+        <span style="color:#66d9ef">my</span> @subroutines <span style="color:#f92672">=</span> analyze($FILE);
+        <span style="color:#66d9ef">print</span> join(<span style="color:#e6db74">&#34;\n&#34;</span>, sort {$a <span style="color:#f92672">cmp</span> $b} @subroutines) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a></p>
+<p>Jorg, not surprisingly, brings us something I don&rsquo;t believe I&rsquo;ve ever seen before. He seems to do that a lot. Well, there&rsquo;s a whole lot to see in this world so we best get started.</p>
+<p>Ok, to be fair to myself I have <em>looked</em> at the Perl backend modules. So I have, in fact, <em>seen</em> them. But I&rsquo;ve never actually <em>gone in there</em>. No, that experience starts here.</p>
+<p>He starts by opening up a pipe to an instance of the interpreter running the B::Concise backend module, which returns a line-by-line report of objects in the symbol table as it proceeds. He read this pipe and parses it out, extracting the names of the subroutines and special blocks.</p>
+<p>One thing that has been nagging me since this whole project started was what was in those mysterious <code>BEGIN</code> blocks created by Perl when we bring in a package. &ldquo;Stuff Perl needs to know&rdquo; wasn&rsquo;t really doing it for me. Well, thanks to the output of</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    perl <span style="color:#f92672">-</span>Mlib<span style="color:#f92672">=.</span> <span style="color:#f92672">-</span>MO<span style="color:#f92672">=</span>Concise,<span style="color:#f92672">-</span>stash<span style="color:#f92672">=</span>Calc,<span style="color:#66d9ef">BEGIN</span> <span style="color:#f92672">-</span>e <span style="color:#e6db74">&#39;&#39;</span>
+</code></pre></div><p>I finally know. The output lists 8 <code>BEGIN</code> blocks, the first six being within Concise itself. However blocks 7 and 8 originate in <code>Calc</code>:</p>
+<pre><code>    BEGIN 7:
+    1u &lt;1&gt; leavesub[1 ref] K/REFC,1 -&gt;(end)
+    -     &lt;@&gt; lineseq KP -&gt;1u
+    1m       &lt;;&gt; nextstate(Calc 5 Calc.pm:3) v:{ -&gt;1n
+    1o       &lt;1&gt; require sK/1 -&gt;1p
+    1n          &lt;$&gt; const(PV &quot;strict.pm&quot;) s/BARE -&gt;1o
+    -        &lt;;&gt; ex-nextstate(Calc 5 Calc.pm:3) v:{ -&gt;1p
+    -        &lt;@&gt; lineseq K -&gt;-
+    1p          &lt;;&gt; nextstate(Calc 5 Calc.pm:3) :{ -&gt;1q
+    1t          &lt;1&gt; entersub[t1] KRS*/TARG -&gt;1u
+    1q             &lt;0&gt; pushmark s -&gt;1r
+    1r             &lt;$&gt; const(PV &quot;strict&quot;) sM -&gt;1s
+    1s             &lt;.&gt; method_named(PV &quot;import&quot;) -&gt;1t
+    BEGIN 8:
+    23 &lt;1&gt; leavesub[1 ref] K/REFC,1 -&gt;(end)
+    -     &lt;@&gt; lineseq KP -&gt;23
+    1v       &lt;;&gt; nextstate(Calc 6 Calc.pm:4) v:*,&amp;,{,x*,x&amp;,x$,$ -&gt;1w
+    1x       &lt;1&gt; require sK/1 -&gt;1y
+    1w          &lt;$&gt; const(PV &quot;warnings.pm&quot;) s/BARE -&gt;1x
+    -        &lt;;&gt; ex-nextstate(Calc 6 Calc.pm:4) v:*,&amp;,{,x*,x&amp;,x$,$ -&gt;1y
+    -        &lt;@&gt; lineseq K -&gt;-
+    1y          &lt;;&gt; nextstate(Calc 6 Calc.pm:4) :*,&amp;,{,x*,x&amp;,x$,$ -&gt;1z
+    22          &lt;1&gt; entersub[t1] KRS*/TARG,STRICT -&gt;23
+    1z             &lt;0&gt; pushmark s -&gt;20
+    20             &lt;$&gt; const(PV &quot;warnings&quot;) sM -&gt;21
+    21             &lt;.&gt; method_named(PV &quot;import&quot;) -&gt;22
+</code></pre><p>So there&rsquo;s a lot going on here, but it appears these blocks ensure that the <code>use strict</code> and <code>use warnings</code> directives are able to be fulfilled before loading the module. Which is really cool. Now I finally know. I can&rsquo;t wait to look at other stuff.</p>
+<p>The following lines in the output look like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    FUNC: <span style="color:#f92672">*</span>Calc::add
+    <span style="color:#ae81ff">2</span>  <span style="color:#e6db74">&lt;1&gt;</span> leavesub[<span style="color:#ae81ff">1</span> ref] K<span style="color:#f92672">/</span>REFC,<span style="color:#ae81ff">1</span> <span style="color:#f92672">-&gt;</span>(end)
+    <span style="color:#ae81ff">1</span>     <span style="color:#e6db74">&lt;;&gt;</span> nextstate(Calc <span style="color:#ae81ff">9</span> Calc<span style="color:#f92672">.</span>pm:9) P:<span style="color:#f92672">*</span>,<span style="color:#f92672">&amp;</span>,{,x<span style="color:#f92672">*</span>,x<span style="color:#f92672">&amp;</span>,x$,$ <span style="color:#960050;background-color:#1e0010">-&gt;</span>2
+    FUNC: <span style="color:#f92672">*</span>Calc::div
+    <span style="color:#ae81ff">2</span>  <span style="color:#e6db74">&lt;1&gt;</span> leavesub[<span style="color:#ae81ff">1</span> ref] K<span style="color:#f92672">/</span>REFC,<span style="color:#ae81ff">1</span> <span style="color:#f92672">-&gt;</span>(end)
+    <span style="color:#ae81ff">1</span>     <span style="color:#e6db74">&lt;;&gt;</span> nextstate(Calc <span style="color:#ae81ff">13</span> Calc<span style="color:#f92672">.</span>pm:11) P:<span style="color:#f92672">*</span>,<span style="color:#f92672">&amp;</span>,{,x<span style="color:#f92672">*</span>,x<span style="color:#f92672">&amp;</span>,x$,$ <span style="color:#960050;background-color:#1e0010">-&gt;</span>2
+    FUNC: <span style="color:#f92672">*</span>Calc::mul
+    <span style="color:#ae81ff">2</span>  <span style="color:#e6db74">&lt;1&gt;</span> leavesub[<span style="color:#ae81ff">1</span> ref] K<span style="color:#f92672">/</span>REFC,<span style="color:#ae81ff">1</span> <span style="color:#f92672">-&gt;</span>(end)
+    <span style="color:#ae81ff">1</span>     <span style="color:#e6db74">&lt;;&gt;</span> nextstate(Calc <span style="color:#ae81ff">11</span> Calc<span style="color:#f92672">.</span>pm:10) P:<span style="color:#f92672">*</span>,<span style="color:#f92672">&amp;</span>,{,x<span style="color:#f92672">*</span>,x<span style="color:#f92672">&amp;</span>,x$,$ <span style="color:#960050;background-color:#1e0010">-&gt;</span>2
+    FUNC: <span style="color:#f92672">*</span>Calc::<span style="color:#66d9ef">new</span>
+    <span style="color:#ae81ff">6</span>  <span style="color:#e6db74">&lt;1&gt;</span> leavesub[<span style="color:#ae81ff">1</span> ref] K<span style="color:#f92672">/</span>REFC,<span style="color:#ae81ff">1</span> <span style="color:#f92672">-&gt;</span>(end)
+    <span style="color:#f92672">-</span>     <span style="color:#e6db74">&lt;@&gt;</span> lineseq KP <span style="color:#f92672">-&gt;</span><span style="color:#ae81ff">6</span>
+    <span style="color:#ae81ff">1</span>        <span style="color:#e6db74">&lt;;&gt;</span> nextstate(Calc <span style="color:#ae81ff">8</span> Calc<span style="color:#f92672">.</span>pm:8) v:<span style="color:#f92672">*</span>,<span style="color:#f92672">&amp;</span>,x<span style="color:#f92672">*</span>,x<span style="color:#f92672">&amp;</span>,x$,$ <span style="color:#960050;background-color:#1e0010">-&gt;</span>2
+    <span style="color:#ae81ff">5</span>        <span style="color:#e6db74">&lt;@&gt;</span> bless sK<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">-&gt;</span><span style="color:#ae81ff">6</span>
+    <span style="color:#f92672">-</span>           <span style="color:#e6db74">&lt;0&gt;</span> ex<span style="color:#f92672">-</span>pushmark s <span style="color:#f92672">-&gt;</span><span style="color:#ae81ff">2</span>
+    <span style="color:#ae81ff">3</span>           <span style="color:#e6db74">&lt;@&gt;</span> anonhash sK<span style="color:#f92672">*</span> <span style="color:#f92672">-&gt;</span><span style="color:#ae81ff">4</span>
+    <span style="color:#ae81ff">2</span>              <span style="color:#e6db74">&lt;0&gt;</span> pushmark s <span style="color:#f92672">-&gt;</span><span style="color:#ae81ff">3</span>
+    <span style="color:#ae81ff">4</span>           <span style="color:#e6db74">&lt;0&gt;</span> shift s<span style="color:#f92672">*</span> <span style="color:#f92672">-&gt;</span><span style="color:#ae81ff">5</span>
+    <span style="color:#ae81ff">9</span>  <span style="color:#e6db74">&lt;@&gt;</span> leave[<span style="color:#ae81ff">1</span> ref] vKP<span style="color:#f92672">/</span>REFC <span style="color:#f92672">-&gt;</span>(end)
+    <span style="color:#ae81ff">7</span>     <span style="color:#e6db74">&lt;0&gt;</span> enter v <span style="color:#f92672">-&gt;</span><span style="color:#ae81ff">8</span>
+    <span style="color:#ae81ff">8</span>     <span style="color:#e6db74">&lt;0&gt;</span> stub v <span style="color:#f92672">-&gt;</span><span style="color:#ae81ff">9</span>
+    <span style="color:#f92672">-</span>     <span style="color:#e6db74">&lt;;&gt;</span> ex<span style="color:#f92672">-</span>nextstate(main <span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span>e:1) v:{ <span style="color:#f92672">-&gt;</span><span style="color:#ae81ff">9</span>
+    <span style="color:#f92672">-</span>e syntax OK
+</code></pre></div><p>Here we can see the four functions clearly labeled. The <code>new</code> is a tad more complex than the others. By identifying the <code>FUNC:</code> labeled lines he can extract the names with a regular expression. A slightly more complicated expression identifies the <code>BEGIN</code> blocks that are assigned to the package we&rsquo;re examining by locating the <code>nextstate(Calc 5 Calc.pm:3)</code> styled identifier.</p>
+<p>This is really interesting stuff, Jorg, thank you.</p>
+<p>Here&rsquo;s the code:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># B::Concise reports all subs including the special blocks BEGIN etc.</span>
+    <span style="color:#75715e"># when called with</span>
+    <span style="color:#75715e"># -stash=&lt;pgk&gt;,BEGIN,...</span>
+    <span style="color:#75715e"># But it reports B::Concise&#39;s BEGIN blocks, too.  So these need to be</span>
+    <span style="color:#75715e"># identified and skipped.  There&#39;s a &#34;nextstate&#34; entry following a</span>
+    <span style="color:#75715e"># special block entry identifying the package it belongs to.</span>
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">list_methods</span> {
+        <span style="color:#66d9ef">my</span> $pkg <span style="color:#f92672">=</span> shift;
+        <span style="color:#75715e"># The names of special blocks.</span>
+        <span style="color:#66d9ef">my</span> @specials <span style="color:#f92672">=</span> <span style="color:#e6db74">qw(BEGIN UNITCHECK CHECK INIT END)</span>;
+        <span style="color:#75715e"># The same as a regexp.</span>
+        <span style="color:#66d9ef">my</span> $special_re <span style="color:#f92672">=</span> <span style="color:#66d9ef">sub</span> {local $&#34; <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;|&#39;</span>; <span style="color:#e6db74">qr(@_)</span>}<span style="color:#f92672">-&gt;</span>(@specials);
+
+        <span style="color:#75715e"># Suppress &#34;syntax OK&#34; written to STDERR.</span>
+        <span style="color:#66d9ef">no</span> warnings <span style="color:#e6db74">&#39;once&#39;</span>;
+        open STDERR_SAVE, <span style="color:#e6db74">&#39;&gt;&amp;2&#39;</span> <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#39;cannot duplicate STDERR&#39;</span>;
+        close STDERR;
+
+        <span style="color:#66d9ef">my</span> @meth;
+        <span style="color:#66d9ef">my</span> $concise;
+        {
+            local $&#34; <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;,&#39;</span>;
+            open $concise, <span style="color:#e6db74">&#39;-|&#39;</span>,
+               <span style="color:#e6db74">&#34;$^X -Mlib=. -MO=Concise,-stash=$pkg,@specials -e &#39;&#39;&#34;</span>
+                <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#39;cannot open Concise pipe&#39;</span>;
+        }
+
+        <span style="color:#66d9ef">my</span> $special;
+        <span style="color:#66d9ef">while</span> (<span style="color:#e6db74">&lt;$concise&gt;</span>) {
+            <span style="color:#75715e"># Forget special block on entry to the next block/sub.</span>
+            undef $special <span style="color:#66d9ef">if</span> <span style="color:#e6db74">/^(?:$special_re|FUNC)/</span>;
+            <span style="color:#75715e"># Found a sub inside the package.</span>
+            push @meth, $1 <span style="color:#66d9ef">if</span> <span style="color:#e6db74">/^FUNC: \*${pkg}::(\w+)/</span>;
+            <span style="color:#75715e"># Found a special block.</span>
+            $special <span style="color:#f92672">=</span> $1 <span style="color:#66d9ef">if</span> <span style="color:#e6db74">/^($special_re)\s/</span>;
+            <span style="color:#75715e"># Special block belongs to the package.</span>
+            push @meth, $special <span style="color:#66d9ef">if</span> $special <span style="color:#f92672">&amp;&amp;</span> <span style="color:#e6db74">/&lt;;&gt; nextstate\($pkg/</span>;
+        }
+        close $concise;
+        open STDERR, <span style="color:#e6db74">&#39;&gt;&amp;STDERR_SAVE&#39;</span> <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#39;cannot restore STDERR&#39;</span>;
+
+        [uniq @meth];
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/pete-houston/perl/ch-2.pl"><strong>Pete Houston</strong></a></p>
+<p><code>PPI</code> is an acronym for <code>Parse::Perl::Isolated</code>. As per its docs:</p>
+<blockquote>
+<p>The purpose of PPI is not to parse Perl <em>Code</em>, but to parse Perl <em>Documents</em>. By treating the problem this way, we are able to parse a single file containing Perl source code &ldquo;isolated&rdquo; from any other resources, such as libraries upon which the code may depend, and without needing to run an instance of perl alongside or inside the parser.</p>
+</blockquote>
+<p>So using PPI we can look inside a Perl script, or module, or whatever, and have it tell us things about what&rsquo;s there. Sounds perfect, really.</p>
+<p>PPI constructs and fits its input into a Perl Document Object Model, with structured  classes and subclasses. One of these subclasses is <code>PPI::Statement::Sub</code>, being that <code>sub foo BLOCK</code> construction that actually defines a subroutine, versus some other usage of the word &ldquo;sub&rdquo;.</p>
+<p>In this we need only to grab the objects labeled like this and ask them their name.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> PPI;
+
+    <span style="color:#66d9ef">my</span> $doc  <span style="color:#f92672">=</span> PPI::Document<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span> (shift);
+    <span style="color:#66d9ef">my</span> $subs <span style="color:#f92672">=</span> $doc<span style="color:#f92672">-&gt;</span>find (<span style="color:#e6db74">&#39;PPI::Statement::Sub&#39;</span>);
+    <span style="color:#66d9ef">print</span> $_<span style="color:#f92672">-&gt;</span>name <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;\n&#34;</span> <span style="color:#66d9ef">for</span> @$subs;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/wanderdoc/perl/ch-2.pl"><strong>Wanderdoc</strong></a></p>
+<p>Finally, the Doctor delivers three pieces of code to us today. The first two use methods we have seen before: the first indiscriminately keys the symbol table, the second uses <code>UNIVERSAL-&gt;can()</code> to filter for symbols that are actually linked to coderefs.</p>
+<p>The third method, on the other hand, uses <code>Class::Inspector</code> to tell them things about the package in question. This is, as they say, dead simple:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Class::Inspector;
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$_$/&#34;</span> <span style="color:#66d9ef">for</span> @{ Class::Inspector<span style="color:#f92672">-&gt;</span>methods(<span style="color:#e6db74">&#39;Calc&#39;</span>)};
+</code></pre></div><hr>
+<hr>
+<h1 id="PWC107BLOGS">BLOGS</h1>
+<hr>
+<p><strong>That’s it for me this week, people! Warped by the rain, driven by the snow, resolute and unbroken by the torrential influx, I somehow continue to maintain my bearings. Looking forward to next wave, the perfect wave, I am: <em>your humble servant</em>.</strong></p>
+<h1 id="PWC093BLOGS">But if Your <em>THIRST</em> for <em>KNOWLEDGE</em> is not <em>SLAKED</em>,</h1>
+<h1 id="then-run-dont-walk-to-the-watering-hole">then <em>RUN</em> <em>(dont walk!)</em> to the <em>WATERING HOLE</em></h1>
+<h1 id="and-read-these-blog-links">and <em>READ</em> these <em>BLOG</em> <em>LINKS</em>:</h1>
+<p><strong>( <em>don&rsquo;t think, trust your training, you&rsquo;re in the zone, just do it &hellip;</em> )</strong></p>
+<p><strong>Aaron Smith</strong></p>
+<ul>
+<li><a href="https://aaronreidsmith.github.io/blog/perl-weekly-challenge-107/">Perl Weekly Challenge 107 - Aaron Smith</a> ( <em>Raku</em> )</li>
+</ul>
+<p><strong>Abigail</strong></p>
+<ul>
+<li><a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-107-1.html">Perl Weekly Challenge 107: Self-descriptive Numbers</a> ( <em>Perl</em> )</li>
+<li><a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-107-2.html">Perl Weekly Challenge 107: List Methods</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Adam Russell</strong></p>
+<ul>
+<li><a href="http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2021/04/11">Static Analysis and Self Describing Numbers (now with Threads!): The Weekly Challenge 107 — RabbitFarm</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Arne Sommer</strong></p>
+<ul>
+<li><a href="https://raku-musings.com/self-deceptive-methods.html">Self-Deceptive Methods with Raku</a> ( <em>Raku</em> )</li>
+</ul>
+<p><strong>Colin Crain</strong></p>
+<ul>
+<li><a href="https://colincrain.com/2021/04/11/the-symbol-table-describes-itself/">The Symbol Table Describes Itself — Programming Excursions in Perl and Raku</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Dave Jacoby</strong></p>
+<ul>
+<li><a href="https://jacoby.github.io/2021/04/05/self-description-redux-perl-weekly-challenge-107.html">Self Description Redux: Perl Weekly Challenge 107 | Committed to Memory</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Flavio Poletti</strong></p>
+<ul>
+<li><a href="https://github.polettix.it/ETOOBUSY/2021/04/07/pwc107-self-descriptive-numbers/">PWC107 - Self-descriptive Numbers - ETOOBUSY</a> ( <em>Perl</em> )</li>
+<li><a href="https://github.polettix.it/ETOOBUSY/2021/04/08/pwc107-list-methods/">PWC107 - List Methods - ETOOBUSY</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Jaldhar H. Vyas</strong></p>
+<ul>
+<li><a href="https://www.braincells.com/perl/2021/04/perl_weekly_challenge_week_107.html">Perl Weekly Challenge: Week 107</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>James Smith</strong></p>
+<ul>
+<li><a href="https://github.com/drbaggy/perlweeklychallenge-club/blob/master/challenge-107/james-smith/README.md">Perl Weekly Challenge 107</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Lance Wicks</strong></p>
+<ul>
+<li><a href="https://perl.kiwi/tales/2021/04/06/perl-weekly-challenge-107-self-describing-numbers-live-coded/">Perl Weekly Challenge 107 - Self describing numbers&hellip; live coded - Perl🐪.🥝 Kiwi</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Laurent Rosenfeld</strong></p>
+<ul>
+<li><a href="http://blogs.perl.org/users/laurent_r/2021/04/perl-weekly-challenge-107-self-descripting-numbers-and-list-methods.html">Perl Weekly Challenge 107: Self-Descripting Numbers and List Methods | laurent_r</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Luca Ferrari</strong></p>
+<ul>
+<li><a href="https://fluca1978.github.io/2021/04/08/PerlWeeklyChallenge107.html#task1">Perl Weekly Challenge 107: copying myself – Luca Ferrari – Open Source advocate, human being</a> ( <em>Raku</em> )</li>
+<li><a href="https://fluca1978.github.io/2021/04/08/PerlWeeklyChallenge107.html#task2">Perl Weekly Challenge 107: copying myself – Luca Ferrari – Open Source advocate, human being</a> ( <em>Raku</em> )</li>
+</ul>
+<p><strong>Mohammad S Anwar</strong></p>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=WRAwhoqgaNI">Perl Weekly Challenge - 107 (Task #1: Self-descriptive Numbers) - YouTube</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Roger Bell_West</strong></p>
+<ul>
+<li><a href="https://blog.firedrake.org/archive/2021/04/Perl_Weekly_Challenge_107__Self_Descriptive_Methods.html">RogerBW&rsquo;s Blog: Perl Weekly Challenge 107: Self-Descriptive Methods</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Simon Green</strong></p>
+<ul>
+<li><a href="https://dev.to/simongreennet/weekly-challenge-107-hm2">Weekly Challenge 107</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>W. Luis Mochan</strong></p>
+<ul>
+<li><a href="https://wlmb.github.io/2021/04/05/PWC107/">Perl Weekly Challenge 107 – W. Luis Mochán</a> ( <em>Perl</em> )</li>
+</ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="/contact" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2020
+                    </span> PerlWeeklyChallenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.nomtimes.co.uk/site/shop.do?cref=PerlBooks" title="Free Perl Books" rel="noreferrer" target="_blank">
+                            <img src="/images/NomTimes.jpg" style="width:22px; height: 18px;" alt=""/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://perlweeklychallenge.org/plugins/jQurey/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://perlweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://perlweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://perlweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://perlweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://perlweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://perlweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://perlweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://perlweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-136524905-1', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+
+</html>
+
