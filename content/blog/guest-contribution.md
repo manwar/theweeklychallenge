@@ -30,7 +30,7 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 110](/blog/perl-weekly-challenge-110) {#110}
 <br>
 
-##### **Mohammad Meraj Zia** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/ziameraj16/java/ValidPhoneNumbers.java) in **Java**.
+##### **Mohammad Meraj Zia** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/ziameraj16/java/ValidPhoneNumbers.java) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/ziameraj16/java/TransposeFile.java) in **Java**.
 
 ##### **Roger Bell_West** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/roger-bell-west/shell/ch-1.sh) in **Bash**.
 
