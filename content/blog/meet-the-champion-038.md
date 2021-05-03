@@ -21,43 +21,43 @@ Today we are talking to the **[Perl Weekly Challenge - 038](/blog/perl-weekly-ch
 
 **Mohammad:** Tell us about your technical background?
 
-**Ryan:** My interest in computing started as a **hobby** in the early ’**80s**, and got into **MS-DOS** freelance work around **1990**. I then built a **Web hosting and Development* company before the days of **turnkey servers**. I got my **Degree in Computer Science** while working unhealthy hours and being a family man with a **2 years old**.
+**Ryan:** My interest in computing started as a hobby in the early ’80s, and got into MS-DOS freelance work around 1990. I then built a web hosting and development company before the days of turnkey servers. I got my degree in computer science while working unhealthy hours and being a family man with a 2 year old.
 
-As the **dot com bubble** was bursting, I sold the company, learned to relax, and started doing embedded **Unix/Linux Systems Development** (**C, ARM/x86 ASM**), **Sysadmin Automation** (mostly **Perl**), **Project Management**, and a few other things over the years.
+As the dot com bubble was bursting, I sold the company, learned to relax, and started doing embedded Unix/Linux systems development (C, ARM/x86 ASM), sysadmin automation (mostly Perl), project management, and a few other things over the years.
 
 ---
 
 **Mohammad:** How/When did you start using **Perl**/**Raku**?
 
-**Ryan:** I started using **Perl** in the context of **Sysadmin Automation** back in the mid ’**90s**. It didn't take long for me to start using it for other projects, from **Dynamic Websites** to **Data Analysis**.
+**Ryan:** I started using Perl in the context of sysadmin automation back in the mid ’90s. It didn't take long for me to start using it for other projects, from dynamic websites to data analysis.
 
-As for **Raku**, I followed the initial work on **Perl 6** with interest from the start, and experimented with the early implementations like **Pugs**. **Raku** is a rich language, and these **Weekly Challenges** have been a great way to try out its many features and myriad ways to tackle a problem.
+As for **Raku**, I followed the initial work on Perl 6 with interest from the start, and experimented with the early implementations like Pugs. Raku is a rich language, and these Weekly Challenges have been a great way to try out its many features and myriad ways to tackle a problem.
 
 ---
 
 **Mohammad:** How did you come to know about **"Perl Weekly Challenge"**?
 
-**Ryan:** It was a mention on [**Perlmonks**](https://perlmonks.org). Unfortunately I only learned about it on **Week 32**. Otherwise, I would have joined much sooner!
+**Ryan:** It was a mention on [**Perlmonks**](https://perlmonks.org). Unfortunately I only learned about it on Week 32. Otherwise, I would have joined much sooner!
 
 ---
 
 **Mohammad:** What do you like the most about **"Perl Weekly Challenge"**?
 
-**Ryan:** The **reviews**. Having many different solutions to the same problem is fantastic enough, but having competent people reviewing all of those solutions and putting them into context with each other is a rare thing.
+**Ryan:** The reviews. Having many different solutions to the same problem is fantastic enough, but having competent people reviewing all of those solutions and putting them into context with each other is a rare thing.
 
-Thanks in particular to **Kian-Meng Ang** and **Laurent Rosenfeld** for reviewing the **Perl** and **Raku** solutions week after week.
+Thanks in particular to **Kian-Meng Ang** and **Laurent Rosenfeld** for reviewing the Perl and Raku solutions week after week.
 
 ---
 
 **Mohammad:** How much time you dedicate every week to **"Perl Weekly Challenge"**?
 
-**Ryan:** My situation is a bit difficult, but I can usually manage **one or two hours**.
+**Ryan:** My situation is a bit difficult, but I can usually manage one or two hours.
 
 ---
 
 **Mohammad:** Do you checkout others solutions and who is your favourite?
 
-**Ryan:** I have a very strict **"no peeking"** policy until I've sent my own pull request. But then I absolutely do start browsing. There is no way I am going to name a favourite, though, as I've seen something interesting from every participant.
+**Ryan:** I have a very strict "no peeking" policy until I've sent my own pull request. But then I absolutely do start browsing. There is no way I am going to name a favourite, though, as I've seen something interesting from every participant.
 
 ---
 
