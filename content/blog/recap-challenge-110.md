@@ -41,17 +41,18 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 #### 3. Jaldhar H. Vyas
 #### 4. Laurent Rosenfeld
 #### 5. Roger Bell_West
+#### 6. Ryan Thompson
 
 <br>
 
 ## CONTRIBUTION STATS {#CONTRIBUTIONSTATS}
 ***
 
-The total contributions in the week is `103`.Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
+The total contributions in the week is `104`.Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
 
-#### 1. Perl: 47
+#### 1. Perl: 49
 #### 2. Raku: 30
-#### 3. Blog: 23
+#### 3. Blog: 25
 
 <br>
 
@@ -191,7 +192,7 @@ The total contributions in the week is `103`.Well done **Team PWC**. I would als
 ## CENTURION CLUB {#CENTURIONCLUB}
 ***
 
-    Laurent Rosenfeld (1152), Jaldhar H. Vyas (942), Roger Bell_West (868), Arne Sommer (798), Colin Crain (688), Athanasius (624), Adam Russell (550), E. Choroba (524), Stuart Little (500), Dave Jacoby (472), Javier Luque (460), Ulrich Rieke (458), Ruben Westerberg (452), Mohammad S Anwar (432), Simon Proctor (402), Duncan C. White (390), Luca Ferrari (388), Joelle Maslak (334), Abigail (308), Cheok-Yin Fung (300), Ryan Thompson (286), Mark Anderson (282), Flavio Poletti (270), Wanderdoc (266), Lubos Kolouch (256), Andrezgz (230), Simon Green (230), Paulo Custodio (228), Yet Ebreo (226), James Smith (216), Jorg Sommrey (208), Feng Chang (202), Myoungjin Jeon (192), Markus Holzer (190), Noud Aldenhoven (188), Niels van Dijke (186), Pete Houston (184), Kevin Colyer (176), Kian-Meng Ang (162), Steven Wilson (162), Walt Mankowski (162), Andrew Shitov (160), Duane Powell (148), Jan Krnavek (146), Shahed Nooshmand (140), Aaron Smith (136), Luis Mochan (120), Kang-min Liu (118), Julio de Castro (116), Gustavo Chaves (112), Saif Ahmed (110), Burkhard Nickels (108), Alicia Bielsa (106), Dave Cross (104), Nuno Vieira (104), Cristina Heredia (100)
+    Laurent Rosenfeld (1152), Jaldhar H. Vyas (942), Roger Bell_West (868), Arne Sommer (798), Colin Crain (688), Athanasius (624), Adam Russell (550), E. Choroba (528), Stuart Little (500), Dave Jacoby (472), Javier Luque (460), Ulrich Rieke (458), Ruben Westerberg (452), Mohammad S Anwar (432), Simon Proctor (402), Duncan C. White (390), Luca Ferrari (388), Joelle Maslak (334), Abigail (308), Cheok-Yin Fung (300), Ryan Thompson (290), Mark Anderson (282), Flavio Poletti (270), Wanderdoc (266), Lubos Kolouch (256), Andrezgz (230), Simon Green (230), Paulo Custodio (228), Yet Ebreo (226), James Smith (216), Jorg Sommrey (208), Feng Chang (202), Myoungjin Jeon (192), Markus Holzer (190), Noud Aldenhoven (188), Niels van Dijke (186), Pete Houston (184), Kevin Colyer (176), Kian-Meng Ang (162), Steven Wilson (162), Walt Mankowski (162), Andrew Shitov (160), Duane Powell (148), Jan Krnavek (146), Shahed Nooshmand (140), Aaron Smith (136), Luis Mochan (120), Kang-min Liu (118), Julio de Castro (116), Gustavo Chaves (112), Saif Ahmed (110), Burkhard Nickels (108), Alicia Bielsa (106), Dave Cross (104), Nuno Vieira (104), Cristina Heredia (100)
 
 <br>
 
@@ -263,6 +264,14 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/duncan-c-white/perl/ch-1.pl)]
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/duncan-c-white/perl/ch-2.pl)]
+
+***
+
+### E. Choroba
+![E. Choroba](/images/team/e-choroba.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/e-choroba/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/e-choroba/perl/ch-2.pl)]
 
 ***
 
@@ -476,6 +485,8 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/ryan-thompson/perl/ch-2.pl)]
 [[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/ryan-thompson/raku/ch-1.raku)]
 [[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/ryan-thompson/raku/ch-2.raku)]
+[[**BLOG #1**](https://ry.ca/2021/04/phone-number-validation/)]
+[[**BLOG #2**](https://ry.ca/2021/04/transpose-csv-file/)]
 
 ***
 
