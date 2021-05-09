@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2021-05-08T00:00:00+00:00
+date: 2021-05-09T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -2646,6 +2646,8 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 038](/blog/perl-weekly-challenge-038) {#038}
 <br>
 
+##### **Cheok-Yin Fung** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-109/cheok-yin-fung/java/DateFinder.java) in **Java**.
+
 ##### **Stuart Little** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/stuart-little/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/stuart-little/haskell/ch-2.hs) in **Haskell**.
 
 ----
@@ -2796,6 +2798,8 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 019](/blog/perl-weekly-challenge-019) {#019}
 <br>
 
+##### **Cheok-Yin Fung** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-109/cheok-yin-fung/java/FiveWeekends.java) in **Java**.
+
 ##### **Stuart Little** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-019/stuart-little/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-019/stuart-little/haskell/ch-2.hs) in **Haskell**.
 
 ----
@@ -2833,6 +2837,8 @@ Please find below guest contributions.
 ----
 ## [The Weekly Challenge - 013](/blog/perl-weekly-challenge-013) {#013}
 <br>
+
+##### **Cheok-Yin Fung** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-109/cheok-yin-fung/java/LastFriday.java) in **Java**.
 
 ##### **Stuart Little** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-013/stuart-little/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-013/stuart-little/haskell/ch-2.hs) in **Haskell**.
 
