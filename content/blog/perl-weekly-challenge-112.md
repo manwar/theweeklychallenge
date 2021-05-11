@@ -155,7 +155,7 @@ Write a script to find out the distinct ways to climb to the top. You are allowe
     Input: $n = 3
     Output: 3
 
-        Option 1: 1 step + 1 step
+        Option 1: 1 step + 1 step + 1 step
         Option 2: 1 step + 2 steps
         Option 3: 2 steps + 1 step
 
