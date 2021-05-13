@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2021-05-12T00:00:00+00:00
+date: 2021-05-13T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -45,6 +45,8 @@ Please find below guest contributions.
 ##### **Abigail** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-112/abigail/pascal/ch-2.p) in **Pascal**.
 
 ##### **Abigail** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-112/abigail/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-112/abigail/python/ch-2.py) in **Python**.
+
+##### **Mohammad Meraj Zia** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-112/ziameraj16/java/CanonicalPath.java) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-112/ziameraj16/java/ClimbStairs.java) in **Java**.
 
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-112/roger-bell-west/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-112/roger-bell-west/python/ch-2.py) in **Python**.
 
