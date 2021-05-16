@@ -52,6 +52,8 @@ Please find below guest contributions.
 
 ##### **Abigail** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-112/abigail/r/ch-2.r) in **R**.
 
+##### **Adam Russell** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-112/adam-russell/prolog/ch-2.p) in **Prolog**.
+
 ##### **Colin Crain** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-112/colin-crain/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-112/colin-crain/python/ch-2.py) in **Python**.
 
 ##### **Mohammad Meraj Zia** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-112/ziameraj16/java/CanonicalPath.java) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-112/ziameraj16/java/ClimbStairs.java) in **Java**.
