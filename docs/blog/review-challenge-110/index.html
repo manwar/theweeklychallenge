@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="The Weekly Challenge - Perl & Raku"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://perlweeklychallenge.org/"/>
+    <meta property="og:image"       content="https://perlweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="You do not have to be an expert."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://perlweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Colin Crain › Perl Weekly Review #110">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Colin Crain › Perl Weekly Review #110</title>
+    <link rel="icon" href="https://perlweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://perlweeklychallenge.org/">
+                        <img src="https://perlweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navgation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Colin Crain › Perl Weekly Review #110</h2>
+                    <div class="portfolio-meta">
+                        <span>Monday, May 17, 2021</span>|
+                        <span> Tags:
+                            perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://perlweeklychallenge.org/images/blog/p5-review-challenge-110.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <p>( <em>&hellip;continues from <a href="/blog/review-challenge-109/">previous week</a>.</em> )</p>
+<p>Welcome to the Perl review for <strong>Week 110</strong> of the Weekly Challenge! Here we will take the time to discuss the  submissions offered by the team, factor out the common methodologies that came up in those solutions, and highlight some of the unique approaches and unusual code created.</p>
+<hr>
+<h3 id="why-do-we-do-these-challenges">Why do we do these challenges?</h3>
+<p>I suppose any answers to that would be as wide ranging and varied as the people who choose to join the team. One thing is clear: it&rsquo;s not a competition, and there are no judges, even if there is a &ldquo;prize&rdquo; of sorts. About that &ndash; I think of it more as an honorarium periodically awarded to acknowledge the efforts we make towards this strange goal. So there&rsquo;s no determination to find the <em>fastest</em>, or the <em>shortest</em>, or even, in some abstract way, the <em>best</em> way to go about things, although I&rsquo;m certain the individuals have their own aspirations and personal drives. As Perl is such a wonderfully expressive language, this provides quite a bit of fodder to the core idea of TMTOWTDI, producing a gamut of wonderfully varied techniques and solutions.</p>
+<p>Even the tasks themselves are often open to a certain amount of discretionary interpretation. What we end up with is a situation where each participant is producing something in the manner they find the most interesting or satisfying. Some team members focus on carefully crafted complete applications that thoroughly vet input data and handle every use case they can think up. Others chose to apply themselves to the logic of the underlying puzzle and making it work in the most elegant way they can. Some eschew modules they would ordinarily reach for, others embrace them, bringing to light wheels perhaps invented years ago that happen to exactly solve the problem in front of them today.</p>
+<p>I&rsquo;ve been considering this question for some time and have found one binding commonality between all of us solving these challenges each week, in that however we normally live our lives, the task in front of us more than likely has nothing to do with any of that . And I think this has great value. We all do what we do, out in the real world, and hopefully we do it well. The Weekly Challenge provides a opportunity to do something germane to that life yet distinctly different; if we only do the things we already know how to do we only do the same things over and over. This is where the &ldquo;challenge&rdquo; aspect comes into play.</p>
+<p>So we can consider the Weekly Challenge as providing a problem space outside of our comfort zone, as far out from comfort as we wish to take things. From those reaches we can gather and learn things and bring what we want back into our lives. Personally, I think that&rsquo;s its greatest value of all.</p>
+<hr>
+<p>Every week there is an enormous global collective effort made by the team, analyzing and creatively coding the submissions, and that effort deserves credit due. And that&rsquo;s why I&rsquo;m here, to try and figure out how to do that.</p>
+<p>Let&rsquo;s have a look and see what we can find.</p>
+<hr>
+<p><strong><big>For context</big></strong>  before we begin, you may wish to revisit either of the pages for the <a href="/blog/perl-weekly-challenge-110/"><strong>original tasks</strong></a> or the summary <a href="/blog/recap-challenge-110/"><strong>recap</strong></a> of the challenge. But don&rsquo;t worry, the challenges themselves will be briefly summarized, presented below as we progress from task by task. Oh, and one more thing before we get started:</p>
+<h3 id="getting-in-touch-with-us">Getting in Touch with Us</h3>
+<p><a href="mailto:pwc.perfectwave@gmail.com"><img src="/images/blog/Email.svg" height="50" width="50"> Email</a> › Please email me (Colin) with any feedback, notes, clarifications or whatnot about this review.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge"><img src="/images/blog/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request to us for any issues you may find with this page.</p>
+<p><a href="https://twitter.com/perlwchallenge"><img src="/images/blog/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!</p>
+<p>I&rsquo;m always curious as to what the people think of these efforts. Everyone here at the PWC would like to hear any feedback you&rsquo;d like to give.</p>
+<p><strong>So finally, without further ado&hellip;</strong></p>
+<hr>
+<h2 id="---nbsp--nbsp--nbsp---task-1pwc110task1-------nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---task-2pwc110task2---nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---blogspwc110blogs----nbsp--nbsp--nbsp---">•             <a href="#PWC110TASK1">Task 1</a>                 •             <a href="#PWC110TASK2">Task 2</a>             	•             <a href="#PWC110BLOGS">BLOGS</a>              	•</h2>
+<hr>
+<hr>
+<h1 id="PWC110TASK1">TASK 1</h1>
+<h1 id="valid-phone-numbers">Valid Phone Numbers</h1>
+<p><em>Submitted by: Mohammad S Anwar</em><br>
+You are given a text file.</p>
+<p>Write a script to display all valid phone numbers in the given text file.</p>
+<p><strong>Acceptable Phone Number Formats</strong></p>
+<pre><code>    +nn  nnnnnnnnnn
+    (nn) nnnnnnnnnn
+    nnnn nnnnnnnnnn
+</code></pre><p><strong>Input File</strong></p>
+<pre><code>    0044 1148820341
+     +44 1148820341
+      44-11-4882-0341
+    (44) 1148820341
+      00 1148820341
+</code></pre><p><strong>Output</strong></p>
+<pre><code>    0044 1148820341
+     +44 1148820341
+    (44) 1148820341
+</code></pre><h2 id="about-the-solutions">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/abigail/perl/ch-1.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/arne-sommer/perl/ch-1.pl"><strong>Arne Sommer</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/cristian-heredia/perl/ch-1.pl"><strong>Cristina Heredia</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/jaldhar-h-vyas/perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/pete-houston/perl/ch-1.pl"><strong>Pete Houston</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/ryan-thompson/perl/ch-1.pl"><strong>Ryan Thompson</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/stuart-little/perl/ch-1.pl"><strong>Stuart Little</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/wanderdoc/perl/ch-1.pl"><strong>Wanderdoc</strong></a></p>
+<p>There were 25 submissions for the first task this past week.</p>
+<p>Telephone networks, in their essential nature, are organic beasts; they are evolved more than masterfully designed, with their systems caught in a perpetual tradeoff between scaling to meet expected future capacity and accommodating legacy infrastructure.</p>
+<p>As such there are often multiple acceptable ways to denote a particular subscriber line, and this challenge illustrates one such version of this, providing three acceptable forms of a UK telephone number that we are asked to use to filter a data set.</p>
+<p>Looking at the bigger picture, in a global community such as ours a number written for the telephone networks we actually use every day are likely to have only a passing resemblance to the formats and conventions given. I personally don&rsquo;t think I&rsquo;ve dialed a London phone in what must be decades, and when last I did I had to preface it with +011 44 01, with prefixes  first to access an international trunk line, then the UK network, and finally London. Years before that I had my own London telephone number, but although I don&rsquo;t remember it now I&rsquo;m nearly certain it didn&rsquo;t require 10 digits to call locally. On top of that here we&rsquo;re including the UK country code, so its even more unclear to me who exactly would be using the formats given. Relating back to my own experience, I understand the system has changed several times since then; the upshot being all I can do is take the rules at face value and accept them as the criteria, and assume the same circumstance will apply to most of us, in varying degrees.</p>
+<p>And what are those rules? We are given a ten digit number as a continuous sequence of digits, prefaced by the country code for the UK in one of three acceptable formats. The prefix and body of the number are separated by a space, with a caveat we&rsquo;ll address shortly.</p>
+<p>Filtering data to match acceptable formats might well seem a job specifically crafted for regular expressions, and judging from the submissions this view was shared by almost every member. There was quite a lot of variation on the specifics of the implementation, however, and we&rsquo;ll look around this to see what we find.</p>
+<p>I have come to expect that when given a task with a simple, obvious and &ldquo;correct&rdquo; way to go about it, there will always be those mavericks who just want to run free and see where it gets them. As such we had several submissions with unusual strategies that we&rsquo;ll also be giving a good once-over.</p>
+<h2 id="a-space-astray">a SPACE ASTRAY</h2>
+<p>There was an anomaly in the input data that was brought up quite a bit, in that the first line entry under the &ldquo;acceptable formats&rdquo; section,</p>
+<pre><code>    +nn  nnnnnnnnnn
+</code></pre><p>has two spaces between the country code and subscriber line sections, while the corresponding phone number closely matching that format, <code>+44 1148820341</code>, has only one. This, if noticed at all, led to a number of interpretations about permissable whitespace within the number. Consequently some required one space, others one or more, and still others went with any amount including none. At least one submission both accepted the extra space for input and then went on to standardize the format for output.</p>
+<p>I myself looked to the validated output for guidance, but that&rsquo;s just me. Occam&rsquo;s razor suggested it seemed more likely a mistake than a trick question.</p>
+<h2 id="behold-the-power-of-the-regular-expression">behold the power of the REGULAR EXPRESSION</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/arne-sommer/perl/ch-1.pl"><strong>Arne Sommer</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/cristian-heredia/perl/ch-1.pl"><strong>Cristina Heredia</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/jaldhar-h-vyas/perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/pete-houston/perl/ch-1.pl"><strong>Pete Houston</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/stuart-little/perl/ch-1.pl"><strong>Stuart Little</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/wanderdoc/perl/ch-1.pl"><strong>Wanderdoc</strong></a></p>
+<p>What we&rsquo;re being asked to do here is see whether a given number matches a generalized patern, right? And don&rsquo;t they call regular expressions &ldquo;pattern matching&rdquo;? Need I say more?</p>
+<p>Well, it turns out I do, because there were quite a few variations in the specific manner people chose to match up the formats. Nothing too radically different, on the whole — there was quite a bit of self-similarity to be sure. All of the methods seemed successful in accomplishing whatever it was they had set out to do; there were just differing interpretations and guiding principles applied to what exactly that was.</p>
+<h3 id="alternation">ALTERNATION</h3>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/jaldhar-h-vyas/perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/stuart-little/perl/ch-1.pl"><strong>Stuart Little</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>The most common approach was to present the three matching patterns for the country code prefix as a group using alternation.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/colin-crain/perl/ch-1.pl"><strong>My Own Solution</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/colin-crain/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/colin-crain/raku/ch-1.raku">Raku</a></p>
+<p>As it&rsquo;s not overly adventurous, I&rsquo;ll start the examination with my own submission. As I professed earlier, I&rsquo;m not at all familiar with the current specifications for  dialing a telephone in the UK, so I simply responded to the criteria as stated and took that at face value. For prefix, I accepted four digits, two digits in parentheses, or two digits with a leading <code>+</code>. Following this with a space and a 10-digit number, making no attempt on either part to figure out which digits were actually legal.</p>
+<p>One thing I did do was to select exclusively for a 10-digit subscriber line, excluding longer numbers with a zero-length negative lookahead assertion checking for an additional digit. Thus an 11-digit number would match the first ten but fail the assertion on the 11th and be excluded.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $regex <span style="color:#f92672">=</span> <span style="color:#e6db74">qr/((?: \d{4} | \(\d\d\) | \+\d\d ) \s \d{10}) (?!\d)/</span>x;
+
+    <span style="color:#66d9ef">while</span> (<span style="color:#f92672">&lt;&gt;</span>) {
+        push @numbers, $_ <span style="color:#66d9ef">for</span> <span style="color:#e6db74">/$regex/</span>;
+    }
+
+    say $_ <span style="color:#66d9ef">for</span> @numbers;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/laurent-rosenfeld/awk/ch-1.awk">Awk</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/laurent-rosenfeld/julia/ch-1.julia">Julia</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/laurent-rosenfeld/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/laurent-rosenfeld/raku/ch-1.raku">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/laurent-rosenfeld/ruby/ch-1.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/laurent-rosenfeld/rust/ch-1.rs">Rust</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/laurent-rosenfeld/scala/ch-1.scala">Scala</a></p>
+<p>Laurent also gives us an example of three alternating cases for the prefix, along with a slew of examples in other languages for comparison.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $str (@tests) {
+        say $1 <span style="color:#66d9ef">while</span> $str <span style="color:#f92672">=~</span><span style="color:#e6db74"> / ( (?: \d {4} | \+ \d\d | \( \d\d \)  ) \s+ \d{10} ) /gx</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/jaldhar-h-vyas/perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/jaldhar-h-vyas/raku/ch-1.raku">Raku</a></p>
+<p>Jaldhar follows the same pattern, with a couple of additional nods towards to efficiency. First he slurps in the data in one pass; by importing the <code>English</code> pragma he refers to the input record separator as <code>$RS</code>. In the second case he compiles his regex ahead of time into the <code>$valid</code> variable.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> English <span style="color:#e6db74">qw/ -no_match_vars /</span>;
+
+    <span style="color:#66d9ef">my</span> $filename <span style="color:#f92672">=</span> shift <span style="color:#e6db74">//</span> die <span style="color:#e6db74">&#34;Need a filename\n&#34;</span>;
+
+    open <span style="color:#66d9ef">my</span> $file, <span style="color:#e6db74">&#39;&lt;&#39;</span> , $filename <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;$OS_ERROR\n&#34;</span>;
+    local $RS <span style="color:#f92672">=</span> undef;
+    <span style="color:#66d9ef">my</span> @phone_numbers <span style="color:#f92672">=</span> split <span style="color:#e6db74">&#34;\n&#34;</span>, <span style="color:#e6db74">&lt;$file&gt;</span>;
+    close $file;
+
+    <span style="color:#66d9ef">my</span> $valid <span style="color:#f92672">=</span> <span style="color:#e6db74">qr{ \A \s* ( \+\d{2} | \(\d{2}\) | \d{4} ) \s* \d{10}  \s* \z }</span>msx;
+
+    map { say; } grep { <span style="color:#e6db74">/$valid/</span> } @phone_numbers;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a></p>
+<p>For anyone having any trouble following the syntax for the alternating expressions we&rsquo;ve been looking at, James has employed the <code>x</code> switch and kindly broken his apart with comments. I&rsquo;ve found this technique of expanding expressions to be invaluable when presented with real-world data that may involve multiple passes of refinement to perfect.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_valid_phone_number</span> {
+      <span style="color:#66d9ef">return</span> <span style="color:#e6db74">m{
+</span><span style="color:#e6db74">        \A          # Start of line
+</span><span style="color:#e6db74">        \s*         # Possibly white-space
+</span><span style="color:#e6db74">        (?:         # Prefix - one of:
+</span><span style="color:#e6db74">          [+]\d+ |  #   +{digits}</span>
+          <span style="color:#ae81ff">00</span><span style="color:#f92672">\</span>d<span style="color:#f92672">+</span>  <span style="color:#f92672">|</span>  <span style="color:#75715e">#   00{digits}</span>
+          [(]<span style="color:#f92672">\</span>d<span style="color:#f92672">+</span>[)] <span style="color:#75715e">#   ({digits})</span>
+        )
+        <span style="color:#f92672">\</span>s<span style="color:#f92672">+</span>         <span style="color:#75715e"># Some white-space</span>
+        <span style="color:#f92672">\</span>d<span style="color:#f92672">+</span>         <span style="color:#75715e"># String of numbers</span>
+        <span style="color:#f92672">\</span>s<span style="color:#f92672">*</span>         <span style="color:#75715e"># Possibly white-space</span>
+        <span style="color:#f92672">\</span>Z          <span style="color:#75715e"># End of line</span>
+      }x;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/stuart-little/perl/ch-1.pl"><strong>Stuart Little</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/stuart-little/haskell/ch-1.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/stuart-little/node/ch-1.js">Node</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/stuart-little/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/stuart-little/raku/ch-1.p6">Raku</a></p>
+<p>As we may well assume from his parallel submission in Haskell, Stuart is comfortable working with function compositions. This presumably leads him to the following curious manner of processing the data from file to output:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $data;
+    {
+        local $/ <span style="color:#f92672">=</span> undef;
+        $data <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;$fh&gt;</span>;
+    }
+
+    <span style="color:#66d9ef">for</span> (@{getNrs($data)}) {say};
+</code></pre></div><p>The first block slurps the file into a single string. His <code>getNrs()</code> routine then applies a regular expression to extract as many matches as it can from the string, returning them as an anonymous array. This array is then dereferenced and looped over by the <code>for</code> statement, which applies <code>say</code> to the topic variable <code>$_</code>, printing the matched number strings.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">getNrs</span>($data) {
+        <span style="color:#66d9ef">my</span> @nrs <span style="color:#f92672">=</span> $data <span style="color:#f92672">=~</span> <span style="color:#e6db74">m/((?:\+\d{2}|\(\d{2}\)|\d{4})\s+\d{10})/gsm</span>;
+        <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@nrs;
+    }
+</code></pre></div><h3 id="a-thrice-of-regexen">a THRICE OF REGEXEN</h3>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/cristian-heredia/perl/ch-1.pl"><strong>Cristina Heredia</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a></p>
+<p>As there were three acceptable formats given, some decided to make three different matching patterns and apply them sequentially. This approach also allowed the easy tuning of specific patterns for, say, that pesky space.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/athanasius/raku/ch-1.raku">Raku</a></p>
+<p>The monk provides a different structure for the alternation in their submission, with an <code>if/elsif</code> chain to try matching the three cases individually. Note that by capturing the pre- and postfix groups, on reassembly the central space is standardized to a single character.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">if</span>    ($line <span style="color:#f92672">=~</span><span style="color:#e6db74"> / ^ \s* \+ (\d{2})    \s+ (\d{10}) \s* $ /x</span>)
+    {
+        $number <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34; +$1 $2&#34;</span>;
+    }
+    <span style="color:#66d9ef">elsif</span> ($line <span style="color:#f92672">=~</span><span style="color:#e6db74"> / ^ \s* \( (\d{2}) \) \s+ (\d{10}) \s* $ /x</span>)
+    {
+        $number <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;($1) $2&#34;</span>;
+    }
+    <span style="color:#66d9ef">elsif</span> ($line <span style="color:#f92672">=~</span><span style="color:#e6db74"> / ^ \s*    (\d{4})    \s+ (\d{10}) \s* $ /x</span>)
+    {
+        $number <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;$1 $2&#34;</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/cristian-heredia/perl/ch-1.pl"><strong>Cristina Heredia</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/cristian-heredia/python/ch-1.py">Python</a></p>
+<p>Christina presents her three cases in a single conditional line, connected by logical <code>or</code> conjunctions.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">while</span>( <span style="color:#66d9ef">my</span> $line <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;FILE&gt;</span>)  {
+        <span style="color:#66d9ef">if</span> ($line <span style="color:#f92672">=~</span><span style="color:#e6db74"> /\+\d{2}\s\d{10}/</span> <span style="color:#f92672">or</span> $line <span style="color:#f92672">=~</span><span style="color:#e6db74"> /\(\d{2}\)\s\d{10}/</span> <span style="color:#f92672">or</span> $line <span style="color:#f92672">=~</span><span style="color:#e6db74"> /\d{4}\s\d{10}/</span>) {
+            <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$line&#34;</span>;
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a></p>
+<p>Using the <code>x</code> modifier we can more easily see how Dave chooses to tailor the central spacing issue differently for each of his three different patterns, either matching on <code>\s</code> or <code>\s+</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_phone_number</span>( $string ) {
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> $string <span style="color:#f92672">=~</span> <span style="color:#e6db74">m{
+</span><span style="color:#e6db74">            ^\ *    # starts with maybe space
+</span><span style="color:#e6db74">            \d{4}</span>   <span style="color:#75715e"># then has four digits</span>
+            <span style="color:#f92672">\</span>       <span style="color:#75715e"># then one space</span>
+            <span style="color:#f92672">\</span>d{<span style="color:#ae81ff">10</span>}  <span style="color:#75715e"># then has ten digits</span>
+            <span style="color:#f92672">\</span>s<span style="color:#f92672">*</span>$    <span style="color:#960050;background-color:#1e0010">#</span> with maybe ending spaces
+            }mix;
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> $string <span style="color:#f92672">=~</span> <span style="color:#e6db74">m{
+</span><span style="color:#e6db74">            ^\ *    # starts with maybe space
+</span><span style="color:#e6db74">            \+\d{2}</span> <span style="color:#75715e"># then has a plus sign and two digits</span>
+            <span style="color:#f92672">\</span> <span style="color:#f92672">+</span>     <span style="color:#75715e"># then one or more space</span>
+            <span style="color:#f92672">\</span>d{<span style="color:#ae81ff">10</span>}  <span style="color:#75715e"># then has ten digits</span>
+            <span style="color:#f92672">\</span>s<span style="color:#f92672">*</span>$    <span style="color:#960050;background-color:#1e0010">#</span> with maybe ending spaces
+            }mix;
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> $string <span style="color:#f92672">=~</span> <span style="color:#e6db74">m{
+</span><span style="color:#e6db74">            ^\ *        # starts with maybe space
+</span><span style="color:#e6db74">            \(\d{2}</span><span style="color:#f92672">\</span>)   <span style="color:#75715e"># then has two digits within parens</span>
+            <span style="color:#f92672">\</span> <span style="color:#f92672">+</span>         <span style="color:#75715e"># then one or more space</span>
+            <span style="color:#f92672">\</span>d{<span style="color:#ae81ff">10</span>}      <span style="color:#75715e"># then has eight digits</span>
+            <span style="color:#f92672">\</span>s<span style="color:#f92672">*</span>$        <span style="color:#960050;background-color:#1e0010">#</span> with maybe ending spaces
+            }mix;
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+    }
+</code></pre></div><h3 id="defining-the-character-classes">defining the CHARACTER CLASSES</h3>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a></p>
+<p>It&rsquo;s always good practice to define your expressions as tightly as possible when matching, in the event of an unexpected edge-case popping up. The more closely you can constrain your parameters, the less likely you are to pick up something you don&rsquo;t want.</p>
+<p>In this case, this is reflected in avoiding the general digit character class, as we are known to only desire specifically the 10 Arabic numerals from 0 to 9.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a></p>
+<p>Choroba went with this more exclusive character class for this very attractive construct:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $VALID <span style="color:#f92672">=</span> <span style="color:#e6db74">qr/^\s* (?: \([0-9]{2}\)
+</span><span style="color:#e6db74">                          | \+[0-9]{2}
+</span><span style="color:#e6db74">                          |   [0-9]{4}
+</span><span style="color:#e6db74">                        ) \s+
+</span><span style="color:#e6db74">                        [0-9]{10} $/</span>x;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a></p>
+<p>As did Simon. here, who includes a link to a <a href="https://www.effectiveperlprogramming.com/2011/01/know-your-character-classes/">brian d foy post</a> warning on the possibliity of unicode including numerals from other languages in <code>\d</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#e6db74">/^(?:\+[0-9]{2}|\([0-9]{2}\)|[0-9]{4}) [0-9]{10}$/</span>
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/roger-bell-west/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/roger-bell-west/raku/ch-1.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/roger-bell-west/ruby/ch-1.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/roger-bell-west/rust/ch-1.rs">Rust</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/roger-bell-west/shell/ch-1.sh">Shell</a></p>
+<p>And Roger, who included examples in a variety of languages as well.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">while</span> (<span style="color:#f92672">&lt;&gt;</span>) {
+      <span style="color:#66d9ef">print</span> <span style="color:#66d9ef">if</span> <span style="color:#e6db74">/^\s*(\+[0-9]{2}|\([0-9]{2}\)|[0-9]{4}) [0-9]{10}\s*$/</span>;
+    }
+</code></pre></div><h3 id="heads-and-tails">HEADS and TAILS</h3>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/arne-sommer/perl/ch-1.pl"><strong>Arne Sommer</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/wanderdoc/perl/ch-1.pl"><strong>Wanderdoc</strong></a></p>
+<p>As the country prefix was the only point of variation, some methods began by dividing the found number candidate into two sections for parsing, the prefix and the subscriber line digits.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a></p>
+<p>CY uses a series of <code>substr</code> statements to isolate parts of her input lines for further analysis. After first ascertaining there&rsquo;s a space in position 5, she goes on to validate the last characters as digits and then the prefix as matching one of the three formats. As the whitespace in the input file is not a well-defined aspect, this works if the line contains only the number, a plausible scenario. Of note this strategy will match either &ldquo;space plus digit digit space&rdquo; or &ldquo;plus digit digit space space&rdquo; for that prefix, handling the anomaly well.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">if</span> ( length $s <span style="color:#f92672">==</span> <span style="color:#ae81ff">15</span> <span style="color:#f92672">&amp;&amp;</span>
+        substr($s, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">1</span>) <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#34; &#34;</span> <span style="color:#f92672">&amp;&amp;</span>
+        substr($s, <span style="color:#f92672">-</span><span style="color:#ae81ff">11</span>) <span style="color:#f92672">=~</span><span style="color:#e6db74"> / \d{10}/</span> <span style="color:#f92672">&amp;&amp;</span>
+        (substr($s,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">4</span>) <span style="color:#f92672">=~</span><span style="color:#e6db74"> /\d{4}/</span> <span style="color:#f92672">||</span>
+         substr($s,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">4</span>) <span style="color:#f92672">=~</span><span style="color:#e6db74"> /\+\d{2}/</span> <span style="color:#f92672">||</span>
+         substr($s,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">4</span>) <span style="color:#f92672">=~</span><span style="color:#e6db74"> /\(\d{2}\)/</span>)
+    ) {
+        <span style="color:#66d9ef">print</span> $s, <span style="color:#e6db74">&#34;\n&#34;</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/wanderdoc/perl/ch-1.pl"><strong>Wanderdoc</strong></a></p>
+<p>The doctor takes a different strategy, first trimming the line and splitting on the central whitespace into <code>$code</code> and <code>$number</code> segments. Then a cascade of further checks are applied to thoroughly verify the format parts.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">valid_phone_number</span>
+    {
+         <span style="color:#66d9ef">my</span> $text <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>];
+         $text <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/^\s*//</span>;
+         $text <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/\s*$//</span>;
+         <span style="color:#66d9ef">my</span> ($code, $number) <span style="color:#f92672">=</span> split(<span style="color:#e6db74">/\s/</span>, $text);
+         <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">unless</span> defined $number;
+         <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">unless</span> $code <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^\+\d{2}|\(\d{2}\)|\d{4}$/</span>;
+         <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">unless</span> $number <span style="color:#f92672">=~</span><span style="color:#e6db74"> /\d{10}/</span>;
+         <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/arne-sommer/perl/ch-1.pl"><strong>Arne Sommer</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/arne-sommer/raku/ch-1.raku">Raku</a></p>
+<p>Arne applies a detailed analysis to the source file, developing an interpretation of spacing with the following rules:</p>
+<ul>
+<li>must have 15 chars</li>
+<li>char 5 is a space</li>
+<li>after char 5 is all digits</li>
+<li>valid prefixes: 4 digits, &ldquo;space plus digit digit&rdquo;, &ldquo;paren digit digit paren&rdquo;</li>
+</ul>
+<p>The first rule is the only one I find a little odd, accepting only 15 digits. This in turn requires the addition of a space before the <code>+</code> in that format, but that is what is shown in the file. The mal-formed format example is explicitly assumed to be an error. With the addition of the further constraint on overall length, we are again presented with a cascading gauntlet of conditional predicates, that, if satisfied, results in printing the validated number to output.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $line (read_file($phonebook, chomp <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>))
+    {
+      <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> length($line) <span style="color:#f92672">==</span> <span style="color:#ae81ff">15</span>;
+      <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> substr($line, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">1</span>) <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39; &#39;</span>;
+      <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> substr($line, <span style="color:#ae81ff">5</span>) <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^\d{10}$/</span>;
+
+      <span style="color:#66d9ef">my</span> $first <span style="color:#f92672">=</span> substr($line, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">4</span>);
+
+      <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> $first <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^\d{4}$/</span> <span style="color:#f92672">||</span> $first <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^\s\+\d\d$/</span> <span style="color:#f92672">||</span> $first <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^\(\d\d\)$/</span>;
+
+      say $line;
+    }
+</code></pre></div><h3 id="venturing-further-into-the-ambiguities">venturing FURTHER into the AMBIGUITIES</h3>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/pete-houston/perl/ch-1.pl"><strong>Pete Houston</strong></a></p>
+<p>Arne&rsquo;s analysis makes a nice segue into the next section. There were, as we have mentioned, certain ambiguities and undefined areas around the input. Some members went a little further beyond the what, into the why, and tried to think the situation through in an effort to nail down these grey areas.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a></p>
+<p>One unusual allowance Jorg makes in his analysis is for the case of multiple numbers on a line, which requires new rules to disallow certain conflicts.</p>
+<blockquote>
+<p>The specification is a bit vague, especially as the example
+&lsquo;+44 1148820341&rsquo; does not match the respective format
+&lsquo;+nn  nnnnnnnnnn&rsquo;.  Therefore some additional assumptions are made:</p>
+<ul>
+<li>a fixed international dialing prefix of &lsquo;00&rsquo;</li>
+<li>the country code has exactly 2 digits</li>
+<li>the national number has exactly 10 digits</li>
+<li>multiple numbers may appear on the same line</li>
+<li>a phone number starting with a digit must not follow a digit</li>
+<li>a phone number must not be followed by a digit</li>
+<li>the number of blanks between prefix and national number is variable</li>
+</ul>
+</blockquote>
+<p>Here is his final construction:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">while</span> (<span style="color:#e6db74">&lt;$fh&gt;</span>) {
+        push @num, <span style="color:#e6db74">/((?:\+\d{2}|\(\d{2}\)|(?&lt;!\d)00\d{2}) +\d{10})(?!\d)/g</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/pete-houston/perl/ch-1.pl"><strong>Pete Houston</strong></a></p>
+<p>After a rigorous analysis of ambiguities, Pete takes the position that although only one is required, multiple internal spaces are to be tolerated. These are then are collapsed to a standardized single space for output.</p>
+<blockquote>
+<p>In the definition of acceptable formats, the first format has a double
+whitespace between the IDC and the remainder whereas the other formats
+have a single whitespace there. In the sample inputs, none of the given
+lines have a double whitespace and yet the outputs show lines which can
+only match the first format.</p>
+</blockquote>
+<blockquote>
+<p>Possible conclusions are</p>
+<ul>
+<li>all whitespace is to be ignored</li>
+<li>all whitespace is to be collapsed</li>
+<li>the spec has a typo and only single whitespaces are valid</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>The first of these seems unlikely as it would permit sufficiently large
+whole numbers to be interpreted as phone numbers.</p>
+</blockquote>
+<blockquote>
+<p>The significance of multiple whitespaces is unknown in the data corpus
+but given the standard approach of being liberal in what one accpets
+and strict in what one produces it would be reasonable to think that
+collapsing sounds like the best compromise. Along similar lines I will
+also collapse any whitespace that matches C&lt;\s&gt;.</p>
+</blockquote>
+<blockquote>
+<p>There is also the matter of leading whitespace in the output. One line
+of output (with the 3-character IDC) has a leading space. We assume that
+this fomatting is required.</p>
+</blockquote>
+<p>Here he capitalizes on the fact that <code>for</code> aliases the actual value to <code>$_</code> when looping, using this to alter the elements collected before printout. This is a good trick to remember to perform multiple processes on an entire array of values.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># Match</span>
+    <span style="color:#66d9ef">my</span> @valid <span style="color:#f92672">=</span> $in <span style="color:#f92672">=~</span><span style="color:#e6db74"> /(?:\+\d\d|\(\d\d\)|\d{4})\s+\d{10}/g</span>;
+
+    <span style="color:#75715e"># Normalise</span>
+    <span style="color:#66d9ef">for</span> (@valid) {
+        <span style="color:#75715e"># Collapse multiple whitespace, convert tabs and newlines</span>
+        <span style="color:#e6db74">s/\s+/ /g</span>;
+        <span style="color:#75715e"># Leading whitespace for +nn</span>
+        <span style="color:#e6db74">s/^\+/ +/</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a></p>
+<p>Fueled by what must be a reasonable proximity to the English Channel and the virtues of  good research skills, Niels presents the most elborate attempt we found to validate a <em>correct</em> number sequence, regardless of the simple rules given:</p>
+<p>His understanding of the matter:</p>
+<blockquote>
+<ol>
+<li>+nn nnnnnnnnnn:<br>
+&lsquo;+&rsquo; followed 2-4 digits (see: <a href="https://countrycode.org/">https://countrycode.org/</a>)
+followed by one or more spaces followed 6 or more digits</li>
+<li>nnnn nnnnnnnnnn:<br>
+&lsquo;00&rsquo; followed by 2-4 digits followed by one or more spaces
+followed by 6 or more digits</li>
+<li>(nn) nnnnnnnnnn:<br>
+&lsquo;(&rsquo; followed by 2-4 digits followed by &lsquo;)&rsquo; followed by
+one or more spaces followed by 6 or more digits</li>
+</ol>
+</blockquote>
+<p>This yields the following example:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">validatePhoneNumber</span>($) {
+      <span style="color:#66d9ef">my</span> ($n) <span style="color:#f92672">=</span> @_;
+
+      <span style="color:#75715e"># trim input</span>
+      $n <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/^\s*(.+?)\s*$/$1/</span>;
+
+      <span style="color:#66d9ef">my</span> ($ccMinLen,$ccMaxLen) <span style="color:#f92672">=</span> (<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">4</span>);
+      <span style="color:#66d9ef">my</span> $pMinLen <span style="color:#f92672">=</span> <span style="color:#ae81ff">6</span>;
+
+      <span style="color:#66d9ef">return</span> $n <span style="color:#66d9ef">if</span> ($n <span style="color:#f92672">=~</span> <span style="color:#e6db74">m/(
+</span><span style="color:#e6db74">        ^ \+ \d{$ccMinLen,$ccMaxLen}    \s+ \d{$pMinLen,} $ |
+</span><span style="color:#e6db74">        ^ 00 \d{$ccMinLen,$ccMaxLen}    \s+ \d{$pMinLen,} $ |
+</span><span style="color:#e6db74">        ^ \( \d{$ccMinLen,$ccMaxLen} \) \s+ \d{$pMinLen,} $
+</span><span style="color:#e6db74">      )/x</span>);
+
+      <span style="color:#66d9ef">return</span>;
+    }
+</code></pre></div><h2 id="unusual-takes-and-alternate-points-of-view">UNUSUAL TAKES and ALTERNATE POINTS of VIEW</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/abigail/perl/ch-1.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/ryan-thompson/perl/ch-1.pl"><strong>Ryan Thompson</strong></a></p>
+<h3 id="a-generalized-grammar">a generalized GRAMMAR</h3>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/adam-russell/prolog/ch-1.p">Prolog</a></p>
+<p>Unsatisfied with a simple regular expression, Adam takes the previous abstractions out another level, describing the valid formats using a tokenized grammar.</p>
+<p>The rules are described in a YACC-like grammar file, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/adam-russell/perl/PhoneNumberParser.yp"><code>PhoneNumberParser.yp</code></a>, with rules, a lexer and a <code>parse</code> function. The file, fed to <a href="https://metacpan.org/pod/Parse::Yapp"><code>Parse::Yapp</code></a> produces a Perl module <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/adam-russell/perl/PhoneNumberParser.pm"><code>PhoneNumberParser.pm</code></a>, an object that when instantiated knows how to parse a valid phone number.</p>
+<p>Code that writes code. One of my favorite things.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    MAIN:{
+        <span style="color:#66d9ef">my</span> $parser <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> PhoneNumberParser();
+        <span style="color:#66d9ef">while</span>(<span style="color:#66d9ef">my</span> $line <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;DATA&gt;</span>){
+            $line <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/^\s+|\s+$//g</span>;
+            <span style="color:#66d9ef">my</span> $syntax_error <span style="color:#f92672">=</span> capture_stdout {
+                $parser<span style="color:#f92672">-&gt;</span>parse($line);
+            };
+            <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;$line\n&#34;</span>) <span style="color:#66d9ef">if</span> <span style="color:#f92672">!</span>$syntax_error;
+        }
+    }
+</code></pre></div><p>I&rsquo;m not going to try and summarize the grammer file, it&rsquo;s best to just <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/adam-russell/perl/PhoneNumberParser.yp">go have a look for yourself</a>.</p>
+<h3 id="normalizing-the-data-set">NORMALIZING the DATA SET</h3>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/ryan-thompson/perl/ch-1.pl"><strong>Ryan Thompson</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/ryan-thompson/raku/ch-1.raku">Raku</a></p>
+<p>Ryan takes a substantially oppositional approach to the whole problem: rather than abstracting the format to match the numbers given, he normalizes the numbers to a standard form, and determines whether they are the same thing as one of the formats.</p>
+<p>The formats have their internal spaces standardized to 1, then are loaded in a hash as keys. The candidate numbers have all of their digits 0 through 9 translated to &lsquo;n&rsquo;s, to match the format definitions. A quick check to the existence of a hash key verifies the number. The verification itself works inside a <code>grep</code> block, serving as a boolean filter for the original input from the file, and the filtered list remaining is printed out. Nice.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> %valid <span style="color:#f92672">=</span>
+        map { y<span style="color:#e6db74">/ /</span> <span style="color:#f92672">/</span>sr <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> }
+        split <span style="color:#e6db74">/\s*(\n|$)\s*/</span>, <span style="color:#e6db74">q{
+</span><span style="color:#e6db74">            +nn  nnnnnnnnnn
+</span><span style="color:#e6db74">            (nn) nnnnnnnnnn
+</span><span style="color:#e6db74">            nnnn nnnnnnnnnn
+</span><span style="color:#e6db74">        }</span>;
+
+    <span style="color:#66d9ef">print</span> <span style="color:#66d9ef">for</span> grep { check_number($_) } <span style="color:#f92672">&lt;&gt;</span>;
+
+    <span style="color:#75715e"># Check if a number matches any template in %valid</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">check_number</span> {
+        local $_ <span style="color:#f92672">=</span> shift;
+
+        <span style="color:#e6db74">s/^\s+//</span>, <span style="color:#e6db74">s/\s+$//</span>; <span style="color:#75715e"># Trim leading and trailing whitespace</span>
+        y<span style="color:#e6db74">/0-9/</span>n<span style="color:#e6db74">/, y/</span> <span style="color:#e6db74">/ /s</span>;  <span style="color:#75715e"># Replace digits, squash internal spaces</span>
+
+        <span style="color:#66d9ef">return</span> $_ <span style="color:#66d9ef">if</span> $valid{$_};
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/abigail/perl/ch-1.pl"><strong>Abigail</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/abigail/awk/ch-1.awk">Awk</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/abigail/bash/ch-1.sh">Bash</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/abigail/c/ch-1.c">C</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/abigail/lua/ch-1.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/abigail/node/ch-1.js">Node</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/abigail/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/abigail/ruby/ch-1.rb">Ruby</a></p>
+<p>For Abigail, a strong interpretation of spacing in the input file lends them to 3 rule options for valid formatting:</p>
+<blockquote>
+<ul>
+<li>A plus sign &ldquo;+&rdquo; followed by twelve digits</li>
+<li>Opening paren &ldquo;(&quot;, two digits, closing paren &ldquo;)&quot;, then ten digits</li>
+<li>Fourteen digits</li>
+</ul>
+</blockquote>
+<p>Internal whitespace is decreed inconsequential.</p>
+<p>Rules in hand, they then commence to use substitution to standardize the three prefix alternates, switching the parenthesis characters into 0s, and the plus into <code>00</code>, makeing all valid prefixes 4 digits. The string is then checked to see whether it has exactly 14 digits.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">while</span> (<span style="color:#f92672">&lt;&gt;</span>) {
+        <span style="color:#66d9ef">print</span> <span style="color:#66d9ef">if</span> <span style="color:#e6db74">s{\s+}           {}g</span>r     <span style="color:#75715e"># Remove white space</span>
+              <span style="color:#f92672">=~</span> <span style="color:#e6db74">s{^\+}           {00}</span>r    <span style="color:#75715e"># Replace leading + with 00</span>
+              <span style="color:#f92672">=~</span> <span style="color:#e6db74">s{^\([0-9]{2}</span><span style="color:#960050;background-color:#1e0010">\)} </span><span style="color:#e6db74">{0000}</span>r  <span style="color:#75715e"># Replace leading (NN) with 0000</span>
+              <span style="color:#f92672">=~</span><span style="color:#e6db74">  /^[0-9]{14}$/</span>            <span style="color:#75715e"># Check if 14 digits are left</span>
+    }
+</code></pre></div><hr>
+<h1 id="PWC110TASK2">TASK 2</h1>
+<h1 id="transpose-file">Transpose File</h1>
+<p><em>Submitted by: Mohammad S Anwar</em>
+You are given a text file.</p>
+<p>Write a script to transpose the contents of the given file.</p>
+<p><strong>Input File</strong></p>
+<pre><code>    name,age,sex
+    Mohammad,45,m
+    Joe,20,m
+    Julie,35,f
+    Cristina,10,f
+</code></pre><p><strong>Output:</strong></p>
+<pre><code>    name,Mohammad,Joe,Julie,Cristina
+    age,45,20,35,10
+    sex,m,m,f,f
+</code></pre><h2 id="about-the-solutions-1">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/abigail/perl/ch-2.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/arne-sommer/perl/ch-2.pl"><strong>Arne Sommer</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/jaldhar-h-vyas/perl/ch-2.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/mohammad-anwar/perl/ch-2.pl"><strong>Mohammad S Anwar</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/perlboy1967/perl/ch-2.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/pete-houston/perl/ch-2.pl"><strong>Pete Houston</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/ryan-thompson/perl/ch-2.pl"><strong>Ryan Thompson</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/stuart-little/perl/ch-2.pl"><strong>Stuart Little</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/wanderdoc/perl/ch-2.pl"><strong>Wanderdoc</strong></a></p>
+<p>There were 24 submissions for the second task this past week. Amongst these, we saw two common approaches to perform the transposition.</p>
+<p>Running second in popularity but perhaps the easiest to conceptualize was to build a matrix from the input fields, then reverse the indices when iterating through these positions to create the transposed version.</p>
+<p>The most common class of methods we saw, though — arguably simpler — was to divide the input into fields and push the values over directly onto the tranposed output. This could be taking a row of input and transforming it into a column of output, or the other way around, turning a column into a row. There was a lot of personal style reflected in exactly how this was done, using <code>for</code>, <code>while</code> and <code>map</code> looping constructs, and we&rsquo;ll explore this. A few examples concatenated the new fields directly to the output rows, which involved manually joining the fields with commas.</p>
+<p>And, inevitably, some submissions used a module to perform the action for them.</p>
+<h2 id="to-csv-or-not-to-csv">to CSV or not to CSV?</h2>
+<p>The example file is tabular data separated by commas, but is not actually stated to be in CSV format, exactly. We&rsquo;ve been here before, and again I feel the need to expand on why this seemingly small semantic difference matters. CSV is a fine way to reduce multidimensional data to a flat file that&rsquo;s both easy to produce and fairly human-readable. It works really well, up until the inevitable time when it doesn&rsquo;t.</p>
+<p>The problems with CSV as a file format start when you want to want to include arbitrary strings in the fields. Strings, for instance, that themselves include commas. At that point you need a plan to escape the commas within the string, or otherwise quote the fields. Which in turn makes one question on how to escape the quote marks should those arise, or how, in turn, to escape the escape character. To say it gets complicated quickly is an undestatement, which is why there are two rules in life: do not make up your own cryptography scheme unless you don&rsquo;t care if it gets broken, and do not roll your own CSV parser unless you don&rsquo;t care if it breaks. Just don&rsquo;t do it. There&rsquo;s too much pain involved. Reach for a ready-made solution. That&rsquo;s why they&rsquo;re there.</p>
+<p>The data provided didn&rsquo;t present any of these problems, being just a short group of lists with a lot of commas in them. Some folks went and treated it as a <code>.csv</code> file and imported the excellent <code>Text::CSV</code> module family, which is all-around good thinking. Others, like me, didn&rsquo;t see the problem as being about a file format but rather one of manipulating data structures, and so applied <code>split /,/</code> on the data and moved on to the meat of the matter. Which is fine just so long as we&rsquo;re not pretending this is proper CSV, so we can arbitrarily demand: &ldquo;no commas allowed, ever, under any circumstances&rdquo;.</p>
+<p>In a real-world situation, where we likely don&rsquo;t have an iron grip on our input data, we should always import the module, because we know better. But here? Eh&hellip;</p>
+<p>So with that caveat, for this task either way will suffice.</p>
+<h2 id="transform-each-row-into-the-next-column">transform each ROW into the next COLUMN</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/mohammad-anwar/perl/ch-2.pl"><strong>Mohammad S Anwar</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a></p>
+<p>When we look at an individual row of input data, what we&rsquo;re looking at is a column in the transposed output. If we build a list of output rows in order, we can sequentially distribute the fields down the list, appending one field per list, building out the transposed data one column at a time.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/mohammad-anwar/perl/ch-2.pl"><strong>Mohammad S Anwar</strong></a></p>
+<p>The <code>Test::CSV</code> module is a full-featured solution for handling all things CSV, built up over decades to a robust suite of functions. Filehandles are integrated into the workflow, so the function <code>getline($fh)</code> returns the next line of a <code>.csv</code> file as an array reference. Mohammed takes each of these elements in a loop, pushing them on to the rows of the transposed array using an auto-incrementing index iterator.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">my</span> $row <span style="color:#f92672">=</span> $csv<span style="color:#f92672">-&gt;</span>getline($fh)) {
+        chomp $row;
+        <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $field (@$row) {
+            push @{$contents<span style="color:#f92672">-&gt;</span>[$i<span style="color:#f92672">++</span>]}, $field;
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/laurent-rosenfeld/awk/ch-2.awk">Awk</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/laurent-rosenfeld/raku/ch-2.raku">Raku</a></p>
+<p>Laurent gives us an example treating the input rows as flat lists of data without internal commas, so he can simply <code>split</code> the strings into fields. After that we see the same iterator incremented at each turn through the loop.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $in (@input) {
+        <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $str (split <span style="color:#e6db74">/,/</span>, $in) {
+            push @{$transposed[$i]}, $str;
+            $i<span style="color:#f92672">++</span>;
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/ulrich-rieke/awk/ch-2.awk">Awk</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/ulrich-rieke/cpp/ch-2.cpp">C++</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/ulrich-rieke/haskell/ch-2.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/ulrich-rieke/raku/ch-2.raku">Raku</a></p>
+<p>Again we see the pattern of each row in the input being split and allocated, in this case the iterator forms the basis of the loop construct. The index of the assigned row is always the same as the index within the source row, so we can use the same value.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $row (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> scalar( @rows ) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ) {
+      <span style="color:#66d9ef">my</span> @columns <span style="color:#f92672">=</span> split(<span style="color:#e6db74"> /\,/</span>, $rows[$row] ) ;
+      <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $column (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $len <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ) {
+          push @{$transposed[ $column ]} , $columns[ $column ] ;
+      }
+    }
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $line ( @transposed ) {
+      say join( <span style="color:#e6db74">&#39;,&#39;</span> , @$line ) ;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/roger-bell-west/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/roger-bell-west/raku/ch-2.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/roger-bell-west/ruby/ch-2.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/roger-bell-west/rust/ch-2.rs">Rust</a></p>
+<p>Roger here considers the source file to be proper CSV data, and presents another tightly crafted method of implementing the techniques we&rsquo;ve seen.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">my</span> $row<span style="color:#f92672">=</span>$csv<span style="color:#f92672">-&gt;</span>getline($fh)) {
+      <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $ci (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#{$row}) {
+        $a[$ci][$ri]<span style="color:#f92672">=</span>$row<span style="color:#f92672">-&gt;</span>[$ci];
+      }
+      $ri<span style="color:#f92672">++</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/athanasius/raku/ch-2.raku">Raku</a></p>
+<p>The monk works off the assumption that the first line of data will be a header row, as is normal for a CSV file. They keep this row separate in a <code>@headers</code> variable for easy reference, and use the values as keys pointing to arrays that get built up according to the ordering in that <code>@headers</code> list we just mentioned. The header value needs to be prepended to the output string of course, but this method does keep the data and the metadata separate, which is an organizationally sound principle to work from.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">my</span> $line <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;$fh&gt;</span>)
+    {
+        chomp $line;
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;  $line\n&#34;</span>;
+
+        <span style="color:#66d9ef">my</span> @entries <span style="color:#f92672">=</span> split <span style="color:#e6db74">/,/</span>, $line;
+
+        push $data{ $_ }<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, shift @entries <span style="color:#66d9ef">for</span> @headers;
+    }
+
+    close $fh
+        <span style="color:#f92672">or</span> die <span style="color:#e6db74">qq[Cannot close file &#34;$file&#34;, stopped]</span>;
+
+    <span style="color:#66d9ef">print</span>  <span style="color:#e6db74">&#34;\nOutput:\n\n&#34;</span>;
+    printf   <span style="color:#e6db74">&#34;  %s\n&#34;</span>, join <span style="color:#e6db74">&#39;,&#39;</span>, $data{ $_ }<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> for @headers;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a></p>
+<p>For quite some time, since 5.12, calling <code>each</code> on an array will return a short list with the index and value for the next element in the array. This can be extremely handy in the right context, as shown by how cleanly we can rephrase the steps of the technique we&rsquo;ve been discussing:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">transpose_file</span> ($fh) {
+        <span style="color:#66d9ef">my</span> @tr;
+        <span style="color:#66d9ef">while</span> (<span style="color:#e6db74">&lt;$fh&gt;</span>) {
+            <span style="color:#66d9ef">my</span> @part <span style="color:#f92672">=</span> split <span style="color:#e6db74">/,|\n/</span>;
+            <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">my</span> ($i, $v) <span style="color:#f92672">=</span> each @part) {
+                push $tr[$i]<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, $v;
+            }
+        }
+
+        @tr;
+    }
+</code></pre></div><p>Jorg also provides this little snippet and comment, which I&rsquo;ll just report verbatim:</p>
+<blockquote>
+<p>perlvar states:</p>
+<blockquote>
+<p>passing &ldquo;*ARGV&rdquo; as a parameter to a function that expects a filehandle may not cause your function to automatically read the contents of all the files in @ARGV.
+It seems to work, though.</p>
+</blockquote>
+</blockquote>
+<p>With that note this small block completes his data flow:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    {
+        local $, <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;,&#39;</span>;
+        say @$_ <span style="color:#66d9ef">for</span> transpose_file(<span style="color:#f92672">\*</span>ARGV);
+    }
+</code></pre></div><h2 id="concatenating-immediately-into-every-row">CONCATENATING IMMEDIATELY into every ROW</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/abigail/perl/ch-2.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/arne-sommer/perl/ch-2.pl"><strong>Arne Sommer</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a></p>
+<p>Instead of adding elements to arrays of the output rows, several members took it upon themselves to keep those output rows as strings throughout and concatenate new data to them directly as required. This is a pretty straightforward task, with the principal obstacle presented being the correct interspacing of commas between fields. There&rsquo;s arguably only one easy way to to this — use <code>join</code>, but even that can require some bookkeeping should your array end up with <code>undef</code> elements interspersed. With three submissions we ended up with three techniques.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/arne-sommer/perl/ch-2.pl"><strong>Arne Sommer</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/arne-sommer/raku/ch-2.raku">Raku</a></p>
+<p>The immediate concern when directly concatenating the input fields onto their respective strings is inserting the commas correctly, between adjacent elements but not either before the first or after the last. To this end Arne constructs a clever little ternary switch, adding a comma before the new field only after the output string already exists. In this way the tail values gets a comma before them and the first value does not.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $index (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> @words <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
+    {
+       $lines[$index] <span style="color:#f92672">.=</span> $lines[$index]
+         ? ( <span style="color:#e6db74">&#34;,&#34;</span> <span style="color:#f92672">.</span> $words[$index])
+         : $words[$index];
+    }
+</code></pre></div><p>In an aside I would like to point out the formatting for the ternary operator. I find lining up the <code>?</code> and the <code>:</code>  hands-down to be the clearest way to present the options.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a></p>
+<p>Again a given field may or may not be preceded by a comma, depending on it&rsquo;s placement within the final string. Specifically, the first element does not have this prefix, the remaining do. Choroba manages this by assigning a value to the aptly-named <code>$maybe_comma</code> variable only after the first concatenation. This is logically sound, albeit a bit indirect, but avoids a repeated conditional.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">while</span> (<span style="color:#e6db74">&lt;$in&gt;</span>) {
+        chomp;
+        <span style="color:#66d9ef">my</span> @cells <span style="color:#f92672">=</span> split <span style="color:#e6db74">/,/</span>;
+        $tr[$_] <span style="color:#f92672">.=</span> <span style="color:#e6db74">&#34;$maybe_comma$cells[$_]&#34;</span> <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#cells;
+        $maybe_comma <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;,&#39;</span>;
+    }
+    say {$out} $_ <span style="color:#66d9ef">for</span> @tr;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/abigail/perl/ch-2.pl"><strong>Abigail</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/abigail/awk/ch-2.awk">Awk</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/abigail/bash/ch-2.sh">Bash</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/abigail/c/ch-2.c">C</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/abigail/lua/ch-2.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/abigail/node/ch-2.js">Node</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/abigail/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/abigail/ruby/ch-2.rb">Ruby</a></p>
+<p>Finally, Abigail takes a pragmatically simple approach, adding a comma indiscriminately after every field. This will present a trailing comma, of course, but that&rsquo;s where <code>chop</code> shines, for indiscriminately removing the last character of string, no matter how much it pleads and begs. By not asking, we have removed the conditional logic from the loop structures entirely.</p>
+<p>Not only does this yield a very compact solution but it also is easily portable to languages that do not support multidimensional arrays. It does, however, require that all of the input rows have the same number of fields, but that&rsquo;s true of this whole group of solutions.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># Read in the data, split into fields, add the fields to a set strings,</span>
+    <span style="color:#75715e"># placed in an array @;. Add commas after each field.</span>
+    <span style="color:#75715e">#</span>
+    map {$- <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; $; [$- <span style="color:#f92672">++</span>] <span style="color:#f92672">.=</span> <span style="color:#e6db74">&#34;$_,&#34;</span> <span style="color:#66d9ef">for</span> <span style="color:#e6db74">/[^,\n]+/g</span>} <span style="color:#f92672">&lt;&gt;</span>;
+
+    chop, say <span style="color:#66d9ef">for</span> @<span style="color:#960050;background-color:#1e0010">;</span>
+</code></pre></div><h2 id="transform-each-column-into-the-next-row">transform each COLUMN into the next ROW</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/ryan-thompson/perl/ch-2.pl"><strong>Ryan Thompson</strong></a> ,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/stuart-little/perl/ch-2.pl"><strong>Stuart Little</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>The transformation from rows to columns is of course completely reversible, so the relationship also allows us to scrape the other way: from the input data, one column at a time, building a complete row for output in a single pass.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/ryan-thompson/perl/ch-2.pl"><strong>Ryan Thompson</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/ryan-thompson/raku/ch-2.raku">Raku</a></p>
+<p>Ryan presents this technique to us in a clear and concise manner. Reading the lines from STDIN using the diamond operator, he dices them up into an array of arrays. Then for each column index, he uses a <code>map</code> to collect the element from each row of input. With the fields gathered, they are then joined with a comma and immediately printed.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> @rows <span style="color:#f92672">=</span> map { chomp; [ split <span style="color:#e6db74">&#39;,&#39;</span> ] } <span style="color:#f92672">&lt;&gt;</span>;
+
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $col (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#{$rows[<span style="color:#ae81ff">0</span>]}) {
+        say join <span style="color:#e6db74">&#39;,&#39;</span>, map { $_<span style="color:#f92672">-&gt;</span>[$col] } @rows
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a></p>
+<p>Most of the solutions we have seen so far are in some way dependent on the input data being complete and well-structured. Ryan&rsquo;s submission, for example, depends on the first line having the correct number of fields, without which things go sideways fast. In the CSV format the first line is column headers, which should always be present, so this isn&rsquo;t really a problem. But then again humans make mistakes and can leave things unlabeled, and if the last column is unlabeled the final count will end up off and it will remain unseen.</p>
+<p>Simon takes an added step to address this by first determining the largest number of input fields in any row and using that number as the column count.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># Get the maximum number of values in the rows</span>
+    <span style="color:#66d9ef">my</span> $max <span style="color:#f92672">=</span> max( map { scalar(@$_) } @lines );
+
+    <span style="color:#75715e"># Print each column as a row</span>
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $col ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $max <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ) {
+        say join <span style="color:#e6db74">&#39;,&#39;</span>, map { $_<span style="color:#f92672">-&gt;</span>[$col] <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#39;&#39;</span> } @lines;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/stuart-little/perl/ch-2.pl"><strong>Stuart Little</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/stuart-little/haskell/ch-2.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/stuart-little/node/ch-2.js">Node</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/stuart-little/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/stuart-little/raku/ch-2.p6">Raku</a></p>
+<p>Stuart extends the abstraction further, transforming the entire <code>@data</code> array-of-arrays at one go using <a href="https://metacpan.org/pod/List::AllUtils#zip_by"><code>List::AllUtils qw(zip_by)</code></a>. This takes sequential elements from a list of array references like <code>zip</code>, handing the list of elements gathered off to a block for processing. In this case the list is gathered into it&rsquo;s own anonymous array, which has its elements joined with a comma.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> @transData <span style="color:#f92672">=</span> map {join(<span style="color:#e6db74">&#34;,&#34;</span>,@{$_})} zip_by { [ @_ ] } @data;
+    <span style="color:#66d9ef">for</span> (@transData) {
+        say;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>We are presented with a brace of solutions by Luis, the first assuming simpler, more structured input, the second calling in <code>Text::CSV</code> for more robust data handling.</p>
+<p>He can&rsquo;t quite get his simple submission down to a one-liner, but not for want of trying.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> @input<span style="color:#f92672">=</span>map {chomp; [split <span style="color:#e6db74">/,/</span>]} <span style="color:#f92672">&lt;&gt;</span>;
+    say join <span style="color:#e6db74">&#34;\n&#34;</span>, map { <span style="color:#66d9ef">my</span> $c<span style="color:#f92672">=</span>$_; join <span style="color:#e6db74">&#34;,&#34;</span>, map {$input[$_][$c]} <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>@input<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>} <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>scalar @{$input[<span style="color:#ae81ff">0</span>]}<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</code></pre></div><p>The robust solution is a little more complicated by necessity, but functions in much the same manner.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw(max)</span>;
+    <span style="color:#66d9ef">use</span> Text::CSV <span style="color:#e6db74">qw(csv)</span>;
+    <span style="color:#66d9ef">my</span> $input<span style="color:#f92672">=</span>csv(in<span style="color:#f92672">=&gt;*</span>ARGV);
+    <span style="color:#66d9ef">my</span> $Ncols<span style="color:#f92672">=</span>max map {scalar @{$input<span style="color:#f92672">-&gt;</span>[$_]}} @$input<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">my</span> $transposed<span style="color:#f92672">=</span>[map {<span style="color:#66d9ef">my</span> $c<span style="color:#f92672">=</span>$_; [map {$input<span style="color:#f92672">-&gt;</span>[$_][$c]} <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>@$input<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]} <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$Ncols<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+    csv(in<span style="color:#f92672">=&gt;</span>$transposed, out<span style="color:#f92672">=&gt;*</span>STDOUT, eol<span style="color:#f92672">=&gt;</span>$/);
+</code></pre></div><h2 id="create-a-matrix-and-reverse-the-indices">create a MATRIX and REVERSE THE INDICES</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/jaldhar-h-vyas/perl/ch-2.pl"><strong>Jaldhar H. Vyas</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/wanderdoc/perl/ch-2.pl"><strong>Wanderdoc</strong></a></p>
+<p>Given a matrix we can construct a transposed version of it by reflecting every element in it through the major diagonal. That might sound complicated, but all we need to do is reverse the indices: every element at coordinates (<em>i</em>, <em>j</em>) is relocated to its complementary position at (<em>j</em>, <em>i</em>).</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/colin-crain/perl/ch-2.pl"><strong>My Own Solution</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/colin-crain/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/colin-crain/raku/ch-2.raku">Raku</a></p>
+<p>For my own solution, I gathered the maximum row size when scanning through and assembling my input matrix, defining the dimensions for the transposed version. After this two iterators and an index reversal are all that is needed to make the swaps.</p>
+<p>After, by swapping the output field separator to a comma, output is as simple as printing the rows.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">while</span> (<span style="color:#f92672">&lt;&gt;</span>) {
+        chomp;
+        push @mat, [ split <span style="color:#e6db74">&#39;,&#39;</span>, $_ ];
+        $mat[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">&gt;</span> <span style="color:#960050;background-color:#1e0010">$</span>max <span style="color:#f92672">and</span> $max <span style="color:#f92672">=</span> $mat[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+    <span style="color:#960050;background-color:#1e0010">}</span>
+
+    for <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>@mat<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
+        <span style="color:#66d9ef">for</span>  <span style="color:#66d9ef">my</span> $j (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$max<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
+            $trans[$j][$i] <span style="color:#f92672">=</span> $mat[$i][$j];
+        }
+    }
+
+    local $&#34; <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;,&#39;</span>;
+    say <span style="color:#e6db74">&#34;@$_&#34;</span> <span style="color:#66d9ef">for</span> @trans;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a></p>
+<p>CY extends the technique to accept proper CSV input. Again she takes the precaution of finding the maximum number of columns instead of relying on the integrity of any one row. It&rsquo;s a small detail but makes the process more robust.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $old_num_row <span style="color:#f92672">=</span> scalar @{$csv_file};
+    <span style="color:#66d9ef">my</span> $old_max_num_col <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $field (@{$csv_file}) {
+        <span style="color:#66d9ef">my</span> $len <span style="color:#f92672">=</span> scalar @{$field};
+        $old_max_num_col <span style="color:#f92672">=</span> $len <span style="color:#66d9ef">if</span> $len <span style="color:#f92672">&gt;</span> $old_max_num_col;
+    }
+
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$old_max_num_col<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
+        print_item($csv_file<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-&gt;</span>[$i]);
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $k (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$old_num_row<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
+            <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;,&#34;</span>;
+            print_item($csv_file<span style="color:#f92672">-&gt;</span>[$k]<span style="color:#f92672">-&gt;</span>[$i]);
+        }
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/jaldhar-h-vyas/perl/ch-2.pl"><strong>Jaldhar H. Vyas</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/jaldhar-h-vyas/raku/ch-2.raku">Raku</a></p>
+<p>This class of solutions tended on the whole to be very self-similar, but Jaldhar gives us a variation using <code>push</code> to accomplish the reversal. In the end, though, the same steps occur and the same order.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $j (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> scalar @{$table[<span style="color:#ae81ff">0</span>]} <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) {
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> scalar @table <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) {
+            push @{$transposed[$j]}, $table[$i]<span style="color:#f92672">-&gt;</span>[$j];
+        }
+    }
+</code></pre></div><h2 id="ask-a-module-nicely-to-do-it-for-you">ask a MODULE nicely to DO IT FOR YOU</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/pete-houston/perl/ch-2.pl"><strong>Pete Houston</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/perlboy1967/perl/ch-2.pl"><strong>Niels van Dijke</strong></a></p>
+<p>With two and a half decades of cpan to draw from, it&rsquo;s easier to start with the assumption there&rsquo;s a module out there for it, whatever it is. In this case <code>Array::Transpose</code> sounds promising, doesn&rsquo;t it?</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/pete-houston/perl/ch-2.pl"><strong>Pete Houston</strong></a></p>
+<p>Modules can really handle the whole process from beginning to end. <code>Text::CSV</code> will be happy to open a file for you and read it in, delivering an array reference holding the data in an array of arrays. <code>Array::Transpose</code> will do what&rsquo;s expected here, and afterwards handing it back to <code>Text::CSV</code> we can then write it back to a file. I feel if we really needed to do this out in the real world this would be the way to go about it.</p>
+<p>However for an account of an actual real-world example, continue reading to the end.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Array::Transpose;
+    <span style="color:#66d9ef">use</span> Text::CSV <span style="color:#ae81ff">1.90</span> <span style="color:#e6db74">&#39;csv&#39;</span>;
+
+    <span style="color:#66d9ef">my</span> $enc_in  <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">2</span>] <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#39;UTF-8&#39;</span>;
+    <span style="color:#66d9ef">my</span> $enc_out <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">3</span>] <span style="color:#e6db74">//</span> $enc_in;
+    <span style="color:#66d9ef">my</span> $array   <span style="color:#f92672">=</span> csv (in <span style="color:#f92672">=&gt;</span> $ARGV[<span style="color:#ae81ff">0</span>], encoding <span style="color:#f92672">=&gt;</span> $enc_in);
+    <span style="color:#66d9ef">my</span> @tr      <span style="color:#f92672">=</span> transpose ($array);
+
+    csv (in <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>@tr, out <span style="color:#f92672">=&gt;</span> $ARGV[<span style="color:#ae81ff">1</span>], encoding <span style="color:#f92672">=&gt;</span> $enc_out);
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/perlboy1967/perl/ch-2.pl"><strong>Niels van Dijke</strong></a></p>
+<p>Niels solves the task for us two ways today. In the first he uses a pair of nested <code>map</code> functions to take each input row, divide it into fields, and divvy them up as columns over the output.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    map {
+      <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+      map { push(@{$out[$i<span style="color:#f92672">++</span>]},$_) } split(<span style="color:#e6db74">/,/</span>, $_);
+    } @lines;
+</code></pre></div><p>In the second submission he calls on <code>Array::Transpose</code> and splitting within an anonymous array block to try and fit everything into a minimal solution, to great effect.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Array::Transpose;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">transposeFile</span>($) {
+      map{join(<span style="color:#e6db74">&#39;,&#39;</span>,@$_)}transpose[map{<span style="color:#e6db74">s/^\s*(.*?)\s*$/$1/</span>;[split<span style="color:#e6db74">/,/</span>]}read_file($_[<span style="color:#ae81ff">0</span>])];
+    }
+</code></pre></div><h2 id="bizarre-unusual-and-unclassifiable-schemes">BIZARRE, UNUSUAL and UNCLASSIFIABLE schemes</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/adam-russell/prolog/ch-2.p">Prolog</a></p>
+<p>Adam leads with a caveat, openly acknowledging that his solution is &ldquo;not the easiest way to perform this task&rdquo;. Basing the Perl version on the logic in his Prolog solution, to this end he constructs not one but a pair of recursive routines. The first functions as a loop to process the rows of the input table, here called <code>@columns</code> because that&rsquo;s what they end up being. The second routine takes a given row of input and, recursively again, pushes the elements sequentially onto the element rows of a multidimensional output array. Ultimately the rows in the transposed array are joined with commas and printed.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">transpose_r</span>{
+        <span style="color:#66d9ef">my</span>($transposed, $remaining) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">return</span> $transposed <span style="color:#66d9ef">if</span>(@{$remaining} <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>);
+        $transposed <span style="color:#f92672">=</span> transpose_row_r($transposed, $remaining<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]);
+        shift @{$remaining};
+        transpose_r($transposed, $remaining);
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">transpose_row_r</span>{
+        <span style="color:#66d9ef">my</span>($transposed, $row) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">return</span> $transposed <span style="color:#66d9ef">if</span>(@{$row} <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>);
+        <span style="color:#66d9ef">my</span> $index <span style="color:#f92672">=</span> @{$row} <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+        push @{$transposed<span style="color:#f92672">-&gt;</span>[$index]}, pop @{$row};
+        transpose_row_r($transposed, $row);
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a></p>
+<p>Saving the best for last, we now have a look at what James has brought to offer.</p>
+<p>Ok, fine. I should probably maintain my neutrality and stay away from any grand superlative pronouncements, but it remains undeniable that what is offered here is the good stuff. I just got a little carried away there. Forgive me, please. I appreciate and encourage each and every one of your efforts, truly. That too remains undeniable.</p>
+<p>As mentioned a few weeks ago, we&rsquo;re not sure exactly what James&rsquo; day job description is, so we&rsquo;re going to continue using the broad term &ldquo;geneticist&rdquo;. As such he routinely deals with transforming massive amounts of tabular data, and for this task brings us a <a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-110/james-smith">concrete, real-world example</a>.</p>
+<p>Here has kindly provided us with a proper study in efficiency for this task, with three methods applied across three datasets: small, medium and large.</p>
+<p>For the base method he constructs the transposed matrix one row at a time by shifting off one column of input at a pass, much as we explored earlier. This requires keeping the entire array-of-arrays in memory.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">transpose_split</span> {
+      <span style="color:#75715e">## Slurp into array</span>
+      open <span style="color:#66d9ef">my</span> $fh, <span style="color:#e6db74">&#39;&lt;&#39;</span>, $_[<span style="color:#ae81ff">0</span>];
+      <span style="color:#66d9ef">my</span> @in <span style="color:#f92672">=</span>  map { chomp;[ split <span style="color:#e6db74">/,/</span> ] } <span style="color:#e6db74">&lt;$fh&gt;</span>;
+      close $fh;
+      <span style="color:#75715e">## Generate transpose</span>
+      open $fh, <span style="color:#e6db74">&#39;&gt;&#39;</span>, $_[<span style="color:#ae81ff">1</span>];
+      say {$fh} join <span style="color:#e6db74">&#39;,&#39;</span>, map {shift @{$_} } @in <span style="color:#66d9ef">while</span> @{$in[<span style="color:#ae81ff">0</span>]};
+      close $fh;
+    }
+</code></pre></div><p>For the first refinement he leaves the input lines intact as strings and parses out the fields using a regular expression. This reduces the memory footprint by an order of magnitude. This resulted in considerable acceleration to the mid-level data sets, but ultimately broke down parsing truly massive files.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">transpose_regex</span> {
+      <span style="color:#75715e">## Slurp into array</span>
+      open <span style="color:#66d9ef">my</span> $fh, <span style="color:#e6db74">&#39;&lt;&#39;</span>, $_[<span style="color:#ae81ff">0</span>];
+      <span style="color:#66d9ef">my</span> @in <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;$fh&gt;</span>;
+      close $fh;
+      <span style="color:#75715e">## Generate transpose</span>
+      open $fh, <span style="color:#e6db74">&#39;&gt;&#39;</span>, $_[<span style="color:#ae81ff">1</span>];
+      say {$fh} join <span style="color:#e6db74">&#39;,&#39;</span>, map { <span style="color:#e6db74">s{^(.*?)[,\r\n]+}{}</span>; $1 } @in <span style="color:#66d9ef">while</span> $in[<span style="color:#ae81ff">0</span>];
+      close $fh;
+    }
+</code></pre></div><p>The last improvement is impressive, drawing on <code>seek</code>, <code>tell</code> and <code>read</code> to only access the input file data in small, digestable chunks. For the real-world example he provides, this brought on a 100-fold speedup through proper memory management.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">transpose_seek</span> {
+      <span style="color:#66d9ef">my</span> ( $prev, @pos ) <span style="color:#f92672">=</span> ( <span style="color:#ae81ff">0</span> );
+
+      <span style="color:#75715e">## Loop through the file and get the start/end position of each line,</span>
+      <span style="color:#75715e">## and the first $BYTES characters of each line...</span>
+
+      open <span style="color:#66d9ef">my</span> $fh,  <span style="color:#e6db74">&#39;&lt;&#39;</span>, $_[<span style="color:#ae81ff">0</span>];
+
+      ( push @pos, [ $prev<span style="color:#f92672">+</span>$BYTES, tell $fh, substr $_, <span style="color:#ae81ff">0</span>, $BYTES ] ) <span style="color:#f92672">&amp;&amp;</span>
+        ( $prev <span style="color:#f92672">=</span> tell $fh ) <span style="color:#66d9ef">while</span> <span style="color:#e6db74">&lt;$fh&gt;</span>;
+
+      <span style="color:#75715e">## While we still have &#34;columns&#34; loop through each row and grab the first</span>
+      <span style="color:#75715e">## entry and output results.</span>
+
+      open <span style="color:#66d9ef">my</span> $ofh, <span style="color:#e6db74">&#39;&gt;&#39;</span>, $_[<span style="color:#ae81ff">1</span>];  <span style="color:#75715e">## Need 2 file handles open at once for this.</span>
+
+      <span style="color:#66d9ef">while</span>( $pos[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&lt;</span> $pos[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">1</span>] <span style="color:#f92672">||</span> length $pos[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">2</span>] ) {
+        <span style="color:#66d9ef">my</span> $j <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
+        <span style="color:#66d9ef">foreach</span>( @pos ) {
+          <span style="color:#75715e">## Grab extra data for the row if we have got an incomplete</span>
+          <span style="color:#75715e">## field {missing a &#34;,&#34; and still data to read}</span>
+          <span style="color:#66d9ef">while</span>( $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">!~</span> <span style="color:#e6db74">m{,}</span> <span style="color:#f92672">&amp;&amp;</span> $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&lt;</span> $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] ) {
+            seek $fh, $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>], <span style="color:#ae81ff">0</span>;  <span style="color:#75715e">## 0 = from start of file!</span>
+            read $fh,
+                 $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">2</span>],    <span style="color:#75715e">## &#34;Buffer&#34;</span>
+                 $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">-</span>$_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&gt;</span> $BYTES ? $BYTES : $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">-</span>$_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>],
+                 length $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">2</span>];  <span style="color:#75715e">## Length of &#34;Buffer&#34; so text gets</span>
+                                  <span style="color:#75715e">## added to end</span>
+            $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+=</span> $BYTES;
+          }
+          $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">=~</span> <span style="color:#e6db74">s{^([^,\r\n]+)[,\r\n]*}{}</span>;
+          <span style="color:#66d9ef">print</span> {$ofh} $j, $1;
+          $j <span style="color:#f92672">||=</span> <span style="color:#e6db74">&#39;,&#39;</span>;
+        }
+        say {$ofh} <span style="color:#e6db74">&#39;&#39;</span>;
+      }
+    }
+</code></pre></div><p>He provides a complete writeup at his blog post, with a <a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-110/james-smith">detailed breakdown of the various file sizes used and results</a>. I found this rare view into a real-world example fascinating. I&rsquo;ve been led to understand that Perl, having been highly tuned for decades, is already the fastest among its peers, but when given the tools and necessity to really go under the hood and tinker the potential for improvement is truly remarkable.</p>
+<hr>
+<h1 id="PWC110BLOGS">BLOGS</h1>
+<hr>
+<p><strong>That&rsquo;s it for me this week, people! Warped by the rain, driven by the snow, resolute and unbroken by the torrential influx, I somehow continue to maintain my bearings. Looking forward to next wave, the perfect wave, I am: <em>your humble servant</em>.</strong></p>
+<h1 id="PWC093BLOGS">But if Your <em>THIRST</em> for <em>KNOWLEDGE</em> is not <em>SLAKED</em>,</h1>
+<h1 id="then-run-dont-walk-to-the-watering-hole">then <em>RUN</em> <em>(dont walk!)</em> to the <em>WATERING HOLE</em></h1>
+<h1 id="and-read-these-blog-links">and <em>READ</em> these <em>BLOG</em> <em>LINKS</em>:</h1>
+<p><strong>( <em>don&rsquo;t think, trust your training, you&rsquo;re in the zone, just do it &hellip;</em> )</strong></p>
+<p><strong>Aaron Smith</strong></p>
+<ul>
+<li><a href="https://aaronreidsmith.github.io/blog/perl-weekly-challenge-110/">Perl Weekly Challenge 110 - Aaron Smith</a> ( <em>Raku</em> )</li>
+</ul>
+<p><strong>Abigail</strong></p>
+<ul>
+<li><a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-110-1.html">Perl Weekly Challenge 110: Valid Phone Numbers</a> ( <em>Perl</em> )</li>
+<li><a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-110-2.html">Perl Weekly Challenge 110: Transpose File</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Adam Russell</strong></p>
+<ul>
+<li><a href="http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2021/05/02">Checking Phone Numbers and Transposing Tabular Data the Hard Way: The Weekly Challenge 110 - RabbitFarm</a> ( <em>Perl</em> )</li>
+<li><a href="http://www.rabbitfarm.com/cgi-bin/blosxom/prolog/2021/05/02">Checking Phone Numbers and Transposing Tabular Data the Hard Way: The Weekly Challenge 110 - Prolog - RabbitFarm</a> ( <em>Prolog</em> )</li>
+</ul>
+<p><strong>Andinus</strong></p>
+<ul>
+<li><a href="https://andinus.tilde.institute/pwc/challenge-110/">Challenge 110</a> ( <em>Raku</em> )</li>
+</ul>
+<p><strong>Arne Sommer</strong></p>
+<ul>
+<li><a href="https://raku-musings.com/validly-transposed.html">Validly Transposed Raku and Perl</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Cheok-Yin Fung</strong></p>
+<ul>
+<li><a href="http://blogs.perl.org/users/c_y_fung/2021/05/cys-take-on-pwc110.html">CY&rsquo;s Take on PWC#110 | Moments on Perl or Other Programming Issues</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Colin Crain</strong></p>
+<ul>
+<li><a href="https://colincrain.com/2021/05/02/flip-me-your-digits-baby/">Flip Me Your Digits, Baby — Programming Excursions in Perl and Raku</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Dave Jacoby</strong></p>
+<ul>
+<li><a href="https://jacoby.github.io/2021/04/28/hanging-on-the-telephone-perl-weekly-challenge-110.html">Hanging On The Telephone: Perl Weekly Challenge #110 | Committed to Memory</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Flavio Poletti</strong></p>
+<ul>
+<li><a href="https://github.polettix.it/ETOOBUSY/2021/04/28/pwc110-valid-phone-numbers/">PWC110 - Valid Phone Numbers - ETOOBUSY</a> ( <em>Perl</em> )</li>
+<li><a href="https://github.polettix.it/ETOOBUSY/2021/04/29/pwc110-transpose-file/">PWC110 - Transpose File - ETOOBUSY</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Jaldhar H. Vyas</strong></p>
+<ul>
+<li><a href="https://www.braincells.com/perl/2021/05/perl_weekly_challenge_week_110.html">Perl Weekly Challenge: Week 110</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>James Smith</strong></p>
+<ul>
+<li><a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-110/james-smith">Perl Weekly Challenge #110</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Laurent Rosenfeld</strong></p>
+<ul>
+<li><a href="http://blogs.perl.org/users/laurent_r/2021/05/perl-weekly-challenge-110-valid-phone-numbers-and-transposed-file.html">Perl Weekly Challenge 110: Valid Phone Numbers and Transposed File | laurent_r</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Luca Ferrari</strong></p>
+<ul>
+<li><a href="https://fluca1978.github.io/2021/04/26/PerlWeeklyChallenge110.html#task1">Perl Weekly Challenge 110: Mangling Text Files — Luca Ferrari — Open Source advocate, human being</a> ( <em>Raku</em> )</li>
+<li><a href="https://fluca1978.github.io/2021/04/26/PerlWeeklyChallenge110.html#task2">Perl Weekly Challenge 110: Mangling Text Files — Luca Ferrari — Open Source advocate, human being</a> ( <em>Raku</em> )</li>
+</ul>
+<p><strong>Mohammad S Anwar</strong></p>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=nrL0sS-klo0">Perl Weekly Challenge - 110 (Task #1: Valid Phone Numbers) - YouTube</a> ( <em>Perl</em> )</li>
+<li><a href="https://www.youtube.com/watch?v=wIx1m__r4SQ">Perl Weekly Challenge - 110 (Task #2: Transpose File) - YouTube</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Roger Bell_West</strong></p>
+<ul>
+<li><a href="https://blog.firedrake.org/archive/2021/04/Perl_Weekly_Challenge_110__Transpose_Numbers.html">RogerBW&rsquo;s Blog: Perl Weekly Challenge 110: Transpose Numbers</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Ryan Thompson</strong></p>
+<ul>
+<li><a href="https://ry.ca/2021/04/phone-number-validation/">PWC 110 — Phone Number Validation — Ryan J Thompson</a> ( <em>Perl &amp; Raku</em> )</li>
+<li><a href="https://ry.ca/2021/04/transpose-csv-file/">PWC 110 — Transpose CSV File — Ryan J Thompson</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Simon Green</strong></p>
+<ul>
+<li><a href="https://dev.to/simongreennet/weekly-challenge-110-22ao">Weekly Challenge 110</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>W. Luis Mochan</strong></p>
+<ul>
+<li><a href="https://wlmb.github.io/2021/04/27/PWC110/">Perl Weekly Challenge 110 — W. Luis Mochan</a> ( <em>Perl</em> )</li>
+</ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="/contact" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2020
+                    </span> PerlWeeklyChallenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.nomtimes.co.uk/site/shop.do?cref=PerlBooks" title="Free Perl Books" rel="noreferrer" target="_blank">
+                            <img src="/images/NomTimes.jpg" style="width:22px; height: 18px;" alt=""/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://perlweeklychallenge.org/plugins/jQurey/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://perlweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://perlweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://perlweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://perlweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://perlweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://perlweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://perlweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://perlweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-136524905-1', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+
+</html>
+
