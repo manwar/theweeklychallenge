@@ -44,6 +44,8 @@ Please find below guest contributions.
 
 ##### **Abigail** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-113/abigail/ruby/ch-1.rb) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-113/abigail/ruby/ch-2.rb) in **Ruby**.
 
+##### **Adam Russell** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-113/adam-russell/prolog/ch-1.p) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-113/adam-russell/prolog/ch-2.p) in **Prolog**.
+
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-113/roger-bell-west/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-113/roger-bell-west/python/ch-2.py) in **Python**.
 
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-113/roger-bell-west/ruby/ch-1.rb) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-113/roger-bell-west/ruby/ch-2.rb) in **Ruby**.
