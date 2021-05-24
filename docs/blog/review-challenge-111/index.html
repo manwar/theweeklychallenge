@@ -1,0 +1,1477 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="The Weekly Challenge - Perl & Raku"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://perlweeklychallenge.org/"/>
+    <meta property="og:image"       content="https://perlweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="You do not have to be an expert."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://perlweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Colin Crain › Perl Weekly Review #111">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Colin Crain › Perl Weekly Review #111</title>
+    <link rel="icon" href="https://perlweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://perlweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://perlweeklychallenge.org/">
+                        <img src="https://perlweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navgation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://perlweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Colin Crain › Perl Weekly Review #111</h2>
+                    <div class="portfolio-meta">
+                        <span>Monday, May 24, 2021</span>|
+                        <span> Tags:
+                            perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://perlweeklychallenge.org/images/blog/p5-review-challenge-111.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <p>( <em>&hellip;continues from <a href="/blog/review-challenge-110/">previous week</a>.</em> )</p>
+<p>Welcome to the Perl review for <strong>Week 111</strong> of the Weekly Challenge! Here we will take the time to discuss the  submissions offered by the team, factor out the common methodologies that came up in those solutions, and highlight some of the unique approaches and unusual code created.</p>
+<hr>
+<h3 id="why-do-we-do-these-challenges">Why do we do these challenges?</h3>
+<p>I suppose any answers to that would be as wide ranging and varied as the people who choose to join the team. One thing is clear: it&rsquo;s not a competition, and there are no judges, even if there is a &ldquo;prize&rdquo; of sorts. About that &ndash; I think of it more as an honorarium periodically awarded to acknowledge the efforts we make towards this strange goal. So there&rsquo;s no determination to find the <em>fastest</em>, or the <em>shortest</em>, or even, in some abstract way, the <em>best</em> way to go about things, although I&rsquo;m certain the individuals have their own aspirations and personal drives. As Perl is such a wonderfully expressive language, this provides quite a bit of fodder to the core idea of TMTOWTDI, producing a gamut of wonderfully varied techniques and solutions.</p>
+<p>Even the tasks themselves are often open to a certain amount of discretionary interpretation. What we end up with is a situation where each participant is producing something in the manner they find the most interesting or satisfying. Some team members focus on carefully crafted complete applications that thoroughly vet input data and handle every use case they can think up. Others chose to apply themselves to the logic of the underlying puzzle and making it work in the most elegant way they can. Some eschew modules they would ordinarily reach for, others embrace them, bringing to light wheels perhaps invented years ago that happen to exactly solve the problem in front of them today.</p>
+<p>I&rsquo;ve been considering this question for some time and have found one binding commonality between all of us solving these challenges each week, in that however we normally live our lives, the task in front of us more than likely has nothing to do with any of that . And I think this has great value. We all do what we do, out in the real world, and hopefully we do it well. The Weekly Challenge provides a opportunity to do something germane to that life yet distinctly different; if we only do the things we already know how to do we only do the same things over and over. This is where the &ldquo;challenge&rdquo; aspect comes into play.</p>
+<p>So we can consider the Weekly Challenge as providing a problem space outside of our comfort zone, as far out from comfort as we wish to take things. From those reaches we can gather and learn things and bring what we want back into our lives. Personally, I think that&rsquo;s its greatest value of all.</p>
+<hr>
+<p>Every week there is an enormous global collective effort made by the team, analyzing and creatively coding the submissions, and that effort deserves credit due. And that&rsquo;s why I&rsquo;m here, to try and figure out how to do that.</p>
+<p>Let&rsquo;s have a look and see what we can find.</p>
+<hr>
+<p><strong><big>For context</big></strong>  before we begin, you may wish to revisit either of the pages for the <a href="/blog/perl-weekly-challenge-111/"><strong>original tasks</strong></a> or the summary <a href="/blog/recap-challenge-111/"><strong>recap</strong></a> of the challenge. But don&rsquo;t worry, the challenges themselves will be briefly summarized, presented below as we progress from task by task. Oh, and one more thing before we get started:</p>
+<h3 id="getting-in-touch-with-us">Getting in Touch with Us</h3>
+<p><a href="mailto:pwc.perfectwave@gmail.com"><img src="/images/blog/Email.svg" height="50" width="50"> Email</a> › Please email me (Colin) with any feedback, notes, clarifications or whatnot about this review.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge"><img src="/images/blog/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request to us for any issues you may find with this page.</p>
+<p><a href="https://twitter.com/perlwchallenge"><img src="/images/blog/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!</p>
+<p>I&rsquo;m always curious as to what the people think of these efforts. Everyone here at the PWC would like to hear any feedback you&rsquo;d like to give.</p>
+<p><strong>So finally, without further ado&hellip;</strong></p>
+<hr>
+<h2 id="---nbsp--nbsp--nbsp---task-1pwc111task1-------nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---task-2pwc111task2---nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---blogspwc111blogs----nbsp--nbsp--nbsp---">•             <a href="#PWC111TASK1">Task 1</a>                 •             <a href="#PWC111TASK2">Task 2</a>             	•             <a href="#PWC111BLOGS">BLOGS</a>              	•</h2>
+<hr>
+<h1 id="PWC111TASK1">TASK 1</h1>
+<h1 id="search-matrix">Search Matrix</h1>
+<p><strong>Submitted by: Mohammad S Anwar</strong><br>
+You are given 5×5 matrix filled with integers such that each row is sorted from left to right and the first integer of each row is greater than the last integer of the previous row.</p>
+<p>Write a script to find a given integer in the matrix using an efficient search algorithm.</p>
+<p><strong>Example</strong></p>
+<pre><code>    Matrix: [  1,  2,  3,  5,  7 ]
+            [  9, 11, 15, 19, 20 ]
+            [ 23, 24, 25, 29, 31 ]
+            [ 32, 33, 39, 40, 42 ]
+            [ 45, 47, 48, 49, 50 ]
+
+    Input:  35
+    Output: 0     since it is missing in the matrix
+
+    Input:  39
+    Output: 1     as it exists in the matrix
+</code></pre><h2 id="about-the-solutions">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/abigail/perl/ch-1.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/dms061/perl/ch-1.pl"><strong>David Schwartz</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/jaldhar-h-vyas/perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/pete-houston/perl/ch-1.pl"><strong>Pete Houston</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/stuart-little/perl/ch-1.pl"><strong>Stuart Little</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/wanderdoc/perl/ch-1.pl"><strong>Wanderdoc</strong></a></p>
+<p>There were 22 submission scripts for the first task this past week. The solutions on those pages were manyfold.</p>
+<p>I think the real crux of this challenge hangs on the practical distinction of &ldquo;an efficient search algorithm&rdquo;. The thing is, for a 5×5 matrix it&rsquo;s not at all obvious what might that might be. A binary search comes to mind, but for such a small data set flattening the matrix to a list and using Perl&rsquo;s highly tuned <code>grep</code> might well win out through simplicity. It doen&rsquo;t, I checked, but that&rsquo;s beside the point.</p>
+<p>This uncertainly was reflected in the wide range of creative approaches and techniques represented. Consequently this posed unprecedented challenges to categorization.</p>
+<p>In the first pass it appears that among the submissions from 22 members of the team we have at least 25 distinct, separate variations on methodology. And we&rsquo;re not counting different implementations, but completely different algorithms using different functions in different ways. James alone gave us 16. Fortunately for me there was some overlap there and with careful consideration I&rsquo;ve honed that total down to 9 basic classes of operation, which is still an unusually large number.</p>
+<p>We&rsquo;ll have a look at each in turn, but I&rsquo;m obviously going to need to keep the overviews more broad than usual. We&rsquo;re burning daylight, best get to it&hellip;</p>
+<h2 id="scan-the-matrix">SCAN THE MATRIX</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a></p>
+<p>Perhaps the simplest plan would be to look at all the values and see it they match. There are, after all, only 25 values and a systematic traversal is very clean.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a></p>
+<p>Dave delivered us a quartet of solutions, but was the only member to provide one using two iterators to traverse every position, so here it is. It&rsquo;s easy, obviously bug-free and quick to bang out, which are all virtues in the right context.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_in_matrix_0</span> ( $matrix, $input ) {
+        <span style="color:#66d9ef">my</span> $hash <span style="color:#f92672">=</span> {};
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $row ( $matrix<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> ) {
+            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $v ( $row<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> ) {
+                <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> $v <span style="color:#f92672">==</span> $input;
+            }
+        }
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+    }
+</code></pre></div><p>It&rsquo;s worth noting that Dave benchmarked his results and this method was <em>not</em> on the bottom of the list. So not the worst plan, all-in-all.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a></p>
+<p>In contrast, we have another version of directly scanning the matrix to see if the value is present. Only this one is performed by the PDL on the underlying C-array, or however exactly that data structure is stored. It&rsquo;s also remarkably simple on the surface.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> PDL;
+    <span style="color:#66d9ef">my</span> $pdl <span style="color:#f92672">=</span> long $m;      <span style="color:#75715e">## $m is our 2-d Perl array as reference</span>
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">scan_matrix</span>($pdl, $value) {
+        any $pdl <span style="color:#f92672">==</span> $value;
+    }
+</code></pre></div><h2 id="hash-the-array-and-check-the-keys">HASH THE ARRAY AND CHECK THE KEYS</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/abigail/perl/ch-1.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/pete-houston/perl/ch-1.pl"><strong>Pete Houston</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a></p>
+<p>A hash lookup occurs in linear time, making the &ldquo;search&rdquo; portion of this technique extremely efficient. Constructing the hash, on the other hand, creates a situation not unlike just straight searching for the target, as far as complexity.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a></p>
+<p>Choroba provides a brace of solutions, one of which is a hash lookup. One notable aspect of this method is the use of hash slices in assignment to very quickly load the hash with undef values, five keys at a time. Assignment to a slice is an awesome tool.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">search_matrix_hash</span> {
+        <span style="color:#66d9ef">my</span> ($matrix, $value) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> %values;
+        @values{ map @$_, @$matrix } <span style="color:#f92672">=</span> ();
+        <span style="color:#66d9ef">return</span> exists $values{$value} ? <span style="color:#ae81ff">1</span> : <span style="color:#ae81ff">0</span>
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/abigail/perl/ch-1.pl"><strong>Abigail</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/abigail/awk/ch-1.awk">Awk</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/abigail/bash/ch-1.sh">Bash</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/abigail/c/ch-1.c">C</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/abigail/lua/ch-1.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/abigail/node/ch-1.js">Node</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/abigail/pascal/ch-1.p">Pascal</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/abigail/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/abigail/ruby/ch-1.rb">Ruby</a></p>
+<p>Here is another characteristically terse example of the technique from Abigail. There needn&rsquo;t be much to it.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> %matrix;
+    @matrix {<span style="color:#f92672">&lt;&gt;</span> <span style="color:#f92672">=~</span><span style="color:#e6db74"> /-?[0-9]+/g</span>} <span style="color:#f92672">=</span> () <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $MATRIX_SIZE;
+
+    chomp, say exists $matrix {$_} <span style="color:#f92672">||</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">while</span> <span style="color:#f92672">&lt;&gt;</span>;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/pete-houston/perl/ch-1.pl"><strong>Pete Houston</strong></a></p>
+<p>Pete chooses to use the hash values to store the location data for the elements, which are optionally reported for a positive outcome.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">if</span> ($ints<span style="color:#f92672">-&gt;</span>{$target}) {
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;1\n&#34;</span>;
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Found at $ints-&gt;{$target}\n&#34;</span> <span style="color:#66d9ef">if</span> $verbose;
+    } <span style="color:#66d9ef">else</span> {
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;0\n&#34;</span>;
+    }
+
+    <span style="color:#f92672">...</span>
+
+    <span style="color:#66d9ef">my</span> %input;
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $r (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">5</span>) {
+    	<span style="color:#66d9ef">my</span> @ints <span style="color:#f92672">=</span> (<span style="color:#e6db74">&lt;$fh&gt;</span> <span style="color:#f92672">=~</span><span style="color:#e6db74"> /(-?[0-9]+)/g</span>);
+    	<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $c (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">5</span>) {
+    		$input{$ints[$c<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]} <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;row $r, column $c&#34;</span>;
+    	}
+    }
+    <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>%input;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/roger-bell-west/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/roger-bell-west/raku/ch-1.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/roger-bell-west/ruby/ch-1.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/roger-bell-west/rust/ch-1.rs">Rust</a></p>
+<p>In a fine example of why categorizing this task was so difficult, Roger&rsquo;s algorithm sequentially looks through the rows first and determines where the target may be located. After this step the row is hashed to perform the final lookup.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">sm</span> {
+      <span style="color:#66d9ef">my</span> ($matrix,$search)<span style="color:#f92672">=</span>@_;
+      <span style="color:#66d9ef">my</span> $f<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+      <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $row (@{$matrix}) {
+        <span style="color:#66d9ef">if</span> ($row<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&lt;=</span> $search) {
+          <span style="color:#66d9ef">if</span> ($row<span style="color:#f92672">-&gt;</span>[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&gt;=</span> $search) {
+            <span style="color:#66d9ef">if</span> (exists {map {$_ <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>} @{$row}}<span style="color:#f92672">-&gt;</span>{$search}) {
+              $f<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
+            }
+            <span style="color:#66d9ef">last</span>;
+          }
+        } <span style="color:#66d9ef">else</span> {
+          <span style="color:#66d9ef">last</span>;
+        }
+      }
+      <span style="color:#66d9ef">return</span> $f;
+    }
+</code></pre></div><p>It does, however, provide a nice segue into our next segment.</p>
+<h2 id="iterate-first-row-wise-then-again-over-the-columns">ITERATE FIRST ROW-WISE THEN AGAIN OVER THE COLUMNS</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/jaldhar-h-vyas/perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/wanderdoc/perl/ch-1.pl"><strong>Wanderdoc</strong></a></p>
+<p>One quality specified in the description is that all the elements are ordered, left-to-right and top-to-bottom. Thus we can use this knowledge to quickly skip over rows to find one possibly containing the target value, and then continue the search only in that row.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/jaldhar-h-vyas/perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/jaldhar-h-vyas/raku/ch-1.raku">Raku</a></p>
+<p>Jaldhar looks to the last value in ascending rows, determining the value must be located in the first row found with a last element greater than the target. From there he iterates across the row and if the value is found he returns 1.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> scalar @matrix <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) {
+        <span style="color:#66d9ef">if</span> ($input <span style="color:#f92672">&lt;=</span>  $matrix[$i][<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]) {
+            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $j (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> scalar @{$matrix[$i]} <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) {
+                <span style="color:#66d9ef">if</span> ($matrix[$i][$j] <span style="color:#f92672">==</span> $input) {
+                    $output <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+                    <span style="color:#66d9ef">last</span>;
+                }
+            }
+            <span style="color:#66d9ef">last</span>;
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/wanderdoc/perl/ch-1.pl"><strong>Wanderdoc</strong></a></p>
+<p>In the first part of the doctor&rsquo;s code, we quickly skip over rows where the lower bound is greater than the target value. The second case handles a search in the last row.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">     <span style="color:#66d9ef">my</span> $row <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+     <span style="color:#66d9ef">my</span> $col <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+     <span style="color:#66d9ef">while</span> ($aoa<span style="color:#f92672">-&gt;</span>[$row][$col] <span style="color:#f92672">&lt;</span> $num )
+     {
+          $row<span style="color:#f92672">++</span>;
+          $row<span style="color:#f92672">--</span> <span style="color:#f92672">and</span> <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $row <span style="color:#f92672">&gt;</span> $#$aoa;
+          <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> $aoa<span style="color:#f92672">-&gt;</span>[$row][$col] <span style="color:#f92672">==</span> $num;
+     }
+
+     <span style="color:#66d9ef">if</span> ( $aoa<span style="color:#f92672">-&gt;</span>[$row][$col] <span style="color:#f92672">&gt;</span> $num )
+     {
+          <span style="color:#66d9ef">while</span> ( $aoa<span style="color:#f92672">-&gt;</span>[$row<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][$col] <span style="color:#f92672">&lt;</span> $num )
+          {
+               $col<span style="color:#f92672">++</span>;
+               <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $col <span style="color:#f92672">&gt;</span> $#{$aoa<span style="color:#f92672">-&gt;</span>[$row<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]};
+          }
+          <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> $aoa<span style="color:#f92672">-&gt;</span>[$row<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][$col] <span style="color:#f92672">==</span> $num;
+     }
+
+     <span style="color:#66d9ef">else</span>
+     {
+          <span style="color:#66d9ef">while</span> ( $aoa<span style="color:#f92672">-&gt;</span>[$row][$col] <span style="color:#f92672">&lt;</span> $num )
+          {
+               $col<span style="color:#f92672">++</span>;
+               <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $col <span style="color:#f92672">&gt;</span> $#{$aoa<span style="color:#f92672">-&gt;</span>[$row<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]};
+          }
+          <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> $aoa<span style="color:#f92672">-&gt;</span>[$row][$col] <span style="color:#f92672">==</span> $num;
+     }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/colin-crain/perl/ch-1.pl"><strong>My Own Solution</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/colin-crain/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/colin-crain/raku/ch-1.raku">Raku</a></p>
+<p>I went into this challenge with a working theory that the computational overhead from a binary search would outweigh the marginal gains in efficiency for a 5×5 matrix. I came up with 4 strategies that I tuned as tightly as I could:</p>
+<ol>
+<li>grep a flat list, for producing minmal code</li>
+<li>iterate over first rows then columns, this solution</li>
+<li>a binary search tuned to home in on the result as quickly as possible</li>
+<li>a simplified binary search dividing the rows search space in half and working out</li>
+</ol>
+<p>This one won hands down. Everything is inlined and designed with logical conditionals that fall through rather than branch. The best efficiency for this task, it turns out, is to not actually execute code. Oh, and I can&rsquo;t remember why I wrote the postfix dereferencing like that. Perhaps I was in a mood.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">search_rows</span> ( $val, $row = 0) {                         <span style="color:#75715e">## [2]</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $val <span style="color:#f92672">&gt;</span> $mat<span style="color:#f92672">-&gt;</span>[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">-&gt;</span>[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+
+        $row<span style="color:#f92672">++</span> <span style="color:#66d9ef">while</span> ($val <span style="color:#f92672">&gt;</span> $mat<span style="color:#f92672">-&gt;</span>[$row]<span style="color:#f92672">-&gt;</span>[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]);
+
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> (    $val <span style="color:#f92672">==</span> $mat<span style="color:#f92672">-&gt;</span>[$row]<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]
+                      <span style="color:#f92672">||</span> $val <span style="color:#f92672">==</span> $mat<span style="color:#f92672">-&gt;</span>[$row]<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]
+                      <span style="color:#f92672">||</span> $val <span style="color:#f92672">==</span> $mat<span style="color:#f92672">-&gt;</span>[$row]<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">2</span>]
+                      <span style="color:#f92672">||</span> $val <span style="color:#f92672">==</span> $mat<span style="color:#f92672">-&gt;</span>[$row]<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">3</span>]
+                      <span style="color:#f92672">||</span> $val <span style="color:#f92672">==</span> $mat<span style="color:#f92672">-&gt;</span>[$row]<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">4</span>] );
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+    }
+</code></pre></div><h2 id="flatten-the-arrry-and-grep">FLATTEN THE ARRRY AND GREP</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a></p>
+<p>The two dimensions of the matrix complicate the search pattern, so several approaches chose to reduce this first to a linear structure that could be more easily processed.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a></p>
+<p>James gave us many solutions that fateful day, but they started with this simple idea. Ok, maybe that&rsquo;s more poetic than true, but here ya go:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">find_val_grep_map</span> {
+      <span style="color:#66d9ef">my</span>($v,$m)<span style="color:#f92672">=</span>@_;
+      <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">+</span> grep { $_ <span style="color:#f92672">==</span> $v } map { @{$_} } @{$m};
+    }
+</code></pre></div><p>Presented for completeness.</p>
+<h2 id="flatten-the-array-and-perform-a-binary-search">FLATTEN THE ARRAY AND PERFORM A BINARY SEARCH</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/stuart-little/perl/ch-1.pl"><strong>Stuart Little</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>A binary search is the go-to algorithm to efficiently search a linear array of sorted values, but the given matrix is multidimensional. Many solutions resolved this conflict by flattening the matrix before performing a binary search.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a></p>
+<p>If the input is on the command line, it&rsquo;s already written as a linear array of sorts, right? So all we need to do is parse it with a regular expression to convert it into a 1-dimensional form. From there low and high bounds are established and the algorithm follows, where the midpoint of the range becomes either the low or high bound of the next search iteration.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> @matrix <span style="color:#f92672">=</span> ( join( <span style="color:#e6db74">&#39; &#39;</span>, @_ ) <span style="color:#f92672">=~</span><span style="color:#e6db74"> /(\d+)/g</span> );
+
+    <span style="color:#66d9ef">my</span> $low    <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">my</span> $high   <span style="color:#f92672">=</span> $#matrix;
+    <span style="color:#66d9ef">my</span> $checks <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">my</span> $found  <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+    <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
+        <span style="color:#f92672">++</span>$checks;
+
+        <span style="color:#75715e"># Find the middle value (round down if not even)</span>
+        <span style="color:#66d9ef">my</span> $index <span style="color:#f92672">=</span> int( ( $low <span style="color:#f92672">+</span> $high ) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span> );
+        <span style="color:#66d9ef">my</span> $value <span style="color:#f92672">=</span> $matrix[$index];
+
+        <span style="color:#66d9ef">if</span> ( $matrix[$index] <span style="color:#f92672">==</span> $target ) {
+            <span style="color:#75715e"># We&#39;ve found the target number</span>
+            $found <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+            <span style="color:#66d9ef">last</span>;
+        }
+        <span style="color:#66d9ef">elsif</span> ( $low <span style="color:#f92672">&gt;=</span> $high ) {
+            <span style="color:#75715e"># The number doesn&#39;t exist</span>
+            <span style="color:#66d9ef">last</span>;
+        }
+        <span style="color:#66d9ef">elsif</span> ( $value <span style="color:#f92672">&gt;</span> $target ) {
+            $high <span style="color:#f92672">=</span> $index <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+        }
+        <span style="color:#66d9ef">else</span> {
+            $low <span style="color:#f92672">=</span> $index <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+        }
+
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/ulrich-rieke/c/ch-1.c">C</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/ulrich-rieke/raku/ch-1.raku">Raku</a></p>
+<p>Ulrich also follows this line of reasoning, accepting five values at a time for input, and then immediately pushing the values to a flattened list. After that, the binary search is straightforward:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $lower <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> ;
+    <span style="color:#66d9ef">my</span> $upper <span style="color:#f92672">=</span> scalar( @matrix ) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ;
+    <span style="color:#66d9ef">my</span> $middle <span style="color:#f92672">=</span> int ( ($lower <span style="color:#f92672">+</span> $upper) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span> ) ;
+    <span style="color:#66d9ef">do</span> {
+      <span style="color:#66d9ef">if</span> ( $number <span style="color:#f92672">&gt;</span> $matrix[ $middle ] ) { <span style="color:#75715e">#search the right half</span>
+          $lower <span style="color:#f92672">=</span> $middle ;
+      }
+      <span style="color:#66d9ef">if</span> ( $number <span style="color:#f92672">&lt;</span> $matrix[ $middle ] ) {<span style="color:#75715e">#search the left half</span>
+          $upper <span style="color:#f92672">=</span> $middle ;
+      }
+      <span style="color:#66d9ef">if</span> ( $number <span style="color:#f92672">!=</span> $matrix[ $middle ] ) {<span style="color:#75715e">#we might have found the number!</span>
+          $middle <span style="color:#f92672">=</span> int ( ($lower <span style="color:#f92672">+</span> $upper) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span> ) ;
+      }
+    } <span style="color:#66d9ef">until</span> ( $number <span style="color:#f92672">==</span> $matrix[ $middle ] <span style="color:#f92672">or</span> ( $upper <span style="color:#f92672">-</span> $lower) <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> ) ;
+    <span style="color:#66d9ef">if</span> ( $number <span style="color:#f92672">==</span> $matrix[ $middle ] ) {
+      say <span style="color:#e6db74">&#34;1 as it exists in the matrix&#34;</span> ;
+    }
+    <span style="color:#66d9ef">if</span> ( ($upper <span style="color:#f92672">-</span> $lower) <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> ) {
+      <span style="color:#66d9ef">if</span> ( $matrix[ $lower ] <span style="color:#f92672">==</span> $number <span style="color:#f92672">or</span> $matrix[ $upper ] <span style="color:#f92672">==</span> $number ) {
+          say <span style="color:#e6db74">&#34;1 as it exists in the matrix&#34;</span> ;
+      }
+      <span style="color:#66d9ef">else</span> {
+          say <span style="color:#e6db74">&#34;0 since it is missing in the matrix&#34;</span> ;
+      }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a></p>
+<p>There&rsquo;s nothing, however, that mandates we roll our own search routine. Niels reaches out to <code>List::BinarySearch</code> for its <code>binsearch_pos()</code> routine, providing a very compact answer.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> List::BinarySearch <span style="color:#e6db74">qw(binsearch_pos)</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">searchMatrix</span>(\@$) {
+      <span style="color:#66d9ef">my</span> ($arM,$i) <span style="color:#f92672">=</span> @_;
+
+      <span style="color:#75715e"># Flatten matrix to ordered list</span>
+      <span style="color:#66d9ef">my</span> @l <span style="color:#f92672">=</span> map {@$_} @$arM;
+
+      <span style="color:#66d9ef">return</span> ($l[ binsearch_pos {$a<span style="color:#e6db74">&lt;=&gt;</span>$b} $i, @l ] <span style="color:#f92672">==</span> $i ? <span style="color:#ae81ff">1</span> : <span style="color:#ae81ff">0</span>);
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/stuart-little/perl/ch-1.pl"><strong>Stuart Little</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/stuart-little/haskell/ch-1.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/stuart-little/node/ch-1.js">Node</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/stuart-little/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/stuart-little/raku/ch-1.p6">Raku</a></p>
+<p>Stuart too uses a module, this time <code>List::AllUtils</code> with its <code>bsearchidx()</code> routine. To do the flattening, there&rsquo;s a nice use of <code>reduce()</code> as well, from the same package.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">searchMatrix</span>($needle,$mat) {
+        <span style="color:#66d9ef">my</span> $flat <span style="color:#f92672">=</span> reduce {<span style="color:#66d9ef">my</span> @a <span style="color:#f92672">=</span> (@$a, @$b); <span style="color:#f92672">\</span>@a} @$mat;
+        <span style="color:#66d9ef">return</span> ((bsearchidx {$_ <span style="color:#f92672">-</span> $needle} @$flat) <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>) ? (<span style="color:#ae81ff">1</span>) : (<span style="color:#ae81ff">0</span>);
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a></p>
+<p>CY has a unique take on her binary search implementation. The dimensions of the matrix are quite specifically fixed in the challenge, so we can start with an unrolled list of halving values: +/- 12,6,3,2,1,1 that can be used to quickly calculate the amount to shrink the search space. It&rsquo;s a novel approach and we&rsquo;ll see further specific optimizations geared toward the 5×5 dimensions given as we look at the examples ahead.</p>
+<p>The algorithm ends up remarkably compact, but it&rsquo;s still a binary search.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> @list25;
+    push @list25, $_<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> foreach (@{$matrix});
+
+    <span style="color:#66d9ef">my</span> @my_seq <span style="color:#f92672">=</span> (<span style="color:#ae81ff">12</span>,<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>);
+    <span style="color:#66d9ef">my</span> $h <span style="color:#f92672">=</span> shift @my_seq;
+
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; $i <span style="color:#f92672">&lt;</span> scalar @my_seq ;$i<span style="color:#f92672">++</span>) {
+        <span style="color:#66d9ef">if</span> ($target <span style="color:#f92672">&gt;</span> $list25[$h]) {
+            $h <span style="color:#f92672">+=</span> $my_seq[$i];
+        } <span style="color:#66d9ef">elsif</span> ($target <span style="color:#f92672">&lt;</span> $list25[$h]) {
+            $h <span style="color:#f92672">-=</span> $my_seq[$i];
+        } <span style="color:#66d9ef">else</span> {               <span style="color:#75715e"># $target == $list25[$h]</span>
+            <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;1\n&#34;</span>;
+            exit;
+        }
+    }
+</code></pre></div><h2 id="a-binary-search-over-the-rows-instead">A BINARY SEARCH OVER THE ROWS INSTEAD</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a></p>
+<p>A binary search will locate a specific value in a 5-element list in a maximum of 3 tries, with an average of 2.2, a marked improvement over a maximum 5 and an average of 3. There&rsquo;s considerable overhead in flattening the list, so why not apply the improved search to the rows?</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a></p>
+<p>In the classic binary search lower and upper bounds are established on the search space.
+The search space is bisected, and depending on the value at the midpoint, the search space is reduced to either the space above the bisection or the space below it.</p>
+<p>Here Mohammad applies this search to each row in turn, iterating upwards through the rows until the lower bound of the row exceeds the target. This locates the last row the target may occupy, and if the target is not yet found it will not be.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $row (@matrix) {
+        ($row<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&gt;</span> $search) <span style="color:#f92672">and</span> <span style="color:#66d9ef">last</span>;
+        $found <span style="color:#f92672">=</span> binary_search($row, $search);
+        $found <span style="color:#f92672">and</span> <span style="color:#66d9ef">last</span>;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">binary_search</span> {
+        <span style="color:#66d9ef">my</span> ($row, $target) <span style="color:#f92672">=</span> @_;
+
+        <span style="color:#66d9ef">my</span> $l <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">my</span> $r <span style="color:#f92672">=</span> @$row <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">while</span> ($l <span style="color:#f92672">&lt;=</span> $r) {
+            <span style="color:#66d9ef">my</span> $m <span style="color:#f92672">=</span> floor(( $l <span style="color:#f92672">+</span> $r ) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>);
+            <span style="color:#66d9ef">if</span> ($row<span style="color:#f92672">-&gt;</span>[$m] <span style="color:#f92672">&lt;</span> $target) {
+                $l <span style="color:#f92672">=</span> $m <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+            }
+            <span style="color:#66d9ef">elsif</span> ($row<span style="color:#f92672">-&gt;</span>[$m] <span style="color:#f92672">&gt;</span> $target) {
+                $r <span style="color:#f92672">=</span> $m <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+            }
+            <span style="color:#66d9ef">else</span> {
+                <span style="color:#66d9ef">return</span> $m;
+            }
+        }
+
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+    }
+</code></pre></div><h2 id="binary-search-on-rows-then-binary-search-on-columns">BINARY SEARCH ON ROWS THEN BINARY SEARCH ON COLUMNS</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/dms061/perl/ch-1.pl"><strong>David Schwartz</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a></p>
+<p>A quick binary search algorithm is easy to implement, so we can simply make two searches, on to find the row potentially holding the target, and another second search to look within the row.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/dms061/perl/ch-1.pl"><strong>David Schwartz</strong></a></p>
+<p>David presents us with an uncommon and very perlish way to do a binary search, using array slices. Array slices may not be unique to perl, but they do provide a very clean way to get the job done. Here a pair of functions first hones down the search space to a specific row, then refines that row to a specific value, if found.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">binary_search</span> {
+        <span style="color:#66d9ef">use</span> integer;
+        <span style="color:#75715e"># 2 args, 1 scalar and an array</span>
+        <span style="color:#75715e"># however, perl puts them all into 1 array, @_</span>
+        <span style="color:#75715e"># so we shift the value param off</span>
+        <span style="color:#75715e"># and treat @_ as the array</span>
+        <span style="color:#75715e">#my $val = shift;</span>
+        <span style="color:#66d9ef">my</span> ($val, @arr) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> @arr <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">if</span>(@arr <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>){
+            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> $arr[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">==</span> $val;
+            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+        }
+        <span style="color:#66d9ef">my</span> $mid <span style="color:#f92672">=</span> $#arr<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>;
+        <span style="color:#66d9ef">return</span> binary_search ($val, @arr[<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$mid<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]) <span style="color:#66d9ef">if</span> $val <span style="color:#f92672">&lt;</span> $arr[$mid];
+        <span style="color:#66d9ef">return</span> binary_search ($val, @arr[$mid<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$#arr]) <span style="color:#66d9ef">if</span> $val <span style="color:#f92672">&gt;</span> $arr[$mid];
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">binary_search_2d</span> {
+        <span style="color:#66d9ef">use</span> integer;
+        <span style="color:#75715e"># 2 args, val to search for and array of refs</span>
+        <span style="color:#66d9ef">my</span> ($val, @arrs) <span style="color:#f92672">=</span> @_;
+
+        <span style="color:#75715e"># no empty array? Value can&#39;t be present</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> @arrs <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+
+        <span style="color:#75715e">#find the middle array (will work if there is only 1 array present)</span>
+        <span style="color:#66d9ef">my</span> $mid <span style="color:#f92672">=</span> $#arrs<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>;
+        <span style="color:#75715e">#extract the array for easier usage</span>
+        <span style="color:#66d9ef">my</span> @mid_arr <span style="color:#f92672">=</span> @{$arrs[$mid]};
+        <span style="color:#75715e"># no elts in middle array, ret 0</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> @mid_arr <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#75715e"># check if $val is out of range, we can&#39;t binary search if it isn&#39;t there</span>
+        <span style="color:#66d9ef">if</span>($val <span style="color:#f92672">&lt;</span> $mid_arr[<span style="color:#ae81ff">0</span>]){
+            <span style="color:#66d9ef">return</span> binary_search_2d($val, @arrs[<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$mid<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]);
+        }<span style="color:#66d9ef">elsif</span>($val <span style="color:#f92672">&gt;</span> $mid_arr[$#mid_arr]){
+            <span style="color:#66d9ef">return</span> binary_search_2d($val, @arrs[$mid<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$#arrs]);
+        }
+        <span style="color:#75715e"># $val may be in array, so we can search for it now</span>
+        <span style="color:#66d9ef">return</span> binary_search $val, @mid_arr;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a></p>
+<p>Adam also uses array slices to perform his search. In the first phase the middle row is selected, and, depending on the relationship between the first element in the row and the target value, the routine is called recursively with either the array slice for rows above the value or the rows below. Once the correct row is located another similar routine, <code>row_search()</code>, recurses with slices of the row in question. Here&rsquo;s <code>matrix_search()</code>, the first pass over the data:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">matrix_search</span>{
+        <span style="color:#66d9ef">my</span>($matrix, $search) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">unless</span>(@{$matrix} <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>){
+            <span style="color:#66d9ef">my</span> $half <span style="color:#f92672">=</span> int(@{$matrix} <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>);
+            <span style="color:#66d9ef">if</span>($matrix<span style="color:#f92672">-&gt;</span>[$half]<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&gt;</span> $search){
+                <span style="color:#66d9ef">my</span> @matrix_reduced <span style="color:#f92672">=</span> @{$matrix}[<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $half <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>];
+                matrix_search(<span style="color:#f92672">\</span>@matrix_reduced, $search);
+            }
+            <span style="color:#66d9ef">elsif</span>($matrix<span style="color:#f92672">-&gt;</span>[$half]<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&lt;</span> $search){
+                <span style="color:#66d9ef">my</span> @matrix_reduced <span style="color:#f92672">=</span> @{$matrix}[$half <span style="color:#f92672">..</span> @{$matrix} <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>];
+                matrix_search(<span style="color:#f92672">\</span>@matrix_reduced, $search);
+            }
+            <span style="color:#66d9ef">elsif</span>($matrix<span style="color:#f92672">-&gt;</span>[$half]<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">==</span> $search){
+                <span style="color:#66d9ef">return</span> true;
+            }
+        }
+        <span style="color:#66d9ef">else</span>{
+            <span style="color:#66d9ef">return</span> row_search($matrix<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>], $search);
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a></p>
+<p>Do you enjoy listening to <a href="https://www.youtube.com/watch?v=q2DyPVDIpTM">static on the radio</a>? I kid, I kid. But then again, I&rsquo;m sure some of you might be shocked by some of the <em>other</em> music I listen to, which I affectionately call &ldquo;horrible noise&rdquo;. My own friends cringe in horror at some of it. I am nothing if not a man of enigmatic tastes, and I love the manyfold efforts of James to nail down the meaning of &ldquo;efficiency&rdquo; in the context of this challenge.</p>
+<p>This is one of the faster ones, albeit a bit&hellip; noisy. Staticky, you might say. See if you can spot the binary searches.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">find_val_general_dnf</span> {
+      <span style="color:#66d9ef">my</span>($v,$m)<span style="color:#f92672">=</span>@_;
+      <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span>$v<span style="color:#e6db74">&lt;$m-&gt;</span>[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>]<span style="color:#f92672">||</span>$v<span style="color:#f92672">&gt;</span>$m<span style="color:#f92672">-&gt;</span>[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+      <span style="color:#66d9ef">my</span>($n,$l,$r)<span style="color:#f92672">=</span>(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,@{$m}<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
+      $v<span style="color:#f92672">&gt;</span>$m<span style="color:#f92672">-&gt;</span>[$n<span style="color:#f92672">=</span>($l<span style="color:#f92672">+</span>$r)<span style="color:#f92672">&gt;&gt;</span><span style="color:#ae81ff">1</span>][<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]?($l<span style="color:#f92672">=</span>$n<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>):($r<span style="color:#f92672">=</span>$n)<span style="color:#66d9ef">while</span>$r<span style="color:#f92672">!=</span>$l;
+      ($l,$r)<span style="color:#f92672">=</span>(<span style="color:#ae81ff">0</span>,@{$m<span style="color:#f92672">=</span>$m<span style="color:#f92672">-&gt;</span>[$l]}<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
+      ($v<span style="color:#f92672">==</span>$m<span style="color:#f92672">-&gt;</span>[$n<span style="color:#f92672">=</span>($l<span style="color:#f92672">+</span>$r)<span style="color:#f92672">&gt;&gt;</span><span style="color:#ae81ff">1</span>])?(<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>):$v<span style="color:#f92672">&gt;</span>$m<span style="color:#f92672">-&gt;</span>[$n]?($l<span style="color:#f92672">=</span>$n<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>):($r<span style="color:#f92672">=</span>$n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)<span style="color:#66d9ef">while</span>$l<span style="color:#f92672">&lt;=</span>$r;
+      <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a></p>
+<p>After James, we revisit Choroba&rsquo;s submissions with this pair of easy-on-the-eyes binary searches:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">search_matrix_bin</span> {
+        <span style="color:#66d9ef">my</span> ($matrix, $value) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> ($y0, $y1) <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>, $#$matrix);
+
+        <span style="color:#66d9ef">while</span> ($y0 <span style="color:#f92672">&lt;</span> $y1) {
+            <span style="color:#66d9ef">my</span> $y <span style="color:#f92672">=</span> int(($y0 <span style="color:#f92672">+</span> $y1) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>);
+            <span style="color:#66d9ef">if</span> ($matrix<span style="color:#f92672">-&gt;</span>[$y][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&gt;</span> $value) {
+                $y1 <span style="color:#f92672">=</span> $y <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+            } <span style="color:#66d9ef">elsif</span> ($matrix<span style="color:#f92672">-&gt;</span>[$y][<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;</span> $value) {
+                $y0 <span style="color:#f92672">=</span> $y <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+            } <span style="color:#66d9ef">else</span> {
+                $y1 <span style="color:#f92672">=</span> $y;
+            }
+        }
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $y1 <span style="color:#f92672">&lt;</span> $y0;
+
+        <span style="color:#66d9ef">my</span> ($x0, $x1) <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>, $#{ $matrix<span style="color:#f92672">-&gt;</span>[$y0] });
+        <span style="color:#66d9ef">while</span> ($x0 <span style="color:#f92672">&lt;</span> $x1) {
+            <span style="color:#66d9ef">my</span> $x <span style="color:#f92672">=</span> int(($x0 <span style="color:#f92672">+</span> $x1) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>);
+            <span style="color:#66d9ef">if</span> ($matrix<span style="color:#f92672">-&gt;</span>[$y0][$x] <span style="color:#f92672">&gt;</span> $value) {
+                $x1 <span style="color:#f92672">=</span> $x <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+
+            } <span style="color:#66d9ef">elsif</span> ($matrix<span style="color:#f92672">-&gt;</span>[$y0][$x] <span style="color:#f92672">&lt;</span> $value) {
+                $x0 <span style="color:#f92672">=</span> $x <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+
+            } <span style="color:#66d9ef">else</span> {
+                $x1 <span style="color:#f92672">=</span> $x;
+            }
+        }
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $x1 <span style="color:#f92672">&lt;</span> $x0;
+
+        <span style="color:#66d9ef">return</span> $matrix<span style="color:#f92672">-&gt;</span>[$y0][$x0] <span style="color:#f92672">==</span> $value ? <span style="color:#ae81ff">1</span> : <span style="color:#ae81ff">0</span>;
+    }
+</code></pre></div><h2 id="halve-and-move-in-one-direction">HALVE AND MOVE IN ONE DIRECTION</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a></p>
+<p>In a binary search the idea is to halve the remaining search space at every iteration. In a generalized sense this is an excellent strategy for searching a sorted list of values, but for a 5-element list the idea of repeated halving is overkill. To explain: if we start at the known half-way point, position 3, we can determine whether the value(s) found is less than, equal to, or greater than the target. If less than, there is literally a 50-50 chance the target will be at either position 1 or 2, and if that fails one last check determines whether it is at the remaining position or not present at all. The point here is that after the first halving, there is no gain in further mathematically calculating a midpoint — simply picking one of the values is just as good. So a code-simplified strategy is to start in the middle and if necessary progress either up of down for the next one or two steps.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a></p>
+<p>We present another masterwork from James, this one a series of ternary fall-throughs that first make the up-to-three comparisons to determine the row and then the apply matching logic to the columns.  I think this one is a little easier to follow than the previous example.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">find_val_dnf_optimal</span> {
+      <span style="color:#66d9ef">my</span>($v,$m) <span style="color:#f92672">=</span> @_;
+      <span style="color:#66d9ef">my</span> $t;
+      <span style="color:#66d9ef">return</span> $v <span style="color:#f92672">&lt;</span> $m<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">||</span> $v <span style="color:#f92672">&gt;</span> $m<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">4</span>][<span style="color:#ae81ff">4</span>]
+           ? <span style="color:#ae81ff">0</span>
+           : ( $t <span style="color:#f92672">=</span> $m<span style="color:#f92672">-&gt;</span>[ $v <span style="color:#f92672">&lt;</span> $m<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">3</span>][<span style="color:#ae81ff">0</span>]
+               ? ( $v <span style="color:#f92672">&lt;</span> $m<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">0</span>] ? <span style="color:#ae81ff">0</span> : $v <span style="color:#f92672">&lt;</span> $m<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">2</span>][<span style="color:#ae81ff">0</span>] ? <span style="color:#ae81ff">1</span> : <span style="color:#ae81ff">2</span> )
+               : ( $v <span style="color:#f92672">&lt;</span> $m<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">4</span>][<span style="color:#ae81ff">0</span>] ? <span style="color:#ae81ff">3</span> : <span style="color:#ae81ff">4</span>                       )
+             ] ) <span style="color:#f92672">&amp;&amp;</span>
+             ( <span style="color:#66d9ef">return</span> $v <span style="color:#f92672">==</span> $t<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">2</span>] ? <span style="color:#ae81ff">1</span> :
+                      $v <span style="color:#f92672">&lt;</span> $t<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">2</span>] ?
+                      ( $v <span style="color:#f92672">==</span> $t<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">||</span> $v <span style="color:#f92672">==</span> $t<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] ? <span style="color:#ae81ff">1</span> : <span style="color:#ae81ff">0</span>) :
+                      ( $v <span style="color:#f92672">==</span> $t<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">4</span>] <span style="color:#f92672">||</span> $v <span style="color:#f92672">==</span> $t<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">3</span>] ? <span style="color:#ae81ff">1</span> : <span style="color:#ae81ff">0</span>) );
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/colin-crain/perl/ch-1.pl"><strong>My Own Solution</strong></a></p>
+<p>I was going to include my fourth solution, where instead of quickly iterating up the rows from index <code>[0]</code> I start at <code>[2]</code> and branch to either moving upward or downward to find the correct row. Suffice to say it didn&rsquo;t catch the frontrunner I shared above. Rather than show that one, then, here&rsquo;s a slightly different way I came up with to try and out-think the problem.</p>
+<p>I figured that because of its use in <code>sort</code>, the spaceship operator, <code>&lt;=&gt;</code>, would by necessity be as fast as possible. So I came up with this method of adding the operations of the target applied to the first and last elements of the target row. Adding the two operations give 5 possible results: <code>{-2,-1,0,1,2}</code> that determine whether the target is above the line, below the line, in the line or equal to one of the two end values. I made a state table to figure out the logic but this method allows the determination to be made with the minimum number of cycles.</p>
+<p>The overhead proved too much against the savings, however, and although it is remarkably fast it could not compete with the hot-rodded winning routine.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">search_divide</span> ( $val, $row = 2) {                       <span style="color:#75715e">## [3]</span>
+        <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
+            $_ <span style="color:#f92672">=</span> ($val <span style="color:#e6db74">&lt;=&gt;</span> $mat<span style="color:#f92672">-&gt;</span>[$row]<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]) <span style="color:#f92672">+</span> ($val <span style="color:#e6db74">&lt;=&gt;</span> $mat<span style="color:#f92672">-&gt;</span>[$row]<span style="color:#f92672">-&gt;</span>[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]);
+            <span style="color:#66d9ef">if</span> ($_ <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>) {
+                <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> ($row <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) <span style="color:#f92672">or</span> ($val <span style="color:#f92672">&gt;</span> $mat<span style="color:#f92672">-&gt;</span>[$row<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">-&gt;</span>[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]);
+                $row<span style="color:#f92672">--</span>;
+            }
+            <span style="color:#66d9ef">elsif</span> ($_ <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span>) {
+                <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> ($row <span style="color:#f92672">==</span> $mat<span style="color:#f92672">-&gt;</span>$#<span style="color:#960050;background-color:#1e0010">*</span>) <span style="color:#f92672">or</span> ($val <span style="color:#f92672">&lt;</span> $mat<span style="color:#f92672">-&gt;</span>[$row<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]);
+                $row<span style="color:#f92672">++</span>;
+            }
+            <span style="color:#66d9ef">elsif</span> ($_) {
+                <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+            }
+            <span style="color:#66d9ef">else</span> {
+                <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> (   $val <span style="color:#f92672">==</span> $mat<span style="color:#f92672">-&gt;</span>[$row]<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]
+                             <span style="color:#f92672">||</span> $val <span style="color:#f92672">==</span> $mat<span style="color:#f92672">-&gt;</span>[$row]<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">2</span>]
+                             <span style="color:#f92672">||</span> $val <span style="color:#f92672">==</span> $mat<span style="color:#f92672">-&gt;</span>[$row]<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">3</span>] );
+                <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+            }
+        }
+    }
+</code></pre></div><h2 id="binary-search-on-a-1d-array-mapped-to-2d">BINARY SEARCH ON A 1D ARRAY MAPPED TO 2D</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/abigail/perl/ch-1.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p>A binary search algorithm doesn&rsquo;t easily translate into multiple dimensions, but it doesn&rsquo;t have to, either. Nor are we required to flatten the array with the overhead that requires. By creating a phantom array with a bijective 1:1 mapping to the elements in the 2-d matrix we can preform a normal binary search pattern on that, using the values from the matrix to make the halving decisions. The phantom array, being a regular sequence of indices, does not necessarily even need to exist, the range being just placeholders for the index pairs in the real matrix.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/laurent-rosenfeld/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/laurent-rosenfeld/raku/ch-1.raku">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/laurent-rosenfeld/scala/ch-1.scala">Scala</a></p>
+<p>Laurent states that he perceived an unspoken imperative to construct a binary search over the data. Ok then, so be it.</p>
+<p>He approached the task by starting with a search range with a lower bound of 0 and an upper of 24, indicating the indices in a virtual list to be searched. He then offers a routine, <code>A2AoA</code>, that maps one of these values to the index pairs for 25 elements of the given matrix. A binary search is implemented, with the routine providing the elements in the matrix to make the necessary comparisons. This is a very clever way to indirectly perform a proper binary search over the ordered data without flattening the entire matrix.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">A2AoA</span> {
+        <span style="color:#66d9ef">my</span> $index <span style="color:#f92672">=</span> shift;
+        <span style="color:#66d9ef">my</span> ($i, $j) <span style="color:#f92672">=</span> (int $index <span style="color:#f92672">/</span> <span style="color:#ae81ff">5</span>, $index % 5);
+    }
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">bin_search</span> {
+        <span style="color:#66d9ef">my</span> $in <span style="color:#f92672">=</span> shift;
+        <span style="color:#66d9ef">my</span> ($min, $max) <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">24</span>);
+        <span style="color:#66d9ef">while</span> ($max <span style="color:#f92672">&gt;</span> $min) {
+            <span style="color:#66d9ef">my</span> $pivot <span style="color:#f92672">=</span>  int (($max <span style="color:#f92672">+</span> $min) <span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>);
+            <span style="color:#66d9ef">my</span> ($i, $j) <span style="color:#f92672">=</span> A2AoA $pivot;
+            <span style="color:#66d9ef">my</span> $val <span style="color:#f92672">=</span> $matrix[$i][$j];
+            <span style="color:#75715e"># say &#34;val = $val, $i, $j&#34;;</span>
+            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> $val <span style="color:#f92672">==</span> $in;
+            <span style="color:#66d9ef">if</span> ($in <span style="color:#f92672">&gt;</span> $val) {
+                $min <span style="color:#f92672">=</span> $pivot <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+            } <span style="color:#66d9ef">else</span> {
+                $max <span style="color:#f92672">=</span> $pivot;
+            }
+        }
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a></p>
+<p>Flavio directly inlines his cross-reference mapping, gathering the values of the matrix indices from the virtual range midpoints directly within the loop.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">search_matrix</span> ($M, $x) {
+       <span style="color:#66d9ef">my</span> $n_rows <span style="color:#f92672">=</span> $M<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>      or <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+       <span style="color:#66d9ef">my</span> $n_cols <span style="color:#f92672">=</span> $M<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> or <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+       <span style="color:#66d9ef">my</span> ($lo, $hi) <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>, $n_rows <span style="color:#f92672">*</span> $n_cols <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>);
+       <span style="color:#66d9ef">while</span> (<span style="color:#e6db74">&#39;necessary&#39;</span>) {
+          <span style="color:#66d9ef">my</span> $mid <span style="color:#f92672">=</span> int(($lo <span style="color:#f92672">+</span> $hi) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>);
+          <span style="color:#66d9ef">my</span> $v   <span style="color:#f92672">=</span> $M<span style="color:#f92672">-&gt;</span>[$mid <span style="color:#f92672">/</span> $n_cols][$mid % <span style="color:#960050;background-color:#1e0010">$</span>n_cols];
+          <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> $v <span style="color:#f92672">==</span> $x;
+          <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $lo <span style="color:#f92672">==</span> $hi;
+          <span style="color:#66d9ef">if</span> ($v <span style="color:#f92672">&lt;</span> $x) { $lo <span style="color:#f92672">=</span> ($mid <span style="color:#f92672">==</span> $lo) ? $lo <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> : $mid }
+          <span style="color:#66d9ef">else</span>         { $hi <span style="color:#f92672">=</span> $mid }
+       } <span style="color:#75715e">## end while (&#39;necessary&#39;)</span>
+    } <span style="color:#75715e">## end sub search_matrix</span>
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a></p>
+<p>Jorg returns to offer an alternative to scanning the matrix as a PDL object. The code itself is tight, but his lengthy commentary bears repeating here. The <code>v()</code> routine is a fascinating way to go about things I&rsquo;ve not run across before.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># Perform a binary search within the matrix.  It would be pointless to</span>
+    <span style="color:#75715e"># convert the matrix into a 1-d array as this operation has a complexity</span>
+    <span style="color:#75715e"># of O(n**2), whereas a binary search may be performed in O(log n).</span>
+    <span style="color:#75715e"># Therefore List::MoreUtils::bsearch is of no use for this task and we</span>
+    <span style="color:#75715e"># need to implement our own binary search.</span>
+    <span style="color:#75715e"># It needs large matrices for the binary search to become faster than a</span>
+    <span style="color:#75715e"># PDL scan.  While for the given 5x5 matrix there is a tie, the scan</span>
+    <span style="color:#75715e"># is faster until the size goes up to 100x100.</span>
+    <span style="color:#75715e">#</span>
+    <span style="color:#75715e"># $matrix: the matrix as an AoA reference</span>
+    <span style="color:#75715e"># $low: lower linear search index, inclusive</span>
+    <span style="color:#75715e"># $high: higher linear search index, exclusive</span>
+    <span style="color:#75715e"># $value: search value</span>
+    <span style="color:#75715e"># The caller&#39;s $_[1] and $_[2] have to be writable and will be modified!</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">bsearch_matrix</span> ($matrix, $low, $high, $value) {
+        <span style="color:#66d9ef">my</span> $low_val <span style="color:#f92672">=</span> get_at($matrix, $low);
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> $value <span style="color:#f92672">==</span> $low_val;
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $value <span style="color:#f92672">&lt;</span> $low_val;
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $low <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">==</span> $high;
+
+        <span style="color:#75715e"># Split the search interval and select the appropriate part.</span>
+        <span style="color:#66d9ef">my</span> $mean <span style="color:#f92672">=</span> int(($low <span style="color:#f92672">+</span> $high) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>);
+        @_[<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>] <span style="color:#f92672">=</span> $value <span style="color:#f92672">&lt;</span> get_at($matrix, $mean) ?
+            ($low, $mean) : ($mean, $high);
+
+        <span style="color:#75715e"># Recursion without stack growth.</span>
+        goto <span style="color:#f92672">&amp;</span>{(__SUB__)};
+    }
+
+
+    <span style="color:#75715e"># Retrieve matrix element by linear index.</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get_at</span> ($m, $l) {
+        $m<span style="color:#f92672">-&gt;</span>[$l <span style="color:#f92672">/</span> @$m][$l % <span style="color:#960050;background-color:#1e0010">@$</span>m];
+    }
+
+    <span style="color:#75715e"># Turn the argument into an independent, writable value.</span>
+    <span style="color:#75715e"># Enforces call-by-value when applied to a subroutine parameter.</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">v</span> ($v) {$v}
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/abigail/perl/ch-1.pl"><strong>Abigail</strong></a></p>
+<p>As an alternative to the hashing solution given above, Abigail also submits this version of a binary search mapped to a 2-d matrix. It&rsquo;s clean and remarkably compact, as we&rsquo;ve come to expect from them.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">bsearch</span> ($matrix, $target) {
+        <span style="color:#66d9ef">my</span> ($min, $max) <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>, $MATRIX_SIZE <span style="color:#f92672">*</span> $MATRIX_SIZE);
+        <span style="color:#66d9ef">while</span> ($min <span style="color:#f92672">&lt;</span> $max) {
+            <span style="color:#66d9ef">use</span> integer;
+            <span style="color:#66d9ef">my</span> $mid <span style="color:#f92672">=</span> ($min <span style="color:#f92672">+</span> $max) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>;
+            <span style="color:#75715e">#</span>
+            <span style="color:#75715e"># To map a 1-d coordinate c to a 2-d pair x, y, we use</span>
+            <span style="color:#75715e"># x = floor (c / size), y = c % size.</span>
+            <span style="color:#75715e">#</span>
+            <span style="color:#66d9ef">my</span> $cmp <span style="color:#f92672">=</span> $$matrix [$mid <span style="color:#f92672">/</span> $MATRIX_SIZE]
+                               [$mid % <span style="color:#960050;background-color:#1e0010">$</span>MATRIX_SIZE] <span style="color:#e6db74">&lt;=&gt;</span> $target;
+            <span style="color:#66d9ef">if</span>    ($cmp <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>) {$min <span style="color:#f92672">=</span> $mid <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>}
+            <span style="color:#66d9ef">elsif</span> ($cmp <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {$max <span style="color:#f92672">=</span> $mid}
+            <span style="color:#66d9ef">else</span>  {<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>}
+        }
+        <span style="color:#66d9ef">return</span> (<span style="color:#ae81ff">0</span>)
+    }
+
+    <span style="color:#75715e">#</span>
+    <span style="color:#75715e"># Read in the matrix</span>
+    <span style="color:#75715e">#</span>
+    <span style="color:#66d9ef">my</span> $matrix <span style="color:#f92672">=</span> [map {[<span style="color:#f92672">&lt;&gt;</span> <span style="color:#f92672">=~</span><span style="color:#e6db74"> /-?[0-9]+/g</span>]} <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $MATRIX_SIZE];
+</code></pre></div><hr>
+<h1 id="PWC111TASK2">TASK 2</h1>
+<h1 id="ordered-letters">Ordered Letters</h1>
+<p><em>Submitted by: E. Choroba</em><br></p>
+<p>Given a word, you can sort its letters alphabetically (case insensitive). For example, “beekeeper” becomes “beeeeekpr” and “dictionary” becomes “acdiinorty”.</p>
+<p>Write a script to find the longest English words that don’t change when their letters are sorted.</p>
+<h2 id="about-the-solutions-1">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/abigail/perl/ch-2.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/dms061/perl/ch-2.pl"><strong>David Schwartz</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/jaldhar-h-vyas/perl/ch-2.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/mohammad-anwar/perl/ch-2.pl"><strong>Mohammad S Anwar</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/perlboy1967/perl/ch-2.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/pete-houston/perl/ch-2.pl"><strong>Pete Houston</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/stuart-little/perl/ch-2.pl"><strong>Stuart Little</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/wanderdoc/perl/ch-2.pl"><strong>Wanderdoc</strong></a></p>
+<p>There were only 19 working submissions for the second task this past week.</p>
+<p>When looking for words that don&rsquo;t change their letters when sorted, the tautological method is to sort them and see whether they change their letters. After that its a matter of bookkeeping, or beegikknoop if you prefer, to compile a list of the longest specimens. This proved to be the most common approach taken. As the dictionaries used were quite large, upwards of 235,000 words, this on the face of it requires quite a bit of sorting. However being realistic, on modern machines this process was more than adequate to find the requested word or words in a few seconds. On the subject of the dictionaries used, it is noted that most systems these days include a wordlist as a resource for spellcheckers and such, so a default was usually provided, although where exactly that was linked and the file referenced obviously varied somewhat. In a multilingual, global group we can hardly expect people to have such a file preinstalled. Consequently the actual words found varied a bit as well. The eight-letter word &ldquo;aegilops&rdquo;, for example, seems to be a somewhat nonstandard variant spelling for the more-common &ldquo;egilops&rdquo;, or &ldquo;goat-weed&rdquo;, and only showed up in a the most exhaustive list available, with 466,000 words.</p>
+<p>Many people like to view these challenges as more akin to abstract scenarios than necessarily fulfilling the requirements for the immediate, literal task in hand. A more general need to filter a dictionary lookup might well warrant further optimization, and here we saw differentiation among the techniques as well, such as dynamically filtering the word list to the maximum sorted word found so far, or even presorting the entire dictionary.</p>
+<p>Alternatively to sorting and looking, another popular approach was to look instead for words that were already sorted. Various techniques were presented to compare the first two letters of a word, determining whether they were in lexicographical order, and if so comparing the second and third, third and fourth, and so on, immediately short-circuiting and moving on the the next candidate should any pair be found out of sequence. This is very economical in the sort operations, as any rearrangement at all invalidates the candidate.</p>
+<p>After looking at these approaches we will examine a few submissions that took their own road, and see where these wayward travelers have led us.</p>
+<h2 id="echinops---a-bugs-tale">Echinops - A bug&rsquo;s tale</h2>
+<p>A pernicious bug flowed through this task, unfortunately taking out some quite promising submissions, having to do with proper nouns. Now, frankly I&rsquo;m not concerning myself here with what does, or does not, exactly constitute a word in the English language. Anyone who knows me knows I land solidly in the descriptivist camp when communicating, and am more than comfortable simply making up words as suit my purposes on occasion of need. This isn&rsquo;t about the quality of the wordlists. There are many proper nouns mixed in the various wordlists being used here, and I outright refuse to rule on whether the entries qualify as words for this challenge. As far as I&rsquo;m concerned if someone says it and it&rsquo;s not screaming or beat-boxing, it&rsquo;s a word. And maybe sometimes even then, I&rsquo;d have to hear it first.</p>
+<p>No, this is more subtle and insidious, and I have only one thing to say on the subject:</p>
+<p>&ldquo;Echinops&rdquo;</p>
+<p>Echinops  is the genus name for a number of plant species known as globe thistles, and of a mammal as well, a small African hedgehog-like creature called a tenrec. It&rsquo;s unclear whether there&rsquo;s any relationship between the spikiness of the thistles and the hedgehog, but sometimes taxonomists do get funny like that. The problem here, though, is that the word is both relatively long and also completely sorted after the initial letter &ldquo;E&rdquo;, which you will also notice, is capitalized. Now do you see the bug? Whether or not we wish to include proper nouns in our search, one thing we must do when classifying the words we select is to compare the letters composing them in a case-independant fashion. In ASCII, &ldquo;E&rdquo; falls before &ldquo;a&rdquo; and hence &ldquo;Echinops&rdquo; is sorted according to that criteria. This will simply not do. Most of the submissions either filtered out words containing capital letters or, more commonly, lowercased everything and let the chips fall where they may.</p>
+<p>Unfortunately, though, not all of them.</p>
+<h2 id="sort-the-words">sort the WORDS</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/jaldhar-h-vyas/perl/ch-2.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/mohammad-anwar/perl/ch-2.pl"><strong>Mohammad S Anwar</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a></p>
+<p>In the simplest case, a working solution to this challenge is quite straightforward: open a dictionary, sort each word, see if sorting leaves it unchanged. For any words passing this test, there were a variety of interpretations on what, exactly, was selected for output.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a></p>
+<p>Personally I understood &ldquo;the longest English words that don’t change&rdquo; as a request for a list of words with the maximum length of those found, and this reading was widely, but not exclusively, shared within the team.</p>
+<p>Here Simon hands a candidate off to a subroutine to be validated, and should it pass its length is compared against that of the longest word found so far. If it meets or exceeds that value, it is either added to a list of words at maximum length or, in the case of it being longer, used to start a new word list.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">while</span> ( <span style="color:#66d9ef">my</span> $word <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;$fh&gt;</span> ) {
+        chomp $word;
+
+        <span style="color:#75715e"># If the word has all its characters in alphabetical order, either</span>
+        <span style="color:#75715e">#  create a new list if it is longer than the current max_length, or</span>
+        <span style="color:#75715e">#  append it to the list if it is the same.</span>
+        <span style="color:#66d9ef">if</span> ( _is_ordered($word) ) {
+            <span style="color:#66d9ef">my</span> $length <span style="color:#f92672">=</span> length($word);
+
+            <span style="color:#66d9ef">if</span> ( $length <span style="color:#f92672">&gt;</span> $max_length ) {
+                $max_length <span style="color:#f92672">=</span> $length;
+                @words      <span style="color:#f92672">=</span> ($word);
+            }
+            <span style="color:#66d9ef">elsif</span> ( $length <span style="color:#f92672">==</span> $max_length ) {
+                push @words, $word;
+            }
+        }
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_is_ordered</span> {
+        <span style="color:#66d9ef">my</span> $word <span style="color:#f92672">=</span> lc shift;
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">if</span> $word <span style="color:#f92672">!~</span> <span style="color:#e6db74">/^[a-z]+$/</span>;
+
+        <span style="color:#75715e"># Order the word by letters</span>
+        <span style="color:#66d9ef">my</span> $ordered <span style="color:#f92672">=</span> join <span style="color:#e6db74">&#39;&#39;</span>, sort split <span style="color:#e6db74">&#39;&#39;</span>, $word;
+
+        <span style="color:#66d9ef">return</span> $ordered <span style="color:#f92672">eq</span> $word;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/jaldhar-h-vyas/perl/ch-2.pl"><strong>Jaldhar H. Vyas</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/jaldhar-h-vyas/raku/ch-2.raku">Raku</a></p>
+<p>It was not at all uncommon, however, to only keep a single example of the longest word found, and should a new, longer word be located that word is replaced with the new. Thus the first longest word is the one presented after the search.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $line (@lines) {
+        chomp $line;
+        <span style="color:#66d9ef">if</span> (lc $line <span style="color:#f92672">eq</span> (join <span style="color:#e6db74">q{}</span>, sort split <span style="color:#e6db74">//</span>, lc $line) <span style="color:#f92672">&amp;&amp;</span>
+        length $line <span style="color:#f92672">&gt;</span> length $longest) {
+            $longest <span style="color:#f92672">=</span> $line;
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/mohammad-anwar/perl/ch-2.pl"><strong>Mohammad S Anwar</strong></a></p>
+<p>Mohammad give us another fine example of this technique. One thing though: he takes it on himself to remove apostrophes, which is a curious choice that hadn&rsquo;t occurred to me. The apostrophe is a character but certainly isn&rsquo;t a letter and it&rsquo;s unclear what, exactly, should be done with it. If the letters surrounding it were to move, the word would be disqualified, so if it were to be considered correct before the sort it would remain so after, making a reasonable case to ignore it completely. It doesn&rsquo;t come up, but in theory could: the informal word &ldquo;ain&rsquo;t&rdquo; is sorted, for instance. I suppose technically to report one of these words we should add the apostrophe back in after removing it to make the distinction, but that&rsquo;s a whole &lsquo;nother can o&rsquo; worms.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">my</span> $word <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;$fh&gt;</span>) {
+        chomp $word;
+        <span style="color:#66d9ef">my</span> $l <span style="color:#f92672">=</span> length($word);
+
+        <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $l <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>;
+        $word <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/\&#39;//</span>;
+        <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> (lc $word <span style="color:#f92672">eq</span> (join <span style="color:#e6db74">&#39;&#39;</span>, sort split <span style="color:#e6db74">//</span>, lc $word));
+
+        <span style="color:#66d9ef">if</span> ($l <span style="color:#f92672">&gt;</span> $max_length) {
+            $max_word <span style="color:#f92672">=</span> $word;
+            $max_length <span style="color:#f92672">=</span> $l;
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a></p>
+<p>Without specifying the culprit, although presumably because &ldquo;aegilops&rdquo; is just one solitary word, Jorg has decided to present a more satisfying answer to the query, allowing a user-configurable length range to determine the exact meaning of &ldquo;the longest English words&rdquo;. This defaults to 1, allowing for the longest word(s) and also those 1 letter shorter.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">while</span> (<span style="color:#f92672">&lt;&gt;</span>) {
+        chomp;
+        $_ <span style="color:#f92672">=</span> lc;
+        <span style="color:#75715e"># Detect a &#34;self-sorted&#34; word and add it to an array of words having</span>
+        <span style="color:#75715e"># the same length.</span>
+        push $word[length]<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, $_ <span style="color:#66d9ef">if</span> join(<span style="color:#e6db74">&#39;&#39;</span>, sort split <span style="color:#e6db74">//</span>) <span style="color:#f92672">eq</span> $_;
+    }
+
+    <span style="color:#75715e"># Reverse the order of the collected arrays, pick the first</span>
+    <span style="color:#75715e"># $n + 1 thereof, dereference these and print the words.</span>
+    <span style="color:#75715e"># @word may contain gaps.</span>
+    say <span style="color:#66d9ef">for</span> map {$_ ? @$_ : ()} (reverse @word)[<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $n];
+</code></pre></div><h2 id="pre-filter-the-candidates">PRE-FILTER the candidates</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a></p>
+<p>When proceeding through the list of candidate words, we can keep a running tally of the longest sorted word we&rsquo;ve found so far. As we know before we start that any word, sorted or not, that&rsquo;s shorter than this maximum will not be among the longest words, these can be dismissed out-of-hand before any more work is done.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a></p>
+<p>James constructs a series of cascading logical groups that must be satisfied in order for a given candidate word to be even considered for sorting. In the pre-filtering phase of the selection words are matched against the regex <code>/^a-z$/</code>, allowing only lowercase letters. The next step checks the length against that of the longest unchanged word yet found, and only after passing these check is the candidate split and sorted. If that test passes we know that the word is long enough to be saved, and it is either added to the running list of longest words that length or used to start a new list.</p>
+<p>His routine is nicely commented as usual, with more description than code. A bare-bone version without comments is also provided, and is impressively terse.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">longest</span> {
+      open <span style="color:#66d9ef">my</span> $fh, <span style="color:#e6db74">q(&lt;)</span>, $_[<span style="color:#ae81ff">0</span>];
+      <span style="color:#66d9ef">my</span> @max <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>);
+         (chomp)         <span style="color:#75715e">## Remove newline character</span>
+      <span style="color:#75715e">#&amp;&amp; !/\W/           ## Remove words with non-alpha chars</span>
+      <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span><span style="color:#e6db74">/[^a-z]/</span>       <span style="color:#75715e">## Remove words starting with a capital</span>
+      <span style="color:#f92672">&amp;&amp;</span> ( $max[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&lt;=</span> length $_ )
+                         <span style="color:#75715e">## Remove words that are too short</span>
+      <span style="color:#f92672">&amp;&amp;</span> ( $_ <span style="color:#f92672">eq</span> join <span style="color:#e6db74">q()</span>, sort split <span style="color:#e6db74">//</span>, $_ )
+                         <span style="color:#75715e">## Check the word is unchanged when the</span>
+                         <span style="color:#75715e">## letters are sorted</span>
+      <span style="color:#f92672">&amp;&amp;</span> ( $max[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">==</span> length $_
+           ? ( push @max, $_ )
+           : ( @max <span style="color:#f92672">=</span> (length $_, $_) )
+         )
+        <span style="color:#75715e">## If the word is the same length as the maximal word</span>
+        <span style="color:#75715e">## push it onto @max - so we store all the longest words</span>
+        <span style="color:#75715e">## with maximum length.</span>
+        <span style="color:#75715e">## If the word is longer than the max length (1st entry</span>
+        <span style="color:#75715e">## in @max - reset max to include the new max length and</span>
+        <span style="color:#75715e">## the word.</span>
+        <span style="color:#66d9ef">while</span> <span style="color:#e6db74">&lt;$fh&gt;</span>;
+      <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;$_[0] &gt; @max&#34;</span>;
+      <span style="color:#75715e">## Return the name of the file used, the size of the words</span>
+      <span style="color:#75715e">## and a complete list of the words of that length.</span>
+    }
+</code></pre></div><h2 id="sort-the-dictionary">sort the DICTIONARY</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/perlboy1967/perl/ch-2.pl"><strong>Niels van Dijke</strong></a></p>
+<p>I was a bit surprised to see this optimization show up as often as it did, but after consideration it&rsquo;s not as outlandish as it may at first sound. The dictionary is quite a large array to sort, but by front-loading a fair amount of effort into pre-sorting the word list by length, a trade-off is made to eliminate nearly all of that list later. The longest words are searched first, and the first example found will immediately determine the maximum sorted word length. Once all words of that length are checked further searching is unnecessary. We go in, find the words, and get out quick.</p>
+<p>Well that&rsquo;s the theory, at least.</p>
+<p>In practicality the longest words in the dictionary are the least likely to be sorted, and it&rsquo;s only once the words get down to medium length, 7 or 8 letters, that any at all come in ordered. It makes sense to cut to the chase, but can we really expect &ldquo;pathologicopsychological&rdquo; to come out ordered? Let&rsquo;s look at the math: a random arrangement of letters (which real words are not) would cancel out the probability imbalances so each letter has on average only a 27/52 chance of being ordered in relation to the previous — 50% above, 50% below and one chance of being the same —  and these probabilities multiply at each letter. So all things being equal that 24-letter monstrosity about monsters has a 0.000015% chance of starting out sorted. Letter frequency analysis could give us a more accurate prediction, but you get the idea. In reality the situation is even worse, as the limited number of vowels available restricts this number further, rather radically. As it works out, after finding &ldquo;aegilops&rdquo; in the big list of 466,000 words we still will have to have read over 275,000 of those to check the last 9-letter word. In the BSD dict the situation is even worse: the maximum word is only 7 letters long, and to exhaust the 7-letter range we need to check 201,000 out of 235,000 words.</p>
+<p>One might think the word list would be heavily skewed towards the low end in length, but in fact this is limited by complexity: there are only about 4000 3-letter combinations that include a vowel, and most of these won&rsquo;t be words. For the</p>
+<pre><code>    /usr/share/dict/words
+</code></pre><p>list of 235,886 entries:</p>
+<pre><code>    length | words
+    -------+-------
+         1   52
+         2   160
+         3   1420
+         4   5272
+         5   10230
+         6   17706
+         7   23869
+         8   29989
+         9   32403
+        10   30878
+        11   26013
+        12   20462
+        13   14939
+        14   9765
+        15   5925
+        16   3377
+        17   1813
+        18   842
+        19   428
+        20   198
+        21   82
+        22   41
+        23   17
+        24   5
+</code></pre><p>we can see word length peaks at, remarkably, 9 letters. I did not expect that. The big list shows the same curve, just more of them.</p>
+<p>Oh well. It was a neat idea, if not the killer optimization expected.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/perlboy1967/perl/ch-2.pl"><strong>Niels van Dijke</strong></a></p>
+<p>After slurping in the entirety of the dictionary, chomping linefeeds, stripping anything with hyphens or punctuation, and lowercasing everything, Niels creates a huge wordlist, sorted descending by length.</p>
+<p>Under this scheme, of course, only one list for the longest words need ever be created, so if the word is matched it&rsquo;s added to the list, and when the word length drops below the maximum the loop exits and the results are reported.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">findLongestOrderedWords</span>($) {
+      <span style="color:#66d9ef">my</span> ($wordfile) <span style="color:#f92672">=</span> @_;
+
+      <span style="color:#66d9ef">my</span> @inWords <span style="color:#f92672">=</span> map { chomp; lc($_)} read_file($wordfile);
+
+      <span style="color:#66d9ef">my</span> ($wlenMax,@words);
+      <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $word (sort { length($b) <span style="color:#e6db74">&lt;=&gt;</span> length($a) } grep <span style="color:#e6db74">/^[a-z]+$/</span>,@inWords) {
+        <span style="color:#66d9ef">my</span> $wlen <span style="color:#f92672">=</span> length($word);
+        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>defined $wlenMax <span style="color:#f92672">or</span> $wlenMax <span style="color:#f92672">==</span> $wlen) {
+          <span style="color:#66d9ef">if</span> ($word <span style="color:#f92672">eq</span> join(<span style="color:#e6db74">&#39;&#39;</span>,sort split <span style="color:#e6db74">&#39;&#39;</span>,$word)) {
+            push(@words, $word);
+            $wlenMax <span style="color:#f92672">=</span> $wlen;
+          }
+        } <span style="color:#66d9ef">elsif</span> ($wlen <span style="color:#f92672">&lt;</span> $wlenMax) {
+          <span style="color:#66d9ef">last</span>;
+        }
+      }
+
+      <span style="color:#66d9ef">return</span> @words;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a></p>
+<p>The monk reads the dictionary in and then proceeds to compile a sequence of intermediate temporary files sorted case-insensitive and categorized by word length. A hash is kept of the filehandles to these files, essentially making the filesystem itself into a flat-file database. These files are then read in sequentially by descending word length to produce a master temporary dictionary sorted by word length. Whew!</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">order_dictionary</span>
+    {
+        <span style="color:#66d9ef">my</span> ($in_file) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span>  %out_fh;
+
+        open( <span style="color:#66d9ef">my</span> $in, <span style="color:#e6db74">&#39;&lt;&#39;</span>, $in_file );
+        <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">my</span> $line <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;$in&gt;</span>)
+        {
+            chomp $line;
+            <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $line <span style="color:#f92672">=~</span><span style="color:#e6db74"> /[^A-Za-z]/</span>;
+
+            <span style="color:#66d9ef">my</span> $len <span style="color:#f92672">=</span> length $line;
+            <span style="color:#66d9ef">my</span> $out_fh;
+
+            <span style="color:#66d9ef">if</span> (exists $out_fh{ $len })
+            {
+                $out_fh <span style="color:#f92672">=</span> $out_fh{ $len };
+            }
+            <span style="color:#66d9ef">else</span>
+            {
+                <span style="color:#66d9ef">my</span> $out_file <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;$DICT_DIR/dict_$len.tmp&#34;</span>;
+                open( $out_fh, <span style="color:#e6db74">&#39;+&gt;&#39;</span>, $out_file );
+                $out_fh{ $len } <span style="color:#f92672">=</span> $out_fh;
+            }
+
+            <span style="color:#66d9ef">print</span> $out_fh <span style="color:#e6db74">&#34;$line\n&#34;</span>;
+        }
+        close $in;
+
+        open( <span style="color:#66d9ef">my</span> $out, <span style="color:#e6db74">&#39;&gt;&#39;</span>, $DICTIONARY );
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $len (sort { $b <span style="color:#e6db74">&lt;=&gt;</span> $a } keys %out_fh)
+        {
+            <span style="color:#66d9ef">my</span> $fh <span style="color:#f92672">=</span> $out_fh{ $len };
+            seek $fh, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>
+            <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">my</span> $line <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;$fh&gt;</span>)
+            {
+                <span style="color:#66d9ef">print</span> $out $line;
+            }
+        }
+        close $out;
+
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $len (keys %out_fh)
+        {
+            <span style="color:#66d9ef">my</span> $fh <span style="color:#f92672">=</span> $out_fh{ $len };
+            close $fh;
+
+            <span style="color:#66d9ef">my</span> $filename <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;$DICT_DIR/dict_$len.tmp&#34;</span>;
+            unlink $filename;
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a></p>
+<p>Dave needs to examine a few more words, as he has decided, apparently arbitrarily, to produce a list of the seven longest words, which delivers the 6 7-letter words plus &ldquo;abbess&rdquo;, who is the Mother Superior of an abbey of nuns. Seven&rsquo;s a good number. I approve. Here <code>get_words()</code> sorts the dictionary and <code>sort_word()</code> performs the <code>join-sort-split</code> operation.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $word (@words) {
+        state $c <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">my</span> $sort <span style="color:#f92672">=</span> sort_word($word);
+        <span style="color:#66d9ef">if</span> ( $sort <span style="color:#f92672">eq</span> $word ) {
+            say $word;
+            <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $c<span style="color:#f92672">++</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">5</span>;
+        }
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get_words</span> {
+        <span style="color:#66d9ef">my</span> $dict <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;/usr/share/dict/words&#39;</span>;
+        <span style="color:#66d9ef">my</span> @words;
+        <span style="color:#66d9ef">if</span> ( <span style="color:#f92672">-</span>f $dict <span style="color:#f92672">&amp;&amp;</span> open <span style="color:#66d9ef">my</span> $fh, <span style="color:#e6db74">&#39;&lt;&#39;</span>, $dict ) {
+            @words <span style="color:#f92672">=</span>
+                sort { length $b <span style="color:#e6db74">&lt;=&gt;</span> length $a }
+                grep { length $_ <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> }
+                map  { chomp $_; lc $_ } <span style="color:#e6db74">&lt;$fh&gt;</span>;
+        }
+        <span style="color:#66d9ef">return</span> @words;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">sort_word</span> ( $word ) {
+        $l<span style="color:#f92672">++</span>;
+        <span style="color:#66d9ef">return</span> join <span style="color:#e6db74">&#39;&#39;</span>, sort split <span style="color:#e6db74">//</span>, $word;
+    }
+</code></pre></div><h2 id="find-words-that-are-already-sorted">find words that are ALREADY SORTED</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/dms061/perl/ch-2.pl"><strong>David Schwartz</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/pete-houston/perl/ch-2.pl"><strong>Pete Houston</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/stuart-little/perl/ch-2.pl"><strong>Stuart Little</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/wanderdoc/perl/ch-2.pl"><strong>Wanderdoc</strong></a></p>
+<p>When sorting the letters in a word, all of the letters are rearranged as required to complete the sort. However in our test if any letters at all are out-of-order the candidate immediately fails, so once one letter is moved any further sorting becomes wasted effort. It would be nice to somehow to place a <code>last</code> within a <code>sort</code> block but that&rsquo;s just messed up. I mean, how would that even work?  We can do something similar though, by working manually across a word comparing adjacent letters for their ordering. This act can be set to short-circuit and should we find any pair out-of-sequence that word fails without further comparison. As almost all words will fail the test within the first few letters, the amount of comparison done is minimized.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/dms061/perl/ch-2.pl"><strong>David Schwartz</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/dms061/python3/ch-2-example.txt">Python3</a></p>
+<p>David examines his adjacent letters by first breaking down his string using <code>split</code> and then iterating across, checking [<em>index</em>] against [<em>index</em>+1]. If a discrepancy is found in the sequence, we immediately bolt, skipping to the next word candidate.</p>
+<p>Here at the PWC we gather from all walks of programing life. I&rsquo;m not sure exactly where David comes from — whether he&rsquo;s simply employing a rhetorical device here — but we catch him marveling at the awesomeness of the <code>next LABEL</code> construct — &ldquo;a weird mix of break and goto&rdquo;. I will take this C talk at face value and say welcome to the club David, there&rsquo;s a lot of these cool tricks to play with in Perl that get directly to the point. Lead on.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    WORD: <span style="color:#66d9ef">while</span> (<span style="color:#e6db74">&lt;$dict&gt;</span>) {
+        <span style="color:#75715e"># Remove whitespace (chomp), convert to lowercase (&#39;A&#39; != &#39;a&#39;) and split word into an array of characters</span>
+        chomp;
+        $_ <span style="color:#f92672">=</span> lc;
+        <span style="color:#75715e"># Implementation is based off the idea that the string need only be iterated over once</span>
+        <span style="color:#75715e"># Because we have to split it, we really iterate over it twice</span>
+        <span style="color:#75715e"># A more efficient implementation would just access characters in the string directly</span>
+        @chars <span style="color:#f92672">=</span> split <span style="color:#e6db74">&#34;&#34;</span>;
+        <span style="color:#75715e"># Optimization, only search for words of increasing size</span>
+        <span style="color:#66d9ef">next</span> WORD <span style="color:#66d9ef">if</span> @chars <span style="color:#f92672">&lt;</span> $len;
+        <span style="color:#75715e"># Check if the word is sorted</span>
+        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; $i <span style="color:#f92672">&lt;</span> $#chars; $i<span style="color:#f92672">++</span>){
+            <span style="color:#75715e"># like a weird mix of break and goto</span>
+            <span style="color:#75715e"># immediately goes to the next iteration of the label</span>
+            <span style="color:#75715e"># no other code is executed</span>
+            <span style="color:#66d9ef">next</span> WORD <span style="color:#66d9ef">unless</span> $chars[$i] <span style="color:#f92672">le</span> $chars[$i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>];
+        }
+        <span style="color:#75715e">#print &#34;$_\n&#34;;</span>
+        <span style="color:#66d9ef">if</span> ($len <span style="color:#f92672">==</span> @chars){
+            <span style="color:#75715e">#equal length, add to a list</span>
+            push @words, $_;
+        }<span style="color:#66d9ef">else</span>{
+            <span style="color:#75715e"># new largest (remember we skip smaller words)</span>
+            <span style="color:#75715e">#reset the list and update the length</span>
+            @words <span style="color:#f92672">=</span> ($_);
+            $len <span style="color:#f92672">=</span> @chars;
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/pete-houston/perl/ch-2.pl"><strong>Pete Houston</strong></a></p>
+<p>Pete applies a couple of unique twists to his technique, first employing the unicode fold-case <code>fc()</code> feature available since 5.16, and then not bothering to trim the linefeed characters from words, as if all the lines have them, then they simply become a constant. This last part does, I have to say, make me wonder about the last word in the file, but I just checked <code>/usr/share/dict/words</code> here and it does not seem to be a problem. I always make sure to add that final linefeed as I find its absence completely annoying, and have even set my editor up to make sure it&rsquo;s there lest I forget. YMMV.</p>
+<p>Case-folding is the generalized abstraction of the idea of case-free letter comparisons, and the <code>fc()</code> function improves on the idea of simple lowercase comparisons by correctly handling Unicode situations where the alphabets used don&rsquo;t exactly conform to the model of upper and lower cases.</p>
+<p>Even though English does not have any of these problems, in a Unicode world this is a better way to think about this and we should be getting used to it.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_sorted</span> {
+        <span style="color:#66d9ef">my</span> @chars <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, fc shift;
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#chars <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) {
+            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">if</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">==</span> ($chars[$i] <span style="color:#f92672">cmp</span> $chars[$i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>]);
+        }
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/stuart-little/perl/ch-2.pl"><strong>Stuart Little</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/stuart-little/haskell/ch-2.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/stuart-little/node/ch-2.js">Node</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/stuart-little/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/stuart-little/raku/ch-2.p6">Raku</a></p>
+<p>Here&rsquo;s a different way to go about it: after breaking his string into an array, Stuart takes two slices from this with an offset of 1, so adjacent letters will share the same index across them. He then pulls out the listwise operator <code>zip_by</code> from <code>List::AllUtils</code> to apply a subtraction across the <code>ord</code> value of the characters in the two lists. If any of these values are less than 0 then the letters are out-of-order, and we use another function from that package, <code>all</code>, to confirm this. Stuart brings a very functional of thinking about the challenges.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">isSorted</span>($word) {
+        <span style="color:#66d9ef">my</span> @word <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, lc $word;
+        <span style="color:#66d9ef">my</span> @wordl<span style="color:#f92672">=</span>@word[<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>(length $word)<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>];
+        <span style="color:#66d9ef">my</span> @wordr<span style="color:#f92672">=</span>@word[<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>(length $word)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+        <span style="color:#66d9ef">my</span> @diffs <span style="color:#f92672">=</span> zip_by {ord($_[<span style="color:#ae81ff">1</span>]) <span style="color:#f92672">-</span> ord($_[<span style="color:#ae81ff">0</span>])} <span style="color:#f92672">\</span>@wordl, <span style="color:#f92672">\</span>@wordr;
+        <span style="color:#66d9ef">return</span> ((lc $word) <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^[a-z]+$/</span>) <span style="color:#f92672">&amp;&amp;</span> (all {$_ <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>} @diffs);
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>Again using <code>all</code>, Luis gives us a very compact solution that works on a direct string comparison between the successive characters</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">sorted</span> {
+        <span style="color:#66d9ef">my</span> @chars<span style="color:#f92672">=</span>split <span style="color:#e6db74">&#39;&#39;</span>, shift;
+        <span style="color:#66d9ef">return</span> all {$chars[$_] <span style="color:#f92672">le</span> $chars[$_<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]} <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#chars<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+    }
+</code></pre></div><p>Extending on this, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/wlmb/perl/ch-1.pl">a second, generalized version is provided</a>, which finds all sorted words of a specific given length.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a></p>
+<p>The solutions provide above work by first splitting the string into an array of characters and comparing adjacent indices, but this step is not required. The <code>substr</code> operator provides a pretty efficient way to directly look inside a sting without incurring the overhead of first breaking it apart.</p>
+<p>Choroba demonstrates:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    WORD:
+    <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">my</span> $word <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;$in&gt;</span>) {
+        chomp $word;
+        <span style="color:#66d9ef">my</span> $l <span style="color:#f92672">=</span> lc $word;
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> length $word) {
+            <span style="color:#66d9ef">next</span> WORD <span style="color:#66d9ef">if</span> substr($l, $i <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>) <span style="color:#f92672">gt</span> substr($l, $i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>);
+        }
+        <span style="color:#66d9ef">if</span> (length($word) <span style="color:#f92672">&gt;</span> (keys %max)[<span style="color:#ae81ff">0</span>]) {
+            %max <span style="color:#f92672">=</span> (length $word <span style="color:#f92672">=&gt;</span> [$word]);
+        } <span style="color:#66d9ef">elsif</span> (length($word) <span style="color:#f92672">==</span> (keys %max)[<span style="color:#ae81ff">0</span>]) {
+            push @{ $max{ length $word } }, $word;
+        }
+    }
+    say <span style="color:#66d9ef">for</span> map @$_, values %max;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/colin-crain/perl/ch-2.pl"><strong>My Own Solution</strong></a></p>
+<p>I also avoided splitting apart the candidate words, directly accessing the pairs of characters using <code>substr</code> in a routine that short-circuits at the first discrepancy.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_sorted</span> ($word) {
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> length($word) <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">3</span>;  <span style="color:#75715e">## reject short words</span>
+        <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> length($word)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
+            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> (substr($word, $_<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>) <span style="color:#f92672">cmp</span> substr($word, $_, <span style="color:#ae81ff">1</span>)) <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> ;
+        }
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+    }
+</code></pre></div><h2 id="perform-exotic-incantations">perform EXOTIC INCANTATIONS</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/abigail/perl/ch-2.pl"><strong>Abigail</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a></p>
+<p>There are always those among us that aspire to step outside the boundaries of convention, yielding results that defy easy categorization.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/abigail/perl/ch-2.pl"><strong>Abigail</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/abigail/awk/ch-2.gawk">Awk</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/abigail/bash/ch-2.sh">Bash</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/abigail/c/ch-2.c">C</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/abigail/lua/ch-2.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/abigail/node/ch-2.js">Node</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/abigail/pascal/ch-2.p">Pascal</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/abigail/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/abigail/ruby/ch-2.rb">Ruby</a></p>
+<p>Abigail presents us with a truly remarkable approach to determining whether a word is already sorted, by parsing it with a regular expression. This regex is constructed from a <code>join</code> over a range and ends up composed of the letters of the alphabet in lexicographic order:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#e6db74">/^a*b*c*d*e*f*g*h*i*j*k*l*m*n*o*p*q*r*s*t*u*v*w*x*y*z*$/i</span>
+</code></pre></div><p>One or more of each letter will match at a given point, and as the expression is anchored to both the front and back of the string the word will only match if every letter in turn can be matched in this order, moving left-to-right across the expression. Any error will immediately abort the evaluation.</p>
+<p>The first example of an ordered word is kept, and, should a longer word arise this is replaced with the new. After all words are examined the first longest example remaining is produced.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $pat <span style="color:#f92672">=</span> join <span style="color:#e6db74">&#34;&#34;</span> <span style="color:#f92672">=&gt;</span> map {<span style="color:#e6db74">&#34;$_*&#34;</span>} <span style="color:#e6db74">&#39;a&#39;</span> <span style="color:#f92672">..</span> <span style="color:#e6db74">&#39;z&#39;</span>;
+
+    <span style="color:#66d9ef">my</span> $longest <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
+
+    <span style="color:#66d9ef">while</span> (<span style="color:#f92672">&lt;&gt;</span>) {
+        $longest <span style="color:#f92672">=</span> $_ <span style="color:#66d9ef">if</span> <span style="color:#e6db74">/^$pat$/i</span> <span style="color:#f92672">&amp;&amp;</span> length ($_) <span style="color:#f92672">&gt;</span> length ($longest)
+    }
+
+    <span style="color:#66d9ef">print</span> $longest;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a></p>
+<p>Flavio employs the now-familiar &ldquo;sort and compare&rdquo; paradigm for his submission, but from there goes next level on the idea. He takes it upon himself to construct a full international generalization of the task, incorporating several Unicode modules to help him with the complex ordering distinctions that entails.</p>
+<p>English may have many, many quirks, but one quality it does have is that technically it has only 26 &ldquo;Latin&rdquo; letters in two lettercases and no diacritical marks, the <em>New Yorker</em> and its fondness for diæresis notwithstanding. Icelandic, lovely language that it is, not so much.</p>
+<p>He admits himself the implementation is a bit iffy, as he doesn&rsquo;t quite understand it himself, but goes into great length on his process <a href="https://github.polettix.it/ETOOBUSY/2021/05/06/pwc111-ordered-letters/">in his extensive writeup</a>. He&rsquo;s a brave man, that Flavio.</p>
+<p>Oh, and Flavio, things that are billowy may also include big flags, or curtains, or sundresses in a light breeze, in addition to clouds and waves and puffs of smoke. Pillows, being metaphorically cloud-like, often get that description. It has a nice round sound that complements its meaning.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Unicode::Normalize;
+    <span style="color:#66d9ef">use</span> Unicode::Collate;
+    <span style="color:#66d9ef">use</span> Encode <span style="color:#e6db74">qw(decode_utf8)</span>;
+
+    @ARGV <span style="color:#f92672">=</span> map { decode_utf8($_, <span style="color:#ae81ff">1</span>) } @ARGV;
+
+    <span style="color:#66d9ef">my</span> @pairs;
+    <span style="color:#66d9ef">while</span> (<span style="color:#f92672">&lt;&gt;</span>) {
+       <span style="color:#66d9ef">my</span> $pair <span style="color:#f92672">=</span> check_ordered(NFD($_)) <span style="color:#e6db74">//</span> <span style="color:#66d9ef">next</span>;
+       push @pairs, $pair;
+    }
+    say <span style="color:#66d9ef">for</span> reverse map { $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] } sort { $a<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#e6db74">&lt;=&gt;</span> $b<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] } @pairs;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">check_ordered</span> ($x) {
+       state $coll <span style="color:#f92672">=</span> Unicode::Collate<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(level <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>);
+       state $es <span style="color:#f92672">=</span> Unicode::Collate<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(level <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>, normalization <span style="color:#f92672">=&gt;</span> undef);
+       <span style="color:#66d9ef">my</span> @chars <span style="color:#f92672">=</span> $x <span style="color:#f92672">=~</span> <span style="color:#e6db74">m{(\X)}gmxs</span>;
+       shift @chars <span style="color:#66d9ef">while</span> @chars <span style="color:#f92672">&amp;&amp;</span> $chars[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=~</span> <span style="color:#e6db74">m{[\h\v]}mxs</span>;
+       pop @chars   <span style="color:#66d9ef">while</span> @chars <span style="color:#f92672">&amp;&amp;</span> $chars[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">=~</span> <span style="color:#e6db74">m{[\h\v]}mxs</span>;
+       <span style="color:#66d9ef">my</span> $original   <span style="color:#f92672">=</span> join <span style="color:#e6db74">&#39;&#39;</span>, @chars;
+       <span style="color:#66d9ef">my</span> $rearranged <span style="color:#f92672">=</span> join <span style="color:#e6db74">&#39;&#39;</span>, $coll<span style="color:#f92672">-&gt;</span>sort(@chars);
+       <span style="color:#66d9ef">return</span> [scalar(@chars), $original] <span style="color:#66d9ef">if</span> $es<span style="color:#f92672">-&gt;</span><span style="color:#f92672">eq</span>($original, $rearranged);
+       <span style="color:#66d9ef">return</span>;
+    } <span style="color:#75715e">## end sub check_ordered ($x)</span>
+</code></pre></div><h2 id="a-few-more-guest-language-contributions">A Few More Guest Language Contributions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/laurent-rosenfeld/raku/ch-2.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/roger-bell-west/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/roger-bell-west/raku/ch-2.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/roger-bell-west/ruby/ch-2.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/roger-bell-west/rust/ch-2.rs">Rust</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/ulrich-rieke/c/ch-2.c">C</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/ulrich-rieke/haskell/ch-2.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-111/ulrich-rieke/raku/ch-2.raku">Raku</a></p>
+<hr>
+<h1 id="PWC111BLOGS">BLOGS</h1>
+<hr>
+<p><strong>Thatâs it for me this week, people! Warped by the rain, driven by the snow, resolute and unbroken by the torrential influx, I somehow continue to maintain my bearings. Looking forward to next wave, the perfect wave, I am: <em>your humble servant</em>.</strong></p>
+<h1 id="PWC093BLOGS">But if Your <em>THIRST</em> for <em>KNOWLEDGE</em> is not <em>SLAKED</em>,</h1>
+<h1 id="then-run-dont-walk-to-the-watering-hole">then <em>RUN</em> <em>(dont walk!)</em> to the <em>WATERING HOLE</em></h1>
+<h1 id="and-read-these-blog-links">and <em>READ</em> these <em>BLOG</em> <em>LINKS</em>:</h1>
+<p><strong>( <em>don&rsquo;t think, trust your training, you&rsquo;re in the zone, just do it &hellip;</em> )</strong></p>
+<p><strong>Aaron Smith</strong></p>
+<ul>
+<li><a href="https://aaronreidsmith.github.io/blog/perl-weekly-challenge-111/">Perl Weekly Challenge 111 - Aaron Smith</a> ( <em>Raku</em> )</li>
+</ul>
+<p><strong>Abigail</strong></p>
+<ul>
+<li><a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-111-1.html">Perl Weekly Challenge 111: Search Matrix</a> ( <em>Perl</em> )</li>
+<li><a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-111-2.html">Perl Weekly Challenge 111: Ordered Letters</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Adam Russell</strong></p>
+<ul>
+<li><a href="http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2021/05/09">Efficient Matrix Search: The Weekly Challenge 111 — RabbitFarm</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Arne Sommer</strong></p>
+<ul>
+<li><a href="https://raku-musings.com/ordered-search.html">Ordered Search for Raku</a> ( <em>Raku</em> )</li>
+</ul>
+<p><strong>Colin Crain</strong></p>
+<ul>
+<li><a href="https://colincrain.com/2021/05/09/are-we-in-the-matrix-get-in-line-friend-get-in-line/">Are We in the Matrix? Get in Line, Friend, Get in Line. — Programming Excursions in Perl and Raku</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Dave Jacoby</strong></p>
+<ul>
+<li><a href="https://jacoby.github.io/2021/05/03/efficient-ones-perl-challenge-111.html">Efficient Ones: Perl Challenge #111 | Committed to Memory</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Flavio Poletti</strong></p>
+<ul>
+<li><a href="https://github.polettix.it/ETOOBUSY/2021/05/05/pwc111-search-matrix/">PWC111 - Search Matrix - ETOOBUSY</a> ( <em>Perl</em> )</li>
+<li><a href="https://github.polettix.it/ETOOBUSY/2021/05/06/pwc111-ordered-letters/">PWC111 - Ordered Letters - ETOOBUSY</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Jaldhar H. Vyas</strong></p>
+<ul>
+<li><a href="https://www.braincells.com/perl/2021/05/perl_weekly_challenge_week_111.html">Perl Weekly Challenge: Week 111</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>James Smith</strong></p>
+<ul>
+<li><a href="https://github.com/drbaggy/perlweeklychallenge-club/blob/master/challenge-111/james-smith/README.md">Perl Weekly Challenge #111</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Laurent Rosenfeld</strong></p>
+<ul>
+<li><a href="http://blogs.perl.org/users/laurent_r/2021/05/perl-weekly-challenge-111-search-matrix-and-ordered-letters.html">Perl Weekly Challenge 111: Search Matrix and Ordered Letters | laurent_r</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Luca Ferrari</strong></p>
+<ul>
+<li><a href="https://fluca1978.github.io/2021/05/03/PerlWeeklyChallenge111.html#task1">Perl Weekly Challenge 111: Words and Matrix — Luca Ferrari — Open Source advocate, human being</a> ( <em>Raku</em> )</li>
+<li><a href="https://fluca1978.github.io/2021/05/03/PerlWeeklyChallenge111.html#task2">Perl Weekly Challenge 111: Words and Matrix — Luca Ferrari — Open Source advocate, human being</a> ( <em>Raku</em> )</li>
+</ul>
+<p><strong>Roger Bell_West</strong></p>
+<ul>
+<li><a href="https://blog.firedrake.org/archive/2021/05/Perl_Weekly_Challenge_111__Search_Letters.html">RogerBW&rsquo;s Blog: Perl Weekly Challenge 111: Search Letters</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Simon Green</strong></p>
+<ul>
+<li><a href="https://dev.to/simongreennet/weekly-challenge-111-291m">Weekly Challenge 111</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>W. Luis Mochan</strong></p>
+<ul>
+<li><a href="https://wlmb.github.io/2021/05/03/PWC111/">Perl Weekly Challenge 111 — W. Luis Mochan</a> ( <em>Perl</em> )</li>
+</ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="/contact" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2020
+                    </span> PerlWeeklyChallenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.nomtimes.co.uk/site/shop.do?cref=PerlBooks" title="Free Perl Books" rel="noreferrer" target="_blank">
+                            <img src="/images/NomTimes.jpg" style="width:22px; height: 18px;" alt=""/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://perlweeklychallenge.org/plugins/jQurey/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://perlweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://perlweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://perlweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://perlweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://perlweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://perlweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://perlweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://perlweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://perlweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-136524905-1', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+
+</html>
+
