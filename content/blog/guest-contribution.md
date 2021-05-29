@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2021-05-26T00:00:00+00:00
+date: 2021-05-29T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -33,6 +33,8 @@ Please find below guest contributions.
 ##### **Laurent Rosenfeld** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-114/laurent-rosenfeld/scala/ch-1.scala) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-114/laurent-rosenfeld/scala/ch-1.scala) in **Scala**.
 
 ##### **Mohammad Meraj Zia** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-114/ziameraj16/java/NextPalindromeNumber.java) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-114/ziameraj16/java/HigherIntegerSetBits.java) in **Java**.
+
+##### **Richard Park** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-114/richard-park/apl/ch-1.aplf) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-114/richard-park/apl/ch-2.aplf) in **APL**.
 
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-114/roger-bell-west/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-114/roger-bell-west/python/ch-2.py) in **Python**.
 
