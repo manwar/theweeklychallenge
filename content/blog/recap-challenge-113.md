@@ -54,6 +54,10 @@ The total contributions in the week is `90`. Well done **Team PWC**. I would als
 
 <br>
 
+### Overall Contributions Stats:
+
+<br>
+
 #### 1. Perl: 5,356 (61%)
 #### 2. Raku: 3,400 (39%)
 #### 3. Blog: 1,584

@@ -287,9 +287,9 @@ You are given a string path, starting with a slash &lsquo;/'.</p>
 <pre><code>/../../../../../b/   --&gt;    /b
 </code></pre>
 <p>The results of all my tinkering, when things got weird, were verified by the GNU utility <code>realpath -m</code>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    [colincrain@boris:<span style="color:#e6db74">/]$  realpath -m &#39;a/</span>b<span style="color:#e6db74">/c//.///</span><span style="color:#f92672">..</span><span style="color:#e6db74">/d/</span><span style="color:#960050;background-color:#1e0010">&#39;</span>
-    <span style="color:#e6db74">/a/</span>b<span style="color:#f92672">/</span>d
-</code></pre></div><h2 id="parse-it-with-regular-expressions">PARSE it with REGULAR EXPRESSIONS</h2>
+<pre><code>    [colincrain@boris:/]$  realpath -m 'a/b/c//.///../d/'
+    /a/b/d
+</code></pre><h2 id="parse-it-with-regular-expressions">PARSE it with REGULAR EXPRESSIONS</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-112/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>,
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-112/kurkale6ka/perl/ch-1.pl"><strong>Dimitar Dimitrov</strong></a>, and
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-112/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a></p>
@@ -329,8 +329,8 @@ You are given a string path, starting with a slash &lsquo;/'.</p>
 
     say $_<span style="color:#f92672">||</span><span style="color:#e6db74">&#39;/&#39;</span>
 </code></pre></div><p>Notably, Dimitar also includes a &ldquo;human readable&rdquo; solution that employs <code>split</code>, <code>push</code> and <code>pop</code> to get the various jobs done, even including a one-liner version:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#f92672">-</span>E<span style="color:#e6db74">&#39;for(split/\//,pop){/^\.$/&amp;&amp;next;if(/^\.\.$/){pop@path}else{push@path,$_ if length}}say&#34;/&#34;,join&#34;/&#34;,@path&#39;</span>
-</code></pre></div><p>Rather than linger here in Dimitar&rsquo;s one-stop shopping mart, this makes a nice segue into our next section, where we&rsquo;ll take a deeper look at array-based techniques.</p>
+<pre><code>   perl -E'for(split/\//,pop){/^\.$/&amp;&amp;next;if(/^\.\.$/){pop@path}else{push@path,$_ if length}}say&quot;/&quot;,join&quot;/&quot;,@path'
+</code></pre><p>Rather than linger here in Dimitar&rsquo;s one-stop shopping mart, this makes a nice segue into our next section, where we&rsquo;ll take a deeper look at array-based techniques.</p>
 <h2 id="split-the-path-into-an-array-and-work-on-that">SPLIT the path into an ARRAY and work on that</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-112/abigail/perl/ch-1.pl"><strong>Abigail</strong></a>,
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-112/arne-sommer/perl/ch-1.pl"><strong>Arne Sommer</strong></a>,
@@ -379,7 +379,6 @@ all very closely followed this tight, compact form of alternately applying <code
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $dir (grep { <span style="color:#e6db74">/./</span> } split <span style="color:#e6db74">&#39;/&#39;</span>, $path)
     {
         <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $dir <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;.&#39;</span>;                        <span style="color:#75715e"># Current directory: ignore</span>
-
         <span style="color:#66d9ef">if</span> ($dir <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;..&#39;</span>)                           <span style="color:#75715e"># Parent directory</span>
         {
             <span style="color:#66d9ef">if</span> (scalar @canonical_dirs <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)        <span style="color:#75715e"># Impossible case</span>
@@ -519,19 +518,18 @@ root path i.e. it has no parts.</li>
 <li>Join the parts with slashes.</li>
 </ul>
 <p>Of note I like the idea of temporarily reversing the sliced array so the deletions are forward, not back, reversing again for output. It&rsquo;s a good way to sidestep a number of  issues, and allows for the technique where <code>grep</code> does the iteration, and can be set to filter  the next element according to a running &ldquo;skip&rdquo; counter.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"></code></pre></div><pre><code>sub c_path {
-    local $_ = shift;
-    s{^/+}{} or return;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">c_path</span> {
+        local $_ <span style="color:#f92672">=</span> shift;
+        <span style="color:#e6db74">s{^/+}{}</span> <span style="color:#f92672">or</span> <span style="color:#66d9ef">return</span>;
 
-    my $skip;
-    my @part = reverse grep {
-        /^\.\.\z/ ? !++$skip : /^\.\z/ || $skip &amp;&amp; $skip-- ? 0 : 1;
-    } reverse split m{/+};
+        <span style="color:#66d9ef">my</span> $skip;
+        <span style="color:#66d9ef">my</span> @part <span style="color:#f92672">=</span> reverse grep {
+            <span style="color:#e6db74">/^\.\.\z/</span> ? <span style="color:#f92672">!++</span>$skip : <span style="color:#e6db74">/^\.\z/</span> <span style="color:#f92672">||</span> $skip <span style="color:#f92672">&amp;&amp;</span> $skip<span style="color:#f92672">--</span> ? <span style="color:#ae81ff">0</span> : <span style="color:#ae81ff">1</span>;
+        } reverse split <span style="color:#e6db74">m{/+}</span>;
 
-    $skip ? undef : join '/', '', @part, ('') x !@part;
-}
-</code></pre>
-<h2 id="reach-for-a-module">reach for a module</h2>
+        $skip ? undef : join <span style="color:#e6db74">&#39;/&#39;</span>, <span style="color:#e6db74">&#39;&#39;</span>, @part, (<span style="color:#e6db74">&#39;&#39;</span>) x <span style="color:#f92672">!</span>@part;
+    }
+</code></pre></div><h2 id="reach-for-a-module">reach for a module</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-112/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>,
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-112/stuart-little/perl/ch-1.pl"><strong>Stuart Little</strong></a>, and
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-112/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
@@ -770,18 +768,18 @@ You are given $n steps to climb</p>
 <p>Stuart also gives us an example of the Fibonacci recurrence relation, albeit presented in a very different manner. Starting with the kernel of two sets of solutions for 1 step and 2, he then prepends an additional 1 to every pattern in the previous set of solutions and a 2 to each in those for the ones before that. As there will be 1 modified pattern for each pattern previous, the count will remain the same and in effect the count will be the sum of the previous set of patterns plus the sum for the set before that.</p>
 <p>Or in other words, F(<em>n</em>) = F(<em>n</em>-1) + F(<em>n</em>-2).</p>
 <p>What Stuart&rsquo;s double mapping also accomplishes is to produce the actual step patterns taken to ascend the staircase:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    [colincrain@boris]$  perl <span style="color:#ae81ff">112</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2</span><span style="color:#f92672">-</span>StuartLittle<span style="color:#f92672">.</span>pl <span style="color:#ae81ff">5</span>
-    <span style="color:#ae81ff">8</span>
-    <span style="color:#f92672">----------</span>
-    <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span>
-    <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span>
-    <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">1</span>
-    <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span>
-    <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">2</span>
-    <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span>
-    <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span>
-    <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">1</span>
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> %memo<span style="color:#f92672">=</span>(
+<pre><code>    [colincrain@boris]$  perl 112-2-StuartLittle.pl 5
+    8
+    ----------
+    1 1 1 1 1
+    1 1 1 2
+    1 1 2 1
+    1 2 1 1
+    1 2 2
+    2 1 1 1
+    2 1 2
+    2 2 1
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> %memo<span style="color:#f92672">=</span>(
         <span style="color:#ae81ff">1</span> <span style="color:#f92672">=&gt;</span> [[<span style="color:#ae81ff">1</span>,],],
         <span style="color:#ae81ff">2</span> <span style="color:#f92672">=&gt;</span> [[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>],[<span style="color:#ae81ff">2</span>,]]
     );
@@ -933,7 +931,7 @@ You are given $n steps to climb</p>
 <p>This is</p>
 <p>∑ (<em>ones</em> + <em>twos</em>)! / (<em>ones</em>)! (<em>twos</em>)!</p>
 <p>summed over floor(<em>steps</em>/2), all possible values of <em>twos</em>.</p>
-<p>The marvelous logic produces the answer in a manner we haven&rsquo;t seen before. Unsatisfied, though, he continues on to provide two more submissions for producing the actual final permuted groups. First he gives us a <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-112/wlmb/perl/ch-2a.pl">naive solution</a>, followed by one <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-112/wlmb/perl/ch-2b.pl">more sophisticated</a>. His output even has his own take on things:</p>
+<p>Thia marvelous logic produces the answer in a manner we haven&rsquo;t seen before. Unsatisfied, though, he continues on to provide two more submissions for producing the actual final permuted groups. First he gives us a <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-112/wlmb/perl/ch-2a.pl">naive solution</a>, followed by one <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-112/wlmb/perl/ch-2b.pl">more sophisticated</a>. His output even has his own take on things:</p>
 <pre><code>    Input: 1
     Combinations:
     single
@@ -1026,7 +1024,7 @@ You are given $n steps to climb</p>
     say <span style="color:#e6db74">&#34;@d&#34;</span>;
 
     <span style="color:#ae81ff">111</span> <span style="color:#ae81ff">112</span> <span style="color:#ae81ff">121</span> <span style="color:#ae81ff">122</span> <span style="color:#ae81ff">211</span> <span style="color:#ae81ff">212</span> <span style="color:#ae81ff">221</span> <span style="color:#ae81ff">222</span>
-</code></pre></div><p>Pretty neat, huh? What we&rsquo;re really doing here is theoretically providing a list of filenames, listing 1 and 2 as alternate options for every character in an <em>n</em>-length string, but, hey, we don&rsquo;t need to open up files with the strings we create, do we?</p>
+</code></pre></div><p>Pretty nice, huh? It&rsquo;s a good trick. What we&rsquo;re really doing here is theoretically providing a list of filenames, listing 1 and 2 as alternate options for every character in an <em>n</em>-length string, but, hey, we don&rsquo;t need to open up files with the strings we create, do we?</p>
 <p>Instead we could <code>split</code> them and see whether they total to our desired step-count. That&rsquo;d work.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $m ( $n<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> $n )
     {

@@ -137,7 +137,7 @@ As time went on I developed a second, adjunct monstrosity:
 
 The results of all my tinkering, when things got weird, were verified by the GNU utility `realpath -m`:
 
-```perl
+```
     [colincrain@boris:/]$  realpath -m 'a/b/c//.///../d/'
     /a/b/d
 ```
@@ -203,8 +203,8 @@ Two of the actions, removing the current directory links and empty links, are we
 
 Notably, Dimitar also includes a "human readable" solution that employs `split`, `push` and `pop` to get the various jobs done, even including a one-liner version:
 
-```perl
-    -E'for(split/\//,pop){/^\.$/&&next;if(/^\.\.$/){pop@path}else{push@path,$_ if length}}say"/",join"/",@path'
+```
+   perl -E'for(split/\//,pop){/^\.$/&&next;if(/^\.\.$/){pop@path}else{push@path,$_ if length}}say"/",join"/",@path'
 ```
 
 Rather than linger here in Dimitar's one-stop shopping mart, this makes a nice segue into our next section, where we'll take a deeper look at array-based techniques.
@@ -273,7 +273,6 @@ This doesn't somehow fail, it just leaves you at the root level where you were. 
     for my $dir (grep { /./ } split '/', $path)
     {
         next if $dir eq '.';                        # Current directory: ignore
-
         if ($dir eq '..')                           # Parent directory
         {
             if (scalar @canonical_dirs == 0)        # Impossible case
@@ -457,8 +456,6 @@ Jorg is always gifting us with unusual takes on the challenges, and this week is
 Of note I like the idea of temporarily reversing the sliced array so the deletions are forward, not back, reversing again for output. It's a good way to sidestep a number of  issues, and allows for the technique where `grep` does the iteration, and can be set to filter  the next element according to a running "skip" counter.
 
 ```perl
-```
-
     sub c_path {
         local $_ = shift;
         s{^/+}{} or return;
@@ -470,6 +467,7 @@ Of note I like the idea of temporarily reversing the sliced array so the deletio
 
         $skip ? undef : join '/', '', @part, ('') x !@part;
     }
+```
 
 ## reach for a module
 [**Colin Crain**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-112/colin-crain/perl/ch-1.pl),
@@ -827,7 +825,7 @@ Or in other words, F(*n*) = F(*n*-1) + F(*n*-2).
 
 What Stuart's double mapping also accomplishes is to produce the actual step patterns taken to ascend the staircase:
 
-```perl
+```
     [colincrain@boris]$  perl 112-2-StuartLittle.pl 5
     8
     ----------
@@ -1042,7 +1040,7 @@ This is
 
 summed over floor(*steps*/2), all possible values of *twos*.
 
-The marvelous logic produces the answer in a manner we haven't seen before. Unsatisfied, though, he continues on to provide two more submissions for producing the actual final permuted groups. First he gives us a [naive solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-112/wlmb/perl/ch-2a.pl), followed by one [more sophisticated](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-112/wlmb/perl/ch-2b.pl). His output even has his own take on things:
+Thia marvelous logic produces the answer in a manner we haven't seen before. Unsatisfied, though, he continues on to provide two more submissions for producing the actual final permuted groups. First he gives us a [naive solution](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-112/wlmb/perl/ch-2a.pl), followed by one [more sophisticated](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-112/wlmb/perl/ch-2b.pl). His output even has his own take on things:
 
 ```
     Input: 1
@@ -1164,7 +1162,7 @@ Her algorithm uses the module to find all combinations of index locations for 2s
     111 112 121 122 211 212 221 222
 ```
 
-Pretty neat, huh? What we're really doing here is theoretically providing a list of filenames, listing 1 and 2 as alternate options for every character in an *n*-length string, but, hey, we don't need to open up files with the strings we create, do we?
+Pretty nice, huh? It's a good trick. What we're really doing here is theoretically providing a list of filenames, listing 1 and 2 as alternate options for every character in an *n*-length string, but, hey, we don't need to open up files with the strings we create, do we?
 
 Instead we could `split` them and see whether they total to our desired step-count. That'd work.
 
