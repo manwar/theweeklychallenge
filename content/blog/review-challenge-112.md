@@ -127,13 +127,17 @@ The upshot of all of this is that through concatenation any combination of these
 3. the backreference appears to point to either an empty directory or the current directory placeholder
 4. has no leading slash. We'll expand on this further:
 
-On the subject of the leading slash, or lack thereof, the correct course of action here is a bit ambiguous. A canonical path is an absolute path, by definition, and without knowledge of the current working directory that can't be properly resolved. On the other hand the resolution of the internal complications is in almost all cases independant from the absolute or relative nature; the simplification remains the same.
+On the subject of the leading slash, or lack thereof, the correct course of action in this review became open to debate. We are told we are given a leading slash, but many members took it upon themselves to handle this case anyway, so in the end I figured we should address it.
 
-Some solutions outright refused to process a path without a leading slash, which was an reasonable course of action. Others accepted the path given as though it were an absolute path with the leading slash omitted, which under the right conditions — the current working directory being the root directory — it might well be. This was also considered a reasonable assumption. Any script that accepted the absence of a leading slash was generally expected to deliver the same result as with a slash prepended.
+A canonical path is an absolute path, by definition, and without knowledge of the current working directory that can't be properly resolved. On the other hand the resolution of the internal complications is in almost all cases independant from the absolute or relative nature; the simplification remains the same.
+
+Some solutions outright refused to process a relative path, which was the reasonable, "correct" course of action. Others accepted the path given as though it were an absolute path with the leading slash ambiguously omitted, which under the right conditions — the current working directory being the root directory — it might well be. This was also considered a reasonable way to view it, as long as the rest of the simplifications fell out properly. Still others contacted the filesystem in some way and made an effort to prepend the path with the current working directory. No one was actually penalized for not handling this case, as I ended up both omitting the slash and not, to try and figure out what people intended.
 
 As time went on I developed a second, adjunct monstrosity:
 
     /../../../../../b/   -->    /b
+
+This also threw up red flags all over the place, and I ended up addressing those on a case-by-case basis, as we shall see.
 
 The results of all my tinkering, when things got weird, were verified by the GNU utility `realpath -m`:
 
@@ -141,6 +145,8 @@ The results of all my tinkering, when things got weird, were verified by the GNU
     [colincrain@boris:/]$  realpath -m 'a/b/c//.///../d/'
     /a/b/d
 ```
+
+I figure that as we've explicitly nodded towards UNIX in the description, we should defer to it in the end as the the final arbiter. Let the games begin.
 
 
 ## PARSE it with REGULAR EXPRESSIONS
