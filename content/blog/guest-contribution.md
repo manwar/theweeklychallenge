@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2021-06-12T00:00:00+00:00
+date: 2021-06-13T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -31,6 +31,8 @@ Please find below guest contributions.
 ----
 ## [The Weekly Challenge - 116](/blog/perl-weekly-challenge-116) {#116}
 <br>
+
+##### **Cristina Heredia** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/cristian-heredia/python/ch-2.py) in **Python**.
 
 ##### **Mohammad Meraj Zia** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/ziameraj16/java/SumOfSquares.java) in **Java**.
 
