@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2021-06-15T00:00:00+00:00
+date: 2021-06-16T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -31,6 +31,8 @@ Please find below guest contributions.
 ----
 ## [The Weekly Challenge - 117](/blog/perl-weekly-challenge-117) {#117}
 <br>
+
+##### **Cheok-Yin Fung** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/cheok-yin-fung/awk/ch-1.awk) in **Awk**.
 
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/roger-bell-west/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/roger-bell-west/python/ch-2.py) in **Python**.
 
