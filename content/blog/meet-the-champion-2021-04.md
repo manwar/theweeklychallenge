@@ -13,7 +13,7 @@ tags: ["Perl", "Raku"]
 
 Welcome to the monthly series `Meet The Champion`.
 
-Last month we spoke to **Tyler Wardhaugh**, the winner of **March 2021**.
+Last month we spoke to **Tyler Wardhaugh**, the winner of **[March 2021](/blog/meet-the-champion-2021-03)**.
 
 Today we are talking to **Aaron Smith**, the winner of **April 2021** of `The Weekly Challenge`. I hope you are going to enjoy the interview.
 
