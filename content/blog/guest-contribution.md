@@ -34,6 +34,8 @@ Please find below guest contributions.
 
 ##### **Lucas Ransan** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-118/luc65r/nix/ch-1.nix) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-118/luc65r/nix/ch-2.nix) in **Nix**.
 
+##### **Mohammad Meraj Zia** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-118/ziameraj16/java/BinaryPalindrome.java) in **Java**.
+
 ##### **Roger Bell_West** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-118/roger-bell-west/python/ch-1.py) in **Python**.
 
 ##### **Roger Bell_West** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-118/roger-bell-west/ruby/ch-1.rb) in **Ruby**.
