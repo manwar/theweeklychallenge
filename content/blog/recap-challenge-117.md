@@ -224,8 +224,8 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/abigail/perl/ch-1.pl)]
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/abigail/perl/ch-2.pl)]
-[[**BLOG #1**](https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-117-1.html)
-[[**BLOG #2**](https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-117-2.html)
+[[**BLOG #1**](https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-117-1.html)]
+[[**BLOG #2**](https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-117-2.html)]
 
 ***
 
