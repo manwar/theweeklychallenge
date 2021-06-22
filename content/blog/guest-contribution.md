@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2021-06-20T00:00:00+00:00
+date: 2021-06-22T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -53,6 +53,8 @@ Please find below guest contributions.
 ##### **Adam Russell** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/adam-russell/prolog/ch-1.p) in **Prolog**.
 
 ##### **Cheok-Yin Fung** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/cheok-yin-fung/awk/ch-1.awk) in **Awk**.
+
+##### **Frank Oosterhuis** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/frankivo/scala/LineFinder.scala) in **Scala**.
 
 ##### **Lucas Ransan** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/luc65r/zig/ch-1.zig) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/luc65r/zig/ch-2.zig) in **Zig**.
 
