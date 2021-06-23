@@ -32,6 +32,8 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 118](/blog/perl-weekly-challenge-118) {#118}
 <br>
 
+##### **Frank Oosterhuis** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-118/frankivo/scala/Palindrome.scala) in **Scala**.
+
 ##### **Lucas Ransan** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-118/luc65r/nix/ch-1.nix) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-118/luc65r/nix/ch-2.nix) in **Nix**.
 
 ##### **Mohammad Meraj Zia** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-118/ziameraj16/java/BinaryPalindrome.java) in **Java**.
