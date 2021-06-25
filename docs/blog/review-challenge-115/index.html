@@ -179,7 +179,7 @@
                 <div class="block">
                     <h2>Colin Crain › Perl Weekly Review #115</h2>
                     <div class="portfolio-meta">
-                        <span>Monday, Jun 21, 2021</span>|
+                        <span>Friday, Jun 25, 2021</span>|
                         <span> Tags:
                             perl
                         </span>
@@ -254,8 +254,9 @@ You are given an array of strings.</p>
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-115/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a>,
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-115/stuart-little/perl/ch-1.pl"><strong>Stuart Little</strong></a>, and
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-115/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
-<p>There were 19 working submissions for the first task this past week. At least I think there were. Something like that. To explain:</p>
-<p>The definition of this challenge proveed to be a bit trickier and more confusing than it first appeared, with a few undefined loose ends arising that needed to be clarified before attempting a solution. For instance, although there was a large degree of consensus that every string needed to be used in a chain, this is not actually clearly stated, and so this wasn&rsquo;t true for all submissions. Although on the whole I like variation in both the methods and the questions, in the end I do need to spend a cetain amount of extra time figuring out exactly what question is being answered. With my guiding rule being that the solution successfully solves the interpretation of the task, this understanding is pretty essential, and unfortunately not always obvious.</p>
+<p>There were 19 working submissions for the first task this past week. At least I think there were. Something like that, at least.</p>
+<p>To explain:</p>
+<p>The definition of this challenge proved to be a bit trickier and more confusing than it first appeared, with a few undefined loose ends arising that needed to be clarified before attempting a solution. For instance, although there was a large degree of consensus that every string needed to be used in a chain, this is not actually clearly stated, and so this wasn&rsquo;t true for all submissions. Although on the whole I like variation in both the methods and the questions, in the end I do need to spend a cetain amount of extra time figuring out exactly what question is being answered. With my guiding rule being that the solution successfully solves the interpretation of the task, this understanding is pretty essential, and unfortunately not always obvious.</p>
 <p>So what did we see? It turns out a lot of different types of chainings can arise. We can, of course, have one complete chain that uses all of the elements and links back to the beginning of the first link. Then again we can also have the case where the links may cycle, but form two or more independant loops, and we need to watch for this. Take these six strings, for example, that all get used in the following configuration:</p>
 <p><strong>ab</strong> → <strong>bc</strong> → <strong>ca</strong>  <br>
 <strong>xy</strong> → <strong>yz</strong> → <strong>za</strong></p>
@@ -263,11 +264,11 @@ You are given an array of strings.</p>
 <p>Or here&rsquo;s a tricky one — a chain that crosses over itself in the middle so it <em>appears</em> to be a two independant chains, but still can be configured as one single linkage:</p>
 <p><strong>ab</strong> → <strong>bc</strong> → <strong>ca</strong>  ( → ) <br>
 <strong>ax</strong> → <strong>xy</strong> → <strong>ya</strong></p>
-<p>This extra interconnectedness had the potential to cause some confusion, and needed to be accommodated with some of the techniques we saw.</p>
+<p>This extra interconnectedness had the potential to cause some confusion, and needed to be accommodated with some of the techniques we saw. At the end we&rsquo;ll touch on an algorithm specifically designed to address this circumstance.</p>
 <p>Or what about duplicate strings? Again the case is undefined.</p>
 <p><strong>aaa</strong> → <strong>aaa</strong> → <strong>aaa</strong> → <strong>aaa</strong> → <strong>aaa</strong> → <strong>aaa</strong></p>
 <p>This degenerate case obviously will cycle, but if we just remove &ldquo;aaa&rdquo; from the running after using it, well, that&rsquo;s not going to work. Again we did see this complication out in the wild.</p>
-<p>I ended up thinking about failure modes <em>way</em> too much, and ended mostly throwing my hands in the air and moving forward as best I could. So, as I said, I <em>think</em> they work. THinking up new ways to break stuff, despite appearances, does not give me pleasure and I&rsquo;d much rather move on. Caveat emptor.</p>
+<p>I ended up thinking about failure modes <em>way</em> too much, and ended mostly throwing my hands in the air and moving forward as best I could. So, as I said, I <em>think</em> they work. Thinking up new ways to break stuff, despite appearances, does not give me pleasure and I&rsquo;d much rather move on. Caveat emptor.</p>
 <p>There was one situation that stood out, however, which was simply testing for matching numbers of starting and ending instances for characters amongst the set of strings. Although if this is <em>not</em> true a single chain can never be formed, if this <em>is</em> true we cannot know that a connective through-line will trace a single loop without further testing. As this algorithm wants to use every string but cannot say whether a single chain can be formed I concluded in this case this technique on its own was not up to to the task. Sorry. For ways around this have a look to the final graph theory section.</p>
 <h2 id="start-tracing-connections">start TRACING CONNECTIONS</h2>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-115/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>,
@@ -615,7 +616,7 @@ You are given an array of strings.</p>
     say <span style="color:#e6db74">&#34;Output: &#34;</span>, $balanced <span style="color:#f92672">&amp;&amp;</span>$reachable? <span style="color:#ae81ff">1</span>:<span style="color:#ae81ff">0</span>;
 </code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-115/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a></p>
 <p>The difference between simply counting up the instances of a character as a vertex, the &ldquo;degree&rdquo; as it is known; making sure that the number is even, for one in and one out each; and proving that we have a proper Eulerian Circuit is whether the resulting graph creates a <em>single connected component</em>.</p>
-<p>CY breaks her determination of a Eulerian Circuit into two parts: counting degrees and determining whether the result is all connected. Here is the second phase of her algorithm, determining the single connectivity. She references this <a href="https://e7-87-83.github.io/coding/challenge_115.html">in her writeup</a> as <a href="https://en.wikipedia.org/wiki/Eulerian_path#Hierholzer's_algorithm">Hierholzer&rsquo;s algorithm</a>.</p>
+<p>CY breaks her determination of a Eulerian Circuit into two parts: counting degrees and determining whether the result is all connected. Here is the second phase of her algorithm, determining the single connectivity. She references this method <a href="https://e7-87-83.github.io/coding/challenge_115.html">in her writeup</a> as <a href="https://en.wikipedia.org/wiki/Eulerian_path#Hierholzer's_algorithm">Hierholzer&rsquo;s algorithm</a>. Essentially it addresses the issue of being able to construct multiple closed loops within as set of even-numbered vertices, where the loops touch and can be recombined to form a complete tour of the vertices.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_connected</span> {
         <span style="color:#66d9ef">my</span> @edges <span style="color:#f92672">=</span> @_;
         <span style="color:#66d9ef">my</span> %collected;
@@ -652,7 +653,7 @@ You are given an array of strings.</p>
     }
 
 </code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-115/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a></p>
-<p>We&rsquo;ve touched on quite a few different ways to approach the string challenge today. Here to close things down is Jorg, who, like CY before him, implements Hierholzer&rsquo;s algorithm to determine whether a cycle is Eulerian. To start, we have the setup, with nice commenting interspersed:</p>
+<p>We&rsquo;ve touched on quite a few different ways to approach the string challenge today. Here to close things down is Jorg, who, like CY before him, implements Hierholzer&rsquo;s algorithm to construct a Eulerian cycle. To start, we have the setup, with nice commenting interspersed:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">has_string_circle</span> {
         <span style="color:#75715e"># Create a multidigraph from the strings.</span>
         <span style="color:#66d9ef">my</span> $g <span style="color:#f92672">=</span> Graph<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(multiedged <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>);
@@ -689,7 +690,7 @@ You are given an array of strings.</p>
 
         <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
     }
-</code></pre></div><p>Then comes the test using Hierholzer&rsquo;s algorithm, which, as we noted, CY also references. So here it is in its entirely, because some things are best left intact. Enjoy.</p>
+</code></pre></div><p>Then comes the cycle using Hierholzer&rsquo;s algorithm, to construct a cycle and expand it to accommodate unused vertex connections if necessary. So here it is in its entirely, because some things are best left intact. Enjoy.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># Implementation of Hierholzer&#39;s algorithm (see below for a</span>
     <span style="color:#75715e"># justification):</span>
     <span style="color:#75715e"># - Start with a random vertex v.</span>

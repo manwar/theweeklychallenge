@@ -1,6 +1,6 @@
 ---
 author:       Colin Crain
-date:         2021-06-21T00:00:00
+date:         2021-06-25T00:00:00
 description:  "Colin Crain › Perl Weekly Review #115"
 tags:         ["perl"]
 title:        "Colin Crain › Perl Weekly Review #115"
@@ -93,9 +93,11 @@ A string $S can be put before another string $T in circle if the last character 
 [**W. Luis Mochan**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-115/wlmb/perl/ch-1.pl)
 
 
-There were 19 working submissions for the first task this past week. At least I think there were. Something like that. To explain:
+There were 19 working submissions for the first task this past week. At least I think there were. Something like that, at least.
 
-The definition of this challenge proveed to be a bit trickier and more confusing than it first appeared, with a few undefined loose ends arising that needed to be clarified before attempting a solution. For instance, although there was a large degree of consensus that every string needed to be used in a chain, this is not actually clearly stated, and so this wasn't true for all submissions. Although on the whole I like variation in both the methods and the questions, in the end I do need to spend a cetain amount of extra time figuring out exactly what question is being answered. With my guiding rule being that the solution successfully solves the interpretation of the task, this understanding is pretty essential, and unfortunately not always obvious.
+To explain:
+
+The definition of this challenge proved to be a bit trickier and more confusing than it first appeared, with a few undefined loose ends arising that needed to be clarified before attempting a solution. For instance, although there was a large degree of consensus that every string needed to be used in a chain, this is not actually clearly stated, and so this wasn't true for all submissions. Although on the whole I like variation in both the methods and the questions, in the end I do need to spend a cetain amount of extra time figuring out exactly what question is being answered. With my guiding rule being that the solution successfully solves the interpretation of the task, this understanding is pretty essential, and unfortunately not always obvious.
 
 So what did we see? It turns out a lot of different types of chainings can arise. We can, of course, have one complete chain that uses all of the elements and links back to the beginning of the first link. Then again we can also have the case where the links may cycle, but form two or more independant loops, and we need to watch for this. Take these six strings, for example, that all get used in the following configuration:
 
@@ -109,7 +111,7 @@ Or here's a tricky one — a chain that crosses over itself in the middle so it 
 **ab** → **bc** → **ca**  ( → ) <br>
 **ax** → **xy** → **ya**
 
-This extra interconnectedness had the potential to cause some confusion, and needed to be accommodated with some of the techniques we saw.
+This extra interconnectedness had the potential to cause some confusion, and needed to be accommodated with some of the techniques we saw. At the end we'll touch on an algorithm specifically designed to address this circumstance.
 
 Or what about duplicate strings? Again the case is undefined.
 
@@ -117,7 +119,7 @@ Or what about duplicate strings? Again the case is undefined.
 
 This degenerate case obviously will cycle, but if we just remove "aaa" from the running after using it, well, that's not going to work. Again we did see this complication out in the wild.
 
-I ended up thinking about failure modes *way* too much, and ended mostly throwing my hands in the air and moving forward as best I could. So, as I said, I *think* they work. THinking up new ways to break stuff, despite appearances, does not give me pleasure and I'd much rather move on. Caveat emptor.
+I ended up thinking about failure modes *way* too much, and ended mostly throwing my hands in the air and moving forward as best I could. So, as I said, I *think* they work. Thinking up new ways to break stuff, despite appearances, does not give me pleasure and I'd much rather move on. Caveat emptor.
 
 There was one situation that stood out, however, which was simply testing for matching numbers of starting and ending instances for characters amongst the set of strings. Although if this is *not* true a single chain can never be formed, if this *is* true we cannot know that a connective through-line will trace a single loop without further testing. As this algorithm wants to use every string but cannot say whether a single chain can be formed I concluded in this case this technique on its own was not up to to the task. Sorry. For ways around this have a look to the final graph theory section.
 
@@ -554,7 +556,7 @@ The [writeup Luis provides as accompaniment](https://wlmb.github.io/2021/06/01/P
 
 The difference between simply counting up the instances of a character as a vertex, the "degree" as it is known; making sure that the number is even, for one in and one out each; and proving that we have a proper Eulerian Circuit is whether the resulting graph creates a *single connected component*.
 
-CY breaks her determination of a Eulerian Circuit into two parts: counting degrees and determining whether the result is all connected. Here is the second phase of her algorithm, determining the single connectivity. She references this [in her writeup](https://e7-87-83.github.io/coding/challenge_115.html) as [Hierholzer's algorithm](https://en.wikipedia.org/wiki/Eulerian_path#Hierholzer's_algorithm).
+CY breaks her determination of a Eulerian Circuit into two parts: counting degrees and determining whether the result is all connected. Here is the second phase of her algorithm, determining the single connectivity. She references this method [in her writeup](https://e7-87-83.github.io/coding/challenge_115.html) as [Hierholzer's algorithm](https://en.wikipedia.org/wiki/Eulerian_path#Hierholzer's_algorithm). Essentially it addresses the issue of being able to construct multiple closed loops within as set of even-numbered vertices, where the loops touch and can be recombined to form a complete tour of the vertices.
 
 ```perl
     sub is_connected {
@@ -596,7 +598,7 @@ CY breaks her determination of a Eulerian Circuit into two parts: counting degre
 
 [**Jorg Sommrey**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-115/jo-37/perl/ch-1.pl)
 
-We've touched on quite a few different ways to approach the string challenge today. Here to close things down is Jorg, who, like CY before him, implements Hierholzer's algorithm to determine whether a cycle is Eulerian. To start, we have the setup, with nice commenting interspersed:
+We've touched on quite a few different ways to approach the string challenge today. Here to close things down is Jorg, who, like CY before him, implements Hierholzer's algorithm to construct a Eulerian cycle. To start, we have the setup, with nice commenting interspersed:
 
 ```perl
     sub has_string_circle {
@@ -637,7 +639,7 @@ We've touched on quite a few different ways to approach the string challenge tod
     }
 ```
 
-Then comes the test using Hierholzer's algorithm, which, as we noted, CY also references. So here it is in its entirely, because some things are best left intact. Enjoy.
+Then comes the cycle using Hierholzer's algorithm, to construct a cycle and expand it to accommodate unused vertex connections if necessary. So here it is in its entirely, because some things are best left intact. Enjoy.
 
 ```perl
     # Implementation of Hierholzer's algorithm (see below for a
