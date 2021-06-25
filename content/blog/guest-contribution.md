@@ -3134,7 +3134,23 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 011](/blog/perl-weekly-challenge-011) {#011}
 <br>
 
+##### **Paulo Custodio** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/paulo-custodio/ada/ch_1.adb) in **Ada**.
+
+##### **Paulo Custodio** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/paulo-custodio/awk/ch-1.awk) in **Awk**.
+
+##### **Paulo Custodio** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/paulo-custodio/basic/ch-1.bas) in **Basic**.
+
 ##### **Paulo Custodio** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/paulo-custodio/bc/ch-1.bc) in **Bc**.
+
+##### **Paulo Custodio** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/paulo-custodio/c/ch-1.c) in **C**.
+
+##### **Paulo Custodio** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/paulo-custodio/cpp/ch-1.cpp) in **C++**.
+
+##### **Paulo Custodio** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/paulo-custodio/forth/ch-1.fs) in **Forth**.
+
+##### **Paulo Custodio** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/paulo-custodio/lua/ch-1.lua) in **Lua**.
+
+##### **Paulo Custodio** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/paulo-custodio/python/ch-1.py) in **Python**.
 
 ##### **Stuart Little** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/stuart-little/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/stuart-little/haskell/ch-2.hs) in **Haskell**.
 
