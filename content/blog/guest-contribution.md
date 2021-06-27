@@ -110,6 +110,8 @@ Please find below guest contributions.
 
 ##### **Stuart Little** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-118/stuart-little/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-118/stuart-little/python/ch-2.py) in **Python**.
 
+##### **Tyler Wardhaugh** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-118/tyler-wardhaugh/clojure/src/tw/weekly/c118/t1.clj) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-118/tyler-wardhaugh/clojure/src/tw/weekly/c118/t2.clj) in **Clojure**.
+
 ----
 ## [The Weekly Challenge - 117](/blog/perl-weekly-challenge-117) {#117}
 <br>
