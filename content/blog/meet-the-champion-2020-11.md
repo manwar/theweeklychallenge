@@ -13,7 +13,7 @@ tags: ["Perl"]
 
 Welcome to the monthly series `Meet The Champion`.
 
-Last month we spoke to **Andrew Shitov**, the winner of **[October 2020](https://perlweeklychallenge.org/blog/meet-the-champion-2020-10)**.
+Last month we spoke to **Andrew Shitov**, the winner of **[October 2020](/blog/meet-the-champion-2020-10)**.
 
 Today we are talking to **Simon Green**, the winner of **November 2020** of `The Weekly Challenge`. I hope you are going to enjoy the interview.
 
@@ -45,7 +45,7 @@ I've also had an interest in System Administration, and obtained an RHCSA while 
 
 **Simon:** Two things.
 
-1. Solving the tasks. Some are pretty straight forward and others require a bit of thought before I put fingers on the keyboard. This [week](https://perlweeklychallenge.org/blog/perl-weekly-challenge-092/) is a classic example. The first task took about 10 minutes to write and test. The second task took a tad over an hour and a bit of trial and error.
+1. Solving the tasks. Some are pretty straight forward and others require a bit of thought before I put fingers on the keyboard. This [week](/blog/perl-weekly-challenge-092/) is a classic example. The first task took about 10 minutes to write and test. The second task took a tad over an hour and a bit of trial and error.
 1. Reading other people's solutions, especially those that have a blog post.
 
 ---

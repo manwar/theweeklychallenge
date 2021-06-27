@@ -25,7 +25,7 @@ While I was working on **Advent Calendar**, I came across whole lot of brilliant
 
 ## Damian Conway
 
-One of the achievements of the **"Perl Weekly Challenge"** was able to attract the attention of **Damian Conway**. I was pleasantly surprised to see him going into the finer details of the challenge every week. I didn't want to loose the track of his great work. Therefore I decided to create [**one-stop**](https://perlweeklychallenge.org/blog/damian-corner) placeholder to have all his work listed.
+One of the achievements of the **"Perl Weekly Challenge"** was able to attract the attention of **Damian Conway**. I was pleasantly surprised to see him going into the finer details of the challenge every week. I didn't want to loose the track of his great work. Therefore I decided to create [**one-stop**](/blog/damian-corner) placeholder to have all his work listed.
 
 <br>
 ***

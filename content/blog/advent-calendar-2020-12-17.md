@@ -11,7 +11,7 @@ tags: ["Raku"]
 [**Advent Calendar 2020**](/blog/advent-calendar-2020)
 ***
 
-The gift is presented by [**Scimon Proctor**](https://perlweeklychallenge.org/blog/meet-the-champion-027). Today he is talking about his solution to the task `Trailing Zeros` of **["The Weekly Challenge - 072"](/blog/perl-weekly-challenge-072)**. This is re-produced for **Advent Calendar 2020** from the original [**post**](https://dev.to/scimon/the-weekly-challenge-in-raku-week-72-part-1-2i0g) by **Scimon Proctor**.
+The gift is presented by [**Scimon Proctor**](/blog/meet-the-champion-027). Today he is talking about his solution to the task `Trailing Zeros` of **["The Weekly Challenge - 072"](/blog/perl-weekly-challenge-072)**. This is re-produced for **Advent Calendar 2020** from the original [**post**](https://dev.to/scimon/the-weekly-challenge-in-raku-week-72-part-1-2i0g) by **Scimon Proctor**.
 
 ***
 

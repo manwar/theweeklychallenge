@@ -11,7 +11,7 @@ tags: ["Perl"]
 [**Advent Calendar 2020**](/blog/advent-calendar-2020)
 ***
 
-The gift is presented by [**Adam Russell**](https://perlweeklychallenge.org/blog/meet-the-champion-016). Today he is talking about his solution to the task `Lines Range` of **["The Weekly Challenge - 072"](/blog/perl-weekly-challenge-072)**. This is re-produced for **Advent Calendar 2020** from the original [**post**](https://adamcrussell.livejournal.com/16759.html) by **Adam Russell**.
+The gift is presented by [**Adam Russell**](/blog/meet-the-champion-016). Today he is talking about his solution to the task `Lines Range` of **["The Weekly Challenge - 072"](/blog/perl-weekly-challenge-072)**. This is re-produced for **Advent Calendar 2020** from the original [**post**](https://adamcrussell.livejournal.com/16759.html) by **Adam Russell**.
 
 ***
 

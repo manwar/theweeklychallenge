@@ -17,7 +17,7 @@ The gift is presented by [**Yet Ebreo**](/blog/meet-the-champion-025). Today he 
 
 ***
 
-I was googling about **Perl**, hoping to see an active community that is dedicated to Perl. I have been an active member of **codesignal** and I primarily use **Perl** to solve the challenges. And then, I came across the website [**perlweeklychallenge.org**](https://perlweeklychallenge.org) that is being maintained by **Mohammad S Anwar**. The website as the name implies, post challenges every week it usually consist of three tasks.
+I was googling about **Perl**, hoping to see an active community that is dedicated to Perl. I have been an active member of **codesignal** and I primarily use **Perl** to solve the challenges. And then, I came across the website [**theweeklychallenge.org**](https://theweeklychallenge.org) that is being maintained by **Mohammad S Anwar**. The website as the name implies, post challenges every week it usually consist of three tasks.
 
 For this week, the first task is to print the first 10 sexy primes
 

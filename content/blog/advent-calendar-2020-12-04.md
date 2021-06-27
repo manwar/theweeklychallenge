@@ -11,11 +11,11 @@ tags: ["Perl","Raku"]
 [**Advent Calendar 2020**](/blog/advent-calendar-2020)
 ***
 
-The gift is presented by [**Andrew Shitov**](https://perlweeklychallenge.org/blog/meet-the-champion-2020-10). Today he is talking about his solution to **["The Weekly Challenge - 089"](/blog/perl-weekly-challenge-089)**.
+The gift is presented by [**Andrew Shitov**](/blog/meet-the-champion-2020-10). Today he is talking about his solution to **["The Weekly Challenge - 089"](/blog/perl-weekly-challenge-089)**.
 
 ***
 
-Christmas time, and it’s time to talk to each and every one! It’s a great idea to approach people by speaking their languages. In today’s post, let me demonstrate a number of working solutions of [the first problem of Week 89](https://perlweeklychallenge.org/blog/perl-weekly-challenge-089/#TASK1) of The Weekly Challenge in 22 different programming languages. It is a kind of continuation of my last year’s Advent series ‘[A Language a Day](https://andrewshitov.com/2019/11/25/a-language-a-day-advent-calendar-2019/)’.
+Christmas time, and it’s time to talk to each and every one! It’s a great idea to approach people by speaking their languages. In today’s post, let me demonstrate a number of working solutions of [the first problem of Week 89](/blog/perl-weekly-challenge-089/#TASK1) of The Weekly Challenge in 22 different programming languages. It is a kind of continuation of my last year’s Advent series ‘[A Language a Day](https://andrewshitov.com/2019/11/25/a-language-a-day-advent-calendar-2019/)’.
 
 # Problem
 

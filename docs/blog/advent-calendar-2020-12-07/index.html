@@ -202,7 +202,7 @@
                 <div style="text-align: justify" class="post-content">
                     <p><a href="/blog/advent-calendar-2020"><strong>Advent Calendar 2020</strong></a></p>
 <hr>
-<p>The gift is presented by <a href="https://perlweeklychallenge.org/blog/meet-the-champion-037"><strong>Javier Luque</strong></a>. Today he is talking about his solution to the task <code>IPv4 Partition</code> of <strong><a href="/blog/perl-weekly-challenge-061">&ldquo;The Weekly Challenge - 061&rdquo;</a></strong>. This is re-produced for <strong>Advent Calendar 2020</strong> from the original <a href="https://perlchallenges.wordpress.com/2020/05/18/perl-weekly-challenge-061/"><strong>post</strong></a> by <strong>Javier Luque</strong>.</p>
+<p>The gift is presented by <a href="/blog/meet-the-champion-037"><strong>Javier Luque</strong></a>. Today he is talking about his solution to the task <code>IPv4 Partition</code> of <strong><a href="/blog/perl-weekly-challenge-061">&ldquo;The Weekly Challenge - 061&rdquo;</a></strong>. This is re-produced for <strong>Advent Calendar 2020</strong> from the original <a href="https://perlchallenges.wordpress.com/2020/05/18/perl-weekly-challenge-061/"><strong>post</strong></a> by <strong>Javier Luque</strong>.</p>
 <hr>
 <h2 id="ipv4-partition">IPv4 Partition</h2>
 <p>You are given a string containing only digits <strong>(0..9)</strong>. The string should have between <strong>4</strong> and <strong>12</strong> digits.</p>
@@ -240,10 +240,10 @@ partition_ip_string($ip_address);
 
     <span style="color:#75715e"># Validate string</span>
     <span style="color:#66d9ef">return</span> undef <span style="color:#66d9ef">if</span>
-    	( length($string) <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">4</span>  <span style="color:#f92672">||</span>
-    	  length($string) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">12</span> <span style="color:#f92672">||</span>
-    	  <span style="color:#f92672">!</span>($string <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^\d+$/</span>)
-    	);
+        ( length($string) <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">4</span>  <span style="color:#f92672">||</span>
+          length($string) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">12</span> <span style="color:#f92672">||</span>
+          <span style="color:#f92672">!</span>($string <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^\d+$/</span>)
+        );
 
     <span style="color:#75715e"># Find all the combinations for the possible ips</span>
     <span style="color:#66d9ef">my</span> @dot_positions <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $length);
@@ -251,33 +251,33 @@ partition_ip_string($ip_address);
 
     <span style="color:#75715e"># Process the combinations</span>
     <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">my</span> $combos <span style="color:#f92672">=</span> $iter<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">next</span>) {
-    	<span style="color:#66d9ef">my</span> $to_test <span style="color:#f92672">=</span> $string;
-    	<span style="color:#66d9ef">my</span> $offset <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">my</span> $to_test <span style="color:#f92672">=</span> $string;
+        <span style="color:#66d9ef">my</span> $offset <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
 
-    	<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $dot_position (@$combos) {
-    		<span style="color:#66d9ef">my</span> $position <span style="color:#f92672">=</span>
-    			($dot_position <span style="color:#f92672">+</span> $offset) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $dot_position (@$combos) {
+        	<span style="color:#66d9ef">my</span> $position <span style="color:#f92672">=</span>
+        		($dot_position <span style="color:#f92672">+</span> $offset) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
 
-    		<span style="color:#75715e"># Append to the test string;</span>
-    		$to_test <span style="color:#f92672">=</span>
-    			(substr $to_test, <span style="color:#ae81ff">0</span>, $position)
-    			<span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;.&#39;</span> <span style="color:#f92672">.</span>
-    			(substr $to_test, $position);
+        	<span style="color:#75715e"># Append to the test string;</span>
+        	$to_test <span style="color:#f92672">=</span>
+        		(substr $to_test, <span style="color:#ae81ff">0</span>, $position)
+        		<span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;.&#39;</span> <span style="color:#f92672">.</span>
+        		(substr $to_test, $position);
 
-    		<span style="color:#75715e"># Offset the string</span>
-    		$offset<span style="color:#f92672">++</span>;
-    	}
+        	<span style="color:#75715e"># Offset the string</span>
+        	$offset<span style="color:#f92672">++</span>;
+        }
 
-    	say $to_test
-    		<span style="color:#66d9ef">if</span> (validate_ip_string($to_test));
+        say $to_test
+        	<span style="color:#66d9ef">if</span> (validate_ip_string($to_test));
     }
 }
 
 <span style="color:#75715e"># Validate the IP String</span>
 <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">validate_ip_string</span> {
     <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $digit (split(<span style="color:#e6db74">&#39;\.&#39;</span>, shift)) {
-    	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> ($digit <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">255</span>);
-    	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> ($digit <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^0\d+$/</span>);
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> ($digit <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">255</span>);
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> ($digit <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^0\d+$/</span>);
     }
 
     <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
@@ -305,33 +305,33 @@ multi MAIN(Str $str) {
 
     <span style="color:#75715e"># Process the combinations</span>
     <span style="color:#66d9ef">for</span> @combos <span style="color:#f92672">-&gt;</span> @combo {
-    	<span style="color:#66d9ef">my</span> $to_test <span style="color:#f92672">=</span> $str;
-    	<span style="color:#66d9ef">my</span> $offset <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">my</span> $to_test <span style="color:#f92672">=</span> $str;
+        <span style="color:#66d9ef">my</span> $offset <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
 
-    	<span style="color:#66d9ef">for</span> (@combo) <span style="color:#f92672">-&gt;</span> $dot_position {
-    		<span style="color:#66d9ef">my</span> $position <span style="color:#f92672">=</span>
-    			($dot_position <span style="color:#f92672">+</span> $offset) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">for</span> (@combo) <span style="color:#f92672">-&gt;</span> $dot_position {
+        	<span style="color:#66d9ef">my</span> $position <span style="color:#f92672">=</span>
+        		($dot_position <span style="color:#f92672">+</span> $offset) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
 
-    		<span style="color:#75715e"># Append to the test string;</span>
-    		$to_test <span style="color:#f92672">=</span>
-    			$to_test<span style="color:#f92672">.</span>substr(<span style="color:#ae81ff">0</span>, $position)
-    			<span style="color:#f92672">~</span> <span style="color:#e6db74">&#39;.&#39;</span> <span style="color:#f92672">~</span>
-    			$to_test<span style="color:#f92672">.</span>substr($position);
+        	<span style="color:#75715e"># Append to the test string;</span>
+        	$to_test <span style="color:#f92672">=</span>
+        		$to_test<span style="color:#f92672">.</span>substr(<span style="color:#ae81ff">0</span>, $position)
+        		<span style="color:#f92672">~</span> <span style="color:#e6db74">&#39;.&#39;</span> <span style="color:#f92672">~</span>
+        		$to_test<span style="color:#f92672">.</span>substr($position);
 
-    		<span style="color:#75715e"># Offset the string</span>
-    		$offset<span style="color:#f92672">++</span>;
-    	}
+        	<span style="color:#75715e"># Offset the string</span>
+        	$offset<span style="color:#f92672">++</span>;
+        }
 
-    	say $to_test
-    		<span style="color:#66d9ef">if</span> (validate<span style="color:#f92672">-</span>ip<span style="color:#f92672">-</span>string($to_test));
+        say $to_test
+        	<span style="color:#66d9ef">if</span> (validate<span style="color:#f92672">-</span>ip<span style="color:#f92672">-</span>string($to_test));
     }
 }
 
 <span style="color:#75715e"># Validate the IP String</span>
 <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">validate</span>-ip-string(Str $str) {
     <span style="color:#66d9ef">for</span> $str<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39;.&#39;</span>) <span style="color:#f92672">-&gt;</span> $digit {
-    	<span style="color:#66d9ef">return</span> False <span style="color:#66d9ef">if</span> ($digit <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">255</span>);
-    	<span style="color:#66d9ef">return</span> False <span style="color:#66d9ef">if</span> ($digit <span style="color:#f92672">~~</span> <span style="color:#e6db74">/^0\d+$/</span>);
+        <span style="color:#66d9ef">return</span> False <span style="color:#66d9ef">if</span> ($digit <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">255</span>);
+        <span style="color:#66d9ef">return</span> False <span style="color:#66d9ef">if</span> ($digit <span style="color:#f92672">~~</span> <span style="color:#e6db74">/^0\d+$/</span>);
     }
     <span style="color:#66d9ef">return</span> True;
 }

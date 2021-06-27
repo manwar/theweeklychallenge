@@ -11,7 +11,7 @@ tags: ["Perl"]
 [**Advent Calendar 2020**](/blog/advent-calendar-2020)
 ***
 
-The gift is presented by [**Duncan C. White**](https://perlweeklychallenge.org/blog/meet-the-champion-020). Today he is talking about his solution to the task `Head to Tail Pokémon names` of **["The Weekly Challenge - 025"](/blog/perl-weekly-challenge-025)**. This is re-produced for **Advent Calendar 2020** from the original [**post**](https://www.doc.ic.ac.uk/~dcw/PSD/article13/) by **Duncan C. White**.
+The gift is presented by [**Duncan C. White**](/blog/meet-the-champion-020). Today he is talking about his solution to the task `Head to Tail Pokémon names` of **["The Weekly Challenge - 025"](/blog/perl-weekly-challenge-025)**. This is re-produced for **Advent Calendar 2020** from the original [**post**](https://www.doc.ic.ac.uk/~dcw/PSD/article13/) by **Duncan C. White**.
 
 ***
 
@@ -27,7 +27,7 @@ But occasionally, when your program is working properly, and when it's written s
 
 I typically find that, when I do bother to try to optimize my code I can make it run about 10 times faster, usually without changing the basic algorithm in use. Often, the most effective tactic is to precompute as much as possible. To that end, I often ask myself - what is the ideal data structure that would enable me to look up the answers to all questions of a particular type, and can I build that data structure more quickly? We'll see lots of examples of this in this article.
 
-Recently, I started doing the [Perl Weekly Challenge](https://perlweeklychallenge.org/), for fun and amusement. Each week, two or three tasks are set for challengers, to solve in Perl 5 or Perl 6 (recently renamed as Raku), and people can submit their solutions before the end of the week via a github pull request. In recent weeks, they have started selecting a weekly Champion, and got them to answer some questions for a "Meet the Champion" page. To my surprise and great pleasure, I was selected Champion a few weeks ago: please see [Meet The Champion - Duncan C. White](https://perlweeklychallenge.org/blog/meet-the-champion-020/).
+Recently, I started doing [The Weekly Challenge](https://theweeklychallenge.org/), for fun and amusement. Each week, two or three tasks are set for challengers, to solve in Perl 5 or Perl 6 (recently renamed as Raku), and people can submit their solutions before the end of the week via a github pull request. In recent weeks, they have started selecting a weekly Champion, and got them to answer some questions for a "Meet the Champion" page. To my surprise and great pleasure, I was selected Champion a few weeks ago: please see [Meet The Champion - Duncan C. White](/blog/meet-the-champion-020/).
 
 One recent Perl challenge was as follows:
 

@@ -69,7 +69,7 @@ Today we are talking to the **[Perl Weekly Challenge - 025](/blog/perl-weekly-ch
 
 **Mohammad:** Do you find the website user friendly? What do you like most?
 
-**Yet Ebreo:** Yes! There are room for improvements as always but it is user friendly. I like the [Chart](https://perlweeklychallenge.org/chart) and [Champions](https://perlweeklychallenge.org/champions) lists.
+**Yet Ebreo:** Yes! There are room for improvements as always but it is user friendly. I like the [Chart](/chart) and [Champions](/champions) lists.
 
 ***
 

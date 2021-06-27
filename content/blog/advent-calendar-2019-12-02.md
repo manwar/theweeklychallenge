@@ -11,7 +11,7 @@ tags: ["Perl"]
 [**Advent Calendar 2019**](/blog/advent-calendar-2019)
 ***
 
-The gift is presented by [**Dave Jacoby**](https://perlweeklychallenge.org/blog/meet-the-champion-029). Today he is talking about his solutions to **Task #2: Ranking in Perl** of [**"The Weekly Challenge - 009"**](/blog/perl-weekly-challenge-009).
+The gift is presented by [**Dave Jacoby**](/blog/meet-the-champion-029). Today he is talking about his solutions to **Task #2: Ranking in Perl** of [**"The Weekly Challenge - 009"**](/blog/perl-weekly-challenge-009).
 
 ##### 1. Standard Ranking (1224): Items that compare equal receive the same ranking number, and then a gap is left in the ranking numbers.
 ##### 2. Modified Ranking (1334): It is done by leaving the gaps in the ranking numbers before the sets of equal-ranking items.

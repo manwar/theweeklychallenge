@@ -12,7 +12,7 @@ tags: ["Perl", "Raku"]
 
 Welcome to the weekly series **"Meet The Champion"**.
 
-Last week we spoke to **Kevin Colyer**, the winner of **[Perl Weekly Challenge - 030](/blog/meet-the-champion-030)**.
+Last week we spoke to **Kevin Colyer**, the winner of **[The Weekly Challenge - 030](/blog/meet-the-champion-030)**.
 
 Today we are talking to the **[Perl Weekly Challenge - 031](/blog/perl-weekly-challenge-031)** winner **Mark Senn**. I hope you are going to enjoy the interview.
 
@@ -51,7 +51,7 @@ Today we are talking to the **[Perl Weekly Challenge - 031](/blog/perl-weekly-ch
 
 **Mohammad:** Do you checkout others solutions and who is your favourite?
 
-**Mark:** Of course. [**Damian Conway**](https://perlweeklychallenge.org/blog/damian-corner)!
+**Mark:** Of course. [**Damian Conway**](/blog/damian-corner)!
 
 ---
 

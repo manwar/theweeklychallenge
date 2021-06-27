@@ -13,7 +13,7 @@ tags: ["Perl", "Raku"]
 
 Welcome to the monthly series `Meet The Champion`.
 
-Last month we spoke to **Niels van Dijke**, the winner of **[December 2020](https://perlweeklychallenge.org/blog/meet-the-champion-2020-12)**.
+Last month we spoke to **Niels van Dijke**, the winner of **[December 2020](/blog/meet-the-champion-2020-12)**.
 
 Today we are talking to **Stuart Little**, the winner of **January 2021** of `The Weekly Challenge`. I hope you are going to enjoy the interview.
 

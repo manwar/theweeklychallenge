@@ -13,7 +13,7 @@ tags: ["Clojure","Lua","Python","Perl","Raku"]
 
 Welcome to the monthly series `Meet The Champion`.
 
-Last month we spoke to **Aaron Smith**, the winner of **[April 2021](https://perlweeklychallenge.org/blog/meet-the-champion-2021-04)**.
+Last month we spoke to **Aaron Smith**, the winner of **[April 2021](/blog/meet-the-champion-2021-04)**.
 
 Today we are talking to **Tyler Wardhaugh**, the winner of **March 2021** of `The Weekly Challenge`. I hope you are going to enjoy the interview.
 

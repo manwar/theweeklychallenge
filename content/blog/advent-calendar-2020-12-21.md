@@ -11,7 +11,7 @@ tags: ["Perl"]
 [**Advent Calendar 2020**](/blog/advent-calendar-2020)
 ***
 
-The gift is presented by [**Saif Ahmed**](https://perlweeklychallenge.org/blog/meet-the-champion-2020-02). Today he is talking about his solution to the task `Guest house lights` of **["The Weekly Challenge - 039"](/blog/perl-weekly-challenge-039)**. This is re-produced for **Advent Calendar 2020** from the original [**post**](http://blogs.perl.org/users/saif/2019/12/the-times-you-want-to-avoid-the-short-cuts.html) by **Saif Ahmed**.
+The gift is presented by [**Saif Ahmed**](/blog/meet-the-champion-2020-02). Today he is talking about his solution to the task `Guest house lights` of **["The Weekly Challenge - 039"](/blog/perl-weekly-challenge-039)**. This is re-produced for **Advent Calendar 2020** from the original [**post**](http://blogs.perl.org/users/saif/2019/12/the-times-you-want-to-avoid-the-short-cuts.html) by **Saif Ahmed**.
 
 ***
 

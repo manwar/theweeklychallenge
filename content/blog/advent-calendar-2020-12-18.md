@@ -11,11 +11,11 @@ tags: ["Raku"]
 [**Advent Calendar 2020**](/blog/advent-calendar-2020)
 ***
 
-The gift is presented by [**Kevin Colyer**](https://perlweeklychallenge.org/blog/meet-the-champion-030). Today he is talking about his solution to the task `Collatz Conjecture` of **["The Weekly Challenge - 054"](/blog/perl-weekly-challenge-054)**. This is re-produced for **Advent Calendar 2020** from the original [**post**](https://kevincolyer.wordpress.com/2020/04/05/perl-weekly-challenge-week-54/) by **Kevin Colyer**.
+The gift is presented by [**Kevin Colyer**](/blog/meet-the-champion-030). Today he is talking about his solution to the task `Collatz Conjecture` of **["The Weekly Challenge - 054"](/blog/perl-weekly-challenge-054)**. This is re-produced for **Advent Calendar 2020** from the original [**post**](https://kevincolyer.wordpress.com/2020/04/05/perl-weekly-challenge-week-54/) by **Kevin Colyer**.
 
 ***
 
-This week on the [Perl Weekly Challenges](https://perlweeklychallenge.org/) I was working on the two tasks for [challenge 54](https://perlweeklychallenge.org/blog/perl-weekly-challenge-054/). The first challenge was simple in Raku (formerly Perl 6), a one liner, but the second challenge was about creating a favourite sequence of mine, the Collatz Conjecture. I thought I would block about this as the extra part to the task was computationally intensive and my solution took just 10 seconds to calculate the 1 million steps; Raku is not yet known for speed! (I tested this on my Lenovo X260 laptop)
+This week on [The Weekly Challenges](https://theweeklychallenge.org/) I was working on the two tasks for [challenge 54](/blog/perl-weekly-challenge-054/). The first challenge was simple in Raku (formerly Perl 6), a one liner, but the second challenge was about creating a favourite sequence of mine, the Collatz Conjecture. I thought I would block about this as the extra part to the task was computationally intensive and my solution took just 10 seconds to calculate the 1 million steps; Raku is not yet known for speed! (I tested this on my Lenovo X260 laptop)
 
 # Collatz Conjecture
 

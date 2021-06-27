@@ -11,11 +11,11 @@ tags: ["Perl"]
 [**Advent Calendar 2020**](/blog/advent-calendar-2020)
 ***
 
-The gift is presented by [**Myoungjin Jeon**](https://perlweeklychallenge.org/blog/meet-the-champion-2020-09). Today he is talking about his solution to the task `Trapped Rain Water` of **["The Weekly Challenge - 079"](/blog/perl-weekly-challenge-079)**. This is re-produced for **Advent Calendar 2020** from the original [**post**](https://dev.to/jeongoon/the-perl-weekly-challenge-079-9ij) by **Myoungjin Jeon**.
+The gift is presented by [**Myoungjin Jeon**](/blog/meet-the-champion-2020-09). Today he is talking about his solution to the task `Trapped Rain Water` of **["The Weekly Challenge - 079"](/blog/perl-weekly-challenge-079)**. This is re-produced for **Advent Calendar 2020** from the original [**post**](https://dev.to/jeongoon/the-perl-weekly-challenge-079-9ij) by **Myoungjin Jeon**.
 
 ***
 
-It has been about 10 weeks since I joined [perl weekly challenge](https://perlweeklychallenge.org/).
+It has been about 10 weeks since I joined [the weekly challenge](https://theweeklychallenge.org/).
 
 I'm not a professional programmer but I have experience with perl and some C lang. this is basically for perl/raku language but you can solve the many interesting challenges in "Other Language" - which is called "Guest" in their site - and have look into other's code and enjoy the fantastic reviews as well.
 

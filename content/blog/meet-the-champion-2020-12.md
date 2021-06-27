@@ -13,7 +13,7 @@ tags: ["Perl"]
 
 Welcome to the monthly series `Meet The Champion`.
 
-Last month we spoke to **Simon Green**, the winner of **[November 2020](https://perlweeklychallenge.org/blog/meet-the-champion-2020-11)**.
+Last month we spoke to **Simon Green**, the winner of **[November 2020](/blog/meet-the-champion-2020-11)**.
 
 Today we are talking to **Niels van Dijke**, the winner of **December 2020** of `The Weekly Challenge`. I hope you are going to enjoy the interview.
 
@@ -57,15 +57,15 @@ From **Siemens** I moved to **BT**. First as a **UNIX sysadmin**, doing **Perl**
 
 **Niels:** **Task #1** is on average way within an hour **Monday** evening. I have not had the moment yet that I saved **'ch-1.pl'** using **'vi'** and a **'perl -c ch-1.pl'** comes clean. Hopefully, this year!
 
-**Task #2** is hard to estimate. I am more of a person that uses evolution style of developing stuff and do a certain number of things in parallel. Especially when there is no real pressure. If I can I add some reporting code to a solution. This can lead into a total of **3-4 hours**, through a few evenings during the week. I can still remember **[Challenge 62, Task 2: N Queens](https://perlweeklychallenge.org/blog/perl-weekly-challenge-062/)**. Certainly not a `one hour job!`
+**Task #2** is hard to estimate. I am more of a person that uses evolution style of developing stuff and do a certain number of things in parallel. Especially when there is no real pressure. If I can I add some reporting code to a solution. This can lead into a total of **3-4 hours**, through a few evenings during the week. I can still remember **[Challenge 62, Task 2: N Queens](/blog/perl-weekly-challenge-062/)**. Certainly not a `one hour job!`
 
-Besides coding solutions, I try to submit challenges as well. One made it so far (**[Challenge 082, Task 1](https://perlweeklychallenge.org/blog/perl-weekly-challenge-082/#TASK1)**) the others were maybe a bit to **'exotic'**. I will try to submit a few more in **2021!**
+Besides coding solutions, I try to submit challenges as well. One made it so far (**[Challenge 082, Task 1](/blog/perl-weekly-challenge-082/#TASK1)**) the others were maybe a bit to **'exotic'**. I will try to submit a few more in **2021!**
 
 ---
 
 **Mohammad:** Do you checkout others solutions and who is your favorite?
 
-**Niels:** Certainly, that was the main reason I joined **TWC!** Straight after my own submission I check what is already submitted on **GitHub** (who has beat me in time?) and indirectly via **[Colin Crain's in-depth reviews](https://perlweeklychallenge.org/p5-reviews/)** when they come online. And when I have the time, I read other members blog postings when the **Perl Weekly** arrives. Unfortunately, I lack the time to write blog postings myself.... :-(
+**Niels:** Certainly, that was the main reason I joined **TWC!** Straight after my own submission I check what is already submitted on **GitHub** (who has beat me in time?) and indirectly via **[Colin Crain's in-depth reviews](/p5-reviews/)** when they come online. And when I have the time, I read other members blog postings when the **Perl Weekly** arrives. Unfortunately, I lack the time to write blog postings myself.... :-(
 
 I do not have a favorite, but I do favor members who write similar **Perl** code like me (some comments, some input validation, naming variables longer than 1 or 2 characters (not for loop variables), etc.). I'll try to add `Test::More` like other members do in **2021** as well.
 

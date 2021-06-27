@@ -11,11 +11,11 @@ tags: ["Perl"]
 [**Advent Calendar 2020**](/blog/advent-calendar-2020)
 ***
 
-The gift is presented by [**Yozen Hernandez**](https://perlweeklychallenge.org/blog/meet-the-champion-017). Today he is talking about his solution to the task `Ackermann function` of **["The Weekly Challenge - 017"](/blog/perl-weekly-challenge-017)**. This is re-produced for **Advent Calendar 2020** from the original [**post**](https://yzhernand.github.io/posts/perl-weekly-challenge-17-1/) by **Yozen Hernandez**.
+The gift is presented by [**Yozen Hernandez**](/blog/meet-the-champion-017). Today he is talking about his solution to the task `Ackermann function` of **["The Weekly Challenge - 017"](/blog/perl-weekly-challenge-017)**. This is re-produced for **Advent Calendar 2020** from the original [**post**](https://yzhernand.github.io/posts/perl-weekly-challenge-17-1/) by **Yozen Hernandez**.
 
 ***
 
-The [Perl Weekly Challenge](https://perlweeklychallenge.org/blog/perl-weekly-challenge-017/) is back, and our first challenge was to implement a function known as the Ackermann function:
+[The Weekly Challenge](/blog/perl-weekly-challenge-017/) is back, and our first challenge was to implement a function known as the Ackermann function:
 
 > Create a script to demonstrate Ackermann function. The Ackermann function is defined as below, m and n are positive number:
 

@@ -35,7 +35,7 @@ Today we are talking to the **[Perl Weekly Challenge - 026](/blog/perl-weekly-ch
 
 **Mohammad:** How did you come to know about **"Perl Weekly Challenge"**?
 
-**Roger:** I met **Neil Bowers** after I moved out of **London** to near **High Wycombe**, and read one of his [blog](http://neilb.org/2019/06/24/additional-challenge-14.html) posts that mentioned **["Perl Weekly Challenge - 014"](https://perlweeklychallenge.org/blog/perl-weekly-challenge-014/)**.
+**Roger:** I met **Neil Bowers** after I moved out of **London** to near **High Wycombe**, and read one of his [blog](http://neilb.org/2019/06/24/additional-challenge-14.html) posts that mentioned **["The Weekly Challenge - 014"](/blog/perl-weekly-challenge-014/)**.
 
 ***
 

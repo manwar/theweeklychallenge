@@ -11,7 +11,7 @@ tags: ["Perl"]
 [**Advent Calendar 2020**](/blog/advent-calendar-2020)
 ***
 
-The gift is presented by [**Dave Jacoby**](https://perlweeklychallenge.org/blog/meet-the-champion-029). Today he is talking about his solution to the task `Invert Tree` of **["The Weekly Challenge - 057"](/blog/perl-weekly-challenge-057)**. This is re-produced for **Advent Calendar 2020** from the original [**post**](https://jacoby.github.io/2020/04/20/challenge-57-mostly-binary-trees.html) by **Dave Jacoby**.
+The gift is presented by [**Dave Jacoby**](/blog/meet-the-champion-029). Today he is talking about his solution to the task `Invert Tree` of **["The Weekly Challenge - 057"](/blog/perl-weekly-challenge-057)**. This is re-produced for **Advent Calendar 2020** from the original [**post**](https://jacoby.github.io/2020/04/20/challenge-57-mostly-binary-trees.html) by **Dave Jacoby**.
 
 ***
 

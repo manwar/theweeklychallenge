@@ -13,7 +13,7 @@ tags: ["Perl", "Raku"]
 
 Welcome to the monthly series `Meet The Champion`.
 
-Last month we spoke to **Stuart Little**, the winner of **[January 2021](https://perlweeklychallenge.org/blog/meet-the-champion-2021-01)**.
+Last month we spoke to **Stuart Little**, the winner of **[January 2021](/blog/meet-the-champion-2021-01)**.
 
 Today we are talking to **James Smith**, the winner of **February 2021** of `The Weekly Challenge`. I hope you are going to enjoy the interview.
 

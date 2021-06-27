@@ -71,7 +71,7 @@ It's only been a few years that I've been using **Perl6**. I was very interested
 
 **Mohammad:** Do you find the website user friendly? What do you like most?
 
-**Scimon:** It's great. The [**charts**](https://perlweeklychallenge.org/chart) are fun.
+**Scimon:** It's great. The [**charts**](/chart) are fun.
 
 ***
 

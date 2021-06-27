@@ -11,7 +11,7 @@ tags: ["Perl","Raku"]
 [**Advent Calendar 2020**](/blog/advent-calendar-2020)
 ***
 
-The gift is presented by [**Roger Bell_West**](https://perlweeklychallenge.org/blog/meet-the-champion-026). Today he is talking about his solution to the task `Sort Email Adresses` of **["The Weekly Challenge - 062"](/blog/perl-weekly-challenge-062)**. This is re-produced for **Advent Calendar 2020** from the original [**post**](https://blog.firedrake.org/archive/2020/05/Perl_Weekly_Challenge_62__email_sorting_and_3d_queens.html) by **Roger Bell_West**.
+The gift is presented by [**Roger Bell_West**](/blog/meet-the-champion-026). Today he is talking about his solution to the task `Sort Email Adresses` of **["The Weekly Challenge - 062"](/blog/perl-weekly-challenge-062)**. This is re-produced for **Advent Calendar 2020** from the original [**post**](https://blog.firedrake.org/archive/2020/05/Perl_Weekly_Challenge_62__email_sorting_and_3d_queens.html) by **Roger Bell_West**.
 
 ***
 

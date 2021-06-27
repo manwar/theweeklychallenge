@@ -11,7 +11,7 @@ tags: ["Perl"]
 [**Advent Calendar 2020**](/blog/advent-calendar-2020)
 ***
 
-The gift is presented by [**Cheok-Yin Fung**](https://perlweeklychallenge.org/blog/meet-the-champion-2020-08). Today she is talking about her solution to the task `Smallest Multiple` of **["The Weekly Challenge - 049"](/blog/perl-weekly-challenge-049)**.
+The gift is presented by [**Cheok-Yin Fung**](/blog/meet-the-champion-2020-08). Today she is talking about her solution to the task `Smallest Multiple` of **["The Weekly Challenge - 049"](/blog/perl-weekly-challenge-049)**.
 
 ***
 
@@ -165,7 +165,7 @@ Before seeing more math hidden, let us see two direct implementations first.
 
 ## 3. Implementations
 
-If we directly look at the multiplication/modulo process, we can get two brute force algorithms, and they are specially nice in Perl, can be put as oneliners - with the carol of dynamic typing and regex in Perl. (This is a retrospective overview stemmed from the [team Perl review](https://perlweeklychallenge.org/blog/review-challenge-049/).)
+If we directly look at the multiplication/modulo process, we can get two brute force algorithms, and they are specially nice in Perl, can be put as oneliners - with the carol of dynamic typing and regex in Perl. (This is a retrospective overview stemmed from the [team Perl review](/blog/review-challenge-049/).)
 
 ## 3.i Naive Brute Force
 

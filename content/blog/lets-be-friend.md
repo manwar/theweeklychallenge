@@ -35,7 +35,7 @@ I will let others to decide it.
 This is what I consider we achieved so far.
 
 #### 1. Damian Conway participation and creating quality blogs solving the weekly challenge. Please [checkout his collections](/blog/damian-corner).
-#### 2. Andrew Shitov sharing [Raku magics](https://andrewshitov.com/raku-challenges-index) and doing [video reviews](https://perlweeklychallenge.org/p6-reviews) of Raku weekly solutions.
+#### 2. Andrew Shitov sharing [Raku magics](https://andrewshitov.com/raku-challenges-index) and doing [video reviews](/p6-reviews) of Raku weekly solutions.
 #### 3. Perl Weekly Challenge [YouTube](https://www.youtube.com/c/mohammadsajidanwar) channel to showcase the power of Perl.
 #### 4. Raku fans sharing Perl solutions and Perl fans sharing Raku solutions.
 #### 5. We created [Knowledge Bank](https://github.com/manwar/perlweeklychallenge-club) for everyone, not just limited to Perl and Raky but 50+ other languages as well.

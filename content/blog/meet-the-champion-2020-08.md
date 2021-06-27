@@ -21,7 +21,7 @@ Today we are talking to **Cheok-Yin Fung**, the winner of **August 2020** of `Th
 
 **Cheok-Yin:** I formally learnt programming when I was in high school Form 4 (<tt>equiv</tt> Grade 10). At that time I learnt **Pascal**. The year after our first public exam [1], I did a bit competitive programming but stopped it for concentrating on **Physics** competitions. During university, I did no programming. Only until the recent years, I picked up a bit **C++**. Self-taught is not easy; learning alone is dull and easy to lose focus, in addition.
 
-After joining [**The Weekly Challenge**](https://perlweeklychallenge.org/), learning **Perl** has been one of my main focus every week.
+After joining [**The Weekly Challenge**](https://theweeklychallenge.org/), learning **Perl** has been one of my main focus every week.
 
 ##### [1] In my years, there were two public exams for high school students ("HKCEE" and "HKAL") in Hong Kong. Now the system has changed and reduces to just one public exam ("HKDSE").
 ---
@@ -68,7 +68,7 @@ I treat it as a `Learning Course`. I have squeezed my spare time as much as poss
 
 **Cheok-Yin:** If you are a beginner and just start to learn **Perl**, be brave to submit a workable code on time! (...Will I get complains from the reviewers...?) By regular practice, you will learn more skills or optimization techniques, be able to avoid some syntax errors, and be familiar with some common modules (e.g. `List::Util`, `List::MoreUtils`, `Data::Dumper` etc.). When you look back after a few months, you will see your `growth`.
 
-[**The Weekly Challenge**](https://perlweeklychallenge.org/) sparks my interest in serious study on **Perl** and perish my coding skills in general (from naming conventions to algorithmic concerns).
+[**The Weekly Challenge**](https://theweeklychallenge.org/) sparks my interest in serious study on **Perl** and perish my coding skills in general (from naming conventions to algorithmic concerns).
 
 ---
 

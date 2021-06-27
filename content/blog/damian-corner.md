@@ -20,8 +20,7 @@ I didn't want to loose the track of all his great work, so I decided to put toge
 
 ---
 
-In writing my past few blog entries I’ve repeatedly come across a situation that Perl 6 doesn’t handle as well as I could wish. It’s a little thing, but like so many other little things
-its presence is a source of minor but persistent irritation.
+In writing my past few blog entries I’ve repeatedly come across a situation that Perl 6 doesn’t handle as well as I could wish. It’s a little thing, but like so many other little things its presence is a source of minor but persistent irritation.
 
 In my [previous entry](http://blogs.perl.org/users/damian_conway/2019/09/to-compute-a-constant-of-calculusa-treatise-on-multiple-ways.html) I used some Perl 6 code that illustrates the point perfectly. I needed to build an object for every value in the @values array, or a single special object if @values was empty: [read more](http://blogs.perl.org/users/damian_conway/2019/09/itchscratch.html).
 
@@ -53,7 +52,7 @@ Which is an even sweeter racket. [read more](http://blogs.perl.org/users/damian_
 
 > C-o-rr-a-ll-i-n-g d-i-tt-o-e-d l-e-tt-e-r-s
 
-I was going to focus this week on the first task of the [20th Perl Weekly Challenge](https://perlweeklychallenge.org/blog/perl-weekly-challenge-020/) ...but what can I say? The task was a break a string specified on the command-line into runs of identical characters: [read more](http://blogs.perl.org/users/damian_conway/2019/08/with-friends-like-these.html).
+I was going to focus this week on the first task of the [20th Perl Weekly Challenge](/blog/perl-weekly-challenge-020/) ...but what can I say? The task was a break a string specified on the command-line into runs of identical characters: [read more](http://blogs.perl.org/users/damian_conway/2019/08/with-friends-like-these.html).
 
 ---
 ---

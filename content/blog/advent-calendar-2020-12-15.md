@@ -11,7 +11,7 @@ tags: ["Perl","Raku"]
 [**Advent Calendar 2020**](/blog/advent-calendar-2020)
 ***
 
-The gift is presented by [**Laurent Rosenfeld**](https://perlweeklychallenge.org/blog/meet-the-champion-013), the first champion of the weekly challenge. Today he is talking about his solution to the task `Left Rotation` of **["The Weekly Challenge - 078"](/blog/perl-weekly-challenge-078)**. This is re-produced for **Advent Calendar 2020** from the original [**post**](http://blogs.perl.org/users/laurent_r/2020/09/perl-weekly-challenge-leader-element-and-left-rotation.html) by **Laurent Rosenfeld**.
+The gift is presented by [**Laurent Rosenfeld**](/blog/meet-the-champion-013), the first champion of the weekly challenge. Today he is talking about his solution to the task `Left Rotation` of **["The Weekly Challenge - 078"](/blog/perl-weekly-challenge-078)**. This is re-produced for **Advent Calendar 2020** from the original [**post**](http://blogs.perl.org/users/laurent_r/2020/09/perl-weekly-challenge-leader-element-and-left-rotation.html) by **Laurent Rosenfeld**.
 
 ***
 

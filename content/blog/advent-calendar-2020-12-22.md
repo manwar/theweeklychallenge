@@ -11,11 +11,11 @@ tags: ["Raku"]
 [**Advent Calendar 2020**](/blog/advent-calendar-2020)
 ***
 
-The gift is presented by [**Noud Aldenhoven**](https://perlweeklychallenge.org/blog/meet-the-champion-040). Today he is talking about his solution to the task `Is the room open?` of **["The Weekly Challenge - 046"](/blog/perl-weekly-challenge-046)**. This is re-produced for **Advent Calendar 2020** from the original [**post**](https://www.noudaldenhoven.nl/wordpress/?p=288) by **Noud Aldenhoven**.
+The gift is presented by [**Noud Aldenhoven**](/blog/meet-the-champion-040). Today he is talking about his solution to the task `Is the room open?` of **["The Weekly Challenge - 046"](/blog/perl-weekly-challenge-046)**. This is re-produced for **Advent Calendar 2020** from the original [**post**](https://www.noudaldenhoven.nl/wordpress/?p=288) by **Noud Aldenhoven**.
 
 ***
 
-This weeks [Perl Weekly Challenge Task #2](https://perlweeklychallenge.org/blog/perl-weekly-challenge-046/) has an interesting solution. The challenge is as follows:
+This weeks [The Weekly Challenge Task #2](/blog/perl-weekly-challenge-046/) has an interesting solution. The challenge is as follows:
 
 # Is the room open?
 

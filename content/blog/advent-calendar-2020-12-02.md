@@ -11,7 +11,7 @@ tags: ["Perl", "Raku"]
 [**Advent Calendar 2020**](/blog/advent-calendar-2020)
 ***
 
-The gift is presented by [**Ryan Thompson**](https://perlweeklychallenge.org/blog/meet-the-champion-038). Today he is talking about his solutions to the task `Make it $200` of **["The Weekly Challenge - 044"](/blog/perl-weekly-challenge-044)**. This is re-produced for **Advent Calendar 2020** from the original [**post**](http://ry.ca/2020/01/make-it-200/) by **Ryan Thompson**.
+The gift is presented by [**Ryan Thompson**](/blog/meet-the-champion-038). Today he is talking about his solutions to the task `Make it $200` of **["The Weekly Challenge - 044"](/blog/perl-weekly-challenge-044)**. This is re-produced for **Advent Calendar 2020** from the original [**post**](http://ry.ca/2020/01/make-it-200/) by **Ryan Thompson**.
 
 ***
 

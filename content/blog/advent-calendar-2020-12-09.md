@@ -11,7 +11,7 @@ tags: ["Perl","Raku"]
 [**Advent Calendar 2020**](/blog/advent-calendar-2020)
 ***
 
-The gift is presented by [**Arne Sommer**](https://perlweeklychallenge.org/blog/meet-the-champion-019). Today he is talking about his solution to the task `Divide Integers` of **["The Weekly Challenge - 066"](/blog/perl-weekly-challenge-066)**. This is re-produced for **Advent Calendar 2020** from the original [**post**](https://raku-musings.com/dividing-powers.html) by **Arne Sommer**.
+The gift is presented by [**Arne Sommer**](/blog/meet-the-champion-019). Today he is talking about his solution to the task `Divide Integers` of **["The Weekly Challenge - 066"](/blog/perl-weekly-challenge-066)**. This is re-produced for **Advent Calendar 2020** from the original [**post**](https://raku-musings.com/dividing-powers.html) by **Arne Sommer**.
 
 ***
 

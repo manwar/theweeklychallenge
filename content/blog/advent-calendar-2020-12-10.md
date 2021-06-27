@@ -11,7 +11,7 @@ tags: ["Perl"]
 [**Advent Calendar 2020**](/blog/advent-calendar-2020)
 ***
 
-The gift is presented by [**Walt Mankowski**](https://perlweeklychallenge.org/blog/meet-the-champion-2020-07). Today he is talking about his solution to the task `Trim Linked List` of **["The Weekly Challenge - 071"](/blog/perl-weekly-challenge-071)**. This is re-produced for **Advent Calendar 2020** from the original [**post**](http://www.mawode.com/blog/blog/2020/07/31/perl-weekly-challenge-71/) by **Walt Mankowski**.
+The gift is presented by [**Walt Mankowski**](/blog/meet-the-champion-2020-07). Today he is talking about his solution to the task `Trim Linked List` of **["The Weekly Challenge - 071"](/blog/perl-weekly-challenge-071)**. This is re-produced for **Advent Calendar 2020** from the original [**post**](http://www.mawode.com/blog/blog/2020/07/31/perl-weekly-challenge-71/) by **Walt Mankowski**.
 
 ***
 

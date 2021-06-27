@@ -11,7 +11,7 @@ tags: ["Perl", "C"]
 [**Advent Calendar 2020**](/blog/advent-calendar-2020)
 ***
 
-The gift is presented by [**Yet Ebreo**](https://perlweeklychallenge.org/blog/meet-the-champion-025). Today he is talking about his solution to the task `Calling C function` of **["The Weekly Challenge - 029"](/blog/perl-weekly-challenge-029)**. This is re-produced for **Advent Calendar 2020** from the original [**post**](https://doomtrain14.github.io/pwc/2019/10/13/pwc_calling_c.html) by **Yet Ebreo**.
+The gift is presented by [**Yet Ebreo**](/blog/meet-the-champion-025). Today he is talking about his solution to the task `Calling C function` of **["The Weekly Challenge - 029"](/blog/perl-weekly-challenge-029)**. This is re-produced for **Advent Calendar 2020** from the original [**post**](https://doomtrain14.github.io/pwc/2019/10/13/pwc_calling_c.html) by **Yet Ebreo**.
 
 ***
 
@@ -112,7 +112,7 @@ Run Time (Inline-C): 1 sec
 
 As expected, the **Perl** implementation took the longer compared to the **C** version. But it is surprising how `Memoize` cut down the execution time to just a fraction of a second.
 
-And that’s it for this week’s challenge. If you’d like to join the fun and contribute, please visit the [site](https://perlweeklychallenge.org/) managed by [Mohammad S Anwar](http://www.manwar.org/).
+And that’s it for this week’s challenge. If you’d like to join the fun and contribute, please visit the [site](https://theweeklychallenge.org/) managed by [Mohammad S Anwar](http://www.manwar.org/).
 
 ***
 

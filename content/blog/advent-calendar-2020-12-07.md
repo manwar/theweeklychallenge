@@ -11,7 +11,7 @@ tags: ["Perl","Raku"]
 [**Advent Calendar 2020**](/blog/advent-calendar-2020)
 ***
 
-The gift is presented by [**Javier Luque**](https://perlweeklychallenge.org/blog/meet-the-champion-037). Today he is talking about his solution to the task `IPv4 Partition` of **["The Weekly Challenge - 061"](/blog/perl-weekly-challenge-061)**. This is re-produced for **Advent Calendar 2020** from the original [**post**](https://perlchallenges.wordpress.com/2020/05/18/perl-weekly-challenge-061/) by **Javier Luque**.
+The gift is presented by [**Javier Luque**](/blog/meet-the-champion-037). Today he is talking about his solution to the task `IPv4 Partition` of **["The Weekly Challenge - 061"](/blog/perl-weekly-challenge-061)**. This is re-produced for **Advent Calendar 2020** from the original [**post**](https://perlchallenges.wordpress.com/2020/05/18/perl-weekly-challenge-061/) by **Javier Luque**.
 
 ***
 
@@ -71,10 +71,10 @@ sub partition_ip_string {
 
     # Validate string
     return undef if
-    	( length($string) < 4  ||
-    	  length($string) > 12 ||
-    	  !($string =~ /^\d+$/)
-    	);
+        ( length($string) < 4  ||
+          length($string) > 12 ||
+          !($string =~ /^\d+$/)
+        );
 
     # Find all the combinations for the possible ips
     my @dot_positions = (0 .. $length);
@@ -82,33 +82,33 @@ sub partition_ip_string {
 
     # Process the combinations
     while (my $combos = $iter->next) {
-    	my $to_test = $string;
-    	my $offset = 0;
+        my $to_test = $string;
+        my $offset = 0;
 
-    	for my $dot_position (@$combos) {
-    		my $position =
-    			($dot_position + $offset) + 1;
+        for my $dot_position (@$combos) {
+        	my $position =
+        		($dot_position + $offset) + 1;
 
-    		# Append to the test string;
-    		$to_test =
-    			(substr $to_test, 0, $position)
-    			. '.' .
-    			(substr $to_test, $position);
+        	# Append to the test string;
+        	$to_test =
+        		(substr $to_test, 0, $position)
+        		. '.' .
+        		(substr $to_test, $position);
 
-    		# Offset the string
-    		$offset++;
-    	}
+        	# Offset the string
+        	$offset++;
+        }
 
-    	say $to_test
-    		if (validate_ip_string($to_test));
+        say $to_test
+        	if (validate_ip_string($to_test));
     }
 }
 
 # Validate the IP String
 sub validate_ip_string {
     for my $digit (split('\.', shift)) {
-    	return 0 if ($digit > 255);
-    	return 0 if ($digit =~ /^0\d+$/);
+        return 0 if ($digit > 255);
+        return 0 if ($digit =~ /^0\d+$/);
     }
 
     return 1;
@@ -144,33 +144,33 @@ sub partition-ip-string (Str $str) {
 
     # Process the combinations
     for @combos -> @combo {
-    	my $to_test = $str;
-    	my $offset = 0;
+        my $to_test = $str;
+        my $offset = 0;
 
-    	for (@combo) -> $dot_position {
-    		my $position =
-    			($dot_position + $offset) + 1;
+        for (@combo) -> $dot_position {
+        	my $position =
+        		($dot_position + $offset) + 1;
 
-    		# Append to the test string;
-    		$to_test =
-    			$to_test.substr(0, $position)
-    			~ '.' ~
-    			$to_test.substr($position);
+        	# Append to the test string;
+        	$to_test =
+        		$to_test.substr(0, $position)
+        		~ '.' ~
+        		$to_test.substr($position);
 
-    		# Offset the string
-    		$offset++;
-    	}
+        	# Offset the string
+        	$offset++;
+        }
 
-    	say $to_test
-    		if (validate-ip-string($to_test));
+        say $to_test
+        	if (validate-ip-string($to_test));
     }
 }
 
 # Validate the IP String
 sub validate-ip-string(Str $str) {
     for $str.split('.') -> $digit {
-    	return False if ($digit > 255);
-    	return False if ($digit ~~ /^0\d+$/);
+        return False if ($digit > 255);
+        return False if ($digit ~~ /^0\d+$/);
     }
     return True;
 }

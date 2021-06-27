@@ -9,7 +9,7 @@ tags: ["Perl", "Raku"]
 ---
 Welcome to the weekly series **"Meet The Champion"**.
 
-Last week we spoke to **Laurent Rosenfeld**, the winner of **[Perl Weekly Challenge - 013](/blog/meet-the-champion-013)**. Today we are talking to the **"Perl Weekly Challenge - 014"** winner **Jaldhar H. Vyas**. I hope you are going to enjoy the interview.
+Last week we spoke to **Laurent Rosenfeld**, the winner of **[The Weekly Challenge - 013](/blog/meet-the-champion-013)**. Today we are talking to the **"Perl Weekly Challenge - 014"** winner **Jaldhar H. Vyas**. I hope you are going to enjoy the interview.
 
 ***
 ***
@@ -88,14 +88,14 @@ Perl6 took much too long to get to a usable state and I almost gave up hope but 
 
 **Jaldhar:** The theme you are using is not very mobile friendly and I often access the site from my phone. The charts in particular (my favorite feature) don't work well on mobile.
 
-I used to have problems at home with my cable routers anti-virus complaining that **perlweeklychallenge.org** is a malicious site but I see you have switched to **https** now and that seem to have fixed that.
+I used to have problems at home with my cable routers anti-virus complaining that **theweeklychallenge.org** is a malicious site but I see you have switched to **https** now and that seem to have fixed that.
 
 ***
 ***
 
 **Mohammad:** Anything else you would like share with us?
 
-**Jaldhar:** Thank you for setting up the **Perl Weekly Challenge**. This is great entertainment for me not to mention very educational and I hope you can keep it going for a long long time.
+**Jaldhar:** Thank you for setting up the **The Weekly Challenge**. This is great entertainment for me not to mention very educational and I hope you can keep it going for a long long time.
 
 ***
 ***

@@ -11,7 +11,7 @@ tags: ["Raku"]
 [**Advent Calendar 2020**](/blog/advent-calendar-2020)
 ***
 
-The gift is presented by [**Luca Ferrari**](https://perlweeklychallenge.org/blog/meet-the-champion-2020-04). Today he is talking about his solution to the task `Bit Sum` of **["The Weekly Challenge - 059"](/blog/perl-weekly-challenge-059)**. This is re-produced for **Advent Calendar 2020** from the original [**post**](https://fluca1978.github.io/2020/05/04/PerlWeeklyChallenge59.html#task2) by **Luca Ferarri**.
+The gift is presented by [**Luca Ferrari**](/blog/meet-the-champion-2020-04). Today he is talking about his solution to the task `Bit Sum` of **["The Weekly Challenge - 059"](/blog/perl-weekly-challenge-059)**. This is re-produced for **Advent Calendar 2020** from the original [**post**](https://fluca1978.github.io/2020/05/04/PerlWeeklyChallenge59.html#task2) by **Luca Ferarri**.
 
 ***
 

@@ -11,7 +11,7 @@ tags: ["Perl"]
 [**Advent Calendar 2020**](/blog/advent-calendar-2020)
 ***
 
-The gift is presented by [**E. Choroba**](https://perlweeklychallenge.org/blog/meet-the-champion-018). Today he is talking about his solution to the task `LRU Cache` of **["The Weekly Challenge - 049"](/blog/perl-weekly-challenge-049)**. This is re-produced for **Advent Calendar 2020** from the original [**post**](http://blogs.perl.org/users/e_choroba/2020/03/perl-weekly-challenge-048-smallest-multiple-and-lru-cache.html) by **E. Choroba**.
+The gift is presented by [**E. Choroba**](/blog/meet-the-champion-018). Today he is talking about his solution to the task `LRU Cache` of **["The Weekly Challenge - 049"](/blog/perl-weekly-challenge-049)**. This is re-produced for **Advent Calendar 2020** from the original [**post**](http://blogs.perl.org/users/e_choroba/2020/03/perl-weekly-challenge-048-smallest-multiple-and-lru-cache.html) by **E. Choroba**.
 
 ***
 

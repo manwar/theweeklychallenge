@@ -57,7 +57,7 @@ An honourable mention goes to your willingness to accept the guest solutions. So
 
 **Mohammad:** Do you checkout others solutions and who is your favorite?
 
-**Pete:** Yes indeed. I must give big thanks here to Colin Crain and the remarkable work he has been doing with [the reviews](https://perlweeklychallenge.org/p5-reviews). Reading through his analysis and categorisation of the submissions is always enlightening.It is great to see the different approaches taken to the various problems - even the seemingly simplest ones can throw up approaches I would not have considered. It is always a learning experience.
+**Pete:** Yes indeed. I must give big thanks here to Colin Crain and the remarkable work he has been doing with [the reviews](/p5-reviews). Reading through his analysis and categorisation of the submissions is always enlightening.It is great to see the different approaches taken to the various problems - even the seemingly simplest ones can throw up approaches I would not have considered. It is always a learning experience.
 
 ---
 
