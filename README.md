@@ -3,4 +3,4 @@
 
 ****
 
-[https://perlweeklychallenge.org](https://perlweeklychallenge.org)
+[https://theweeklychallenge.org](https://theweeklychallenge.org)
