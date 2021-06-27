@@ -92,6 +92,8 @@ Please find below guest contributions.
 
 ##### **Cheok-Yin Fung** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-118/cheok-yin-fung/awk/ch-1.awk) in **Awk**.
 
+##### **Cristina Heredia** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-118/cristian-heredia/python/ch-1.py) in **Python**.
+
 ##### **Frank Oosterhuis** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-118/frankivo/scala/Palindrome.scala) in **Scala**.
 
 ##### **Lucas Ransan** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-118/luc65r/nix/ch-1.nix) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-118/luc65r/nix/ch-2.nix) in **Nix**.
