@@ -211,7 +211,7 @@ Welcome back Mark after a short break. Glad that you managed to blog about your 
 ### Martin Barth
 ![Martin Barth](/images/team/user.jpg)
 
-Welcome back **Martin** after the break. Checkout his solution to the **Task #2**. I would like to take this opportunity to tell everyone that he is the guy who designed the logo of [perlweeklychallenge.org](https://perlweeklychallenge.org).
+Welcome back **Martin** after the break. Checkout his solution to the **Task #2**. I would like to take this opportunity to tell everyone that he is the guy who designed the logo of [theweeklychallenge.org](https://theweeklychallenge.org).
 [[RAKU #2](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-018/martin-barth/perl6/ch-2.p6)]
 
 ***

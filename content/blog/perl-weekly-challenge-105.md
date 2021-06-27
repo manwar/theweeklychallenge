@@ -105,7 +105,7 @@ Please give it a try to an excellent tool [**EZPWC**](https://github.com/saiftyn
 
 ***
 
-Please checkout the guest contributions for the [Week #104](https://perlweeklychallenge.org/blog/guest-contribution/#104).
+Please checkout the guest contributions for the [Week #104](/blog/guest-contribution/#104).
 
 <br>
 

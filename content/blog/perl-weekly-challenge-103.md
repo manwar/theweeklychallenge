@@ -119,7 +119,7 @@ Please try the excellent tool [**EZPWC**](https://github.com/saiftynet/EZPWC) cr
 
 ***
 
-Please checkout the guest contributions for the [Week #102](https://perlweeklychallenge.org/blog/guest-contribution/#102).
+Please checkout the guest contributions for the [Week #102](/blog/guest-contribution/#102).
 
 <br>
 

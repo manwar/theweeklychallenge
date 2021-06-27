@@ -17,7 +17,7 @@ tags: ["Perl", "Raku"]
 
 When I proposed **Bhagavad Git API** task for the [Perl Weekly Challenge - 017](/blog/perl-weekly-challenge-017), I was hoping one of team member from India would pick this up. Our API task leader, **Joelle Maslak**, has been beaten by **Randy Lauen**, who just joined the team. As usual, **Joelle** always takes up API task in **Perl5** and **Perl6**. This time, **Adam Russell** also joined the group for API task this week.
 
-I have had many request from the team members to make **RSS** feed available for the website. Personally, I am not a big fan of RSS. Therefore never bother looked into the details. But after so many request for **RSS** feed, I created perl script to generate the feed. I would love to hear what you think. If you have any suggestions to improve then please do share with us. You can find the link in the page footer. For now, you can check out [here](https://perlweeklychallenge.org/rss.xml).
+I have had many request from the team members to make **RSS** feed available for the website. Personally, I am not a big fan of RSS. Therefore never bother looked into the details. But after so many request for **RSS** feed, I created perl script to generate the feed. I would love to hear what you think. If you have any suggestions to improve then please do share with us. You can find the link in the page footer. For now, you can check out [here](/rss.xml).
 
 Last but not the least, keep contributing to the weekly challenge, making sure we keep the focus on **Fun** and **Knowledge Sharing**.
 

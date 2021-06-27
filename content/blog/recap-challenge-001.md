@@ -54,7 +54,7 @@ Here is list of blogs about the launch challenge. I must confess, just reading t
 4. https://medium.com/@jcoterhals/perl-6-small-stuff-15-long-story-about-short-answers-to-perl-weekly-challenge-no-1-85e741bf8716
 5. https://perlhacks.com/2019/03/perl-weekly-challenge-2019-03-25/
 6. https://dev.to/jj/perl-weekly-challenge-1-translate-letters-and-count-4cdf
-7. https://perlweeklychallenge.org/blog/philippe-bruhat-challenge-001
+7. https://theweeklychallenge.org/blog/philippe-bruhat-challenge-001
 8. http://blogs.perl.org/users/laurent_r/2019/04/perl-weekly-challenge-first-week.html
 
 It is practically not possible to list all the solutions. However you can take a look at the [repository](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-001).

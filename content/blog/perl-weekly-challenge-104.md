@@ -30,7 +30,7 @@ tags: ["Perl", "Raku"]
 
 This week was relative quiet but the modd was upbeat at always. Thanks to **Team PWC** for their support and encouragement. Special thanks to those who blog about it as well. You are doing great service to promote **Perl** and **Raku**. Keep it up.
 
-We now have done interview with latest **Champion**, [**James Smith**](https://perlweeklychallenge.org/blog/meet-the-champion-2021-02/). It is a great feeling to be associated with such a great personality. Read his interview to find out more about him.
+We now have done interview with latest **Champion**, [**James Smith**](/blog/meet-the-champion-2021-02/). It is a great feeling to be associated with such a great personality. Read his interview to find out more about him.
 
 I would like to mention, `Colin Crain`, for his great service week after week. The **Perl** review is liked by every **Team PWC** members. I am sure you all agree the quality of review done by him. I know personally how much effort it takes to get it done. A big round of applause for him.
 
@@ -107,7 +107,7 @@ Please try the excellent tool [**EZPWC**](https://github.com/saiftynet/EZPWC) cr
 
 ***
 
-Please checkout the guest contributions for the [Week #103](https://perlweeklychallenge.org/blog/guest-contribution/#103).
+Please checkout the guest contributions for the [Week #103](/blog/guest-contribution/#103).
 
 <br>
 

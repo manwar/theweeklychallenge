@@ -34,7 +34,7 @@ As you all know last week we declared `Stuart Little`, first Champion of 2021. T
 
 I appeal to all **Team PWC** members to make the **Week #100** special by breaking the record contributions. The current record is held by **Week #001** with 155 contributions of **Perl** and **Raku** solutions as well as blogs. I think it is very much possible with `200+ members`. Even if `100 members` share just either **Perl** or **Raku** only, we can easily go past `200 mark`. Let us create history and be part of it.
 
-In the [**Week #97**](https://perlweeklychallenge.org/blog/perl-weekly-challenge-097), I shared my idea of celebration. I have had few suggestions so far. I am looking for more, so please keep sharing your views on the same.
+In the [**Week #97**](/blog/perl-weekly-challenge-097), I shared my idea of celebration. I have had few suggestions so far. I am looking for more, so please keep sharing your views on the same.
 
 In the recent few weeks, I noticed a big jump in the contributions as far as guest languages are concerned. In the early days, we used to receive just 2-4 solutions. But now a days, we get **40+** contributions regularly. I also noticed some members showing love for opposite camp. I mean, **Raku** fan sharing **Perl** solutions and **Perl** fan sharing **Raku**. To me, it is the biggest take away of the initiative started nearly `2 years` ago.
 
