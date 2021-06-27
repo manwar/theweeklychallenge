@@ -3206,9 +3206,9 @@ Please find below guest contributions.
 
 ##### **Paulo Custodio** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/paulo-custodio/bc/ch-1.bc) in **Bc**.
 
-##### **Paulo Custodio** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/paulo-custodio/c/ch-1.c) in **C**.
+##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/paulo-custodio/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/paulo-custodio/c/ch-2.c) in **C**.
 
-##### **Paulo Custodio** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/paulo-custodio/cpp/ch-1.cpp) in **C++**.
+##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/paulo-custodio/cpp/ch-1.cpp) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/paulo-custodio/cpp/ch-2.cpp) in **C++**.
 
 ##### **Paulo Custodio** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-011/paulo-custodio/forth/ch-1.fs) in **Forth**.
 
