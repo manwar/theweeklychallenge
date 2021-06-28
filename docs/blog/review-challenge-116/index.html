@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="The Weekly Challenge - Perl & Raku"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="You do not have to be an expert."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Colin Crain › Perl Weekly Review #116">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Colin Crain › Perl Weekly Review #116</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navgation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Colin Crain › Perl Weekly Review #116</h2>
+                    <div class="portfolio-meta">
+                        <span>Monday, Jun 28, 2021</span>|
+                        <span> Tags:
+                            perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/p5-review-challenge-116.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <p>( <em>&hellip;continues from <a href="/blog/review-challenge-115/">previous week</a>.</em> )</p>
+<p>Welcome to the Perl review for <strong>Week 116</strong> of the Weekly Challenge! Here we will take the time to discuss the  submissions offered by the team, factor out the common methodologies that came up in those solutions, and highlight some of the unique approaches and unusual code created.</p>
+<hr>
+<h3 id="why-do-we-do-these-challenges">Why do we do these challenges?</h3>
+<p>I suppose any answers to that would be as wide ranging and varied as the people who choose to join the team. One thing is clear: it&rsquo;s not a competition, and there are no judges, even if there is a &ldquo;prize&rdquo; of sorts. About that &ndash; I think of it more as an honorarium periodically awarded to acknowledge the efforts we make towards this strange goal. So there&rsquo;s no determination to find the <em>fastest</em>, or the <em>shortest</em>, or even, in some abstract way, the <em>best</em> way to go about things, although I&rsquo;m certain the individuals have their own aspirations and personal drives. As Perl is such a wonderfully expressive language, this provides quite a bit of fodder to the core idea of TMTOWTDI, producing a gamut of wonderfully varied techniques and solutions.</p>
+<p>Even the tasks themselves are often open to a certain amount of discretionary interpretation. What we end up with is a situation where each participant is producing something in the manner they find the most interesting or satisfying. Some team members focus on carefully crafted complete applications that thoroughly vet input data and handle every use case they can think up. Others chose to apply themselves to the logic of the underlying puzzle and making it work in the most elegant way they can. Some eschew modules they would ordinarily reach for, others embrace them, bringing to light wheels perhaps invented years ago that happen to exactly solve the problem in front of them today.</p>
+<p>I&rsquo;ve been considering this question for some time and have found one binding commonality between all of us solving these challenges each week, in that however we normally live our lives, the task in front of us more than likely has nothing to do with any of that . And I think this has great value. We all do what we do, out in the real world, and hopefully we do it well. The Weekly Challenge provides a opportunity to do something germane to that life yet distinctly different; if we only do the things we already know how to do we only do the same things over and over. This is where the &ldquo;challenge&rdquo; aspect comes into play.</p>
+<p>So we can consider the Weekly Challenge as providing a problem space outside of our comfort zone, as far out from comfort as we wish to take things. From those reaches we can gather and learn things and bring what we want back into our lives. Personally, I think that&rsquo;s its greatest value of all.</p>
+<hr>
+<p>Every week there is an enormous global collective effort made by the team, analyzing and creatively coding the submissions, and that effort deserves credit due. And that&rsquo;s why I&rsquo;m here, to try and figure out how to do that.</p>
+<p>Let&rsquo;s have a look and see what we can find.</p>
+<hr>
+<p><strong><big>For context</big></strong>  before we begin, you may wish to revisit either of the pages for the <a href="/blog/perl-weekly-challenge-116/"><strong>original tasks</strong></a> or the summary <a href="/blog/recap-challenge-116/"><strong>recap</strong></a> of the challenge. But don&rsquo;t worry, the challenges themselves will be briefly summarized, presented below as we progress from task by task. Oh, and one more thing before we get started:</p>
+<h3 id="getting-in-touch-with-us">Getting in Touch with Us</h3>
+<p><a href="mailto:pwc.perfectwave@gmail.com"><img src="/images/blog/Email.svg" height="50" width="50"> Email</a> › Please email me (Colin) with any feedback, notes, clarifications or whatnot about this review.</p>
+<p><a href="https://github.com/manwar/theweeklychallenge"><img src="/images/blog/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request to us for any issues you may find with this page.</p>
+<p><a href="https://twitter.com/perlwchallenge"><img src="/images/blog/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!</p>
+<p>I&rsquo;m always curious as to what the people think of these efforts. Everyone here at the PWC would like to hear any feedback you&rsquo;d like to give.</p>
+<p><strong>So finally, without further ado&hellip;</strong></p>
+<hr>
+<h2 id="---nbsp--nbsp--nbsp---task-1pwc116task1-------nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---task-2pwc116task2---nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---blogspwc116blogs----nbsp--nbsp--nbsp---">•             <a href="#PWC116TASK1">Task 1</a>                 •             <a href="#PWC116TASK2">Task 2</a>             	•             <a href="#PWC116BLOGS">BLOGS</a>              	•</h2>
+<hr>
+<h1 id="PWC116TASK1">TASK 1</h1>
+<h1 id="number-sequence">Number Sequence</h1>
+<p><em>Submitted by: Mohammad S Anwar</em><br>
+You are given a number $N &gt;= 10.</p>
+<p>Write a script to split the given number such that the difference between two consecutive numbers is always 1 and it shouldn’t have leading 0.</p>
+<p>Print the given number if it impossible to split the number.</p>
+<p><strong>Example</strong></p>
+<pre><code>    Input : $N = 1234
+    Output: 1,2,3,4
+
+    Input : $N = 91011
+    Output: 9,10,11
+
+    Input : $N = 10203
+    Output: 10203 as it is impossible to split satisfying the conditions.
+</code></pre><h2 id="about-the-solutions">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/abigail/perl/ch-1.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/arne-sommer/perl/ch-1.pl"><strong>Arne Sommer</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/bob-lied/perl/ch-1.pl"><strong>Bob Lied</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/paulo-custodio/perl/ch-1.pl"><strong>Paulo Custodio</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/pete-houston/perl/ch-1.pl"><strong>Pete Houston</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/stuart-little/perl/ch-1.pl"><strong>Stuart Little</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/wanderdoc/perl/ch-1.pl"><strong>Wanderdoc</strong></a></p>
+<p>There were 21 working submissions for the first task this past week.</p>
+<p>Let&rsquo;s begin with the ambiguities. Or wait, perhaps instead we&rsquo;ll take one step back from that and begin with something made clear: the example of the number 91011 decisively illustrates that the numbers generated don&rsquo;t need to be the same length, as we roll over a boundary in that case from single digit numbers into two digits. So right out of the gate we know we can&rsquo;t just split the number up along a clearly defined pattern, say into single digits to check the differences between. We will need a more complex method to select our breakpoints.</p>
+<p>Ok, now to the ambiguous parts. For one, both of the working examples show ascending sequences. However two points can&rsquo;t determine a pattern, per se, only a correspondence. In fact, the directives only specify &ldquo;difference between &hellip; numbers is always 1&rdquo;. To me this means the sequence can ascend, descend or switch in any combination. It kind of hinges on the diference between a &ldquo;difference&rdquo; and maybe a &ldquo;delta&rdquo;. One is an absolute value, the other a rate of change, and I don&rsquo;t think &ldquo;difference&rdquo; here is sufficiently well defined in this context. With this the case, not only can we cross that digit position boundary, but we can cross back again and even hover over it, say in the case of 9109109. Most of the submissions did not see things eye to eye with me on this point, however, so ascension ruled the day.</p>
+<p>Treating the sequence as strictly ascending makes each sequence starting from a given value completely deterministic, and this fact worked itself in many ways into the solutions given. One popular method, for instance, was to produce the string from each sequence possibility according to the rules, and see whether any of them matched the input.</p>
+<p>Allowing the sequence to rise or fall at any point, on the other hand, did complicate the solutions that implemented this distinction, leading to more looping thorough possibilities. Recursion was a common solution to this search of multiple pathways.</p>
+<p>I found the prohibition against starting with 0 unusual but sure, why not, until I understood from the third example we should <em>not</em> break the number 10203 into &ldquo;1&rdquo; &ldquo;02&rdquo; and &ldquo;03&rdquo;. This makes more sense than my first reading and could perhaps be better rephrased as &ldquo;no element should have a leading zero&rdquo;. On the other hand I see no reason to exclude 0 itself from the list of possible values, if we allow ourselves to somehow arrive at it.</p>
+<p>In a side note, an oddity popped up several times where people noted that the constraint of being greater than or equal to 10 wasn&rsquo;t really necessary. A single digit would fail to be broken up into a sequence, but by defaulting to the original number when a number cannot be broken up we have seemingly allowed a valid sequence to have 1 element, which is hardly an unrealistic call. After all, arrays and lists can have one element. So in a weird logical twist, by failing, a single digit ends up succeeding. Perhaps it is better to think that all numbers processed are &ldquo;successful&rdquo;, only many can be only broken up into their own unity state. Looked at that way, we are looking for the <em>longest</em> sequence we can make.</p>
+<p>Further, if we are to allow 0 as a valid element that can be moved to from either downward or upward movement in the line, we don&rsquo;t even need to place any constraints at all on the range of a number. You see, there exists one case for a prefix &ldquo;-101&hellip;&rdquo; that can be broken up into the sequence (-1, 0, 1, &hellip;). This, and its accompanying degenerate forms, is the only valid way to start with a negative number, but it works in theory, if we chose to implement it:</p>
+<pre><code>-1, -10, -101, -1010, -1012, -10101, -10121, -10123, ...
+</code></pre>
+<p>There are an infinite quantity of such valid numbers, as you can see. We do need to make an exclusion, but it&rsquo;s a simple and obvious one: our input must be a number. The string &ldquo;-3-1-2&rdquo;, for example, is not a number, nor is &ldquo;-2-101&rdquo;. So bringing the argument around full-circle, we don&rsquo;t need any restrictions on our input at all. Just make sure it&rsquo;s a number, or our &ldquo;number theory&rdquo; becomes &ldquo;string theory&rdquo;, and that, well that changes everything.</p>
+<p>Oh, and yes, I was seemingly the only person to include this possiblity for negative numbers. It was an exciting time; you had to be there.</p>
+<h2 id="ascending-only">ASCENDING only</h2>
+<p>As it worked out almost all of the entries chose to interpret the directive as to build an ascending sequence. One quality of all such sequences is their deterministic essence: once an initial value is selected, the successive values are fixed.</p>
+<h3 id="picking-the-number-apart-using-substr">PICKING the number APART, using substr()</h3>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/arne-sommer/perl/ch-1.pl"><strong>Arne Sommer</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/paulo-custodio/perl/ch-1.pl"><strong>Paulo Custodio</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/wanderdoc/perl/ch-1.pl"><strong>Wanderdoc</strong></a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a></p>
+<p>A pattern we see repeatedly is to deconstruct the input number piecemeal using <code>substr</code>.</p>
+<p>For every possible width for a first value, working upward from a single digit, we take the value of that many digits at the front of the number as our first sequence element. From there we take the remaining string tail, using <code>substr</code>, and after incrementing the value look for it at the beginning of that. Rinse and repeat until clean.</p>
+<p>Niels uses a regex anchored to the front of the string to match the next value, and if successful sets a position counter to its length to slice off the matched portion for the next iteration.</p>
+<p>If we match perfectly to the end of the string we have found success.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">do</span> {
+      <span style="color:#66d9ef">my</span> ($startNumber,$l) <span style="color:#f92672">=</span> (substr($n,<span style="color:#ae81ff">0</span>,$len),$len);
+      <span style="color:#66d9ef">my</span> ($next,$s) <span style="color:#f92672">=</span> ($startNumber<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>);
+      <span style="color:#66d9ef">while</span> ($s <span style="color:#f92672">=</span> substr($n,$l) <span style="color:#f92672">and</span> $s <span style="color:#f92672">=~</span> m<span style="color:#75715e">#^$next#) {</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> ($&#39; <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;&#39;</span>);
+        $l <span style="color:#f92672">+=</span> length($next<span style="color:#f92672">++</span>);
+      }
+      $len<span style="color:#f92672">++</span>;
+    } <span style="color:#66d9ef">while</span> ($len <span style="color:#f92672">&lt;=</span> ceil(length($n)<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>));
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/wanderdoc/perl/ch-1.pl"><strong>Wanderdoc</strong></a></p>
+<p>The doctor gives us a little twist: after portioning out a possible match for the next number from the remaining string, 1 is subtracted from this to see whether it matches the last previously catalogued value. So here instead of adding 1 to the last value, we subtract 1 from the next. At each juncture a range of digits is examined so rolling over from, say, 2-digit to 3-digit values is not a problem.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i ( <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $length <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span> )
+    {
+         <span style="color:#66d9ef">my</span> $copy <span style="color:#f92672">=</span> $int;
+
+         <span style="color:#66d9ef">my</span> @numbers;
+         $numbers[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> substr($copy, <span style="color:#ae81ff">0</span>, $i);
+         $copy <span style="color:#f92672">=</span> substr($copy, $i);
+         <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $j ( $i <span style="color:#f92672">..</span> $i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> )
+         {
+              <span style="color:#66d9ef">while</span> ( substr($copy, <span style="color:#ae81ff">0</span>, $j) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">==</span> $numbers[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">and</span> substr($copy, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>) <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span> )
+              {
+                   push @numbers, substr($copy, <span style="color:#ae81ff">0</span>, $j);
+                   $copy <span style="color:#f92672">=</span> substr($copy, $j);
+                   <span style="color:#66d9ef">return</span> join(<span style="color:#e6db74">&#34;,&#34;</span>,@numbers) <span style="color:#66d9ef">unless</span> length($copy);
+              }
+         }
+
+
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/athanasius/raku/ch-1.raku">Raku</a></p>
+<p>Athanasius starts with a well thought out refutation to my idea that the difference by one should be an absolute value.</p>
+<blockquote>
+<p>(2) Let N&rsquo;s digits be grouped as numbers: n0|n1|n2|&hellip;; then &ldquo;the difference
+between two consecutive numbers&rdquo; is defined as (n1 - n0), (n2 - n1), etc.
+That is, the grouped numbers must <em>increase</em> by exactly one from left to
+right; N = 987 cannot be split into 9|8|7, even though successive numbers
+in this grouping might be said to &ldquo;differ by one.&rdquo;</p>
+</blockquote>
+<p>Fair enough. Me and Abigail seem to be in the minority here, but at least I&rsquo;ve got good company. I do believe I will stand by my decision, if only for the aesthetics of the answer.</p>
+<p>The parsing between &ldquo;difference&rdquo; and &ldquo;differ&rdquo; seems to be the crux of the matter, and whether we are using the word mathematically or more generally. But I have to acknowledge before even thinking about a counter argument that this guy clerked for Bishop Alexander at Nicaea. He knows a thing or two about parsing an iota. Those Arians? Never saw it coming.</p>
+<p>Considering this I think it prudent to withdraw from further discussion on the matter.</p>
+<p>In their solution the monk implements a scheme of matching out sections of the input number portioned out by the chosen size of the initial segment. They note that they can continue to use the initial digit width without error until the value last matched is composed entirely of 9s, at which point the digit width need to be incremented by 1. A very shrewd analysis.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    DIGITS: <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $digits (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> int( $len_N <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span> ))
+    {
+           @sequence <span style="color:#f92672">=</span> ();
+        <span style="color:#66d9ef">my</span> $number0  <span style="color:#f92672">=</span> substr $N, <span style="color:#ae81ff">0</span>, $digits;
+        <span style="color:#66d9ef">my</span> $length1  <span style="color:#f92672">=</span> $digits;
+        <span style="color:#66d9ef">my</span> $offset   <span style="color:#f92672">=</span> $digits;
+        <span style="color:#66d9ef">my</span> $number1;
+
+        <span style="color:#66d9ef">while</span> ($offset <span style="color:#f92672">&lt;</span> $len_N)
+        {
+            <span style="color:#f92672">++</span>$length1  <span style="color:#66d9ef">if</span> $number0 <span style="color:#f92672">=~</span><span style="color:#e6db74"> / ^ 9+ $ /x</span>;
+            <span style="color:#66d9ef">next</span> DIGITS <span style="color:#66d9ef">if</span> $offset <span style="color:#f92672">+</span> $length1 <span style="color:#f92672">&gt;</span> $len_N;
+
+            $number1 <span style="color:#f92672">=</span> substr $N, $offset, $length1;
+
+            <span style="color:#66d9ef">next</span> DIGITS <span style="color:#66d9ef">if</span> $number1 <span style="color:#f92672">-</span> $number0 <span style="color:#f92672">!=</span> <span style="color:#ae81ff">1</span>;
+
+            push @sequence, $number0;
+
+            $offset <span style="color:#f92672">+=</span> $length1;
+            $number0 <span style="color:#f92672">=</span> $number1;
+        }
+
+        push @sequence, $number1;
+
+        <span style="color:#66d9ef">last</span> DIGITS;
+    }
+</code></pre></div><h3 id="build-a-sequence-and-join-it-then-compare">BUILD A SEQUENCE AND JOIN IT, THEN COMPARE</h3>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/bob-lied/perl/ch-1.pl"><strong>Bob Lied</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/pete-houston/perl/ch-1.pl"><strong>Pete Houston</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/stuart-little/perl/ch-1.pl"><strong>Stuart Little</strong></a></p>
+<p>One quality of an increasing sequence, as we have noted, it that the values are predetermined. As such, we can work the other way and, given a starting point, construct a string from concatenating the associated sequence values and see whether it matches the input. Again we need to try this for the range of possible start values; 1-digit, 2-digits, etc up to half the input number width.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/pete-houston/perl/ch-1.pl"><strong>Pete Houston</strong></a></p>
+<p>Pete gives us a clear demonstration of the technique. Nice, clear, sensible variable naming, well spaced and formatted&hellip; you get the idea. I like these things. They make my job easier, and my brain happier. We examine incrementing numbers of digits to start the process at each pass, but once we have that kernel value we can just build a loop to add to our string construction. If we meet or exceed the target length we stop adding and compare the result to the input number.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $power (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $halflen) {
+        <span style="color:#66d9ef">my</span> $parts <span style="color:#f92672">=</span> <span style="color:#66d9ef">my</span> $target <span style="color:#f92672">=</span> <span style="color:#66d9ef">my</span> $x <span style="color:#f92672">=</span> substr ($n, <span style="color:#ae81ff">0</span>, $power);
+        <span style="color:#66d9ef">do</span> {
+        	$target <span style="color:#f92672">.=</span> <span style="color:#f92672">++</span>$x;
+        	$parts  <span style="color:#f92672">.=</span> <span style="color:#e6db74">&#39;,&#39;</span> <span style="color:#f92672">.</span> $x;
+        } <span style="color:#66d9ef">until</span> $target <span style="color:#f92672">&gt;=</span> $n;
+        <span style="color:#66d9ef">if</span> ($target <span style="color:#f92672">==</span> $n) {
+        	<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$parts\n&#34;</span>;
+        	exit;
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/stuart-little/perl/ch-1.pl"><strong>Stuart Little</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/stuart-little/haskell/ch-1.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/stuart-little/node/ch-1.js">Node</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/stuart-little/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/stuart-little/raku/ch-1.p6">Raku</a></p>
+<p>In contrast to Pete&rsquo;s direct, imperative approach, Stuart comes to the same place in a more circuitous, functional manner. Using a trio of functions, we construct a lists of possible sequences, starting with <code>inits()</code>, which generates the list of starting possibilities, with 1 digit, 2, 3 etc. These each get turned into a sequence with enough elements to cover the possibilites. Joining these sequences, we end up grabbing the first of these that match our input. Our method of derivation is different, but overall the method is the same, viewed through a different lens. We build a number of valid strings that <em>could</em> work, then see if they fit.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">firstOver</span>($s1,$s2) {
+        <span style="color:#66d9ef">my</span> @runs <span style="color:#f92672">=</span> map { <span style="color:#66d9ef">my</span> $l <span style="color:#f92672">=</span> $_; <span style="color:#66d9ef">my</span> @run <span style="color:#f92672">=</span> map { $_ <span style="color:#f92672">+</span> $s1 } (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$l); <span style="color:#f92672">\</span>@run } (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>length($s2));
+        <span style="color:#66d9ef">return</span> first { length(join <span style="color:#e6db74">&#34;&#34;</span>, @{$_}) <span style="color:#f92672">&gt;=</span> length($s2) } @runs;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">inits</span>($s) {
+        <span style="color:#66d9ef">my</span> @inits<span style="color:#f92672">=</span>map { substr($s,<span style="color:#ae81ff">0</span>,$_) } (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>length $s);
+        <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@inits;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">consecSplit</span>($s) {
+        <span style="color:#66d9ef">return</span> first { join(<span style="color:#e6db74">&#34;&#34;</span>, @{$_}) <span style="color:#f92672">eq</span> $s } map {firstOver($_,$s)} @{inits($s)};
+    }
+
+    <span style="color:#66d9ef">my</span> @split<span style="color:#f92672">=</span>@{consecSplit($ARGV[<span style="color:#ae81ff">0</span>])};
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a></p>
+<p>At the risk of creating a <a href="https://dev.to/simongreennet/weekly-challenge-116-1mf7">self-referential wormhole punching a hole in fabric of space and time itself</a>, I&rsquo;m going to simply state: &ldquo;There&rsquo;s always one&hellip;&rdquo;</p>
+<p>Simon has decided that because we have not explicitly excluded real numbers, we&rsquo;re going to bring those into the mix. Ok, fine. If I&rsquo;m not going to exclude negative numbers, against the clearly stated wishes of the directives, I can hardly fault him for this. Real numbers, with their decimal points bring with them their own special cases.</p>
+<p>Fortunately he has commented his fevered efforts, and walks us through it step-by-step.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># Try for different lengths of first numbers</span>
+  L: <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $length ( <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> length($number) ) {
+
+        <span style="color:#75715e"># Seed the sequence with the number of this length</span>
+        <span style="color:#66d9ef">my</span> @sequence <span style="color:#f92672">=</span> ( substr( $number, <span style="color:#ae81ff">0</span>, $length ) );
+
+        <span style="color:#75715e"># Skip if the last character is the period. This prevents &#39;10.11&#39;</span>
+        <span style="color:#75715e">#  as a solution</span>
+        <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $sequence[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">=~</span><span style="color:#e6db74"> /\.$/</span>;
+
+        <span style="color:#75715e"># Keep adding the sequence until we have enough numbers</span>
+        <span style="color:#66d9ef">while</span> ( length( join( <span style="color:#e6db74">&#39;&#39;</span>, @sequence ) ) <span style="color:#f92672">&lt;</span> length($number) ) {
+            push @sequence, $sequence[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+
+            <span style="color:#66d9ef">my</span> $seq <span style="color:#f92672">=</span> join <span style="color:#e6db74">&#39;&#39;</span>, @sequence;
+
+            <span style="color:#75715e"># Handle edge case where there is a trailing .0 in there</span>
+            $sequence[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">.=</span> $1 <span style="color:#66d9ef">if</span> $number <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^$seq(\.0+)/</span>;
+
+            <span style="color:#75715e"># ... but solutions with two dots aren&#39;t numbers</span>
+            <span style="color:#66d9ef">next</span> L <span style="color:#66d9ef">if</span> $seq <span style="color:#f92672">=~</span><span style="color:#e6db74"> /\..*\./</span>;
+        }
+
+        <span style="color:#66d9ef">if</span> ( join( <span style="color:#e6db74">&#39;&#39;</span>, @sequence ) <span style="color:#f92672">==</span> $number ) {
+            say join <span style="color:#e6db74">&#39;,&#39;</span>, @sequence;
+            <span style="color:#66d9ef">return</span>;
+        }
+    }
+
+    say $number;
+</code></pre></div><h3 id="demolish-the-number-using-substitution">DEMOLISH the number using SUBSTITUTION</h3>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a></p>
+<p>What we are doing here is chopping up numbers, surely, but looked at another way we&rsquo;re identifying strings contained within other strings. Perl has it&rsquo;s own side-language just for such tasks, so it seems quite reasonable to suggest that we could use the regular expression engine to help us find an answer.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a></p>
+<p>Duncan verifies a sequence constructed from a specific starting width in a novel and quite elegant form. After initially removing and recording the number <code>$w</code> digits wide from the leading edge of the input, the sequential values going upwards are matched and removed by a substitution expression. If the entire string is neatly removed we have a winner.</p>
+<p>I find this quite similar to the <code>substr</code> methods we saw earlier, only the RE engine both matches and removes the sequential numbers as they are found. As I said, elegant.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    fun splitn_width_w( $w, $n )
+    {
+        <span style="color:#66d9ef">my</span> @x;
+        <span style="color:#66d9ef">my</span> $next <span style="color:#f92672">=</span> substr($n,<span style="color:#ae81ff">0</span>,$w,<span style="color:#e6db74">&#39;&#39;</span>);
+        push @x, $next;
+        <span style="color:#66d9ef">while</span>( length($n) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> )
+        {
+        	$next<span style="color:#f92672">++</span>;
+        	<span style="color:#66d9ef">return</span> () <span style="color:#66d9ef">unless</span> $n <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/^$next//</span>;
+        	push @x, $next;
+        }
+        <span style="color:#66d9ef">return</span> @x;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a></p>
+<p>We can see the same core logic in CY&rsquo;s solution. Here <code>$f</code> is the sequence element being matched.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">while</span> ($bool_next <span style="color:#f92672">&amp;&amp;</span> $yN <span style="color:#f92672">ne</span> <span style="color:#e6db74">&#34;&#34;</span>) {
+        $yN <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/^$f//</span>;
+        push @arr, $f;
+        $f_i <span style="color:#f92672">=</span> $f<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>;
+
+        $bool_next_i <span style="color:#f92672">=</span> $yN <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^$f_i/</span>;
+
+        $bool_next <span style="color:#f92672">=</span> $bool_next_i;
+        $f <span style="color:#f92672">=</span> $f_i <span style="color:#66d9ef">if</span> $bool_next_i;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a></p>
+<p>Ok, while not actually destroying the input number string, Jorg still lets a regular expression do the work for him, matching a number of digits of a given length and then incrementing that value and matching again. This really does closely mirror what we&rsquo;ve just seen, only here using the position counter of a global search to keep track of where we are physically in the input. We just need to look, and don&rsquo;t need to touch.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">succ_seq</span> {
+        local $_ <span style="color:#f92672">=</span> shift;
+        <span style="color:#75715e"># As the input is taken as a string, leading zeros must be excluded,</span>
+        <span style="color:#75715e"># since    ++($_ = &#39;01&#39;) eq &#39;02&#39;   is true.  Luckily this is a</span>
+        <span style="color:#75715e"># prerequisite in the task.</span>
+        die <span style="color:#e6db74">&#34;not valid\n&#34;</span> <span style="color:#66d9ef">unless</span> <span style="color:#e6db74">/^[1-9][0-9]+\z/</span>;
+
+        <span style="color:#75715e"># Try first parts that have half of the string&#39;s length at most.</span>
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $len (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> length() <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>) {
+            <span style="color:#75715e"># Accept any first part having the current length.</span>
+            <span style="color:#66d9ef">my</span> $part <span style="color:#f92672">=</span> <span style="color:#e6db74">qr/.{$len}/</span>;
+            <span style="color:#66d9ef">my</span> @split;
+            <span style="color:#66d9ef">while</span> (<span style="color:#e6db74">/\G($part)/g</span>) {
+                <span style="color:#75715e"># Collect the matched part and take its successor as the</span>
+                <span style="color:#75715e"># next expected match.</span>
+                push @split, ($part <span style="color:#f92672">=</span> $1)<span style="color:#f92672">++</span>;
+
+                <span style="color:#75715e"># If the current match extends to the end of the string, the</span>
+                <span style="color:#75715e"># collected parts represent a solution.</span>
+                <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@split <span style="color:#66d9ef">if</span> pos() <span style="color:#f92672">==</span> length();
+            }
+        }
+
+        <span style="color:#75715e"># Default:</span>
+        [$_];
+    }
+</code></pre></div><h2 id="venture-up-and-down">venture UP AND DOWN</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/abigail/perl/ch-1.pl"><strong>Abigail</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>,</p>
+<p>As explained previously the initial directives could be considered to allow an absoute difference of 1 between elements, either rising or descending. This complicates matters as we need to allow a string veer in two potential directions.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/abigail/perl/ch-1.pl"><strong>Abigail</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/abigail/awk/ch-1.awk">Awk</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/abigail/bash/ch-1.sh">Bash</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/abigail/lua/ch-1.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/abigail/node/ch-1.js">Node</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/abigail/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/abigail/ruby/ch-1.rb">Ruby</a></p>
+<p>In exploring multiple possibilities, recursion is a good choice. We can initially extract a number of digits from the front of our number, and then taking this value as a base compute values one higher and one lower, recursing with the remaining tail of the string and that value as a target. Abigail uses <code>index</code> to see whether the target value is at the front of the input fragment we are handed, and if it is we go around again.</p>
+<p>One nice this about this technique is that it doesn&rsquo;t blow up exponentially, even though there are two options, as at most only one path will ever be pursued. A successive value will always be either one more or one less, and never both.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">make_sequence</span> ($string, $start) {
+        <span style="color:#66d9ef">if</span> ($string <span style="color:#f92672">eq</span> $start) {
+            <span style="color:#66d9ef">return</span> [$start]
+        }
+        <span style="color:#66d9ef">if</span> (index ($string, $start) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+            <span style="color:#66d9ef">my</span> $tail <span style="color:#f92672">=</span> substr $string, length $start;
+            <span style="color:#66d9ef">my</span> $rest;
+            <span style="color:#66d9ef">if</span> (($rest <span style="color:#f92672">=</span> make_sequence ($tail, $start <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)) <span style="color:#f92672">||</span>
+                ($rest <span style="color:#f92672">=</span> make_sequence ($tail, $start <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>))) {
+                push  @$rest <span style="color:#f92672">=&gt;</span> $start;
+                <span style="color:#66d9ef">return</span> $rest;
+            }
+        }
+        <span style="color:#66d9ef">return</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/colin-crain/perl/ch-1.pl"><strong>My Own Solution</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/colin-crain/raku/ch-1.raku">Raku</a></p>
+<p>For my own solution I set up the two options in a loop with a common, configurable function call. Again either the next value can only be greater or less than the current, never both.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">match_next_segment</span> ($num, $start = 0, $len = 1, $part = []) {
+        <span style="color:#66d9ef">my</span> $seg <span style="color:#f92672">=</span> substr $num, $start, $len;
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">if</span> $seg <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;-&#39;</span>;
+        <span style="color:#66d9ef">my</span> @part <span style="color:#f92672">=</span> ($part<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, $seg);
+        <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@part <span style="color:#66d9ef">if</span> $start<span style="color:#f92672">+</span>$len <span style="color:#f92672">==</span> length $num;
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $next ( $seg<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>, $seg<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> ) {
+            <span style="color:#66d9ef">my</span> $len2 <span style="color:#f92672">=</span> length $next;
+            <span style="color:#66d9ef">if</span> ( substr($num, $start<span style="color:#f92672">+</span>$len, $len2) <span style="color:#f92672">==</span> $next ) {
+                <span style="color:#66d9ef">my</span> $sol <span style="color:#f92672">=</span> match_next_segment($num, $start<span style="color:#f92672">+</span>$len, $len2, <span style="color:#f92672">\</span>@part);
+                <span style="color:#66d9ef">return</span> $sol <span style="color:#66d9ef">if</span> defined $sol;
+            }
+        }
+        <span style="color:#66d9ef">return</span> undef;
+    }
+</code></pre></div><h2 id="unique-approaches-and-other-things-that-caught-my-eye">UNIQUE approaches and other THINGS THAT CAUGHT MY EYE</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a>,</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a></p>
+<p>Adam hardwires in the cases for when the first number is composed by a single digit, or two digits, or three, or four. While this looks rathery hacky out-of-the gate, we give him a pass because these <code>get_*()</code> functions aren&rsquo;t what they first seem: they are genes in a genetic algorithm processor, <code>AI::Genetic</code>. He freely admits the gene pool could be constructed by a function generator instead, creating as many cases as a given string could require, but we&rsquo;re quite happy with his efforts given.</p>
+<p>Adam does go a little further <a href="http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2021/06/13">in his writeup</a>, so interested parties should look there.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">fitness</span>{
+        <span style="color:#66d9ef">my</span>($genes) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> $s <span style="color:#f92672">=</span> NUMBERS;
+        <span style="color:#66d9ef">my</span> $fitness <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">*</span> (length($s) <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
+        <span style="color:#66d9ef">my</span> @operands;
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $gene (@{$genes}){
+            <span style="color:#66d9ef">if</span>(<span style="color:#66d9ef">my</span>($i) <span style="color:#f92672">=</span> $gene<span style="color:#f92672">-&gt;</span>() <span style="color:#f92672">=~</span> <span style="color:#e6db74">m/get_([1-4])/</span>){
+                push @operands, $gene<span style="color:#f92672">-&gt;</span>($s);
+                <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">*</span> NUMBERS <span style="color:#66d9ef">if</span> length($s) <span style="color:#f92672">&lt;</span> $i;
+                $s <span style="color:#f92672">=</span> substr($s, $i) <span style="color:#66d9ef">if</span> length($s) <span style="color:#f92672">&gt;=</span> $i;
+            }
+        }
+        $s <span style="color:#f92672">=</span> NUMBERS;
+        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; $i <span style="color:#f92672">&lt;</span> @operands <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>; $i<span style="color:#f92672">++</span>){
+            <span style="color:#66d9ef">if</span>(substr($operands[$i], <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>) <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> substr($operands[$i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>], <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>) <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>){
+                <span style="color:#66d9ef">if</span>($operands[$i] <span style="color:#f92672">==</span> ($operands[$i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)){
+                    $fitness<span style="color:#f92672">++</span>;
+                    <span style="color:#66d9ef">my</span> $chars <span style="color:#f92672">=</span> length($operands[$i]);
+                    $s <span style="color:#f92672">=</span> substr($s, $chars);
+                }
+            }
+        }
+        <span style="color:#66d9ef">if</span>($operands[@operands <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">&amp;&amp;</span> $operands[@operands <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>]){
+            <span style="color:#66d9ef">if</span>($operands[@operands <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">==</span> ($operands[@operands <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)){
+                <span style="color:#66d9ef">my</span> $chars <span style="color:#f92672">=</span> length($operands[@operands <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]);
+                $s <span style="color:#f92672">=</span> substr($s, $chars);
+            }
+        }
+        $fitness <span style="color:#f92672">*=</span> length($s);
+        <span style="color:#66d9ef">return</span> $fitness;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a></p>
+<p>In an unusual twist, Dave takes a very physical approach to recursively dissecting the number. He does this by inserting commas directly into the input string; first at single digit spacing, then two digit, increasing in a loop and recursing, until all the various partitionings are worked through. It&rsquo;s, uh, a different way to think about it. Oh, and yes it does seem to work just fine. Commas. Who&rsquo;d&rsquo;ve thought?</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get_sequence</span> ( $n ) {
+        <span style="color:#66d9ef">my</span> $t <span style="color:#f92672">=</span> test($n);
+        <span style="color:#66d9ef">return</span> $n <span style="color:#66d9ef">if</span> $t;
+
+        <span style="color:#66d9ef">my</span> $output;
+        <span style="color:#66d9ef">my</span> @n <span style="color:#f92672">=</span> split <span style="color:#e6db74">/,/</span>, $n;
+        <span style="color:#66d9ef">my</span> $flag <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        map { $flag <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> $_ <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">10</span> } @n;
+        <span style="color:#66d9ef">if</span> ( $flag <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> ) {
+            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> length $n ) {
+                <span style="color:#66d9ef">my</span> $cp <span style="color:#f92672">=</span> $n;
+                <span style="color:#66d9ef">my</span> $l <span style="color:#f92672">=</span> substr( $cp, $i, <span style="color:#ae81ff">1</span> );
+                substr( $cp, $i, <span style="color:#ae81ff">1</span> ) <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;,&#39;</span> <span style="color:#f92672">.</span> $l;
+                <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $cp <span style="color:#f92672">=~</span> <span style="color:#e6db74">m{^\,|\,\,|\,$}</span>;
+                <span style="color:#66d9ef">my</span> $x <span style="color:#f92672">=</span> get_sequence($cp);
+                <span style="color:#66d9ef">return</span> $x <span style="color:#66d9ef">if</span> $x;
+            }
+        }
+        <span style="color:#66d9ef">return</span> undef;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>Luis gives us a rather complicated method involving iterators, and, well, seems to have answered his own version of the problem. In his world, the segments no longer need to be in the right order. That&rsquo;s certainly a unique take. This, in his own words, make the problem &ldquo;unnecessarily difficult, but more interesting&rdquo;. So be it, I say.</p>
+<p>I&rsquo;m not sure where to begin with this one. Perhaps I should immediately refer you directly to his <a href="https://wlmb.github.io/2021/06/11/PWC116/">writeup in the subject</a>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> @digits<span style="color:#f92672">=</span>@ARGV;
+    die <span style="color:#e6db74">&#34;Usage ./ch-1.pl digits1 [digits2...]&#34;</span> <span style="color:#66d9ef">unless</span> @digits;
+    <span style="color:#66d9ef">foreach</span>(@digits){
+        warn(<span style="color:#e6db74">&#34;Expected &gt;=10&#34;</span>), <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> $_<span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">10</span>;
+        <span style="color:#66d9ef">my</span> @sequence<span style="color:#f92672">=</span>find_sequence($_);
+        say <span style="color:#e6db74">&#34;Input: $_&#34;</span>;
+        say <span style="color:#e6db74">&#34;Output: &#34;</span>, @sequence? join <span style="color:#e6db74">&#34;,&#34;</span>, @sequence:$_;
+    }
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">find_sequence</span> {
+        <span style="color:#66d9ef">my</span> $digits<span style="color:#f92672">=</span>shift;
+        <span style="color:#66d9ef">my</span> $max<span style="color:#f92672">=</span>ceil length($digits)<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>;
+        <span style="color:#66d9ef">foreach</span>(reverse <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$max){ <span style="color:#75715e">#from large to small starting numbers</span>
+        <span style="color:#66d9ef">my</span> @result<span style="color:#f92672">=</span>find_sequence_initial_size($digits, $_);
+        <span style="color:#66d9ef">return</span> @result <span style="color:#66d9ef">if</span> @result;
+        }
+        <span style="color:#66d9ef">return</span>;
+    }
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">find_sequence_initial_size</span> {
+        <span style="color:#66d9ef">my</span> ($digits, $size)<span style="color:#f92672">=</span>@_;
+        <span style="color:#66d9ef">my</span> $first<span style="color:#f92672">=</span>substr $digits,<span style="color:#ae81ff">0</span>,$size,<span style="color:#e6db74">&#34;&#34;</span>;
+        <span style="color:#75715e">#Search upwards first and downwards next</span>
+        <span style="color:#66d9ef">my</span> $result<span style="color:#f92672">=</span>increasing([$first],[$digits]);
+        <span style="color:#66d9ef">return</span> @$result <span style="color:#66d9ef">if</span> $result;
+        <span style="color:#66d9ef">return</span>;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">increasing</span> {
+        <span style="color:#66d9ef">my</span> ($current, $rest)<span style="color:#f92672">=</span>@_;  <span style="color:#75715e"># current sequence and remaining fragments</span>
+        <span style="color:#66d9ef">my</span> $next<span style="color:#f92672">=</span>$current<span style="color:#f92672">-&gt;</span>[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>; <span style="color:#75715e"># next number in sequence</span>
+        <span style="color:#66d9ef">my</span> @next<span style="color:#f92672">=</span>(@$current, $next); <span style="color:#75715e"># next sequence if succesful</span>
+        <span style="color:#66d9ef">my</span> $iterator<span style="color:#f92672">=</span>try_many($next, @$rest); <span style="color:#75715e">#find $next number in @rest</span>
+        <span style="color:#66d9ef">while</span>(<span style="color:#66d9ef">my</span> $remaining<span style="color:#f92672">=</span>$iterator<span style="color:#f92672">-&gt;</span>()){ <span style="color:#75715e"># match?</span>
+             <span style="color:#66d9ef">my</span> @remaining<span style="color:#f92672">=</span>@$remaining;
+             <span style="color:#66d9ef">return</span> [@next] <span style="color:#66d9ef">if</span> @remaining<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>; <span style="color:#75715e">#exhausted digits?</span>
+         <span style="color:#66d9ef">my</span> $attempt<span style="color:#f92672">=</span>increasing([@next], [@$remaining]); <span style="color:#75715e"># recurse</span>
+         <span style="color:#66d9ef">return</span> $attempt <span style="color:#66d9ef">if</span> defined $attempt; <span style="color:#75715e">#finished?</span>
+         $attempt<span style="color:#f92672">=</span>decreasing([@next],[@$remaining]); <span style="color:#75715e">#grow in opposite dir.</span>
+         <span style="color:#66d9ef">return</span> $attempt <span style="color:#66d9ef">if</span> defined $attempt; <span style="color:#75715e">#success?</span>
+        }
+        <span style="color:#66d9ef">return</span> decreasing($current, $rest); <span style="color:#75715e"># backtrack and try opposite dir.</span>
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">decreasing</span> {
+        <span style="color:#66d9ef">my</span> ($current, $rest)<span style="color:#f92672">=</span>@_;  <span style="color:#75715e"># current sequence and remaining fragments</span>
+        <span style="color:#66d9ef">my</span> $previous<span style="color:#f92672">=</span>$current<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>; <span style="color:#75715e"># previous number in sequence</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">if</span> $previous <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>; <span style="color:#75715e"># failure. No negatives.</span>
+        <span style="color:#66d9ef">my</span> @next<span style="color:#f92672">=</span>($previous, @$current); <span style="color:#75715e">#next sequence if succesful</span>
+        <span style="color:#66d9ef">my</span> $iterator<span style="color:#f92672">=</span>try_many($previous, @$rest);
+        <span style="color:#66d9ef">while</span>(<span style="color:#66d9ef">my</span> $remaining<span style="color:#f92672">=</span>$iterator<span style="color:#f92672">-&gt;</span>()){ <span style="color:#75715e">#match?</span>
+             <span style="color:#66d9ef">my</span> @remaining<span style="color:#f92672">=</span>@$remaining;
+             <span style="color:#66d9ef">return</span> [@next] <span style="color:#66d9ef">if</span> @remaining<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>; <span style="color:#75715e">#finished</span>
+         <span style="color:#66d9ef">my</span> $attempt<span style="color:#f92672">=</span>decreasing([@next], [@remaining]); <span style="color:#75715e">#recurse</span>
+         <span style="color:#66d9ef">return</span> $attempt <span style="color:#66d9ef">if</span> defined $attempt; <span style="color:#75715e">#success</span>
+        }
+        <span style="color:#66d9ef">return</span>; <span style="color:#75715e">#failure</span>
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">try_many</span> { <span style="color:#75715e"># returns iterator to search $target within @numbers in all possible ways</span>
+        <span style="color:#66d9ef">my</span> ($target, @numbers)<span style="color:#f92672">=</span>@_;
+        die <span style="color:#e6db74">&#34;Expected one or more numbers&#34;</span> <span style="color:#66d9ef">unless</span> @numbers<span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">my</span> $current<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">my</span> $iterate<span style="color:#f92672">=</span>try_one($target, $numbers[$current]);
+        <span style="color:#66d9ef">sub</span> {
+        <span style="color:#66d9ef">while</span>($current<span style="color:#f92672">&lt;</span>@numbers){
+            <span style="color:#66d9ef">my</span> @next<span style="color:#f92672">=</span>$iterate<span style="color:#f92672">-&gt;</span>();
+            <span style="color:#75715e">#return array of remaining fragments, filtering out empty strings</span>
+            <span style="color:#66d9ef">return</span> [grep {$_ <span style="color:#f92672">ne</span> <span style="color:#e6db74">&#34;&#34;</span>} (@numbers[<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$current<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>],@next, @numbers[$current<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>@numbers<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>])] <span style="color:#66d9ef">if</span> @next;
+            <span style="color:#f92672">++</span>$current;
+            $iterate<span style="color:#f92672">=</span>try_one($target, $numbers[$current]) <span style="color:#66d9ef">if</span> $current <span style="color:#f92672">&lt;</span> @numbers;
+        }
+        <span style="color:#66d9ef">return</span>;
+        }
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">try_one</span> {
+        <span style="color:#66d9ef">my</span> ($target, $digits)<span style="color:#f92672">=</span>@_; <span style="color:#75715e"># iterator to split target from $digits in all possible ways</span>
+        <span style="color:#66d9ef">my</span> $length<span style="color:#f92672">=</span>length $target;
+        die <span style="color:#e6db74">&#34;Expect positive length&#34;</span> <span style="color:#66d9ef">unless</span> $length <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">my</span> $index<span style="color:#f92672">=-</span><span style="color:#ae81ff">1</span>; <span style="color:#75715e">#index of $target in $digits</span>
+        <span style="color:#66d9ef">sub</span> {
+        $index<span style="color:#f92672">=</span>index $digits, $target, $index<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">unless</span> $index <span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">return</span> (substr($digits,<span style="color:#ae81ff">0</span>,$index), substr($digits, $index<span style="color:#f92672">+</span>$length));
+        }
+    }
+
+</code></pre></div><h2 id="additional-submissions-in-guest-languages">Additional Submissions in Guest Languages</h2>
+<p><strong>Arne Sommer</strong></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/arne-sommer/raku/ch-1.raku">Raku</a></p>
+<p><strong>Flavio Poletti</strong></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/polettix/raku/ch-1.raku">Raku</a></p>
+<p><strong>Roger Bell_West</strong></p>
+<h2 id="pythonhttpsgithubcommanwarperlweeklychallenge-clubblobmasterchallenge-116roger-bell-westpythonch-1py-rakuhttpsgithubcommanwarperlweeklychallenge-clubblobmasterchallenge-116roger-bell-westrakuch-1p6-rubyhttpsgithubcommanwarperlweeklychallenge-clubblobmasterchallenge-116roger-bell-westrubych-1rb-rusthttpsgithubcommanwarperlweeklychallenge-clubblobmasterchallenge-116roger-bell-westrustch-1rs"><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/roger-bell-west/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/roger-bell-west/raku/ch-1.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/roger-bell-west/ruby/ch-1.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/roger-bell-west/rust/ch-1.rs">Rust</a></h2>
+<h1 id="PWC116TASK2">TASK 2</h1>
+<h1 id="sum-of-squares">Sum of Squares</h1>
+<p><em>Submitted by: Mohammad Meraj Zia</em><br>
+You are given a number $N &gt;= 10.</p>
+<p>Write a script to find out if the given number $N is such that sum of squares of all digits is a perfect square. Print 1 if it is otherwise 0.</p>
+<p><strong>Example</strong></p>
+<pre><code>    Input: $N = 34
+    Ouput: 1 as 3^2 + 4^2 =&gt; 9 + 16 =&gt; 25 =&gt; 5^2
+
+    Input: $N = 50
+    Output: 1 as 5^2 + 0^2 =&gt; 25 + 0 =&gt; 25 =&gt; 5^2
+
+    Input: $N = 52
+    Output: 0 as 5^2 + 2^2 =&gt; 25 + 4 =&gt; 29
+</code></pre><h2 id="about-the-solutions-1">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/abigail/perl/ch-2.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/arne-sommer/perl/ch-2.pl"><strong>Arne Sommer</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/bob-lied/perl/ch-2.pl"><strong>Bob Lied</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/cristian-heredia/perl/ch-2.pl"><strong>Cristina Heredia</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/jaldhar-h-vyas/perl/ch-2.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/perlboy1967/perl/ch-2.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/paulo-custodio/perl/ch-2.pl"><strong>Paulo Custodio</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/pete-houston/perl/ch-2.pl"><strong>Pete Houston</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/stuart-little/perl/ch-2.pl"><strong>Stuart Little</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/wanderdoc/perl/ch-2.pl"><strong>Wanderdoc</strong></a></p>
+<p>There were 25 submissions for the second task this past week.</p>
+<p>In a rare showing of unity amongst the throng, all of the submissions followed the same general pattern. There were variations in syntax and control flow, within limits, but whether the procedure for checking for squareness was broken off into its own subroutine was inconsequential to the overall big-picture structure.</p>
+<p>There were a few cases where after one basic solution was brought other ways to accomplish the goal were presented, but every submitter did start with some variation on the one plan. I&rsquo;m not sure whether this has happened before, to be honest; certainly not on my watch.</p>
+<p>The principle divergence came in the method for determining whether a number was a perfect square, which itself mainly came down to one&rsquo;s degree of uncertainly in processing floating point number variables — checking for an integer value, and such things as implementing safeguards against rounding errors mucking everything up.</p>
+<h2 id="split-sum-for-squares">SPLIT SUM for SQUARES</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/abigail/perl/ch-2.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/arne-sommer/perl/ch-2.pl"><strong>Arne Sommer</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/bob-lied/perl/ch-2.pl"><strong>Bob Lied</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/cristian-heredia/perl/ch-2.pl"><strong>Cristina Heredia</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/jaldhar-h-vyas/perl/ch-2.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/perlboy1967/perl/ch-2.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/paulo-custodio/perl/ch-2.pl"><strong>Paulo Custodio</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/pete-houston/perl/ch-2.pl"><strong>Pete Houston</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/stuart-little/perl/ch-2.pl"><strong>Stuart Little</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/wanderdoc/perl/ch-2.pl"><strong>Wanderdoc</strong></a></p>
+<p>In the common pattern the number is first <code>split</code> into its component digits, then this list is iterated through using either <code>map</code> or <code>for</code>. Each number is squared and then either immediately summed to a running tally or stored to an intermediate array which is then in turn summed. This is the sum-of-the-digits-squared portion of the festivities</p>
+<p>To determine whether a number is a perfect square we saw a variety of methods that we&rsquo;ll have a closer look at. The most common was to check to see whether the square root was an integer by comparison using truncation.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/pete-houston/perl/ch-2.pl"><strong>Pete Houston</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/pete-houston/c/ch-2.c">C</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/pete-houston/lua/ch-2.lua">Lua</a></p>
+<p>Pete will start us off today with a nice succint example of the technique. Chaining the steps of <code>split</code>, <code>map</code> — applying the square — and <code>sum</code> to the resultant list was a very common idiom that we saw over and over; here Pete has added a <code>sqrt</code> to extend this. Now that he has the square root of the sum of squares, he can use the <code>int</code> function to strip any decimal component and see whether the two numbers remain equal.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $root <span style="color:#f92672">=</span> sqrt sum map { $_ <span style="color:#f92672">*</span> $_ } split <span style="color:#e6db74">//</span>, shift;
+    <span style="color:#66d9ef">print</span> $root <span style="color:#f92672">==</span> int $root ? <span style="color:#e6db74">&#34;1\n&#34;</span> : <span style="color:#e6db74">&#34;0\n&#34;</span>;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a></p>
+<p>Here&rsquo;s another example from Choroba. It&rsquo;s neat and to-the-point. There are small sytlistic choices in the syntax but the steps are the same.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw{ sum }</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">sum_of_squares</span> {
+        <span style="color:#66d9ef">my</span> ($n) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> $s <span style="color:#f92672">=</span> sqrt sum(map $_ <span style="color:#f92672">*</span> $_, split <span style="color:#e6db74">//</span>, $n);
+        <span style="color:#66d9ef">return</span> $s <span style="color:#f92672">==</span> int $s ? <span style="color:#ae81ff">1</span> : <span style="color:#ae81ff">0</span>
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/bob-lied/perl/ch-2.pl"><strong>Bob Lied</strong></a></p>
+<p>For those who prefer their processing steps nice and discrete, and perhaps discreet as to who they get too close to, we have Bob, who breaks up the chains we&rsquo;ve seen into separate steps.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">sumOfSquares</span>($N)
+    {
+        <span style="color:#66d9ef">my</span> @digit <span style="color:#f92672">=</span> split(<span style="color:#e6db74">//</span>, $N);
+
+        <span style="color:#66d9ef">my</span> @square <span style="color:#f92672">=</span> map { $_ <span style="color:#f92672">*</span> $_ } @digit;
+
+        <span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        $sum <span style="color:#f92672">+=</span> $_ <span style="color:#66d9ef">foreach</span> @square;
+
+        <span style="color:#66d9ef">my</span> $root <span style="color:#f92672">=</span> sqrt($sum);
+
+        <span style="color:#66d9ef">return</span> ( $root <span style="color:#f92672">==</span> int($root) ? <span style="color:#ae81ff">1</span> : <span style="color:#ae81ff">0</span> );
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/roger-bell-west/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/roger-bell-west/raku/ch-2.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/roger-bell-west/ruby/ch-2.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/roger-bell-west/rust/ch-2.rs">Rust</a></p>
+<p>Roger chooses a <code>for</code> loop instead of the common <code>map</code>, again breaking the processing  down vertically into separate lines.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">sos</span> {
+      <span style="color:#66d9ef">my</span> $n<span style="color:#f92672">=</span>shift;
+      <span style="color:#66d9ef">my</span> $t<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+      <span style="color:#66d9ef">foreach</span> (split <span style="color:#e6db74">&#39;&#39;</span>,$n) {
+        $t<span style="color:#f92672">+=</span>$_<span style="color:#f92672">*</span>$_;
+      }
+      <span style="color:#66d9ef">my</span> $s<span style="color:#f92672">=</span>int(sqrt($t));
+      <span style="color:#66d9ef">if</span> ($s<span style="color:#f92672">*</span>$s<span style="color:#f92672">==</span>$t) {
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+      }
+      <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/paulo-custodio/perl/ch-2.pl"><strong>Paulo Custodio</strong></a></p>
+<p>Paulo introduces a few points of variation. First, like Roger, he uses a <code>for</code> loop for his iteration. Then he squares his truncated square root to see if it matches the original sum.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">sum_of_squares_is_perfect_square</span> {
+        <span style="color:#66d9ef">my</span>($num) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $num <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">10</span>;
+        <span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $digit (split(<span style="color:#e6db74">//</span>, $num)) {
+            $sum <span style="color:#f92672">+=</span> $digit<span style="color:#f92672">*</span>$digit;
+        }
+        <span style="color:#66d9ef">my</span> $sqrt_int <span style="color:#f92672">=</span> int(sqrt($sum));
+        <span style="color:#66d9ef">return</span> $sqrt_int<span style="color:#f92672">*</span>$sqrt_int<span style="color:#f92672">==</span>$sum;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/laurent-rosenfeld/raku/ch-2.raku">Raku</a></p>
+<p>And another slight rearrangement from Laurent. All of these different versions, though, follow the same master plan.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">sum_squares</span> {
+        <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> shift;
+        <span style="color:#66d9ef">my</span> $sum_sq <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        $sum_sq <span style="color:#f92672">+=</span> $_ <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span> <span style="color:#66d9ef">for</span> split <span style="color:#e6db74">//</span>, $n;
+        <span style="color:#66d9ef">my</span> $sqrt_int <span style="color:#f92672">=</span> int sqrt $sum_sq;
+        <span style="color:#66d9ef">return</span> $sqrt_int <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">==</span> $sum_sq ? <span style="color:#ae81ff">1</span> : <span style="color:#ae81ff">0</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a></p>
+<p>There really doesn&rsquo;t need to be a lot to it.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">sum_square</span> {
+      <span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;                            <span style="color:#75715e">## Initialize sum</span>
+      $sum <span style="color:#f92672">+=</span> $_<span style="color:#f92672">*</span>$_ <span style="color:#66d9ef">foreach</span> split <span style="color:#e6db74">//</span>, shift;  <span style="color:#75715e">## Sum digits..</span>
+      <span style="color:#66d9ef">return</span> $sum <span style="color:#f92672">==</span> (int sqrt $sum)<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">||</span> <span style="color:#ae81ff">0</span>; <span style="color:#75715e">## Check is squared</span>
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/ulrich-rieke/cpp/ch-2.cpp">C++</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/ulrich-rieke/haskell/ch-2.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/ulrich-rieke/raku/ch-2.raku">Raku</a></p>
+<p>Ulrich introduces the idea of using something other than integer truncation to prep his square root for testing. Mathematically we would call this the floor function in this context, and here Ulrich brings one in from the core POSIX module.</p>
+<p>I really like the lines of his formatting, and find it particularly easy on the eyes.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> @squarenums <span style="color:#f92672">=</span> map { $_ <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span> } split (<span style="color:#e6db74">//</span> , $N ) ;
+    <span style="color:#66d9ef">my</span> $squaresum <span style="color:#f92672">=</span> sum @squarenums ;
+    <span style="color:#66d9ef">if</span> ( floor( sqrt( $squaresum ) ) <span style="color:#f92672">==</span> sqrt( $squaresum ) ) {
+      say <span style="color:#ae81ff">1</span> ;
+    }
+    <span style="color:#66d9ef">else</span> {
+      say <span style="color:#ae81ff">0</span> ;
+    }
+
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>And here Luis brings another POSIX function,  a proper <code>round()</code> , alleviating any need to add a small fraction to smear out floating point errors. I&rsquo;m really unsure how big a number here would have to be for this case to come up, but I imagine quite large. Or alternately, we&rsquo;re doing our number theory on a Sinclair ZX81 and somehow got Perl to compile. In any case it&rsquo;s good to remember we have a proper <code>round</code> right there within reach, in the core distribution. This serves well in a more general purpose way, say if we don&rsquo;t know whether a value will be positive or negative. The POSIX standard say to round half-way values away from 0, so 0.5 goes up to 1 and -0.5 goes down to -1.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> POSIX <span style="color:#e6db74">qw(round)</span>;
+    <span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.12</span>;
+
+    <span style="color:#66d9ef">foreach</span>(@ARGV){
+        <span style="color:#66d9ef">my</span> $x<span style="color:#f92672">=</span>sqrt(sum0 map {$_<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>} split <span style="color:#e6db74">&#39;&#39;</span>,$_);
+        say <span style="color:#e6db74">&#34;Input: $_\nOutput: &#34;</span>, $x<span style="color:#f92672">==</span>round($x)?<span style="color:#ae81ff">1</span>:<span style="color:#ae81ff">0</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a></p>
+<p>Adam takes this mathematical approach to its logical conclusion, where a number can be an integer if and only if its ceiling function is equal to its floor function. With the POSIX module both of these are available.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> POSIX;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">sum_squares</span>{
+        <span style="color:#66d9ef">my</span>($n) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> @digits <span style="color:#f92672">=</span> split(<span style="color:#e6db74">//</span>, $n);
+        <span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        map { $sum <span style="color:#f92672">+=</span> ($_ <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span>) } @digits;
+        <span style="color:#66d9ef">return</span> (ceil(sqrt($sum)) <span style="color:#f92672">==</span> floor(sqrt($sum)));
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a></p>
+<p>In contrast, CY breaks far from the model we have made so far, where she determines the integer nature of the square root graphically, not by its value but rather the way it is written. In short, the square root will always be internally stored as a float, or more specifically an <code>SV_NV</code>, Perl&rsquo;s data type for this, but Perl is also aware enough to not keep a decimal point attached to a number with no decimal component. Oh, and it is always an <code>SV_NV</code>, even when the result is whole. I checked, using <code>Devel::Peek</code>. Just to be sure.</p>
+<p>This actually makes me wonder about keeping track of precision, that is to say <em>significant</em> trailing zeros, in Perl, which is something I&rsquo;ve never tried to do. I imagine if I was doing experimental science where this was necessary I&rsquo;d be using the PDL to, say, calculate</p>
+<pre><code>4.000000 + 0.10 = 4.10
+</code></pre>
+<p>Gotta mind that precision. But I digress. The point here is that if the number is an integer, without a fractional component, Perl will present it as such, and it will not have a decimal place. So we can look for the decimal, and if we don&rsquo;t find one we&rsquo;re whole.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">sum_of_sq</span> {
+        <span style="color:#66d9ef">my</span> $num <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>];
+        <span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">for</span> (split <span style="color:#e6db74">&#34;&#34;</span>, $num) {
+            $sum <span style="color:#f92672">+=</span> $_<span style="color:#f92672">*</span>$_;
+        }
+        <span style="color:#66d9ef">return</span> $sum;
+    }
+
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_a_square_num</span> {
+        <span style="color:#66d9ef">my</span> $a <span style="color:#f92672">=</span> sqrt $_[<span style="color:#ae81ff">0</span>];
+        <span style="color:#66d9ef">return</span> ($a <span style="color:#f92672">!~</span> <span style="color:#e6db74">/\./</span> ? <span style="color:#ae81ff">1</span> : <span style="color:#ae81ff">0</span>) ;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/cristian-heredia/perl/ch-2.pl"><strong>Cristina Heredia</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/cristian-heredia/python/ch-2.py">Python</a></p>
+<p>Christina also takes this approach, only she looks for only digits anchored at both ends of the regex, leaving no room for a stray decimal.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> @arrayA <span style="color:#f92672">=</span> split(<span style="color:#e6db74">//</span>, $input);
+    <span style="color:#66d9ef">my</span> $suma <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+    <span style="color:#66d9ef">foreach</span>(<span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; $i <span style="color:#f92672">&lt;</span> @arrayA; $i<span style="color:#f92672">++</span>) {
+        $suma <span style="color:#f92672">+=</span> $arrayA[$i]<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>
+    }
+
+    <span style="color:#66d9ef">my</span> $result <span style="color:#f92672">=</span> sqrt $suma;
+    <span style="color:#66d9ef">if</span> ($result <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^\d+$/</span>) {
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Ouput: 1&#34;</span>;
+    }
+    <span style="color:#66d9ef">else</span> {
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Ouput: 0&#34;</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/jaldhar-h-vyas/perl/ch-2.pl"><strong>Jaldhar H. Vyas</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/jaldhar-h-vyas/raku/ch-2.raku">Raku</a></p>
+<p>So, checking a number as integer value by using a regular expression proved to be a somewhat popular method. Jaldhar here is using the <code>[[:digit:]]</code> POSIX character class.</p>
+<p>For a more in-depth explanation I refer you to the the <a href="https://perldoc.perl.org/perlrecharclass#POSIX-Character-Classes">perlrecharclass</a> reference. For now we can consider the POSIX class equivalent to <code>\d</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> English <span style="color:#e6db74">qw/ -no_match_vars /</span>;
+
+    <span style="color:#66d9ef">my</span> @digits <span style="color:#f92672">=</span> map { $_ <span style="color:#f92672">*</span> $_} split <span style="color:#e6db74">//</span>, $N;
+    <span style="color:#66d9ef">my</span> $total <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $digit (@digits) {
+        $total <span style="color:#f92672">+=</span> $digit;
+    }
+
+    say sqrt($total) <span style="color:#f92672">=~</span><span style="color:#e6db74"> / ^ [[:digit:]]+ $ /x</span> ? <span style="color:#ae81ff">1</span> : <span style="color:#ae81ff">0</span>;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a></p>
+<p>Finally, Duncan brings us something different, a third way, counting upward from 1 until the square of the value meets or exceeds the target sum. It&rsquo;s an effective way to sidestep any reference to floating point ambiguities entirely.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    fun isperfectsquare( $n )
+    {
+        <span style="color:#66d9ef">for</span>( <span style="color:#66d9ef">my</span> $i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; $i<span style="color:#f92672">*</span>$i<span style="color:#f92672">&lt;=</span>$n; $i<span style="color:#f92672">++</span> )
+        {
+        	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> $i<span style="color:#f92672">*</span>$i<span style="color:#f92672">==</span>$n;
+        }
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+    }
+
+    fun issumsq( $n )
+    {
+        <span style="color:#66d9ef">my</span> $ssq <span style="color:#f92672">=</span> sum( map { $_ <span style="color:#f92672">*</span> $_ } split(<span style="color:#e6db74">//</span>,$n) );
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> isperfectsquare($ssq);
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+    }
+</code></pre></div><h2 id="above-and-into-the-beyond-like-a-firework-on-the-fourth-of-july">ABOVE and into the BEYOND, like a FIREWORK on the FOURTH OF JULY</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/athanasius/raku/ch-2.raku">Raku</a></p>
+<p>The monk starts with an interesting observation:</p>
+<blockquote>
+<p>Although it is probably intended that $N be an integer, this is not explicitly
+stated in the Task Description and is not really necessary. This script accepts
+any real number &gt;= 10, and includes any digits following the decimal point
+along with the digits that come before. The decimal point (if any) is ignored.
+For example:</p>
+</blockquote>
+<blockquote>
+<p>Input:  $N = 14.22
+Output: 1 as 1^2 + 4^2 + 2^2 + 2^2 = 1 + 16 + 4 + 4 = 25 = 5^2</p>
+</blockquote>
+<p>That is interesting indeed and had never occurred to me to implement. Or anyone else, for that matter. But that is no mind, the example is more than welcome.</p>
+<p>For the processing, any decimal point is removed with a filter. Here we have the familiar <code>split/map/sum</code> pattern, with a variation in the perfect square validation, where we add a fraction, 0.5, before truncation to make the truncation more correctly match a proper rounding function, in the event some significant floating point error is introduced by the square root function.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> @digits  <span style="color:#f92672">=</span> grep { <span style="color:#f92672">!</span><span style="color:#e6db74">/\./</span> } split <span style="color:#e6db74">//</span>, $N;
+    <span style="color:#66d9ef">my</span> @squares <span style="color:#f92672">=</span> map { $_ <span style="color:#f92672">*</span> $_ } @digits;
+    <span style="color:#66d9ef">my</span> $sum     <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+       $sum    <span style="color:#f92672">+=</span> $_ <span style="color:#66d9ef">for</span> @squares;
+    <span style="color:#66d9ef">my</span> $root    <span style="color:#f92672">=</span> perfect_square_root( $sum );
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">perfect_square_root</span>
+    {
+        <span style="color:#66d9ef">my</span> ($N)   <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span>  $root <span style="color:#f92672">=</span> int( sqrt( $N ) <span style="color:#f92672">+</span> <span style="color:#ae81ff">0.5</span> );
+
+        <span style="color:#75715e"># Return the square root if $N is a perfect square, or undef otherwise</span>
+
+        <span style="color:#66d9ef">return</span> ($root <span style="color:#f92672">*</span> $root) <span style="color:#f92672">==</span> $N ? $root : undef;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/abigail/perl/ch-2.pl"><strong>Abigail</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/abigail/awk/ch-2.awk">Awk</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/abigail/bash/ch-2.sh">Bash</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/abigail/c/ch-2.c">C</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/abigail/lua/ch-2.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/abigail/node/ch-2.js">Node</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/abigail/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/abigail/ruby/ch-2.rb">Ruby</a></p>
+<p>Abigail always brings some interesting new observations to the table, and here they bring several. First they avoid <code>split</code>, instead matching the digits 1 through 9 with a regex character class. Ok. Although not explicitly stated this serves to allow internal decimal points as they will simply be ignored, as will 0s, which are a no-op when squared.</p>
+<p>From there a choice of one of four options is given to determine whether a number was a perfect square. The first, checking against the square root, we&rsquo;ve seen several times already; here the fraction 0.5 is added to compensate for floating point errors, as we saw with Athanasius.</p>
+<p>Second, we count up from one, until we meet or exceed the target square, as brought to as well by Duncan White. Another fine method that avoids any floating point math, which is nice.</p>
+<p>In the third way we do a binary search of the number space below the number, refining around a potential square root value. This is much like the previous solution without the sledgehammer.</p>
+<p>In the fourth solution all squares are computed up from 1 to 9000. Once these 9000 calculations are done, however, we can validate any number up to 1,000,000 digits long before the sum of the digits squared becomes too large. That&rsquo;s thinking outside the box.</p>
+<p>Here are the third and fourth options for your perusal:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">if</span> ($type <span style="color:#f92672">==</span> $TYPE_SEARCH) {
+        <span style="color:#66d9ef">my</span> $root_min <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">my</span> $root_max <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+        $root_max <span style="color:#f92672">*=</span> <span style="color:#ae81ff">2</span> <span style="color:#66d9ef">while</span> $root_max <span style="color:#f92672">*</span> $root_max <span style="color:#f92672">&lt;</span> $sum_of_squares;
+        <span style="color:#66d9ef">while</span> ($root_min <span style="color:#f92672">&lt;</span> $root_max) {
+            <span style="color:#66d9ef">my</span> $root_mid <span style="color:#f92672">=</span> int (($root_min <span style="color:#f92672">+</span> $root_max) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>);
+            <span style="color:#66d9ef">my</span> $square_mid <span style="color:#f92672">=</span> $root_mid <span style="color:#f92672">*</span> $root_mid;
+            <span style="color:#66d9ef">if</span> ($square_mid <span style="color:#f92672">==</span> $sum_of_squares) {
+                $is_square <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+                <span style="color:#66d9ef">last</span>;
+            }
+            <span style="color:#66d9ef">if</span> ($square_mid <span style="color:#f92672">&lt;</span> $sum_of_squares) {
+                $root_min <span style="color:#f92672">=</span> $root_mid <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+            }
+            <span style="color:#66d9ef">else</span> {
+                $root_max <span style="color:#f92672">=</span> $root_mid;
+            }
+        }
+    }
+    <span style="color:#66d9ef">if</span> ($type <span style="color:#f92672">==</span> $TYPE_PREPROCESS) {
+        $is_square <span style="color:#f92672">=</span> $squares {$sum_of_squares};
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a></p>
+<p>In my so-far long and undeniably many-storied life I have received quite a number of years of training in studio art along the way. Despite the derision this stereotypically gathers from many in the STEM community, this training has served me well, and continues to serve me to this day. Too much knowledge is always better than not enough, and creativity is never a bad thing, as real world problems never quite seem to map to the perfect models we want them to be.</p>
+<p>One technique that I find myself coming back to often is the idea of applying constraints on one&rsquo;s toolkit to spurn creative solutions. I have found that experimenting this way will invariably produce new techniques that you can take with you going forward (or learn to stay away from, being another way saying the same thing). These new approaches may come in handy should you find yourself in a situtation in the future where either you don&rsquo;t have your usual kit available, or more subtly and to the point here, to apply the tools you know in new ways to utilise capabilities you didn&rsquo;t at first realize they had. If you learn this now, you don&rsquo;t need to figure it out in a hurry later.</p>
+<p>There was a while where Jorg was systematically exploring the PDL, using it to solve every type of problem imaginable. Lately, he seems to be applying a similar tight focus on the module <code>Math::Prime::Util</code>, and its some 200+ component functions.</p>
+<p>It&rsquo;s good practice, because <code>Math::Prime::Util</code> is amazing. Beyond being a collection of routines for prime numbers, as one might reasonably expect, it deals with any number of other common and uncommon number theory ideas, so it&rsquo;s particularly well suited to this challenge. The function <code>is_prime()</code> does what you think it would, and <code>vecsum()</code> is very much like <code>sum0</code>, but promises greater accuracy for very large numbers.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">qw(vecsum is_square)</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">sum_of_squares_is_square</span> {
+        local $_ <span style="color:#f92672">=</span> shift;
+        <span style="color:#75715e"># Input is restricted to N &gt;= 10:</span>
+        die <span style="color:#e6db74">&#34;not valid\n&#34;</span> <span style="color:#66d9ef">unless</span> <span style="color:#e6db74">/^[1-9][0-9]+\z/</span>;
+
+        <span style="color:#75715e"># The digits are subject to integer operations only, therefore there</span>
+        <span style="color:#75715e"># are no rounding issues.  Takes a string, not an (internal)</span>
+        <span style="color:#75715e"># integer.</span>
+        is_square vecsum map $_ <span style="color:#f92672">*</span> $_, split <span style="color:#e6db74">//</span>;
+    }
+</code></pre></div><h2 id="additional-submissions-in-guest-languages-1">Additional Submissions in Guest Languages</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/arne-sommer/perl/ch-2.pl"><strong>Arne Sommer</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/arne-sommer/raku/ch-2.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/colin-crain/raku/ch-2.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/polettix/raku/ch-2.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/stuart-little/perl/ch-2.pl"><strong>Stuart Little</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/stuart-little/haskell/ch-2.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/stuart-little/node/ch-2.js">Node</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/stuart-little/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-116/stuart-little/raku/ch-2.p6">Raku</a></p>
+<hr>
+<h1 id="PWC116BLOGS">BLOGS</h1>
+<hr>
+<p><strong>That’s it for me this week, people! Warped by the rain, driven by the snow, resolute and unbroken by the torrential influx, I somehow continue to maintain my bearings. Looking forward to next wave, the perfect wave, I am: <em>your humble servant</em>.</strong></p>
+<h1 id="PWC093BLOGS">But if Your <em>THIRST</em> for <em>KNOWLEDGE</em> is not <em>SLAKED</em>,</h1>
+<h1 id="then-run-dont-walk-to-the-watering-hole">then <em>RUN</em> <em>(dont walk!)</em> to the <em>WATERING HOLE</em></h1>
+<h1 id="and-read-these-blog-links">and <em>READ</em> these <em>BLOG</em> <em>LINKS</em>:</h1>
+<p><strong>( <em>don&rsquo;t think, trust your training, you&rsquo;re in the zone, just do it &hellip;</em> )</strong></p>
+<p><strong>Aaron Smith</strong></p>
+<ul>
+<li><a href="https://aaronreidsmith.github.io/blog/perl-weekly-challenge-116/">Perl Weekly Challenge 116 - Aaron Smith</a> ( <em>Raku</em> )</li>
+</ul>
+<p><strong>Abigail</strong></p>
+<ul>
+<li><a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-116-1.html">Perl Weekly Challenge 116: Number Sequence</a> ( <em>Perl</em> )</li>
+<li><a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-116-2.html">Perl Weekly Challenge 116: Sum of Squares</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Adam Russell</strong></p>
+<ul>
+<li><a href="http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2021/06/13">Evolving a Sequence with a Functional Genome: The Weekly Challenge 116 — RabbitFarm</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Arne Sommer</strong></p>
+<ul>
+<li><a href="https://raku-musings.com/sequential-squares.html">Sequential Squares with Raku and Perl</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Colin Crain</strong></p>
+<ul>
+<li><a href="https://colincrain.com/2021/06/12/shhh-were-squaring-sequet-numbers/">Shhh — We&rsquo;re Squaring Sequet Numbers — Programming Excursions in Perl and Raku</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Dave Jacoby</strong></p>
+<ul>
+<li><a href="https://jacoby.github.io/2021/06/08/hip-to-be-square-perl-weekly-challenge-116.html">Hip To Be Square: Perl Weekly Challenge #116 | Committed to Memory</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Flavio Poletti</strong></p>
+<ul>
+<li><a href="https://github.polettix.it/ETOOBUSY/2021/06/09/pwc116-number-sequence/">PWC116 - Number Sequence - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+<li><a href="https://github.polettix.it/ETOOBUSY/2021/06/10/pwc116-sum-of-squares/">PWC116 - Sum of Squares - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Jaldhar H. Vyas</strong></p>
+<ul>
+<li><a href="https://www.braincells.com/perl/2021/06/perl_weekly_challenge_week_116.html">Perl Weekly Challenge: Week 116</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>James Smith</strong></p>
+<ul>
+<li><a href="https://github.com/drbaggy/perlweeklychallenge-club/blob/master/challenge-116/james-smith/">Perl Weekly Challenge #116</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Laurent Rosenfeld</strong></p>
+<ul>
+<li><a href="http://blogs.perl.org/users/laurent_r/2021/06/perl-weekly-challenge-116-number-sequence-and-sum-of-squares.html">Perl Weekly Challenge 116: Number Sequence and Sum of Squares | laurent_r</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Luca Ferrari</strong></p>
+<ul>
+<li><a href="https://fluca1978.github.io/2021/06/08/PerlWeeklyChallenge116.html#task1">Perl Weekly Challenge 116: numbers – Luca Ferrari – Open Source advocate, human being</a> ( <em>Raku</em> )</li>
+<li><a href="https://fluca1978.github.io/2021/06/08/PerlWeeklyChallenge116.html#task2">Perl Weekly Challenge 116: numbers – Luca Ferrari – Open Source advocate, human being</a> ( <em>Raku</em> )</li>
+</ul>
+<p><strong>Roger Bell_West</strong></p>
+<ul>
+<li><a href="https://blog.firedrake.org/archive/2021/06/Perl_Weekly_Challenge_116__Square_Sequence.html">RogerBW&rsquo;s Blog: Perl Weekly Challenge 116: Square Sequence</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Simon Green</strong></p>
+<ul>
+<li><a href="https://dev.to/simongreennet/weekly-challenge-116-1mf7">Weekly Challenge 116</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>W. Luis Mochan</strong></p>
+<ul>
+<li><a href="https://wlmb.github.io/2021/06/11/PWC116/">Perl Weekly Challenge 116 – W. Luis Mochán</a> ( <em>Perl</em> )</li>
+</ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="/contact" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2021
+                    </span> PerlWeeklyChallenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.nomtimes.co.uk/site/shop.do?cref=PerlBooks" title="Free Perl Books" rel="noreferrer" target="_blank">
+                            <img src="/images/NomTimes.jpg" style="width:22px; height: 18px;" alt=""/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jQurey/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-136524905-1', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+
+</html>
+
