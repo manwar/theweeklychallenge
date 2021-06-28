@@ -37,7 +37,7 @@ I would like to thank, `Paulo Custodio`, for sharing **C** and **C++** solutions
 
 Looks like, it is holiday season. I have seen messages from **Team PWC** members about going on vacation. I saw a Facebook post by one of the regular **Team PWC** member, `Adam Russell`. It was really funny that he can't stop thinking about the weekly challenge even while on vacation. I can understand his feeling as I go through the same personally.
 
-Long time ago, I had similar message from another member, [**Joelle Maslask**](/blog/meet-the-champion-015/), saying she is sharing solutions to weekly challenge from hospital bed. This is the height of dedications. Hats off to her.
+Long time ago, I had similar message from another member, [**Joelle Maslak**](/blog/meet-the-champion-015/), saying she is sharing solutions to weekly challenge from hospital bed. This is the height of dedications. Hats off to her.
 
 Did you notice something in recent weeks? I am receiving proposal for weekly challenge regularly. This is a big relief to me and one less thing to worry about every week. So a big `THANK YOU` to all contributors. Please don't stop and keep sharing new challenges.
 
