@@ -3228,6 +3228,10 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 012](/blog/perl-weekly-challenge-012) {#012}
 <br>
 
+##### **Paulo Custodio** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-012/paulo-custodio/c/ch-1.c) in **C**.
+
+##### **Paulo Custodio** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-012/paulo-custodio/cpp/ch-1.cpp) in **C++**.
+
 ##### **Stuart Little** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-012/stuart-little/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-012/stuart-little/haskell/ch-2.hs) in **Haskell**.
 
 ----
