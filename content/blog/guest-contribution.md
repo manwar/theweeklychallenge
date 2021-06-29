@@ -46,7 +46,7 @@ Please find below guest contributions.
 
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-119/roger-bell-west/rust/ch-1.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-119/roger-bell-west/rust/ch-1.rs) in **Rust**.
 
-##### **Steven Wilson** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-119/steven-wilson/python/ch-1.py) in **Python**.
+##### **Steven Wilson** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-119/steven-wilson/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-119/steven-wilson/python/ch-2.py) in **Python**.
 
 ##### **Stuart Little** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-119/stuart-little/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-119/stuart-little/haskell/ch-2.hs) in **Haskell**.
 
