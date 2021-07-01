@@ -56,6 +56,8 @@ Please find below guest contributions.
 
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-119/eric-cheung/excel-vba/ch-1.xlsm) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-119/eric-cheung/excel-vba/ch-2.xlsm) in **Excel VBA**.
 
+##### **Frank Oosterhuis** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-119/frankivo/scala/NibbleSwap.scala) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-119/frankivo/scala/Sequencer.scala) in **Scala**.
+
 ##### **James Smith** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-119/james-smith/javasript/ch-1.js) in **JavaScript**.
 
 ##### **James Smith** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-119/james-smith/php/ch-1.php) in **PHP**.
