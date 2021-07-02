@@ -1,14 +1,14 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2021-07-01T00:00:00+00:00
+date: 2021-07-02T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
 author: Mohammad S Anwar
-tags: ["Ada", "APL", "Awk", "Basic", "Bash", "Bc", "Befunge", "BQN", "Brainfuck", "C", "Chef", "COBOL", "C Shell", "C++", "Clojure", "Crystal", "D", "Dart", "Elm", "Erlang", "Excel VBA", "Fish", "Forth", "Fortran", "Gembase", "GNAT", "Go", "Haskell", "Haxe", "HTML", "Idris", "Janet", "Java", "JavaScript", "Kotlin", "Lisp", "Lua", "M4", "Macro Processor", "MMIX", "Mumps", "Nim", "Nix", "Node.js", "OCaml", "Ook", "Pascal", "PHP", "Python", "Postscript", "Prolog", "R", "Rexx", "Ruby", "Rust", "Scala", "Scheme", "Sed", "Smalltalk", "SQL", "Swift", "Tcl", "Visual Basic", "XSLT", "Zig"]
+tags: ["Ada", "APL", "Awk", "Basic", "Bash", "Bc", "Befunge", "BQN", "Brainfuck", "C", "CESIL", "Chef", "COBOL", "C Shell", "C++", "Clojure", "Crystal", "D", "Dart", "Elm", "Erlang", "Excel VBA", "Fish", "Forth", "Fortran", "Gembase", "GNAT", "Go", "Haskell", "Haxe", "HTML", "Idris", "Janet", "Java", "JavaScript", "Kotlin", "Lisp", "Lua", "M4", "Macro Processor", "MMIX", "Mumps", "Nim", "Nix", "Node.js", "OCaml", "Ook", "Pascal", "PHP", "Python", "Postscript", "Prolog", "R", "Rexx", "Ruby", "Rust", "Scala", "Scheme", "Sed", "Smalltalk", "SQL", "Swift", "Tcl", "Visual Basic", "XSLT", "Zig"]
 ---
 
-As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. During the **Week #018**, we received solutions to **["The Weekly Challenge - 018"](/blog/perl-weekly-challenge-018)** by `Orestis Zekai` in **Python**. It was pleasant surprise to receive solutions in something other than **Perl** and **Raku**. Ever since regular team members also started contributing in other languages like **Ada**, **APL**, **Awk**, **Basic**, **Bash**, **Bc**, **Befunge**, **BQN**, **Brainfuck**, **C**, **Chef**, **COBOL**, **C Shell**, **C++**, **Clojure**, **Crystal**, **D**, **Dart**, **Elm**, **Erlang**, **Excel VBA**, **Fish**, **Forth**, **Fortran**, **Gembase**, **GNAT**, **Go**, **Haskell**, **Haxe**, **HTML**, **Idris**, **Janet**, **Java**, **JavaScript**, **Kotlin**, **Lisp**, **Lua**, **M4**, **Macro Processor**, **MMIX**, **Mumps**, **Nim**, **Nix**, **Node.js**, **OCaml**, **Ook**, **Pascal**, **PHP**, **Python**, **Postscript**, **Prolog**, **R**, **Rexx**, **Ruby**, **Rust**, **Scala**, **Scheme**, **Sed**, **Smalltalk**, **SQL**, **Swift**, **Tcl**, **Visual Basic**, **XSLT** and **Zig**.
+As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. During the **Week #018**, we received solutions to **["The Weekly Challenge - 018"](/blog/perl-weekly-challenge-018)** by `Orestis Zekai` in **Python**. It was pleasant surprise to receive solutions in something other than **Perl** and **Raku**. Ever since regular team members also started contributing in other languages like **Ada**, **APL**, **Awk**, **Basic**, **Bash**, **Bc**, **Befunge**, **BQN**, **Brainfuck**, **C**, **CESIL**, **Chef**, **COBOL**, **C Shell**, **C++**, **Clojure**, **Crystal**, **D**, **Dart**, **Elm**, **Erlang**, **Excel VBA**, **Fish**, **Forth**, **Fortran**, **Gembase**, **GNAT**, **Go**, **Haskell**, **Haxe**, **HTML**, **Idris**, **Janet**, **Java**, **JavaScript**, **Kotlin**, **Lisp**, **Lua**, **M4**, **Macro Processor**, **MMIX**, **Mumps**, **Nim**, **Nix**, **Node.js**, **OCaml**, **Ook**, **Pascal**, **PHP**, **Python**, **Postscript**, **Prolog**, **R**, **Rexx**, **Ruby**, **Rust**, **Scala**, **Scheme**, **Sed**, **Smalltalk**, **SQL**, **Swift**, **Tcl**, **Visual Basic**, **XSLT** and **Zig**.
 
 Please find below guest contributions.
 
@@ -58,7 +58,11 @@ Please find below guest contributions.
 
 ##### **Frank Oosterhuis** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-119/frankivo/scala/NibbleSwap.scala) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-119/frankivo/scala/Sequencer.scala) in **Scala**.
 
+##### **James Smith** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-119/james-smith/cesil/ch-1.ces) in **CESIL**.
+
 ##### **James Smith** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-119/james-smith/javasript/ch-1.js) in **JavaScript**.
+
+##### **James Smith** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-119/james-smith/python/ch-1.py) in **Python**.
 
 ##### **James Smith** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-119/james-smith/php/ch-1.php) in **PHP**.
 
