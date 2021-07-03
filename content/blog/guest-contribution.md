@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2021-07-02T00:00:00+00:00
+date: 2021-07-03T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -54,7 +54,7 @@ Please find below guest contributions.
 
 ##### **Dave Jacoby** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-119/dave-jacoby/node/ch-1.js) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-119/dave-jacoby/node/ch-2.js) in **Node.js**.
 
-##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-119/eric-cheung/excel-vba/ch-1.xlsm) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-119/eric-cheung/excel-vba/ch-2.xlsm) in **Excel VBA**.
+##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-119/eric-cheung/excel-vba/ch-1.bas) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-119/eric-cheung/excel-vba/ch-2.bas) in **Excel VBA**.
 
 ##### **Frank Oosterhuis** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-119/frankivo/scala/NibbleSwap.scala) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-119/frankivo/scala/Sequencer.scala) in **Scala**.
 
