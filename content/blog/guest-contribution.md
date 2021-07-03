@@ -70,6 +70,8 @@ Please find below guest contributions.
 
 ##### **James Smith** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-119/james-smith/php/ch-1.php) in **PHP**.
 
+##### **Lance Wicks** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-119/lance-wicks/golang/nibble.go) in **Go**.
+
 ##### **Mohammad Meraj Zia** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-119/ziameraj16/java/SwapNibbles.java) in **Java**.
 
 ##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-119/paulo-custodio/ada/ch_1.adb) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-119/paulo-custodio/ada/ch_2.adb) in **Ada**.
