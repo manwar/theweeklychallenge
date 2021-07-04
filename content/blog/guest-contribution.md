@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2021-07-03T00:00:00+00:00
+date: 2021-07-04T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -67,6 +67,8 @@ Please find below guest contributions.
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-119/eric-cheung/excel-vba/ch-1.bas) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-119/eric-cheung/excel-vba/ch-2.bas) in **Excel VBA**.
 
 ##### **Frank Oosterhuis** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-119/frankivo/scala/NibbleSwap.scala) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-119/frankivo/scala/Sequencer.scala) in **Scala**.
+
+##### **Gabor Szabo** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-119/szabgab/crystal/swap_nibbles.cr) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-119/szabgab/crystal/src/use_seq.cr) in **Crystal**.
 
 ##### **James Smith** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-119/james-smith/cesil/ch-1.ces) in **CESIL**.
 
