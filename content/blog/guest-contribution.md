@@ -62,6 +62,8 @@ Please find below guest contributions.
 
 ##### **Abigail** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-119/abigail/tcl/ch-1.tcl) in **Tcl**.
 
+##### **Cheok-Yin Fung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-119/cheok-yin-fung/bash/ch-1.sh) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-119/cheok-yin-fung/bash/ch-2.sh) in **Bash**.
+
 ##### **Dave Jacoby** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-119/dave-jacoby/node/ch-1.js) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-119/dave-jacoby/node/ch-2.js) in **Node.js**.
 
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-119/eric-cheung/excel-vba/ch-1.bas) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-119/eric-cheung/excel-vba/ch-2.bas) in **Excel VBA**.
