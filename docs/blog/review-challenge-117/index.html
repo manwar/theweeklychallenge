@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="The Weekly Challenge - Perl & Raku"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="You do not have to be an expert."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Colin Crain › Perl Weekly Review #117">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Colin Crain › Perl Weekly Review #117</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navgation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Colin Crain › Perl Weekly Review #117</h2>
+                    <div class="portfolio-meta">
+                        <span>Monday, Jul 5, 2021</span>|
+                        <span> Tags:
+                            perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/p5-review-challenge-117.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <p>( <em>&hellip;continues from <a href="/blog/review-challenge-116/">previous week</a>.</em> )</p>
+<p>Welcome to the Perl review for <strong>Week 117</strong> of the Weekly Challenge! Here we will take the time to discuss the  submissions offered by the team, factor out the common methodologies that came up in those solutions, and highlight some of the unique approaches and unusual code created.</p>
+<hr>
+<h3 id="why-do-we-do-these-challenges">Why do we do these challenges?</h3>
+<p>I suppose any answers to that would be as wide ranging and varied as the people who choose to join the team. One thing is clear: it&rsquo;s not a competition, and there are no judges, even if there is a &ldquo;prize&rdquo; of sorts. About that &ndash; I think of it more as an honorarium periodically awarded to acknowledge the efforts we make towards this strange goal. So there&rsquo;s no determination to find the <em>fastest</em>, or the <em>shortest</em>, or even, in some abstract way, the <em>best</em> way to go about things, although I&rsquo;m certain the individuals have their own aspirations and personal drives. As Perl is such a wonderfully expressive language, this provides quite a bit of fodder to the core idea of TMTOWTDI, producing a gamut of wonderfully varied techniques and solutions.</p>
+<p>Even the tasks themselves are often open to a certain amount of discretionary interpretation. What we end up with is a situation where each participant is producing something in the manner they find the most interesting or satisfying. Some team members focus on carefully crafted complete applications that thoroughly vet input data and handle every use case they can think up. Others chose to apply themselves to the logic of the underlying puzzle and making it work in the most elegant way they can. Some eschew modules they would ordinarily reach for, others embrace them, bringing to light wheels perhaps invented years ago that happen to exactly solve the problem in front of them today.</p>
+<p>I&rsquo;ve been considering this question for some time and have found one binding commonality between all of us solving these challenges each week, in that however we normally live our lives, the task in front of us more than likely has nothing to do with any of that . And I think this has great value. We all do what we do, out in the real world, and hopefully we do it well. The Weekly Challenge provides a opportunity to do something germane to that life yet distinctly different; if we only do the things we already know how to do we only do the same things over and over. This is where the &ldquo;challenge&rdquo; aspect comes into play.</p>
+<p>So we can consider the Weekly Challenge as providing a problem space outside of our comfort zone, as far out from comfort as we wish to take things. From those reaches we can gather and learn things and bring what we want back into our lives. Personally, I think that&rsquo;s its greatest value of all.</p>
+<hr>
+<p>Every week there is an enormous global collective effort made by the team, analyzing and creatively coding the submissions, and that effort deserves credit due. And that&rsquo;s why I&rsquo;m here, to try and figure out how to do that.</p>
+<p>Let&rsquo;s have a look and see what we can find.</p>
+<hr>
+<p><strong><big>For context</big></strong>  before we begin, you may wish to revisit either of the pages for the <a href="/blog/perl-weekly-challenge-117/"><strong>original tasks</strong></a> or the summary <a href="/blog/recap-challenge-117/"><strong>recap</strong></a> of the challenge. But don&rsquo;t worry, the challenges themselves will be briefly summarized, presented below as we progress from task by task. Oh, and one more thing before we get started:</p>
+<h3 id="getting-in-touch-with-us">Getting in Touch with Us</h3>
+<p><a href="mailto:pwc.perfectwave@gmail.com"><img src="/images/blog/Email.svg" height="50" width="50"> Email</a> › Please email me (Colin) with any feedback, notes, clarifications or whatnot about this review.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge"><img src="/images/blog/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request to us for any issues you may find with this page.</p>
+<p><a href="https://twitter.com/perlwchallenge"><img src="/images/blog/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!</p>
+<p>I&rsquo;m always curious as to what the people think of these efforts. Everyone here at the PWC would like to hear any feedback you&rsquo;d like to give.</p>
+<p><strong>So finally, without further ado&hellip;</strong></p>
+<hr>
+<h2 id="---nbsp--nbsp--nbsp---task-1pwc117task1-------nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---task-2pwc117task2---nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---blogspwc117blogs----nbsp--nbsp--nbsp---">•             <a href="#PWC117TASK1">Task 1</a>                 •             <a href="#PWC117TASK2">Task 2</a>             	•             <a href="#PWC117BLOGS">BLOGS</a>              	•</h2>
+<hr>
+<h1 id="PWC117TASK1">TASK 1</h1>
+<h1 id="missing-row">Missing Row</h1>
+<p><em>Submitted by: Mohammad S Anwar</em><br>
+You are given text file with rows numbered 1-15 in random order but there is a catch one row in missing in the file.</p>
+<pre><code>    11, Line Eleven
+    1, Line one
+    9, Line Nine
+    13, Line Thirteen
+    2, Line two
+    6, Line Six
+    8, Line Eight
+    10, Line Ten
+    7, Line Seven
+    4, Line Four
+    14, Line Fourteen
+    3, Line three
+    15, Line Fifteen
+    5, Line Five
+</code></pre><h2 id="about-the-solutions">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/abigail/perl/ch-1.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/arne-sommer/perl/ch-1.pl"><strong>Arne Sommer</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/cristian-heredia/perl/ch-1.pl"><strong>Cristina Heredia</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/jaldhar-h-vyas/perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/paulo-custodio/perl/ch-1.pl"><strong>Paulo Custodio</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/pete-houston/perl/ch-1.pl"><strong>Pete Houston</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/steven-wilson/perl/ch-1.pl"><strong>Steven Wilson</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/stuart-little/perl/ch-1.pl"><strong>Stuart Little</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/vinod-k/perl/ch-1.pl"><strong>Vinod Kumar K</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/wanderdoc/perl/ch-1.pl"><strong>Wanderdoc</strong></a></p>
+<p>There were 25 working submissions for the first task this past week.</p>
+<p>The initial task definition stands out this week, as being simultaneously both a bit vague and unusually specific. We are given a set number of lines that the file <em>should</em> have, and told that there is exactly one line missing. From there, well, it&rsquo;s strongly inferred that we should figure out what the missing line is and report our findings.</p>
+<p>On the second point there wasn&rsquo;t much issue, most people just printed the line number, with some giving slightly more verbose answers. On the first point there wasn&rsquo;t too much trouble either. If one hard-coded in the parameters, 15 lines, 1 missing, then a few different ways of finding the missing data presented themselves, and we&rsquo;ll progress through them.</p>
+<p>I think, though, that when hard-coding those parameters&hellip; well some people, myself included, were unsatisfied. Now in an interpreted scripting language like Perl, rapid prototyping is a feature, and quick scripts can be whipped up to solve very specific problems. I am perfectly willing to do this should circumstance demand — to <em>not</em> craft a general-purpose algorithm — to code up a very specific one-shot process towards a very specific goal. In this hypothetical case that would be identifying the data line that got dropped so we could move forward and recreate it, or relocate it, or whatnot. It&rsquo;s not an app, it&rsquo;s a problem that need to be solved. &ldquo;Eye on the prize&rdquo; and all that.</p>
+<p>But then again hard-coding constants into code just doesn&rsquo;t feel right. Red flags <em>should</em> go up, as this often indicates something is wrong, or at minimum not well thought out. Magic numbers are bad, right? Isn&rsquo;t that what we&rsquo;ve always been told?</p>
+<p>And to come around full circle, one thing I find myself repeating, almost like a mantra, is that real life never quite perfectly fits these beautiful models we use to look at it. Life is fundamentally messy. Sometimes you just gotta do what you gotta do.</p>
+<p>There was a little roaming outside the fence line, out on the moors at night. It&rsquo;s not safe out there, and I discovered a logical conundrum: if you allow an unknown number of lines, and infer the missing ones by parsing the content, what happens when the last line is the one that&rsquo;s missing? Doesn&rsquo;t it just become a complete file with 14 lines? I suppose you could pass in the expected number of lines as a separate parameter, but no one bothered to do this. Such is life.</p>
+<h2 id="split-the-lines-assemble-the-line-numbers">split the LINES, assemble the LINE NUMBERS</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/cristian-heredia/perl/ch-1.pl"><strong>Cristina Heredia</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/jaldhar-h-vyas/perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/vinod-k/perl/ch-1.pl"><strong>Vinod Kumar K</strong></a></p>
+<p>The lines as given are composed of a leading figure, followed by a comma, followed by a bit of text that in turn labels the number of the line. From this simple structure we can plainly see that the initial figure is in fact the line number. If we can separate out that number, we can then save these numbers to a data structure, and use that to validate against when we go looking for the missing lines. Usually this structure was a hash, but arrays were also seen.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a></p>
+<p>Ulrich gives us a demonstration of the technique. Here he reads in the file, line-by-line, parsing out the initial line number using <code>split</code>. The line number is then used as the key to a hash with a value set.</p>
+<p>Iterating through the list of expected values, if a value isn&rsquo;t found in the hash it&rsquo;s determined &ldquo;missing&rdquo; and output.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">while</span> ( <span style="color:#66d9ef">my</span> $line <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;$fh&gt;</span> ) {
+      chomp $line ;
+      @contents <span style="color:#f92672">=</span> split(<span style="color:#e6db74"> /,/</span> , $line ) ;
+      $linenumbers{ $contents[ <span style="color:#ae81ff">0</span> ] }<span style="color:#f92672">++</span> ;
+    }
+    close $fh ;
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i( <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">15</span> ) {
+      <span style="color:#66d9ef">unless</span> ( exists $linenumbers{ $i } ) {
+          say <span style="color:#e6db74">&#34;line number $i is missing!&#34;</span> ;
+      }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/vinod-k/perl/ch-1.pl"><strong>Vinod Kumar K</strong></a></p>
+<p>Vinod gives us another version, substituting the built-in <code>__DATA__</code> filehandle for reading in an external file. I think whether the input file exists as its own document or not is a rather incidental aside to the demonstration.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">while</span>(<span style="color:#e6db74">&lt;DATA&gt;</span>){
+        chomp (<span style="color:#66d9ef">my</span> $line <span style="color:#f92672">=</span> $_);
+        <span style="color:#66d9ef">my</span> @contents <span style="color:#f92672">=</span> split(<span style="color:#e6db74">/, /</span>, $line);
+        $hash{$contents[<span style="color:#ae81ff">0</span>]} <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+    }
+
+    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $element (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">15</span>){
+        <span style="color:#66d9ef">unless</span>( exists $hash{$element}){
+        	<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$element -&gt; missing...\n&#34;</span>;
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/colin-crain/perl/ch-1.pl"><strong>My Own Solution</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/colin-crain/raku/ch-1.raku">Raku</a></p>
+<p>For my own version, I&rsquo;ve employed a few noteworthy refinements. First the &ldquo;diamond operator&rdquo;: <code>&lt;&gt;</code> , takes a file name from standard input, looks for and opens that file,  and provides a file handle that will read the lines in list context, all in one go. Then a hash is built by using <code>split</code> on the line with an optional quantifier directive to only split the line once, into 2 parts, which in turn become the key and value components to an individual hash element.</p>
+<p>I noted earlier about the ambiguity of using the largest found value to determine how many lines are to be expected. I know what I&rsquo;ve done, but sort of wish I&rsquo;d taken Simon&rsquo;s route. On the other hand this will find multiple missing lines.</p>
+<p>At the end we use <code>grep</code> to only allow the missing lines to be output.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> %lookup  <span style="color:#f92672">=</span> map  { split <span style="color:#e6db74">/,/</span>, $_, <span style="color:#ae81ff">2</span> } <span style="color:#f92672">&lt;&gt;</span>;
+    <span style="color:#66d9ef">my</span> @missing <span style="color:#f92672">=</span> grep { say $_; <span style="color:#f92672">!</span> exists $lookup{$_} } (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>max(keys %lookup));
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a></p>
+<p>Simon, in his efforts, avoids specifically searching a range of 15 lines by counting upwards from 1 through the file until a missing line is detected. In this case if the lines in the data hash are all consecutive, the next line counted after reading all the keys will fail the check and thus be output.</p>
+<p>Simon also brings us the idea of using a regular expression to match out the initial line number, which becomes the hash key for the the lines seen.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># Read the file, and get the line numbers</span>
+    <span style="color:#66d9ef">while</span> ( <span style="color:#66d9ef">my</span> $line <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;$fh&gt;</span> ) {
+        <span style="color:#66d9ef">if</span> ( <span style="color:#66d9ef">my</span> ($number) <span style="color:#f92672">=</span> ( $line <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^(\d+),/</span> ) ) {
+            $lines{$number} <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+        }
+    }
+
+    <span style="color:#75715e"># Count up from one to find the missing line</span>
+    <span style="color:#66d9ef">my</span> $number <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">while</span> ( <span style="color:#f92672">++</span>$number ) {
+        <span style="color:#66d9ef">if</span> ( <span style="color:#f92672">not</span> exists $lines{$number} ) {
+            say $number;
+            <span style="color:#66d9ef">return</span>;
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/cheok-yin-fung/awk/ch-1.awk">Awk</a></p>
+<p>CY uses several of the techniques we&rsquo;ve looked at and has reduced the logic flow to a single line.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">while</span>(<span style="color:#f92672">&lt;&gt;</span>) {<span style="color:#e6db74">/^\s*(\d+)/</span>; $arr{$1} <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;} <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">15</span>) {<span style="color:#66d9ef">print</span> ($_, <span style="color:#e6db74">&#34;\n&#34;</span>) <span style="color:#66d9ef">unless</span> $arr{$_};}
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/jaldhar-h-vyas/perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/jaldhar-h-vyas/raku/ch-1.raku">Raku</a></p>
+<p>Jaldhar slurps all of the lines from the file at once before splitting them back into lines, extracting the leading digits, sorting and finally storing those numbers in a list. He then uses a novel way to determine the missing line: while keeping a concurrent incrementing counter, he iterates through this sorted list, and if the values from the list and the counter ever diverge then a line is missing from the list and the value from the counter is reported.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $contents <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;$file&gt;</span>;
+
+    <span style="color:#66d9ef">my</span> @lines <span style="color:#f92672">=</span>
+        sort { $a <span style="color:#e6db74">&lt;=&gt;</span> $b }
+        map { <span style="color:#e6db74">/ ^ (\d+) /x</span>; int ${<span style="color:#f92672">^</span>CAPTURE}[<span style="color:#ae81ff">0</span>]; }
+        split <span style="color:#e6db74">/\n/</span>, $contents;
+
+    <span style="color:#66d9ef">my</span> $counter <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $line (@lines) {
+        <span style="color:#66d9ef">if</span> ($counter <span style="color:#f92672">!=</span> $line) {
+            say $counter;
+            <span style="color:#66d9ef">last</span>;
+        }
+        $counter<span style="color:#f92672">++</span>;
+    }
+</code></pre></div><h2 id="a-subtractive-ideal">a SUBTRACTIVE IDEAL</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/paulo-custodio/perl/ch-1.pl"><strong>Paulo Custodio</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/pete-houston/perl/ch-1.pl"><strong>Pete Houston</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/wanderdoc/perl/ch-1.pl"><strong>Wanderdoc</strong></a></p>
+<p>There&rsquo;s a basic dichotomy in making things: you can either add more stuff until it looks like what you want, or you can start with a big block of something and take away the parts that don&rsquo;t belong. In contrast to the label &ldquo;additive&rdquo;, this is referred to as &ldquo;subtractive&rdquo; technique.</p>
+<blockquote>
+<p>“The sculpture is &hellip; already there, I just have to chisel away the superfluous material.”
+― Michelangelo</p>
+</blockquote>
+<p>Taking a page from the exalted Italian master, the strategy here was to construct a list with placeholders for all the lines that are supposed to be there, and then read through the input, removing the lines actually found. In the end, the lines not found will remain behind to be reported.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/polettix/raku/ch-1.raku">Raku</a></p>
+<p>Flavio first constructs a dummy hash, <code>%all</code>, with keys for all the line numbers. Then the actual lines are read in and parsed, and the matched out leading line numbers are used to delete keys in this hash. When the smoke clears, and the carnage is complete, the only thing remaining will be the unmatched missing lines.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">missing_row</span> ($file) {
+       open <span style="color:#66d9ef">my</span> $fh, <span style="color:#e6db74">&#39;&lt;&#39;</span>, $file <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;open(&#39;$file&#39;): $!\n&#34;</span>;
+       <span style="color:#66d9ef">my</span> %all <span style="color:#f92672">=</span> map {$_ <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>} <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">15</span>;
+       delete $all{<span style="color:#e6db74">s{\A (\d+) .*}{$1}</span>rmxs} <span style="color:#66d9ef">while</span> <span style="color:#e6db74">&lt;$fh&gt;</span>;
+       <span style="color:#66d9ef">return</span> keys %all;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/wanderdoc/perl/ch-1.pl"><strong>Wanderdoc</strong></a></p>
+<p>The doctor takes a set theory approach, creating two hashes; a complete ideal and a subset included within it, comprised of those lines actually found. We can then find those values not contained in the subset by removing them from the outer container in one fell swoop using <code>delete</code> on a hash slice. I love hash slices.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">while</span> ( <span style="color:#66d9ef">my</span> $line <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;DATA&gt;</span> )
+    {
+         chomp $line;
+         <span style="color:#66d9ef">my</span> ($nr, $row) <span style="color:#f92672">=</span> split(<span style="color:#e6db74">/\s*,\s*/</span>, $line);
+         $text{$nr} <span style="color:#f92672">=</span> undef;
+    }
+
+    <span style="color:#66d9ef">my</span> ($min, $max) <span style="color:#f92672">=</span> (sort {$a <span style="color:#e6db74">&lt;=&gt;</span> $b} keys %text)[<span style="color:#ae81ff">0</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+    <span style="color:#66d9ef">my</span> %check;
+
+    $check{$_} <span style="color:#f92672">=</span> undef <span style="color:#66d9ef">for</span> $min <span style="color:#f92672">..</span> $max;
+    delete @check{ keys %text };
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/paulo-custodio/perl/ch-1.pl"><strong>Paulo Custodio</strong></a></p>
+<p>Paulo gives us what I consider a particularly artful implementation, using the leading numbers parsed from the input lines directly as indices in an array. A chain of list processing, using <code>map</code>, <code>grep</code> and <code>join</code>, results in the output report.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">while</span> (<span style="color:#f92672">&lt;&gt;</span>) {
+        chomp;
+        <span style="color:#66d9ef">my</span>($nr, $text) <span style="color:#f92672">=</span> split <span style="color:#e6db74">/,\s*/</span>, $_;
+        $rows[$nr] <span style="color:#f92672">=</span> $text;
+    }
+    say join(<span style="color:#e6db74">&#34;,&#34;</span>, (map {$_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]}
+                   grep {<span style="color:#f92672">!</span>defined $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]}
+                   map {[$_ <span style="color:#f92672">=&gt;</span> $rows[$_]]} <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">15</span>));
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a></p>
+<p>Here&rsquo;s another compact version from Choroba, using the diamond operator for input. Handy for this work, that shortcut.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> %expected;
+    @expected{<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $MAX_NUMBER} <span style="color:#f92672">=</span> ();
+    delete $expected{ (<span style="color:#e6db74">/^([0-9]+)/</span>)[<span style="color:#ae81ff">0</span>] } <span style="color:#66d9ef">while</span> <span style="color:#f92672">&lt;&gt;</span>;
+    say <span style="color:#66d9ef">for</span> keys %expected;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a></p>
+<p>Finally Jorg condenses several of these ideas into a quite terse solution, using one hash slice for assignment to a mockup and a second slice to prune the keys using <code>delete</code>. There&rsquo;s even room left over to sort the remaining rows. Did I say earlier that I love hash slices? Doing bulk assignment using hash slices is even better.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">find_missing_rows</span> ($fh, $rows) {
+        <span style="color:#66d9ef">my</span> %rows;
+        @rows{<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $rows} <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $rows);
+        <span style="color:#75715e"># Row numbers shall be separated with a comma from the rest of the</span>
+        <span style="color:#75715e"># row and may have leading zeros.</span>
+        delete @rows{<span style="color:#66d9ef">do</span> {local $/; <span style="color:#e6db74">&lt;$fh&gt;</span> <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^0*(\d+)(?=,)/mg</span>}};
+
+        [sort {$a <span style="color:#e6db74">&lt;=&gt;</span> $b} values %rows];
+    }
+</code></pre></div><h2 id="the-difference-from-perfection">the DIFFERENCE from PERFECTION</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/abigail/perl/ch-1.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/steven-wilson/perl/ch-1.pl"><strong>Steven Wilson</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/stuart-little/perl/ch-1.pl"><strong>Stuart Little</strong></a></p>
+<p>As the line numbers start at 1, continuing upwards in sequence, and it is known that only a single line is missing, one way to derive the number of that missing line is to sum the line numbers actually found and subtract them from an ideal total of all the lines.</p>
+<p>The sum of the list of values from 1 to 15 can be found by the formula</p>
+<p><em>n</em> (<em>n</em> + 1 ) / 2, <em>n</em> = 15</p>
+<p>or</p>
+<p>15 x 16 ÷ 2 = 120</p>
+<p>Any value less than that will differ by the missing summand.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a></p>
+<p>Mohammad takes us through each of the steps, demonstrating the technique in a methodical manner. His solution hinges on the notion that one line is known to be missing, so the total count of lines will be one more than found. I&rsquo;ll let his commentary walk you through the action.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">my</span> $row <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;$fh&gt;</span>) {
+        chomp $row;
+        <span style="color:#66d9ef">my</span> ($line_number) <span style="color:#f92672">=</span> split <span style="color:#e6db74">/,/</span>,$row;
+        $line_sum <span style="color:#f92672">+=</span> $line_number;
+        $row_count<span style="color:#f92672">++</span>;
+    }
+
+    close($fh);
+
+    <span style="color:#75715e"># Assuming one missing row in the file.</span>
+    $row_count<span style="color:#f92672">++</span>;
+
+    <span style="color:#75715e"># Now find the sum of line numbers.</span>
+    <span style="color:#66d9ef">my</span> $expected <span style="color:#f92672">=</span> ($row_count <span style="color:#f92672">*</span> ($row_count <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>))<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>;
+
+    <span style="color:#66d9ef">print</span> sprintf(<span style="color:#e6db74">&#34;Missing line: %d\n&#34;</span>, $expected <span style="color:#f92672">-</span> $line_sum);
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/steven-wilson/perl/ch-1.pl"><strong>Steven Wilson</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/steven-wilson/python/ch-1.py">Python</a></p>
+<p>Steven accomplished the same goals by compiling several lists and summing them.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> @row_numbers;
+    <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">my</span> $row <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;$fh&gt;</span>){
+        push @row_numbers, (split <span style="color:#e6db74">/,/</span>, $row )[<span style="color:#ae81ff">0</span>];
+    }
+
+    <span style="color:#66d9ef">my</span> $sum_of_row_numbers <span style="color:#f92672">=</span> sum(@row_numbers);
+    <span style="color:#66d9ef">my</span> $sum_of_row_range <span style="color:#f92672">=</span> sum(<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> (@row_numbers <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>));
+
+    <span style="color:#66d9ef">my</span> $missing_row <span style="color:#f92672">=</span> $sum_of_row_range <span style="color:#f92672">-</span> $sum_of_row_numbers;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a></p>
+<p>James introduces the idea of using <code>substr</code>, coupled with the <code>index</code> of the first comma, to extract the leading number from each line, which he then combines with an auto-incrementing line counter that always stays one above the number of lines currently processed. These solutions all work on the idea that there is exactly one missing line, so the relationship of lines expected to lines found will always hold.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span>( $n, $s ) <span style="color:#f92672">=</span> ( <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span> );
+    open <span style="color:#66d9ef">my</span> $fh, <span style="color:#e6db74">q(&lt;)</span>, shift;
+    <span style="color:#f92672">++</span>$n <span style="color:#f92672">&amp;&amp;</span> ( $s <span style="color:#f92672">+=</span> substr $_, <span style="color:#ae81ff">0</span>, index $_, <span style="color:#e6db74">q(,)</span> ) <span style="color:#66d9ef">while</span> <span style="color:#e6db74">&lt;$fh&gt;</span>;
+    close $fh;
+    <span style="color:#66d9ef">return</span> ( $n <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> ) <span style="color:#f92672">*</span> $n <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">-</span> $s;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/abigail/perl/ch-1.pl"><strong>Abigail</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/abigail/awk/ch-1.awk">Awk</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/abigail/bash/ch-1.sh">Bash</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/abigail/c/ch-1.c">C</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/abigail/go/ch-1.go">Go</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/abigail/java/ch-1.java">Java</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/abigail/lua/ch-1.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/abigail/node/ch-1.js">Node</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/abigail/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/abigail/ruby/ch-1.rb">Ruby</a></p>
+<p>I think it safe to say Abigail wins the award in the minimalist category today with 47 characters, most of which bring in <code>sum</code> to total the lines from the diamond operator. Because the lines start with a digit Perl will try and read them as numbers as best it can, with the leading figure up to the comma the only thing that ends up being counted. As we know the number of lines as a given, the sum can be hardwired in as easily as the number of lines, as the two values are inextricably linked.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw [sum];
+</span><span style="color:#e6db74"> </span>   say <span style="color:#ae81ff">120</span> <span style="color:#f92672">-</span> sum <span style="color:#f92672">&lt;&gt;</span>;
+</code></pre></div><h2 id="use-a-module">use a MODULE</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/arne-sommer/perl/ch-1.pl"><strong>Arne Sommer</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a></p>
+<p>We saw a couple of uncommon module functions brought in for the task. Although the task itself is not particularly complex, these functions and the techniques that use them can be seen to generalize easily to a broader audience.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/arne-sommer/perl/ch-1.pl"><strong>Arne Sommer</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/arne-sommer/raku/ch-1.raku">Raku</a></p>
+<p>Arne brings us a very interesting module today, <code>List::Compare</code>. Providing far more than its simple name might suggest, this module offers a whole raft of features. We get a complete range of set theory operations, such as intersections, unions and subsets laid out, capable of acting on two or more lists, irrespective of any ordering within those lists.</p>
+<p>Here the <code>get_symmetric_difference()</code> function is used to find elements in the the list of all line numbers that aren&rsquo;t present in the assembled list of found lines. If somehow a spurious &ldquo;line 100&rdquo; were to find itself in the input file that would be found as well, as the range of expected lines, 15, is hard-coded in. The function finds the combined difference set from both lists, regardless of the element&rsquo;s origin:</p>
+<p>|A ∪ B| - |A ∩ B|</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> List::Compare;
+
+    <span style="color:#66d9ef">my</span> @ids <span style="color:#f92672">=</span> map { <span style="color:#e6db74">/^(\d+)\,/</span> } read_file($file, chomp <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>);
+    <span style="color:#66d9ef">my</span> @all <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">15</span>);
+
+    <span style="color:#66d9ef">my</span> $lc <span style="color:#f92672">=</span> List::Compare<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(<span style="color:#e6db74">&#39;--unsorted&#39;</span>, <span style="color:#f92672">\</span>@ids, <span style="color:#f92672">\</span>@all);
+
+    <span style="color:#66d9ef">my</span> @difference <span style="color:#f92672">=</span> $lc<span style="color:#f92672">-&gt;</span>get_symmetric_difference();
+
+    say join(<span style="color:#e6db74">&#34;, &#34;</span>, @difference);
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a></p>
+<p>In the latest full release, 0.430, of <a href="https://metacpan.org/pod/List::MoreUtils#slide-BLOCK-LIST"><code>List::MoreUtils</code></a>, we find that a very cool new function has been added: <code>slide()</code>. This handy list processing aid selects out elements from a list for processing in adjacent groups, advertised as &ldquo;a kind of magnifying glass that is moved along a list and calls BLOCK every time the next list item is reached.&rdquo;  It doesn&rsquo;t exhaust the list pairwise, we&rsquo;ve had that functionality for a while in <code>List::Util</code>, but rather scoots across the list in a unique fashion, taking first the first and second elements, then the second and third, third and fourth, etc.</p>
+<p>Niels extracts his line numbers using a regular expression, then sorts the list of results. Then, using <code>slide()</code>, he examines adjacent elements to see whether they differ by 1. If they do not, a range is used to glean the missing line numbers that would make up the span.</p>
+<p><code>List::MoreUtils</code> also includes more generalized companion, <code>slideatatime()</code>, should we want to look at larger groupings. I really like this idea. I can recall wishing I had it available in the past and think it will find itself useful in all kinds of situations.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> List::MoreUtils <span style="color:#e6db74">qw(slide)</span>;
+
+    <span style="color:#66d9ef">return</span> map { @$_ } slide {$b <span style="color:#f92672">-</span> $a <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> ? [$a <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $b <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] : <span style="color:#f92672">[]</span> }
+                sort { $a <span style="color:#e6db74">&lt;=&gt;</span> $b }
+                map { <span style="color:#e6db74">/^(\d+)/</span>; $_ <span style="color:#f92672">=</span> $1 }
+                <span style="color:#e6db74">&lt;$fh&gt;</span>;
+</code></pre></div><h2 id="additional-submissions-in-guest-languages">Additional Submissions in Guest Languages</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/athanasius/raku/ch-1.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/laurent-rosenfeld/raku/ch-1.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/roger-bell-west/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/roger-bell-west/raku/ch-1.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/roger-bell-west/ruby/ch-1.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/roger-bell-west/rust/ch-1.rs">Rust</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/stuart-little/perl/ch-1.pl"><strong>Stuart Little</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/stuart-little/haskell/ch-1.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/stuart-little/node/ch-1.js">Node</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/stuart-little/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/stuart-little/raku/ch-1.raku">Raku</a></p>
+<hr>
+<hr>
+<h1 id="PWC117TASK2">TASK 2</h1>
+<h1 id="find-possible-paths">Find Possible Paths</h1>
+<p><em>Submitted by: E. Choroba</em>
+You are given size of a triangle.</p>
+<p>Write a script to find all possible paths from top to the bottom right corner.</p>
+<p>In each step, we can either move horizontally to the right (H), or move downwards to the left (L) or right (R).</p>
+<p>BONUS: Try if it can handle triangle of size 10 or 20.</p>
+<p><strong>Example 1</strong>:</p>
+<pre><code>    Input: $N = 2
+
+               S
+              / \
+             / _ \
+            /\   /\
+           /__\ /__\ E
+
+    Output: RR, LHR, LHLH, LLHH, RLH, LRH
+</code></pre><p><strong>Example 2:</strong></p>
+<p>Input: $N = 1</p>
+<pre><code>               S
+              / \
+             / _ \ E
+
+    Output: R, LH
+</code></pre><h2 id="about-the-solutions-1">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/abigail/perl/ch-2.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/adherzog/perl/ch-2.pl"><strong>Adam Herzog</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/arne-sommer/perl/ch-2.pl"><strong>Arne Sommer</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/jaldhar-h-vyas/perl/ch-2.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/perlboy1967/perl/ch-2.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/paulo-custodio/perl/ch-2.pl"><strong>Paulo Custodio</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/pete-houston/perl/ch-2.pl"><strong>Pete Houston</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/stuart-little/perl/ch-2.pl"><strong>Stuart Little</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/wanderdoc/perl/ch-2.pl"><strong>Wanderdoc</strong></a></p>
+<p>There were 23 submissions for the second task this past week. Most of the solutions worked through the triangle either recursively or iteratively, determining all the pathways to every node found along the way. This was commonly done from top to bottom, or bottom to top, level by level, but sometimes also accomplished from left to right after skewing the triangle into a more usual familiar grid.</p>
+<p>In any case we end up with a list of all the various ways through the directed triangle.</p>
+<p>There was another class of solutions, though, the huddled around the equivalency between a single &ldquo;R&rdquo; operation, from the apex to the lower right vertex, and a paired &ldquo;LH&rdquo; set of movements, from the apex to the lower left and then horizontally to the lower right vertex. Starting either from the direct right-hand line of &ldquo;R&rdquo; actions from tip to right corner, or the longest path down the left side and across, composed of nbothing but &ldquo;L and &ldquo;H&rdquo; moves, various permutation and substitution schemes were derived to produce the results through string manipulation. This equivalence between an R move and a coupled, although not neccessarily sequential, L and H popped up in a variety of situations.</p>
+<h3 id="17-trillion-solutions">17 <em>trillion</em> solutions?</h3>
+<p>Many people noted that after calculating the million-odd paths for <em>n</em> = 10, their solutions were still grinding away at the <em>n</em> = 20 problem. No one actually produced the results for a triangle of that scale, at least with enumerated paths. Why is this? Without delving into the deep underlying math, let&rsquo;s do an experimental analysis:  as per the examples listed, for <em>n</em> = 1 and 2, the number of solutions are 2 and 6, respectively.</p>
+<p>Once we&rsquo;ve hammered out a solver, and worked out the kinks, we can use it to extend our list of solution counts forward:</p>
+<pre><code>    depth | solutions
+    ------+----------
+        1   2
+        2   6
+        3   22
+        4   90
+        5   394
+        6   1806
+        7   8558
+        8   41586
+</code></pre><p>We can see this is getting big quickly, growing exponentially at just about 4<sup><em>x</em></sup>. But lets go to the references.</p>
+<p>Taking the list <strong>(2, 6, 22, 90, 394, 1806, 8558, 41586)</strong> and searching the <a href="https://oeis.org/A006318">Online Encyclopedia of Integer Sequences</a> comes up with an immediate hit: <strong>A006318</strong>, known as the <strong>Large Schröder numbers</strong>. These have a number of observations attached to them, but the one we are most concerned with right now is that for <strong>S</strong>(20) the value is 17,518,619,320,890. That of course is with a &ldquo;t&rdquo; as in &ldquo;trillion&rdquo;. Meaning it&rsquo;s not surprising no one listed these out.</p>
+<p>It <em>was</em> possible to apply mathematical techniques to explore the <em>count</em> of paths in some of the largest triangles, which we did see applied. We&rsquo;ll also pause to have a look at some of these solutions.</p>
+<h2 id="recursively-walk-the-walks">recursively WALK the WALKS</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/abigail/perl/ch-2.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/adherzog/perl/ch-2.pl"><strong>Adam Herzog</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/arne-sommer/perl/ch-2.pl"><strong>Arne Sommer</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/jaldhar-h-vyas/perl/ch-2.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/perlboy1967/perl/ch-2.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/paulo-custodio/perl/ch-2.pl"><strong>Paulo Custodio</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/pete-houston/perl/ch-2.pl"><strong>Pete Houston</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/wanderdoc/perl/ch-2.pl"><strong>Wanderdoc</strong></a></p>
+<p>A recursive implementation to walk every path from every vertex is relatively straightforward. On landing on a node up to three avenues were available to explore, although in some cases this would carry one outside the boundaries of the triangle. These cases were either filtered by a conditional before descending or by a base case evaluation once inside. On each movement the aggregate path is added to a growing partial string; on landing on the target the string delineating the path to arrive there is saved or output.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a></p>
+<p>James gives us several algorithms today, but it&rsquo;s his recursive path-walker that we&rsquo;re going to look at now. The actual code is compact, but I have left in his lengthy commentary to help you familiarize yourselves with the pattern. James does employ a unique trick to avoid some computation at the end: any path on arriving at the last row can be known to be able to arrive at the right corner by appending a number of H routes equal to the distance to travel, so we don&rsquo;t need to find these paths recursively but rather can simply compute and add them to the pile.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">triangle</span> {
+    <span style="color:#75715e">## As asked display results - note as $n gets large storing in an</span>
+    <span style="color:#75715e">## array and returning values is too memory intensive - so we will</span>
+    <span style="color:#75715e">## just write to STDOUT...</span>
+    <span style="color:#75715e">##</span>
+    <span style="color:#75715e">## $size   - is the height of the shape remaining;</span>
+    <span style="color:#75715e">## $route  - is the letters we&#39;ve already walked through</span>
+    <span style="color:#75715e">## $offset - is how far from the right-side of the triangle you are</span>
+    <span style="color:#75715e">##</span>
+    <span style="color:#75715e">## We have three options:</span>
+    <span style="color:#75715e">##   &#34;L&#34; - increase offset and move down a line</span>
+    <span style="color:#75715e">##   &#34;R&#34; - keep offset the same and move down a line</span>
+    <span style="color:#75715e">##   &#34;H&#34; - decrease offset and stay on the same row</span>
+    <span style="color:#75715e">##         (only available if $offset &gt; 0)</span>
+    <span style="color:#75715e">##</span>
+    <span style="color:#75715e">## We separate out the special case when we have &#34;height&#34; 0</span>
+    <span style="color:#75715e">## We are then on the bottom row - so we can return the current</span>
+    <span style="color:#75715e">## string AND add &#34;H&#34;s to move us to the right hand corner..</span>
+
+      <span style="color:#66d9ef">my</span>($size,$offset,$route) <span style="color:#f92672">=</span> @_;
+      (say $route<span style="color:#f92672">.</span>( <span style="color:#e6db74">&#39;H&#39;</span> x $offset )) <span style="color:#f92672">&amp;&amp;</span> <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">unless</span> $size;
+      triangle( $size <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, $offset <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, $route<span style="color:#f92672">.</span><span style="color:#e6db74">&#39;L&#39;</span> );
+      triangle( $size <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, $offset,     $route<span style="color:#f92672">.</span><span style="color:#e6db74">&#39;R&#39;</span> );
+      triangle( $size,     $offset <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, $route<span style="color:#f92672">.</span><span style="color:#e6db74">&#39;H&#39;</span> ) <span style="color:#66d9ef">if</span> $offset;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/arne-sommer/perl/ch-2.pl"><strong>Arne Sommer</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/arne-sommer/raku/ch-2.raku">Raku</a></p>
+<p>As you can see there were various ways to label the nodes of the triangles: Jame, above, descends the triangle to its base at 0, whereas Arne works with the apex set to (0,0). The actual system used is not important, but for example here Arne counts up, where James counts down. He also applies conditionals before recursing to avoid leaving the triangle; at each level of this triangle the number of rows is equal to the number of columns and both are ultimately bounded by the number of levels.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">traverse</span> ($row, $col, $path, $size)
+    {
+      <span style="color:#66d9ef">if</span> ($row <span style="color:#f92672">==</span> $col <span style="color:#f92672">&amp;&amp;</span> $row <span style="color:#f92672">==</span> $size)
+      {
+        push(@result, $path);
+        <span style="color:#66d9ef">return</span>;
+      }
+
+      traverse($row,    $col <span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>, $path <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;H&#34;</span>, $size) <span style="color:#66d9ef">if</span> $col <span style="color:#f92672">&lt;</span> $row;
+      traverse($row <span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>, $col <span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>, $path <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;R&#34;</span>, $size) <span style="color:#66d9ef">if</span> $col <span style="color:#f92672">&lt;</span> $size;
+      traverse($row <span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>, $col,    $path <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;L&#34;</span>, $size) <span style="color:#66d9ef">if</span> $row <span style="color:#f92672">&lt;</span> $size;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/pete-houston/perl/ch-2.pl"><strong>Pete Houston</strong></a></p>
+<p>Pete is walking backwards through his coordinate space so he can check his conditionals as he walks the parameters down to 0, which has an easy clarity to the boundary.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">walk</span> {
+        <span style="color:#66d9ef">my</span> ($l, $x) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">return</span> @{$subs{$l}{$x}} <span style="color:#66d9ef">if</span> exists $subs{$l}{$x};
+
+        <span style="color:#66d9ef">my</span> @paths;
+        <span style="color:#66d9ef">if</span> ($l) {
+        	<span style="color:#75715e"># Not at the bottom yet so can go left or right</span>
+        	push @paths, map { <span style="color:#e6db74">&#39;L&#39;</span> <span style="color:#f92672">.</span> $_ } walk ($l <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, $x <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>);
+        	push @paths, map { <span style="color:#e6db74">&#39;R&#39;</span> <span style="color:#f92672">.</span> $_ } walk ($l <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, $x);
+        }
+        <span style="color:#66d9ef">if</span> ($x) {
+        	<span style="color:#75715e"># Not at right edge yet, so can go horizontally right</span>
+        	push @paths, map { <span style="color:#e6db74">&#39;H&#39;</span> <span style="color:#f92672">.</span> $_ } walk ($l, $x <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>);
+        }
+
+        <span style="color:#75715e"># If at the bottom right already, no paths from here</span>
+        @paths <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#39;&#39;</span>) <span style="color:#66d9ef">unless</span> $l <span style="color:#f92672">||</span> $x;
+
+        $subs{$l}{$x} <span style="color:#f92672">=</span> <span style="color:#f92672">\</span>@paths;
+        <span style="color:#66d9ef">return</span> @paths;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/paulo-custodio/perl/ch-2.pl"><strong>Paulo Custodio</strong></a></p>
+<p>Finally we have another incrementing solution from Paulo. All of these solutions share a certain self-similarity in their elegance.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">find_paths</span> {
+        <span style="color:#66d9ef">my</span>($paths, $size, $path, $row, $col) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">if</span> ($row <span style="color:#f92672">==</span> $size <span style="color:#f92672">&amp;&amp;</span> $col <span style="color:#f92672">==</span> $size) {   <span style="color:#75715e"># reached end</span>
+            push @$paths, $path;
+        }
+        <span style="color:#66d9ef">else</span> {
+            <span style="color:#66d9ef">if</span> ($row <span style="color:#f92672">&lt;</span> $size) {
+                find_paths($paths, $size, $path<span style="color:#f92672">.</span><span style="color:#e6db74">&#39;L&#39;</span>, $row<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>, $col);
+                find_paths($paths, $size, $path<span style="color:#f92672">.</span><span style="color:#e6db74">&#39;R&#39;</span>, $row<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>, $col<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>);
+            }
+            <span style="color:#66d9ef">if</span> ($col <span style="color:#f92672">&lt;</span> $row) {
+                find_paths($paths, $size, $path<span style="color:#f92672">.</span><span style="color:#e6db74">&#39;H&#39;</span>, $row, $col<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>);
+            }
+        }
+    }
+</code></pre></div><h2 id="something-a-little-more-dynamic">something a LITTLE MORE DYNAMIC</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a></p>
+<p>Progressing through the triangle, it&rsquo;s possible to evaluate a vertex, say the apex, and determine every possible way to arrive at that position. In that first case of the apex, we have one way, to be there already, as that is the start point. But moving down and to the right, as in the second example, we have two paths, R and LH. To complete the level, to move down and to the left, we only have one route available, L.</p>
+<p>By keeping track of every pathway to the last node assessed, we can systematically use those partial pathways as bases to be extended to derive the paths to the next positions, as each position can only be reached from one of a maximum of three positions: above and to the right, above and to the left, and horizontally from the left. As long as these points are already calculated for a given vertex, the paths to that vertex can be computed.</p>
+<p>This progression, of using the data from partial solutions to inform further systematic progress across a matrix, was identified by some members by the name dynamic programming, myself included. As that paradigm is itself more of a collection of patterns than a strict protocol it can be hard to definitively label sometimes, but I think the term fits more than it doesn&rsquo;t, and to my own depth-first version particularly.</p>
+<p>The actual progressions we saw either proceeded from top to bottom, in a breadth-first traversal, or left to right, using a depth-first strategy.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a></p>
+<p>In her <code>ways()</code> routine, CY starts each level of her triangle with a series of L directives that deliver one to the left-most position. She then works systematically across the level rightward, calculating the paths leading to the vertices by appending new directions onto the partial paths for those positions that can precede it.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">ways</span> {
+        <span style="color:#66d9ef">my</span> $K <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>];
+        <span style="color:#66d9ef">my</span> $newstp <span style="color:#f92672">=</span> [ [<span style="color:#e6db74">&#39;&#39;</span>] ];
+
+        <span style="color:#66d9ef">while</span> (scalar @{$newstp} <span style="color:#f92672">&lt;=</span> $K) {
+            <span style="color:#66d9ef">my</span> $stp <span style="color:#f92672">=</span> $newstp;
+            <span style="color:#66d9ef">my</span> $ord <span style="color:#f92672">=</span> scalar @{$stp};
+            $newstp <span style="color:#f92672">=</span> [ [ <span style="color:#e6db74">&#39;L&#39;</span> x $ord ] ];
+            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span> $ord <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) {
+                push @{$newstp<span style="color:#f92672">-&gt;</span>[$i]}, $stp<span style="color:#f92672">-&gt;</span>[$i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">-&gt;</span>[$_] <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;R&#39;</span>
+                    <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span> $stp<span style="color:#f92672">-&gt;</span>[$i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">-&gt;</span>$#<span style="color:#960050;background-color:#1e0010">*</span>);
+                push @{$newstp<span style="color:#f92672">-&gt;</span>[$i]}, $stp<span style="color:#f92672">-&gt;</span>[$i]<span style="color:#f92672">-&gt;</span>[$_] <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;L&#39;</span>
+                    <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span> $stp<span style="color:#f92672">-&gt;</span>[$i]<span style="color:#f92672">-&gt;</span>$#<span style="color:#960050;background-color:#1e0010">*</span>);
+                push @{$newstp<span style="color:#f92672">-&gt;</span>[$i]}, $newstp<span style="color:#f92672">-&gt;</span>[$i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">-&gt;</span>[$_] <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;H&#39;</span>
+                    <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span> $newstp<span style="color:#f92672">-&gt;</span>[$i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">-&gt;</span>$#<span style="color:#960050;background-color:#1e0010">*</span>);
+            }
+
+            push @{$newstp<span style="color:#f92672">-&gt;</span>[$ord]}, $stp<span style="color:#f92672">-&gt;</span>[$ord<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">-&gt;</span>[$_] <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;R&#39;</span>
+                <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span> $stp<span style="color:#f92672">-&gt;</span>[$ord<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">-&gt;</span>$#<span style="color:#960050;background-color:#1e0010">*</span>);
+            push @{$newstp<span style="color:#f92672">-&gt;</span>[$ord]}, $newstp<span style="color:#f92672">-&gt;</span>[$ord<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">-&gt;</span>[$_] <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;H&#39;</span>
+                <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span> $newstp<span style="color:#f92672">-&gt;</span>[$ord<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">-&gt;</span>$#<span style="color:#960050;background-color:#1e0010">*</span>);
+        }
+
+        <span style="color:#66d9ef">return</span> $newstp<span style="color:#f92672">-&gt;</span>[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/colin-crain/raku/ch-2.raku">Raku</a></p>
+<p>For my own solution, I ran into the obvious truth that in progressing top to bottom down the levels of the triangle, at each level the number of subcomputations necessarily grows, as the widening base incorporates more vertices. Thus as we progress our number of nodes to calculate grows alongside the lists of individual pathways that lead to those nodes.</p>
+<p>However we don&rsquo;t need to do this. As we saw in CY&rsquo;s solution the vertices down the left-hand side are all easily computable, as they can only be reached from the vertex immediately above.  If we compute this column of the matrix first, comprised of vertices each only containing a single growing cluster of Ls, we can then progress across the matrix moving from top to bottom down the next column to the right. At each vertex we will still already have precomputed the set of vertices to the immediate left, to the left and up a level, and immediately above, should that node exist. The beauty of this movement is that as we move rightward toward the lower right corner each new column contains one <em>fewer</em> element, until at the last iteration we are only computing the pathways to the final vertex.</p>
+<p>There are still the same massive number of pathways to compute for large numbers of levels, but we see a significant efficiency gain through better memory management.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $mat <span style="color:#f92672">=</span> [ map { [<span style="color:#e6db74">&#39;L&#39;</span> x $_] } (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$tri_size) ];
+
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $pos (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$tri_size) {            <span style="color:#75715e">## horz position in the tri</span>
+        <span style="color:#66d9ef">my</span> @next;
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $level ($pos<span style="color:#f92672">..</span>$tri_size) {   <span style="color:#75715e">## tri level</span>
+                push $next[$level]<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, (map { $_ <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;L&#39;</span> } $next[$level<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>)
+                    <span style="color:#66d9ef">if</span> defined $next[$level<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+                push $next[$level]<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, (map { $_ <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;R&#39;</span> } $mat<span style="color:#f92672">-&gt;</span>[$level<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> );
+                push $next[$level]<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, (map { $_ <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;H&#39;</span> } $mat<span style="color:#f92672">-&gt;</span>[$level]<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>)
+        }
+        $mat <span style="color:#f92672">=</span> <span style="color:#f92672">\</span>@next;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/athanasius/raku/ch-2.raku">Raku</a></p>
+<p>For their solution, the monk works from the lower right corner both upwards and leftwards, but also flips the triangle — the result ends up stored in what is commonly understood to be the apex, rather than the expected lower right corner. The whole process ends up reflected through the midpoint of the rightward edge, and in the direction of progress doesn&rsquo;t matter in the end. The apex essentially becomes the lower right corner.</p>
+<p>One thing about walking backwards, though, is that we need to <em>prepend</em> the new connections.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">find_paths</span>
+    {
+        <span style="color:#66d9ef">my</span> ($N) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span>  @nodes;
+
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $row (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $N)
+        {
+            $nodes[$row][$_] <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span> <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $row;
+        }
+
+        push $nodes[$N][$N]<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, <span style="color:#e6db74">&#39;&#39;</span>;
+
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $r (reverse <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $N)
+        {
+            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $c (reverse <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $r)
+            {
+                <span style="color:#66d9ef">if</span> ($r <span style="color:#f92672">&lt;</span> $N)
+                {
+                    <span style="color:#75715e"># (R) Move downwards to the right</span>
+                    push $nodes[$r][$c]<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, <span style="color:#e6db74">&#34;R$_&#34;</span> <span style="color:#66d9ef">for</span> $nodes[$r <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>][$c <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>]<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+
+                    <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#960050;background-color:#1e0010">(</span>L) Move downwards to the left
+                    push $nodes[$r][$c]<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, <span style="color:#e6db74">&#34;L$_&#34;</span> <span style="color:#66d9ef">for</span> $nodes[$r <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>][$c    ]<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+                <span style="color:#960050;background-color:#1e0010">}</span>
+
+                if ($c <span style="color:#f92672">&lt;</span> $r)
+                {
+                    <span style="color:#75715e"># (H) Move horizontally to the right</span>
+                    push $nodes[$r][$c]<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, <span style="color:#e6db74">&#34;H$_&#34;</span> <span style="color:#66d9ef">for</span> $nodes[$r    ][$c <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>]<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+                <span style="color:#960050;background-color:#1e0010">}</span>
+            <span style="color:#960050;background-color:#1e0010">}</span>
+        <span style="color:#960050;background-color:#1e0010">}</span>
+
+        return $nodes[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>];
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/e-choroba/perl5/ch-2.pl">Perl5</a></p>
+<p>Choroba gives us several solutions that speak around the problem, both to provide enumerated pathways and numerical quantities of path counts in various ways. To list the actual paths he provides breath-first and depth-first solutions that focus on the paths walked and where they end up, rather than the looking at the nodes and which paths lead to them. The mechanics are similar, but end up slightly changed. Those paths that find themselves at the lower right corner are recorded.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> %MOVE <span style="color:#f92672">=</span> (H <span style="color:#f92672">=&gt;</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>],
+                L <span style="color:#f92672">=&gt;</span> [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>],
+                R <span style="color:#f92672">=&gt;</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>]);
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">bfs_show</span> {
+        <span style="color:#66d9ef">my</span> ($size) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> @paths <span style="color:#f92672">=</span>  ([<span style="color:#e6db74">&#34;&#34;</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>]);
+        <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">my</span> @moves <span style="color:#f92672">=</span> grep $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">!=</span> $size <span style="color:#f92672">||</span> $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">!=</span> $size, @paths) {
+            <span style="color:#66d9ef">my</span> @next;
+            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $move (@moves) {
+                <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $dir (keys %MOVE) {
+                    <span style="color:#66d9ef">my</span> $x <span style="color:#f92672">=</span> $move<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> $MOVE{$dir}[<span style="color:#ae81ff">0</span>];
+                    <span style="color:#66d9ef">my</span> $y <span style="color:#f92672">=</span> $move<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">+</span> $MOVE{$dir}[<span style="color:#ae81ff">1</span>];
+
+                    <span style="color:#66d9ef">my</span> $next_path <span style="color:#f92672">=</span> $move<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">.</span> $dir;
+                    <span style="color:#66d9ef">if</span> ($x <span style="color:#f92672">==</span> $size <span style="color:#f92672">&amp;&amp;</span> $y <span style="color:#f92672">==</span> $size) {
+                        say $next_path;
+                    } <span style="color:#66d9ef">else</span> {
+                        push @next, [$next_path, $x, $y]
+                            <span style="color:#66d9ef">if</span> $x <span style="color:#f92672">&lt;=</span> $size <span style="color:#f92672">&amp;&amp;</span> $y <span style="color:#f92672">&lt;=</span> $size <span style="color:#f92672">&amp;&amp;</span> $x <span style="color:#f92672">&lt;=</span> $y;
+                    }
+                }
+            }
+            @paths <span style="color:#f92672">=</span> @next;
+        }
+    }
+</code></pre></div><h2 id="a-system-of-shortcuts">a SYSTEM OF SHORTCUTS</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a></p>
+<p>Several people noticed a string relationship between various pathways, in the interchangeability between &ldquo;LH&rdquo; and &ldquo;R&rdquo; elements. Any path that can be directly walked from top to lower right can also be walked via the lower left vertex as midpoint, and the reverse also holds true.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/polettix/raku/ch-2.raku">Raku</a></p>
+<p>After first providing a nice dynamic programming solution walking downward through the levels, Flavio diverges into an analysis of the strings themselves, and the fact that any LH movement pair in a working pathway can be replaced by a single R to produce an equivalent alternative. The problem then can be broken into two halves: to first create every possible solution using only L and H, and then make a pass over these results replacing in each every combination of LH with R.</p>
+<p>Both problems have hairy edges. Remember no matter how we solve it the actual solution has exponential growth, and there&rsquo;s no getting around that. The solution for a given height is the solution.</p>
+<p>For example of the hairiness, consider that any combination of Ls and Hs to get one from the apex to the lower right of a triangle of size N must contain <em>N</em> Ls and <em>N</em> Hs, to get one down the left size and then scoot over to the right. But not every permutation will work: any path starting with LHH will immediately take one off the right side of the triangle, and we aren&rsquo;t allowed to stray there even if we later wander back. The rule seems to be that proceeding from left to right along the path the count of Hs must never exceed the count of Ls, which makes sense.</p>
+<p>To deal with these problems Flavio creates an assortment of iterators to produce valid arrangements of moves. His <a href="https://github.polettix.it/ETOOBUSY/2021/06/17/pwc117-find-possible-paths/">extensive writeup of the development process</a> details a blow-by-blow account, and defies easy summarization.</p>
+<p>Here is one of two versions presented for an iterator that generates valid L and H string paths:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">basic_case_iterator</span> ($N) {
+       <span style="color:#f92672">--</span>$N;
+       <span style="color:#66d9ef">my</span> $N2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $N;
+       <span style="color:#66d9ef">my</span> $cs;
+       <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">sub</span> {
+          $cs <span style="color:#e6db74">//</span><span style="color:#f92672">=</span> combinations_iterator($N, <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $N2 <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>);
+          CANDIDATE:
+          <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">my</span> $Ls <span style="color:#f92672">=</span> $cs<span style="color:#f92672">-&gt;</span>()) {
+             <span style="color:#66d9ef">my</span> @sequence <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#39;H&#39;</span>) x $N2;
+             @sequence[$Ls<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*]</span> <span style="color:#960050;background-color:#1e0010">=</span> <span style="color:#960050;background-color:#1e0010">(&#39;</span>L<span style="color:#e6db74">&#39;) x $N;
+</span><span style="color:#e6db74">             my $count = 1;  # we will force starting with an L
+</span><span style="color:#e6db74">             for my $item (@sequence) {
+</span><span style="color:#e6db74">                $count += $item eq &#39;</span>L<span style="color:#e6db74">&#39; ? 1 : -1;
+</span><span style="color:#e6db74">                next CANDIDATE if $count &lt; 0;
+</span><span style="color:#e6db74">             }
+</span><span style="color:#e6db74">             return join &#39;&#39;, &#39;</span>L<span style="color:#e6db74">&#39;, @sequence, &#39;</span>H<span style="color:#960050;background-color:#1e0010">&#39;</span>;
+          }
+          <span style="color:#66d9ef">return</span>;
+       };
+    }
+</code></pre></div><p>Further iterators take these paths and perform R substitutions on them, and, as we observe in the routine shown, yet another produces the combinations at the root of the LH patterns. Lots of iterators out there. Some say it&rsquo;s iterators all the way down. I just don&rsquo;t know.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a></p>
+<p>Dave explores a similar strategy in his extended challenge writeup: <a href="https://jacoby.github.io/2021/06/15/perl-challenge-117-redux-permutations.html">Perl Challenge 117 Redux: Permutations!</a></p>
+<p>In this case he starts with a right-hand direct chain of Rs and starts substituting in LH combinations.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">solve_triangle</span> ( $n ) {
+        <span style="color:#66d9ef">my</span> @output;
+        <span style="color:#66d9ef">my</span> $string <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;R&#39;</span> x $n;
+        push @output, $string;
+        <span style="color:#66d9ef">my</span> %hash;
+        <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">while</span> ( $string <span style="color:#f92672">=~</span><span style="color:#e6db74"> /R/</span> ) {
+            $string <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/R/LH/</span>;
+            <span style="color:#66d9ef">my</span> @list <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, $string;
+            <span style="color:#66d9ef">my</span> $p    <span style="color:#f92672">=</span> Algorithm::Permute<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>( <span style="color:#f92672">\</span>@list );
+            <span style="color:#66d9ef">while</span> ( <span style="color:#66d9ef">my</span> @res <span style="color:#f92672">=</span> $p<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">next</span> ) {
+                <span style="color:#66d9ef">my</span> $x <span style="color:#f92672">=</span> join <span style="color:#e6db74">&#39;&#39;</span>, @res;
+                <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $x <span style="color:#f92672">=~</span> <span style="color:#e6db74">m{^H|L$}</span>;
+                <span style="color:#75715e"># push @output, $x;</span>
+                <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $hash{$x}<span style="color:#f92672">++</span>;
+                say join <span style="color:#e6db74">&#34;\t&#34;</span>, $c, $x ;
+                $c<span style="color:#f92672">++</span>;
+            }
+        }
+        <span style="color:#66d9ef">return</span> sort { length $b <span style="color:#e6db74">&lt;=&gt;</span> length $a } uniq @output;
+    }
+</code></pre></div><h2 id="the-schröder-numbers">the SCHRÖDER NUMBERS</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a></p>
+<p>Computing the actual pathways for large triangle heights was a daunting task, and everybody ran out of memory somewhere along the line to 17 trillion. But there were ways to approach the calculation of <em>how many</em> pathways there were, without actually enumerating them.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a></p>
+<p>James shares with us several ways to count Schröder numbers. In his writeup he explores methods using a modification of the recursive traversal, the iterative dynamic progression and a technique using a recurrence relation.</p>
+<p>The first two involve modifying algorithms similar to what we&rsquo;ve seen before, only not actually storing the paths, but only counting them. As such the actual code is greatly simplified; we can directly sum the counts from all connected locations in one action if we don&rsquo;t care which path directive R, L or H needs to be appended:</p>
+<pre><code>        T0,m = 1
+    n = Tn,0 = Tn-1,0 + Tn-1,1
+        Tn,m = Tn-1,m + Tn-1,m+1 + Tn,m-1
+</code></pre><p>The resulting code for a dynamic walk through the nodes:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">schröder_non_recursive</span> {
+      <span style="color:#66d9ef">my</span> $size <span style="color:#f92672">=</span> shift;
+      <span style="color:#66d9ef">my</span> @x <span style="color:#f92672">=</span> map {<span style="color:#ae81ff">1</span>} <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$size;
+      <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $s (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$size) {
+        <span style="color:#66d9ef">my</span> @y <span style="color:#f92672">=</span> $x[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> $x[<span style="color:#ae81ff">0</span>];
+        push @y, $x[$_<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> $x[$_] <span style="color:#f92672">+</span> $y[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#66d9ef">foreach</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $size<span style="color:#f92672">-</span>$s;
+        @x<span style="color:#f92672">=</span>@y;
+      }
+      <span style="color:#66d9ef">return</span> $x[<span style="color:#ae81ff">0</span>];
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a></p>
+<p>The Schröder Numbers can also be computed directly without a triangle, using a recurrence relation:</p>
+<pre><code>        S[0] = 1
+        S[1] = 2
+
+    n &gt;= 2:
+
+        S[n] = 3 × S[n - 1] + ∑ ( k = 1 .. (n - 2) ) { S[k] × S[n - k - 1] }
+</code></pre><p>The monk provides the following implementation:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">S</span>
+    {
+        <span style="color:#66d9ef">my</span> ($N) <span style="color:#f92672">=</span> @_;
+
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> $N <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">2</span> <span style="color:#66d9ef">if</span> $N <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>;
+
+        <span style="color:#66d9ef">my</span> $S <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">*</span> S( $N <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> );
+
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $k (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $N <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>)
+        {
+            $S <span style="color:#f92672">+=</span> S( $k ) <span style="color:#f92672">*</span> S( $N <span style="color:#f92672">-</span> $k <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> );
+        }
+
+        <span style="color:#66d9ef">return</span> $S;
+    }
+</code></pre></div><h2 id="the-unclassifiable-leading-the-unclassifiable">the UNCLASSIFIABLE leading the UNCLASSIFIABLE</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/stuart-little/perl/ch-2.pl"><strong>Stuart Little</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a></p>
+<p>Sometimes the square peg doesn&rsquo;t fit.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a></p>
+<p>Ulrich has brought us a curious hybrid approach, walking the triangle level by level, constructing a list all paths to get to any point on that level. This list is necessarily quite large, but on reaching the last level a numerical counting validation scheme filters out those pathways that either walk off the triangle or don&rsquo;t end up at the right boundary vertex.</p>
+<p>Here is his validation routine, which, using <code>grep</code>, filters the final list of strings created.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e">##  we check the validity of a letter combination. We start out with an array</span>
+    <span style="color:#75715e">##  of (0 , 0 ). An R increases the first value by 1 and the second value by 1,</span>
+    <span style="color:#75715e">##  a L just the second value and a H just the first value. In $N is the input</span>
+    <span style="color:#75715e">##  given we must arrive at ($N - 1 , $N - 1 ). At no time must the first</span>
+    <span style="color:#75715e">##  element of the array be greater than the second element. If that occurs</span>
+    <span style="color:#75715e">##  we would have &#34;walked off&#34; the right limit of the triangle.</span>
+    <span style="color:#75715e">##  that means that the routine that checks the validity must receive a</span>
+    <span style="color:#75715e">##  string and the corresponding level</span>
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">checkValidity</span> {
+      <span style="color:#66d9ef">my</span> $lettercombi <span style="color:#f92672">=</span> shift ;
+      <span style="color:#66d9ef">my</span> $level <span style="color:#f92672">=</span> shift ;
+      <span style="color:#66d9ef">my</span> @startarray <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span> , <span style="color:#ae81ff">0</span> ) ;
+      <span style="color:#66d9ef">my</span> $len <span style="color:#f92672">=</span> length $lettercombi ;
+      <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $pos( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $len <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ) {
+          <span style="color:#66d9ef">my</span> $letter <span style="color:#f92672">=</span> substr( $lettercombi, $pos , <span style="color:#ae81ff">1</span> ) ;
+          <span style="color:#66d9ef">if</span> ( $letter <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#34;H&#34;</span> ) {
+        $startarray[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span> ;
+          }
+          <span style="color:#66d9ef">elsif</span> ( $letter <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#34;R&#34;</span> ) {
+        $startarray[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span> ;
+        $startarray[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span> ;
+          }
+          <span style="color:#66d9ef">elsif</span> ( $letter <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#34;L&#34;</span> ) {
+        $startarray[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span> ;
+          }
+          <span style="color:#66d9ef">if</span> ( $startarray[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&gt;</span> $startarray[<span style="color:#ae81ff">1</span>] ) {
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> ;
+          }
+      }
+      <span style="color:#66d9ef">if</span> ( $startarray[ <span style="color:#ae81ff">0</span> ] <span style="color:#f92672">==</span> $level <span style="color:#f92672">and</span> $startarray[ <span style="color:#ae81ff">1</span> ] <span style="color:#f92672">==</span> $level ) {
+          <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> ;
+      }
+      <span style="color:#66d9ef">else</span> {
+          <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> ;
+      }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/stuart-little/perl/ch-2.pl"><strong>Stuart Little</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/stuart-little/haskell/ch-2.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/stuart-little/node/ch-2.js">Node</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/stuart-little/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/stuart-little/raku/ch-2.raku">Raku</a></p>
+<p>There&rsquo;s a lot to unpack in Stuart&rsquo;s dense piece of recursive combinatorics. He imports <code>Math::Cartesian::Product</code> to give him a handy <code>cartesian()</code> function, which does pretty much what you&rsquo;d expect it to. The block, <code>{1}</code> is a filter you get free with the function; like <code>grep</code> this should return true for combinations to be passed along.</p>
+<p>It&rsquo;s not the easiest thing to follow but we&rsquo;re starting at the last level of the triangle and computing what would happen should we add directional components to the level one smaller. We do this by adding R movements, the easy part, and then using the cartesian product of levels smaller than the current to produce the interior combinations of moving one step L and then at some point one step H to complete the move. Because we always either add one R or a LH combination in some form we always stay in the rightmost position. It&rsquo;s quite remarkable.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> @memo<span style="color:#f92672">=</span>([<span style="color:#e6db74">&#39;&#39;</span>],[<span style="color:#e6db74">&#39;R&#39;</span>,<span style="color:#e6db74">&#39;LH&#39;</span>]);
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">mkPaths</span>($size) {
+        ($size <span style="color:#f92672">&gt;</span> $#memo) <span style="color:#f92672">&amp;&amp;</span> <span style="color:#66d9ef">do</span> {
+        <span style="color:#66d9ef">my</span> @res <span style="color:#f92672">=</span> map {<span style="color:#e6db74">&#39;R&#39;</span> <span style="color:#f92672">.</span> $_} @{mkPaths($size<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)};
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $nr (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$size<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
+            <span style="color:#66d9ef">my</span> @gluedPairs <span style="color:#f92672">=</span> map {<span style="color:#e6db74">&#39;L&#39;</span> <span style="color:#f92672">.</span> $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;H&#39;</span> <span style="color:#f92672">.</span> $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]} cartesian {<span style="color:#ae81ff">1</span>}     mkPaths($nr), mkPaths($size <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> $nr);
+            push @res, @gluedPairs;
+        }
+        push @memo, <span style="color:#f92672">\</span>@res;
+        };
+        <span style="color:#66d9ef">return</span> $memo[$size];
+    }
+
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a></p>
+<p>Finally, Jorg, unsatisfied with merely computing the pathways in our given triangular structures has decided to use the <code>Graph</code> framework to create a generalized solver for arbitrarily defined Directed Acyclic Graphs, or DAGs, given a start and end point.</p>
+<p>Each edge is defined as a start vertex and an end vertex, along the direction of travel, and a label to attach to that edge, such as L, R or H. An example triangle might be:</p>
+<pre><code>    a-b-L a-c-R b-c-H b-d-L b-e-R c-e-L c-f-R d-e-H e-f-H
+</code></pre><p>and told to run from &lsquo;a&rsquo; to &lsquo;f&rsquo;.</p>
+<p>This is perhaps a bit of a lot to ask from a task that said to enter a height of a triangle, so he kindly offers up a little routine that when invoked will generate such a spec for a triangle of a given height.</p>
+<p>Once the graph is described, the edges are fed to <code>Graph</code> and, once validated as a DAG through a built-in routine, a graph object is returned.</p>
+<p>As the graph is at this point known to be a DAG, the vertices can be sorted topologically from start to finish. We then can build a hash of paths to each vertex, with a the vertex as a key and the paths as an attached array of paths.</p>
+<p>After sorting, we walk through this ordering and, for every vertex, we can take the list of paths to it and by using the <code>$g-&gt;successors($vertex)</code> function, append the appropriate label to each outgoing path to each linked vertex. When we arrive at the end vertex we have compiled a list of all the paths to it.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># Find all paths in the given DAG starting in vertex $from and ending in</span>
+    <span style="color:#75715e"># vertex $to and collect the concatenated edges&#39; labels.</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">paths_from_to</span> ($g, $from, $to) {
+        <span style="color:#75715e"># Apply a single empty prefix to the start vertex.</span>
+        <span style="color:#66d9ef">my</span> %paths <span style="color:#f92672">=</span> ($from <span style="color:#f92672">=&gt;</span> [<span style="color:#e6db74">&#39;&#39;</span>]);
+        <span style="color:#75715e"># Process vertices in topological order.</span>
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $vertex ($g<span style="color:#f92672">-&gt;</span>topological_sort) {
+            <span style="color:#75715e"># At the end vertex all paths from the start vertex are known</span>
+            <span style="color:#75715e"># due to the topological ordering.</span>
+            <span style="color:#66d9ef">return</span> $paths{$vertex} <span style="color:#66d9ef">if</span> $vertex <span style="color:#f92672">eq</span> $to;
+            <span style="color:#75715e"># For every outgoing edge append the edge&#39;s label to the label</span>
+            <span style="color:#75715e"># sequence for all paths leading to the current vertex and then</span>
+            <span style="color:#75715e"># append this list to the path list for the edge&#39;s tail vertex.</span>
+            <span style="color:#75715e"># This is a no-op until the start vertex is hit.</span>
+            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $succ ($g<span style="color:#f92672">-&gt;</span>successors($vertex)) {
+                <span style="color:#66d9ef">my</span> $label <span style="color:#f92672">=</span> $g<span style="color:#f92672">-&gt;</span>get_edge_attribute($vertex, $succ, <span style="color:#e6db74">&#39;label&#39;</span>);
+                push $paths{$succ}<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, map $_ <span style="color:#f92672">.</span> $label, $paths{$vertex}<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+            <span style="color:#960050;background-color:#1e0010">}</span>
+        <span style="color:#960050;background-color:#1e0010">}</span>
+    <span style="color:#960050;background-color:#1e0010">}</span>
+</code></pre></div><p>The graphs don&rsquo;t need to be triangular, only properly directed and acyclic. For example we have this unusual test example:</p>
+<pre><code>        a
+       ⇙ ⇘
+      b   c   d
+     ⇙ ⇘ ⇙ ⇘ ⇙ ⇘
+    e ⇐ f   g ⇐ h
+     ⇘ ⇙ ⇘ ⇙ ⇘ ⇙
+      i   j   k
+       ⇘ ⇙
+        l
+
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $g <span style="color:#f92672">=</span> graph_from_edges([<span style="color:#e6db74">qw(
+</span><span style="color:#e6db74">         a-b-L a-c-R
+</span><span style="color:#e6db74">         b-e-L b-f-R c-f-L c-g-R d-g-L d-h-R
+</span><span style="color:#e6db74">         e-i-R f-e-H f-i-L f-j-R g-j-L g-k-R h-g-H h-k-L
+</span><span style="color:#e6db74">         i-l-R j-l-L)</span>]);
+
+</code></pre></div><p>Neat.</p>
+<h2 id="additional-submissions-in-guest-languages-1">Additional Submissions in Guest Languages</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/abigail/perl/ch-2.pl"><strong>Abigail</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/abigail/awk/ch-2.awk">Awk</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/abigail/bash/ch-2.sh">Bash</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/abigail/c/ch-2.c">C</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/abigail/go/ch-2.go">Go</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/abigail/java/ch-2.java">Java</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/abigail/lua/ch-2.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/abigail/node/ch-2.js">Node</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/abigail/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/abigail/ruby/ch-2.rb">Ruby</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/jaldhar-h-vyas/perl/ch-2.pl"><strong>Jaldhar H. Vyas</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/jaldhar-h-vyas/raku/ch-2.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/laurent-rosenfeld/raku/ch-2.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/roger-bell-west/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/roger-bell-west/raku/ch-2.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/roger-bell-west/ruby/ch-2.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-117/roger-bell-west/rust/ch-2.rs">Rust</a></p>
+<hr>
+<hr>
+<h1 id="PWC117BLOGS">BLOGS</h1>
+<hr>
+<p><strong>That’s it for me this week, people! Warped by the rain, driven by the snow, resolute and unbroken by the torrential influx, I somehow continue to maintain my bearings. Looking forward to next wave, the perfect wave, I am: <em>your humble servant</em>.</strong></p>
+<h1 id="PWC093BLOGS">But if Your <em>THIRST</em> for <em>KNOWLEDGE</em> is not <em>SLAKED</em>,</h1>
+<h1 id="then-run-dont-walk-to-the-watering-hole">then <em>RUN</em> <em>(dont walk!)</em> to the <em>WATERING HOLE</em></h1>
+<h1 id="and-read-these-blog-links">and <em>READ</em> these <em>BLOG</em> <em>LINKS</em>:</h1>
+<p><strong>( <em>don&rsquo;t think, trust your training, you&rsquo;re in the zone, just do it &hellip;</em> )</strong></p>
+<p><strong>Abigail</strong></p>
+<ul>
+<li><a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-117-1.html">Perl Weekly Challenge 117: Missing Row</a> ( <em>Perl</em> )</li>
+<li><a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-117-2.html">Perl Weekly Challenge: Find Possible Paths</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Adam Russell</strong></p>
+<ul>
+<li><a href="http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2021/06/20">A List with One Missing Line and Too Many Lines to List: The Weekly Challenge 117 - Perl - RabbitFarm</a> ( <em>Perl</em> )</li>
+<li><a href="http://www.rabbitfarm.com/cgi-bin/blosxom/prolog/2021/06/20">A List with One Missing Line and Too Many Lines to List: The Weekly Challenge 117- Prolog - RabbitFarm</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Arne Sommer</strong></p>
+<ul>
+<li><a href="https://raku-musings.com/rowdy-path.html">The Rowdy Path with Raku and Perl</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Colin Crain</strong></p>
+<ul>
+<li><a href="https://colincrain.com/2021/06/19/who-went-missing-on-the-triangular-tour/">Who Went Missing on the Triangular Tour? — Programming Excursions in Perl and Raku</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Dave Jacoby</strong></p>
+<ul>
+<li><a href="https://jacoby.github.io/2021/06/14/trees-and-rows-perl-weekly-challenge-117.html">Trees and Rows: Perl Weekly Challenge 117 | Committed to Memory</a> ( <em>Perl</em> )</li>
+<li><a href="https://jacoby.github.io/2021/06/15/perl-challenge-117-redux-permutations.html">Perl Challenge 117 Redux: Permutations! | Committed to Memory</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Flavio Poletti</strong></p>
+<ul>
+<li><a href="https://github.polettix.it/ETOOBUSY/2021/06/16/pwc117-missing-row/">PWC117 - Missing Row - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+<li><a href="https://github.polettix.it/ETOOBUSY/2021/06/17/pwc117-find-possible-paths/">PWC117 - Find Possible Paths - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Jaldhar H. Vyas</strong></p>
+<ul>
+<li><a href="https://www.braincells.com/perl/2021/06/perl_weekly_challenge_week_117.html">Perl Weekly Challenge: Week 117</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>James Smith</strong></p>
+<ul>
+<li><a href="https://github.com/drbaggy/perlweeklychallenge-club/blob/master/challenge-117/james-smith/">Perl Weekly Challenge #117</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Laurent Rosenfeld</strong></p>
+<ul>
+<li><a href="http://blogs.perl.org/users/laurent_r/2021/06/perl-weekly-challenge-117-missing-row-and-possible-paths.html">Perl Weekly Challenge 117: Missing Row and Possible Paths</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Luca Ferrari</strong></p>
+<ul>
+<li><a href="https://fluca1978.github.io/2021/06/15/PerlWeeklyChallenge117.html#task1">Perl Weekly Challenge 117: quick and dirty – Luca Ferrari – Open Source advocate, human being</a> ( <em>Raku</em> )</li>
+<li><a href="https://fluca1978.github.io/2021/06/15/PerlWeeklyChallenge117.html#task2">Perl Weekly Challenge 117: quick and dirty – Luca Ferrari – Open Source advocate, human being</a> ( <em>Raku</em> )</li>
+</ul>
+<p><strong>Roger Bell_West</strong></p>
+<ul>
+<li><a href="https://blog.firedrake.org/archive/2021/06/Perl_Weekly_Challenge_117__Missing_Possibilities.html">RogerBW&rsquo;s Blog: Perl Weekly Challenge 117: Missing Possibilities</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Simon Green</strong></p>
+<ul>
+<li><a href="https://dev.to/simongreennet/weekly-challenge-117-36cn">Weekly Challenge 117</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>W. Luis Mochan</strong></p>
+<ul>
+<li><a href="https://wlmb.github.io/2021/06/15/PWC117/">Perl Weekly Challenge 117 – W. Luis Mochán</a> ( <em>Perl</em> )</li>
+</ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="/contact" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2021
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.nomtimes.co.uk/site/shop.do?cref=PerlBooks" title="Free Perl Books" rel="noreferrer" target="_blank">
+                            <img src="/images/NomTimes.jpg" style="width:22px; height: 18px;" alt=""/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jQurey/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-136524905-1', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+
+</html>
+

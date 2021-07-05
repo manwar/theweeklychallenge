@@ -82,7 +82,7 @@ Please find below guest contributions.
 
 ##### **Lance Wicks** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-119/lance-wicks/golang/nibble.go) in **Go**.
 
-##### **Lucas Ransan** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-118/luc65r/myrddin/ch-1.myr) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-118/luc65r/myrddin/ch-2.myr) in **Myrddin**.
+##### **Lucas Ransan** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-119/luc65r/myrddin/ch-1.myr) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-119/luc65r/myrddin/ch-2.myr) in **Myrddin**.
 
 ##### **Mohammad Meraj Zia** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-119/ziameraj16/java/SwapNibbles.java) in **Java**.
 
