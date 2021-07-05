@@ -515,8 +515,7 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-119/bruce-gray/perl/ch-2.pl)]
 [[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-119/bruce-gray/raku/ch-1.raku)]
 [[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-119/bruce-gray/raku/ch-2.raku)]
-[[**BLOG #1**](I intend to make my first blog post tomorrow, about this week's challenge:
-http://blogs.perl.org/users/bruce_gray/)]
+[[**BLOG #1**](http://blogs.perl.org/users/bruce_gray/2021/07/twc-119-les-nybb-and-the-arrhythmic-trio.html)]
 
 ***
 
