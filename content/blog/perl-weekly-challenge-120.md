@@ -176,7 +176,7 @@ Write a script to swap the odd positioned bit with even positioned bit and print
 <br>
 
 ## TASK #2 › Clock Angle {#TASK2}
-##### **Submitted by:** [Cheok-Yin Fung](https://github.com/E7-87-83)
+##### **Submitted by:** [Mohammad S Anwar](http://www.manwar.org/)
 ***
 
 You are given time `$T` in the format `hh:mm`.
