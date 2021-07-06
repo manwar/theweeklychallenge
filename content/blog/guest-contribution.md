@@ -86,6 +86,8 @@ Please find below guest contributions.
 
 ##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-120/paulo-custodio/forth/ch-1.fs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-120/paulo-custodio/forth/ch-2.fs) in **Forth**.
 
+##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-120/paulo-custodio/fortran/ch-1.f90) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-120/paulo-custodio/fortran/ch-2.f90) in **Fortran**.
+
 ##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-120/paulo-custodio/lua/ch-1.lua) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-120/paulo-custodio/lua/ch-2.lua) in **Lua**.
 
 ##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-120/paulo-custodio/pascal/ch-1.pas) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-120/paulo-custodio/pascal/ch-2.pas) in **Pascal**.
