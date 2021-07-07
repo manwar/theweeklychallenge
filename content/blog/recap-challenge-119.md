@@ -367,6 +367,14 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 
 ***
 
+### Paul Fajman
+![Paul Fajman](/images/team/paul-fajman.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-119/paul-fajman/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-119/paul-fajman/perl/ch-2.pl)]
+
+***
+
 ### Paulo Custodio
 ![Paulo Custodio](/images/team/paulo-custodio.jpg)
 
@@ -374,7 +382,6 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-119/paulo-custodio/perl/ch-2.pl)]
 
 ***
-
 ### Pete Houston
 ![Pete Houston](/images/team/user.jpg)
 
