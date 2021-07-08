@@ -66,6 +66,8 @@ Please find below guest contributions.
 
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-120/eric-cheung/excel-vba/ch-1.bas) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-120/eric-cheung/excel-vba/ch-2.bas) in **Excel VBA**.
 
+##### **Frank Oosterhuis** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-120/frankivo/scala/BinarySwap.scala) in **Scala**.
+
 ##### **James Smith** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-120/james-smith/cesil/ch-2.ces) in **CESIL**.
 
 ##### **Mohammad Meraj Zia** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-120/ziameraj16/java/SwapOddEvenBits.java) in **Java**.
