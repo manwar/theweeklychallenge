@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2021-07-08T00:00:00+00:00
+date: 2021-07-09T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -69,6 +69,10 @@ Please find below guest contributions.
 ##### **Frank Oosterhuis** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-120/frankivo/scala/BinarySwap.scala) in **Scala**.
 
 ##### **James Smith** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-120/james-smith/cesil/ch-2.ces) in **CESIL**.
+
+##### **Lance Wicks** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-120/lance-wicks/elm/src/Bit.elm) in **Elm**.
+
+##### **Lance Wicks** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-120/lance-wicks/golang/bits/bits.go) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-120/lance-wicks/golang/clocks/clock.go) in **Go**.
 
 ##### **Mohammad Meraj Zia** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-120/ziameraj16/java/SwapOddEvenBits.java) in **Java**.
 
