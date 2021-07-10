@@ -84,6 +84,8 @@ Please find below guest contributions.
 
 ##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-120/paulo-custodio/bc/ch-1.bc) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-120/paulo-custodio/bc/ch-2.bc) in **Bc**.
 
+##### **Paulo Custodio** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-120/paulo-custodio/brainfuck/ch-1.bf) in **Brainfuck**.
+
 ##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-120/paulo-custodio/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-120/paulo-custodio/c/ch-2.c) in **C**.
 
 ##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-120/paulo-custodio/cpp/ch-1.cpp) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-120/paulo-custodio/cpp/ch-2.cpp) in **C++**.
