@@ -74,6 +74,8 @@ Please find below guest contributions.
 
 ##### **Lance Wicks** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-120/lance-wicks/golang/bits/bits.go) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-120/lance-wicks/golang/clocks/clock.go) in **Go**.
 
+##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-120/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-120/lubos-kolouch/python/ch-2.py) in **Python**.
+
 ##### **Lucas Ransan** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-120/luc65r/odin/ch-1.odin) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-120/luc65r/odin/ch-2.odin) in **Odin**.
 
 ##### **Mohammad Meraj Zia** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-120/ziameraj16/java/SwapOddEvenBits.java) in **Java**.
