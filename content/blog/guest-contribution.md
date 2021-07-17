@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2021-07-16T00:00:00+00:00
+date: 2021-07-17T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -2346,6 +2346,8 @@ Please find below guest contributions.
 
 ##### **Stuart Little** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/stuart-little/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/stuart-little/haskell/ch-2.hs) in **Haskell**.
 
+##### **Stuart Little** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/stuart-little/lua/ch-1.lua) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/stuart-little/lua/ch-2.lua) in **Lua**.
+
 ##### **Tyler Wardhaugh** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/tyler-wardhaugh/clojure/src/tw/weekly/c85/t1.clj) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/tyler-wardhaugh/clojure/src/tw/weekly/c85/t2.clj) in **Clojure**.
 
 ##### **Tyler Wardhaugh** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/tyler-wardhaugh/lua/ch-1.lua) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/tyler-wardhaugh/lua/ch-2.lua) in **Lua**.
@@ -2828,6 +2830,8 @@ Please find below guest contributions.
 
 ##### **Stuart Little** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/stuart-little/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/stuart-little/haskell/ch-2.hs) in **Haskell**.
 
+##### **Stuart Little** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/stuart-little/lua/ch-1.lua) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/stuart-little/lua/ch-2.lua) in **Lua**.
+
 ##### **Tyler Wardhaugh** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/tyler-wardhaugh/clojure/src/tw/weekly/c72/t1.clj) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/tyler-wardhaugh/clojure/src/tw/weekly/c72/t2.clj) in **Clojure**.
 
 ##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/ulrich-rieke/cpp/ch-1.cpp) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-072/ulrich-rieke/cpp/ch-2.cpp) in **C++**.
@@ -3283,6 +3287,8 @@ Please find below guest contributions.
 ##### **Kivanc Yazan** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/kivanc-yazan/python3/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/kivanc-yazan/python3/ch-2.py) in **Python**.
 
 ##### **Stuart Little** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/stuart-little/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/stuart-little/haskell/ch-2.hs) in **Haskell**.
+
+##### **Stuart Little** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/stuart-little/lua/ch-1.lua) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/stuart-little/lua/ch-2.lua) in **Lua**.
 
 ##### **Wanderdoc** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/wanderdoc/R/ch-1.R) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-042/wanderdoc/R/ch-2.R) in **R**.
 
