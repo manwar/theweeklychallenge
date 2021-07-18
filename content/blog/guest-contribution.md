@@ -40,6 +40,8 @@ Please find below guest contributions.
 
 ##### **Lucas Ransan** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/luc65r/miranda/ch-1.m) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/luc65r/miranda/ch-2.m) in **Miranda**.
 
+##### **Richard Park** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/richard-park/apl/ch-1.aplf) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/richard-park/apl/ch-2.aplf) in **APL**.
+
 ##### **Roger Bell_West** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/roger-bell-west/postscript/ch-1.ps) in **Postscript**.
 
 ##### **Roger Bell_West** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/roger-bell-west/python/ch-1.py) in **Python**.
