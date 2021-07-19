@@ -27,7 +27,7 @@ tags: ["Perl", "Raku"]
 ## HEADLINES {#HEADLINES}
 ***
 
-Last week, we had 3 new members joined **Team PWC**. [**jdos22**](https://github.com/jdos22), [**Matthew Neleigh**](https://github.com/mattneleigh) and **Gurunandan Bhat** are all experienced **Perl** hackers.
+Last week, we had 3 new members joined **Team PWC**. [**jdos22**](https://github.com/jdos22), [**Matthew Neleigh**](https://github.com/mattneleigh) and [**Gurunandan Bhat**](https://github.com/Bhat-Gurunandan) are all experienced **Perl** hackers.
 
 `jdos22` shared his solution to the [**Invert Bit**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/jdos22/perl/ch-1.pl) task in **Perl**. `Matthew Neleigh` not only shared solutions to [**Week 121**](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-121/mattneleigh/perl) but also [**Week #119**](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-119/mattneleigh/perl) and [**Week #120**](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-120/mattneleigh/perl).
 
@@ -80,7 +80,7 @@ Let us share some interesting stats from the [**GitHub repository**](https://git
 #### 1. Commits: 18,583 (+206)
 #### 2. Pull Requests: 4,551 (+63)
 #### 3. Contributors: 171 (+2)
-#### 4. Fork: 216 (+2)
+#### 4. Fork: 217 (+3)
 #### 5. Stars: 97
 
 <br>
@@ -105,6 +105,8 @@ Quick recap of [**"The Weekly Challenge - 121**](/blog/recap-challenge-121) by `
 
 ## PERL REVIEW {#PERLREVIEW}
 ***
+
+Please check out **Perl** solutions review of the **["The Weekly Challenge - 119"](/blog/review-challenge-119)** by `Colin Crain`.
 
 If you missed any past reviews then please check out the [**collection**](/p5-reviews).
 
@@ -134,7 +136,7 @@ I would like to `THANK` every member of the team for their valuable suggestions.
 
 #### 2. [Matthew Neleigh](https://github.com/mattneleigh), an experienced **Perl** hacker.
 
-#### 3. Gurunandan Bhat
+#### 3. [Gurunandan Bhat](https://github.com/Bhat-Gurunandan), an experienced **Perl** hacker.
 
 > I live and work in Amsterdam. I have been using Perl since 1999.
 
