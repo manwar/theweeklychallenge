@@ -45,7 +45,7 @@ Top two members of **Team PWC** who scored `1000+` scores are [**Laurent Rosenfe
 ![Laurent Rosenfeld](/images/blog/laurent-stats.jpg)
 
 
-#### Jaldhar H. Vyas [Score: 1042]
+#### Jaldhar H. Vyas [Score: 1048]
 ***
 
 ![Jaldhar H. Vyas](/images/blog/jaldhar-stats.jpg)
@@ -77,8 +77,8 @@ Let us share some interesting stats from the [**GitHub repository**](https://git
 
 <br>
 
-#### 1. Commits: 18,576 (+199)
-#### 2. Pull Requests: 4,550 (+62)
+#### 1. Commits: 18,583 (+206)
+#### 2. Pull Requests: 4,551 (+63)
 #### 3. Contributors: 171 (+2)
 #### 4. Fork: 216 (+2)
 #### 5. Stars: 97
