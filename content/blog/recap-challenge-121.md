@@ -260,7 +260,7 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/dave-jacoby/perl/ch-1.pl)]
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/dave-jacoby/perl/ch-2.pl)]
-[[**BLOG #1**](://jacoby.github.io/2021/07/13/bitty-tours-perl-weekly-challenge-121.htmlttps://jacoby.github.io/2021/06/14/trees-and-rows-perl-weekly-challenge-117.html)]
+[[**BLOG #1**](https://jacoby.github.io/2021/07/13/bitty-tours-perl-weekly-challenge-121.html)]
 
 ***
 
