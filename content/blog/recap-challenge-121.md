@@ -44,11 +44,11 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 ## CONTRIBUTION STATS {#CONTRIBUTIONSTATS}
 ***
 
-The total contributions in the week is `86`. Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
+The total contributions in the week is `89`. Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
 
-#### 1. Perl: 49
-#### 2. Raku: 22
-#### 3. Blog: 15
+#### 1. Perl: 50
+#### 2. Raku: 23
+#### 3. Blog: 16
 
 <br>
 
@@ -56,9 +56,9 @@ The total contributions in the week is `86`. Well done **Team PWC**. I would als
 
 <br>
 
-#### 1. Perl: 5,801 (61%)
-#### 2. Raku: 3,624 (39%)
-#### 3. Blog: 1,733
+#### 1. Perl: 5,802 (61%)
+#### 2. Raku: 3,625 (39%)
+#### 3. Blog: 1,734
 
 <br>
 
@@ -198,7 +198,7 @@ The total contributions in the week is `86`. Well done **Team PWC**. I would als
 ## CENTURION CLUB {#CENTURIONCLUB}
 ***
 
-    Laurent Rosenfeld (1252), Jaldhar H. Vyas (1042), Roger Bell_West (974), Arne Sommer (902), Colin Crain (796), Athanasius (686), Adam Russell (620), Stuart Little (588), E. Choroba (572), Dave Jacoby (538), Ulrich Rieke (528), Luca Ferrari (468), Mohammad S Anwar (462), Javier Luque (460), Ruben Westerberg (452), Abigail (448), Duncan C. White (428), Simon Proctor (428), Flavio Poletti (394), Cheok-Yin Fung (374), Joelle Maslak (334), Mark Anderson (322), Simon Green (292), Wanderdoc (292), Ryan Thompson (290), Paulo Custodio (288), James Smith (282), Lubos Kolouch (266), Jorg Sommrey (256), Feng Chang (242), Andrezgz (230), Niels van Dijke (228), Yet Ebreo (226), Pete Houston (222), Myoungjin Jeon (192), Markus Holzer (190), Noud Aldenhoven (188), Jan Krnavek (188), W. Luis Mochan (186), Kevin Colyer (176), Aaron Smith (174), Steven Wilson (172), Kian-Meng Ang (162), Walt Mankowski (162), Andrew Shitov (160), Duane Powell (156), Shahed Nooshmand (140), Dave Cross (120), Kang-min Liu (118), Julio de Castro (116), Gustavo Chaves (112), Cristina Heredia (110), Saif Ahmed (110), Burkhard Nickels (108), Joan Mimosinnet (108), Alicia Bielsa (106), Nuno Vieira (104).
+    Laurent Rosenfeld (1252), Jaldhar H. Vyas (1048), Roger Bell_West (974), Arne Sommer (902), Colin Crain (796), Athanasius (686), Adam Russell (620), Stuart Little (588), E. Choroba (572), Dave Jacoby (538), Ulrich Rieke (528), Luca Ferrari (468), Mohammad S Anwar (462), Javier Luque (460), Ruben Westerberg (452), Abigail (448), Duncan C. White (428), Simon Proctor (428), Flavio Poletti (394), Cheok-Yin Fung (374), Joelle Maslak (334), Mark Anderson (322), Simon Green (292), Wanderdoc (292), Ryan Thompson (290), Paulo Custodio (288), James Smith (282), Lubos Kolouch (266), Jorg Sommrey (256), Feng Chang (242), Andrezgz (230), Niels van Dijke (228), Yet Ebreo (226), Pete Houston (222), Myoungjin Jeon (192), Markus Holzer (190), Noud Aldenhoven (188), Jan Krnavek (188), W. Luis Mochan (186), Kevin Colyer (176), Aaron Smith (174), Steven Wilson (172), Kian-Meng Ang (162), Walt Mankowski (162), Andrew Shitov (160), Duane Powell (156), Shahed Nooshmand (140), Dave Cross (120), Kang-min Liu (118), Julio de Castro (116), Gustavo Chaves (112), Cristina Heredia (110), Saif Ahmed (110), Burkhard Nickels (108), Joan Mimosinnet (108), Alicia Bielsa (106), Nuno Vieira (104).
 
 <br>
 
@@ -486,6 +486,15 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 [[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/polettix/raku/ch-2.raku)]
 [[**BLOG #1**](https://github.polettix.it/ETOOBUSY/2021/07/14/pwc121-invert-bit/)]
 [[**BLOG #2**](https://github.polettix.it/ETOOBUSY/2021/07/15/pwc121-the-travelling-salesman/)]
+
+***
+
+### Jaldhar H. Vyas
+![Jaldhar H. Vyas](/images/team/jaldhar_vyas.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/jaldhar-h-vyas/perl/ch-1.sh)]
+[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/jaldhar-h-vyas/raku/ch-1.sh)]
+[[**BLOG #1**](https://www.braincells.com/perl/2021/07/perl_weekly_challenge_week_121.html)]
 
 ***
 
