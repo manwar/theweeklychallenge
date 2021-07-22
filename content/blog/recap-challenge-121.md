@@ -457,7 +457,7 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 ***
 
 ### Bruce Gray
-![Bruce Gray](/images/team/user.jpg)
+![Bruce Gray](/images/team/bruce-gray.jpg)
 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/bruce-gray/perl/ch-1.pl)]
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/bruce-gray/perl/ch-2.pl)]
