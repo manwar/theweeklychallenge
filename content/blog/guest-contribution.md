@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2021-07-21T00:00:00+00:00
+date: 2021-07-23T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -35,6 +35,14 @@ Please find below guest contributions.
 ##### **Andinus** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/andinus/c/ch-1.c) in **C**.
 
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/eric-cheung/excel-vba/ch-1.bas) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/eric-cheung/excel-vba/ch-2.bas) in **Excel VBA**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/laurent-rosenfeld/awk/ch-1.awk) in **Awk**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/laurent-rosenfeld/c/ch-1.c) in **C**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/laurent-rosenfeld/python/ch-1.py) in **Python**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/laurent-rosenfeld/scala/ch-1.scala) in **Scala**.
 
 ##### **Roger Bell_West** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/roger-bell-west/postscript/ch-1.ps) in **Postscript**.
 
