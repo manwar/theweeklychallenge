@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2021-07-23T00:00:00+00:00
+date: 2021-07-25T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -43,6 +43,8 @@ Please find below guest contributions.
 ##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/laurent-rosenfeld/python/ch-1.py) in **Python**.
 
 ##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/laurent-rosenfeld/scala/ch-1.scala) in **Scala**.
+
+##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/lubos-kolouch/python/ch-2.py) in **Python**.
 
 ##### **Roger Bell_West** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/roger-bell-west/postscript/ch-1.ps) in **Postscript**.
 
