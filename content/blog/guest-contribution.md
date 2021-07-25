@@ -32,6 +32,8 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 122](/blog/perl-weekly-challenge-122) {#122}
 <br>
 
+##### **Adam Russell** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/adam-russell/prolog/ch-1.p) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/adam-russell/prolog/ch-2.p) in **Prolog**.
+
 ##### **Andinus** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/andinus/c/ch-1.c) in **C**.
 
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/eric-cheung/excel-vba/ch-1.bas) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/eric-cheung/excel-vba/ch-2.bas) in **Excel VBA**.
