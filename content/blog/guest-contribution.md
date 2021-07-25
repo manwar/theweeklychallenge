@@ -36,6 +36,8 @@ Please find below guest contributions.
 
 ##### **Andinus** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/andinus/c/ch-1.c) in **C**.
 
+##### **Cristina Heredia** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/cristian-heredia/python/ch-1.py) in **Python**.
+
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/eric-cheung/excel-vba/ch-1.bas) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/eric-cheung/excel-vba/ch-2.bas) in **Excel VBA**.
 
 ##### **James Smith** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/james-smith/php/ch-1.php) in **PHP**.
