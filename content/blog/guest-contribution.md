@@ -86,6 +86,8 @@ Please find below guest contributions.
 
 ##### **Lucas Ransan** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/luc65r/coconut/ch-1.coco) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/luc65r/coconut/ch-2.coco) in **Coconut**.
 
+##### **Pete Houston** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/pete-houston/awk/ch-1.awk) in **Awk**.
+
 ##### **Roger Bell_West** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/roger-bell-west/postscript/ch-1.ps) in **Postscript**.
 
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/roger-bell-west/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/roger-bell-west/python/ch-2.py) in **Python**.
