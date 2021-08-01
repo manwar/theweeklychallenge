@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2021-07-31T00:00:00+00:00
+date: 2021-08-01T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -59,6 +59,10 @@ Please find below guest contributions.
 ##### **Abigail** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/abigail/scheme/ch-2.scm) in **Scheme**.
 
 ##### **Abigail** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/abigail/tcl/ch-2.tcl) in **Tcl**.
+
+##### **Adam Russell** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/adam-russell/cxx/ch-1.cxx) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/adam-russell/cxx/ch-2.cxx) in **C++**.
+
+##### **Adam Russell** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/adam-russell/prolog/ch-1.p) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/adam-russell/prolog/ch-2.p) in **Prolog**.
 
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/eric-cheung/excel-vba/ch-1.bas) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/eric-cheung/excel-vba/ch-2.bas) in **Excel VBA**.
 
