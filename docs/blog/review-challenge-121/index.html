@@ -1,0 +1,1484 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="The Weekly Challenge - Perl & Raku"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="You do not have to be an expert."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Colin Crain › Perl Weekly Review #121">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Colin Crain › Perl Weekly Review #121</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navgation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Colin Crain › Perl Weekly Review #121</h2>
+                    <div class="portfolio-meta">
+                        <span>Sunday, Aug 1, 2021</span>|
+                        <span> Tags:
+                            perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/p5-review-challenge-121.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <p>( <em>&hellip;continues from <a href="/blog/review-challenge-120/">previous week</a>.</em> )</p>
+<p>Welcome to the Perl review for <strong>Week 121</strong> of the Weekly Challenge! Here we will take the time to discuss the  submissions offered by the team, factor out the common methodologies that came up in those solutions, and highlight some of the unique approaches and unusual code created.</p>
+<hr>
+<h3 id="why-do-we-do-these-challenges">Why do we do these challenges?</h3>
+<p>I suppose any answers to that would be as wide ranging and varied as the people who choose to join the team. One thing is clear: it&rsquo;s not a competition, and there are no judges, even if there is a &ldquo;prize&rdquo; of sorts. About that &ndash; I think of it more as an honorarium periodically awarded to acknowledge the efforts we make towards this strange goal. So there&rsquo;s no determination to find the <em>fastest</em>, or the <em>shortest</em>, or even, in some abstract way, the <em>best</em> way to go about things, although I&rsquo;m certain the individuals have their own aspirations and personal drives. As Perl is such a wonderfully expressive language, this provides quite a bit of fodder to the core idea of TMTOWTDI, producing a gamut of wonderfully varied techniques and solutions.</p>
+<p>Even the tasks themselves are often open to a certain amount of discretionary interpretation. What we end up with is a situation where each participant is producing something in the manner they find the most interesting or satisfying. Some team members focus on carefully crafted complete applications that thoroughly vet input data and handle every use case they can think up. Others chose to apply themselves to the logic of the underlying puzzle and making it work in the most elegant way they can. Some eschew modules they would ordinarily reach for, others embrace them, bringing to light wheels perhaps invented years ago that happen to exactly solve the problem in front of them today.</p>
+<p>I&rsquo;ve been considering this question for some time and have found one binding commonality between all of us solving these challenges each week, in that however we normally live our lives, the task in front of us more than likely has nothing to do with any of that . And I think this has great value. We all do what we do, out in the real world, and hopefully we do it well. The Weekly Challenge provides a opportunity to do something germane to that life yet distinctly different; if we only do the things we already know how to do we only do the same things over and over. This is where the &ldquo;challenge&rdquo; aspect comes into play.</p>
+<p>So we can consider the Weekly Challenge as providing a problem space outside of our comfort zone, as far out from comfort as we wish to take things. From those reaches we can gather and learn things and bring what we want back into our lives. Personally, I think that&rsquo;s its greatest value of all.</p>
+<hr>
+<p>Every week there is an enormous global collective effort made by the team, analyzing and creatively coding the submissions, and that effort deserves credit due. And that&rsquo;s why I&rsquo;m here, to try and figure out how to do that.</p>
+<p>Let&rsquo;s have a look and see what we can find.</p>
+<hr>
+<p><strong><big>For context</big></strong>  before we begin, you may wish to revisit either of the pages for the <a href="/blog/perl-weekly-challenge-121/"><strong>original tasks</strong></a> or the summary <a href="/blog/recap-challenge-121/"><strong>recap</strong></a> of the challenge. But don&rsquo;t worry, the challenges themselves will be briefly summarized, presented below as we progress from task by task. Oh, and one more thing before we get started:</p>
+<h3 id="getting-in-touch-with-us">Getting in Touch with Us</h3>
+<p><a href="mailto:pwc.perfectwave@gmail.com"><img src="/images/blog/Email.svg" height="50" width="50"> Email</a> › Please email me (Colin) with any feedback, notes, clarifications or whatnot about this review.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge"><img src="/images/blog/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request to us for any issues you may find with this page.</p>
+<p><a href="https://twitter.com/perlwchallenge"><img src="/images/blog/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!</p>
+<p>I&rsquo;m always curious as to what the people think of these efforts. Everyone here at the PWC would like to hear any feedback you&rsquo;d like to give.</p>
+<p><strong>So finally, without further ado&hellip;</strong></p>
+<hr>
+<h2 id="---nbsp--nbsp--nbsp---task-1pwc121task1-------nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---task-2pwc121task2---nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---blogspwc121blogs----nbsp--nbsp--nbsp---">•             <a href="#PWC121TASK1">Task 1</a>                 •             <a href="#PWC121TASK2">Task 2</a>             	•             <a href="#PWC121BLOGS">BLOGS</a>              	•</h2>
+<hr>
+<h1 id="PWC121TASK1">TASK 1</h1>
+<h1 id="invert-bit">Invert Bit</h1>
+<p><em>Submitted by: Mohammad S Anwar</em><br>
+You are given integers 0 &lt;= $m &lt;= 255 and 1 &lt;= $n &lt;= 8.</p>
+<p>Write a script to invert $n bit from the end of the binary representation of $m and print the decimal representation of the new binary number.</p>
+<p><strong>Example</strong></p>
+<pre><code>    Input: $m = 12, $n = 3
+    Output: 8
+
+        Binary representation of $m = 00001100
+        Invert 3rd bit from the end = 00001000
+        Decimal equivalent of 00001000 = 8
+
+    Input $m = 18, $n = 4
+    Output: 26
+
+        Binary representation of $m = 00010010
+        Invert 4th bit from the end = 00011010
+        Decimal equivalent of 00011010 = 26
+</code></pre><h2 id="about-the-solutions">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/abigail/perl/ch-1.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/arne-sommer/perl/ch-1.pl"><strong>Arne Sommer</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/bruce-gray/perl/ch-1.pl"><strong>Bruce Gray</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/cristian-heredia/perl/ch-1.pl"><strong>Cristina Heredia</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/jaldhar-h-vyas/perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/jaredor/perl/ch-1.pl"><strong>Jared Martin</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/lance-wicks/perl/ch-1.pl"><strong>Lance Wicks</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/lubos-kolouch/perl/ch-1.pl"><strong>Lubos Kolouch</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/mattneleigh/perl/ch-1.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/paulo-custodio/perl/ch-1.pl"><strong>Paulo Custodio</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/pete-houston/perl/ch-1.pl"><strong>Pete Houston</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/stuart-little/perl/ch-1.pl"><strong>Stuart Little</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/jdos22/perl/ch-1.pl"><strong>jdos22</strong></a></p>
+<p>Well here we are in week three of our bitwork trilogy, with 30 submissions for the first task. In this installment we are being asked to flip a single specified bit and see what happens.</p>
+<p>Bitwise operations, working on the underlying binary number directly, carried the day by a large margin this time, but as before we still had a strong supporting cast considering the input as a binary representation to be manually processed. In this case, though, most of those submissions first broke the string into an array of individual values, with the correct position then identified by index and altered before reassembly. Lastly, <code>substr</code> operations could of course be used to directly mainpulate the 1s and 0s in a binary string representation, and we&rsquo;ll make sure to look at those methods as well.</p>
+<h2 id="bitwise-xor">BITWISE XOR</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/abigail/perl/ch-1.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/arne-sommer/perl/ch-1.pl"><strong>Arne Sommer</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/bruce-gray/perl/ch-1.pl"><strong>Bruce Gray</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/jaldhar-h-vyas/perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/jdos22/perl/ch-1.pl"><strong>jdos22</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/mattneleigh/perl/ch-1.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/paulo-custodio/perl/ch-1.pl"><strong>Paulo Custodio</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/pete-houston/perl/ch-1.pl"><strong>Pete Houston</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/stuart-little/perl/ch-1.pl"><strong>Stuart Little</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>A bitwise exclusive-OR, or XOR, operation with a set bit will set the target if it previously was not set: &ldquo;one or the other&rdquo;, but if the target is already set it will unset it: &ldquo;but not both&rdquo;. An XOR with an unset bit, a 0, will have no effect on the target&rsquo;s status. Thus this operator excels in the art of flipping bits.</p>
+<p>Tool in hand, the challenge then becomes constructing a number with a set bit in the position we want flipped, with all other positions unset. This will flip only the single bit desired. Fortunately constructing this number was also found to be a relatively straightforward process.</p>
+<p>The value of each position in a binary representation of a number works the same way as in any other base, such as base 10. When we look at the number 456: &ldquo;four hundred and fifty-six&rdquo;, we understand that we have 4 hundreds, 5 tens and 6 ones. But these words too can be broken down mathematically: ones are the base, 10, raised to the power 0, tens are the base raised to the power 1, and hundreds the power 2. So when we write &ldquo;456&rdquo; we mean 4 × 10<sup>2</sup> + 5 × 10<sup>1</sup> + 6 × 10<sup>0</sup>.</p>
+<p>The same exact relationship between position and power (<em>sounds sociopolitical, right?</em>) holds in every other base, including binary, base 2. In that case the math is very simple, as the value multiplicand in each position can only be 0 or 1, but the exponential multiplier relationship is the same: &hellip; 2<sup>2</sup>, 2<sup>1</sup>, 2<sup>0</sup>.</p>
+<p>What this means is a set bit at a certain position from the right of a number, counting from 0, holds the value of 2<sup><em>position</em></sup>. Now normally to count things we use the <a href="https://en.wikipedia.org/wiki/Cardinal_numeral">cardinal numbers</a>, starting from 1. If we want to countine to do things this way, that&rsquo;s fine, only we need to subtract 1 from the value, to avoid an <a href="https://en.wikipedia.org/wiki/Off-by-one_error">off-by-one error</a>.</p>
+<p>If we properly construct our <a href="https://en.wikipedia.org/wiki/Mask_(computing)#Common_bitmask_functions">bit mask</a>, applying an XOR operation will produce our result without the need of any intermediate base representations.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/arne-sommer/perl/ch-1.pl"><strong>Arne Sommer</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/arne-sommer/raku/ch-1.raku">Raku</a></p>
+<p>Arne will start us off with a super-clear demonstration of the technique, breaking the parts down into two separate lines. In the first the bit mask is constructed, in the second the mask is applied using an exclusive OR operation. Here we use an exponent of the corrected position number to produce the required power of 2.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $mask   <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">**</span> ($n <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
+    <span style="color:#66d9ef">my</span> $result <span style="color:#f92672">=</span> $m <span style="color:#f92672">^</span> $mask;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/jdos22/perl/ch-1.pl"><strong>jdos22</strong></a></p>
+<p>jdos22 uses similar steps, in this case employing a bit-shift operator.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $Mask <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+    $Mask <span style="color:#f92672">=</span> ($Mask<span style="color:#f92672">&lt;&lt;</span>($n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>));
+    <span style="color:#66d9ef">my</span> $Result <span style="color:#f92672">=</span> ($Mask <span style="color:#f92672">^</span> $m);
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/mattneleigh/perl/ch-1.pl"><strong>Matthew Neleigh</strong></a></p>
+<p>Keeping the process firmly rooted in the bitwise world, Matthew declares his initial bit state to be shifted as the the hexadecimal digit 1. With the bit-shift operator we get a variation of the previously mentioned off-by-one problem: we want to use a left bit-shift, <code>&lt;&lt;</code>, telling it how many positions to move the bits leftward from the current position — in this case the right-hand end, at position 0. But we&rsquo;re already <em>at</em> position 0, so that&rsquo;s not been counted. Thus we still need to subtract 1 from the number of positions we wish to shift left.</p>
+<p>A quick XOR and we have the number requested.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">return</span>(
+        $m <span style="color:#f92672">^</span> (<span style="color:#ae81ff">0x01</span> <span style="color:#f92672">&lt;&lt;</span> ($n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>))
+    );
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/pete-houston/perl/ch-1.pl"><strong>Pete Houston</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/pete-houston/awk/ch-1.awk">Awk</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/pete-houston/lua/ch-1.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/pete-houston/python/ch-1.py">Python</a></p>
+<p>Pete gives us an excellent demonstration of exactly how little is actually required to provide the solution. In this minimal implementation we eschew variables entirely, drawing on the internal <code>@ARGV</code> array of the command line instead. The elements stored in theis array for our use are  mutable, and here the value of the second argument, <code>$ARGV[1]</code> is pre-decremented before use. An exponent and and exclusive-or and we&rsquo;re in business.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    say $ARGV[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">^</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">**</span> <span style="color:#f92672">--</span>$ARGV[<span style="color:#ae81ff">1</span>];
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/jaldhar-h-vyas/perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/jaldhar-h-vyas/raku/ch-1.sh">Raku</a></p>
+<p>Jaldhar goes one farther and reduces it to a Perl one-liner, removing even a script from the process.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e">#!/bin/sh</span>
+    perl <span style="color:#f92672">-</span>E <span style="color:#e6db74">&#39;say $ARGV[0] ^ (1 &lt;&lt; $ARGV[1] - 1);&#39;</span> $@
+</code></pre></div><h3 id="other-bitwise-hot-takes">other BITWISE HOT TAKES</h3>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/jaredor/perl/ch-1.pl"><strong>Jared Martin</strong></a></p>
+<p>We saw this process of XOR-ing the input number with a constructed bit mask over and over again with little variation. However there were some other ways to use bitwise operations to get where we&rsquo;re going.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a></p>
+<p>Duncan does things a little differently, playing around with the logic. We see a familiar mask construction, but then instead of an XOR we get a ternary operation, using only AND, OR and NOT.</p>
+<p>First a bitwise AND is applied, revealing whether the mask bit in the target binary is set. On the basis of this, if it <em>is</em> set we apply a bitwise AND to a negated version of the mask, flipping a 1 to 0 in the selected postion and leaving the others untouched. If the bit is <em>not</em> set, we use a bitwise OR to set it.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $mask <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;&lt;</span> ($n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>));
+    $m <span style="color:#f92672">=</span> ($m <span style="color:#f92672">&amp;</span> $mask ) ? ($m <span style="color:#f92672">&amp;</span> <span style="color:#f92672">~</span>$mask) : ($m <span style="color:#f92672">|</span> $mask);
+    say $m;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a></p>
+<p>Choroba shies away from most bitwise operations, constructing the mask using an exponent and doing a little clever arithmetic. This works by adding the mask to the number normally, using addition, and then should the given bit position already be set, and hence carry, the carried value is then subtracted from the result.</p>
+<p>The secret to the subtrahend (yes that is the correct term, analogous to summand) is in the sole remaining bitwise operation, an AND that identifies whether the bit in question is already set. If it is not the result is 0, multiplied by 2 this remains 0 and nothing is subtracted. If, on the other hand the bit is <em>set</em>, the mask value is returned, and multiplying this by 2 returns a number with the solitary next larger bit set. This matches the value from the carry operation of the addition, which is then subtracted.</p>
+<p>I get the feeling Choroba is well aware of easier ways to get this particular job done and is having a little fun with it. Well good on him, well done I say. Sneaky. I like it.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">invert_bit</span> {
+        <span style="color:#66d9ef">my</span> ($m, $n) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> $bit <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">**</span> ($n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>);
+        <span style="color:#66d9ef">return</span> $m <span style="color:#f92672">+</span> $bit <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> ($m <span style="color:#f92672">&amp;</span> $bit)
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/jaredor/perl/ch-1.pl"><strong>Jared Martin</strong></a></p>
+<p>Jared returns us once again to the land of <code>bigint</code>, with all the weirdness and special operator functions that implies. As usual things don&rsquo;t work out perfectly as planned, but a workaround is found, in this case either adding or subtracting the mask arithmetically depending on whether the bit position is set, as determined using a bitwise AND, <code>band()</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">main_algo</span> {
+
+        <span style="color:#66d9ef">use</span> bigint;
+
+        <span style="color:#66d9ef">my</span> ($m, $n) <span style="color:#f92672">=</span> map { $_ <span style="color:#f92672">+</span> <span style="color:#ae81ff">0</span> } @_;
+        <span style="color:#66d9ef">my</span> ($m_bstr, $m_bin, $tmp) <span style="color:#f92672">=</span> ($m<span style="color:#f92672">-&gt;</span>bstr(), substr($m<span style="color:#f92672">-&gt;</span>as_bin(), <span style="color:#ae81ff">2</span>), $m<span style="color:#f92672">-&gt;</span>copy());
+        <span style="color:#66d9ef">my</span> $mask <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">**</span>($n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
+        $tmp<span style="color:#f92672">-&gt;</span>band($mask);
+
+        <span style="color:#66d9ef">my</span> $result <span style="color:#f92672">=</span> $tmp ? $m <span style="color:#f92672">-</span> $mask : $m <span style="color:#f92672">+</span> $mask; <span style="color:#75715e"># Resort to arithmetic</span>
+
+        <span style="color:#66d9ef">return</span> [ $m_bstr, $m_bin, $n<span style="color:#f92672">-&gt;</span>bstr(), $result<span style="color:#f92672">-&gt;</span>bstr(), substr($result<span style="color:#f92672">-&gt;</span>as_bin(), <span style="color:#ae81ff">2</span>) ];
+
+    }
+</code></pre></div><h2 id="splitting-strings">splitting STRINGS</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/cristian-heredia/perl/ch-1.pl"><strong>Cristina Heredia</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/lubos-kolouch/perl/ch-1.pl"><strong>Lubos Kolouch</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a></p>
+<p>In a more tactile, less analytical manner, it was possible to convert the base number into a binary string representation and break that into an array of digit characters. Then with a little massaging the requested position can be directly accessed by index and changed. The array is then rejoined and converted back into a decimal value.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/lubos-kolouch/perl/ch-1.pl"><strong>Lubos Kolouch</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/lubos-kolouch/python/ch-1.py">Python</a></p>
+<p>Lubos will open with a demonstration of one technique. Here we can see him use <code>sprintf &quot;%b&quot;</code> to convert his number into a binary representation, followed by <code>split</code> to obtain an array we can work on. The selected bit is referenced from the <em>end</em> of the array, which starts counting at -1, so there is no need for any adjustment to the position index.</p>
+<p>A ternary operation sets the element to 1 or 0 depending on its previous value, and the binary string is then reassembled. Inside <code>bin2dec()</code> the <code>pack</code>/<code>unpack</code> sequence from <em>The Perl Cookbook</em> converts us back to decimal.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">invert_bit</span>{
+        <span style="color:#66d9ef">my</span> ($what, $n) <span style="color:#f92672">=</span> @_;
+
+        <span style="color:#66d9ef">my</span> $binary_what <span style="color:#f92672">=</span> sprintf (<span style="color:#e6db74">&#34;%b&#34;</span>,$what);
+        <span style="color:#66d9ef">my</span> @binary_arr <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, $binary_what;
+        $binary_arr[<span style="color:#f92672">-</span>$n] <span style="color:#f92672">=</span> $binary_arr[<span style="color:#f92672">-</span>$n] ? <span style="color:#ae81ff">0</span> : <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">return</span> bin2dec(join <span style="color:#e6db74">&#34;&#34;</span>, @binary_arr);
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/cristian-heredia/perl/ch-1.pl"><strong>Cristina Heredia</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/cristian-heredia/python/ch-1.py">Python</a></p>
+<p>Cristina carefully walks us through her steps: in this case, after ensuring that we have 8 bits, counting from the 0 index in the array, using the value 8 minus the requested position. A small <code>if/else</code> structure effects the change.</p>
+<p>To convert back to decimal she uses <code>eval</code> to bring the number back into Perl with a binary signifier. The value is then presented with decimal representation, being just an ordinary number again.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># Convert to binary</span>
+    <span style="color:#66d9ef">my</span> @bits <span style="color:#f92672">=</span> split(<span style="color:#e6db74">//</span>, sprintf (<span style="color:#e6db74">&#34;%b&#34;</span>, $m));
+
+    <span style="color:#75715e">#Complete with 0</span>
+    <span style="color:#66d9ef">my</span> $counter <span style="color:#f92672">=</span> <span style="color:#ae81ff">8</span><span style="color:#f92672">-</span>@bits;
+    <span style="color:#66d9ef">while</span> ($counter<span style="color:#f92672">!=</span><span style="color:#ae81ff">0</span>){
+        unshift @bits, <span style="color:#e6db74">&#39;0&#39;</span>;
+        $counter<span style="color:#f92672">--</span>;
+    }
+
+    <span style="color:#75715e"># invert $n bit from the end of the binary</span>
+    <span style="color:#66d9ef">if</span>($bits[<span style="color:#ae81ff">8</span><span style="color:#f92672">-</span>$n]<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>){
+       $bits[<span style="color:#ae81ff">8</span><span style="color:#f92672">-</span>$n]<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;1&#39;</span>;
+    }
+    <span style="color:#66d9ef">else</span>{
+       $bits[<span style="color:#ae81ff">8</span><span style="color:#f92672">-</span>$n]<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;0&#39;</span>;
+    }
+    <span style="color:#75715e"># Convert to string</span>
+    <span style="color:#66d9ef">my</span> $newNumber <span style="color:#f92672">=</span> join( <span style="color:#e6db74">&#39;&#39;</span>, @bits );
+    <span style="color:#75715e"># Convert to decimal</span>
+    <span style="color:#66d9ef">my</span> $result <span style="color:#f92672">=</span> eval(<span style="color:#e6db74">&#34;0b$newNumber&#34;</span>);
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/athanasius/raku/ch-1.raku">Raku</a></p>
+<p>The monk gives us another demonstration of counting forwards from the 0 index in a nice clear sequence of steps, converting back into decimal with the general-purpose <code>oct</code> function and a binary prefix.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $m_bin <span style="color:#f92672">=</span> sprintf <span style="color:#e6db74">&#39;%08b&#39;</span>, $m;
+    <span style="color:#66d9ef">my</span> @bin   <span style="color:#f92672">=</span> split <span style="color:#e6db74">&#39;&#39;</span>, $m_bin;
+    <span style="color:#66d9ef">my</span> $idx   <span style="color:#f92672">=</span> <span style="color:#ae81ff">8</span> <span style="color:#f92672">-</span> $n;
+
+    $bin[ $idx ] <span style="color:#f92672">=</span> $bin[ $idx ] <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> ? <span style="color:#ae81ff">0</span> : <span style="color:#ae81ff">1</span>;
+
+    <span style="color:#66d9ef">my</span> $s_bin <span style="color:#f92672">=</span> join <span style="color:#e6db74">&#39;&#39;</span>, @bin;
+    <span style="color:#66d9ef">my</span> $s_dec <span style="color:#f92672">=</span> oct <span style="color:#e6db74">&#34;0b$s_bin&#34;</span>;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/adam-russell/prolog/ch-1.p">Prolog</a></p>
+<p>Adam gives us a sort of hybrid approach, creating an array of binary digits and then, once the index is determined from the length of the string, subtracting the desired position value, the element is flipped with an XOR operation. The old bitwise switcharoo, you might say.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">flip_bit_n</span>{
+        <span style="color:#66d9ef">my</span>($x, $n) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> $bits <span style="color:#f92672">=</span> substr(unpack(<span style="color:#e6db74">&#34;B32&#34;</span>, pack(<span style="color:#e6db74">&#34;N&#34;</span>, $x)), <span style="color:#ae81ff">24</span>, <span style="color:#ae81ff">8</span>);
+        <span style="color:#66d9ef">my</span> @bits <span style="color:#f92672">=</span> split(<span style="color:#e6db74">//</span>, $bits);
+        $bits[@bits <span style="color:#f92672">-</span> $n] <span style="color:#f92672">^=</span> <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">my</span> $flipped_decimal <span style="color:#f92672">=</span> unpack(<span style="color:#e6db74">&#34;N&#34;</span>, pack(<span style="color:#e6db74">&#34;B32&#34;</span>, substr(<span style="color:#e6db74">&#34;0&#34;</span> x <span style="color:#ae81ff">32</span> <span style="color:#f92672">.</span> join(<span style="color:#e6db74">&#34;&#34;</span>, @bits), <span style="color:#f92672">-</span><span style="color:#ae81ff">32</span>)));
+        <span style="color:#66d9ef">return</span> $flipped_decimal;
+    }
+</code></pre></div><h3 id="substrings">SUBSTRINGS</h3>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/lance-wicks/perl/ch-1.pl"><strong>Lance Wicks</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a></p>
+<p>Although the conversion into binary representation part remains the same, it wasn&rsquo;t strictly necessary to break apart the string into an array, as <code>substr</code> is available to directly access internal characters. There were a couple of ways we saw to go about doing this.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/lance-wicks/perl/ch-1.pl"><strong>Lance Wicks</strong></a></p>
+<p>Lance has encapsulated his code away in his own  <code>Invert</code> module, as is his wont. Inside his <code>bit()</code> subroutine, he uses a pair of <code>substr</code> functions: first to identify the bit in question, and then, using the 4 argument version, replace it with its complement.</p>
+<p>sub bit {
+my ($self, %args) = @_;</p>
+<pre><code>my $m = $args{m};
+my $n = $args{n};
+
+my $bin_m = sprintf(&quot;%08b&quot;,$m);
+my $bit = substr $bin_m, -($n), 1;
+substr $bin_m, -($n), 1, $bit ? 0 : 1 ;
+
+return oct &quot;0b$bin_m&quot;;
+</code></pre>
+<p>}</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/laurent-rosenfeld/raku/ch-1.raku">Raku</a></p>
+<p>Laurent gives us a version of a very similar process, using a pair of <code>substr</code> functions. For his conversion back to decimal he rolls up a little loop to multiply and sum successive digits by increasing powers of 2 to arrive at the total.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">invert_bit</span> {
+        <span style="color:#66d9ef">my</span> ($m, $n) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> $bin <span style="color:#f92672">=</span> sprintf <span style="color:#e6db74">&#34;%08b&#34;</span>, $m;
+        <span style="color:#66d9ef">my</span> $bit <span style="color:#f92672">=</span> substr $bin, <span style="color:#f92672">-</span>$n, <span style="color:#ae81ff">1</span>;
+        substr $bin, <span style="color:#f92672">-</span>$n, <span style="color:#ae81ff">1</span>, $bit <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> ? <span style="color:#ae81ff">1</span> : <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">return</span> bin2dec $bin;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">bin2dec</span> {
+        <span style="color:#66d9ef">my</span> $bin <span style="color:#f92672">=</span> shift;
+        <span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (split <span style="color:#e6db74">//</span>, $bin) {
+            $sum <span style="color:#f92672">=</span> $sum <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> $i;
+        }
+        <span style="color:#66d9ef">return</span> $sum;
+    }
+
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a></p>
+<p>Finally, to finish the discussion, here Dave does something after to my own heart — using <code>substr</code> twice in the same statement, as both an lvalue and an rvalue. It&rsquo;s really great to have a function that provides such flexability, showing us yet again the awesome powers  Perl has in working with strings.</p>
+<p>In the routine, the right-side position value is converted first into a left-side index by subtracting the input from 8. Then in the next line — the main action — this index is used to select the character at that position in the binary string.</p>
+<p>He then does something quite clever, subtracting that value from 1. If the bit is set, the result will be 1 - 1, if the bit is not set, 1 - 0. The result, of flipping the bit value, is then assigned using a second, lvalue <code>substr</code> over the original character, replacing it. Nice.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">invert_bit</span> ( $m = 0, $n = 1 ) {
+        <span style="color:#66d9ef">my</span> $bin <span style="color:#f92672">=</span> sprintf <span style="color:#e6db74">&#39;%08b&#39;</span>, $m;
+        <span style="color:#66d9ef">my</span> $nn  <span style="color:#f92672">=</span> <span style="color:#ae81ff">8</span> <span style="color:#f92672">-</span> $n;
+        substr( $bin, $nn, <span style="color:#ae81ff">1</span> ) <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> substr( $bin, $nn, <span style="color:#ae81ff">1</span> );
+        <span style="color:#66d9ef">return</span> oct( <span style="color:#e6db74">&#39;0b&#39;</span> <span style="color:#f92672">.</span> $bin );
+    }
+</code></pre></div><h2 id="additional-submissions-in-guest-languages">Additional Submissions in Guest Languages</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/abigail/perl/ch-1.pl"><strong>Abigail</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/abigail/awk/ch-1.gawk">Awk</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/abigail/bash/ch-1.sh">Bash</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/abigail/bc/ch-1.bc">Bc</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/abigail/befunge-93/ch-1.bf93">Befunge-93</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/abigail/c/ch-1.c">C</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/abigail/go/ch-1.go">Go</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/abigail/java/ch-1.java">Java</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/abigail/lua/ch-1.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/abigail/node/ch-1.js">Node</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/abigail/pascal/ch-1.p">Pascal</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/abigail/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/abigail/r/ch-1.r">R</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/abigail/ruby/ch-1.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/abigail/scheme/ch-1.scm">Scheme</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/abigail/tcl/ch-1.tcl">Tcl</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/bruce-gray/perl/ch-1.pl"><strong>Bruce Gray</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/bruce-gray/raku/ch-1.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/cheok-yin-fung/bash/ch-1.sh">Bash</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/colin-crain/raku/ch-1.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/polettix/raku/ch-1.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/roger-bell-west/postscript/ch-1.ps">Postscript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/roger-bell-west/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/roger-bell-west/raku/ch-1.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/roger-bell-west/ruby/ch-1.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/roger-bell-west/rust/ch-1.rs">Rust</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/stuart-little/perl/ch-1.pl"><strong>Stuart Little</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/stuart-little/haskell/ch-1.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/stuart-little/lua/ch-1.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/stuart-little/node/ch-1.js">Node</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/stuart-little/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/stuart-little/raku/ch-1.raku">Raku</a></p>
+<hr>
+<hr>
+<h1 id="PWC121TASK2">TASK 2</h1>
+<h1 id="the-travelling-salesman">The Travelling Salesman</h1>
+<p><em>Submitted by: Jorg Sommrey</em><br>
+You are given a NxN matrix containing the distances between N cities.</p>
+<p>Write a script to find a round trip of minimum length visiting all N cities exactly once and returning to the start.</p>
+<p><strong>Example</strong></p>
+<pre><code>
+    Matrix: [0, 5, 2, 7]
+            [5, 0, 5, 3]
+            [3, 1, 0, 6]
+            [4, 5, 4, 0]
+
+    Output:
+            length = 10
+            tour = (0 2 1 3 0)
+
+</code></pre><p><strong>BONUS 1:</strong> For a given number N, create a random NxN distance matrix and find a solution for this matrix.</p>
+<p><strong>BONUS 2:</strong> Find a solution for a random matrix of size 15x15 or 20x20</p>
+<h2 id="about-the-solutions-1">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/abigail/perl/ch-2.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/arne-sommer/perl/ch-2.pl"><strong>Arne Sommer</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/bruce-gray/perl/ch-2.pl"><strong>Bruce Gray</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/mattneleigh/perl/ch-2.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/perlboy1967/perl/ch-2.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/paulo-custodio/perl/ch-2.pl"><strong>Paulo Custodio</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/pete-houston/perl/ch-2.pl"><strong>Pete Houston</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/stuart-little/perl/ch-2.pl"><strong>Stuart Little</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>There were only 19 working submissions for the second task this past week. The Traveling Salesman problem is, after all, a hard problem.</p>
+<p>Well, technically it&rsquo;s hard, as in NP-hard. Which means it&rsquo;s likely there are no polynomial-time algorithms to calculate a solution. Which often means a brute-force algorithm is easy to implement but certain to blow up in complexity. Thus the bonus question, of what happens to your solution as the number of interconnections increases.</p>
+<p>I believe the intent of the bonus question refers to the fact that the base algorithm runs in exponential time, so to rephrase things: Can your algorithm handle input of 15x15? How about 20x20?</p>
+<p>The problem requires us to in some way look at all the ways possible to interconnect the city matrix, meaning we need to examine a lot of possible pathways. There are ways that have been found to somewhat simplify the problem, allowing us to partially evaluate tours and perform some preemptory pruning to avoid some obviously unfruitful work, but in the end the complexity remains exponential in nature, just more restrained in its growth factor. The apparent lack of a polynomial solution has led to quite a bit of work in calculating boundaries to restrain the search space, both lower and upper, for both complete tours and smaller subtours, allowing researchers to focus the algorithmic processing required to find an optimal solution, and proving that the solution found is optimal.</p>
+<p>The difficulty of finding exact, optimal solutions for large collections of data points had also driven research into developing practical sub-optimal algorithms that work much more quickly with less complexity. When an optimal solution cannot be easily obtained, this does not affect the inital cause that required the solution, and sometimes we need to make our best guess.</p>
+<blockquote>
+<p>**“A good plan, violently executed now, is better than a perfect plan next week.”**<br>
+— George S. Patton</p>
+</blockquote>
+<p>To this end a great many heuristic algorithms for the TSP have been developed over the years, and the open-ended nature of the problem space allows new approaches to be taken as technologies evolve. Some say three new techniques have been developed since I started this review.  We did see a handful of these heuristic techniques implemented among the submissions, and will follow our exploration of optimal solutions with a discussion of these approximate approaches.</p>
+<p>Finally, with apologies for contradicting Dave, I find asymmetric cost maps to be a generally more realistic modeling of real-world data rather than a random quirk of the map making process. To wit: from where I live it takes about 7 hours, if I recall, to fly to Las Vegas for a some corporate conference <em>(Remember those? People would meet their peers, learn things and get into trouble and such? It sounds like the stuff of myth, before the Black Ships came&hellip;)</em>. Anyway, because we could surf the jet stream, it would only take about 4 1/2 hours to get back, riding high on the wind. It&rsquo;s been a while, and I don&rsquo;t remember the exact numbers, but that&rsquo;s pretty close. So there&rsquo;s a fine real-world example of some serious asymmetry for you.</p>
+<h2 id="exact-solutions">EXACT solutions</h2>
+<p>The Traveling Salesman problem, as we said, remains one of the great unsolved NP-hard problems in computer science. Thus there are no known polynomial-time, &ldquo;easy&rdquo; methods to simplifying the inherent exponentially growing complexity of the interconnections presented. That said,  incremental advancements have been made in the study, lowering the complexity from super-exponetial to &ldquo;merely&rdquo; exponential time, at the cost of greatly enlarged memory requirements.</p>
+<p>Concorde, the most sophisticated algorithm as-yet developed, uses linear programming techniques to narrow the search space by iteratively identifying suboptimal areas in a tour and healing them until a provably optimal solution is found. Linear programing itself is a bit of an art in finding the suboptimal centers in the solution requiring further attention — locating the &ldquo;cutting plane&rdquo; — so constructing this process algorithmically has proved challenging, and is what separates out Concorde from the pack. This is fascinating work, but no one really explored the techniques for this challenge.</p>
+<p>Although no technique can be computationally called simple, some methods are better than others at finding a exact, minimal and hence optimal solution, and several solutions utilized the Held-Karp algorithm, a dynamic programming solution that trades some computational complexity for greatly enlarged memory requirements.</p>
+<h3 id="an-exhausted-permutation">an EXHAUSTED PERMUTATION</h3>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/arne-sommer/perl/ch-2.pl"><strong>Arne Sommer</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/perlboy1967/perl/ch-2.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/pete-houston/perl/ch-2.pl"><strong>Pete Houston</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/stuart-little/perl/ch-2.pl"><strong>Stuart Little</strong></a></p>
+<p>In the exhaustive approach, every combination of cities is permuted and the configuration summed, with a running tally of the smallest sum and the path taken to arrive at it. As cities are added to the configuration the dataset of interconnections grows with it, resulting in factorial growth — exponential with an increasing exponent — or super-exponential growth.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/arne-sommer/perl/ch-2.pl"><strong>Arne Sommer</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/arne-sommer/raku/ch-2.raku">Raku</a></p>
+<p>Arne will start us off with a demonstration of an exhaustive permutation solution. Using <code>Algorithm::Permute</code> he produces iterations of permutations of the city identifiers, each permutation representing an alternative tour available.</p>
+<p>In Arne&rsquo;s implementation all cities are permuted, creating circular duplication in the tours with the starting city set in differing positions. To counter this each path is quickly cycled through a complete rotation and rotational duplicates are removed. Each individual path is summed, including the return leg to base, and the shortest path selected.</p>
+<p>The circular tour aspect of the task, permuting through the cities and back to a fixed base, proved a bother to accommodate.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $p_iterator <span style="color:#f92672">=</span> Algorithm::Permute<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span> ( <span style="color:#f92672">\</span>@p2 );
+
+    PERM:
+    <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">my</span> @path <span style="color:#f92672">=</span> $p_iterator<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">next</span>)
+    {
+      <span style="color:#66d9ef">my</span> $candidate <span style="color:#f92672">=</span> join(<span style="color:#e6db74">&#34; &#34;</span>, @path);
+
+      <span style="color:#66d9ef">my</span> @p <span style="color:#f92672">=</span> @path;
+
+      <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $size)
+      {
+        push(@p, shift @p);
+
+        <span style="color:#66d9ef">next</span> PERM <span style="color:#66d9ef">if</span> $seen{ join(<span style="color:#e6db74">&#34; &#34;</span>, @p) };
+      }
+
+      $seen{$candidate} <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+
+      push(@path, $path[<span style="color:#ae81ff">0</span>]);
+      <span style="color:#66d9ef">my</span> @path2 <span style="color:#f92672">=</span> @path;
+
+      <span style="color:#66d9ef">my</span> $from   <span style="color:#f92672">=</span> shift @path;
+      <span style="color:#66d9ef">my</span> $length <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+      <span style="color:#66d9ef">while</span> (@path)
+      {
+        <span style="color:#66d9ef">my</span> $to <span style="color:#f92672">=</span> shift @path;
+        $length <span style="color:#f92672">+=</span> $NN[$from][$to];
+        say <span style="color:#e6db74">&#34;: &#34;</span> <span style="color:#f92672">.</span> join(<span style="color:#e6db74">&#34; &#34;</span>, @path2) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34; | $from -&gt; $to = &#34;</span> <span style="color:#f92672">.</span> $NN[$from][$to] <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34; (sum $length)&#34;</span> <span style="color:#66d9ef">if</span> $verbose;
+        $from <span style="color:#f92672">=</span> $to;
+      }
+      say <span style="color:#e6db74">&#34;&#34;</span> <span style="color:#66d9ef">if</span> $verbose;
+
+      <span style="color:#66d9ef">if</span> ($solution_length <span style="color:#f92672">&gt;</span> $length)
+      {
+        $solution_length <span style="color:#f92672">=</span> $length;
+        @solution <span style="color:#f92672">=</span> @path2;
+      }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/stuart-little/perl/ch-2.pl"><strong>Stuart Little</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/stuart-little/haskell/ch-2.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/stuart-little/lua/ch-2.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/stuart-little/node/ch-2.js">Node</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/stuart-little/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/stuart-little/raku/ch-2.raku">Raku</a></p>
+<p>Stuart presents us with an assortment of, I must say, rather cryptic subroutines to perform his exhaustive search. However with a little help deciphering his method becomes clear. First off, <code>mkRMat()</code> uses a pair of nested <code>map</code> functions to return a random matrix of size <code>$n</code>, and <code>sayMat()</code> displays it all pretty-like. That&rsquo;s that. Now to the meat of the matter we see <code>pathCost()</code>, which given a path array in the matrix iterates through it using a <code>map</code> function over the indices, looking up the matrix value for the distance from each city to the next.</p>
+<p>The real work is done by <code>permute()</code>, from <code>Algorithm::Permute</code>, which in this form will grab successive permutations and apply the given callback function on each, effectively looping over all possibilities, calculating the path cost and keeping a running tally of the minimal path and value.</p>
+<p>Add some I/O and that&rsquo;s all we need to do here.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Algorithm::Permute <span style="color:#e6db74">qw(permute)</span>;
+    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw(sum)</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">mkRMat</span>($n) {
+        <span style="color:#66d9ef">my</span> @mat <span style="color:#f92672">=</span> map {<span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> $_; <span style="color:#66d9ef">my</span> @row <span style="color:#f92672">=</span> map {($_ <span style="color:#f92672">==</span> $i) ? (<span style="color:#ae81ff">0</span>) : (int(rand(<span style="color:#ae81ff">9</span>))<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)} (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$n); <span style="color:#f92672">\</span>@row} (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$n);
+        <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@mat;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">sayMat</span>($m) {
+        <span style="color:#66d9ef">for</span> (@{$m}) {
+        say <span style="color:#e6db74">&#34;@{$_}&#34;</span>;
+        }
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">pathCost</span>($path,$mat) {
+        <span style="color:#66d9ef">return</span> sum map {$mat<span style="color:#f92672">-&gt;</span>[$path<span style="color:#f92672">-&gt;</span>[$_]]<span style="color:#f92672">-&gt;</span>[$path<span style="color:#f92672">-&gt;</span>[($_<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>) % <span style="color:#960050;background-color:#1e0010">(</span>scalar @{$path})]]} (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#$path)
+    }
+
+    <span style="color:#66d9ef">my</span> $mat <span style="color:#f92672">=</span> mkRMat($ARGV[<span style="color:#ae81ff">0</span>]);
+
+    say <span style="color:#e6db74">&#34;Your matrix:&#34;</span>;
+    sayMat($mat);
+
+    <span style="color:#66d9ef">my</span> @init<span style="color:#f92672">=</span>(<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$ARGV[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
+    <span style="color:#66d9ef">my</span> @sol <span style="color:#f92672">=</span> @init;
+    <span style="color:#66d9ef">my</span> $cost<span style="color:#f92672">=</span>pathCost(<span style="color:#f92672">\</span>@init,$mat);
+
+    permute { <span style="color:#66d9ef">if</span> ((<span style="color:#66d9ef">my</span> $newCost <span style="color:#f92672">=</span> pathCost(<span style="color:#f92672">\</span>@init,$mat)) <span style="color:#f92672">&lt;</span> $cost) {$cost <span style="color:#f92672">=</span> $newCost; @sol <span style="color:#f92672">=</span> @init} } @init;
+
+    say <span style="color:#e6db74">&#34;Optimal cost: $cost&#34;</span>;
+    say <span style="color:#e6db74">&#34;Optimal path: @sol $sol[0]&#34;</span>;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/perlboy1967/perl/ch-2.pl"><strong>Niels van Dijke</strong></a></p>
+<p>With Niels, we see a return of the <code>MCE</code>, &ldquo;Multi-Core Engine&rdquo; to run his application on the maximum number of threads available. This should speed computation up considerably, if not by a direct multiple of the number of cores, then a sizable faction at least.</p>
+<p>Lists of permutations are generated, then handed over the the <code>MCE</code> for distribution among the worker proceses. To locate the matrix position for the cost to travel form one city to another, the <code>List::Util::slide()</code> function is used in a cleaver fashion, along with <code>sum()</code>, to fill the indices.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> MCE;
+    <span style="color:#66d9ef">use</span> MCE::Util;
+
+    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw(sum min)</span>;
+    <span style="color:#66d9ef">use</span> List::MoreUtils <span style="color:#e6db74">qw(slide)</span>;
+    <span style="color:#66d9ef">use</span> Algorithm::Combinatorics <span style="color:#e6db74">qw(permutations)</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">theTravellingSalesman</span>($) {
+      <span style="color:#66d9ef">my</span> ($arM) <span style="color:#f92672">=</span> @_;
+
+      <span style="color:#66d9ef">my</span> $min;
+      <span style="color:#66d9ef">my</span> $minP;
+
+      <span style="color:#75715e"># Suppress &#39;Name &#34;main::(a|b)&#34; used only once: possible typo&#39; messages</span>
+      ($a,$b) <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>);
+
+      <span style="color:#66d9ef">my</span> %res;
+
+      <span style="color:#75715e"># Using brute force &#39;permutations&#39;</span>
+      <span style="color:#66d9ef">my</span> @i <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span>  scalar(@{$arM<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]})<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
+      <span style="color:#66d9ef">my</span> $iter <span style="color:#f92672">=</span> permutations(<span style="color:#f92672">\</span>@i);
+
+      <span style="color:#66d9ef">my</span> $mce <span style="color:#f92672">=</span> MCE<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(
+        chunk_size <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1_000</span>,
+        max_workers <span style="color:#f92672">=&gt;</span> MCE::Util::get_ncpu(),
+        gather <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>%res,
+        user_func <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> {
+          <span style="color:#66d9ef">my</span> ($mce, $chunk_ref, $chunk_id) <span style="color:#f92672">=</span> @_;
+
+          <span style="color:#66d9ef">my</span> %ret; <span style="color:#66d9ef">my</span> $min; <span style="color:#66d9ef">my</span> @minV;
+          <span style="color:#66d9ef">foreach</span> (@$chunk_ref) {
+
+            <span style="color:#75715e"># This is the &#39;magic&#39; line ;-)</span>
+            <span style="color:#66d9ef">my</span> $m <span style="color:#f92672">=</span> sum slide {$arM<span style="color:#f92672">-&gt;</span>[$a][$b]} @$_, $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>];
+
+            <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>defined $min <span style="color:#f92672">or</span> $m <span style="color:#f92672">&lt;</span> $min) {
+              @minV <span style="color:#f92672">=</span> (@$_, $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]);
+              $min <span style="color:#f92672">=</span> $m
+            }
+          }
+          $ret{$min} <span style="color:#f92672">=</span> [@minV];
+          MCE<span style="color:#f92672">-&gt;</span>gather(%ret);
+        }
+      );
+
+      <span style="color:#66d9ef">my</span> @p;
+      <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">my</span> $ar <span style="color:#f92672">=</span> $iter<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">next</span>) {
+        push(@p,$ar);
+        <span style="color:#66d9ef">if</span> (scalar(@p) <span style="color:#f92672">==</span> <span style="color:#ae81ff">10_000</span>) {
+          <span style="color:#66d9ef">print</span> STDERR <span style="color:#e6db74">&#39;.&#39;</span>;
+          $mce<span style="color:#f92672">-&gt;</span>process([@p]);
+          @p <span style="color:#f92672">=</span> ();
+        }
+      }
+      <span style="color:#66d9ef">print</span> STDERR <span style="color:#e6db74">&#34;\n&#34;</span>;
+
+      $mce<span style="color:#f92672">-&gt;</span>process([@p]) <span style="color:#66d9ef">if</span> (scalar(@p));
+
+      $min <span style="color:#f92672">=</span> min(keys %res);
+
+      <span style="color:#66d9ef">return</span> [$min,$res{$min}];
+    }
+</code></pre></div><h3 id="a-recursive-approach">a RECURSIVE approach</h3>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/abigail/perl/ch-2.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/bruce-gray/perl/ch-2.pl"><strong>Bruce Gray</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/paulo-custodio/perl/ch-2.pl"><strong>Paulo Custodio</strong></a></p>
+<p>The task is well suited to a recursive solution, where individual path solutions are determined in a depth-first search. In the simplest form all paths are examined and the shortest remembered, but various early exit options are also available to this approach to minimize unproductive efforts — when, for instance, the current path sum already exceeds the minimum.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a></p>
+<p>Dave will demonstrate the basic technique. The tour length is recalculated at each recursion, however this also allows him to exit early should a partial solution ever exceed the current minimum total length. As the current minimum tour length is decreased as shorter solutions are found, this action will prune more and more paths, avoiding unproductive effort.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">travelling_salesman</span> ( $map, $loc = 0, $tour = [] ) {
+        push $tour<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, $loc;
+        <span style="color:#66d9ef">my</span> $l <span style="color:#f92672">=</span> tour_length( $map, $tour );
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">unless</span> $l <span style="color:#f92672">&lt;</span> $f;
+
+        <span style="color:#66d9ef">my</span> %tour    <span style="color:#f92672">=</span> map  { ( $_, <span style="color:#ae81ff">1</span> ) } $tour<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+        my @options <span style="color:#f92672">=</span> grep { <span style="color:#f92672">!</span>$tour{$_} } <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> scalar $map<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+
+        if ( scalar @options ) {
+            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $o (@options) {
+                <span style="color:#66d9ef">my</span> $next<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">=</span> <span style="color:#960050;background-color:#1e0010">$</span>tour<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+                travelling_salesman( $map, $o, $next );
+            }
+        }
+        <span style="color:#66d9ef">else</span> {
+            push $tour<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, $tour<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>];
+            <span style="color:#66d9ef">my</span> $l <span style="color:#f92672">=</span> tour_length( $map, $tour );
+            say join <span style="color:#e6db74">&#39; &#39;</span>, <span style="color:#e6db74">&#39;END&#39;</span>, $l, <span style="color:#e6db74">&#39;&#39;</span>, $f, <span style="color:#e6db74">&#39;&#39;</span>, $tour<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+            if ( $l <span style="color:#f92672">&lt;</span> $f ) {
+                @final_tour <span style="color:#f92672">=</span> $tour<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+                <span style="color:#960050;background-color:#1e0010">$</span>f          <span style="color:#f92672">=</span> $l;
+            }
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/bruce-gray/perl/ch-2.pl"><strong>Bruce Gray</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/bruce-gray/raku/ch-2.raku">Raku</a></p>
+<p>Bruce also employs a depth-first recursion to explore all possible intercity transport options. He does add the current value of the cost taken in partial tour so far to his subroutine calls, facilitating the decision to exit a unfruitful recursion once it exceeds the current minimum complete cost.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">tsp</span> {
+        die <span style="color:#66d9ef">if</span> @_ <span style="color:#f92672">!=</span> <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">my</span> @G <span style="color:#f92672">=</span> @{<span style="color:#f92672">+</span>shift};
+
+        <span style="color:#66d9ef">my</span> @visited <span style="color:#f92672">=</span> map { <span style="color:#ae81ff">0</span> } @G;
+        <span style="color:#66d9ef">my</span> %best <span style="color:#f92672">=</span> ( cost <span style="color:#f92672">=&gt;</span> (<span style="color:#f92672">~</span><span style="color:#ae81ff">0</span> <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">1</span>), path <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;&#39;</span> );
+
+        <span style="color:#66d9ef">my</span> $minimum_weight_Hamiltonian_cycle;
+        $minimum_weight_Hamiltonian_cycle <span style="color:#f92672">=</span> <span style="color:#66d9ef">sub</span> {
+            <span style="color:#66d9ef">my</span> ( $current_position, $count, $cost_so_far, @path ) <span style="color:#f92672">=</span> @_;
+
+            <span style="color:#66d9ef">my</span> $current_row <span style="color:#f92672">=</span> $G[$current_position];
+
+            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">if</span> ($cost_so_far <span style="color:#f92672">+</span> $current_row<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]) <span style="color:#f92672">&gt;</span> $best{cost};
+
+            <span style="color:#66d9ef">if</span> ($count <span style="color:#f92672">==</span> @G <span style="color:#f92672">and</span> $current_row<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]) {
+                <span style="color:#66d9ef">my</span> $cost <span style="color:#f92672">=</span> $cost_so_far <span style="color:#f92672">+</span> $current_row<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>];
+                %best <span style="color:#f92672">=</span> ( cost <span style="color:#f92672">=&gt;</span> $cost, path <span style="color:#f92672">=&gt;</span> join(<span style="color:#e6db74">&#39; &#39;</span>, @path) ) <span style="color:#66d9ef">if</span> $cost <span style="color:#f92672">&lt;</span> $best{cost};
+                <span style="color:#66d9ef">return</span>; <span style="color:#75715e"># End of recursion.</span>
+            }
+
+            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i ( grep { <span style="color:#f92672">!</span>$visited[$_] } keys @visited ) {
+                <span style="color:#66d9ef">my</span> $node_cost <span style="color:#f92672">=</span> $current_row<span style="color:#f92672">-&gt;</span>[$i]
+                    <span style="color:#f92672">or</span> <span style="color:#66d9ef">next</span>; <span style="color:#75715e"># Zero would mean same node, or no path from one node to next.</span>
+
+                $visited[$i] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+                $minimum_weight_Hamiltonian_cycle<span style="color:#f92672">-&gt;</span>( $i, $count <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, $cost_so_far <span style="color:#f92672">+</span> $node_cost, (@path, $i) );
+                $visited[$i] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+            }
+        };
+
+        $visited[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+        $minimum_weight_Hamiltonian_cycle<span style="color:#f92672">-&gt;</span>( <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, );
+
+        <span style="color:#66d9ef">return</span> %best;
+    }
+</code></pre></div><h3 id="the-held-karp-algorithm">the HELD-KARP algorithm</h3>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a></p>
+<p>The Held-Karp algorithm is a dynamic programming method that finds an exact solution by calculating the optimal route from the base to each other city, as routed through a series of successively larger sets of intermediary points.  Once these routes are known, the return leg is added to each total and the shortest result selected as the optimal cycle.</p>
+<p>The saving in the method are realized by the dynamic growth of the partial solutions, as the sets of intermediate cities are expanded. Once a shortest path through a smaller set of intermediates has been decided, then any other permutation of those cities in calculating the next set, with one more element, need never be considered. This avoids whole blocks of repetitive calculations.</p>
+<p>The downside is the multidimensional matrix of partial solutions is quite large. The dynamic programming comes into play when we wish to extend our tour for an additional city using the knowledge of best routes already computed. At the beginning, selecting the best paths from <em>A</em> to the remaining cities, each through a set <em>S</em> of only one additional city is trivial: as there are no permutations we can directly compute the values for each city not already represented and determine the minimal cost; this intermediate city is the best way to get from the start to the designated end city through one other city. We can then use this set of solutions, one for each destination, to build new sets to extend the destination one city further. Again only the optimal sub-path need be considered for each remaining unvisited destination, reducing the complexity down to a choice between <em>k</em>-2 elements for each new destination. This process is expanded until all cities are in the set of the start city, the destination city and the traversed intermediates. Adding the cost of the return leg from the final destination to the start completes the circuit and the minimum is selected from the final set of paths.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a></p>
+<p>As he has been so kind as to include a running commentary describing the steps in his implementation, we&rsquo;ll start with his submission. The partial solutions data is stored as a multidimensional hash, keyed primarily on the variable-length set of visited cities: we need a dimension for our destination city, and a destination for our traversal set, but that dimension is itself multidimensional as to include all <em>n</em> choose <em>k</em> combinations of possible remaining cities to populate the set.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">tsp_held_karp</span> ($dist) {
+        <span style="color:#75715e"># $c{&#34;@s&#34;}{$c} is the minimum distance from 0 to $c visiting all</span>
+        <span style="color:#75715e"># cities in @s.  The key for %c is a set. Here a set is represented</span>
+        <span style="color:#75715e"># by a space separated, ordered list of its elements.</span>
+        <span style="color:#66d9ef">my</span> %c;
+        <span style="color:#75715e"># $p{&#34;@s&#34;}{$c} is the predecessor of $c when visiting all cities in</span>
+        <span style="color:#75715e"># @s, i.e. the city in @s where the minimum $c{&#34;@s&#34;}{$c} is taken.</span>
+        <span style="color:#66d9ef">my</span> %p;
+        <span style="color:#75715e"># The values of %c are trivial for singletons @s = ($c).</span>
+        $c{$_}{$_} <span style="color:#f92672">=</span> $dist<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>][$_] <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $#$dist;
+        <span style="color:#75715e"># Loop over all subsets of at least two cities and omitting 0.</span>
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $s (<span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> @$dist <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) {
+            forcomb {
+                <span style="color:#75715e"># Get the current subset of $s cities.</span>
+                <span style="color:#66d9ef">my</span> @s <span style="color:#f92672">=</span> @{[<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> @$dist <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]}[@_];
+                <span style="color:#75715e"># Loop over all the cities in the set.</span>
+                <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $k (@s) {
+                    <span style="color:#75715e"># Remove the current city from the set.</span>
+                    <span style="color:#66d9ef">my</span> @s_k <span style="color:#f92672">=</span> grep {$_ <span style="color:#f92672">!=</span> $k} @s;
+                    <span style="color:#75715e"># Dynamic programming:</span>
+                    <span style="color:#75715e"># The set @s_k (i.e. S\{k}) has one element less than @s</span>
+                    <span style="color:#75715e"># and thus all the minimum distances from 0 to any city</span>
+                    <span style="color:#75715e"># in @s_k via @s_k are already known.  This allows to</span>
+                    <span style="color:#75715e"># calculate the minimum distance from 0 to $k via all</span>
+                    <span style="color:#75715e"># cities in @s.  Keeping track of the actual predecessor</span>
+                    <span style="color:#75715e"># in @s_k.</span>
+                    <span style="color:#66d9ef">my</span> $min <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;inf&#39;</span>;
+                    <span style="color:#66d9ef">my</span> $p;
+                    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $m (@s_k) {
+                        <span style="color:#66d9ef">my</span> $cm <span style="color:#f92672">=</span> $c{<span style="color:#e6db74">&#34;@s_k&#34;</span>}{$m} <span style="color:#f92672">+</span> $dist<span style="color:#f92672">-&gt;</span>[$m][$k];
+                        <span style="color:#66d9ef">if</span> ($cm <span style="color:#f92672">&lt;</span> $min) {
+                            $min <span style="color:#f92672">=</span> $cm;
+                            $p <span style="color:#f92672">=</span> $m;
+                        }
+                    }
+                    $c{<span style="color:#e6db74">&#34;@s&#34;</span>}{$k} <span style="color:#f92672">=</span> $min;
+                    $p{<span style="color:#e6db74">&#34;@s&#34;</span>}{$k} <span style="color:#f92672">=</span> $p;
+                }
+            } @$dist <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, $s;
+        }
+        <span style="color:#75715e"># To complete the circle: for all cities in the full set of all</span>
+        <span style="color:#75715e"># cities except the start find the minimum from the start to that</span>
+        <span style="color:#75715e"># city plus the distance back to the start.</span>
+        <span style="color:#66d9ef">my</span> $min <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;inf&#39;</span>;
+        <span style="color:#66d9ef">my</span> $last;
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $k (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $#$dist) {
+            <span style="color:#66d9ef">if</span> ((<span style="color:#66d9ef">my</span> $m <span style="color:#f92672">=</span> $c{<span style="color:#e6db74">&#34;@{[1 .. $#$dist]}&#34;</span>}{$k} <span style="color:#f92672">+</span> $dist<span style="color:#f92672">-&gt;</span>[$k][<span style="color:#ae81ff">0</span>]) <span style="color:#f92672">&lt;</span> $min) {
+                $min <span style="color:#f92672">=</span> $m;
+                $last <span style="color:#f92672">=</span> $k;
+            }
+        }
+
+        <span style="color:#75715e"># So far this was almost straight from the wiki pseudo code.  Now</span>
+        <span style="color:#75715e"># building the actual circle.  We only know the last city in the</span>
+        <span style="color:#75715e"># tour yet but are able to backtrack using %p.</span>
+        <span style="color:#66d9ef">my</span> @circle <span style="color:#f92672">=</span> ($last, <span style="color:#ae81ff">0</span>);
+        <span style="color:#75715e"># The set of all cities except 0.</span>
+        <span style="color:#66d9ef">my</span> @remainder <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $#$dist;
+        <span style="color:#66d9ef">while</span> (@remainder <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>) {
+            <span style="color:#75715e"># Find the predecessor.</span>
+            <span style="color:#66d9ef">my</span> $pred <span style="color:#f92672">=</span> $p{<span style="color:#e6db74">&#34;@remainder&#34;</span>}{$last};
+            unshift @circle, $pred;
+            <span style="color:#75715e"># Remove the last city from the set and make its predecessor</span>
+            <span style="color:#75715e"># the new last city.</span>
+            @remainder <span style="color:#f92672">=</span> grep {$_ <span style="color:#f92672">!=</span> $last} @remainder;
+            $last <span style="color:#f92672">=</span> $pred;
+        }
+        <span style="color:#75715e"># Complete the circle with the start.</span>
+        unshift @circle, <span style="color:#ae81ff">0</span>;
+        (<span style="color:#f92672">\</span>@circle, $min);
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a></p>
+<p>Choroba interestingly stores his visited-city set information as set bits in a binary number, with each 1 corresponding to a city in the set. This bit of cleverness proves to be quite efficient, resulting in a very quick implementation.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">tsp</span> {
+        <span style="color:#66d9ef">my</span> ($matrix) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> %shortest;
+        <span style="color:#66d9ef">my</span> @inv_mask;
+
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $k (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $#$matrix) {
+            $shortest{ <span style="color:#ae81ff">2</span> <span style="color:#f92672">**</span> $k }{$k} <span style="color:#f92672">=</span> $matrix<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>][$k];
+            $inv_mask[$k] <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">**</span> @$matrix <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">**</span> $k;
+        }
+
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $size (<span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> $#$matrix) {
+            <span style="color:#66d9ef">my</span> $binary <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;1&#39;</span> x $size <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;0&#39;</span> x ($#$matrix <span style="color:#f92672">-</span> $size);
+            <span style="color:#66d9ef">my</span> $mask <span style="color:#f92672">=</span> oct(<span style="color:#e6db74">&#34;0b$binary&#34;</span>) <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">1</span>;
+            <span style="color:#66d9ef">while</span> ($mask) {
+                <span style="color:#66d9ef">my</span> @S <span style="color:#f92672">=</span> grep substr($binary, $#$matrix <span style="color:#f92672">-</span> $_ , <span style="color:#ae81ff">1</span>), <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $#$matrix;
+                <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $k (@S) {
+                    <span style="color:#66d9ef">my</span> @mins;
+                    <span style="color:#66d9ef">my</span> $from <span style="color:#f92672">=</span> $shortest{ $mask <span style="color:#f92672">&amp;</span> $inv_mask[$k] };
+                    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $m (@S) {
+                        <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $m <span style="color:#f92672">==</span> $k;
+                        push @mins, $from<span style="color:#f92672">-&gt;</span>{$m} <span style="color:#f92672">+</span> $matrix<span style="color:#f92672">-&gt;</span>[$m][$k];
+                    }
+                    $shortest{$mask}{$k} <span style="color:#f92672">=</span> min(@mins);
+                }
+
+                <span style="color:#75715e"># Find the nearest smaller mask with the same number of 1&#39;s.</span>
+                <span style="color:#75715e"># Similar to PWC 114/2.</span>
+                <span style="color:#66d9ef">my</span> $pos <span style="color:#f92672">=</span> rindex $binary, <span style="color:#e6db74">&#39;10&#39;</span>;
+                <span style="color:#66d9ef">if</span> (<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">==</span> $pos) {
+                    $mask <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+                } <span style="color:#66d9ef">else</span> {
+                    substr $binary, $pos, <span style="color:#ae81ff">2</span>, <span style="color:#e6db74">&#39;01&#39;</span>;
+                    $binary <span style="color:#f92672">.=</span> <span style="color:#e6db74">&#39;0&#39;</span> x substr($binary, $pos <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>) <span style="color:#f92672">=~</span> tr<span style="color:#e6db74">/0/</span><span style="color:#f92672">/</span>d;
+                    $mask <span style="color:#f92672">=</span> oct(<span style="color:#e6db74">&#34;0b$binary&#34;</span>) <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">1</span>;
+                }
+            }
+        }
+
+        <span style="color:#66d9ef">my</span> $full_set <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">**</span> @$matrix <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>;
+        <span style="color:#66d9ef">my</span> $length <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;INF&#39;</span>;
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $start (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $#$matrix) {
+            <span style="color:#66d9ef">my</span> $p <span style="color:#f92672">=</span> $shortest{$full_set}{$start} <span style="color:#f92672">+</span> $matrix<span style="color:#f92672">-&gt;</span>[$start][<span style="color:#ae81ff">0</span>];
+            $length <span style="color:#f92672">=</span> $p <span style="color:#66d9ef">if</span> $p <span style="color:#f92672">&lt;</span> $length;
+        }
+        <span style="color:#66d9ef">return</span> $length
+    }
+</code></pre></div><h2 id="heuristic-solutions">HEURISTIC solutions</h2>
+<p>Even though the problem of finding what is known to be the best, optimal solution to a given dataset can be a computationally exhausting problem, this doesn&rsquo;t remove the need presented by these problems in the world. Delivery trucks still need to be routed and salesmen still have to sell. Sometimes in the absence of the perfect plan a pretty good plan will have to do. Thus quite a bit of work has been applied to creating heuristic algorithms for solving a given large dataset with a better-than-random strategy, and on improving and refining the sub-optimal guesses made. The best methods can find a path within a few percentage points of optimal cost in a small fraction of the time required to find the true minimum.</p>
+<h3 id="nearest-neighbors-friends-and-relations">nearest NEIGHBORS, FRIENDS and RELATIONS</h3>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/mattneleigh/perl/ch-2.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/pete-houston/perl/ch-2.pl"><strong>Pete Houston</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a></p>
+<p>In the nearest neighbor strategy we simply pick the closest city among those available from the starting point and move there. Then we assess the situation and pick the new closest unvisited city. This progresses, one city after another, until there are no more cities to visit, at which point we return home.</p>
+<p>In a bidirectional variant both ends of the chain are considered when adding new links, somewhat alleviating the possibility of finding oneself a long way from home, with one choice of a lengthy suboptimal return journey.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/mattneleigh/perl/ch-2.pl"><strong>Matthew Neleigh</strong></a></p>
+<p>Matthew has provided us with a nice example of the algorithm, with the steps clearly commented. The tour starts at the base city, then proceeds from there, always choosing the closest city to the last visited to continue forward, until at the end we loop back to the start to complete the circuit.</p>
+<p>For such a simple and computationally quick idea it is remarkably effective at delivering a pretty-good approximation of the optimal tour, in a tiny fraction of the time for an exhaustive search.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">plan_sales_route</span>{
+        <span style="color:#66d9ef">my</span> $grid <span style="color:#f92672">=</span> shift();
+        <span style="color:#66d9ef">my</span> $start <span style="color:#f92672">=</span> shift();
+
+        <span style="color:#66d9ef">my</span> $i;
+        <span style="color:#66d9ef">my</span> $j;
+        <span style="color:#66d9ef">my</span> @visited;
+        <span style="color:#66d9ef">my</span> $distance;
+        <span style="color:#66d9ef">my</span> $city;
+        <span style="color:#66d9ef">my</span> $itinerary <span style="color:#f92672">=</span> [
+            <span style="color:#ae81ff">0</span>,
+            <span style="color:#f92672">[]</span>
+        ];
+
+        <span style="color:#75715e"># Initialize a few things</span>
+        $j <span style="color:#f92672">=</span> scalar(@{$grid<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]});
+        $i <span style="color:#f92672">=</span> $j <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">while</span>($j<span style="color:#f92672">--</span>){
+            $visited[$j] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        }
+
+        <span style="color:#75715e"># Start at the specified city- add</span>
+        <span style="color:#75715e"># the city to the tour itinerary and</span>
+        <span style="color:#75715e"># mark it as having been visited</span>
+        push(@{$itinerary<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]}, $start);
+        $visited[$start] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+
+        <span style="color:#75715e"># Take a tour of predetermined length</span>
+        <span style="color:#66d9ef">while</span>($i<span style="color:#f92672">--</span>){
+            <span style="color:#75715e"># Presumably no city will be a</span>
+            <span style="color:#75715e"># million miles away...</span>
+            $distance <span style="color:#f92672">=</span> <span style="color:#ae81ff">1000000</span>;
+            $city <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+            <span style="color:#75715e"># Check all the cities we can get to</span>
+            <span style="color:#75715e"># from the current city</span>
+            <span style="color:#66d9ef">for</span>($j<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; $j<span style="color:#e6db74">&lt;scalar(@{$grid-&gt;</span>[<span style="color:#ae81ff">0</span>]}); $j<span style="color:#f92672">++</span>){
+                <span style="color:#75715e"># Skip this potential next city if</span>
+                <span style="color:#75715e"># we&#39;ve visited already</span>
+                <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span>($visited[$j]);
+
+                <span style="color:#66d9ef">if</span>($grid<span style="color:#f92672">-&gt;</span>[$itinerary<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>][<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]][$j] <span style="color:#f92672">&lt;</span> $distance){
+                    <span style="color:#75715e"># The mileage to this city is lower</span>
+                    <span style="color:#75715e"># than any previously examined</span>
+                    <span style="color:#75715e"># segment; make a note of it</span>
+                    $distance <span style="color:#f92672">=</span> $grid<span style="color:#f92672">-&gt;</span>[$itinerary<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>][<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]][$j];
+                    $city <span style="color:#f92672">=</span> $j;
+                }
+            }
+
+            <span style="color:#75715e"># Add mileage from the next segment to</span>
+            <span style="color:#75715e"># the total, add details of the next</span>
+            <span style="color:#75715e"># segment to the itinerary, and mark</span>
+            <span style="color:#75715e"># the next city as visited</span>
+            $itinerary<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+=</span> $distance;
+            push(@{$itinerary<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]}, $city);
+            $visited[$city] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+        }
+
+        <span style="color:#75715e"># Return to the specified city: add the</span>
+        <span style="color:#75715e"># mileage between the last city visited</span>
+        <span style="color:#75715e"># and the origin city, and put the</span>
+        <span style="color:#75715e"># origin city in the tour itinerary again</span>
+        $itinerary<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+=</span> $grid<span style="color:#f92672">-&gt;</span>[
+            $itinerary<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>][<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
+            ]
+            [$start];
+        push(@{$itinerary<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]}, $start);
+
+        <span style="color:#66d9ef">return</span>($itinerary);
+
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a></p>
+<p>Here Ulrich shows us another example, always progressing forward to the closest remaining city, eventually wrapping up with a return to base.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">while</span> ( scalar ( keys %visited ) <span style="color:#f92672">&lt;</span> $len ) {
+      <span style="color:#66d9ef">my</span> $column <span style="color:#f92672">=</span> findNextCity( $matrix[ $currentPlace ] , <span style="color:#f92672">\</span>%visited ) ;
+      $length <span style="color:#f92672">+=</span> $matrix[ $currentPlace ][ $column ] ;
+      push @tour , $column ;
+      $currentPlace <span style="color:#f92672">=</span> $column ;
+      $visited{ $currentPlace }<span style="color:#f92672">++</span> ;
+    }
+    <span style="color:#75715e">#we must return to the start</span>
+    push @tour , <span style="color:#ae81ff">0</span> ;
+    $length <span style="color:#f92672">+=</span> $matrix[ $currentPlace ][ <span style="color:#ae81ff">0</span> ] ;
+    say <span style="color:#e6db74">&#34;length = $length&#34;</span> ;
+    say <span style="color:#e6db74">&#34;tour = (&#34;</span> <span style="color:#f92672">.</span> join( <span style="color:#e6db74">&#39; &#39;</span> , @tour ) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;)&#34;</span> ;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">findNextCity</span> {
+      <span style="color:#66d9ef">my</span> $array <span style="color:#f92672">=</span> shift ;
+      <span style="color:#66d9ef">my</span> $placesSeen <span style="color:#f92672">=</span> shift ;
+      <span style="color:#66d9ef">my</span> @row <span style="color:#f92672">=</span> @$array ;
+      <span style="color:#66d9ef">my</span> %visited <span style="color:#f92672">=</span> %{$placesSeen} ;
+      <span style="color:#66d9ef">my</span> @sorted <span style="color:#f92672">=</span> sort { $a <span style="color:#e6db74">&lt;=&gt;</span> $b } @row ;
+      <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> ;
+      <span style="color:#66d9ef">my</span> $column <span style="color:#f92672">=</span> findColumn( <span style="color:#f92672">\</span>@row , $sorted[ $i ] ) ;
+      <span style="color:#66d9ef">while</span> ( exists $visited{ $column } ) {
+          $i<span style="color:#f92672">++</span> ;
+          $column <span style="color:#f92672">=</span> findColumn( <span style="color:#f92672">\</span>@row , $sorted[ $i ] ) ;
+      }
+      <span style="color:#66d9ef">return</span> $column ;
+    }
+</code></pre></div><h3 id="a-bidirectional-variant">a BIDIRECTIONAL variant</h3>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/colin-crain/raku/ch-2.raku">Raku</a></p>
+<p>Although I also provided several other solutions — an exhaustive permutation solution, a straightforward implementation of the nearest-neighbor algorithm, and an insertion algorithm described below — the best of the heuristics I explored was a modification of the nearest-neighbor pattern to expand the growing tour from both ends, front and back, adding the shortest path avalable at each iteration. This allowed an out for the algorithm, from being stuck with a long forced return leg back to base at the end of a traversal. Should this cost be exorbinant, this algorithm will likelier have already substituted a new base to the growing path, with hopefully a better ultimate positioning. In theory this should smooth the extremes at the long end of the data towards the center. In the end all cities will end up visited in a loop, so the solution path will need to be rotated until the given base is once again the origin.</p>
+<p>This method seemed to generally improve on the standard algorithm by about 10% or so, but did not outperform that version in every trial.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">nn_bidirectional_ts</span> ($mat) {
+    <span style="color:#75715e">## a nearest-neighbor heuristic</span>
+    <span style="color:#75715e">## bidirectional growth from both ends of the partial tour, selecting the</span>
+    <span style="color:#75715e">## best next step</span>
+
+        <span style="color:#75715e">## create a list of unvisited cities</span>
+        <span style="color:#66d9ef">my</span> %cities <span style="color:#f92672">=</span> map { $_ <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> } keys $mat<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+
+        <span style="color:#960050;background-color:#1e0010">##</span> starting city holds shortest arc
+        <span style="color:#66d9ef">my</span> ($start, $dist) <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>, <span style="color:#e6db74">&#34;Inf&#34;</span>);
+        <span style="color:#66d9ef">my</span> @mins <span style="color:#f92672">=</span> map { <span style="color:#66d9ef">my</span> $idx <span style="color:#f92672">=</span> $_; min grep { $_ <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> } ( $idx<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> ) } $mat<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+        while ( <span style="color:#66d9ef">my</span> ($k, $v) <span style="color:#f92672">=</span> each @mins ) {
+            ($start, $dist) <span style="color:#f92672">=</span> ($k, $v) <span style="color:#66d9ef">if</span> $v <span style="color:#f92672">&lt;</span> $dist;
+        }
+        <span style="color:#66d9ef">my</span> $city <span style="color:#f92672">=</span> first { $mat<span style="color:#f92672">-&gt;</span>[$start][$_] <span style="color:#f92672">==</span> $dist }
+                         (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$mat<span style="color:#f92672">-&gt;</span>[$start]<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">-</span> 1);
+
+        <span style="color:#75715e">## start building the shortest path and removing visited cities from options</span>
+        <span style="color:#66d9ef">my</span> @sp <span style="color:#f92672">=</span> ( $start, $city );
+        delete @cities{ @sp };
+
+        <span style="color:#66d9ef">while</span> (scalar keys %cities) {
+            <span style="color:#66d9ef">my</span> $min_end  <span style="color:#f92672">=</span> min( map { $mat<span style="color:#f92672">-&gt;</span>[$city][$_] } keys %cities );
+            <span style="color:#66d9ef">my</span> $next_end <span style="color:#f92672">=</span> first { $mat<span style="color:#f92672">-&gt;</span>[$city][$_] <span style="color:#f92672">==</span> $min_end }
+                grep { exists $cities{$_} } (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$mat<span style="color:#f92672">-&gt;</span>[$city]<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">-</span> 1);
+
+            <span style="color:#66d9ef">my</span> $min_start  <span style="color:#f92672">=</span> min( map { $mat<span style="color:#f92672">-&gt;</span>[$_][$start] } keys %cities );
+            <span style="color:#66d9ef">my</span> $next_start <span style="color:#f92672">=</span> first { $mat<span style="color:#f92672">-&gt;</span>[$_][$start] <span style="color:#f92672">==</span> $min_start }
+                grep { exists $cities{$_} } (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$mat<span style="color:#f92672">-&gt;</span>[$city]<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">-</span> 1);
+
+            <span style="color:#66d9ef">if</span> ($min_start <span style="color:#f92672">&lt;</span> $min_end) {
+                $dist <span style="color:#f92672">+=</span> $min_start;
+
+                unshift @sp, $next_start;
+
+               delete $cities{ <span style="color:#e6db74">&#34;$next_start&#34;</span> };
+                $start <span style="color:#f92672">=</span> $next_start;
+            }
+            <span style="color:#66d9ef">else</span> {
+                $dist <span style="color:#f92672">+=</span> $min_end;
+
+                push @sp, $next_end;
+
+                delete $cities{ <span style="color:#e6db74">&#34;$next_end&#34;</span> };
+                $city <span style="color:#f92672">=</span> $next_end;
+            }
+        }
+
+        <span style="color:#75715e">## link back to base, rotate and return</span>
+        $dist <span style="color:#f92672">+=</span> $mat<span style="color:#f92672">-&gt;</span>[$city][$start];
+        <span style="color:#66d9ef">while</span> ( $sp[<span style="color:#ae81ff">0</span>] ) { push @sp, shift @sp };
+        <span style="color:#66d9ef">return</span> ( $dist, [ @sp, <span style="color:#ae81ff">0</span> ] );
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/pete-houston/perl/ch-2.pl"><strong>Pete Houston</strong></a></p>
+<p>Pete gives us two solutions today, and exhaustive permutation method and a &ldquo;naive&rdquo; solver, using the nearest-neighbor algorithm. As we&rsquo;ve seen several examples of brute-force permutation, here is his heuristic solution, always picking the lowest cost for the next leg on the tour, but seeking to grow the tour from either end, whichever produces the lower cost.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">naive</span> {
+        <span style="color:#75715e"># Naive solver, takes the shortest step each time to a place we have</span>
+        <span style="color:#75715e"># not been</span>
+        <span style="color:#66d9ef">my</span> $starttime <span style="color:#f92672">=</span> [gettimeofday];
+        <span style="color:#66d9ef">my</span> @d <span style="color:#f92672">=</span> @_;
+
+        <span style="color:#75715e"># Start does not matter, so pick 0</span>
+        <span style="color:#66d9ef">my</span> @route <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">my</span> %targets;
+        @targets{(<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $#d)} <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>) x $#d;
+        <span style="color:#66d9ef">my</span> $dist  <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+        <span style="color:#66d9ef">while</span> (keys %targets) {
+        	<span style="color:#66d9ef">my</span> (@fore, @aft);
+        	<span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#d) {
+        		<span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> $targets{$_};
+        		push @fore, [$_, $d[$route[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]]<span style="color:#f92672">-&gt;</span>[$_]] <span style="color:#66d9ef">unless</span> $_ <span style="color:#f92672">==</span> $route[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+        		push @aft,  [$_, $d[$_]<span style="color:#f92672">-&gt;</span>[$route[<span style="color:#ae81ff">0</span>]]]  <span style="color:#66d9ef">unless</span> $_ <span style="color:#f92672">==</span> $route[<span style="color:#ae81ff">0</span>];
+        	}
+        	<span style="color:#66d9ef">if</span> ($#fore <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">1</span>) {
+        		<span style="color:#66d9ef">if</span> ($fore[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&lt;</span> $aft[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>]) {
+        			$dist <span style="color:#f92672">+=</span> $fore[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">1</span>];
+        			push @route, $fore[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>]
+        		} <span style="color:#66d9ef">else</span> {
+        			$dist <span style="color:#f92672">+=</span> $aft[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">1</span>];
+        			unshift @route, $aft[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>]
+        		}
+        		<span style="color:#66d9ef">last</span>;
+        	}
+        	<span style="color:#75715e"># Sort them by ascending distance</span>
+        	@fore <span style="color:#f92672">=</span> sort { $a<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#e6db74">&lt;=&gt;</span> $b<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] } @fore;
+        	@aft  <span style="color:#f92672">=</span> sort { $a<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#e6db74">&lt;=&gt;</span> $b<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] } @aft;
+        	<span style="color:#66d9ef">my</span> $fgo <span style="color:#f92672">=</span> <span style="color:#66d9ef">my</span> $ago <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        	<span style="color:#75715e"># If both nearest are the same, look at the next</span>
+        	<span style="color:#66d9ef">if</span> ($fore[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">==</span> $aft[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>]) {
+        		<span style="color:#66d9ef">if</span> ($fore[<span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> $fore[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&lt;</span> $aft[<span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> $aft[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>]) {
+        			$fgo <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+        		} <span style="color:#66d9ef">else</span> {
+        			$ago <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+        		}
+        	}
+
+        	push @route, $fore[$fgo][<span style="color:#ae81ff">0</span>];
+        	unshift @route, $aft[$ago][<span style="color:#ae81ff">0</span>];
+        	$dist <span style="color:#f92672">+=</span> $fore[$fgo][<span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> $aft[$ago][<span style="color:#ae81ff">1</span>];
+        	delete @targets{$fore[$fgo][<span style="color:#ae81ff">0</span>], $aft[$ago][<span style="color:#ae81ff">0</span>]};
+        }
+
+        <span style="color:#75715e"># Complete the circuit</span>
+        <span style="color:#66d9ef">if</span> ($route[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">!=</span> $route [<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]) {
+        	$dist <span style="color:#f92672">+=</span> $d[$route[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]][$route[<span style="color:#ae81ff">0</span>]];
+        	push @route, $route[<span style="color:#ae81ff">0</span>];
+        }
+
+        <span style="color:#66d9ef">return</span> ($dist, join (<span style="color:#e6db74">&#39;, &#39;</span>, @route), tv_interval ($starttime));
+    }
+</code></pre></div><h3 id="insertion">INSERTION</h3>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a></p>
+<p>In the insertion strategy, not just the live end, or beginning and end, of the path being forged is considered for addition, but rather at each iteration each edge to the growing path is considered against each remaining city. A variant path is explored with the new city  being inserted, replacing the existing arc, with a the difference in costs to travel to the third city from the start and returning to the destination, versus the original cost to travel direct, minimized across all possibilities. The shortest total length selected is chosen to insert the next city. The insertion process starts with many new cities to consider but only a few paths to insert into, and ends with many edges but few remaining cities. There are many variations on the process,  such as chosing to start with a minimal straight connection or with a triangle tour to assure a closed loop.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/colin-crain/perl/ch-2.pl"><strong>My Own Solution</strong></a></p>
+<p>I was the only one to implement this technique, and offer my results here for your perusal. Although the idea of continuously refining the selection of edges to produce an improved path, always choosing the best next expansion over the whole tour, sounds like a fine scheme, implementing it in an ideal manner proved tricky, specifically is regards to the ideal starting configuration. I chose a triangle as a kernal to expand on, ensuring that we would end up with a complete closed circuit. However it occured to me that by starting with the smallest arcs, only to have them all theoretically replaced, effectively expends these valuable connections, making them unavailable later. Experiments with using the longest arcs to build the base triangle did not noticablly improve matters, and actually seemed ultimately counterproductive, as were designs using two longs and one short. I have reason to believe  the ideal shape may well be composed of three arcs closest to the mean length, but eventually I gave up and returned to the original configuration as statistically it appeared to be slightly superior. I also think the completely random nature of the asymmetrical input data may work against this strategy, and that real-world, more meaningfully interconnected costs depicting real relationships might respond better.</p>
+<p>In the end this was the least effective of the heuristic methods I explored, but still substantally better than a random walk.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">insert_ts</span> ($mat) {
+    <span style="color:#75715e">## an insertion heuristic</span>
+    <span style="color:#75715e">## an original amalgamation of several insertion algorithms</span>
+
+        <span style="color:#75715e">## some generic containers we&#39;ll be reusing</span>
+        <span style="color:#66d9ef">my</span> ($city, $dist);
+
+        <span style="color:#75715e">## create a list of indexes of unvisited cities</span>
+        <span style="color:#66d9ef">my</span> %cities <span style="color:#f92672">=</span> map { $_ <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> } keys $mat<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+
+        <span style="color:#960050;background-color:#1e0010">##</span> starting city holds shortest arc
+        <span style="color:#66d9ef">my</span> ($start, $end);
+        $dist <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Inf&#34;</span>;
+        <span style="color:#66d9ef">my</span> @mins <span style="color:#f92672">=</span> map { <span style="color:#66d9ef">my</span> $idx <span style="color:#f92672">=</span> $_; min grep { $_ <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> } ( $idx<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> ) }
+                       $mat<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+        while ( <span style="color:#66d9ef">my</span> ($k, $v) <span style="color:#f92672">=</span> each @mins ) {
+            ($start, $dist) <span style="color:#f92672">=</span> ($k, $v) <span style="color:#66d9ef">if</span> $v <span style="color:#f92672">&lt;</span> $dist;
+        }
+        $end <span style="color:#f92672">=</span> first { $mat<span style="color:#f92672">-&gt;</span>[$start][$_] <span style="color:#f92672">==</span> $dist }
+                     (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$mat<span style="color:#f92672">-&gt;</span>[$start]<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">-</span> 1);
+        delete @cities{ $start, $end };
+
+        <span style="color:#75715e">## find the city that minimizes the distance from the tour end</span>
+        <span style="color:#75715e">## to the new city and back to the start, to form a triangle</span>
+        <span style="color:#75715e">## tried min and max, this seems slightly better. Should, in an</span>
+        <span style="color:#75715e">## asymmetric matrix, perhaps be closest to the mean.</span>
+        $dist <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Inf&#34;</span>;
+        <span style="color:#66d9ef">for</span> (sort keys %cities) {
+
+            <span style="color:#66d9ef">my</span> $d <span style="color:#f92672">=</span> $mat<span style="color:#f92672">-&gt;</span>[$end][$_] <span style="color:#f92672">+</span> $mat<span style="color:#f92672">-&gt;</span>[$_][$start];
+
+            ($city, $dist) <span style="color:#f92672">=</span> ($_, $d) <span style="color:#66d9ef">if</span> $d <span style="color:#f92672">&lt;</span> $dist;
+        }
+        delete $cities{ $city };
+
+        <span style="color:#75715e">## establish the working subtour</span>
+        <span style="color:#66d9ef">my</span> @tour <span style="color:#f92672">=</span> ( $start, $end, $city, $start );
+
+        <span style="color:#66d9ef">my</span> $pick;
+        <span style="color:#66d9ef">while</span> ( keys %cities ) {
+            <span style="color:#75715e">## find the city with the shortest insertion</span>
+            <span style="color:#66d9ef">for</span> $city ( sort keys %cities ) {
+                <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $start_index (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>@tour<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>) {
+                    <span style="color:#66d9ef">my</span> $d <span style="color:#f92672">=</span> min ( $mat<span style="color:#f92672">-&gt;</span>[$start_index][$city], $mat<span style="color:#f92672">-&gt;</span>[$city][$start_index<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] );
+                    <span style="color:#66d9ef">if</span> ($d <span style="color:#f92672">&lt;</span> $min) {
+                        $pick <span style="color:#f92672">=</span> $city;
+                    }
+                }
+            }
+
+            <span style="color:#75715e">## find the best insert point</span>
+            <span style="color:#66d9ef">my</span> @best <span style="color:#f92672">=</span> (undef, undef, <span style="color:#e6db74">&#34;Inf&#34;</span>);  <span style="color:#75715e">#( city, $insert position, distance );</span>
+            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $start_index (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>@tour<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>) {
+                <span style="color:#66d9ef">my</span> $cost <span style="color:#f92672">=</span> $mat<span style="color:#f92672">-&gt;</span>[$start_index][$pick]
+                            <span style="color:#f92672">+</span> $mat<span style="color:#f92672">-&gt;</span>[$pick][$start_index<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]
+                            <span style="color:#f92672">-</span> $mat<span style="color:#f92672">-&gt;</span>[ $tour[$start_index] ][ $tour[$start_index<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] ];
+                <span style="color:#66d9ef">if</span> ($cost <span style="color:#f92672">&lt;</span> $best[<span style="color:#ae81ff">2</span>]) {
+                    @best <span style="color:#f92672">=</span> ( $pick, $start_index, $cost );
+                }
+            }
+
+            <span style="color:#75715e">## and insert it into the tour after the start index</span>
+            splice @tour, $best[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, $best[<span style="color:#ae81ff">0</span>];
+            delete $cities{ $best[<span style="color:#ae81ff">0</span>] };
+        }
+
+        pop @tour;
+        <span style="color:#66d9ef">while</span> ( $tour[<span style="color:#ae81ff">0</span>] ) { push @tour, shift @tour };
+        push @tour, <span style="color:#ae81ff">0</span>;
+
+        $dist <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i ( <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>@tour<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span> ) {
+            $dist <span style="color:#f92672">+=</span> $mat<span style="color:#f92672">-&gt;</span>[ $tour[$i] ][ $tour[$i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] ]
+        }
+
+        <span style="color:#66d9ef">return</span> ($dist, <span style="color:#f92672">\</span>@tour);
+    }
+</code></pre></div><h3 id="simulated-annealing">simulated ANNEALING</h3>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/wlmb/perl/ch-2a.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>In metalworking, annealing is reheating the work and letting it to cool again in a controlled fashion, allowing internal stresses, local maxima, to smooth themselves out throughout the structure. The analogy is apt, if we consider a working but non-optimal solution as our initial state and add energy to increase the temperature, which allows the system to visit a variety of more and less energetic states, and then allow it to &ldquo;cool&rdquo; in a controlled manner. In the TSP, a sub-optimal route is the base state, and small variations of that state are considered neighbors that may be moved to. When there is more energy in the system, that is when the temperature is hot, there is increased allowance that a barrier presented by a local minimum will be jumped.</p>
+<p>The method employs an oscillation between phases of first setting a new lower temperature and then reestablishing &ldquo;thermal equilibrium&rdquo; — allowing the system to settle into the new parameters. Once this is done the temperature is lowered again and the process repeated. A high initial temperature allows the system to jump to less-optimal states at the beginning, exploring the phase space at a higher granularity, which subsequent lowering of the temperature gradually refines.</p>
+<p>Simulated annealing as a system optimization model has a lot of configurable parameters:</p>
+<ul>
+<li>the initial temperature, where higher values increase the possibility of jumping to a less optimal state</li>
+<li>the temperature reduction gradient and number of reductive steps</li>
+<li>the time spent regaining equilibrium between reductions</li>
+<li>as well as design considerations such as the definition and selection of neighboring states in the model</li>
+</ul>
+<p>In the TSP neighboring states are generally created by randomly switching two cities in a tour, and their energy defined as the tour cost. However there exist other strategies that may improve outcomes more quickly, such as seleting two pairs of cities and swapping their destinations, or extending this to <em>n</em> pairs.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/wlmb/perl/ch-2a.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>Although he also provides us with an <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/wlmb/perl/ch-2.pl">exact algorithm based on permutations</a>, Luis&rsquo; simulated annealing heuristic is what we want to focus on here. He brings in the <a href="http://pdl.perl.org">PDL</a>, always welcome, to assist with his matrix implementation in the model, as well as the construction of tours and the neighboring configurations. This implementation allows the number of steps to be specified, as well as the starting temperature and the temperature at the finish. Needless to say some tinkering may be required to find optimal values for these parameters, necessitating some trail-and-error. However the system is easily configurable to specific datasets.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> PDL;
+
+    die <span style="color:#e6db74">&#34;Usage: ./ch - 2a.pl cities steps high low output&#34;</span> <span style="color:#66d9ef">unless</span> @ARGV <span style="color:#f92672">==</span> <span style="color:#ae81ff">5</span>;
+    <span style="color:#66d9ef">my</span> ( $cities, $steps, $high, $low, $output )<span style="color:#f92672">=</span>@ARGV;
+    open( <span style="color:#66d9ef">my</span> $fh, <span style="color:#e6db74">&#39;&gt;&#39;</span>, $output ) <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;Couldn&#39;t open $output: $!&#34;</span>;
+    srand( <span style="color:#ae81ff">0</span> ); <span style="color:#75715e">#seed, for tests</span>
+    <span style="color:#66d9ef">my</span> $M <span style="color:#f92672">=</span> random( $cities, $cities ); <span style="color:#75715e"># generate distances matrix</span>
+    $M<span style="color:#f92672">-&gt;</span>diagonal( <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span> ) <span style="color:#f92672">.=</span> <span style="color:#ae81ff">0</span>; <span style="color:#75715e"># zero the diagonal</span>
+    $M<span style="color:#f92672">=</span> ( $M <span style="color:#f92672">+</span> $M<span style="color:#f92672">-&gt;</span>transpose )<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>; <span style="color:#75715e">#symmetrize ( ? )</span>
+    <span style="color:#66d9ef">my</span> $L0 <span style="color:#f92672">=</span> $high; <span style="color:#75715e"># starting &#39;temperature&#39;</span>
+    <span style="color:#66d9ef">my</span> $L_stop <span style="color:#f92672">=</span> $low;
+    <span style="color:#66d9ef">my</span> $factor <span style="color:#f92672">=</span> ( $low <span style="color:#e6db74">/ $high )**( 1 /</span> $steps );
+    <span style="color:#66d9ef">my</span> $route <span style="color:#f92672">=</span> pdl( <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$cities <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ); <span style="color:#75715e">#initial route</span>
+    <span style="color:#66d9ef">my</span> $L <span style="color:#f92672">=</span> distance( $route );
+    <span style="color:#66d9ef">while</span>( $L0 <span style="color:#f92672">&gt;</span> $L_stop ){
+            <span style="color:#66d9ef">my</span> $new_route <span style="color:#f92672">=</span> step( $route );
+            <span style="color:#66d9ef">my</span> $new_L <span style="color:#f92672">=</span> distance( $new_route );
+            <span style="color:#66d9ef">my</span> $dL <span style="color:#f92672">=</span> $new_L <span style="color:#f92672">-</span> $L;
+            <span style="color:#66d9ef">if</span>( $dL <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> random( <span style="color:#ae81ff">1</span> )<span style="color:#f92672">&lt;</span>exp( <span style="color:#f92672">-</span>$dL <span style="color:#f92672">/</span> $L0 ) ){
+        $route <span style="color:#f92672">=</span> $new_route; <span style="color:#75715e"># accept</span>
+        $L <span style="color:#f92672">=</span> $new_L;
+            }
+            say $fh $L; <span style="color:#75715e"># for plotting later</span>
+            $L0 <span style="color:#f92672">*=</span> $factor;
+    }
+    <span style="color:#66d9ef">my</span> $best_route <span style="color:#f92672">=</span> append( $route, <span style="color:#ae81ff">0</span> );
+    say <span style="color:#e6db74">&#34;Distance table: $M\nSteps: $steps\nCities: $cities\nRoute: $best_route\nLength: $L&#34;</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">step</span> {
+            <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> random( <span style="color:#ae81ff">2</span> )<span style="color:#f92672">*</span>( $cities <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> )<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>;
+            <span style="color:#66d9ef">my</span> $new_route <span style="color:#f92672">=</span> $route<span style="color:#f92672">-&gt;</span>copy;
+            $new_route<span style="color:#f92672">-&gt;</span>index( $i )<span style="color:#f92672">.=</span>$new_route<span style="color:#f92672">-&gt;</span>index( $i<span style="color:#f92672">-&gt;</span>rotate( <span style="color:#ae81ff">1</span> ) );
+            <span style="color:#66d9ef">return</span> $new_route;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">distance</span> {
+            <span style="color:#66d9ef">my</span> $r <span style="color:#f92672">=</span> shift;
+            <span style="color:#66d9ef">my</span> $indices <span style="color:#f92672">=</span> pdl( $r<span style="color:#f92672">-&gt;</span>rotate( <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> ), $r )<span style="color:#f92672">-&gt;</span>transpose;
+            <span style="color:#66d9ef">return</span> $M<span style="color:#f92672">-&gt;</span>indexND( $indices )<span style="color:#f92672">-&gt;</span>sumover;
+    }
+</code></pre></div><h3 id="a-genetic-algorithm">a GENETIC algorithm</h3>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a></p>
+<p>Adam returns once again with <code>AI::Genetic</code> to produce a genetic learning algorithm that starts with a set of connections from the base to each city, then tries to grow these connective genes to other cities, keeping only a subset of the most fit candidates at each iteration. In a sense this works out to be sort of like the &ldquo;nearest neighbor&rdquo; algorithm with a backup plan, should another nearly best solution ultimately pull ahead.</p>
+<p>In the end though it remains a statistical approach, steadily homing in on an improved solution without a firm guarantee of ever finding it. The <code>fitness</code> algorithm, used to judge the quality of a given mutation, seems quite reminiscent of the least-cost analysis we see in other heuristic approaches.</p>
+<p>On the whole, though, having an example of this sort of approach is fascinating, albeit in performance the AI core seems in desparate need of some GPU acceleration.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">fitness</span>{
+        <span style="color:#66d9ef">my</span>($genes) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> $cost <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> $genes<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">!=</span> $genes<span style="color:#f92672">-&gt;</span>[@{$genes} <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>];
+        <span style="color:#66d9ef">my</span> @path <span style="color:#f92672">=</span> sort {$a <span style="color:#e6db74">&lt;=&gt;</span> $b} @{$genes}[<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> @{$genes} <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>];
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> (@path <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>)){
+            <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> $path[$i] <span style="color:#f92672">==</span> $path[$i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>];
+        }
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> @{$genes} <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>){
+            $cost <span style="color:#f92672">+=</span> $matrix[$genes<span style="color:#f92672">-&gt;</span>[$i]][$genes<span style="color:#f92672">-&gt;</span>[$i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>]];
+        }
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">/</span>$cost;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">terminate</span>{
+        <span style="color:#66d9ef">return</span> true;
+    }
+</code></pre></div><h2 id="additional-submissions-in-guest-languages-1">Additional Submissions in Guest Languages</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/abigail/perl/ch-2.pl"><strong>Abigail</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/abigail/awk/ch-2.awk">Awk</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/abigail/bash/ch-2.sh">Bash</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/abigail/c/ch-2.c">C</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/abigail/lua/ch-2.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/abigail/node/ch-2.js">Node</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/abigail/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/abigail/ruby/ch-2.rb">Ruby</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/polettix/raku/ch-2.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/roger-bell-west/rust/ch-2.rs">Rust</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/ulrich-rieke/cpp/ch-2.cpp">C++</a></p>
+<hr>
+<h1 id="PWC121BLOGS">BLOGS</h1>
+<hr>
+<p><strong>That’s it for me this week, people! Warped by the rain, driven by the snow, resolute and unbroken by the torrential influx, I somehow continue to maintain my bearings. Looking forward to next wave, the perfect wave, I am: <em>your humble servant</em>.</strong></p>
+<h1 id="PWC093BLOGS">But if Your <em>THIRST</em> for <em>KNOWLEDGE</em> is not <em>SLAKED</em>,</h1>
+<h1 id="then-run-dont-walk-to-the-watering-hole">then <em>RUN</em> <em>(dont walk!)</em> to the <em>WATERING HOLE</em></h1>
+<h1 id="and-read-these-blog-links">and <em>READ</em> these <em>BLOG</em> <em>LINKS</em>:</h1>
+<p><strong>( <em>don&rsquo;t think, trust your training, you&rsquo;re in the zone, just do it &hellip;</em> )</strong></p>
+<p><strong>Abigail</strong></p>
+<ul>
+<li><a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-121-1.html">Perl Weekly Challenge 121: Invert Bit</a> ( <em>Perl</em> )</li>
+<li><a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-121-2.html">Perl Weekly Challenge 121: The Travelling Salesman</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Adam Russell</strong></p>
+<ul>
+<li><a href="http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2021/07/18">A Genetic Algorithm solution to the Travelling Salesman Problem - Perl - RabbitFarm</a> ( <em>Perl</em> )</li>
+<li><a href="http://www.rabbitfarm.com/cgi-bin/blosxom/prolog/2021/07/18">The Weekly Challenge 121 - Prolog - RabbitFarm</a> ( <em>Prolog</em> )</li>
+</ul>
+<p><strong>Arne Sommer</strong></p>
+<ul>
+<li><a href="https://raku-musings.com/inverted-salesman.html">Inverted Salesman with Raku and Perl</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Colin Crain</strong></p>
+<ul>
+<li><a href="https://colincrain.com/2021/07/18/mr-brush-man-that-ones-upside-down/">Mr. Brush Man, That One&rsquo;s Upside Down! — Programming Excursions in Perl and Raku</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Dave Jacoby</strong></p>
+<ul>
+<li><a href="https://jacoby.github.io/2021/07/13/bitty-tours-perl-weekly-challenge-121.html">Bitty Tours: Perl Weekly Challenge #121 | Committed to Memory</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Flavio Poletti</strong></p>
+<ul>
+<li><a href="https://github.polettix.it/ETOOBUSY/2021/07/14/pwc121-invert-bit/">PWC121 - Invert Bit - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+<li><a href="https://github.polettix.it/ETOOBUSY/2021/07/15/pwc121-the-travelling-salesman/">PWC121 - The Travelling Salesman - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Jaldhar H. Vyas</strong></p>
+<ul>
+<li><a href="https://www.braincells.com/perl/2021/07/perl_weekly_challenge_week_121.html">Perl Weekly Challenge: Week 121</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>James Smith</strong></p>
+<ul>
+<li><a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-121/james-smith">Perl Weekly Challenge #121</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Laurent Rosenfeld</strong></p>
+<ul>
+<li><a href="http://blogs.perl.org/users/laurent_r/2021/07/perl-weekly-challenge-121-invert-bit.html">Perl Weekly Challenge 121: Invert Bit | laurent_r</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Luca Ferrari</strong></p>
+<ul>
+<li><a href="https://fluca1978.github.io/2021/07/12/PerlWeeklyChallenge121.html#task1">Perl Weekly Challenge 121: bits and salesman – Luca Ferrari – Open Source advocate, human being</a> ( <em>Raku</em> )</li>
+<li><a href="https://fluca1978.github.io/2021/07/12/PerlWeeklyChallenge121.html#task2">Perl Weekly Challenge 121: bits and salesman – Luca Ferrari – Open Source advocate, human being</a> ( <em>Raku</em> )</li>
+</ul>
+<p><strong>Roger Bell_West</strong></p>
+<ul>
+<li><a href="https://blog.firedrake.org/archive/2021/07/Perl_Weekly_Challenge_121__Travelling_Bit.html">RogerBW&rsquo;s Blog: Perl Weekly Challenge 121: Travelling Bit</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>W. Luis Mochan</strong></p>
+<ul>
+<li><a href="https://wlmb.github.io/2021/07/12/PWC121/">Perl Weekly Challenge 121 – W. Luis Mochán</a> ( <em>Perl</em> )</li>
+</ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="/contact" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2021
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.nomtimes.co.uk/site/shop.do?cref=PerlBooks" title="Free Perl Books" rel="noreferrer" target="_blank">
+                            <img src="/images/NomTimes.jpg" style="width:22px; height: 18px;" alt=""/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jQurey/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-136524905-1', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+
+</html>
+
