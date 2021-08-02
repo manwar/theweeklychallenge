@@ -136,6 +136,8 @@ I would like to `THANK` every member of the team for their valuable suggestions.
 
 ***
 
+[@kjetillll](https://github.com/kjetillll), **Perl** hacker, joined the **Team PWC**.
+
 Please find out [**How to contribute?**](/blog/how-to-contribute), if you have any doubts.
 
 Please try the excellent tool [**EZPWC**](https://github.com/saiftynet/EZPWC) created by respected member `Saif Ahmed` of **Team PWC**.
