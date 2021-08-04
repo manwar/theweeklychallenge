@@ -36,6 +36,8 @@ Please find below guest contributions.
 
 ##### **James Smith** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-124/james-smith/logo/ch-1.logo) in **Logo**.
 
+##### **Mohammad Meraj Zia** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-124/ziameraj16/java/HappyWomenDay.java) in **Java**.
+
 ----
 ## [The Weekly Challenge - 123](/blog/perl-weekly-challenge-123) {#123}
 <br>
