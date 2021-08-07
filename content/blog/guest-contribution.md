@@ -34,6 +34,8 @@ Please find below guest contributions.
 
 ##### **Bruce Gray** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-124/bruce-gray/svg/ch-1.svg) in **SVG**.
 
+##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-124/eric-cheung/excel-vba/ch-1.bas) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-124/eric-cheung/excel-vba/ch-2.bas) in **Excel VBA**.
+
 ##### **James Smith** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-124/james-smith/logo/ch-1.logo) in **Logo**.
 
 ##### **James Smith** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-124/james-smith/php/ch-2.php) in **PHP**.
