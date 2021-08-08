@@ -5,10 +5,10 @@ description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
 author: Mohammad S Anwar
-tags: ["Ada", "APL", "Awk", "Basic", "Bash", "Bc", "Befunge", "BQN", "Brainfuck", "C3", "C", "CESIL", "Chef", "COBOL", "Coconut", "C Shell", "C++", "Clojure", "Crystal", "D", "Dart", "Elm", "Erlang", "Excel VBA", "Fish", "Forth", "Fortran", "Gembase", "GNAT", "Go", "Haskell", "Haxe", "HTML", "Idris", "Janet", "Java", "JavaScript", "Kotlin", "Lisp", "Logo", "Lua", "M4", "Macro Processor", "Miranda", "MMIX", "Mumps", "Myrddin", "Nim", "Nix", "Node.js", "OCaml", "Odin", "Ook", "Pascal", "PHP", "Python", "Postscript", "Prolog", "R", "Rexx", "Ruby", "Rust", "Scala", "Scheme", "Sed", "Smalltalk", "SQL", "SVG", "Swift", "Tcl", "Visual Basic", "XSLT", "Zig"]
+tags: ["Ada", "APL", "Awk", "Basic", "Bash", "Bc", "Befunge", "Bourne Shell", "BQN", "Brainfuck", "C3", "C", "CESIL", "Chef", "COBOL", "Coconut", "C Shell", "C++", "Clojure", "Crystal", "D", "Dart", "Elm", "Erlang", "Excel VBA", "Fish", "Forth", "Fortran", "Gembase", "GNAT", "Go", "Haskell", "Haxe", "HTML", "Idris", "IO", "Janet", "Java", "JavaScript", "Kotlin", "Lisp", "Logo", "Lua", "M4", "Macro Processor", "Miranda", "MMIX", "Mumps", "Myrddin", "Nim", "Nix", "Node.js", "OCaml", "Odin", "Ook", "Pascal", "PHP", "Python", "Postscript", "Prolog", "R", "Rexx", "Ruby", "Rust", "Scala", "Scheme", "Sed", "Smalltalk", "SQL", "SVG", "Swift", "Tcl", "Visual Basic", "XSLT", "Zig"]
 ---
 
-As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. During the **Week #018**, we received solutions to **["The Weekly Challenge - 018"](/blog/perl-weekly-challenge-018)** by `Orestis Zekai` in **Python**. It was pleasant surprise to receive solutions in something other than **Perl** and **Raku**. Ever since regular team members also started contributing in other languages like **Ada**, **APL**, **Awk**, **Basic**, **Bash**, **Bc**, **Befunge**, **BQN**, **Brainfuck**, **C3**, **C**, **CESIL**, **Chef**, **COBOL**, **Coconut**, **C Shell**, **C++**, **Clojure**, **Crystal**, **D**, **Dart**, **Elm**, **Erlang**, **Excel VBA**, **Fish**, **Forth**, **Fortran**, **Gembase**, **GNAT**, **Go**, **Haskell**, **Haxe**, **HTML**, **Idris**, **Janet**, **Java**, **JavaScript**, **Kotlin**, **Lisp**, **Logo**, **Lua**, **M4**, **Macro Processor**, **Miranda**, **MMIX**, **Mumps**, **Myrddin**, **Nim**, **Nix**, **Node.js**, **OCaml**, **Odin**, **Ook**, **Pascal**, **PHP**, **Python**, **Postscript**, **Prolog**, **R**, **Rexx**, **Ruby**, **Rust**, **Scala**, **Scheme**, **Sed**, **Smalltalk**, **SQL**, **SVG**, **Swift**, **Tcl**, **Visual Basic**, **XSLT** and **Zig**.
+As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. During the **Week #018**, we received solutions to **["The Weekly Challenge - 018"](/blog/perl-weekly-challenge-018)** by `Orestis Zekai` in **Python**. It was pleasant surprise to receive solutions in something other than **Perl** and **Raku**. Ever since regular team members also started contributing in other languages like **Ada**, **APL**, **Awk**, **Basic**, **Bash**, **Bc**, **Befunge**, **Bourne Shell**, **BQN**, **Brainfuck**, **C3**, **C**, **CESIL**, **Chef**, **COBOL**, **Coconut**, **C Shell**, **C++**, **Clojure**, **Crystal**, **D**, **Dart**, **Elm**, **Erlang**, **Excel VBA**, **Fish**, **Forth**, **Fortran**, **Gembase**, **GNAT**, **Go**, **Haskell**, **Haxe**, **HTML**, **Idris**, **IO**, **Janet**, **Java**, **JavaScript**, **Kotlin**, **Lisp**, **Logo**, **Lua**, **M4**, **Macro Processor**, **Miranda**, **MMIX**, **Mumps**, **Myrddin**, **Nim**, **Nix**, **Node.js**, **OCaml**, **Odin**, **Ook**, **Pascal**, **PHP**, **Python**, **Postscript**, **Prolog**, **R**, **Rexx**, **Ruby**, **Rust**, **Scala**, **Scheme**, **Sed**, **Smalltalk**, **SQL**, **SVG**, **Swift**, **Tcl**, **Visual Basic**, **XSLT** and **Zig**.
 
 Please find below guest contributions.
 
@@ -96,11 +96,39 @@ Please find below guest contributions.
 
 ##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-124/laurent-rosenfeld/awk/ch-1.awk) in **Awk**.
 
+##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-124/laurent-rosenfeld/bash/ch-1.sh) in **Bash**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-124/laurent-rosenfeld/burne-shell/ch-1.sh) in **Bourne Shell**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-124/laurent-rosenfeld/c/ch-1.c) in **C**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-124/laurent-rosenfeld/d/ch-1.amx) in **D**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-124/laurent-rosenfeld/dart/ch-1.dart) in **Dart**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-124/laurent-rosenfeld/io/ch-1.io) in **IO**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-124/laurent-rosenfeld/java/ch-1.java) in **Java**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-124/laurent-rosenfeld/kotlin/ch-1.kt) in **Kotlin**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-124/laurent-rosenfeld/lua/ch-1.lua) in **Lua**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-124/laurent-rosenfeld/pascal/ch-1.p) in **Pascal**.
+
 ##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-124/laurent-rosenfeld/python/ch-1.py) in **Python**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-124/laurent-rosenfeld/ruby/ch-1.rb) in **Ruby**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-124/laurent-rosenfeld/rust/ch-1.rs) in **Rust**.
 
 ##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-124/laurent-rosenfeld/scala/ch-1.scala) in **Scala**.
 
 ##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-124/laurent-rosenfeld/sed/ch-1.sed) in **Sed**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-124/laurent-rosenfeld/tcl/ch-1.tcl) in **Tcl**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-124/laurent-rosenfeld/zig/ch-1.zig) in **Zig**.
 
 ##### **Mohammad Meraj Zia** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-124/ziameraj16/java/HappyWomenDay.java) in **Java**.
 
