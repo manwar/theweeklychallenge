@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="The Weekly Challenge - Perl & Raku"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="You do not have to be an expert."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Colin Crain › Perl Weekly Review #122">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Colin Crain › Perl Weekly Review #122</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navgation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Colin Crain › Perl Weekly Review #122</h2>
+                    <div class="portfolio-meta">
+                        <span>Sunday, Aug 8, 2021</span>|
+                        <span> Tags:
+                            perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/p5-review-challenge-122.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <p>( <em>&hellip;continues from <a href="/blog/review-challenge-121/">previous week</a>.</em> )</p>
+<p>Welcome to the Perl review for <strong>Week 122</strong> of the Weekly Challenge! Here we will take the time to discuss the  submissions offered by the team, factor out the common methodologies that came up in those solutions, and highlight some of the unique approaches and unusual code created.</p>
+<hr>
+<h3 id="why-do-we-do-these-challenges">Why do we do these challenges?</h3>
+<p>I suppose any answers to that would be as wide ranging and varied as the people who choose to join the team. One thing is clear: it&rsquo;s not a competition, and there are no judges, even if there is a &ldquo;prize&rdquo; of sorts. About that &ndash; I think of it more as an honorarium periodically awarded to acknowledge the efforts we make towards this strange goal. So there&rsquo;s no determination to find the <em>fastest</em>, or the <em>shortest</em>, or even, in some abstract way, the <em>best</em> way to go about things, although I&rsquo;m certain the individuals have their own aspirations and personal drives. As Perl is such a wonderfully expressive language, this provides quite a bit of fodder to the core idea of TMTOWTDI, producing a gamut of wonderfully varied techniques and solutions.</p>
+<p>Even the tasks themselves are often open to a certain amount of discretionary interpretation. What we end up with is a situation where each participant is producing something in the manner they find the most interesting or satisfying. Some team members focus on carefully crafted complete applications that thoroughly vet input data and handle every use case they can think up. Others chose to apply themselves to the logic of the underlying puzzle and making it work in the most elegant way they can. Some eschew modules they would ordinarily reach for, others embrace them, bringing to light wheels perhaps invented years ago that happen to exactly solve the problem in front of them today.</p>
+<p>I&rsquo;ve been considering this question for some time and have found one binding commonality between all of us solving these challenges each week, in that however we normally live our lives, the task in front of us more than likely has nothing to do with any of that . And I think this has great value. We all do what we do, out in the real world, and hopefully we do it well. The Weekly Challenge provides a opportunity to do something germane to that life yet distinctly different; if we only do the things we already know how to do we only do the same things over and over. This is where the &ldquo;challenge&rdquo; aspect comes into play.</p>
+<p>So we can consider the Weekly Challenge as providing a problem space outside of our comfort zone, as far out from comfort as we wish to take things. From those reaches we can gather and learn things and bring what we want back into our lives. Personally, I think that&rsquo;s its greatest value of all.</p>
+<hr>
+<p>Every week there is an enormous global collective effort made by the team, analyzing and creatively coding the submissions, and that effort deserves credit due. And that&rsquo;s why I&rsquo;m here, to try and figure out how to do that.</p>
+<p>Let&rsquo;s have a look and see what we can find.</p>
+<hr>
+<p><strong><big>For context</big></strong>  before we begin, you may wish to revisit either of the pages for the <a href="/blog/perl-weekly-challenge-122/"><strong>original tasks</strong></a> or the summary <a href="/blog/recap-challenge-122/"><strong>recap</strong></a> of the challenge. But don&rsquo;t worry, the challenges themselves will be briefly summarized, presented below as we progress from task by task. Oh, and one more thing before we get started:</p>
+<h3 id="getting-in-touch-with-us">Getting in Touch with Us</h3>
+<p><a href="mailto:pwc.perfectwave@gmail.com"><img src="/images/blog/Email.svg" height="50" width="50"> Email</a> › Please email me (Colin) with any feedback, notes, clarifications or whatnot about this review.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge"><img src="/images/blog/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request to us for any issues you may find with this page.</p>
+<p><a href="https://twitter.com/perlwchallenge"><img src="/images/blog/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!</p>
+<p>I&rsquo;m always curious as to what the people think of these efforts. Everyone here at the PWC would like to hear any feedback you&rsquo;d like to give.</p>
+<p><strong>So finally, without further ado&hellip;</strong></p>
+<hr>
+<h2 id="---nbsp--nbsp--nbsp---task-1pwc122task1-------nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---task-2pwc122task2---nbsp--nbsp--nbsp----------nbsp--nbsp--nbsp---blogspwc122blogs----nbsp--nbsp--nbsp---">•             <a href="#PWC122TASK1">Task 1</a>                 •             <a href="#PWC122TASK2">Task 2</a>                 •             <a href="#PWC122BLOGS">BLOGS</a>              	•</h2>
+<hr>
+<h1 id="PWC122TASK1">TASK 1</h1>
+<h1 id="average-of-stream">Average of Stream</h1>
+<p><em>Submitted by: Mohammad S Anwar</em><br>
+You are given a stream of numbers, @N.</p>
+<p>Write a script to print the average of the stream at every point.</p>
+<p><strong>Example</strong></p>
+<pre><code>
+    Input: @N = (10, 20, 30, 40, 50, 60, 70, 80, 90, ...)
+    Output:      10, 15, 20, 25, 30, 35, 40, 45, 50, ...
+
+        Average of first number is 10.
+        Average of first 2 numbers (10+20)/2 = 15
+        Average of first 3 numbers (10+20+30)/3 = 20
+        Average of first 4 numbers (10+20+30+40)/4 = 25 and so on.
+
+</code></pre><h2 id="about-the-solutions">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/abigail/perl/ch-1.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/arne-sommer/perl/ch-1.pl"><strong>Arne Sommer</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/bruce-gray/perl/ch-1.pl"><strong>Bruce Gray</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/cristian-heredia/perl/ch-1.pl"><strong>Cristina Heredia</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/jaldhar-h-vyas/perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/jaredor/perl/ch-1.pl"><strong>Jared Martin</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/jo-37/perl/ch-1a.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/lubos-kolouch/perl/ch-1.pl"><strong>Lubos Kolouch</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/mattneleigh/perl/ch-1.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/pete-houston/perl/ch-1.pl"><strong>Pete Houston</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/peter-scott/perl/ch-1.sh"><strong>Peter Scott</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/stuart-little/perl/ch-1.pl"><strong>Stuart Little</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/wanderdoc/perl/ch-1.pl"><strong>Wanderdoc</strong></a></p>
+<p>There were 28 submissions for the first task this past week.</p>
+<p>I might as well start with the elephant in the room:</p>
+<p><em>&ldquo;So what&rsquo;s up with that stream thing, anyway?&quot;</em></p>
+<p>It&rsquo;s not, shall we say — clear — exactly what is expected for input in this task. This is interesting because it essentially opens up the field to make the input as exciting as one may want, from a simple fixed array to any of a number of more dynamic solutions. I like that the first task is generally significantly easier than the second, making the challenges more approachable to the less-experienced members among us, or perhaps the busiest, but I also like it when the phrasing is open enough that more complex interpretations also suggest themselves to those that want them. In this sense referring to a &ldquo;stream&rdquo; is ambiguously perfect.</p>
+<p>I know laziness is prime virtue in this strange creed we have so fallen under the spell of, but I also feel in our own personal, exploratory pursuits we are free from this bondage to do as we please, as long as we keep up appearances to the outside world. We may <em>say</em> we&rsquo;re lazy, but secretly we don&rsquo;t really need to <em>be</em> lazy, and leave it to our hubris to presume the others don&rsquo;t notice.</p>
+<p>So what strange fruit did this simple word — stream — bear?</p>
+<h2 id="count-the-elements-sum-the-values-and-take-the-average">COUNT the elements, SUM the values and take the AVERAGE</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/arne-sommer/perl/ch-1.pl"><strong>Arne Sommer</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/cristian-heredia/perl/ch-1.pl"><strong>Cristina Heredia</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/jaldhar-h-vyas/perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/jaredor/perl/ch-1.pl"><strong>Jared Martin</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/lubos-kolouch/perl/ch-1.pl"><strong>Lubos Kolouch</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/mattneleigh/perl/ch-1.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/pete-houston/perl/ch-1.pl"><strong>Pete Houston</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/peter-scott/perl/ch-1.sh"><strong>Peter Scott</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>In the simplest form we go about this the most direct way possible: for each element processed from the command line, increment a counter, add it to a running sum, and obtain the average by dividing the sum by the count. That&rsquo;s what an average is, of course, the arithmetic mean value. I feel we&rsquo;re kind of talking in circles here, but sometimes a tautology is just a tautology. This was the most common approach we saw.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/athanasius/raku/ch-1.raku">Raku</a></p>
+<p>The monk will start us off with a general introduction to the method. We establish a few variables to keep track of the count of elements processed and a running sum, and take the input as an array from the command line.</p>
+<p>Iterating over the list, each new element processed is added to the sum and ticks off the counter, and by dividing one with the other a new average is computed.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $sum   <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">my</span> $count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $n (@N)
+    {
+        $sum <span style="color:#f92672">+=</span> $n;
+
+        <span style="color:#66d9ef">my</span> $average <span style="color:#f92672">=</span> $sum <span style="color:#f92672">/</span> <span style="color:#f92672">++</span>$count;
+
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39;, &#39;</span> <span style="color:#66d9ef">if</span> $count <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">print</span> $average;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/cristian-heredia/perl/ch-1.pl"><strong>Cristina Heredia</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/cristian-heredia/python/ch-1.py">Python</a></p>
+<p>Cristina uses a dedicated iterator variable to extract the input list values by index, but the results are the same. The <code>$sentence</code> is an output string that lists the averages in sequential order.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">foreach</span> (<span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; $i <span style="color:#f92672">&lt;</span>@N; $i<span style="color:#f92672">++</span>){
+        $sum <span style="color:#f92672">+=</span> $N[$i];
+        <span style="color:#66d9ef">if</span> ($i <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+            $sentence <span style="color:#f92672">=</span> $sum<span style="color:#f92672">/</span>$counter;
+        }
+        <span style="color:#66d9ef">else</span> {
+            $sentence <span style="color:#f92672">=</span> $sentence<span style="color:#f92672">.</span><span style="color:#e6db74">&#34;, &#34;</span><span style="color:#f92672">.</span>$sum<span style="color:#f92672">/</span>$counter;
+        }
+        $counter<span style="color:#f92672">++</span>;
+    }
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;Output: $sentence&#34;</span>);
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/pete-houston/perl/ch-1.pl"><strong>Pete Houston</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/pete-houston/awk/ch-1.awk">Awk</a></p>
+<p>Pete adds a <code>map</code> to perform his looping, producing a minimal solution.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">my</span> $num <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+
+    <span style="color:#66d9ef">my</span> @avg <span style="color:#f92672">=</span> map { $sum <span style="color:#f92672">+=</span> $_; $sum<span style="color:#f92672">/</span>$num<span style="color:#f92672">++</span> } @ARGV;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/peter-scott/perl/ch-1.sh"><strong>Peter Scott</strong></a></p>
+<p>Ok, I stand corrected: Peter condenses the form even further, into a even shorter proper one-liner. There really isn&rsquo;t much to what we&rsquo;re doing here, after all.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e">#!/bin/sh</span>
+    perl <span style="color:#f92672">-</span>E <span style="color:#e6db74">&#39;for (@ARGV){$s+=$_; print $s/++$n, &#34;, &#34;} say &#34; ...&#34;&#39;</span> $*
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/mattneleigh/perl/ch-1.pl"><strong>Matthew Neleigh</strong></a></p>
+<p>Breaking the reductionist pattern, Matthew presents us with yet another version, built around a C-style <code>for</code> loop. This one affixes a sobering metaphysical addendum: &ldquo;Returns no meaningful value&rdquo;. I imagine we all feel like that sometimes.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">stream_average</span>{
+
+        <span style="color:#66d9ef">my</span> $i;
+        <span style="color:#66d9ef">my</span> $accumulator <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+        <span style="color:#66d9ef">for</span>($i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; $i<span style="color:#f92672">&lt;</span>scalar(@ARG); $i<span style="color:#f92672">++</span>){
+            $accumulator <span style="color:#f92672">+=</span> $ARG[$i];
+            <span style="color:#66d9ef">print</span>(
+                $accumulator <span style="color:#f92672">/</span> ($i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>),
+                ($i <span style="color:#f92672">==</span> $#ARG) ? <span style="color:#e6db74">&#34;\n&#34;</span> : <span style="color:#e6db74">&#34;, &#34;</span>
+            );
+        }
+
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/adam-russell/prolog/ch-1.p">Prolog</a></p>
+<p>Adam adds the unusual technique of using <code>redo</code> to rerun the code instance of his <code>moving_average</code> subroutine, grabbing the next parameter from the subroutine stack until it&rsquo;s exhausted. Rather than making a new call for every new item processed, perhaps as one would do when processing streamed data, we can load the routine once and change the data out from underneath it.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">moving_average</span>{
+        <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        {
+            $n <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
+            $sum <span style="color:#f92672">+=</span> shift;
+            <span style="color:#66d9ef">print</span> $sum <span style="color:#f92672">/</span> $n;
+            <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;, &#34;</span> <span style="color:#66d9ef">if</span> @_;
+            <span style="color:#66d9ef">redo</span> <span style="color:#66d9ef">if</span> @_;
+        }
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a></p>
+<p>And in a final turn away from existential dread, CY switches things up in an entertaining way. She accepts data from STDIN, presaging visions of streams to come. Run without a dedicated data source, the program sits and waits for new data interactively, with nice verbose report after each new input.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    $num <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;STDIN&gt;</span>;
+    <span style="color:#66d9ef">while</span> ($num <span style="color:#f92672">=~</span> <span style="color:#e6db74">m/$numeric/</span> ){
+        $sum <span style="color:#f92672">+=</span> $num;
+        $n<span style="color:#f92672">++</span>;
+        printf <span style="color:#e6db74">&#34;Average of the first $n numbers is %.3f\n&#34;</span>, $sum<span style="color:#f92672">/</span>$n;
+        $num <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;STDIN&gt;</span>;
+    }
+</code></pre></div><p>We saw several examples of this technique, with some providing much more elaborate stream generating functions, both integral and auxiliary. We will have a look into this idea further a little later in the program.</p>
+<pre><code>
+    [colincrain@boris:~/Code/PWC/122-Review/TASK1]$  perl 122-1-CheokYinFung-REVIEW.pl
+    Keep entering a number and the average of the stream will be printed.
+    10
+    Average of the first number is 10.000
+    20
+    Average of the first 2 numbers is 15.000
+    30
+    Average of the first 3 numbers is 20.000
+    23
+    Average of the first 4 numbers is 20.750
+    42
+    Average of the first 5 numbers is 25.000
+    3.1415926
+    Average of the first 6 numbers is 21.357
+    ^C
+
+</code></pre><h2 id="implicit-variables-counts-or-sums">implicit VARIABLES, COUNTS or SUMS</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/abigail/perl/ch-1.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/stuart-little/perl/ch-1.pl"><strong>Stuart Little</strong></a></p>
+<p>Comprising a subset of the above solutions where we try to avoid variables if we can. Interesting, as they say, it where you find it.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/colin-crain/perl/ch-1.pl"><strong>My Own Solution</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/colin-crain/raku/ch-1.raku">Raku</a></p>
+<p>For my own solution I didn&rsquo;t get adventurous on the input, holding those efforts back for the Raku version. Here I just took the list from the command line and called it a day. However in processing that list I employed the services of <code>each</code> on the array, which now delivers index/value tuples. The index portion was used as the counter, as they are closely related, and we let the array do the incrementation.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">while</span> ( <span style="color:#66d9ef">my</span> ($idx, $val) <span style="color:#f92672">=</span> each @stream ) {
+        $sum <span style="color:#f92672">+=</span> $val;
+        $_ <span style="color:#f92672">=</span> sprintf <span style="color:#e6db74">&#34;%.2f&#34;</span>, $sum <span style="color:#f92672">/</span> ($idx<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>);
+        <span style="color:#e6db74">s/\.0*$//</span>;
+        say <span style="color:#e6db74">&#34;average of first &#34;</span>, $idx<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#34; numbers is &#34;</span>, $_;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/laurent-rosenfeld/awk/ch-1.awk">Awk</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/laurent-rosenfeld/c/ch-1.c">C</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/laurent-rosenfeld/d/ch-1.d">D</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/laurent-rosenfeld/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/laurent-rosenfeld/raku/ch-1.raku">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/laurent-rosenfeld/scala/ch-1.scala">Scala</a></p>
+<p>Laurent gave us an interesting take on doing away with a running sum by recomputing it at every stage, multiplying out the average by the previous count to arrive at the previous total, and then adding in the new data point. Something something&hellip; floating-point numbers&hellip; significant digits&hellip; I&rsquo;ll let it go. It does remove one variable from the state, only carrying the count and the previous average, which was the intent.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> @n <span style="color:#f92672">=</span> (<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">30</span>, <span style="color:#ae81ff">40</span>, <span style="color:#ae81ff">50</span>, <span style="color:#ae81ff">60</span>, <span style="color:#ae81ff">70</span>, <span style="color:#ae81ff">80</span>, <span style="color:#ae81ff">90</span>, <span style="color:#ae81ff">100</span>);
+    <span style="color:#66d9ef">my</span> @mvg_avg <span style="color:#f92672">=</span> ($n[<span style="color:#ae81ff">0</span>]);
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">9</span>) {
+        $mvg_avg[$i] <span style="color:#f92672">=</span> ($mvg_avg[$i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">*</span> $i <span style="color:#f92672">+</span> $n[$i]) <span style="color:#f92672">/</span> ($i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>);
+    }
+    say <span style="color:#e6db74">&#34;@mvg_avg&#34;</span>;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/stuart-little/perl/ch-1.pl"><strong>Stuart Little</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/stuart-little/haskell/ch-1.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/stuart-little/lua/ch-1.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/stuart-little/node/ch-1.js">Node</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/stuart-little/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/stuart-little/raku/ch-1.raku">Raku</a></p>
+<p>My reservations on compounding error notwithstanding, Stuart employs the same technique in his quite dense approach to the problem. In the first step he uses <code>zip</code>, imported from <code>List::Util</code> to produce a series of tuples of a 1-based position value paired with the input list value.</p>
+<p>Then an elaborate <code>reduce</code> function is applied to take the last value from the list in the reduction product, multiply it by the first element in the next tuple minus 1 (the previous count), add the second value of the next tuple (<code>$b-&gt;[1]</code>) and, after taking the average <code>push</code> the result onto the growing <code>$a</code> array. This results in an array reference of all the averages, mirroring the input.</p>
+<p>It&rsquo;s quite a clever way to get the job done in two listwise functions without side effects.</p>
+<blockquote>
+<p>**&ldquo;Because it was there.&quot;**<br>
+— George Leigh Mallory</p>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw(reduce zip)</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">runAvg</span>($aref) {
+        <span style="color:#66d9ef">my</span> @ar <span style="color:#f92672">=</span> zip [<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>scalar @{$aref}], $aref;
+        <span style="color:#66d9ef">my</span> $res <span style="color:#f92672">=</span> reduce { <span style="color:#66d9ef">my</span> @a <span style="color:#f92672">=</span> @{$a}; push @a, ($a[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">*</span>($b<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">+</span>$b<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>])<span style="color:#f92672">/</span>$b<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]; <span style="color:#f92672">\</span>@a } [<span style="color:#ae81ff">0</span>,], @ar;
+        shift @{$res};
+        <span style="color:#66d9ef">return</span> $res;
+    }
+
+    say <span style="color:#e6db74">qq!@{${\ do{runAvg(\@ARGV)}}}!</span>;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/abigail/perl/ch-1.pl"><strong>Abigail</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/abigail/awk/ch-1.awk">Awk</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/abigail/bash/ch-1.sh">Bash</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/abigail/basic/ch-1.bas">Basic</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/abigail/bc/ch-1.bc">Bc</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/abigail/befunge-93/ch-1.bf93">Befunge-93</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/abigail/c/ch-1.c">C</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/abigail/go/ch-1.go">Go</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/abigail/java/ch-1.java">Java</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/abigail/lua/ch-1.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/abigail/node/ch-1.js">Node</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/abigail/pascal/ch-1.p">Pascal</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/abigail/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/abigail/r/ch-1.r">R</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/abigail/ruby/ch-1.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/abigail/scheme/ch-1.scm">Scheme</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/abigail/tcl/ch-1.tcl">Tcl</a></p>
+<p>I&rsquo;m not entirely sure where I stand on shifting boilerplate to the command line to reduce the character count in what qualifies as a script, but I suppose I also find myself unable to care too much about that particular detail either. The result is entertaining so I say so be it; let&rsquo;s plunge right in.</p>
+<p>What do we have here? Our &ldquo;stream&rdquo; is defined as a file containing one value per line. The <code>-p</code> flag requested reads a line and places it in the topic, applying the script to that line and keeping the line number updated in <code>$.</code>. The running sum, on the other hand, is stored as the otherwise unused <code>$;</code> the subscript separator for multidimensional array emulation, because why not? It&rsquo;s already there and initialized, and what else is it doing? Squat, that&rsquo;s what.</p>
+<p>Ok, reality, as is its wont, is a little bit more difficult than that; the <code>-p</code> flag runs the script on each new line processed, so a lexical variable will, shall we say, produce unexpected behavior. If the variable is in the symbol table, though, we&rsquo;re fine, so <code>our $sum</code> or such would work, should we want to do that instead. Which leads us to a good reason to use something, for example <code>$;</code>, that&rsquo;s already there.</p>
+<p>In their own words:</p>
+<blockquote>
+<p>We keep the running sum of the numbers read so far in the variable $;. Each number read will be added to it ($; += $_); this sum we then divide with $. and assign back to $_, which is then printed due to the -p flag.</p>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e">#</span>
+    <span style="color:#75715e"># Run as: perl -pl ch-1.pl &lt; input-file</span>
+    <span style="color:#75715e">#</span>
+
+    $_<span style="color:#f92672">=</span>($;<span style="color:#f92672">+=</span>$_)<span style="color:#f92672">/</span>$.
+</code></pre></div><h2 id="objects-and-generators">OBJECTS and GENERATORS</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/bruce-gray/perl/ch-1.pl"><strong>Bruce Gray</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/jo-37/perl/ch-1a.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/wanderdoc/perl/ch-1.pl"><strong>Wanderdoc</strong></a></p>
+<p>The actual averaging of the values as they accrete proved to be not particularly challenging, on par for a first task. Because of this many members took it upon themselves to focus on implementing some sort of stream to feed the averaging machine they built, concentrating the bulk of their effort over there instead.</p>
+<p>There were a variety of approaches we saw that, after quickly dispatching the counting and averaging part of the task, simulated, either directly or indirectly, an external data source producing a steam of numerical data.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>Luis takes his input from STDIN, which delivers the values one-by-one to the topic, <code>$_</code>,</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $counter<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; <span style="color:#75715e"># item counter</span>
+    <span style="color:#66d9ef">my</span> $total<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; <span style="color:#75715e"># running total</span>
+    <span style="color:#66d9ef">while</span>(<span style="color:#f92672">&lt;&gt;</span>){
+        chomp;
+        <span style="color:#f92672">++</span>$counter;
+        $total <span style="color:#f92672">+=</span> $_;
+        <span style="color:#66d9ef">my</span> $average<span style="color:#f92672">=</span>$total<span style="color:#f92672">/</span>$counter;
+        say <span style="color:#e6db74">&#34;Input: $_ Output: $average&#34;</span>;
+    }
+</code></pre></div><p>He then produces a few hard-coded examples of stream generators to feed it. Such as the example, a range of multiples of 10:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    perl <span style="color:#f92672">-</span>E <span style="color:#e6db74">&#39;$i=1; say 10 * $i++ while $i&lt;10;&#39;</span> <span style="color:#f92672">|</span> <span style="color:#f92672">./</span>ch<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">.</span>pl
+</code></pre></div><p>Or cubed values from 1:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    perl <span style="color:#f92672">-</span>E <span style="color:#e6db74">&#39;$i=1; say +($i++)**3 while $i&lt;10;&#39;</span> <span style="color:#f92672">|./</span>ch<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">.</span>pl
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/wanderdoc/perl/ch-1.pl"><strong>Wanderdoc</strong></a></p>
+<p>Here&rsquo;s another version from the doctor; reimagined as one one-liner feeding another through a straw. Or, you know, something like that but maybe not as unsettling.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    perl <span style="color:#f92672">-</span>E <span style="color:#e6db74">&#39;$i=1; say 10 * $i++ while $i&lt;10;&#39;</span> <span style="color:#f92672">|</span> <span style="color:#75715e"># data source \</span>
+    perl <span style="color:#f92672">-</span>E <span style="color:#e6db74">&#39;while(&lt;&gt;){chomp; say &#34;Input: &#34;, $_, &#34; Output:&#34;, ($T+=$_)/(++$N);}&#39;</span> <span style="color:#75715e"># running average</span>
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/bruce-gray/perl/ch-1.pl"><strong>Bruce Gray</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/bruce-gray/raku/ch-1.raku">Raku</a></p>
+<p>Bruce brings us a pair of functions, one to generate arithmetic progressions according to a list of given parameters, the other to accept this first function and use the data it produces to create a list of averages. The one function, you might say, is designed to serve the other, and is passed in as a code reference.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">make_arithmetic_generator</span> ( $start, $increment ) {
+        <span style="color:#66d9ef">my</span> $last <span style="color:#f92672">=</span> $start <span style="color:#f92672">-</span> $increment;
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">sub</span> {
+            <span style="color:#66d9ef">return</span> ( $last <span style="color:#f92672">+=</span> $increment );
+        };
+    }
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">running_average_generator</span> ( $code_for_next_input ) {
+        <span style="color:#66d9ef">my</span> ($sum, $count);
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">sub</span> {
+            <span style="color:#66d9ef">return</span> ( $sum <span style="color:#f92672">+=</span> $code_for_next_input<span style="color:#f92672">-&gt;</span>() ) <span style="color:#f92672">/</span> <span style="color:#f92672">++</span>$count;
+        };
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/james-smith/php/ch-1.php">Php</a></p>
+<p>James takes the abstraction of a stream a little bit further, establishing a stream-processing getter/setter subroutine that can either take values to populate a stream or return the next value it contains.</p>
+<p>In an unusual twist, the <code>stream_average</code> routine, because we theoretically have no information on the stream duration, is run under <code>eval</code> in a loop to catch errors, specifically as to when the stream terminates.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    stream( map {$_<span style="color:#f92672">*</span><span style="color:#ae81ff">10</span>} <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">50</span> );           <span style="color:#75715e">## Push values into stream...</span>
+
+    eval {say stream_average();} <span style="color:#66d9ef">until</span> $@; <span style="color:#75715e">## Use eval/$@ to repeat until stream dies.</span>
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">stream</span> {
+      state(@stream);
+         @_      ? (push @stream,@_)       <span style="color:#75715e">## Parameters passed - push to stream</span>
+       : @stream ? shift @stream           <span style="color:#75715e">## We have entry in stream return it</span>
+       :           die;                    <span style="color:#75715e">## exhausted stream die....</span>
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">stream_average</span> {
+      <span style="color:#75715e">## Use state variables for the total &amp; count;</span>
+      state($n,$t);
+
+      <span style="color:#75715e">## Take next element and add to total</span>
+      <span style="color:#75715e">## Increment the count, and return the ratio of the true values</span>
+      <span style="color:#75715e">## Note we need to do pre-increment rather than</span>
+      <span style="color:#75715e">## post increment so the incremement is done before use.</span>
+
+      <span style="color:#66d9ef">return</span> ($t<span style="color:#f92672">+=</span>stream)<span style="color:#f92672">/++</span>$n;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a></p>
+<p>Choroba then took this idea to its logical conclusion and used <code>Moo</code> to implement a <code>Stream</code> object framework, with a base class designed to be extended by specific subclasses, and offering up several examples. There&rsquo;s nothing very unusual about the averaging mechanism, so here are several of these <code>Stream</code> classes to examine, alongside the base class.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    {   <span style="color:#66d9ef">package</span> Stream;
+        <span style="color:#66d9ef">use</span> Moo::Role;
+
+        requires <span style="color:#e6db74">qw{ first next_state }</span>;
+
+        has state <span style="color:#f92672">=&gt;</span> (is <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;rw&#39;</span>, predicate <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>);
+        <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">next_value</span> {
+            <span style="color:#66d9ef">my</span> ($self) <span style="color:#f92672">=</span> @_;
+            $self<span style="color:#f92672">-&gt;</span>state($self<span style="color:#f92672">-&gt;</span>has_state
+                         ? $self<span style="color:#f92672">-&gt;</span>next_state($self<span style="color:#f92672">-&gt;</span>state) : $self<span style="color:#f92672">-&gt;</span>first);
+            <span style="color:#66d9ef">return</span> $self<span style="color:#f92672">-&gt;</span>value
+        }
+        <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">value</span> { $_[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-&gt;</span>state }
+    }
+
+    {   <span style="color:#66d9ef">package</span> Stream::Sequence::Arithmetic;
+        <span style="color:#66d9ef">use</span> Moo::Role;
+        <span style="color:#66d9ef">use</span> MooX::Role::Parameterized;
+
+        with <span style="color:#e6db74">&#39;Stream&#39;</span>;
+        role {
+            <span style="color:#66d9ef">my</span> ($params, $mop) <span style="color:#f92672">=</span> @_;
+            $mop<span style="color:#f92672">-&gt;</span>method(first      <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { $params<span style="color:#f92672">-&gt;</span>{first} });
+            $mop<span style="color:#f92672">-&gt;</span>method(next_state <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { $_[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> $params<span style="color:#f92672">-&gt;</span>{difference} });
+        };
+    }
+
+    {   <span style="color:#66d9ef">package</span> Stream::Fibonacci;
+        <span style="color:#66d9ef">use</span> Moo;
+        with <span style="color:#e6db74">&#39;Stream&#39;</span>;
+
+        <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">first</span>      { [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>] }
+        <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">next_state</span> { [$_[<span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">1</span>], $_[<span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+</span> $_[<span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">1</span>]] }
+
+        around value <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { $_[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">-&gt;</span>state<span style="color:#f92672">-&gt;</span>[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] }
+    }
+</code></pre></div><h2 id="additional-submissions-in-guest-languages">Additional Submissions in Guest Languages</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/arne-sommer/perl/ch-1.pl"><strong>Arne Sommer</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/arne-sommer/raku/ch-1.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/polettix/raku/ch-1.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/jaldhar-h-vyas/perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/jaldhar-h-vyas/raku/ch-1.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/lubos-kolouch/perl/ch-1.pl"><strong>Lubos Kolouch</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/lubos-kolouch/python/ch-1.py">Python</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/roger-bell-west/postscript/ch-1.ps">Postscript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/roger-bell-west/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/roger-bell-west/raku/ch-1.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/roger-bell-west/ruby/ch-1.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/roger-bell-west/rust/ch-1.rs">Rust</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/ulrich-rieke/cpp/ch-1.cpp">C++</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/ulrich-rieke/haskell/ch-1.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/ulrich-rieke/raku/ch-1.raku">Raku</a></p>
+<hr>
+<hr>
+<h1 id="PWC122TASK2">TASK 2</h1>
+<h1 id="basketball-points">Basketball Points</h1>
+<p><em>Submitted by: Mohammad S Anwar</em><br>
+You are given a score $S.</p>
+<p>You can win basketball points e.g. 1 point, 2 points and 3 points.</p>
+<p>Write a script to find out the different ways you can score $S.</p>
+<p><strong>Example</strong></p>
+<pre><code>
+    Input: $S = 4
+    Output: 1 1 1 1
+            1 1 2
+            1 2 1
+            1 3
+            2 1 1
+            2 2
+            3 1
+
+    Input: $S = 5
+    Output: 1 1 1 1 1
+            1 1 1 2
+            1 1 2 1
+            1 1 3
+            1 2 1 1
+            1 2 2
+            1 3 1
+            2 1 1 1
+            2 1 2
+            2 2 1
+            2 3
+            3 1 1
+            3 2
+
+</code></pre><h2 id="about-the-solutions-1">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/abigail/perl/ch-2.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/arne-sommer/perl/ch-2.pl"><strong>Arne Sommer</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/bruce-gray/perl/ch-2.pl"><strong>Bruce Gray</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/jaldhar-h-vyas/perl/ch-2.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/jaredor/perl/ch-2.pl"><strong>Jared Martin</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/lubos-kolouch/perl/ch-2.pl"><strong>Lubos Kolouch</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/mattneleigh/perl/ch-2.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/perlboy1967/perl/ch-2.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/pete-houston/perl/ch-2.pl"><strong>Pete Houston</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/stuart-little/perl/ch-2.pl"><strong>Stuart Little</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/wanderdoc/perl/ch-2.pl"><strong>Wanderdoc</strong></a></p>
+<p>There were 26 submissions for the second task this past week.</p>
+<p>several people noted the similarities to &ldquo;Find possible paths&rdquo;, challenge 117, or &ldquo;climb stairs&rdquo;, challenge 112. Well, after issuing more than 248 tasks (some early challenges had an optional third task) there are bound to be self-similarities popping up everywhere as we poke around the various problem spaces. I myself worked it as a problem of partitions, oops, no <em>compositions</em> — being <em>ordered</em> partitions — which was a different mathematical abstraction for what amounts to the same stuff everyone else was talking about. Only Jorg shared this view with me, and he took a very different approach.</p>
+<p>I found one of the upshots of all this is getting a really interesting overview of a large number of ways to mathematically and computationally approach the same end: the requested list of lists.</p>
+<p>In its most essential form, we need to take lists of partial sums and keep adding 1s, 2s and 3s to them until they sum up correctly. In practice, there were a multitude of ways to get there. We could even count the ways, and the ways to rearrange the process steps&hellip; You get the idea.</p>
+<h2 id="depth-first-recursion">DEPTH-FIRST RECURSION</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/arne-sommer/perl/ch-2.pl"><strong>Arne Sommer</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/bruce-gray/perl/ch-2.pl"><strong>Bruce Gray</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/jaredor/perl/ch-2.pl"><strong>Jared Martin</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/mattneleigh/perl/ch-2.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/perlboy1967/perl/ch-2.pl"><strong>Niels van Dijke</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a></p>
+<p>A recursive, depth-first approach to finding compositions was a good choice, and a fan favorite. One practical benefit of proceeding this way was allowing completed solutions to be output once completed rather than kept, improving memory requirements.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a></p>
+<p>Simon starts us off with a fine example of depth-first recursive search. The two parameters passed are the sum to be totaled to and a growing partial solution. At each cycle through the new values 1, 2, and 3 are added to new versions ot the partial and the function is called again with the new list and the previous total minus the new value.</p>
+<p>The base case is when the remaining total goes to less than 3, when the last point score to make up the final difference is added and the solution printed. The way the sums are augmented, a solution ending with 3 will always have parallel solutions requiring a 2 and a 1 to complete, so in the end all compositions are covered.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_score</span> {
+        <span style="color:#66d9ef">my</span> ( $remaining, $these_shots ) <span style="color:#f92672">=</span> @_;
+
+        <span style="color:#66d9ef">if</span> ( $remaining <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">3</span> ) {
+            <span style="color:#75715e"># Display this score</span>
+            say join <span style="color:#e6db74">&#39; &#39;</span>, @$these_shots, $remaining;
+        }
+
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $shot ( <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span> ) {
+            <span style="color:#75715e"># Call the recursive function again</span>
+            _score( $remaining <span style="color:#f92672">-</span> $shot, [ @$these_shots, $shot ] ) <span style="color:#66d9ef">if</span> $remaining <span style="color:#f92672">&gt;</span> $shot;
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/jaredor/perl/ch-2.pl"><strong>Jared Martin</strong></a>
+Jared wraps his algorithm in an additional loop to gather the solutions in a list before presenting them. Rather than being passed around by reference, the partial solutions are returned, constructing the complete configuration as the recursion collapses.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">main_algo</span> {
+
+        <span style="color:#66d9ef">my</span> @bb_points <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>);
+
+        <span style="color:#66d9ef">my</span> $target <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>];
+        <span style="color:#66d9ef">my</span> @scores <span style="color:#f92672">=</span> ();
+        <span style="color:#66d9ef">if</span> ($target <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
+            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $bb_pnt (@bb_points) {
+                <span style="color:#66d9ef">if</span> ($bb_pnt <span style="color:#f92672">&lt;</span> $target) {
+                    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $partial (@{<span style="color:#f92672">&amp;</span>main_algo($target <span style="color:#f92672">-</span> $bb_pnt)}) {
+                        push @scores, [ $bb_pnt, @{$partial} ];
+                    }
+                } <span style="color:#66d9ef">elsif</span> ($bb_pnt <span style="color:#f92672">==</span> $target) {
+                    push @scores, [ $bb_pnt, ];
+                }
+                <span style="color:#75715e"># Could use an &#34;else last&#34; here if @bb_points is assumed to</span>
+                <span style="color:#75715e"># always be ascending sort and you want to save a cycle or two.</span>
+            }
+        }
+        <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@scores;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/laurent-rosenfeld/raku/ch-2.raku">Raku</a></p>
+<p>Instead of decreasing the target sum at each cycle Laurent adds the latest value to a running total before recursing, with a base case of matching the original target.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">find_dist</span>  {
+        <span style="color:#66d9ef">my</span> ($sum, @seq) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (@vals) {
+            <span style="color:#66d9ef">my</span> $new_sum <span style="color:#f92672">=</span> $sum <span style="color:#f92672">+</span> $i;
+            <span style="color:#75715e"># if $new_sum &gt; $target, then we don&#39;t</span>
+            <span style="color:#75715e"># need to test other values of @vals and</span>
+            <span style="color:#75715e"># can use return instead of next</span>
+            <span style="color:#75715e"># since these values are in ascending order</span>
+            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">if</span> $new_sum <span style="color:#f92672">&gt;</span> $target;
+            <span style="color:#66d9ef">my</span> @new_seq <span style="color:#f92672">=</span> (@seq, $i);
+            <span style="color:#66d9ef">if</span> ($new_sum <span style="color:#f92672">==</span> $target) {
+                say <span style="color:#e6db74">&#34;@new_seq&#34;</span>;
+                <span style="color:#66d9ef">return</span>;
+            } <span style="color:#66d9ef">else</span> {
+                find_dist($new_sum, @new_seq);
+            }
+        }
+    }
+</code></pre></div><h3 id="-and-a-different-sort-of-recursion">&hellip; and a DIFFERENT SORT of RECURSION</h3>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/lubos-kolouch/perl/ch-2.pl"><strong>Lubos Kolouch</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/lubos-kolouch/python/ch-2.py">Python</a></p>
+<p>A different form of recursion gave the function a choice of actions: to either plunge in depth-first, adding 1s until the desired value is met, or alternately increment the last value, using a system of carrying much like what we saw in CY&rsquo;s sequence without 11s, from PWC 119. Essentially we create a unique kernel backfilled with 1s, then increment that value according to a set of rules to create related combinations</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">iterate</span> {
+
+        <span style="color:#66d9ef">my</span> ($arr, $target_sum) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> $arr_sum <span style="color:#f92672">=</span> sum(@$arr) <span style="color:#f92672">||</span> <span style="color:#ae81ff">0</span>;
+
+        <span style="color:#66d9ef">if</span> ($arr_sum <span style="color:#f92672">==</span> $target_sum) {
+            <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;*********** SCORE: &#34;</span>;
+            say join <span style="color:#e6db74">&#34; &#34;</span>, @$arr;
+            $iter_count<span style="color:#f92672">++</span>;
+        }
+
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">if</span> $arr_sum <span style="color:#f92672">&gt;=</span> $target_sum;
+
+        <span style="color:#75715e"># expand the array and try again</span>
+        <span style="color:#66d9ef">my</span> @new_arr <span style="color:#f92672">=</span> @$arr;
+        push @new_arr, <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">print</span> join <span style="color:#e6db74">&#34; &#34;</span>, @$arr;
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34; &gt; &#34;</span>;
+        say join <span style="color:#e6db74">&#34; &#34;</span>, @new_arr;
+        iterate((<span style="color:#f92672">\</span>@new_arr, $target_sum));
+
+        <span style="color:#75715e"># cannot expand, try increasing the last point</span>
+        <span style="color:#66d9ef">my</span> @new_arr <span style="color:#f92672">=</span> @$arr;
+        <span style="color:#66d9ef">if</span> ( (@new_arr) <span style="color:#f92672">and</span> ($new_arr[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;</span> $target_sum) <span style="color:#f92672">and</span> ($new_arr[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">3</span>) ) {
+            $new_arr[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">++</span>;
+            <span style="color:#66d9ef">print</span> join <span style="color:#e6db74">&#34; &#34;</span>, @$arr;
+            <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34; ^ &#34;</span>;
+            say join <span style="color:#e6db74">&#34; &#34;</span>, @new_arr;
+            iterate((<span style="color:#f92672">\</span>@new_arr, $target_sum));
+        }
+
+    }
+</code></pre></div><h2 id="iteration-on-a-queue">ITERATION ON A QUEUE</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/stuart-little/perl/ch-2.pl"><strong>Stuart Little</strong></a></p>
+<p>By keeping a list of partial lists, we can keep adding 1s, 2s, and 3s to each member, expanding the possible point configurations, until we arrive at the correct sum. By shifting a configuration off a queue, creating new lists from it and replacing them back on the other end if they remain unfinished we can continue this until all possible combinations have been developed. As we will see in Adam&rsquo;s submission, there&rsquo;s nothing uniquely inherent to a queue data structure required to make this method work, but that form does provide a handy framework for systematically adding new point score options in each position when building up solutions.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/roger-bell-west/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/roger-bell-west/ruby/ch-2.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/roger-bell-west/rust/ch-2.rs">Rust</a></p>
+<p>Roger refers to this as his &ldquo;standard loop search pattern&rdquo;. His implementation is short and precise. Notice his method of only adding additional point scores that keep the sum below the total.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">bp</span> {
+      <span style="color:#66d9ef">my</span> $n<span style="color:#f92672">=</span>shift;
+      <span style="color:#66d9ef">my</span> @o;
+      <span style="color:#66d9ef">my</span> @p<span style="color:#f92672">=</span>(<span style="color:#f92672">[]</span>);
+      <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">my</span> $s<span style="color:#f92672">=</span>pop @p) {
+        <span style="color:#66d9ef">my</span> $t<span style="color:#f92672">=</span>sum0(@{$s});
+        <span style="color:#66d9ef">if</span> ($t<span style="color:#f92672">==</span>$n) {
+          push @o,$s;
+        } <span style="color:#66d9ef">else</span> {
+          <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>min(<span style="color:#ae81ff">3</span>,$n<span style="color:#f92672">-</span>$t)) {
+            push @p,[@{$s},$i];
+          }
+        }
+      }
+      @o<span style="color:#f92672">=</span>reverse @o;
+      <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@o;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/colin-crain/perl/ch-2.pl"><strong>My Own Solution</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/colin-crain/raku/ch-2.raku">Raku</a></p>
+<p>In my own version I always add each possibility and then decide to add it back to the queue, add is to a list of solutions, or do nothing further with a solution that has exceeded its bounds.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> @points <span style="color:#f92672">=</span> ( <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span> );
+
+    <span style="color:#66d9ef">my</span> @queue <span style="color:#f92672">=</span> map { [$_] } grep { $_ <span style="color:#f92672">&lt;=</span> $score } (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">3</span>);
+    <span style="color:#66d9ef">my</span> @parts;
+
+    <span style="color:#66d9ef">while</span> ( <span style="color:#66d9ef">my</span> $seq <span style="color:#f92672">=</span> shift @queue ) {
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $next (  @points ) {
+            <span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> sum $seq<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, $next;
+            <span style="color:#66d9ef">if</span> ( $sum <span style="color:#f92672">&lt;=</span> $score ) {
+                $sum <span style="color:#f92672">==</span> $score ? push @parts, [$seq<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, $next]
+                               : push @queue, [$seq<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, $next] ;
+            }
+        }
+    }
+    say <span style="color:#e6db74">&#34;$_-&gt;@*&#34;</span> <span style="color:#66d9ef">for</span> @parts;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/adam-russell/prolog/ch-2.p">Prolog</a></p>
+<p>As mentioned earlier, Adam performs what is essentially the same operation slightly differently. Here he keeps his partial solutions stringified as keys in an hash, which is then progressively iterated over using <code>keys</code>. After a new score is added to a partial solution it&rsquo;s evaluated and either abandoned for being over, moved to temporary hash if it&rsquo;s under, or moved to a list of solutions if its just right.</p>
+<p>Of note each time <code>keys</code> is called an new temporary list is made to to instantiate the loop, and adding elements to the hash will not change this list. So even if we add the newly extended partials back to the original <code>%points</code> hash the progression will continue systematically, item by item, the same as a queue without actually being that structure. Granted this behavior is not obvious, but it will work just fine. In other regards additional point scores are added one at a time in each configuration just as we&rsquo;ve seen in the previous examples, augmenting each partial list until the desired sum is reached.</p>
+<p>Adam also brings us another tidbit, a different way to sum the values, using <code>pack</code> and <code>unpack</code>.</p>
+<p>With all this discussion of late on those two functions I knew it was only a matter of time before we saw this curious method of producing a <code>sum</code> function. Here in prefixing the unpack template with <code>%</code>, as in <code>&quot;%32I*&quot;</code> we are requesting, in this case a 32-bit checksum of the integers produced by the previous <code>pack</code> operation, which is computed by summing the values and returning the sum. It&rsquo;s fast, too, nearly as much so as the <code>List::Util</code> XS <code>sum</code> routine. Neat, huh?</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">basketball_points</span>{
+        <span style="color:#66d9ef">my</span>($total) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> %points;
+        <span style="color:#66d9ef">my</span> @valid_points;
+        $points{<span style="color:#e6db74">&#34;1&#34;</span>} <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;1&#34;</span>;
+        $points{<span style="color:#e6db74">&#34;2&#34;</span>} <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;2&#34;</span>;
+        $points{<span style="color:#e6db74">&#34;3&#34;</span>} <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;3&#34;</span>;
+        <span style="color:#66d9ef">while</span>((keys %points) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>){
+            <span style="color:#66d9ef">my</span> %updated_points <span style="color:#f92672">=</span> ();
+            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $points (keys %points){
+                <span style="color:#66d9ef">my</span> @points <span style="color:#f92672">=</span> split(<span style="color:#e6db74">/,/</span>, $points);
+                <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $point (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">3</span>){
+                    <span style="color:#66d9ef">my</span> $point_sum <span style="color:#f92672">=</span> unpack(<span style="color:#e6db74">&#34;%32I*&#34;</span>, pack(<span style="color:#e6db74">&#34;I*&#34;</span>,  (@points, $point)));
+                    push @valid_points, [@points, $point] <span style="color:#66d9ef">if</span> $point_sum <span style="color:#f92672">==</span> $total;
+                    $updated_points{join(<span style="color:#e6db74">&#34;,&#34;</span>, (@points, $point))} <span style="color:#f92672">=</span> $point_sum <span style="color:#66d9ef">if</span> $point_sum <span style="color:#f92672">&lt;</span> $total;
+                }
+            }
+            %points <span style="color:#f92672">=</span> %updated_points;
+        }
+        <span style="color:#66d9ef">return</span> @valid_points;
+    }
+</code></pre></div><h2 id="the-tribonacci-sequence">THE TRIBONACCI SEQUENCE</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/abigail/perl/ch-2.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>In direct analogy to the 2-component recurrence relation of the Fibonacci sequence,</p>
+<p><strong>F</strong>(<em>n</em>) = <strong>F</strong>(<em>n</em>-1) + <strong>F</strong>(<em>n</em>-2)</p>
+<p>what is known as the <em>tribonacci</em> recurrence relation is based on the <em>three</em> previous values in the sequence:</p>
+<p><strong>T</strong>(<em>n</em>) = <strong>T</strong>(<em>n</em>-1) + <strong>T</strong>(<em>n</em>-2) + <strong>T</strong>(<em>n</em>-3)</p>
+<p>In this instance the actions differ slightly, with a constant, one of the three possible scores required to bring the sum back to equality, added to each list from the earlier sequence sets at each recalculation. The new lists all then become members of the current sequence set, with no arithmetic operations. However the <em>quantities</em> of the lists at every step does precisely follow the formula above, which we can therefore use to calculate just how large our sets of values grow.</p>
+<p>Which, in fact, is quite large, with only 40 points already having 23,837,527,729 configurations.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/abigail/perl/ch-2.pl"><strong>Abigail</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/abigail/awk/ch-2.awk">Awk</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/abigail/bash/ch-2.sh">Bash</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/abigail/c/ch-2.c">C</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/abigail/lua/ch-2.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/abigail/node/ch-2.js">Node</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/abigail/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/abigail/ruby/ch-2.rb">Ruby</a></p>
+<p>Abigail presents us with a remarkably concise solution based around the recurrence relation of the Tribonacci sequence. As they have been so kind as to provide a commentary of their method, I&rsquo;ll let them explain it themselves.</p>
+<blockquote>
+<p>$s [n] will contain the possible ways to get to a score of n - 2:</p>
+<ul>
+<li><code>$s [0]</code> is empty, as there is no way to get to a score of -2 <br></li>
+<li><code>$s [1]</code> is empty, as there is no way to get to a score of -1 <br></li>
+<li><code>$s [2]</code> contains the empty string, as there is only one way to get to a score of 0 (not scoring).</li>
+</ul>
+<p>To calculate $s [k], k &gt; 2, we take the union of:</p>
+<ul>
+<li>The scores from <code>$s [k - 1]</code>, prepended by &ldquo;1&rdquo;; <br></li>
+<li>the scores from <code>$s [k - 2]</code>, prepended by &ldquo;2&rdquo;; <br></li>
+<li>the scores from <code>$s [k - 3]</code>, prepended by &ldquo;3&rdquo;; <br></li>
+</ul>
+</blockquote>
+<p>Here is the implementation in all its compact glory. But then again, it&rsquo;s only as big as it need to be, and no more.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> @s <span style="color:#f92672">=</span> (<span style="color:#f92672">[]</span>, <span style="color:#f92672">[]</span>, [<span style="color:#e6db74">&#34;&#34;</span>]);
+    map {push @s <span style="color:#f92672">=&gt;</span> [map {<span style="color:#66d9ef">my</span> $s <span style="color:#f92672">=</span> $_; map {<span style="color:#e6db74">&#34;$s $_&#34;</span>} @{$s [<span style="color:#f92672">-</span>$s]}} <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">3</span>]} <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#f92672">&lt;&gt;</span>;
+    say <span style="color:#66d9ef">for</span> @{$s [<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]}
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>You can see the same pattern in Luis&rsquo; code, adding an additional element to each member of a previous value&rsquo;s solutions. No summing is required as we already know the result through comprehensive bookkeeping. Notice Luis memoizes his <code>points</code> routine, resulting in a substantial speedup.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Memoize;
+    memoize( <span style="color:#e6db74">&#34;points&#34;</span> );
+
+    <span style="color:#66d9ef">foreach</span> ( @ARGV ){
+        say <span style="color:#e6db74">&#34;Input: $_\nOutput:\n\t&#34;</span>, join <span style="color:#e6db74">&#34;\n\t&#34;</span>, map { join <span style="color:#e6db74">&#34; &#34;</span>, @$_ } points( $_ );
+    }
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">points</span>{
+        <span style="color:#66d9ef">my</span> $s <span style="color:#f92672">=</span> shift;
+        <span style="color:#66d9ef">return</span> (  )    <span style="color:#66d9ef">if</span> $s <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#75715e"># Append a 1, 2 or 3 point throw to the previous points</span>
+        <span style="color:#66d9ef">my</span> @result <span style="color:#f92672">=</span> ( ( map { <span style="color:#66d9ef">my</span> @x <span style="color:#f92672">=</span> @$_; push @x, <span style="color:#ae81ff">1</span>; [@x] } points( $s <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ) ),
+                       ( map { <span style="color:#66d9ef">my</span> @x <span style="color:#f92672">=</span> @$_; push @x, <span style="color:#ae81ff">2</span>; [@x] } points( $s <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span> ) ),
+                       ( map { <span style="color:#66d9ef">my</span> @x <span style="color:#f92672">=</span> @$_; push @x, <span style="color:#ae81ff">3</span>; [@x] } points( $s <span style="color:#f92672">-</span> <span style="color:#ae81ff">3</span> ) ) );
+        push @result, [$s] i f $s <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">3</span>;
+            <span style="color:#66d9ef">return</span> @result;
+    }
+</code></pre></div><h2 id="multiset-permutations">MULTISET PERMUTATIONS</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/jaldhar-h-vyas/perl/ch-2.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/pete-houston/perl/ch-2.pl"><strong>Pete Houston</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/wanderdoc/perl/ch-2.pl"><strong>Wanderdoc</strong></a></p>
+<p>In the field of combinatorics, as I mentioned when I first came in, the requested result is technically known as the restricted compositions of the value, with a maximum value of 3. This is an ordered set of all possible configurations of the integers 1, 2 and 3 that sum to the value, which make the idea similar to integer partitions, with the added requirement that the order of the integers matter in the distinct solutions.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/polettix/raku/ch-2.raku">Raku</a></p>
+<p>Flavio reuses several pieces of code he&rsquo;d previously constructed in his example. First he gives us <code>int_sums_iterator($S, 3)</code> which will produce the integer <em>partitions</em> of a number, with a maximum partition size of 3. Partitions, though, are defined to be distinct without specific ordering; that is the partitions are multisets, with repetition allowed, but any multiset with all of the same elements as another is considered the same.</p>
+<p>In compositions, however, the orderings are themselves distinct, and {1,1,2} is no longer the same as {1,2,1}. So he brings out a second routine, <code>permutations_iterator(items =&gt; $arrangement)</code> to construct all permutations of each partition, producing all combinations of points yielding the desired total score.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">basketball_points</span> ($S) {
+       <span style="color:#75715e"># $isi keeps track of iterating through all partitions of the</span>
+       <span style="color:#75715e"># input integer $S with 1, 2, or 3</span>
+       <span style="color:#66d9ef">my</span> $isi <span style="color:#f92672">=</span> int_sums_iterator($S, <span style="color:#ae81ff">3</span>);
+
+       <span style="color:#75715e"># $pi allows iterating through all partitions of a specific</span>
+       <span style="color:#75715e"># partition of $S. %seen allows filtering out duplicates.</span>
+       <span style="color:#66d9ef">my</span> ($pi, %seen);
+
+       <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">sub</span> {
+          <span style="color:#66d9ef">while</span> (<span style="color:#e6db74">&#39;necessary&#39;</span>) {
+             <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>$pi) { <span style="color:#75715e"># no more permutations? Start next cycle</span>
+                <span style="color:#75715e"># if $isi-&gt;() does not return anything meaningful, we</span>
+                <span style="color:#75715e"># exhausted the partitions of $S and can stop here.</span>
+                <span style="color:#66d9ef">my</span> $arrangement <span style="color:#f92672">=</span> $isi<span style="color:#f92672">-&gt;</span>() <span style="color:#f92672">or</span> <span style="color:#66d9ef">return</span>;
+
+                <span style="color:#75715e"># otherwise, $pi will help us move through the</span>
+                <span style="color:#75715e"># permutations</span>
+                $pi <span style="color:#f92672">=</span> permutations_iterator(items <span style="color:#f92672">=&gt;</span> $arrangement);
+                %seen <span style="color:#f92672">=</span> ();
+             }
+             <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">my</span> @candidate <span style="color:#f92672">=</span> $pi<span style="color:#f92672">-&gt;</span>()) {
+                <span style="color:#75715e"># %seen is used to filter out duplicates. As a hash, it</span>
+                <span style="color:#75715e"># is indexed via a string, which is $key in our case</span>
+                <span style="color:#66d9ef">my</span> $key <span style="color:#f92672">=</span> join <span style="color:#e6db74">&#39; &#39;</span>, @candidate;
+                <span style="color:#66d9ef">return</span> @candidate <span style="color:#66d9ef">unless</span> $seen{$key}<span style="color:#f92672">++</span>;
+
+                <span style="color:#75715e"># if $seen[$key} was already greater than 0 we arrive here.</span>
+                <span style="color:#75715e"># The external loop &#34;while (&#39;necessary&#39;)...&#34; takes care</span>
+                <span style="color:#75715e"># to move on to the next candidate</span>
+             }
+             <span style="color:#66d9ef">else</span> {
+                <span style="color:#75715e"># we arrive here if the permutations iterator is exhausted.</span>
+                <span style="color:#75715e"># We set $pi to undef, so that the test at the beginning</span>
+                <span style="color:#75715e"># of the loop will generate a new permutations iterator.</span>
+                $pi <span style="color:#f92672">=</span> undef;
+             }
+          }
+       };
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/athanasius/raku/ch-2.raku">Raku</a></p>
+<p>The monk takes a very methodical approach to constructing their list of 1, 2, and 3 combinations, with a series of loops:</p>
+<ul>
+<li>outside, we find and loop over every multiple of 3 less than the requested total</li>
+<li>next, with the total minus the value of the 3s, every multiple of 2 is found and looped over in a similar fashion, with</li>
+<li>the total minus the 3 product and the 2 product passed on and backfilled with 1s to produce the required sum.</li>
+</ul>
+<p>Careful construction here will produce all the total numbers of 3s, 2s and 1s in each partition. These partitions are physically assembled as we go as partial lists, so when we finish we have a completed list of lists.</p>
+<p>Then these lists are each permuted into all arrangements of their elements to produce the final compositions. Here are the routines used to construct the &ldquo;combinations&rdquo; component of the result:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get_combinations</span>
+    {
+        <span style="color:#66d9ef">my</span> ($S)    <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span>  @combs <span style="color:#f92672">=</span> fill_with_2s( $S );          <span style="color:#75715e"># Includes zero 2s (i.e., all 1s)</span>
+
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $threes (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> int( $S <span style="color:#f92672">/</span> <span style="color:#ae81ff">3</span> ))
+        {
+            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $partition (fill_with_2s( $S <span style="color:#f92672">-</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">*</span> $threes ))
+            {
+                push @combs, [ @$partition, (<span style="color:#ae81ff">3</span>) x $threes ];
+            }
+        }
+
+        <span style="color:#66d9ef">return</span> @combs;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">fill_with_2s</span>
+    {
+        <span style="color:#66d9ef">my</span> ($s) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span>  @partitions;
+
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $twos (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> int( $s <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span> ))
+        {
+            push @partitions, [ (<span style="color:#ae81ff">1</span>) x ($s <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $twos), (<span style="color:#ae81ff">2</span>) x $twos ];
+        }
+
+        <span style="color:#66d9ef">return</span> @partitions;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/pete-houston/perl/ch-2.pl"><strong>Pete Houston</strong></a></p>
+<p>Pete sees the combinations portion of the problems as a special case of a more generalized <a href="https://en.wikipedia.org/wiki/Knapsack_problem">Knapsack Problem</a>, wherein one is tasked to find all ways to fill a theoretical knapsack with items of real weights so as not to exceed a specified total weight capacity.</p>
+<p>In the standard definition of the problem, the carrying capacity of the pack must not be exceeded, but also need not be met, with the minimal remaining space considered the best solution. In this case however, with one of the options being 1, any positive integer can be constructed so that is not an issue, and the solutions to the knapsack problem will be the same as the integer partitions of the value.</p>
+<p>To this end Pete calls in a module, a favorite of his, <a href="https://metacpan.org/pod/Algorithm::Knapsack"><code>Algorithm::Knapsack</code></a> to do the heavy lifting. After first arriving on the scene back on PWC 075, apropos to the Knapsack Problem challenge, we&rsquo;ve seen this tool brought out several times since then.</p>
+<p>From there permuting each partition will result in the list of compositions.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">combos</span> {
+        <span style="color:#66d9ef">my</span> ($tot, $level) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> @solutions;
+        <span style="color:#66d9ef">my</span> @scores;
+        <span style="color:#66d9ef">my</span> @fs;
+        push @scores, ($_) x ($tot <span style="color:#f92672">/</span> $_) <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">3</span>;
+        <span style="color:#66d9ef">my</span> $sack <span style="color:#f92672">=</span> Algorithm::Knapsack<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span> (
+            capacity <span style="color:#f92672">=&gt;</span> $tot,
+            weights  <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>@scores,
+        );
+        $sack<span style="color:#f92672">-&gt;</span>compute;
+        <span style="color:#66d9ef">my</span> $combos <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">my</span> %seen;
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $fit ($sack<span style="color:#f92672">-&gt;</span>solutions) {
+            <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> sum (@scores[@$fit]) <span style="color:#f92672">==</span> $tot;
+            <span style="color:#66d9ef">my</span> $res <span style="color:#f92672">=</span> join (<span style="color:#e6db74">&#39; + &#39;</span>, @scores[@$fit]) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34; = $tot\n&#34;</span>;
+            <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $seen{$res};
+            $seen{$res} <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+            <span style="color:#75715e"># Count frequencies</span>
+            <span style="color:#66d9ef">my</span> %freqs;
+            $freqs{$_}<span style="color:#f92672">++</span> <span style="color:#66d9ef">for</span> @scores[@$fit];
+            push @fs, [map { $freqs{$_} <span style="color:#f92672">||</span> <span style="color:#ae81ff">0</span> } <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">3</span>];
+            push @solutions, [@scores[@$fit]];
+            $combos<span style="color:#f92672">++</span>;
+        }
+        <span style="color:#66d9ef">return</span> @fs;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/wanderdoc/perl/ch-2.pl"><strong>Wanderdoc</strong></a></p>
+<p>With yet another way to arrive a set of properly summing combinations, the doctor brings us <code>Math::Combinatorics</code>, which provides a number of useful combinatorics functions. Here we start with <code>subsets()</code> returning subset combinations of the possible scores: 1, 2, and 3. Iterating through these subsets, we first look for solutions composed of the values 3, 2 and 1, then only the values 3 and 2, then 3 and 1.</p>
+<p>From there a scheme is devised using <code>next_multiset()</code> nested around <code>next_string()</code> (producing mutisets stringified for output) to produce the final permutations.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">multiset_permutations</span>
+    {
+         <span style="color:#66d9ef">my</span> @arr <span style="color:#f92672">=</span> @_;
+         <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">if</span> exists $SEEN{join(<span style="color:#e6db74">&#34; &#34;</span>, sort {$a <span style="color:#e6db74">&lt;=&gt;</span> $b} @arr)};
+         $SEEN{join(<span style="color:#e6db74">&#34; &#34;</span>, sort {$a <span style="color:#e6db74">&lt;=&gt;</span> $b} @arr)} <span style="color:#f92672">=</span> undef;
+
+
+         <span style="color:#66d9ef">my</span> %freq;
+         $freq{$_}<span style="color:#f92672">++</span> <span style="color:#66d9ef">for</span> @arr;
+         <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;@arr$/&#34;</span> <span style="color:#f92672">and</span> <span style="color:#66d9ef">return</span>
+              <span style="color:#66d9ef">if</span> ( exists $freq{<span style="color:#ae81ff">1</span>} <span style="color:#f92672">and</span> $freq{<span style="color:#ae81ff">1</span>} <span style="color:#f92672">==</span> scalar @arr);
+         <span style="color:#66d9ef">my</span> $o <span style="color:#f92672">=</span> Math::Combinatorics<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(
+                        count<span style="color:#f92672">=&gt;</span> scalar @arr ,
+                        data<span style="color:#f92672">=&gt;</span>[sort {$a <span style="color:#e6db74">&lt;=&gt;</span> $b} keys %freq] ,
+                        frequency<span style="color:#f92672">=&gt;</span>[@freq{sort {$a <span style="color:#e6db74">&lt;=&gt;</span> $b} keys %freq}] );
+
+
+         <span style="color:#66d9ef">while</span> ( <span style="color:#66d9ef">my</span> @x <span style="color:#f92672">=</span> $o<span style="color:#f92672">-&gt;</span>next_multiset )
+         {
+              <span style="color:#66d9ef">my</span> $p <span style="color:#f92672">=</span> Math::Combinatorics<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(
+                        data<span style="color:#f92672">=&gt;\</span>@x,
+                        frequency<span style="color:#f92672">=&gt;</span>[map{<span style="color:#ae81ff">1</span>} @x] );
+              <span style="color:#66d9ef">while</span> ( <span style="color:#66d9ef">my</span> @y <span style="color:#f92672">=</span> $p<span style="color:#f92672">-&gt;</span>next_string )
+              {
+                   <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;@y$/&#34;</span>;
+
+              }
+         }
+    }
+</code></pre></div><h2 id="the-unclassifiable-chasing-the-infinite">the UNCLASSIFIABLE chasing the INFINITE</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/ulrich-rieke/haskell/ch-2.hs">Haskell</a></p>
+<p>Ulrich puts a unique twist on his version of the search: after determining a lower and upper bound on the number of point scores that will make up a solution, he uses the <code>Algorithm::Combinatorics</code> function <code>variations_with_repetition</code> to find all variations of the numbers 1, 2 and 3 within that space that sum to the required value.</p>
+<p>As there are <em>3</em><sup><em>k</em></sup> values for each quantity of scores this computation is going to blow up quickly, but will work quite well up to <em>n</em> = 20 or so.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> @basketballPoints <span style="color:#f92672">=</span> ( <span style="color:#ae81ff">1</span> , <span style="color:#ae81ff">2</span> , <span style="color:#ae81ff">3</span> ) ;
+    <span style="color:#66d9ef">my</span> $maxtimes <span style="color:#f92672">=</span> $S ; <span style="color:#75715e">#we can gather that many 1&#39;s from @basketballPoints</span>
+    <span style="color:#66d9ef">my</span> $mintimes ; <span style="color:#75715e">#the minimum number of 3 to arrive at $S points</span>
+    <span style="color:#66d9ef">if</span> ( $S % 3 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> ) {
+      $mintimes <span style="color:#f92672">=</span> $S <span style="color:#f92672">/</span> <span style="color:#ae81ff">3</span> ;
+    }
+    <span style="color:#66d9ef">else</span> {
+      $mintimes <span style="color:#f92672">=</span> floor( $S <span style="color:#f92672">/</span> <span style="color:#ae81ff">3</span> ) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> ;
+    }
+    <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> $maxtimes ;
+    <span style="color:#66d9ef">while</span> ( $i <span style="color:#f92672">&gt;</span> $mintimes <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ) {
+      <span style="color:#66d9ef">my</span> $iter <span style="color:#f92672">=</span> variations_with_repetition(<span style="color:#f92672">\</span>@basketballPoints , $i ) ;
+      <span style="color:#66d9ef">while</span> ( <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> $iter<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">next</span> ) {
+          <span style="color:#66d9ef">if</span> ( sum( @$c ) <span style="color:#f92672">==</span> $S ) {
+        push @allCombis , $c ;
+          }
+      }
+      $i<span style="color:#f92672">--</span> ;
+    }
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $sequence( @allCombis ) {
+      say join( <span style="color:#e6db74">&#39; &#39;</span> , @$sequence ) ;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a></p>
+<p>I don&rsquo;t know where to put this one, but CY has a decidedly different take on a solution, considering it as a variant on the &ldquo;climb stairs&rdquo; problem from PWC 112. In that task we needed compositions of 1 and 2 that summed to a given number representing the top of a flight of stairs, which obviously holds certain similarities to what we need to do here today.</p>
+<p>CY takes a routine from that previous work and applies it here, considering the difference between that that problem and this to be that placement of any 3s in the solutions. To this end she creates a loop that creates templates for all the various patterns of 3s that could be present, from none to the integer component of the total divided by 3. Each partial composition of only 3s will sum to some number less than the total, with a length made of the allocated 3s and the maximum remaining digits to make the total as 1s. The template compositions have placeholders around the 3s to define the patterns, and then the 1 and 2 assigning subroutine is used to fill in all the patterns of 1 and 2 to these placeholders.</p>
+<p>This results in a pretty efficient way to produce valid compositions and only valid compositions that do not need further filtering.</p>
+<p>The meat of the matter is around these two sections, where in the top block the various combinations and permutations of 3s are created as templates, and below the <code>expand()</code> routine is shown that fills the wildcards in. The <code>oneortwo_str()</code> routine referenced creates the 1 and 2 compositions for the stair problem.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    {
+        push @ans, reverse oneortwo_str($S)<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+        for <span style="color:#66d9ef">my</span> $k (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>int $S<span style="color:#f92672">/</span><span style="color:#ae81ff">3</span>) {
+            <span style="color:#66d9ef">my</span> @ans_three333;
+            <span style="color:#66d9ef">my</span> $iter <span style="color:#f92672">=</span> combinations([<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$S<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>$k], $k);
+            <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> $iter<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">next</span>) {
+                <span style="color:#66d9ef">my</span> $str_t <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;*&#34;</span> x $S;
+                <span style="color:#66d9ef">my</span> $len <span style="color:#f92672">=</span> $S<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>$k;
+                substr($str_t, $c<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>], <span style="color:#ae81ff">3</span>) <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;3&#34;</span>;
+                <span style="color:#66d9ef">if</span> ($k <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>) {
+                  <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $t (reverse <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$k<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
+                      substr($str_t, <span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>($t<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">+</span>$c<span style="color:#f92672">-&gt;</span>[$t], <span style="color:#ae81ff">3</span>) <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;3&#34;</span>;
+                  }
+                }
+                push @ans_three333, $str_t;
+            }
+            push @ans, @{expand($_)} <span style="color:#66d9ef">for</span> (reverse @ans_three333);
+        }
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">expand</span> {
+        <span style="color:#66d9ef">my</span> $str <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>];
+        <span style="color:#66d9ef">my</span> @expand_arr;
+        <span style="color:#66d9ef">if</span> ($str <span style="color:#f92672">=~</span><span style="color:#e6db74"> /\*/</span>) {
+            <span style="color:#66d9ef">my</span> $pos <span style="color:#f92672">=</span> index($str,<span style="color:#e6db74">&#34;*&#34;</span>);
+            <span style="color:#66d9ef">my</span> $next_3 <span style="color:#f92672">=</span> index($str, <span style="color:#e6db74">&#34;3&#34;</span>, $pos<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>);
+            <span style="color:#66d9ef">my</span> $len_of_stars <span style="color:#f92672">=</span>
+                               $next_3 <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> ?
+                               (length $str) <span style="color:#f92672">-</span> $pos :
+                               $next_3<span style="color:#f92672">-</span>$pos;
+
+            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $onetwo (oneortwo_str($len_of_stars)<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>) {
+                <span style="color:#66d9ef">my</span> $temp_str <span style="color:#f92672">=</span> $str;
+                substr($temp_str, $pos, $len_of_stars) <span style="color:#f92672">=</span> $onetwo;
+                push @expand_arr, @{expand($temp_str)};
+            }
+        }
+        <span style="color:#66d9ef">else</span> {
+            push @expand_arr, $str;
+        }
+        <span style="color:#66d9ef">return</span> [@expand_arr];
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a></p>
+<p>As I said Jorg took a very different approach to constructing compositions, and that was to have his latest love — <code>Math::Prime::Util</code> — do the work for him. Amongst the couple of hundred functions that module provides, there&rsquo;s a specially tailored version that not only provides compositions restricted to values 3 or less, but also including a built-in iterator to loop over them, avoiding the need to keep them all in memory as they wait to be printed out.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">&#39;forcomp&#39;</span>;
+
+    <span style="color:#75715e"># The task is to list all compositions of N where each part is limited</span>
+    <span style="color:#75715e"># to p &lt;= 3.</span>
+
+    forcomp {say <span style="color:#e6db74">&#34;@_&#34;</span>} $ARGV[<span style="color:#ae81ff">0</span>], {amax <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>};
+</code></pre></div><h2 id="additional-submissions-in-guest-languages-1">Additional Submissions in Guest Languages</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/arne-sommer/perl/ch-2.pl"><strong>Arne Sommer</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/arne-sommer/raku/basketball-points-ifs-2">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/bruce-gray/perl/ch-2.pl"><strong>Bruce Gray</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/bruce-gray/raku/ch-2.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/jaldhar-h-vyas/perl/ch-2.pl"><strong>Jaldhar H. Vyas</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/jaldhar-h-vyas/raku/ch-2.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/stuart-little/perl/ch-2.pl"><strong>Stuart Little</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/stuart-little/haskell/ch-2.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/stuart-little/lua/ch-2.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/stuart-little/node/ch-2.js">Node</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/stuart-little/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/stuart-little/raku/ch-2.raku">Raku</a></p>
+<hr>
+<h1 id="PWC122BLOGS">BLOGS</h1>
+<hr>
+<p><strong>That’s it for me this week, people! Warped by the rain, driven by the snow, resolute and unbroken by the torrential influx, I somehow continue to maintain my bearings. Looking forward to next wave, the perfect wave, I am: <em>your humble servant</em>.</strong></p>
+<h1 id="PWC122BLOGS">But if Your <em>THIRST</em> for <em>KNOWLEDGE</em> is not <em>SLAKED</em>,</h1>
+<h1 id="then-run-dont-walk-to-the-watering-hole">then <em>RUN</em> <em>(dont walk!)</em> to the <em>WATERING HOLE</em></h1>
+<h1 id="and-read-these-blog-links">and <em>READ</em> these <em>BLOG</em> <em>LINKS</em>:</h1>
+<p><strong>( <em>don&rsquo;t think, trust your training, you&rsquo;re in the zone, just do it &hellip;</em> )</strong></p>
+<p><strong>Abigail</strong></p>
+<ul>
+<li><a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-122-1.html">Perl Weekly Challenge 122: Average of Stream</a> ( <em>Perl</em> )</li>
+<li><a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-122-2.html">Perl Weekly Challenge 122: Basketball Points</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Adam Russell</strong></p>
+<ul>
+<li><a href="http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2021/07/25">Average of Stream / Basketball Points — Perl — RabbitFarm</a> ( <em>Perl</em> )</li>
+<li><a href="http://www.rabbitfarm.com/cgi-bin/blosxom/prolog/2021/07/25">Average of Stream / Basketball Points — Prolog — RabbitFarm</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Andinus</strong></p>
+<ul>
+<li><a href="https://andinus.tilde.institute/pwc/challenge-122/">Challenge 122</a> ( <em>Raku</em> )</li>
+</ul>
+<p><strong>Arne Sommer</strong></p>
+<ul>
+<li><a href="https://raku-musings.com/of-points.html">Of Points with Raku and Perl</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Colin Crain</strong></p>
+<ul>
+<li><a href="https://colincrain.com/2021/07/24/keeping-up-the-average-number-of-trips-from-the-line/">Keeping Up the Average Number of Trips From the Line — Programming Excursions in Perl and Raku</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Dave Jacoby</strong></p>
+<ul>
+<li><a href="https://jacoby.github.io/2021/07/19/streams-and-scores-the-weekly-challenge-121.html">Streams and Scores: The Weekly Challenge #121 | Committed to Memory</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Flavio Poletti</strong></p>
+<ul>
+<li><a href="https://github.polettix.it/ETOOBUSY/2021/07/21/pwc122-average-of-stream/">PWC122 - Average of Stream - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+<li><a href="https://github.polettix.it/ETOOBUSY/2021/07/22/pwc122-basketball-points/">PWC122 - Basketball Points - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Jaldhar H. Vyas</strong></p>
+<ul>
+<li><a href="https://www.braincells.com/perl/2021/07/perl_weekly_challenge_week_122.html">Perl Weekly Challenge: Week 122</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>James Smith</strong></p>
+<ul>
+<li><a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-122/james-smith">Perl Weekly Challenge #122</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Laurent Rosenfeld</strong></p>
+<ul>
+<li><a href="http://blogs.perl.org/users/laurent_r/2021/07/perl-weekly-challenge-122-average-of-stream-and-basketball-points.html">Perl Weekly Challenge 122: Average of Stream and Basketball Points | laurent_r</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Luca Ferrari</strong></p>
+<ul>
+<li><a href="https://fluca1978.github.io/2021/07/20/PerlWeeklyChallenge122.html#task1">Perl Weekly Challenge 122: mangling numbers – Luca Ferrari – Open Source advocate, human being</a> ( <em>Raku</em> )</li>
+<li><a href="https://fluca1978.github.io/2021/07/20/PerlWeeklyChallenge122.html#task2">Perl Weekly Challenge 122: mangling numbers – Luca Ferrari – Open Source advocate, human being</a> ( <em>Raku</em> )</li>
+</ul>
+<p><strong>Roger Bell_West</strong></p>
+<ul>
+<li><a href="https://blog.firedrake.org/archive/2021/07/Perl_Weekly_Challenge_122__Basketball_Stream.html">RogerBW&rsquo;s Blog: Perl Weekly Challenge 122: Basketball Stream</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Simon Green</strong></p>
+<ul>
+<li><a href="https://dev.to/simongreennet/weekly-challenge-122-4np8">Weekly Challenge 122</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>W. Luis Mochan</strong></p>
+<ul>
+<li><a href="https://wlmb.github.io/2021/07/19/PWC122/">Perl Weekly Challenge 122 – W. Luis Mochán</a> ( <em>Perl</em> )</li>
+</ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="/contact" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2021
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.nomtimes.co.uk/site/shop.do?cref=PerlBooks" title="Free Perl Books" rel="noreferrer" target="_blank">
+                            <img src="/images/NomTimes.jpg" style="width:22px; height: 18px;" alt=""/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jQurey/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-136524905-1', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+
+</html>
+
