@@ -37,7 +37,7 @@ We also had the first **[Raku Conference](https://conf.raku.org/)** last week. O
 
 <br>
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/C3X7r_SxlDs&t=3s" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/C3X7r_SxlDs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 <br><br>
 
