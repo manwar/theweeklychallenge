@@ -169,13 +169,19 @@ Write a script to find the diameter of the given binary tree.
 
 > The diameter of a binary tree is the length of the longest path between any two nodes in a tree. It doesn't have to pass through the root.
 
-For the above given binary tree, possible diameters (7) are:
+For the above given binary tree, possible diameters (6) are:
 
     3, 2, 1, 5, 7, 8, 9
 
     or
 
     4, 2, 1, 5, 7, 8, 9
+
+<br>
+
+##### UPDATE (2021-08-10 16:45:00 BST): Jorg Sommrey corrected the example.
+
+> The length of a path is the number of its edges, not the number of the vertices it connects. So the diameter should be 6, not 7.
 
 <br>
 
