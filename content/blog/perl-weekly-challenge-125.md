@@ -179,7 +179,7 @@ For the above given binary tree, possible diameters (6) are:
 
 <br>
 
-##### UPDATE (2021-08-10 16:45:00 BST): Jorg Sommrey corrected the example.
+##### UPDATE (2021-08-10 17:00:00 BST): Jorg Sommrey corrected the example.
 
 > The length of a path is the number of its edges, not the number of the vertices it connects. So the diameter should be 6, not 7.
 
