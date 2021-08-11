@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2021-08-08T00:00:00+00:00
+date: 2021-08-11T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -106,13 +106,19 @@ Please find below guest contributions.
 
 ##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-124/laurent-rosenfeld/dart/ch-1.dart) in **Dart**.
 
+##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-124/laurent-rosenfeld/go/ch-1.go) in **Go**.
+
 ##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-124/laurent-rosenfeld/io/ch-1.io) in **IO**.
 
 ##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-124/laurent-rosenfeld/java/ch-1.java) in **Java**.
 
+##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-124/laurent-rosenfeld/julia/ch-1.julia) in **Julia**.
+
 ##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-124/laurent-rosenfeld/kotlin/ch-1.kt) in **Kotlin**.
 
 ##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-124/laurent-rosenfeld/lua/ch-1.lua) in **Lua**.
+
+##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-124/laurent-rosenfeld/nim/ch-1.nim) in **Nim**.
 
 ##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-124/laurent-rosenfeld/pascal/ch-1.p) in **Pascal**.
 
