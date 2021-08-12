@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2021-08-11T00:00:00+00:00
+date: 2021-08-12T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -31,6 +31,10 @@ Please find below guest contributions.
 ----
 ## [The Weekly Challenge - 125](/blog/perl-weekly-challenge-125) {#125}
 <br>
+
+##### **Eric Cheung** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/eric-cheung/excel-vba/ch-1.bas) in **Excel VBA**.
+
+##### **Eric Cheung** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/eric-cheung/python/ch-2.py) in **Python**.
 
 ##### **Roger Bell_West** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/roger-bell-west/postscript/ch-2.ps) in **Postscript**.
 
