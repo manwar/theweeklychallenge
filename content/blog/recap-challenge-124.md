@@ -316,7 +316,7 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 ***
 
 ### Peter Campbell Smith
-![Peter Campbell Smith](/images/team/user.jpg)
+![Peter Campbell Smith](/images/team/peter-campbell-smith.jpg)
 
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-124/peter-campbell-smith/perl/ch-2.pl)]
 
