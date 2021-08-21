@@ -1,0 +1,1501 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="The Weekly Challenge - Perl & Raku"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="You do not have to be an expert."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Colin Crain › Perl Weekly Review #123">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Colin Crain › Perl Weekly Review #123</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navgation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Colin Crain › Perl Weekly Review #123</h2>
+                    <div class="portfolio-meta">
+                        <span>Friday, Aug 20, 2021</span>|
+                        <span> Tags:
+                            perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/p5-review-challenge-123.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <p>( <em>&hellip;continues from <a href="/blog/review-challenge-122/">previous week</a>.</em> )</p>
+<p>Welcome to the Perl review for <strong>Week 123</strong> of the Weekly Challenge! Here we will take the time to discuss the  submissions offered by the team, factor out the common methodologies that came up in those solutions, and highlight some of the unique approaches and unusual code created.</p>
+<hr>
+<h3 id="why-do-we-do-these-challenges">Why do we do these challenges?</h3>
+<p>I suppose any answers to that would be as wide ranging and varied as the people who choose to join the team. One thing is clear: it&rsquo;s not a competition, and there are no judges, even if there is a &ldquo;prize&rdquo; of sorts. About that &ndash; I think of it more as an honorarium periodically awarded to acknowledge the efforts we make towards this strange goal. So there&rsquo;s no determination to find the <em>fastest</em>, or the <em>shortest</em>, or even, in some abstract way, the <em>best</em> way to go about things, although I&rsquo;m certain the individuals have their own aspirations and personal drives. As Perl is such a wonderfully expressive language, this provides quite a bit of fodder to the core idea of TMTOWTDI, producing a gamut of wonderfully varied techniques and solutions.</p>
+<p>Even the tasks themselves are often open to a certain amount of discretionary interpretation. What we end up with is a situation where each participant is producing something in the manner they find the most interesting or satisfying. Some team members focus on carefully crafted complete applications that thoroughly vet input data and handle every use case they can think up. Others chose to apply themselves to the logic of the underlying puzzle and making it work in the most elegant way they can. Some eschew modules they would ordinarily reach for, others embrace them, bringing to light wheels perhaps invented years ago that happen to exactly solve the problem in front of them today.</p>
+<p>I&rsquo;ve been considering this question for some time and have found one binding commonality between all of us solving these challenges each week, in that however we normally live our lives, the task in front of us more than likely has nothing to do with any of that . And I think this has great value. We all do what we do, out in the real world, and hopefully we do it well. The Weekly Challenge provides a opportunity to do something germane to that life yet distinctly different; if we only do the things we already know how to do we only do the same things over and over. This is where the &ldquo;challenge&rdquo; aspect comes into play.</p>
+<p>So we can consider the Weekly Challenge as providing a problem space outside of our comfort zone, as far out from comfort as we wish to take things. From those reaches we can gather and learn things and bring what we want back into our lives. Personally, I think that&rsquo;s its greatest value of all.</p>
+<hr>
+<p>Every week there is an enormous global collective effort made by the team, analyzing and creatively coding the submissions, and that effort deserves credit due. And that&rsquo;s why I&rsquo;m here, to try and figure out how to do that.</p>
+<p>Let&rsquo;s have a look and see what we can find.</p>
+<hr>
+<p><strong><big>For context</big></strong>  before we begin, you may wish to revisit either of the pages for the <a href="/blog/perl-weekly-challenge-123/"><strong>original tasks</strong></a> or the summary <a href="/blog/recap-challenge-123/"><strong>recap</strong></a> of the challenge. But don&rsquo;t worry, the challenges themselves will be briefly summarized, presented below as we progress from task by task. Oh, and one more thing before we get started:</p>
+<h3 id="getting-in-touch-with-us">Getting in Touch with Us</h3>
+<p><a href="mailto:pwc.perfectwave@gmail.com"><img src="/images/blog/Email.svg" height="50" width="50"> Email</a> › Please email me (Colin) with any feedback, notes, clarifications or whatnot about this review.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge"><img src="/images/blog/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request to us for any issues you may find with this page.</p>
+<p><a href="https://twitter.com/perlwchallenge"><img src="/images/blog/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!</p>
+<p>I&rsquo;m always curious as to what the people think of these efforts. Everyone here at the PWC would like to hear any feedback you&rsquo;d like to give.</p>
+<p><strong>So finally, without further ado&hellip;</strong></p>
+<hr>
+<h2 id="---nbsp--nbsp--nbsp---task-1pwc123task1-------nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---task-2pwc123task2---nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---blogspwc123blogs----nbsp--nbsp--nbsp---">•             <a href="#PWC123TASK1">Task 1</a>                 •             <a href="#PWC123TASK2">Task 2</a>             	•             <a href="#PWC123BLOGS">BLOGS</a>              	•</h2>
+<hr>
+<h1 id="PWC123TASK1">TASK 1</h1>
+<h1 id="ugly-numbers">Ugly Numbers</h1>
+<p><em>Submitted by: Mohammad S Anwar</em><br>
+You are given an integer $n &gt;= 1.</p>
+<p>Write a script to find the $nth element of Ugly Numbers.</p>
+<p>Ugly numbers are those number whose prime factors are 2, 3 or 5.</p>
+<p>For example, the first 10 Ugly Numbers are 1, 2, 3, 4, 5, 6, 8, 9, 10, 12.</p>
+<p><strong>Example</strong></p>
+<pre><code>    Input: $n = 7
+    Output: 8
+
+    Input: $n = 10
+    Output: 12
+</code></pre><h2 id="about-the-solutions">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/abigail/perl/ch-1.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/arne-sommer/perl/ch-1.pl"><strong>Arne Sommer</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/bruce-gray/perl/ch-1.pl"><strong>Bruce Gray</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/jaldhar-h-vyas/perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/kjetillll/perl/ch-1.pl"><strong>kjetillll</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/lubos-kolouch/perl/ch-1.pl"><strong>Lubos Kolouch</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/mattneleigh/perl/ch-1.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/pete-houston/perl/ch-1.pl"><strong>Pete Houston</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/stuart-little/perl/ch-1.pl"><strong>Stuart Little</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/wanderdoc/perl/ch-1.pl"><strong>Wanderdoc</strong></a></p>
+<p>There were 27 submissions for the first task this past week.</p>
+<p>Let me begin by stating an objection to the nomenclature here, specifically the naming of any numbers &ldquo;ugly&rdquo;. Simply put, I just don&rsquo;t like it.</p>
+<p>I&rsquo;ve gone into much more detail <a href="http://colincrain.com/2021/08/01/dont-be-an-ugly-square-man/">elsewhere on the subject</a>, but suffice to say there&rsquo;s nothing I can see that&rsquo;s &ldquo;ugly&rdquo; about these upstanding numeric citizens, and see no reason to deride them as such. So I for one will not partipate in this charade. <a href="https://en.wiktionary.org/wiki/haterade">I will not drink the haterade</a>.</p>
+<p>Fortunately there are other ways of referring to our friends, such as the <a href="https://en.wikipedia.org/wiki/Smooth_number">5-Smooth Numbers</a> or <a href="https://en.wikipedia.org/wiki/Regular_number">Regular Numbers</a> or sometimes <a href="https://en.wikipedia.org/wiki/Richard_Hamming">Hamming Numbers</a>. I&rsquo;ve been looking at these numbers over the past year as the true friends they are, in the context of <a href="https://en.wikipedia.org/wiki/Five-limit_tuning">5-Limit Just Intonation</a> and have seen the rather beautiful term <em>Harmonic Whole Numbers</em> used, which is an altogether much more pleasant (and fundamentally accurate) way to describe them.</p>
+<p>We&rsquo;re going to go with the most common term then, &ldquo;5-Smooth&rdquo;, or just &ldquo;smooth&rdquo; in this specific local context, and speak no more of the ugly pejorative that got us here. Please, think of the integers. Words can hurt like a fist.</p>
+<h2 id="factor-factor-factor">FACTOR, FACTOR, FACTOR</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/arne-sommer/perl/ch-1.pl"><strong>Arne Sommer</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/jaldhar-h-vyas/perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/pete-houston/perl/ch-1.pl"><strong>Pete Houston</strong></a></p>
+<p>A brute force approach that will solve the problem is to work through a list of incrementing numbers and factor them as we go, adding those whose factors are only 2, 3 and 5 to a growing array of smooth numbers.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/jaldhar-h-vyas/perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/jaldhar-h-vyas/raku/ch-1.raku">Raku</a></p>
+<p>Jaldhar relies on a quartet of functions to get his work done, starting outermost with the <code>isUgly()</code> wrapper that returns a response that is used to either add a candidate to a growing list of values or not. This routine uses <code>factorize()</code>, which creates a prime deconstruction of a given value, which in turn uses another routine, <code>nextPrime()</code> for, well, the next prime to check, and <code>isPrime()</code> which you can guess.</p>
+<p>There&rsquo;s a whole lot of factoring going on here, that&rsquo;s for sure, but if you want to understand something, it&rsquo;s best to see it all laid out instead relying on powers hidden behind a module interface.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">factorize</span> {
+        <span style="color:#66d9ef">my</span> ($n, $primeFactors) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">if</span> ($n <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">2</span>) {
+            <span style="color:#66d9ef">return</span>;
+        }
+
+        <span style="color:#66d9ef">my</span> $p <span style="color:#f92672">=</span> nextPrime(<span style="color:#ae81ff">1</span>);
+        <span style="color:#66d9ef">while</span> ($p <span style="color:#f92672">&lt;=</span> $n) {
+
+            <span style="color:#66d9ef">if</span> ($n % <span style="color:#960050;background-color:#1e0010">$</span>p <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+                push @{$primeFactors}, $p;
+                factorize($n <span style="color:#f92672">/</span> $p, $primeFactors);
+            }
+            $p <span style="color:#f92672">=</span> nextPrime();
+        }
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">isUgly</span> {
+        <span style="color:#66d9ef">my</span> ($n) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> @primeFactors;
+        factorize($n, <span style="color:#f92672">\</span>@primeFactors);
+        <span style="color:#66d9ef">return</span> (scalar grep { $_ <span style="color:#f92672">!=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">&amp;&amp;</span> $_ <span style="color:#f92672">!=</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">&amp;&amp;</span>  $_ <span style="color:#f92672">!=</span> <span style="color:#ae81ff">5</span> } @primeFactors) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/arne-sommer/perl/ch-1.pl"><strong>Arne Sommer</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/arne-sommer/raku/ch-1.raku">Raku</a></p>
+<p>Arne here does two things: first, importing the <code>is_prime</code> function from <code>Math::Prime::Util</code>, and then a set of Raku-like junctions, <code>any</code> and <code>all</code> from <code>Perl6::Junction</code>. The first is pretty self-explanatory to the factorization process, but the second warrants some explanation. The functions can be thought of as to work on arrays as a set; that, in this case, all members of the set of <code>@prime_factors</code> are equal to some element of the set {2,3,5}.</p>
+<p>That&rsquo;s a little easier to think about than contemplating a junction as existing in a state of quantum superimposition, which is what the <a href="https://metacpan.org/pod/Quantum::Superpositions">module this is based on is called</a>.</p>
+<p>The work is mostly done in the <code>factor()</code> routine, of course, which returns a prime deconstruction of a number, with all values included.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">qw/is_prime/</span>;
+    <span style="color:#66d9ef">use</span> Perl6::Junction <span style="color:#e6db74">qw/all any/</span>;
+
+    <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>)
+    {
+      <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> @ugly_seq <span style="color:#f92672">==</span> $n;
+
+      <span style="color:#66d9ef">my</span> @prime_factors <span style="color:#f92672">=</span> factors($candidate);
+      push(@ugly_seq, $candidate) <span style="color:#66d9ef">if</span> all(@prime_factors) <span style="color:#f92672">==</span> any(<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">5</span>);
+      $candidate<span style="color:#f92672">++</span>;
+    }
+
+    say <span style="color:#e6db74">&#34;: Sequence: &#34;</span>, join(<span style="color:#e6db74">&#34;, &#34;</span>, @ugly_seq) <span style="color:#66d9ef">if</span> $verbose;
+
+    say $ugly_seq[$n <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">factors</span> ($number)
+    {
+      <span style="color:#66d9ef">return</span> (<span style="color:#ae81ff">1</span>)       <span style="color:#66d9ef">if</span> $number <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>;
+      <span style="color:#66d9ef">return</span> ($number) <span style="color:#66d9ef">if</span> is_prime($number);
+
+      <span style="color:#66d9ef">my</span> @factors;
+
+      <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $candidate (grep { is_prime($_) } <span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> $number <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>)
+      {
+        <span style="color:#66d9ef">while</span> ($number % <span style="color:#960050;background-color:#1e0010">$</span>candidate <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)
+        {
+          push(@factors, $candidate);
+          $number <span style="color:#f92672">/=</span> $candidate;
+        }
+      }
+
+      <span style="color:#66d9ef">return</span> @factors;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/pete-houston/perl/ch-1.pl"><strong>Pete Houston</strong></a></p>
+<p>In a much quicker solution, Pete brings in the highly tuned <code>Math::Prime::Util</code> module to speed the search. In the language of the logic expressed, we allow all numbers except those with any factor that is not a 2, a 3 , or a 5.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">&#39;factor&#39;</span>;
+    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">&#39;any&#39;</span>;
+
+    <span style="color:#66d9ef">my</span> ($n, $i, $j) <span style="color:#f92672">=</span> (shift, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>);
+    <span style="color:#66d9ef">do</span> {
+        $i<span style="color:#f92672">++</span> <span style="color:#66d9ef">unless</span> any { $_ <span style="color:#f92672">!=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">&amp;&amp;</span> $_ <span style="color:#f92672">!=</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">&amp;&amp;</span> $_ <span style="color:#f92672">!=</span> <span style="color:#ae81ff">5</span> } factor (<span style="color:#f92672">++</span>$j);
+    } <span style="color:#66d9ef">until</span> $i <span style="color:#f92672">==</span> $n;
+
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$j\n&#34;</span>;
+</code></pre></div><h2 id="divide-down-and-see-whats-left">DIVIDE DOWN and see what&rsquo;s LEFT</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/kjetillll/perl/ch-1.pl"><strong>kjetillll</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/stuart-little/perl/ch-1.pl"><strong>Stuart Little</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a></p>
+<p>Alternately, and more efficiently in general, we know we only care about the factors 2, 3 and 5, so why not just divide those out and see what&rsquo;s left? We don&rsquo;t care if that remaining bit is 23 or 29, just that if it&rsquo;s there the number can&rsquo;t be smooth.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/laurent-rosenfeld/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/laurent-rosenfeld/raku/ch-1.raku">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/laurent-rosenfeld/scala/ch-1.scala">Scala</a></p>
+<p>In a compact validation routine and a simple increment loop, Laurent builds up his sequence until the requested value is found.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_ugly</span> {
+        <span style="color:#66d9ef">my</span> $in <span style="color:#f92672">=</span> shift;
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $div (<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">5</span>) {
+            $in <span style="color:#f92672">/=</span> $div <span style="color:#66d9ef">while</span> $in % <span style="color:#960050;background-color:#1e0010">$</span>div <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+        }
+        <span style="color:#66d9ef">return</span> $in <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>;
+    }
+
+    <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> shift <span style="color:#e6db74">//</span> <span style="color:#ae81ff">7</span>;
+    <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">my</span> $count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
+        $count <span style="color:#f92672">++</span>;
+        $i<span style="color:#f92672">++</span> <span style="color:#66d9ef">if</span> is_ugly $count;
+        say $count <span style="color:#f92672">and</span> <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $i <span style="color:#f92672">==</span> $n
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a></p>
+<p>Another similar version by Simon, who provides a nice example of a self-limiting <code>while</code> loop to compute the sequence up until the requested index.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_is_ugly</span> {
+        <span style="color:#66d9ef">my</span> $x <span style="color:#f92672">=</span> shift;
+
+        <span style="color:#75715e"># Keep dividing by 2, 3 and 5 as long as it leaves no remainder</span>
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $d ( <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">5</span> ) {
+            <span style="color:#66d9ef">while</span> ( $x % <span style="color:#960050;background-color:#1e0010">$</span>d <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> ) {
+                $x <span style="color:#f92672">/=</span> $d;
+            }
+        }
+
+        <span style="color:#75715e"># If the result is 1, it&#39;s an ugly number</span>
+        <span style="color:#66d9ef">return</span> $x <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> ? <span style="color:#ae81ff">1</span> : <span style="color:#ae81ff">0</span>;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">main</span> {
+        <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> shift;
+
+        <span style="color:#66d9ef">my</span> $number <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">while</span> ($n) {
+            <span style="color:#f92672">--</span>$n <span style="color:#66d9ef">if</span> _is_ugly( <span style="color:#f92672">++</span>$number );
+        }
+
+        say $number;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/kjetillll/perl/ch-1.pl"><strong>kjetillll</strong></a></p>
+<p>kjetillll takes a somewhat different tack, providing us with a nice pair of recursive routines, one to determine whether an individual number is 5-smooth, the second to generate the smooth sequence until the <em>n</em>-th number can be reported.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_ugly</span> {
+        <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> shift;
+        $n <span style="color:#f92672">!=</span> int$n                   ? <span style="color:#ae81ff">0</span>
+       :$n <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>                       ? <span style="color:#ae81ff">1</span>
+       :( grep is_ugly($n<span style="color:#f92672">/</span>$_),<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">5</span> ) ? <span style="color:#ae81ff">1</span>
+       :                                <span style="color:#ae81ff">0</span>
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">nth_ugly</span> {
+        <span style="color:#66d9ef">my</span>($n,$try)<span style="color:#f92672">=</span>(@_,<span style="color:#ae81ff">0</span>);
+        $n ? nth_ugly( $n <span style="color:#f92672">-</span> is_ugly(<span style="color:#f92672">++</span>$try), $try) : $try
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a></p>
+<p>Duncan inlines the dividing down into a trio of <code>while</code> loops to remove the desirable primes, leaving any less-so behind. A simple wrapper builds up the list as required.</p>
+<p>The module <code>Function::Parameters</code> provides signature support to his functions.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Function::Parameters;
+
+    fun isugly( $x )
+    {
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $x <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">while</span>( $x % 5 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> ) { $x <span style="color:#f92672">/=</span> <span style="color:#ae81ff">5</span> }
+        <span style="color:#66d9ef">while</span>( $x % 3 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> ) { $x <span style="color:#f92672">/=</span> <span style="color:#ae81ff">3</span> }
+        <span style="color:#66d9ef">while</span>( $x % 2 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> ) { $x <span style="color:#f92672">/=</span> <span style="color:#ae81ff">2</span> }
+        <span style="color:#66d9ef">return</span> $x<span style="color:#f92672">==</span><span style="color:#ae81ff">1</span> ? <span style="color:#ae81ff">1</span> : <span style="color:#ae81ff">0</span>;
+    }
+
+    fun nth_ugly( $n )
+    {
+        <span style="color:#66d9ef">for</span>( <span style="color:#66d9ef">my</span> $i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>; ; $i<span style="color:#f92672">++</span> )
+        {
+        	<span style="color:#66d9ef">if</span>( isugly($i) )
+        	{
+        		<span style="color:#66d9ef">if</span>( <span style="color:#f92672">--</span>$n<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span> )
+        		{
+        			<span style="color:#66d9ef">return</span> $i;
+        		}
+        	}
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/stuart-little/perl/ch-1.pl"><strong>Stuart Little</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/stuart-little/haskell/ch-1.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/stuart-little/lua/ch-1.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/stuart-little/node/ch-1.js">Node</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/stuart-little/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/stuart-little/raku/ch-1.raku">Raku</a></p>
+<p>Stuart introduces a system of memoization to recognise when a number is a previously identified smooth number times one of the three factors. These values are then immediately added to the list, dramatically shortening the dividing down process.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> %memo <span style="color:#f92672">=</span> map { $_ <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> } (<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">5</span>);
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">smth5p</span>($n) {
+        $memo{$n} <span style="color:#f92672">&amp;&amp;</span> <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">my</span> $den <span style="color:#f92672">=</span> first {$n % <span style="color:#960050;background-color:#1e0010">$</span>_ <span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>} (<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">5</span>);
+        <span style="color:#66d9ef">return</span> ($den ? ($memo{int($n<span style="color:#f92672">/</span>$den)} <span style="color:#f92672">&amp;&amp;</span> ($memo{$n}<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)) : <span style="color:#ae81ff">0</span>)
+    }
+
+    <span style="color:#66d9ef">my</span> ($count,$nr)<span style="color:#f92672">=</span>(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>);
+    <span style="color:#66d9ef">while</span> ($count <span style="color:#f92672">&lt;</span> $ARGV[<span style="color:#ae81ff">0</span>]) {
+        $nr<span style="color:#f92672">+=</span><span style="color:#ae81ff">1</span>;
+        (smth5p($nr)) <span style="color:#f92672">&amp;&amp;</span> <span style="color:#66d9ef">do</span> {
+        say $nr;
+        $count<span style="color:#f92672">+=</span><span style="color:#ae81ff">1</span>;
+        };
+    }
+</code></pre></div><h2 id="build-up-from-the-basics">BUILD UP from the BASICS</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a></p>
+<p>In a general sense, the 5-smooth numbers are those produced by a unique combination of the factors 2, 3, and 5. By actively assembling combinations of these factors, then, we should be able to form any value in the smooth sequence.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/athanasius/raku/ch-1.raku">Raku</a></p>
+<p>The problem with taking the last generated 5-smooth number and multiplying it by 2, 3 and 5 to produce the next set of values is twofold: one, this strategy produces duplicate values — both the numbers 2 × 3 and 3 × 2 are generated — and secondly that the numbers are produced out-of-order. The current value times 5 will always be greater than the <em>next</em> value times 2.  And the actual next number is quite poosibly a number two back times 5. It gets very complicated.</p>
+<p>The monk neatly side-steps this last part by using a priority heap data structure, which when popped will always give the smallest value in the heap. A simple <code>do...while</code> loop is used to skip over duplicate values.</p>
+<p>The result is quite compact.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Array::Heap;
+
+    <span style="color:#66d9ef">my</span> @heap   <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">my</span> $last_h <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">my</span> $count  <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">my</span> $hamming;
+
+    <span style="color:#66d9ef">while</span> ($count<span style="color:#f92672">++</span> <span style="color:#f92672">&lt;</span> $n)
+    {
+        <span style="color:#66d9ef">do</span>
+        {
+            $hamming <span style="color:#f92672">=</span> pop_heap @heap;
+
+        } <span style="color:#66d9ef">while</span> ($hamming <span style="color:#f92672">==</span> $last_h);                     <span style="color:#75715e"># Discard duplicates</span>
+
+        $last_h <span style="color:#f92672">=</span> $hamming;
+
+        push_heap @heap, $_ <span style="color:#f92672">*</span> $hamming <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">5</span>;
+    }
+
+    printf <span style="color:#e6db74">&#34;Output: %d\n&#34;</span>, $hamming;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/colin-crain/perl/ch-1.pl"><strong>My Own Solution</strong></a></p>
+<p>For my own solution I saw the problems as one of combinatorics; that the numbers were each constructed from a unique set of the factors 2, 3 and 5, so by generating all the sets every number would end up being produced, and only produced once.</p>
+<p>The numbers are added in groups, sized by the number of factors present, with the specific combination sets created using the module <code>Algorithm::Combinatorics</code>, by the function <code>combinations_with_repetition()</code>. As each set of numbers is added, the start point for the next set of combinations is used as a cutoff for valid numbers, that is all 2s, to the power of the current factor count plus 1. Beyond this point the generated portions of the sequence will have gaps, but below this it will not, and the cleared values of the sequence up to that point are then sorted. Factors are added this way until enough of the sequence is generated to provide the desired index.</p>
+<p>For all its oddity, the method is fast, generating all values of the sequence up to 64-bits in about a quarter second.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Algorithm::Combinatorics <span style="color:#e6db74">qw( combinations_with_repetition )</span>;
+    <span style="color:#66d9ef">use</span> List::Util               <span style="color:#e6db74">qw( product )</span>;
+
+    <span style="color:#66d9ef">my</span> $request <span style="color:#f92672">=</span> shift @ARGV <span style="color:#e6db74">//</span> <span style="color:#ae81ff">12691</span>;
+
+    $request<span style="color:#f92672">--</span>;
+
+    <span style="color:#66d9ef">my</span> @factors <span style="color:#f92672">=</span> (<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">5</span>);
+    <span style="color:#66d9ef">my</span> @inter <span style="color:#f92672">=</span> ( <span style="color:#ae81ff">1</span> );
+    <span style="color:#66d9ef">my</span> @seq;
+    <span style="color:#66d9ef">my</span> $fcount <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+    <span style="color:#66d9ef">while</span> (<span style="color:#f92672">++</span>$fcount) {
+
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $iter (combinations_with_repetition( <span style="color:#f92672">\</span>@factors, $fcount)) {
+            <span style="color:#66d9ef">my</span> $p <span style="color:#f92672">=</span> product $iter<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+           push @inter, $p;
+        }
+        @seq <span style="color:#f92672">=</span> grep { $_ <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">**</span>$fcount<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span> } sort {$a<span style="color:#e6db74">&lt;=&gt;</span>$b} @inter;
+        <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> scalar @seq <span style="color:#f92672">&gt;</span> $request;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a></p>
+<p>Jorg has brought forward a unique method, based on a properly-sourced Python solution he found. This solution, however, leans heavily on the use of <code>yield</code> statements from generators to produce the proper values in order, so we need to somehow accommodate that. To this end he finds <code>Coro::Genrerator</code>, an offshoot creation of the <code>Coro</code> coroutine module for asynchronous cooperative threads.</p>
+<p>From there the syntax gets a little weird. Generators are analogous to lazy lists, I suppose, or iterators that generate their values on-the-fly, which makes sense, and <code>yield</code> is yielding flow control — essentially a <code>return</code> statement — from the generator object, which remains behind, instantiate, waiting for the next call to come.</p>
+<p>The actual algorithm works by merging three lists repeatedly: the powers of 2, times 2 at every iteration, the 2s list merged with a second list multiplied by 3 repeatedly, and then taking <em>that</em> list, merging it with a list multiplied by 5 and performing that multiplication repeatedly. This is all quite confusing of course, and is inefficient in merging. Instead we use generators to keep the partial lists for the various multiples alive between calls, so we need not reconstruct them when required.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># Build a generator for powers of $p.</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">powers</span> ($p) {
+        generator {
+            <span style="color:#66d9ef">my</span> $pow <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+            <span style="color:#66d9ef">while</span> () {
+                yield $pow;
+                $pow <span style="color:#f92672">*=</span> $p;
+            }
+        }
+    }
+
+    <span style="color:#75715e"># Build a generator for a merged sequence of the one provided by the</span>
+    <span style="color:#75715e"># generator $s with itself multiplied by $p.</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">powtimes</span> ($s, $p) {
+        generator {
+            <span style="color:#75715e"># Initialize the cache with the first generated value.</span>
+            <span style="color:#66d9ef">my</span> @seq <span style="color:#f92672">=</span> $s<span style="color:#f92672">-&gt;</span>();
+            <span style="color:#75715e"># The first element comes from the generated sequence.</span>
+            yield $seq[<span style="color:#ae81ff">0</span>];
+            <span style="color:#75715e"># Initial &#34;front&#34; element taken from the sequence.</span>
+            <span style="color:#66d9ef">my</span> $front <span style="color:#f92672">=</span> $s<span style="color:#f92672">-&gt;</span>();
+            <span style="color:#75715e"># Initial &#34;back&#34; element taken as the $p-fold of the first</span>
+            <span style="color:#75715e"># element from the cache.</span>
+            <span style="color:#66d9ef">my</span> $back <span style="color:#f92672">=</span> $seq[<span style="color:#66d9ef">my</span> $backindex <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>] <span style="color:#f92672">*</span> $p;
+            <span style="color:#66d9ef">while</span> () {
+                <span style="color:#75715e"># Merge the generated sequence with its $p-fold multiple:</span>
+                <span style="color:#75715e"># Select the next element as the smaller of the front</span>
+                <span style="color:#75715e"># element provided by the generator and the back element as</span>
+                <span style="color:#75715e"># the p-fold of the current cached element, advancing these</span>
+                <span style="color:#75715e"># accordingly from the generator or the cache.</span>
+                <span style="color:#66d9ef">if</span> ($front <span style="color:#f92672">&lt;</span> $back) {
+                    yield $front;
+                    push @seq, $front;
+                    $front <span style="color:#f92672">=</span> $s<span style="color:#f92672">-&gt;</span>();
+                } <span style="color:#66d9ef">else</span> {
+                    yield $back;
+                    push @seq, $back;
+                    $back <span style="color:#f92672">=</span> $seq[<span style="color:#f92672">++</span>$backindex] <span style="color:#f92672">*</span> $p;
+                }
+            }
+        }
+    }
+
+    <span style="color:#75715e"># Calculate the n-th Hamming number.</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">hamming</span> ($n) {
+        <span style="color:#75715e"># Build a generator for the Hamming numbers.</span>
+        <span style="color:#66d9ef">my</span> $hamming <span style="color:#f92672">=</span> powtimes(powtimes(powers(<span style="color:#ae81ff">2</span>), <span style="color:#ae81ff">3</span>), <span style="color:#ae81ff">5</span>);
+        <span style="color:#75715e"># Loop over the first $n - 1 hamming numbers and print these if</span>
+        <span style="color:#75715e"># requested.</span>
+        <span style="color:#66d9ef">sub</span> {say pop <span style="color:#66d9ef">if</span> $verbose}<span style="color:#f92672">-&gt;</span>($hamming<span style="color:#f92672">-&gt;</span>()) <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+
+        <span style="color:#75715e"># Return the n-th Hamming number.</span>
+        $hamming<span style="color:#f92672">-&gt;</span>();
+    }
+</code></pre></div><h2 id="a-more-dynamic-construction">a more DYNAMIC construction</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/abigail/perl/ch-1.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/bruce-gray/perl/ch-1.pl"><strong>Bruce Gray</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/lubos-kolouch/perl/ch-1.pl"><strong>Lubos Kolouch</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/mattneleigh/perl/ch-1.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/wanderdoc/perl/ch-1.pl"><strong>Wanderdoc</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>A common constructive approach was saw was to take the previously computed values of the list and multiply each value by either 2, 3 or 5 to get the next smooth number. The tricky part is to know which previous numbers to pick, which is where the dynamic programming comes in. Three separate indices on the sequence array are maintained, corresponding to the last element multiplied by 2, 3 and 5 accordingly. After computing the next set of options from multiplying out these three values, the smallest of the results is selected, that value is added to the sequence and the the pointers are updated as required.</p>
+<p>In this way the multipliers for the larger factors are not increased until they are actually used to create a new smooth number, and by keeping separate indices for each factor the options available remain close to each other, roughly in sync.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/abigail/perl/ch-1.pl"><strong>Abigail</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/abigail/awk/ch-1.awk">Awk</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/abigail/bash/ch-1.sh">Bash</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/abigail/c/ch-1.c">C</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/abigail/lua/ch-1.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/abigail/node/ch-1.js">Node</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/abigail/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/abigail/r/ch-1.r">R</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/abigail/ruby/ch-1.rb">Ruby</a></p>
+<p>Abigail will start us off with a demonstration of the technique. Three variables are maintained, corresponding to the index locations in the sequence that will be multiplied by 2, 3 and 5 respectively to contribute to the sequence. At each stage the smallest of these options is chosen for the sequence, and the indices for the three options are updated such that should they equal the lastest pick the value is increased. All three factors are checked at each step, as there can be multiple ways to arrive at a given value — this will happen when the last sequence number is a multiple of two or more of the factors.</p>
+<p>The result is a compact cycle containing two steps.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;&gt;</span>) {
+        <span style="color:#66d9ef">while</span> (@ugly <span style="color:#f92672">&lt;</span> $n) {
+            <span style="color:#75715e">#</span>
+            <span style="color:#75715e"># Calculate the next ugly number.</span>
+            <span style="color:#75715e">#</span>
+            push @ugly <span style="color:#f92672">=&gt;</span> min <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $ugly [$next_2],
+                              <span style="color:#ae81ff">3</span> <span style="color:#f92672">*</span> $ugly [$next_3],
+                              <span style="color:#ae81ff">5</span> <span style="color:#f92672">*</span> $ugly [$next_5];
+
+            <span style="color:#75715e">#</span>
+            <span style="color:#75715e"># Update pointers. It could be that more than one pointer needs</span>
+            <span style="color:#75715e"># updating. (This happens if the ugly number generated is</span>
+            <span style="color:#75715e"># divisible by 6, 10, 15, or 30). No pointer ever needs updating twice.</span>
+            <span style="color:#75715e">#</span>
+            $next_2 <span style="color:#f92672">++</span> <span style="color:#66d9ef">if</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $ugly [$next_2] <span style="color:#f92672">&lt;=</span> $ugly [<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+            $next_3 <span style="color:#f92672">++</span> <span style="color:#66d9ef">if</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">*</span> $ugly [$next_3] <span style="color:#f92672">&lt;=</span> $ugly [<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+            $next_5 <span style="color:#f92672">++</span> <span style="color:#66d9ef">if</span> <span style="color:#ae81ff">5</span> <span style="color:#f92672">*</span> $ugly [$next_5] <span style="color:#f92672">&lt;=</span> $ugly [<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+        }
+        say $ugly [<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/bruce-gray/perl/ch-1.pl"><strong>Bruce Gray</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/bruce-gray/raku/ch-1.raku">Raku</a></p>
+<p>Bruce abstracts his bookkeeping a bit into a unique data structure, an array of hashes, one for each factor.</p>
+<p>The <code>state</code> variable <code>$cin</code> is an array of three anonymous hashes, each containing three keys: C, the factor in question, 2, 3 or 5; N, the next generated value of that number from that factor; and I, the index of the sequence that will be used to generate the next value for N when the current value is used. The index I is always looking ahead, planning to create the next N.</p>
+<p>Restated, the state hashes keep the three factors and the next unused number generated by those factors, and the index in the sequence to be used to create the <em>next</em> value. When a new number is sought for the sequence, the smallest N number from these three hashes is selected, and each hash is then processed; those hashes whose number matches the chosen value have their numbers replaced by the next multiple and their index incremented. This step removes duplicates and readies the hashes for the next selection.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">ugly_ith</span> ( $nth ) {
+        state $Hammings <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>;
+
+        state $cin <span style="color:#f92672">=</span> [ map { { C <span style="color:#f92672">=&gt;</span> $_, N <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>, I <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">0</span> } } <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">5</span> ];
+        <span style="color:#66d9ef">while</span> ( @{$Hammings} <span style="color:#f92672">&lt;</span> $nth ) {
+            <span style="color:#66d9ef">my</span> $taken <span style="color:#f92672">=</span> min map { $_<span style="color:#f92672">-&gt;</span>{N} } @{$cin};
+            push @{$Hammings}, $taken;
+
+            <span style="color:#66d9ef">for</span> (@{$cin}) {
+                <span style="color:#66d9ef">if</span> ($_<span style="color:#f92672">-&gt;</span>{N} <span style="color:#f92672">==</span> $taken) {
+                    $_<span style="color:#f92672">-&gt;</span>{N} <span style="color:#f92672">=</span> $_<span style="color:#f92672">-&gt;</span>{C} <span style="color:#f92672">*</span> $Hammings<span style="color:#f92672">-&gt;</span>[ $_<span style="color:#f92672">-&gt;</span>{I} ];
+                    $_<span style="color:#f92672">-&gt;</span>{I}<span style="color:#f92672">++</span>;
+                }
+            }
+        }
+
+        <span style="color:#66d9ef">return</span> $Hammings<span style="color:#f92672">-&gt;</span>[$nth <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>];
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a></p>
+<p>Here&rsquo;s another version by Choroba. As you can see, this two-step process to develop the next sequence value produces quite compact solutions. Notice that the code within the inner loop doesn&rsquo;t really care exactly how many factors are presented, as long as there is a parallel array of indices constructed alongside the list of multipliers.</p>
+<p>One curious example that comes to mind is the just intonation tuning of LaMonte Young. Unlike the more common 5-limit tunings, where note intervals are all ratios of numbers only divisible by the prime factors 2, 3 and 5, Young has a stated aversion to the 5th harmonic, building his system off of the prime factors 2, 3 and 7. One can see an obvious connection here to the 5-smooth numbers, but what it <em>means</em>, musically, is not exactly clear. But were one to poke around in the interval relationships in tunings after the style of Young, one would wish to alter those values. By extension, there are also 7-limit tunings, based around the factors 2, 3, 5 and 7, such as are found in the Scottish Bagpipes. These ratio values would be found in the sequence of 7-smooth numbers, which we could generate with Choroba&rsquo;s example by changing the list of multipliers and the length of the list of indices.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw{ min }</span>;
+
+    <span style="color:#66d9ef">my</span> @multipliers <span style="color:#f92672">=</span> (<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">5</span>);
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">ugly_number</span> {
+        <span style="color:#66d9ef">my</span> ($n) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> @ugly <span style="color:#f92672">=</span> (undef, <span style="color:#ae81ff">1</span>);
+        <span style="color:#66d9ef">my</span> @indices <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>);
+        <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $n) {
+            <span style="color:#66d9ef">my</span> @next <span style="color:#f92672">=</span> map $multipliers[$_] <span style="color:#f92672">*</span> $ugly[ $indices[$_] ], <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#indices;
+            push @ugly, min(@next);
+            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#indices) {
+                <span style="color:#f92672">++</span>$indices[$i] <span style="color:#66d9ef">if</span> $ugly[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">==</span> $next[$i];
+            }
+        }
+        <span style="color:#66d9ef">return</span> $ugly[$n]
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/mattneleigh/perl/ch-1.pl"><strong>Matthew Neleigh</strong></a></p>
+<p>This idea of keeping an array of indices corresponding to the individual factors is of course not limited to any particular values or quantity of values, and as we have seen all of the logic readily generalizes. Here Matthew demonstrates by constructing a routine that takes a quantity of numbers desired and a list of factors with which to construct them.</p>
+<p>Bonus for nicely commented code. It&rsquo;s the little things.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">compute_N_composite_numbers</span>{
+        <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> int(shift());
+
+        <span style="color:#66d9ef">my</span> @indices;
+        <span style="color:#66d9ef">my</span> @factors;
+        <span style="color:#66d9ef">my</span> @products;
+
+        <span style="color:#75715e"># Populate the list in case $n == 1</span>
+        <span style="color:#66d9ef">my</span> @composite_list <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>);
+
+        <span style="color:#75715e"># If $n wasn&#39;t an number and greater</span>
+        <span style="color:#75715e"># than zero</span>
+        <span style="color:#66d9ef">return</span>(undef) <span style="color:#66d9ef">unless</span>($n <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>);
+
+        <span style="color:#75715e"># No further args were supplied</span>
+        <span style="color:#66d9ef">return</span>(undef) <span style="color:#66d9ef">unless</span>(scalar(@ARG));
+
+        <span style="color:#66d9ef">while</span>(defined($ARG[<span style="color:#ae81ff">0</span>])){
+            push(@factors, int(shift()));
+            <span style="color:#75715e"># A factor wasn&#39;t a number and</span>
+            <span style="color:#75715e"># greater than zero</span>
+            <span style="color:#66d9ef">return</span>(undef) <span style="color:#66d9ef">unless</span>($factors[$#factors] <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>);
+        }
+
+        <span style="color:#75715e"># Initialize indices</span>
+        <span style="color:#66d9ef">for</span>(<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#factors){
+            push(@indices, <span style="color:#ae81ff">0</span>);
+        }
+
+        $n<span style="color:#f92672">--</span>;
+        <span style="color:#66d9ef">while</span>($n<span style="color:#f92672">--</span>){
+            <span style="color:#66d9ef">for</span>(<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#factors){
+                <span style="color:#75715e"># Multiply our factors by particular numbers</span>
+                <span style="color:#75715e"># previously calculated; @products will be</span>
+                <span style="color:#75715e"># autovivified on the first pass</span>
+                $products[$_] <span style="color:#f92672">=</span> $composite_list[$indices[$_]] <span style="color:#f92672">*</span> $factors[$_];
+            }
+
+            <span style="color:#75715e"># Store the minimum value we just calculated</span>
+            push(@composite_list, $products[min_value_index(@products)]);
+
+            <span style="color:#66d9ef">for</span>(<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#factors){
+                <span style="color:#75715e"># If any product we calculated equals the</span>
+                <span style="color:#75715e"># minimum number we stored, increment the</span>
+                <span style="color:#75715e"># corresponding index</span>
+                <span style="color:#66d9ef">if</span>($products[$_] <span style="color:#f92672">==</span> $composite_list[$#composite_list]){
+                    $indices[$_]<span style="color:#f92672">++</span>;
+                }
+            }
+        }
+
+        <span style="color:#66d9ef">return</span>(@composite_list);
+    }
+</code></pre></div><h2 id="additional-submissions-in-guest-languages">Additional Submissions in Guest Languages</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/adam-russell/cxx/ch-1.cxx">Cxx</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/adam-russell/prolog/ch-1.p">Prolog</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/polettix/raku/ch-1.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/roger-bell-west/postscript/ch-1.ps">Postscript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/roger-bell-west/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/roger-bell-west/raku/ch-1.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/roger-bell-west/ruby/ch-1.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/roger-bell-west/rust/ch-1.rs">Rust</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/ulrich-rieke/cpp/ch-1.cpp">C++</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/ulrich-rieke/raku/ch-1.raku">Raku</a></p>
+<hr>
+<hr>
+<h1 id="PWC123TASK2">TASK 2</h1>
+<h1 id="square-points">Square Points</h1>
+<p><em>Submitted by: Mohammad S Anwar</em><br>
+You are given coordinates of four points i.e.</p>
+<pre><code>        (x1, y1), (x2, y2), (x3, y3) and (x4, y4).
+</code></pre><p>Write a script to find out if the given four points form a square.</p>
+<p><strong>Example</strong></p>
+<pre><code>    Input: x1 = 10, y1 = 20
+           x2 = 20, y2 = 20
+           x3 = 20, y3 = 10
+           x4 = 10, y4 = 10
+    Output: 1 as the given coordinates form a square.
+
+
+
+    Input: x1 = 12, y1 = 24
+           x2 = 16, y2 = 10
+           x3 = 20, y3 = 12
+           x4 = 18, y4 = 16
+    Output: 0 as the given coordinates doesn't form a square.
+
+</code></pre><h2 id="about-the-solutions-1">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/abigail/perl/ch-2.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/arne-sommer/perl/ch-2.pl"><strong>Arne Sommer</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/bruce-gray/perl/ch-2.pl"><strong>Bruce Gray</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/jaredor/perl/ch-2.pl"><strong>Jared Martin</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/kjetillll/perl/ch-2.pl"><strong>kjetillll</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/mattneleigh/perl/ch-2.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/mohammad-anwar/perl/ch-2.pl"><strong>Mohammad S Anwar</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/perlboy1967/perl/ch-2.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/pete-houston/perl/ch-2.pl"><strong>Pete Houston</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/stuart-little/perl/ch-2.pl"><strong>Stuart Little</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/wanderdoc/perl/ch-2.pl"><strong>Wanderdoc</strong></a></p>
+<p>There were 24 complete and working submissions for the second task this past week.</p>
+<p>Right off the bat it seems the general tersness in the description and the specifics of the examples given led a few folks astray. In the two examples we are shown one square and one not-square, and the square coordinates seem picked to be easily visualized. Although well-explanatory, the down side of this is that it may give the impression that the square will always be presented in orthogonal alignment, with horizontal and vertical edges oriented to the axes, and several submissions were constructed from this base assumption.</p>
+<p>I see no reason to actually <em>disqualify</em> these submissions, mind you. If they find a square, they still answer a reasonable interpretation of the task, and give us a little more variety in our methods. It&rsquo;s no big deal, really. But most readings opened the interpretation up a little.</p>
+<p>For an alternate example, the points</p>
+<p>(9,19), (19,21), (21,11), (11,9)</p>
+<p>also form a square, very similar to our first example only racked a bit anti-clockwise. A more general-purpose solver will need to find this square as well, perhaps even with its coordinates in a more random order on top of things. Again the two short examples can lead us astray here: both describe concave polygons, where the points are ordered as one would list vertices, one ordered clockwise, the other anti-clockwise. But again I see no reason whatsoever to assume this from just the description. Given the polygon</p>
+<pre><code>    A - B
+    |   |
+    D - C
+</code></pre><p>if we list the points in the order A, C, B, D, we still meet the criteria that &ldquo;the given four points form a square&rdquo;. The way I see it, the fact that they can also form two isosceles triangles connected at their apices is irrelevant. We are only being given a set of points, not a polygon. We&rsquo;re being asked to <em>make</em> a polygon from raw materials. The more we think it through, the messier it gets. That said assuming an ordering to the input was a fairly common requirement we saw in the submission algorithms, although we also saw schemes acknowledging this broader possibility, to either permute the points or simply make the order irrelevant.</p>
+<p>So how then <em>do</em> we determine whether a group of four points determines a square?</p>
+<p>The basic strategies all started with with this question, determining that a square has 4 equal sides, and four equal angles. However exactly what criteria were required to conclude that this was the case varied from solution to solution. Some combination of equal length edges between points, right angles between triplets, and equal lengths for spans determined to be diagonals was always present.</p>
+<h2 id="orthogonal-assumptions">ORTHOGONAL ASSUMPTIONS</h2>
+<p>As we determined earlier, I think there&rsquo;s enough ambiguity in the description that any solution that requires an orthogonal alignment, that as long as it successfully finds a square, and, you know, <em>only</em> a square,  it&rsquo;s good enough for me.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/bruce-gray/perl/ch-2.pl"><strong>Bruce Gray</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/bruce-gray/raku/ch-2.raku">Raku</a></p>
+<p>The technique Bruce presents us today  first requires that the points be ordered, so that successive points describe the circumnavigation of a square. This is accomplished in a straightforward <code>sort</code> command. Note the technique, because we&rsquo;ll see it pop up again.</p>
+<p>Bruce, in his <code>is_square()</code> function, orders the points and then engages a sequence of checks: are the two sides that meet at point <em>A</em> the same length? Do we have 4 unique points? Do we have any points the are unaligned with a mate in either the x- or y-axis?</p>
+<p>All of these conditionals taken together will produce a true value, 1, if they hold, or else the function will return 0.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_square</span> {
+        die <span style="color:#66d9ef">if</span> @_ <span style="color:#f92672">!=</span> <span style="color:#ae81ff">4</span>;
+
+        <span style="color:#66d9ef">my</span> %xy;
+        push @{ $xy{ <span style="color:#e6db74">&#39;x&#39;</span><span style="color:#f92672">.</span>$_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] } }, $_ <span style="color:#66d9ef">for</span> @_;
+        push @{ $xy{ <span style="color:#e6db74">&#39;y&#39;</span><span style="color:#f92672">.</span>$_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] } }, $_ <span style="color:#66d9ef">for</span> @_;
+
+        <span style="color:#66d9ef">my</span> ($A, $B, $C, $D) <span style="color:#f92672">=</span> sort {    $a<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#e6db74">&lt;=&gt;</span> $b<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]
+                                     <span style="color:#f92672">or</span> $a<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#e6db74">&lt;=&gt;</span> $b<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] } @_;
+
+        <span style="color:#66d9ef">my</span> @unique_points    <span style="color:#f92672">=</span> uniq map { join <span style="color:#e6db74">&#39;,&#39;</span>, @{$_} } @_;
+        <span style="color:#66d9ef">my</span> @unaligned_points <span style="color:#f92672">=</span> grep { @{$_} <span style="color:#f92672">!=</span> <span style="color:#ae81ff">2</span> } values %xy;
+        <span style="color:#66d9ef">my</span> $lr_sides_eq_tb   <span style="color:#f92672">=</span> ( $C<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">-</span> $A<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">==</span> $B<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> $A<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] );
+
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">+</span> (     $lr_sides_eq_tb
+                     <span style="color:#f92672">and</span> @unique_points    <span style="color:#f92672">==</span> <span style="color:#ae81ff">4</span>
+                     <span style="color:#f92672">and</span> @unaligned_points <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> );
+    }
+</code></pre></div><h2 id="assuming-the-points-are-in-order">ASSUMING the POINTS are in ORDER</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/abigail/perl/ch-2.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/arne-sommer/perl/ch-2.pl"><strong>Arne Sommer</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/mattneleigh/perl/ch-2.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a></p>
+<p>A fairly large bloc of solutions depended on the points coming in ordered, as they are in the examples. Myself, I think this relies on facts not in evidence, but this is not a court of law, and consider myself more a curator, or at most an arbitrator, than a judge.</p>
+<p>One immediate practical benefit to working with an ordered set of points is that it is known out-of-the-gate which edges are the sides to our polygon.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/mattneleigh/perl/ch-2.pl"><strong>Matthew Neleigh</strong></a></p>
+<p>Matthew gives us a technique that methodically determines that the shape is first a quadrilateral, by counting 4 points, then a rhombus, by having equal sides. For this we need only compare three of them, as the fourth follows. Finally in a rhombus adjacent angles will add to 180°, so any rhombus containing a 90° angle anywhere in it must therefore be a square.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># We have some sort of quadrilateral;</span>
+    <span style="color:#75715e"># return false if all four sides</span>
+    <span style="color:#75715e"># aren&#39;t the same length</span>
+    @sides <span style="color:#f92672">=</span> (
+        points_distance($ARG[<span style="color:#ae81ff">0</span>], $ARG[<span style="color:#ae81ff">1</span>]),
+        points_distance($ARG[<span style="color:#ae81ff">1</span>], $ARG[<span style="color:#ae81ff">2</span>]),
+        points_distance($ARG[<span style="color:#ae81ff">2</span>], $ARG[<span style="color:#ae81ff">3</span>]),
+        points_distance($ARG[<span style="color:#ae81ff">3</span>], $ARG[<span style="color:#ae81ff">0</span>]),
+    );
+    <span style="color:#66d9ef">return</span>(<span style="color:#ae81ff">0</span>) <span style="color:#66d9ef">unless</span>(
+        <span style="color:#75715e"># Only need to compare three times</span>
+        approx_eq($sides[<span style="color:#ae81ff">0</span>], $sides[<span style="color:#ae81ff">1</span>])
+        <span style="color:#f92672">&amp;&amp;</span>
+        approx_eq($sides[<span style="color:#ae81ff">1</span>], $sides[<span style="color:#ae81ff">2</span>])
+        <span style="color:#f92672">&amp;&amp;</span>
+        approx_eq($sides[<span style="color:#ae81ff">2</span>], $sides[<span style="color:#ae81ff">3</span>])
+    );
+
+    <span style="color:#75715e"># We have a rhombus; return false if</span>
+    <span style="color:#75715e"># a corner isn&#39;t a right angle (any</span>
+    <span style="color:#75715e"># one will do)</span>
+    <span style="color:#66d9ef">return</span>(<span style="color:#ae81ff">0</span>) <span style="color:#66d9ef">unless</span>(is_right_angle($ARG[<span style="color:#ae81ff">0</span>], $ARG[<span style="color:#ae81ff">1</span>], $ARG[<span style="color:#ae81ff">2</span>]));
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a></p>
+<p>Dave gives a variant plan, first calculating that the sides are equal, indicating a rhombus, and then concluding squareness on the basis that the two diagonals are equal.</p>
+<p>A simple Euclidean distance subroutine was commonly used as an adjunct to the solutions.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    push @distances, distance( @objs[ <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span> ] ); <span style="color:#75715e"># A -&gt; B</span>
+    push @distances, distance( @objs[ <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span> ] ); <span style="color:#75715e"># B -&gt; C</span>
+    push @distances, distance( @objs[ <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span> ] ); <span style="color:#75715e"># C -&gt; D</span>
+    push @distances, distance( @objs[ <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">0</span> ] ); <span style="color:#75715e"># D -&gt; A</span>
+
+    push @distances, distance( @objs[ <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span> ] ); <span style="color:#75715e"># A -&gt; C</span>
+    push @distances, distance( @objs[ <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span> ] ); <span style="color:#75715e"># B -&gt; D</span>
+
+    <span style="color:#75715e"># sides are of equal length</span>
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $distances[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">!=</span> $distances[<span style="color:#ae81ff">1</span>];
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $distances[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">!=</span> $distances[<span style="color:#ae81ff">2</span>];
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $distances[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">!=</span> $distances[<span style="color:#ae81ff">3</span>];
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $distances[<span style="color:#ae81ff">3</span>] <span style="color:#f92672">!=</span> $distances[<span style="color:#ae81ff">0</span>];
+
+    <span style="color:#75715e"># distances throught the center are of equal length</span>
+    <span style="color:#75715e"># removing parallelograms</span>
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $distances[<span style="color:#ae81ff">4</span>] <span style="color:#f92672">!=</span> $distances[<span style="color:#ae81ff">5</span>];
+
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">distance</span> ( $p1, $p2 ) {
+        <span style="color:#66d9ef">return</span>
+            sqrt( ( ( $p1<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">-</span> $p2<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] )<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span> ) <span style="color:#f92672">+</span>
+                ( ( $p1<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> $p2<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] )<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span> ) );
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/arne-sommer/perl/ch-2.pl"><strong>Arne Sommer</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/arne-sommer/raku/ch-2.raku">Raku</a></p>
+<p>Giving us another method of determining a right angle, Arne provides us with a solution that establishes equal side lengths, then calculates the dot product between two adjacent lines. This value will be 0 if and only if the given angle is perpendicular.</p>
+<p>The dot product is a nice choice here because it avoids some messy floating-point math involving trigonometric functions.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> ($x1, $y1, $x2, $y2, $x3, $y3, $x4, $y4) <span style="color:#f92672">=</span> @args;
+
+    <span style="color:#66d9ef">my</span> $l12 <span style="color:#f92672">=</span> sqrt(abs($x2 <span style="color:#f92672">-</span> $x1) <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> abs($y2 <span style="color:#f92672">-</span> $y1) <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span>);
+    <span style="color:#66d9ef">my</span> $l23 <span style="color:#f92672">=</span> sqrt(abs($x3 <span style="color:#f92672">-</span> $x2) <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> abs($y3 <span style="color:#f92672">-</span> $y2) <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span>);
+    <span style="color:#66d9ef">my</span> $l34 <span style="color:#f92672">=</span> sqrt(abs($x4 <span style="color:#f92672">-</span> $x3) <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> abs($y4 <span style="color:#f92672">-</span> $y3) <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span>);
+    <span style="color:#66d9ef">my</span> $l41 <span style="color:#f92672">=</span> sqrt(abs($x1 <span style="color:#f92672">-</span> $x4) <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> abs($y1 <span style="color:#f92672">-</span> $y4) <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span>);
+
+    <span style="color:#66d9ef">unless</span> ($l12 <span style="color:#f92672">==</span> $l23 <span style="color:#f92672">&amp;&amp;</span> $l34 <span style="color:#f92672">==</span> $l41 <span style="color:#f92672">&amp;&amp;</span> $l12 <span style="color:#f92672">==</span> $l41)
+    {
+      say <span style="color:#e6db74">&#34;: The four edges does not have the same length ($l12, $l23, $l34, $l41)&#34;</span> <span style="color:#66d9ef">if</span> $verbose;
+      say <span style="color:#ae81ff">0</span>;
+      exit;
+    }
+
+    <span style="color:#66d9ef">my</span> $dot_product <span style="color:#f92672">=</span> ($x2 <span style="color:#f92672">-</span> $x1) <span style="color:#f92672">*</span> ($y2 <span style="color:#f92672">-</span> $y1) <span style="color:#f92672">+</span> ($x4 <span style="color:#f92672">-</span> $x1) <span style="color:#f92672">*</span> ($y4 <span style="color:#f92672">-</span> $y1);
+
+    <span style="color:#66d9ef">if</span> ($dot_product)
+    {
+      say <span style="color:#e6db74">&#34;: Not 90 Degrees between lines 1-2 and 1-4&#34;</span> <span style="color:#66d9ef">if</span> $verbose;
+      say <span style="color:#ae81ff">0</span>;
+      exit;
+    }
+</code></pre></div><h2 id="sorting-the-points">SORTING THE POINTS</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/wanderdoc/perl/ch-2.pl"><strong>Wanderdoc</strong></a></p>
+<p>As knowing the points are ordered can simplify the ultimate determination of a square, some solutions directly addressed this issue before proceeding, without requiring the points to be delivered in any particular order.</p>
+<p>There were a couple of ways to go about this, by either sorting the points or working through the possible permutations presented. Neither of these tasks proved to be overly complex, as a basic sort plan was able to produce a consistent Z-pattern to the points that, although not a circumnavigation, could be worked with, and as for the permutations, because the <em>actual</em> ordering doesn&rsquo;t matter, we were able to combine all rotations and reflections into common classes, reducing the 24 possible permutations of {0, 1, 2, 3} to only 3: one circumnavigation, one zig-zag and one cross pattern.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a></p>
+<p>Choroba delivers us a unique and very interesting solution to ordering the points, first sorting the input by x-value and then y-value, then stepping through the sorted indices in a specific pattern to create a set of <em>vectors</em>, of the differentials between points determining an edge. Following this method ensures either a clockwise or anti-clockwise circumnavigation of the polygon using these vectors. The same vectorization method can be applied to the diagonals.</p>
+<p>As we can then be assured of the sides of our polygon, we can then decisively conclude whether the sides are the same length and the diagonals are equal as well.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_square</span> {
+        <span style="color:#66d9ef">my</span> %coords <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> @sorted_coords <span style="color:#f92672">=</span> sort { $a<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#e6db74">&lt;=&gt;</span> $b<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">||</span> $a<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#e6db74">&lt;=&gt;</span> $b<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] }
+                            map [$coords{<span style="color:#e6db74">&#34;x$_&#34;</span>}, $coords{<span style="color:#e6db74">&#34;y$_&#34;</span>}], <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">4</span>;
+        draw(@sorted_coords);
+
+        <span style="color:#66d9ef">my</span> @vectors <span style="color:#f92672">=</span> map [$sorted_coords[ $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] ][<span style="color:#ae81ff">0</span>]
+                           <span style="color:#f92672">-</span> $sorted_coords[ $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] ][<span style="color:#ae81ff">0</span>],
+                           $sorted_coords[ $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] ][<span style="color:#ae81ff">1</span>]
+                           <span style="color:#f92672">-</span> $sorted_coords[ $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] ][<span style="color:#ae81ff">1</span>]],
+                     [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>], [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>], [<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>], [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">0</span>];
+
+        <span style="color:#66d9ef">my</span> @diagonals <span style="color:#f92672">=</span> map [$sorted_coords[ $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] ][<span style="color:#ae81ff">0</span>]
+                             <span style="color:#f92672">-</span> $sorted_coords[ $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] ][<span style="color:#ae81ff">0</span>],
+                             $sorted_coords[ $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] ][<span style="color:#ae81ff">1</span>]
+                             <span style="color:#f92672">-</span> $sorted_coords[ $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] ][<span style="color:#ae81ff">1</span>]],
+                        [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">3</span>], [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>];
+
+        <span style="color:#75715e"># All vectors have the same size.</span>
+        <span style="color:#66d9ef">my</span> %size;
+        <span style="color:#f92672">++</span>$size{ $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span> } <span style="color:#66d9ef">for</span> @vectors;
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">unless</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">==</span> keys %size;
+
+        <span style="color:#75715e"># No duplicate points.</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">if</span> grep $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>, @vectors;
+
+        <span style="color:#75715e"># No rhombi.</span>
+        abs $diagonals[<span style="color:#ae81ff">0</span>][$_] <span style="color:#f92672">==</span> abs $diagonals[<span style="color:#ae81ff">1</span>][ <span style="color:#f92672">!</span> $_ ]
+            <span style="color:#f92672">or</span> <span style="color:#66d9ef">return</span>
+            <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>;
+
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>
+    }
+</code></pre></div><p>Going above and beyond, he also includes a really nice little ascii graphical display for each input point set, allowing a quick and easy visual confirmation of the conclusions;</p>
+<pre><code>
+    #    . . . . . . . .
+    #    . . . . X . . .
+    #    . . . . . . . .
+    #    . X . . . . . .
+    #    . . . . . . X .
+    #    . . . . . . . .
+    #    . . . X . . . .
+    #    . . . . . . . .
+    ok 7 - Askew counterclockwise
+
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/adam-russell/cxx/ch-2.cxx">C++</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/adam-russell/prolog/ch-2.p">Prolog</a></p>
+<p>Adam Russell uses <code>Math::GSL::Vector</code> to produce a somewhat similar, vector-based attack on the problem, in this case the vectors greatly facilitate using the dot product, which is the effect of the overridden <code>*</code> operator.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> boolean;
+    <span style="color:#66d9ef">use</span> Math::GSL::Vector;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">unique</span>{
+        <span style="color:#66d9ef">my</span> %seen;
+        <span style="color:#66d9ef">return</span> grep {<span style="color:#f92672">!</span>$seen{$_}<span style="color:#f92672">++</span>} @_;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_square</span>{
+        <span style="color:#66d9ef">my</span> @points <span style="color:#f92672">=</span> @_;
+        <span style="color:#75715e">##</span>
+        <span style="color:#75715e"># Definitely a square if there are only 2 x and 2 y values.</span>
+        <span style="color:#75715e">##</span>
+        <span style="color:#66d9ef">my</span> @x <span style="color:#f92672">=</span> unique(map {$_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]} @points);
+        <span style="color:#66d9ef">my</span> @y <span style="color:#f92672">=</span> unique(map {$_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]} @points);
+        <span style="color:#66d9ef">return</span> true <span style="color:#66d9ef">if</span> @x <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">&amp;&amp;</span> @y <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span>;
+        <span style="color:#75715e">##</span>
+        <span style="color:#75715e"># sort the points and compute side lengths</span>
+        <span style="color:#75715e">##</span>
+        <span style="color:#66d9ef">my</span> @sorted_x <span style="color:#f92672">=</span> sort {$a<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#e6db74">&lt;=&gt;</span> $b<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]} @points;
+        <span style="color:#66d9ef">my</span> @sorted_y <span style="color:#f92672">=</span> sort {$a<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#e6db74">&lt;=&gt;</span> $b<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]} @points;
+
+        <span style="color:#66d9ef">my</span>($s, $t, $u, $v) <span style="color:#f92672">=</span> ($sorted_y[@sorted_y <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>], $sorted_x[@sorted_x <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>], $sorted_y[<span style="color:#ae81ff">0</span>], $sorted_x[<span style="color:#ae81ff">0</span>]);
+        <span style="color:#66d9ef">return</span> false <span style="color:#66d9ef">if</span> $s<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+</span> $u<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">!=</span> $t<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+</span> $v<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>];
+        <span style="color:#66d9ef">return</span> false <span style="color:#66d9ef">if</span> $s<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> $u<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">!=</span> $t<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> $v<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>];
+        <span style="color:#66d9ef">return</span> false <span style="color:#66d9ef">if</span> $s<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> $u<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">!=</span> $t<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">-</span> $v<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>];
+        <span style="color:#75715e">##</span>
+        <span style="color:#75715e"># compute angles</span>
+        <span style="color:#75715e">##</span>
+        <span style="color:#66d9ef">my</span> $dv_st <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Math::GSL::Vector([$s<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">-</span> $t<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>], $s<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> $t<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]]);
+        <span style="color:#66d9ef">my</span> $dv_tu <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Math::GSL::Vector([$t<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">-</span> $u<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>], $t<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> $u<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]]);
+        <span style="color:#66d9ef">my</span> $dv_uv <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Math::GSL::Vector([$u<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">-</span> $v<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>], $u<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> $v<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]]);
+        <span style="color:#66d9ef">my</span> $dv_vs <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Math::GSL::Vector([$v<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">-</span> $s<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>], $v<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> $s<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]]);
+        <span style="color:#66d9ef">return</span> false <span style="color:#66d9ef">if</span> $dv_st <span style="color:#f92672">*</span> $dv_tu <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">return</span> false <span style="color:#66d9ef">if</span> $dv_tu <span style="color:#f92672">*</span> $dv_uv <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">return</span> false <span style="color:#66d9ef">if</span> $dv_uv <span style="color:#f92672">*</span> $dv_vs <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">return</span> true;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/polettix/raku/ch-2.raku">Raku</a></p>
+<p>We have more vectors from Flavio, who defines his own object to define them, along with a few overridden operators, among them the dot product.</p>
+<p>A big divergence here is that Flavio does not sort his points, but instead sets up a short list of orderings to consider when evaluating them. If a given pattern does not find a square the next is tried, until the three possibilities are exhausted. A square is considered found if for every vertex the adjoining sides are equal and the angle is perpendicular.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">package</span> Vector2D {
+       <span style="color:#66d9ef">use</span> overload
+         <span style="color:#e6db74">&#39;-&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> ($u, $v, $x) { v([ map { $u<span style="color:#f92672">-&gt;</span>[$_] <span style="color:#f92672">-</span> $v<span style="color:#f92672">-&gt;</span>[$_] } <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span> ]) },
+         <span style="color:#e6db74">&#39;*&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> ($u, $v, $x) { $u<span style="color:#f92672">-&gt;</span>dot($v) };
+
+       <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">dot</span> ($S, $t)   { <span style="color:#66d9ef">return</span> $S<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">*</span> $t<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+</span> $S<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">*</span> $t<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] }
+       <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">length_2</span> ($S)  { <span style="color:#66d9ef">return</span> $S<span style="color:#f92672">-&gt;</span>dot($S) }
+       <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">v</span> ($v)         { <span style="color:#66d9ef">return</span> bless [$v<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*]</span>, __PACKAGE__ }
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_sequence_a_square</span> (@points) {
+       <span style="color:#66d9ef">my</span> $previous <span style="color:#f92672">=</span> $points[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> $points[<span style="color:#ae81ff">0</span>];
+       <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $#points <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) {
+          <span style="color:#66d9ef">my</span> $current <span style="color:#f92672">=</span> $points[$i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> $points[$i];
+          <span style="color:#66d9ef">return</span> False <span style="color:#66d9ef">if</span> $previous<span style="color:#f92672">-&gt;</span>length_2 <span style="color:#f92672">!=</span> $current<span style="color:#f92672">-&gt;</span>length_2;
+          <span style="color:#66d9ef">return</span> False <span style="color:#66d9ef">if</span> $previous <span style="color:#f92672">*</span> $current <span style="color:#f92672">&gt;</span> tolerance;
+          $previous <span style="color:#f92672">=</span> $current;
+       }
+       <span style="color:#66d9ef">return</span> True;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_square</span> (@points) {
+       state $permutations <span style="color:#f92672">=</span> [
+          [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>],
+          [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>],
+          [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1</span>],
+       ];
+       <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $permutation ($permutations<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>) {
+          <span style="color:#66d9ef">my</span> @arrangement <span style="color:#f92672">=</span> map { Vector2D::v($_) } @points[@$permutation];
+          <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> is_sequence_a_square(@arrangement);
+       }
+       <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/roger-bell-west/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/roger-bell-west/raku/ch-2.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/roger-bell-west/ruby/ch-2.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/roger-bell-west/rust/ch-2.rs">Rust</a></p>
+<p>Roger gives us a brace of solutions this week, each working through different orderings for the input points. In his first example he progresses through each point in the specific ordering given, determining the distance to the next, with the first point repeated in the sequence to close the circuit. This determined the 4 equal sides. The final determination of a square is made through assessment of the angles at each vertex, a computation made through the use of <code>atan2</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $pp (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">3</span>) {
+        <span style="color:#66d9ef">my</span> @delta<span style="color:#f92672">=</span>map {$w[$pp<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>][$_]<span style="color:#f92672">-</span>$w[$pp][$_]} (<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>);
+        <span style="color:#f92672">...</span>
+        $angle<span style="color:#f92672">=</span>rad2deg(atan2($delta[<span style="color:#ae81ff">1</span>],$delta[<span style="color:#ae81ff">0</span>]));
+        <span style="color:#f92672">...</span>
+        push @angles,$angle;
+    }
+</code></pre></div><p>Later, in an update on his <a href="https://blog.firedrake.org/archive/2021/07/Perl_Weekly_Challenge_123__Ugly_Square.html">blog report</a>, he provides us with a refactored and streamlined version, using two loops for the permutations and evaluating the points as having equal sides and equal diagonals.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">sp</span> {
+      <span style="color:#66d9ef">my</span> $m<span style="color:#f92672">=</span>shift;
+      <span style="color:#66d9ef">my</span> @ds;
+      <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $a (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">2</span>) {
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $b ($a<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">3</span>) {
+          push @ds,($m<span style="color:#f92672">-&gt;</span>[$b][<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-</span>$m<span style="color:#f92672">-&gt;</span>[$a][<span style="color:#ae81ff">0</span>])<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span><span style="color:#f92672">+</span>($m<span style="color:#f92672">-&gt;</span>[$b][<span style="color:#ae81ff">1</span>]<span style="color:#f92672">-</span>$m<span style="color:#f92672">-&gt;</span>[$a][<span style="color:#ae81ff">1</span>])<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>;
+        }
+      }
+      @ds<span style="color:#f92672">=</span>sort {$a <span style="color:#e6db74">&lt;=&gt;</span> $b} @ds;
+      <span style="color:#66d9ef">if</span> ($ds[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">==</span>$ds[<span style="color:#ae81ff">3</span>] <span style="color:#f92672">&amp;&amp;</span> $ds[<span style="color:#ae81ff">4</span>]<span style="color:#f92672">==</span>$ds[<span style="color:#ae81ff">5</span>]) {
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+      }
+      <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+    }
+</code></pre></div><h2 id="all-your-edges-belong-to-us">ALL YOUR EDGES belong to US</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/jaredor/perl/ch-2.pl"><strong>Jared Martin</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/kjetillll/perl/ch-2.pl"><strong>kjetillll</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/mohammad-anwar/perl/ch-2.pl"><strong>Mohammad S Anwar</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/perlboy1967/perl/ch-2.pl"><strong>Niels van Dijke</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/pete-houston/perl/ch-2.pl"><strong>Pete Houston</strong></a></p>
+<p>Another way of evaluating an unordered set of points was to consider the 4 given points as a graph and determine all 6 symmetrical edges through the structure, and then from there figure out which ones were sides and which diagonals in a constructed polygon. From there we saw some familiar techniques.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/kjetillll/perl/ch-2.pl"><strong>kjetillll</strong></a></p>
+<p>In their <code>is_square()</code> routine, kjetillll loops through 3 points, and for each point determines the distance to the other 3, adding the results to a hash as keys. One trick we see first presented here is the elimination of the square root portion of the Euclidean distance formula. As we don&rsquo;t care about the actual distances involved, removing this step will keep whole numbers whole and rational numbers within reason, and hence suitable as hash keys.</p>
+<p>When finished, if this hash has only two keys, presumed to be the side length and the diagonal, the figure is concluded to be a square.</p>
+<p>This will, almost always, work.</p>
+<p>Those that routinely follow these pages will recall my seeming intractable inability to not pursue pathological edge-cases, a tendency I am trying very hard to keep in check today. But suffice to say a few carefully honed cases do exist, albeit not with rational points, as will be explained. But that will be later. For now, have a look at kjetillll&rsquo;s technique. Bonus for descriptive commentary, which always makes my life a little easier.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_square</span> {
+        die <span style="color:#66d9ef">if</span> @_ <span style="color:#f92672">!=</span> <span style="color:#ae81ff">4</span> <span style="color:#f92672">or</span> grep@$_<span style="color:#f92672">!=</span><span style="color:#ae81ff">2</span>,@_;
+        <span style="color:#66d9ef">my</span> %dsf;   <span style="color:#75715e">#dsf=distance squared found</span>
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $p1 ( <span style="color:#ae81ff">0</span>     <span style="color:#f92672">..</span> <span style="color:#ae81ff">2</span> ){       <span style="color:#75715e"># for the three first points</span>
+            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $p2 ( $p1<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">3</span> ){       <span style="color:#75715e"># loop through the rest of the points</span>
+                <span style="color:#66d9ef">my</span> ($p1x,$p1y,$p2x,$p2y) <span style="color:#f92672">=</span> (@{$_[$p1]},@{$_[$p2]});
+                $dsf{ ($p1x<span style="color:#f92672">-</span>$p2x)<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> ($p1y<span style="color:#f92672">-</span>$p2y)<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span> }<span style="color:#f92672">++</span>; <span style="color:#75715e">#register distance squared</span>
+            }
+        }
+        say <span style="color:#e6db74">&#34;$_     $dsf{$_}&#34;</span> <span style="color:#66d9ef">for</span> keys %dsf;
+            <span style="color:#75715e">#If only two different distances found between any two points it means</span>
+            <span style="color:#75715e">#they form a square, returns 1 (true) if so, or 0 (false) otherwise.</span>
+            <span style="color:#75715e">#Counting distances squared saves having to do square root as in Pythagoras</span>
+            <span style="color:#75715e">#grep &gt; 0 prevents two pairs of duplicate points or four equal points from returning true</span>
+            <span style="color:#ae81ff">2</span><span style="color:#f92672">==</span>(grep$_<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span>,keys%dsf) ? <span style="color:#ae81ff">1</span> : <span style="color:#ae81ff">0</span>
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/jaredor/perl/ch-2.pl"><strong>Jared Martin</strong></a></p>
+<p>To determine a square, Jared presents us with the following analysis:</p>
+<ul>
+<li>Create six line segments, then</li>
+<li>Sort the line segments by length, then</li>
+<li>If the first and the fourth line segments are of equal length, and</li>
+<li>If the fifth and sixth line segments are of equal length, then</li>
+<li>You have a square!</li>
+</ul>
+<p>What&rsquo;s going on here is that should the first and fourth be equal in a sorted list the second and third will follow, so we have the same criteria that there are only two dimensions, and that a group of 4 presumed sides are shorter than the remaining group of 2 diagonals. An epsilon value is introduced to address the possibility of floating-point errors when the conditionals are evaluated.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">ima_square</span> {
+
+        <span style="color:#66d9ef">my</span> @points <span style="color:#f92672">=</span> map { [ split <span style="color:#e6db74">&#39;,&#39;</span> ] } @_;
+        <span style="color:#66d9ef">my</span> @lengths;
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $pnt1 (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>($#points<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)) {
+            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $pnt2 (($pnt1<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">..</span>$#points) {
+                push @lengths, sqrt(($points[$pnt1]<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">-</span> $points[$pnt2]<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>])<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> ($points[$pnt1]<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> $points[$pnt2]<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>])<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>);
+            }
+        }
+        @lengths <span style="color:#f92672">=</span> sort { $a <span style="color:#e6db74">&lt;=&gt;</span> $b } @lengths;
+
+        <span style="color:#66d9ef">my</span> $tolerance <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.0001</span>;
+
+        <span style="color:#66d9ef">return</span> (abs($lengths[<span style="color:#ae81ff">3</span>]  <span style="color:#f92672">-</span> $lengths[<span style="color:#ae81ff">0</span>]) <span style="color:#f92672">&lt;</span> $tolerance <span style="color:#f92672">and</span> abs($lengths[<span style="color:#ae81ff">5</span>] <span style="color:#f92672">-</span> $lengths[<span style="color:#ae81ff">4</span>]) <span style="color:#f92672">&lt;</span> $tolerance);
+
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/colin-crain/perl/ch-2.pl"><strong>My Own Solution</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/colin-crain/raku/ch-2.raku">Raku</a></p>
+<pre><code>
+                        A           AB, BC, BD and CD are the unit value
+                        |
+                        |           connect AC and AD, and
+                        |
+                        B           the polygon is AC -&gt; CB -&gt; BD -&gt; DA
+                       / \
+                      /   \
+                     /     \        (sometimes known as a &quot;flying vee&quot; shape)
+                    C _ _ _ D
+
+</code></pre><p>Ok, I said I was trying to avoid this, but as I wasn&rsquo;t the only one troubled by these terrible dreams here it goes. Consider the polygon above, CADB, with the edges CA-AD-DB-BC. This is a <em>concave</em> polygon with 2 sides and 2 diagonals equal, and the remaining 2 sides also equal to each other. Note one of the diagonals is <em>outside</em> the shape. No one ever said the polygon needed to be convex.</p>
+<pre><code>    CB = BD = CD = AB
+    AC = AD
+</code></pre><p>If we sort these distances we get 4 of the same and 2 longer distances. The longer side lengths can be computed with Pythagoras&rsquo; Theorem to be</p>
+<p>√(2+√3) ≅ 1.93</p>
+<p>times the length of the shorter. To defeat the possibility of this shape somehow being presented I included a check that the longer value would be less than 1.5 times the shorter. In a true square we would get the square root of 2, of course, so that works out.</p>
+<p>The height of A above the CD line is 1 + (√3/2), so it&rsquo;s a little hard to exactly draw this shape, but we could in theory produce a machine-dependent value that would slip through without the further check.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_square</span> ($pts) {
+        <span style="color:#66d9ef">my</span> @pts <span style="color:#f92672">=</span> $pts<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+        my @dist;
+
+        <span style="color:#75715e">## get distance list for all edges in complete graph of points</span>
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $idx (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">2</span>) {
+            push @dist, map { euclidean( $pts[$idx], $pts[$_] )} ( $idx<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">3</span> )
+        }
+
+        <span style="color:#75715e">## makes sure only 2 values for length</span>
+        <span style="color:#66d9ef">my</span> ($v1, $c1, $v2, $c2) <span style="color:#f92672">=</span> ( shift @dist, <span style="color:#ae81ff">1</span>, undef, <span style="color:#ae81ff">0</span>);
+        <span style="color:#66d9ef">for</span> (@dist) {
+            <span style="color:#66d9ef">if</span> ( $_ <span style="color:#f92672">==</span> $v1 ) { $c1<span style="color:#f92672">++</span>; <span style="color:#66d9ef">next</span> }
+            $v2 <span style="color:#e6db74">//</span><span style="color:#f92672">=</span> $_;
+            <span style="color:#66d9ef">if</span> ( $_ <span style="color:#f92672">==</span> $v2 ) { $c2<span style="color:#f92672">++</span>; <span style="color:#66d9ef">next</span> }
+            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+        }
+
+        <span style="color:#75715e">## order lengths to &#34;sides&#34; first, fail if not 4</span>
+        <span style="color:#66d9ef">if</span> ( $c1 <span style="color:#f92672">&lt;</span> $c2 ) { ($v1, $c1, $v2, $c2) <span style="color:#f92672">=</span> ($v2, $c2, $v1, $c1) }
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">unless</span> $c1 <span style="color:#f92672">==</span> <span style="color:#ae81ff">4</span>;
+
+        <span style="color:#75715e">## fail unless 2 remaining sides are less than 1.5 x short side</span>
+        <span style="color:#75715e">## this is the concave polygon case</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">unless</span> $v2 <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">1.5</span> <span style="color:#f92672">*</span> $v1;
+
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a></p>
+<p>Concluding this nightmare of pathological edge-cases, James had given us a methodical, thorough analysis of polygon possibilities containing only two distances, finding in the end <a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-123/james-smith">a total of 6 shapes that fit the bill</a>:</p>
+<ul>
+<li>a square</li>
+<li>a rhombus with one diagonal equal to the side length</li>
+<li>the aforementioned flying-vee</li>
+<li>a kite, with 2 diagonals that cross and 2 sides, all equal, and 2 <em>shorter</em> sides</li>
+<li>an equilateral triangle with the fourth point in the center</li>
+<li>a trapezoid with the base equal to both diagonals</li>
+</ul>
+<p>Perhaps the simplest way to avoid all these edge cases is to calculate the distances without employing the square root, then hashing the distances to their count. In a clever twist the hash is reversed and if we have two keys: &ldquo;2&rdquo; and &ldquo;4&rdquo;, and the value of the &ldquo;2&rdquo; key is twice that of the &ldquo;4&rdquo;, we&rsquo;re in. I have to say I like this hash-reversing trick a lot.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_square</span> {
+      <span style="color:#66d9ef">my</span> @pts <span style="color:#f92672">=</span> @_;
+
+      <span style="color:#75715e">## If we measure the squared distances between each</span>
+      <span style="color:#75715e">## pari of points of a square we get two distances -</span>
+      <span style="color:#75715e">## the edge and diagonal.</span>
+      <span style="color:#75715e">## The latter being twice the former...</span>
+      <span style="color:#75715e">##</span>
+      <span style="color:#75715e">## No other combination of points has this property.</span>
+
+      <span style="color:#75715e">## Compute distances...</span>
+      <span style="color:#66d9ef">my</span> %D;
+      <span style="color:#66d9ef">while</span>(@pts<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">1</span>) {
+        <span style="color:#66d9ef">my</span> $a <span style="color:#f92672">=</span> shift @pts;
+        $D{($a<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-</span>$_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>])<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span><span style="color:#f92672">+</span>($a<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">-</span>$_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>])<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>}<span style="color:#f92672">++</span> <span style="color:#66d9ef">foreach</span> @pts;
+      }
+      <span style="color:#66d9ef">my</span> %F <span style="color:#f92672">=</span> reverse %D;
+      <span style="color:#66d9ef">return</span> exists $F{<span style="color:#ae81ff">2</span>} <span style="color:#f92672">&amp;&amp;</span> exists $F{<span style="color:#ae81ff">4</span>} <span style="color:#f92672">&amp;&amp;</span> $F{<span style="color:#ae81ff">2</span>} <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>$F{<span style="color:#ae81ff">4</span>} <span style="color:#f92672">||</span> <span style="color:#ae81ff">0</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a></p>
+<p>CY constructs a solution for us based on vectors, with the vectors sorted to assure a circumnavigation. In the basic form, she uses the equality that the diagonals are square root of 2 times the edge length, although she also has a dot product routine. Of great interest is that, remarkably, she then expands her space into 3 dimensions and then 4, producing parallel routines for points in a cube and hypercube.</p>
+<p>Here are her square and cube versions:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_square</span> {
+        <span style="color:#66d9ef">my</span> ($p0,$p1,$p2,$p3) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> $v0 <span style="color:#f92672">=</span> vec_subtract($p0, $p1);
+        <span style="color:#66d9ef">my</span> $v1 <span style="color:#f92672">=</span> vec_subtract($p0, $p2);
+        <span style="color:#66d9ef">my</span> $v2 <span style="color:#f92672">=</span> vec_subtract($p0, $p3);
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">unless</span> (vec_prod_f($v1, $v2) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) xor
+                        (vec_prod_f($v0, $v2) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) xor
+                        (vec_prod_f($v0, $v1) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>);
+        <span style="color:#66d9ef">my</span> @n_vector <span style="color:#f92672">=</span> map { norm_f($_) } ($v0, $v1, $v2);
+        @n_vector <span style="color:#f92672">=</span> sort {$a<span style="color:#e6db74">&lt;=&gt;</span>$b} @n_vector;
+        <span style="color:#66d9ef">if</span> ( $n_vector[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">==</span> $n_vector[<span style="color:#ae81ff">1</span>] ) {
+            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+        }
+        <span style="color:#66d9ef">else</span> {
+            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+        }
+    }
+
+
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_cube</span> {
+        <span style="color:#66d9ef">my</span> @p <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> %v;
+        $v{$_} <span style="color:#f92672">=</span> vec_subtract($p[<span style="color:#ae81ff">0</span>], $p[$_]) <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">7</span>);
+        <span style="color:#66d9ef">my</span> @ind <span style="color:#f92672">=</span> sort { norm_f($v{$a}) <span style="color:#e6db74">&lt;=&gt;</span> norm_f($v{$b}) } keys %v;
+        <span style="color:#66d9ef">my</span> ($N, $W, $U) <span style="color:#f92672">=</span> ($v{$ind[<span style="color:#ae81ff">0</span>]} , $v{$ind[<span style="color:#ae81ff">1</span>]} , $v{$ind[<span style="color:#ae81ff">2</span>]}) ;
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">unless</span> norm_f($N) <span style="color:#f92672">==</span> norm_f($W) <span style="color:#f92672">&amp;&amp;</span> norm_f($N) <span style="color:#f92672">==</span> norm_f($U);
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">unless</span> vec_prod_f($N,$W) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> vec_prod_f($W,$U) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>
+                            <span style="color:#f92672">&amp;&amp;</span> vec_prod_f($U,$N) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">my</span> $NW <span style="color:#f92672">=</span> vec_sum($N, $W);
+        <span style="color:#66d9ef">my</span> $WU <span style="color:#f92672">=</span> vec_sum($W, $U);
+        <span style="color:#66d9ef">my</span> $UN <span style="color:#f92672">=</span> vec_sum($U, $N);
+        <span style="color:#66d9ef">my</span> $iter_face <span style="color:#f92672">=</span> permutations([$NW, $WU, $UN]);
+        <span style="color:#66d9ef">my</span> $bool_face <span style="color:#f92672">=</span> undef;
+        <span style="color:#66d9ef">while</span> (<span style="color:#f92672">!</span>$bool <span style="color:#f92672">&amp;&amp;</span> (<span style="color:#66d9ef">my</span> $p <span style="color:#f92672">=</span> $iter_face<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">next</span>)) {
+            $bool <span style="color:#f92672">=</span>
+                vec_same_f($v{$ind[<span style="color:#ae81ff">3</span>]}, $p<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]) <span style="color:#f92672">&amp;&amp;</span>
+                vec_same_f($v{$ind[<span style="color:#ae81ff">4</span>]}, $p<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]) <span style="color:#f92672">&amp;&amp;</span>
+                vec_same_f($v{$ind[<span style="color:#ae81ff">5</span>]}, $p<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">2</span>]) ;
+        }
+
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> <span style="color:#f92672">!</span>$bool_face;
+
+        <span style="color:#66d9ef">my</span> $NWU <span style="color:#f92672">=</span> vec_sum( $N, $WU);
+        <span style="color:#66d9ef">if</span> ( vec_same_f( $v{$ind[<span style="color:#ae81ff">6</span>]} , $NWU ) ) {
+            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+        }
+        <span style="color:#66d9ef">else</span> {
+            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+        }
+    }
+</code></pre></div><p>The <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/cheok-yin-fung/perl/ch-2-cube-hypercube.pl">hypercube can be found here</a>.</p>
+<h2 id="the-pdl">the PDL</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>We saw two examples using the Perl Data Language for its awesome matrix and vector manipulation superpowers.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a></p>
+<p>The PDL can be quite terse, but Jorg has provided a commentary to help us through its unusual syntax. Once we have vectors created, using a little helper routine <code>v()</code> and recomputing as edges, we take 3 dot products and subtract 2 of those edges, all of which should be equal to 0. So we check to make sure not any of them are true, which will yield a true, 1, return value. Nice.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    say <span style="color:#ae81ff">0</span> <span style="color:#f92672">+</span> is_square(v(@ARGV[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>]), v(@ARGV[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>]), v(@ARGV[<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>]), v(@ARGV[<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">7</span>]));
+
+    <span style="color:#75715e"># Check if four (2-d) vertices form a square.</span>
+    <span style="color:#75715e"># A square is a rectangle with all edges of the same length.  If a</span>
+    <span style="color:#75715e"># tetragon has three 90° angles, the fourth must have 90°, too.  So</span>
+    <span style="color:#75715e"># checking for three angles is sufficient for a rectangle.  Furthermore,</span>
+    <span style="color:#75715e"># the opposite edges in an rectangle have the same length. Thus checking</span>
+    <span style="color:#75715e"># any two neighboring edges for the same length is sufficient for a</span>
+    <span style="color:#75715e"># square.</span>
+    <span style="color:#75715e"># Using PDL just for its nice vector operations.</span>
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_square</span> ($v1, $v2, $v3, $v4) {
+        <span style="color:#75715e"># Transform vertex vectors to edge vectors.</span>
+        <span style="color:#66d9ef">my</span> ($e1, $e2, $e3, $e4) <span style="color:#f92672">=</span> ($v2 <span style="color:#f92672">-</span> $v1, $v3 <span style="color:#f92672">-</span> $v2, $v4 <span style="color:#f92672">-</span> $v3, $v1 <span style="color:#f92672">-</span> $v4);
+
+        <span style="color:#75715e"># Check three angles and two lengths.</span>
+        <span style="color:#f92672">!</span>any pdl $e1<span style="color:#f92672">-&gt;</span>transpose x $e2,
+                 $e2<span style="color:#f92672">-&gt;</span>transpose x $e3,
+                 $e3<span style="color:#f92672">-&gt;</span>transpose x $e4,
+                 $e1<span style="color:#f92672">-&gt;</span>transpose x $e1 <span style="color:#f92672">-</span> $e2<span style="color:#f92672">-&gt;</span>transpose x $e2;
+    }
+
+    <span style="color:#75715e"># Create a column vector as 1xN piddle</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">v</span> (@p) {
+        pdl(@p)<span style="color:#f92672">-&gt;</span>dummy(<span style="color:#ae81ff">0</span>);
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>Again the PDL presents us with a somewhat ridiculously compact solution; thankfully Luis also provides a legend to guide our way. Basically what we&rsquo;re doing here is checking a corner: a squared-distance routine is used to whether the lengths of two edges from a vertex are the same, and the diagonal has twice the value.</p>
+<p>Of interesting note the program scales, unchanged, into 3 dimensions, which is truly remarkable. Luis goes into <a href="https://wlmb.github.io/2021/07/27/PWC123/">great detail on this subject in his writeup</a>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># assume data as strings &#34;[[x0,y0],[x1,y1],[x2,y2],[x3,y3]]&#34;</span>
+    <span style="color:#66d9ef">my</span> $m<span style="color:#f92672">=</span>pdl($_); <span style="color:#75715e"># convert to 2d array</span>
+    <span style="color:#75715e"># Separate into four vectors, translate the origin to the first</span>
+    <span style="color:#75715e"># and sort by size</span>
+    <span style="color:#66d9ef">my</span> $v0<span style="color:#f92672">=</span>$m<span style="color:#f92672">-&gt;</span>slice(<span style="color:#e6db74">&#34;:,(0)&#34;</span>);
+    <span style="color:#66d9ef">my</span> (undef, $s1, $s2, $d)<span style="color:#f92672">=</span>sort {size2($a) <span style="color:#e6db74">&lt;=&gt;</span> size2($b)} map {$_<span style="color:#f92672">-</span>$v0} $m<span style="color:#f92672">-&gt;</span>dog;
+    <span style="color:#75715e"># $s1 and $s2 ought to be the sides and $d the diagonal</span>
+    <span style="color:#75715e"># check they add up and their sizes. I use &#39;approx&#39; to accommodate rounding errors.</span>
+    <span style="color:#66d9ef">my</span> $ok<span style="color:#f92672">=</span>approx(size2($s1<span style="color:#f92672">+</span>$s2<span style="color:#f92672">-</span>$d),<span style="color:#ae81ff">0</span>) <span style="color:#f92672">&amp;&amp;</span> approx(size2($s1),size2($s2))
+           <span style="color:#f92672">&amp;&amp;</span> approx(size2($d),<span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>size2($s1));
+    say <span style="color:#e6db74">&#34;Input: $m Output: $ok&#34;</span>
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">size2</span> { <span style="color:#75715e">#  squared size of vector</span>
+        <span style="color:#66d9ef">my</span> $v<span style="color:#f92672">=</span>shift @_;
+        <span style="color:#66d9ef">return</span> ($v<span style="color:#f92672">*</span>$v)<span style="color:#f92672">-&gt;</span>sumover;
+    }
+</code></pre></div><h2 id="additional-submissions-in-guest-languages-1">Additional Submissions in Guest Languages</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/abigail/perl/ch-2.pl"><strong>Abigail</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/abigail/awk/ch-2.awk">Awk</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/abigail/bash/ch-2.sh">Bash</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/abigail/bc/ch-2.bc">Bc</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/abigail/c/ch-2.c">C</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/abigail/go/ch-2.go">Go</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/abigail/java/ch-2.java">Java</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/abigail/lua/ch-2.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/abigail/node/ch-2.js">Node</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/abigail/pascal/ch-2.p">Pascal</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/abigail/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/abigail/r/ch-2.r">R</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/abigail/ruby/ch-2.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/abigail/scheme/ch-2.scm">Scheme</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/abigail/tcl/ch-2.tcl">Tcl</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/athanasius/raku/ch-2.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/stuart-little/perl/ch-2.pl"><strong>Stuart Little</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/stuart-little/haskell/ch-2.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/stuart-little/lua/ch-2.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/stuart-little/node/ch-2.js">Node</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/stuart-little/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/stuart-little/raku/ch-2.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/ulrich-rieke/cpp/ch-2.cpp">C++</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/ulrich-rieke/haskell/ch-2.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/ulrich-rieke/raku/ch-2.raku">Raku</a></p>
+<hr>
+<hr>
+<h1 id="PWC123BLOGS">BLOGS</h1>
+<hr>
+<p><strong>That’s it for me this week, people! Warped by the rain, driven by the snow, resolute and unbroken by the torrential influx, I somehow continue to maintain my bearings. Looking forward to next wave, the perfect wave, I am: <em>your humble servant</em>.</strong></p>
+<h1 id="PWC093BLOGS">But if Your <em>THIRST</em> for <em>KNOWLEDGE</em> is not <em>SLAKED</em>,</h1>
+<h1 id="then-run-dont-walk-to-the-watering-hole">then <em>RUN</em> <em>(dont walk!)</em> to the <em>WATERING HOLE</em></h1>
+<h1 id="and-read-these-blog-links">and <em>READ</em> these <em>BLOG</em> <em>LINKS</em>:</h1>
+<p><strong>( <em>don&rsquo;t think, trust your training, you&rsquo;re in the zone, just do it &hellip;</em> )</strong></p>
+<p><strong>Abigail</strong></p>
+<ul>
+<li><a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-123-1.html">Perl Weekly Challenge 123: Ugly Numbers</a> ( <em>Perl</em> )</li>
+<li><a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-123-2.html">Perl Weekly Challenge 123: Square Points</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Adam Russell</strong></p>
+<ul>
+<li><a href="http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2021/08/01">Ugly Numbers / Square Points — Perl — RabbitFarm</a> ( <em>Perl</em> )</li>
+<li><a href="http://www.rabbitfarm.com/cgi-bin/blosxom/prolog/2021/08/01">Ugly Numbers / Square Points — Prolog — RabbitFarm</a> ( <em>Prolog</em> )</li>
+</ul>
+<p><strong>Arne Sommer</strong></p>
+<ul>
+<li><a href="https://raku-musings.com/ugly-points.html">Ugly Points with Raku and Perl</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Cheok-Yin Fung</strong></p>
+<ul>
+<li><a href="https://e7-87-83.github.io/coding/challenge_123.html">CY&rsquo;s Take on The Weekly Challenge #123 - N-cube </a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Colin Crain</strong></p>
+<ul>
+<li><a href="https://colincrain.com/2021/08/01/dont-be-an-ugly-square-man/">Don&rsquo;t Be an Ugly Square, Man — Programming Excursions in Perl and Raku</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Dave Jacoby</strong></p>
+<ul>
+<li><a href="https://jacoby.github.io/2021/07/27/ugly-and-square-perl-weekly-challenge-123.html">Ugly and Square: Perl Weekly Challenge #123 | Committed to Memory</a> ( <em>Perl</em> )</li>
+<li><a href="https://jacoby.github.io/2021/07/28/as-richard-thompson-sang-i-misunderstood.html">As Richard Thompson sang, ‘I Misunderstood’ | Committed to Memory</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Flavio Poletti</strong></p>
+<ul>
+<li><a href="https://github.polettix.it/ETOOBUSY/2021/07/28/pwc123-ugly-numbers/">PWC123 - Ugly Numbers - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+<li><a href="https://github.polettix.it/ETOOBUSY/2021/07/29/pwc123-square-points/">PWC123 - Square Points - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Jaldhar H. Vyas</strong></p>
+<ul>
+<li><a href="https://www.braincells.com/perl/2021/08/perl_weekly_challenge_week_123.html">Perl Weekly Challenge: Week 123</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>James Smith</strong></p>
+<ul>
+<li><a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-123/james-smith">Perl Weekly Challenge #123</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Jared Martin</strong></p>
+<ul>
+<li><a href="http://blogs.perl.org/users/jared_martin/2021/08/twc-punting-to-mjd-and-showing-qd-geometry.html">TWC: Punting to MJD and Showing Q&amp;D Geometry | Jared Martin</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Laurent Rosenfeld</strong></p>
+<ul>
+<li><a href="http://blogs.perl.org/users/laurent_r/2021/07/perl-weekly-challenge-123-ugly-numbers-and-square-points.html">Perl Weekly Challenge 123: Ugly Numbers and Square Points | laurent_r</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Roger Bell_West</strong></p>
+<ul>
+<li><a href="https://blog.firedrake.org/archive/2021/07/Perl_Weekly_Challenge_123__Ugly_Square.html">RogerBW&rsquo;s Blog: Perl Weekly Challenge 123: Ugly Square</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Simon Green</strong></p>
+<ul>
+<li><a href="https://dev.to/simongreennet/weekly-challenge-123-2flk">Weekly Challenge 123</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>W. Luis Mochan</strong></p>
+<ul>
+<li><a href="https://wlmb.github.io/2021/07/27/PWC123/">Perl Weekly Challenge 123 – W. Luis Mochán</a> ( <em>Perl</em> )</li>
+</ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="/contact" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2021
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.nomtimes.co.uk/site/shop.do?cref=PerlBooks" title="Free Perl Books" rel="noreferrer" target="_blank">
+                            <img src="/images/NomTimes.jpg" style="width:22px; height: 18px;" alt=""/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jQurey/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-136524905-1', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+
+</html>
+
