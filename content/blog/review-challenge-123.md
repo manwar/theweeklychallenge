@@ -1,6 +1,6 @@
 ---
 author:       Colin Crain
-date:         2021-08-20T00:00:00
+date:         2021-08-22T00:00:00
 description:  "Colin Crain › Perl Weekly Review #123"
 tags:         ["perl"]
 title:        "Colin Crain › Perl Weekly Review #123"
@@ -36,7 +36,7 @@ Let's have a look and see what we can find.
 
 ### Getting in Touch with Us
 
-<a href="mailto:pwc.perfectwave@gmail.com"><img src="/images/blog/Email.svg" height="50" width="50"> Email</a> › Please email me (Colin) with any feedback, notes, clarifications or whatnot about this review.
+<a href="mailto:pwc.perfectwave@gmail.com"><img src="/imgaes/blog/Email.svg" height="50" width="50"> Email</a> › Please email me (Colin) with any feedback, notes, clarifications or whatnot about this review.
 
 <a href="https://github.com/manwar/perlweeklychallenge"><img src="/images/blog/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request to us for any issues you may find with this page.
 
@@ -862,7 +862,7 @@ One immediate practical benefit to working with an ordered set of points is that
 
 [**Matthew Neleigh**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-123/mattneleigh/perl/ch-2.pl)
 
-Matthew gives us a technique that methodically determines that the shape is first a quadrilateral, by counting 4 points, then a rhombus, by having equal sides. For this we need only compare three of them, as the fourth follows. Finally in a rhombus adjacent angles will add to 180°, so any rhombus containing a 90° angle anywhere in it must therefore be a square.
+Matthew gives us a technique that methodically determines that the shape is first a quadrilateral, by counting 4 points, then a rhombus, by having equal sides. For this we need only perform three edge comparisons, as the fourth follows. Finally, in a rhombus adjacent angles will add to 180°, so any rhombus containing a 90° angle anywhere in it must therefore be a square.
 
 ```perl
     # We have some sort of quadrilateral;
@@ -1480,7 +1480,6 @@ Of interesting note the program scales, unchanged, into 3 dimensions, which is t
 
 
 ------------------------------------------
-
 
 
 
