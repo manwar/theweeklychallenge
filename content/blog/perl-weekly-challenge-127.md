@@ -105,6 +105,8 @@ Quick recap of **["The Weekly Challenge - 126"](/blog/recap-challenge-126)** by 
 ## PERL REVIEW {#PERLREVIEW}
 ***
 
+Please check out **Perl** solutions review of the **["The Weekly Challenge - 124"](/blog/review-challenge-124)** by `Colin Crain`.
+
 If you missed any past reviews then please check out the [**collection**](/p5-reviews).
 
 <br>
