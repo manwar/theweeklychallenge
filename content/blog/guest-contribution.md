@@ -32,6 +32,20 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 127](/blog/perl-weekly-challenge-127) {#127}
 <br>
 
+##### **Abigail** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/abigail/awk/ch-1.awk) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/abigail/awk/ch-2.awk) in **Awk**.
+
+##### **Abigail** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/abigail/bash/ch-1.sh) in **Bash**.
+
+##### **Abigail** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/abigail/c/ch-1.c) in **C**.
+
+##### **Abigail** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/abigail/lua/ch-1.lua) in **Lua**.
+
+##### **Abigail** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/abigail/node/ch-1.js) in **Node.js**.
+
+##### **Abigail** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/abigail/python/ch-1.py) in **Python**.
+
+##### **Abigail** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/abigail/ruby/ch-1.rb) in **Ruby**.
+
 ##### **Adam Russell** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/adam-russell/cxx/ch-1.cxx) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/adam-russell/cxx/ch-2.cxx) in **C++**.
 
 ##### **Adam Russell** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/adam-russell/prolog/ch-1.p) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/adam-russell/prolog/ch-2.p) in **Prolog**.
