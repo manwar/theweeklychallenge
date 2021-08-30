@@ -39,7 +39,8 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 
 #### 1. Arne Sommer
 #### 2. Flavio Poletti
-#### 3. Roger Bell_West
+#### 3. Laurent Rosenfeld
+#### 4. Roger Bell_West
 
 <br>
 
@@ -47,8 +48,8 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 
 <br>
 
-#### 1. Perl: 6110 (61%)
-#### 2. Raku: 3776 (39%)
+#### 1. Perl: 6111 (61%)
+#### 2. Raku: 3777 (39%)
 #### 3. Blog: 1837
 
 <br>
@@ -206,7 +207,7 @@ The total contributions in the week is `105`. Well done **Team PWC**. I would al
 ## CENTURION CLUB {#CENTURIONCLUB}
 ***
 
-    Laurent Rosenfeld (1308), Jaldhar H. Vyas (1078), Roger Bell_West (1030), Arne Sommer (954), Colin Crain (848), Athanasius (714), Adam Russell (652), Stuart Little (636), E. Choroba (596), Dave Jacoby (576), Ulrich Rieke (568), Abigail (510), Luca Ferrari (500), Mohammad S Anwar (476), Flavio Poletti (466), Javier Luque (460), Duncan C. White (452), Ruben Westerberg (452), Simon Proctor (450), Cheok-Yin Fung (398), Mark Anderson (344), Joelle Maslak (334), Simon Green (320), James Smith (318), Wanderdoc (312), Ryan Thompson (290), Paulo Custodio (288), Jorg Sommrey (280), Lubos Kolouch (280), Niels van Dijke (248), Pete Houston (244), Feng Chang (242), Andrezgz (238), Yet Ebreo (226), W. Luis Mochan (222), Jan Krnavek (204), Markus Holzer (198), Myoungjin Jeon (192), Noud Aldenhoven (188), Kevin Colyer (176), Steven Wilson (176), Aaron Smith (174), Andrew Shitov (164), Duane Powell (164), Kian-Meng Ang (162), Walt Mankowski (162), Shahed Nooshmand (140), Dave Cross (120), Joan Mimosinnet (120), Kang-min Liu (118), Cristina Heredia (116), Julio de Castro (116), Gustavo Chaves (112), Saif Ahmed (110), Burkhard Nickels (108), Alicia Bielsa (106), Nuno Vieira (104).
+    Laurent Rosenfeld (1312), Jaldhar H. Vyas (1078), Roger Bell_West (1030), Arne Sommer (954), Colin Crain (848), Athanasius (714), Adam Russell (652), Stuart Little (636), E. Choroba (596), Dave Jacoby (576), Ulrich Rieke (568), Abigail (510), Luca Ferrari (500), Mohammad S Anwar (476), Flavio Poletti (466), Javier Luque (460), Duncan C. White (452), Ruben Westerberg (452), Simon Proctor (450), Cheok-Yin Fung (398), Mark Anderson (344), Joelle Maslak (334), Simon Green (320), James Smith (318), Wanderdoc (312), Ryan Thompson (290), Paulo Custodio (288), Jorg Sommrey (280), Lubos Kolouch (280), Niels van Dijke (248), Pete Houston (244), Feng Chang (242), Andrezgz (238), Yet Ebreo (226), W. Luis Mochan (222), Jan Krnavek (204), Markus Holzer (198), Myoungjin Jeon (192), Noud Aldenhoven (188), Kevin Colyer (176), Steven Wilson (176), Aaron Smith (174), Andrew Shitov (164), Duane Powell (164), Kian-Meng Ang (162), Walt Mankowski (162), Shahed Nooshmand (140), Dave Cross (120), Joan Mimosinnet (120), Kang-min Liu (118), Cristina Heredia (116), Julio de Castro (116), Gustavo Chaves (112), Saif Ahmed (110), Burkhard Nickels (108), Alicia Bielsa (106), Nuno Vieira (104).
 
 <br>
 
@@ -542,6 +543,8 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 ### Laurent Rosenfeld
 ![Laurent Rosenfeld](/images/team/laurent_rosenfeld.jpg)
 
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/laurent-rosenfeld/perl/ch-1.pl)]
+[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/laurent-rosenfeld/raku/ch-1.raku)]
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/laurent-rosenfeld/perl/ch-2.pl)]
 [[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/laurent-rosenfeld/raku/ch-2.raku)]
 [[**BLOG #1**](http://blogs.perl.org/users/laurent_r/2021/08/perl-weekly-challenge-127-disjoint-sets-and-conflict-intervals.html)]
