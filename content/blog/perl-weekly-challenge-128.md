@@ -175,7 +175,7 @@ Write a script to find out the minimum number of platforms needed so that no tra
 ## Example 1:
 
     Input: @arrivals   = (11:20, 14:30)
-           @departutes = (11:50, 15:00)
+           @departures = (11:50, 15:00)
     Output: 1
 
         The 1st arrival of train is at 11:20 and this is the only train at the station, so you need 1 platform.
@@ -184,7 +184,7 @@ Write a script to find out the minimum number of platforms needed so that no tra
 ## Example 2:
 
     Input: @arrivals   = (10:20, 11:00, 11:10, 12:20, 16:20, 19:00)
-           @departutes = (10:30, 13:20, 12:40, 12:50, 20:20, 21:20)
+           @departures = (10:30, 13:20, 12:40, 12:50, 20:20, 21:20)
     Output: 3
 
         Between 11:00 and 12:20, there would be at least 3 trains at the station, so we need minimum 3 platforms.
