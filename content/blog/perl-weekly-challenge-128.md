@@ -187,7 +187,9 @@ Write a script to find out the minimum number of platforms needed so that no tra
            @departures = (10:30, 13:20, 12:40, 12:50, 20:20, 21:20)
     Output: 3
 
-        Between 11:00 and 12:20, there would be at least 3 trains at the station, so we need minimum 3 platforms.
+        Between 12:20 and 12:40, there would be at least 3 trains at the station, so we need minimum 3 platforms.
+
+##### UPDATED [2021-08-30 23:30 UK TIME]: Corrected the between time descript of the example 2. Thanks Peter Campbell Smith.
 
 <br>
 
