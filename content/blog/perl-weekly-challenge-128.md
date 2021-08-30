@@ -189,7 +189,7 @@ Write a script to find out the minimum number of platforms needed so that no tra
 
         Between 12:20 and 12:40, there would be at least 3 trains at the station, so we need minimum 3 platforms.
 
-##### UPDATED [2021-08-30 23:30 UK TIME]: Corrected the between time descript of the example 2. Thanks Peter Campbell Smith.
+#### UPDATED [2021-08-30 23:30 UK TIME]: Corrected the between time description of the example 2. Thanks Peter Campbell Smith.
 
 <br>
 
