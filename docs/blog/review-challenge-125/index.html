@@ -1,0 +1,1389 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="The Weekly Challenge - Perl & Raku"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="You do not have to be an expert."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Colin Crain › Perl Weekly Review #125">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Colin Crain › Perl Weekly Review #125</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navgation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Colin Crain › Perl Weekly Review #125</h2>
+                    <div class="portfolio-meta">
+                        <span>Monday, Aug 30, 2021</span>|
+                        <span> Tags:
+                            perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/p5-review-challenge-125.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <p>( <em>&hellip;continues from <a href="/blog/review-challenge-124/">previous week</a>.</em> )</p>
+<p>Welcome to the Perl review for <strong>Week 125</strong> of the Weekly Challenge! Here we will take the time to discuss the  submissions offered by the team, factor out the common methodologies that came up in those solutions, and highlight some of the unique approaches and unusual code created.</p>
+<hr>
+<h3 id="why-do-we-do-these-challenges">Why do we do these challenges?</h3>
+<p>I suppose any answers to that would be as wide ranging and varied as the people who choose to join the team. One thing is clear: it&rsquo;s not a competition, and there are no judges, even if there is a &ldquo;prize&rdquo; of sorts. About that &ndash; I think of it more as an honorarium periodically awarded to acknowledge the efforts we make towards this strange goal. So there&rsquo;s no determination to find the <em>fastest</em>, or the <em>shortest</em>, or even, in some abstract way, the <em>best</em> way to go about things, although I&rsquo;m certain the individuals have their own aspirations and personal drives. As Perl is such a wonderfully expressive language, this provides quite a bit of fodder to the core idea of TMTOWTDI, producing a gamut of wonderfully varied techniques and solutions.</p>
+<p>Even the tasks themselves are often open to a certain amount of discretionary interpretation. What we end up with is a situation where each participant is producing something in the manner they find the most interesting or satisfying. Some team members focus on carefully crafted complete applications that thoroughly vet input data and handle every use case they can think up. Others chose to apply themselves to the logic of the underlying puzzle and making it work in the most elegant way they can. Some eschew modules they would ordinarily reach for, others embrace them, bringing to light wheels perhaps invented years ago that happen to exactly solve the problem in front of them today.</p>
+<p>I&rsquo;ve been considering this question for some time and have found one binding commonality between all of us solving these challenges each week, in that however we normally live our lives, the task in front of us more than likely has nothing to do with any of that . And I think this has great value. We all do what we do, out in the real world, and hopefully we do it well. The Weekly Challenge provides a opportunity to do something germane to that life yet distinctly different; if we only do the things we already know how to do we only do the same things over and over. This is where the &ldquo;challenge&rdquo; aspect comes into play.</p>
+<p>So we can consider the Weekly Challenge as providing a problem space outside of our comfort zone, as far out from comfort as we wish to take things. From those reaches we can gather and learn things and bring what we want back into our lives. Personally, I think that&rsquo;s its greatest value of all.</p>
+<hr>
+<p>Every week there is an enormous global collective effort made by the team, analyzing and creatively coding the submissions, and that effort deserves credit due. And that&rsquo;s why I&rsquo;m here, to try and figure out how to do that.</p>
+<p>Let&rsquo;s have a look and see what we can find.</p>
+<hr>
+<p><strong><big>For context</big></strong>  before we begin, you may wish to revisit either of the pages for the <a href="/blog/perl-weekly-challenge-125/"><strong>original tasks</strong></a> or the summary <a href="/blog/recap-challenge-125/"><strong>recap</strong></a> of the challenge. But don&rsquo;t worry, the challenges themselves will be briefly summarized, presented below as we progress from task by task. Oh, and one more thing before we get started:</p>
+<h3 id="getting-in-touch-with-us">Getting in Touch with Us</h3>
+<p><a href="mailto:pwc.perfectwave@gmail.com"><img src="/images/blog/Email.svg" height="50" width="50"> Email</a> › Please email me (Colin) with any feedback, notes, clarifications or whatnot about this review.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge"><img src="/images/blog/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request to us for any issues you may find with this page.</p>
+<p><a href="https://twitter.com/perlwchallenge"><img src="/images/blog/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!</p>
+<p>I&rsquo;m always curious as to what the people think of these efforts. Everyone here at the PWC would like to hear any feedback you&rsquo;d like to give.</p>
+<p><strong>So finally, without further ado&hellip;</strong></p>
+<hr>
+<h2 id="---nbsp--nbsp--nbsp---task-1pwc125task1-------nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---task-2pwc125task2---nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---blogspwc125blogs----nbsp--nbsp--nbsp---">•             <a href="#PWC125TASK1">Task 1</a>                 •             <a href="#PWC125TASK2">Task 2</a>             	•             <a href="#PWC125BLOGS">BLOGS</a>              	•</h2>
+<hr>
+<h1 id="PWC125TASK1">TASK 1</h1>
+<h1 id="pythagorean-triples">Pythagorean Triples</h1>
+<p><em>Submitted by: Cheok-Yin Fung</em><br></p>
+<p>You are given a positive integer $N.</p>
+<p>Write a script to print all Pythagorean Triples containing $N as a member. Print -1 if it can’t be a member of any. i</p>
+<p>Triples with the same set of elements are considered the same, i.e. if your script has already printed (3, 4, 5), (4, 3, 5) should not be printed.</p>
+<p>The famous Pythagorean theorem states that in a right angle triangle, the length of the two shorter sides and the length of the longest side are related by a2+b2 = c2.</p>
+<p>A Pythagorean triple refers to the triple of three integers whose lengths can compose a right-angled triangle.</p>
+<p><strong>Example</strong></p>
+<pre><code>    Input: $N = 5
+    Output:
+        (3, 4, 5)
+        (5, 12, 13)
+
+    Input: $N = 13
+    Output:
+        (5, 12, 13)
+        (13, 84, 85)
+
+    Input: $N = 1
+    Output:
+        -1
+</code></pre><h2 id="about-the-solutions">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/abigail/perl/ch-1.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/jo-37/perl/ch-1a.pl"><strong>Jorg Sommrey</strong>
+</a>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/pete-houston/perl/ch-1.pl"><strong>Pete Houston</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/peter-campbell-smith/perl/ch-1.pl"><strong>Peter Campbell Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>There were, a bit oddly, only 13 working submissions for the first task this past week.</p>
+<p>We are asked for <em>all</em> Pythagorean triples for a given value, which didn&rsquo;t happen a surprising amount of the time, in no single consistent manner. Perhaps some people simply missed this detail, but it seems more likely they would have overlooked one of the several  special cases that could provide a triple.</p>
+<p>The required input value could be either the lesser of the two legs, the greater, or the hypotenuse. It could be part of a unique primitive form of the triple, or could in certain cases be arrived as part of a multiple of a previously existing one, say a multiple of (3,4,5), which seems to have slipped past some algorithms — several submissions got everything except this option. But as I said there were apparently several ways to go astray.</p>
+<p>I used 60 for my test example, which should give 14 solutions. The last is a the (3,4,5) primitive scaled times 12.</p>
+<pre><code>
+  60² +  899² = 901²
+  60² +  448² = 452²
+  60² +  297² = 303²
+  60² +  221² = 229²
+  60² +  175² = 185²
+  60² +  144² = 156²
+  60² +   91² = 109²
+  60² +   80² = 100²
+  60² +   63² = 87²
+  45² +   60² = 75²
+  32² +   60² = 68²
+  25² +   60² = 65²
+  11² +   60² = 61²
+  36² +   48² = 60²
+
+</code></pre><p>YMMV.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a></p>
+<p><strong>blog writeup:</strong> <a href="https://github.com/drbaggy/perlweeklychallenge-club/blob/master/challenge-125/james-smith/">Perl Weekly Challenge #125</a></p>
+<p>James breaks the problem down into two cases: with the given value either the hypotenuse or a leg, and iterates through a list of candidates for the alternate for each, leg or hypotenuse as the case may be. In both cases the remaining leg is computed using the Pythagorean equation and the square root, and if that value is whole we have found a triple.</p>
+<p>Using a functional approach the whole of the processing get encapsulated into a single complex  line:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get_triples</span> {
+      <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> shift;
+      <span style="color:#66d9ef">return</span> $n <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">3</span> ? <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> : join <span style="color:#e6db74">&#39;; &#39;</span>, map { sprintf <span style="color:#e6db74">&#39;(%s)&#39;</span>, join <span style="color:#e6db74">&#39;, &#39;</span>, @{$_} }
+      (
+        grep { $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">==</span> int $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] }                <span style="color:#75715e">## Check if all int</span>
+        map  { [ $_, sqrt($n<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span><span style="color:#f92672">-</span>$_<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>), $n ] }         <span style="color:#75715e">## Generate triple</span>
+        <span style="color:#ae81ff">3</span> <span style="color:#f92672">..</span> sqrt($n<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span><span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>)                   <span style="color:#75715e">## Shortest side ($n is hypotenuse)</span>
+      ),(
+        map  { $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">&gt;</span>$_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] ? [@{$_}[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">2</span>]] : $_ } <span style="color:#75715e">## put in numerical order</span>
+        grep { $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">==</span> int $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] }                <span style="color:#75715e">## Check all int</span>
+        map  { [ $n, sqrt($_<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span><span style="color:#f92672">-</span>$n<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>), $_ ] }         <span style="color:#75715e">## Generate triple</span>
+        ($n<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">..</span> ($n<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span><span style="color:#f92672">/</span><span style="color:#ae81ff">2</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)       <span style="color:#75715e">## Hypotenuse ($n is one of other two sides)</span>
+      );
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
+<p><strong>blog writeup:</strong> <a href="https://wlmb.github.io/2021/08/10/PWC125/">Perl Weekly Challenge 125</a></p>
+<p>Luis makes an  arithmetic breakdown of the equation, noting that it leads to a valid triple being of the form</p>
+<p><em>k</em>(<em>a</em><sup>2</sup>-<em>b</em><sup>2</sup>), <em>k</em>(2<em>ab</em>), <em>k</em>(<em>a</em><sup>2</sup>+<em>b</em><sup>2</sup>)</p>
+<p>with <em>b</em> being less than <em>a</em>. With this two loops are constructed, one value up to the given <em>N</em>, with the inside iterator less than this value, and a big list is gathered of all possible values <em>a</em>, <em>b</em> and <em>k</em> that satisfy one of these positions.</p>
+<p>This list is then gone through to construct the final triples, which need a further step to remove duplicates.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> POSIX <span style="color:#e6db74">qw(floor)</span>;
+    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw(uniq)</span>;
+
+    <span style="color:#66d9ef">my</span> @found<span style="color:#f92672">=</span>();
+    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $a(<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$N<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>){
+    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $b (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$a<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>){
+        push @found, [$a, $b, $_ <span style="color:#f92672">/</span> ($a<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span><span style="color:#f92672">-</span>$b<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>)] <span style="color:#66d9ef">if</span> $_ % <span style="color:#960050;background-color:#1e0010">($</span>a<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span><span style="color:#f92672">-</span>$b<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>)<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>;
+        push @found, [$a, $b, $_ <span style="color:#f92672">/</span> (<span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>$a<span style="color:#f92672">*</span>$b)] <span style="color:#66d9ef">if</span> $_ % <span style="color:#960050;background-color:#1e0010">(</span>2<span style="color:#f92672">*</span>$a<span style="color:#f92672">*</span>$b)<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>;
+        push @found, [$a, $b, $_ <span style="color:#f92672">/</span> ($a<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span><span style="color:#f92672">+</span>$b<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>)] <span style="color:#66d9ef">if</span> $_ % <span style="color:#960050;background-color:#1e0010">($</span>a<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span><span style="color:#f92672">+</span>$b<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>)<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>;
+    }
+    }
+    say <span style="color:#e6db74">&#34;Input; $_\nOutput:&#34;</span>;
+    say <span style="color:#e6db74">&#34;\t$_&#34;</span> <span style="color:#66d9ef">foreach</span> uniq map { <span style="color:#75715e">#remove duplicates</span>
+    <span style="color:#66d9ef">my</span>($A,$B,$K)<span style="color:#f92672">=</span>@$_; <span style="color:#75715e"># careful not to confuse with $a and $b from sort</span>
+    <span style="color:#66d9ef">my</span> ($x, $y, $z)<span style="color:#f92672">=</span>sort {$a <span style="color:#e6db74">&lt;=&gt;</span> $b} map {$K<span style="color:#f92672">*</span>$_} ($A<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span><span style="color:#f92672">-</span>$B<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>$A<span style="color:#f92672">*</span>$B, $A<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span><span style="color:#f92672">+</span>$B<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>);
+    <span style="color:#e6db74">&#34;\t($x, $y, $z)&#34;</span>;
+    } @found;
+    say(<span style="color:#e6db74">&#34;\t-1, no result found&#34;</span>) <span style="color:#66d9ef">unless</span> @found;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a></p>
+<p><strong>blog writeup:</strong> <a href="https://jacoby.github.io/2021/08/09/trees-and-triples-the-perl-weekly-challenge-125.html">Trees and Triples: The (Perl) Weekly Challenge #125</a></p>
+<p>Dave gives us a straightforward solution based around two routines, one each for the cases of <em>N</em> as a leg and as the hypotenuse. In each we have a outer and inner loop examining the candidate pairs that with the given value will satisfy the equation.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">pt_a</span> ($n ) {
+        <span style="color:#66d9ef">my</span> @output;
+        <span style="color:#66d9ef">my</span> $n2 <span style="color:#f92672">=</span> $n<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>;
+
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $b1 ( <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $n2 ) {
+            <span style="color:#66d9ef">my</span> $b2 <span style="color:#f92672">=</span> $b1<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>;
+            <span style="color:#66d9ef">my</span> $c2 <span style="color:#f92672">=</span> $n2 <span style="color:#f92672">+</span> $b2;
+            <span style="color:#66d9ef">my</span> $c  <span style="color:#f92672">=</span> sqrt $c2;
+            <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> int $c <span style="color:#f92672">==</span> $c;
+            <span style="color:#66d9ef">my</span> @x <span style="color:#f92672">=</span> sort { $a <span style="color:#e6db74">&lt;=&gt;</span> $b } map { int $_ } $n, $b1, $c;
+            push @output, $json<span style="color:#f92672">-&gt;</span>encode( <span style="color:#f92672">\</span>@x );
+        }
+        <span style="color:#66d9ef">return</span> uniq @output <span style="color:#66d9ef">if</span> @output;
+        <span style="color:#66d9ef">return</span> undef;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">pt_c</span> ($n ) {
+        <span style="color:#66d9ef">my</span> @output;
+        <span style="color:#66d9ef">my</span> $n2 <span style="color:#f92672">=</span> $n<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>;
+
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $b1 ( <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $n2 ) {
+            <span style="color:#66d9ef">my</span> $b2 <span style="color:#f92672">=</span> $b1<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>;
+            <span style="color:#66d9ef">my</span> $a2 <span style="color:#f92672">=</span> $n2 <span style="color:#f92672">-</span> $b2;
+            <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> $a2 <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>;
+            <span style="color:#66d9ef">my</span> $a1  <span style="color:#f92672">=</span> sqrt $a2;
+            <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> int $a1 <span style="color:#f92672">==</span> $a1;
+            <span style="color:#66d9ef">my</span> @x <span style="color:#f92672">=</span> sort { $a <span style="color:#e6db74">&lt;=&gt;</span> $b } map { int $_ } $n, $b1, $a1;
+            push @output, $json<span style="color:#f92672">-&gt;</span>encode( <span style="color:#f92672">\</span>@x );
+        }
+        <span style="color:#66d9ef">return</span> uniq @output <span style="color:#66d9ef">if</span> @output;
+        <span style="color:#66d9ef">return</span> undef;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/abigail/perl/ch-1.pl"><strong>Abigail</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/abigail/awk/ch-1.awk">Awk</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/abigail/c/ch-1.c">C</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/abigail/go/ch-1.go">Go</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/abigail/java/ch-1.java">Java</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/abigail/lua/ch-1.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/abigail/node/ch-1.js">Node</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/abigail/pascal/ch-1.p">Pascal</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/abigail/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/abigail/r/ch-1.r">R</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/abigail/ruby/ch-1.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/abigail/tcl/ch-1.tcl">Tcl</a></p>
+<p><strong>blog writeup:</strong> <a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-125-1.html">Perl Weekly Challenge 125: Pythagorean Triples</a></p>
+<p>Abigail similarly breaks down the problem into the familiar two cases of leg and hypotenuse, with an unusual twist: the addition of a small helper routine, <code>introot()</code>, which gives us the largest integer less than or equal to the square root of a given value.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># First case, $n is not the hypothenuse; wlog, assume n = a.</span>
+    <span style="color:#75715e">#</span>
+    <span style="color:#75715e">#   Then, we start searching from c = n + 1 until</span>
+    <span style="color:#75715e">#   c^2 - (c - 1)^2 &gt; n^2. Note that c^2 - (c - 1)^2 = 2c - 1</span>
+    <span style="color:#75715e">#   In each iteration, we calculate b^2 = c^2 - n^2. If b^2 is</span>
+    <span style="color:#75715e">#   a proper square, we have a Pythagorian triple.</span>
+    <span style="color:#75715e">#</span>
+    <span style="color:#66d9ef">my</span> $n_sq <span style="color:#f92672">=</span> $n <span style="color:#f92672">*</span> $n;
+
+    <span style="color:#66d9ef">my</span> $c    <span style="color:#f92672">=</span> $n <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">my</span> $c_sq <span style="color:#f92672">=</span> $n_sq <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $n <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $c <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;=</span> $n_sq) {
+        <span style="color:#75715e">#</span>
+        <span style="color:#75715e"># We now have a^2 (n_sq) and c^2. We can calculate b^2 (b_sq)</span>
+        <span style="color:#75715e"># and check whether this is a proper square.</span>
+        <span style="color:#75715e">#</span>
+        <span style="color:#66d9ef">my</span> $b_sq <span style="color:#f92672">=</span> $c_sq <span style="color:#f92672">-</span> $n_sq;
+        <span style="color:#66d9ef">my</span> $b    <span style="color:#f92672">=</span> introot ($b_sq);
+
+        say <span style="color:#e6db74">&#34;$n $b $c&#34;</span> <span style="color:#66d9ef">if</span> $b_sq <span style="color:#f92672">==</span> $b <span style="color:#f92672">*</span> $b;
+        $c_sq <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $c <span style="color:#f92672">++</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;  <span style="color:#75715e"># (c + 1)^2 == c^2 + 2 * c + 1</span>
+    }
+
+    <span style="color:#75715e">#</span>
+    <span style="color:#75715e"># Handle the case $n is the hypothenuse, so $n == c.</span>
+    <span style="color:#75715e">#</span>
+    <span style="color:#75715e"># We now need to search for a, b such that a^2 + b^2 = c^2 ($n_sq).</span>
+    <span style="color:#75715e"># Wlog, assume a &lt; b (a == b cannot happen). Then a &lt; c / sqrt (2).</span>
+    <span style="color:#75715e">#</span>
+    <span style="color:#66d9ef">my</span> $max_a <span style="color:#f92672">=</span> int ($n <span style="color:#f92672">/</span> sqrt (<span style="color:#ae81ff">2</span>));
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $a <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>; $a <span style="color:#f92672">&lt;=</span> $max_a; $a <span style="color:#f92672">++</span>) {
+        <span style="color:#66d9ef">my</span> $b_sq <span style="color:#f92672">=</span> $n_sq <span style="color:#f92672">-</span> $a <span style="color:#f92672">*</span> $a;
+        <span style="color:#66d9ef">my</span> $b    <span style="color:#f92672">=</span> introot ($b_sq);
+        say <span style="color:#e6db74">&#34;$a $b $n&#34;</span> <span style="color:#66d9ef">if</span> $b_sq <span style="color:#f92672">==</span> $b <span style="color:#f92672">*</span> $b;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/peter-campbell-smith/perl/ch-1.pl"><strong>Peter Campbell Smith</strong></a></p>
+<p>Peter reduces his two cases to what amounts to a couple of short lines. His use of an incremented index counter and direct assignment to the <code>@solutions</code> array rather then a <code>push</code> statement is unusual and interesting.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># If c == n:</span>
+    <span style="color:#75715e"># a &lt; b so a**2 &lt; n**2 / 2, so we only need to test values of a &lt; sqrt(n**2 / 2)</span>
+    <span style="color:#75715e"># and solutions are where n**2 - a**2 is an integer square (ie b**2)</span>
+
+    <span style="color:#66d9ef">for</span> $a (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> int(sqrt($n<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>))) {
+        $solutions[$s<span style="color:#f92672">++</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">qq[    ($a, $b, $n)\n]</span> <span style="color:#66d9ef">if</span> $b <span style="color:#f92672">=</span> is_a_square($n<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">-</span> $a<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>);
+    }
+
+    <span style="color:#75715e"># If a == n:</span>
+    <span style="color:#75715e"># We are looking for b and c such that c**2 - b**2 == n**2.</span>
+    <span style="color:#75715e"># if t == s + 1 then t**2 - s**2 is 2s + 1, so we only</span>
+    <span style="color:#75715e"># need to test values of b where 2b + 1 &lt; n**2</span>
+    <span style="color:#75715e"># and solutions are where n**2 - b**2 is an integer square (ie a**2)</span>
+
+    <span style="color:#66d9ef">for</span> $b (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">**</span><span style="color:#ae81ff">32</span>) {
+        <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $b <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&gt;</span> $n<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>;
+        $solutions[$s<span style="color:#f92672">++</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">qq[    ($n, $b, $c)\n]</span> <span style="color:#66d9ef">if</span> $c <span style="color:#f92672">=</span> is_a_square($n<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> $b<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>);
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_a_square</span> {
+        <span style="color:#66d9ef">my</span> $test <span style="color:#f92672">=</span> sqrt($_[<span style="color:#ae81ff">0</span>]);
+        <span style="color:#66d9ef">return</span> $test <span style="color:#f92672">==</span> int($test) ? $test : <span style="color:#ae81ff">0</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a></p>
+<p>CY introduces some inequalities to limit the bounds of her search space in a way we haven&rsquo;t seen elsewhere, with individual cases for the lesser summand, the greater summand and the hypotenuse.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">pyth</span> ($n) {
+        <span style="color:#66d9ef">my</span> @ans;
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $a (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>int $n<span style="color:#f92672">/</span>sqrt(<span style="color:#ae81ff">2</span>) ) {
+            <span style="color:#66d9ef">my</span> $is_sq <span style="color:#f92672">=</span> $n<span style="color:#f92672">*</span>$n<span style="color:#f92672">-</span>$a<span style="color:#f92672">*</span>$a;
+            <span style="color:#66d9ef">if</span> (sqrt($is_sq) <span style="color:#f92672">==</span> int sqrt($is_sq)) {
+                push @ans, [$a, sqrt($is_sq), $n];
+            }
+        }
+
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $a0 (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
+            <span style="color:#66d9ef">my</span> $is_sq <span style="color:#f92672">=</span> $a0<span style="color:#f92672">*</span>$a0 <span style="color:#f92672">+</span> $n<span style="color:#f92672">*</span>$n;
+            <span style="color:#66d9ef">if</span> (sqrt($is_sq) <span style="color:#f92672">==</span> int sqrt($is_sq)) {
+                push @ans, [$a0, $n, sqrt($is_sq)];
+            }
+        }
+
+        <span style="color:#75715e"># c^2 - b_max^2 &gt;= (b_max+1)^2 - b_max^2 = 2*b_max + 1</span>
+        <span style="color:#75715e"># 2*b_max + 1 &lt;= n^2</span>
+        <span style="color:#75715e"># b_max &lt;= (n^2-1)/2</span>
+
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $b0 ($n<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>int ($n<span style="color:#f92672">*</span>$n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>) {
+            <span style="color:#66d9ef">my</span> $is_sq <span style="color:#f92672">=</span> $b0<span style="color:#f92672">*</span>$b0 <span style="color:#f92672">+</span> $n<span style="color:#f92672">*</span>$n;
+            <span style="color:#66d9ef">if</span> (sqrt($is_sq) <span style="color:#f92672">==</span> int sqrt($is_sq)) {
+                push @ans, [$n , $b0 ,sqrt($is_sq)];
+            }
+        }
+
+        <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@ans;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/polettix/raku/ch-1.raku">Raku</a></p>
+<p><strong>blog writeup:</strong> <a href="https://github.polettix.it/ETOOBUSY/2021/08/11/pwc125-pythagorean-triples/">PWC125 - Pythagorean Triples</a></p>
+<p>Flavio brings us an implementation of <a href="https://en.wikipedia.org/wiki/Formulas_for_generating_Pythagorean_triples#Dickson's_method">Dickson&rsquo;s method</a>, which is to find integers <em>r</em>, <em>s</em>, and <em>t</em> such that:</p>
+<ul>
+<li><em>x</em> = <em>r</em> + <em>s</em></li>
+<li><em>y</em> = <em>r</em> + <em>t</em></li>
+<li><em>z</em> = <em>r</em> + <em>s</em> + <em>t</em></li>
+</ul>
+<p>It follows that <em>r</em> is even, and <em>s</em> and <em>t</em> will be factors of <em>r</em><sup>2</sup> / 2. So a loop is established with an incrementing-by-2 value for <em>r</em>, and a function to evaluate factors for <em>r</em><sup>2</sup>. It&rsquo;s a neat technique, I dare say.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">&#39;first&#39;</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">factor_in_pairs</span> ($n) {
+       map { [$_, $n <span style="color:#f92672">/</span> $_] } grep { <span style="color:#f92672">!</span>($n % <span style="color:#960050;background-color:#1e0010">$</span>_) } <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> sqrt($n)
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">pythagorean_triples</span> ($N) {
+       <span style="color:#66d9ef">my</span> @retval;
+       <span style="color:#66d9ef">my</span> $r <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+       R:
+       <span style="color:#66d9ef">while</span> (<span style="color:#e6db74">&#39;necessary&#39;</span>) {
+          $r <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span>;
+          <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $pair (factor_in_pairs($r <span style="color:#f92672">*</span> $r <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>)) {
+             <span style="color:#66d9ef">my</span> ($s, $t) <span style="color:#f92672">=</span> $pair<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+             my @triple <span style="color:#f92672">=</span> ($r <span style="color:#f92672">+</span> $s, $r <span style="color:#f92672">+</span> $t, $r <span style="color:#f92672">+</span> $s <span style="color:#f92672">+</span> $t);
+             <span style="color:#66d9ef">last</span> R <span style="color:#66d9ef">if</span> $s <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;&amp;</span> $N <span style="color:#f92672">&lt;</span> $triple[<span style="color:#ae81ff">0</span>];
+             push @retval, <span style="color:#f92672">\</span>@triple <span style="color:#66d9ef">if</span> first { $N <span style="color:#f92672">==</span> $_ } @triple;
+          }
+       }
+       <span style="color:#66d9ef">return</span> @retval;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/colin-crain/perl/ch-1.pl"><strong>My Own Solution</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/colin-crain/raku/ch-1.raku">Raku</a></p>
+<p><strong>blog writeup:</strong> <a href="https://colincrain.com/2021/08/15/triple-tree-rings/">Triple Tree Rings</a></p>
+<p>In researching my own solution I constructed an elaborate table of values: for squares, and then the differences between pairs of adjacent squares, then pairs two values apart, then three, four, etc. This in turn led to certain insights into valid constructions of triples — if the difference found was itself a perfect square, than this difference and the table indices would determine the three required values.</p>
+<p>From this insight it became apparent that I didn&rsquo;t even need to construct the table, as in both cases of the input value being a leg or the hypotenuse the valid triples for that case can be determined by a simple equation, one for each. We only need to pass through the list of numbers from 1 to <em>N</em> using a single loop to find all of them.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> shift @ARGV <span style="color:#f92672">||</span> <span style="color:#ae81ff">60</span>;
+    <span style="color:#66d9ef">my</span> $sq <span style="color:#f92672">=</span> $n <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span>;
+    <span style="color:#66d9ef">my</span> @triples;
+    <span style="color:#66d9ef">my</span> @summands;
+
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $t (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$n) {
+        <span style="color:#75715e">## first we check table columns for summands</span>
+        <span style="color:#75715e">## the column index is the &#34;triangle length&#34;, $t, and the equations</span>
+        <span style="color:#75715e">## combine this with the index to produce the values</span>
+        <span style="color:#66d9ef">my</span> $idx <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">my</span> $start <span style="color:#f92672">=</span> ($t <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span>) <span style="color:#f92672">+</span> (<span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $t);           <span style="color:#75715e">## start index</span>
+        <span style="color:#75715e">## triangle equation column-wise</span>
+        <span style="color:#75715e">## skipping by 2t from from start index</span>
+        <span style="color:#75715e">## if the target square is present get its index</span>
+        <span style="color:#66d9ef">if</span> ( ($sq <span style="color:#f92672">-</span> $start) % <span style="color:#960050;background-color:#1e0010">(</span>2 <span style="color:#f92672">*</span> $t) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> ) {
+            $idx <span style="color:#f92672">=</span> $t <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> (($sq <span style="color:#f92672">-</span> $start) <span style="color:#f92672">/</span> (<span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $t));
+            <span style="color:#66d9ef">my</span> @triple <span style="color:#f92672">=</span> sort {$a<span style="color:#e6db74">&lt;=&gt;</span>$b} ($idx, $n, $idx <span style="color:#f92672">-</span> $t);
+            push @triples, <span style="color:#f92672">\</span>@triple <span style="color:#66d9ef">if</span> $idx <span style="color:#f92672">&gt;</span> $t;
+        }
+        <span style="color:#75715e">## then we check sum row for summands</span>
+        <span style="color:#75715e">## all the table fields follow an iterative pattern based off their</span>
+        <span style="color:#75715e">## index and the column position, the &#34;triangle length&#34; back to the</span>
+        <span style="color:#75715e">## 0-index and then up the same distance.</span>
+        <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $t <span style="color:#f92672">==</span> $n;                           <span style="color:#75715e">## last column is at $n-1</span>
+        <span style="color:#66d9ef">my</span> $test <span style="color:#f92672">=</span> (<span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $t <span style="color:#f92672">*</span> $n) <span style="color:#f92672">-</span> ($t <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span>);       <span style="color:#75715e">## triangle equation</span>
+        <span style="color:#66d9ef">if</span> ( (int(sqrt($test)))<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">==</span> $test ) {     <span style="color:#75715e">## perfect square test</span>
+            push @summands, sqrt $test;
+        }
+    }
+    say <span style="color:#e6db74">&#34;summands @summands&#34;</span>;
+    push @triples, [shift @summands, pop @summands, $n] <span style="color:#66d9ef">while</span> @summands;
+
+    say sprintf <span style="color:#e6db74">&#34;%4d² + %4d² = %d²&#34;</span>, $_<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> for @triples;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a></p>
+<p>Duncan also brings us a straightforward loop solution. In this method an outer loop is established counting up from 1 to <em>N</em>, and an inner loop with a lower bound at the value of the outer and an upper limit that will eventually be reached. This will check all valus for the lesser summand up to the input against values for the greater including the input, follow by values where the lower summand is equal to the input against a larger value that may possibly complete a larger squared hypotenuse. Along the way those pairs that construct a hypotenuse will also be examined, so all cases will be looked at.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $a (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$n)
+    {
+        <span style="color:#66d9ef">my</span> $a2 <span style="color:#f92672">=</span> $a <span style="color:#f92672">*</span> $a;
+        <span style="color:#66d9ef">for</span>( <span style="color:#66d9ef">my</span> $b <span style="color:#f92672">=</span> $a<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>; ; $b<span style="color:#f92672">++</span> )
+        {
+        	<span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $a <span style="color:#f92672">&lt;</span> $n <span style="color:#f92672">&amp;&amp;</span> $b <span style="color:#f92672">&gt;</span> $n;	<span style="color:#75715e"># fallen off</span>
+
+        	<span style="color:#75715e">#say &#34;trying a=$a, b=$b&#34;;</span>
+        	<span style="color:#66d9ef">my</span> $b2 <span style="color:#f92672">=</span> $b <span style="color:#f92672">*</span> $b;
+        	<span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> $a2 <span style="color:#f92672">+</span> $b2;
+        	<span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> int(sqrt($sum));
+
+            <span style="color:#66d9ef">if</span>( $c <span style="color:#f92672">==</span> $b )    			<span style="color:#75715e"># fallen off</span>
+            {
+                <span style="color:#66d9ef">last</span>;
+            }
+
+        	<span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> $sum <span style="color:#f92672">==</span> $c <span style="color:#f92672">*</span> $c;
+        	<span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> $a<span style="color:#f92672">==</span>$n <span style="color:#f92672">||</span> $b<span style="color:#f92672">==</span>$n <span style="color:#f92672">||</span> $c<span style="color:#f92672">==</span>$n;
+        	say <span style="color:#e6db74">&#34;found $a $b $c&#34;</span>;
+        	$found<span style="color:#f92672">++</span>;
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a></p>
+<p>Choroba uses three distinct cases to handle the input value as each of the lesser and greater legs and the hypotenuse. In each the logic is clear and direct, and you can see how the cases relate to each other. The use of a <code>continue</code> block on the last <code>while</code> ensures that the counter is incremented before the conditional is reevaluated.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">pythagorean_triples</span> {
+        <span style="color:#66d9ef">my</span> ($n) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> @solutions;
+        <span style="color:#66d9ef">my</span> $nsquare <span style="color:#f92672">=</span> $n <span style="color:#f92672">*</span> $n;
+
+        <span style="color:#75715e"># A &lt;= B &lt; C</span>
+
+        <span style="color:#75715e"># A**2 + B**2 = n**2</span>
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $A (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $n) {
+            <span style="color:#66d9ef">my</span> $B <span style="color:#f92672">=</span> sqrt($nsquare <span style="color:#f92672">-</span> $A <span style="color:#f92672">*</span> $A);
+            <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $B <span style="color:#f92672">&lt;</span> $A;
+
+            push @solutions, [$A, $B, $n]
+                <span style="color:#66d9ef">if</span> $B <span style="color:#f92672">==</span> int $B;
+        }
+
+        <span style="color:#75715e"># A**2 + n**2 = C**2</span>
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $A (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $n) {
+            <span style="color:#66d9ef">my</span> $C <span style="color:#f92672">=</span> sqrt($A <span style="color:#f92672">*</span> $A <span style="color:#f92672">+</span> $nsquare);
+            push @solutions, [$A, $n, $C]
+                <span style="color:#66d9ef">if</span> $C <span style="color:#f92672">==</span> int $C;
+        }
+
+        <span style="color:#75715e"># n**2 + B ** 2 = C**2</span>
+        <span style="color:#66d9ef">my</span> $B <span style="color:#f92672">=</span> $n;
+        <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
+            <span style="color:#66d9ef">my</span> $C <span style="color:#f92672">=</span> sqrt($nsquare <span style="color:#f92672">+</span> $B <span style="color:#f92672">*</span> $B);
+            <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $C <span style="color:#f92672">-</span> $B <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">1</span>;
+
+            push @solutions, [$n, $B, $C]
+                <span style="color:#66d9ef">if</span> $C <span style="color:#f92672">==</span> int $C;
+        } <span style="color:#66d9ef">continue</span> {
+            <span style="color:#f92672">++</span>$B;
+        }
+
+        <span style="color:#66d9ef">return</span> @solutions ? <span style="color:#f92672">\</span>@solutions : <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/pete-houston/perl/ch-1.pl"><strong>Pete Houston</strong></a></p>
+<p>Pete brings in the <code>Math::Prime::Util</code> function <code>is_square()</code>, which is, well, &ldquo;handy&rdquo; is a word that comes to mind. He takes a slightly different analysis, that the given value squared could be computed as either the sum or the difference of two squares. Two loops take care of the cases, the first one, in another unusual twist, counting downward from <em>N</em>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># Sum. Count downwards from n.</span>
+    <span style="color:#66d9ef">my</span> $go <span style="color:#f92672">=</span> $n;
+    <span style="color:#66d9ef">while</span> (<span style="color:#f92672">--</span>$go <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">4</span>) {
+        <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> exists $triples{$go};
+        <span style="color:#66d9ef">my</span> $sqdiff <span style="color:#f92672">=</span> $n2 <span style="color:#f92672">-</span> $go <span style="color:#f92672">*</span> $go;
+        store_if_sq (<span style="color:#f92672">\</span>%triples, $sqdiff, $n, $go);
+    }
+
+    <span style="color:#75715e"># Difference. Count upwards from n.</span>
+    $go <span style="color:#f92672">=</span> $n;
+    <span style="color:#66d9ef">my</span> $oldgo2 <span style="color:#f92672">=</span> $n2;
+    <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
+        <span style="color:#66d9ef">my</span> $go2 <span style="color:#f92672">=</span> <span style="color:#f92672">++</span>$go <span style="color:#f92672">*</span> $go;
+        <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $n2 <span style="color:#f92672">&lt;</span> ($go2 <span style="color:#f92672">-</span> $oldgo2);
+        <span style="color:#66d9ef">my</span> $sqdiff <span style="color:#f92672">=</span> $go2 <span style="color:#f92672">-</span> $n2;
+        store_if_sq (<span style="color:#f92672">\</span>%triples, $sqdiff, $n, $go);
+        $oldgo2 <span style="color:#f92672">=</span> $go2;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">store_if_sq</span> {
+        <span style="color:#66d9ef">my</span> ($tri, $sqdiff, @rest) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">unless</span> is_square ($sqdiff);
+        <span style="color:#66d9ef">my</span> $diff <span style="color:#f92672">=</span> sqrt $sqdiff;
+        $tri<span style="color:#f92672">-&gt;</span>{$diff} <span style="color:#f92672">=</span> [$diff, @rest];
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/roger-bell-west/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/roger-bell-west/ruby/ch-1.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/roger-bell-west/rust/ch-1.rs">Rust</a></p>
+<p><strong>blog writeup:</strong> <a href="https://blog.firedrake.org/archive/2021/08/Perl_Weekly_Challenge_125__Pythagorean_Diameter.html">RogerBW&rsquo;s Blog: Perl Weekly Challenge 125: Pythagorean Diameter</a></p>
+<p>And finally, we have Roger, who uses what he refers to as <a href="https://en.wikipedia.org/wiki/Tree_of_primitive_Pythagorean_triples">Barning&rsquo;s matrices</a> to compute a list of all triples with at least one value less than the input, which he then searches through to find those containing the requested value. This is a very different and interesting way to approach the problem.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">pt</span> {
+      <span style="color:#66d9ef">my</span> $n<span style="color:#f92672">=</span>shift;
+      <span style="color:#66d9ef">my</span> @out;
+      <span style="color:#66d9ef">my</span> @tri<span style="color:#f92672">=</span>([<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>]);
+      <span style="color:#66d9ef">while</span> (@tri) {
+        <span style="color:#66d9ef">my</span> $t<span style="color:#f92672">=</span>shift @tri;
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">2</span>) {
+          <span style="color:#66d9ef">if</span> ($n % <span style="color:#960050;background-color:#1e0010">$</span>t<span style="color:#f92672">-&gt;</span>[$i] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+            <span style="color:#66d9ef">my</span> $k<span style="color:#f92672">=</span>$n<span style="color:#f92672">/</span>$t<span style="color:#f92672">-&gt;</span>[$i];
+            push @out,[map {$_<span style="color:#f92672">*</span>$k} @{$t}];
+          }
+        }
+        <span style="color:#66d9ef">unless</span> (min(@{$t}) <span style="color:#f92672">&gt;</span> $n) {
+          push @tri,[
+            $t<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>$t<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>$t<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">2</span>],
+            <span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>$t<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">*</span>$t<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>$t<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">2</span>],
+            <span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>$t<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>$t<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">+</span><span style="color:#ae81ff">3</span><span style="color:#f92672">*</span>$t<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">2</span>],
+              ];
+          push @tri,[
+            $t<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>$t<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>$t<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">2</span>],
+            <span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>$t<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span><span style="color:#f92672">*</span>$t<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>$t<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">2</span>],
+            <span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>$t<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>$t<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">+</span><span style="color:#ae81ff">3</span><span style="color:#f92672">*</span>$t<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">2</span>],
+              ];
+          push @tri,[
+            <span style="color:#f92672">-</span>$t<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>$t<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>$t<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">2</span>],
+            <span style="color:#f92672">-</span><span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>$t<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span><span style="color:#f92672">*</span>$t<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>$t<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">2</span>],
+            <span style="color:#f92672">-</span><span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>$t<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>$t<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">+</span><span style="color:#ae81ff">3</span><span style="color:#f92672">*</span>$t<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">2</span>],
+              ];
+        }
+      }
+      <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@out;
+    }
+</code></pre></div><hr>
+<hr>
+<h1 id="PWC125TASK2">TASK 2</h1>
+<h1 id="binary-tree-diameter">Binary Tree Diameter</h1>
+<p><em>Submitted by: Mohammad S Anwar</em><br>
+You are given binary tree as below:</p>
+<pre><code>            1
+           / \
+          2   5
+         / \ / \
+        3  4 6  7
+               / \
+              8  10
+             /
+            9
+</code></pre><p>Write a script to find the diameter of the given binary tree.</p>
+<p>The diameter of a binary tree is the length of the longest path between any two nodes in a tree. It doesn’t have to pass through the root.</p>
+<p>For the above given binary tree, possible diameters (6) are:</p>
+<p>3, 2, 1, 5, 7, 8, 9</p>
+<p>or</p>
+<p>4, 2, 1, 5, 7, 8, 9</p>
+<p>UPDATE (2021-08-10 17:00:00 BST): Jorg Sommrey corrected the example. The length of a path is the number of its edges, not the number of the vertices it connects. So the diameter should be 6, not 7.</p>
+<h2 id="about-the-solutions-1">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/abigail/perl/ch-2.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/mark-anderson/perl/ch-2.pl"><strong>Mark Anderson</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/mattneleigh/perl/ch-2.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/stuart-little/perl/ch-2.pl"><strong>Stuart Little</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/wanderdoc/perl/ch-2.pl"><strong>Wanderdoc</strong></a></p>
+<p>There were 15 submissions for the second task this past week. As usual, there were a variety of ways presented to implement the tree data structure, but on the whole this didn&rsquo;t distract too much from the primary task, that of finding the diameter.</p>
+<p>For finding the diameter a recursive traversal was almost always employed, but there was a renegade who performed the search iteratively, with a queue. We saw a lot of self-similarity with the underlying logic, but because the data structures were so varied this was not always apparent.</p>
+<p>Our examination will not be exhaustive, but a random sample of an even dozen should give a nice overview.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a></p>
+<p>Duncan takes a brute-force approach, looking at all the paths through the use of two recursive functions: <code>findallpaths()</code> and <code>follow()</code>. A callback routine is passed around through all that recursion to note and log the maximum path length found, which is a very interesting touch.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Function::Parameters;
+
+    <span style="color:#75715e">#    Find all complete paths through tree $t - and call</span>
+    <span style="color:#75715e">#    $pathfunc-&gt;( @nodes ) for each one.</span>
+    <span style="color:#75715e">#</span>
+    fun findallpaths( $t, $pathfunc )
+    {
+        say <span style="color:#e6db74">&#34;find all paths starting at $t-&gt;{v}&#34;</span> <span style="color:#66d9ef">if</span> $debug<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">1</span>;
+        follow( $t, [$t<span style="color:#f92672">-&gt;</span>{v}], {}, $pathfunc );
+
+        <span style="color:#66d9ef">if</span>( $t<span style="color:#f92672">-&gt;</span>{tag} <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;n&#39;</span> )
+        {
+        	findallpaths( $t<span style="color:#f92672">-&gt;</span>{l}, $pathfunc ) <span style="color:#66d9ef">if</span> $t<span style="color:#f92672">-&gt;</span>{l};
+        	findallpaths( $t<span style="color:#f92672">-&gt;</span>{r}, $pathfunc ) <span style="color:#66d9ef">if</span> $t<span style="color:#f92672">-&gt;</span>{r};
+        }
+    }
+
+    <span style="color:#75715e">#    Follow all paths from $t (with elements we&#39;ve visited @$been)</span>
+    <span style="color:#75715e">#    and used set %$used, calling $pathfunc-&gt;( @$been ) for each</span>
+    <span style="color:#75715e">#    complete path found.</span>
+    <span style="color:#75715e">#</span>
+    fun follow( $t, $been, $used, $pathfunc )
+    {
+        <span style="color:#66d9ef">my</span> $tv <span style="color:#f92672">=</span> $t<span style="color:#f92672">-&gt;</span>{v};
+        <span style="color:#66d9ef">my</span> $edges <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $edge (<span style="color:#e6db74">qw(parent l r)</span>)
+        {
+        	<span style="color:#66d9ef">my</span> $e <span style="color:#f92672">=</span> $t<span style="color:#f92672">-&gt;</span>{$edge};
+        	<span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> defined $e;
+        	<span style="color:#66d9ef">my</span> $ev <span style="color:#f92672">=</span> $e<span style="color:#f92672">-&gt;</span>{v};
+        	<span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $used<span style="color:#f92672">-&gt;</span>{$ev};
+        	$edges<span style="color:#f92672">++</span>;
+        	say <span style="color:#e6db74">&#34;follow: go along $edge from $tv to $ev&#34;</span> <span style="color:#66d9ef">if</span> $debug<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">1</span>;
+        	<span style="color:#66d9ef">my</span> @newb <span style="color:#f92672">=</span> @$been;
+        	push @newb, $ev;
+        	follow( $e, <span style="color:#f92672">\</span>@newb, { %$used, $tv<span style="color:#f92672">=&gt;</span><span style="color:#ae81ff">1</span> }, $pathfunc );
+        }
+        $pathfunc<span style="color:#f92672">-&gt;</span>( @$been ) <span style="color:#66d9ef">if</span> $edges<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/mattneleigh/perl/ch-2.pl"><strong>Matthew Neleigh</strong></a></p>
+<p>It seems in any of these binary tree challenges, both the implementation, and especially the importation, of the tree being worked on takes an undue amount of focus away from the logical complexities of the task. Because Perl lacks any sort of consistent idea of a tree, or node, or, let&rsquo;s face it, object system, every developer is somewhat alone in deciding on what tools to use to model the data, and there are many options available, to say the least.</p>
+<p>I find this simultaniously both fascinating and distracting, as it ends up being extremely creative whilst it goes about detracting from the stated point of the exercise. Its a connundrum.</p>
+<p>Matthew gives us his, to me at least, unique take on the construction part of the exercise, which we&rsquo;ll pause to look at. The whole structure is an array of trees, the trees themselves nest hashes of hashes.</p>
+<pre><code>    # Tree 1 (for testing- diameter does not
+    # pass through the root node):
+    #
+    #     1
+    #    / \
+    #   2   3
+    #      / \
+    #     4   7
+    #    /     \
+    #   5       8
+    #  /         \
+    # 6           9
+    #              \
+    #              10
+
+    $trees[1] = make_tree_node(1);
+    $trees[1]{l} = make_tree_node(2);
+    $trees[1]{r} = make_tree_node(3);
+    $trees[1]{r}{l} = make_tree_node(4);
+    $trees[1]{r}{l}{l} = make_tree_node(5);
+    $trees[1]{r}{l}{l}{l} = make_tree_node(6);
+    $trees[1]{r}{r} = make_tree_node(7);
+    $trees[1]{r}{r}{r} = make_tree_node(8);
+    $trees[1]{r}{r}{r}{r} = make_tree_node(9);
+    $trees[1]{r}{r}{r}{r}{r} = make_tree_node(10);
+</code></pre><p>As far as I&rsquo;m concerned there&rsquo;s no clean and easy way to do this, but I find this has a certain appeal to it in the tradeoffs chosen. I&rsquo;m not sure how you&rsquo;d serialize this for the command line but that&rsquo;s another pot to boil.</p>
+<p>Moving on, once we have our tree encoded, the function <code>calculate_tree_diameter_path()</code> is called, which serves as a wrapper to fetch and then format the diameter for the tree. The actual diameter computation is done with a second, recursive routine that performs an LRN depth-first descent, with each cycle returning the maximum tree depth from that node, starting at the leaves and traveling upwards.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">calculate_max_tree_depth</span>{
+        <span style="color:#66d9ef">my</span> $root <span style="color:#f92672">=</span> shift();
+
+        <span style="color:#66d9ef">unless</span>($root){
+            <span style="color:#75715e"># No nodes in this direction;</span>
+            <span style="color:#75715e"># return zero length and empty</span>
+            <span style="color:#75715e"># path</span>
+            <span style="color:#66d9ef">return</span>(<span style="color:#ae81ff">0</span>, <span style="color:#f92672">[]</span>);
+        }
+
+        <span style="color:#66d9ef">my</span> $diameter_data <span style="color:#f92672">=</span> shift();
+
+        <span style="color:#66d9ef">my</span> $l_depth;
+        <span style="color:#66d9ef">my</span> $l_path;
+        <span style="color:#66d9ef">my</span> $r_depth;
+        <span style="color:#66d9ef">my</span> $r_path;
+
+        <span style="color:#75715e"># Dig deeper to the left, and to the</span>
+        <span style="color:#75715e"># right</span>
+        ($l_depth, $l_path) <span style="color:#f92672">=</span>
+            calculate_max_tree_depth($root<span style="color:#f92672">-&gt;</span>{l}, $diameter_data);
+        ($r_depth, $r_path) <span style="color:#f92672">=</span>
+            calculate_max_tree_depth($root<span style="color:#f92672">-&gt;</span>{r}, $diameter_data);
+
+        <span style="color:#75715e"># reftype() taken from Scalar::Util</span>
+        <span style="color:#66d9ef">if</span>($diameter_data <span style="color:#f92672">&amp;&amp;</span> (reftype($diameter_data) <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#34;HASH&#34;</span>)){
+            <span style="color:#75715e"># We&#39;re keeping track of the largest</span>
+            <span style="color:#75715e"># leaf-to-leaf distance; if the diameter at</span>
+            <span style="color:#75715e"># this node is the largest we&#39;ve seen so</span>
+            <span style="color:#75715e"># far, store the data we have at this point</span>
+            <span style="color:#66d9ef">my</span> $node_diameter <span style="color:#f92672">=</span> $l_depth <span style="color:#f92672">+</span> $r_depth <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+
+            <span style="color:#66d9ef">if</span>($node_diameter <span style="color:#f92672">&gt;</span> $diameter_data<span style="color:#f92672">-&gt;</span>{diameter}){
+                $diameter_data<span style="color:#f92672">-&gt;</span>{diameter} <span style="color:#f92672">=</span> $node_diameter;
+                $diameter_data<span style="color:#f92672">-&gt;</span>{root} <span style="color:#f92672">=</span> $root;
+                $diameter_data<span style="color:#f92672">-&gt;</span>{l_path} <span style="color:#f92672">=</span> copy_list($l_path);
+                $diameter_data<span style="color:#f92672">-&gt;</span>{r_path} <span style="color:#f92672">=</span> copy_list($r_path);
+            }
+        }
+
+        <span style="color:#75715e"># Check which side had the deeper path,</span>
+        <span style="color:#75715e"># and return it</span>
+        <span style="color:#66d9ef">if</span>($r_depth <span style="color:#f92672">&gt;</span> $l_depth){
+            push(@{$r_path}, $root);
+            <span style="color:#66d9ef">return</span>($r_depth <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, $r_path);
+        } <span style="color:#66d9ef">else</span>{
+            push(@{$l_path}, $root);
+            <span style="color:#66d9ef">return</span>($l_depth <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, $l_path);
+        }
+
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/polettix/raku/ch-2.raku">Raku</a></p>
+<p><strong>blog writeup:</strong> <a href="https://github.polettix.it/ETOOBUSY/2021/08/12/pwc125-binary-tree-diameter/">PWC125 - Binary Tree Diameter</a></p>
+<p>Bucking the hash trend, Flavio keeps his tree in memory as a nested array of arrays. To find the diameter, he makes a depth-first recursive descent to the bottom leaves, first on the left side, then the right. As the recursion collapses upwards the longest sub-tree length at each node is retained. There&rsquo;s a very interesting use of the <code>wantarray</code> function to return either a scalar length or an array of values, depending whether the outer <code>main</code> context is the caller or the function itself, recursing.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">visit_for_diameter</span> ($root) {
+       die <span style="color:#e6db74">&#34;Ceci n&#39;est pas une arbre\n&#34;</span> <span style="color:#66d9ef">unless</span> $root;
+
+       <span style="color:#75715e"># this keeps the length of the best diameter candidate passing through</span>
+       <span style="color:#75715e"># the $root node itself</span>
+       <span style="color:#66d9ef">my</span> $subtree <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+       <span style="color:#75715e"># this keeps the longest sub-leg starting from $root</span>
+       <span style="color:#66d9ef">my</span> $longest <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+       <span style="color:#75715e"># this keeps the best diamater as found in some descendant but not</span>
+       <span style="color:#75715e"># through $root</span>
+       <span style="color:#66d9ef">my</span> $best <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+       <span style="color:#75715e"># iterate over the left and right sub-trees</span>
+       <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $children ($root<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">[</span>1, <span style="color:#ae81ff">2</span>]) {
+
+          <span style="color:#75715e"># don&#39;t bother following dead ends</span>
+          <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> $children;
+
+          <span style="color:#75715e"># this gets the recursive sub-call, receiving the best diameter and</span>
+          <span style="color:#75715e"># the longest leg length</span>
+          <span style="color:#66d9ef">my</span> ($c_best, $c_length) <span style="color:#f92672">=</span> visit_for_diameter($children);
+
+          <span style="color:#75715e"># keep the best between the left and the right sub-tree</span>
+          $best <span style="color:#f92672">=</span> $c_best <span style="color:#66d9ef">if</span> $c_best <span style="color:#f92672">&gt;</span> $best;
+
+          <span style="color:#75715e"># the actual leg length from $root is one more step because we have</span>
+          <span style="color:#75715e"># to reach the child with one step</span>
+          <span style="color:#f92672">++</span>$c_length;
+
+          <span style="color:#75715e"># keep the best sub-tree length</span>
+          $longest <span style="color:#f92672">=</span> $c_length <span style="color:#66d9ef">if</span> $c_length <span style="color:#f92672">&gt;</span> $longest;
+
+          <span style="color:#75715e"># anyway, the best diameter passing through $root has to take into</span>
+          <span style="color:#75715e"># account the length of the leg</span>
+          $subtree <span style="color:#f92672">+=</span> $c_length;
+       }
+
+       <span style="color:#75715e"># the longest sub-tree length is established, but the best will have to</span>
+       <span style="color:#75715e"># be established by comparing the best from the descendants and the</span>
+       <span style="color:#75715e"># overall diameter passing through $root (i.e. $subtree)</span>
+       $best <span style="color:#f92672">=</span> $subtree <span style="color:#66d9ef">if</span> $subtree <span style="color:#f92672">&gt;</span> $best;
+
+       <span style="color:#75715e"># return only the $best diameter in scalar context, and both in list</span>
+       <span style="color:#75715e"># context so that we can properly recurse</span>
+       <span style="color:#66d9ef">return</span> $best <span style="color:#66d9ef">unless</span> wantarray;
+       <span style="color:#66d9ef">return</span> ($best, $longest);
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a></p>
+<p><strong>blog writeup:</strong> <a href="https://github.com/drbaggy/perlweeklychallenge-club/blob/master/challenge-125/james-smith/">Perl Weekly Challenge #125</a></p>
+<p>James delivers us a barrage of quite descriptive test cases in his submission, governing a variety of asymmetric trees of varying depths and diameters. The diameter code itself is added to a more general <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/james-smith/perl/BinaryTree.pm"><code>BinaryTree</code></a> module, extending on the work already done with a very directed extra effort.</p>
+<p>Here are the <code>depth()</code> and <code>diameter()</code> functions from that module framework.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">depth</span> {
+      <span style="color:#66d9ef">my</span> $self <span style="color:#f92672">=</span> shift;
+      <span style="color:#66d9ef">my</span> $d <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+         $d <span style="color:#f92672">=</span> $self<span style="color:#f92672">-&gt;</span>left<span style="color:#f92672">-&gt;</span>depth <span style="color:#66d9ef">if</span> $self<span style="color:#f92672">-&gt;</span>has_left;
+      <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">+</span>$d <span style="color:#66d9ef">unless</span> $self<span style="color:#f92672">-&gt;</span>has_right;
+      <span style="color:#66d9ef">my</span> $t <span style="color:#f92672">=</span> $self<span style="color:#f92672">-&gt;</span>right<span style="color:#f92672">-&gt;</span>depth;
+      <span style="color:#66d9ef">return</span> $t <span style="color:#f92672">&gt;</span> $d ? <span style="color:#ae81ff">1</span><span style="color:#f92672">+</span>$t : <span style="color:#ae81ff">1</span><span style="color:#f92672">+</span>$d;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">diameter</span> {
+      <span style="color:#66d9ef">my</span> $self <span style="color:#f92672">=</span> shift;
+      <span style="color:#66d9ef">my</span> $global <span style="color:#f92672">=</span> { <span style="color:#e6db74">&#39;diameter&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">0</span> };
+      $self<span style="color:#f92672">-&gt;</span>walk( <span style="color:#66d9ef">sub</span> {
+        <span style="color:#66d9ef">my</span> $d <span style="color:#f92672">=</span> ($_[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-&gt;</span>has_left  ? $_[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-&gt;</span>left<span style="color:#f92672">-&gt;</span>depth  : <span style="color:#ae81ff">0</span> ) <span style="color:#f92672">+</span>
+                ($_[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-&gt;</span>has_right ? $_[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-&gt;</span>right<span style="color:#f92672">-&gt;</span>depth : <span style="color:#ae81ff">0</span> );
+        $_[<span style="color:#ae81ff">1</span>]{<span style="color:#e6db74">&#39;diameter&#39;</span>} <span style="color:#f92672">=</span> $d <span style="color:#66d9ef">if</span> $d <span style="color:#f92672">&gt;</span> $_[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">-&gt;</span>{<span style="color:#e6db74">&#39;diameter&#39;</span>};
+      }, $global );
+      <span style="color:#66d9ef">return</span> $global<span style="color:#f92672">-&gt;</span>{<span style="color:#e6db74">&#39;diameter&#39;</span>};
+    }
+</code></pre></div><p>And the construction of an example, with context commentary:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e">## This time both child trees have depths longer than the number of</span>
+    <span style="color:#75715e">## ancestor nodes - so that is used to get the length...</span>
+
+    <span style="color:#75715e">## 1 -&gt; 2 -&gt; 3 -&gt; 4      [ depth 4]</span>
+    <span style="color:#75715e">##        `&gt; 5 -&gt; 6</span>
+    <span style="color:#75715e">## ---------------------</span>
+    <span style="color:#75715e">## 6 -&gt; 5 -&gt; 2 -&gt; 3 -&gt; 4 [ diameter 5 ]</span>
+
+    say <span style="color:#e6db74">&#39;5) Tree with node further down having two children - but distance from&#39;</span>;
+    say <span style="color:#e6db74">&#39;   root to node is less than the depth of both children&#39;</span>;
+    $x <span style="color:#f92672">=</span> BinaryTree<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(<span style="color:#ae81ff">1</span>)<span style="color:#f92672">-&gt;</span>add_child_left(
+           BinaryTree<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(<span style="color:#ae81ff">2</span>)<span style="color:#f92672">-&gt;</span>add_child_left(
+             BinaryTree<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(<span style="color:#ae81ff">3</span>)<span style="color:#f92672">-&gt;</span>add_child_left( BinaryTree<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(<span style="color:#ae81ff">4</span>) )
+           )<span style="color:#f92672">-&gt;</span>add_child_right(
+             BinaryTree<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(<span style="color:#ae81ff">5</span>)<span style="color:#f92672">-&gt;</span>add_child_left( BinaryTree<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(<span style="color:#ae81ff">6</span>) )
+           )
+        );
+
+    $x<span style="color:#f92672">-&gt;</span>dump;
+    say sprintf <span style="color:#e6db74">&#39;Max depth: %d, diameter %d&#39;</span>, $x<span style="color:#f92672">-&gt;</span>depth, $x<span style="color:#f92672">-&gt;</span>diameter;
+    say <span style="color:#e6db74">&#39;&#39;</span>;
+</code></pre></div><p>The result:</p>
+<pre><code>    5) Tree with node further down having two children - but distance from
+       root to node is less than the depth of both children
+      1
+      &lt; 2
+        &lt; 3
+          &lt; 4
+        &gt; 5
+          &lt; 6
+    Max depth: 4, diameter 4
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/abigail/perl/ch-2.pl"><strong>Abigail</strong></a></p>
+<p><strong>blog writeup:</strong> <a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-125-2.html">Perl Weekly Challenge 125: Binary Tree Diameter</a></p>
+<p>Abigail gives us a solution basing their <code>Tree</code> package on <em>inside-out</em> hashes, a fascinating technique of storing data in anonymous hash values and then using stringified references to these hashes as <em>keys</em>, inverting the usual data structure. This is facilitated by the use of the <code>Hash::Util::FieldHash</code> module, which is worth the effort of going through its documentation, taking a deep dive into the pros and cons of the technique it makes available.</p>
+<p>Once we have a tree object encoded, a <code>diameter()</code> method is attached, which traverses the tree, returning the longest child path found, upwards from the leaves. At each node this longest child path is recorded, alongside the sum of the longest paths returned from the left and right children, which is the diameter at that point</p>
+<p>We&rsquo;re seeing a lot of small variations on this same basic pattern, but Abigail&rsquo;s implementation is notably clear and concise.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_diameter</span> ($self) {
+        <span style="color:#75715e">#</span>
+        <span style="color:#75715e"># Given a tree, return a tuple ($depth, $diameter), where</span>
+        <span style="color:#75715e"># first element is the depth of a tree (longest path to a leaf),</span>
+        <span style="color:#75715e"># and second the diameter (longest path in the tree).</span>
+        <span style="color:#75715e">#</span>
+        <span style="color:#75715e"># Depth of a tree is 1 + max (depth left child, depth right child)</span>
+        <span style="color:#75715e"># Diameter of a tree is max (diameter left child,</span>
+        <span style="color:#75715e"># diameter right child, depth left child + depth right child).</span>
+        <span style="color:#75715e">#</span>
+        <span style="color:#66d9ef">return</span> (<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>) <span style="color:#66d9ef">if</span>  $self <span style="color:#f92672">-&gt;</span> isleaf;  <span style="color:#75715e"># Leaves have no depth nor diameter.</span>
+        <span style="color:#66d9ef">my</span> ($ldp, $ldm) <span style="color:#f92672">=</span> $self <span style="color:#f92672">-&gt;</span> left  <span style="color:#f92672">-&gt;</span> _diameter;
+        <span style="color:#66d9ef">my</span> ($rdp, $rdm) <span style="color:#f92672">=</span> $self <span style="color:#f92672">-&gt;</span> right <span style="color:#f92672">-&gt;</span> _diameter;
+        (max ($ldp, $rdp), max ($ldm, $rdm, $ldp <span style="color:#f92672">+</span> $rdp))
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a></p>
+<p>Choroba gives an object implmentation, with an input loaded from nested arrays. The root object is a node, called appropriately <code>Node</code>, which itself has left and right child nodes. The <code>diameter</code> method provided performs a recursive traversal, returning the largest diameter found so far, which is propogated upwards through the nodes. We don&rsquo;t actually care <em>where</em> the largest diameter occurs, only that it <em>does</em> occur, so the apex node location is discarded and the maximum carried forward. This obviates the need for a package variable ot hold the maximum value.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">package</span> Node;
+    <span style="color:#66d9ef">use</span> Moo;
+    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw{ max sum }</span>;
+    <span style="color:#66d9ef">use</span> namespace::clean;
+
+    has value <span style="color:#f92672">=&gt;</span> (is <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;ro&#39;</span>);
+    has [<span style="color:#e6db74">qw[ left right ]</span>] <span style="color:#f92672">=&gt;</span> (is <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;rw&#39;</span>);
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">new_from_structure</span> {
+        <span style="color:#66d9ef">my</span> ($class, $structure) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> $self <span style="color:#f92672">=</span> $class<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(value <span style="color:#f92672">=&gt;</span> $structure<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]);
+        <span style="color:#66d9ef">my</span> @ch <span style="color:#f92672">=</span> @{ $structure<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] };
+        <span style="color:#66d9ef">if</span> (defined $ch[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>]) {
+            <span style="color:#66d9ef">my</span> $left  <span style="color:#f92672">=</span> $ch[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">1</span>]
+                ? <span style="color:#e6db74">&#39;Node&#39;</span><span style="color:#f92672">-&gt;</span>new_from_structure([$ch[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>], $ch[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">1</span>]])
+                : <span style="color:#e6db74">&#39;Node&#39;</span><span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(value <span style="color:#f92672">=&gt;</span> $ch[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>]);
+            $self<span style="color:#f92672">-&gt;</span>left($left);
+        }
+        <span style="color:#66d9ef">if</span> (defined $ch[<span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">0</span>]) {
+            <span style="color:#66d9ef">my</span> $right  <span style="color:#f92672">=</span> $ch[<span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">1</span>]
+                ? <span style="color:#e6db74">&#39;Node&#39;</span><span style="color:#f92672">-&gt;</span>new_from_structure([$ch[<span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">0</span>], $ch[<span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">1</span>]])
+                : <span style="color:#e6db74">&#39;Node&#39;</span><span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(value <span style="color:#f92672">=&gt;</span> $ch[<span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">0</span>]);
+            $self<span style="color:#f92672">-&gt;</span>right($right);
+        }
+        <span style="color:#66d9ef">return</span> $self
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">diameter</span> {
+        <span style="color:#66d9ef">my</span> ($self) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> $branch_here <span style="color:#f92672">=</span> sum(<span style="color:#ae81ff">0</span>, map $_<span style="color:#f92672">-&gt;</span>max_depth, $self<span style="color:#f92672">-&gt;</span>children);
+        <span style="color:#66d9ef">my</span> @diameters <span style="color:#f92672">=</span> map $_<span style="color:#f92672">-&gt;</span>diameter, $self<span style="color:#f92672">-&gt;</span>children;
+        <span style="color:#66d9ef">return</span> max(@diameters, $branch_here)
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a></p>
+<p>Jorg brings us another exploration into the <code>Graph</code> module to define his tree, here defining an undirected graph. Anyways, the <code>Graph</code> module provides a routine, <code>diameter()</code> which as you might think would be very useful to our task. I feel as if you are studying a single large and complex module, such as Jorg is wont to do, using the various built-in features available is a really good way to learn the intricacies. Watch his work (with a quick shout-out to Adam Russell) has gotten me interested in the <code>Graph</code> module myself, which is obviously a good thing. It does seem that there is a certain learning curve involved, though.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># Build the binary tree as a graph and return its diameter.  As we are</span>
+    <span style="color:#75715e"># allowed to move up and down the tree for a maximum length path, the</span>
+    <span style="color:#75715e"># graph has to be undirected.  The root node gets lost with this</span>
+    <span style="color:#75715e"># construction: any vertex with a degree of one or two may be taken as</span>
+    <span style="color:#75715e"># the root node.  This doesn&#39;t matter here as a diameter path need not</span>
+    <span style="color:#75715e"># pass through the root node.</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">tree_diameter</span> (@nodes) {
+        <span style="color:#66d9ef">my</span> $g <span style="color:#f92672">=</span> Graph<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(undirected <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>);
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $node (@nodes) {
+            <span style="color:#66d9ef">my</span> ($id, $left, $right) <span style="color:#f92672">=</span> split <span style="color:#e6db74">/:/</span>, $node;
+            $g<span style="color:#f92672">-&gt;</span>add_edge($id, $left) <span style="color:#66d9ef">if</span> $left;
+            $g<span style="color:#f92672">-&gt;</span>add_edge($id, $right) <span style="color:#66d9ef">if</span> $right;
+        }
+        <span style="color:#75715e"># Return the diameter in scalar context, any diameter path in</span>
+        <span style="color:#75715e"># list context or undef if there is no path at all.</span>
+        $g<span style="color:#f92672">-&gt;</span>diameter;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/mark-anderson/perl/ch-2.pl"><strong>Mark Anderson</strong></a></p>
+<p>Mark brings us an implementation built around <code>Tree::Binary</code>, initiated with a hard-coded example. This stripped-down approach allows us to focus on the true task-at-hand, determining the diameter. The package provides us with a a recursive function, <a href="https://metacpan.org/pod/Tree::Binary#Recursive-Methods"><code>traverse()</code></a>, which takes a function callback to be applied to the nodes along its walk. The diameters are recorded at each node and added to a growing list, and the diamater of the tree is the maximum value of that list.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $example1 <span style="color:#f92672">=</span> Tree::Binary<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(<span style="color:#e6db74">&#39;1&#39;</span>)
+                               <span style="color:#f92672">-&gt;</span>setLeft(Tree::Binary<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(<span style="color:#e6db74">&#39;2&#39;</span>)
+                               <span style="color:#f92672">-&gt;</span>setLeft(Tree::Binary<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(<span style="color:#e6db74">&#39;3&#39;</span>))
+                               <span style="color:#f92672">-&gt;</span>setRight(Tree::Binary<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(<span style="color:#e6db74">&#39;4&#39;</span>)))
+                               <span style="color:#f92672">-&gt;</span>setRight(Tree::Binary<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(<span style="color:#e6db74">&#39;5&#39;</span>)
+                               <span style="color:#f92672">-&gt;</span>setLeft(Tree::Binary<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(<span style="color:#e6db74">&#39;6&#39;</span>))
+                               <span style="color:#f92672">-&gt;</span>setRight(Tree::Binary<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(<span style="color:#e6db74">&#39;7&#39;</span>)
+                               <span style="color:#f92672">-&gt;</span>setLeft(Tree::Binary<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(<span style="color:#e6db74">&#39;8&#39;</span>)
+                               <span style="color:#f92672">-&gt;</span>setLeft(Tree::Binary<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(<span style="color:#e6db74">&#39;9&#39;</span>)))
+                               <span style="color:#f92672">-&gt;</span>setRight(Tree::Binary<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(<span style="color:#e6db74">&#39;10&#39;</span>))));
+
+    say treeDiameter($example1); <span style="color:#75715e"># 6</span>
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">treeDiameter</span>
+    {
+        <span style="color:#66d9ef">my</span> $btree <span style="color:#f92672">=</span> shift;
+        <span style="color:#66d9ef">my</span> @diameters;
+
+        $btree<span style="color:#f92672">-&gt;</span>traverse
+        (
+            <span style="color:#66d9ef">sub</span>
+            {
+                <span style="color:#66d9ef">my</span> ($tree) <span style="color:#f92672">=</span> @_;
+
+                <span style="color:#66d9ef">my</span> $leftHeight  <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+                <span style="color:#66d9ef">my</span> $rightHeight <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+                <span style="color:#66d9ef">if</span> ($tree<span style="color:#f92672">-&gt;</span>hasLeft)
+                {
+                    $leftHeight <span style="color:#f92672">=</span> $tree<span style="color:#f92672">-&gt;</span>getLeft<span style="color:#f92672">-&gt;</span>height;
+                }
+
+                <span style="color:#66d9ef">if</span> ($tree<span style="color:#f92672">-&gt;</span>hasRight)
+                {
+                    $rightHeight <span style="color:#f92672">=</span> $tree<span style="color:#f92672">-&gt;</span>getRight<span style="color:#f92672">-&gt;</span>height;
+                }
+
+                push @diameters, $leftHeight <span style="color:#f92672">+</span> $rightHeight;
+            }
+        );
+
+        max @diameters;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/wanderdoc/perl/ch-2.pl"><strong>Wanderdoc</strong></a></p>
+<p>The doctor is fond of building trees as structs of a sort, using <code>Struct::Dumb</code>. It&rsquo;s noteworthy that the solution provided is not recursive, but rather iterative. I know this is not really a big deal, but tree-walking is a action singularly well-suited to a recursive paradigm, even as iterative loops are unually somewhat faster in execution.</p>
+<p>A system of FIFO queues are constructed that walk the nodes, which are essentailly arrays of left and right nested children and a node value. First the outer function <code>diameter_iter</code> is called, which constructs a queue of nodes to be walked; at each node the maximum height is calculated for both the left child and the right, and the diameter at that node is the sum of these two values.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">height_iter</span>
+    {
+         <span style="color:#66d9ef">my</span> $node <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>];
+
+         <span style="color:#66d9ef">my</span> @queue;
+         push @queue, $node;
+         <span style="color:#66d9ef">my</span> $height <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+
+         <span style="color:#66d9ef">while</span> ( @queue )
+         {
+              <span style="color:#66d9ef">my</span> $size <span style="color:#f92672">=</span> scalar @queue;
+              <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $size <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> )
+              {
+                   <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> shift @queue;
+                   push @queue, $n<span style="color:#f92672">-&gt;</span>left <span style="color:#66d9ef">if</span> $n<span style="color:#f92672">-&gt;</span>left;
+                   push @queue, $n<span style="color:#f92672">-&gt;</span>right <span style="color:#66d9ef">if</span> $n<span style="color:#f92672">-&gt;</span>right;
+
+              }
+              $height<span style="color:#f92672">++</span>;
+         }
+         <span style="color:#66d9ef">return</span> $height;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">diameter_iter</span>
+    {
+
+         <span style="color:#66d9ef">my</span> $node <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>];
+         <span style="color:#66d9ef">my</span> @queue;
+         push @queue, $node;
+
+         <span style="color:#66d9ef">my</span> $diameter <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+         <span style="color:#66d9ef">while</span> ( @queue )
+         {
+
+              <span style="color:#66d9ef">my</span> $size <span style="color:#f92672">=</span> scalar @queue;
+
+              <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $size <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> )
+              {
+                   <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> shift @queue;
+                   <span style="color:#66d9ef">my</span> $height_left  <span style="color:#f92672">=</span> $n<span style="color:#f92672">-&gt;</span>left ?  height_iter( $n<span style="color:#f92672">-&gt;</span>left )  : <span style="color:#ae81ff">0</span>;
+                   <span style="color:#66d9ef">my</span> $height_right <span style="color:#f92672">=</span> $n<span style="color:#f92672">-&gt;</span>right ? height_iter( $n<span style="color:#f92672">-&gt;</span>right ) : <span style="color:#ae81ff">0</span>;
+                   $diameter <span style="color:#f92672">=</span> max($diameter, $height_left <span style="color:#f92672">+</span> $height_right); <span style="color:#75715e"># + 1</span>
+
+                   push @queue, $n<span style="color:#f92672">-&gt;</span>left  <span style="color:#66d9ef">if</span> $n<span style="color:#f92672">-&gt;</span>left;
+                   push @queue, $n<span style="color:#f92672">-&gt;</span>right <span style="color:#66d9ef">if</span> $n<span style="color:#f92672">-&gt;</span>right;
+              }
+         }
+         <span style="color:#66d9ef">return</span> $diameter;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/colin-crain/perl/ch-2.pl"><strong>My Own Solution</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/colin-crain/raku/ch-2.raku">Raku</a></p>
+<p><strong>blog writeup:</strong> <a href="https://colincrain.com/2021/08/15/triple-tree-rings/">Triple Tree Rings — Programming Excursions in Perl and Raku</a></p>
+<p>For my own solution, I also brought out the <code>BTree</code> and related <code>Node</code> modules I finally got around to making. The solution comes about by adding two attributes: one to <code>Node</code>, an array of <code>child_counts</code>, being the longest paths beneath the node to the left and right, the other a <code>diameter</code> to the <code>BTree</code>. A depth-first traversal method performs an LRN, Left-Right-Node walk to the bottom of the left-most leaf and starts returning and redescending from there. When nodes return they deliver the longest child path length, and the diameter at that point — being the sum of the left and right child counts — is checked against the <code>diameter</code> attribute, which is updated as required.</p>
+<p>When the traversal is complete, the maximum diameter has been found.</p>
+<p>My art-deco tree pretty-print routine is included as well, now incorporated into the <code>BTree</code> package, tightened a little bit more into a self-contained routine.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get_diameter</span> ($self) {
+
+        <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_get_diameter</span> ( $self, $node = $self-&gt;root ) {
+        <span style="color:#75715e">## LRN traversal to gather child counts and update diameter</span>
+            <span style="color:#66d9ef">if</span> (defined $node<span style="color:#f92672">-&gt;</span>left) {
+                $node<span style="color:#f92672">-&gt;</span>child_counts<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> $self<span style="color:#f92672">-&gt;</span>_get_diameter($node<span style="color:#f92672">-&gt;</span>left);
+            }
+            <span style="color:#66d9ef">if</span> (defined $node<span style="color:#f92672">-&gt;</span>right) {
+                $node<span style="color:#f92672">-&gt;</span>child_counts<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> $self<span style="color:#f92672">-&gt;</span>_get_diameter($node<span style="color:#f92672">-&gt;</span>right);
+            }
+            <span style="color:#66d9ef">my</span> $children <span style="color:#f92672">=</span> $node<span style="color:#f92672">-&gt;</span>child_counts<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+</span> $node<span style="color:#f92672">-&gt;</span>child_counts<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>];
+            <span style="color:#66d9ef">if</span> ($children <span style="color:#f92672">&gt;</span> $self<span style="color:#f92672">-&gt;</span>diameter) {
+                $self<span style="color:#f92672">-&gt;</span>diameter( $children );
+            }
+            <span style="color:#66d9ef">return</span> ( $node<span style="color:#f92672">-&gt;</span>child_counts<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&gt;</span> $node<span style="color:#f92672">-&gt;</span>child_counts<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]
+                ? $node<span style="color:#f92672">-&gt;</span>child_counts<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]
+                : $node<span style="color:#f92672">-&gt;</span>child_counts<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]
+            ) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+        }
+
+        $self<span style="color:#f92672">-&gt;</span>_get_diameter;
+        <span style="color:#66d9ef">return</span> $self<span style="color:#f92672">-&gt;</span>diameter;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/stuart-little/perl/ch-2.pl"><strong>Stuart Little</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/stuart-little/haskell/ch-2.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/stuart-little/lua/ch-2.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/stuart-little/node/ch-2.js">Node</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/stuart-little/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/stuart-little/raku/ch-2.raku">Raku</a></p>
+<p>Stuart delivers a trio of functions to gather his diameter:</p>
+<ul>
+<li><code>biLongPath()</code>, which finds the bidirectional longest path from a node,</li>
+<li><code>lr()</code> which finds references to the child nodes at a node, and</li>
+<li><code>lrLongPath()</code> which finds the longest path to a leaf available at a designated node child node.</li>
+</ul>
+<p>Starting with <code>biLongPath()</code>, we then call <code>lrLongPath()</code>, which after calling <code>lr()</code> to get the relevant updated child addresses, then calls itself recursively to walk the tree. Noteworthy is the use of <code>max_by()</code> from <code>List::AllUtils</code>, which takes a function to apply to the list values is operates on, allowing a transformation to be used as a basis for the maximum.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">lr</span>($tree) {
+        (scalar @{$tree} <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">||</span> $tree<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;.&#39;</span>) <span style="color:#f92672">&amp;&amp;</span> <span style="color:#66d9ef">return</span> [<span style="color:#f92672">[]</span>,<span style="color:#f92672">[]</span>];
+        (scalar @{$tree} <span style="color:#f92672">==</span> <span style="color:#ae81ff">3</span>) <span style="color:#f92672">&amp;&amp;</span> <span style="color:#66d9ef">return</span> [[<span style="color:#e6db74">&#34;.&#34;</span>],[<span style="color:#e6db74">&#34;.&#34;</span>]];
+        <span style="color:#66d9ef">my</span> @left;
+        <span style="color:#66d9ef">my</span> ($sum,$ix)<span style="color:#f92672">=</span>(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>);
+        <span style="color:#66d9ef">while</span> ($sum <span style="color:#f92672">!=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
+        push @left, $tree<span style="color:#f92672">-&gt;</span>[$ix];
+        $sum<span style="color:#f92672">+=</span>(($tree<span style="color:#f92672">-&gt;</span>[$ix] <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;.&#39;</span>) ? (<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) : (<span style="color:#ae81ff">1</span>));
+        $ix<span style="color:#f92672">++</span>;
+        }
+        <span style="color:#66d9ef">my</span> @right <span style="color:#f92672">=</span> $tree<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">[(</span>scalar @left)<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>(scalar @{$tree})<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+        <span style="color:#66d9ef">return</span> [<span style="color:#f92672">\</span>@left,<span style="color:#f92672">\</span>@right];
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">lrLongPath</span>($tree) {
+        $tree<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;.&#39;</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#66d9ef">return</span> [<span style="color:#f92672">[]</span>,<span style="color:#f92672">[]</span>];
+        scalar @{$tree} <span style="color:#f92672">==</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#66d9ef">return</span> [[$tree<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]],[$tree<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]]];
+        <span style="color:#66d9ef">my</span> ($left,$right) <span style="color:#f92672">=</span> @{lr($tree)};
+        <span style="color:#66d9ef">my</span> $lLongPath <span style="color:#f92672">=</span> max_by {scalar @{$_}} @{lrLongPath($left)};
+        <span style="color:#66d9ef">my</span> $rLongPath <span style="color:#f92672">=</span> max_by {scalar @{$_}} @{lrLongPath($right)};
+        <span style="color:#66d9ef">my</span> @lLongPath <span style="color:#f92672">=</span> ($tree<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>],@{$lLongPath});
+        <span style="color:#66d9ef">my</span> @rLongPath <span style="color:#f92672">=</span> ($tree<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>],@{$rLongPath});
+        <span style="color:#66d9ef">return</span> [<span style="color:#f92672">\</span>@lLongPath,<span style="color:#f92672">\</span>@rLongPath];
+
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">biLongPath</span>($tree) {
+        (scalar @{$tree} <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">||</span> $tree<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;.&#39;</span>) <span style="color:#f92672">&amp;&amp;</span> <span style="color:#66d9ef">return</span> <span style="color:#f92672">[]</span>;
+        (scalar @{$tree} <span style="color:#f92672">==</span> <span style="color:#ae81ff">3</span>) <span style="color:#f92672">&amp;&amp;</span> <span style="color:#66d9ef">return</span> [$tree<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]];
+        <span style="color:#66d9ef">my</span> ($lPath,$rPath) <span style="color:#f92672">=</span> @{lrLongPath($tree)};
+        <span style="color:#66d9ef">my</span> @lPath <span style="color:#f92672">=</span> reverse $lPath<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">[</span>1<span style="color:#f92672">..</span>(scalar @{$lPath})<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+        <span style="color:#66d9ef">my</span> @path <span style="color:#f92672">=</span> (@lPath,@{$rPath});
+        <span style="color:#66d9ef">my</span> ($left,$right) <span style="color:#f92672">=</span> @{lr($tree)};
+        <span style="color:#66d9ef">return</span> max_by {scalar @{$_}} (<span style="color:#f92672">\</span>@path, map {biLongPath($_)} ($left,$right));
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a></p>
+<p><strong>blog writeup:</strong> <a href="https://jacoby.github.io/2021/08/09/trees-and-triples-the-perl-weekly-challenge-125.html">Trees and Triples: The (Perl) Weekly Challenge #125</a></p>
+<p>Dave brings out his <code>Node</code> package to compose his tree, which is a hash of nodes. This package has with it an <code>is_leaf</code> boolean routine, which comes in handy to the diameter search, both at the beginning and end.</p>
+<p>Systematically starting at every leaf of the tree, at each node a list of options for unvisited available directions is compiled: up to the parent, or down into one or both children. Obviously only a maximum of two of these options will be available at any given time, as we always start at a leaf. The <code>btd()</code> routine is called recursively for each option, tracing all possible paths from a the current node, each path terminating when it finds another leaf and cannot continue.</p>
+<p>The bookkeeping that allow Dave to know whether a particular node option has already been visited also allows him to reconstruct the actual diameter path or paths taken, which although not required is a nice bonus.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">btd</span> ( $node, $path = [] ) {
+        <span style="color:#66d9ef">my</span> @output;
+        <span style="color:#66d9ef">my</span> $v <span style="color:#f92672">=</span> $node<span style="color:#f92672">-&gt;</span>value();
+        push $path<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, $v;
+
+        <span style="color:#66d9ef">my</span> @options;
+        <span style="color:#66d9ef">if</span> ( defined $node<span style="color:#f92672">-&gt;</span>parent() ) {
+            <span style="color:#66d9ef">my</span> $p  <span style="color:#f92672">=</span> $node<span style="color:#f92672">-&gt;</span>parent();
+            <span style="color:#66d9ef">my</span> $pv <span style="color:#f92672">=</span> $p<span style="color:#f92672">-&gt;</span>value();
+            <span style="color:#66d9ef">my</span> $is <span style="color:#f92672">=</span> grep <span style="color:#e6db74">/$pv/</span>, $path<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">?</span> 1 : <span style="color:#ae81ff">0</span>;
+            <span style="color:#66d9ef">if</span> ( <span style="color:#f92672">!</span>grep <span style="color:#e6db74">/$pv/</span>, $path<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> ) {
+                push @options, <span style="color:#e6db74">&#39;parent&#39;</span>;
+            }
+        }
+        <span style="color:#66d9ef">if</span> ( defined $node<span style="color:#f92672">-&gt;</span>left() ) {
+            <span style="color:#66d9ef">my</span> $p  <span style="color:#f92672">=</span> $node<span style="color:#f92672">-&gt;</span>left();
+            <span style="color:#66d9ef">my</span> $pv <span style="color:#f92672">=</span> $p<span style="color:#f92672">-&gt;</span>value();
+            <span style="color:#66d9ef">my</span> $is <span style="color:#f92672">=</span> grep <span style="color:#e6db74">/$pv/</span>, $path<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">?</span> 1 : <span style="color:#ae81ff">0</span>;
+            <span style="color:#66d9ef">if</span> ( <span style="color:#f92672">!</span>grep <span style="color:#e6db74">/$pv/</span>, $path<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> ) {
+                push @options, <span style="color:#e6db74">&#39;left&#39;</span>;
+            }
+        }
+        <span style="color:#66d9ef">if</span> ( defined $node<span style="color:#f92672">-&gt;</span>right() ) {
+            <span style="color:#66d9ef">my</span> $p  <span style="color:#f92672">=</span> $node<span style="color:#f92672">-&gt;</span>right();
+            <span style="color:#66d9ef">my</span> $pv <span style="color:#f92672">=</span> $p<span style="color:#f92672">-&gt;</span>value();
+            <span style="color:#66d9ef">my</span> $is <span style="color:#f92672">=</span> grep <span style="color:#e6db74">/$pv/</span>, $path<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">?</span> 1 : <span style="color:#ae81ff">0</span>;
+            <span style="color:#66d9ef">if</span> ( <span style="color:#f92672">!</span>grep <span style="color:#e6db74">/$pv/</span>, $path<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> ) {
+                push @options, <span style="color:#e6db74">&#39;right&#39;</span>;
+            }
+        }
+
+        <span style="color:#66d9ef">if</span> (@options) {
+            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $option (@options) {
+                <span style="color:#66d9ef">if</span> ( $option <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;parent&#39;</span> ) {
+                    <span style="color:#66d9ef">my</span> $p <span style="color:#f92672">=</span> $node<span style="color:#f92672">-&gt;</span>parent();
+                    <span style="color:#66d9ef">my</span> $path2<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">=</span> map { int } $path<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+                    push @output, btd( $p, $path2 );
+                }
+                <span style="color:#66d9ef">if</span> ( $option <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;left&#39;</span> ) {
+                    <span style="color:#66d9ef">my</span> $p <span style="color:#f92672">=</span> $node<span style="color:#f92672">-&gt;</span>left();
+                    <span style="color:#66d9ef">my</span> $path2<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">=</span> map { int } $path<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+                    push @output, btd( $p, $path2 );
+                }
+                <span style="color:#66d9ef">if</span> ( $option <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;right&#39;</span> ) {
+                    <span style="color:#66d9ef">my</span> $p <span style="color:#f92672">=</span> $node<span style="color:#f92672">-&gt;</span>right();
+                    <span style="color:#66d9ef">my</span> $path2<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">=</span> map { int } $path<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+                    push @output, btd( $p, $path2 );
+                }
+            }
+        }
+        <span style="color:#66d9ef">else</span> {
+            push @output, [ map { int } $path<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">];</span>
+        <span style="color:#960050;background-color:#1e0010">}</span>
+
+        return @output;
+    }
+</code></pre></div><h2 id="additional-submissions-in-guest-languages">Additional Submissions in Guest Languages</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/roger-bell-west/postscript/ch-2.ps">Postscript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/roger-bell-west/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/roger-bell-west/raku/ch-2.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/roger-bell-west/ruby/ch-2.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-125/roger-bell-west/rust/ch-2.rs">Rust</a></p>
+<p><strong>blog writeup:</strong> <a href="https://blog.firedrake.org/archive/2021/08/Perl_Weekly_Challenge_125__Pythagorean_Diameter.html">RogerBW&rsquo;s Blog: Perl Weekly Challenge 125: Pythagorean Diameter</a></p>
+<hr>
+<h1 id="PWC125BLOGS">BLOGS</h1>
+<hr>
+<p><strong>That’s it for me this week, people! Warped by the rain, driven by the snow, resolute and unbroken by the torrential influx, I somehow continue to maintain my bearings. Looking forward to next wave, the perfect wave, I am: <em>your humble servant</em>.</strong></p>
+<h1 id="PWC127BLOGS">But if Your <em>THIRST</em> for <em>KNOWLEDGE</em> is not <em>SLAKED</em>,</h1>
+<h1 id="then-run-dont-walk-to-the-watering-hole">then <em>RUN</em> <em>(dont walk!)</em> to the <em>WATERING HOLE</em></h1>
+<h1 id="and-read-these-blog-links">and <em>READ</em> these <em>BLOG</em> <em>LINKS</em>:</h1>
+<p><strong>( <em>don&rsquo;t think, trust your training, you&rsquo;re in the zone, just do it &hellip;</em> )</strong></p>
+<p><strong>Abigail</strong></p>
+<ul>
+<li><a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-125-1.html">Perl Weekly Challenge 125: Pythagorean Triples</a> ( <em>Perl</em> )</li>
+<li><a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-125-2.html">Perl Weekly Challenge 125: Binary Tree Diameter</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Arne Sommer</strong></p>
+<ul>
+<li><a href="https://raku-musings.com/pythagorean-tree.html">Pythagorean Tree with Raku</a> ( <em>Raku</em> )</li>
+</ul>
+<p><strong>Colin Crain</strong></p>
+<ul>
+<li><a href="https://colincrain.com/2021/08/15/triple-tree-rings/">Triple Tree Rings — Programming Excursions in Perl and Raku</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Dave Jacoby</strong></p>
+<ul>
+<li><a href="https://jacoby.github.io/2021/08/09/trees-and-triples-the-perl-weekly-challenge-125.html">Trees and Triples: The (Perl) Weekly Challenge #125 | Committed to Memory</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Flavio Poletti</strong></p>
+<ul>
+<li><a href="https://github.polettix.it/ETOOBUSY/2021/08/11/pwc125-pythagorean-triples/">PWC125 - Pythagorean Triples - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+<li><a href="https://github.polettix.it/ETOOBUSY/2021/08/12/pwc125-binary-tree-diameter/">PWC125 - Binary Tree Diameter - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>James Smith</strong></p>
+<ul>
+<li><a href="https://github.com/drbaggy/perlweeklychallenge-club/blob/master/challenge-125/james-smith/">Perl Weekly Challenge #125</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Laurent Rosenfeld</strong></p>
+<ul>
+<li><a href="http://blogs.perl.org/users/laurent_r/2021/08/perl-weekly-challenge-125-pythagorean-triples.html">Perl Weekly Challenge 125: Pythagorean Triples | laurent_r</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Roger Bell_West</strong></p>
+<ul>
+<li><a href="https://blog.firedrake.org/archive/2021/08/Perl_Weekly_Challenge_125__Pythagorean_Diameter.html">RogerBW&rsquo;s Blog: Perl Weekly Challenge 125: Pythagorean Diameter</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>W. Luis Mochan</strong></p>
+<ul>
+<li><a href="https://wlmb.github.io/2021/08/10/PWC125/">Perl Weekly Challenge 125 – W. Luis Mochán</a> ( <em>Perl</em> )</li>
+</ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="/contact" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2021
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.nomtimes.co.uk/site/shop.do?cref=PerlBooks" title="Free Perl Books" rel="noreferrer" target="_blank">
+                            <img src="/images/NomTimes.jpg" style="width:22px; height: 18px;" alt=""/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jQurey/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-136524905-1', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+
+</html>
+
