@@ -60,6 +60,8 @@ Please find below guest contributions.
 
 ##### **Tyler Wardhaugh** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/tyler-wardhaugh/clojure/src/tw/weekly/c128/t1.clj) in **Clojure**.
 
+##### **Ulrich Rieke** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/ulrich-rieke/haskell/ch-2.hs) in **Haskell**.
+
 ----
 ## [The Weekly Challenge - 127](/blog/perl-weekly-challenge-127) {#127}
 <br>
