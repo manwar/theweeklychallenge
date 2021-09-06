@@ -27,8 +27,11 @@ tags: ["Perl", "Raku"]
 ## HEADLINES {#HEADLINES}
 ***
 
-Welcome to the week 128 and it is time to declare the champion.
+Welcome to the week 129 and it is time to declare the champion and the winner is `Jorg Sommrey` currently ranked `28th` in the leaderboard with `141` contributions in **Perl** and a blog so far.
 
+Last week was not so busy, still I am grateful to everyone who contributed to the weekly challenge. I am still not in the frame yet. Sorry.
+
+Next week, insha-ALLAH.
 
 <br>
 
