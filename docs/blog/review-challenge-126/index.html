@@ -1,0 +1,1281 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="The Weekly Challenge - Perl & Raku"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="You do not have to be an expert."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Colin Crain › Perl Weekly Review #126">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Colin Crain › Perl Weekly Review #126</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navgation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Colin Crain › Perl Weekly Review #126</h2>
+                    <div class="portfolio-meta">
+                        <span>Monday, Sep 6, 2021</span>|
+                        <span> Tags:
+                            perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/p5-review-challenge-126.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <p>( <em>&hellip;continues from <a href="/blog/review-challenge-125/">previous week</a>.</em> )</p>
+<p>Welcome to the Perl review for <strong>Week 126</strong> of the Weekly Challenge! Here we will take the time to discuss the  submissions offered by the team, factor out the common methodologies that came up in those solutions, and highlight some of the unique approaches and unusual code created.</p>
+<hr>
+<h3 id="why-do-we-do-these-challenges">Why do we do these challenges?</h3>
+<p>I suppose any answers to that would be as wide ranging and varied as the people who choose to join the team. One thing is clear: it&rsquo;s not a competition, and there are no judges, even if there is a &ldquo;prize&rdquo; of sorts. About that &ndash; I think of it more as an honorarium periodically awarded to acknowledge the efforts we make towards this strange goal. So there&rsquo;s no determination to find the <em>fastest</em>, or the <em>shortest</em>, or even, in some abstract way, the <em>best</em> way to go about things, although I&rsquo;m certain the individuals have their own aspirations and personal drives. As Perl is such a wonderfully expressive language, this provides quite a bit of fodder to the core idea of TMTOWTDI, producing a gamut of wonderfully varied techniques and solutions.</p>
+<p>Even the tasks themselves are often open to a certain amount of discretionary interpretation. What we end up with is a situation where each participant is producing something in the manner they find the most interesting or satisfying. Some team members focus on carefully crafted complete applications that thoroughly vet input data and handle every use case they can think up. Others chose to apply themselves to the logic of the underlying puzzle and making it work in the most elegant way they can. Some eschew modules they would ordinarily reach for, others embrace them, bringing to light wheels perhaps invented years ago that happen to exactly solve the problem in front of them today.</p>
+<p>I&rsquo;ve been considering this question for some time and have found one binding commonality between all of us solving these challenges each week, in that however we normally live our lives, the task in front of us more than likely has nothing to do with any of that . And I think this has great value. We all do what we do, out in the real world, and hopefully we do it well. The Weekly Challenge provides a opportunity to do something germane to that life yet distinctly different; if we only do the things we already know how to do we only do the same things over and over. This is where the &ldquo;challenge&rdquo; aspect comes into play.</p>
+<p>So we can consider the Weekly Challenge as providing a problem space outside of our comfort zone, as far out from comfort as we wish to take things. From those reaches we can gather and learn things and bring what we want back into our lives. Personally, I think that&rsquo;s its greatest value of all.</p>
+<hr>
+<p>Every week there is an enormous global collective effort made by the team, analyzing and creatively coding the submissions, and that effort deserves credit due. And that&rsquo;s why I&rsquo;m here, to try and figure out how to do that.</p>
+<p>Let&rsquo;s have a look and see what we can find.</p>
+<hr>
+<p><strong><big>For context</big></strong>  before we begin, you may wish to revisit either of the pages for the <a href="/blog/perl-weekly-challenge-126/"><strong>original tasks</strong></a> or the summary <a href="/blog/recap-challenge-126/"><strong>recap</strong></a> of the challenge. But don&rsquo;t worry, the challenges themselves will be briefly summarized, presented below as we progress from task by task. Oh, and one more thing before we get started:</p>
+<h3 id="getting-in-touch-with-us">Getting in Touch with Us</h3>
+<p><a href="mailto:pwc.perfectwave@gmail.com"><img src="/images/blog/Email.svg" height="50" width="50"> Email</a> › Please email me (Colin) with any feedback, notes, clarifications or whatnot about this review.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge"><img src="/images/blog/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request to us for any issues you may find with this page.</p>
+<p><a href="https://twitter.com/perlwchallenge"><img src="/images/blog/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!</p>
+<p>I&rsquo;m always curious as to what the people think of these efforts. Everyone here at the PWC would like to hear any feedback you&rsquo;d like to give.</p>
+<p><strong>So finally, without further ado&hellip;</strong></p>
+<hr>
+<h2 id="---nbsp--nbsp--nbsp---task-1pwc126task1-------nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---task-2pwc126task2---nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---blogspwc126blogs----nbsp--nbsp--nbsp---">•             <a href="#PWC126TASK1">Task 1</a>                 •             <a href="#PWC126TASK2">Task 2</a>             	•             <a href="#PWC126BLOGS">BLOGS</a>              	•</h2>
+<hr>
+<h1 id="PWC126TASK1">TASK 1</h1>
+<h1 id="count-numbers">Count Numbers</h1>
+<p><em>Submitted by: Mohammad S Anwar</em><br>
+You are given a positive integer $N.</p>
+<p>Write a script to print count of numbers from 1 to $N that don’t contain digit 1.</p>
+<p><strong>Example</strong></p>
+<pre><code>    Input: $N = 15
+    Output: 8
+</code></pre><p>There are 8 numbers between 1 and 15 that don&rsquo;t contain digit 1.
+2, 3, 4, 5, 6, 7, 8, 9.</p>
+<pre><code>    Input: $N = 25
+    Output: 13
+</code></pre><p>There are 13 numbers between 1 and 25 that don&rsquo;t contain digit 1.
+2, 3, 4, 5, 6, 7, 8, 9, 20, 22, 23, 24, 25.</p>
+<h2 id="about-the-solutions">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/abigail/perl/ch-1.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/andrezgz/perl/ch-1a.sh"><strong>Andrezgz</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/arne-sommer/perl/ch-1.pl"><strong>Arne Sommer</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/belmark-caday/perl/ch-1.pl"><strong>Belmark Caday</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/cristian-heredia/perl/ch-1.pl"><strong>Cristina Heredia</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/duane-powell/perl/ch-1.pl"><strong>Duane Powell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/kai-burgdorf/perl/ch-1.pl"><strong>Kai Burgdorf</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/kostas-giannakakis/perl/ch-1.pl"><strong>Konstantinos Giannakakis</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/lubos-kolouch/perl/ch-1.pl"><strong>Lubos Kolouch</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/mattneleigh/perl/ch-1.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/olivier-delouya/perl/ch-1.sh"><strong>Olivier Delouya</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/paul-fajman/perl/ch-1.pl"><strong>Paul Fajman</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/pete-houston/perl/ch-1.pl"><strong>Pete Houston</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/steven-wilson/perl/ch-1.pl"><strong>Steven Wilson</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/stuart-little/perl/ch-1.pl"><strong>Stuart Little</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/wanderdoc/perl/ch-1.pl"><strong>Wanderdoc</strong></a></p>
+<p>There were 31 submissions for the first task this past week. There were, broadly, two classes of solutions: those that started with the list of all numbers up to the input value and filtered out those containing a 1; and those that made an arithmetic breakdown to compute the value directly from the input, either by positional value in the representation or by more arcane means.</p>
+<p>In keeping with the new <em>lighting review</em> format we&rsquo;ve been experimenting with lately, we will select a dozen submissions at random to hopefully give us a semblance of an overview for the techniques presented. Let&rsquo;s see how that goes.</p>
+<h2 id="a-less-than-exhaustive-but-still-quite-serious-overview">a less-than-exhaustive, but still quite serious, <em>OVERVIEW</em></h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/laurent-rosenfeld/julia/ch-1.jl">Julia</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/laurent-rosenfeld/raku/ch-1.raku">Raku</a></p>
+<p><strong>blog writeup:</strong>
+<a href="http://blogs.perl.org/users/laurent_r/2021/08/perl-weekly-challenge-126-count-numbers-and-minesweeper-game.html">Perl Weekly Challenge 126: Count Numbers and Minesweeper Game | laurent_r</a></p>
+<p>Laurent will start us off today with an example of grepping a list of values to filter out any containing a 1. The 1s are matched using a regular expression and only values that do not match are allowed through.</p>
+<p>My own solution was very similar to this, as were several others.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> shift <span style="color:#e6db74">//</span> <span style="color:#ae81ff">24</span>;
+    <span style="color:#66d9ef">my</span> $count <span style="color:#f92672">=</span> scalar grep {<span style="color:#f92672">not</span> <span style="color:#e6db74">/1/</span>} <span style="color:#ae81ff">2</span><span style="color:#f92672">..</span>$n;
+    say <span style="color:#e6db74">&#34;There are $count integers with no 1 in the 1..$n range&#34;</span>;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/kostas-giannakakis/perl/ch-1.pl"><strong>Konstantinos Giannakakis</strong></a></p>
+<p>Konstantinos takes a similar filtering approach but rather than just count the array elements he saves them. Hes then constructs a more verbose output, reporting the recorded list using a print loop.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># Give the integer for the upper limit of 1 - $N</span>
+    <span style="color:#66d9ef">my</span> $N <span style="color:#f92672">=</span> <span style="color:#ae81ff">25</span>;
+
+    <span style="color:#75715e"># This array contains the range of numbers we want to check</span>
+    <span style="color:#66d9ef">my</span> @list <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$N);
+
+    <span style="color:#66d9ef">my</span> @count <span style="color:#f92672">=</span> ();
+
+    <span style="color:#75715e"># find all the numbers that dont contain 1</span>
+    @count <span style="color:#f92672">=</span> @count <span style="color:#f92672">=</span> grep { $_  <span style="color:#66d9ef">if</span> $_ <span style="color:#f92672">!~</span> <span style="color:#e6db74">/1/g</span> } @list;
+
+    <span style="color:#75715e"># print them</span>
+    <span style="color:#66d9ef">my</span> $count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;There are &#34;</span> <span style="color:#f92672">.</span> scalar(@count) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34; numbers between 1 and $N that don&#39;t contain digit 1.\n&#34;</span>;
+    <span style="color:#66d9ef">foreach</span> (@count) {
+        <span style="color:#66d9ef">if</span> ($count <span style="color:#f92672">!=</span> $#count){
+            <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;$_, &#34;</span>);
+        } <span style="color:#66d9ef">else</span> {
+            <span style="color:#66d9ef">print</span> (<span style="color:#e6db74">&#34;$_.\n&#34;</span>);
+        }
+        $count<span style="color:#f92672">++</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a></p>
+<p><strong>blog writeup:</strong>
+<a href="https://dev.to/simongreennet/weekly-challenge-126-19fg">Weekly Challenge 126</a></p>
+<p>Simon gives us a variation using <code>index</code> in an explicit <code>foreach</code> loop. As <code>index</code> does not require the full resources of a the regex engine this approach is likely to be faster for iterating large value lists.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># Count the number of numbers that don&#39;t have a one</span>
+    <span style="color:#66d9ef">my</span> $count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $number ( <span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> $N ) {
+        <span style="color:#f92672">++</span>$count <span style="color:#66d9ef">if</span> index( $number, <span style="color:#e6db74">&#39;1&#39;</span> ) <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+    }
+
+    <span style="color:#75715e"># Display the result</span>
+    say $count;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/steven-wilson/perl/ch-1.pl"><strong>Steven Wilson</strong></a></p>
+<p>Steven presents us with another way to count the sequence without a <code>grep</code> statement, in this case a <code>while</code> loop that conditionally ratchets a counter.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">while</span> ( $current_number <span style="color:#f92672">&lt;=</span> $input ) {
+        <span style="color:#66d9ef">if</span> ( <span style="color:#f92672">not</span>( $current_number <span style="color:#f92672">=~</span><span style="color:#e6db74"> /1/</span> ) ) {
+            $count<span style="color:#f92672">++</span>;
+        }
+        $current_number<span style="color:#f92672">++</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/belmark-caday/perl/ch-1.pl"><strong>Belmark Caday</strong></a></p>
+<p>Belmark shows we can avoid regular expressions entirely, using a system of loops to examine each individual digit.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">countNumbers</span> {
+        <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> shift;
+        <span style="color:#66d9ef">my</span> $count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+        <span style="color:#66d9ef">for</span> ( $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; $i <span style="color:#f92672">&lt;=</span> $n; $i<span style="color:#f92672">++</span> ) {
+            <span style="color:#66d9ef">my</span> @stringSplit <span style="color:#f92672">=</span> split(<span style="color:#e6db74">//</span>, <span style="color:#e6db74">&#34;$i&#34;</span>);
+
+            <span style="color:#66d9ef">my</span> $j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+            <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $s ( @stringSplit ) {
+                $s <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> ? <span style="color:#66d9ef">last</span> : $j<span style="color:#f92672">++</span>;
+            }
+            $count<span style="color:#f92672">++</span> <span style="color:#66d9ef">if</span> $j <span style="color:#f92672">==</span> scalar @stringSplit; <span style="color:#75715e"># We arrived at the end of the list without finding 1</span>
+        }
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Count is : $count \n&#34;</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/polettix/raku/ch-1.raku">Raku</a></p>
+<p><strong>blog writeup:</strong>
+<a href="https://github.polettix.it/ETOOBUSY/2021/08/18/pwc126-count-numbers/">PWC126 - Count Numbers - ETOOBUSY</a></p>
+<p>Flavio seems to take the idea of &ldquo;let&rsquo;s make this interesting&rdquo; to heart, which is nice. He opts, after constructing a quick filter to check his results, to create a more robust solution that won&rsquo;t bog down for large values when searching through a list of thousands and thousands of numbers. He in fact creates two new solutions for us, both iterative and recursive, that process large blocks of numbers by positional placement, effectively counting the values in the sequence using a simple algorithmic formula.</p>
+<p>Here is his iterative solution for your perusal:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">count_like_no_ones</span> ($N) {
+       <span style="color:#66d9ef">my</span> $count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+       <span style="color:#66d9ef">my</span> @digits <span style="color:#f92672">=</span> split <span style="color:#e6db74">m{}mxs</span>, $N;
+       <span style="color:#66d9ef">while</span> (@digits) {
+          <span style="color:#66d9ef">my</span> $first <span style="color:#f92672">=</span> shift @digits;
+          <span style="color:#66d9ef">if</span> (@digits) { <span style="color:#75715e"># more to go after, use chunking</span>
+             <span style="color:#66d9ef">my</span> $factor <span style="color:#f92672">=</span> $first <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> ? $first <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> : $first;
+             $count <span style="color:#f92672">+=</span> $factor <span style="color:#f92672">*</span> <span style="color:#ae81ff">9</span> <span style="color:#f92672">**</span> @digits;
+          }
+          <span style="color:#66d9ef">else</span> { <span style="color:#75715e"># last digit, count all including 0</span>
+             $count <span style="color:#f92672">+=</span> $first <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> ? $first : <span style="color:#ae81ff">1</span>;
+          }
+          <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> ($first <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>);
+       }
+       <span style="color:#75715e"># we took into account sequence of all 0, so we remove it</span>
+       <span style="color:#66d9ef">return</span> $count <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/james-smith/cesil/ch-1.ces">Cesil</a></p>
+<p><strong>blog writeup:</strong>
+<a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-126/james-smith">Perl Weekly Challenge #126</a></p>
+<p>Coincidentally right on Flavio&rsquo;s tail, James also give us an alternative method for directly computing the total count from blocks by digit position, this time working from the right side of the number upwards, to the left.</p>
+<p>From his writeup, he provides an explanation of the process:</p>
+<blockquote>
+<p>If we look at a few numbers [of a filtered solution] we see that for powers of 10 we see we have values 8, 80, 728, 6560, 59048, &hellip; what we notices these are all of the form 9^$N-1&hellip;. For multiples of these we see that for the total is (n-1)*9^N.</p>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get_no_one_count_9</span> {
+      <span style="color:#66d9ef">my</span> ( $n, $count, $pow_9 ) <span style="color:#f92672">=</span> ( shift, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span> );
+      <span style="color:#66d9ef">while</span>($n) {
+        <span style="color:#66d9ef">my</span> $t   <span style="color:#f92672">=</span> $n % 10; <span style="color:#75715e">## get last digit</span>
+        $count  <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $t<span style="color:#f92672">==</span><span style="color:#ae81ff">1</span>; <span style="color:#75715e">## Throw everything away we&#39;ve found a 1</span>
+        $count <span style="color:#f92672">+=</span> $t ? ( $t <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> ? ($pow_9<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) : ($t<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">*</span>$pow_9 ) : <span style="color:#ae81ff">0</span>;
+                              <span style="color:#75715e">## 0 it contributes nothing</span>
+                              <span style="color:#75715e">## 1 contributes 9^X-1</span>
+                              <span style="color:#75715e">## 2-9 contributes (n-1)9^X</span>
+        $pow_9 <span style="color:#f92672">*=</span> <span style="color:#ae81ff">9</span>;  <span style="color:#75715e">## update power of nine</span>
+        $n      <span style="color:#f92672">=</span> ( $n <span style="color:#f92672">-</span> $t )<span style="color:#f92672">/</span><span style="color:#ae81ff">10</span>; <span style="color:#75715e">## drop last digit</span>
+      }
+      <span style="color:#66d9ef">return</span> $count;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/pete-houston/perl/ch-1.pl"><strong>Pete Houston</strong></a></p>
+<p>Here&rsquo;s yet another reworking of the formula from Pete, who presents it in a particularly clean and effective manner:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># Maths FTW!</span>
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">calc</span> {
+        <span style="color:#66d9ef">my</span> $upper <span style="color:#f92672">=</span> shift;
+
+        <span style="color:#66d9ef">my</span> $power <span style="color:#f92672">=</span> length ($upper) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">my</span> $rest  <span style="color:#f92672">=</span> $upper % 10 <span style="color:#f92672">**</span> $power;
+        <span style="color:#66d9ef">my</span> $first <span style="color:#f92672">=</span> int ($upper <span style="color:#f92672">/</span> <span style="color:#ae81ff">10</span> <span style="color:#f92672">**</span> $power);
+
+        <span style="color:#66d9ef">my</span> $tot   <span style="color:#f92672">=</span> calc ($rest) <span style="color:#66d9ef">if</span> $rest <span style="color:#f92672">&amp;&amp;</span> $first <span style="color:#f92672">!=</span> <span style="color:#ae81ff">1</span>;
+
+        <span style="color:#75715e"># for a number of 10^n answer is demonstrably 9^n - 1.</span>
+        <span style="color:#66d9ef">if</span> ($first <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>) {
+        	$tot <span style="color:#f92672">+=</span> ($first <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">*</span> (<span style="color:#ae81ff">9</span> <span style="color:#f92672">**</span> $power);
+        } <span style="color:#66d9ef">else</span> {
+        	$tot <span style="color:#f92672">+=</span> (<span style="color:#ae81ff">9</span> <span style="color:#f92672">**</span> $power <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>);
+        }
+        <span style="color:#66d9ef">return</span> $tot;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/roger-bell-west/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/roger-bell-west/raku/ch-1.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/roger-bell-west/ruby/ch-1.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/roger-bell-west/rust/ch-1.rs">Rust</a></p>
+<p><strong>blog writeup:</strong>
+<a href="https://blog.firedrake.org/archive/2021/08/Perl_Weekly_Challenge_126__Count_Sweeper.html">RogerBW&rsquo;s Blog: Perl Weekly Challenge 126: Count Sweeper</a></p>
+<p>After starting with a very simple breakdown of the problem using Unix utilities on the command line, here using the example input 25:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">    seq <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">25</span> |grep -vc 1
+</code></pre></div><p>Roger analyses the task to come up with a method <a href="https://oeis.org/A052383">using base-9 to produce the sequence</a>, then counting the values less than the input value.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">cn</span> {
+      <span style="color:#66d9ef">my</span> $n<span style="color:#f92672">=</span>shift;
+      <span style="color:#66d9ef">my</span> $k<span style="color:#f92672">=</span>$n;
+      <span style="color:#66d9ef">my</span> @digits;
+      <span style="color:#66d9ef">while</span> ($k<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span>) {
+        <span style="color:#66d9ef">my</span> $d<span style="color:#f92672">=</span>$k%10;
+        <span style="color:#66d9ef">if</span> ($d<span style="color:#f92672">==</span><span style="color:#ae81ff">1</span>) {
+          @digits<span style="color:#f92672">=</span>(<span style="color:#ae81ff">8</span>) x scalar(@digits);
+        }
+        <span style="color:#66d9ef">if</span> ($d<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span>) {
+          $d<span style="color:#f92672">--</span>;
+        }
+        push @digits,$d;
+        $k<span style="color:#f92672">=</span>int($k<span style="color:#f92672">/</span><span style="color:#ae81ff">10</span>);
+      }
+      <span style="color:#66d9ef">my</span> $tc<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+      <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i (reverse(<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#digits)) {
+        $tc<span style="color:#f92672">*=</span><span style="color:#ae81ff">9</span>;
+        $tc<span style="color:#f92672">+=</span>$digits[$i];
+      }
+      <span style="color:#66d9ef">return</span> $tc;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/adam-russell/cxx/ch-1.cxx">Cxx</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/adam-russell/prolog/ch-1.p">Prolog</a></p>
+<p><strong>blog writeup:</strong>
+<a href="http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2021/08/22">RabbitFarm</a></p>
+<p>Adam inverts the problem: rather than count the elements <em>without</em> any 1s, he uses <code>tr///</code> to count the elements <em>with</em> 1s and subtracts this sum from the total quantity.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">has_1</span>{
+        <span style="color:#66d9ef">my</span>($x) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> $x <span style="color:#f92672">=~</span> tr<span style="color:#e6db74">/1/</span><span style="color:#f92672">/</span>d <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">count_with_1</span>{
+        <span style="color:#66d9ef">my</span>($n) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> $x <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">my</span> $count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        {
+            $count <span style="color:#f92672">+=</span> has_1($x);
+            $x <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
+            <span style="color:#66d9ef">redo</span> <span style="color:#66d9ef">if</span> $x <span style="color:#f92672">&lt;=</span> $n;
+        }
+        <span style="color:#66d9ef">return</span> $count;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">count_without_1</span>{
+        <span style="color:#66d9ef">my</span>($n) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">return</span> $n <span style="color:#f92672">-</span> count_with_1($n);
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a></p>
+<p>Choroba presents a novel scheme to count upward to the traget, skipping ahead over number blocks that include a 1 by using a regex to increment our candidate value, replacing any 1 found with a 2. Using this method we will, when counting from 2, only possibly acquire a single new 1 digit at a time to change out, skipping ahead over these values and only counting the unskipped parts of the sequence.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">count_numbers_fast</span> {
+        <span style="color:#66d9ef">my</span> ($n) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> $count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;
+        <span style="color:#66d9ef">while</span> ($i <span style="color:#f92672">&lt;=</span> $n) {
+            <span style="color:#f92672">++</span>$i;
+            <span style="color:#75715e"># Only one 1 can appear if there wasn&#39;t one, so we don&#39;t need /g.</span>
+            $i <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/1/2/</span>;
+            <span style="color:#f92672">++</span>$count;
+        }
+        <span style="color:#66d9ef">return</span> $count
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a></p>
+<p>Finally, Jorg presents another, this time recursive, approach to counting up the total sum by representational position. Because he&rsquo;s using the same code to process each position, he needs to accommodate the presence of zeros as we work through the powers of ten.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># Using a recursive, pure numeric approach.  While recursing, we need to</span>
+    <span style="color:#75715e"># distinguish between the cases when counting from zero e.g. in a block</span>
+    <span style="color:#75715e"># from 20 to 29 or counting from one, as in 1 .. 9, indicated by $z.</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">count_numbers</span> ($n, $z=0) {
+        <span style="color:#75715e"># Do we count from zero?</span>
+        <span style="color:#66d9ef">return</span> $z <span style="color:#66d9ef">if</span> $n <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">1</span>;
+
+        <span style="color:#75715e"># The integer logarithm of $n in base 10.</span>
+        <span style="color:#66d9ef">my</span> $log <span style="color:#f92672">=</span> logint($n, <span style="color:#ae81ff">10</span>);
+
+        <span style="color:#75715e"># Break recursion for $n &lt; 10</span>
+        <span style="color:#66d9ef">return</span> $n <span style="color:#f92672">-</span> <span style="color:#f92672">!</span>$z <span style="color:#66d9ef">if</span> $log <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+
+        <span style="color:#75715e"># The largest power of ten less than or equal to $n.</span>
+        <span style="color:#66d9ef">my</span> $pot <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span> <span style="color:#f92672">**</span> $log;
+
+        <span style="color:#75715e"># Get the count for all shorter numbers, propagating the zero state.</span>
+        <span style="color:#66d9ef">my</span> $count <span style="color:#f92672">=</span> count_numbers($pot <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, $z);
+
+        <span style="color:#75715e"># There are no new numbers in the range between $pot and</span>
+        <span style="color:#75715e"># 2 * $pot - 1.</span>
+        <span style="color:#66d9ef">return</span> $count <span style="color:#66d9ef">if</span> $n <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $pot;
+
+        <span style="color:#75715e"># Get the leading digit.</span>
+        <span style="color:#66d9ef">my</span> $lead <span style="color:#f92672">=</span> int $n <span style="color:#f92672">/</span> $pot;
+
+        <span style="color:#75715e"># There may be $lead - 2 full blocks having one digit less than $n,</span>
+        <span style="color:#75715e"># where zeros shall be counted. E.g. 20 .. 29, 30 .. 39, 40 .. 49</span>
+        <span style="color:#75715e"># for $n = 55.</span>
+        $count <span style="color:#f92672">+=</span> ($lead <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>) <span style="color:#f92672">*</span> count_numbers($pot <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">if</span> $lead <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">2</span>;
+
+        <span style="color:#75715e"># There is a final block between $pot * $lead and $n, where zeros</span>
+        <span style="color:#75715e"># shall be counted again. E.g. 50 .. 55 for $n = 55.</span>
+        $count <span style="color:#f92672">+=</span> count_numbers($n <span style="color:#f92672">-</span> $pot <span style="color:#f92672">*</span> $lead, <span style="color:#ae81ff">1</span>);
+    }
+</code></pre></div><h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-1">Blogs and Additional Submissions in Guest Languages for Task 1:</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/abigail/perl/ch-1.pl"><strong>Abigail</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/abigail/awk/ch-1.awk">Awk</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/abigail/bash/ch-1.sh">Bash</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/abigail/c/ch-1.c">C</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/abigail/lua/ch-1.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/abigail/node/ch-1.js">Node</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/abigail/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/abigail/ruby/ch-1.rb">Ruby</a></p>
+<p><strong>blog writeup:</strong>
+<a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-126-1.html">Perl Weekly Challenge 126: Count Numbers</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/andrezgz/perl/ch-1a.sh"><strong>Andrezgz</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/andrezgz/perl/ch-1a.sh">shell one-liner</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/arne-sommer/perl/ch-1.pl"><strong>Arne Sommer</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/arne-sommer/raku/ch-1.raku">Raku</a></p>
+<p><strong>blog writeup:</strong>
+<a href="https://raku-musings.com/count-minesweeper.html">Count Minesweeper with Raku and Perl</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/colin-crain/raku/ch-1.raku">Raku</a></p>
+<p><strong>blog writeup:</strong>
+<a href="https://colincrain.com/2021/08/22/i-sweep-for-no-one/">I Sweep For No One — Programming Excursions in Perl and Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/cristian-heredia/perl/ch-1.pl"><strong>Cristina Heredia</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/cristian-heredia/python/ch-1.py">Python</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/dave-jacoby/node/ch-1.js">Node</a></p>
+<p><strong>blog writeup:</strong>
+<a href="https://jacoby.github.io/2021/08/18/that-one-is-mine-the-perl-and-js-weekly-challenge-126.html">That One Is Mine: The (Perl and JS) Weekly Challenge #126 | Committed to Memory</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/stuart-little/perl/ch-1.pl"><strong>Stuart Little</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/stuart-little/haskell/ch-1.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/stuart-little/lua/ch-1.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/stuart-little/node/ch-1.js">Node</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/stuart-little/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/stuart-little/raku/ch-1.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/ulrich-rieke/cpp/ch-1.cpp">C++</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/ulrich-rieke/haskell/ch-1.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/ulrich-rieke/lisp/ch-1.lisp">Lisp</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/ulrich-rieke/raku/ch-1.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
+<p><strong>blog writeup:</strong>
+<a href="https://wlmb.github.io/2021/08/20/PWC126/">Perl Weekly Challenge 126 – W. Luis Mochán</a></p>
+<hr>
+<hr>
+<h1 id="PWC126TASK2">TASK 2</h1>
+<h1 id="minesweeper-game">Minesweeper Game</h1>
+<p><em>Submitted by: Cheok-Yin Fung</em></p>
+<p>You are given a rectangle with points marked with either x or *. Please consider the x as a land mine.</p>
+<p>Write a script to print a rectangle with numbers and x as in the Minesweeper game.</p>
+<p>A number in a square of the minesweeper game indicates the number of mines within the neighbouring squares (usually 8), also implies that there are no bombs on that square.</p>
+<p><strong>Example</strong></p>
+<pre><code>    Input:
+        x * * * x * x x x x
+        * * * * * * * * * x
+        * * * * x * x * x *
+        * * * x x * * * * *
+        x * * * x * * * * x
+
+    Output:
+        x 1 0 1 x 2 x x x x
+        1 1 0 2 2 4 3 5 5 x
+        0 0 1 3 x 3 x 2 x 2
+        1 1 1 x x 4 1 2 2 2
+        x 1 1 3 x 2 0 0 1 x
+</code></pre><h2 id="about-the-solutions-1">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/abigail/perl/ch-2.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/andrezgz/perl/ch-2.pl"><strong>Andrezgz</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/arne-sommer/perl/ch-2.pl"><strong>Arne Sommer</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/belmark-caday/perl/ch-2.pl"><strong>Belmark Caday</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/duane-powell/perl/ch-2.pl"><strong>Duane Powell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/kostas-giannakakis/perl/ch-2.pl"><strong>Konstantinos Giannakakis</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/lubos-kolouch/perl/ch-2.pl"><strong>Lubos Kolouch</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/mattneleigh/perl/ch-2.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/perlboy1967/perl/ch-2.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/paul-fajman/perl/ch-2.pl"><strong>Paul Fajman</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/pete-houston/perl/ch-2.pl"><strong>Pete Houston</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/stuart-little/perl/ch-2.pl"><strong>Stuart Little</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/wanderdoc/perl/ch-2.pl"><strong>Wanderdoc</strong></a></p>
+<p>Well that seemed to go well. Let&rsquo;s keep going.</p>
+<p>There were a total of 28 submissions for the second task this past week.</p>
+<p>Continuing on we will now have the rabbit draw a dozen <em>different</em> names from the hat, and see if we can read them before they are eaten. This way we&rsquo;ll end up looking at the work of 24 members overall, which sounds like a reasonable sketch to me.</p>
+<p>There were, basically, two ways to approach the problem: either look at each cell that <em>isn&rsquo;t</em> a mine and count the number of mines surrounding it, recording these values, or look for all of the cells that <em>are</em> mines, and increment the count at each surrounding cell that itself isn&rsquo;t a mine, slowly building up the complete picture as we traverse through the coordinates.</p>
+<h2 id="a-circumspect-and-sinuous-overview-of-the-submissions">a circumspect and sinuous <em>OVERVIEW</em> of the submissions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/perlboy1967/perl/ch-2.pl"><strong>Niels van Dijke</strong></a></p>
+<p>We&rsquo;ll start with Niels this time. After generating a random minefield map he proceeds to traverse the matrix. One thing to notice  here is that when making the board he starts his lists with index 1, rather than 0, and does the same when traversing. This makes sure there is an undefined buffer zone surrounding the matrix with index 0, which simplifies calculations involving the boundaries. This way we&rsquo;ll never index <code>[-1]</code>, which would give us the <em>last</em> array element, causing all kind of problems.</p>
+<p>When scanning across the minefield, each cell is examined, and if it is found to be a mine it&rsquo;s skipped. If it&rsquo;s not a mine, on the other hand, an inlined list of the 8 surrounding cell possibilities is grepped for the &ldquo;X&rdquo; mine indicator; the cell under examination is then filled with the element count of the resulting filtered array.</p>
+<p>This appeared to be the most common general approach.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">solveBoard</span>(\@) {
+      <span style="color:#66d9ef">my</span> ($arB) <span style="color:#f92672">=</span> @_;
+
+      <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $y (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> scalar(@$arB)<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>) {
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $x (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> scalar(@{$arB<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]})<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
+          <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $arB<span style="color:#f92672">-&gt;</span>[$y][$x] <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;X&#39;</span>;
+          <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> scalar grep <span style="color:#e6db74">/X/</span>,
+            $arB<span style="color:#f92672">-&gt;</span>[$y<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][$x<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#39;&#39;</span>, <span style="color:#75715e"># NW</span>
+            $arB<span style="color:#f92672">-&gt;</span>[$y<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][$x]   <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#39;&#39;</span>, <span style="color:#75715e"># N</span>
+            $arB<span style="color:#f92672">-&gt;</span>[$y<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][$x<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#39;&#39;</span>, <span style="color:#75715e"># NE</span>
+            $arB<span style="color:#f92672">-&gt;</span>[$y][$x<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]   <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#39;&#39;</span>, <span style="color:#75715e"># W</span>
+            $arB<span style="color:#f92672">-&gt;</span>[$y][$x<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]   <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#39;&#39;</span>, <span style="color:#75715e"># E</span>
+            $arB<span style="color:#f92672">-&gt;</span>[$y<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>][$x<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#39;&#39;</span>, <span style="color:#75715e"># SW</span>
+            $arB<span style="color:#f92672">-&gt;</span>[$y<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>][$x]   <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#39;&#39;</span>, <span style="color:#75715e"># S</span>
+            $arB<span style="color:#f92672">-&gt;</span>[$y<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>][$x<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#39;&#39;</span>; <span style="color:#75715e"># SE</span>
+          $arB<span style="color:#f92672">-&gt;</span>[$y][$x] <span style="color:#f92672">=</span> ($n <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> ? <span style="color:#e6db74">&#39;.&#39;</span> : $n);
+        }
+      }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/arne-sommer/perl/ch-2.pl"><strong>Arne Sommer</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/arne-sommer/raku/ch-2.raku">Raku</a></p>
+<p><strong>blog writeup:</strong>
+<a href="https://raku-musings.com/count-minesweeper.html">Count Minesweeper with Raku and Perl</a></p>
+<p>Arne give us a another example of iterating through the matrix, pausing at each element that isn&rsquo;t a mine. When one is found, we then count the mines surrounding it to obtain the value for the output as previously explained, only here we use a pair of nested loops to generate the offset parameters. The output is printed directly.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $row (split(<span style="color:#e6db74">/\s*\|\s*/</span>, $string))
+    {
+      <span style="color:#66d9ef">my</span> @row <span style="color:#f92672">=</span> split(<span style="color:#e6db74">/\s+/</span>, $row);
+      die <span style="color:#e6db74">&#34;Illegal character(s)&#34;</span> <span style="color:#66d9ef">unless</span> all(@row) <span style="color:#f92672">eq</span> any(<span style="color:#e6db74">&#34;x&#34;</span>, <span style="color:#e6db74">&#34;*&#34;</span>);
+      push(@board, <span style="color:#f92672">\</span>@row);
+      push(@size, scalar @row);
+    }
+
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $row (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> scalar @board <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
+    {
+      <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $col (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> scalar @{$board[$row]} <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
+      {
+        <span style="color:#66d9ef">print</span> get_cell($row, $col, @board), <span style="color:#e6db74">&#34; &#34;</span>;
+      }
+      say <span style="color:#e6db74">&#34;&#34;</span>;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get_cell</span> ($row, $col, @board)
+    {
+      <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;x&#39;</span> <span style="color:#66d9ef">if</span> $board[$row][$col] <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;x&#39;</span>;
+
+      <span style="color:#66d9ef">my</span> $count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+      <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $row_offset (<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>)
+      {
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $col_offset (<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>)
+        {
+          <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $row_offset <span style="color:#f92672">==</span> $col_offset <span style="color:#f92672">&amp;&amp;</span> $col_offset <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+          <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> $board[$row <span style="color:#f92672">+</span> $row_offset][$col <span style="color:#f92672">+</span> $col_offset];
+          <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $row <span style="color:#f92672">+</span> $row_offset <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>;
+          <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $col <span style="color:#f92672">+</span> $col_offset <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>;
+
+          $count<span style="color:#f92672">++</span> <span style="color:#66d9ef">if</span> $board[$row <span style="color:#f92672">+</span> $row_offset][$col <span style="color:#f92672">+</span> $col_offset] <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#34;x&#34;</span>;
+        }
+      }
+      <span style="color:#66d9ef">return</span> $count;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/athanasius/raku/ch-2.raku">Raku</a></p>
+<p>In the monk&rsquo;s <code>number_the_grid()</code> routine, we get another implementation of looking for unmined locations and then counting the surrounding dangers. It&rsquo;s a fairly straightforward operation, all in all.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">number_the_grid</span>
+    {
+        <span style="color:#66d9ef">my</span> @in_grid <span style="color:#f92672">=</span> @_;
+
+        <span style="color:#66d9ef">my</span> $max_row <span style="color:#f92672">=</span> $#in_grid;
+        <span style="color:#66d9ef">my</span> $max_col <span style="color:#f92672">=</span> $#{ $in_grid[ <span style="color:#ae81ff">0</span> ] };
+        <span style="color:#66d9ef">my</span> @out_grid;
+
+        push @out_grid, [ (<span style="color:#ae81ff">0</span>) x ($max_col <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) ] <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $max_row;
+
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $row (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $max_row)
+        {
+            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $col (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $max_col)
+            {
+                <span style="color:#66d9ef">if</span>  ($in_grid[ $row ][ $col ] <span style="color:#f92672">eq</span> $MINE)
+                {
+                    $out_grid[ $row ][ $col ] <span style="color:#f92672">=</span>  $MINE;
+                }
+                <span style="color:#66d9ef">else</span>
+                {
+                    <span style="color:#66d9ef">my</span> $count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+                    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $r ($row <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $row <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)
+                    {
+                        <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $r <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> $r <span style="color:#f92672">&gt;</span> $max_row;
+
+                        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $c ($col <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $col <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)
+                        {
+                            <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $r <span style="color:#f92672">==</span> $row <span style="color:#f92672">&amp;&amp;</span> $c <span style="color:#f92672">==</span> $col <span style="color:#f92672">||</span>
+                                    $c <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> $c <span style="color:#f92672">&gt;</span> $max_col;
+
+                            <span style="color:#f92672">++</span>$count <span style="color:#66d9ef">if</span> $in_grid[ $r ][ $c ] <span style="color:#f92672">eq</span> $MINE;
+                        }
+                    }
+
+                    $out_grid[ $row ][ $col ] <span style="color:#f92672">=</span> $count <span style="color:#66d9ef">if</span> $count;
+                }
+            }
+        }
+
+        <span style="color:#66d9ef">return</span> @out_grid;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/duane-powell/perl/ch-2.pl"><strong>Duane Powell</strong></a></p>
+<p>Duane manages to perform the nested traversals in a remarkably concise manner.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $vec <span style="color:#f92672">=</span> [
+        [ <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span> ], [ <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,  <span style="color:#ae81ff">0</span> ], [  <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span> ], [  <span style="color:#ae81ff">0</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> ],
+        [ <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span> ], [  <span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> ], [ <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span> ], [ <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> ],
+    ];
+
+    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $j (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $y) {
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $x) {
+
+            <span style="color:#75715e"># if cell contains a MINE, skip it</span>
+            <span style="color:#75715e"># otherwise init adjacent MINE count to 0</span>
+            <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> ($m<span style="color:#f92672">-&gt;</span>[$j][$i] <span style="color:#f92672">eq</span> $MINE);
+            $m<span style="color:#f92672">-&gt;</span>[$j][$i] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+            <span style="color:#75715e"># inspect adjacent cells</span>
+            <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $v ( @{$vec} ) {
+                <span style="color:#66d9ef">my</span> ($a, $b) <span style="color:#f92672">=</span> @{$v};
+                <span style="color:#66d9ef">my</span> ($c, $d) <span style="color:#f92672">=</span> ($j<span style="color:#f92672">+</span>$a, $i<span style="color:#f92672">+</span>$b);
+
+                <span style="color:#75715e"># out of bounds</span>
+                <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> ($c <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">or</span> $c <span style="color:#f92672">&gt;</span> $y) <span style="color:#f92672">or</span> ($d <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">or</span> $d <span style="color:#f92672">&gt;</span> $x);
+
+                <span style="color:#75715e"># total adjacent mines</span>
+                $m<span style="color:#f92672">-&gt;</span>[$j][$i] <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> ($m<span style="color:#f92672">-&gt;</span>[$c][$d] <span style="color:#f92672">eq</span> $MINE);
+            }
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a></p>
+<p>I&rsquo;m fairly certain Duncan has even reduced it further. I&rsquo;ve edited them down a bit to emphasize the core logic so that&rsquo;s a tough call, and it&rsquo;s not a competition anyway. But no matter, they each retain an elegance to themselves.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Function::Parameters;
+
+    fun minesweep( @board )
+    {
+        <span style="color:#66d9ef">my</span> @result;
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $r (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#board)
+        {
+        	<span style="color:#66d9ef">my</span> $row <span style="color:#f92672">=</span> $board[$r];
+        	<span style="color:#66d9ef">my</span> @newrow;
+        	<span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $c (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#$row)
+        	{
+        		<span style="color:#66d9ef">my</span> $cell <span style="color:#f92672">=</span> $row<span style="color:#f92672">-&gt;</span>[$c];
+        		<span style="color:#66d9ef">my</span> $newcell <span style="color:#f92672">=</span> mark( $r, $c, $cell, <span style="color:#f92672">\</span>@board );
+        		push @newrow, $newcell;
+        	}
+        	push @result, <span style="color:#f92672">\</span>@newrow;
+        }
+        <span style="color:#66d9ef">return</span> @result;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/wanderdoc/perl/ch-2.pl"><strong>Wanderdoc</strong></a></p>
+<p>The doctor, in their solution, establishes a parallel output matrix to hold the count values for the cells as they are evaluated. I like the detail mapping the directional offsets to cardinal references, which serves to remind the reader exactly what those magic numbers are doing. Of course it doesn&rsquo;t matter at all the order in which we look at the surrounding cells, so calling <code>keys</code> on this hash will work just fine.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> %ways <span style="color:#f92672">=</span>     (<span style="color:#e6db74">&#39;n&#39;</span> <span style="color:#f92672">=&gt;</span> [<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>], <span style="color:#e6db74">&#39;ne&#39;</span> <span style="color:#f92672">=&gt;</span> [<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,  <span style="color:#ae81ff">1</span>], <span style="color:#e6db74">&#39;e&#39;</span> <span style="color:#f92672">=&gt;</span> [<span style="color:#ae81ff">0</span>,  <span style="color:#ae81ff">1</span>], <span style="color:#e6db74">&#39;se&#39;</span> <span style="color:#f92672">=&gt;</span>  [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>],
+                    <span style="color:#e6db74">&#39;s&#39;</span> <span style="color:#f92672">=&gt;</span> [ <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>], <span style="color:#e6db74">&#39;sw&#39;</span> <span style="color:#f92672">=&gt;</span> [ <span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>], <span style="color:#e6db74">&#39;w&#39;</span> <span style="color:#f92672">=&gt;</span> [<span style="color:#ae81ff">0</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>], <span style="color:#e6db74">&#39;nw&#39;</span> <span style="color:#f92672">=&gt;</span> [<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]);
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">count_mines</span>
+    {
+         <span style="color:#66d9ef">my</span> $aref <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>];
+         <span style="color:#66d9ef">my</span> $output;
+         <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $row ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#$aref )
+         {
+              <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $col ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#{$aref<span style="color:#f92672">-&gt;</span>[$row]} )
+              {
+                   <span style="color:#66d9ef">if</span> ( $aref<span style="color:#f92672">-&gt;</span>[$row][$col] <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;x&#39;</span> )
+                   {
+                        $output<span style="color:#f92672">-&gt;</span>[$row][$col] <span style="color:#f92672">=</span> $aref<span style="color:#f92672">-&gt;</span>[$row][$col];
+                   }
+                   <span style="color:#66d9ef">else</span>
+                   {
+                        <span style="color:#66d9ef">my</span> @coords <span style="color:#f92672">=</span>
+                             grep {$_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">and</span> $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">and</span>
+                                  $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&lt;=</span> $#$aref <span style="color:#f92672">and</span> $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;=</span> $#{$aref<span style="color:#f92672">-&gt;</span>[$row]}}
+                             map  {[$ways{$_}[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+</span> $row, $ways{$_}[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> $col]} keys %ways;
+                        <span style="color:#66d9ef">my</span> $count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+                        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $pair ( @coords )
+                        {
+                             $count<span style="color:#f92672">++</span> <span style="color:#66d9ef">if</span> ( $aref<span style="color:#f92672">-&gt;</span>[$pair<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]][$pair<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]] <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;x&#39;</span> );
+
+                        }
+                        $output<span style="color:#f92672">-&gt;</span>[$row][$col] <span style="color:#f92672">=</span> $count;
+                   }
+              }
+         }
+
+         <span style="color:#66d9ef">return</span> $output;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/colin-crain/raku/ch-2.raku">Raku</a></p>
+<p><strong>blog writeup:</strong>
+<a href="https://colincrain.com/2021/08/22/i-sweep-for-no-one/">I Sweep For No One — Programming Excursions in Perl and Raku</a></p>
+<p>Now, demonstrating an alternative way to structure the algorithm, we have my own solution.</p>
+<p>First, in an editorial aside: &ldquo;Oh look, my name came up!&rdquo; I&rsquo;ll have you know that I already had a list of random names implemented in the template system I&rsquo;ve evolved for these reviews, as a tool available to try and actively remove my own personal selection biases from the reports. In that capacity this was advisory, a selection from outside my own head to draw on when establishing a through-narrative, breaking the methods and techniques into interrelated categories and working out a big picture. All that work takes time of course, which I&rsquo;m afraid I won&rsquo;t have much of for the next few weeks, so hence the format changes. These presumably will only be temporary as circumstance require, but suffice to say I&rsquo;m now experimenting with taking the top of this list as the selection itself, with possibly a little rearranging as required to the ordering.</p>
+<p>But here I am, on the list for this task. So let&rsquo;s go.</p>
+<p>To briefly summarize:</p>
+<p>To process the input matrix I saw two possible ways to go about things: to look at each position and search for mines around it, or to look for mines and augment the count for the surrounding cells. I chose the latter, as we can do away with the circumnavigation step if no mine is found.</p>
+<p>Of note in the comparisons I used to make sure the surrounding cell indices are still in range I use pairs of chained greater-than operators, new to Perl 5.32, that make this quite compact and neat. I really like now being able to do this. It&rsquo;s practical, clear and obvious. It&rsquo;s the little things that add up, you know.</p>
+<p>I also added a random map generator to make it interesting, so I got that going on, which is nice.</p>
+<pre><code>    Input:
+
+    * x * * x * * x * * x
+    * * * x * * * * * * x
+    * * * * * * * x * * *
+    * x * * * * * * * * *
+    * * * * * * * * x * *
+    * * * * * x * x * * *
+    * * * * x * * * * * *
+    * x * * * x * x * x *
+    * x * x * x * * * * *
+    x * * * x x x * * * *
+    * x x * * * * x x * *
+
+    Output:
+
+    1 x 2 2 x 1 1 x 1 2 x
+    1 1 2 x 2 1 2 2 2 2 x
+    1 1 2 1 1 0 1 x 1 1 1
+    1 x 1 0 0 0 1 2 2 1 0
+    1 1 1 0 1 1 2 2 x 1 0
+    0 0 0 1 2 x 2 x 2 1 0
+    1 1 1 1 x 3 4 2 3 1 1
+    2 x 3 2 4 x 3 x 2 x 1
+    3 x 3 x 5 x 5 2 2 1 1
+    x 4 4 3 x x x 3 2 1 0
+    2 x x 2 2 3 3 x x 1 0
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $mat <span style="color:#f92672">=</span> generate_map(<span style="color:#ae81ff">10</span>,<span style="color:#ae81ff">10</span>,<span style="color:#ae81ff">30</span>);
+
+    <span style="color:#66d9ef">my</span> @mat <span style="color:#f92672">=</span> map { [ map { $_ <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;*&#39;</span> ? <span style="color:#ae81ff">0</span> : $_ } $_<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">]</span> <span style="color:#960050;background-color:#1e0010">}</span> <span style="color:#960050;background-color:#1e0010">$</span>mat<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">;</span>
+    my @deltas <span style="color:#f92672">=</span> (  [<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>], [<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span> ], [<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>],
+                    [ <span style="color:#ae81ff">0</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>],          [ <span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span> ],
+                    [ <span style="color:#ae81ff">1</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>], [ <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>], [ <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>]  );
+
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i ( <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#mat ) {
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $j ( <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$mat[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-&gt;</span>$#<span style="color:#960050;background-color:#1e0010">*</span> ) {
+            <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> $mat<span style="color:#f92672">-&gt;</span>[$i][$j] <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;x&#39;</span>;
+            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $d ( @deltas ) {
+                <span style="color:#66d9ef">my</span> $r <span style="color:#f92672">=</span> $i <span style="color:#f92672">+</span> $d<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>];
+                <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> $j <span style="color:#f92672">+</span> $d<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>];
+                <span style="color:#66d9ef">if</span> ( @mat <span style="color:#f92672">&gt;</span> $r <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">and</span> $mat[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">&gt;</span> <span style="color:#960050;background-color:#1e0010">$</span>c <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> ) {
+                    <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $mat[$r][$c] <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;x&#39;</span>;
+                    $mat[$r][$c]<span style="color:#f92672">++</span>;
+                }
+            }
+        }
+    }
+    say <span style="color:#e6db74">&#34;\nInput:\n&#34;</span>;
+    say <span style="color:#e6db74">&#34;$_-&gt;@*&#34;</span> <span style="color:#66d9ef">for</span> $mat<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+
+    say <span style="color:#e6db74">&#34;\nOutput:\n&#34;</span>;
+    say <span style="color:#e6db74">&#34;$_-&gt;@*&#34;</span> <span style="color:#66d9ef">for</span> @mat;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/dave-jacoby/node/ch-2.js">Node</a></p>
+<p><strong>blog writeup:</strong>
+<a href="https://jacoby.github.io/2021/08/18/that-one-is-mine-the-perl-and-js-weekly-challenge-126.html">That One Is Mine: The (Perl and JS) Weekly Challenge #126 | Committed to Memory</a></p>
+<p>Dave also looks for mines, then if one is found the count for the surrounding cells that remain in the matrix dimensions are all incremented by 1. I&rsquo;m glad to have the company with the minority approach. It was getting a little lonely, to be honest.</p>
+<p>Dave enjoyed parsing a heredoc to input his original map, which is a very human-readable way to go about things.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $field <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;&lt;</span><span style="color:#66d9ef">END</span>;
+    x <span style="color:#f92672">*</span> <span style="color:#f92672">*</span> <span style="color:#f92672">*</span> x <span style="color:#f92672">*</span> x x x x
+    <span style="color:#f92672">*</span> <span style="color:#f92672">*</span> <span style="color:#f92672">*</span> <span style="color:#f92672">*</span> <span style="color:#f92672">*</span> <span style="color:#f92672">*</span> <span style="color:#f92672">*</span> <span style="color:#f92672">*</span> <span style="color:#f92672">*</span> x
+    <span style="color:#f92672">*</span> <span style="color:#f92672">*</span> <span style="color:#f92672">*</span> <span style="color:#f92672">*</span> x <span style="color:#f92672">*</span> x <span style="color:#f92672">*</span> x <span style="color:#f92672">*</span>
+    <span style="color:#f92672">*</span> <span style="color:#f92672">*</span> <span style="color:#f92672">*</span> x x <span style="color:#f92672">*</span> <span style="color:#f92672">*</span> <span style="color:#f92672">*</span> <span style="color:#f92672">*</span> <span style="color:#f92672">*</span>
+    x <span style="color:#f92672">*</span> <span style="color:#f92672">*</span> <span style="color:#f92672">*</span> x <span style="color:#f92672">*</span> <span style="color:#f92672">*</span> <span style="color:#f92672">*</span> <span style="color:#f92672">*</span> x
+    <span style="color:#66d9ef">END</span>
+
+    <span style="color:#66d9ef">my</span> @field <span style="color:#f92672">=</span> map { [ split <span style="color:#e6db74">/\s/</span>, $_ ] }
+        split <span style="color:#e6db74">/\n/</span>, $field ;
+
+    <span style="color:#66d9ef">my</span> $h <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> scalar @field ;
+    <span style="color:#66d9ef">my</span> $w <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> scalar $field[ <span style="color:#ae81ff">0</span> ]<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">;</span>
+
+    my @map ;
+
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $h ) {
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $j ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $w ) {
+            $map[ $i ][ $j ] <span style="color:#f92672">=</span> $field[ $i ][ $j ] <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;x&#39;</span> ? <span style="color:#e6db74">&#39;x&#39;</span> : <span style="color:#ae81ff">0</span> ;
+            }
+        }
+
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $h ) {
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $j ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $w ) {
+            <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> $map[ $i ][ $j ] <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;x&#39;</span> ;
+            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $x ( <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">1</span> ) {
+                <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $y ( <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">1</span> ) {
+                    <span style="color:#66d9ef">my</span> $xx <span style="color:#f92672">=</span> $i <span style="color:#f92672">+</span> $x ;
+                    <span style="color:#66d9ef">my</span> $yy <span style="color:#f92672">=</span> $j <span style="color:#f92672">+</span> $y ;
+                    <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $xx <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> $yy <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> ;
+                    <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $xx <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> ;
+                    <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $yy <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> ;
+                    <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $xx <span style="color:#f92672">&gt;</span> $h ;
+                    <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $yy <span style="color:#f92672">&gt;</span> $w ;
+                    <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $map[ $xx ][ $yy ] <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;x&#39;</span> ;
+                    $map[ $xx ][ $yy ]<span style="color:#f92672">++</span> ;
+                    }
+                }
+            }
+        }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/mattneleigh/perl/ch-2.pl"><strong>Matthew Neleigh</strong></a></p>
+<p>Here is another example of this second approach from Matthew, who walks us through the process with his commentary as he iteratively walks the martix looking for mines.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># Eliminate spaces, change un-mined</span>
+    <span style="color:#75715e"># cells to zeros, and break each line</span>
+    <span style="color:#75715e"># into its component characters</span>
+    $j <span style="color:#f92672">=</span> $h;
+    <span style="color:#66d9ef">while</span>($j<span style="color:#f92672">--</span>){
+        $grid[$j] <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/ //g</span>;
+        $grid[$j] <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/\*/0/g</span>;
+        $grid[$j] <span style="color:#f92672">=</span> [split(<span style="color:#e6db74">&#39;&#39;</span>, $grid[$j])];
+    }
+
+    $w <span style="color:#f92672">=</span> scalar(@{$grid[<span style="color:#ae81ff">0</span>]});
+
+    <span style="color:#75715e"># Wander the grid in an orderly fashion</span>
+    $j <span style="color:#f92672">=</span> $h;
+    <span style="color:#66d9ef">while</span>($j<span style="color:#f92672">--</span>){
+        $i <span style="color:#f92672">=</span> $w;
+        <span style="color:#66d9ef">while</span>($i<span style="color:#f92672">--</span>){
+            <span style="color:#75715e"># There are probably fewer mines than</span>
+            <span style="color:#75715e"># not-mines, so look for mines</span>
+            <span style="color:#66d9ef">if</span>($grid[$j][$i] <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;x&#39;</span>){
+                <span style="color:#75715e"># This cell has a mine- examine adjacent</span>
+                <span style="color:#75715e"># cells within the bounds of the grid</span>
+                <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $y (($j ? $j<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> : <span style="color:#ae81ff">0</span>) <span style="color:#f92672">..</span> ($j<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span><span style="color:#f92672">-</span>$h ? $j<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span> : $j)){
+                    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $x (($i ? $i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> : <span style="color:#ae81ff">0</span>) <span style="color:#f92672">..</span> ($i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span><span style="color:#f92672">-</span>$w ? $i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span> : $i)){
+                        <span style="color:#75715e"># Increment the adjacent cell at</span>
+                        <span style="color:#75715e"># $x, $y unless it has a mine</span>
+                        $grid[$y][$x]<span style="color:#f92672">++</span>
+                            <span style="color:#66d9ef">unless</span>($grid[$y][$x] <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;x&#39;</span>);
+                    }
+                }
+            } <span style="color:#75715e"># end if($grid[$j][$i] eq &#39;x&#39;)</span>
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/stuart-little/perl/ch-2.pl"><strong>Stuart Little</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/stuart-little/haskell/ch-2.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/stuart-little/lua/ch-2.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/stuart-little/node/ch-2.js">Node</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/stuart-little/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/stuart-little/raku/ch-2.raku">Raku</a></p>
+<p>Stuart brings us a more functional paradigm, with chains of <code>map</code> and <code>grep</code> operations to first process the input and then, inside a nested loop of <code>for</code> statements, to circumnavigate each cell and determine valid surrounding coordinate index pairs.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">nbrs</span>($mat, $i, $j) {
+        <span style="color:#66d9ef">my</span> @pairs <span style="color:#f92672">=</span> grep {$_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&lt;</span> scalar @{$mat} <span style="color:#f92672">&amp;&amp;</span> $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;</span> scalar @{$mat<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]} <span style="color:#f92672">&amp;&amp;</span> ($_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">!=</span> $i <span style="color:#f92672">||</span> $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">!=</span> $j)}
+        map {<span style="color:#66d9ef">my</span> $co <span style="color:#f92672">=</span> $_; <span style="color:#66d9ef">my</span> @a <span style="color:#f92672">=</span> map {[$i<span style="color:#f92672">+</span>$_,$j<span style="color:#f92672">+</span>$co]} (<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">1</span>); @a}
+        (<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">1</span>);
+        <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@pairs;
+    }
+
+    <span style="color:#66d9ef">my</span> @in <span style="color:#f92672">=</span> grep {scalar @{$_}} map {<span style="color:#66d9ef">my</span> @a <span style="color:#f92672">=</span> split <span style="color:#e6db74">/\s+/</span>, $_; <span style="color:#f92672">\</span>@a} <span style="color:#e6db74">&lt;DATA&gt;</span>;
+
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>(scalar @in)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $j (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>(scalar @{$in[<span style="color:#ae81ff">0</span>]})<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
+            <span style="color:#66d9ef">print</span>( (($in[$i]<span style="color:#f92672">-&gt;</span>[$j] <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;x&#39;</span>) ? ($in[$i]<span style="color:#f92672">-&gt;</span>[$j]) : (scalar grep { $in[$_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]]<span style="color:#f92672">-&gt;</span>[$_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]] <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;x&#39;</span> } @{nbrs(<span style="color:#f92672">\</span>@in,$i,$j)})) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34; &#34;</span>);
+        }
+        <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;\n&#34;</span>);
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a></p>
+<p>CY offers us a couple of unusual interesting aspects in her solution, both in the code process and the interaction the code has with the user. In the implementation of the map relationships, she notes that the maximum value for adjacency is 8, for a cell, surrounded by bombs, and this maximum is a single digit.</p>
+<p>So a single character is all that will ever be needed for any one position, right? This allows the rows to be encoded as strings, and the map to be an array of rows. No multidimensionality is required, and the cells are referenced and altered via <code>substr</code>. That&rsquo;s certainly different. A quick file search reveals only Ulrich took a similar approach.</p>
+<p>The second innovation on the basic challenge was to implement a proper minesweeper terminal game using <code>IO::Prompter.pm</code>. The underlying logic is not fundamentally complex: once we have the decoder map resolved, if we take a user input coordinate we either reveal the number for that cell or detonate the mine, ending the game. The actual complex logic is all offloaded to the player, who needs to apply deductive reasoning to infer a strategy of minimizing risk when making successive new moves.</p>
+<p>The ability to flag a deduced mine position is implemented to help the user keep track, and should the player successfully fill the map without blowing everything up a congratulatory message is posted, proclaiming them a hero.</p>
+<p>We&rsquo;ve seen a number of map processing routines, so let&rsquo;s have a look at part of the game instead this time. The <code>%rb35</code> variable decodes the input coordinates from base 35: 1 through 9 followed by A through Z .</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> @data <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#34;&#34;</span>, <span style="color:#e6db74">&#34;&#34;</span>, <span style="color:#e6db74">&#34;&#34;</span>);
+    <span style="color:#66d9ef">while</span> (   <span style="color:#f92672">!</span>$explosion
+            <span style="color:#f92672">&amp;&amp;</span> $data[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">ne</span> <span style="color:#e6db74">&#34;q&#34;</span>
+            <span style="color:#f92672">&amp;&amp;</span> $num_of_op_pos <span style="color:#f92672">&lt;</span> $num_of_digits
+          )
+    {
+        <span style="color:#66d9ef">my</span> ($i, $j);
+
+        print_table();
+        say <span style="color:#e6db74">&#39;action option: (o(open), f(flag/unflag), c(cancel) or q(quit))&#39;</span>;
+        @data <span style="color:#f92672">=</span> (
+            prompt(<span style="color:#e6db74">&#39; row  :&#39;</span>),
+            prompt(<span style="color:#e6db74">&#39; col  :&#39;</span>),
+            prompt(<span style="color:#e6db74">&#39;action:&#39;</span>),
+        );
+
+        {
+            $i <span style="color:#f92672">=</span> $rb35{$data[<span style="color:#ae81ff">0</span>]} <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+            $j <span style="color:#f92672">=</span> $rb35{$data[<span style="color:#ae81ff">1</span>]} <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+        }
+
+
+        <span style="color:#66d9ef">my</span> $act <span style="color:#f92672">=</span> $data[<span style="color:#ae81ff">2</span>];
+        <span style="color:#66d9ef">if</span> ($act <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#34;o&#34;</span> <span style="color:#f92672">&amp;&amp;</span> $master_board<span style="color:#f92672">-&gt;</span>[$i][$j] <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#34;x&#34;</span>) {
+            $explosion <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+            <span style="color:#66d9ef">last</span>;
+        }
+
+        given ($act) {
+            when (<span style="color:#e6db74">&#34;o&#34;</span>) {
+                $table<span style="color:#f92672">-&gt;</span>[$i][$j] <span style="color:#f92672">=</span> $master_board<span style="color:#f92672">-&gt;</span>[$i][$j];
+                $num_of_op_pos<span style="color:#f92672">++</span>;
+            }
+            when (<span style="color:#e6db74">&#34;f&#34;</span>) {
+                <span style="color:#66d9ef">if</span> ($table<span style="color:#f92672">-&gt;</span>[$i][$j] <span style="color:#f92672">!~</span> <span style="color:#e6db74">/^\d$/</span>) {
+                    $table<span style="color:#f92672">-&gt;</span>[$i][$j] <span style="color:#f92672">=</span> $table<span style="color:#f92672">-&gt;</span>[$i][$j] <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#34;f&#34;</span> ? <span style="color:#e6db74">&#34;.&#34;</span> : <span style="color:#e6db74">&#34;f&#34;</span>;
+                }
+                <span style="color:#66d9ef">else</span> {
+                    say <span style="color:#e6db74">&#34;Grid already identified.\n&#34;</span>;
+                }
+            }
+            when (<span style="color:#e6db74">&#34;c&#34;</span>) {say <span style="color:#e6db74">&#34;Action cancelled.\n&#34;</span>;}
+            default {say <span style="color:#e6db74">&#34;Cannot identify your action.\n&#34;</span>;}
+        }
+    }
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\n&#34;</span> x <span style="color:#ae81ff">3</span>;
+    say <span style="color:#e6db74">&#34;BOOOOOOOOOOOOOOOOOOOOOOOOOOOOMB!&#34;</span> <span style="color:#66d9ef">if</span> $explosion;
+    say <span style="color:#e6db74">&#34;Safe, my hero!&#34;</span>
+      <span style="color:#66d9ef">if</span> $num_of_op_pos <span style="color:#f92672">==</span> $num_of_digits;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/lubos-kolouch/perl/ch-2.pl"><strong>Lubos Kolouch</strong></a></p>
+<p>Finally, Lubos starts his submission with a comment:</p>
+<blockquote>
+<p>just printing the field is booooring, let&rsquo;s implement the whole game</p>
+</blockquote>
+<p>True to his word, he does go on to implement the game, taking in user input from <code>STDIN</code> using the &ldquo;diamond operator&rdquo;, <code>&lt;&gt;</code>.</p>
+<p>I notice a lot of very, very long &ldquo;O&rdquo; vowels going on here, as, like CY, when the player loses this happens with a resounding &ldquo;BOOOOM!&quot;.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">play_game</span> {
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Find all fields without bombs \n&#34;</span>;
+
+        <span style="color:#66d9ef">while</span> ($empty_fields <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
+            print_field(<span style="color:#f92672">\</span>@player_field);
+            <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Fields remain $empty_fields \n&#34;</span>;
+            <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Enter coordinates separated by space (for example 0 0):\n&#34;</span>;
+
+            <span style="color:#66d9ef">my</span> $input <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;&gt;</span>;
+            <span style="color:#66d9ef">my</span> @coords <span style="color:#f92672">=</span> split <span style="color:#e6db74">/ /</span>, $input;
+            <span style="color:#66d9ef">if</span> ($field[$coords[<span style="color:#ae81ff">0</span>]][$coords[<span style="color:#ae81ff">1</span>]] <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#34;x&#34;</span>) {
+                <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;BOOOOM! \n&#34;</span>;
+
+                print_field(<span style="color:#f92672">\</span>@complete_field);
+                <span style="color:#66d9ef">return</span>;
+            }
+
+            <span style="color:#66d9ef">if</span> ($player_field[$coords[<span style="color:#ae81ff">0</span>]][$coords[<span style="color:#ae81ff">1</span>]] <span style="color:#f92672">ne</span> <span style="color:#e6db74">&#34;*&#34;</span>) {
+                <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;You tried that already \n&#34;</span>;
+                <span style="color:#66d9ef">next</span>;
+            }
+
+            $player_field[$coords[<span style="color:#ae81ff">0</span>]][$coords[<span style="color:#ae81ff">1</span>]] <span style="color:#f92672">=</span> $complete_field[$coords[<span style="color:#ae81ff">0</span>]][$coords[<span style="color:#ae81ff">1</span>]];
+            $empty_fields<span style="color:#f92672">--</span>;
+
+
+            <span style="color:#66d9ef">if</span> ($empty_fields <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+                <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Congratulations, you won! \n&#34;</span>;
+                print_field(<span style="color:#f92672">\</span>@complete_field);
+                <span style="color:#66d9ef">return</span>;
+            }
+        }
+    }
+
+    init_field;
+    calculate_field;
+    play_game;
+</code></pre></div><p>Be careful out there folks, it can be a dangerous world. Tread lightly and carry a metal detector with you just to be sure.</p>
+<h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-2">Blogs and Additional Submissions in Guest Languages for Task 2:</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/abigail/perl/ch-2.pl"><strong>Abigail</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/abigail/awk/ch-2.awk">Awk</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/abigail/c/ch-2.c">C</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/abigail/lua/ch-2.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/abigail/node/ch-2.js">Node</a></p>
+<p><strong>blog writeup:</strong>
+<a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-126-2.html">Perl Weekly Challenge 126: Minesweeper Game</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/adam-russell/cxx/ch-2.cxx">Cxx</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/adam-russell/prolog/ch-2.p">Prolog</a></p>
+<p><strong>blog writeup:</strong>
+<a href="http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2021/08/22">Count Numbers / MineSweeper game: The Weekly Challenge 126 — Perl — RabbitFarm</a>
+<br><a href="http://www.rabbitfarm.com/cgi-bin/blosxom/prolog/2021/08/22">Count Numbers / MineSweeper game: The Weekly Challenge 126 — Prolog — RabbitFarm</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/polettix/raku/ch-2.raku">Raku</a></p>
+<p><strong>blog writeup:</strong>
+<a href="https://github.polettix.it/ETOOBUSY/2021/08/19/pwc126-minesweeper-game/">PWC126 - Minesweeper Game - ETOOBUSY</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a></p>
+<p><strong>blog writeup:</strong>
+<a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-126/james-smith">Perl Weekly Challenge #126</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/laurent-rosenfeld/raku/ch-2.raku">Raku</a></p>
+<p><strong>blog writeup:</strong>
+<a href="http://blogs.perl.org/users/laurent_r/2021/08/perl-weekly-challenge-126-count-numbers-and-minesweeper-game.html">Perl Weekly Challenge 126: Count Numbers and Minesweeper Game | laurent_r</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/roger-bell-west/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/roger-bell-west/raku/ch-2.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/roger-bell-west/ruby/ch-2.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/roger-bell-west/rust/ch-2.rs">Rust</a></p>
+<p><strong>blog writeup:</strong>
+<a href="https://blog.firedrake.org/archive/2021/08/Perl_Weekly_Challenge_126__Count_Sweeper.html">RogerBW&rsquo;s Blog: Perl Weekly Challenge 126: Count Sweeper</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a></p>
+<p><strong>blog writeup:</strong>
+<a href="https://dev.to/simongreennet/weekly-challenge-126-19fg">Weekly Challenge 126</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a></p>
+<p><strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/ulrich-rieke/cpp/ch-2.cpp">C++</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/ulrich-rieke/raku/ch-2.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-126/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
+<p><strong>blog writeup:</strong>
+<a href="https://wlmb.github.io/2021/08/20/PWC126/">Perl Weekly Challenge 126 – W. Luis Mochán</a></p>
+<hr>
+<h1 id="PWC126BLOGS">BLOGS</h1>
+<hr>
+<p><strong>That’s it for me this week, people! Warped by the rain, driven by the snow, resolute and unbroken by the torrential influx, I somehow continue to maintain my bearings. Oh, and tired this time. So—o—o—o—o very tired. I&rsquo;m off to get a few short precious hours of sleep.  Looking forward to next wave, the perfect wave, I remain: <em>your humble servant</em>.</strong></p>
+<h1 id="PWC126BLOGS">But if Your <em>THIRST</em> for <em>KNOWLEDGE</em> is <big>STILL</big> not <em>SLAKED</em>,</h1>
+<h1 id="then-run-dont-walk-to-the-watering-hole">then <em>RUN</em> <em>(dont walk!)</em> to the <em>WATERING HOLE</em></h1>
+<h1 id="and-read-these-blog-links">and <em>READ</em> these <em>BLOG</em> <em>LINKS</em>:</h1>
+<p><strong>( <em>don&rsquo;t think, trust your training, you&rsquo;re in the zone, just do it &hellip;</em> )</strong></p>
+<p><strong>Abigail</strong></p>
+<ul>
+<li><a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-126-1.html">Perl Weekly Challenge 126: Count Numbers</a> ( <em>Perl</em> )</li>
+<li><a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-126-2.html">Perl Weekly Challenge 126: Minesweeper Game</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Adam Russell</strong></p>
+<ul>
+<li><a href="http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2021/08/22">Count Numbers / MineSweeper game: The Weekly Challenge 126 — Perl — RabbitFarm</a> ( <em>Perl</em> )</li>
+<li><a href="http://www.rabbitfarm.com/cgi-bin/blosxom/prolog/2021/08/22">Count Numbers / MineSweeper game: The Weekly Challenge 126 — Prolog — RabbitFarm</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Andinus</strong></p>
+<ul>
+<li><a href="https://andinus.tilde.institute/pwc/challenge-126/">Challenge 126</a> ( <em>Raku</em> )</li>
+<li><a href="https://andinus.tilde.institute/pwc/challenge-126/">Challenge 126</a> ( <em>Raku</em> )</li>
+</ul>
+<p><strong>Arne Sommer</strong></p>
+<ul>
+<li><a href="https://raku-musings.com/count-minesweeper.html">Count Minesweeper with Raku and Perl</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Colin Crain</strong></p>
+<ul>
+<li><a href="https://colincrain.com/2021/08/22/i-sweep-for-no-one/">I Sweep For No One — Programming Excursions in Perl and Raku</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Dave Jacoby</strong></p>
+<ul>
+<li><a href="https://jacoby.github.io/2021/08/18/that-one-is-mine-the-perl-and-js-weekly-challenge-126.html">That One Is Mine: The (Perl and JS) Weekly Challenge #126 | Committed to Memory</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Flavio Poletti</strong></p>
+<ul>
+<li><a href="https://github.polettix.it/ETOOBUSY/2021/08/18/pwc126-count-numbers/">PWC126 - Count Numbers - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+<li><a href="https://github.polettix.it/ETOOBUSY/2021/08/19/pwc126-minesweeper-game/">PWC126 - Minesweeper Game - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>James Smith</strong></p>
+<ul>
+<li><a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-126/james-smith">Perl Weekly Challenge #126</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Laurent Rosenfeld</strong></p>
+<ul>
+<li><a href="http://blogs.perl.org/users/laurent_r/2021/08/perl-weekly-challenge-126-count-numbers-and-minesweeper-game.html">Perl Weekly Challenge 126: Count Numbers and Minesweeper Game | laurent_r</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Luca Ferrari</strong></p>
+<ul>
+<li><a href="https://fluca1978.github.io/2021/08/16/PerlWeeklyChallenge126.html#task1">Perl Weekly Challenge 126: counting mines! – Luca Ferrari – Open Source advocate, human being</a> ( <em>Raku</em> )</li>
+</ul>
+<p><strong>Roger Bell_West</strong></p>
+<ul>
+<li><a href="https://blog.firedrake.org/archive/2021/08/Perl_Weekly_Challenge_126__Count_Sweeper.html">RogerBW&rsquo;s Blog: Perl Weekly Challenge 126: Count Sweeper</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Simon Green</strong></p>
+<ul>
+<li><a href="https://dev.to/simongreennet/weekly-challenge-126-19fg">Weekly Challenge 126</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>W. Luis Mochan</strong></p>
+<ul>
+<li><a href="https://wlmb.github.io/2021/08/20/PWC126/">Perl Weekly Challenge 126 – W. Luis Mochán</a> ( <em>Perl</em> )</li>
+</ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="/contact" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2021
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.nomtimes.co.uk/site/shop.do?cref=PerlBooks" title="Free Perl Books" rel="noreferrer" target="_blank">
+                            <img src="/images/NomTimes.jpg" style="width:22px; height: 18px;" alt=""/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jQurey/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-136524905-1', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+
+</html>
+
