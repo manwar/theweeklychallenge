@@ -32,6 +32,10 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 129](/blog/perl-weekly-challenge-129) {#129}
 <br>
 
+##### **Eric Cheung** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-129/eric-cheung/excel-vba/ch-2.bas) in **Excel VBA**.
+
+##### **Eric Cheung** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-129/eric-cheung/python/ch-1.py) in **Python**.
+
 ##### **Roger Bell_West** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-129/roger-bell-west/postscript/ch-1.ps) in **Postscript**.
 
 ##### **Roger Bell_West** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-129/roger-bell-west/python/ch-1.py) in **Python**.
