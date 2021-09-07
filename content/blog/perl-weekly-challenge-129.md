@@ -189,7 +189,7 @@ Write a script to add the two linked list and create a new linked representing t
            L2 = 3 -> 2 -> 1
     Output: 4 -> 4 -> 4
 
-        Operation: Pick the first rightmost element of L1 i.e. 3 and adds to the first rightmost element of L2 i.e. 1. Finally store the result i.e. 3 in the new linked list. Move to the next one of both linked lists L1 and L2, perform the same operation. In case the sum >= 10 then you apply the same rule you would do to regular addition problem i.e. divide the sum by 10 keep the remainder and push to the new linked list. Don't forget to carry, 1, to the next operation. In case one linked list is smaller than the other, you can safely assume it is 0..
+        Operation: Pick the first rightmost element of L1 i.e. 3 and adds to the first rightmost element of L2 i.e. 1. Finally store the result i.e. 3 in the new linked list. Move to the next one of both linked lists L1 and L2, perform the same operation. In case the sum >= 10 then you apply the same rule you would do to regular addition problem i.e. divide the sum by 10 keep the remainder and push to the new linked list. Don't forget to carry, 1, to the next operation. In case one linked list is smaller than the other, you can safely assume it is 0.
 
 ## Example 2:
 
@@ -197,7 +197,7 @@ Write a script to add the two linked list and create a new linked representing t
            L2 =           6 -> 5 -> 5
     Output:     1 -> 3 -> 0 -> 0 -> 0
 
-        Operation:
+        Operations:
         a) 1st member of L1 = 5 and 1st member of L2 = 5
         b) 5 + 5 = 10
         c) 0 pushed to the new linked list.
@@ -208,7 +208,7 @@ Write a script to add the two linked list and create a new linked representing t
         i) carry forward 1.
         j) 3rd member of L1 = 3 and 3rd member of L2 = 6
         k) 3 + 6 + 1 (carry) = 10
-        l) 0 pshed to the new linked list.
+        l) 0 pushed to the new linked list.
         m) carry forward 1.
         n) 4th member of L1 = 2 and assume 0 as the 4th member of L2 since there are only 3 members.
         o) 2 + 1 (carry) = 3
