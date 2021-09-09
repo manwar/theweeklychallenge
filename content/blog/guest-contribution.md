@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2021-09-07T00:00:00+00:00
+date: 2021-09-09T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -74,7 +74,7 @@ Please find below guest contributions.
 
 ##### **Stuart Little** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/stuart-little/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/stuart-little/python/ch-2.py) in **Python**.
 
-##### **Tyler Wardhaugh** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/tyler-wardhaugh/clojure/src/tw/weekly/c128/t1.clj) in **Clojure**.
+##### **Tyler Wardhaugh** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/tyler-wardhaugh/clojure/src/tw/weekly/c128/t1.clj) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/tyler-wardhaugh/clojure/src/tw/weekly/c128/t2.clj) in **Clojure**.
 
 ##### **Ulrich Rieke** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/ulrich-rieke/haskell/ch-2.hs) in **Haskell**.
 
