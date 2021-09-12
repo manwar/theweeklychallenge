@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="The Weekly Challenge - Perl & Raku"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="You do not have to be an expert."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Colin Crain › Perl Weekly Review #127">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Colin Crain › Perl Weekly Review #127</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navgation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Colin Crain › Perl Weekly Review #127</h2>
+                    <div class="portfolio-meta">
+                        <span>Sunday, Sep 12, 2021</span>|
+                        <span> Tags:
+                            perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/p5-review-challenge-127.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <p>( <em>&hellip;continues from <a href="/blog/review-challenge-126/">previous week</a>.</em> )</p>
+<p>Welcome to the Perl review for <strong>Week 127</strong> of the Weekly Challenge! Here we will take the time to discuss the  submissions offered by the team, factor out the common methodologies that came up in those solutions, and highlight some of the unique approaches and unusual code created.</p>
+<hr>
+<h3 id="why-do-we-do-these-challenges">Why do we do these challenges?</h3>
+<p>I suppose any answers to that would be as wide ranging and varied as the people who choose to join the team. One thing is clear: it&rsquo;s not a competition, and there are no judges, even if there is a &ldquo;prize&rdquo; of sorts. About that &ndash; I think of it more as an honorarium periodically awarded to acknowledge the efforts we make towards this strange goal. So there&rsquo;s no determination to find the <em>fastest</em>, or the <em>shortest</em>, or even, in some abstract way, the <em>best</em> way to go about things, although I&rsquo;m certain the individuals have their own aspirations and personal drives. As Perl is such a wonderfully expressive language, this provides quite a bit of fodder to the core idea of TMTOWTDI, producing a gamut of wonderfully varied techniques and solutions.</p>
+<p>Even the tasks themselves are often open to a certain amount of discretionary interpretation. What we end up with is a situation where each participant is producing something in the manner they find the most interesting or satisfying. Some team members focus on carefully crafted complete applications that thoroughly vet input data and handle every use case they can think up. Others chose to apply themselves to the logic of the underlying puzzle and making it work in the most elegant way they can. Some eschew modules they would ordinarily reach for, others embrace them, bringing to light wheels perhaps invented years ago that happen to exactly solve the problem in front of them today.</p>
+<p>I&rsquo;ve been considering this question for some time and have found one binding commonality between all of us solving these challenges each week, in that however we normally live our lives, the task in front of us more than likely has nothing to do with any of that . And I think this has great value. We all do what we do, out in the real world, and hopefully we do it well. The Weekly Challenge provides a opportunity to do something germane to that life yet distinctly different; if we only do the things we already know how to do we only do the same things over and over. This is where the &ldquo;challenge&rdquo; aspect comes into play.</p>
+<p>So we can consider the Weekly Challenge as providing a problem space outside of our comfort zone, as far out from comfort as we wish to take things. From those reaches we can gather and learn things and bring what we want back into our lives. Personally, I think that&rsquo;s its greatest value of all.</p>
+<hr>
+<p>Every week there is an enormous global collective effort made by the team, analyzing and creatively coding the submissions, and that effort deserves credit due. And that&rsquo;s why I&rsquo;m here, to try and figure out how to do that.</p>
+<p>Let&rsquo;s have a look and see what we can find.</p>
+<hr>
+<p><strong><big>For context</big></strong>  before we begin, you may wish to revisit either of the pages for the <a href="/blog/perl-weekly-challenge-127/"><strong>original tasks</strong></a> or the summary <a href="/blog/recap-challenge-127/"><strong>recap</strong></a> of the challenge. But don&rsquo;t worry, the challenges themselves will be briefly summarized, presented below as we progress from task by task. Oh, and one more thing before we get started:</p>
+<h3 id="getting-in-touch-with-us">Getting in Touch with Us</h3>
+<p><a href="mailto:pwc.perfectwave@gmail.com"><img src="/images/blog/Email.svg" height="50" width="50"> Email</a> › Please email me (Colin) with any feedback, notes, clarifications or whatnot about this review.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge"><img src="/images/blog/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request to us for any issues you may find with this page.</p>
+<p><a href="https://twitter.com/perlwchallenge"><img src="/images/blog/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!</p>
+<p>I&rsquo;m always curious as to what the people think of these efforts. Everyone here at the PWC would like to hear any feedback you&rsquo;d like to give.</p>
+<p><strong>So finally, without further ado&hellip;</strong></p>
+<hr>
+<h2 id="---nbsp--nbsp--nbsp---task-1pwc127task1-------nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---task-2pwc127task2---nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---blogspwc127blogs----nbsp--nbsp--nbsp---">•             <a href="#PWC127TASK1">Task 1</a>                 •             <a href="#PWC127TASK2">Task 2</a>             	•             <a href="#PWC127BLOGS">BLOGS</a>              	•</h2>
+<hr>
+<h1 id="PWC127TASK1">TASK 1</h1>
+<h1 id="disjoint-sets">Disjoint Sets</h1>
+<p><em>Submitted by: Mohammad S Anwar</em><br>
+You are given two sets with unique integers.</p>
+<p>Write a script to figure out if they are disjoint.</p>
+<p>The two sets are disjoint if they don’t have any common members.</p>
+<p><strong>Example</strong></p>
+<pre><code>    Input:  @S1 = (1, 2, 5, 3, 4)
+            @S2 = (4, 6, 7, 8, 9)
+    Output: 0 as the given two sets have common member 4.
+
+    Input:  @S1 = (1, 3, 5, 7, 9)
+            @S2 = (0, 2, 4, 6, 8)
+    Output: 1 as the given two sets do not have common member.
+</code></pre><h2 id="about-the-solutions">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/abigail/perl/ch-1.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/andrezgz/perl/ch-1.pl"><strong>Andrezgz</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/arne-sommer/perl/ch-1.pl"><strong>Arne Sommer</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/bruce-gray/perl/ch-1.pl"><strong>Bruce Gray</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/cristian-heredia/perl/ch-1.pl"><strong>Cristina Heredia</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/duane-powell/perl/ch-1.pl"><strong>Duane Powell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/iangoodnight/perl/ch-1.pl"><strong>Ian Goodnight</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/jbourlakos/perl/ch-1.pl"><strong>Ioannis Bourlakos</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/jaredor/perl/ch-1.pl"><strong>Jared Martin</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/kostas-giannakakis/perl/ch-1.pl"><strong>Konstantinos Giannakakis</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/lubos-kolouch/perl/ch-1.pl"><strong>Lubos Kolouch</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/mattneleigh/perl/ch-1.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/olivier-delouya/perl/ch-1.sh"><strong>Olivier Delouya</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/paul-fajman/perl/ch-1.pl"><strong>Paul Fajman</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/pete-houston/perl/ch-1.pl"><strong>Pete Houston</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/steven-wilson/perl/ch-1.pl"><strong>Steven Wilson</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/stuart-little/perl/ch-1.pl"><strong>Stuart Little</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/wanderdoc/perl/ch-1.pl"><strong>Wanderdoc</strong></a></p>
+<p>Welcome to the latest installment of the <em>lightning</em> version of the review pages. Here we will take a dozen examples randomly pulled from the pool of submissions and look them over, in the process getting a selected overview of the various methods used by the team.</p>
+<p>We had 34 submissions for the first task this past week, up quite a bit after returning from the (here at least) summer months.</p>
+<h2 id="the-submissions-an-incomplete-survey-a-scattered-snapshot">the SUBMISSIONS — an incomplete SURVEY, a scattered SNAPSHOT</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/andrezgz/perl/ch-1.pl"><strong>Andrezgz</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/iangoodnight/perl/ch-1.pl"><strong>Ian Goodnight</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/mattneleigh/perl/ch-1.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/wanderdoc/perl/ch-1.pl"><strong>Wanderdoc</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/stuart-little/perl/ch-1.pl"><strong>Stuart Little</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/cristian-heredia/perl/ch-1.pl"><strong>Cristina Heredia</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/jbourlakos/perl/ch-1.pl"><strong>Ioannis Bourlakos</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/pete-houston/perl/ch-1.pl"><strong>Pete Houston</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/andrezgz/perl/ch-1.pl"><strong>Andrezgz</strong></a></p>
+<p>Andrezgz will start us off. The description uses set terminology, so set terminology is is. Both the union and intersection of the elements in the two arrays are created in a single clever and compact line. How does it work? Using the <em>post</em>-increment operator, the value of <code>$union{$_}</code> is first evaluated <em>and then</em> incremented. If the element had never been seen before, and hence uninitialized, the value will start as undefined and the logical AND operator will short-circuit, leaving the intersection hash untouched. In going through the contents of both arrays, only if no elements from one are present in the other will there be no duplication in the union hash. If this happens then the intersection will have no keys added, and as the intersection is null, the sets are disjoint.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> (%union,%inter);
+    <span style="color:#66d9ef">for</span> (@S1,@S2) {
+        $union{$_}<span style="color:#f92672">++</span> <span style="color:#f92672">&amp;&amp;</span> $inter{$_}<span style="color:#f92672">++</span>
+    }
+
+    say keys %inter ? <span style="color:#ae81ff">0</span> : <span style="color:#ae81ff">1</span>;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://colincrain.com/2021/08/29/time-out-of-joint-at-set-intervals/">Time Out-of-Joint — at Set Intervals - Programming Excursions in Perl and Raku</a></p>
+<p>For my own solution I broke the process into two loops, a <code>map</code> to load a hash from the first array, and then a second iteration through the second array to check the values against the hash keys. On the first instance of a duplicate element, that is to say the candidate element exists in the hash from the first array, the routine returns 0. If no elements trigger this action the routine returns 1.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">disjoint</span> ($s1, $s2) {
+        <span style="color:#66d9ef">my</span> %sethash <span style="color:#f92672">=</span> map { $_ <span style="color:#f92672">=&gt;</span> undef } $s1<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+
+        for <span style="color:#66d9ef">my</span> $member ( @S2 ) {
+            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> exists $sethash{<span style="color:#e6db74">&#34;$member&#34;</span>};
+        }
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a></p>
+<p>Here is another very similar version from Niels. I myself never much use the <code>map EXPR,LIST</code> version of <code>map</code>, so it&rsquo;s interesting to be reminded it exists. This is similar to the alternate construction for <code>grep</code> with an expression instead of a block, which is more commonly seen out in the wild.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">areDisjointSets</span> {
+      <span style="color:#66d9ef">my</span> ($ar1,$ar2) <span style="color:#f92672">=</span> @_;
+
+      <span style="color:#66d9ef">my</span> %h <span style="color:#f92672">=</span> map <span style="color:#f92672">+</span>($_,<span style="color:#ae81ff">1</span>),@$ar1;
+
+      <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i (@$ar2) {
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> exists $h{$i};
+      }
+
+      <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-127/james-smith/">Perl Weekly Challenge #127</a></p>
+<p>James too takes a similar path, alternately using a <code>grep</code> statement to filter the second array for values also present in the hash from the first. A ternary conditional returns either 0 for a duplicate element found, or a 1 otherwise. If a duplicate element is found the sets of the array elements cannot be disjoint.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">disjoint_sets</span> {
+      <span style="color:#66d9ef">my</span> %m <span style="color:#f92672">=</span> map { $_<span style="color:#f92672">=&gt;</span><span style="color:#ae81ff">1</span> } @{$_[<span style="color:#ae81ff">0</span>]};
+      <span style="color:#66d9ef">return</span> grep( { $m{$_} } @{$_[<span style="color:#ae81ff">1</span>]}) ? <span style="color:#ae81ff">0</span> : <span style="color:#ae81ff">1</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/iangoodnight/perl/ch-1.pl"><strong>Ian Goodnight</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/iangoodnight/javascript/ch-1.js">Javascript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/iangoodnight/test_cases/ch1">Test_cases</a></p>
+<p>writeup: <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/iangoodnight/perl/README.md">Perl Weekly Challenge Club - 127</a></p>
+<p>Ian provides a unique testing framework for his <code>assert_disjoint()</code> function, taking a directory of short files for input, each with a comment, the two arrays as comma-separated strings, and the expected return value. In as much as this mirrors the basic functionality of the several testing suites available, such as <code>Test::More</code>, or <code>Test2</code>, Ian provides bonus colored output using <code>Term::ANSIColor</code> which amuses me no end. As I often say, it&rsquo;s the little things in life.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_disjoint</span> {
+      <span style="color:#66d9ef">my</span> ($set1_ref, $set2_ref) <span style="color:#f92672">=</span> @_;
+      <span style="color:#66d9ef">my</span> @test_set <span style="color:#f92672">=</span> @$set1_ref;
+      <span style="color:#66d9ef">my</span> %haystack <span style="color:#f92672">=</span> map { $_ <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> } @$set2_ref;
+      <span style="color:#66d9ef">my</span> $disjoint <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+      <span style="color:#66d9ef">while</span> ($disjoint <span style="color:#f92672">and</span> scalar @test_set) {
+        <span style="color:#66d9ef">my</span> $needle <span style="color:#f92672">=</span> pop(@test_set);
+        $disjoint <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> exists($haystack{$needle});
+      }
+      <span style="color:#66d9ef">return</span> $disjoint;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">assert_disjoint</span> {
+      <span style="color:#66d9ef">my</span> ($set1_ref, $set2_ref, $test) <span style="color:#f92672">=</span> @_;
+      <span style="color:#66d9ef">my</span> $disjoint <span style="color:#f92672">=</span> is_disjoint($set1_ref, $set2_ref);
+      <span style="color:#66d9ef">if</span> ($test <span style="color:#f92672">eq</span> $disjoint) {
+        <span style="color:#66d9ef">print</span> color(<span style="color:#e6db74">&#34;green&#34;</span>), <span style="color:#e6db74">&#34;Passed \x{2690}\n&#34;</span>, color(<span style="color:#e6db74">&#34;reset&#34;</span>);
+      } <span style="color:#66d9ef">else</span> {
+        <span style="color:#66d9ef">print</span> color(<span style="color:#e6db74">&#34;red&#34;</span>), <span style="color:#e6db74">&#34;Failed \x{2715}\n&#34;</span>, color(<span style="color:#e6db74">&#34;reset&#34;</span>);
+      }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/mattneleigh/perl/ch-1.pl"><strong>Matthew Neleigh</strong></a></p>
+<p>Matthew goes above and beyond in his solution to precisely mimic the output to the style of the given examples, with matching verbose explanations and a list of any duplicate members found. Of course this was not required but is certainly welcome.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> @sets <span style="color:#f92672">=</span> (
+        [
+            [ <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span> ],
+            [ <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">9</span> ]
+        ],
+        <span style="color:#f92672">...</span>
+    );
+
+    <span style="color:#66d9ef">foreach</span> $pair (@sets){
+        printf(<span style="color:#e6db74">&#34;Input: \@S1 = (%s)\n&#34;</span>, join(<span style="color:#e6db74">&#34;, &#34;</span>, @{$pair<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]}));
+        printf(<span style="color:#e6db74">&#34;       \@S2 = (%s)\n&#34;</span>, join(<span style="color:#e6db74">&#34;, &#34;</span>, @{$pair<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]}));
+
+        @common <span style="color:#f92672">=</span> sets_disjoint($pair<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>], $pair<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]);
+
+        <span style="color:#66d9ef">if</span>(scalar(@common)){
+            <span style="color:#75715e"># There were common members</span>
+            printf(
+                <span style="color:#e6db74">&#34;Output: 0 as the given two sets have common member(s): %s.\n&#34;</span>,
+                join(<span style="color:#e6db74">&#34;, &#34;</span>, @common)
+            );
+        } <span style="color:#66d9ef">else</span>{
+            <span style="color:#75715e"># There were no common members</span>
+            <span style="color:#66d9ef">print</span>(
+                <span style="color:#e6db74">&#34;Output: 1 as the given two sets do not have a common member.\n&#34;</span>
+            );
+        }
+        <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;\n&#34;</span>);
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/wanderdoc/perl/ch-1.pl"><strong>Wanderdoc</strong></a></p>
+<p>In their <code>check_sets()</code> subroutine, the doctor brings in <code>uniq()</code> from <code>List::Util</code> to make short work of the task. This handy function filters the list it is given to remove duplicated items on recurrence. In a scalar context it returns the size of this list, and if the size is equal to the summed sizes of the two unaltered input lists then we conclude that nothing has been removed, and hence they are disjoint.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw(uniq)</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">check_sets</span>
+    {
+         <span style="color:#66d9ef">my</span> ($aref_1, $aref_2) <span style="color:#f92672">=</span> @_;
+         <span style="color:#66d9ef">return</span> (scalar @$aref_1 <span style="color:#f92672">+</span> scalar @$aref_2 <span style="color:#f92672">==</span> uniq(@$aref_1, @$aref_2)) ?
+              <span style="color:#ae81ff">1</span> : <span style="color:#ae81ff">0</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/stuart-little/perl/ch-1.pl"><strong>Stuart Little</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/stuart-little/haskell/ch-1.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/stuart-little/lua/ch-1.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/stuart-little/node/ch-1.js">Node</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/stuart-little/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/stuart-little/raku/ch-1.raku">Raku</a></p>
+<p>Perl, as we know, does not have any sort of built-in set type. Hash keys work pretty well mind you, but hashes are not on their own the same as sets, and the limited functions available to hash keys do not implement the full expected feature set from set theory. I mean, that&rsquo;s sort of obvious, becase that&rsquo;s why we&rsquo;re here, aren&rsquo;t we? Because there is no built-in <code>disjoint</code> operator we can reach for?</p>
+<p>If there were this challenge would be moot.</p>
+<p>Of course that&rsquo;s where the extensible framework aspect comes into play: of course there&rsquo;s a module that provides Set Theory for us, or likely several options. Here Stuart uses <code>Set::Scalar</code> to provide us with two new Set objects, which have a <code>disjoint</code> function that can be applied. The result is returned.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> List::AllUtils <span style="color:#e6db74">qw(before after)</span>;
+    <span style="color:#66d9ef">use</span> Set::Scalar;
+
+    <span style="color:#66d9ef">my</span> $s1<span style="color:#f92672">=</span>Set::Scalar<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(before {$_ <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#34;-&#34;</span>} @ARGV);
+    <span style="color:#66d9ef">my</span> $s2<span style="color:#f92672">=</span>Set::Scalar<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(after {$_ <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#34;-&#34;</span>} @ARGV);
+
+    say int($s1<span style="color:#f92672">-&gt;</span>is_disjoint($s2));
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/cristian-heredia/perl/ch-1.pl"><strong>Cristina Heredia</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/cristian-heredia/python/ch-1.py">Python</a></p>
+<p>Christina has chosen to use a C-style <code>for</code> loop to do her iteration through the indices of the first array, applying a <code>grep</code> filter to see whether any of the elements in the second array coincide with each value found. It&rsquo;s straightforward and gets the job done.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">foreach</span>(<span style="color:#66d9ef">my</span> $i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;$i<span style="color:#f92672">&lt;</span>@S1;$i<span style="color:#f92672">++</span>){
+        <span style="color:#66d9ef">my</span> $value <span style="color:#f92672">=</span> $S1[$i];
+        <span style="color:#66d9ef">if</span> ( grep(<span style="color:#e6db74"> /^$value$/</span>, @S2 ) ) {
+            <span style="color:#66d9ef">print</span><span style="color:#e6db74">&#34;Output: 0\n&#34;</span>;
+            exit;
+        }
+    }
+    <span style="color:#66d9ef">print</span><span style="color:#e6db74">&#34;Output: 1\n&#34;</span>;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/jbourlakos/perl/ch-1.pl"><strong>Ioannis Bourlakos</strong></a></p>
+<p>Ioannis shares a rather full-featured application implementation, with robust input validation and the specific output states abstracted to a list of constants before any processing is done. The disjoint-arrays function itself first hashes one array, and then uses a     <code>grep</code> filter to find common values between the second array and the hash keys from the first. A ternary operation based on the scalar value of this common list is used to decide which value, 1 o r0, to return.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">disjoint_arrayref</span> {
+        <span style="color:#66d9ef">my</span> ( $arr1, $arr2 ) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> %set1 <span style="color:#f92672">=</span> map { $_ <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> } @$arr1;
+        <span style="color:#66d9ef">my</span> @common_values <span style="color:#f92672">=</span> grep { $set1{$_} } @$arr2;
+        <span style="color:#66d9ef">return</span> scalar(@common_values) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> ? <span style="color:#ae81ff">0</span> : <span style="color:#ae81ff">1</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/pete-houston/perl/ch-1.pl"><strong>Pete Houston</strong></a></p>
+<p>Pete provides yet another example of using a hash and <code>grep</code> combination to check each value in one array against a lookup created from the other. As he notes, anything can be used to separate the integer values in the input lines. Well, except for a digit I suppose. That would make it all one number and wouldn&rsquo;t work at all. So <em>almost</em> anything.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Input the first set of integers on one line:\n&#34;</span>;
+    $_ <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;STDIN&gt;</span>;
+    <span style="color:#66d9ef">my</span> %first <span style="color:#f92672">=</span> map { $_ <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> } <span style="color:#e6db74">/(-?[0-9]+)/g</span>;
+
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Input the second set of integers on one line:\n&#34;</span>;
+    $_ <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;STDIN&gt;</span>;
+    <span style="color:#66d9ef">my</span> @matches <span style="color:#f92672">=</span> grep { $first{$_} } <span style="color:#e6db74">/(-?[0-9]+)/g</span>;
+
+    printf <span style="color:#e6db74">&#34;%i\n&#34;</span>, $#matches <span style="color:#f92672">&gt;</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> ? <span style="color:#ae81ff">0</span> : <span style="color:#ae81ff">1</span>;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/roger-bell-west/postscript/ch-1.ps">Postscript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/roger-bell-west/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/roger-bell-west/raku/ch-1.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/roger-bell-west/ruby/ch-1.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/roger-bell-west/rust/ch-1.rs">Rust</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://blog.firedrake.org/archive/2021/08/Perl_Weekly_Challenge_127__Disjoint_Conflict.html">RogerBW&rsquo;s Blog: Perl Weekly Challenge 127: Disjoint Conflict</a></p>
+<p>Finally, Roger gives us another example of using <code>exists</code> to determine whether a hash key is present for each integer element as we iterate through the second array. As the value assigned is inconsequential, we don&rsquo;t even bother to perform the actual lookup, settling for just the key to determine an overlap.</p>
+<p>Here it is in Roger&rsquo;s usual terse and compact style:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">ds</span> {
+      <span style="color:#66d9ef">my</span> ($a,$b)<span style="color:#f92672">=</span>@_;
+      <span style="color:#66d9ef">my</span> %h<span style="color:#f92672">=</span>map {$_ <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>} @{$a};
+      <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $n (@{$b}) {
+        <span style="color:#66d9ef">if</span> (exists $h{$n}) {
+          <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+        }
+      }
+      <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+    }
+</code></pre></div><h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-2">Blogs and Additional Submissions in Guest Languages for Task 2:</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/abigail/perl/ch-1.pl"><strong>Abigail</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/abigail/awk/ch-1.awk">Awk</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/abigail/bash/ch-1.sh">Bash</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/abigail/c/ch-1.c">C</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/abigail/lua/ch-1.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/abigail/node/ch-1.js">Node</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/abigail/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/abigail/ruby/ch-1.rb">Ruby</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-127-1.html">Perl Weekly Challenge 127: Disjoint Sets</a>blog writeup: <a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-127-2.html">Perl Weekly Challenge 127: Conflict Intervals</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/adam-russell/cxx/ch-1.cxx">Cxx</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/adam-russell/prolog/ch-1.p">Prolog</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2021/08/29">RabbitFarm</a>blog writeup: <a href="http://www.rabbitfarm.com/cgi-bin/blosxom/prolog/2021/08/29">RabbitFarm</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/arne-sommer/perl/ch-1.pl"><strong>Arne Sommer</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/arne-sommer/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://raku-musings.com/disjoint-conflict.html">Disjoint Conflict with Raku and Perl</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/athanasius/raku/ch-1.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/bruce-gray/perl/ch-1.pl"><strong>Bruce Gray</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/bruce-gray/raku/ch-1.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://jacoby.github.io/2021/08/24/multiple-sets-of-interval-training-the-weekly-challenge-127.html">Multiple Setsf Interval Training: The Weekly Challenge #127 | Committed to Memory</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/polettix/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.polettix.it/ETOOBUSY/2021/08/25/pwc127-disjoint-sets/">PWC127 - Disjoint Sets - ETOOBUSY</a>blog writeup: <a href="https://github.polettix.it/ETOOBUSY/2021/08/26/pwc127-conflict-intervals/">PWC127 - Conflict Intervals - ETOOBUSY</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/jaredor/perl/ch-1.pl"><strong>Jared Martin</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://blogs.perl.org/users/jared_martin/2021/08/twc-127-intersection-on-a-sunday-afternoon.html">TWC 127: Intersectionn a Sunday Afternoon | Jared Martin</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/laurent-rosenfeld/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://blogs.perl.org/users/laurent_r/2021/08/perl-weekly-challenge-127-disjoint-sets-and-conflict-intervals.html">Perl Weekly Challenge 127: Disjoint Sets and Conflict Intervals |aurent_r</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/lubos-kolouch/perl/ch-1.pl"><strong>Lubos Kolouch</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/lubos-kolouch/python/ch-1.py">Python</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://dev.to/simongreennet/weekly-challenge-127-4k6j">Weekly Challenge 127</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/ulrich-rieke/haskell/ch-1.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/ulrich-rieke/raku/ch-1.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://wlmb.github.io/2021/08/23/PWC127/">Perl Weekly Challenge 127 – W. Luis Mochán</a></p>
+<hr>
+<h1 id="PWC127TASK2">TASK 2</h1>
+<h1 id="conflict-intervals">Conflict Intervals</h1>
+<p><em>Submitted by: Mohammad S Anwar</em>
+You are given a list of intervals.</p>
+<p>Write a script to find out if the current interval conflicts with any of the previous intervals.</p>
+<p><strong>Example</strong></p>
+<pre><code>    Input: @Intervals = [ (1,4), (3,5), (6,8), (12, 13), (3,20) ]
+    Output: [ (3,5), (3,20) ]
+</code></pre><ul>
+<li>The 1st interval (1,4) do not have any previous intervals to compare with, so skip it.</li>
+<li>The 2nd interval (3,5) does conflict with previous interval (1,4).</li>
+<li>The 3rd interval (6,8) do not conflicts with any of the previous intervals (1,4) and (3,5), so skip it.</li>
+<li>The 4th interval (12,13) again do not conflicts with any of the previous intervals (1,4), (3,5) and (6,8), so skip it.</li>
+<li>The 5th interval (3,20) conflicts with the first interval (1,4).</li>
+</ul>
+<pre><code>    Input: @Intervals = [ (3,4), (5,7), (6,9), (10, 12), (13,15) ]
+    Output: [ (6,9) ]
+</code></pre><ul>
+<li>The 1st interval (3,4) do not have any previous intervals to compare with, so skip it.</li>
+<li>The 2nd interval (5,7) do not conflicts with the previous interval (3,4), so skip it.</li>
+<li>The 3rd interval (6,9) does conflict with one of the previous intervals (5,7).</li>
+<li>The 4th interval (10,12) do not conflicts with any of the previous intervals (3,4), (5,7) and (6,9), so skip it.</li>
+<li>The 5th interval (13,15) do not conflicts with any of the previous intervals (3,4), (5,7), (6,9) and (10,12), so skip it.</li>
+</ul>
+<h2 id="about-the-solutions-1">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/abigail/perl/ch-2.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/andrezgz/perl/ch-2.pl"><strong>Andrezgz</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/arne-sommer/perl/ch-2.pl"><strong>Arne Sommer</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/bruce-gray/perl/ch-2_even_more_haskell-ish.pl"><strong>Bruce Gray</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/duane-powell/perl/ch-2.pl"><strong>Duane Powell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/iangoodnight/perl/ch-2.pl"><strong>Ian Goodnight</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/jbourlakos/perl/ch-2.pl"><strong>Ioannis Bourlakos</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/jaredor/perl/ch-2.pl"><strong>Jared Martin</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/kostas-giannakakis/perl/ch-2.pl"><strong>Konstantinos Giannakakis</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/lubos-kolouch/perl/ch-2.pl"><strong>Lubos Kolouch</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/mattneleigh/perl/ch-2.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/perlboy1967/perl/ch-2.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/paul-fajman/perl/ch-2.pl"><strong>Paul Fajman</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/pete-houston/perl/ch-2.pl"><strong>Pete Houston</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/stuart-little/perl/ch-2.pl"><strong>Stuart Little</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/wanderdoc/perl/ch-2.pl"><strong>Wanderdoc</strong></a></p>
+<p>Well that went well. Let&rsquo;s try another.</p>
+<p>There were a total 31 submissions for the second task this past week. There was a little air, so to speak, in the description, allowing some ambiguities room to breathe. Such as: do intervals <em>sharing</em> a point conflict? Such as when one immediately picks up where another leaves off? Does a conflict have to <em>cross</em> a boundary, or does it include one interval being completely enveloped by another, with its outer perimeter unmolested? What exactly does &ldquo;conflict&rdquo; even mean, technically?</p>
+<p>With regard to the first point mentioned, I chose to consider that the 4 to 6 time slot is not normally said to conflict with the following 6 to 8 two-hour window, so no, sharing the 6 point does not in itself involve a conflict. Points are infinitesimal, so can contain no area to overlap. There <em>were</em> positions taken the other way on the subject — many, actually —  but I can hardly consider this a breakdown in the moral fiber of society. I say: Live and let live. Can&rsquo;t we all just get along?</p>
+<p>Especially, I feel obligated to note, that I seem to be quite far in the minority in my opinion on the matter.</p>
+<p>The directive to determine the conflicts against the previous intervals in the list I regard as a wonderful bit of confusion — of course if two intervals overlap then each overlaps the other and the interference is commutative. What this directive does do, however, is to tell us <em>which</em> interval is to be labeled the interloper: given two conflicting spans arranged left-to-right, even though both conflict with each other, we are here only concerned that the one further towards the right conflicts with the one to the left. It adds chirality to an otherwise symmetric operation.</p>
+<h2 id="a-selections-from-the-submissions">a SELECTIONS from the SUBMISSIONS</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/abigail/perl/ch-2.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/paul-fajman/perl/ch-2.pl"><strong>Paul Fajman</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/duane-powell/perl/ch-2.pl"><strong>Duane Powell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/jaredor/perl/ch-2.pl"><strong>Jared Martin</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/kostas-giannakakis/perl/ch-2.pl"><strong>Konstantinos Giannakakis</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://dev.to/simongreennet/weekly-challenge-127-4k6j">foo</a></p>
+<p>Simon imports <code>any</code> from <code>List::Util</code> to compare the bounds of each new interval against the list of every interval previously processed. If, for each comparison made, the lower bound of the candidate is found to be less than the upper being compared to and the upper of the new is greater then the lower of the previous than there is a conflict.</p>
+<p>Here <code>@numbers</code> is a list-ified condensation of the input intervals: lower, upper, lower, upper, in adjacent pairs.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">while</span> (@numbers) {
+        <span style="color:#66d9ef">my</span> $first <span style="color:#f92672">=</span> shift @numbers;
+        <span style="color:#66d9ef">my</span> $last  <span style="color:#f92672">=</span> shift @numbers;
+
+        <span style="color:#66d9ef">if</span> ( any { $first <span style="color:#f92672">&lt;=</span> $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">and</span> $last <span style="color:#f92672">&gt;=</span> $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] } @sets ) {
+            <span style="color:#75715e"># This interval intersects with a previous one</span>
+            push @match, [ $first, $last ];
+        }
+        <span style="color:#75715e"># Add this interval to a list of previous intervals</span>
+        push @sets, [ $first, $last ];
+    }
+
+    say <span style="color:#e6db74">&#39;[ &#39;</span>, join( <span style="color:#e6db74">&#39;, &#39;</span>, map { <span style="color:#e6db74">&#34;($_-&gt;[0],$_-&gt;[1])&#34;</span> } @match ), <span style="color:#e6db74">&#39; ]&#39;</span>;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/adam-russell/cxx/ch-2.cxx">C++</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/adam-russell/prolog/ch-2.p">Prolog</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2021/08/29">RabbitFarm - Conflicting Lists and Intervals</a></p>
+<p>Adam capitalizes on the sorting of the input intervals by last value as in the examples; not assuming this he adds a step to make sure it is so. The intervals themselves are stored as a list of array references of pairs, lower and upper bounds.</p>
+<p>He proceeds by removing the <em>last</em> interval pair from the list using <code>pop</code>, and then comparing the bounds of this against each other pair down the line. Done this way the remaining list comprises all the values to be compared to as it gradually shrinks.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">conflicts</span>{
+        <span style="color:#66d9ef">my</span> @intervals <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> @conflicts;
+        @intervals <span style="color:#f92672">=</span> sort { $a<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#e6db74">&lt;=&gt;</span> $b<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] } @intervals;
+        {
+            <span style="color:#66d9ef">my</span> $interval <span style="color:#f92672">=</span> pop @intervals;
+            <span style="color:#66d9ef">my</span>($i, $j) <span style="color:#f92672">=</span> @{$interval};
+            <span style="color:#66d9ef">for</span> $interval (@intervals){
+                <span style="color:#66d9ef">my</span>($m, $n) <span style="color:#f92672">=</span> @{$interval};
+                <span style="color:#66d9ef">do</span> { unshift @conflicts, [$i, $j]; <span style="color:#66d9ef">last</span> } <span style="color:#66d9ef">if</span> $i <span style="color:#f92672">&gt;=</span> $m <span style="color:#f92672">&amp;&amp;</span> $i <span style="color:#f92672">&lt;=</span> $n;
+            }
+            <span style="color:#66d9ef">redo</span> <span style="color:#66d9ef">if</span> @intervals;
+        }
+        <span style="color:#66d9ef">return</span> @conflicts;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/abigail/perl/ch-2.pl"><strong>Abigail</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/abigail/awk/ch-2.awk">Awk</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-127-2.html">Perl Weekly Challenge 127: Conflict Intervals</a></p>
+<p>Abigail runs headlong into the ambiguities of the task as defined, providing a rather thorough breakdown of the vagaries found, with a certain emphasis on what appears to be the semantic difference between intervals <em>intersecting</em> versus <em>conflicting</em>. Again I&rsquo;d think that sharing a point wouldn&rsquo;t cause a conflict, per se. But I didn&rsquo;t write the task; I&rsquo;m only here to report on the results as best I can. In any case conclusions are drawn, decisions made and a suitable solution is demonstrated.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">intersects</span> ($x, $y) {($$x [<span style="color:#ae81ff">1</span>] <span style="color:#f92672">&gt;=</span> $$y [<span style="color:#ae81ff">0</span>]) <span style="color:#f92672">&amp;&amp;</span> ($$x [<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&lt;=</span> $$y [<span style="color:#ae81ff">1</span>])}
+
+    MAIN: <span style="color:#66d9ef">while</span> (<span style="color:#f92672">&lt;&gt;</span>) {
+        <span style="color:#66d9ef">my</span> @intervals <span style="color:#f92672">=</span> map {[split <span style="color:#e6db74">/[^0-9]+/</span>]} <span style="color:#e6db74">/[1-9][0-9]*[^0-9]+[1-9][0-9]*/g</span>;
+
+        <span style="color:#75715e">#</span>
+        <span style="color:#75715e"># Make sure the intervals are all in order, that is, have their</span>
+        <span style="color:#75715e"># first vertex &lt; second vertex.</span>
+        <span style="color:#75715e">#</span>
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $interval (@intervals) {
+            @$interval <span style="color:#f92672">=</span> reverse @$interval <span style="color:#66d9ef">if</span> $$interval [<span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;</span> $$interval [<span style="color:#ae81ff">0</span>];
+        }
+
+        <span style="color:#75715e">#</span>
+        <span style="color:#75715e"># Compare each pair of intervals</span>
+        <span style="color:#75715e">#</span>
+
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; $i <span style="color:#f92672">&lt;</span> @intervals; $i <span style="color:#f92672">++</span>) {
+            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; $j <span style="color:#f92672">&lt;</span> $i; $j <span style="color:#f92672">++</span>) {
+                <span style="color:#66d9ef">if</span> (intersects $intervals [$i], $intervals [$j]) {
+                    say <span style="color:#ae81ff">1</span>;
+                    <span style="color:#66d9ef">next</span> MAIN;
+                }
+            }
+        }
+        say <span style="color:#ae81ff">0</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/polettix/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.polettix.it/ETOOBUSY/2021/08/26/pwc127-conflict-intervals/">PWC127 - Conflict Intervals - ETOOBUSY</a></p>
+<p>Flavio takes a very different approach by inverting problem: removing the <em>leftmost</em> interval he then makes comparisons rightward, against intervals that may in the future be found to conflict with it. If a conflict is found, then the bounds of the removed selection are expanded by merging with the conflict as we proceed to the end. The conflicting intervals are removed from the list to a list of conflicts when they are absorbed.</p>
+<p>When the end of the list is reached, the remaining list is shifted again and the process repeated.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">conflict_intervals</span> (@intervals) {
+       <span style="color:#66d9ef">my</span> @conflicting; <span style="color:#75715e"># keep the answer</span>
+       <span style="color:#66d9ef">while</span> (@intervals) {
+
+          <span style="color:#75715e"># if there is a &#34;first&#34; one, it&#39;s safe because it has not been</span>
+          <span style="color:#75715e"># eliminated by its predecessors. Its endpoints will be used to</span>
+          <span style="color:#75715e"># possibly eliminate successors, we keep them in two convenience</span>
+          <span style="color:#75715e"># variables.</span>
+          <span style="color:#66d9ef">my</span> ($X, $Y) <span style="color:#f92672">=</span> shift(@intervals)<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+
+          <span style="color:#960050;background-color:#1e0010">#</span> we filter the remaining intervals ditching all those that
+          <span style="color:#75715e"># conflict with ($X, $Y) or whatever it becomes on the way. In</span>
+          <span style="color:#75715e"># particular, at every conflict we expand ($X, $Y) to also</span>
+          <span style="color:#75715e"># include the conflicting item, because we will ditch it from</span>
+          <span style="color:#75715e"># the candidate &#34;clean&#34; intervals and put it in @conflicting.</span>
+          @intervals <span style="color:#f92672">=</span> grep {
+             <span style="color:#66d9ef">my</span> ($A, $B) <span style="color:#f92672">=</span> $_<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+
+             <span style="color:#960050;background-color:#1e0010">#</span> this is a general check to see <span style="color:#66d9ef">if</span> the two intervals are
+             <span style="color:#75715e"># disjoint. It assumes that touching intervals are conflicting.</span>
+             ($A <span style="color:#f92672">-</span> $Y) <span style="color:#f92672">*</span> ($B <span style="color:#f92672">-</span> $X) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">or</span> <span style="color:#66d9ef">do</span> {
+                push @conflicting, $_;
+                $X <span style="color:#f92672">=</span> $A <span style="color:#66d9ef">if</span> $X <span style="color:#f92672">&gt;</span> $A;  <span style="color:#75715e"># &#34;eat&#34; the ($A, $B) interval in ($X, $Y)</span>
+                $Y <span style="color:#f92672">=</span> $B <span style="color:#66d9ef">if</span> $Y <span style="color:#f92672">&lt;</span> $B;
+                <span style="color:#ae81ff">0</span>; <span style="color:#75715e"># this interval conflicted and does not get passed along</span>
+             }
+          } @intervals;
+       }
+       <span style="color:#66d9ef">return</span> @conflicting;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/paul-fajman/perl/ch-2.pl"><strong>Paul Fajman</strong></a></p>
+<p>Paul goes to great length to precisely duplicate the verbose text given in the examples, enumerating the intervals being compared left-to-right and for each case detailing either a list of all the other intervals it does not conflict with or the first example of a conflict found.</p>
+<pre><code>    The 1st interval (1,4) do not have any previous intervals to compare with, so skip it.
+    The 2nd interval (3,5) does conflict with the previous interval (1,4).
+    The 3rd interval (6,8) do not conflict with any of the previous intervals (1,4), (3,5) so skip it.
+    The 4th interval (12,13) do not conflict with any of the previous intervals (1,4), (3,5), (6,8) so skip it.
+    The 5th interval (3,20) does conflict with the previous interval (1,4).
+</code></pre><p>The bookkeeping required to compile this report adds complexity to the code, with separate output cases for whether there was or was not a conflict. A small optimization can be applied though, with a special case for the first interval, which can by definition never conflict, as it has nothing to conflict with.</p>
+<p>Here is the section that determined the conflicts, if any:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># Need to compare current coordinates against all previous coordinates.</span>
+    <span style="color:#75715e"># I do this by going backwards from current coordinates.</span>
+    <span style="color:#66d9ef">for</span> ($j<span style="color:#f92672">=</span>$i; $j <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>; $j<span style="color:#f92672">-=</span><span style="color:#ae81ff">2</span>) {
+      <span style="color:#66d9ef">if</span> ($ivals[$i] <span style="color:#f92672">&gt;</span> $ivals[$j<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>] <span style="color:#f92672">&amp;&amp;</span> $ivals[$i] <span style="color:#f92672">&lt;</span> $ivals[$j<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]) {
+         <span style="color:#75715e"># I use the @conflicts to track coordinates that matched or didn&#39;t match.</span>
+         <span style="color:#75715e"># If conflict hasn&#39;t been flagged as yes, it&#39;ll track the non-matches</span>
+         <span style="color:#75715e"># As soon as there is a conflict, we need to forget the non-matches and</span>
+         <span style="color:#75715e"># only track the conflict coordinates.</span>
+         undef(@conflicts) <span style="color:#66d9ef">if</span> $conflict <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#34;no&#34;</span>;
+         $conflict<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;yes&#34;</span>;
+         unshift @conflicts, $ivals[$j<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>], $ivals[$j<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+      }
+      <span style="color:#66d9ef">elsif</span> ($ivals[$i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&gt;</span> $ivals[$j<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>] <span style="color:#f92672">&amp;&amp;</span> $ivals[$i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;</span> $ivals[$j<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]) {
+         undef(@conflicts) <span style="color:#66d9ef">if</span> $conflict <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#34;no&#34;</span>;
+         $conflict<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;yes&#34;</span>;
+         unshift @conflicts, $ivals[$j<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>], $ivals[$j<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+      }
+      <span style="color:#66d9ef">else</span> {
+         <span style="color:#75715e"># No matches, track the non-matching conflicts.</span>
+         <span style="color:#75715e"># If we previous had a match, next.</span>
+         <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $conflict <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#34;yes&#34;</span>;
+         unshift @conflicts, $ivals[$j<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>], $ivals[$j<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+      }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/laurent-rosenfeld/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://blogs.perl.org/users/laurent_r/2021/08/perl-weekly-challenge-127-disjoint-sets-and-conflict-intervals.html">Perl Weekly Challenge 127: Disjoint Sets and Conflict Intervals |aurent_r</a></p>
+<p>Laurent takes the uncommon approach of hashing the integers contained in the processed intervals as he moves from left to right across the list. As each new interval is brought up for examination, the integers contained within it are first checked against the lookup and then added to it, updating the hash for the next examination.</p>
+<p>Hashes in Perl perform their associations in constant time, independant of the size of the data set. This approach makes the tradeoff of potentially a very large lookup in memory against a very quick process of actually performing that lookup.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $interv (@intervals) {
+        <span style="color:#66d9ef">my</span> $overlap <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">my</span> ($st, $end) <span style="color:#f92672">=</span>  @$interv[<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">1</span>];
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i ($st<span style="color:#f92672">..</span>$end) {
+            $overlap <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> exists $vals{$i};
+            $vals{$i} <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+        }
+        push @conflicts, $interv <span style="color:#66d9ef">if</span> $overlap;
+    }
+    say join <span style="color:#e6db74">&#34;, &#34;</span>, @$_ <span style="color:#66d9ef">for</span> @conflicts;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/duane-powell/perl/ch-2.pl"><strong>Duane Powell</strong></a></p>
+<p>Duane also takes this approach of hashing the integer values bracketed within the intervals being considered into a master lookup, <code>%seen</code>. This allows a quick scan of the span of each new interval considered to be checked, value-by-integral-value, against this lookup. As we said before, space is traded for speed of execution.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $pair <span style="color:#f92672">=</span> shift @{$in};
+    <span style="color:#66d9ef">my</span> %seen <span style="color:#f92672">=</span> map { $_ <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> } @{$pair};
+
+    <span style="color:#66d9ef">my</span> @out;
+    <span style="color:#66d9ef">while</span> ( @{$in} ) {
+        $pair <span style="color:#f92672">=</span> shift @{$in};
+        <span style="color:#66d9ef">my</span> ($c, $d) <span style="color:#f92672">=</span> @{$pair};
+        <span style="color:#66d9ef">my</span> $hit <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">foreach</span> ( $c <span style="color:#f92672">..</span> $d ) {
+            $hit <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> (defined($seen{$_}));
+            $seen{$_} <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+        }
+        push @out, $pair <span style="color:#66d9ef">if</span> ($hit);
+    }
+    say <span style="color:#e6db74">&#34;Output:&#34;</span>;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/jaredor/perl/ch-2.pl"><strong>Jared Martin</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://blogs.perl.org/users/jared_martin/2021/08/twc-127-intersection-on-a-sunday-afternoon.html">TWC 127: Intersectionn a Sunday Afternoon | Jared Martin</a></p>
+<p>Jared is very thorough in his submissions, providing a proper application complete with command line flags and documentation in POD format. This week&rsquo;s example is no exception. Because we&rsquo;re only looking to see whether a conflict exists, we can short-circuit the search at the first interval found.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw(all first min max)</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">interval_intersections</span> {
+
+        <span style="color:#66d9ef">my</span> ( @ovals, @ivals );
+
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $ival (@_) {
+            push @ovals, $ival <span style="color:#66d9ef">if</span> first { $ival<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">&gt;=</span> $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] }
+                                  grep { $ival<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&lt;=</span> $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] } @ivals;
+            push @ivals, $ival;
+        }
+
+        <span style="color:#66d9ef">return</span> @ovals;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a></p>
+<p>Jorg actively grapples analytically with the idea of an interval including its endpoints, introducing the mathematical terms &ldquo;open&rdquo; and &ldquo;closed&rdquo; to denote the states: &ldquo;closed&rdquo; for inclusion, &ldquo;open&rdquo; for exclusion. Based on a detailed examination of the examples, he comes to the somewhat surprising conclusion that the intervals are &ldquo;half-open&rdquo;, including the lower bound but excluding the upper, and that completely enclosed subsets do not conflist either. This is consistant with the data presented. So be it.</p>
+<p>To work the line of intervals, he starts at the end on the list, using <code>pop</code> to remove a set of points, then comparing the start and end-points to those pairs in the remaining list.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># There is a conflict between [i0, i1) and [k0, k1) if</span>
+    <span style="color:#75715e"># i0 &lt; k0 &lt; i1 &lt; k1 or</span>
+    <span style="color:#75715e"># k0 &lt; i0 &lt; k1 &lt; i1</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">conflicting</span> ($i, $k) {
+        $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&lt;</span> $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&amp;&amp;</span>
+        $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&lt;</span> $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">1</span>] <span style="color:#f92672">&amp;&amp;</span>
+        $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;</span> $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">1</span>] <span style="color:#f92672">&amp;&amp;</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">for</span> [$i, $k], [$k, $i];
+    }
+
+    <span style="color:#75715e"># Traversing backwards seems to be a bit easier to handle.</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">conflicting_intervals</span> (@intervals) {
+        <span style="color:#66d9ef">my</span> @conflicts;
+        <span style="color:#66d9ef">while</span> (defined (<span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> pop @intervals)) {
+            unshift @conflicts, $i <span style="color:#66d9ef">if</span> any {conflicting($_, $i)} @intervals;
+        }
+        @conflicts;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a></p>
+<p>Choroba brings us a couple of solution options this week, providing two classes that solve the problem in differing ways using the same API. In the first, <code>Interval::Conflict::Naive</code>, we check each interval against all the others against a growing list of previously processed intervals. In the second version, <code>Interval::Conflict::Binary</code> a binary search is implemented to quickly identify potential conflicts in a sorted list of intervals, and only validate against those selections.</p>
+<p>A nice and thorough test suite is provided using <code>Test2:V0</code>, assigning the package to be used and duplicating the cases, and following with a benchmark comparison.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    {   <span style="color:#66d9ef">package</span> Interval::Conflict::Binary;
+        <span style="color:#66d9ef">use</span> parent <span style="color:#f92672">-</span>norequire <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Interval::Conflict::Naive&#39;</span>;
+
+        <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">add</span> {
+            <span style="color:#66d9ef">my</span> ($self, $interval) <span style="color:#f92672">=</span> @_;
+            <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> $self<span style="color:#f92672">-&gt;</span>_locate($interval<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]);
+            splice @$self, $i, <span style="color:#ae81ff">0</span>, @$interval;
+        }
+
+        <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_conflicting</span> {
+            <span style="color:#66d9ef">my</span> ($self, $interval) <span style="color:#f92672">=</span> @_;
+            <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> $self<span style="color:#f92672">-&gt;</span>_locate($interval<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]);
+            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $i <span style="color:#f92672">&gt;</span> $#$self;
+
+            $i <span style="color:#f92672">-=</span> $i % 2;
+            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>
+                <span style="color:#66d9ef">if</span> $interval<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&lt;=</span> $self<span style="color:#f92672">-&gt;</span>[$i]
+                <span style="color:#f92672">&amp;&amp;</span> $self<span style="color:#f92672">-&gt;</span>[$i] <span style="color:#f92672">&lt;=</span> $interval<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>];
+
+            <span style="color:#66d9ef">my</span> ($start, $edge) <span style="color:#f92672">=</span> @{ ([$i, <span style="color:#ae81ff">0</span>], [$i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>])[$i % 2] };
+            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>
+                <span style="color:#66d9ef">if</span> $self<span style="color:#f92672">-&gt;</span>[$start] <span style="color:#f92672">&lt;=</span> $interval<span style="color:#f92672">-&gt;</span>[$edge]
+                <span style="color:#f92672">&amp;&amp;</span> $interval<span style="color:#f92672">-&gt;</span>[$edge] <span style="color:#f92672">&lt;=</span> $self<span style="color:#f92672">-&gt;</span>[ $start <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> ];
+
+            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>
+        }
+
+        <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_locate</span> {
+            <span style="color:#66d9ef">my</span> ($self, $value) <span style="color:#f92672">=</span> @_;
+
+            <span style="color:#66d9ef">my</span> ($from, $to) <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>, $#$self);
+            <span style="color:#66d9ef">while</span> ($to <span style="color:#f92672">-</span> $from <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>) {
+                <span style="color:#66d9ef">my</span> $middle <span style="color:#f92672">=</span> int(($from <span style="color:#f92672">+</span> $to) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>);
+                <span style="color:#66d9ef">if</span> ($value <span style="color:#f92672">&lt;</span> $self<span style="color:#f92672">-&gt;</span>[$middle]) {
+                    $to <span style="color:#f92672">=</span> $middle;
+                } <span style="color:#66d9ef">else</span> {
+                    $from <span style="color:#f92672">=</span> $middle;
+                }
+            }
+
+            <span style="color:#66d9ef">my</span> $r;
+            <span style="color:#66d9ef">if</span> (@$self <span style="color:#f92672">&amp;&amp;</span> $value <span style="color:#f92672">&lt;=</span> $self<span style="color:#f92672">-&gt;</span>[$from]) {
+                $r <span style="color:#f92672">=</span> $from;
+            } <span style="color:#66d9ef">else</span> {
+                $r <span style="color:#f92672">=</span> $to <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> ? <span style="color:#ae81ff">0</span>
+                             : $to <span style="color:#f92672">+</span> ($self<span style="color:#f92672">-&gt;</span>[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;</span> $value);
+            }
+
+            <span style="color:#66d9ef">return</span> $r
+        }
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">conflict_intervals</span> {
+        <span style="color:#66d9ef">my</span> ($class, @intervals) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> $il <span style="color:#f92672">=</span> $class<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
+        <span style="color:#66d9ef">my</span> @conflicts;
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $interval (@intervals) {
+            <span style="color:#66d9ef">if</span> ($il<span style="color:#f92672">-&gt;</span>is_conflicting($interval)) {
+                push @conflicts, $interval;
+            } <span style="color:#66d9ef">else</span> {
+                $il<span style="color:#f92672">-&gt;</span>add($interval);
+            }
+        }
+        <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@conflicts
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/kostas-giannakakis/perl/ch-2.pl"><strong>Konstantinos Giannakakis</strong></a></p>
+<p>Konstantinos, in  working across the input list, adds each new interval he finds to a set of processed intervals, then checks the interval against those gathered in the set for conflicts. This works because he does not include the endpoints in his intervals, so an interval will never interfere with itself. In an aside, I&rsquo;m glad to finally find someone who shared my interpretation of &ldquo;conflict&rdquo; in their solution. In any case this makes for a compact algorithm essentially based around a pair of nested loops, albeit one of these is broken off into its own subroutine.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">foreach</span> (@Intervals) {
+        $count<span style="color:#f92672">++</span>;
+        push @sets, $_;
+        conflict($count, $_, @sets);
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">conflict</span> {
+        <span style="color:#66d9ef">my</span> $count <span style="color:#f92672">=</span> shift;
+        <span style="color:#66d9ef">my</span> $set   <span style="color:#f92672">=</span> shift;
+        <span style="color:#66d9ef">my</span> @arr   <span style="color:#f92672">=</span> @_;
+
+        <span style="color:#66d9ef">my</span> @sort_tmp;
+
+       <span style="color:#66d9ef">if</span> (scalar(@arr) <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>) {
+           <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;- The $count interval ($set-&gt;[0],$set-&gt;[1]) do not have any previous intervals to compare with, so skip it.\n&#34;</span>;
+           <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+       }
+
+        <span style="color:#66d9ef">foreach</span> (@arr) {
+            <span style="color:#66d9ef">if</span> ($set<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&gt;</span> $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&amp;&amp;</span> $set<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&lt;</span> $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]) {
+                <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;- The $count interval ($set-&gt;[0],$set-&gt;[1]) does conflict with some of the previous intervals.\n&#34;</span>;
+                push @conflicts, $set;
+                <span style="color:#66d9ef">return</span>;
+            }
+        }
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;- The $count interval ($set-&gt;[0],$set-&gt;[1]) do not conflicts with any of the previous intervals so skip it.\n&#34;</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a></p>
+<p>And finally, we have CY. She also choses to work left-to-right against the complete list, rewriting it between passes, comparing each interval in turn against all the intervals to the right that may conflict with it later. When a conflict is found, the conflicting rightward interval is replaced by a new interval merged with the one under examination, and then added to the reconstructed list for the next pass.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">conflict_intervals</span> {
+        <span style="color:#66d9ef">my</span> @intervals <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> @pre_intervals;
+        <span style="color:#66d9ef">my</span> @new_intervals;
+        <span style="color:#66d9ef">my</span> @ans;
+        push @new_intervals, $intervals[<span style="color:#ae81ff">0</span>];
+
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$#intervals) {
+            <span style="color:#66d9ef">my</span> $bool_cf <span style="color:#f92672">=</span> undef;
+            @pre_intervals <span style="color:#f92672">=</span> @new_intervals;
+            @new_intervals <span style="color:#f92672">=</span> ();
+            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $interv (@pre_intervals) {
+                <span style="color:#66d9ef">if</span> (conf( $intervals[$i], $interv)) {
+                    push @new_intervals, merge($intervals[$i], $interv);
+                    $bool_cf <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+                }
+                <span style="color:#66d9ef">else</span> {
+                    push @new_intervals, $interv;
+                }
+            }
+            push @new_intervals, $intervals[$i] <span style="color:#66d9ef">if</span> <span style="color:#f92672">!</span>$bool_cf;
+            push @ans, $intervals[$i] <span style="color:#66d9ef">if</span> $bool_cf;
+        }
+        <span style="color:#66d9ef">return</span> [@ans];
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">merge</span> {
+        <span style="color:#66d9ef">return</span> [
+          min($_[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>], $_[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]),
+          max($_[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>], $_[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>])
+        ];
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">conf</span> {
+        <span style="color:#66d9ef">my</span> $i1;
+        <span style="color:#66d9ef">my</span> $i2;
+        <span style="color:#66d9ef">if</span> ($_[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&lt;</span> $_[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]) {
+            $i1 <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>];
+            $i2 <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">1</span>];
+        }
+        <span style="color:#66d9ef">elsif</span> ($_[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&gt;</span> $_[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]) {
+            $i1 <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">1</span>];
+            $i2 <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>];
+        }
+        <span style="color:#66d9ef">else</span> {
+            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+        }
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> $i1<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">&gt;</span> $i2<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>];
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+    }
+</code></pre></div><h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-2-1">Blogs and Additional Submissions in Guest Languages for Task 2:</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/arne-sommer/perl/ch-2.pl"><strong>Arne Sommer</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/arne-sommer/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://raku-musings.com/disjoint-conflict.html">Disjoint Conflict with Raku and Perl</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/athanasius/raku/ch-2.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/bruce-gray/perl/ch-2_even_more_haskell-ish.pl"><strong>Bruce Gray</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/bruce-gray/raku/ch-2.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://colincrain.com/2021/08/29/time-out-of-joint-at-set-intervals/">Time Out-of-Joint — at Set Intervals - Programming Excursions in Perl and Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://jacoby.github.io/2021/08/24/multiple-sets-of-interval-training-the-weekly-challenge-127.html">Multiple Setsf Interval Training: The Weekly Challenge #127 | Committed to Memory</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/iangoodnight/perl/ch-2.pl"><strong>Ian Goodnight</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/iangoodnight/javascript/ch-2.js">Javascript</a>,</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-127/james-smith/">Perl Weekly Challenge #127</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/lubos-kolouch/perl/ch-2.pl"><strong>Lubos Kolouch</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/lubos-kolouch/python/ch-2.py">Python</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/roger-bell-west/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/roger-bell-west/raku/ch-2.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/roger-bell-west/ruby/ch-2.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/roger-bell-west/rust/ch-2.rs">Rust</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://blog.firedrake.org/archive/2021/08/Perl_Weekly_Challenge_127__Disjoint_Conflict.html">RogerBW&rsquo;s Blog: Perl Weekly Challenge 127: Disjoint Conflict</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/stuart-little/perl/ch-2.pl"><strong>Stuart Little</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/stuart-little/haskell/ch-2.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/stuart-little/lua/ch-2.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/stuart-little/node/ch-2.js">Node</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/stuart-little/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/stuart-little/raku/ch-2.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/ulrich-rieke/haskell/ch-2.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/ulrich-rieke/raku/ch-2.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://wlmb.github.io/2021/08/23/PWC127/">Perl Weekly Challenge 127 – W. Luis Mochán</a></p>
+<hr>
+<h1 id="PWC127BLOGS">BLOGS</h1>
+<hr>
+<p><strong>That’s it for me this week, people! Warped by the rain, driven by the snow, resolute and unbroken by the torrential influx, I somehow continue to maintain my bearings. Looking forward to next wave, the perfect wave, I am: <em>your humble servant</em>.</strong></p>
+<h1 id="PWC127BLOGS">But if Your <em>THIRST</em> for <em>KNOWLEDGE</em> is not <em>SLAKED</em>,</h1>
+<h1 id="then-run-dont-walk-to-the-watering-hole">then <em>RUN</em> <em>(dont walk!)</em> to the <em>WATERING HOLE</em></h1>
+<h1 id="and-read-these-blog-links">and <em>READ</em> these <em>BLOG</em> <em>LINKS</em>:</h1>
+<p><strong>( <em>don&rsquo;t think, trust your training, you&rsquo;re in the zone, just do it &hellip;</em> )</strong></p>
+<p><strong>Abigail</strong></p>
+<ul>
+<li><a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-127-1.html">Perl Weekly Challenge 127: Disjoint Sets</a> ( <em>Perl</em> )</li>
+<li><a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-127-2.html">Perl Weekly Challenge 127: Conflict Intervals</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Adam Russell</strong></p>
+<ul>
+<li><a href="http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2021/08/29">RabbitFarm - Conflicting Lists and Intervals - Perl </a> ( <em>Perl</em> )</li>
+<li><a href="http://www.rabbitfarm.com/cgi-bin/blosxom/prolog/2021/08/29">RabbitFarm - Conflicting Lists and Intervals - Prolog</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Arne Sommer</strong></p>
+<ul>
+<li><a href="https://raku-musings.com/disjoint-conflict.html">Disjoint Conflict with Raku and Perl</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Colin Crain</strong></p>
+<ul>
+<li><a href="https://colincrain.com/2021/08/29/time-out-of-joint-at-set-intervals/">Time Out-of-Joint — at Set Intervals - Programming Excursions in Perl and Raku</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Dave Jacoby</strong></p>
+<ul>
+<li><a href="https://jacoby.github.io/2021/08/24/multiple-sets-of-interval-training-the-weekly-challenge-127.html">Multiple Sets of Interval Training: The Weekly Challenge #127 | Committed to Memory</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Flavio Poletti</strong></p>
+<ul>
+<li><a href="https://github.polettix.it/ETOOBUSY/2021/08/25/pwc127-disjoint-sets/">PWC127 - Disjoint Sets - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+<li><a href="https://github.polettix.it/ETOOBUSY/2021/08/26/pwc127-conflict-intervals/">PWC127 - Conflict Intervals - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Ian Goodnight</strong></p>
+<ul>
+<li><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/iangoodnight/perl/README.md">Perl Weekly Challenge Club - 127 - Perl</a> ( <em>Perl</em> )</li>
+<li><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-127/iangoodnight/javascript">Perl Weekly Challenge Club - 127 - Javascript</a> ( <em>Javascript</em> )</li>
+</ul>
+<p><strong>James Smith</strong></p>
+<ul>
+<li><a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-127/james-smith/">Perl Weekly Challenge #127</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Jared Martin</strong></p>
+<ul>
+<li><a href="http://blogs.perl.org/users/jared_martin/2021/08/twc-127-intersection-on-a-sunday-afternoon.html">TWC 127: Intersectionn a Sunday Afternoon | Jared Martin</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Laurent Rosenfeld</strong></p>
+<ul>
+<li><a href="http://blogs.perl.org/users/laurent_r/2021/08/perl-weekly-challenge-127-disjoint-sets-and-conflict-intervals.html">Perl Weekly Challenge 127: Disjoint Sets and Conflict Intervals |aurent_r</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Luca Ferrari</strong></p>
+<ul>
+<li><a href="https://fluca1978.github.io/2021/08/23/PerlWeeklyChallenge127.html#task1">Perl Weekly Challenge 127: no need for coffee! – Luca Ferrari – Open Source advocate, human being</a> ( <em>Raku</em> )</li>
+<li><a href="https://fluca1978.github.io/2021/08/23/PerlWeeklyChallenge127.html#task2">Perl Weekly Challenge 127: no need for coffee! – Luca Ferrari – Open Source advocate, human being</a> ( <em>Raku</em> )</li>
+</ul>
+<p><strong>Roger Bell_West</strong></p>
+<ul>
+<li><a href="https://blog.firedrake.org/archive/2021/08/Perl_Weekly_Challenge_127__Disjoint_Conflict.html">RogerBW&rsquo;s Blog: Perl Weekly Challenge 127: Disjoint Conflict</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Simon Green</strong></p>
+<ul>
+<li><a href="https://dev.to/simongreennet/weekly-challenge-127-4k6j">Weekly Challenge 127</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>W. Luis Mochan</strong></p>
+<ul>
+<li><a href="https://wlmb.github.io/2021/08/23/PWC127/">Perl Weekly Challenge 127 – W. Luis Mochán</a> ( <em>Perl</em> )</li>
+</ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="/contact" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2021
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.nomtimes.co.uk/site/shop.do?cref=PerlBooks" title="Free Perl Books" rel="noreferrer" target="_blank">
+                            <img src="/images/NomTimes.jpg" style="width:22px; height: 18px;" alt=""/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jQurey/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-136524905-1', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+
+</html>
+
