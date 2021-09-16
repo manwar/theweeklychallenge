@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2021-09-15T00:00:00+00:00
+date: 2021-09-16T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -31,6 +31,20 @@ Please find below guest contributions.
 ----
 ## [The Weekly Challenge - 130](/blog/perl-weekly-challenge-130) {#130}
 <br>
+
+##### **Abigail** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-130/abigail/awk/ch-1.awk) in **Awk**.
+
+##### **Abigail** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-130/abigail/bash/ch-1.sh) in **Bash**.
+
+##### **Abigail** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-130/abigail/c/ch-1.c) in **C**.
+
+##### **Abigail** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-130/abigail/lua/ch-1.lua) in **Lua**.
+
+##### **Abigail** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-130/abigail/node/ch-1.js) in **Node.js**.
+
+##### **Abigail** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-130/abigail/python/ch-1.py) in **Python**.
+
+##### **Abigail** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-130/abigail/ruby/ch-1.rb) in **Ruby**.
 
 ##### **Eric Cheung** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-130/eric-cheung/excel-vba/ch-1.bas) in **Excel VBA**.
 
