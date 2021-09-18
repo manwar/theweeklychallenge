@@ -68,7 +68,7 @@ Please find below guest contributions.
 
 ##### **Ulrich Rieke** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-130/ulrich-rieke/cpp/ch-1.cpp) in **C++**.
 
-##### **Stuart Little** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-130/stuart-little/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-130/stuart-little/haskell/ch-2.hs) in **Haskell**.
+##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-130/ulrich-rieke/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-130/ulrich-rieke/haskell/ch-2.hs) in **Haskell**.
 
 ----
 ## [The Weekly Challenge - 129](/blog/perl-weekly-challenge-129) {#129}
