@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2021-09-17T00:00:00+00:00
+date: 2021-09-18T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -53,6 +53,8 @@ Please find below guest contributions.
 ##### **Eric Cheung** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-130/eric-cheung/excel-vba/ch-1.bas) in **Excel VBA**.
 
 ##### **Eric Cheung** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-130/eric-cheung/python/ch-2.py) in **Python**.
+
+##### **Mohammad Meraj Zia** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/ziameraj16/java/OddNumber.java) in **Java**.
 
 ##### **Roger Bell_West** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-130/roger-bell-west/postscript/ch-1.ps) in **Postscript**.
 
