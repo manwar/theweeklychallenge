@@ -54,6 +54,8 @@ Please find below guest contributions.
 
 ##### **Eric Cheung** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-130/eric-cheung/python/ch-2.py) in **Python**.
 
+##### **Ian Goodnight** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-130/iangoodnight/javascript/ch-1.js) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-130/iangodnight/javascript/ch-2.js) in **JavaScript**.
+
 ##### **Mohammad Meraj Zia** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-127/ziameraj16/java/OddNumber.java) in **Java**.
 
 ##### **Roger Bell_West** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-130/roger-bell-west/postscript/ch-1.ps) in **Postscript**.
