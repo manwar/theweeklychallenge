@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="The Weekly Challenge - Perl & Raku"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="You do not have to be an expert."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Colin Crain › Perl Weekly Review #128">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Colin Crain › Perl Weekly Review #128</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navgation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Colin Crain › Perl Weekly Review #128</h2>
+                    <div class="portfolio-meta">
+                        <span>Sunday, Sep 19, 2021</span>|
+                        <span> Tags:
+                            perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/p5-review-challenge-128.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <p>( <em>&hellip;continues from <a href="/blog/review-challenge-127/">previous week</a>.</em> )</p>
+<p>Welcome to the Perl review for <strong>Week 128</strong> of the Weekly Challenge! Here we will take the time to discuss the  submissions offered by the team, factor out the common methodologies that came up in those solutions, and highlight some of the unique approaches and unusual code created.</p>
+<hr>
+<h3 id="why-do-we-do-these-challenges">Why do we do these challenges?</h3>
+<p>I suppose any answers to that would be as wide ranging and varied as the people who choose to join the team. One thing is clear: it&rsquo;s not a competition, and there are no judges, even if there is a &ldquo;prize&rdquo; of sorts. About that &ndash; I think of it more as an honorarium periodically awarded to acknowledge the efforts we make towards this strange goal. So there&rsquo;s no determination to find the <em>fastest</em>, or the <em>shortest</em>, or even, in some abstract way, the <em>best</em> way to go about things, although I&rsquo;m certain the individuals have their own aspirations and personal drives. As Perl is such a wonderfully expressive language, this provides quite a bit of fodder to the core idea of TMTOWTDI, producing a gamut of wonderfully varied techniques and solutions.</p>
+<p>Even the tasks themselves are often open to a certain amount of discretionary interpretation. What we end up with is a situation where each participant is producing something in the manner they find the most interesting or satisfying. Some team members focus on carefully crafted complete applications that thoroughly vet input data and handle every use case they can think up. Others chose to apply themselves to the logic of the underlying puzzle and making it work in the most elegant way they can. Some eschew modules they would ordinarily reach for, others embrace them, bringing to light wheels perhaps invented years ago that happen to exactly solve the problem in front of them today.</p>
+<p>I&rsquo;ve been considering this question for some time and have found one binding commonality between all of us solving these challenges each week, in that however we normally live our lives, the task in front of us more than likely has nothing to do with any of that . And I think this has great value. We all do what we do, out in the real world, and hopefully we do it well. The Weekly Challenge provides a opportunity to do something germane to that life yet distinctly different; if we only do the things we already know how to do we only do the same things over and over. This is where the &ldquo;challenge&rdquo; aspect comes into play.</p>
+<p>So we can consider the Weekly Challenge as providing a problem space outside of our comfort zone, as far out from comfort as we wish to take things. From those reaches we can gather and learn things and bring what we want back into our lives. Personally, I think that&rsquo;s its greatest value of all.</p>
+<hr>
+<p>Every week there is an enormous global collective effort made by the team, analyzing and creatively coding the submissions, and that effort deserves credit due. And that&rsquo;s why I&rsquo;m here, to try and figure out how to do that.</p>
+<p>Let&rsquo;s have a look and see what we can find.</p>
+<hr>
+<p><strong><big>For context</big></strong>  before we begin, you may wish to revisit either of the pages for the <a href="/blog/perl-weekly-challenge-128/"><strong>original tasks</strong></a> or the summary <a href="/blog/recap-challenge-128/"><strong>recap</strong></a> of the challenge. But don&rsquo;t worry, the challenges themselves will be briefly summarized, presented below as we progress from task by task. Oh, and one more thing before we get started:</p>
+<h3 id="getting-in-touch-with-us">Getting in Touch with Us</h3>
+<p><a href="mailto:pwc.perfectwave@gmail.com"><img src="/images/blog/Email.svg" height="50" width="50"> Email</a> › Please email me (Colin) with any feedback, notes, clarifications or whatnot about this review.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge"><img src="/images/blog/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request to us for any issues you may find with this page.</p>
+<p><a href="https://twitter.com/perlwchallenge"><img src="/images/blog/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!</p>
+<p>I&rsquo;m always curious as to what the people think of these efforts. Everyone here at the PWC would like to hear any feedback you&rsquo;d like to give.</p>
+<p><strong>So finally, without further ado&hellip;</strong></p>
+<hr>
+<h2 id="---nbsp--nbsp--nbsp---task-1pwc128task1-------nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---task-2pwc128task2---nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---blogspwc128blogs----nbsp--nbsp--nbsp---">•             <a href="#PWC128TASK1">Task 1</a>                 •             <a href="#PWC128TASK2">Task 2</a>             	•             <a href="#PWC128BLOGS">BLOGS</a>              	•</h2>
+<hr>
+<h1 id="PWC128TASK1">TASK 1</h1>
+<h1 id="maximum-sub-matrix">Maximum Sub-Matrix</h1>
+<p><em>Submitted by: Mohammad S Anwar</em><br>
+You are given m x n binary matrix having 0 or 1.</p>
+<p>Write a script to find out maximum sub-matrix having only 0.</p>
+<p><strong>Example 1:</strong></p>
+<pre><code>    Input : [ 1 0 0 0 1 0 ]
+            [ 1 1 0 0 0 1 ]
+            [ 1 0 0 0 0 0 ]
+
+    Output: [ 0 0 0 ]
+            [ 0 0 0 ]
+</code></pre><p><strong>Example 2:</strong></p>
+<pre><code>    Input : [ 0 0 1 1 ]
+            [ 0 0 0 1 ]
+            [ 0 0 1 0 ]
+
+    Output: [ 0 0 ]
+            [ 0 0 ]
+            [ 0 0 ]
+</code></pre><h2 id="about-the-solutions">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/abigail/perl/ch-1.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/bruce-gray/perl/ch-1.pl"><strong>Bruce Gray</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/mattneleigh/perl/ch-1.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/stuart-little/perl/ch-1.pl"><strong>Stuart Little</strong></a>,
+<a href=""><strong>Ulrich Rieke</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>Well, friends, welcome to the latest installment of the <em>lighting edition</em> of the Weekly Challenge Review Pages. In this version, due to constraints on our time, we&rsquo;ll pick a dozen submissions at random from the field, take them apart, and see what makes them tick. This sample should give us some insight into the common methods used to solve the challenge and perhaps some of the more adventurous as well, filling out the service into a proper meal. As the selection will truly be random, we&rsquo;ve just have to wait and see what comes up.</p>
+<p>In the future, time permitting (<em>&ldquo;This can&rsquo;t last forever!&quot;</em> I tell myself) I look forward to returning to a more comprehensive examination of all the various solution types, as there are often unique offerings that here may find themselves slipping through the cracks. To those who go the extra mile and find themselves unacknowledged in these pages, I apologize in advance.</p>
+<p>There were only 17 submissions for the first task this past week, so it looks like we&rsquo;ll end up with a pretty complete overview in the end anyway. For me, researching the backgrounds on the challenges and solution algorithms is always the most enjoyable part of this job, to look at not just how to solve a problem but how to solve the problem in every way imaginable, and present the findings. That depth will presumably have to wait, but I will see what I can do.</p>
+<h2 id="bobbing-for-apples-at-the-county-fair--a-selection-of-tasty-treats">BOBBING for APPLES at the COUNTY FAIR — A SELECTION of TASTY TREATS</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/abigail/perl/ch-1.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/stuart-little/perl/ch-1.pl"><strong>Stuart Little</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/abigail/perl/ch-1.pl"><strong>Abigail</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-128-1.html">Perl Weekly Challenge 128: Maximum Sub-Matrix</a></p>
+<p>Abigail will start us off with an observation that I&rsquo;m sure many long-time members made, on the similarities between this challenge and that of <a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-087/#TASK2">PWC 087, task 2 — &ldquo;Largest Rectangle&rdquo;</a>. Abigail, ever diligent in the fight against duplicated effort, has chosen not to copy and alter that piece of work but rather spend their time creating glue code to use the actual solution, tucked away in its own directory, to do the processing, with additional transformations as required to massage the data going in and coming out.</p>
+<p>There was a time when the internet was glued together with Perl, a task which as a language it excels at; knitting together smaller processes to make a new whole. I used to call us the new quilt-makers: meticulously stitching together little squares — each pretty in its own right — but once assembled, when viewed later as an intricate field of discrete parts, a true thing of beauty.</p>
+<p>This is an unusual way to start the overview of solutions — not actually displaying an algorithm for examination — but cuts straight to the heart of Perl and what makes it so good at what it does. So with one orthogonal step sideways we&rsquo;re off and running.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> FindBin;
+    <span style="color:#66d9ef">use</span> IPC::Open2;
+
+    <span style="color:#66d9ef">my</span> $program <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;$FindBin::Bin/../../../challenge-087/abigail/perl/ch-2.pl&#34;</span>;
+
+    <span style="color:#66d9ef">my</span> $pid <span style="color:#f92672">=</span> open2 (<span style="color:#66d9ef">my</span> $out, <span style="color:#66d9ef">my</span> $in, $^X, $program) <span style="color:#e6db74">//</span> die <span style="color:#e6db74">&#34;open failed: $!&#34;</span>;
+
+    <span style="color:#66d9ef">print</span> $in y<span style="color:#e6db74">/01/</span><span style="color:#ae81ff">10</span><span style="color:#f92672">/</span>r <span style="color:#66d9ef">while</span> <span style="color:#f92672">&lt;&gt;</span>;
+
+    close $in;
+
+    <span style="color:#66d9ef">print</span> y<span style="color:#e6db74">/1/</span><span style="color:#ae81ff">0</span><span style="color:#f92672">/</span>r <span style="color:#66d9ef">while</span> <span style="color:#e6db74">&lt;$out&gt;</span>;
+
+    waitpid ($pid, <span style="color:#ae81ff">0</span>);
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-128/james-smith">Perl Weekly Challenge #128</a></p>
+<p>James makes the interesting choice to transform the matrix before processing, replacing the 1s and 0s in each cell with the length of the continuous sequence of 0s starting at that point. Hence 1s immediately become 0s, and for instance a subsequence of 3 0s will start with 3, followed by a 2, then 1 in the last place. This initial transformation makes all subsequent calculation considerably simpler.</p>
+<p>This allows him to &ldquo;look ahead&rdquo; in the row at any point to see the width of a sub-matrix starting at that point. He can then work downward in and additional loop through the following lines, computing sub-matrix areas for each next row with the height and the minimum valid width of 0s found.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">find_empty</span> {
+      <span style="color:#66d9ef">my</span> @runs <span style="color:#f92672">=</span> map { [<span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> $_<span style="color:#f92672">-&gt;</span>[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]] } <span style="color:#66d9ef">my</span> @rows <span style="color:#f92672">=</span> @{$_[<span style="color:#ae81ff">0</span>]};
+      <span style="color:#66d9ef">my</span> ($h,$w) <span style="color:#f92672">=</span> ( @rows<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, @{$rows[<span style="color:#ae81ff">0</span>]}<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> );
+
+      <span style="color:#75715e">## First pass through the array - we calculate how many</span>
+      <span style="color:#75715e">## 0s are in the cell and to the right... So for example 1 we get</span>
+      <span style="color:#75715e">##   0 3 2 1 0 1</span>
+      <span style="color:#75715e">##   0 0 3 2 1 0</span>
+      <span style="color:#75715e">##   0 5 4 3 2 1</span>
+      <span style="color:#75715e">## This is O(n^2)</span>
+      <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i (reverse <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$w<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
+        unshift @{$runs[$_]}, $rows[$_][$i] ? <span style="color:#ae81ff">0</span> : $runs[$_][<span style="color:#ae81ff">0</span>]<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span> <span style="color:#66d9ef">foreach</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$h;
+      }
+      <span style="color:#75715e">## Now we have to loop over all squares and check rectangles starting</span>
+      <span style="color:#75715e">## at the square and going down and to the right...</span>
+      <span style="color:#75715e">## This is now an O(n^3) operation reduced from the O(n^4) operation</span>
+      <span style="color:#75715e">## by working with run lengths...</span>
+      <span style="color:#75715e">## Effectively the O(n^2) operation above removes the inner loop of</span>
+      <span style="color:#75715e">## scanning right for 0s...</span>
+
+      <span style="color:#66d9ef">my</span> $max_area <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>];
+      <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $x ( <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$w ) {
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $y ( <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$h ) {
+          <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> $runs[$y][$x];   <span style="color:#75715e">## Short cut answer will be 0</span>
+          <span style="color:#66d9ef">my</span> $max_w <span style="color:#f92672">=</span> <span style="color:#ae81ff">1e9</span>;
+          <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $j ( $y<span style="color:#f92672">..</span>$h ) {
+            <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">unless</span> $runs[$j][$x]; <span style="color:#75715e">## Short cut all subsequent answers are 0</span>
+            $max_w    <span style="color:#f92672">=</span> $runs[$j][$x]          <span style="color:#66d9ef">if</span> $runs[$j][$x] <span style="color:#f92672">&lt;</span> $max_w;
+            <span style="color:#66d9ef">my</span> $area  <span style="color:#f92672">=</span> $max_w <span style="color:#f92672">*</span> ($j<span style="color:#f92672">-</span>$y<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>);
+            $max_area <span style="color:#f92672">=</span> [$area,$max_w,$j<span style="color:#f92672">-</span>$y<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#66d9ef">if</span> $area<span style="color:#f92672">&gt;</span>$max_area<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>];
+          }
+        }
+      }
+      <span style="color:#66d9ef">return</span> $max_area;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://wlmb.github.io/2021/08/30/PWC128/">Perl Weekly Challenge 128 – W. Luis Mochán</a></p>
+<p>Luis brings to bear the enormous matrix-crunching capabilities of the PDL, the Perl Data Language extensions. In a two-pass algorithm, he first determines all submatrices originating from a given coordinate, filtering these for the largest found, then from the list of largest submatrices selects the largest in turn from these.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> PDL;
+
+    <span style="color:#66d9ef">my</span> $m<span style="color:#f92672">=</span>(rcols <span style="color:#f92672">*</span>STDIN,<span style="color:#f92672">[]</span>,{EXCLUDE<span style="color:#f92672">=&gt;</span><span style="color:#e6db74">&#39;/^\s*$/&#39;</span>})<span style="color:#f92672">-&gt;</span>transpose; <span style="color:#75715e">#input as pdl matrix</span>
+    <span style="color:#66d9ef">my</span> ($x_max,$y_max)<span style="color:#f92672">=</span>map {$_<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>} $m<span style="color:#f92672">-&gt;</span>dims;
+    <span style="color:#75715e"># For each corner $i, $j find the best submatrix</span>
+    <span style="color:#66d9ef">my</span> @sm; <span style="color:#75715e">#array of submatrices</span>
+    <span style="color:#75715e"># For each possible corner produce submatrices</span>
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i(<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$x_max){
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $j(<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$y_max){
+        push @sm, submatrix($i,$j) <span style="color:#66d9ef">if</span> $m<span style="color:#f92672">-&gt;</span>at($i,$j)<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>;
+        }
+    }
+    <span style="color:#75715e"># Choose the largest one</span>
+    <span style="color:#66d9ef">my</span> $b<span style="color:#f92672">=</span>reduce {area(@{$a})<span style="color:#f92672">&gt;</span>area(@{$b})?$a:$b} @sm;
+    <span style="color:#75715e"># Output the results</span>
+    say <span style="color:#e6db74">&#34;Input: $m\nOutput: &#34;</span>,
+        defined $b?<span style="color:#e6db74">&#34;matrix($b-&gt;[0]:$b-&gt;[1],$b-&gt;[2]:$b-&gt;[3])=&#34;</span><span style="color:#f92672">.</span>
+                    $m<span style="color:#f92672">-&gt;</span>slice(<span style="color:#e6db74">&#34;$b-&gt;[0]:$b-&gt;[1],$b-&gt;[2]:$b-&gt;[3]&#34;</span>)
+                  :<span style="color:#e6db74">&#34;None&#34;</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">area</span> { <span style="color:#75715e"># Calculate the area of a rectangular region given the ranges (a:b,c:d)</span>
+        <span style="color:#66d9ef">my</span> ($a, $b, $c, $d)<span style="color:#f92672">=</span>@_;
+        <span style="color:#66d9ef">return</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">+</span>$b<span style="color:#f92672">-</span>$a)<span style="color:#f92672">*</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">+</span>$d<span style="color:#f92672">-</span>$c);
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a></p>
+<p>Jorg also reaches  for the PDL for his matrix manipulations. In his version he looks at every possible submatrix sorted by descending size and stops at the first one that&rsquo;s all zeros. Oh! <em>(smacks forehead)</em> Why didn&rsquo;t I think of that?</p>
+<p>The fact that this can be done in a few lines of code is frankly astonishing, but here we are. The comments far outnumber the actual commands.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e">### Input and Output</span>
+
+    <span style="color:#75715e"># Generate a zero matrix in the found dimensions.  It&#39;s a fake, but one</span>
+    <span style="color:#75715e"># zero matrix is as good any zero matrix - as long as their dimensions</span>
+    <span style="color:#75715e"># agree.</span>
+    say zeros(zero_submatrix(byte join <span style="color:#e6db74">&#39;;&#39;</span>, @ARGV)<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>);
+
+
+    <span style="color:#75715e">### Implementation</span>
+
+    <span style="color:#75715e"># Loop over all sub matrix dimensions in descending size down from the</span>
+    <span style="color:#75715e"># given matrix&#39; dimensions and stop at the first all-zero sub matrix</span>
+    <span style="color:#75715e"># hit.</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">zero_submatrix</span> ($m) {
+        <span style="color:#75715e"># The loop variable is a 1-d index piddle holding the sub matrix</span>
+        <span style="color:#75715e"># dimensions.</span>
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $dims (sort {prod($b) <span style="color:#e6db74">&lt;=&gt;</span> prod($a)}
+            (ndcoords(indx, $m)<span style="color:#f92672">-&gt;</span>clump(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)<span style="color:#f92672">-&gt;</span>dog) {
+                <span style="color:#75715e"># Build &#34;array ref syntax&#34; slice arguments such that a sub</span>
+                <span style="color:#75715e"># matrix of the current dimensions having an upper left</span>
+                <span style="color:#75715e"># element inside the resulting slice fits into the full</span>
+                <span style="color:#75715e"># matrix, i.e.  a &#34;PDL way&#34; to get [[0, -dim0], [0, -dim1]]</span>
+                <span style="color:#75715e"># from [dim0, dim1]</span>
+                <span style="color:#66d9ef">my</span> $slice <span style="color:#f92672">=</span> indx(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>)<span style="color:#f92672">-&gt;</span>cat(<span style="color:#f92672">-</span>$dims)<span style="color:#f92672">-&gt;</span>xchg(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>)<span style="color:#f92672">-&gt;</span>unpdl;
+                <span style="color:#75715e"># Select all sub matrices in the current dimensions having a</span>
+                <span style="color:#75715e"># zero as the upper left element, take the logical &#34;or&#34; over</span>
+                <span style="color:#75715e"># the values therein and return the current dimensions as an</span>
+                <span style="color:#75715e"># array ref if there is an all-zero sub matrix.</span>
+                <span style="color:#66d9ef">return</span> $dims<span style="color:#f92672">-&gt;</span>unpdl <span style="color:#66d9ef">if</span> <span style="color:#f92672">!</span>all
+                    $m<span style="color:#f92672">-&gt;</span>range(whichND(<span style="color:#f92672">!</span>$m<span style="color:#f92672">-&gt;</span>slice(@$slice)), $dims)
+                    <span style="color:#f92672">-&gt;</span>reorder(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">0</span>)<span style="color:#f92672">-&gt;</span>orover<span style="color:#f92672">-&gt;</span>orover;
+        }
+        <span style="color:#66d9ef">return</span> [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>];
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/polettix/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.polettix.it/ETOOBUSY/2021/09/01/pwc128-maximum-sub-matrix/">PWC128 - Maximum Sub-Matrix - ETOOBUSY</a></p>
+<p>Flavio, finally, has led us around to what I consider to be an archetypical algorithm: we iterate through the matrix, left-to-right and top-to-bottom, examining each position as the corner of any number of submatrices potentially reaching from that point to the outer boundaries. So each point ends up evaluated for each set of dimensions wide and high in the remaining space down and to the right. Fortunately in any search we can short-circuit at any time when we encounter a 1, so the actual searching constrained to only submatices of zeros.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">maximum_submatrix_at</span> ($M, $y, $x) {
+       <span style="color:#66d9ef">my</span> $target <span style="color:#f92672">=</span> $M<span style="color:#f92672">-&gt;</span>[$y][$x];
+       <span style="color:#66d9ef">my</span> ($max_size, @best) <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>) x <span style="color:#ae81ff">3</span>;
+       <span style="color:#66d9ef">my</span> $max_x <span style="color:#f92672">=</span> $M<span style="color:#f92672">-&gt;</span>[$y]<span style="color:#f92672">-&gt;</span>$#<span style="color:#960050;background-color:#1e0010">*;</span>
+       for <span style="color:#66d9ef">my</span> $Y ($y <span style="color:#f92672">..</span> $M<span style="color:#f92672">-&gt;</span>$#<span style="color:#960050;background-color:#1e0010">*</span>) {
+          <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $M<span style="color:#f92672">-&gt;</span>[$Y][$x] <span style="color:#f92672">ne</span> $target;
+          <span style="color:#66d9ef">my</span> $y_size <span style="color:#f92672">=</span> $Y <span style="color:#f92672">-</span> $y <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+          <span style="color:#66d9ef">my</span> $size <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+          <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $X ($x <span style="color:#f92672">..</span> $max_x) {
+             <span style="color:#66d9ef">if</span> ($M<span style="color:#f92672">-&gt;</span>[$Y][$X] <span style="color:#f92672">ne</span> $target) {
+                $max_x <span style="color:#f92672">=</span> $X <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+                <span style="color:#66d9ef">last</span>;
+             }
+             $size <span style="color:#f92672">+=</span> $y_size;
+             <span style="color:#66d9ef">if</span> ($size <span style="color:#f92672">&gt;</span> $max_size) {
+                $max_size <span style="color:#f92672">=</span> $size;
+                @best <span style="color:#f92672">=</span> ($y_size, $X <span style="color:#f92672">-</span> $x <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>);
+             }
+          }
+       }
+       <span style="color:#66d9ef">return</span> ($max_size, @best);
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">maximum_submatrix</span> ($M, $target = &#39;0&#39;) {
+       <span style="color:#66d9ef">my</span> ($max, @best) <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>);
+       <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $y (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $M<span style="color:#f92672">-&gt;</span>$#<span style="color:#960050;background-color:#1e0010">*</span>) {
+          <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $x (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $M<span style="color:#f92672">-&gt;</span>[$y]<span style="color:#f92672">-&gt;</span>$#<span style="color:#960050;background-color:#1e0010">*</span>) {
+             <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> $M<span style="color:#f92672">-&gt;</span>[$y][$x] <span style="color:#f92672">eq</span> $target;
+             <span style="color:#66d9ef">my</span> ($size, @round) <span style="color:#f92672">=</span> maximum_submatrix_at($M, $y, $x);
+             ($max, @best) <span style="color:#f92672">=</span> ($size, @round) <span style="color:#66d9ef">if</span> $size <span style="color:#f92672">&gt;</span> $max;
+          }
+       }
+       <span style="color:#66d9ef">return</span> [map {[(<span style="color:#ae81ff">0</span>) x $best[<span style="color:#ae81ff">1</span>]]} <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $best[<span style="color:#ae81ff">0</span>]];
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2021/09/05">A Platform for Every Departing Sub-Matrix — RabbitFarm</a></p>
+<p>Adam takes a decidedly different approach, drawing on dynamic programming to survey submatrices of expanding sizes. From there he devises a complex substring mapping step to track continuous blocks of zeros across rows using <a href="https://en.wikipedia.org/wiki/Suffix_tree">Suffix Trees</a>, which is a remarkable jump in itself.</p>
+<p>The module <code>Tree::Suffix</code> is used to provide this functionality. The whole approach is self-admittedly convoluted, but does what is asked.</p>
+<p>I think it need to be examined in its complete, unaltered glory to appreciate it.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Tree::Suffix;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">maximum_sub_matrix</span>{
+        <span style="color:#66d9ef">my</span> @matrix <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> @sub_matrix;
+
+        <span style="color:#66d9ef">my</span> %indices;
+        <span style="color:#66d9ef">my</span> @indices_maximum;
+        <span style="color:#66d9ef">my</span> $indices_previous <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
+        <span style="color:#66d9ef">my</span> $indices_current <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
+        <span style="color:#66d9ef">my</span> $tree <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Tree::Suffix();
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> @matrix <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>){
+            $indices_current <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
+            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $j (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> @{$matrix[<span style="color:#ae81ff">0</span>]} <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>){
+                $indices_current <span style="color:#f92672">.=</span> $j <span style="color:#66d9ef">if</span> $matrix[$i][$j] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+                $indices_current <span style="color:#f92672">.=</span> <span style="color:#e6db74">&#34;x&#34;</span> <span style="color:#66d9ef">if</span> $matrix[$i][$j] <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>;
+            }
+            $tree<span style="color:#f92672">-&gt;</span>insert($indices_current);
+            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $n (<span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> @{$matrix[<span style="color:#ae81ff">0</span>]}){
+                <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $s ($tree<span style="color:#f92672">-&gt;</span>longest_common_substrings(<span style="color:#ae81ff">1</span>, $n)){
+                    <span style="color:#66d9ef">if</span>(<span style="color:#f92672">!</span>$indices{$s}){
+                        $indices{$s} <span style="color:#f92672">=</span> [$i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, $i];
+                    }
+                    <span style="color:#66d9ef">else</span>{
+                        push @{$indices{$s}}, $i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, $i;
+                    }
+                }
+            }
+            $tree<span style="color:#f92672">-&gt;</span>remove($indices_previous) <span style="color:#66d9ef">if</span> $indices_previous;
+            $indices_previous <span style="color:#f92672">=</span> $indices_current;
+        }
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $s (keys %indices){
+            <span style="color:#66d9ef">my</span> $max_area <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+            <span style="color:#66d9ef">my</span> @indices <span style="color:#f92672">=</span> sort {$a <span style="color:#e6db74">&lt;=&gt;</span> $b} <span style="color:#66d9ef">do</span> { <span style="color:#66d9ef">my</span> %seen; grep { <span style="color:#f92672">!</span>$seen{$_}<span style="color:#f92672">++</span> } @{$indices{$s}} };
+            <span style="color:#66d9ef">unless</span>($indices[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>){
+                <span style="color:#66d9ef">my</span> $area <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+                <span style="color:#66d9ef">my</span> $count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+                <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; $i <span style="color:#f92672">&lt;=</span>  @indices <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>; $i<span style="color:#f92672">++</span>){
+                    $count<span style="color:#f92672">++</span>;
+                    $area <span style="color:#f92672">+=</span> length($s) <span style="color:#66d9ef">if</span> $i <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+                    $area <span style="color:#f92672">+=</span> length($s) <span style="color:#66d9ef">if</span> $i <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> $indices[$i] <span style="color:#f92672">==</span> $indices[$i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+                    <span style="color:#66d9ef">do</span> {$area <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> ; $count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>} <span style="color:#66d9ef">if</span> $i <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> $indices[$i] <span style="color:#f92672">!=</span> $indices[$i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+                }
+                <span style="color:#66d9ef">if</span>($area <span style="color:#f92672">&gt;=</span> $max_area){
+                    $max_area <span style="color:#f92672">=</span> $area;
+                    push @indices_maximum, [$s, $count];
+                }
+            }
+        }
+        <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $indices_maximum[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>){
+            push @sub_matrix, [(<span style="color:#ae81ff">0</span>) x length($indices_maximum[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>])];
+        }
+        <span style="color:#66d9ef">return</span> @sub_matrix;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a></p>
+<p>For my own solution I took a a rather radical left turn from my methodical algorithm for PWC 087. This time around, as we are counting patterns of 0s, I constructed a routine to do a listwise OR between two arrays of 0s and 1s, returning the combined result. When this is applied progressively on successive rows the result is an aggregate array where any remaining 0 must be present in all the rows merged. By keeping track of how many rows are combined and the length of a sequence of successive 0s, we can define a sub-matrix of continuous 0s. I thought it was a neat trick.</p>
+<p>Each row is considered against only the rows following, and the result of one operation can be fed into the next row to extend the search. For example, the first row is combined with the second and result array scanned for zero-sequences times 2, for the 2-row height for the sub-matrix under examination. This partial result can be OR-ed with the following row and then searched again for 3-row matrices, the 4, et cetera until we run out of road.</p>
+<p>Each array can be searched for strings of 0s in a single iterative pass, and the number of such searches is the triangular numbers <strong>T</strong><em>n</em> for the count of rows, or <em>n</em>(<em>n</em>-1)/2, yielding a complexity of <strong>O</strong>(<em>n</em><sup>2</sup><em>m</em>), and we have eliminated a loop.</p>
+<p>We don&rsquo;t keep the sub-matrices found, only the count and the row/column dimensions, and the output is reconstructed from this data.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> @largest <span style="color:#f92672">=</span> ( <span style="color:#ae81ff">0</span>, <span style="color:#f92672">[]</span> );
+
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $start_row ( <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#input ) {
+        <span style="color:#66d9ef">my</span> @composite_row <span style="color:#f92672">=</span> $input[$start_row]<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+        for <span style="color:#66d9ef">my</span> $end_row ($start_row<span style="color:#f92672">..</span>$#input) {
+            <span style="color:#66d9ef">my</span> $span <span style="color:#f92672">=</span> $end_row <span style="color:#f92672">-</span> $start_row <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+            $end_row <span style="color:#f92672">&gt;</span> $start_row <span style="color:#f92672">and</span> @composite_row <span style="color:#f92672">=</span> listwise_OR( <span style="color:#f92672">\</span>@composite_row, $input[$end_row]) ;
+            <span style="color:#66d9ef">my</span> $zeros <span style="color:#f92672">=</span> max_zeros( @composite_row ) ;
+            <span style="color:#66d9ef">my</span> $sub_zeros <span style="color:#f92672">=</span> $zeros <span style="color:#f92672">*</span> $span;
+            <span style="color:#66d9ef">if</span> ( $sub_zeros <span style="color:#f92672">&gt;</span> $largest[<span style="color:#ae81ff">0</span>] ) {
+                @largest <span style="color:#f92672">=</span> ( $sub_zeros, [$span, $zeros]);
+            }
+        }
+    }
+    print_output_mat( $largest[<span style="color:#ae81ff">1</span>] );
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">listwise_OR</span> ($arr1, $arr2) {
+        <span style="color:#66d9ef">my</span> @out;
+        <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$arr1<span style="color:#f92672">-&gt;</span>$#<span style="color:#960050;background-color:#1e0010">*</span>) {
+            push @out, $arr1<span style="color:#f92672">-&gt;</span>[$_] <span style="color:#f92672">|</span> $arr2<span style="color:#f92672">-&gt;</span>[$_] ;
+        }
+        <span style="color:#66d9ef">return</span> @out;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a></p>
+<p>Choroba also makes use of a parallel tranformation matrix, like James above. In this case however we assign, as we go through, a value representing the number of zeroes <em>preceding</em> a given zero found. This structure is built as <code>@preceding_zeros</code>. As we make a single nested pass through the rows and columns of the matrix, assigning the preceding zeros, we can at that same time use another loop to look upwards at the previously processed rows at the same <em>y</em> coordinate for a larger contiguous submatrix block.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> enum <span style="color:#e6db74">qw( WIDTH HEIGHT AREA )</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">max_submatrix</span> {
+        <span style="color:#66d9ef">my</span> ($matrix) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> @preceding_zeros;
+        <span style="color:#66d9ef">my</span> @max <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>);
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $x (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#$matrix) {
+            <span style="color:#66d9ef">my</span> $length <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $y (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#{ $matrix<span style="color:#f92672">-&gt;</span>[$x] }) {
+                <span style="color:#66d9ef">if</span> ($matrix<span style="color:#f92672">-&gt;</span>[$x][$y]) {
+                    $preceding_zeros[$x][$y] <span style="color:#f92672">=</span> $length <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+                } <span style="color:#66d9ef">else</span> {
+                    <span style="color:#66d9ef">my</span> $width <span style="color:#f92672">=</span> $preceding_zeros[$x][$y] <span style="color:#f92672">=</span> <span style="color:#f92672">++</span>$length;
+                    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $z (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $x <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) {
+                        <span style="color:#66d9ef">my</span> $w <span style="color:#f92672">=</span> $preceding_zeros[ $x <span style="color:#f92672">-</span> $z <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> ][$y];
+                        $width <span style="color:#f92672">=</span> $w <span style="color:#66d9ef">if</span> $w <span style="color:#f92672">&lt;</span> $width;
+
+                        <span style="color:#75715e"># Optimization: skip if we can&#39;t beat the max.</span>
+                        <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $width <span style="color:#f92672">*</span> ($x <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">&lt;=</span> $max[AREA];
+
+                        @max <span style="color:#f92672">=</span> ($width, $z, $width <span style="color:#f92672">*</span> $z)
+                            <span style="color:#66d9ef">if</span> $width <span style="color:#f92672">*</span> $z <span style="color:#f92672">&gt;=</span> $max[AREA];
+                    }
+                }
+            }
+        }
+        <span style="color:#66d9ef">return</span> [map [(<span style="color:#ae81ff">0</span>) x $max[WIDTH]], <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $max[HEIGHT]]
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a></p>
+<p>Duncan give another fine example of checking each coordinate 0-value as the base of a set of submatrices, themselves examined with a separate set of nested loops. The <code>allzero()</code> routine does what it&rsquo;s named to do, and returns 0 if it finds any non-zeros elements in the defined coordinate space.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">maxsubmatrix</span>
+    {
+        <span style="color:#66d9ef">my</span>( @m ) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> $bestarea <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">my</span> $best_topr <span style="color:#f92672">=</span> <span style="color:#66d9ef">my</span> $best_topc <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">my</span> $best_nr <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; <span style="color:#66d9ef">my</span> $best_nc <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">my</span> $ncols <span style="color:#f92672">=</span> @{$m[<span style="color:#ae81ff">0</span>]};
+
+        <span style="color:#66d9ef">for</span>( <span style="color:#66d9ef">my</span> $r <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; $r <span style="color:#f92672">&lt;</span> @m; $r<span style="color:#f92672">++</span> )
+        {
+        	<span style="color:#66d9ef">for</span>( <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; $c <span style="color:#f92672">&lt;</span> $ncols; $c<span style="color:#f92672">++</span> )
+        	{
+        		<span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> $m[$r][$c] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+        		<span style="color:#66d9ef">for</span>( <span style="color:#66d9ef">my</span> $r2 <span style="color:#f92672">=</span> $r<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>; $r2 <span style="color:#f92672">&lt;</span> @m; $r2<span style="color:#f92672">++</span> )
+        		{
+        			<span style="color:#66d9ef">my</span> $nr <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">+</span>$r2<span style="color:#f92672">-</span>$r;
+        			<span style="color:#66d9ef">for</span>( <span style="color:#66d9ef">my</span> $c2 <span style="color:#f92672">=</span> $c<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>; $c2 <span style="color:#f92672">&lt;</span> $ncols; $c2<span style="color:#f92672">++</span> )
+        			{
+        				<span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> allzero($r,$c,$r2,$c2,@m);
+        				<span style="color:#66d9ef">my</span> $nc <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">+</span>$c2<span style="color:#f92672">-</span>$c;
+        				<span style="color:#66d9ef">my</span> $area <span style="color:#f92672">=</span> $nr <span style="color:#f92672">*</span> $nc;
+        				<span style="color:#66d9ef">if</span>( $area <span style="color:#f92672">&gt;</span> $bestarea )
+        				{
+        					$bestarea  <span style="color:#f92672">=</span> $area;
+        					$best_topr <span style="color:#f92672">=</span> $r;
+        					$best_topc <span style="color:#f92672">=</span> $c;
+        					$best_nr   <span style="color:#f92672">=</span> $nr;
+        					$best_nc   <span style="color:#f92672">=</span> $nc;
+        				}
+        			}
+        		}
+        	}
+        }
+        <span style="color:#66d9ef">return</span>( $best_topr, $best_topc, $best_nr, $best_nc );
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://jacoby.github.io/2021/09/01/minmaxing-matrix-platforms-the-weekly-challenge-128.html">MinMaxing Matrix Platforms: The Weekly Challenge 128 | Committed to Memory</a></p>
+<p>Dave presents us with a novel manner of determining whether a submatrix selection is all zeroes. First the elements defined by a set of row and column start and end point is copied over to a new array, which then processed by essentially decontainerizing the rows, producing one long list of elements. This list is then summed using <code>sum0()</code> from <code>List::Util</code>. If the sum is anything but 0, and hence Perl-true, the contained elements are not all zero.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">find_submatrices</span> ( $matrix ) {
+        <span style="color:#66d9ef">my</span> @subs;
+        <span style="color:#66d9ef">my</span> $maxx <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> scalar $matrix<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+        my $maxy <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> scalar $matrix<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+        for <span style="color:#66d9ef">my</span> $x ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $maxx ) {
+            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $y ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $maxy ) {
+                <span style="color:#66d9ef">if</span> ( $matrix<span style="color:#f92672">-&gt;</span>[$x][$y] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> ) {
+                    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i ( $x <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $maxx ) {
+                        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $j ( $y <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $maxy ) {
+                            <span style="color:#66d9ef">my</span> $sub <span style="color:#f92672">=</span> make_submatrix( $matrix, $x, $y, $i, $j );
+                            <span style="color:#66d9ef">my</span> $n   <span style="color:#f92672">=</span> sum0 flatten_matrix($sub);
+                            <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $n;
+                            push @subs, $sub;
+                        }
+                    }
+                }
+            }
+        }
+        <span style="color:#66d9ef">return</span> @subs;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">flatten_matrix</span> ($matrix) {
+        <span style="color:#66d9ef">return</span> map { $_<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">}</span> <span style="color:#960050;background-color:#1e0010">$</span>matrix<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+    <span style="color:#960050;background-color:#1e0010">}</span>
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/stuart-little/perl/ch-1.pl"><strong>Stuart Little</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/stuart-little/haskell/ch-1.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/stuart-little/lua/ch-1.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/stuart-little/node/ch-1.js">Node</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/stuart-little/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/stuart-little/raku/ch-1.raku">Raku</a></p>
+<p>Stuart brings us yet again the very handy functionally-friendly module <code>List::UtilsBy</code>, which as might well be inferred contains a group of listwise functions that also take a first-class code block as argument, which is applied to each value from the input list before processing. It&rsquo;s the list of results from this function application that is acted on, in this case finding the maximum value as determined by string length.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw(reduce)</span>;
+    <span style="color:#66d9ef">use</span> List::UtilsBy <span style="color:#e6db74">qw(max_by)</span>;
+
+    <span style="color:#66d9ef">my</span> ($rows,$cols)<span style="color:#f92672">=</span>(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>);
+    <span style="color:#66d9ef">my</span> $digs <span style="color:#f92672">=</span> length $ARGV[<span style="color:#ae81ff">0</span>];
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>scalar @ARGV<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $j ($i<span style="color:#f92672">..</span>scalar @ARGV<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
+            <span style="color:#66d9ef">my</span> $max <span style="color:#f92672">=</span> max_by { length $_ }
+                      split <span style="color:#e6db74">/[^0]+/</span>,
+                      reduce { sprintf(<span style="color:#e6db74">&#34;%0${digs}b&#34;</span>, oct(<span style="color:#e6db74">&#34;0b$a&#34;</span>) <span style="color:#f92672">|</span> oct(<span style="color:#e6db74">&#34;0b$b&#34;</span>)) } @ARGV[$i<span style="color:#f92672">..</span>$j];
+            <span style="color:#66d9ef">if</span> (($j<span style="color:#f92672">-</span>$i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">*</span> (length $max) <span style="color:#f92672">&gt;</span> $rows <span style="color:#f92672">*</span> $cols) {
+                ($rows,$cols) <span style="color:#f92672">=</span> ($j<span style="color:#f92672">-</span>$i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>, length $max);
+            }
+        }
+    }
+
+    say join <span style="color:#e6db74">&#34;\n&#34;</span>, (<span style="color:#e6db74">&#39;0&#39;</span> x $cols) x $rows;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/roger-bell-west/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/roger-bell-west/raku/ch-1.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/roger-bell-west/ruby/ch-1.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/roger-bell-west/rust/ch-1.rs">Rust</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://blog.firedrake.org/archive/2021/09/Perl_Weekly_Challenge_128__Maxima_and_Minima.html">RogerBW&rsquo;s Blog: Perl Weekly Challenge 128: Maxima and Minima</a></p>
+<p>Lastly Roger brings us another 4-loop example in his usual compact style. When examining the inner submatrices a simple check is made for a 1 in every enclosed span, which further limits the possible range for a given block of elements. This short-circuit, not always present, both ensures that any given submatrix found will be composed solely of zeroes and also dynamically constrains the search space, raising efficiency.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $y<span style="color:#f92672">=</span>scalar @{$m};
+    <span style="color:#66d9ef">my</span> $x<span style="color:#f92672">=</span>scalar @{$m<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]};
+    <span style="color:#66d9ef">my</span> $mxa<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">my</span> @oc;
+    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $yi (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$y<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
+      <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $xi (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$x<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
+        <span style="color:#66d9ef">if</span> ($m<span style="color:#f92672">-&gt;</span>[$yi][$xi]<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>) {
+          <span style="color:#66d9ef">my</span> @rl;
+          <span style="color:#66d9ef">my</span> $mrl<span style="color:#f92672">=</span>$x<span style="color:#f92672">-</span>$xi;
+          <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $yj ($yi<span style="color:#f92672">..</span>$y<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
+            <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $xj ($xi<span style="color:#f92672">..</span>min($xi<span style="color:#f92672">+</span>$mrl,$x)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
+              <span style="color:#66d9ef">if</span> ($m<span style="color:#f92672">-&gt;</span>[$yj][$xj] <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>) {
+                $mrl<span style="color:#f92672">=</span>min($xj<span style="color:#f92672">-</span>$xi,$mrl);
+                <span style="color:#66d9ef">last</span>;
+              }
+            }
+            push @rl,$mrl;
+          }
+          <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $n (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#rl) {
+            <span style="color:#66d9ef">if</span> ($rl[$n]<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span>) {
+              <span style="color:#66d9ef">my</span> $a<span style="color:#f92672">=</span>$rl[$n]<span style="color:#f92672">*</span>($n<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>);
+              <span style="color:#66d9ef">if</span> ($a <span style="color:#f92672">&gt;=</span> $mxa) {
+                $mxa<span style="color:#f92672">=</span>$a;
+                @oc<span style="color:#f92672">=</span>($rl[$n],$n<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>);
+              }
+            }
+          }
+        }
+      }
+    }
+</code></pre></div><h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-1">Blogs and Additional Submissions in Guest Languages for Task 1:</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/bruce-gray/perl/ch-1.pl"><strong>Bruce Gray</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/bruce-gray/raku/ch-1.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://e7-87-83.github.io/coding/challenge_128.html">CY&rsquo;s Taken The Weekly Challenge #128</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://dev.to/simongreennet/weekly-challenge-128-1ng1">Weekly Challenge 128</a></p>
+<p><a href=""><strong>Ulrich Rieke</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/ulrich-rieke/haskell/ch-2.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/ulrich-rieke/raku/ch-2.raku">Raku</a></p>
+<hr>
+<hr>
+<h1 id="PWC128TASK2">TASK 2</h1>
+<h1 id="minimum-platforms">Minimum Platforms</h1>
+<p><em>Submitted by: Mohammad S Anwar</em><br>
+You are given two arrays of arrival and departure times of trains at a railway station.</p>
+<p>Write a script to find out the minimum number of platforms needed so that no train needs to wait.</p>
+<p><strong>Example 1:</strong></p>
+<pre><code>    Input: @arrivals   = (11:20, 14:30)
+           @departures = (11:50, 15:00)
+    Output: 1
+</code></pre><ul>
+<li>The 1st arrival of train is at 11:20 and this is the only train at the station, so you need 1 platform.</li>
+<li>Before the second arrival at 14:30, the first train left the station at 11:50, so you still need only 1 platform.</li>
+</ul>
+<p><strong>Example 2:</strong></p>
+<pre><code>    Input: @arrivals   = (10:20, 11:00, 11:10, 12:20, 16:20, 19:00)
+           @departures = (10:30, 13:20, 12:40, 12:50, 20:20, 21:20)
+    Output: 3
+</code></pre><ul>
+<li>Between 12:20 and 12:40, there would be at least 3 trains at the station, so we need minimum 3 platforms.</li>
+</ul>
+<h2 id="about-the-solutions-1">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/abigail/perl/ch-2.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/bruce-gray/perl/ch-2.pl"><strong>Bruce Gray</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/mattneleigh/perl/ch-2.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/peter-campbell-smith/perl/ch-2.pl"><strong>Peter Campbell Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/stuart-little/perl/ch-2.pl"><strong>Stuart Little</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/wanderdoc/perl/ch-2.pl"><strong>Wanderdoc</strong></a></p>
+<p>That went well. Good for us. Let&rsquo;s try it again, with a different dozen. That will give us a total of 24 members spotlighted, which sounds like a fair slice&hellip; unless, well, you know, there weren&rsquo;t 24 members submitting.</p>
+<p>There were, in fact, 18 submissions for the second task this past week, comprising with few exceptions the same group as the first 16. Myself, I did think the first task was bit complex for an opener, and likely harder than the second, and it appears the numbers of submissions made to each task supports that theory. In any case, whatever the larger and deeper meaning we may or may not be able to glean, we simply don&rsquo;t have 12 remaining unique new submitting members to choose from any more. We have, in fact, seven.</p>
+<p>Fortunately, I have a plan for that: after we make sure to select any remaining members in random order, we&rsquo;re going to wing it.</p>
+<p>One of my favorite poets is the great Robert Burns:</p>
+<blockquote>
+<p>&quot;The best laid schemes o’ Mice an’ Men<br>
+  Gang aft agley,&rdquo;</p>
+</blockquote>
+<p>— <a href="https://www.poetryfoundation.org/poems/43816/to-a-mouse-56d222ab36e33"><strong>To a Mouse</strong></a> <em>On Turning her up in her Nest, with the Plough, November 1785.</em></p>
+<p>The mouse, at least, is too busy addressing the difficulties of the present to suffer the regrets of the past and the uncertainties of the future. Compassion is where you find it, and where you place it.</p>
+<h2 id="a-flight-of-samples-from-our-latest-fine-batch-of-submissions">a FLIGHT of SAMPLES from our latest FINE BATCH of SUBMISSIONS</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/peter-campbell-smith/perl/ch-2.pl"><strong>Peter Campbell Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/abigail/perl/ch-2.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/stuart-little/perl/ch-2.pl"><strong>Stuart Little</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/wanderdoc/perl/ch-2.pl"><strong>Wanderdoc</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/bruce-gray/perl/ch-2.pl"><strong>Bruce Gray</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/mattneleigh/perl/ch-2.pl"><strong>Matthew Neleigh</strong></a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://dev.to/simongreennet/weekly-challenge-128-1ng1">Weekly Challenge 128</a></p>
+<p>Simon starts us off today by breaking the day into an array of minutes, with each minute given a slot in an array 1440 elements long. Viewing a day this way as a human might at first seem a bit absurd, albeit trivial for a computer, however this isn&rsquo;t far from a common date-book; we&rsquo;re more used to seeing broader categories of hours to hold our notes but these will usually be subdivided further into the underlying minutes in some fashion. The only thing that&rsquo;s unusual in the end is treating all the minutes on a common footing, but this is the degree of granularity required for our schedual so it&rsquo;s quite appropriate. We&rsquo;ve merely done away with the hours, counting the minutes from midnight.</p>
+<p>With our day backdrop established, the trains are converted as well into sets of arrival times and departures from the station, again considered as minutes from 0. Each train is then added to the schedual as an iterated range of minutes encompassing the time spent at the station, and at each minute index the train is there the tally of platforms required — the value of the aggregate day array we&rsquo;re building — is incremented. At the end of the day we need only look at the day array, here called <code>@platforms</code>, and find the largest value. This will be maximum number of platforms required to maintain the listed schedule.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># Pair up the arrival and departure times</span>
+    <span style="color:#66d9ef">my</span> $offset <span style="color:#f92672">=</span> scalar(@times) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>;
+    <span style="color:#66d9ef">my</span> @trains <span style="color:#f92672">=</span> ();
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $pairs ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#times <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span> ) {
+        <span style="color:#66d9ef">my</span> $arr <span style="color:#f92672">=</span> _make_time( $times[$pairs] );
+        <span style="color:#66d9ef">my</span> $dep <span style="color:#f92672">=</span> _make_time( $times[ $pairs <span style="color:#f92672">+</span> $offset ] );
+
+        <span style="color:#66d9ef">if</span> ( $dep <span style="color:#f92672">&lt;</span> $arr ) {
+            <span style="color:#75715e"># The train spans across midnight, so add two entries</span>
+            <span style="color:#75715e"># There are 1440 minutes in a day, so 1439 is 11:59pm</span>
+            push @trains, [ <span style="color:#ae81ff">0</span>, $arr ], [ $dep, <span style="color:#ae81ff">1439</span> ];
+        }
+        <span style="color:#66d9ef">else</span> {
+            push @trains, [ $arr, $dep ];
+        }
+    }
+
+    <span style="color:#75715e"># For each minute, figure out how many platforms are used</span>
+    <span style="color:#66d9ef">my</span> @platforms <span style="color:#f92672">=</span> ( (<span style="color:#ae81ff">0</span>) x <span style="color:#ae81ff">1440</span> );
+    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $train (@trains) {
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $time ( $train<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">..</span> $train<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] ) {
+            $platforms[$time]<span style="color:#f92672">++</span>;
+        }
+    }
+
+    <span style="color:#75715e"># Display the maximum number of platforms required</span>
+    <span style="color:#66d9ef">my</span> $max_platforms <span style="color:#f92672">=</span> max(@platforms);
+    say $max_platforms;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/peter-campbell-smith/perl/ch-2.pl"><strong>Peter Campbell Smith</strong></a></p>
+<p>In contrast to focusing on the platforms, against the backdrop of the times of day, Peter instead shifts the frame to the trains, with each train event — arriving and departing — triggering a change in a running count of required platforms. To do this he first converts the arrival and departure data into a list of sortable, stringified hash keys, each paired with an action to either increment or decrement a tally as the train represented enters or leaves. Iterating through the sorted list of keys of all train events, coming and going, a count is maintained for however many platforms are required at each event, and a separate counter is maintained to hold the maximum count throughout the day.</p>
+<p>With the previous example, these two viewpoints — to either focus on the times of day and how they are affected by the trains, or alternately the trains, and how they affect the requirements for platforms — comprise the two basic ways of looking at the system to get the requested count.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    @arrivals   <span style="color:#f92672">=</span> <span style="color:#e6db74">qw[10:20 11:00 11:10 12:20 16:20 19:00]</span>;
+    @departures <span style="color:#f92672">=</span> <span style="color:#e6db74">qw[10:30 13:20 12:40 12:50 20:20 21:20]</span>;
+
+    <span style="color:#75715e"># Make a hash (%trains) with all events - ie arrival and departure times - as the keys.</span>
+    <span style="color:#75715e"># The value of each hash element is the change in platforms need, ie +1 for an arrival</span>
+    <span style="color:#75715e"># and -1 for a departure.</span>
+
+    <span style="color:#75715e"># There could be two events happening at the same time, so the hash key needs to be suffixed</span>
+    <span style="color:#75715e"># with a unique number.  Also, it would be dangerous for a train to arrive in a platform at the same time</span>
+    <span style="color:#75715e"># as an earlier train leaves, so we need consider arrivals at a given time before departures and</span>
+    <span style="color:#75715e"># so the hash keys have to sort arrivals at a given time before departures.  So a typical hash key</span>
+    <span style="color:#75715e"># is 12:20-a3 (the 4th train arrives at 12:20) or 12:30-d6 (the 5th train departs at 12:30).</span>
+
+    <span style="color:#75715e"># create the hash</span>
+    <span style="color:#66d9ef">for</span> $train (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#arrivals) {
+        $trains{<span style="color:#e6db74">&#34;$arrivals[$train]-a$train&#34;</span>} <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+        $trains{<span style="color:#e6db74">&#34;$departures[$train]-d$train&#34;</span>} <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+    }
+
+    <span style="color:#75715e"># loop over the events in time order</span>
+    $max_platforms <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    $now_platforms <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;   <span style="color:#75715e"># number of platforms needed after each event</span>
+
+    <span style="color:#66d9ef">for</span> $event (sort keys %trains) {
+        $now_platforms <span style="color:#f92672">+=</span> $trains{$event};
+        $max_platforms <span style="color:#f92672">=</span> $now_platforms <span style="color:#66d9ef">if</span> $now_platforms <span style="color:#f92672">&gt;</span> $max_platforms;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/abigail/perl/ch-2.pl"><strong>Abigail</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/abigail/awk/ch-2.awk">Awk</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/abigail/c/ch-2.c">C</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/abigail/lua/ch-2.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/abigail/node/ch-2.js">Node</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/abigail/python/ch-2.py">Python</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-128-2.html">Perl Weekly Challenge 128: Minimum Platforms</a></p>
+<p>Abigail analysed the two framing options and decided that incrementing the backdrop array of minutes was the more efficient approach. They also introduce the idea of trains seemingly arriving after they depart, which is to say they are in the station at midnight. This is chosen to be addressed as considering the case as two trains: one arriving at midnight and leaving after, the other arriving before midnight and not explicitly listed as leaving.</p>
+<p>The other vaguary addressed is to assume that departures always occur after arrivals in the same minute, so two trains can&rsquo;t share the same platform during that minute.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> @arrivals   <span style="color:#f92672">=</span> map {[split <span style="color:#e6db74">/:/</span>]} <span style="color:#f92672">&lt;&gt;</span> <span style="color:#f92672">=~</span><span style="color:#e6db74"> /[0-9][0-9]:[0-9][0-9]/g</span>;
+    <span style="color:#66d9ef">my</span> @departures <span style="color:#f92672">=</span> map {[split <span style="color:#e6db74">/:/</span>]} <span style="color:#f92672">&lt;&gt;</span> <span style="color:#f92672">=~</span><span style="color:#e6db74"> /[0-9][0-9]:[0-9][0-9]/g</span>;
+
+    <span style="color:#66d9ef">my</span> @trains <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>) x (<span style="color:#ae81ff">24</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">60</span>);
+
+    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i (keys @arrivals) {
+        <span style="color:#66d9ef">my</span> $arrival   <span style="color:#f92672">=</span> <span style="color:#ae81ff">60</span> <span style="color:#f92672">*</span> $arrivals   [$i] [<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+</span> $arrivals   [$i] [<span style="color:#ae81ff">1</span>];
+        <span style="color:#66d9ef">my</span> $departure <span style="color:#f92672">=</span> <span style="color:#ae81ff">60</span> <span style="color:#f92672">*</span> $departures [$i] [<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+</span> $departures [$i] [<span style="color:#ae81ff">1</span>];
+        <span style="color:#66d9ef">my</span> @minutes;
+        <span style="color:#66d9ef">if</span> ($arrival <span style="color:#f92672">&lt;=</span> $departure) {
+            <span style="color:#75715e">#</span>
+            <span style="color:#75715e"># Train arrives and leaves before midnight.</span>
+            <span style="color:#75715e">#</span>
+            @minutes <span style="color:#f92672">=</span> $arrival <span style="color:#f92672">..</span> $departure;
+        }
+        <span style="color:#66d9ef">else</span> {
+            <span style="color:#75715e">#</span>
+            <span style="color:#75715e"># Train arrives before midnight, leaves after midnight.</span>
+            <span style="color:#75715e">#</span>
+            @minutes <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $departure, $arrival <span style="color:#f92672">..</span> (<span style="color:#ae81ff">24</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">60</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>));
+        }
+        $trains [$_] <span style="color:#f92672">++</span> <span style="color:#66d9ef">for</span> @minutes;
+    }
+
+    say max @trains;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/stuart-little/perl/ch-2.pl"><strong>Stuart Little</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/stuart-little/haskell/ch-2.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/stuart-little/lua/ch-2.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/stuart-little/node/ch-2.js">Node</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/stuart-little/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/stuart-little/raku/ch-2.raku">Raku</a></p>
+<p>Stuart gives us a functional example, repeatedly treating the input list of first all arrival times followed by all departures. Some extreme cleverness is invoked to convert the input into a list of pairs, with time events matched to the train numbers, first arriving then departing. More clever use of bit-flipping with an exclusive-or catalogues whether a train is still in the station, as noted in the <code>@station</code> variable. As I don&rsquo;t think any of this is particularly obvious, nor clear, here&rsquo;s a peek inside the final loop over the <code>@times</code> array, with the time/train pair followed by the state of the station array. This clearly demonstrates that at 12:20 we need three platforms.</p>
+<p>Well now it makes sense to me. What a cool way to approach this.</p>
+<pre><code>    10:20 0
+        1 0 0 0 0 0
+    10:30 0
+        0 0 0 0 0 0
+    11:00 1
+        0 1 0 0 0 0
+    11:10 2
+        0 1 1 0 0 0
+    12:20 3
+        0 1 1 1 0 0     &lt;-- three platforms at 12:20
+    12:40 2
+        0 1 0 1 0 0
+    12:50 3
+        0 1 0 0 0 0
+    13:20 1
+        0 0 0 0 0 0
+    16:20 4
+        0 0 0 0 1 0
+    19:00 5
+        0 0 0 0 1 1
+    20:20 4
+        0 0 0 0 0 1
+    21:20 5
+        0 0 0 0 0 0
+</code></pre><p>The code is quite compact. Originally Stuart had the chained commands in one long line but I find stacking them by operation makes for <em>much</em> more readable code. Just putting that out there.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw(sum0 zip)</span>;
+
+    <span style="color:#66d9ef">my</span> @times <span style="color:#f92672">=</span> sort {$a<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">cmp</span> $b<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]}
+                map  { [$_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>], $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] % int((scalar @ARGV)<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>)] }
+                zip  <span style="color:#f92672">\</span>@ARGV, [<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>scalar @ARGV<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+    <span style="color:#66d9ef">my</span> $sol<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">my</span> @station <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>) x int((scalar @ARGV)<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>);
+
+    <span style="color:#66d9ef">for</span> (@times) {
+        $station[$_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]]<span style="color:#f92672">^=</span><span style="color:#ae81ff">1</span>;
+        ((sum0 @station) <span style="color:#f92672">&gt;</span> $sol) <span style="color:#f92672">&amp;&amp;</span> <span style="color:#66d9ef">do</span> {$sol <span style="color:#f92672">=</span> sum0 @station};
+    }
+
+    say $sol;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://jacoby.github.io/2021/09/01/minmaxing-matrix-platforms-the-weekly-challenge-128.html">MinMaxing Matrix Platforms: The Weekly Challenge 128 | Committed to Memory</a></p>
+<p>Dave makes the observation that 24-hour times in themselves work fine as a basis of iteration by simply stripping out the colon separator. Treating the first arrival time and the last departure as a range, every real minute within the start and end time will be considered, along with many malformed times, such as 10:75, that are fine because they will never be found to have a train either arriving or departing at that pseudo-time.</p>
+<p>Each minute increment is checked against the arrival and departure lists, and if found a master record is either incremented or decremented, and a maximum value variable is updated as required.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">min_platforms</span> ($timetable) {
+        <span style="color:#66d9ef">my</span> $p  <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">my</span> $mp <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">my</span> @arrivals <span style="color:#f92672">=</span>
+            map { <span style="color:#e6db74">s/\D//g</span>; $_ }
+            map { $_ }
+            sort $timetable<span style="color:#f92672">-&gt;</span>{arrivals}<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+        my @departures <span style="color:#f92672">=</span>
+            map { <span style="color:#e6db74">s/\D//g</span>; $_ }
+            map { $_ }
+            sort $timetable<span style="color:#f92672">-&gt;</span>{departures}<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+
+        my $first <span style="color:#f92672">=</span> $arrivals[<span style="color:#ae81ff">0</span>];
+        <span style="color:#66d9ef">my</span> $last  <span style="color:#f92672">=</span> $departures[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $t ( $first <span style="color:#f92672">..</span> $last ) {
+            <span style="color:#66d9ef">if</span> ( @arrivals <span style="color:#f92672">&amp;&amp;</span> $t <span style="color:#f92672">==</span> $arrivals[<span style="color:#ae81ff">0</span>] ) {
+                shift @arrivals;
+                $p<span style="color:#f92672">++</span>;
+                $mp <span style="color:#f92672">=</span> $p <span style="color:#66d9ef">if</span> $p <span style="color:#f92672">&gt;</span> $mp;
+            }
+            <span style="color:#66d9ef">if</span> ( @departures <span style="color:#f92672">&amp;&amp;</span> $t <span style="color:#f92672">==</span> $departures[<span style="color:#ae81ff">0</span>] ) {
+                shift @departures;
+                $p<span style="color:#f92672">--</span>;
+            }
+        }
+
+        <span style="color:#66d9ef">return</span> $mp;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://e7-87-83.github.io/coding/challenge_128.html">CY&rsquo;s Taken The Weekly Challenge #128</a></p>
+<p>CY provides two methods for processing the data, the first &ldquo;primitive&rdquo;, looking at the time backdrop, the second &ldquo;thoughtful&rdquo;, being event driven by the train traffic. I find the choice of words here particularly intriguing, the pairing for the dichotomy particularly specific and evocative. I&rsquo;ve never been very fond of the term &ldquo;naive&rdquo; in this context, as while technically correct I feel it adds a element of judgement that may be unwarranted and is certainly unrelated. Sometimes simplicity <em>is</em> the better way; in this case it actually can reduce complexity, as argued elsewhere by Abigail in their writeup.</p>
+<p>In any case I find her unconventional choice of translations refreshing, putting into more sharp relief some of the linguistic terminology we take for granted, and the baggage it may carry with it.</p>
+<p>In her &ldquo;thoughtful&rdquo; analysis, a hash is used to pair the associated data with each event as to whether a train is entering or leaving, which is then used to increment or decrement a counter, and a second maximum value is maintained.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">platforms_needed</span> {
+        <span style="color:#66d9ef">my</span> @arrive_min <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+        my @depart_min <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+        my %station_traffic;
+        <span style="color:#66d9ef">for</span> (@arrive_min) {
+            <span style="color:#66d9ef">if</span> (defined($station_traffic{$_})) {
+                $station_traffic{ $_ }<span style="color:#f92672">++</span>;
+            }
+            <span style="color:#66d9ef">else</span> {
+                $station_traffic{ $_ } <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+            }
+        }
+        <span style="color:#66d9ef">for</span> (@depart_min) {
+            <span style="color:#66d9ef">if</span> (defined($station_traffic{$_})) {
+                $station_traffic{ $_ }<span style="color:#f92672">--</span>;
+            }
+            <span style="color:#66d9ef">else</span> {
+                $station_traffic{ $_ } <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+            }
+        }
+
+        <span style="color:#66d9ef">my</span> @events <span style="color:#f92672">=</span> sort {$a<span style="color:#e6db74">&lt;=&gt;</span>$b} keys %station_traffic;
+        <span style="color:#66d9ef">my</span> $status <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">my</span> $max_status <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">for</span> (@events) {
+            $status <span style="color:#f92672">+=</span> $station_traffic{ $_ };
+            $max_status <span style="color:#f92672">=</span> $status <span style="color:#66d9ef">if</span> $status <span style="color:#f92672">&gt;</span> $max_status;
+        }
+        <span style="color:#66d9ef">return</span> $max_status;
+    }
+
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/laurent-rosenfeld/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://blogs.perl.org/users/laurent_r/2021/09/perl-weekly-challenge-128-minimum-platforms.html">Perl Weekly Challenge 128: Minimum Platforms</a></p>
+<p>Laurent keeps the two given separate lists of arrivals and departures, alternately shifting off values from one and then the other in a novel fashion. An arrival increases the train count, a departure decrements the counter. The schedules are assumed to be sorted.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">while</span> (@ts_arr) {
+        <span style="color:#66d9ef">if</span> ($#ts_dep <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+            $max_size<span style="color:#f92672">++</span>;
+        } <span style="color:#66d9ef">elsif</span> ($ts_arr[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&lt;=</span> $ts_dep[<span style="color:#ae81ff">0</span>]) {
+            shift @ts_arr;
+            $size<span style="color:#f92672">++</span>;
+            $max_size <span style="color:#f92672">=</span> $size <span style="color:#66d9ef">if</span> $size <span style="color:#f92672">&gt;</span> $max_size;
+            <span style="color:#75715e"># say &#34;$size $max-size&#34;;</span>
+        } <span style="color:#66d9ef">else</span> {
+            shift @ts_dep;
+            $size<span style="color:#f92672">--</span>;
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/wanderdoc/perl/ch-2.pl"><strong>Wanderdoc</strong></a></p>
+<p>The doctor bravely does all of their math in actual time objects, brought to you through the use of <code>Time::Piece</code> and <code>Time::Seconds</code>. Further complexity is added accommodating the cycle restart of trains present in the station at midnight.</p>
+<p>Pairs are constructed of arrivals and departures for each train, and the pairs are iterated through to track the traffic throughout the day.</p>
+<p>One consequence of going about things in this way is that the calculations are done by the second rather than the minute, which in itself makes little difference as there are only a small finite number of seconds in a day. More than minutes, surely, but not significantly when processing data at modern rates. The seconds are kept as keys in a hash, <code>%output</code>, with the value a record of trains being present. The size of this record is the count of trains occupying the station, and the maximum of this the number of platforms required.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> %platforms;
+    <span style="color:#66d9ef">my</span> %output;
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $ts ( $min <span style="color:#f92672">..</span> $max )
+    {
+         <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $pair ( @pairs )
+         {
+              <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> ($ts <span style="color:#f92672">&lt;</span> $pair<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">or</span> $ts <span style="color:#f92672">&gt;</span> $pair<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]);
+              push @{$output{ <span style="color:#f92672">++</span>$platforms{$ts} }}, $ts;
+         }
+    }
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;1 platform is enough.$/&#34;</span> <span style="color:#66d9ef">if</span> max(keys %output <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>);
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $platform ( grep $_ <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>, sort {$b <span style="color:#e6db74">&lt;=&gt;</span> $a} keys %output)
+    {
+         <span style="color:#66d9ef">my</span> @intervals <span style="color:#f92672">=</span> _num2arr( @{$output{$platform}});
+         <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;At least ${platform} platforms at&#34;</span>, <span style="color:#e6db74">&#39;: &#39;</span>;
+         <span style="color:#66d9ef">print</span> join(<span style="color:#e6db74">&#39;, &#39;</span>,map join(<span style="color:#e6db74">&#39; - &#39;</span>, map _sec2hm($_), $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>], $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]), @intervals), $/;
+
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/bruce-gray/perl/ch-2.pl"><strong>Bruce Gray</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/bruce-gray/raku/ch-2.raku">Raku</a></p>
+<p>Bruce delivers us an impressively compact version of mapping train presence to the  minutes of the day. The first routine, <code>time_to_offset()</code> parses and converts a time to seconds from midnight, and the second, <code>max_trains()</code> increments the value in an array for each minute within the given interval. The highest value in this array of minutes is the maximum number of platforms required.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> List::Util <span style="color:#ae81ff">1.56</span> <span style="color:#e6db74">qw&lt;max zip&gt;</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">time_to_offset</span> ( $hh_mm_time ) {
+        $hh_mm_time <span style="color:#f92672">=~</span> <span style="color:#e6db74">m{ \A (\d\d?) : (\d\d) \z }msx</span>
+            <span style="color:#f92672">or</span> <span style="color:#66d9ef">return</span>;
+        <span style="color:#66d9ef">return</span> $1 <span style="color:#f92672">*</span> <span style="color:#ae81ff">60</span> <span style="color:#f92672">+</span> $2;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">max_trains</span> ( $arrivals, $departures ) {
+        die <span style="color:#66d9ef">if</span> @{$arrivals} <span style="color:#f92672">!=</span> @{$departures};
+
+        <span style="color:#66d9ef">my</span> @times;
+        <span style="color:#66d9ef">for</span> ( zip($arrivals, $departures) ) {
+            <span style="color:#66d9ef">my</span> ( $start, $end ) <span style="color:#f92672">=</span> map { time_to_offset($_) <span style="color:#e6db74">//</span> die } @{$_};
+            $times[$_]<span style="color:#f92672">++</span> <span style="color:#66d9ef">for</span> $start<span style="color:#f92672">..</span>$end;
+        }
+
+        <span style="color:#66d9ef">return</span> max grep {defined} @times;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/polettix/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.polettix.it/ETOOBUSY/2021/09/02/pwc128-minimum-platforms/">PWC128 - Minimum Platforms - ETOOBUSY</a></p>
+<p>Flavio maintains a running counter of the platforms required as trains enter and depart the station, adding a unique twist to the calculations in the form of a safety buffer. Trains cannot start and stop on a dime, and any number of real-world irregularities can cause variations that can ripple through a train system. The actual dynamics of traffic systems between closely-packed independently regulated entities is remarkably complex, defined by the interaction times between perception of change and response by the actors. In tightly packed systems, such as a traffic jam, small delays are magnified as waves of disturbance, turning creeping motion into the familiar jerky unpredictable starts and stops that typify such situations. With this in mind it&rsquo;s not wise to pack large objects, with lengthy start and stop lags, together too tightly. Hence a buffer interval is necessary. But how large?</p>
+<p>Flavio suggests 10 minutes. Automated train control could surely take this number down but it does sound like a good ballpark estimate to work with. Consequently every departure is padded with this configurable safety margin, more closely modeling the inherent unpredictability of the real-world. Making unreasonable demands from the system will at best cause delays and poor user experience, and at worst twisted carnage, screaming and the stench of death. Neither of these is what we&rsquo;d commonly think of as a favorable outcome.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> constant freeup_window <span style="color:#f92672">=&gt;</span> $ENV{FREEUP_WINDOW} <span style="color:#e6db74">//</span> <span style="color:#ae81ff">10</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">minimum_platforms</span> ($arrivals, $departures) {
+       <span style="color:#66d9ef">my</span> $pre_massage <span style="color:#f92672">=</span> <span style="color:#66d9ef">sub</span> (@input) {
+          sort { $a <span style="color:#e6db74">&lt;=&gt;</span> $b } map {
+             <span style="color:#66d9ef">my</span> ($h, $m) <span style="color:#f92672">=</span> split <span style="color:#e6db74">m{:}mxs</span>;
+             $h <span style="color:#f92672">*</span> <span style="color:#ae81ff">60</span> <span style="color:#f92672">+</span> $m;
+          } @input;
+       };
+       <span style="color:#66d9ef">my</span> @sorted_arrivals <span style="color:#f92672">=</span> $pre_massage<span style="color:#f92672">-&gt;</span>($arrivals<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>);
+       <span style="color:#66d9ef">my</span> @sorted_departures <span style="color:#f92672">=</span> $pre_massage<span style="color:#f92672">-&gt;</span>($departures<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>);
+       <span style="color:#66d9ef">my</span> $beyond_last <span style="color:#f92672">=</span> <span style="color:#ae81ff">30</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">60</span> <span style="color:#f92672">+</span> freeup_window;
+       <span style="color:#66d9ef">my</span> ($present, $min, $max) <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>);
+       <span style="color:#66d9ef">while</span> (@sorted_arrivals <span style="color:#f92672">||</span> @sorted_departures) {
+          <span style="color:#66d9ef">my</span> $arrival <span style="color:#f92672">=</span> @sorted_arrivals ? $sorted_arrivals[<span style="color:#ae81ff">0</span>] : $beyond_last;
+          <span style="color:#66d9ef">my</span> $departure <span style="color:#f92672">=</span> @sorted_departures ? $sorted_departures[<span style="color:#ae81ff">0</span>] : $beyond_last;
+          <span style="color:#66d9ef">if</span> ($arrival <span style="color:#f92672">&lt;=</span> $departure <span style="color:#f92672">+</span> freeup_window) {
+             <span style="color:#f92672">++</span>$present;
+             $max <span style="color:#f92672">=</span> $present <span style="color:#66d9ef">if</span> $present <span style="color:#f92672">&gt;</span> $max;
+             shift @sorted_arrivals;
+          }
+          <span style="color:#66d9ef">else</span> {
+             <span style="color:#f92672">--</span>$present;
+             $min <span style="color:#f92672">=</span> $present <span style="color:#66d9ef">if</span> $present <span style="color:#f92672">&lt;</span> $min;
+             shift @sorted_departures;
+          }
+       }
+       <span style="color:#66d9ef">return</span> $max <span style="color:#f92672">-</span> $min;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/mattneleigh/perl/ch-2.pl"><strong>Matthew Neleigh</strong></a></p>
+<p>Matthew does a few things differently in his systematic implementation of a solution. For one, he implicitly acknowledges that the choice of midnight as a base for the schedule is arbitrary; what we&rsquo;re really looking for is a &ldquo;zero-hour&rdquo; of sorts, what he calls &ldquo;end of business day&rdquo; where there are no trains in the station. It really doesn&rsquo;t matter exactly what time this is, so the value is made configurable, defaulting to midnight.</p>
+<p>The actual calculation is done with a single, complex nested function in three steps:</p>
+<ol>
+<li>map the arrival and departure times to lists of minutes offset from the base</li>
+<li>note overlapping zones</li>
+<li>report the largest number of overlaps</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">return</span>(
+        <span style="color:#75715e"># 3) Find the length of the longest list of</span>
+        <span style="color:#75715e"># overlaps</span>
+        max_list_length(
+            <span style="color:#75715e"># 2) Search the dwell time interval list for</span>
+            <span style="color:#75715e"># overlaps</span>
+            find_overlaps(
+                <span style="color:#75715e"># 1) Rearrange the schedule into a list of</span>
+                <span style="color:#75715e"># station dwell time intervals for each train,</span>
+                <span style="color:#75715e"># converting the times into purely numerical</span>
+                <span style="color:#75715e"># values (minutes since midnight) en passant</span>
+                map(
+                    {
+                        [
+                            convert_time($schedule<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>][$_], $EOB),
+                            convert_time($schedule<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>][$_], $EOB)
+                        ]
+                    }
+                    (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#{$schedule<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]})
+                )
+            ) <span style="color:#75715e"># End call to find_overlaps()</span>
+        ) <span style="color:#75715e"># End call to max_list_length()</span>
+
+        <span style="color:#75715e"># 4) Add one because the lists of overlaps</span>
+        <span style="color:#75715e"># we counted don&#39;t include the train being</span>
+        <span style="color:#75715e"># overlapped</span>
+        <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+    );
+</code></pre></div><p>The <code>find_overlaps()</code> function is too noteworthy to leave out:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">find_overlaps</span>{
+
+        <span style="color:#66d9ef">my</span> $i;
+        <span style="color:#66d9ef">my</span> $j;
+        <span style="color:#66d9ef">my</span> @overlap_intervals;
+
+        <span style="color:#75715e"># Set up empty array refs to match the</span>
+        <span style="color:#75715e"># number of intervals we&#39;ll be looking at</span>
+        @overlap_intervals <span style="color:#f92672">=</span> map({ <span style="color:#f92672">[]</span> } (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#ARG));
+
+        <span style="color:#75715e"># Loop over intervals from the 1th (as</span>
+        <span style="color:#75715e"># opposed to the 1st) onward</span>
+        <span style="color:#66d9ef">for</span> $i (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $#ARG){
+            <span style="color:#75715e"># Loop over intervals from the 0th to the</span>
+            <span style="color:#75715e"># (i - 1)th</span>
+            <span style="color:#66d9ef">for</span> $j (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> ($i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)){
+                <span style="color:#75715e"># Basically:</span>
+                <span style="color:#75715e"># if(max(beginnings) - min(ends) &lt;= 0)</span>
+                <span style="color:#66d9ef">if</span>(
+                    <span style="color:#75715e"># Maximum of the beginnings of the ranges</span>
+                    ($ARG[$j][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&gt;</span> $ARG[$i][<span style="color:#ae81ff">0</span>] ? $ARG[$j][<span style="color:#ae81ff">0</span>] : $ARG[$i][<span style="color:#ae81ff">0</span>])
+                    <span style="color:#f92672">-</span>
+                    <span style="color:#75715e"># Minimum of the ends of the ranges</span>
+                    ($ARG[$j][<span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;</span> $ARG[$i][<span style="color:#ae81ff">1</span>] ? $ARG[$j][<span style="color:#ae81ff">1</span>] : $ARG[$i][<span style="color:#ae81ff">1</span>])
+                    <span style="color:#f92672">&lt;=</span>
+                    <span style="color:#ae81ff">0</span>
+                ){
+                    <span style="color:#75715e"># Store each overlapping interval&#39;s index</span>
+                    <span style="color:#75715e"># in the array corresponding to the other</span>
+                    push(@{$overlap_intervals[$i]}, $j);
+                    push(@{$overlap_intervals[$j]}, $i);
+                }
+            }
+        }
+
+        <span style="color:#66d9ef">return</span>(@overlap_intervals);
+
+    }
+</code></pre></div><h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-2">Blogs and Additional Submissions in Guest Languages for Task 2:</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2021/09/05">A Platform for Every Departing Sub-Matrix — RabbitFarm</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-128/james-smith">Perl Weekly Challenge #128</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/roger-bell-west/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/roger-bell-west/raku/ch-2.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/roger-bell-west/ruby/ch-2.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/roger-bell-west/rust/ch-2.rs">Rust</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://blog.firedrake.org/archive/2021/09/Perl_Weekly_Challenge_128__Maxima_and_Minima.html">RogerBW&rsquo;s Blog: Perl Weekly Challenge 128: Maxima and Minima</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-128/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://wlmb.github.io/2021/08/30/PWC128/">Perl Weekly Challenge 128 – W. Luis Mochán</a></p>
+<hr>
+<h1 id="PWC128BLOGS">BLOGS</h1>
+<hr>
+<p><strong>That’s it for me this week, people! Warped by the rain, driven by the snow, resolute and unbroken by the torrential influx, I somehow continue to maintain my bearings. Looking forward to next wave, the perfect wave, I am: <em>your humble servant</em>.</strong></p>
+<h1 id="PWC128BLOGS">But if Your <em>THIRST</em> for <em>KNOWLEDGE</em> is not <em>SLAKED</em>,</h1>
+<h1 id="then-run-dont-walk-to-the-watering-hole">then <em>RUN</em> <em>(dont walk!)</em> to the <em>WATERING HOLE</em></h1>
+<h1 id="and-read-these-blog-links">and <em>READ</em> these <em>BLOG</em> <em>LINKS</em>:</h1>
+<p><strong>( <em>don&rsquo;t think, trust your training, you&rsquo;re in the zone, just do it &hellip;</em> )</strong></p>
+<p><strong>Abigail</strong></p>
+<ul>
+<li><a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-128-1.html">Perl Weekly Challenge 128: Maximum Sub-Matrix</a> ( <em>Perl</em> )</li>
+<li><a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-128-2.html">Perl Weekly Challenge 128: Minimum Platforms</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Adam Russell</strong></p>
+<ul>
+<li><a href="http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2021/09/05">A Platform for Every Departing Sub-Matrix — RabbitFarm</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Arne Sommer</strong></p>
+<ul>
+<li><a href="https://raku-musings.com/mums-platform.html">With Raku to Mum&rsquo;s Platform</a> ( <em>Raku</em> )</li>
+</ul>
+<p><strong>Cheok-Yin Fung</strong></p>
+<ul>
+<li><a href="https://e7-87-83.github.io/coding/challenge_128.html"> CY&rsquo;s Taken The Weekly Challenge #128 </a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Dave Jacoby</strong></p>
+<ul>
+<li><a href="https://jacoby.github.io/2021/09/01/minmaxing-matrix-platforms-the-weekly-challenge-128.html">MinMaxing Matrix Platforms: The Weekly Challenge 128 | Committed to Memory</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Flavio Poletti</strong></p>
+<ul>
+<li><a href="https://github.polettix.it/ETOOBUSY/2021/09/01/pwc128-maximum-sub-matrix/">PWC128 - Maximum Sub-Matrix - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+<li><a href="https://github.polettix.it/ETOOBUSY/2021/09/02/pwc128-minimum-platforms/">PWC128 - Minimum Platforms - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>James Smith</strong></p>
+<ul>
+<li><a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-128/james-smith">Perl Weekly Challenge #128</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Laurent Rosenfeld</strong></p>
+<ul>
+<li><a href="http://blogs.perl.org/users/laurent_r/2021/09/perl-weekly-challenge-128-minimum-platforms.html">Perl Weekly Challenge 128: Minimum Platforms |aurent_r</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Luca Ferrari</strong></p>
+<ul>
+<li><a href="https://fluca1978.github.io/2021/08/30/PerlWeeklyChallenge128.html#task1">Perl Weekly Challenge 128: too much complex? – Luca Ferrari – Open Source advocate, humanbeing</a> ( <em>Raku</em> )</li>
+</ul>
+<p><strong>Roger Bell_West</strong></p>
+<ul>
+<li><a href="https://blog.firedrake.org/archive/2021/09/Perl_Weekly_Challenge_128__Maxima_and_Minima.html">RogerBW&rsquo;s Blog: Perl Weekly Challenge 128: Maxima and Minima</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Simon Green</strong></p>
+<ul>
+<li><a href="https://dev.to/simongreennet/weekly-challenge-128-1ng1">Weekly Challenge 128</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>W. Luis Mochan</strong></p>
+<ul>
+<li><a href="https://wlmb.github.io/2021/08/30/PWC128/">Perl Weekly Challenge 128 – W. Luis Mochán</a> ( <em>Perl</em> )</li>
+</ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="/contact" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2021
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.nomtimes.co.uk/site/shop.do?cref=PerlBooks" title="Free Perl Books" rel="noreferrer" target="_blank">
+                            <img src="/images/NomTimes.jpg" style="width:22px; height: 18px;" alt=""/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jQurey/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-136524905-1', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+
+</html>
+
