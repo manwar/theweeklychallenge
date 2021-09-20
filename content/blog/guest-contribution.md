@@ -32,6 +32,8 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 131](/blog/perl-weekly-challenge-131) {#131}
 <br>
 
+##### **Mohammad Meraj Zia** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/ziameraj16/java/ConsecutiveArraysr.java) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/ziameraj16/java/FindPairs.java) in **Java**.
+
 ##### **Roger Bell_West** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/roger-bell-west/postscript/ch-2.ps) in **Postscript**.
 
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/roger-bell-west/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/roger-bell-west/python/ch-2.py) in **Python**.
