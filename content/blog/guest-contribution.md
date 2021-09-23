@@ -34,6 +34,8 @@ Please find below guest contributions.
 
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/eric-cheung/excel-vba/ch-1.bas) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/eric-cheung/excel-vba/ch-2.bas) in **Excel VBA**.
 
+##### **Ian Goodnight** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/iangoodnight/javascript/ch-1.js) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/iangodnight/javascript/ch-2.js) in **JavaScript**.
+
 ##### **Mohammad Meraj Zia** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/ziameraj16/java/ConsecutiveArraysr.java) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/ziameraj16/java/FindPairs.java) in **Java**.
 
 ##### **Roger Bell_West** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/roger-bell-west/postscript/ch-2.ps) in **Postscript**.
