@@ -32,6 +32,8 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 131](/blog/perl-weekly-challenge-131) {#131}
 <br>
 
+##### **Cheok-Yin Fung** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/cheok-yin-fung/julia/ch-1.jl) in **Julia**.
+
 ##### **Conor Hoekstra** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/conor-hoekstra/apl/ch-1.apl) in **APL**.
 
 ##### **Conor Hoekstra** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/conor-hoekstra/haskell/ch-1.hs) in **Haskell**.
