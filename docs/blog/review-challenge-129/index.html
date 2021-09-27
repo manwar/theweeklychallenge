@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="The Weekly Challenge - Perl & Raku"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="You do not have to be an expert."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Colin Crain › Perl Weekly Review #129">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Colin Crain › Perl Weekly Review #129</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navgation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Colin Crain › Perl Weekly Review #129</h2>
+                    <div class="portfolio-meta">
+                        <span>Monday, Sep 27, 2021</span>|
+                        <span> Tags:
+                            perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/p5-review-challenge-129.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <p>( <em>&hellip;continues from <a href="/blog/review-challenge-128/">previous week</a>.</em> )</p>
+<p>Welcome to the Perl review for <strong>Week 129</strong> of the Weekly Challenge! Here we will take the time to discuss the  submissions offered by the team, factor out the common methodologies that came up in those solutions, and highlight some of the unique approaches and unusual code created.</p>
+<hr>
+<h3 id="why-do-we-do-these-challenges">Why do we do these challenges?</h3>
+<p>I suppose any answers to that would be as wide ranging and varied as the people who choose to join the team. One thing is clear: it&rsquo;s not a competition, and there are no judges, even if there is a &ldquo;prize&rdquo; of sorts. About that &ndash; I think of it more as an honorarium periodically awarded to acknowledge the efforts we make towards this strange goal. So there&rsquo;s no determination to find the <em>fastest</em>, or the <em>shortest</em>, or even, in some abstract way, the <em>best</em> way to go about things, although I&rsquo;m certain the individuals have their own aspirations and personal drives. As Perl is such a wonderfully expressive language, this provides quite a bit of fodder to the core idea of TMTOWTDI, producing a gamut of wonderfully varied techniques and solutions.</p>
+<p>Even the tasks themselves are often open to a certain amount of discretionary interpretation. What we end up with is a situation where each participant is producing something in the manner they find the most interesting or satisfying. Some team members focus on carefully crafted complete applications that thoroughly vet input data and handle every use case they can think up. Others choose to apply themselves to the logic of the underlying puzzle and making it work in the most elegant way they can. Some eschew modules they would ordinarily reach for, others embrace them, bringing to light wheels perhaps invented years ago that happen to exactly solve the problem in front of them today.</p>
+<p>I&rsquo;ve been considering this question for some time and have found one binding commonality between all of us solving these challenges each week, in that however we normally live our lives, the task in front of us more than likely has nothing to do with any of that . And I think this has great value. We all do what we do, out in the real world, and hopefully we do it well. The Weekly Challenge provides a opportunity to do something germane to that life yet distinctly different; if we only do the things we already know how to do we only do the same things over and over. This is where the &ldquo;challenge&rdquo; aspect comes into play.</p>
+<p>So we can consider the Weekly Challenge as providing a problem space outside of our comfort zone, as far out from comfort as we wish to take things. From those reaches we can gather and learn things and bring what we want back into our lives. Personally, I think that&rsquo;s its greatest value of all.</p>
+<hr>
+<p>Every week there is an enormous global collective effort made by the team, analyzing and creatively coding the submissions, and that effort deserves credit due. And that&rsquo;s why I&rsquo;m here, to try and figure out how to do that.</p>
+<p>Let&rsquo;s have a look and see what we can find.</p>
+<hr>
+<p><strong><big>For context</big></strong>  before we begin, you may wish to revisit either of the pages for the <a href="/blog/perl-weekly-challenge-129/"><strong>original tasks</strong></a> or the summary <a href="/blog/recap-challenge-129/"><strong>recap</strong></a> of the challenge. But don&rsquo;t worry, the challenges themselves will be briefly summarized, presented below as we progress from task by task. Oh, and one more thing before we get started:</p>
+<h3 id="getting-in-touch-with-us">Getting in Touch with Us</h3>
+<p><a href="mailto:pwc.perfectwave@gmail.com"><img src="/images/blog/Email.svg" height="50" width="50"> Email</a> › Please email me (Colin) with any feedback, notes, clarifications or whatnot about this review.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge"><img src="/images/blog/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request to us for any issues you may find with this page.</p>
+<p><a href="https://twitter.com/perlwchallenge"><img src="/images/blog/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!</p>
+<p>I&rsquo;m always curious as to what the people think of these efforts. Everyone here at the PWC would like to hear any feedback you&rsquo;d like to give.</p>
+<p><strong>So finally, without further ado&hellip;</strong></p>
+<hr>
+<h2 id="---nbsp--nbsp--nbsp---task-1pwc129task1-------nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---task-2pwc129task2---nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---blogspwc129blogs----nbsp--nbsp--nbsp---">•             <a href="#PWC129TASK1">Task 1</a>                 •             <a href="#PWC129TASK2">Task 2</a>             	•             <a href="#PWC129BLOGS">BLOGS</a>              	•</h2>
+<hr>
+<h1 id="PWC129TASK1">TASK 1</h1>
+<h1 id="root-distance">Root Distance</h1>
+<p><em>Submitted by: Mohammad S Anwar</em></p>
+<p>You are given a tree and a node of the given tree.</p>
+<p>Write a script to find out the distance of the given node from the root.</p>
+<p><strong>Example 1:</strong></p>
+<pre><code>    Tree:
+            1
+           / \
+          2   3
+               \
+                4
+               / \
+              5   6
+
+    Node: 6
+    Output: 3 as the distance of given node 6 from the root (1).
+
+    Node: 5
+    Output: 3
+
+    Node: 2
+    Output: 1
+
+    Node: 4
+    Output: 2
+</code></pre><p><strong>Example 2:</strong></p>
+<pre><code>    Tree:
+            1
+           / \
+          2   3
+         /     \
+        4       5
+         \     /
+          6   7
+         / \
+        8   9
+
+    Node: 7
+    Output: 3 as the distance of given node 6 from the root (1).
+
+    Node: 8
+    Output: 4
+
+    Node: 6
+    Output: 3
+</code></pre><h2 id="about-the-solutions">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-129/abigail/perl/ch-1.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-129/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-129/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-129/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-129/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-129/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-129/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-129/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-129/mattneleigh/perl/ch-1.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-129/pete-houston/perl/ch-1.pl"><strong>Pete Houston</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-129/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-129/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>Welcome to the review pages for The Weekly Challenge 129. It was an unusually light week for turnout, with only 12 submissions for the first task. The vagaries of life being what they are, I&rsquo;m sure there&rsquo;s no particular meaning to be derived from that; statistically we&rsquo;ll have more or less as we go. What it does mean is that we&rsquo;ll have a chance to look at all of the solutions.</p>
+<p>It seems that many members who have contributed for some time have by this point decided on an approach to trees, binary and otherwise, that best suits them, and perhaps even have a library waiting that they can reach for, full of various Node and Tree and Graph parts to build on. I expect we&rsquo;ll see a lot of that today.</p>
+<p>Also, it has been well noted previously on the difficulties associated with Input and Output of trees — in short there is no good way that is easily readable by both humans and machines. As such we will see some serialized input schemes, but also cases where the examples are hard-coded in, focusing on the logic of the data manipulation over the complexities of I/O. I see the construction of trees a good puzzle in its own right, but somewhat divorced from the specific problem at hand. Although, of course, that need not be the case, as careful selection of our tree data model can make the task request quite simple.</p>
+<p>As we only have a dozen submissions let&rsquo;s have a look at them and see what pops out.</p>
+<h2 id="an-assortment-of-schemes-and-machinations">an ASSORTMENT of SCHEMES and MACHINATIONS</h2>
+<p>Before we start, a couple of notes should be brought up:</p>
+<ol>
+<li>The trees in question, although exemplified as binary trees, are not actually declared as such, and hence could be <em>n</em>-ary.</li>
+<li>The example trees, drawn using ASCII characters, are perfectly valid structures, but this drawing format cannot be used to draw any valid binary tree, as at the second level and beyond there will be space conflicts among the inner nodes, which only become worse as the tree grows. Thus beyond the limited examples given, this method, as-is, can only be used to draw a certain subset of sparse binary trees out of all possible variations.</li>
+<li>It&rsquo;s not <em>exactly</em> clear how the given node is specified. In a binary tree node we have at minimum set comprised of a value, with possible set nodes for the left and right children if present, with the null set, ∅, as an alternative. Optionally a label can also be provided, allowing independant identification of individual nodes. In the examples given this is not the case, and the nodes are identified by their value, which must therefore be unique within the structure. This uniqueness is not specified, but should we continue to use the values as identifiers this <em>must</em> follow.</li>
+</ol>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-129/mattneleigh/perl/ch-1.pl"><strong>Matthew Neleigh</strong></a></p>
+<p>To start us off let&rsquo;s have a look at Matthew&rsquo;s submission.</p>
+<p>Matthew directly defines his tree an a hard-wired multidimensional hash. This is of course a perfectly valid way of going about this, as the most common uses of some sort of Node objects to construct trees are implemented as hashs with keys referencing other hashes; this is unblessed version but otherwise essentially the same structure.</p>
+<p>Once he has his tree he performs a depth-first traversal to visit all the nodes. As nodes are visited, a running depth counter is used to record the target node depths in a separate hash.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_depth_search_recursor</span>{
+        <span style="color:#66d9ef">my</span> $node <span style="color:#f92672">=</span> shift();
+        <span style="color:#66d9ef">my</span> $input_table <span style="color:#f92672">=</span> shift();
+        <span style="color:#66d9ef">my</span> $output_table <span style="color:#f92672">=</span> shift();
+        <span style="color:#66d9ef">my</span> $depth <span style="color:#f92672">=</span> shift();
+
+        <span style="color:#75715e"># If we&#39;re at an undefined node</span>
+        <span style="color:#75715e"># or the input table is empty,</span>
+        <span style="color:#75715e"># just return</span>
+        <span style="color:#66d9ef">return</span>() <span style="color:#66d9ef">unless</span>(defined($node) <span style="color:#f92672">&amp;&amp;</span> %{$input_table});
+
+        <span style="color:#66d9ef">if</span>($input_table<span style="color:#f92672">-&gt;</span>{$node<span style="color:#f92672">-&gt;</span>{d}}){
+            <span style="color:#75715e"># This is a node we&#39;re looking for-</span>
+            <span style="color:#75715e"># delete it from the input table and</span>
+            <span style="color:#75715e"># make a note of its depth in the</span>
+            <span style="color:#75715e"># output table</span>
+            delete($input_table<span style="color:#f92672">-&gt;</span>{$node<span style="color:#f92672">-&gt;</span>{d}});
+            $output_table<span style="color:#f92672">-&gt;</span>{$node<span style="color:#f92672">-&gt;</span>{d}} <span style="color:#f92672">=</span> $depth;
+        }
+
+        <span style="color:#75715e"># Dig deeper to the left and to</span>
+        <span style="color:#75715e"># the right</span>
+        _depth_search_recursor(
+            $node<span style="color:#f92672">-&gt;</span>{l}, $input_table, $output_table, $depth <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+        );
+        _depth_search_recursor(
+            $node<span style="color:#f92672">-&gt;</span>{r}, $input_table, $output_table, $depth <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+        );
+
+        <span style="color:#66d9ef">return</span>();
+
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-129/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://jacoby.github.io/2021/09/06/list-aint-nothin-but-tree-misspelled-the-perl-weekly-challenge-129.html">‘List’ Ain’t Nothin’ But ‘Tree’ Misspelled: The (Perl) Weekly Challenge #129 | Committed to Memory</a></p>
+<p>Alternately, Dave employs a nice <code>Node</code> package he has written, with getter/setter methods for constructing the tree, child-by-child. It also retains the parent information, which makes a solution to this problem straightforward. The nodes are held as an array of hashes, with each containing its relevant information in its keys. Because the top-level abstraction is a list, iterating over this provides direct access to the nodes. For each node found, a routine <code>root_distanced()</code> back-traces the <code>parent</code> links upwards until the root node is found, counting each step. This count is returned.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">root_distanced</span> ( $nodes, $n ) {
+        <span style="color:#66d9ef">my</span> $d    <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">my</span> $node <span style="color:#f92672">=</span> $nodes<span style="color:#f92672">-&gt;</span>{$n};
+        <span style="color:#66d9ef">while</span> ( <span style="color:#f92672">!</span>$node<span style="color:#f92672">-&gt;</span>is_root() ) {
+            $d<span style="color:#f92672">++</span>;
+            $node <span style="color:#f92672">=</span> $node<span style="color:#f92672">-&gt;</span>parent();
+        }
+        <span style="color:#66d9ef">return</span> $d;
+    }
+
+    <span style="color:#66d9ef">package</span> Node;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">new</span> ( $class, $value = 0 ) {
+        <span style="color:#66d9ef">my</span> $self <span style="color:#f92672">=</span> {};
+        $self<span style="color:#f92672">-&gt;</span>{value}      <span style="color:#f92672">=</span> $value;
+        $self<span style="color:#f92672">-&gt;</span>{left}       <span style="color:#f92672">=</span> undef;
+        $self<span style="color:#f92672">-&gt;</span>{right}      <span style="color:#f92672">=</span> undef;
+        $self<span style="color:#f92672">-&gt;</span>{horizontal} <span style="color:#f92672">=</span> undef;
+        $self<span style="color:#f92672">-&gt;</span>{parent}     <span style="color:#f92672">=</span> undef;
+        <span style="color:#66d9ef">return</span> bless $self, $class;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">value</span> ( $self, $value = undef ) {
+        <span style="color:#66d9ef">if</span> ( defined $value ) {
+            $self<span style="color:#f92672">-&gt;</span>{value} <span style="color:#f92672">=</span> $value;
+        }
+        <span style="color:#66d9ef">else</span> {
+            <span style="color:#66d9ef">return</span> $self<span style="color:#f92672">-&gt;</span>{value};
+        }
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_root</span> ( $self ) {
+        <span style="color:#66d9ef">return</span> defined $self<span style="color:#f92672">-&gt;</span>{parent} ? <span style="color:#ae81ff">0</span> : <span style="color:#ae81ff">1</span>;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">left</span> ( $self, $node = undef ) {
+        <span style="color:#66d9ef">if</span> ( defined $node ) {
+            $self<span style="color:#f92672">-&gt;</span>{left}   <span style="color:#f92672">=</span> $node;
+            $node<span style="color:#f92672">-&gt;</span>{parent} <span style="color:#f92672">=</span> $self;
+        }
+        <span style="color:#66d9ef">else</span> {
+            <span style="color:#66d9ef">return</span> $self<span style="color:#f92672">-&gt;</span>{left};
+        }
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">parent</span> ($self ) {
+        <span style="color:#66d9ef">return</span> $self<span style="color:#f92672">-&gt;</span>{parent};
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-129/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-129/polettix/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.polettix.it/ETOOBUSY/2021/09/08/pwc129-root-distance/">PWC129 - Root Distance - ETOOBUSY</a></p>
+<p>Flavio minimally abstracts his tree nodes as a hash with two keys: a <code>label</code>, in this context the value of the node, and <code>children</code>, which points to an array of child nodes. Once the data is loaded in, a depth-first traversal of the nodes is made to determine the depth of a specified node when visited.</p>
+<p>Of note is a some slightly disturbing abuse (not my word, by the way) of an <code>eval</code>/<code>die</code> construct to short-circuit control flow on success that deserves a closer look.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">depth</span> ($root, $label) {
+       <span style="color:#66d9ef">my</span> $depth <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+       eval {
+          depth_first_visit(
+             start <span style="color:#f92672">=&gt;</span> $root,
+             successors <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> ($n) { ($n<span style="color:#f92672">-&gt;</span>{children} <span style="color:#e6db74">//</span> <span style="color:#f92672">[]</span>)<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">}</span>,
+             identifier <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> ($n) { $n<span style="color:#f92672">-&gt;</span>{label} },
+             pre_action <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> ($n, $parent) {
+                die <span style="color:#e6db74">&#39;done!&#39;</span> <span style="color:#66d9ef">if</span> $n<span style="color:#f92672">-&gt;</span>{label} <span style="color:#f92672">eq</span> $label;
+                <span style="color:#f92672">++</span>$depth;
+             },
+             post_action <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { <span style="color:#f92672">--</span>$depth },
+          );
+          <span style="color:#ae81ff">1</span>;
+       } <span style="color:#f92672">or</span> <span style="color:#66d9ef">return</span> $depth;
+       <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;NaN&#39;</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-129/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-129/roger-bell-west/postscript/ch-1.ps">Postscript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-129/roger-bell-west/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-129/roger-bell-west/raku/ch-1.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-129/roger-bell-west/ruby/ch-1.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-129/roger-bell-west/rust/ch-1.rs">Rust</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://blog.firedrake.org/archive/2021/09/Perl_Weekly_Challenge_129__Eats_Roots_and_Lists.html">RogerBW&rsquo;s Blog: Perl Weekly Challenge 129: Eats Roots and Lists</a></p>
+<p>Roger is a strong proponent of serializing binary tree data onto a list with fixed index relationships. That is the root node is [0], with left and right child nodes at [1] and [2], which in turn have their children at left [3] right [4], and left [5] right [6]. This is generalized to any node at index [<em>n</em>] will have left and right children at [2<em>n</em>+1] and [2<em>n</em>+2].</p>
+<p>As the format only describes complete trees, each level of depth adds another 2<sup><em>depth</em></sup> indices to the array, which becomes quite long quite quickly, but Roger has provided an interesting, more human-readable variant by assigning the value 0 to null nodes and a applying some self-descriptive indentation:</p>
+<p>For example <em>example 1</em>:</p>
+<pre><code>    [          1,
+           2,      3,
+         0,  0,  0,  4,
+        0,0,0,0,0,0,5,6    ]
+</code></pre><p>Because of the fixed structure in the serialized format, the depth of an element can be derived by its index: all four of the second-level nodes will always be located at indices 3 through 6, and these indices will always comprise the second level.</p>
+<p>Although I have lately taken to building my own node library package for sport, I whole-heartedly agree with Roger&rsquo;s enthusiasm for the serialized tree format. It really is a joy to work with.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">rd</span> {
+      <span style="color:#66d9ef">my</span> ($tree,$content)<span style="color:#f92672">=</span>@_;
+      <span style="color:#66d9ef">my</span> $depth<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+      <span style="color:#66d9ef">my</span> $dl<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
+      <span style="color:#66d9ef">my</span> $db<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
+      <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#{$tree}) {
+        <span style="color:#66d9ef">if</span> ($tree<span style="color:#f92672">-&gt;</span>[$i] <span style="color:#f92672">==</span> $content) {
+          <span style="color:#66d9ef">return</span> $depth;
+        }
+        $dl<span style="color:#f92672">--</span>;
+        <span style="color:#66d9ef">if</span> ($dl<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>) {
+          $db<span style="color:#f92672">*=</span><span style="color:#ae81ff">2</span>;
+          $dl<span style="color:#f92672">=</span>$db;
+          $depth<span style="color:#f92672">++</span>;
+        }
+      }
+      <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-129/pete-houston/perl/ch-1.pl"><strong>Pete Houston</strong></a></p>
+<p>In a remarkably different vein, we have Pete.</p>
+<p>Pete takes a very literal and direct approach to scanning a tree, by taking a the ascii drawing of a tree:</p>
+<pre><code>            1
+           / \
+          2   3
+               \
+                4
+               / \
+              5   6
+</code></pre><p>as an input file and parsing that. Using a negated character class the lines read in are parsed for values, and if found they are loaded into a hash with an associated depth. The depth is a counter that is only incremented when a new level with values is found.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">while</span> ($_ <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;$inh&gt;</span>) {
+        <span style="color:#66d9ef">my</span> @payloads <span style="color:#f92672">=</span> <span style="color:#e6db74">/[^\\\/\s]+/g</span>;
+        <span style="color:#66d9ef">if</span> (scalar @payloads) {
+        	<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $p (@payloads) {
+        		die <span style="color:#e6db74">&#34;Non-unique payload $p.\n&#34;</span> <span style="color:#66d9ef">if</span> exists $distance{$p};
+        		$distance{$p} <span style="color:#f92672">=</span> $len;
+        	}
+        	say <span style="color:#e6db74">&#34;len $len&#34;</span>;
+        	$len<span style="color:#f92672">++</span>;
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-129/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a></p>
+<p>Choroba delivers a quick <code>Tree</code> class built from child nodes attached upwards to a parent. This little inversion trick makes ascending upwards to the root a simple recursive routine, counting one step per cycle as the recursion collapses. I find the multiple pattern inversions in this compact solution quite fascinating, inverting the frame of reference to look from the back forwards, so to speak.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    {   <span style="color:#66d9ef">package</span> Tree;
+        <span style="color:#66d9ef">use</span> Moo;
+
+        has root <span style="color:#f92672">=&gt;</span> (is <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;ro&#39;</span>);
+        has parent <span style="color:#f92672">=&gt;</span> (is <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;lazy&#39;</span>);
+
+        <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">add_child</span> {
+            <span style="color:#66d9ef">my</span> ($self, $value, $parent) <span style="color:#f92672">=</span> @_;
+            die <span style="color:#e6db74">&#34;Unknown parent $parent&#34;</span> <span style="color:#66d9ef">unless</span> exists $self<span style="color:#f92672">-&gt;</span>parent<span style="color:#f92672">-&gt;</span>{$parent};
+
+            die <span style="color:#e6db74">&#34;Duplicate parent for $value&#34;</span> <span style="color:#66d9ef">if</span> defined $self<span style="color:#f92672">-&gt;</span>parent<span style="color:#f92672">-&gt;</span>{$value}
+                                              <span style="color:#f92672">&amp;&amp;</span> $self<span style="color:#f92672">-&gt;</span>parent<span style="color:#f92672">-&gt;</span>{$value} <span style="color:#f92672">!=</span> $parent;
+
+            $self<span style="color:#f92672">-&gt;</span>parent<span style="color:#f92672">-&gt;</span>{$value} <span style="color:#f92672">=</span> $parent;
+        }
+
+        <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">rank</span> {
+            <span style="color:#66d9ef">my</span> ($self, $value) <span style="color:#f92672">=</span> @_;
+            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">unless</span> $self<span style="color:#f92672">-&gt;</span>parent<span style="color:#f92672">-&gt;</span>{$value};
+
+            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> $self<span style="color:#f92672">-&gt;</span>rank($self<span style="color:#f92672">-&gt;</span>parent<span style="color:#f92672">-&gt;</span>{$value})
+        }
+
+        <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_build_parent</span> {
+            <span style="color:#66d9ef">my</span> ($self) <span style="color:#f92672">=</span> @_;
+            <span style="color:#f92672">+</span>{ $self<span style="color:#f92672">-&gt;</span>root <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">0</span> }
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-129/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2021/09/12">Two Exercises in Fundamental Data Structures — RabbitFarm</a></p>
+<p>After what appears to be 128 previous attempts (<em>I jest! I jest! Put down that pointed stick, good sir!</em>) Adam&rsquo;s <code>Tree129()</code> routine seems to finally do what he wants.</p>
+<p>To build his tree he uses a collection of nested structs, with this functionality delivered through the module <code>Class::Struct</code>. Omitted here is a whole section using <code>Tie::RefHash</code> for the actual construction, but that is definitely worth a look. The root-node distance is calculated using a breadth-first search of the resulting tree, searching downwards until the desired node is found.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">package</span> Tree129{
+        <span style="color:#66d9ef">use</span> Class::Struct;
+
+        <span style="color:#66d9ef">package</span> Node{
+            <span style="color:#66d9ef">use</span> boolean;
+            <span style="color:#66d9ef">use</span> Class::Struct;
+            struct(
+                value <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">q/$/</span>,
+            );
+            true;
+        }
+
+        <span style="color:#66d9ef">package</span> Edge{
+            <span style="color:#66d9ef">use</span> boolean;
+            <span style="color:#66d9ef">use</span> Class::Struct;
+            struct(
+                weight <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">q/$/</span>,
+                source <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">q/Node/</span>,
+                target <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">q/Node/</span>
+            );
+            true;
+        }
+
+        struct(
+            root <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">q/Node/</span>,
+            edges <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">q/%/</span>
+        );
+
+        <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">distance</span>{
+            <span style="color:#66d9ef">my</span>($self, $target) <span style="color:#f92672">=</span> @_;
+            <span style="color:#66d9ef">my</span> $distance <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+            <span style="color:#66d9ef">return</span> $distance <span style="color:#66d9ef">if</span>($self<span style="color:#f92672">-&gt;</span>root()<span style="color:#f92672">-&gt;</span>value() <span style="color:#f92672">==</span> $target);
+            <span style="color:#66d9ef">my</span> @nodes <span style="color:#f92672">=</span> @{$self<span style="color:#f92672">-&gt;</span>edges()<span style="color:#f92672">-&gt;</span>{$self<span style="color:#f92672">-&gt;</span>root()}};
+            <span style="color:#66d9ef">my</span> @edge_sources <span style="color:#f92672">=</span> keys %{$self<span style="color:#f92672">-&gt;</span>edges()};
+            <span style="color:#66d9ef">do</span>{
+                $distance<span style="color:#f92672">++</span>;
+                <span style="color:#66d9ef">return</span> $distance <span style="color:#66d9ef">if</span>((grep {$_<span style="color:#f92672">-&gt;</span>value() <span style="color:#f92672">==</span> $target} @nodes) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>);
+                <span style="color:#66d9ef">my</span> @child_nodes;
+                <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $node (@nodes){
+                    <span style="color:#66d9ef">my</span> @k <span style="color:#f92672">=</span> grep {$_<span style="color:#f92672">-&gt;</span>value() <span style="color:#f92672">==</span> $node<span style="color:#f92672">-&gt;</span>value()} @edge_sources;
+                    push @child_nodes, @{$self<span style="color:#f92672">-&gt;</span>edges()<span style="color:#f92672">-&gt;</span>{$k[<span style="color:#ae81ff">0</span>]}} <span style="color:#66d9ef">if</span> $k[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&amp;&amp;</span> $self<span style="color:#f92672">-&gt;</span>edges()<span style="color:#f92672">-&gt;</span>{$k[<span style="color:#ae81ff">0</span>]};
+                }
+
+                @nodes <span style="color:#f92672">=</span> @child_nodes;
+            }<span style="color:#66d9ef">while</span>(@nodes);
+            <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-129/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://wlmb.github.io/2021/09/06/PWC129/">Perl Weekly Challenge 129 – W. Luis Mochán</a></p>
+<p>Much like what we saw with Pete earlier, Luis analyzes a <em>textual</em> representation of the tree, looking for the specified node value. To get around the obvious — and perhaps less-than-obvious — limitations of ASCII tree representations, he has adopted instead an indentation-based outline format borrowed from the venerable text editor emacs&rsquo; org-mode. For example, the first example —</p>
+<pre><code>        1
+       / \
+      2   3
+           \
+            4
+           / \
+          5   6
+</code></pre><p>comes out like this:</p>
+<pre><code>    - 1
+      - 2
+      - 3
+        -
+        - 4
+          - 5
+          - 6
+</code></pre><p>As we&rsquo;ve said before, the node value, because we&rsquo;re using it for the label identifier, must be unique. Because we know the root is at the top of the structure, the distance from the root can be immediately inferred from its indentation level.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">analyze_line</span> {
+    <span style="color:#75715e"># Read and analyze lines. Keep them until their turn if outdented</span>
+        state ($line, $current_indent, $value);
+        <span style="color:#66d9ef">my</span> $previous_indent<span style="color:#f92672">=</span>shift;
+        <span style="color:#66d9ef">if</span>(<span style="color:#f92672">!</span>defined $current_indent){
+        $line<span style="color:#f92672">=</span><span style="color:#e6db74">&lt;STDIN&gt;</span>;
+        <span style="color:#66d9ef">return</span> () <span style="color:#66d9ef">if</span> <span style="color:#f92672">!</span>defined $line <span style="color:#f92672">||</span> $line<span style="color:#f92672">=~</span><span style="color:#e6db74">m/^\s*$/</span>;
+        die <span style="color:#e6db74">&#34;Malformed tree: $line&#34;</span> <span style="color:#66d9ef">unless</span> $line<span style="color:#f92672">=~</span><span style="color:#e6db74">m/^(\s*)-\s*(\d*)\s*$/</span>;
+        $current_indent<span style="color:#f92672">=</span>length $1;
+        $value<span style="color:#f92672">=</span>$2;
+        }
+        <span style="color:#66d9ef">if</span>($current_indent<span style="color:#f92672">&gt;</span>$previous_indent){
+        <span style="color:#66d9ef">my</span> $result_indent<span style="color:#f92672">=</span>$current_indent;
+        $current_indent<span style="color:#f92672">=</span>undef;
+        <span style="color:#66d9ef">return</span> ($result_indent, $value);
+        }
+        <span style="color:#66d9ef">return</span> ();
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-129/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-129/james-smith">Perl Weekly Challenge #129</a></p>
+<p>James&rsquo; tree library, <code>BinaryTree</code> has grown rather lengthy as we continue to revisit this data structure, adding methods and attributes as new functionality is required. In this episode, a <code>parent</code> attribute is added, making the nodes doubly-linked. From there, an <code>ancestors()</code> method will ascend the parent-link chain to the top, storing the nodes found. The scalar of this list is the distance.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">ancestors</span> {
+      <span style="color:#66d9ef">my</span> $self <span style="color:#f92672">=</span> shift;
+      <span style="color:#66d9ef">my</span> $x <span style="color:#f92672">=</span> $self;
+      <span style="color:#66d9ef">my</span> @ancestors;
+      <span style="color:#66d9ef">while</span>($x<span style="color:#f92672">-&gt;</span>has_parent) {
+        push @ancestors, $x;
+        $x <span style="color:#f92672">=</span> $x<span style="color:#f92672">-&gt;</span>parent;
+      }
+      <span style="color:#66d9ef">return</span> @ancestors;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-129/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a></p>
+<p>Jorg does not appear to frivolously flit between the vast selection of modules available on CPAN, choosing instead to throughly explore the depths of a few of the most complex efforts. One of these is the <code>Graph</code> module. A tree, binary or otherwise, is a restricted form of a graph, and the tools for one can generally be used for the other, within the constraints specified.</p>
+<p>Once the structure is fitted into a <code>Graph</code> object, the module provides a implementation of <a href="https://en.wikipedia.org/wiki/Floyd%E2%80%93Warshall_algorithm">Floyd-Warshall&rsquo;s algorithm</a>,   <code>all_pairs_shortest_paths()</code>, which will compute the minimal distance between each pair of vertices in a graph.  <em>That</em> object, once prepared, can then be asked to provide the distance between the root and any other node.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">apsp</span> (@nodes) {
+        <span style="color:#66d9ef">my</span> $g <span style="color:#f92672">=</span> Graph<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(directed <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>);
+        <span style="color:#66d9ef">my</span> $root;
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $node (@nodes) {
+            <span style="color:#66d9ef">my</span> ($id, $left, $right) <span style="color:#f92672">=</span> split <span style="color:#e6db74">/:/</span>, $node;
+            $root <span style="color:#e6db74">//</span><span style="color:#f92672">=</span> $id;
+            $g<span style="color:#f92672">-&gt;</span>add_edge($id, $left) <span style="color:#66d9ef">if</span> $left;
+            $g<span style="color:#f92672">-&gt;</span>add_edge($id, $right) <span style="color:#66d9ef">if</span> $right;
+        }
+        ($g<span style="color:#f92672">-&gt;</span>all_pairs_shortest_paths, $root);
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">node_distance</span> ($apsp, $root, $node) {
+        $apsp<span style="color:#f92672">-&gt;</span>path_length($root, $node);
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-129/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://e7-87-83.github.io/coding/challenge_129.html">Basic Data Structure Experiments with Object::Pad (for The Weekly Challenge #129) </a></p>
+<p>CY presents us with a object solution using Paul Evans&rsquo; experimental and <em>very</em> interesting <code>Object::Pad</code> module to implement her tree nodes. <code>Object::Pad</code>, for those who follow such things, amounts to a practical working subset of the efforts going into the <code>Corrina</code> proposed modern Perl object system. For those who <em>don&rsquo;t</em> follow such things, there&rsquo;s an enormous amount of <a href="https://github.com/Ovid/Cor/wiki">cool thinking going into this project</a>. I, for one, am very excited to follow its development.</p>
+<p>Although the syntax diverges somewhat from that of Moo or Moose, and quite a bit from the standard Perl object form, I think anyone familiar with the underlying ideas should have no trouble identifying the various parts of the object. The <code>root_distance()</code> method, then, walks backwards up through the <code>parent</code> attributes, counting the steps along the way, until it finds the top.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Object::Pad <span style="color:#ae81ff">0.51</span>;
+    <span style="color:#66d9ef">use</span> Object::Pad::SlotAttr::Isa;
+
+    class TreeNode {
+        has $parent :reader :writer :param :Isa(TreeNode) <span style="color:#f92672">=</span> undef;
+        has $list_of_children :reader :writer :param <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>;
+        has $is_root :reader :param <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+        method set_children {
+            <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>];
+            $c<span style="color:#f92672">-&gt;</span>set_parent($self);
+            push $list_of_children<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, $c;
+        }
+
+        method root_distance {
+            <span style="color:#66d9ef">my</span> $p <span style="color:#f92672">=</span> $self;
+            <span style="color:#66d9ef">my</span> $d <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+            <span style="color:#66d9ef">while</span> (<span style="color:#f92672">!</span> $p<span style="color:#f92672">-&gt;</span>is_root) {
+                $p <span style="color:#f92672">=</span> $p<span style="color:#f92672">-&gt;</span>parent;
+                $d<span style="color:#f92672">++</span>;
+            }
+            <span style="color:#66d9ef">return</span> $d;
+        }
+
+        BUILD {
+            <span style="color:#66d9ef">if</span> (defined($parent)) {
+                $parent<span style="color:#f92672">-&gt;</span>set_children($self);
+            }
+            <span style="color:#66d9ef">else</span> {
+                $is_root <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+            }
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-129/abigail/perl/ch-1.pl"><strong>Abigail</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-129-1.html">Perl Weekly Challenge 129: Root Distance</a></p>
+<p>Abigail, in a less complex, more direct version than Adam above, also uses a breadth-first search to compute the requested value.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">while</span> (@todo) {
+        <span style="color:#66d9ef">my</span> ($node, $distance) <span style="color:#f92672">=</span> @{shift @todo}
+        <span style="color:#66d9ef">if</span> ($node <span style="color:#f92672">==</span> $target) {
+            say $distance;
+            exit;
+        }
+        <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $seen {$node} <span style="color:#f92672">++</span>;
+        push @todo <span style="color:#f92672">=&gt;</span> map {[$_, $distance <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>]} @{$$graph {$node}}
+    }
+</code></pre></div><hr>
+<hr>
+<h1 id="PWC129TASK2">TASK 2</h1>
+<h1 id="add-linked-lists">Add Linked Lists</h1>
+<p><em>Submitted by: Mohammad S Anwar</em>
+You are given two linked list having single digit positive numbers.</p>
+<p>Write a script to add the two linked list and create a new linked representing the sum of the two linked list numbers. The two linked lists may or may not have the same number of elements.</p>
+<p>HINT: Just a suggestion, feel free to come up with your own unique way to deal with the task. I am expecting a class representing linked list. It should have methods to create a linked list given list of single digit positive numbers and a method to add new member. Also have a method that takes 2 linked list objects and returns a new linked list. Finally a method to print the linked list object in a user friendly format.
+<strong>Example 1:</strong></p>
+<pre><code>Input: L1 = 1 -&gt; 2 -&gt; 3
+       L2 = 3 -&gt; 2 -&gt; 1
+Output: 4 -&gt; 4 -&gt; 4
+</code></pre><p>Operation: Pick the first rightmost element of L1 i.e. 3 and adds to the first rightmost element of L2 i.e. 1. Finally store the result i.e. 3 in the new linked list. Move to the next one of both linked lists L1 and L2, perform the same operation. In case the sum &gt;= 10 then you apply the same rule you would do to regular addition problem i.e. divide the sum by 10 keep the remainder and push to the new linked list. Don&rsquo;t forget to carry, 1, to the next operation. In case one linked list is smaller than the other, you can safely assume it is 0.</p>
+<p><strong>Example 2:</strong></p>
+<pre><code>Input: L1 = 1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5
+       L2 =           6 -&gt; 5 -&gt; 5
+Output:     1 -&gt; 3 -&gt; 0 -&gt; 0 -&gt; 0
+</code></pre><p>Operations:</p>
+<ol>
+<li>1st member of L1 = 5 and 1st member of L2 = 5</li>
+<li>5 + 5 = 10</li>
+<li>0 pushed to the new linked list.</li>
+<li>carry forward 1.</li>
+<li>2nd member of L1 = 4 and 2nd member of L2 = 5</li>
+<li>4 + 5 + 1 (carry) = 10</li>
+<li>0 again pushed to the new linked list.</li>
+<li>carry forward 1.</li>
+<li>3rd member of L1 = 3 and 3rd member of L2 = 6</li>
+<li>3 + 6 + 1 (carry) = 10</li>
+<li>0 pushed to the new linked list.</li>
+<li>carry forward 1.</li>
+<li>4th member of L1 = 2 and assume 0 as the 4th member of L2 since there are only 3 members.</li>
+<li>2 + 1 (carry) = 3</li>
+<li>3 pushed to the new linked list.</li>
+<li>5th member of L1 = 1 and assume 0 as the 5th member of L2 since there are only 3 members.</li>
+<li>1 + 0 = 1</li>
+<li>1 pushed to the new linked list.</li>
+</ol>
+<p>So the new linked list now have:</p>
+<pre><code>    1 -&gt; 3 -&gt; 0 -&gt; 0 -&gt; 0.
+</code></pre><p>The above suggestion is one way, not necessarily the best way to deal with it.</p>
+<h2 id="about-the-solutions-1">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-129/abigail/perl/ch-2.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-129/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-129/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-129/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-129/peter-campbell-smith/perl/ch-2.pl"><strong>Peter Campbell Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-129/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-129/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-129/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-129/wanderdoc/perl/ch-2.pl"><strong>Wanderdoc</strong></a></p>
+<p>I have to say I had a certain amount of initial confusion simply understanding what was being asked for in task number 2. The curious, unexpected and most-questionably-practical mashup of linked lists and representative positional addition — well, let&rsquo;s just say it wasn&rsquo;t the first thing that came to mind on reading the opening paragraphs. Coming at it from the idea of a zip-merge operation of some sort put me on the wrong track from the start, and only with the clarifications in the examples did it come out with what was actually expected for a result. It&rsquo;s like doing longhand addition on paper, only using linked lists to hold the individual digits, with the links encoding the positional data in the length of the lists. Hmm&hellip; ok, sure. Why not? <em>(note: there was a sizable chatter generated speaking to this question.)</em></p>
+<p>Postmodernism and poststructuralism hold comfortable residences in the fancy, expensive parts of my brain — you know, down by the river — so I am able to accomodate the unexpected juxtaposition of these two ideas, even if I can&rsquo;t really come up with a reason why. Sometimes I just don&rsquo;t need to know. We&rsquo;ll look at it for what it is and that will be it.</p>
+<p>There were a total of only 9 properly working submissions for the second task this past week. I tried to be as broad-minded as possible, open to varying interpretation, but many just didn&rsquo;t work. The largest recurring problem found arose from improperly carrying the final 1 into a new list root position if there was none previous in either input list. For example, 9 -&gt; 8 -&gt; 7 added to 4 -&gt; 5 -&gt; 6 should yield 1 -&gt; 4 -&gt; 4 -&gt; 3, not 4 -&gt; 4 -&gt; 3. I really can&rsquo;t come up with any reason that leading 1 node should be omitted, no matter how the directive is interpreted.</p>
+<h2 id="on-the-subject-of-linked-lists">on the SUBJECT of LINKED LISTS</h2>
+<p>Whenever linked lists get brought up in Perl, there inevitably follows a collision with the built-in Perl array data-structure. A linked list, abstractly, is a collection where we have a known first piece of data, and each datum in the whole knows the location of the following datum. Optionally there may also be knowledge of the proceeding item as well. There are many ways to implement this idea: from the structurally complex, using blessed objects with labeled attributes holding references to the next object, to the decidedly simple, mapping the list to a vanilla Perl array. The thing is, that a Perl array really can be considered a bidirectional linked list for all intents and purposes. Looked at as a black box, it does what&rsquo;s required. Lower-level languages without the functionality of a good Perl array might require a linked list, sure, but what can these lists do that arrays can&rsquo;t? With <code>push</code>, <code>pop</code>, <code>shift</code>, <code>unshift</code> and <code>splice</code> we&rsquo;re pretty well covered. In fact, <code>splice</code> is really all one needs, as it can emulate the rest of the operations.</p>
+<p>I do, however, think the underlying ideation behind linked lists is valuable.  Even if simple lists are not the most practical thing when we have Perl arrays just sitting there, the ideas involving these chained linkages will still find their home in much more complex objects. So there&rsquo;s always that to consider.</p>
+<p>Which leads us to the decidedly unusual, some would say unnatural, use of linked lists to add two positionally represented numbers. Needless to say there will be a bit of variation in technique. Keep your head and hands inside the vehicle at all times, your personal belongings close and <em>please</em> watch out for the flames.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-129/peter-campbell-smith/perl/ch-2.pl"><strong>Peter Campbell Smith</strong></a></p>
+<p>Peter considers the input strings as, well, the input, and hence fair game, parsing each directly with a regular expression to extract the last digit from the string. The two last digits are added and any leading carry is removed and reserved for the next calculation.</p>
+<p>Do the successive characters in a Perl string — a quietly very fancy data structure in itself — qualify, much like a Perl array, as a linked list? There are languages that implement strings this way. I say sure, why not, with points for creativity.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    $L1 <span style="color:#f92672">=</span> $L1_left <span style="color:#f92672">=</span>      <span style="color:#e6db74">&#39;9 -&gt; 2 -&gt; 0 -&gt; 0 -&gt; 5 -&gt; 0 -&gt; 7 -&gt; 0&#39;</span>;
+    $L2 <span style="color:#f92672">=</span> $L2_left <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;     9 -&gt; 9 -&gt; 0 -&gt; 8 -&gt; 3 -&gt; 9 -&gt; 7 -&gt; 0&#39;</span>;
+
+    <span style="color:#75715e"># cycle back from the end of each list</span>
+    $carry <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    $L3 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
+    <span style="color:#66d9ef">while</span> ($L1_left <span style="color:#f92672">=~</span> m<span style="color:#f92672">|\</span>d<span style="color:#f92672">|</span> <span style="color:#f92672">or</span> $L2_left <span style="color:#f92672">=~</span> m<span style="color:#f92672">|\</span>d<span style="color:#f92672">|</span> <span style="color:#f92672">or</span> $carry) {   <span style="color:#75715e"># not finished yet</span>
+        $one <span style="color:#f92672">=</span> $two <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        ($L1_left, $one) <span style="color:#f92672">=</span> ($1, $2) <span style="color:#66d9ef">if</span> $L1_left <span style="color:#f92672">=~</span> m<span style="color:#f92672">|</span>(<span style="color:#f92672">.*</span>)(<span style="color:#f92672">\</span>d)<span style="color:#f92672">|</span>;  <span style="color:#75715e"># strip off last (remaining) digit of each list</span>
+        ($L2_left, $two) <span style="color:#f92672">=</span> ($1, $2) <span style="color:#66d9ef">if</span> $L2_left <span style="color:#f92672">=~</span> m<span style="color:#f92672">|</span>(<span style="color:#f92672">.*</span>)(<span style="color:#f92672">\</span>d)<span style="color:#f92672">|</span>;
+        $sum <span style="color:#f92672">=</span> $one <span style="color:#f92672">+</span> $two <span style="color:#f92672">+</span> $carry;                      <span style="color:#75715e"># add the two digits and any carryover</span>
+        $units <span style="color:#f92672">=</span> $sum % 10;                               <span style="color:#75715e"># get new digit</span>
+        $L3 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;$units -&gt; $L3&#34;</span>;							  <span style="color:#75715e"># add it to the start of L3</span>
+        $carry <span style="color:#f92672">=</span> ($sum <span style="color:#f92672">-</span> $units) <span style="color:#f92672">/</span> <span style="color:#ae81ff">10</span>;                    <span style="color:#75715e"># and compute any carryover (can only be 0 or 1)</span>
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-129/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a></p>
+<p>Jorg takes a somewhat more traditional approach to the implementation, creating a minimal <code>SLL</code> object, a hash with two keys, for the data and the current node position, along with methods for access and manipulation. The data itself is stored as an array of nodes, each node having two positions: the location of the following node and the encapsulated data.</p>
+<p>To add the lists the underlying numbers are extracted, added and then converted back into a new list.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># The task is basically a pencil-and-paper addition with carry.</span>
+    <span style="color:#75715e"># Retrieve the numbers represented by the digits in the linked lists by</span>
+    <span style="color:#75715e"># traversing them, add the numbers and build a new linked list from the</span>
+    <span style="color:#75715e"># sum&#39;s digits.  This works with any number of input lists.</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">add_linked_lists</span> (@lists) {
+        <span style="color:#66d9ef">my</span> $sum;
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $sll (@lists) {
+            $sll<span style="color:#f92672">-&gt;</span>head;
+            <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+            <span style="color:#66d9ef">while</span> (defined (<span style="color:#66d9ef">my</span> $data <span style="color:#f92672">=</span> $sll<span style="color:#f92672">-&gt;</span>data)) {
+                $i <span style="color:#f92672">=</span> $i <span style="color:#f92672">*</span> <span style="color:#ae81ff">10</span> <span style="color:#f92672">+</span> $data;
+                $sll<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">next</span>;
+            }
+            $sum <span style="color:#f92672">+=</span> $i;
+        }
+        <span style="color:#66d9ef">my</span> $sumlist <span style="color:#f92672">=</span> SLL<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
+        $sumlist<span style="color:#f92672">-&gt;</span>insert(substr $sum, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;&#39;</span>)<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">next</span> <span style="color:#66d9ef">while</span> length $sum;
+
+        $sumlist;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-129/wanderdoc/perl/ch-2.pl"><strong>Wanderdoc</strong></a></p>
+<p>The doc defined their list as nodes of anonymous arrays with three elements, the numerical indices replaced with the constants VAL, NEXT and PREV to help keep things straight. Having the list be bidirecional makes walking backwards up from the previous element a straightforward operation.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">add_lists</span>
+    {
+         <span style="color:#66d9ef">my</span> ($first, $second) <span style="color:#f92672">=</span> @_;
+         <span style="color:#66d9ef">my</span> $count_first <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+              <span style="color:#66d9ef">do</span> { $count_first<span style="color:#f92672">++</span> <span style="color:#f92672">and</span> $first <span style="color:#f92672">=</span> $first<span style="color:#f92672">-&gt;</span>[NEXT] } <span style="color:#66d9ef">while</span> $first<span style="color:#f92672">-&gt;</span>[NEXT];
+
+         <span style="color:#66d9ef">my</span> $count_second <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+              <span style="color:#66d9ef">do</span> {$count_second<span style="color:#f92672">++</span> <span style="color:#f92672">and</span> $second <span style="color:#f92672">=</span> $second<span style="color:#f92672">-&gt;</span>[NEXT]} <span style="color:#66d9ef">while</span> $second<span style="color:#f92672">-&gt;</span>[NEXT];
+
+         <span style="color:#66d9ef">my</span> $new_list <span style="color:#f92672">=</span> $count_first <span style="color:#f92672">&gt;</span> $count_second ? dclone($first) : dclone($second);
+         <span style="color:#66d9ef">my</span> $carry <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+         <span style="color:#66d9ef">while</span> (defined $new_list<span style="color:#f92672">-&gt;</span>[PREV]<span style="color:#f92672">-&gt;</span>[VAL])
+         {
+
+              <span style="color:#66d9ef">my</span> $one <span style="color:#f92672">=</span> $first<span style="color:#f92672">-&gt;</span>[VAL];
+              <span style="color:#66d9ef">my</span> $two <span style="color:#f92672">=</span> $second<span style="color:#f92672">-&gt;</span>[VAL];
+              $new_list<span style="color:#f92672">-&gt;</span>[VAL] <span style="color:#f92672">=</span> $one <span style="color:#f92672">+</span> $two <span style="color:#f92672">+</span> $carry;
+              $carry <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+              <span style="color:#66d9ef">if</span> ( $new_list<span style="color:#f92672">-&gt;</span>[VAL] <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">9</span> )
+              {
+                   $carry <span style="color:#f92672">=</span> int($new_list<span style="color:#f92672">-&gt;</span>[VAL] <span style="color:#f92672">/</span> <span style="color:#ae81ff">10</span>);
+                   $new_list<span style="color:#f92672">-&gt;</span>[VAL] <span style="color:#f92672">=</span> $new_list<span style="color:#f92672">-&gt;</span>[VAL] % 10;
+              }
+              $first <span style="color:#f92672">=</span> defined $first<span style="color:#f92672">-&gt;</span>[PREV]<span style="color:#f92672">-&gt;</span>[VAL] ? $first<span style="color:#f92672">-&gt;</span>[PREV] : [<span style="color:#ae81ff">0</span>]; ;
+              $second <span style="color:#f92672">=</span> defined $second<span style="color:#f92672">-&gt;</span>[PREV]<span style="color:#f92672">-&gt;</span>[VAL] ? $second<span style="color:#f92672">-&gt;</span>[PREV] : [<span style="color:#ae81ff">0</span>] ;
+              $new_list <span style="color:#f92672">=</span> $new_list<span style="color:#f92672">-&gt;</span>[PREV];
+
+         }
+
+         $new_list<span style="color:#f92672">-&gt;</span>[VAL] <span style="color:#f92672">=</span> $first<span style="color:#f92672">-&gt;</span>[VAL] <span style="color:#f92672">+</span> $second<span style="color:#f92672">-&gt;</span>[VAL]; <span style="color:#75715e"># last(first).</span>
+
+         <span style="color:#66d9ef">if</span> ( $carry <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> )
+         {
+              $new_list<span style="color:#f92672">-&gt;</span>[VAL] <span style="color:#f92672">+=</span> $carry;
+
+              <span style="color:#66d9ef">if</span> ( $new_list<span style="color:#f92672">-&gt;</span>[VAL] <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">9</span> )
+              {
+                   $carry <span style="color:#f92672">=</span> int($new_list<span style="color:#f92672">-&gt;</span>[VAL] <span style="color:#f92672">/</span> <span style="color:#ae81ff">10</span>);
+
+                   $new_list<span style="color:#f92672">-&gt;</span>[VAL] <span style="color:#f92672">=</span> $new_list<span style="color:#f92672">-&gt;</span>[VAL] % 10;
+                   $new_list<span style="color:#f92672">-&gt;</span>[PREV] <span style="color:#f92672">=</span> [$carry, $new_list, undef];
+                   $new_list <span style="color:#f92672">=</span> $new_list<span style="color:#f92672">-&gt;</span>[PREV];
+              }
+         }
+         <span style="color:#66d9ef">return</span> $new_list;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-129/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://dev.to/simongreennet/weekly-challenge-129-33kn">Weekly Challenge 129</a></p>
+<p>Simon gives us a nice pair of packages, <code>LinkedList</code> and <code>LinkedList::Node</code> to define his list objects, and then overloads the <code>+</code> symbol with a custom <code>_add()</code> function:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> overload <span style="color:#e6db74">&#39;+&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\&amp;</span>_add, <span style="color:#e6db74">&#39;&#34;&#34;&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\&amp;</span>as_string;
+
+        <span style="color:#f92672">...</span>
+
+    <span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> $list1 <span style="color:#f92672">+</span> $list2;
+    say $sum;
+</code></pre></div><p>That certainly looks nice. As for that overloaded addition,</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_add</span> {
+        <span style="color:#75715e"># Overloaded &#39;+&#39; function, to add two linked lists together</span>
+        <span style="color:#66d9ef">my</span> ( $first, $second ) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> $new_list <span style="color:#f92672">=</span> LinkedList<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>();
+
+        <span style="color:#66d9ef">my</span> $first_node  <span style="color:#f92672">=</span> $first<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">last</span>;
+        <span style="color:#66d9ef">my</span> $second_node <span style="color:#f92672">=</span> $second<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">last</span>;
+
+        <span style="color:#66d9ef">my</span> $carry <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+        <span style="color:#66d9ef">while</span> ( $first_node <span style="color:#f92672">or</span> defined $second_node <span style="color:#f92672">or</span> $carry ) {
+            <span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span>
+              ( defined $first_node  ? $first_node<span style="color:#f92672">-&gt;</span>value  : <span style="color:#ae81ff">0</span> ) <span style="color:#f92672">+</span>
+              ( defined $second_node ? $second_node<span style="color:#f92672">-&gt;</span>value : <span style="color:#ae81ff">0</span> ) <span style="color:#f92672">+</span>
+              $carry;
+            $new_list<span style="color:#f92672">-&gt;</span>unshift( $sum % 10 );
+            $carry <span style="color:#f92672">=</span> int( $sum <span style="color:#f92672">/</span> <span style="color:#ae81ff">10</span> );
+
+            $first_node  <span style="color:#f92672">=</span> $first_node<span style="color:#f92672">-&gt;</span>prev  <span style="color:#66d9ef">if</span> defined $first_node;
+            $second_node <span style="color:#f92672">=</span> $second_node<span style="color:#f92672">-&gt;</span>prev <span style="color:#66d9ef">if</span> defined $second_node;
+        }
+
+        <span style="color:#66d9ef">return</span> $new_list;
+    }
+</code></pre></div><p>As the nodes are stored internally in an anonymous array, obtaining <code>$list-&gt;last</code> is as easy as grabbing the last value, <code>[-1]</code>.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-129/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://blog.firedrake.org/archive/2021/09/Perl_Weekly_Challenge_129__Eats_Roots_and_Lists.html">RogerBW&rsquo;s Blog: Perl Weekly Challenge 129: Eats Roots and Lists</a></p>
+<p>Roger stores his list as an array of hash references, each containing a value and a pointer to the next item, which is simply the following index in the array, but is, notably, a pointer and undeniably does exist. To do the actual addition we destructure the list data into an array, reverse and add the element pairs according to the carry rules, and then reverse and re-listify the outcome.</p>
+<p>Points for being &ldquo;technically correct, the best kind of correct.&rdquo; Carry on&hellip;</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">piecewise_add</span> {
+      <span style="color:#66d9ef">my</span> $self<span style="color:#f92672">=</span>shift;
+      <span style="color:#66d9ef">my</span> $other<span style="color:#f92672">=</span>shift;
+      <span style="color:#66d9ef">my</span> @a<span style="color:#f92672">=</span>reverse @{$self<span style="color:#f92672">-&gt;</span>as_arrayref};
+      <span style="color:#66d9ef">my</span> @b<span style="color:#f92672">=</span>reverse @{$other<span style="color:#f92672">-&gt;</span>as_arrayref};
+      <span style="color:#66d9ef">while</span> (scalar @a <span style="color:#f92672">&lt;</span> scalar @b) {
+        push @a,<span style="color:#ae81ff">0</span>;
+      }
+      <span style="color:#66d9ef">while</span> (scalar @b <span style="color:#f92672">&lt;</span> scalar @a) {
+        push @b,<span style="color:#ae81ff">0</span>;
+      }
+      <span style="color:#66d9ef">my</span> @c;
+      <span style="color:#66d9ef">my</span> $carry<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+      <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#a) {
+        <span style="color:#66d9ef">my</span> $d<span style="color:#f92672">=</span>$a[$i]<span style="color:#f92672">+</span>$b[$i]<span style="color:#f92672">+</span>$carry;
+        push @c,$d % 10;
+        $carry<span style="color:#f92672">=</span>int($d<span style="color:#f92672">/</span><span style="color:#ae81ff">10</span>);
+      }
+      <span style="color:#66d9ef">if</span> ($carry) {
+        push @c,<span style="color:#ae81ff">1</span>;
+      }
+      <span style="color:#66d9ef">my</span> $out<span style="color:#f92672">=</span>Local::LinkedList<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
+      $out<span style="color:#f92672">-&gt;</span>append([reverse @c]);
+      <span style="color:#66d9ef">return</span> $out;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-129/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-129/polettix/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.polettix.it/ETOOBUSY/2021/09/09/pwc129-add-linked-lists/">PWC129 - Add Linked Lists - ETOOBUSY</a></p>
+<p>Flavio gives us a <code>LinkedList</code> of <code>LinkedLstItem</code> nodes, containing a method <code>add()</code> to sum with another such list. So far so good. Of note we again see <code>+</code> overloaded to point to a custom <code>add()</code>, which, because we&rsquo;re using signatures, will balk when the argument count is off. Hence he&rsquo;s put in an extra, &ldquo;catch-all&rdquo; parameter to soak up the third &ldquo;swap&rdquo; argument quietly added by the overload pragma.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">add</span> ($s, $t, @ignore) {
+       <span style="color:#66d9ef">my</span> $ps <span style="color:#f92672">=</span> $s<span style="color:#f92672">-&gt;</span>reverse<span style="color:#f92672">-&gt;</span>{head};
+       <span style="color:#66d9ef">my</span> $pt <span style="color:#f92672">=</span> $t<span style="color:#f92672">-&gt;</span>reverse<span style="color:#f92672">-&gt;</span>{head};
+       <span style="color:#66d9ef">my</span> $r <span style="color:#f92672">=</span> LinkedList<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
+       <span style="color:#66d9ef">my</span> $carry <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+       <span style="color:#66d9ef">while</span> (defined($ps) <span style="color:#f92672">||</span> defined($pt) <span style="color:#f92672">||</span> $carry) {
+          <span style="color:#66d9ef">my</span> ($vs, $vt) <span style="color:#f92672">=</span> map {
+             (<span style="color:#66d9ef">my</span> $v, $_) <span style="color:#f92672">=</span> $_ ? ($_<span style="color:#f92672">-&gt;</span>label, $_<span style="color:#f92672">-&gt;</span>succ) : (<span style="color:#ae81ff">0</span>, undef);
+             $v;
+          } ($ps, $pt);
+          <span style="color:#66d9ef">my</span> $v <span style="color:#f92672">=</span> $vs <span style="color:#f92672">+</span> $vt <span style="color:#f92672">+</span> $carry;
+          ($v, $carry) <span style="color:#f92672">=</span> $v <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">9</span> ? ($v <span style="color:#f92672">-</span> <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">1</span>) : ($v, <span style="color:#ae81ff">0</span>);
+          $r<span style="color:#f92672">-&gt;</span>insert($v);
+       }
+       <span style="color:#66d9ef">return</span> $r;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-129/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://wlmb.github.io/2021/09/06/PWC129/">Perl Weekly Challenge 129 – W. Luis Mochán</a></p>
+<p>Luis starts with an explanation of his reasoning, which I can find no fault in:</p>
+<blockquote>
+<p>There are many ways to describe linked lists. In Perl I could use a simple array, as splicing allows all operations that could be done with linked lists. Furthermore, as each element contains only one digit, I could represent the array by a string. Finally, strings can represent numbers.</p>
+</blockquote>
+<p>Let me get this straight: so by splitting the input to extract the &ldquo;-&gt;&rdquo; connectors, rejoining the resulting list of digits into a string, and then allowing Perl to automagically parse that string as a number when required, we can just add the numbers, right?</p>
+<p>And so it was written.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw(all)</span>;
+    <span style="color:#66d9ef">use</span> bigint; <span style="color:#75715e"># to allow large lists</span>
+
+    <span style="color:#66d9ef">my</span> @A<span style="color:#f92672">=</span>split <span style="color:#e6db74">/\s*-&gt;\s*/</span>, shift @ARGV;
+    <span style="color:#66d9ef">my</span> @B<span style="color:#f92672">=</span>split <span style="color:#e6db74">/\s*-&gt;\s*/</span>, shift @ARGV;
+
+    <span style="color:#66d9ef">my</span> $A<span style="color:#f92672">=</span>join <span style="color:#e6db74">&#39;&#39;</span>, @A;
+    <span style="color:#66d9ef">my</span> $B<span style="color:#f92672">=</span>join <span style="color:#e6db74">&#39;&#39;</span>, @B;
+    <span style="color:#66d9ef">my</span> $length<span style="color:#f92672">=</span>@A<span style="color:#f92672">-</span>@B;
+    <span style="color:#66d9ef">my</span> $indent_A<span style="color:#f92672">=</span>$length<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">0</span>?<span style="color:#e6db74">&#34;   &#34;</span>x(<span style="color:#f92672">-</span>$length):<span style="color:#e6db74">&#34;&#34;</span>;
+    <span style="color:#66d9ef">my</span> $indent_B<span style="color:#f92672">=</span>$length<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span>?<span style="color:#e6db74">&#34;   &#34;</span>x  $length :<span style="color:#e6db74">&#34;&#34;</span>;
+    say <span style="color:#e6db74">&#34;Input: L1=$indent_A&#34;</span>, join <span style="color:#e6db74">&#34;-&gt;&#34;</span>, @A;
+    say <span style="color:#e6db74">&#34;       L2=$indent_B&#34;</span>, join <span style="color:#e6db74">&#34;-&gt;&#34;</span>, @B;
+    say <span style="color:#e6db74">&#34;Output:   &#34;</span>, join <span style="color:#e6db74">&#34;-&gt;&#34;</span>, split <span style="color:#e6db74">&#39;&#39;</span>, $A<span style="color:#f92672">+</span>$B;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-129/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a></p>
+<p>Choroba delivers a compact and concise solution using arrays with, notably, a complete and refreshingly welcome absence of neither snark nor shade.</p>
+<p>I will draw attention to the addition of the <code>$carry</code> option to the while conditional, for reasons which will remain unstated. A simple and effective solution to that particular problem.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">add_linked_lists</span> {
+        <span style="color:#66d9ef">my</span> ($l1, $l2) <span style="color:#f92672">=</span> @_;
+
+        <span style="color:#66d9ef">my</span> $carry <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">my</span> $reversed;
+
+        <span style="color:#66d9ef">while</span> (@$l1 <span style="color:#f92672">||</span> @$l2 <span style="color:#f92672">||</span> $carry) {
+            <span style="color:#66d9ef">my</span> $e1 <span style="color:#f92672">=</span> shift @$l1 <span style="color:#e6db74">//</span> <span style="color:#ae81ff">0</span>;
+            $l1    <span style="color:#f92672">=</span> shift @$l1 <span style="color:#f92672">||</span> <span style="color:#f92672">[]</span>;
+            <span style="color:#66d9ef">my</span> $e2 <span style="color:#f92672">=</span> shift @$l2 <span style="color:#e6db74">//</span> <span style="color:#ae81ff">0</span>;
+            $l2    <span style="color:#f92672">=</span> shift @$l2 <span style="color:#f92672">||</span> <span style="color:#f92672">[]</span>;
+
+            <span style="color:#66d9ef">my</span> $r <span style="color:#f92672">=</span> $e1 <span style="color:#f92672">+</span> $e2 <span style="color:#f92672">+</span> $carry;
+            $carry <span style="color:#f92672">=</span> int($r <span style="color:#f92672">/</span> <span style="color:#ae81ff">10</span>);
+            $r %<span style="color:#960050;background-color:#1e0010">=</span> 10;
+
+            $reversed <span style="color:#f92672">=</span> $reversed ? [$r, $reversed] : [$r];
+        }
+        <span style="color:#66d9ef">return</span> <span style="color:#f92672">[]</span> <span style="color:#66d9ef">unless</span> $reversed;
+
+        <span style="color:#66d9ef">my</span> $result <span style="color:#f92672">=</span> [shift @$reversed];
+        <span style="color:#66d9ef">while</span> (@$reversed) {
+            $reversed <span style="color:#f92672">=</span>  shift @$reversed;
+            $result   <span style="color:#f92672">=</span> [shift @$reversed, $result];
+        }
+        <span style="color:#66d9ef">return</span> $result
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-129/abigail/perl/ch-2.pl"><strong>Abigail</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-129-2.html">Perl Weekly Challenge 129: Add Linked Lists</a></p>
+<p>Abigail was in rare form, stripping away the orate façade to reveal the underlying obvious nature of the problem in a decidedly unobvious way. As we&rsquo;ve seen previously, the underlying paradigm of extracting the encoded numbers and adding them was a technique we saw several times in varying forms.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e">#</span>
+    <span style="color:#75715e"># Helper functions to turn a number into a linked list,</span>
+    <span style="color:#75715e"># and a linked list back into a number:</span>
+    <span style="color:#75715e"># (If we have to bring in linked lists to add numbers, don&#39;t mind</span>
+    <span style="color:#75715e">#  me if I bring in $&amp; and friends).</span>
+    <span style="color:#75715e">#</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">n2ll</span> ($num) {$num <span style="color:#f92672">=~</span><span style="color:#e6db74"> /./</span> ? [<span style="color:#66d9ef">my</span> $x <span style="color:#f92672">=</span> $&amp;, n2ll ($&#39;)] : <span style="color:#f92672">[]</span>}
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">ll2n</span> ($ll)  {@$ll ? $$ll [<span style="color:#ae81ff">0</span>] <span style="color:#f92672">.</span> ll2n ($$ll [<span style="color:#ae81ff">1</span>]) : <span style="color:#e6db74">&#34;&#34;</span>}
+
+    <span style="color:#75715e">#</span>
+    <span style="color:#75715e"># Add two linked lists. We do this by flattening the lists,</span>
+    <span style="color:#75715e"># using bigint to add the numbers, then turning the result</span>
+    <span style="color:#75715e"># into a list again.</span>
+    <span style="color:#75715e">#</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">add</span> ($ll1, $ll2) {<span style="color:#66d9ef">use</span> bigint; n2ll (<span style="color:#ae81ff">0</span> <span style="color:#f92672">+</span> ll2n ($ll1) <span style="color:#f92672">+</span> ll2n ($ll2))}
+</code></pre></div><p>.</p>
+<hr>
+<p>So there we have it.</p>
+<p>Looking back, arrays in one form or another seem to have won the day. Perl arrays really are pretty special. I suppose that if you reduce the field to three basic data types they should be. Of course the reality of Perl is more complex than that, but if you want to, you can get along quite well pretending it isn&rsquo;t, which is kind of the idea.</p>
+<p>Questions? Drop me a line&hellip;</p>
+<hr>
+<hr>
+<h1 id="PWC129BLOGS">BLOGS</h1>
+<hr>
+<p><strong>Well that’s it for me this week, people! Warped by the rain, driven by the snow, resolute and unbroken by the torrential influx, I somehow continue to maintain my bearings. Looking forward to next wave, the perfect wave, I am: <em>your humble servant</em>.</strong></p>
+<h1 id="PWC129BLOGS">But if Your <em>THIRST</em> for <em>KNOWLEDGE</em> is not <em>SLAKED</em>,</h1>
+<h1 id="then-run-dont-walk-to-the-watering-hole">then <em>RUN</em> <em>(dont walk!)</em> to the <em>WATERING HOLE</em></h1>
+<h1 id="and-read-these-blog-links">and <em>READ</em> these <em>BLOG</em> <em>LINKS</em>:</h1>
+<p><strong>( <em>don&rsquo;t think, trust your training, you&rsquo;re in the zone, just do it &hellip;</em> )</strong></p>
+<p><strong>Abigail</strong></p>
+<ul>
+<li><a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-129-1.html">Perl Weekly Challenge 129: Root Distance</a> ( <em>Perl</em> )</li>
+<li><a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-129-2.html">Perl Weekly Challenge 129: Add Linked Lists</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Adam Russell</strong></p>
+<ul>
+<li><a href="http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2021/09/12">Two Exercises in Fundamental Data Structures — RabbitFarm</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Arne Sommer</strong></p>
+<ul>
+<li><a href="https://raku-musings.com/linked-roots.html">Linked Roots with Raku</a> ( <em>Raku</em> )</li>
+</ul>
+<p><strong>Cheok-Yin Fung</strong></p>
+<ul>
+<li><a href="https://e7-87-83.github.io/coding/challenge_129.html">Basic Data Structure Experiments with Object::Pad (for The Weekly Challenge #129) </a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Dave Jacoby</strong></p>
+<ul>
+<li><a href="https://jacoby.github.io/2021/09/06/list-aint-nothin-but-tree-misspelled-the-perl-weekly-challenge-129.html">‘List’ Ain’t Nothin’ But ‘Tree’ Misspelled: The (Perl) Weekly Challenge #129 | Committed to Memory</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Flavio Poletti</strong></p>
+<ul>
+<li><a href="https://github.polettix.it/ETOOBUSY/2021/09/08/pwc129-root-distance/">PWC129 - Root Distance - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+<li><a href="https://github.polettix.it/ETOOBUSY/2021/09/09/pwc129-add-linked-lists/">PWC129 - Add Linked Lists - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>James Smith</strong></p>
+<ul>
+<li><a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-129/james-smith">Perl Weekly Challenge #129</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Luca Ferrari</strong></p>
+<ul>
+<li><a href="https://fluca1978.github.io/2021/09/06/PerlWeeklyChallenge129.html#task1">Perl Weekly Challenge 129: trees andums – Luca Ferrari – Open Source advocate, human being</a> ( <em>Raku</em> )</li>
+<li><a href="https://fluca1978.github.io/2021/09/06/PerlWeeklyChallenge129.html#task2">Perl Weekly Challenge 129: trees andums – Luca Ferrari – Open Source advocate, human being</a> ( <em>Raku</em> )</li>
+</ul>
+<p><strong>Roger Bell_West</strong></p>
+<ul>
+<li><a href="https://blog.firedrake.org/archive/2021/09/Perl_Weekly_Challenge_129__Eats_Roots_and_Lists.html">RogerBW&rsquo;s Blog: Perl Weekly Challenge 129: Eats Roots and Lists</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Simon Green</strong></p>
+<ul>
+<li><a href="https://dev.to/simongreennet/weekly-challenge-129-33kn">Weekly Challenge 129</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>W. Luis Mochan</strong></p>
+<ul>
+<li><a href="https://wlmb.github.io/2021/09/06/PWC129/">Perl Weekly Challenge 129 – W. Luis Mochán</a> ( <em>Perl</em> )</li>
+</ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="/contact" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2021
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.nomtimes.co.uk/site/shop.do?cref=PerlBooks" title="Free Perl Books" rel="noreferrer" target="_blank">
+                            <img src="/images/NomTimes.jpg" style="width:22px; height: 18px;" alt=""/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jQurey/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-136524905-1', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+
+</html>
+
