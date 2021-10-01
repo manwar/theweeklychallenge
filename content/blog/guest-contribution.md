@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2021-09-30T00:00:00+00:00
+date: 2021-10-01T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -47,6 +47,8 @@ Please find below guest contributions.
 ##### **Roger Bell_West** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/roger-bell-west/rust/ch-1.rs) in **Rust**.
 
 ##### **Tyler Wardhaugh** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/tyler-wardhaugh/clojure/src/tw/weekly/c132/t1.clj) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/tyler-wardhaugh/clojure/src/tw/weekly/c132/t2.clj) in **Clojure**.
+
+##### **Ulrich Rieke** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/ulrich-rieke/haskell/ch-1.hs) in **Haskell**.
 
 ----
 ## [The Weekly Challenge - 131](/blog/perl-weekly-challenge-131) {#131}
