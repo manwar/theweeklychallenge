@@ -32,6 +32,8 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 132](/blog/perl-weekly-challenge-132) {#132}
 <br>
 
+##### **Ben Davies** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/ben-davies/scala/ch-1.scala) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/ben-davies/scala/ch-2.scala) in **Scala**.
+
 ##### **Cheok-Yin Fung** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/cheok-yin-fung/java/MirrorDates.java) in **Java**.
 
 ##### **Cheok-Yin Fung** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/cheok-yin-fung/julia/ch-1.jl) in **Julia**.
