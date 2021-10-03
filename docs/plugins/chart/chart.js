@@ -107,6 +107,23 @@ $("#pwc_summary_121_150").click(function() {
     $('#pwc-members-spinner').hide();
 });
 
+$("#pwc_summary_151_180").click(function() {
+    $('#pwc-members-spinner').show();
+
+    var xobj = new XMLHttpRequest();
+    xobj.overrideMimeType("application/json");
+    xobj.open('GET', 'pwc-summary-151-180.json', true);
+    xobj.onreadystatechange = function () {
+        if (xobj.readyState == 4 && xobj.status == "200") {
+            var response = JSON.parse(xobj.responseText);
+            $('#pwc_summary_151_180_stats').highcharts(response);
+        }
+    };
+    xobj.send(null);
+
+    $('#pwc-members-spinner').hide();
+});
+
 $("#pwc_summary_181_210").click(function() {
     $('#pwc-members-spinner').show();
 
@@ -141,16 +158,16 @@ $("#pwc_summary_211_240").click(function() {
     $('#pwc-members-spinner').hide();
 });
 
-$("#pwc_summary_151_180").click(function() {
+$("#pwc_summary_241_270").click(function() {
     $('#pwc-members-spinner').show();
 
     var xobj = new XMLHttpRequest();
     xobj.overrideMimeType("application/json");
-    xobj.open('GET', 'pwc-summary-151-180.json', true);
+    xobj.open('GET', 'pwc-summary-241-270.json', true);
     xobj.onreadystatechange = function () {
         if (xobj.readyState == 4 && xobj.status == "200") {
             var response = JSON.parse(xobj.responseText);
-            $('#pwc_summary_151_180_stats').highcharts(response);
+            $('#pwc_summary_241_270_stats').highcharts(response);
         }
     };
     xobj.send(null);
