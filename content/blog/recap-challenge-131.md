@@ -310,7 +310,7 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 ***
 
 ### Jorg Sommrey
-![Jorg Sommrey](/images/team/user.jpg)
+![Jorg Sommrey](/images/team/jorg-sommrey.jpg)
 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/jo-37/perl/ch-1.pl)]
 
