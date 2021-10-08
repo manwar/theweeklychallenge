@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2021-10-07T00:00:00+00:00
+date: 2021-10-08T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -31,6 +31,8 @@ Please find below guest contributions.
 ----
 ## [The Weekly Challenge - 133](/blog/perl-weekly-challenge-133) {#133}
 <br>
+
+##### **Abigail** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-133/abigail/c/ch-2.c) in **C**.
 
 ##### **Andinus** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-133/andinus/c/ch-1.c) in **C**.
 
