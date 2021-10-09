@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2021-10-08T00:00:00+00:00
+date: 2021-10-09T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -89,6 +89,8 @@ Please find below guest contributions.
 ##### **Cheok-Yin Fung** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/cheok-yin-fung/java/MirrorDates.java) in **Java**.
 
 ##### **Cheok-Yin Fung** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/cheok-yin-fung/julia/ch-1.jl) in **Julia**.
+
+##### **E. Alvarez** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/alvar3z/go/ch-1.go) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/alvar3z/go/ch-2.go) in **Go**.
 
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/eric-cheung/excel-vba/ch-1.bas) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/eric-cheung/excel-vba/ch-2.bas) in **Excel VBA**.
 
