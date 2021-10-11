@@ -3,7 +3,7 @@ title: "The Weekly Challenge - 134"
 date: 2021-10-11T00:00:00+00:00
 description: "The Weekly Challenge - 134"
 type: post
-image: images/blog/pwc-base.svg
+image: images/twc-logo.png
 author: Mohammad S Anwar
 tags: ["Perl", "Raku"]
 ---
