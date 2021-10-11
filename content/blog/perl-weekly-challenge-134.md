@@ -53,7 +53,7 @@ A polite request to the last champion, `Jan Krnavek`, please get in touch with u
 Let us share some interesting stats from the [**GitHub repository**](https://github.com/manwar/perlweeklychallenge-club).
 
 #### 1. Commits: 20,348 (+162)
-#### 2. Pull Requests: 5,000 (+43)
+#### 2. Pull Requests: 5,002 (+45)
 #### 3. Contributors: 180 (+1)
 #### 4. Fork: 228 (+3)
 #### 5. Stars: 108 (+2)
