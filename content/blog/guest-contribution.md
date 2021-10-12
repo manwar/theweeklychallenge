@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2021-10-11T00:00:00+00:00
+date: 2021-10-12T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -33,6 +33,10 @@ Please find below guest contributions.
 ----
 ## [The Weekly Challenge - 134](/blog/perl-weekly-challenge-134) {#134}
 <br>
+
+##### **Dave Jacoby** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-134/dave-jacoby/node/ch-1.js) in **Node.js**.
+
+##### **Dave Jacoby** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-134/dave-jacoby/python/ch-1.py) in **Python**.
 
 ##### **Roger Bell_West** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-134/roger-bell-west/postscript/ch-2.ps) in **Postscript**.
 
