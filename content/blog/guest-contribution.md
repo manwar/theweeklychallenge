@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2021-10-13T00:00:00+00:00
+date: 2021-10-14T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -71,6 +71,8 @@ Please find below guest contributions.
 ##### **Abigail** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-134/abigail/scheme/ch-1.scm) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-134/abigail/scheme/ch-2.scm) in **Scheme**.
 
 ##### **Abigail** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-134/abigail/tcl/ch-1.tcl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-134/abigail/tcl/ch-2.tcl) in **Tcl**.
+
+##### **Cheok-Yin Fung** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-134/cheok-yin-fung/julia/ch-1.jl) in **Julia**.
 
 ##### **Dave Jacoby** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-134/dave-jacoby/node/ch-1.js) in **Node.js**.
 
