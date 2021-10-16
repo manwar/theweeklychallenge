@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2021-10-15T00:00:00+00:00
+date: 2021-10-16T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -94,7 +94,7 @@ Please find below guest contributions.
 
 ##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-134/ulrich-rieke/cpp/ch-1.cpp) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-134/ulrich-rieke/cpp/ch-2.cpp) in **C++**.
 
-##### **Ulrich Rieke** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-134/ulrich-rieke/haskell/ch-1.hs) in **Haskell**.
+##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-134/ulrich-rieke/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-134/ulrich-rieke/haskell/ch-2.hs) in **Haskell**.
 
 ----
 ## [The Weekly Challenge - 133](/blog/perl-weekly-challenge-133) {#133}
