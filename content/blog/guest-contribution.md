@@ -74,6 +74,8 @@ Please find below guest contributions.
 
 ##### **Cheok-Yin Fung** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-134/cheok-yin-fung/julia/ch-1.jl) in **Julia**.
 
+##### **Conor Hoekstra** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-134/conor-hoekstra/apl/ch-1.apl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-134/conor-hoekstra/apl/ch-2.apl) in **APL**.
+
 ##### **Dave Jacoby** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-134/dave-jacoby/node/ch-1.js) in **Node.js**.
 
 ##### **Dave Jacoby** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-134/dave-jacoby/python/ch-1.py) in **Python**.
