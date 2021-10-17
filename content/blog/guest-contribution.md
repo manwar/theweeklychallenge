@@ -74,6 +74,12 @@ Please find below guest contributions.
 
 ##### **Abigail** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-134/abigail/tcl/ch-1.tcl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-134/abigail/tcl/ch-2.tcl) in **Tcl**.
 
+##### **Adam Russell** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-134/adam-russell/cxx/ch-1.cxx) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-134/adam-russell/cxx/ch-2.cxx) in **C++**.
+
+##### **Adam Russell** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-134/adam-russell/nuweb/ch-1.w) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-134/adam-russell/nuweb/ch-2.w) in **Nuweb**.
+
+##### **Adam Russell** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-134/adam-russell/prolog/ch-1.p) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-134/adam-russell/prolog/ch-2.p) in **Prolog**.
+
 ##### **Cheok-Yin Fung** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-134/cheok-yin-fung/julia/ch-1.jl) in **Julia**.
 
 ##### **Cheok-Yin Fung** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-134/cheok-yin-fung/node/ch-2.js) in **Node.js**.
