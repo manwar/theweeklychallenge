@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="The Weekly Challenge - Perl & Raku"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="You do not have to be an expert."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Colin Crain › Perl Weekly Review #131">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Colin Crain › Perl Weekly Review #131</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navgation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Colin Crain › Perl Weekly Review #131</h2>
+                    <div class="portfolio-meta">
+                        <span>Sunday, Oct 17, 2021</span>|
+                        <span> Tags:
+                            perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/p5-review-challenge-131.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <p>( <em>&hellip;continues from <a href="/blog/review-challenge-130/">previous week</a>.</em> )</p>
+<p>Welcome to the Perl review pages for <strong>Week 131</strong> of The Weekly Challenge! Here we will take the time to discuss the  submissions offered up by the team, factor out some common methodologies that came up in those solutions, and highlight some of the unique approaches and unusual code created.</p>
+<hr>
+<h3 id="why-do-we-do-these-challenges">Why do we do these challenges?</h3>
+<p>I suppose any reasonable answers to that question would be as wide ranging and varied as the people who choose to join the team. One thing, though, is clear: it&rsquo;s not a competition, and there are no judges, even if there is a &ldquo;prize&rdquo; of sorts. About that &ndash; I think of it more as an honorarium periodically awarded to acknowledge the efforts we make towards this strange goal. So there&rsquo;s no determination to find the <em>fastest</em>, or the <em>shortest</em>, or even, in some abstract way, the <em>best</em> way to go about things, although I&rsquo;m certain the participants have their own aspirations and personal drives. As Perl is such a wonderfully expressive language, this provides quite a bit of fodder to the core idea of TMTOWTDI, producing a gamut of varied techniques and solutions.</p>
+<p>Even the tasks themselves are often open to a certain amount of discretionary interpretation. What we end up with is a situation where each participant is producing something in the manner they find the most interesting or satisfying. Some team members focus on carefully crafted complete applications, thoroughly vetting input data and handling every use case they can think up. Others choose to apply themselves to the logic of the underlying puzzle and making it work in the most elegant way they can. Some eschew modules they would ordinarily reach for, others embrace them, bringing to light wheels perhaps invented years ago that happen to exactly solve the problem in front of them today.</p>
+<p>I&rsquo;ve been considering this question for some time and have found one binding commonality between all of us out solving these challenges each week, in that however we normally live our lives, the task in front of us more than likely has nothing to do with any of that. And I think this has great value. We all do what we do, in the real world, and hopefully we do it well. The Weekly Challenge provides us with an opportunity to do something germane to that life yet distinctly different; if we only do the things we already know how to do then we will only do the same things over and over. This is where the &ldquo;challenge&rdquo; aspect comes into play.</p>
+<p>So we can consider The Weekly Challenge as providing a problem space outside of our comfort zone, as far out from that comfort as we wish to take things. From those reaches we can gather and learn things, pick and choose and bring what we want back into our lives. Personally, I think that&rsquo;s its greatest value of all.</p>
+<hr>
+<p>Every week there is an enormous global collective effort made by the team, analyzing and creatively coding the submissions, and that effort deserves credit due.</p>
+<p>And that&rsquo;s why I&rsquo;m here, to try and figure out how to do that.</p>
+<p>Let&rsquo;s get on with it then, have a look and see what we find.</p>
+<hr>
+<p><strong><big>For context</big></strong>  before we begin, you may wish to revisit either of the pages for the <a href="/blog/perl-weekly-challenge-131/"><strong>original tasks</strong></a> or the summary <a href="/blog/recap-challenge-131/"><strong>recap</strong></a> of the challenge. But don&rsquo;t worry, the challenges themselves are repeated and presented below as we progress from task by task. Oh, and one more thing before we get started:</p>
+<h3 id="getting-in-touch-with-us">Getting in Touch with Us</h3>
+<p><a href="mailto:pwc.perfectwave@gmail.com"><img src="/images/blog/Email.svg" height="50" width="50"> Email</a> › Please feel free to email me (Colin) with any feedback, notes, clarifications or whatnot about this review.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge"><img src="/images/blog/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request to us for any issues you may find with this page.</p>
+<p><a href="https://twitter.com/perlwchallenge"><img src="/images/blog/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!</p>
+<p>I&rsquo;m always curious as to what the people think of these efforts. Everyone here at the PWC would like to hear any feedback you&rsquo;d like to give.</p>
+<p><strong>So finally, without further ado&hellip;</strong></p>
+<hr>
+<h2 id="---nbsp--nbsp--nbsp---task-1pwc131task1-------nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---task-2pwc131task2---nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---blogspwc131blogs----nbsp--nbsp--nbsp---">•             <a href="#PWC131TASK1">Task 1</a>                 •             <a href="#PWC131TASK2">Task 2</a>             	•             <a href="#PWC131BLOGS">BLOGS</a>              	•</h2>
+<hr>
+<h1 id="PWC131TASK1">TASK 1</h1>
+<h1 id="consecutive-arrays">Consecutive Arrays</h1>
+<p><em>Submitted by: Mark Anderson</em></p>
+<p>You are given a sorted list of unique positive integers.</p>
+<p>Write a script to return list of arrays where the arrays are consecutive integers.</p>
+<p><strong>Example 1:</strong></p>
+<pre><code>    Input:  (1, 2, 3, 6, 7, 8, 9)
+    Output: ([1, 2, 3], [6, 7, 8, 9])
+</code></pre><p><strong>Example 2:</strong></p>
+<pre><code>    Input:  (11, 12, 14, 17, 18, 19)
+    Output: ([11, 12], [14], [17, 18, 19])
+</code></pre><p><strong>Example 3:</strong></p>
+<pre><code>    Input:  (2, 4, 6, 8)
+    Output: ([2], [4], [6], [8])
+</code></pre><p><strong>Example 4:</strong></p>
+<pre><code>    Input:  (1, 2, 3, 4, 5)
+    Output: ([1, 2, 3, 4, 5])
+</code></pre><h2 id="about-the-solutions">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/abigail/perl/ch-1.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/arne-sommer/perl/ch-1.pl"><strong>Arne Sommer</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/iangoodnight/perl/ch-1.pl"><strong>Ian Goodnight</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/ziruzavar/perl/ch-1.pl"><strong>Ivan Dimitrov</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/lubos-kolouch/perl/ch-1.pl"><strong>Lubos Kolouch</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/mattneleigh/perl/ch-1.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/olivier-delouya/perl/ch-1.sh"><strong>Olivier Delouya</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/pete-houston/perl/ch-1.pl"><strong>Pete Houston</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/peter-campbell-smith/perl/ch-1.pl"><strong>Peter Campbell Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/cybersnyder/perl/ch-1.pl"><strong>Rich Snyder</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/wanderdoc/perl/ch-1.pl"><strong>Wanderdoc</strong></a></p>
+<p>Welome to the review pages for The Weekly Challenge #131. There were 28 submissions for the first task this past week. A per the norm we shall draw a random sampling from the field and take a closer look at some of the solutions, to get a general feel for a variety of different ways to go about constructing the requested list of lists.</p>
+<h2 id="a-dozen-derivations-deployed">a DOZEN DERIVATIONS DEPLOYED</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/ziruzavar/perl/ch-1.pl"><strong>Ivan Dimitrov</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/pete-houston/perl/ch-1.pl"><strong>Pete Houston</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/peter-campbell-smith/perl/ch-1.pl"><strong>Peter Campbell Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/cybersnyder/perl/ch-1.pl"><strong>Rich Snyder</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/abigail/perl/ch-1.pl"><strong>Abigail</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/olivier-delouya/perl/ch-1.sh"><strong>Olivier Delouya</strong></a></p>
+<p>As it worked out, there was one basic way we consistently saw to produce the requested breakdown, with a great variety in actual implementations of the pattern. The task description asks to &ldquo;return [a] list of arrays&rdquo;, implying a list returned from a subroutine, which if written out for assignment would be constructed as per the examples. The majority of submissions produced either this list as described, or an array of arrays, but a few, using similar underlying logic, skipped directly to constructing the output string as shown. Some even considered the construction of the multidimensional array the goal, with the output incidental. I think all of these interpretations satisfy the spirit of the challenge.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/ziruzavar/perl/ch-1.pl"><strong>Ivan Dimitrov</strong></a></p>
+<p>Ivan will start us out today with his <code>group_ints()</code> routine. In it an <code>@output</code> array is initiated with the first element from the input list enclosed in its own anonymous sub-array, and then an iterator loop is established over the indices of the input.</p>
+<p>As each element indexed is examined, one of two things can happen. If its value is subsequent to the last value placed in the output, it&rsquo;s added to the last array. If this is not the case, a new array containing the rogue element is created and pushed onto the output. This becomes the new last array and subsequent elements are either added to it or destined to start their own sub-array. The indices of the arrays in the output are maintained by use of a counter variable.</p>
+<p>Note the index math is complicated a bit in that we are always looking at the <em>next</em> index position to compare to, but the underlying process is as described.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">group_ints</span>{
+        <span style="color:#66d9ef">my</span> (@array) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> @output <span style="color:#f92672">=</span> ([$array[<span style="color:#ae81ff">0</span>]]);
+        <span style="color:#66d9ef">my</span> $counter <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; $i<span style="color:#f92672">&lt;</span>@array<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>; $i<span style="color:#f92672">++</span>){
+        	<span style="color:#66d9ef">if</span> ($array[$i]<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">==</span> $array[$i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]){
+        		push(@{$output[$counter]}, $array[$i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]);
+        	}<span style="color:#66d9ef">else</span>{
+        		$counter<span style="color:#f92672">++</span>;
+        		push(@output, [$array[$i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]]);
+        	}
+        }
+        <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@output;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/colin-crain/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://colincrain.com/2021/09/26/consequential-pairings-and-secret-cuts/">Consequential Pairings and SECRET CUTS - Programming Excursions in Perl and Raku</a></p>
+<p>For my own solution, I broke the problem down similarly, but did away with absolute indexing by processing the element sequence directly. The first value is shifted off to initiate the first working anonymous array, and subsequent values are compared to the last value. If they are incrementally one greater, the element is added to the woking array. If they are any other value, the working array is placed on the output array and a new working array is created from the value. As the <code>for</code> loop assigns to the topic, we can just use that as our holding pen for each value as it&rsquo;s processed.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">consequential</span> ( @input ) {
+        <span style="color:#66d9ef">my</span> @out;
+        <span style="color:#66d9ef">my</span> $subarray <span style="color:#f92672">=</span> [ shift @input ];
+        <span style="color:#66d9ef">for</span> (@input) {
+            $_ <span style="color:#f92672">==</span> $subarray<span style="color:#f92672">-&gt;</span>[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+                ? push $subarray<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, $_
+                : <span style="color:#66d9ef">do</span> {
+                    push @out, $subarray;
+                    $subarray <span style="color:#f92672">=</span> [ $_ ];
+                  }
+        }
+        <span style="color:#66d9ef">return</span> @out, $subarray;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a></p>
+<p>Niles brings us a solution based around one of my favorite new additions to the <code>List::MoreUtils</code> package, <a href="https://metacpan.org/pod/List::MoreUtils#slide-BLOCK-LIST"><code>slide()</code></a>. This handy little function — at the time of this writing less than a year old — allows us to process an array one element at a time, but at the same time gives us access to the element and the element previously looked at in the block. The sequencing starts with the first two elements from the array and assigns them to <code>$a</code> and <code>$b</code>.</p>
+<p>From the docs:</p>
+<blockquote>
+<p>&ldquo;&hellip;a kind of magnifying glass that is moved along a list and calls BLOCK every time the next list item is reached.&rdquo;</p>
+</blockquote>
+<p>Here <code>$a</code> is always inserted at the end of the last subarray in the output, and if the pair are non-consecutive a new empty array is added as well, so <code>$b</code>, now  <code>$a</code> on the next step, is placed into the new array.</p>
+<p>It&rsquo;s elegant and I really like it.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> List::MoreUtils <span style="color:#e6db74">qw(slide)</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">consecutiveArrays</span> {
+      <span style="color:#66d9ef">my</span> @r <span style="color:#f92672">=</span> (<span style="color:#f92672">[]</span>);
+
+      <span style="color:#66d9ef">no</span> warnings <span style="color:#e6db74">&#39;once&#39;</span>;
+      slide {
+        push(@{$r[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]}, $a);
+        push(@r, <span style="color:#f92672">[]</span>) <span style="color:#66d9ef">if</span> ($a <span style="color:#f92672">!=</span> $b <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>);
+      } @_;
+
+      push(@{$r[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]}, $_[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]);
+
+      <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@r;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/pete-houston/perl/ch-1.pl"><strong>Pete Houston</strong></a></p>
+<p>Pete takes an amusingly sideways approach to the problem, constructing his list of arrays as a <em>string</em> in written output. This is a decidedly different take, I must say. I suppose if we really needed a Perl array-of-arrays we could <code>eval</code> the output. But on the other hand the output does match the examples.</p>
+<p>Internally, the process is very similar to what we&rsquo;ve seen elsewhere, but in this case a variable holds the current working subarray values, and new consecutive elements are added to it. When the sequence is broken, however, the <code>@out</code> array is joined with commas ab=nd printed out within brackets, and the working array reset.</p>
+<p>Another interesting note is that Pete has decided to input his array as a run-together string, which is parsed apart into a list of single digits. Consequently the values can only range from 0-9. This doesn&rsquo;t exactly match the spec but the logic would work on a Perl array if we gave it that, so who cares? Look around the room. Anyone? Good, then it&rsquo;s settled.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39;(&#39;</span>;
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $n (map { <span style="color:#e6db74">s/[^0-9]//</span>; $_ } @ARGV) {
+        <span style="color:#66d9ef">if</span> ($#out <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">||</span> $n <span style="color:#f92672">==</span> $out[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) {
+        	push @out, $n;
+        } <span style="color:#66d9ef">else</span> {
+        	<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39;[&#39;</span> <span style="color:#f92672">.</span> join (<span style="color:#e6db74">&#39;, &#39;</span>, @out) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;], &#39;</span>;
+        	@out <span style="color:#f92672">=</span> $n;
+        }
+    }
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39;[&#39;</span> <span style="color:#f92672">.</span> join (<span style="color:#e6db74">&#39;, &#39;</span>, @out) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;])\n&#34;</span>;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a></p>
+<p>As stated immediately above, we concluded the logic would work if given a Perl array instead of a string to parse, and in Choroba&rsquo;s solution, coincidentally selected next, we have the proof presented. Doing a side-by-side comparison we can see the algorithm is nearly identical. Some different operator choices are made, and here Choroba uses a multidimensional reference to hold his output, but the steps are the same.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">consecutive_arrays</span> {
+        <span style="color:#66d9ef">my</span> @input <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> @results <span style="color:#f92672">=</span> (<span style="color:#f92672">[]</span>);
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (@input) {
+            <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span> @{ $results[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] } <span style="color:#f92672">||</span> $results[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">==</span> $i) {
+                push @{ $results[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] }, $i;
+            } <span style="color:#66d9ef">else</span> {
+                push @results, [$i];
+            }
+        }
+        <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@results
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/peter-campbell-smith/perl/ch-1.pl"><strong>Peter Campbell Smith</strong></a></p>
+<p>Like our other Pete previously, Peter Campbell Smith has also constructed a nice compact method focused of producing output to match the examples. In other words, there seems to be a renegade cabal of Petes determined to build strings that properly describe their solution arrays. I mean, UNIX is text, right? It&rsquo;s text all the way down, baby&hellip;</p>
+<p>Perhaps that&rsquo;s more poetic than accurate but you get the idea. Noteworthy here is the inclusion of comma delimiters in the input strings, allowing multi-character numbers in the sequence, and the use of a ternary operator to keep the decision step compact.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">do_task</span> {
+
+        <span style="color:#66d9ef">my</span> ($prev, $output);
+
+        <span style="color:#75715e"># loop over list</span>
+        $prev <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">while</span> ($input <span style="color:#f92672">=~</span> m<span style="color:#f92672">|</span>(<span style="color:#f92672">\</span>d<span style="color:#f92672">+</span>)<span style="color:#f92672">|</span>g) {          <span style="color:#75715e"># consecutive  # non-consecutive</span>
+        	$output <span style="color:#f92672">.=</span> ($1 <span style="color:#f92672">==</span> ($prev <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)) ?   <span style="color:#e6db74">&#34;, $1&#34;</span> :       <span style="color:#e6db74">&#34;], [$1&#34;</span>;
+        	$prev <span style="color:#f92672">=</span> $1;
+        }
+        $output <span style="color:#f92672">=~</span> s<span style="color:#f92672">|...|</span>(<span style="color:#f92672">|</span>;   <span style="color:#75715e"># tidy the start of $output</span>
+        say <span style="color:#e6db74">&#34;\nInput:  ($input)\nOutput: $output])&#34;</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/polettix/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.polettix.it/ETOOBUSY/2021/09/22/pwc131-consecutive-arrays/">PWC131 - Consecutive Arrays</a></p>
+<p>Although we did see some cases of using an explicit iterator to address the array elements by index, it was far more common to use relative indexing by examining the input sequentially and comparing it to the last element placed — using the index for the end of the array, wherever that may lie, at <code>[-1]</code>. Here Flavio uses a working variable, <code>$previous</code> to hold the last value for comparison, and an end-of-array index to properly insert it into the multidimensional output,
+<code>@retval</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">consecutive_arrays</span> (@args) {
+       <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">unless</span> @args;
+       <span style="color:#66d9ef">my</span> $previous <span style="color:#f92672">=</span> $args[<span style="color:#ae81ff">0</span>];
+       <span style="color:#66d9ef">my</span> @retval;
+       <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $n (@args) {
+          push @retval, <span style="color:#f92672">[]</span> <span style="color:#66d9ef">if</span> $n <span style="color:#f92672">!=</span> $previous <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+          push $retval[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, $n;
+          $previous <span style="color:#f92672">=</span> $n;
+       }
+       <span style="color:#66d9ef">return</span> @retval;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a></p>
+<p>It&rsquo;s always nice to see Mohammad contribute to the submissions himself, on top of the substantial time commitment required to keep this site running. Here he breaks down the algorithm steps in a remarkably clear fashion, with no indexing of either the input nor output required — the previously examined value is preserved in a working variable for comparison, and that is all that is required. I like this one. It&rsquo;s all very neat and clear.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">consecutive_arrays</span> {
+        <span style="color:#66d9ef">my</span> @numbers <span style="color:#f92672">=</span> @_;
+
+        <span style="color:#66d9ef">my</span> @arrays    <span style="color:#f92672">=</span> ();
+        <span style="color:#66d9ef">my</span> $sub_array <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>;
+        <span style="color:#66d9ef">my</span> $i;
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $number (@numbers) {
+            $i <span style="color:#f92672">=</span> $number <span style="color:#66d9ef">unless</span> defined $i;
+            <span style="color:#66d9ef">if</span> ($i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">==</span> $number) {
+                push @$sub_array, $number;
+                $i <span style="color:#f92672">=</span> $number;
+            }
+            <span style="color:#66d9ef">else</span> {
+                push @arrays, $sub_array <span style="color:#66d9ef">if</span> scalar @$sub_array;;
+                $sub_array <span style="color:#f92672">=</span> [$number];
+                $i <span style="color:#f92672">=</span> $number;
+            }
+        }
+
+        push @arrays, $sub_array <span style="color:#66d9ef">if</span> scalar @$sub_array;;
+
+        <span style="color:#66d9ef">return</span> @arrays;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://jacoby.github.io/2021/09/21/consecutive-limits-the-weekly-challenge-131.html">Consecutive Limits: The Weekly Challenge 131 | Committed to Memory</a></p>
+<p>Up to this point I&rsquo;ve focused, as I usually do, on the underlying logic behind the algorithms we&rsquo;ve seen. But in this task, due to the fairly consistent self-similarity in the solutions across the board, perhaps we should break away from that and take a look to the bigger picture of displaying the results. We&rsquo;ve seen a few constructions that outright assemble string output as it&rsquo;s computed, but the large majority of solutions first produce a proper array-of-arrays and then find a way to pretty-print that data structure.</p>
+<p>Here Dave uses a <code>map</code> between a couple of <code>join</code> statements to first join the inner sub-arrays with commas, enclosing them in square brackets, and then in turn join those bracketed strings with more commas, and enclosing everything within parentheses. A heredoc is then used to format the input and output for display.</p>
+<p>I do like the attention to detail when someone goes to great length to produce the output exactly as described in the examples. It&rsquo;s not necessary in my book, but the effort is admirable. And adding that extra space after &ldquo;Input: &quot; to get the data to line up gives me a warm fuzzy feeling inside. Data visualization is so often overlooked, and I find too often that presenting data is viewed as synonymous with having ones audience comprehend it, the onus landing on the user to make sense of what is in front of them.</p>
+<pre><code>    Input:  ( 1, 2, 3, 6, 7, 8, 9 )
+    Output: ( [1, 2, 3], [6, 7, 8, 9] )
+
+    Input:  ( 11, 12, 14, 17, 18, 19 )
+    Output: ( [11, 12], [14], [17, 18, 19] )
+
+    Input:  ( 2, 4, 6, 8 )
+    Output: ( [2], [4], [6], [8] )
+
+    Input:  ( 1, 2, 3, 4, 5 )
+    Output: ( [1, 2, 3, 4, 5] )
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $e (@examples) {
+        <span style="color:#66d9ef">my</span> $input  <span style="color:#f92672">=</span> join <span style="color:#e6db74">&#39;, &#39;</span>, $e<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+        my $o      <span style="color:#f92672">=</span> consecutive_arrays( $e<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> );
+        <span style="color:#66d9ef">my</span> $output <span style="color:#f92672">=</span> join <span style="color:#e6db74">&#39;, &#39;</span>, map { <span style="color:#e6db74">qq{[$_]}</span> }
+            map { join <span style="color:#e6db74">&#39;, &#39;</span>, $_<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">}</span> <span style="color:#960050;background-color:#1e0010">$</span>o<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+
+        say <span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;END&#34;</span>;
+        Input:  ( $input )
+        Output: ( $output )
+    <span style="color:#66d9ef">END</span>
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">consecutive_arrays</span>( @array ) {
+        <span style="color:#66d9ef">my</span> $output <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>;
+        <span style="color:#66d9ef">while</span> (@array) {
+            <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> shift @array;
+            push $output<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, <span style="color:#f92672">[]</span>
+                <span style="color:#66d9ef">unless</span> scalar $output<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>
+                <span style="color:#960050;background-color:#1e0010">&amp;&amp;</span> <span style="color:#960050;background-color:#1e0010">$</span>n <span style="color:#f92672">==</span> $output<span style="color:#f92672">-&gt;</span>[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+            push $output<span style="color:#f92672">-&gt;</span>[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, $n;
+        }
+        <span style="color:#66d9ef">return</span> $output;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/cybersnyder/perl/ch-1.pl"><strong>Rich Snyder</strong></a></p>
+<p>And, because nothing in this world is simple, in direct contrast to what I just said, we have this minimalist example from Rich. Noteworthy is the inversion of the usual comparisons we&rsquo;ve seen, using the <code>if</code> to select the new-sub-array case and defaulting to adding to the existing sequence. The array-of-arrays is constructed, as requested, and to verify it the <code>@results</code> array is examined with the <code>Data::Dumper</code> module:</p>
+<pre><code>    $VAR1 = [
+              [
+                1,
+                2,
+                3
+              ],
+              [
+                6,
+                7,
+                8,
+                9
+              ]
+            ];
+</code></pre><p><code>Data::Dumper</code> exists to make data structures comprehensible, so I can&rsquo;t say this doesn&rsquo;t follow the rules. Life is made up of many things, not one thing. I often feel I could use a Data::Dumper of my own for the Real World. It would make a lot of things a lot easier.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $num (@input) {
+        croak <span style="color:#e6db74">&#34;Numbers should be positive integers&#34;</span> <span style="color:#66d9ef">unless</span> ($num <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>);
+        <span style="color:#66d9ef">if</span> ( ($num <span style="color:#f92672">-</span> $lastnum) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> ) {
+            push @results, $working;
+            $working <span style="color:#f92672">=</span> [$num];
+        } <span style="color:#66d9ef">else</span> {
+            push @{$working}, $num;
+        }
+        $lastnum <span style="color:#f92672">=</span> $num;
+    }
+    push @results, $working <span style="color:#66d9ef">if</span> scalar(@{$working});
+
+    <span style="color:#75715e"># Acceptable output?</span>
+    <span style="color:#66d9ef">print</span> Dumper(<span style="color:#f92672">\</span>@results);
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/abigail/perl/ch-1.pl"><strong>Abigail</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/abigail/awk/ch-1.awk">Awk</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/abigail/c/ch-1.c">C</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-131-1.html">Perl Weekly Challenge 131: Consecutive Arrays</a></p>
+<p>As we&rsquo;ve seen, the steps to produce the arrays, although the specific implementations may vary, are pretty consistent and not overly complex: each element of the input is examined in course, and placed either within the most recently added sub-array or used to start its own new subarray.</p>
+<p>As such the algorithm can be reduced to a quite compact form. Here Abigail, with the parsimony of action we have come to expect from them, has taken the processing to essentially a single line with a bit of infrastructure to back it up.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">while</span> (<span style="color:#f92672">&lt;&gt;</span>) {
+        <span style="color:#66d9ef">my</span> $prev <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">print</span> $prev ? $prev <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">==</span> $_ ? <span style="color:#e6db74">&#34; &#34;</span> : <span style="color:#e6db74">&#34;\n&#34;</span> : <span style="color:#e6db74">&#34;&#34;</span>, $prev <span style="color:#f92672">=</span> $_ <span style="color:#66d9ef">for</span> <span style="color:#e6db74">/[0-9]+/g</span>;
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/olivier-delouya/perl/ch-1.sh"><strong>Olivier Delouya</strong></a></p>
+<p>And finally, Oliver realizes the natural extension of this trend, submitting four versions of a the same one-liner to demonstrate the four examples. Here is the second of those:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">    perl -se <span style="color:#e6db74">&#34;@N=eval(</span>$N<span style="color:#e6db74">); </span>$_prev<span style="color:#e6db74">=</span>$N<span style="color:#e6db74">[0]-1; print &#39;([&#39;; foreach(@N) {if(</span>$_<span style="color:#e6db74"> != </span>$_prev<span style="color:#e6db74">+1) {print \&#34;\b],[\&#34;}; print \&#34;</span>$_<span style="color:#e6db74">,\&#34;; </span>$_prev<span style="color:#e6db74">=</span>$_<span style="color:#e6db74">;}; print \&#34;\b])\&#34; &#34;</span> -- -N<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;(11, 12, 14, 17, 18, 19)&#34;</span>
+</code></pre></div><p>As you can see it has it all — the drama, the excitement, the emotional depth — in a single short act.</p>
+<h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-1">Blogs and Additional Submissions in Guest Languages for Task 1:</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/arne-sommer/perl/ch-1.pl"><strong>Arne Sommer</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/arne-sommer/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://raku-musings.com/con-se-pair.html">Con Se Pair with Raku and Perl</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/athanasius/raku/ch-1.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/cheok-yin-fung/julia/ch-1.jl">Julia</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://e7-87-83.github.io/coding/challenge_131.html">CY&rsquo;s Taken The Weekly Challenge #131 </a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/iangoodnight/perl/ch-1.pl"><strong>Ian Goodnight</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/iangoodnight/javascript/ch-1.js">Javascript</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/iangoodnight/perl/README.md">perlweeklychallenge-club/README.md at master · manwar/perlweeklychallenge-club · GitHub</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-131/james-smith">Perl Weekly Challenge #131</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/laurent-rosenfeld/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://blogs.perl.org/users/laurent_r/2021/09/perl-weekly-challenge-131-consecutive-arrays.html">Perl Weekly Challenge 131: Consecutive Arrays |aurent_r</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/roger-bell-west/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/roger-bell-west/raku/ch-1.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/roger-bell-west/ruby/ch-1.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/roger-bell-west/rust/ch-1.rs">Rust</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://blog.firedrake.org/archive/2021/09/Perl_Weekly_Challenge_131__Splitting_and_Splitting_More.html">RogerBW&rsquo;s Blog: Perl Weekly Challenge 131: Splitting and Splitting More</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://dev.to/simongreennet/weekly-challenge-131-1fl1">Weekly Challenge 131</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/ulrich-rieke/haskell/ch-1.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/ulrich-rieke/raku/ch-1.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://wlmb.github.io/2021/09/21/PWC131/">Perl Weekly Challenge 131 – W. Luis Mochán</a></p>
+<hr>
+<hr>
+<h1 id="PWC131TASK2">TASK 2</h1>
+<h1 id="find-pairs">Find Pairs</h1>
+<p><em>Submitted by: Yary</em></p>
+<p>You are given a string of delimiter pairs and a string to search.</p>
+<p>Write a script to return two strings, the first with any characters matching the “opening character” set, the second with any matching the “closing character” set.</p>
+<p><strong>Example 1:</strong></p>
+<pre><code>    Input:
+        Delimiter pairs: &quot;&quot;[]()
+        Search String:
+            &quot;I like (parens) and the Apple ][+&quot; they said.
+
+    Output:
+        &quot;([&quot;
+        &quot;)]&quot;
+</code></pre><p><strong>Example 2:</strong></p>
+<pre><code>    Input:
+        Delimiter pairs: **//&lt;&gt;
+        Search String:
+            /* This is a comment (in some languages) */ &lt;could be a tag&gt;
+
+    Output:
+        /**/&lt;
+        /**/&gt;
+</code></pre><h2 id="about-the-solutions-1">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/abigail/perl/ch-2.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/arne-sommer/perl/ch-2.pl"><strong>Arne Sommer</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/iangoodnight/perl/ch-2.pl"><strong>Ian Goodnight</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/ziruzavar/perl/ch-2.pl"><strong>Ivan Dimitrov</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/lubos-kolouch/perl/ch-2.pl"><strong>Lubos Kolouch</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/mattneleigh/perl/ch-2.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/perlboy1967/perl/ch-2.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/pete-houston/perl/ch-2.pl"><strong>Pete Houston</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/peter-campbell-smith/perl/ch-2.pl"><strong>Peter Campbell Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/cybersnyder/perl/ch-2.pl"><strong>Rich Snyder</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/wanderdoc/perl/ch-2.pl"><strong>Wanderdoc</strong></a></p>
+<p>There were only 23 submissions for the second task this past week, down a bit from the first challenge. If I were to speculate, I might consider people thought this was, as it first appears, a task of pairing up sets of delimiters. That task, involving nesting delineated subtexts, can get very messy very quickly when we address ideas of overlapping focus and order of opening and closing the frames. Much like CSV, the special cases soon take over the conversation, requiring increasing levels of definition to explain exactly what it is we want and have. It&rsquo;s a veritable thicket.</p>
+<p>Fortunately for us, this is not that puzzle.</p>
+<h2 id="an-assortment-of-techniques-for-your-perusal">an ASSORTMENT of TECHNIQUES for your PERUSAL</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/lubos-kolouch/perl/ch-2.pl"><strong>Lubos Kolouch</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/wanderdoc/perl/ch-2.pl"><strong>Wanderdoc</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/mattneleigh/perl/ch-2.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/abigail/perl/ch-2.pl"><strong>Abigail</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a></p>
+<p>Duncan wlll start off our journey into the second task. Whereas at first reading one might think this is a complex process requiring pairing of opening and closing delimiters, in fact the puzzle is much simpler: we need only to determine and then match instances of the opening and closing characters as designated, without thought to what these framings might indicate, or whether they in fact even pair.</p>
+<p>One might <a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-131-2.html">go as far as to what Abigail has said on the subject</a>, that calling them delimiters at all is just a <a href="https://en.wikipedia.org/wiki/Red_herring">red herring</a> — an accurate assessment. I myself rather enjoy these small acts of misdirection — much in life, it turns out, is not what it seems, and cutting through the distractions to the real underlying problem is a good talent to hone. So bring it on.</p>
+<p>Here the action is broken into two phases. First, the delimiter pairs are processed and divided into two groups, for openers and closers, and these groups are used as keys in separate hashes. The input string is then split into an array of characters, and  iterating across this list each character is matched as a key to each of the two hashes. Successful lookups indicate instances; output strings are compiled from each of the hash comparison steps and the results reported.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> %open <span style="color:#f92672">=</span>
+        map { substr($pairlist,$_,<span style="color:#ae81ff">1</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> }
+        grep { $_ % 2 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> } <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$len<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+
+    <span style="color:#66d9ef">my</span> %close <span style="color:#f92672">=</span>
+        map { substr($pairlist,$_,<span style="color:#ae81ff">1</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> }
+        grep { $_ % 2 <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> } <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$len<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+
+    <span style="color:#75715e">#say &#34;open=&#34;.Dumper(\%open).&#34;, close=&#34;.Dumper(\%close) if $debug;</span>
+
+    <span style="color:#66d9ef">my</span> $first <span style="color:#f92672">=</span> <span style="color:#66d9ef">my</span> $second <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
+    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $letter (split(<span style="color:#e6db74">//</span>,$searchstring))
+    {
+        $first <span style="color:#f92672">.=</span> $letter <span style="color:#66d9ef">if</span> $open{$letter};
+        $second <span style="color:#f92672">.=</span> $letter <span style="color:#66d9ef">if</span> $close{$letter};
+    }
+
+    say <span style="color:#e6db74">&#34;$first\n$second&#34;</span>;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/roger-bell-west/postscript/ch-2.ps">Postscript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/roger-bell-west/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/roger-bell-west/raku/ch-2.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/roger-bell-west/ruby/ch-2.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/roger-bell-west/rust/ch-2.rs">Rust</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://blog.firedrake.org/archive/2021/09/Perl_Weekly_Challenge_131__Splitting_and_Splitting_More.html">RogerBW&rsquo;s Blog: Perl Weekly Challenge 131: Splitting and Splitting More</a></p>
+<p>Roger uses <code>substr</code> to directly address the characters within the input delimiter string, compactly distributing them within two anonymous hashes in a single <code>@d</code> array, at indices <code>[0]</code> and <code>[1]</code>. The string to be examined is then split into an array of characters and a lookup performed for each element, with matches pushed to output arrays. Joining the output arrays we arrive at the results.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">fp</span> {
+      <span style="color:#66d9ef">my</span> ($delims,$sample)<span style="color:#f92672">=</span>@_;
+      <span style="color:#66d9ef">my</span> @d;
+      <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>length($delims)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
+        $d[$i % 2]<span style="color:#f92672">-&gt;</span>{substr($delims,$i,<span style="color:#ae81ff">1</span>)}<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
+      }
+      <span style="color:#66d9ef">my</span> @o;
+      <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $s (split <span style="color:#e6db74">&#39;&#39;</span>,$sample) {
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $x (<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>) {
+          <span style="color:#66d9ef">if</span> (exists $d[$x]<span style="color:#f92672">-&gt;</span>{$s}) {
+            push @{$o[$x]},$s;
+          }
+        }
+      }
+      <span style="color:#66d9ef">return</span> [map {join(<span style="color:#e6db74">&#39;&#39;</span>,@{$_})} @o];
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://dev.to/simongreennet/weekly-challenge-131-1fl1">Weekly Challenge 131</a></p>
+<p>Simon, in his usual clear style, neatly breaks the problem in halves, first separating the delimiter pairs and then fining them in the input sting. He employs a different technique, however, using a regular expression to concatenate all of the input delimiters into one string, and the closers in another.  Then the input is copied for each of the two cases and a second regular expression, using the strings we created as character classes, is used to destructively substitute away instances of matching characters until none are left to remove. I find the combined assignment and subsequent substitution steps at the end delightful.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># Build regexp of characters we want to remove</span>
+    <span style="color:#66d9ef">my</span> $open <span style="color:#f92672">=</span> <span style="color:#66d9ef">my</span> $close <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;[^&#39;</span>;
+    <span style="color:#66d9ef">while</span> ( $D <span style="color:#f92672">=~</span><span style="color:#e6db74"> /(.)(.)/g</span> ) {
+        <span style="color:#66d9ef">my</span> ( $o, $c ) <span style="color:#f92672">=</span> ( $1, $2 );
+        <span style="color:#75715e"># If it&#39;s not a alphanumeric character, we can safely escape it</span>
+        $open  <span style="color:#f92672">.=</span> $o <span style="color:#f92672">=~</span><span style="color:#e6db74"> /[a-z0-9]/i</span> ? $o : <span style="color:#e6db74">&#34;\\$o&#34;</span>;
+        $close <span style="color:#f92672">.=</span> $c <span style="color:#f92672">=~</span><span style="color:#e6db74"> /[a-z0-9]/i</span> ? $c : <span style="color:#e6db74">&#34;\\$c&#34;</span>;
+    }
+
+    $open  <span style="color:#f92672">.=</span> <span style="color:#e6db74">&#39;]&#39;</span>;
+    $close <span style="color:#f92672">.=</span> <span style="color:#e6db74">&#39;]&#39;</span>;
+
+    <span style="color:#75715e"># Apply the regexp, and display the results</span>
+    ( <span style="color:#66d9ef">my</span> $opening <span style="color:#f92672">=</span> $S ) <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/$open//g</span>;
+    ( <span style="color:#66d9ef">my</span> $closing <span style="color:#f92672">=</span> $S ) <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/$close//g</span>;
+    say $opening;
+    say $closing;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-131/james-smith">Perl Weekly Challenge #131</a></p>
+<p>James uses one line. One line, three <code>map</code> functions and two regex quote constructs, and the topic variable array from the subroutine stack.</p>
+<p>I&rsquo;ll let him describe the inner working himself:</p>
+<ul>
+<li>Working backwards we define two regex (.). &amp; .(.) these when combined with /g return alternate characters in the string either starting from the first char or the 2nd.</li>
+<li>We then join these together to get two lists of characters.</li>
+<li>We convert them into a regex by using quotemeta to remove the &ldquo;specialness&rdquo; and then wrapping them in &ldquo;(<input disabled="" type="checkbox">)&rdquo; to capture them</li>
+<li>We just run this regex against our original string (with /g again) to get results.</li>
+</ul>
+<p>As we now see, this is novel, but essentially similar to Simon&rsquo;s regex solution we just saw. Just, you know, denser. A lot denser.</p>
+<p>I&rsquo;m in the end of two minds on these functional list-wise processing constructs. Like a Tarantino film, they tell the story backwards and forwards at the same time: we need to start at the end and follow the data through the chain in reverse, but then read the individual statements left-to-right. This can, obviously, be confusing. On the other hand using an entire list of data as a fundamental processing unit is awesome.</p>
+<p>And I have always been a big fan of awesome.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">find_pairs</span> {
+      map { join <span style="color:#e6db74">&#39;&#39;</span>, $_[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=~</span><span style="color:#e6db74">m{$_}g</span> }
+      map { <span style="color:#e6db74">&#39;[&#39;</span><span style="color:#f92672">.</span>quotemeta( $_ )<span style="color:#f92672">.</span><span style="color:#e6db74">&#39;]&#39;</span> }
+      map { join <span style="color:#e6db74">&#39;&#39;</span>, $_[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=~</span><span style="color:#e6db74"> /$_/g</span> }
+          <span style="color:#e6db74">qr((.).?)</span>, <span style="color:#e6db74">qr(.(.?))</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/athanasius/raku/ch-2.raku">Raku</a></p>
+<p>After an appropriate aside on the definition of the word &ldquo;delimiter&rdquo;, the monk Athanasius addresses the problem as written, constructing two hashes and then matching the individual input characters against the keys.</p>
+<p>Of note here is the ternary operator construct that nicely divides alternating characters into two groups, assigning first to one hash, then the other.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $delim (split <span style="color:#e6db74">&#39;&#39;</span>, $delims)
+    {
+        (<span style="color:#f92672">++</span>$i % 2 <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>) ? <span style="color:#f92672">++</span>$open_chars{ $delim }
+                        : <span style="color:#f92672">++</span>$clse_chars{ $delim };
+    }
+
+    <span style="color:#66d9ef">my</span> $open_str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
+    <span style="color:#66d9ef">my</span> $clse_str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
+
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $char (split <span style="color:#e6db74">&#39;&#39;</span>, $search)
+    {
+        $open_str <span style="color:#f92672">.=</span> $char <span style="color:#66d9ef">if</span> exists $open_chars{ $char };
+        $clse_str <span style="color:#f92672">.=</span> $char <span style="color:#66d9ef">if</span> exists $clse_chars{ $char };
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/lubos-kolouch/perl/ch-2.pl"><strong>Lubos Kolouch</strong></a></p>
+<p>Lubos creates the flip-flop more explicitly, with a designated <code>$switch</code> flag that is set on any action to take the alternate path on the next iteration. This easy to follow, and can be used to wrangle much more complicated constructs.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># load the dicts with the opening and closing chars</span>
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $char (split <span style="color:#e6db74">//</span>, $pairs) {
+        <span style="color:#66d9ef">if</span> ($switch <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+            <span style="color:#75715e"># opening</span>
+            $opening{$char} <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+            $switch <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+        } <span style="color:#66d9ef">else</span> {
+            <span style="color:#75715e"># closing</span>
+            $closing{$char} <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+            $switch <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        }
+    }
+
+    <span style="color:#66d9ef">my</span> $out_opening <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
+    <span style="color:#66d9ef">my</span> $out_closing <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
+
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $char (split <span style="color:#e6db74">//</span>, $test_str) {
+        $out_opening <span style="color:#f92672">.=</span> $char <span style="color:#66d9ef">if</span> $opening{$char};
+        $out_closing <span style="color:#f92672">.=</span> $char <span style="color:#66d9ef">if</span> $closing{$char};
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://e7-87-83.github.io/coding/challenge_131.html">CY&rsquo;s Taken The Weekly Challenge #131 </a></p>
+<p>CY takes it up a notch, taking it on herself not to simply answer the problem as stated, but to add further analysis in matching up pairs of opening and closing delimiters in the given text. This is a far more complicated task, as we don&rsquo;t need just lists of openers and closers, but need to be able to associate specific pairings — so once we&rsquo;ve found an opener we know to look for its matching closer — and in addition keep a list of open sets to be closed. Unmatched pairs result in a warning, as so some other anomalous states.</p>
+<p>The code, as we said, is considerably more complex for this version of events.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">find_pair</span> {
+
+    <span style="color:#f92672">...</span>
+
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $pair (@{$_[<span style="color:#ae81ff">0</span>]}) {
+            <span style="color:#66d9ef">my</span> $s_head <span style="color:#f92672">=</span> substr($pair, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>);
+            <span style="color:#66d9ef">my</span> $s_tail <span style="color:#f92672">=</span> substr($pair, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>);
+            $open_found{$s_head} <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>
+                <span style="color:#66d9ef">if</span> any { $_ <span style="color:#f92672">eq</span> $s_head } (map {substr($_, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>)} @open_uni);
+            $close_found{$s_tail} <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>
+                <span style="color:#66d9ef">if</span> any { $_ <span style="color:#f92672">eq</span> $s_tail } (map {substr($_, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>)} @close_uni);
+            $neutral_found{$s_head} <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>
+                <span style="color:#66d9ef">if</span> any { $_ <span style="color:#f92672">eq</span> $s_head } (map {substr($_, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>)} @neutral_uni);
+        }
+
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#char) {
+            <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> $char[$i];
+            push $open_found{$c}<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, $i <span style="color:#66d9ef">if</span> defined($open_found{$c});
+            push $close_found{$c}<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, $i <span style="color:#66d9ef">if</span> defined($close_found{$c});
+            push $neutral_found{$c}<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, $i <span style="color:#66d9ef">if</span> defined($neutral_found{$c});
+        }
+
+    <span style="color:#f92672">...</span>
+
+        <span style="color:#66d9ef">for</span> (values %open_found, values %neutral_found) {
+            push @open_positions, $_<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+        <span style="color:#960050;background-color:#1e0010">}</span>
+        for (values %close_found, values %neutral_found) {
+            push @close_positions, $_<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+        <span style="color:#960050;background-color:#1e0010">}</span>
+        for (values %open_found, values %close_found, values %neutral_found) {
+            push @all_positions, $_<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+        <span style="color:#960050;background-color:#1e0010">}</span>
+
+    <span style="color:#960050;background-color:#1e0010">...</span>
+
+        for <span style="color:#66d9ef">my</span> $p (@all_positions) {
+            <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> $char[$p];
+            <span style="color:#66d9ef">if</span> (defined($open_found{$c})) {
+                push @stack, $c;
+                push @waiting_to_be_closed, $p;
+            }
+            <span style="color:#66d9ef">if</span> (defined($close_found{$c})) {
+                <span style="color:#66d9ef">if</span> (scalar @stack <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> $stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">eq</span> $partner{$c}) {
+                    pop @stack;
+                    pop @waiting_to_be_closed;
+                }
+                <span style="color:#66d9ef">elsif</span> (<span style="color:#f92672">!</span>defined($neutral_found{$c})) {
+                    say(<span style="color:#e6db74">&#34;Warning: $stack[-1] at position &#34;</span>,
+                        $waiting_to_be_closed[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>],
+                        <span style="color:#e6db74">&#34; may not close appropriately.&#34;</span>);
+                    say(<span style="color:#e6db74">&#34;Warning: $c at position &#34;</span>, $p,
+                        <span style="color:#e6db74">&#34; may not be corresponding to an opening delimiter.&#34;</span>);
+                    $early_warn <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+                    <span style="color:#66d9ef">last</span>;
+                }
+                <span style="color:#66d9ef">else</span> {
+                    say(<span style="color:#e6db74">&#34;Warning: $stack[-1] at position &#34;</span>,
+                        $waiting_to_be_closed[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>],
+                        <span style="color:#e6db74">&#34; does not open or close appropriately.&#34;</span>);
+                    $early_warn <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+                    <span style="color:#66d9ef">last</span>;
+                }
+            }
+            <span style="color:#66d9ef">if</span> (defined($neutral_found{$c})) {
+                <span style="color:#66d9ef">if</span> (scalar @stack <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> $stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">ne</span> $c) {
+                    push @stack, $c;
+                    push @waiting_to_be_closed, $p;
+                }
+                <span style="color:#66d9ef">elsif</span> (scalar @stack <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> $stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">eq</span> $c) {
+                    pop @stack;
+                    pop @waiting_to_be_closed;
+                }
+                <span style="color:#66d9ef">else</span> {
+                    say(<span style="color:#e6db74">&#34;Warning: $stack[-1] at position &#34;</span>, $p,
+                        <span style="color:#e6db74">&#34; does not open or close appropriately.&#34;</span> );
+                    $early_warn <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+                    <span style="color:#66d9ef">last</span>;
+                }
+            }
+        }
+        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>$early_warn <span style="color:#f92672">&amp;&amp;</span> scalar @stack <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>
+            <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span>defined($close_found{$stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]})
+           ) {
+            say <span style="color:#e6db74">&#34;Warning: delimiter(s) do not open or close appropriately:&#34;</span>;
+            say <span style="color:#e6db74">&#34;Delimiters: @stack&#34;</span>;
+            say <span style="color:#e6db74">&#34;Positions: &#34;</span>, <span style="color:#e6db74">&#34;@waiting_to_be_closed&#34;</span>;
+        }
+        <span style="color:#66d9ef">if</span> ($early_warn) {
+            say <span style="color:#e6db74">&#34;Feedback: It is recommended that you check other &#34;</span>,
+                <span style="color:#e6db74">&#34;delimiters as well.&#34;</span>;
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/ulrich-rieke/cpp/ch-2.cpp">C++</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/ulrich-rieke/haskell/ch-2.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/ulrich-rieke/raku/ch-2.raku">Raku</a></p>
+<p>Ulrich gives us a more fully-featured mini-app, prompting for the delimiter and search strings from <code>STDIN</code>.</p>
+<p>Once the data is taken in, the delimiter string is parsed using <code>substr</code> and the opening and closing characters selected are divided into two hashes in a manner similar to what we have seen before. Then similarly, a second iterator is set up to examine each of the characters in the search string using a second <code>substr</code>. Although the internal string data type differs fundamentally from that of a Perl array, the two structures are similar, and accessing the individual characters this way, using <code>substr</code>, is very fast.</p>
+<p>This is the first example we&rsquo;ve seen so far of using <code>substr</code> to select the individual characters in the search string to do the hash lookups.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> (length $delimiters) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ) {
+      <span style="color:#66d9ef">if</span> ( $i % 2 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> ) {
+          $openingChars{ substr( $delimiters , $i , <span style="color:#ae81ff">1</span> ) }<span style="color:#f92672">++</span> ;
+      }
+      <span style="color:#66d9ef">else</span> {
+          $closingChars{ substr( $delimiters, $i , <span style="color:#ae81ff">1</span> ) }<span style="color:#f92672">++</span> ;
+      }
+    }
+    <span style="color:#66d9ef">my</span> $firstOutput ;
+    <span style="color:#66d9ef">my</span> $secondOutput ;
+    <span style="color:#66d9ef">my</span> $len <span style="color:#f92672">=</span> length $searchstring ;
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $len <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ) {
+      <span style="color:#66d9ef">my</span> $letter <span style="color:#f92672">=</span> substr( $searchstring , $i , <span style="color:#ae81ff">1</span> ) ;
+      <span style="color:#66d9ef">if</span> ( exists ( $openingChars{ $letter } ) ) {
+          $firstOutput <span style="color:#f92672">.=</span> $letter ;
+      }
+      <span style="color:#66d9ef">if</span> ( exists ( $closingChars{ $letter } ) ) {
+          $secondOutput <span style="color:#f92672">.=</span> $letter ;
+      }
+    }
+    say $firstOutput ;
+    say $secondOutput ;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/wanderdoc/perl/ch-2.pl"><strong>Wanderdoc</strong></a></p>
+<p>The doctor first addressed the cyclically existential question: &ldquo;What if the string delimiter for the string of delimiters matches one of the delimiters contained in the string?&quot;, and, perhaps in a tip-of-the-hat to the <a href="https://en.wikipedia.org/wiki/Matryoshka_doll">matryoshka doll</a> conceptualization of the problem, chooses a rarely-used Cyrillic character, твёрдый знак, or &ldquo;tvjórdyy znak&rdquo;, for that job. Although the soft sign, the мягкий знак, &ldquo;miakyi znak&rdquo; is relatively common in modern Russian, the hard sign is nearly archaic.</p>
+<p>Mmmm. Snacks. Now I want snacks.</p>
+<p>Anyway, after setting up constructs like <code>q Ъ&quot;&quot;[]()Ъ</code> to get the data in safely, a pair of clever hash slice assignments are used to deftly place alternating letters into a pair of <code>%opening</code> and <code>%closing</code> hashes. I love hash slice assignments. A pair of <code>grep</code> statements filter the listified input string into matches against the opening and closing set hash keys.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">find_delimiter</span>
+    {
+         <span style="color:#66d9ef">my</span> ($del_pairs, $string) <span style="color:#f92672">=</span> @_;
+         <span style="color:#66d9ef">my</span> @delimiter <span style="color:#f92672">=</span> split(<span style="color:#e6db74">//</span>, $del_pairs);
+         <span style="color:#66d9ef">my</span> (%opening, %closing);
+         @opening { @delimiter[ grep $_ % 2 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#delimiter ] } <span style="color:#f92672">=</span> undef;
+         @closing { @delimiter[ grep $_ % 2 <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#delimiter ] } <span style="color:#f92672">=</span> undef;
+         <span style="color:#66d9ef">my</span> @characters <span style="color:#f92672">=</span> split(<span style="color:#e6db74">//</span>, $string);
+
+         <span style="color:#66d9ef">my</span> @this_opening <span style="color:#f92672">=</span> grep exists $opening{$_}, @characters;
+         <span style="color:#66d9ef">my</span> @this_closing <span style="color:#f92672">=</span> grep exists $closing{$_}, @characters;
+         <span style="color:#66d9ef">return</span> join(<span style="color:#e6db74">&#39;&#39;</span>, @this_opening), join(<span style="color:#e6db74">&#39;&#39;</span>, @this_closing);
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/mattneleigh/perl/ch-2.pl"><strong>Matthew Neleigh</strong></a></p>
+<p>If anyone is still having trouble following the basic process, I will point you to Matthew&rsquo;s code below, which is extensively commented in a blow-by-blow to the very end. Which, I will reenforce again, is always very welcome in these demonstrations.</p>
+<p>This technique differs by using a regular expression to select individual letters matched from the undifferentiated input delimiter string taken as a character class using a global search, capturing any match of any delimiter. As each capture is made, it is then compared to the stringified list of opening characters using a second regex, with the same action repeated for the closing.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># Break the delimiter string into even</span>
+    <span style="color:#75715e"># and odd characters</span>
+    <span style="color:#66d9ef">foreach</span>(split(<span style="color:#e6db74">&#34;&#34;</span>, $ARG[<span style="color:#ae81ff">0</span>])){
+        <span style="color:#66d9ef">if</span>($i<span style="color:#f92672">++</span> % 2){
+            <span style="color:#75715e"># Odd character</span>
+            $closing <span style="color:#f92672">.=</span> $_;
+        } <span style="color:#66d9ef">else</span>{
+            <span style="color:#75715e"># Even character</span>
+            $opening <span style="color:#f92672">.=</span> $_;
+        }
+    }
+
+    <span style="color:#75715e"># Escape metacharacters in the</span>
+    <span style="color:#75715e"># delimiter string</span>
+    $ARG[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> quotemeta($ARG[<span style="color:#ae81ff">0</span>]);
+
+    <span style="color:#75715e"># Keep searching through the string</span>
+    <span style="color:#75715e"># while specified delimiter characters</span>
+    <span style="color:#75715e"># are still found</span>
+    <span style="color:#66d9ef">while</span>($ARG[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=~</span> <span style="color:#e6db74">m/([$ARG[0]])/gc</span>){
+        <span style="color:#66d9ef">my</span> $chr <span style="color:#f92672">=</span> $1;
+
+        <span style="color:#75715e"># Store a copy of the character for</span>
+        <span style="color:#75715e"># searching, with metacharacter</span>
+        <span style="color:#75715e"># escaped as needed</span>
+        $_ <span style="color:#f92672">=</span> quotemeta($chr);
+
+        <span style="color:#75715e"># Determine which sets should</span>
+        <span style="color:#75715e"># contain this character (it may</span>
+        <span style="color:#75715e"># appear in both)</span>
+        <span style="color:#66d9ef">if</span>($opening <span style="color:#f92672">=~</span> <span style="color:#e6db74">m/$_/</span>){
+            <span style="color:#75715e"># Opening delimiter found</span>
+            $opening_found <span style="color:#f92672">.=</span> $chr;
+        }
+        <span style="color:#66d9ef">if</span>($closing <span style="color:#f92672">=~</span> <span style="color:#e6db74">m/$_/</span>){
+            <span style="color:#75715e"># Closing delimiter found</span>
+            $closing_found <span style="color:#f92672">.=</span> $chr;
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/abigail/perl/ch-2.pl"><strong>Abigail</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/abigail/awk/ch-2.awk">Awk</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-131-2.html">Perl Weekly Challenge 131: Find Pairs</a></p>
+<p>Abigail brings lots of unusual variations (as usual, the unusual is the norm) in a simple, compact solution.</p>
+<p>First we are presented with chained regexes to selectively isolate strings from the input containing only odd and even positioned characters, and then these two substrings are then modified again by an inspired bit of magic involving the translation operator, <code>y///</code>.</p>
+<p>To explain: using the <code>/c</code>, <code>/d</code> and <code>/r</code> modifiers we are, in the first example, making a list of any character not found in the <code>$odds</code> string, deleting it because it is not replaced, and then returning a <em>copy</em> of the newly translated string to be printed without altering the original. Then the same action can be performed again using the <code>$even</code> string.</p>
+<p>Nice.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    chomp (<span style="color:#66d9ef">my</span> $chars <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;&gt;</span>);
+    $_ <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;&gt;</span>; <span style="color:#75715e"># String to search</span>
+
+    <span style="color:#75715e">#</span>
+    <span style="color:#75715e"># Extract the characters on the odd and even positions;</span>
+    <span style="color:#75715e"># replace / with \/, and \ with \\.</span>
+    <span style="color:#75715e">#</span>
+    <span style="color:#66d9ef">my</span> $odds <span style="color:#f92672">=</span> $chars <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/(.)./$1/g</span>r <span style="color:#f92672">=~</span> <span style="color:#e6db74">s!([/\\])!\\$1!</span>r;
+    <span style="color:#66d9ef">my</span> $even <span style="color:#f92672">=</span> $chars <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/.(.)/$1/g</span>r <span style="color:#f92672">=~</span> <span style="color:#e6db74">s!([/\\])!\\$1!</span>r;
+
+    <span style="color:#75715e">#</span>
+    <span style="color:#75715e"># Use y///dc to get rid of the characters which don&#39;t match, and</span>
+    <span style="color:#75715e"># print the remainder.</span>
+    <span style="color:#75715e">#</span>
+    say eval <span style="color:#e6db74">&#34;y/$odds//dcr&#34;</span>;
+    say eval <span style="color:#e6db74">&#34;y/$even//dcr&#34;</span>;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://wlmb.github.io/2021/09/21/PWC131/">Perl Weekly Challenge 131 – W. Luis Mochán</a></p>
+<p>Finally, Luis gives us a pair of <code>map</code> functions to first first parcel out the opens and closes, using a novel scheme to arithmetically generate the even and odd indices from a single range of half the length of the delimiter list. Then a pair of output arrays are assigned to, <code>@open</code> and <code>@close</code>, for those respective delimiters that are found.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> ($delims, $string)<span style="color:#f92672">=</span>@ARGV;
+    <span style="color:#66d9ef">my</span> @delims <span style="color:#f92672">=</span> split <span style="color:#e6db74">&#39;&#39;</span>, $delims;
+    die <span style="color:#e6db74">&#34;Unbalanced delims $delims&#34;</span> <span style="color:#66d9ef">unless</span> @delims%2<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>; <span style="color:#75715e"># need even number</span>
+    <span style="color:#66d9ef">my</span> (%open_delim, %close_delim);
+    map { $open_delim{$delims[<span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>$_]} <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+          $close_delim{$delims[<span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>$_<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]} <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> } <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>@delims<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">my</span> (@open,  @close);
+    map { push @open, $_ <span style="color:#66d9ef">if</span> $open_delim{$_};
+          push @close, $_ <span style="color:#66d9ef">if</span> $close_delim{$_}; } split <span style="color:#e6db74">&#39;&#39;</span>, $string;
+    say <span style="color:#e6db74">&#34;Input:\n\tDelimiter pairs: $delims\n&#34;</span>,
+        <span style="color:#e6db74">&#34;\tSearch string: $string\nOutput:\n\t&#34;</span>,
+         @open, <span style="color:#e6db74">&#34;\n\t&#34;</span>, @close;                     <span style="color:#75715e"># avoid interpolated spaces</span>
+</code></pre></div><h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-2">Blogs and Additional Submissions in Guest Languages for Task 2:</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/arne-sommer/perl/ch-2.pl"><strong>Arne Sommer</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/arne-sommer/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://raku-musings.com/con-se-pair.html">Con Se Pair with Raku and Perl</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/colin-crain/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://colincrain.com/2021/09/26/consequential-pairings-and-secret-cuts/">Consequential Pairings and SECRET CUTS - Programming Excursions in Perl and Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://jacoby.github.io/2021/09/21/consecutive-limits-the-weekly-challenge-131.html">Consecutive Limits: The Weekly Challenge 131 | Committed to Memory</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/polettix/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.polettix.it/ETOOBUSY/2021/09/23/pwc131-find-pairs/">PWC131 - Find Pairs</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/iangoodnight/perl/ch-2.pl"><strong>Ian Goodnight</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/iangoodnight/javascript/ch-2.js">Javascript</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/iangoodnight/perl/README.md">Perl Weekly Challenge - 131</a></p>
+<hr>
+<h1 id="PWC131BLOGS">BLOGS</h1>
+<hr>
+<p><strong>That’s it for me this week, people! Warped by the rain, driven by the snow, resolute and unbroken by the torrential influx, I somehow continue to maintain my bearings. Looking forward to next wave, the perfect wave, I am: <em>your humble servant</em>.</strong></p>
+<h1 id="PWC131BLOGS">But if Your <em>THIRST</em> for <em>KNOWLEDGE</em> is not <em>SLAKED</em>,</h1>
+<h1 id="then-run-dont-walk-to-the-watering-hole">then <em>RUN</em> <em>(dont walk!)</em> to the <em>WATERING HOLE</em></h1>
+<h1 id="and-read-these-blog-links">and <em>READ</em> these <em>BLOG</em> <em>LINKS</em>:</h1>
+<p><strong>( <em>don&rsquo;t think, trust your training, you&rsquo;re in the zone, just do it &hellip;</em> )</strong></p>
+<p><strong>Abigail</strong></p>
+<ul>
+<li><a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-131-1.html">Perl Weekly Challenge 131: Consecutive Arrays</a> ( <em>Perl</em> )</li>
+<li><a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-131-2.html">Perl Weekly Challenge 131: Find Pairs</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Arne Sommer</strong></p>
+<ul>
+<li><a href="https://raku-musings.com/con-se-pair.html">Con Se Pair with Raku and Perl</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Cheok-Yin Fung</strong></p>
+<ul>
+<li><a href="https://e7-87-83.github.io/coding/challenge_131.html">CY&rsquo;s Taken The Weekly Challenge #131 </a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Colin Crain</strong></p>
+<ul>
+<li><a href="https://colincrain.com/2021/09/26/consequential-pairings-and-secret-cuts/">Consequential Pairings and SECRET CUTS - Programming Excursions in Perl and Raku</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Dave Jacoby</strong></p>
+<ul>
+<li><a href="https://jacoby.github.io/2021/09/21/consecutive-limits-the-weekly-challenge-131.html">Consecutive Limits: The Weekly Challenge 131 | Committed to Memory</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Flavio Poletti</strong></p>
+<ul>
+<li><a href="https://github.polettix.it/ETOOBUSY/2021/09/22/pwc131-consecutive-arrays/">PWC131 - Consecutive Arrays</a> ( <em>Perl &amp; Raku</em> )</li>
+<li><a href="https://github.polettix.it/ETOOBUSY/2021/09/23/pwc131-find-pairs/">PWC131 - Find Pairs</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Ian Goodnight</strong></p>
+<ul>
+<li><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/iangoodnight/perl/README.md">Perl Weekly Challenge - 131</a> ( <em>Perl</em> )</li>
+<li><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-131/iangoodnight/javascript/README.md">Perl Weekly Challenge - 131</a> ( <em>Javascript</em> )</li>
+</ul>
+<p><strong>James Smith</strong></p>
+<ul>
+<li><a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-131/james-smith">Perl Weekly Challenge #131</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Laurent Rosenfeld</strong></p>
+<ul>
+<li><a href="http://blogs.perl.org/users/laurent_r/2021/09/perl-weekly-challenge-131-consecutive-arrays.html">Perl Weekly Challenge 131: Consecutive Arrays</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Luca Ferrari</strong></p>
+<ul>
+<li><a href="https://fluca1978.github.io/2021/09/20/PerlWeeklyChallenge131.html#task1">Perl Weekly Challenge 131: no coffee, nolegance – Luca Ferrari – Open Source advocate, human being</a> ( <em>Raku</em> )</li>
+</ul>
+<p><strong>Roger Bell_West</strong></p>
+<ul>
+<li><a href="https://blog.firedrake.org/archive/2021/09/Perl_Weekly_Challenge_131__Splitting_and_Splitting_More.html">RogerBW&rsquo;s Blog: Perl Weekly Challenge 131: Splitting and Splitting More</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Simon Green</strong></p>
+<ul>
+<li><a href="https://dev.to/simongreennet/weekly-challenge-131-1fl1">Weekly Challenge 131</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>W. Luis Mochan</strong></p>
+<ul>
+<li><a href="https://wlmb.github.io/2021/09/21/PWC131/">Perl Weekly Challenge 131 – W. Luis Mochán</a> ( <em>Perl</em> )</li>
+</ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="/contact" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2021
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.nomtimes.co.uk/site/shop.do?cref=PerlBooks" title="Free Perl Books" rel="noreferrer" target="_blank">
+                            <img src="/images/NomTimes.jpg" style="width:22px; height: 18px;" alt=""/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jQurey/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-136524905-1', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+
+</html>
+
