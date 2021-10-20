@@ -34,6 +34,22 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 135](/blog/perl-weekly-challenge-135) {#135}
 <br>
 
+##### **Abigail** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-135/abigail/awk/ch-1.awk) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-135/abigail/awk/ch-2.awk) in **Awk**.
+
+##### **Abigail** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-135/abigail/bash/ch-1.sh) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-135/abigail/bash/ch-2.sh) in **Bash**.
+
+##### **Abigail** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-135/abigail/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-135/abigail/c/ch-2.c) in **C**.
+
+##### **Abigail** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-135/abigail/lua/ch-1.lua) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-135/abigail/lua/ch-2.lua) in **Lua**.
+
+##### **Abigail** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-135/abigail/node/ch-1.js) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-135/abigail/node/ch-2.js) in **Node.js**.
+
+##### **Abigail** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-135/abigail/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-135/abigail/python/ch-2.py) in **Python**.
+
+##### **Abigail** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-135/abigail/ruby/ch-1.rb) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-135/abigail/ruby/ch-2.rb) in **Ruby**.
+
+##### **Abigail** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-135/abigail/tcl/ch-1.tcl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-135/abigail/tcl/ch-2.tcl) in **Tcl**.
+
 ##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-135/paulo-custodio/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-135/paulo-custodio/python/ch-2.py) in **Python**.
 
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-135/roger-bell-west/postscript/ch-1.ps) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-135/roger-bell-west/postscript/ch-2.ps) in **Postscript**.
