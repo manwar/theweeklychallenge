@@ -3256,6 +3256,8 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 083](/blog/perl-weekly-challenge-083) {#083}
 <br>
 
+##### **Conor Hoekstra** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-083/conor-hoekstra/apl/ch-1.apl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-083/conor-hoekstra/apl/ch-2.apl) in **APL**.
+
 ##### **Frank Oosterhuis** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-083/frankivo/scala/WordsLength.scala) in **Scala**.
 
 ##### **Kang-min Liu** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-083/gugod/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-083/gugod/python/ch-2.py) in **Python**.
@@ -4639,6 +4641,8 @@ Please find below guest contributions.
 ##### **Abigail** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-001/abigail/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-001/abigail/python/ch-2.py) in **Python**.
 
 ##### **Abigail** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-001/abigail/ruby/ch-1.rb) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-001/abigail/ruby/ch-2.rb) in **Ruby**.
+
+##### **Conor Hoekstra** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-001/conor-hoekstra/apl/ch-1.apl) in **APL**.
 
 ##### **Mohammad Foda** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-001/mfoda/haxe/ch1.hx) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-001/mfoda/haxe/ch2.hx) in **Haxe**.
 
