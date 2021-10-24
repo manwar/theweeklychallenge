@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="The Weekly Challenge - Perl & Raku"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="You do not have to be an expert."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Colin Crain › Perl Weekly Review #132">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Colin Crain › Perl Weekly Review #132</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navgation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Colin Crain › Perl Weekly Review #132</h2>
+                    <div class="portfolio-meta">
+                        <span>Sunday, Oct 24, 2021</span>|
+                        <span> Tags:
+                            perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/p5-review-challenge-132.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <p>( <em>&hellip;continues from <a href="/blog/review-challenge-131/">previous week</a>.</em> )</p>
+<p>Welcome to the Perl review pages for <strong>Week 132</strong> of The Weekly Challenge! Here we will take the time to discuss the  submissions offered up by the team, factor out some common methodologies that came up in those solutions, and highlight some of the unique approaches and unusual code created.</p>
+<hr>
+<h3 id="why-do-we-do-these-challenges">Why do we do these challenges?</h3>
+<p>I suppose any reasonable answers to that question would be as wide ranging and varied as the people who choose to join the team. One thing, though, is clear: it&rsquo;s not a competition, and there are no judges, even if there is a &ldquo;prize&rdquo; of sorts. About that &ndash; I think of it more as an honorarium periodically awarded to acknowledge the efforts we make towards this strange goal. So there&rsquo;s no determination to find the <em>fastest</em>, or the <em>shortest</em>, or even, in some abstract way, the <em>best</em> way to go about things, although I&rsquo;m certain the participants have their own aspirations and personal drives. As Perl is such a wonderfully expressive language, this provides quite a bit of fodder to the core idea of TMTOWTDI, producing a gamut of varied techniques and solutions.</p>
+<p>Even the tasks themselves are often open to a certain amount of discretionary interpretation. What we end up with is a situation where each participant is producing something in the manner they find the most interesting or satisfying. Some team members focus on carefully crafted complete applications, thoroughly vetting input data and handling every use case they can think up. Others choose to apply themselves to the logic of the underlying puzzle and making it work in the most elegant way they can. Some eschew modules they would ordinarily reach for, others embrace them, bringing to light wheels perhaps invented years ago that happen to exactly solve the problem in front of them today.</p>
+<p>I&rsquo;ve been considering this question for some time and have found one binding commonality between all of us out solving these challenges each week, in that however we normally live our lives, the task in front of us more than likely has nothing to do with any of that. And I think this has great value. We all do what we do, in the real world, and hopefully we do it well. The Weekly Challenge provides us with an opportunity to do something germane to that life yet distinctly different; if we only do the things we already know how to do then we will only do the same things over and over. This is where the &ldquo;challenge&rdquo; aspect comes into play.</p>
+<p>So we can consider The Weekly Challenge as providing a problem space outside of our comfort zone, as far out from that comfort as we wish to take things. From those reaches we can gather and learn things, pick and choose and bring what we want back into our lives. Personally, I think that&rsquo;s its greatest value of all.</p>
+<hr>
+<p>Every week there is an enormous global collective effort made by the team, analyzing and creatively coding the submissions, and that effort deserves credit due.</p>
+<p>And that&rsquo;s why I&rsquo;m here, to try and figure out how to do that.</p>
+<p>Let&rsquo;s get on with it then, have a look and see what we find.</p>
+<hr>
+<p><strong><big>For context</big></strong>  before we begin, you may wish to revisit either of the pages for the <a href="/blog/perl-weekly-challenge-132/"><strong>original tasks</strong></a> or the summary <a href="/blog/recap-challenge-132/"><strong>recap</strong></a> of the challenge. But don&rsquo;t worry, the challenges themselves are repeated and presented below as we progress from task by task. Oh, and one more thing before we get started:</p>
+<h3 id="getting-in-touch-with-us">Getting in Touch with Us</h3>
+<p><a href="mailto:pwc.perfectwave@gmail.com"><img src="/images/blog/Email.svg" height="50" width="50"> Email</a> › Please feel free to email me (Colin) with any feedback, notes, clarifications or whatnot about this review.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge"><img src="/images/blog/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request to us for any issues you may find with this page.</p>
+<p><a href="https://twitter.com/perlwchallenge"><img src="/images/blog/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!</p>
+<p>I&rsquo;m always curious as to what the people think of these efforts. Everyone here at the PWC would like to hear any feedback you&rsquo;d like to give.</p>
+<p><strong>So finally, without further ado&hellip;</strong></p>
+<hr>
+<h2 id="---nbsp--nbsp--nbsp---task-1pwc132task1-------nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---task-2pwc132task2---nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---blogspwc132blogs----nbsp--nbsp--nbsp---">•             <a href="#PWC132TASK1">Task 1</a>                 •             <a href="#PWC132TASK2">Task 2</a>             	•             <a href="#PWC132BLOGS">BLOGS</a>              	•</h2>
+<hr>
+<h1 id="PWC132TASK1">TASK 1</h1>
+<h1 id="mirror-dates">Mirror Dates</h1>
+<p><em>Submitted by: Mark Anderson</em></p>
+<p>You are given a date (yyyy/mm/dd).</p>
+<p>Assuming, the given date is your date of birth. Write a script to find the mirror dates of the given date.</p>
+<p>Dave Cross has built cool site that does something similar.</p>
+<p>Assuming today is 2021/09/22:</p>
+<p><strong>Example 1:</strong></p>
+<pre><code>    Input: 2021/09/18
+    Output: 2021/09/14, 2021/09/26
+</code></pre><p>On the date you were born, someone who was your current age, would have been born on 2021/09/14.<br>
+Someone born today will be your current age on 2021/09/26.</p>
+<p><strong>Example 2:</strong></p>
+<pre><code>    Input: 1975/10/10
+    Output: 1929/10/27, 2067/09/05
+</code></pre><p>On the date you were born, someone who was your current age, would have been born on 1929/10/27.<br>
+Someone born today will be your current age on 2067/09/05.</p>
+<p><strong>Example 3:</strong></p>
+<pre><code>    Input: 1967/02/14
+    Output: 1912/07/08, 2076/04/30
+</code></pre><p>On the date you were born, someone who was your current age, would have been born on 1912/07/08.<br>
+Someone born today will be your current age on 2076/04/30.</p>
+<h2 id="about-the-solutions">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/abigail/perl/ch-1.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/lubos-kolouch/perl/ch-1.pl"><strong>Lubos Kolouch</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/mattneleigh/perl/ch-1.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/olivier-delouya/perl/ch-1.pl"><strong>Olivier Delouya</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/pete-houston/perl/ch-1.pl"><strong>Pete Houston</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/rage311/perl/ch-1.pl"><strong>Rage311</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/wanderdoc/perl/ch-1.pl"><strong>Wanderdoc</strong></a></p>
+<p>Welcome to the review pages for the 132rd Weekly Challenge. There were 22 submissions for the first task this past week.</p>
+<p>Date math is a tricky thing. Due to the plethora of hidden gotchas that lurk silently beneath the surface it is almost always the wisest course of action to use an external module to provide the carefully-thought-out functions required to get accurate results. In this case leap-seconds will likely not affect our outcome, however added leap days nearly certainly will, so consequently nearly the entire field chose the module route. We&rsquo;ll demonstrate some of the techniques by taking a sampling from the submissions presented, having a look at some of the various methods employed.</p>
+<h2 id="a-selected-offering-a-sampling-a-taste">a SELECTED OFFERING, a SAMPLING, a TASTE</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/olivier-delouya/perl/ch-1.pl"><strong>Olivier Delouya</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/rage311/perl/ch-1.pl"><strong>Rage311</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/wanderdoc/perl/ch-1.pl"><strong>Wanderdoc</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/abigail/perl/ch-1.pl"><strong>Abigail</strong></a></p>
+<p>The various modules presented deal with the date calculations in slightly different fashions, but the underlying logic was pretty consistent: we need to know the age of the subject, then subtract that time from the initial birthday to get the first value, and add that timespan to the current time to get the future date. How exactly that was done varied from technique to technique.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/olivier-delouya/perl/ch-1.pl"><strong>Olivier Delouya</strong></a></p>
+<p>Olivier starts us off and running with a straightforward solution using <code>Time::Local</code>. Using the <code>timelocal()</code> function, the number of seconds in computed between the input birthday and the start of the epoch: midnight, January 1, 1970 UTC. The span from the epoch to the current time is combined with this to compute the subject&rsquo;s age in seconds. Subtracting twice this number of seconds from now then finds the subject&rsquo;s current age reflected backwards from the birthday, and adding the subject&rsquo;s age to the current time finds the date in seconds for the forward reflection. The <code>localtime()</code> reverse function converts the seconds back into years, months and days, with specific time data appended, and the POSIX function <code>strftime()</code> is imported to format this into YYYY/MM/DD output.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Time::Local;
+    <span style="color:#66d9ef">use</span> POSIX <span style="color:#e6db74">qw(strftime)</span>;
+
+    <span style="color:#66d9ef">my</span> @Birth<span style="color:#f92672">=</span>split(<span style="color:#e6db74">&#39;/&#39;</span>, $ARGV[<span style="color:#ae81ff">0</span>]);
+    <span style="color:#66d9ef">my</span> $epoch_birth<span style="color:#f92672">=</span>timelocal(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, $Birth[<span style="color:#ae81ff">2</span>], $Birth[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, $Birth[<span style="color:#ae81ff">0</span>]);
+        <span style="color:#75715e"># seconds between 1970 and birth</span>
+
+    <span style="color:#66d9ef">my</span> $epoch_today <span style="color:#f92672">=</span> time(); <span style="color:#75715e"># (seconds between 1970 and today</span>
+    <span style="color:#66d9ef">if</span>(scalar(@ARGV) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>)     <span style="color:#75715e"># assuming today is another day -)</span>
+      {
+      <span style="color:#66d9ef">my</span> @ref_day     <span style="color:#f92672">=</span> split(<span style="color:#e6db74">&#39;/&#39;</span>, $ARGV[<span style="color:#ae81ff">1</span>]);
+      <span style="color:#66d9ef">my</span> $h <span style="color:#f92672">=</span> (scalar(@ARGV) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">2</span>)? $ARGV[<span style="color:#ae81ff">2</span>]:<span style="color:#ae81ff">0</span>;
+      <span style="color:#66d9ef">my</span> $m <span style="color:#f92672">=</span> (scalar(@ARGV) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">3</span>)? $ARGV[<span style="color:#ae81ff">3</span>]:<span style="color:#ae81ff">0</span>;
+      <span style="color:#66d9ef">my</span> $s <span style="color:#f92672">=</span> (scalar(@ARGV) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">4</span>)? $ARGV[<span style="color:#ae81ff">4</span>]:<span style="color:#ae81ff">0</span>;
+      $epoch_today <span style="color:#f92672">=</span> timelocal($s, $m, $h, $ref_day[<span style="color:#ae81ff">2</span>], $ref_day[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, $ref_day[<span style="color:#ae81ff">0</span>]);
+        <span style="color:#75715e"># at 1.30 AM..</span>
+      }
+
+    <span style="color:#66d9ef">my</span> $age<span style="color:#f92672">=</span>$epoch_today<span style="color:#f92672">-</span>$epoch_birth; <span style="color:#75715e"># in seconds</span>
+    <span style="color:#66d9ef">print</span> strftime(<span style="color:#e6db74">&#34;%Y/%m/%d, &#34;</span>, localtime($epoch_today <span style="color:#f92672">-</span> (<span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>$age)));
+    <span style="color:#66d9ef">print</span> strftime(<span style="color:#e6db74">&#34;%Y/%m/%d\n&#34;</span>, localtime($epoch_today <span style="color:#f92672">+</span>    $age));
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a></p>
+<p>Mohammad is back this week with a solution built of the <code>Date::Calc</code> module. This package provides functions, amongst others, for the current date, the number of days since Jan 1, year 1, and adding a span of days to a date.</p>
+<p>The math is straightforward, first computing the age of the subject in days by subtracting the birthday total from the current total days, then first subtracting this number of days from the birthday and then adding it to the current day to look forward.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Date::Calc <span style="color:#e6db74">qw(Today Date_to_Days Add_Delta_Days)</span>;
+
+    <span style="color:#66d9ef">my</span> $DATE <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">0</span>];
+
+    <span style="color:#66d9ef">my</span> ($c_year, $c_month, $c_day) <span style="color:#f92672">=</span> Today();
+    <span style="color:#66d9ef">my</span> ($g_year, $g_month, $g_day) <span style="color:#f92672">=</span> split <span style="color:#e6db74">/\//</span>, $DATE, <span style="color:#ae81ff">3</span>;
+
+    <span style="color:#66d9ef">my</span> $days <span style="color:#f92672">=</span> Date_to_Days($c_year, $c_month, $c_day)
+               <span style="color:#f92672">-</span>
+               Date_to_Days($g_year, $g_month, $g_day);
+
+    <span style="color:#66d9ef">print</span> sprintf(<span style="color:#e6db74">&#34;%04d/%02d/%02d\n&#34;</span>, Add_Delta_Days($g_year, $g_month, $g_day, <span style="color:#f92672">-</span>$days));
+    <span style="color:#66d9ef">print</span> sprintf(<span style="color:#e6db74">&#34;%04d/%02d/%02d\n&#34;</span>, Add_Delta_Days($c_year, $c_month, $c_day,  $days));
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/rage311/perl/ch-1.pl"><strong>Rage311</strong></a></p>
+<p>Another voice we haven&rsquo;t heard from in awhile is Rage311, who is back with a solution using the venerable <code>DateTime</code> module. This provides functions to compute a delta of days between a DateTime object and a given date, and date addition and subtraction functions to subtract this delta from the birthday and add it to the current day to get the bracketing spans requested.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> DateTime;
+
+    <span style="color:#66d9ef">my</span> ($year, $month, $day) <span style="color:#f92672">=</span> split <span style="color:#e6db74">/\//</span>, $ARGV[<span style="color:#ae81ff">0</span>];
+
+    <span style="color:#66d9ef">my</span> $dt_now <span style="color:#f92672">=</span> DateTime<span style="color:#f92672">-&gt;</span>now();
+    <span style="color:#66d9ef">my</span> $dt_in  <span style="color:#f92672">=</span> DateTime<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(
+      year  <span style="color:#f92672">=&gt;</span> $year,
+      month <span style="color:#f92672">=&gt;</span> $month,
+      day   <span style="color:#f92672">=&gt;</span> $day,
+    );
+
+    <span style="color:#66d9ef">my</span> $diff <span style="color:#f92672">=</span> $dt_now<span style="color:#f92672">-&gt;</span>delta_days($dt_in);
+
+    <span style="color:#66d9ef">my</span> $older   <span style="color:#f92672">=</span> $dt_in<span style="color:#f92672">-&gt;</span>subtract($diff)<span style="color:#f92672">-&gt;</span>ymd;
+    <span style="color:#66d9ef">my</span> $younger <span style="color:#f92672">=</span> $dt_now<span style="color:#f92672">-&gt;</span>add($diff)<span style="color:#f92672">-&gt;</span>ymd;
+
+    say join <span style="color:#e6db74">&#39;, &#39;</span>, $older, $younger;
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
+    say <span style="color:#e6db74">&#39;On the date you were born, someone who was your current age, would have been born on &#39;</span> <span style="color:#f92672">.</span> $older;
+    say <span style="color:#e6db74">&#39;Someone born today will be your current age on &#39;</span> <span style="color:#f92672">.</span> $younger;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/wanderdoc/perl/ch-1.pl"><strong>Wanderdoc</strong></a></p>
+<p>The doctor regales us with tales from yet another module altogether, or rather two: <code>Time::Piece</code> and its companion <code>Time::Seconds</code>. <code>Time::Piece</code> objects can be directly added and subtracted, however the result is returned as a time in seconds encapsulated in a <code>Time::Sceonds</code> object, which in turn supplies a function to convert these seconds back into year-month-day format as requested.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Time::Piece;
+    <span style="color:#66d9ef">use</span> Time::Seconds;
+
+    <span style="color:#66d9ef">my</span> $FORMAT <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;%Y/%m/%d&#39;</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">create_mirror_dates</span>
+    {
+         <span style="color:#66d9ef">my</span> $date <span style="color:#f92672">=</span> Time::Piece<span style="color:#f92672">-&gt;</span>strptime($_[<span style="color:#ae81ff">0</span>], $FORMAT);
+         <span style="color:#66d9ef">my</span> $today <span style="color:#f92672">=</span> Time::Piece<span style="color:#f92672">-&gt;</span>strptime(<span style="color:#e6db74">&#39;2021/10/16&#39;</span>, $FORMAT); <span style="color:#75715e"># or localtime</span>
+         <span style="color:#66d9ef">my</span> $difference <span style="color:#f92672">=</span> $today <span style="color:#f92672">-</span> $date; <span style="color:#75715e"># seconds</span>
+         <span style="color:#66d9ef">my</span> $first <span style="color:#f92672">=</span> $date <span style="color:#f92672">-</span> $difference;
+         <span style="color:#66d9ef">my</span> $second <span style="color:#f92672">=</span> $today <span style="color:#f92672">+</span> $difference;
+         <span style="color:#66d9ef">return</span> $first<span style="color:#f92672">-&gt;</span>ymd(<span style="color:#e6db74">&#39;/&#39;</span>), $second<span style="color:#f92672">-&gt;</span>ymd(<span style="color:#e6db74">&#39;/&#39;</span>);
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a></p>
+<p>&hellip;And further augmenting our outside-library sampling, Duncan brings us a fifth module option, <code>Date::Simple</code>. This module allows working with dates, but does not bother with times or timezones. Sounds like just what we need. Looking at the code it seems to live up to its name, with a clear, simple API. The configuration options are limited, but it does do what it does well and simply, which is the point.</p>
+<p>As long as you like dashes, that is ;)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Date::Simple (<span style="color:#e6db74">&#39;date&#39;</span>, <span style="color:#e6db74">&#39;today&#39;</span>);
+
+    <span style="color:#66d9ef">my</span> $debug<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+    die <span style="color:#e6db74">&#34;Usage: mirror-dates YOUR_DOB\n&#34;</span> <span style="color:#66d9ef">unless</span>
+        GetOptions( <span style="color:#e6db74">&#34;debug&#34;</span><span style="color:#f92672">=&gt;\</span>$debug ) <span style="color:#f92672">&amp;&amp;</span> @ARGV<span style="color:#f92672">==</span><span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">my</span> $dobstr <span style="color:#f92672">=</span> shift @ARGV;
+    $dobstr <span style="color:#f92672">=~</span> s<span style="color:#f92672">|</span><span style="color:#e6db74">/|-|g;    	# Date::Simple likes YYYY-MM-DD not YYYY/</span>MM<span style="color:#f92672">/</span>DD
+    <span style="color:#66d9ef">my</span> $dob <span style="color:#f92672">=</span> date($dobstr) <span style="color:#f92672">||</span> die <span style="color:#e6db74">&#34;bad date: $dobstr\n&#34;</span>;
+
+    <span style="color:#66d9ef">my</span> $today  <span style="color:#f92672">=</span> today();
+    <span style="color:#66d9ef">my</span> $delta  <span style="color:#f92672">=</span> $today <span style="color:#f92672">-</span> $dob;
+
+    <span style="color:#66d9ef">my</span> $before <span style="color:#f92672">=</span> $dob <span style="color:#f92672">-</span> $delta;
+    <span style="color:#66d9ef">my</span> $after  <span style="color:#f92672">=</span> $today <span style="color:#f92672">+</span> $delta;
+
+    say <span style="color:#e6db74">&#34;$before, $after&#34;</span>;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/cheok-yin-fung/julia/ch-1.jl">Julia</a></p>
+<p>Circling around to the beginning, here CY brings us another method based around <code>Time::Local</code>. She does the calculations inside her <code>mirror()</code> routine, which itself is called by a <code>mirror_str()</code> wrapper. Instead of using <code>strftime()</code>, the wrapper has her own somewhat elaborate formatting method to turn the 7-value timelocal array into year-month-day output pairs.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Time::Local <span style="color:#e6db74">qw&#39;timelocal timegm_nocheck&#39;</span>;
+
+    say mirror_str($ARGV[<span style="color:#ae81ff">0</span>]) <span style="color:#66d9ef">if</span> defined($ARGV[<span style="color:#ae81ff">0</span>]);
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">mirror</span> {
+        <span style="color:#66d9ef">my</span> @arr_today <span style="color:#f92672">=</span> (<span style="color:#ae81ff">22</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">2021</span>); <span style="color:#75715e"># Wed Sep 22 2021</span>
+        <span style="color:#66d9ef">my</span> $_today <span style="color:#f92672">=</span> timelocal(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, @arr_today);
+        <span style="color:#66d9ef">my</span> @arr_birth <span style="color:#f92672">=</span> ($_[<span style="color:#ae81ff">2</span>], $_[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, $_[<span style="color:#ae81ff">0</span>]);
+        <span style="color:#66d9ef">my</span> $_birth <span style="color:#f92672">=</span> timelocal(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, @arr_birth);
+        <span style="color:#66d9ef">my</span> $y1 <span style="color:#f92672">=</span> int (($_today <span style="color:#f92672">-</span> $_birth)<span style="color:#f92672">/</span><span style="color:#ae81ff">86400</span>);
+        <span style="color:#66d9ef">my</span> @d_senior <span style="color:#f92672">=</span> localtime timegm_nocheck <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, $arr_birth[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-</span>$y1, $arr_birth[<span style="color:#ae81ff">1</span>], $arr_birth[<span style="color:#ae81ff">2</span>];
+        <span style="color:#66d9ef">my</span> @d_junior <span style="color:#f92672">=</span> localtime timegm_nocheck <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, $arr_today[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">+</span>$y1, $arr_today[<span style="color:#ae81ff">1</span>], $arr_today[<span style="color:#ae81ff">2</span>];
+        <span style="color:#66d9ef">return</span> [ [@d_senior], [@d_junior] ];
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">mirror_str</span> {
+        <span style="color:#66d9ef">my</span> ($byear, $bmonth, $bday) <span style="color:#f92672">=</span> split <span style="color:#e6db74">/\//</span>, $_[<span style="color:#ae81ff">0</span>];
+        $bmonth <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/^0//</span>;  <span style="color:#75715e"># remove leading zeros</span>
+        $bday <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/^0//</span>;    <span style="color:#75715e"># remove leading zeros</span>
+        <span style="color:#66d9ef">my</span> ($d_s, $d_j) <span style="color:#f92672">=</span> mirror($byear, $bmonth, $bday)<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+
+        return
+             ($d_s<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">5</span>]<span style="color:#f92672">+</span><span style="color:#ae81ff">1900</span>)<span style="color:#f92672">.</span><span style="color:#e6db74">&#34;/&#34;</span>
+            <span style="color:#f92672">.</span>($d_s<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">4</span>]<span style="color:#f92672">&lt;=</span><span style="color:#ae81ff">8</span> ? <span style="color:#ae81ff">0</span> : <span style="color:#e6db74">&#34;&#34;</span>)<span style="color:#f92672">.</span>($d_s<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">4</span>]<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span><span style="color:#e6db74">&#34;/&#34;</span>
+            <span style="color:#f92672">.</span>($d_s<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">3</span>]<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">10</span> ? <span style="color:#ae81ff">0</span> : <span style="color:#e6db74">&#34;&#34;</span>)<span style="color:#f92672">.</span>($d_s<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">3</span>])
+            <span style="color:#f92672">.</span><span style="color:#e6db74">&#34;, &#34;</span>
+            <span style="color:#f92672">.</span>($d_j<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">5</span>]<span style="color:#f92672">+</span><span style="color:#ae81ff">1900</span>)<span style="color:#f92672">.</span><span style="color:#e6db74">&#34;/&#34;</span>
+            <span style="color:#f92672">.</span>($d_j<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">4</span>]<span style="color:#f92672">&lt;=</span><span style="color:#ae81ff">8</span> ? <span style="color:#ae81ff">0</span> : <span style="color:#e6db74">&#34;&#34;</span>)<span style="color:#f92672">.</span>($d_j<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">4</span>]<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span><span style="color:#e6db74">&#34;/&#34;</span>
+            <span style="color:#f92672">.</span>($d_j<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">3</span>]<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">10</span> ? <span style="color:#ae81ff">0</span> : <span style="color:#e6db74">&#34;&#34;</span>)<span style="color:#f92672">.</span>($d_j<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">3</span>]);
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/roger-bell-west/postscript/ch-1.ps">Postscript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/roger-bell-west/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/roger-bell-west/raku/ch-1.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/roger-bell-west/ruby/ch-1.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/roger-bell-west/rust/ch-1.rs">Rust</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://blog.firedrake.org/archive/2021/10/Perl_Weekly_Challenge_132__Hash_on_the_Mirror.html">RogerBW&rsquo;s Blog: Perl Weekly Challenge 132: Hash on the Mirror</a></p>
+<p>Roger quickly dispatches the problem using <code>Time::Local</code> as well, with the addition of a pair of helper functions to convert back and forth between Unix time and YMD formats. The helper functions themselves internally wrap functions from the module.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Time::Local;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">mirdat</span> {
+      <span style="color:#66d9ef">my</span> $then<span style="color:#f92672">=</span>shift;
+      <span style="color:#66d9ef">my</span> $thent<span style="color:#f92672">=</span>ymd2ut($then);
+      <span style="color:#66d9ef">my</span> $now<span style="color:#f92672">=</span>shift;
+      <span style="color:#66d9ef">if</span> ($now<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>) {
+        $now<span style="color:#f92672">=</span>ut2ymd(time);
+      }
+      <span style="color:#66d9ef">my</span> $nowt<span style="color:#f92672">=</span>ymd2ut($now);
+      <span style="color:#66d9ef">my</span> $delta<span style="color:#f92672">=</span>$nowt<span style="color:#f92672">-</span>$thent;
+      <span style="color:#66d9ef">my</span> @o;
+      <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $targett ($thent<span style="color:#f92672">-</span>$delta,$nowt<span style="color:#f92672">+</span>$delta) {
+        push @o,ut2ymd($targett);
+      }
+      <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@o;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">ymd2ut</span> {
+      <span style="color:#66d9ef">my</span> $ta<span style="color:#f92672">=</span>shift;
+      <span style="color:#66d9ef">my</span> ($y,$m,$d)<span style="color:#f92672">=</span>@{$ta};
+      <span style="color:#66d9ef">return</span> timegm(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,$d,$m<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,$y);
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">ut2ymd</span> {
+      <span style="color:#66d9ef">my</span> $ut<span style="color:#f92672">=</span>shift;
+      <span style="color:#66d9ef">my</span> @t<span style="color:#f92672">=</span>localtime($ut);
+      <span style="color:#66d9ef">return</span> [$t[<span style="color:#ae81ff">5</span>]<span style="color:#f92672">+</span><span style="color:#ae81ff">1900</span>,$t[<span style="color:#ae81ff">4</span>]<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>,$t[<span style="color:#ae81ff">3</span>]];
+    }
+
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://jacoby.github.io/2021/09/27/dates-and-hashes-and-names-oh-my-the-weekly-challenge-132.html">Dates(!) and Hashes(?) and Names, Oh My!!: The Weekly Challenge #132 | Committed to Memory</a></p>
+<p>Dave starts with a <a href="https://presentations.houseabsolute.com/a-date-with-perl/#3">vital imperative</a> — perhaps I should have led with this one.</p>
+<p>Better late then never, though, because the advice is timeless:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># Do Not Write Your Own Date and Time Manipulation Code!</span>
+    <span style="color:#75715e"># Do Not Write Your Own Date and Time Manipulation Code!</span>
+    <span style="color:#75715e"># Do Not Write Your Own Date and Time Manipulation Code!</span>
+    <span style="color:#75715e"># Do Not Write Your Own Date and Time Manipulation Code!</span>
+    <span style="color:#75715e"># Do Not Write Your Own Date and Time Manipulation Code!</span>
+</code></pre></div><p>What follows is another use of <code>DateTIme</code>, carefully laid-out and explained. Of note here is the <code>$obj-&gt;clone()</code> method to duplicate our birthday and present time before they get destructively modified to the requested past and future values.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> DateTime;
+
+    <span style="color:#66d9ef">my</span> @examples;
+    push @examples, <span style="color:#e6db74">&#39;2021/09/18&#39;</span>;
+    push @examples, <span style="color:#e6db74">&#39;1975/10/10&#39;</span>;
+    push @examples, <span style="color:#e6db74">&#39;1967/07/08&#39;</span>;
+    push @examples, <span style="color:#e6db74">&#39;1970/01/01&#39;</span>;
+
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $input (@examples) {
+    <span style="color:#66d9ef">my</span> $output<span style="color:#f92672">=</span>    mirror_dates($input);
+        say <span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;END&#34;</span>;
+            Input:  $input
+            Output: $output
+    <span style="color:#66d9ef">END</span>
+    }
+
+    <span style="color:#75715e"># takes the date as a string, in the ONE TRUE FORMAT: YYYY/MM/DD</span>
+    <span style="color:#75715e"># That makes the epoch 1970/01/01</span>
+    <span style="color:#75715e"># The program CAN handle non-padded days and months, but when you&#39;re</span>
+    <span style="color:#75715e"># dealling with a LOT of dates, non-zero,padding makes you wonder if</span>
+    <span style="color:#75715e"># 1970123 is Jan 23 or Dec 3.</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">mirror_dates</span> ( $date_str ) {
+
+        <span style="color:#75715e"># The default time zone for new DateTime objects, except where stated</span>
+        <span style="color:#75715e"># otherwise, is the &#34;floating&#34; time zone. This concept comes from the</span>
+        <span style="color:#75715e"># iCal standard. A floating datetime is one which is not anchored to</span>
+        <span style="color:#75715e"># any particular time zone. In addition, floating datetimes do not</span>
+        <span style="color:#75715e"># include leap seconds, since we cannot apply them without knowing the</span>
+        <span style="color:#75715e"># datetime&#39;s time zone.</span>
+        <span style="color:#66d9ef">my</span> $now <span style="color:#f92672">=</span> DateTime<span style="color:#f92672">-&gt;</span>now()<span style="color:#f92672">-&gt;</span>set_time_zone(<span style="color:#e6db74">&#39;floating&#39;</span>);
+
+        <span style="color:#66d9ef">my</span> ( $y, $m, $d ) <span style="color:#f92672">=</span> split <span style="color:#e6db74">m{/}</span>, $date_str;
+        <span style="color:#66d9ef">my</span> $then <span style="color:#f92672">=</span> DateTime<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(
+            year      <span style="color:#f92672">=&gt;</span> $y,
+            month     <span style="color:#f92672">=&gt;</span> $m,
+            day       <span style="color:#f92672">=&gt;</span> $d,
+            time_zone <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;floating&#39;</span>
+        );
+
+        <span style="color:#75715e"># the time difference between now and then, expressed in days</span>
+        <span style="color:#66d9ef">my</span> $diff   <span style="color:#f92672">=</span> $now<span style="color:#f92672">-&gt;</span>delta_days($then)<span style="color:#f92672">-&gt;</span>in_units(<span style="color:#e6db74">&#39;days&#39;</span>);
+
+        <span style="color:#75715e"># add and subtract in a DateTime context act on the object, which</span>
+        <span style="color:#75715e"># isn&#39;t the result I would expect from $semi_numerical_thing-&gt;add(number)</span>
+        <span style="color:#75715e"># so we clone it and modify the clone.</span>
+        <span style="color:#75715e"># I mean, we COULD, but for testing, I was printing now and then as well</span>
+        <span style="color:#75715e"># as past and future, just to be sure I was right.</span>
+        <span style="color:#66d9ef">my</span> $past   <span style="color:#f92672">=</span> $then<span style="color:#f92672">-&gt;</span>clone;
+        $past<span style="color:#f92672">-&gt;</span>subtract( days <span style="color:#f92672">=&gt;</span> $diff );
+
+        <span style="color:#66d9ef">my</span> $future <span style="color:#f92672">=</span> $now<span style="color:#f92672">-&gt;</span>clone;
+        $future<span style="color:#f92672">-&gt;</span>add( days <span style="color:#f92672">=&gt;</span> $diff );
+
+        <span style="color:#66d9ef">return</span> join <span style="color:#e6db74">&#39;, &#39;</span>, $future<span style="color:#f92672">-&gt;</span>ymd, $past<span style="color:#f92672">-&gt;</span>ymd;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a></p>
+<p>Jorg uses <code>DateTime</code> as well, but specifically the <code>DateTime::Format::Strptime</code> module, which implements POSIX <code>strptime(3)</code>. I&rsquo;ll let his commentary do the explanation. I always enjoy Jorg&rsquo;s analyses.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> DateTime::Format::Strptime;
+
+    <span style="color:#75715e"># How should we calculate the age of a person and how should &#34;mirroring&#34;</span>
+    <span style="color:#75715e"># be performed?  A year is not a well defined time span due to leap</span>
+    <span style="color:#75715e"># days.  Neither is a month.  The best we can do is take the age as the</span>
+    <span style="color:#75715e"># number of days ignoring the time part.  Using DateTime math in the</span>
+    <span style="color:#75715e"># &#39;floating&#39; time zone and based on day deltas seems to be</span>
+    <span style="color:#75715e"># (double-)safe.  At least this approach is consistent with the</span>
+    <span style="color:#75715e"># examples.  For meaningful results the day of birth must not lie ahead.</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">mirror_date</span> ($dob, $today) {
+        state $fmt <span style="color:#f92672">=</span> DateTime::Format::Strptime<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(
+            pattern <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;%Y/%m/%d&#39;</span>, time_zone <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;floating&#39;</span>);
+
+        <span style="color:#66d9ef">my</span> $dob_dt <span style="color:#f92672">=</span> $fmt<span style="color:#f92672">-&gt;</span>parse_datetime($dob);
+        <span style="color:#66d9ef">my</span> $today_dt <span style="color:#f92672">=</span> $today ? $fmt<span style="color:#f92672">-&gt;</span>parse_datetime($today) :
+            DateTime<span style="color:#f92672">-&gt;</span>today(time_zone <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;floating&#39;</span>);
+        <span style="color:#66d9ef">my</span> $age <span style="color:#f92672">=</span> $today_dt<span style="color:#f92672">-&gt;</span>delta_days($dob_dt);
+
+        ($fmt<span style="color:#f92672">-&gt;</span>format_datetime($dob_dt <span style="color:#f92672">-</span> $age),
+            $fmt<span style="color:#f92672">-&gt;</span>format_datetime($today_dt <span style="color:#f92672">+</span> $age));
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a></p>
+<p>In Adam&rsquo;s submission, we revisit <code>Time::Piece</code>.</p>
+<p>In addition to the <code>ymd()</code> function we saw before, <code>Time::Piece</code> has its own version of &ldquo;string-format-time&rdquo;, <code>strftime()</code>, as well, for those familiar with the C library function. It strikes me that dealing with <code>Time::Piece</code> objects is very easy.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Time::Piece;
+    <span style="color:#66d9ef">use</span> Time::Seconds;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">mirror_dates</span>{
+        <span style="color:#66d9ef">my</span>($date_string, $start_date_string) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> $date <span style="color:#f92672">=</span> Time::Piece<span style="color:#f92672">-&gt;</span>strptime($date_string, <span style="color:#e6db74">q[%Y/%m/%e]</span>);
+        <span style="color:#66d9ef">my</span> $today;
+        <span style="color:#66d9ef">if</span>($start_date_string){
+            $today <span style="color:#f92672">=</span> Time::Piece<span style="color:#f92672">-&gt;</span>strptime($start_date_string, <span style="color:#e6db74">q[%Y/%m/%e]</span>);
+        }
+        <span style="color:#66d9ef">else</span>{
+            $today <span style="color:#f92672">=</span> localtime;
+        }
+        <span style="color:#66d9ef">my</span> $age <span style="color:#f92672">=</span> $today <span style="color:#f92672">-</span> $date;
+        <span style="color:#66d9ef">my</span> $past <span style="color:#f92672">=</span> $date <span style="color:#f92672">-</span> $age;
+        <span style="color:#66d9ef">my</span> $future <span style="color:#f92672">=</span> $today <span style="color:#f92672">+</span> $age;
+        <span style="color:#66d9ef">return</span> $past<span style="color:#f92672">-&gt;</span>strftime(<span style="color:#e6db74">q[%Y/%m/%d]</span>), $future<span style="color:#f92672">-&gt;</span>strftime(<span style="color:#e6db74">q[%Y/%m/%d]</span>);
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-132/james-smith">Perl Weekly Challenge #132</a></p>
+<p>There was no broad consensus in modules used across the field. Here James gives us an alternate &ldquo;Date::Calc&rdquo; solution, illustrating how easy this module is to work with. We need only compute the delta in days for the subject&rsquo;s current age, the subtract that delta from their birthday, to get the prior date, and add it to today, to get the future one.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Date::Calc <span style="color:#e6db74">qw( Today Delta_Days Add_Delta_Days )</span>;
+
+    <span style="color:#66d9ef">my</span> @TODAY <span style="color:#f92672">=</span> @ARGV ? split <span style="color:#e6db74">m{/}</span>, $ARGV[<span style="color:#ae81ff">0</span>]: Today;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">mirror_days</span> {
+      <span style="color:#66d9ef">my</span> $d <span style="color:#f92672">=</span> Delta_Days( @TODAY, split <span style="color:#e6db74">m{/}</span>, $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] ); <span style="color:#75715e">## Days between today and birthday</span>
+      <span style="color:#66d9ef">return</span>  [
+        sprintf( <span style="color:#e6db74">&#39;%04d/%02d/%02d&#39;</span>, Add_Delta_Days( @bd,     $d )),
+        sprintf( <span style="color:#e6db74">&#39;%04d/%02d/%02d&#39;</span>, Add_Delta_Days( @TODAY, <span style="color:#f92672">-</span>$d )),
+      ];
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/abigail/perl/ch-1.pl"><strong>Abigail</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/abigail/awk/ch-1.awk">Awk</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/abigail/bash/ch-1.sh">Bash</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/abigail/c/ch-1.c">C</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/abigail/lua/ch-1.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/abigail/node/ch-1.js">Node</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/abigail/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/abigail/ruby/ch-1.rb">Ruby</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-132-1.html">Perl Weekly Challenge 132: Mirror Dates</a></p>
+<p>Finally, Abigail was the only submitter who took on the task to do the actual day counting calculations themselves, rather than reaching for a module. The somewhat daunting equations used are evidently pulled from research, available to anyone who wishes to find them. It&rsquo;s certainly nice to see the computational underpinnings, to give a gleaning of what&rsquo;s required. I&rsquo;m sure we could find similar arithmetic within the modules we&rsquo;ve seen accessed.</p>
+<p>It&rsquo;s good to to take a peak under the hood at the motor sometimes, to more fully understand the &ldquo;why&rdquo; behind <a href="https://presentations.houseabsolute.com/a-date-with-perl/#3">Dave Rolsky&rsquo;s quote  referenced above</a>. And it&rsquo;s <a href="https://presentations.houseabsolute.com/a-date-with-perl/#4">corollary, lest you doubt</a>.</p>
+<p>Date math is messy. It just is, and there&rsquo;s nothing much to be done about that fact.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># We&#39;ll take the date, calculate its Julian Day number (rounded down,</span>
+    <span style="color:#75715e"># as we don&#39;t care about hours and minutes), compare it to the Julian</span>
+    <span style="color:#75715e"># Day number of today, and then calculate the Julian Day numbers of the</span>
+    <span style="color:#75715e"># target dates, after which we convert them back to dates.</span>
+
+    <span style="color:#75715e"># Conversion functions from Wikipedia</span>
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">g2j</span> ($Y, $M, $D) {
+        <span style="color:#66d9ef">use</span> integer;
+        (<span style="color:#ae81ff">1461</span> <span style="color:#f92672">*</span> ($Y <span style="color:#f92672">+</span> <span style="color:#ae81ff">4800</span> <span style="color:#f92672">+</span> ($M <span style="color:#f92672">-</span> <span style="color:#ae81ff">14</span>) <span style="color:#e6db74">/ 12)) /</span> <span style="color:#ae81ff">4</span>  <span style="color:#f92672">+</span>
+        (<span style="color:#ae81ff">367</span> <span style="color:#f92672">*</span> ($M <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">12</span> <span style="color:#f92672">*</span> (($M <span style="color:#f92672">-</span> <span style="color:#ae81ff">14</span>) <span style="color:#e6db74">/ 12))) /</span> <span style="color:#ae81ff">12</span> <span style="color:#f92672">-</span>
+        (<span style="color:#ae81ff">3</span> <span style="color:#f92672">*</span> (($Y <span style="color:#f92672">+</span> <span style="color:#ae81ff">4900</span> <span style="color:#f92672">+</span> ($M <span style="color:#f92672">-</span> <span style="color:#ae81ff">14</span>) <span style="color:#e6db74">/ 12) /</span> <span style="color:#ae81ff">100</span>)) <span style="color:#f92672">/</span> <span style="color:#ae81ff">4</span> <span style="color:#f92672">+</span> $D <span style="color:#f92672">-</span> <span style="color:#ae81ff">32075</span>
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">j2g</span> ($J) {
+        <span style="color:#66d9ef">use</span> integer;
+        <span style="color:#66d9ef">my</span> $e <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span> <span style="color:#f92672">*</span> ($J <span style="color:#f92672">+</span> <span style="color:#ae81ff">1401</span> <span style="color:#f92672">+</span> (((<span style="color:#ae81ff">4</span> <span style="color:#f92672">*</span> $J <span style="color:#f92672">+</span> <span style="color:#ae81ff">274277</span>) <span style="color:#e6db74">/ 146097) * 3) /</span> <span style="color:#ae81ff">4</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">38</span>) <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span>;
+        <span style="color:#66d9ef">my</span> $D <span style="color:#f92672">=</span>  ((<span style="color:#ae81ff">5</span> <span style="color:#f92672">*</span> (($e % 1461) <span style="color:#e6db74">/ 4) + 2) % 153) /</span> <span style="color:#ae81ff">5</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">my</span> $M <span style="color:#f92672">=</span> (((<span style="color:#ae81ff">5</span> <span style="color:#f92672">*</span> (($e % 1461) <span style="color:#e6db74">/ 4) + 2) /</span> <span style="color:#ae81ff">153</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>) % 12) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">my</span> $Y <span style="color:#f92672">=</span> ($e <span style="color:#e6db74">/ 1461) - 4716 + (12 + 2 - $M) /</span> <span style="color:#ae81ff">12</span>;
+        ($Y, $M, $D)
+    }
+
+
+    <span style="color:#66d9ef">my</span> @TODAY <span style="color:#f92672">=</span> (<span style="color:#ae81ff">2021</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">22</span>);   <span style="color:#75715e"># Use a fixed today, so we have expected</span>
+                                 <span style="color:#75715e"># test results.</span>
+
+    <span style="color:#66d9ef">my</span> $julian_today <span style="color:#f92672">=</span> g2j @TODAY;
+
+    <span style="color:#66d9ef">while</span> (<span style="color:#f92672">&lt;&gt;</span>) {
+        <span style="color:#66d9ef">my</span> ($Y, $M, $D) <span style="color:#f92672">=</span> <span style="color:#e6db74">/[0-9]+/g</span>;
+        <span style="color:#66d9ef">my</span> $julian_then <span style="color:#f92672">=</span> g2j $Y, $M, $D;
+        printf <span style="color:#e6db74">&#34;%04d/%02d/%02d, %04d/%02d/%02d\n&#34;</span>,
+                 j2g (<span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $julian_then  <span style="color:#f92672">-</span> $julian_today),
+                 j2g (<span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $julian_today <span style="color:#f92672">-</span> $julian_then);
+    }
+</code></pre></div><h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-1">Blogs and Additional Submissions in Guest Languages for Task 1:</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/athanasius/raku/ch-1.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/polettix/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.polettix.it/ETOOBUSY/2021/09/29/pwc132-mirror-dates/">PWC132 - Mirror Dates - ETOOBUSY</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/laurent-rosenfeld/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://blogs.perl.org/users/laurent_r/2021/10/perl-weekly-challenge-132-mirror-dates-and-hash-join.html">Perl Weekly Challenge 132: Mirror Dates and Hash Join</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/ulrich-rieke/haskell/ch-1.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/ulrich-rieke/raku/ch-1.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://wlmb.github.io/2021/09/28/PWC132/">Perl Weekly Challenge 132 – W. Luis Mochán</a></p>
+<hr>
+<hr>
+<h1 id="PWC132TASK2">TASK 2</h1>
+<h1 id="hash-join">Hash Join</h1>
+<p><em>Submitted by: Mohammad S Anwar</em></p>
+<p>Write a script to implement Hash Join algorithm as suggested by wikipedia.</p>
+<ol>
+<li>For each tuple r in the build input R
+<ol>
+<li>Add r to the in-memory hash table</li>
+<li>If the size of the hash table equals the maximum in-memory size:
+<ol>
+<li>Scan the probe input S, and add matching join tuples to the output relation</li>
+<li>Reset the hash table, and continue scanning the build input R</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>Do a final scan of the probe input S and add the resulting join tuples to the output relation</li>
+</ol>
+<p><strong>Example</strong></p>
+<p>Input:</p>
+<pre><code>    @player_ages = (
+        [20, &quot;Alex&quot;  ],
+        [28, &quot;Joe&quot;   ],
+        [38, &quot;Mike&quot;  ],
+        [18, &quot;Alex&quot;  ],
+        [25, &quot;David&quot; ],
+        [18, &quot;Simon&quot; ],
+    );
+
+    @player_names = (
+        [&quot;Alex&quot;, &quot;Stewart&quot;],
+        [&quot;Joe&quot;,  &quot;Root&quot;   ],
+        [&quot;Mike&quot;, &quot;Gatting&quot;],
+        [&quot;Joe&quot;,  &quot;Blog&quot;   ],
+        [&quot;Alex&quot;, &quot;Jones&quot;  ],
+        [&quot;Simon&quot;,&quot;Duane&quot;  ],
+    );
+</code></pre><p>Output:</p>
+<pre><code>    Based on index = 1 of @players_age and index = 0 of @players_name.
+
+    20, &quot;Alex&quot;,  &quot;Stewart&quot;
+    20, &quot;Alex&quot;,  &quot;Jones&quot;
+    18, &quot;Alex&quot;,  &quot;Stewart&quot;
+    18, &quot;Alex&quot;,  &quot;Jones&quot;
+    28, &quot;Joe&quot;,   &quot;Root&quot;
+    28, &quot;Joe&quot;,   &quot;Blog&quot;
+    38, &quot;Mike&quot;,  &quot;Gatting&quot;
+    18, &quot;Simon&quot;, &quot;Duane&quot;
+</code></pre><h2 id="about-the-solutions-1">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/abigail/perl/ch-2.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/duncan-c-white/perl/ch-2a.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/mattneleigh/perl/ch-2.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/mohammad-anwar/perl/ch-2.pl"><strong>Mohammad S Anwar</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/perlboy1967/perl/ch-2.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/olivier-delouya/perl/ch-2.pl"><strong>Olivier Delouya</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/pete-houston/perl/ch-2.pl"><strong>Pete Houston</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/wanderdoc/perl/ch-2.pl"><strong>Wanderdoc</strong></a></p>
+<p>There were only 16 submissions for the second task this past week. I have to admit I myself found the directives a bit confusing, with the referenced Wikipedia article digressing into memory management strategies in RDBMS architectures that I found hard to conceptually map over into Perl-space.</p>
+<p>The memory management side of the puzzle thus received mixed responses — commonly ignored completely, but also producing some quite creative modeling and simulation, and even one presumed proper, albeit untested, implementation of catching an out-of-memory error in Perl. I&rsquo;ll leave you with that teaser to build anticipation.</p>
+<h2 id="a-spread-laid-out-across-the-table-a-dozen-selections">a SPREAD laid out ACROSS THE TABLE, a DOZEN SELECTIONS</h2>
+<p>As noted we saw a wide range of techniques for joining array data around a common key field, producing one new output row for each possible combination arising from the action. As suggested most of these techniques worked using an intermediate hashing mechanism, but not all.</p>
+<p>We also saw various approaches to the memory management aspect, usually but not exclusively coupled to rebuilding the intermediate hash structure.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/polettix/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.polettix.it/ETOOBUSY/2021/09/30/pwc132-hash-join/">PWC132 - Hash Join - ETOOBUSY</a></p>
+<p>We&rsquo;ll start the sampling today with Flavio.</p>
+<p>Flavio performs his inner join by constructing a hash using the first table&rsquo;s designated column, the first name, for hash keys. These keys are not unique, so the values for this hash each point to an array of references, each element containing a copy of the record using that key. The second set of records is then iterated over, with each record key extracted from the tuple. If a lookup using the key is successful, the data from the joined record is appended to each instance in the value list from the original hash, and the list of all such records created is the join returned.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">hash_join</span> ($one, $kone, $two, $ktwo) {
+       <span style="color:#75715e"># make sure ($one, $kone) deal with the shorter of the two relations</span>
+       ($one, $kone, $two, $ktwo) <span style="color:#f92672">=</span> ($two, $ktwo, $one, $kone)
+          <span style="color:#66d9ef">if</span> $one<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">&gt;</span> <span style="color:#960050;background-color:#1e0010">$</span>two<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+
+       <span style="color:#960050;background-color:#1e0010">#</span> hash phase, build a hash from ($one, $kone)
+       <span style="color:#66d9ef">my</span> %hash_one;
+       push $hash_one{$_<span style="color:#f92672">-&gt;</span>[$kone]}<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, $_ <span style="color:#66d9ef">for</span> $one<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+
+       <span style="color:#960050;background-color:#1e0010">#</span> scan phase
+       <span style="color:#66d9ef">return</span> map {
+          <span style="color:#66d9ef">my</span> @record <span style="color:#f92672">=</span> $_<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+          my $key <span style="color:#f92672">=</span> splice @record, $ktwo, <span style="color:#ae81ff">1</span>;
+          <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> exists $hash_one{$key};
+          map { [$_<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, @record] } $hash_one{$key}<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+       <span style="color:#960050;background-color:#1e0010">}</span> <span style="color:#960050;background-color:#1e0010">$</span>two<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+    <span style="color:#960050;background-color:#1e0010">}</span>
+
+    my @player_ages <span style="color:#f92672">=</span> (
+            [<span style="color:#ae81ff">20</span>, <span style="color:#e6db74">&#34;Alex&#34;</span>  ],
+            [<span style="color:#ae81ff">28</span>, <span style="color:#e6db74">&#34;Joe&#34;</span>   ],
+            [<span style="color:#ae81ff">38</span>, <span style="color:#e6db74">&#34;Mike&#34;</span>  ],
+            [<span style="color:#ae81ff">18</span>, <span style="color:#e6db74">&#34;Alex&#34;</span>  ],
+            [<span style="color:#ae81ff">25</span>, <span style="color:#e6db74">&#34;David&#34;</span> ],
+            [<span style="color:#ae81ff">18</span>, <span style="color:#e6db74">&#34;Simon&#34;</span> ],
+        );
+
+    <span style="color:#66d9ef">my</span> @player_names <span style="color:#f92672">=</span> (
+            [<span style="color:#e6db74">&#34;Alex&#34;</span>, <span style="color:#e6db74">&#34;Stewart&#34;</span>],
+            [<span style="color:#e6db74">&#34;Joe&#34;</span>,  <span style="color:#e6db74">&#34;Root&#34;</span>   ],
+            [<span style="color:#e6db74">&#34;Mike&#34;</span>, <span style="color:#e6db74">&#34;Gatting&#34;</span>],
+            [<span style="color:#e6db74">&#34;Joe&#34;</span>,  <span style="color:#e6db74">&#34;Blog&#34;</span>   ],
+            [<span style="color:#e6db74">&#34;Alex&#34;</span>, <span style="color:#e6db74">&#34;Jones&#34;</span>  ],
+            [<span style="color:#e6db74">&#34;Simon&#34;</span>,<span style="color:#e6db74">&#34;Duane&#34;</span>  ],
+        );
+
+    say join <span style="color:#e6db74">&#39;, &#39;</span>, $_<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> for hash_join(<span style="color:#f92672">\</span>@player_ages, <span style="color:#ae81ff">1</span>, <span style="color:#f92672">\</span>@player_names, <span style="color:#ae81ff">0</span>);
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a></p>
+<p>Choroba addresses some of the ideas mentioned in the reference article on memory exhaustion by introducing an <em>n</em>-at-a-time processing scheme, simulating a maximum number of rows that can be simultaneously held in memory. A hash is constructed from key field information in the build records, and an anonymous <code>$out</code> routine effectively dumps, or flushes, the contents of this hash to the output. A limit is established for the number of keys allowed at a time, an on reaching this limit the <code>$out</code> routine is called, and the hash flushed, the count is reset and the hash cleared for the next set of data.</p>
+<p>This plan seems to keep very close to the strategy outlined in the referenced article.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">hash_join</span> {
+        <span style="color:#66d9ef">my</span> ($build, $probe, $limit) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> @out;
+        <span style="color:#66d9ef">my</span> %hash;
+        <span style="color:#66d9ef">my</span> $size <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">my</span> $out <span style="color:#f92672">=</span> <span style="color:#66d9ef">sub</span> {
+            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $s (@$probe) {
+                push @out, [$_, $s<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>], $s<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]]
+                    <span style="color:#66d9ef">for</span> @{ $hash{ $s<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] } <span style="color:#e6db74">//</span> <span style="color:#f92672">[]</span>};
+            }
+            %hash <span style="color:#f92672">=</span> ();
+            $size <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        };
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $r (@$build) {
+            push @{ $hash{ $r<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] } }, $r<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>];
+            $out<span style="color:#f92672">-&gt;</span>() <span style="color:#66d9ef">if</span> <span style="color:#f92672">++</span>$size <span style="color:#f92672">&gt;=</span> $limit;
+        }
+        $out<span style="color:#f92672">-&gt;</span>();
+        <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@out
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/laurent-rosenfeld/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://blogs.perl.org/users/laurent_r/2021/10/perl-weekly-challenge-132-mirror-dates-and-hash-join.html">Perl Weekly Challenge 132: Mirror Dates and Hash Join |aurent_r</a></p>
+<p>Laurent also constructs an intermediate hash, establishing what will become a familiar pattern that mimics the reference example.</p>
+<p>He first assembles a hash from the player names. For each first name, used as the hash key, a value array is constructed and associated, containing one or more last names in relation to that key. Then the row instances of the probe data are traversed, the key field extracted, and the key looked up in the name hash. Lookup misses are skipped, but a hit generates a new tuple output row merging the key, the joined data and one element from the name values for each element present in the build table.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> @player_ages <span style="color:#f92672">=</span> (
+        [<span style="color:#ae81ff">20</span>, <span style="color:#e6db74">&#34;Alex&#34;</span>  ],
+        [<span style="color:#ae81ff">28</span>, <span style="color:#e6db74">&#34;Joe&#34;</span>   ],
+        [<span style="color:#ae81ff">38</span>, <span style="color:#e6db74">&#34;Mike&#34;</span>  ],
+        [<span style="color:#ae81ff">18</span>, <span style="color:#e6db74">&#34;Alex&#34;</span>  ],
+        [<span style="color:#ae81ff">25</span>, <span style="color:#e6db74">&#34;David&#34;</span> ],
+        [<span style="color:#ae81ff">18</span>, <span style="color:#e6db74">&#34;Simon&#34;</span> ]
+        );
+
+    <span style="color:#66d9ef">my</span> @player_names <span style="color:#f92672">=</span> (
+        [<span style="color:#e6db74">&#34;Alex&#34;</span>, <span style="color:#e6db74">&#34;Stewart&#34;</span>],
+        [<span style="color:#e6db74">&#34;Joe&#34;</span>,  <span style="color:#e6db74">&#34;Root&#34;</span>   ],
+        [<span style="color:#e6db74">&#34;Mike&#34;</span>, <span style="color:#e6db74">&#34;Gatting&#34;</span>],
+        [<span style="color:#e6db74">&#34;Joe&#34;</span>,  <span style="color:#e6db74">&#34;Blog&#34;</span>   ],
+        [<span style="color:#e6db74">&#34;Alex&#34;</span>, <span style="color:#e6db74">&#34;Jones&#34;</span>  ],
+        [<span style="color:#e6db74">&#34;Simon&#34;</span>,<span style="color:#e6db74">&#34;Duane&#34;</span>  ],
+        );
+
+    <span style="color:#66d9ef">my</span> %names;
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $name (@player_names) {
+        push @{$names{$name<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]}}, $name<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>];
+    }
+
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $pl_age (@player_ages) {
+        <span style="color:#66d9ef">my</span> ($age, $first_name) <span style="color:#f92672">=</span> @$pl_age;
+        <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> exists $names{$first_name};
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $name (@{$names{$first_name}}) {
+            say <span style="color:#e6db74">&#34;$age $first_name $name&#34;</span>;
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://wlmb.github.io/2021/09/28/PWC132/">Perl Weekly Challenge 132 – W. Luis Mochán</a></p>
+<p>Of note Luis uses YAML to input his record arrays, which appears to be a pretty good way to go about that. Most of the other submissions opted instead to hard-code the example and call it a day. But using the <code>YMAL_XS</code> module, the process is straightforward, human-readable and easy.</p>
+<pre><code>    -
+      - [ 20, Alex ]
+      - [ 28, Joe ]
+      - [ 38, Mike ]
+      - [ 18, Alex ]
+      - [ 25, David ]
+      - [ 18, Simon ]
+    -
+      - [Alex, Stewart]
+      - [Joe,  Root]
+      - [Mike, Gatting]
+      - [Joe,  Blog]
+      - [Alex, Jones]
+      - [Simon, Duane]
+</code></pre><p>Once has has his data installed, a hash is constructed from the keys of the build records, pointing to an array of the appropriately keyed records themselves. The probe data records are then sequentially analysed, extracting the key field. If this key can be successfully looked up in the hash, a new record is made from each record found in the value array, appending the probe record data. These new records are immediately output as they are created.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $input <span style="color:#f92672">=</span> Load( <span style="color:#66d9ef">my</span> $data <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;&gt;</span> ); <span style="color:#75715e"># Parse input</span>
+    <span style="color:#66d9ef">my</span> @build <span style="color:#f92672">=</span> $input<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span> <span style="color:#960050;background-color:#1e0010">#</span> Array of build tuples
+    <span style="color:#66d9ef">my</span> @probe <span style="color:#f92672">=</span> $input<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span> <span style="color:#960050;background-color:#1e0010">#</span> Array of probe tuples
+    <span style="color:#66d9ef">my</span> %build; <span style="color:#75715e"># Build hash. Each entry is array of tuples.</span>
+
+    <span style="color:#75715e"># Build complete &#39;build&#39; hash. I assume it fits in memory.</span>
+    push $build{ $_<span style="color:#f92672">-&gt;</span>[$index_build] }<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, $_ <span style="color:#66d9ef">foreach</span>( @build );
+
+    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $tuple( @probe ){  <span style="color:#75715e"># Iterate over probe tuples</span>
+        <span style="color:#66d9ef">my</span> $key <span style="color:#f92672">=</span> splice @$tuple, $index_probe, <span style="color:#ae81ff">1</span>; <span style="color:#75715e"># remove and assign key</span>
+        <span style="color:#75715e"># Array of all matching build tuples. Empty if none</span>
+        <span style="color:#66d9ef">my</span> @matching <span style="color:#f92672">=</span> defined $build{ $key }?$build{ $key }<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>:(  ); <span style="color:#75715e"># first parts of</span>
+        say join <span style="color:#e6db74">&#34;, &#34;</span>, $_<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, @$tuple <span style="color:#66d9ef">foreach</span> @matching; <span style="color:#75715e"># Join one build one probe tuple</span>
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/pete-houston/perl/ch-2.pl"><strong>Pete Houston</strong></a></p>
+<p>Pete does a couple of noteworthy things in his solution. First is that he encodes his input records as CSV files, one for the ages data and a second for the last names. As noted earlier, few submissions made the input data records actually configurable. The second, more interesting thing we saw was a modeling of a restricted memory situation using the <code>Devel::Size</code> module, and its function <code>total_size</code>.</p>
+<p>The first record sets, the ages, is taken in one record at a time and fitted into a hash, with the key field associated with an array of values using that key. After each new record is added, though, the <code>total_size()</code> of the <code>%ages</code> hash is determined, and if the memory limit value is surpassed, the hash is delivered to a <code>dump_out()</code> routine, where the probe records are cycled through and matching keys are used to produce new join records.</p>
+<p>As its name implies, <code>Devel::Size</code> allows one to find out the actual memory footprint of individual populated Perl data structures.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> %ages;
+    <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">my</span> $row <span style="color:#f92672">=</span> $csv<span style="color:#f92672">-&gt;</span>getline ($afh)) {
+        push @{$ages{$row<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]}}, $row<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>];
+        <span style="color:#66d9ef">if</span> (total_size (<span style="color:#f92672">\</span>%ages) <span style="color:#f92672">&gt;=</span> $mem_limit) {
+        	<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Limit hit!\n&#34;</span> <span style="color:#66d9ef">if</span> $DEBUG;
+        	dump_out (<span style="color:#f92672">\</span>@names, <span style="color:#f92672">\</span>%ages, $out);
+        	%ages <span style="color:#f92672">=</span> ();
+        }
+    }
+    close $afh;
+
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;At end\n&#34;</span> <span style="color:#66d9ef">if</span> $DEBUG;
+    dump_out (<span style="color:#f92672">\</span>@names, <span style="color:#f92672">\</span>%ages, $out);
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">dump_out</span> {
+        <span style="color:#66d9ef">my</span> ($names, $ages, $csv) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $name (@$names) {
+        	<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $age (@{$ages<span style="color:#f92672">-&gt;</span>{$name<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]}}) {
+        		$csv<span style="color:#f92672">-&gt;</span>combine ($age, @$name);
+        		<span style="color:#66d9ef">print</span> $csv<span style="color:#f92672">-&gt;</span>string, <span style="color:#e6db74">&#34;\n&#34;</span>;
+        	}
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/abigail/perl/ch-2.pl"><strong>Abigail</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-132-2.html">Perl Weekly Challenge 132: Hash Join</a></p>
+<p>Abigail has chosen to focus as well on the the particularly confusing loose-end that most others waved their hands over, of database strategies for out-of-memory situations in returning very large joins. In this, contrary to Choroba&rsquo;s and Pete&rsquo;s modeling approach, Abigail takes a very different tack.</p>
+<p>Perl is constructed on the idiom that it will handle memory management for the user, with automatic allocation and garbage collection. As such when a Perl program needs more memory it will simply request more and more memory from the system until there is no more to allocate, at which point its failure mode is to crash. Catching fire is very rare with modern systems. So in short, we cannot generally know we have run out of memory until it is too late, as by that time there is no longer any Perl to catch the exception.</p>
+<p>The theoretical solution to this predicament that is presented, untested, is to to recompile Perl using the <code>-DPERL_EMERGENCY_SBRK</code> option, which allows manual memory allocation through <code>malloc</code>. Thus the program primarily deals with trapping an &ldquo;Out of memory&rdquo; event, and reallocating, theoretically, more memory through the special variable <code>$^M</code>. Whether the program will remain in a recoverable state after this occurs is anyone&rsquo;s guess.</p>
+<p>I&rsquo;m with Abigail on this one and am not going to recompile Perl to test it, but find this effort fantastic. Here it is complete — the only changes I made were to tighten up the comments a bit.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># So, we&#39;re not asked to implement the classic hash join algorithm when</span>
+    <span style="color:#75715e"># everything neatly fits into memory, but the case where it doesn&#39;t.</span>
+    <span style="color:#75715e">#</span>
+    <span style="color:#75715e"># There is a way out of this, but it requires a special compiled perl.</span>
+    <span style="color:#75715e"># If your Perl has been compiled with the -DPERL_EMERGENCY_SBRK option,</span>
+    <span style="color:#75715e"># and if it is using Perl&#39;s own malloc, then you can allocate some</span>
+    <span style="color:#75715e"># emergency memory using $^M. So, we check if those conditions are set,</span>
+    <span style="color:#75715e"># and allocate some emergency memory.</span>
+    <span style="color:#75715e">#</span>
+    <span style="color:#75715e"># Whenever we run out of memory, this is trapped, and we flush the</span>
+    <span style="color:#75715e"># output so far, using the given algorithm.</span>
+    <span style="color:#75715e">#</span>
+    <span style="color:#75715e"># NOTE: This is a very flimsy algorithm, and will most likely result</span>
+    <span style="color:#75715e">#       in losing some data. But hey, if you want us to implement an</span>
+    <span style="color:#75715e">#       algorithm in Perl which deals with running out of memory, this</span>
+    <span style="color:#75715e">#       is the best you can get.</span>
+    <span style="color:#75715e">#       This is also gambling the state of the program is such that</span>
+    <span style="color:#75715e">#       we can actually continue after running out of memory. This</span>
+    <span style="color:#75715e">#       is not very likely.</span>
+    <span style="color:#75715e">#</span>
+    <span style="color:#75715e"># NOTE: This is completely untested. I couldn&#39;t be bothered to recompile</span>
+    <span style="color:#75715e">#       my perl.</span>
+
+    <span style="color:#66d9ef">use</span> Config;
+    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">&#39;max&#39;</span>;
+
+    <span style="color:#75715e"># First check if we can define emergency memory. If not, no hash join for you.</span>
+    <span style="color:#75715e"># Else, define some emergency memory.</span>
+    <span style="color:#66d9ef">BEGIN</span> {
+        die <span style="color:#e6db74">&#34;No hash join for you -- recompile first!\n&#34;</span> <span style="color:#66d9ef">unless</span>
+            $Config::Config {malloc_cflags} <span style="color:#f92672">=~</span><span style="color:#e6db74"> /-DPERL_EMERGENCY_SBRK\b/</span> <span style="color:#f92672">&amp;&amp;</span>
+            $Config::Config {usemymalloc} <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;y&#39;</span>;
+
+        $^M <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34; &#34;</span> x (<span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">20</span>);  <span style="color:#75715e"># 1 Mb.</span>
+    }
+
+    <span style="color:#66d9ef">my</span> @R <span style="color:#f92672">=</span> (
+        [<span style="color:#ae81ff">20</span>, <span style="color:#e6db74">&#34;Alex&#34;</span> ],
+        [<span style="color:#ae81ff">28</span>, <span style="color:#e6db74">&#34;Joe&#34;</span>  ],
+        [<span style="color:#ae81ff">38</span>, <span style="color:#e6db74">&#34;Mike&#34;</span> ],
+        [<span style="color:#ae81ff">18</span>, <span style="color:#e6db74">&#34;Alex&#34;</span> ],
+        [<span style="color:#ae81ff">25</span>, <span style="color:#e6db74">&#34;David&#34;</span>],
+        [<span style="color:#ae81ff">18</span>, <span style="color:#e6db74">&#34;Simon&#34;</span>],
+    );
+
+    <span style="color:#66d9ef">my</span> @S <span style="color:#f92672">=</span> (
+        [<span style="color:#e6db74">&#34;Alex&#34;</span>, <span style="color:#e6db74">&#34;Stewart&#34;</span>],
+        [<span style="color:#e6db74">&#34;Joe&#34;</span>,  <span style="color:#e6db74">&#34;Root&#34;</span>   ],
+        [<span style="color:#e6db74">&#34;Mike&#34;</span>, <span style="color:#e6db74">&#34;Gatting&#34;</span>],
+        [<span style="color:#e6db74">&#34;Joe&#34;</span>,  <span style="color:#e6db74">&#34;Blog&#34;</span>   ],
+        [<span style="color:#e6db74">&#34;Alex&#34;</span>, <span style="color:#e6db74">&#34;Jones&#34;</span>  ],
+        [<span style="color:#e6db74">&#34;Simon&#34;</span>,<span style="color:#e6db74">&#34;Duane&#34;</span>  ],
+    );
+
+    <span style="color:#66d9ef">my</span> $idx_R_njk <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">my</span> $idx_R_jk  <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;  <span style="color:#75715e"># Join key</span>
+    <span style="color:#66d9ef">my</span> $idx_S_jk  <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;  <span style="color:#75715e"># Join key</span>
+    <span style="color:#66d9ef">my</span> $idx_S_njk <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+
+    <span style="color:#75715e">#</span>
+    <span style="color:#75715e"># To pretty print.</span>
+    <span style="color:#75715e">#</span>
+    <span style="color:#66d9ef">my</span> $max_width <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">+</span> max map {length $$_ [$idx_R_jk]} @R;
+
+    <span style="color:#66d9ef">my</span> %output;
+
+    <span style="color:#75715e">#</span>
+    <span style="color:#75715e"># Whenever we run out of memory, we trap this, and flush the output.</span>
+    <span style="color:#75715e"># This ought to release memory.</span>
+    <span style="color:#75715e">#</span>
+    $SIG {__DIE__} <span style="color:#f92672">=</span> <span style="color:#66d9ef">sub</span> {
+        <span style="color:#66d9ef">if</span> (<span style="color:#e6db74">&#34;@_&#34;</span> <span style="color:#f92672">=~</span><span style="color:#e6db74"> /Out of memory/</span>) {
+            flush (<span style="color:#f92672">\</span>@S, $idx_S_jk, <span style="color:#f92672">\</span>%output)
+        }
+        <span style="color:#66d9ef">else</span> {
+            die @_;  <span style="color:#75715e"># Propagate</span>
+        }
+    };
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">flush</span> ($S, $idx_S_jk, $output) {
+        undef $^M;  <span style="color:#75715e"># Release memory.</span>
+                    <span style="color:#75715e"># Does this actually work this way? Or is $^M the only</span>
+                    <span style="color:#75715e"># memory we can use? In that case, this entire program</span>
+                    <span style="color:#75715e"># is not going to work.</span>
+
+        <span style="color:#75715e">#</span>
+        <span style="color:#75715e"># Scan $S. For each match in $output, output a line.</span>
+        <span style="color:#75715e">#</span>
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $entry (@$S) {
+            <span style="color:#66d9ef">if</span> ($$output {$$entry [$idx_S_jk]}) {
+                <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; $i <span style="color:#f92672">&lt;</span> @{$$output {$$entry [$idx_S_jk]}}; $i <span style="color:#f92672">++</span>) {
+                    printf <span style="color:#e6db74">qq [%2d, </span>%<span style="color:#960050;background-color:#1e0010">-$</span>{max_width}s <span style="color:#e6db74">&#34;%s&#34;</span><span style="color:#f92672">\</span>n],
+                                     $$output {$$entry [$idx_S_jk]} [$i],
+                               <span style="color:#e6db74">&#39;&#34;&#39;</span> <span style="color:#f92672">.</span> $$entry [$idx_S_jk] <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;&#34;,&#39;</span>,
+                                     $$entry [$idx_S_njk];
+                }
+            }
+        }
+
+        <span style="color:#75715e">#</span>
+        <span style="color:#75715e"># Reset output table</span>
+        <span style="color:#75715e">#</span>
+        %$output <span style="color:#f92672">=</span> ();
+
+        <span style="color:#75715e">#</span>
+        <span style="color:#75715e"># Claim emergency memory again</span>
+        <span style="color:#75715e">#</span>
+        $^M <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34; &#34;</span> x (<span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">20</span>);
+    }
+
+    <span style="color:#75715e">#</span>
+    <span style="color:#75715e"># Main loop.</span>
+    <span style="color:#75715e">#</span>
+    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $r (@R) {
+        push @{$output {$$r [$idx_R_jk]}} <span style="color:#f92672">=&gt;</span> $$r [$idx_R_njk];
+    }
+
+
+    flush (<span style="color:#f92672">\</span>@S, $idx_S_jk, <span style="color:#f92672">\</span>%output);
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/duncan-c-white/perl/ch-2a.pl"><strong>Duncan C. White</strong></a></p>
+<p>Back from the difficult terrain of simulating, or actually creating real, memory management problems, we have Duncan, who provides us with a brace of solutions. In the first, he demonstrates the technique for the join using hardwired data, in the second,  he broadens that base to <a href="(https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/duncan-c-white/perl/ch-2a.pl)">allow configurable input records using CSV files</a>.</p>
+<p>In his <code>hashjoin()</code> function, we see the now-familiar scheme of creating a hash from the age dataset, keyed on the first name field. The probe data records are then examined and for each hash match each record in the values is aligned with the probe data to produce a new output record.</p>
+<p>Duncan likes to use <code>Function::Parameters</code> for his subroutine signatures, hence the <code>fun</code> keyword, rather than <code>sub</code>. I always find Duncan&rsquo;s code quite readable.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    fun hashjoin( $relation1, $fieldno1, $relation2, $fieldno2 )
+    {
+        <span style="color:#66d9ef">my</span> %hash;
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $ref (@$relation1)
+        {
+        	<span style="color:#66d9ef">my</span> @r <span style="color:#f92672">=</span> @$ref;
+        	<span style="color:#66d9ef">my</span> $aref <span style="color:#f92672">=</span> ($hash{$r[$fieldno1]}<span style="color:#e6db74">//</span><span style="color:#f92672">=[]</span>);
+        	push @$aref, $r[<span style="color:#ae81ff">1</span><span style="color:#f92672">-</span>$fieldno1];
+        }
+        <span style="color:#75715e">#die Dumper \%hash;</span>
+
+        <span style="color:#66d9ef">my</span> @result;
+
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $ref (@$relation2)
+        {
+        	<span style="color:#66d9ef">my</span> @r <span style="color:#f92672">=</span> @$ref;
+        	<span style="color:#66d9ef">my</span> $key <span style="color:#f92672">=</span> $r[$fieldno2];
+        	<span style="color:#66d9ef">my</span> $other <span style="color:#f92672">=</span> $r[<span style="color:#ae81ff">1</span><span style="color:#f92672">-</span>$fieldno2];
+        	<span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $val (@{$hash{$key}})
+        	{
+        		push @result, [ $val, $key, $other ];
+        	}
+        }
+
+        <span style="color:#66d9ef">return</span> @result;
+    }
+
+
+    <span style="color:#66d9ef">my</span> @result <span style="color:#f92672">=</span> hashjoin(
+        <span style="color:#f92672">\</span>@player_ages, <span style="color:#ae81ff">1</span>,
+        <span style="color:#f92672">\</span>@player_names, <span style="color:#ae81ff">0</span>,
+        );
+    say join(<span style="color:#e6db74">&#39;, &#39;</span>,@$_) <span style="color:#66d9ef">for</span> @result;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/mohammad-anwar/perl/ch-2.pl"><strong>Mohammad S Anwar</strong></a></p>
+<p>Mohammad makes an anonymous hash from the names table, first and last, and then joins with the ages table, switching the common ordering. Ultimately, this does not matter to the computational complexity, but notice in Flavio&rsquo;s submission he explicitly makes the hash the smaller of the two datasets. I suppose that&rsquo;s something to consider. In the memory-management simulations we&rsquo;re limiting the size of the hash at any given moment so the row count of records becomes largely irrelevant. It&rsquo;s just an interesting detail which dataset is hashed and why, that&rsquo;s all.</p>
+<p>The hashing is efficiently dispatched with a <code>map</code> function and the iteration algorithm is neatly and clearly constructed.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">hash_join</span> {
+        <span style="color:#66d9ef">my</span> ($table_1, $key_1, $table_2, $key_2) <span style="color:#f92672">=</span> @_;
+
+        <span style="color:#66d9ef">my</span> $names <span style="color:#f92672">=</span> {
+            map {
+                join(<span style="color:#e6db74">&#34;, &#34;</span>, @$_) <span style="color:#f92672">=&gt;</span> $_<span style="color:#f92672">-&gt;</span>[$key_2]
+            } @$table_2
+        };
+
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $player (@$table_1) {
+            <span style="color:#66d9ef">my</span> $key <span style="color:#f92672">=</span> $player<span style="color:#f92672">-&gt;</span>[$key_1];
+            <span style="color:#66d9ef">my</span> $age <span style="color:#f92672">=</span> $player<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>];
+            <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $n (keys %$names) {
+                <span style="color:#66d9ef">if</span> ($names<span style="color:#f92672">-&gt;</span>{$n} <span style="color:#f92672">eq</span> $key) {
+                    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$age, $n\n&#34;</span>;
+                }
+            }
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://jacoby.github.io/2021/09/27/dates-and-hashes-and-names-oh-my-the-weekly-challenge-132.html">Dates(!) and Hashes(?) and Names, Oh My!!: The Weekly Challenge #132 | Committed to Memory</a></p>
+<p>David constructs a rather different hash to create his join, gathering all of the related information under one roof before reporting the results. An anonymous hash is created, with its reference assigned to the <code>$hash</code> variable. Then the &ldquo;age&rdquo; record dataset is iterated over, and the fields extracted. The data is added to the hash, keyed on the &ldquo;firstname&rdquo; field, as sub-hashes keyed as under &ldquo;age&rdquo;. The same process is completed for the &ldquo;lastname&rdquo; records. The large data structure is then dumped, iterating through the keys and skipping any that do not have both an &ldquo;age&rdquo; and &ldquo;lastname&rdquo; value, as these will not be present in the join. For the remaining keys, the value sets for the &ldquo;age&rdquo; and &ldquo;lastname&rdquo; subkeys are gathered, and a pair of nested loops are used to produce the combinations of the two datasets for the output records.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">hash_join</span> ( $array1, $array2 ) {
+        <span style="color:#66d9ef">my</span> @output;
+        <span style="color:#66d9ef">my</span> $hash <span style="color:#f92672">=</span> {};
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $e ( $array1<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> ) {
+            <span style="color:#66d9ef">my</span> ( $age, $firstname ) <span style="color:#f92672">=</span> $e<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+            push $hash<span style="color:#f92672">-&gt;</span>{$firstname}<span style="color:#f92672">-&gt;</span>{age}<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, $age;
+        }
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $e ( $array2<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> ) {
+            <span style="color:#66d9ef">my</span> ( $firstname, $lastname ) <span style="color:#f92672">=</span> $e<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+            push $hash<span style="color:#f92672">-&gt;</span>{$firstname}<span style="color:#f92672">-&gt;</span>{lastname}<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, $lastname;
+        }
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $firstname ( sort keys $hash<span style="color:#f92672">-&gt;</span>%<span style="color:#960050;background-color:#1e0010">*</span> ) {
+            <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> defined $hash<span style="color:#f92672">-&gt;</span>{$firstname}{age};
+            <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> defined $hash<span style="color:#f92672">-&gt;</span>{$firstname}{lastname};
+            <span style="color:#66d9ef">my</span> @ages      <span style="color:#f92672">=</span> $hash<span style="color:#f92672">-&gt;</span>{$firstname}{age}<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+            my @lastnames <span style="color:#f92672">=</span> $hash<span style="color:#f92672">-&gt;</span>{$firstname}{lastname}<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+
+            for <span style="color:#66d9ef">my</span> $age ( reverse sort @ages ) {
+                <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $lastname ( reverse sort @lastnames ) {
+                    push @output, join <span style="color:#e6db74">&#34;,\t&#34;</span>, <span style="color:#e6db74">&#39;   &#39;</span> <span style="color:#f92672">.</span> $age, $firstname, $lastname;
+                }
+            }
+        }
+        <span style="color:#66d9ef">return</span> join <span style="color:#e6db74">&#34;\n&#34;</span>, @output;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/perlboy1967/perl/ch-2.pl"><strong>Niels van Dijke</strong></a></p>
+<p>In an unexpected twist, Niels uses subroutine prototypes to hand in the two Perl arrays <code>@player_ages</code> and <code>@player_lastname</code> to his <code>hashJoin()</code> routine, which processes the join in one line, without using a hash at all. Using two <code>map</code> statements, we iterate over every row in the lastname table, and for each row found, in the inner loop a <code>grep</code> filter selects only those rows from the ages table that share a key, and for each filtered row the age is prepended to the lastname record, producing the desired ordering in the join returned.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">hashJoin</span>(\@\@) {
+      <span style="color:#66d9ef">return</span>
+        [map { <span style="color:#66d9ef">my</span> $r <span style="color:#f92672">=</span> $_; map { [$_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>], @$r] } grep { $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">eq</span> $r<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] } @{$_[<span style="color:#ae81ff">0</span>]} } @{$_[<span style="color:#ae81ff">1</span>]}];
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/olivier-delouya/perl/ch-2.pl"><strong>Olivier Delouya</strong></a></p>
+<p>Appropriately grouped with Niels&rsquo; submission, Oliver performs a similar procedure, only this time going forwards using <code>foreach</code> loops. Using two nested structures, each record from the first array is compared to each record from the second, and if their keys concord, then a new output record is constructed and printed on the spot.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    outerloop: <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $pn (@player_ages)
+       {
+       <span style="color:#66d9ef">foreach</span>(@player_names)
+          {
+          <span style="color:#66d9ef">if</span>(${$pn}[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">eq</span> ${$_}[<span style="color:#ae81ff">0</span>]) <span style="color:#75715e"># join!</span>
+                {
+                <span style="color:#66d9ef">print</span> ${$pn}[<span style="color:#ae81ff">0</span>], ${$pn}[<span style="color:#ae81ff">1</span>], ${$_}[<span style="color:#ae81ff">1</span>], <span style="color:#e6db74">&#34;\n&#34;</span>;
+                <span style="color:#66d9ef">next</span> outerloop;
+                }
+          }
+        }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/mattneleigh/perl/ch-2.pl"><strong>Matthew Neleigh</strong></a></p>
+<p>Finally, we return to the suggested hashing method with Matthew&rsquo;s submission, who lays out his steps in clearly annotated blocks.</p>
+<p>Of special note here is Matthew&rsquo;s <code>print_table_row()</code> routine to pretty-print his output using <code>printf</code>, resulting in a satisfying set of right-aligned columnar data.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">hash_join</span>{
+        <span style="color:#66d9ef">my</span> $build <span style="color:#f92672">=</span> shift();
+        <span style="color:#66d9ef">my</span> $build_index <span style="color:#f92672">=</span> shift();
+        <span style="color:#66d9ef">my</span> $probe <span style="color:#f92672">=</span> shift();
+        <span style="color:#66d9ef">my</span> $probe_index <span style="color:#f92672">=</span> shift();
+
+        <span style="color:#66d9ef">my</span> $row;
+        <span style="color:#66d9ef">my</span> $key;
+        <span style="color:#66d9ef">my</span> %table <span style="color:#f92672">=</span> ();
+        <span style="color:#66d9ef">my</span> $joined <span style="color:#f92672">=</span> <span style="color:#f92672">[]</span>;
+
+        <span style="color:#75715e"># Build phase- build a table of things</span>
+        <span style="color:#75715e"># from the build rows, using the specified</span>
+        <span style="color:#75715e"># field as the key; make each entry in the</span>
+        <span style="color:#75715e"># table a list of rows, in case more than</span>
+        <span style="color:#75715e"># one thing matches the key</span>
+        <span style="color:#66d9ef">foreach</span> $row (@{$build}){
+            <span style="color:#75715e"># Copy the row from the build list, then</span>
+            <span style="color:#75715e"># remove the key from the row before</span>
+            <span style="color:#75715e"># adding to that key&#39;s list in the table</span>
+            $row <span style="color:#f92672">=</span> [ @{$row} ];
+            $key <span style="color:#f92672">=</span> splice(@{$row}, $build_index, <span style="color:#ae81ff">1</span>);
+            push(@{$table{$key}}, $row);
+        }
+
+        <span style="color:#75715e"># Probe phase- loop over the probe list,</span>
+        <span style="color:#75715e"># examining the table for occurances of the</span>
+        <span style="color:#75715e"># specified key...</span>
+        <span style="color:#66d9ef">foreach</span> $row (@{$probe}){
+            $key <span style="color:#f92672">=</span> $row<span style="color:#f92672">-&gt;</span>[$probe_index];
+
+            <span style="color:#66d9ef">if</span>($table{$key}){
+                <span style="color:#75715e"># The key from this row appears in the build</span>
+                <span style="color:#75715e"># table- copy the row and delete the key</span>
+                $row <span style="color:#f92672">=</span> [ @{$row} ];
+                splice(@{$row}, $probe_index, <span style="color:#ae81ff">1</span>);
+
+                <span style="color:#75715e"># Loop over everything in the table for this</span>
+                <span style="color:#75715e"># key and merge the built row with the probe</span>
+                <span style="color:#75715e"># row, storing the combination in the joined</span>
+                <span style="color:#75715e"># list</span>
+                <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $built_row (@{$table{$key}}){
+                    push(@{$joined}, [ @{$built_row}, $key, @{$row} ]);
+                }
+            }
+        }
+
+        <span style="color:#66d9ef">return</span>($joined);
+
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">print_table_row</span>{
+
+        printf(
+            <span style="color:#e6db74">&#34;%s\n&#34;</span>,
+            join(
+                <span style="color:#e6db74">&#34;    &#34;</span>,
+                map(
+                    { sprintf(<span style="color:#e6db74">&#34;%8s&#34;</span>, $_); }
+                    @{$ARG[<span style="color:#ae81ff">0</span>]}
+                )
+            )
+        );
+
+    }
+
+</code></pre></div><h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-2">Blogs and Additional Submissions in Guest Languages for Task 2:</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-132/james-smith">Perl Weekly Challenge #132</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/roger-bell-west/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/roger-bell-west/raku/ch-2.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-132/roger-bell-west/ruby/ch-2.rb">Ruby</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://blog.firedrake.org/archive/2021/10/Perl_Weekly_Challenge_132__Hash_on_the_Mirror.html">RogerBW&rsquo;s Blog: Perl Weekly Challenge 132: Hash on the Mirror</a></p>
+<hr>
+<h1 id="PWC132BLOGS">BLOGS</h1>
+<hr>
+<p><strong>That’s it for me this week, people! Warped by the rain, driven by the snow, resolute and unbroken by the torrential influx, I somehow continue to maintain my bearings. Looking forward to next wave, the perfect wave, I am: <em>your humble servant</em>.</strong></p>
+<h1 id="PWC132BLOGS">But if Your <em>THIRST</em> for <em>KNOWLEDGE</em> is not <em>SLAKED</em>,</h1>
+<h1 id="then-run-dont-walk-to-the-watering-hole">then <em>RUN</em> <em>(dont walk!)</em> to the <em>WATERING HOLE</em></h1>
+<h1 id="and-read-these-blog-links">and <em>READ</em> these <em>BLOG</em> <em>LINKS</em>:</h1>
+<p><strong>( <em>don&rsquo;t think, trust your training, you&rsquo;re in the zone, just do it &hellip;</em> )</strong></p>
+<p><strong>Abigail</strong></p>
+<ul>
+<li><a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-132-1.html">Perl Weekly Challenge 132: Mirror Dates</a> ( <em>Perl</em> )</li>
+<li><a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-132-2.html">Perl Weekly Challenge 132: Hash Join</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Arne Sommer</strong></p>
+<ul>
+<li><a href="https://raku-musings.com/mirrored-hash.html">Mirrored Hash with Raku</a> ( <em>Raku</em> )</li>
+</ul>
+<p><strong>Dave Jacoby</strong></p>
+<ul>
+<li><a href="https://jacoby.github.io/2021/09/27/dates-and-hashes-and-names-oh-my-the-weekly-challenge-132.html">Dates(!) and Hashes(?) and Names, Oh My!!: The Weekly Challenge #132 | Committed to Memory</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Flavio Poletti</strong></p>
+<ul>
+<li><a href="https://github.polettix.it/ETOOBUSY/2021/09/29/pwc132-mirror-dates/">PWC132 - Mirror Dates - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+<li><a href="https://github.polettix.it/ETOOBUSY/2021/09/30/pwc132-hash-join/">PWC132 - Hash Join - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>James Smith</strong></p>
+<ul>
+<li><a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-132/james-smith">Perl Weekly Challenge #132</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Laurent Rosenfeld</strong></p>
+<ul>
+<li><a href="http://blogs.perl.org/users/laurent_r/2021/10/perl-weekly-challenge-132-mirror-dates-and-hash-join.html">Perl Weekly Challenge 132: Mirror Dates and Hash Join</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Luca Ferrari</strong></p>
+<ul>
+<li><a href="https://fluca1978.github.io/2021/09/27/PerlWeeklyChallenge132.html#task1">Perl Weekly Challenge 132: noto clear&hellip; – Luca Ferrari – Open Source advocate, human being</a> ( <em>Raku</em> )</li>
+</ul>
+<p><strong>Roger Bell_West</strong></p>
+<ul>
+<li><a href="https://blog.firedrake.org/archive/2021/10/Perl_Weekly_Challenge_132__Hash_on_the_Mirror.html">RogerBW&rsquo;s Blog: Perl Weekly Challenge 132: Hash on the Mirror</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>W. Luis Mochan</strong></p>
+<ul>
+<li><a href="https://wlmb.github.io/2021/09/28/PWC132/">Perl Weekly Challenge 132 – W. Luis Mochán</a> ( <em>Perl</em> )</li>
+</ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="/contact" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2021
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.nomtimes.co.uk/site/shop.do?cref=PerlBooks" title="Free Perl Books" rel="noreferrer" target="_blank">
+                            <img src="/images/NomTimes.jpg" style="width:22px; height: 18px;" alt=""/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jQurey/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-136524905-1', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+
+</html>
+
