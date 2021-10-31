@@ -916,6 +916,10 @@ Please find below guest contributions.
 
 ##### **Karishma Rajput** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/karishma/c/ch-1.c) in **C**.
 
+##### **Karishma Rajput** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/karishma/cpp/ch1.cpp) in **C++**.
+
+##### **Karishma Rajput** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/karishma/js/ch-1.js) in **JavaScript**.
+
 ##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/laurent-rosenfeld/awk/ch-1.awk) in **Awk**.
 
 ##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/laurent-rosenfeld/c/ch-1.c) in **C**.
