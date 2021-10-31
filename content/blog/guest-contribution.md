@@ -934,6 +934,8 @@ Please find below guest contributions.
 
 ##### **Lucas Ransan** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/luc65r/coconut/ch-1.coco) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/luc65r/coconut/ch-2.coco) in **Coconut**.
 
+##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/paulo-custodio/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/paulo-custodio/python/ch-2.py) in **Python**.
+
 ##### **Pete Houston** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/pete-houston/awk/ch-1.awk) in **Awk**.
 
 ##### **Roger Bell_West** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-122/roger-bell-west/postscript/ch-1.ps) in **Postscript**.
@@ -1001,6 +1003,8 @@ Please find below guest contributions.
 ##### **Lubos Kolouch** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/lubos-kolouch/python/ch-1.py) in **Python**.
 
 ##### **Lucas Ransan** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/luc65r/miranda/ch-1.m) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/luc65r/miranda/ch-2.m) in **Miranda**.
+
+##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/paulo-custodio/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/paulo-custodio/python/ch-2.py) in **Python**.
 
 ##### **Pete Houston** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-121/pete-houston/awk/ch-1.awk) in **Awk**.
 
@@ -1315,6 +1319,8 @@ Please find below guest contributions.
 ##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-118/paulo-custodio/d/ch_1.d) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-118/paulo-custodio/d/ch_2.d) in **D**.
 
 ##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-118/paulo-custodio/fortran/ch-1.f90) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-118/paulo-custodio/fortran/ch-2.f90) in **Fortran**.
+
+##### **Paulo Custodio** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-118/paulo-custodio/python/ch-1.py) in **Python**.
 
 ##### **Roger Bell_West** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-118/roger-bell-west/python/ch-1.py) in **Python**.
 
