@@ -191,6 +191,12 @@ Write a script to find all the years between `1900` and `2100` which is a `Long 
 
 > A year is Long if it has 53 weeks.
 
+<br>
+
+##### **[UPDATED][2021-11-01 16:20:00]:** For more information about `Long Year`, please refer to [**wikipedia**](https://en.wikipedia.org/wiki/ISO_week_date#Weeks_per_year).
+
+<br>
+
 #### Expected Output
 
     1903, 1908, 1914, 1920, 1925,
@@ -214,6 +220,12 @@ Write a script to find out if the given number is Lychrel number. To keep the ta
 
     a. Stop if the number of iterations reached 500.
     b. Stop if you end up with number >= 10_000_000.
+
+<br>
+
+##### **[UPDATED][2021-11-01 16:20:00]:** If you stop because of any of the above two rules then we expect `1` as an output.
+
+<br>
 
 According to [**wikipedia**](https://en.wikipedia.org/wiki/Lychrel_number):
 
