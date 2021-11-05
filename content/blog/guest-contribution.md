@@ -1808,6 +1808,8 @@ Please find below guest contributions.
 
 ##### **Mohammad Meraj Zia** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/ziameraj16/java/ValidPhoneNumbers.java) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/ziameraj16/java/TransposeFile.java) in **Java**.
 
+##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/paulo-custodio/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/paulo-custodio/python/ch-2.py) in **Python**.
+
 ##### **Roger Bell_West** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/roger-bell-west/shell/ch-1.sh) in **Bash**.
 
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/roger-bell-west/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-110/roger-bell-west/python/ch-2.py) in **Python**.
@@ -1932,6 +1934,8 @@ Please find below guest contributions.
 
 ##### **Mohammad Meraj Zia** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-109/ziameraj16/java/ChowlaNumbers.java) in **Java**.
 
+##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-109/paulo-custodio/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-109/paulo-custodio/python/ch-2.py) in **Python**.
+
 ##### **Richard Park** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-109/richard-park/apl/ch-1.aplf) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-109/richard-park/apl/ch-2.aplf) in **APL**.
 
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-109/roger-bell-west/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-109/roger-bell-west/python/ch-2.py) in **Python**.
@@ -2036,6 +2040,8 @@ Please find below guest contributions.
 
 ##### **Laurent Rosenfeld** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-108/laurent-rosenfeld/scala/ch-1.scala) in **Scala**.
 
+##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-108/paulo-custodio/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-108/paulo-custodio/python/ch-2.py) in **Python**.
+
 ##### **Pete Houston** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-108/pete-houston/c/ch-1.c) in **C**.
 
 ##### **Pete Houston** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-108/pete-houston/fortran/ch-1.f95) in **Fortran**.
@@ -2126,6 +2132,8 @@ Please find below guest contributions.
 
 ##### **Mohammad Meraj Zia** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/ziameraj16/java/SelfDescriptiveNumber.java) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/ziameraj16/java/ListMethods.java) in **Java**.
 
+##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/paulo-custodio/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/paulo-custodio/python/ch-2.py) in **Python**.
+
 ##### **Roger Bell_West** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/roger-bell-west/python/ch-1.py) in **Python**.
 
 ##### **Roger Bell_West** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/roger-bell-west/ruby/ch-1.rb) in **Ruby**.
@@ -2181,6 +2189,8 @@ Please find below guest contributions.
 ##### **Mohammad Meraj Zia** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/ziameraj16/java/MaximumGap.java) in **Java**.
 
 ##### **Mohammad Meraj Zia** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/ziameraj16/kotlin/MaximumGapKotlin.kt) in **Kotlin**.
+
+##### **Paulo Custodio** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/paulo-custodio/python/ch-1.py) in **Python**.
 
 ##### **Pete Houston** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-106/pete-houston/awk/ch-1.awk) in **Awk**.
 
