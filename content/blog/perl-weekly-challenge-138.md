@@ -135,7 +135,7 @@ Write a script to calculate the total number of workdays in the given year.
 #### Example 1
 
     Input: $year = 2021
-    Output: 260
+    Output: 261
 
 #### Example 2
 
