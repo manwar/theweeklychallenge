@@ -34,6 +34,8 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 138](/blog/perl-weekly-challenge-138) {#138}
 <br>
 
+##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/eric-cheung/excel-vba/ch-1.bas) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/eric-cheung/excel-vba/ch-2.bas) in **Excel VBA**.
+
 ##### **Luca Ferrari** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/luca-ferrari/postgresql/ch-1.sql) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/luca-ferrari/postgresql/ch-2.sql) in **PostgreSQL**.
 
 ##### **Mohammad Meraj Zia** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/ziameraj16/java/Workdays.java) in **Java**.
