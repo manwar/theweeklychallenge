@@ -48,11 +48,11 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 ## CONTRIBUTION STATS {#CONTRIBUTIONSTATS}
 ***
 
-The total contributions in the week is `93`. Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
+The total contributions in the week is `96`. Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
 
-#### 1. Perl: 52
+#### 1. Perl: 54
 #### 2. Raku: 26
-#### 3. Blog: 15
+#### 3. Blog: 16
 
 <br>
 
@@ -60,9 +60,9 @@ The total contributions in the week is `93`. Well done **Team PWC**. I would als
 
 <br>
 
-#### 1. Perl: 6583 (62%)
+#### 1. Perl: 6585 (62%)
 #### 2. Raku: 3994 (38%)
-#### 3. Blog: 1994
+#### 3. Blog: 1995
 
 <br>
 
@@ -216,7 +216,7 @@ The total contributions in the week is `93`. Well done **Team PWC**. I would als
 ## CENTURION CLUB {#CENTURIONCLUB}
 ***
 
-    Laurent Rosenfeld (1394), Jaldhar H. Vyas (1138), Roger Bell_West (1126), Arne Sommer (1040), Colin Crain (888), Athanasius (774), Adam Russell (700), Stuart Little (644), E. Choroba (636), Dave Jacoby (630), Ulrich Rieke (628), Abigail (610), Luca Ferrari (588), Flavio Poletti (586), Mohammad S Anwar (502), Duncan C. White (488), Simon Proctor (470), Javier Luque (460), Ruben Westerberg (452), Cheok-Yin Fung (436), James Smith (378), Mark Anderson (374), Simon Green (364), Paulo Custodio (358), Wanderdoc (346), Joelle Maslak (334), Jorg Sommrey (314), Lubos Kolouch (300), Ryan Thompson (290), W. Luis Mochan (282), Pete Houston (278), Niels van Dijke (268), Andrezgz (246), Feng Chang (242), Jan Krnavek (236), Yet Ebreo (226), Markus Holzer (198), Myoungjin Jeon (192), Noud Aldenhoven (188), Steven Wilson (188), Kevin Colyer (176), Aaron Smith (174), Andrew Shitov (166), Duane Powell (164), Kian-Meng Ang (162), Walt Mankowski (162), Shahed Nooshmand (140), Dave Cross (120), Joan Mimosinnet (120), Cristina Heredia (118), Kang-min Liu (118), Julio de Castro (116), Gustavo Chaves (112), Saif Ahmed (110), Burkhard Nickels (108), Alicia Bielsa (106), Andinus (104), Nuno Vieira (104), Bob Lied (100).
+    Laurent Rosenfeld (1394), Jaldhar H. Vyas (1138), Roger Bell_West (1126), Arne Sommer (1040), Colin Crain (888), Athanasius (774), Adam Russell (700), Stuart Little (644), Dave Jacoby (636), E. Choroba (636), Ulrich Rieke (628), Abigail (610), Luca Ferrari (588), Flavio Poletti (586), Mohammad S Anwar (502), Duncan C. White (488), Simon Proctor (470), Javier Luque (460), Ruben Westerberg (452), Cheok-Yin Fung (436), James Smith (378), Mark Anderson (374), Simon Green (364), Paulo Custodio (358), Wanderdoc (346), Joelle Maslak (334), Jorg Sommrey (314), Lubos Kolouch (300), Ryan Thompson (290), W. Luis Mochan (282), Pete Houston (278), Niels van Dijke (268), Andrezgz (246), Feng Chang (242), Jan Krnavek (236), Yet Ebreo (226), Markus Holzer (198), Myoungjin Jeon (192), Noud Aldenhoven (188), Steven Wilson (188), Kevin Colyer (176), Aaron Smith (174), Andrew Shitov (166), Duane Powell (164), Kian-Meng Ang (162), Walt Mankowski (162), Shahed Nooshmand (140), Dave Cross (120), Joan Mimosinnet (120), Cristina Heredia (118), Kang-min Liu (118), Julio de Castro (116), Gustavo Chaves (112), Saif Ahmed (110), Burkhard Nickels (108), Alicia Bielsa (106), Andinus (104), Nuno Vieira (104), Bob Lied (100).
 
 <br>
 
@@ -261,6 +261,15 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/cheok-yin-fung/perl/ch-1.pl)]
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/cheok-yin-fung/perl/ch-2.pl)]
+
+***
+
+### Dave Jacoby
+![Dave Jacoby](/images/team/dave_jacoby.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/dave-jacoby/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/dave-jacoby/perl/ch-2.pl)]
+[[**BLOG #1**](https://jacoby.github.io/2021/11/01/2020-was-a-long-year-the-weekly-challenge-137.html)]
 
 ***
 
