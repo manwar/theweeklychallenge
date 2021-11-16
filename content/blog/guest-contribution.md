@@ -34,6 +34,8 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 139](/blog/perl-weekly-challenge-139) {#139}
 <br>
 
+##### **Cristina Heredia** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-139/cristian-heredia/python/ch-1.py) in **Python**.
+
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-139/eric-cheung/excel-vba/ch-1.bas) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-139/eric-cheung/excel-vba/ch-2.bas) in **Excel VBA**.
 
 ##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-139/ulrich-rieke/cpp/ch-1.cpp) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-139/ulrich-rieke/cpp/ch-2.cpp) in **C++**.
