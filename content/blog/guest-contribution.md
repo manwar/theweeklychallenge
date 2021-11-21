@@ -62,6 +62,8 @@ Please find below guest contributions.
 
 ##### **Abigail** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-139/abigail/tcl/ch-1.tcl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-139/abigail/tcl/ch-2.tcl) in **Tcl**.
 
+##### **Adam Russell** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-139/adam-russell/prolog/ch-1.p) in **Prolog**.
+
 ##### **Cristina Heredia** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-139/cristian-heredia/python/ch-1.py) in **Python**.
 
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-139/eric-cheung/excel-vba/ch-1.bas) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-139/eric-cheung/excel-vba/ch-2.bas) in **Excel VBA**.
