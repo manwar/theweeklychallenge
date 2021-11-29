@@ -47,9 +47,9 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 ## CONTRIBUTION STATS {#CONTRIBUTIONSTATS}
 ***
 
-The total contributions in the week is `100`. Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
+The total contributions in the week is `101`. Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
 
-#### 1. Perl: 57
+#### 1. Perl: 58
 #### 2. Raku: 22
 #### 3. Blog: 21
 
@@ -59,7 +59,7 @@ The total contributions in the week is `100`. Well done **Team PWC**. I would al
 
 <br>
 
-#### 1. Perl: 6753 (62%)
+#### 1. Perl: 6754 (62%)
 #### 2. Raku: 4099 (38%)
 #### 3. Blog: 2055
 
@@ -421,6 +421,13 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/sgreen/perl/ch-1.pl)]
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/sgreen/perl/ch-2.pl)]
 [[**BLOG #1**](https://dev.to/simongreennet/weekly-challenge-140-a50)]
+
+***
+
+### Steven Wilson
+![Steven Wilson](/images/team/user.jpg)
+
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/steven-wilson/perl/ch-2.pl)]
 
 ***
 
