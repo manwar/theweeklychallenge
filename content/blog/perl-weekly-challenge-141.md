@@ -143,7 +143,7 @@ Write a script to find `lowest 10 positive integers` having exactly `8 divisors`
 ## TASK #2 › Like Numbers {#TASK2}
 ##### **Submitted by:** [Mohammad S Anwar](http://www.manwar.org/)
 ***
-i
+
 You are given positive integers, `$m` and `$n`.
 
 Write a script to find total count of integers created using the digits of `$m` which is also divisible by `$n`.
