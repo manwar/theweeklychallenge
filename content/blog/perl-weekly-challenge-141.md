@@ -47,7 +47,7 @@ Enjoy the cold weather but stay safe.
 ***
 
 #### 1. [Add the Table (or not) with Raku](https://raku-musings.com/add-table.html) by Arne Sommer.
-#### 2. [Table it? Yes or No?: The Weekly Challenge #140](https://jacoby.github.io/2021/11/22/table-it-yes-or-no-the-weekly-challenge-140.html") by Dave Jacoby
+#### 2. [Table it? Yes or No?: The Weekly Challenge #140](https://jacoby.github.io/2021/11/22/table-it-yes-or-no-the-weekly-challenge-140.html) by Dave Jacoby
 #### 3. [Perl Weekly Challenge 140: Binary and Tabular](https://blog.firedrake.org/archive/2021/11/Perl_Weekly_Challenge_140__Binary_and_Tabular.html) by Roger Bell_West.
 
 <br>
