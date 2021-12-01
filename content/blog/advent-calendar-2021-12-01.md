@@ -15,13 +15,17 @@ The gift is presented by `Abigail`. Today he is talking about his solution to [*
 
 ***
 
-### Palindrome Number
+<br>
+
+## Task #1: Palindrome Number
 
 You are given a number $N.
 
 Write a script to figure out if the given number is a palindrome. Print 1 if true otherwise 0.
 
 ***
+
+<br>
 
 ### Overview
 
