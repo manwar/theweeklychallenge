@@ -202,41 +202,49 @@
                 <div style="text-align: justify" class="post-content">
                     <p><a href="/blog/advent-calendar-2021"><strong>Advent Calendar 2021</strong></a></p>
 <hr>
-<p>The gift is presented by <a href="/blog/meet-the-champion-029"><strong>Dave Jacoby</strong></a>. Today he is talking about his solution to <a href="/blog/perl-weekly-challenge-096"><strong>&ldquo;The Weekly Challenge - 096&rdquo;</strong></a>. This is re-produced for <strong>Advent Calendar 2021</strong> from the original <a href="https://jacoby.github.io/2021/01/19/going-the-distance-perl-weekly-challenge-96.html"><strong>post</strong></a> by <strong>Dave Jacoby</strong>.</p>
+<p>The gift is presented by <a href="/blog/meet-the-champion-029"><strong>Dave Jacoby</strong></a>. Today he is talking about his solution to <a href="/blog/perl-weekly-challenge-096"><strong>&ldquo;The Weekly Challenge - 096&rdquo;</strong></a>. This is re-produced for <strong>Advent Calendar 2021</strong> from the original <a href="https://jacoby.github.io/2021/01/19/going-the-distance-perl-weekly-challenge-96.html"><strong>post</strong></a> by <code>Dave Jacoby</code>.</p>
 <hr>
 <br>
 <h2 id="task-2-edit-distance">Task #2: Edit Distance</h2>
-<p>Write a script to find out the minimum operations required to convert $S1 into $S2. The operations can be insert, remove or replace a character.</p>
+<p>Write a script to find out the minimum operations required to convert <code>$S1</code> into <code>$S2</code>. The operations can be insert, remove or replace a character.</p>
 <hr>
 <br>
-<p>This is an easy challenge to go halfway on. If we simply want the number of changes it would take, that’s <a href="https://en.wikipedia.org/wiki/Levenshtein_distance"><strong>Levenshtein Distance</strong></a>. We even have <a href="https://metacpan.org/pod/Text::Levenshtein">** Text::Levenshtein**</a> in CPAN if you don’t want to go to the trouble of copying it from Wikipedia or the like.</p>
+<p>This is an easy challenge to go halfway on. If we simply want the number of changes it would take, that’s <a href="https://en.wikipedia.org/wiki/Levenshtein_distance"><strong>Levenshtein Distance</strong></a>. We even have <a href="https://metacpan.org/pod/Text::Levenshtein"><strong>Text::Levenshtein</strong></a> in CPAN if you don’t want to go to the trouble of copying it from Wikipedia or the like.</p>
 <p>But <strong>no</strong>, we can’t just leave it at that, because the examples show <strong>which</strong> changes are made! This forced me to <code>read and understand(!)</code> what’s going on with Levenshtein Distance. I mean, <code>really!?!?</code></p>
 <p>So, let’s take a much simpler example than those given in the challenge. <code>test</code> to <code>text</code>. We first create an empty 2-dimensional array, with the size of each axis equalling the length of each of the words, plus 1. We start here:</p>
+<br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">     t e s t
   [<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>]
 t [<span style="color:#ae81ff">1</span>, , , , ]
 e [<span style="color:#ae81ff">2</span>, , , , ]
 x [<span style="color:#ae81ff">3</span>, , , , ]
 t [<span style="color:#ae81ff">4</span>, , , , ]
-</code></pre></div><p>We start at <code>[1,1]</code>, where we check if the first letter of <code>test</code> is the same as the first letter of <code>text</code>, which it is, and so, the value in <code>[1,1]</code> is the same as in <code>[0,0]</code>, which is zero.</p>
+</code></pre></div><br>
+<p>We start at <code>[1,1]</code>, where we check if the first letter of <code>test</code> is the same as the first letter of <code>text</code>, which it is, and so, the value in <code>[1,1]</code> is the same as in <code>[0,0]</code>, which is zero.</p>
+<br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">     t e s t
   [<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>]
 t [<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>, , , ]
 e [<span style="color:#ae81ff">2</span>, , , , ]
 x [<span style="color:#ae81ff">3</span>, , , , ]
 t [<span style="color:#ae81ff">4</span>, , , , ]
-</code></pre></div><p>So we step on to <code>[1,2]</code>, where we see if <code>e</code> in <code>test</code> is the same as <code>t</code> in <code>text</code>. Clearly, no. So we get the values of <code>[0,1],[0,2]</code> and <code>[1,1]</code>, which are <code>0, 1, 2</code>. We take the lowest, <code>0</code>, add <code>1</code> and set <code>[1,2]</code> to <code>1</code>.</p>
+</code></pre></div><br>
+<p>So we step on to <code>[1,2]</code>, where we see if <code>e</code> in <code>test</code> is the same as <code>t</code> in <code>text</code>. Clearly, no. So we get the values of <code>[0,1],[0,2]</code> and <code>[1,1]</code>, which are <code>0, 1, 2</code>. We take the lowest, <code>0</code>, add <code>1</code> and set <code>[1,2]</code> to <code>1</code>.</p>
 <p>We go again and again and we end up with.</p>
+<br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">     t e s t
   [<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>]
 t [<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>]
 e [<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>]
 x [<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>]
 t [<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>]
-</code></pre></div><p>And the last one we do, the last column of the last row, is exactly how many changes are necessary.</p>
+</code></pre></div><br>
+<p>And the last one we do, the last column of the last row, is exactly how many changes are necessary.</p>
 <p>So, to find out what moves are the right ones, we move backwards, from the last to the first <code>0</code> we find.</p>
-<h3 id="the-code">The Code</h3>
+<h2 id="the-code">The Code</h2>
+<br>
 <p>It’s a bit messy, and very first draft. I was just spitting out the operations as I see them, until I realized that they were coming out backwards. And again, <code>min</code> from <a href="https://metacpan.org/pod/List::Util"><strong>List::Util</strong></a> because it’s so useful.</p>
+<br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/env perl</span>
 
 <span style="color:#66d9ef">use</span> strict;
@@ -426,7 +434,9 @@ push @input, [<span style="color:#e6db74">qw{ test text }</span>];
     }
     <span style="color:#66d9ef">return</span> $d[@a][@b];
 }
-</code></pre></div><h3 id="output">Output</h3>
+</code></pre></div><br>
+<h2 id="output">Output</h2>
+<br>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    Input: S1: kitten
            S2: sitting
     Change Count:  <span style="color:#ae81ff">3</span>
@@ -459,7 +469,8 @@ push @input, [<span style="color:#e6db74">qw{ test text }</span>];
            S2: text
     Change Count:  <span style="color:#ae81ff">1</span>
         Operation <span style="color:#ae81ff">1</span>: replace <span style="color:#e6db74">&#39;s&#39;</span> with <span style="color:#e6db74">&#39;x&#39;</span>
-</code></pre></div><p>I think I’m least happy with the inconsistent hackiness with how I specify beginning and end, but eh. Getting to the solution, backtracking from the end of the array, required me to write an in-depth explanation of the problem to my user-group mailing list.</p>
+</code></pre></div><br>
+<p>I think I’m least happy with the inconsistent hackiness with how I specify beginning and end, but eh. Getting to the solution, backtracking from the end of the array, required me to write an in-depth explanation of the problem to my user-group mailing list.</p>
 <p>But I’m happy now, and I really loved this one.</p>
 <hr>
 <p>If you have any suggestion then please do share with us <a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a>.</p>

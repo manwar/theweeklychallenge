@@ -11,7 +11,7 @@ tags: ["Perl"]
 [**Advent Calendar 2021**](/blog/advent-calendar-2021)
 ***
 
-The gift is presented by `Abigail`. Today he is talking about his solution to [**"The Weekly Challenge - 095"**](/blog/perl-weekly-challenge-095). This is re-produced for **Advent Calendar 2021** from the original [**post**](https://programmingblog702692439.wordpress.com/2021/01/14/perl-weekly-challenge-95-part-1/) by **Abigail**.
+The gift is presented by `Abigail`. Today he is talking about his solution to [**"The Weekly Challenge - 095"**](/blog/perl-weekly-challenge-095). This is re-produced for **Advent Calendar 2021** from the original [**post**](https://programmingblog702692439.wordpress.com/2021/01/14/perl-weekly-challenge-95-part-1/) by `Abigail`.
 
 ***
 
@@ -19,9 +19,9 @@ The gift is presented by `Abigail`. Today he is talking about his solution to [*
 
 ## Task #1: Palindrome Number
 
-You are given a number $N.
+You are given a number `$N`.
 
-Write a script to figure out if the given number is a palindrome. Print 1 if true otherwise 0.
+Write a script to figure out if the given number is a palindrome. Print `1` if true otherwise `0`.
 
 ***
 
@@ -29,15 +29,15 @@ Write a script to figure out if the given number is a palindrome. Print 1 if tru
 
 ### Overview
 
-We could just use a one-liner (in Perl) $_ eq reverse $_, but there’s no fun in that. Instead, we’re upping the ante a little: we also want to check that we have a valid number.
+We could just use a one-liner (in Perl) `$_ eq reverse $_`, but there’s no fun in that. Instead, we’re upping the ante a little: we also want to check that we have a valid number.
 
-What kind of number can be palindromes? Unsigned integers can: 121 and 7337 are examples. Signed numbers like -645 or +2300 cannot — they start with a sign (either - or +), but they don’t end with one, so they are not a palindrome.
+What kind of number can be palindromes? Unsigned integers can: `121` and `7337` are examples. Signed numbers like `-645` or `+2300` cannot — they start with a sign (either `-` or `+`), but they don’t end with one, so they are not a palindrome.
 
-Unsigned [**decimal numbers**](https://en.wikipedia.org/wiki/Decimal) can be palindromes though, 1.1 and 70.07 are examples of that.
+Unsigned [**decimal numbers**](https://en.wikipedia.org/wiki/Decimal) can be palindromes though, `1.1` and `70.07` are examples of that.
 
-We also want to accept numbers written in digits from other scripts (assuming the programming language we are using has build in Unicode support). That is, we want to accept ๑๒๓๒๑ and ๑๒.๒๑ (we still assume an ASCII dot is used as decimal dot).
+We also want to accept numbers written in digits from other scripts (assuming the programming language we are using has build in Unicode support). That is, we want to accept `๑๒๓๒๑` and `๑๒.๒๑` (we still assume an ASCII dot is used as decimal dot).
 
-Ideally, we want to reject number like ๑௧๓௧๑ — although it is a palindrome, and the string consists of nothing but digits, it is mixing digits from different scripts. But not many languages have easy support for this.
+Ideally, we want to reject number like `๑௧๓௧๑` — although it is a palindrome, and the string consists of nothing but digits, it is mixing digits from different scripts. But not many languages have easy support for this.
 
 ### Solutions
 

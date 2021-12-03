@@ -11,7 +11,7 @@ tags: ["Perl"]
 [**Advent Calendar 2021**](/blog/advent-calendar-2021)
 ***
 
-The gift is presented by [**Dave Jacoby**](/blog/meet-the-champion-029). Today he is talking about his solution to [**"The Weekly Challenge - 096"**](/blog/perl-weekly-challenge-096). This is re-produced for **Advent Calendar 2021** from the original [**post**](https://jacoby.github.io/2021/01/19/going-the-distance-perl-weekly-challenge-96.html) by **Dave Jacoby**.
+The gift is presented by [**Dave Jacoby**](/blog/meet-the-champion-029). Today he is talking about his solution to [**"The Weekly Challenge - 096"**](/blog/perl-weekly-challenge-096). This is re-produced for **Advent Calendar 2021** from the original [**post**](https://jacoby.github.io/2021/01/19/going-the-distance-perl-weekly-challenge-96.html) by `Dave Jacoby`.
 
 ***
 
@@ -19,17 +19,19 @@ The gift is presented by [**Dave Jacoby**](/blog/meet-the-champion-029). Today h
 
 ## Task #2: Edit Distance
 
-Write a script to find out the minimum operations required to convert $S1 into $S2. The operations can be insert, remove or replace a character.
+Write a script to find out the minimum operations required to convert `$S1` into `$S2`. The operations can be insert, remove or replace a character.
 
 ***
 
 <br>
 
-This is an easy challenge to go halfway on. If we simply want the number of changes it would take, that’s [**Levenshtein Distance**](https://en.wikipedia.org/wiki/Levenshtein_distance). We even have [** Text::Levenshtein**](https://metacpan.org/pod/Text::Levenshtein) in CPAN if you don’t want to go to the trouble of copying it from Wikipedia or the like.
+This is an easy challenge to go halfway on. If we simply want the number of changes it would take, that’s [**Levenshtein Distance**](https://en.wikipedia.org/wiki/Levenshtein_distance). We even have [**Text::Levenshtein**](https://metacpan.org/pod/Text::Levenshtein) in CPAN if you don’t want to go to the trouble of copying it from Wikipedia or the like.
 
 But **no**, we can’t just leave it at that, because the examples show **which** changes are made! This forced me to `read and understand(!)` what’s going on with Levenshtein Distance. I mean, `really!?!?`
 
 So, let’s take a much simpler example than those given in the challenge. `test` to `text`. We first create an empty 2-dimensional array, with the size of each axis equalling the length of each of the words, plus 1. We start here:
+
+<br>
 
 ```perl
      t e s t
@@ -40,7 +42,11 @@ x [3, , , , ]
 t [4, , , , ]
 ```
 
+<br>
+
 We start at `[1,1]`, where we check if the first letter of `test` is the same as the first letter of `text`, which it is, and so, the value in `[1,1]` is the same as in `[0,0]`, which is zero.
+
+<br>
 
 ```perl
      t e s t
@@ -51,9 +57,13 @@ x [3, , , , ]
 t [4, , , , ]
 ```
 
+<br>
+
 So we step on to `[1,2]`, where we see if `e` in `test` is the same as `t` in `text`. Clearly, no. So we get the values of `[0,1],[0,2]` and `[1,1]`, which are `0, 1, 2`. We take the lowest, `0`, add `1` and set `[1,2]` to `1`.
 
 We go again and again and we end up with.
+
+<br>
 
 ```perl
      t e s t
@@ -64,13 +74,19 @@ x [3,2,1,1,2]
 t [4,3,2,2,1]
 ```
 
+<br>
+
 And the last one we do, the last column of the last row, is exactly how many changes are necessary.
 
 So, to find out what moves are the right ones, we move backwards, from the last to the first `0` we find.
 
-### The Code
+## The Code
+
+<br>
 
 It’s a bit messy, and very first draft. I was just spitting out the operations as I see them, until I realized that they were coming out backwards. And again, `min` from [**List::Util**](https://metacpan.org/pod/List::Util) because it’s so useful.
+
+<br>
 
 ```perl
 #!/usr/bin/env perl
@@ -264,7 +280,11 @@ sub levenshtein_distance {
 }
 ```
 
-### Output
+<br>
+
+## Output
+
+<br>
 
 ```perl
     Input: S1: kitten
@@ -300,6 +320,8 @@ sub levenshtein_distance {
     Change Count:  1
         Operation 1: replace 's' with 'x'
 ```
+
+<br>
 
 I think I’m least happy with the inconsistent hackiness with how I specify beginning and end, but eh. Getting to the solution, backtracking from the end of the array, required me to write an in-depth explanation of the problem to my user-group mailing list.
 

@@ -202,20 +202,20 @@
                 <div style="text-align: justify" class="post-content">
                     <p><a href="/blog/advent-calendar-2021"><strong>Advent Calendar 2021</strong></a></p>
 <hr>
-<p>The gift is presented by <code>Abigail</code>. Today he is talking about his solution to <a href="/blog/perl-weekly-challenge-095"><strong>&ldquo;The Weekly Challenge - 095&rdquo;</strong></a>. This is re-produced for <strong>Advent Calendar 2021</strong> from the original <a href="https://programmingblog702692439.wordpress.com/2021/01/14/perl-weekly-challenge-95-part-1/"><strong>post</strong></a> by <strong>Abigail</strong>.</p>
+<p>The gift is presented by <code>Abigail</code>. Today he is talking about his solution to <a href="/blog/perl-weekly-challenge-095"><strong>&ldquo;The Weekly Challenge - 095&rdquo;</strong></a>. This is re-produced for <strong>Advent Calendar 2021</strong> from the original <a href="https://programmingblog702692439.wordpress.com/2021/01/14/perl-weekly-challenge-95-part-1/"><strong>post</strong></a> by <code>Abigail</code>.</p>
 <hr>
 <br>
 <h2 id="task-1-palindrome-number">Task #1: Palindrome Number</h2>
-<p>You are given a number $N.</p>
-<p>Write a script to figure out if the given number is a palindrome. Print 1 if true otherwise 0.</p>
+<p>You are given a number <code>$N</code>.</p>
+<p>Write a script to figure out if the given number is a palindrome. Print <code>1</code> if true otherwise <code>0</code>.</p>
 <hr>
 <br>
 <h3 id="overview">Overview</h3>
-<p>We could just use a one-liner (in Perl) $_ eq reverse $_, but there’s no fun in that. Instead, we’re upping the ante a little: we also want to check that we have a valid number.</p>
-<p>What kind of number can be palindromes? Unsigned integers can: 121 and 7337 are examples. Signed numbers like -645 or +2300 cannot — they start with a sign (either - or +), but they don’t end with one, so they are not a palindrome.</p>
-<p>Unsigned <a href="https://en.wikipedia.org/wiki/Decimal"><strong>decimal numbers</strong></a> can be palindromes though, 1.1 and 70.07 are examples of that.</p>
-<p>We also want to accept numbers written in digits from other scripts (assuming the programming language we are using has build in Unicode support). That is, we want to accept ๑๒๓๒๑ and ๑๒.๒๑ (we still assume an ASCII dot is used as decimal dot).</p>
-<p>Ideally, we want to reject number like ๑௧๓௧๑ — although it is a palindrome, and the string consists of nothing but digits, it is mixing digits from different scripts. But not many languages have easy support for this.</p>
+<p>We could just use a one-liner (in Perl) <code>$_ eq reverse $_</code>, but there’s no fun in that. Instead, we’re upping the ante a little: we also want to check that we have a valid number.</p>
+<p>What kind of number can be palindromes? Unsigned integers can: <code>121</code> and <code>7337</code> are examples. Signed numbers like <code>-645</code> or <code>+2300</code> cannot — they start with a sign (either <code>-</code> or <code>+</code>), but they don’t end with one, so they are not a palindrome.</p>
+<p>Unsigned <a href="https://en.wikipedia.org/wiki/Decimal"><strong>decimal numbers</strong></a> can be palindromes though, <code>1.1</code> and <code>70.07</code> are examples of that.</p>
+<p>We also want to accept numbers written in digits from other scripts (assuming the programming language we are using has build in Unicode support). That is, we want to accept <code>๑๒๓๒๑</code> and <code>๑๒.๒๑</code> (we still assume an ASCII dot is used as decimal dot).</p>
+<p>Ideally, we want to reject number like <code>๑௧๓௧๑</code> — although it is a palindrome, and the string consists of nothing but digits, it is mixing digits from different scripts. But not many languages have easy support for this.</p>
 <h3 id="solutions">Solutions</h3>
 <p>For our Perl solution, we construct a regular expression which recognizes palindromic numbers, where all the digits are in the same script.</p>
 <p>We can define a numeric palindrome recursively:</p>
