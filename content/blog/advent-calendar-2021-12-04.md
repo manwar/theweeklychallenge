@@ -17,7 +17,7 @@ The gift is presented by [**Flavio Poletti**](/blog/meet-the-champion-2021-07). 
 
 <br>
 
-## Task #1: Triangle Sum
+## Task #2: Triangle Sum
 
 You are given triangle array.
 
