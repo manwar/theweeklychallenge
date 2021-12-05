@@ -23,7 +23,7 @@ You are given an array @A of items (integers say, but they can be anything).
 
 Your task is to pack that array into an MxN matrix spirally counterclockwise, as tightly as possible.
 
-> ‘Tightly’ means the absolute value |M-N| of the difference has to be as small as possible.
+> 'Tightly' means the absolute value |M-N| of the difference has to be as small as possible.
 
 ***
 
@@ -141,16 +141,16 @@ main(@ARGV);
 <br>
 
 ```perl
-» ./ch-1.pl 1 2 3 4 5 6
+$ ./ch-1.pl 1 2 3 4 5 6
 6 5 4
 1 2 3
 
-» ./ch-1.pl 1 2 3 4 5 6 7 8 9 10 11 12
+$ ./ch-1.pl 1 2 3 4 5 6 7 8 9 10 11 12
  9  8  7  6
 10 11 12  5
  1  2  3  4
 
-» ./ch-1.pl the quick brown fox jumps over the lazy dog
+$ ./ch-1.pl the quick brown fox jumps over the lazy dog
 the   over  jumps
 lazy  dog   fox
 the   quick brown
