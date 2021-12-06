@@ -34,6 +34,8 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 142](/blog/perl-weekly-challenge-142) {#142}
 <br>
 
+##### **Luca Ferrari** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-142/luca-ferrari/postgresql/ch-1.sql) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-142/luca-ferrari/postgresql/ch-2.sql) in **PostgreSQL**.
+
 ##### **Roger Bell_West** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-142/roger-bell-west/postscript/ch-1.ps) in **Postscript**.
 
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-142/roger-bell-west/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-142/roger-bell-west/python/ch-2.py) in **Python**.
