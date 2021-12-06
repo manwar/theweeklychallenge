@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="The Weekly Challenge - Perl & Raku"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="You do not have to be an expert."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Colin Crain › Perl Weekly Review #137">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Colin Crain › Perl Weekly Review #137</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navgation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Colin Crain › Perl Weekly Review #137</h2>
+                    <div class="portfolio-meta">
+                        <span>Monday, Dec 6, 2021</span>|
+                        <span> Tags:
+                            perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/p5-review-challenge-137.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <p>( <em>&hellip;continues from <a href="/blog/review-challenge-136/">previous week</a>.</em> )</p>
+<p>Welcome to the Perl review pages for <strong>Week 137</strong> of The Weekly Challenge! Here we will take the time to discuss the  submissions offered up by the team, factor out some common methodologies that came up in those solutions, and highlight some of the unique approaches and unusual code created.</p>
+<hr>
+<h3 id="why-do-we-do-these-challenges">Why do we do these challenges?</h3>
+<p>I suppose any reasonable answers to that question would be as wide ranging and varied as the people who choose to join the team. One thing, though, is clear: it&rsquo;s not a competition, and there are no judges, even if there is a &ldquo;prize&rdquo; of sorts. About that &ndash; I think of it more as an honorarium periodically awarded to acknowledge the efforts we make towards this strange goal. So there&rsquo;s no determination to find the <em>fastest</em>, or the <em>shortest</em>, or even, in some abstract way, the <em>best</em> way to go about things, although I&rsquo;m certain the participants have their own aspirations and personal drives. As Perl is such a wonderfully expressive language, this provides quite a bit of fodder to the core idea of TMTOWTDI, producing a gamut of varied techniques and solutions.</p>
+<p>Even the tasks themselves are often open to a certain amount of discretionary interpretation. What we end up with is a situation where each participant is producing something in the manner they find the most interesting or satisfying. Some team members focus on carefully crafted complete applications, thoroughly vetting input data and handling every use case they can think up. Others choose to apply themselves to the logic of the underlying puzzle and making it work in the most elegant way they can. Some eschew modules they would ordinarily reach for, others embrace them, bringing to light wheels perhaps invented years ago that happen to exactly solve the problem in front of them today.</p>
+<p>I&rsquo;ve been considering this question for some time and have found one binding commonality between all of us out solving these challenges each week, in that however we normally live our lives, the task in front of us more than likely has nothing to do with any of that. And I think this has great value. We all do what we do, in the real world, and hopefully we do it well. The Weekly Challenge provides us with an opportunity to do something germane to that life yet distinctly different; if we only do the things we already know how to do then we will only do the same things over and over. This is where the &ldquo;challenge&rdquo; aspect comes into play.</p>
+<p>So we can consider The Weekly Challenge as providing a problem space outside of our comfort zone, as far out from that comfort as we wish to take things. From those reaches we can gather and learn things, pick and choose and bring what we want back into our lives. Personally, I think that&rsquo;s its greatest value of all.</p>
+<hr>
+<p>Every week there is an enormous global collective effort made by the team, analyzing and creatively coding the submissions, and that effort deserves credit due.</p>
+<p>And that&rsquo;s why I&rsquo;m here, to try and figure out how to do that.</p>
+<p>Let&rsquo;s get on with it then, have a look and see what we find.</p>
+<hr>
+<p><strong><big>For context</big></strong>  before we begin, you may wish to revisit either of the pages for the <a href="/blog/perl-weekly-challenge-137/"><strong>original tasks</strong></a> or the summary <a href="/blog/recap-challenge-137/"><strong>recap</strong></a> of the challenge. But don&rsquo;t worry, the challenges themselves are repeated and presented below as we progress from task by task. Oh, and one more thing before we get started:</p>
+<h3 id="getting-in-touch-with-us">Getting in Touch with Us</h3>
+<p><a href="mailto:pwc.perfectwave@gmail.com"><img src="/images/blog/Email.svg" height="50" width="50"> Email</a> › Please feel free to email me (Colin) with any feedback, notes, clarifications or whatnot about this review.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge"><img src="/images/blog/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request to us for any issues you may find with this page.</p>
+<p><a href="https://twitter.com/perlwchallenge"><img src="/images/blog/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!</p>
+<p>I&rsquo;m always curious as to what the people think of these efforts. Everyone here at the PWC would like to hear any feedback you&rsquo;d like to give.</p>
+<p><strong>So finally, without further ado&hellip;</strong></p>
+<hr>
+<h2 id="---nbsp--nbsp--nbsp---task-1pwc137task1-------nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---task-2pwc137task2---nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---blogspwc137blogs----nbsp--nbsp--nbsp---">•             <a href="#PWC137TASK1">Task 1</a>                 •             <a href="#PWC137TASK2">Task 2</a>             	•             <a href="#PWC137BLOGS">BLOGS</a>              	•</h2>
+<hr>
+<h1 id="PWC137TASK1">TASK 1</h1>
+<h1 id="long-year">Long Year</h1>
+<p><em>Submitted by: Mohammad S Anwar</em></p>
+<p>Write a script to find all the years between 1900 and 2100 which is a Long Year.</p>
+<p>A year is Long if it has 53 weeks.</p>
+<p><strong>Expected Output</strong></p>
+<pre><code>    1903, 1908, 1914, 1920, 1925,
+    1931, 1936, 1942, 1948, 1953,
+    1959, 1964, 1970, 1976, 1981,
+    1987, 1992, 1998, 2004, 2009,
+    2015, 2020, 2026, 2032, 2037,
+    2043, 2048, 2054, 2060, 2065,
+    2071, 2076, 2082, 2088, 2093,
+    2099
+</code></pre><h2 id="about-the-solutions">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/abigail/perl/ch-1a.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/arne-sommer/perl/ch-1.pl"><strong>Arne Sommer</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/bob-lied/perl/ch-1.pl"><strong>Bob Lied</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/jaldhar-h-vyas/perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/lubos-kolouch/perl/ch-1.pl"><strong>Lubos Kolouch</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/mattneleigh/perl/ch-1.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/olivier-delouya/perl/ch-1.pl"><strong>Olivier Delouya</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/paulo-custodio/perl/ch-1.pl"><strong>Paulo Custodio</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/pete-houston/perl/ch-1.pl"><strong>Pete Houston</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/robert-dicicco/perl/ch-1.pl"><strong>Robert DiCicco</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/steven-wilson/perl/ch-1.pl"><strong>Steven Wilson</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/wanderdoc/perl/ch-1.pl"><strong>Wanderdoc</strong></a></p>
+<p>Date and time manipulations are notoriously complicated. The crushing juggernaut of geopolitical and social problems in the real-world has inevitably compromised the integrity of every clever consistant solution our mere human minds have ever devised to keep everything from happening at once. Such has it always been, and to this day I don&rsquo;t completely understand how astrophysicists deal with leap-seconds in their atomic timeschemes. Like many real-world phenomena, it seems easy until you realize how much you&rsquo;re missing, and once you dive down that particular rabbit-hole everything is suddenly hairy and blurry at the same time and nothing makes sense anymore. How long <em>is</em> the coastline of Britain, anyway?</p>
+<p>There were 28 submissions for the first task this past week. Most methods used one of a number of robust modules available to assist in the calculations; after all, that&rsquo;s what CPAN was designed to provide — a way for talented, tenacious and persistent guides to deliver us a path out of the badlands (see also: CSV). That said, a few intrepid, some might say reckless, souls went at it alone to solve the math. We should hold a moment of silence for those brave adventurers.</p>
+<p>Done? Good? Well let&rsquo;s get on with it then.</p>
+<h2 id="roll-the-dice-take-your-chances-a-dozen-ways-to-win">ROLL the DICE, TAKE your CHANCES, a DOZEN ways to WIN</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/jaldhar-h-vyas/perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/arne-sommer/perl/ch-1.pl"><strong>Arne Sommer</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/bob-lied/perl/ch-1.pl"><strong>Bob Lied</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>As we said there were a number of modules represented, principally the excellent <code>DateTime</code>, but we also had guest cameos from several others, providing various levels of assistance. Left unexplained but required for the challenge to even make logical sense is that we are discussing ISO weeks, a specific scheme of assigning a single whole week to every date in a year, fitted to the individual year-length pattern  by the occasional assignment of a whole 53rd week to a year, approximately once every 7 years.</p>
+<p>Or so.</p>
+<p>Very much &ldquo;or so&rdquo; as leap years confound any simple calculation. Resolving this confusion is what this challenge is about.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/jaldhar-h-vyas/perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/jaldhar-h-vyas/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://www.braincells.com/perl/2021/11/perl_weekly_challenge_week_137.html">Perl Weekly Challenge: Week 137</a></p>
+<p>Jaldhar will start the ball rolling with a solution culled from the Wikipedia article, which provides a succinct formula for calculating the day of the week of the 31st of December of a given year. From there we can extrapolate directly the number of ISO weeks, defined by the day of the week of January 4 and counting weeks forward, leading to a very compact solution. The formula is implemented in the <code>p()</code> subroutine:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">p</span> {
+        <span style="color:#66d9ef">my</span> ($year) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">return</span> (($year <span style="color:#f92672">+</span> int($year <span style="color:#e6db74">/ 4) - int($year /</span> <span style="color:#ae81ff">100</span>) <span style="color:#f92672">+</span>  int($year <span style="color:#f92672">/</span> <span style="color:#ae81ff">400</span>)) % 7);
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">isLongYear</span> {
+        <span style="color:#66d9ef">my</span> ($year) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">return</span> (p($year) <span style="color:#f92672">==</span> <span style="color:#ae81ff">4</span> <span style="color:#f92672">||</span> p($year <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">3</span>);
+    }
+
+    say join <span style="color:#e6db74">q{, }</span>, grep { isLongYear($_); } (<span style="color:#ae81ff">1900</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">2100</span>);
+</code></pre></div><p>Some of you might notice something suspiciously similar to the leap-year equation buried within this formula, which is a good observation. We&rsquo;ll revisit this later.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a></p>
+<p>Niels, wise soul that he is, does not play around with date manipulation code. He may be known for a cavalier attitude towards petrol and matches, but he clearly recognizes that with date manipulation there are way too many ways to get burned.</p>
+<p>Instead he brings us the nice, safe, and notably fireproof <code>Date::Calc</code> module, which provides a prepared <code>Week_of_Year()</code> function waiting to be parametrized. From there we need only loop through the individual years and request the data.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Date::Calc <span style="color:#e6db74">qw(Week_of_Year)</span>;
+
+    <span style="color:#66d9ef">my</span> @w53years;
+    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $y (<span style="color:#ae81ff">1900</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">2099</span>) {
+      push(@w53years,$y) <span style="color:#66d9ef">if</span> Week_of_Year($y,<span style="color:#ae81ff">12</span>,<span style="color:#ae81ff">31</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">53</span>;
+    }
+
+    printf <span style="color:#e6db74">&#34;Years: %s\n&#34;</span>, join(<span style="color:#e6db74">&#39;, &#39;</span>, @w53years);
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/athanasius/raku/ch-1.raku">Raku</a></p>
+<p>The monk also abstains, looking to a higher power for all their calendrical needs, in this case the <code>DateTime</code> module. For every year in the block we are examining, a new <code>DateTime</code> object is created, set to January 1 of <em>the next year</em>. This fixes the position of the <em>last</em> day of the year we&rsquo;re looking at. From there we can quiz the object as to what day of the week we are on. If that day is Friday we will always have a long year, and if the day is Saturday we will have 53 weeks only if the year is also a leap year.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $year ($START <span style="color:#f92672">..</span> $END)
+    {
+        <span style="color:#66d9ef">my</span> $jan1 <span style="color:#f92672">=</span> DateTime<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>( year <span style="color:#f92672">=&gt;</span> $year <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, month <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>, day <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> );
+        <span style="color:#66d9ef">my</span> $dow  <span style="color:#f92672">=</span> $jan1<span style="color:#f92672">-&gt;</span>day_of_week;
+
+        <span style="color:#66d9ef">if</span>    ($dow <span style="color:#f92672">==</span> $FRIDAY)
+        {
+            push @long_years, $year;
+        }
+        <span style="color:#66d9ef">elsif</span> ($dow <span style="color:#f92672">==</span> $SATURDAY)
+        {
+            <span style="color:#66d9ef">my</span> $dt <span style="color:#f92672">=</span> DateTime<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>( year <span style="color:#f92672">=&gt;</span> $year );
+
+            push @long_years, $year <span style="color:#66d9ef">if</span> $dt<span style="color:#f92672">-&gt;</span>is_leap_year;
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://dev.to/simongreennet/weekly-challenge-137-3jon">Weekly Challenge 137</a></p>
+<p>Simon primes the pump by declaring that January 1, 1900 was a Monday, and further that if a year starts on Thursday, or Wednesday in the case of a leap year, then it&rsquo;s going to be a long year.</p>
+<p>From there he starts incrementing yearly, pushing the day up 1 per year, 2 in the case of a leap year. Run the whole thing modulo 7 and we have a quasi-periodic cycle. This is of course extremely dangerous, and I am concerned for his safety. But it&rsquo;s only 200m years, right? What&rsquo;s the worst thing that could possibly happen?</p>
+<p>It&rsquo;s a shame about Simon, you know. I liked him. His code was clean, and well commented. I feel quite helpless, and can only wish him a safety and luck out beyond the wall. He&rsquo;ll need it.</p>
+<blockquote>
+<p># See you next year</p>
+</blockquote>
+<p>I hope so Simon. We all do.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">while</span> ( $year <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">2100</span> ) {
+        <span style="color:#66d9ef">my</span> $leap <span style="color:#f92672">=</span> _is_leap_year($year);
+
+        <span style="color:#75715e"># It&#39;s a long year if January 1st was a Thursday or Wednesday if</span>
+        <span style="color:#75715e">#   a leap year</span>
+        <span style="color:#66d9ef">if</span> ( $day_of_week <span style="color:#f92672">==</span> <span style="color:#ae81ff">4</span> <span style="color:#f92672">or</span> ( $leap <span style="color:#f92672">and</span> $day_of_week <span style="color:#f92672">==</span> <span style="color:#ae81ff">3</span> ) ) {
+            push @long_years, $year;
+        }
+
+        <span style="color:#75715e"># See you next year</span>
+        $year<span style="color:#f92672">++</span>;
+        $day_of_week <span style="color:#f92672">=</span> ( $day_of_week <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> $leap ) % 7;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a></p>
+<p>The beauty of using a carefully calibrated piece of software designed with a tightly-focused scope is that it often makes those things it does extremely easy.</p>
+<p>Jorg has condensed the action of querying <code>DateTime</code> objects for the week of the last day of the year into a single straightforward line. No, I don&rsquo;t believe he&rsquo;s missed anything. One could perhaps argue that the 28th <em>defines</em> whether a year has 53 weeks, being the first day of the &ldquo;extra&rdquo; week. But that&rsquo;s just semantics; the last day will only be considered in the 53rd week if the first day of that week already is, which will only happen at the proper confluence of weekdays to create a leap week in the first place. By rights I suppose any of the days the 28th, 29th, 30th or 31st will do, as they will all be in the long week if one is present.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> DateTime;
+
+    <span style="color:#75715e"># Maybe I&#39;m missing something: The year&#39;s last day&#39;s week number is the</span>
+    <span style="color:#75715e"># year&#39;s week count.</span>
+    say join <span style="color:#e6db74">&#39; &#39;</span>, grep DateTime<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(year <span style="color:#f92672">=&gt;</span> $_, month <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">12</span>, day <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">31</span>,
+        time_zone <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;floating&#39;</span>)<span style="color:#f92672">-&gt;</span>week_number <span style="color:#f92672">==</span> <span style="color:#ae81ff">53</span>, <span style="color:#ae81ff">1900</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">2100</span>;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://jacoby.github.io/2021/11/01/2020-was-a-long-year-the-weekly-challenge-137.html">2020 Was A LONG Year: The Weekly Challenge #137 | Committed to Memory</a></p>
+<p>Dave has renown for quoting Rolsky, the author of <code>DateTime</code>, to not write your own date and time manipulation code. As such he follows this wisdom and, perhaps predictably, reaches to that module to help him solve his puzzle. He sets an object for the  31st of December of each year and queries its day of the week.</p>
+<p>But&hellip; he also provides convincing analysis that he <em>really</em> only needs to know the day of January 1st and whether the year is a leap year to know whether it will contain a 53rd week. Which is true, on the face of it. Then again, I have been led into a false sense of complicity before. But then someone forgets to mention that timezones are involved, and Thailand is across the international date line, and havoc ensues, appointments are missed, face is not saved, deals fail and governments fall.</p>
+<p>It&rsquo;s a slippery slope.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $year ( <span style="color:#ae81ff">1900</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">2100</span> ) {
+        <span style="color:#66d9ef">my</span> $dt <span style="color:#f92672">=</span> DateTime<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(
+            month <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">12</span>,
+            day   <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">31</span>,
+            year  <span style="color:#f92672">=&gt;</span> $year,
+        );
+        <span style="color:#66d9ef">my</span> ( undef, $week_of_year ) <span style="color:#f92672">=</span> $dt<span style="color:#f92672">-&gt;</span>week;
+        push @years, $year <span style="color:#66d9ef">if</span> $week_of_year <span style="color:#f92672">==</span> <span style="color:#ae81ff">53</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/polettix/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.polettix.it/ETOOBUSY/2021/11/03/pwc137-long-year/">PWC137 - Long Year - ETOOBUSY</a></p>
+<p>Flavio imports the <code>Time::Local</code> module to give him <code>timegm()</code>, which given a year, month and day will return a UNIX epoch time in seconds. This can then can be converted back using Perl&rsquo;s <code>gmtime()</code>, returning the familiar 7-element structure containing the day of the week as an element. It&rsquo;s this day of the week that we need.</p>
+<p>From this he extrapolates whether a year is long by the day of the first of January, which is to say if it&rsquo;s any Thursday or perhaps also a Wednesday in the case of a leap year.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Time::Local <span style="color:#e6db74">&#39;timegm&#39;</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">dow</span> ($y, $m, $d) { (gmtime(timegm(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, $d, <span style="color:#f92672">--</span>$m, $y)))[<span style="color:#ae81ff">6</span>] }
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_long_year</span> ($y) {
+       <span style="color:#66d9ef">my</span> $dow <span style="color:#f92672">=</span> dow($y, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>);
+       <span style="color:#66d9ef">return</span> $dow <span style="color:#f92672">==</span> <span style="color:#ae81ff">4</span> <span style="color:#f92672">||</span> $dow <span style="color:#f92672">==</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">&amp;&amp;</span> dow($y, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">31</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">4</span>;
+    } <span style="color:#75715e">## end sub is_long_year ($y)</span>
+
+    <span style="color:#66d9ef">my</span> @longs <span style="color:#f92672">=</span> grep { is_long_year($_) } (<span style="color:#ae81ff">1900</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">2100</span>);
+    <span style="color:#66d9ef">while</span> (@longs <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
+       <span style="color:#66d9ef">my</span> @slice <span style="color:#f92672">=</span> splice @longs, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">5</span>;
+       say join <span style="color:#e6db74">&#39;, &#39;</span>, @slice, (@slice <span style="color:#f92672">==</span> <span style="color:#ae81ff">5</span> ? <span style="color:#e6db74">&#39;&#39;</span> : ());
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/arne-sommer/perl/ch-1.pl"><strong>Arne Sommer</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/arne-sommer/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://raku-musings.com/lychrel-longing.html">Lychrel Longing with Raku and Perl</a></p>
+<p>Arne uses <code>DateTime</code> to build a compact loop, creating a new object for the last day of every year, and then querying that object for the week number. Done this way, like Jorg above, everything is quite compact.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> DateTime;
+
+    <span style="color:#66d9ef">my</span> $lower <span style="color:#f92672">=</span> <span style="color:#ae81ff">1900</span>;
+    <span style="color:#66d9ef">my</span> $upper <span style="color:#f92672">=</span> <span style="color:#ae81ff">2100</span>;
+
+    <span style="color:#66d9ef">my</span> @long_years;
+
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $year ($lower <span style="color:#f92672">..</span> $upper)
+    {
+      push(@long_years, $year) <span style="color:#66d9ef">if</span> DateTime<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(year <span style="color:#f92672">=&gt;</span> $year, month <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">12</span>, day <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">31</span>)<span style="color:#f92672">-&gt;</span>week_number() <span style="color:#f92672">==</span> <span style="color:#ae81ff">53</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/bob-lied/perl/ch-1.pl"><strong>Bob Lied</strong></a></p>
+<p>It&rsquo;s interesting to note that because the ISO labeling scheme we&rsquo;re referencing here assigns each date in a year to some single whole week unit, that by quirk of the system that week will sometimes be the last week of the previous year or the first week of the next. This is the price of avoiding partial weeks, but it in some select cases makes the week returned, an ordinal integer from 1 to 52, or possibly 53, indistinct on its own. At the extremities of this scale, without contextual information, we cannot be sure of the year. For example, without a date to fix us in either January or December, we cannot know whether week 1 is for this year or the next. To address this, the <code>DateTime</code> function <code>week()</code> returns a two-element list of year and week number; the <code>week_of_year()</code> function is in fact only a wrapper for this, returning the second element from this list.</p>
+<p>Here Bob uses the <code>week()</code> form of the function.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> DateTime;
+
+    <span style="color:#66d9ef">my</span> @longYearList;
+
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $year ( <span style="color:#ae81ff">1900</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">2100</span> )
+    {
+        <span style="color:#66d9ef">my</span> $dt <span style="color:#f92672">=</span> DateTime<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(year <span style="color:#f92672">=&gt;</span> $year, month <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">12</span>, day <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">31</span>);
+        <span style="color:#66d9ef">my</span> ($year, $weeknum) <span style="color:#f92672">=</span> $dt<span style="color:#f92672">-&gt;</span>week();
+
+        push @longYearList, $year <span style="color:#66d9ef">if</span> $weeknum <span style="color:#f92672">==</span> <span style="color:#ae81ff">53</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/colin-crain/raku/ch-1.raku">Raku</a></p>
+<p>That, you may have noticed, was a whole lot of <code>DateTime</code>.</p>
+<p>Sometimes I get bored and do things in unusual ways just because. Or maybe I just think differently; I&rsquo;ve never been able to quite figure that one out. In any case for my own solution I bring to you a different way to approach the problem while still using <code>DateTime</code>. Rather than make 200 <code>DateTime</code> objects, instead I make only 1 and do some computation with it. Or perhaps to state it better, ask it to do some computation for me.</p>
+<p>In addition to the <code>DateTime</code> object we&rsquo;ve seen quite a bit of already, there also exists a parallel concept of a <code>DateTime::Duration</code> to play alongside it. This isn&rsquo;t a specific instant, or block of time — as, say, as date — but rather a span of time that can be added or subtracted from a <code>DateTime</code> object to alter it. So after setting up a date for December 28th (the first day of any theoretical 53rd week), 1900, instead of redeclaring the parameters directly we instead add a year and check the week number again. The module takes care of all the hinky bits, such as what is and what is not a leap year.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> DateTime;
+    <span style="color:#66d9ef">use</span> DateTime::Duration;
+
+    <span style="color:#66d9ef">my</span> $dt  <span style="color:#f92672">=</span> DateTime<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span> (
+                    year    <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1900</span> ,
+                    month   <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">12</span>  ,
+                    day     <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">28</span>   ) ;
+
+    <span style="color:#66d9ef">my</span> $dur <span style="color:#f92672">=</span> DateTime::Duration<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span> (
+                    years   <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>    );
+
+    <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">200</span>) {
+        <span style="color:#66d9ef">if</span> ($dt<span style="color:#f92672">-&gt;</span>week_number <span style="color:#f92672">==</span> <span style="color:#ae81ff">53</span>) {
+            push @years, $dt<span style="color:#f92672">-&gt;</span>year;
+        }
+        $dt<span style="color:#f92672">-&gt;</span>add( $dur );
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a></p>
+<p>Getting away from the ubiquitousness of <code>DateTime</code>, Choroba brings us another module option to consider, <code>Time::Piece</code>, which once imported quietly applies an object framework over the familiar Perl date and time functions. These built-ins, <code>localtime</code> and <code>gmtime</code>, are overridden and will return <code>Time::Piece</code> objects, and a host of other functions are made available to any objects created. It&rsquo;s noteworthy that to start using this object interface you don&rsquo;t, strictly speaking, have to create new objects, as sometimes they are quietly and seamlessly created for you.</p>
+<p>Here a new object is generated by the implementation of <code>strftime()</code> provided, and we can decide whether a year is long by the week number of December 31.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Time::Piece;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">long_year</span> {
+        <span style="color:#66d9ef">my</span> ($from, $to) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> @long;
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $year ($from <span style="color:#f92672">..</span> $to) {
+            <span style="color:#66d9ef">my</span> $tp <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Time::Piece&#39;</span><span style="color:#f92672">-&gt;</span>strptime(<span style="color:#e6db74">&#34;$year-12-31&#34;</span>, <span style="color:#e6db74">&#39;%Y-%m-%d&#39;</span>);
+            push @long, $year <span style="color:#66d9ef">if</span> $tp<span style="color:#f92672">-&gt;</span>week <span style="color:#f92672">==</span> <span style="color:#ae81ff">53</span>;
+        }
+        <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@long
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://wlmb.github.io/2021/11/02/PWC137/">Perl Weekly Challenge 137 – W. Luis Mochán</a></p>
+<p>Finally we come full circle with Luis, who returns us to the original equation that started this journey. Ok, not that equation exactly, but one very closely related.</p>
+<p>To those who care about such things, one might have noticed that in that original equation Jaldhar presented there was a familiar series of clauses: the year over 4, minus the year over 100, plus the year over 400. This is the basis for the core corrective code in calculating a leap year. This logic might be expected to be found, as we have seen by now that the presence or absence of leap years is necessary knowledge in order to to trace the progression of start days across the years.</p>
+<p>Here Luis joins Simon in calculating his own results forward from a deduced theoretical Gregorian year 0000, which apparently would start on a Sunday if it existed. Because our weeks start on Mondays, an offset of -1 is necessary to make things line up; if we do this we can extrapolate from this distant year and use the year number directly in our adjusted equation.</p>
+<p>After computing the start day for January 1st, we still need to know whether it&rsquo;s a leap year, again, to know whether one or two days can start a long year.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_long_year</span> {
+        <span style="color:#66d9ef">my</span> $YY<span style="color:#f92672">=</span>shift;
+        <span style="color:#75715e"># Skip a day for every &#39;Gregorian&#39; leap year extrapolating since 0000.</span>
+        <span style="color:#66d9ef">my</span> $first_weekday<span style="color:#f92672">=</span>( ($YY<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span> ($YY<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)<span style="color:#e6db74">/4 - ($YY-1)/</span><span style="color:#ae81ff">100</span> <span style="color:#f92672">+</span> ($YY<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">/</span><span style="color:#ae81ff">400</span> ) % 7; <span style="color:#75715e"># 0=Monday</span>
+        <span style="color:#66d9ef">my</span> $leap<span style="color:#f92672">=</span>$YY%400<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span><span style="color:#f92672">||</span>$YY%4<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span><span style="color:#f92672">&amp;&amp;</span>$YY%100<span style="color:#f92672">!=</span><span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">return</span> $first_weekday<span style="color:#f92672">==</span><span style="color:#ae81ff">3</span> <span style="color:#f92672">||</span> $leap<span style="color:#f92672">&amp;&amp;</span>$first_weekday<span style="color:#f92672">==</span><span style="color:#ae81ff">2</span>;
+    }
+</code></pre></div><h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-1">Blogs and Additional Submissions in Guest Languages for Task 1:</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/abigail/perl/ch-1a.pl"><strong>Abigail</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/abigail/awk/ch-1.awk">Awk</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/abigail/bash/ch-1.sh">Bash</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/abigail/bc/ch-1.bc">Bc</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/abigail/c/ch-1.c">C</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/abigail/erlang/ch-1.erl">Erlang</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/abigail/go/ch-1.go">Go</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/abigail/java/ch-1.java">Java</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/abigail/lua/ch-1.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/abigail/node/ch-1.js">Node</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/abigail/pascal/ch-1.p">Pascal</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/abigail/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/abigail/r/ch-1.r">R</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/abigail/ruby/ch-1.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/abigail/scheme/ch-1.scm">Scheme</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/abigail/tcl/ch-1.tcl">Tcl</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-137-1.html">Perl Weekly Challenge 137: Long Year</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/cheok-yin-fung/julia/ch-1.jl">Julia</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.com/drbaggy/perlweeklychallenge-club/blob/master/challenge-137/james-smith/README.md">Perl Weekly Challenge #137</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/laurent-rosenfeld/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://blogs.perl.org/users/laurent_r/2021/11/perl-weekly-challenge-137-long-year-and-lychrel-number.html">Perl Weekly Challenge 137: Long Year and Lychrel Number</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/lubos-kolouch/perl/ch-1.pl"><strong>Lubos Kolouch</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/lubos-kolouch/python/ch-1.py">Python</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/mohammad-anwar/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/mohammad-anwar/raku/ch-1.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/paulo-custodio/perl/ch-1.pl"><strong>Paulo Custodio</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/paulo-custodio/python/ch-1.py">Python</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/roger-bell-west/postscript/ch-1.ps">Postscript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/roger-bell-west/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/roger-bell-west/raku/ch-1.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/roger-bell-west/ruby/ch-1.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/roger-bell-west/rust/ch-1.rs">Rust</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://blog.firedrake.org/archive/2021/11/Perl_Weekly_Challenge_137__Long_Cheryl.html">RogerBW&rsquo;s Blog: Perl Weekly Challenge 137: Long Cheryl</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/ulrich-rieke/cpp/ch-1.cpp">C++</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/ulrich-rieke/haskell/ch-1.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/ulrich-rieke/java/Challenge137.java">Java</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/ulrich-rieke/raku/ch-1.raku">Raku</a></p>
+<hr>
+<hr>
+<h1 id="PWC137TASK2">TASK 2</h1>
+<h1 id="lychrel-number">Lychrel Number</h1>
+<p><em>Submitted by: Mohammad S Anwar</em></p>
+<p>You are given a number, 10 &lt;= $n &lt;= 1000.</p>
+<p>Write a script to find out if the given number is Lychrel number.</p>
+<p>To keep the task simple, we impose the following rules:</p>
+<ul>
+<li>Stop if the number of iterations reached 500.</li>
+<li>Stop if you end up with number &gt;= 10,000,000.</li>
+</ul>
+<p>According to wikipedia:</p>
+<p>A Lychrel number is a natural number that cannot form a palindrome through the iterative process of repeatedly reversing its digits and adding the resulting numbers.</p>
+<p><strong>Example 1</strong></p>
+<pre><code>    Input: $n = 56
+    Output: 0
+
+    After 1 iteration, we found palindrome number.
+    56 + 65 = 121
+</code></pre><p><strong>Example 2</strong></p>
+<pre><code>    Input: $n = 57
+    Output: 0
+
+    After 2 iterations, we found palindrome number.
+     57 +  75 = 132
+    132 + 231 = 363
+</code></pre><p><strong>Example 3</strong></p>
+<pre><code>    Input: $n = 59
+    Output: 0
+
+    After 3 iterations, we found palindrome number.
+     59 +  95 =  154
+    154 + 451 =  605
+    605 + 506 = 1111
+</code></pre><h2 id="about-the-solutions-1">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/abigail/perl/ch-2.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/arne-sommer/perl/ch-2.pl"><strong>Arne Sommer</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/bob-lied/perl/ch-2.pl"><strong>Bob Lied</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/jaldhar-h-vyas/perl/ch-2.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/lubos-kolouch/perl/ch-2.pl"><strong>Lubos Kolouch</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/mattneleigh/perl/ch-2.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/perlboy1967/perl/ch-2.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/olivier-delouya/perl/ch-2.pl"><strong>Olivier Delouya</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/paulo-custodio/perl/ch-2.pl"><strong>Paulo Custodio</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/pete-houston/perl/ch-2.pl"><strong>Pete Houston</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/robert-dicicco/perl/ch-2.pl"><strong>Robert DiCicco</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/steven-wilson/perl/ch-2.pl"><strong>Steven Wilson</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/wanderdoc/perl/ch-2.pl"><strong>Wanderdoc</strong></a></p>
+<p>As an cautionary warning, let us begin by saying that in base-10, no Lychrel numbers have been <em>proven</em> to exist. The term &ldquo;Lychrel&rdquo; itself, coined in 2002, is predated by what became known as the <em>196 algorithm</em>, for an exploration among early microcomputer enthusiasts in the 1980s, based around perfecting methods to test the value 196 through multiple iterations. In 1985 there were 12,954 iterations published; in 2011 this surpassed 1,000,000,000 without resolving.</p>
+<p>There were 26 submissions for the second task this past week.</p>
+<h2 id="take-a-leap-of-faith-a-dozen-ways-to-swim-a-dozen-ways-to-fly">take a LEAP of FAITH: a DOZEN ways to SWIM, a DOZEN ways to FLY</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/lubos-kolouch/perl/ch-2.pl"><strong>Lubos Kolouch</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/abigail/perl/ch-2.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/paulo-custodio/perl/ch-2.pl"><strong>Paulo Custodio</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/robert-dicicco/perl/ch-2.pl"><strong>Robert DiCicco</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/wanderdoc/perl/ch-2.pl"><strong>Wanderdoc</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/olivier-delouya/perl/ch-2.pl"><strong>Olivier Delouya</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/mattneleigh/perl/ch-2.pl"><strong>Matthew Neleigh</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a></p>
+<p>The steps to enact the Lychrel transformation are prescribed in the defintion, and so were quite consistent: take a number, reverse its digits and sum the original and the reverse. If that number is a palindrome we are done, or else repeat until we find one or give up. As testing for a palindrome also requires a reverse examination there were a few ways to carefully structure the logic to avoid one flip step, but the most common techniques kept the summing and palindrome tests separate.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/roger-bell-west/postscript/ch-2.ps">Postscript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/roger-bell-west/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/roger-bell-west/raku/ch-2.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/roger-bell-west/ruby/ch-2.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/roger-bell-west/rust/ch-2.rs">Rust</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://blog.firedrake.org/archive/2021/11/Perl_Weekly_Challenge_137__Long_Cheryl.html">RogerBW&rsquo;s Blog: Perl Weekly Challenge 137: Long Cheryl</a></p>
+<p>Roger initiates the discussion by observing that as no Lychrel numbers are known to exist we can can&rsquo;t analyse these values to perceive a pattern. Without saying the broader case is also true, that due to their unknown status we can&rsquo;t possibly produce any proven results — or if we did it would be groundbreaking. As such the only thing we can do is stick to the rules as stated and satisfy those to produce the results requested, without regard to the larger context.</p>
+<p>The steps are staightforward: we reverse the number, here using the listwise form of the <code>reverse</code> function, and check to see whether it matches its nonreversed original. If yes we are done, but if not we sum the values and loop around again.</p>
+<p>Although not stated, it appears Roger has twigged to the idea that any progression, even in the worst case, will exceed the 1000000 value long before it arrives at 500 iterations. As such he only includes a single escape clause, as the other will never be realized.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">lychrel</span> {
+      <span style="color:#66d9ef">my</span> $n<span style="color:#f92672">=</span>shift;
+      <span style="color:#66d9ef">foreach</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">100</span>) {
+        <span style="color:#66d9ef">my</span> $m<span style="color:#f92672">=</span>join(<span style="color:#e6db74">&#39;&#39;</span>,reverse split <span style="color:#e6db74">&#39;&#39;</span>,$n);
+        <span style="color:#66d9ef">if</span> ($m<span style="color:#f92672">==</span>$n) {
+          <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+        }
+        $n<span style="color:#f92672">+=</span>$m;
+        <span style="color:#66d9ef">if</span> ($n<span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">10000000</span>) {
+          <span style="color:#66d9ef">last</span>;
+        }
+      }
+      <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/lubos-kolouch/perl/ch-2.pl"><strong>Lubos Kolouch</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/lubos-kolouch/python/ch-2.py">Python</a></p>
+<p>Lubos gives us another version of the same steps, slightly reordered. Of note he here uses the scalar version of <code>reverse</code>, which works perfectly well without all the splitting.</p>
+<p>On observation, I feel the choice of usage for <code>reverse</code> seems to be down to personal preference, reenforced by the ease in accidently producing the wrong results. Although the function can always be given a list of arguments, this doesn&rsquo;t determine the behavior: the <em>assignment</em> determines context, and furthermore <code>say</code> defaults to list context, often producing hard-to-trace bugs.</p>
+<p>So for example, whereas</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $rev <span style="color:#f92672">=</span> reverse <span style="color:#e6db74">&#34;Hello world&#34;</span>
+    say $rev;
+</code></pre></div><p>will give you the expected &ldquo;dlrow olleH&rdquo;,</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    say reverse <span style="color:#e6db74">&#34;Hello world&#34;</span>
+</code></pre></div><p>will probably not do what you want, outputting just &ldquo;Hello world&rdquo; unchanged. This is because context is making <code>reverse</code> look at its argument as a list of one element, and so reversing the order of the elements returns the list unaltered.</p>
+<p>So consequently after being burned many people learn one form and stick with it.</p>
+<p>Of note we can always <em>force</em> context in various ways and still be nearly as compact:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    say scalar reverse $t1;
+</code></pre></div><p>works, as does</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    say <span style="color:#66d9ef">my</span> $rev <span style="color:#f92672">=</span> reverse $t1;
+</code></pre></div><p>if we want to be clever. This works because the <code>=</code> assignment operator returns the rvalue being assigned.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_lychrel_number</span> {
+      <span style="color:#66d9ef">my</span> $what <span style="color:#f92672">=</span> shift;
+
+      <span style="color:#66d9ef">my</span> $iter_count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+      <span style="color:#66d9ef">while</span> ($iter_count <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">500</span>) {
+        $iter_count<span style="color:#f92672">++</span>;
+
+        $what <span style="color:#f92672">+=</span> reverse $what;
+
+        <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $what <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">10_000_000</span>;
+
+       <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $what <span style="color:#f92672">==</span> reverse $what;
+
+      }
+
+      <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/abigail/perl/ch-2.pl"><strong>Abigail</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/abigail/awk/ch-2.awk">Awk</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/abigail/bash/ch-2.sh">Bash</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/abigail/bc/ch-2.bc">Bc</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/abigail/c/ch-2.c">C</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/abigail/go/ch-2.go">Go</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/abigail/java/ch-2.java">Java</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/abigail/lua/ch-2.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/abigail/node/ch-2.js">Node</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/abigail/pascal/ch-2.p">Pascal</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/abigail/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/abigail/r/ch-2.r">R</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/abigail/ruby/ch-2.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/abigail/scheme/ch-2.scm">Scheme</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/abigail/tcl/ch-2.tcl">Tcl</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-137-2.html">Perl Weekly Challenge 137: Lychrel Number</a></p>
+<p>In their extensive <a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-137-2.html">writeup</a> of the problem, a deep data analysis is made of the parameters given and how they relate to the larger problem of determining whether a number is Lychrel, and whether it at any particular number of iterations is known to <em>not</em> be Lychrel. The takeaway is of course that the cutoff at 10 million includes several values that are known to be ultimately resolve as Lychrel. Thus the arbitrary cutoff is an obvious kludge that allows us to easily prepare our toy demos. Such is life.</p>
+<p>I did some back-of-the-envelope calculations concluding that 10 million will be exceeded in every case within 24 iterations, but here Abigail asserts that only 11 are actually required, which I find quite interesting and lower than I expected. But then again I was only looking to be convinced we would never need 500, without actually looking, which certainly is the case.</p>
+<p>As such there is no check for this clause.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">l</span> ($n) {$n <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">10_000_000</span> ? <span style="color:#ae81ff">1</span> : $n <span style="color:#f92672">eq</span> reverse ($n) ? <span style="color:#ae81ff">0</span> : l ($n <span style="color:#f92672">+</span> reverse $n)}
+    say l <span style="color:#e6db74">s/\n//</span>r <span style="color:#66d9ef">while</span> <span style="color:#f92672">&lt;&gt;</span>;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/paulo-custodio/perl/ch-2.pl"><strong>Paulo Custodio</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/paulo-custodio/python/ch-2.py">Python</a></p>
+<p>Paulo brings us a couple of treats: one, the <code>Modern::Perl</code> pragma — I suppose technically a module but one when imported automatically engages various pragmas so I&rsquo;ll use that term. It&rsquo;s a very handy way user chromatic has devised to automatically engage modern best practices in a single statement: <code>use strict</code> and <code>use warnings</code> for instance are applied.</p>
+<p>Secondly we have the <code>constant</code> pragma, which is singular in that it is configured in its import declaration. Because of the way modules are imported, <code>use constant</code> establishes a <code>BEGIN {}</code> block that is executed immediately during compilation, so the pseudo-constants inititalized are created and inserted into the symbol table before the script is run. At least I&rsquo;m pretty sure that&rsquo;s how it does what it does, creating subroutines that return the given values. There are no &ldquo;real&rdquo; constants in Perl, of course, and several schemes to create quacks-like-a-duck implementations. This one works well and is very fast.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Modern::Perl;
+
+    <span style="color:#66d9ef">use</span> constant {
+        MAX_ITER    <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">500</span>,
+        MAX_NUM     <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">10_000_000</span>,
+    };
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_lychrel</span> {
+        <span style="color:#66d9ef">my</span>($n) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> MAX_ITER) {
+            <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $n <span style="color:#f92672">&gt;</span> MAX_NUM;
+            <span style="color:#66d9ef">my</span> $rev_n <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">+</span>reverse($n);
+            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $n <span style="color:#f92672">==</span> $rev_n;
+            $n <span style="color:#f92672">+=</span> $rev_n;
+        }
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/robert-dicicco/perl/ch-2.pl"><strong>Robert DiCicco</strong></a></p>
+<p>New member Robert has given us a nice little application that delivers a blow-by-blow report of the processing performed:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    $ perl <span style="color:#ae81ff">137</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2</span><span style="color:#f92672">-</span>RobertDiCicco<span style="color:#f92672">-</span>REVIEW<span style="color:#f92672">.</span>pl
+    Enter the first number: <span style="color:#ae81ff">1775</span>
+    <span style="color:#ae81ff">1775</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">5771</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">7546</span>
+    <span style="color:#ae81ff">7546</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">6457</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">14003</span>
+    <span style="color:#ae81ff">14003</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">30041</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">44044</span>
+    Palindrome found after <span style="color:#ae81ff">3</span> iterations
+</code></pre></div><p>The steps follow the usual pattern, here eliciting user input using <code>&lt;STDIN&gt;</code> and then processing a single value. A loop is established with three clauses: either a palindrome-found flag is set, the iteration count runs above 500, or the growing numeric value exceeds 10,000,000. An update is provided at every reversal and summing made, and when one of the exit conditions is met, one of three final report statements follows.</p>
+<p>I&rsquo;ll note that from the rules it&rsquo;s unclear whether a number that <em>goes in</em> as a palindrome is allowed to satisfy the conditions after 0 transformations, and apparently there is no common agreement on the subject, or even whether to allow palindromes at all. Robert processed them like any other number, always performing the transformation at least once. I am inclined to agree with this interpretation, but the whole idea is just made-up anyway and there can be no singular &ldquo;correct&rdquo; answer. I will say outright exclusion does seem both mathematically unnecessary and cruel. What did palindromes ever do to these people? Yet again, it is humanity who are the real monsters.</p>
+<p>This is a nice little progam, covering all the bases with a clear reporting of results.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;Enter the first number: &#34;</span>);
+    <span style="color:#66d9ef">my</span> $fnum <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;STDIN&gt;</span>;
+    chomp($fnum);
+
+    <span style="color:#66d9ef">my</span> $found <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">my</span> $iterations <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">my</span> $snum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+    <span style="color:#66d9ef">while</span> (( $found <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) <span style="color:#f92672">and</span> ($iterations <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">500</span>) <span style="color:#f92672">and</span> ($snum <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">10_000_000</span>)) {
+        $iterations<span style="color:#f92672">++</span>;
+        $snum <span style="color:#f92672">=</span> reverse(<span style="color:#e6db74">&#34;$fnum&#34;</span>);
+        <span style="color:#66d9ef">my</span> $mysum <span style="color:#f92672">=</span> $fnum <span style="color:#f92672">+</span> $snum;
+        <span style="color:#66d9ef">my</span> $revsum <span style="color:#f92672">=</span> reverse($mysum);
+        $snum <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/^\s+//</span>;   <span style="color:#75715e">#remove leading spaces</span>
+        <span style="color:#66d9ef">print</span>  <span style="color:#e6db74">&#34;$fnum + $snum = $mysum\n&#34;</span>;
+
+        <span style="color:#66d9ef">if</span> ( $mysum <span style="color:#f92672">==</span> $revsum) {
+            <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;Palindrome found after $iterations iterations\n&#34;</span>);
+            $found<span style="color:#f92672">++</span>;
+        } <span style="color:#66d9ef">else</span> {
+            $fnum <span style="color:#f92672">=</span> $mysum;
+        }
+    }
+
+    <span style="color:#66d9ef">if</span> ($iterations <span style="color:#f92672">==</span> <span style="color:#ae81ff">500</span> ) {
+        <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;Reached total iteration limit of 500\n&#34;</span>);
+    }
+
+    <span style="color:#66d9ef">if</span> ($snum <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">10_000_000</span>) {
+        <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;Value has exceeded limit of 10_000_000\n&#34;</span>);
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/polettix/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.polettix.it/ETOOBUSY/2021/11/04/pwc137-lychrel-number/">PWC137 - Lychrel Number - ETOOBUSY</a></p>
+<p>Flavio, on the other hand, takes a much more taciturn approach, accomplishing the goal with a minimum of fuss. Perhaps to emphasize the string nature of the reversal step he uses the string equality operator <code>eq</code>. Then again we are adding those strings immediately again as numbers so I&rsquo;m not sure how much it matters. It&rsquo;s Perl, and numbers are strings are numbers. It is the way, and a gift that should be treasured.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">maybe_lychrel</span> ($n) {
+       <span style="color:#66d9ef">while</span> ($n <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">10_000_000</span>) {
+          <span style="color:#66d9ef">my</span> $r <span style="color:#f92672">=</span> reverse $n;
+          <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $n <span style="color:#f92672">eq</span> $r;
+          $n <span style="color:#f92672">+=</span> $r;
+       }
+       <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/ulrich-rieke/cpp/ch-2.cpp">C++</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/ulrich-rieke/raku/ch-2.raku">Raku</a></p>
+<p>Ulrich provides us with another example of the <code>split/reverse/join</code> idiom for flipping the digits in a number. As I said before, there really seem to be two camps on how to do this, without much consensus.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">while</span> ( $iterations <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">500</span> ) {
+      $number <span style="color:#f92672">+=</span> (join (<span style="color:#e6db74">&#39;&#39;</span> , reverse split(<span style="color:#e6db74"> //</span> , $number )) <span style="color:#f92672">+</span> <span style="color:#ae81ff">0</span> ) ;
+      <span style="color:#66d9ef">if</span> ( isPalindrome ( $number ) ) {
+          $output <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> ;
+          <span style="color:#66d9ef">last</span> ;
+      }
+      <span style="color:#66d9ef">if</span> ( $number <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">10000000</span> ) {
+          <span style="color:#66d9ef">last</span> ;
+      }
+      $iterations<span style="color:#f92672">++</span> ;
+    }
+    <span style="color:#66d9ef">if</span> ( $iterations <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">500</span> ) {
+      $output <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> ;
+    }
+    say $output ;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/wanderdoc/perl/ch-2.pl"><strong>Wanderdoc</strong></a></p>
+<p>The doctor chooses to make a far more thorough exploration into the thousand or so numbers in the designated range. Keeping the maximum iteration count at 500, he imports the <code>bigint</code> pragma, set to preserve 50 digits, and ups the maximum allowable value to 1e50. Even allowing these huge numbers the maximum number of iterations for resolved calculations was 24, and the maximum until exceeding the upper limit was 111. In the end 13 Lychrel candidates are found using these expanded parameters:</p>
+<pre><code>    196, 295, 394, 493, 592,
+    689, 691, 788, 790,
+    879, 887, 978, 986
+</code></pre><p>I&rsquo;m sure these numbers have been studied to death, but notice how the first 5 values differ by 99, the next are two pairs differing each by 2 and the pairs offset by 99 again, and then we skip by 97, then back to 99s. Or looked at another way there&rsquo;s a lot of  99<em>n</em>-2 for <em>n</em>&gt;2 but that isn&rsquo;t the whole picture. It&rsquo;s like there&rsquo;s a quasi-periodic pattern in there taunting us.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> bigint accuracy <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">50</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">lychrel</span>
+    {
+         <span style="color:#66d9ef">my</span> $num <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>];
+         $num <span style="color:#f92672">+=</span> <span style="color:#ae81ff">0</span>;
+         <span style="color:#66d9ef">my</span> $palindrome <span style="color:#f92672">=</span> scalar reverse $num;
+         <span style="color:#66d9ef">return</span> $num <span style="color:#f92672">+</span> $palindrome;
+    }
+
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i ( <span style="color:#ae81ff">10</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">1_000</span> )
+    {
+         <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$i &#34;</span>; <span style="color:#75715e"># , $/;</span>
+         <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;is palindrome itself.$/&#34;</span> <span style="color:#f92672">and</span> <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> (is_palindrome($i));
+
+         <span style="color:#66d9ef">my</span> $counter;
+         <span style="color:#66d9ef">my</span> $break_flag <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+         <span style="color:#66d9ef">my</span> $num <span style="color:#f92672">=</span> $i;
+
+         <span style="color:#66d9ef">while</span> ( <span style="color:#f92672">not</span> is_palindrome($num) )
+         {
+              $num <span style="color:#f92672">=</span> lychrel($num);
+              $counter<span style="color:#f92672">++</span>;
+
+              <span style="color:#66d9ef">if</span> (<span style="color:#ae81ff">500</span> <span style="color:#f92672">==</span> $counter)  { $break_flag <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; <span style="color:#66d9ef">last</span>; };
+              <span style="color:#66d9ef">if</span> (<span style="color:#ae81ff">1e50</span> <span style="color:#f92672">&lt;=</span> $num) { $break_flag <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>; <span style="color:#66d9ef">last</span>; };
+         }
+
+         <span style="color:#66d9ef">my</span> $statement <span style="color:#f92672">=</span> $break_flag <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> ? <span style="color:#e6db74">&#34;: stopped after &#34;</span> : <span style="color:#e6db74">&#34;: palindrome $num after &#34;</span>;
+         $statement <span style="color:#f92672">.=</span> $break_flag <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> ? <span style="color:#e6db74">&#34;the number reached  $num.&#34;</span> :
+                   <span style="color:#e6db74">&#34;$counter iterations.&#34;</span>;
+         <span style="color:#66d9ef">print</span> $statement, $/;
+         <span style="color:#66d9ef">if</span> ( <span style="color:#f92672">not</span> is_palindrome($num) ) { push @candidates, [$i, $counter, $num]; }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a></p>
+<p>I found CYs solution to have a certain elegant grace to it. Combining all of her clauses into the conditional of the <code>while</code> loop, the looped action is only one line: the summing of the number with its reverse. On exit she decides what has happened to produce the appropriate true or false response. It&rsquo;s clean, simple, straightforward and I like it.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">lych</span> {
+        <span style="color:#66d9ef">my</span> $itor <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">my</span> $num <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>];
+
+        <span style="color:#66d9ef">while</span> (   (reverse $num) <span style="color:#f92672">ne</span> $num
+                <span style="color:#f92672">&amp;&amp;</span> $itor <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">500</span>
+                <span style="color:#f92672">&amp;&amp;</span> $num <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">10_000_000</span>
+              ) {
+            $num <span style="color:#f92672">=</span> $num <span style="color:#f92672">+</span> reverse $num;
+        }
+
+        <span style="color:#66d9ef">return</span>( ((reverse $num) <span style="color:#f92672">eq</span> $num )? <span style="color:#ae81ff">0</span> : <span style="color:#ae81ff">1</span> );
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/olivier-delouya/perl/ch-2.pl"><strong>Olivier Delouya</strong></a></p>
+<p>Olivier also brings in the <code>Math::BigInt</code> module for his comprehensive search of the range provided, but chooses by default to remain within the prescribed parameters, 500 iterations or 10,000,000 which ever comes occurs before a palindrome is found. This, after all, is the task. However his solution allows configuration of both the range examined, iterations and maximum value.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    num: <span style="color:#66d9ef">for</span> (; $LowerBound <span style="color:#f92672">&lt;</span> $UpperBound; $LowerBound<span style="color:#f92672">++</span>)
+        {
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $time0<span style="color:#f92672">=</span>time(), <span style="color:#66d9ef">my</span> $iter<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">my</span> $basenum<span style="color:#f92672">=</span>Math::BigInt<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>($LowerBound); ; $iter<span style="color:#f92672">++</span>)
+        	{
+        	<span style="color:#66d9ef">my</span> $munesab <span style="color:#f92672">=</span> reverse_num($basenum);
+        	<span style="color:#66d9ef">if</span>($basenum<span style="color:#f92672">-&gt;</span>beq($munesab)) <span style="color:#75715e"># ($basenum == $munesab)</span>
+        		{
+        		<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$LowerBound is *not* a Lychrel number ($munesab after &#34;</span>, <span style="color:#f92672">!</span>$iter? <span style="color:#ae81ff">0</span> : $iter<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#34; iterations in &#34;</span>, time()<span style="color:#f92672">-</span>$time0, <span style="color:#e6db74">&#34;s)\n&#34;</span>;
+        		<span style="color:#66d9ef">next</span> num;
+        		}
+        	<span style="color:#66d9ef">if</span>(<span style="color:#f92672">++</span>$iter <span style="color:#f92672">&gt;</span> $MaxIter)
+        		{
+        		<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$LowerBound appears still to be a Lychrel number, after &#34;</span>, <span style="color:#f92672">!</span>$iter? <span style="color:#ae81ff">0</span> : $iter<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#34; sum iterations in &#34;</span>, time()<span style="color:#f92672">-</span>$time0, <span style="color:#e6db74">&#34;s)\n&#34;</span>;
+        		<span style="color:#66d9ef">next</span> num;
+        		}
+        	<span style="color:#66d9ef">if</span>($munesab<span style="color:#f92672">-&gt;</span>bgt($BIMaxTerm))
+        		{
+        		<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$LowerBound appears still to be a Lychrel number below $BIMaxTerm sum iterations in $iter iterations and &#34;</span>, time()<span style="color:#f92672">-</span>$time0, <span style="color:#e6db74">&#34;s)\n&#34;</span>;
+        		<span style="color:#66d9ef">next</span> num;
+        		}
+        	<span style="color:#66d9ef">if</span>(defined($MaxTime) <span style="color:#f92672">&amp;&amp;</span> time()<span style="color:#f92672">-</span>$time0 <span style="color:#f92672">&gt;=</span> $MaxTime)
+        	    {
+        		<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$LowerBound appears still to be a Lychrel number: reached $basenum within $MaxTime$TimeUnit, $iter iterations)\n&#34;</span>;
+        		<span style="color:#66d9ef">next</span> num;
+        	    }
+        	$basenum<span style="color:#f92672">-&gt;</span>badd($munesab);
+        	<span style="color:#66d9ef">if</span>($basenum <span style="color:#f92672">!~</span> <span style="color:#e6db74">/^\d+$/</span> <span style="color:#f92672">||</span> $basenum<span style="color:#f92672">-&gt;</span>is_inf() <span style="color:#f92672">||</span> $basenum<span style="color:#f92672">-&gt;</span>is_nan())
+        	    {
+        		<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$LowerBound appears still to be a Lychrel number: overflow ($basenum) within &#34;</span>, time()<span style="color:#f92672">-</span>$time0, <span style="color:#e6db74">&#34;s and $iter iterations)\n&#34;</span>;
+        		<span style="color:#66d9ef">next</span> num;
+        	    }
+        	}
+        }
+</code></pre></div><p>After plugging in some ridiculously large numbers for allowed values and number of iterations, it appears there is is quite a large expanse between the largest palindrome from much smaller allowed cycles, 8813200023188, and the next to surface, whatever that may be. The previously located 13 candidate Lychrels remain candidates through 1e118 and 50,000 allowed iterations, of which 541 were required to surpass that unimaginable quantity. For reference there are estimated to be only 1e81 protons in the universe, to give perhaps a sense of the absurd scales we&rsquo;re discussing.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/mattneleigh/perl/ch-2.pl"><strong>Matthew Neleigh</strong></a></p>
+<p>Here&rsquo;s another example from Matthew carefully explaining the various steps taken. Of note he passes in a reference to a scalar to be updated as a counter, avoiding having to access a global from within the subroutine or otherwise keep the count synchronized. I don&rsquo;t ever find much call for scalar references but this is a good use.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_lychrel_number</span>{
+        <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> int(shift());
+        <span style="color:#66d9ef">my</span> $iter <span style="color:#f92672">=</span> shift();
+
+        $$iter <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span>(defined($iter));
+
+        <span style="color:#75715e"># Establish a range of valid inputs</span>
+        <span style="color:#66d9ef">return</span>(undef) <span style="color:#66d9ef">unless</span>(($n <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">9</span>) <span style="color:#f92672">&amp;&amp;</span> ($n <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">1001</span>));
+
+        <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">my</span> $reversed <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+        <span style="color:#66d9ef">while</span>($i <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">500</span>){
+            <span style="color:#75715e"># Swap digits around and compare...</span>
+            $reversed <span style="color:#f92672">=</span> reverse(split(<span style="color:#e6db74">&#34;&#34;</span>, $n));
+            <span style="color:#66d9ef">if</span>($reversed <span style="color:#f92672">==</span> $n){
+                <span style="color:#75715e"># Found a palindrome- this is not a</span>
+                <span style="color:#75715e"># Lychrel number</span>
+                $$iter <span style="color:#f92672">=</span> $i <span style="color:#66d9ef">if</span>(defined($iter));
+                <span style="color:#66d9ef">return</span>(<span style="color:#ae81ff">0</span>);
+            }
+
+            <span style="color:#75715e"># Add the reversed number to the total,</span>
+            <span style="color:#75715e"># and bail if the number is too large</span>
+            $n <span style="color:#f92672">+=</span> $reversed;
+            <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span>($n <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">10000000</span>);
+
+            $i<span style="color:#f92672">++</span>;
+        }
+
+        <span style="color:#75715e"># If we got here, either the total got</span>
+        <span style="color:#75715e"># too large, or we ran out of</span>
+        <span style="color:#75715e"># iterations; we&#39;ll assume this is a</span>
+        <span style="color:#75715e"># Lychrel number</span>
+        $$iter <span style="color:#f92672">=</span> $i <span style="color:#66d9ef">if</span>(defined($iter));
+        <span style="color:#66d9ef">return</span>(<span style="color:#ae81ff">1</span>);
+
+    }
+
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.com/drbaggy/perlweeklychallenge-club/blob/master/challenge-137/james-smith/README.md">Perl Weekly Challenge #137</a></p>
+<p>Finally, where some have focused un the size of the numbers being considered, others, like James here, chose to optimize for the speed of the calculations necessary to compute them. It&rsquo;s kind of his M.O., after all. So what does his solution do? The first thing is to devise a method of adding digit-arrays with carry bits, so by adding one place at a time integer overflow is sidestepped. On the other hand, although allowing larger numbers to be checked, the process isn&rsquo;t very fast. The second optimization, which I&rsquo;m a little surprised we haven&rsquo;t seen elsewhere, is to memoize the intermediate values, with the reappearance of terms known to lead ultimately to palindromes allowed to short-circuit the processing. The speedup for this is quite significant, up to 180-fold.</p>
+<p>Here&rsquo;s the final form:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">lychrel_large_seed</span> {
+      <span style="color:#66d9ef">my</span> ( $c, $n, @n ) <span style="color:#f92672">=</span> ( $COUNT, $_[<span style="color:#ae81ff">0</span>], split <span style="color:#e6db74">//</span>, $_[<span style="color:#ae81ff">0</span>] );
+      <span style="color:#66d9ef">while</span>( $c<span style="color:#f92672">--</span> ) {
+        <span style="color:#66d9ef">my</span> @r <span style="color:#f92672">=</span> reverse @n;
+        <span style="color:#66d9ef">my</span> $rn <span style="color:#f92672">=</span> join <span style="color:#e6db74">&#39;&#39;</span>, @r;
+        <span style="color:#66d9ef">my</span> $nn <span style="color:#f92672">=</span> join <span style="color:#e6db74">&#39;&#39;</span>, @n;
+        <span style="color:#66d9ef">return</span> exists $lychrel{$seeds{$rn}} <span style="color:#66d9ef">if</span> $r[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&amp;&amp;</span> defined $seeds{$rn};
+        <span style="color:#66d9ef">return</span> exists $lychrel{$seeds{$nn}} <span style="color:#66d9ef">if</span>          defined $seeds{$nn};
+        $seeds{ $rn } <span style="color:#f92672">=</span> $n <span style="color:#66d9ef">if</span> $rn <span style="color:#f92672">&lt;</span> $S_MAX<span style="color:#f92672">*</span>$MULT <span style="color:#f92672">&amp;&amp;</span> $r[<span style="color:#ae81ff">0</span>];
+        $seeds{ $nn } <span style="color:#f92672">=</span> $n <span style="color:#66d9ef">if</span> $nn <span style="color:#f92672">&lt;</span> $S_MAX<span style="color:#f92672">*</span>$MULT;
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $rn <span style="color:#f92672">eq</span> $nn; <span style="color:#75715e">## Check if palindromic</span>
+        <span style="color:#75715e">## Add the arrays as if numbers - note this is compact - but does the job!</span>
+        ( $n[$_] <span style="color:#f92672">+=</span> $r[$_] ) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">9</span>  <span style="color:#f92672">&amp;&amp;</span> ($n[$_] <span style="color:#f92672">-=</span> <span style="color:#ae81ff">10</span>, $_ ? ($n[$_<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">++</span>) : (unshift @n, <span style="color:#ae81ff">1</span>) ) <span style="color:#66d9ef">for</span> reverse <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> @n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+      }
+      <span style="color:#ae81ff">1</span>;
+    }
+</code></pre></div><h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-2">Blogs and Additional Submissions in Guest Languages for Task 2:</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/arne-sommer/perl/ch-2.pl"><strong>Arne Sommer</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/arne-sommer/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://raku-musings.com/lychrel-longing.html">Lychrel Longing with Raku and Perl</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/athanasius/raku/ch-2.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/colin-crain/raku/ch-2.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://jacoby.github.io/2021/11/01/2020-was-a-long-year-the-weekly-challenge-137.html">2020 Was A LONG Year: The Weekly Challenge #137 | Committed to Memory</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/jaldhar-h-vyas/perl/ch-2.pl"><strong>Jaldhar H. Vyas</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/jaldhar-h-vyas/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://www.braincells.com/perl/2021/11/perl_weekly_challenge_week_137.html">Perl Weekly Challenge: Week 137</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/laurent-rosenfeld/awk/ch-2.awk">Awk</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/laurent-rosenfeld/bc/ch-2.bc">Bc</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/laurent-rosenfeld/c/ch-2.c">C</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/laurent-rosenfeld/julia/ch-2.jl">Julia</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/laurent-rosenfeld/lua/ch-2.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/laurent-rosenfeld/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/laurent-rosenfeld/raku/ch-2.raku">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/laurent-rosenfeld/ruby/ch-2.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/laurent-rosenfeld/rust/ch-2.rs">Rust</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://blogs.perl.org/users/laurent_r/2021/11/perl-weekly-challenge-137-long-year-and-lychrel-number.html">Perl Weekly Challenge 137: Long Year and Lychrel Number</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/pete-houston/perl/ch-2.pl"><strong>Pete Houston</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/pete-houston/awk/ch-2.awk">Awk</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://dev.to/simongreennet/weekly-challenge-137-3jon">Weekly Challenge 137</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-137/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://wlmb.github.io/2021/11/02/PWC137/">Perl Weekly Challenge 137 – W. Luis Mochán</a></p>
+<hr>
+<h1 id="PWC137BLOGS">BLOGS</h1>
+<hr>
+<p><strong>That’s it for me this week, people! Warped by the rain, driven by the snow, resolute and unbroken by the torrential influx, by some miracle I somehow continue to maintain my bearings.</strong></p>
+<p><strong>Looking forward to next wave, the perfect wave, I am: <em>your humble servant</em>.</strong></p>
+<h1 id="PWC136BLOGS">But if Your Unquenchable <em>THIRST</em> for <em>KNOWLEDGE</em> is not <em>SLAKED</em>,</h1>
+<h1 id="then-run-dont-walk-to-the-watering-hole">then <em>RUN</em> <em>(dont walk!)</em> to the <em>WATERING HOLE</em></h1>
+<h1 id="and-follow-these-blog-links">and <em>FOLLOW</em> these <em>BLOG</em> <em>LINKS</em>:</h1>
+<p><strong>( &hellip;<em>don&rsquo;t think, trust your training, you&rsquo;re in the zone, just do it &hellip;</em> )</strong></p>
+<p><strong>Abigail</strong></p>
+<ul>
+<li><a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-137-1.html">Perl Weekly Challenge 137: Long Year</a> ( <em>Perl</em> )</li>
+<li><a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-137-2.html">Perl Weekly Challenge 137: Lychrel Number</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Arne Sommer</strong></p>
+<ul>
+<li><a href="https://raku-musings.com/lychrel-longing.html">Lychrel Longing with Raku and Perl</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Dave Jacoby</strong></p>
+<ul>
+<li><a href="https://jacoby.github.io/2021/11/01/2020-was-a-long-year-the-weekly-challenge-137.html">2020 Was A LONG Year: The Weekly Challenge #137 | Committed to Memory</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Flavio Poletti</strong></p>
+<ul>
+<li><a href="https://github.polettix.it/ETOOBUSY/2021/11/03/pwc137-long-year/">PWC137 - Long Year - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+<li><a href="https://github.polettix.it/ETOOBUSY/2021/11/04/pwc137-lychrel-number/">PWC137 - Lychrel Number - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Jaldhar H. Vyas</strong></p>
+<ul>
+<li><a href="https://www.braincells.com/perl/2021/11/perl_weekly_challenge_week_137.html">Perl Weekly Challenge: Week 137</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>James Smith</strong></p>
+<ul>
+<li><a href="https://github.com/drbaggy/perlweeklychallenge-club/blob/master/challenge-137/james-smith/README.md">Perl Weekly Challenge #137</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Laurent Rosenfeld</strong></p>
+<ul>
+<li><a href="http://blogs.perl.org/users/laurent_r/2021/11/perl-weekly-challenge-137-long-year-and-lychrel-number.html">Perl Weekly Challenge 137: Long Year and Lychrel Number</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Luca Ferrari</strong></p>
+<ul>
+<li><a href="https://fluca1978.github.io/2021/11/01/PerlWeeklyChallenge137.html#task1">Perl Weekly Challenge 137: palindrome sums on long years – Luca Ferrari – Open Source advocate, human being</a> ( <em>Raku</em> )</li>
+</ul>
+<p><strong>Roger Bell_West</strong></p>
+<ul>
+<li><a href="https://blog.firedrake.org/archive/2021/11/Perl_Weekly_Challenge_137__Long_Cheryl.html">RogerBW&rsquo;s Blog: Perl Weekly Challenge 137: Long Cheryl</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Simon Green</strong></p>
+<ul>
+<li><a href="https://dev.to/simongreennet/weekly-challenge-137-3jon">Weekly Challenge 137</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>W. Luis Mochan</strong></p>
+<ul>
+<li><a href="https://wlmb.github.io/2021/11/02/PWC137/">Perl Weekly Challenge 137 – W. Luis Mochán</a> ( <em>Perl</em> )</li>
+</ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="/contact" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2021
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.nomtimes.co.uk/site/shop.do?cref=PerlBooks" title="Free Perl Books" rel="noreferrer" target="_blank">
+                            <img src="/images/NomTimes.jpg" style="width:22px; height: 18px;" alt=""/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jQurey/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-136524905-1', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+
+</html>
+
