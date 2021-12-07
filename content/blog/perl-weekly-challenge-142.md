@@ -64,6 +64,7 @@ Recently joined member, `Kaushik Tunuguntla`, shared his first solutions in [**P
 #### 3. [I Like Numbers And Hate Division: The Weekly Challenge #141](https://jacoby.github.io/2021/11/29/i-like-numbers-and-hate-division-the-weekly-challenge-141.html) by Dave Jacoby
 #### 4. [Divisibility, Sieves and Masks - PWC 141](https://notmondayagain.blogspot.com/2021/12/divisibility-sieves-and-masks-pwc-141.html) by Kaushik Tunuguntla.
 #### 5. [Some prime thoughts on divisors](https://pjcs-pwc.blogspot.com/2021/12/perl-weekly-challenge-141-task-1-reads.html) by Peter Campbell Smith.
+#### 6. [The Weekly Challenge 141: Binary and Tabular](https://blog.firedrake.org/archive/2021/11/The_Weekly_Challenge_141__Binary_and_Tabular.html) by Roger Bell_West.
 
 <br>
 
