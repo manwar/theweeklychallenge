@@ -1,6 +1,6 @@
 ---
 title: "Advent Calendar 2021"
-date: 2021-12-06T00:00:00+00:00
+date: 2021-12-07T00:00:00+00:00
 description: "Advent Calendar 2021."
 type: post
 image: images/blog/advent-calendar-2021.jpg
@@ -9,7 +9,7 @@ tags: ["Perl", "Raku"]
 ---
 ***
 
-##### Here we go, we are back with the third in a row **Advent Calendar 2021**. I promise to present interesting topic every day contributed by esteemed members of **Team PWC**.
+### Here we go, we are back, third time in a row **Advent Calendar 2021**. I promise to present interesting topic every day contributed by esteemed members of **Team PWC**.
 
 ***
 
@@ -18,7 +18,7 @@ tags: ["Perl", "Raku"]
 | | | | | | | |
 | <br><br><br>             | <br><br><br> |   [**`1`**](/blog/advent-calendar-2021-12-01)          | [**`2`**](/blog/advent-calendar-2021-12-02)               | [**`3`**](/blog/advent-calendar-2021-12-03)      | [**`4`**](/blog/advent-calendar-2021-12-04)      | [**`5`**](/blog/advent-calendar-2021-12-05)      |
 | | | | | | | |
-| <br>[**`6`**](/blog/advent-calendar-2021-12-06)<br><br>       | **7**             | **8**             | **9**                   | **10**                 | **11**                   | **12**                 |
+| <br>[**`6`**](/blog/advent-calendar-2021-12-06)<br><br>       | [**`7`**](/blog/advent-calendar-2021-12-07)        | **8**             | **9**                   | **10**                 | **11**                   | **12**                 |
 | | | | | | | |
 | <br>**13**<br><br>       | **14**             | **15**             | **16**                   | **17**                 | **18**                   | **19**                 |
 | | | | | | | |
