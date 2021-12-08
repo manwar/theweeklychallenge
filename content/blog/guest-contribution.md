@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2021-12-06T00:00:00+00:00
+date: 2021-12-08T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -33,6 +33,8 @@ Please find below guest contributions.
 ----
 ## [The Weekly Challenge - 142](/blog/perl-weekly-challenge-142) {#142}
 <br>
+
+##### **Dave Jacoby** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-142/dave-jacoby/node/ch-2.js) in **Node.js**.
 
 ##### **Eric Cheung** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-142/eric-cheung/excel-vba/ch-1.bas) in **Excel VBA**.
 
