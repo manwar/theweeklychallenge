@@ -28,7 +28,7 @@ tags: ["Perl", "Raku"]
 | | | | | | | |
 | ![Day 23](/images/blog/2019-12-23-thumbnail.jpg)<br>[**`23`**](/blog/advent-calendar-2019-12-23)<br>    | ![Day 24](/images/blog/2019-12-24-thumbnail.jpg)<br>[**`24`**](/blog/advent-calendar-2019-12-24)          | <br><br>**25**             | <br><br>**26**<br>             | <br><br>**27**<br>            | <br><br>**28**<br>             | <br><br>**29**<br>             |
 | | | | | | | |
-| <br>**29**<br>       | <br><br>**30**<br>             | <br><br>**31**<br>             |                    |                    |                    |                    |
+| <br><br>**30**<br>       | <br><br>**31**<br>             |             |                    |                    |                    |                    |
 | | | | | | | |
 
 ***
