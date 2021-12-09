@@ -13,18 +13,20 @@ tags: ["Perl", "Raku"]
 
 ***
 
-| <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MON<br><br> | &nbsp;&nbsp;&nbsp;TUE | &nbsp;&nbsp;&nbsp;WED | &nbsp;&nbsp;&nbsp;THU | &nbsp;&nbsp;&nbsp;FRI | &nbsp;&nbsp;&nbsp;SAT | &nbsp;&nbsp;&nbsp;SUN |
+| | | | | | | |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | | | | | | | |
-| <br><br><br>             | <br><br><br> |   [**`1`**](/blog/advent-calendar-2021-12-01)          | [**`2`**](/blog/advent-calendar-2021-12-02)               | [**`3`**](/blog/advent-calendar-2021-12-03)      | [**`4`**](/blog/advent-calendar-2021-12-04)      | [**`5`**](/blog/advent-calendar-2021-12-05)      |
+| **MON**<br> |  **TUE**<br> | **WED**<br> |  **THU**<br>| **FRI**<br>|  **SAT**<br> |  **SUN**<br> |
 | | | | | | | |
-| <br>[**`6`**](/blog/advent-calendar-2021-12-06)<br><br>       | [**`7`**](/blog/advent-calendar-2021-12-07)        | [**`8`**](/blog/advent-calendar-2021-12-08)      | [**`9`**](/blog/advent-calendar-2021-12-09)   | **10**  | **11**                   | **12**                 |
+| <br><br><br>             | <br><br><br> |   ![Day 1](/images/blog/2021-12-01-thumbnail.jpg)<br>[**`1`**](/blog/advent-calendar-2021-12-01)          | ![Day 2](/images/blog/2021-12-02-thumbnail.jpg)<br>[**`2`**](/blog/advent-calendar-2021-12-02)               | ![Day 3](/images/blog/2021-12-03-thumbnail.jpg)<br>[**`3`**](/blog/advent-calendar-2021-12-03)      | ![Day 4](/images/blog/2021-12-04-thumbnail.jpg)<br>[**`4`**](/blog/advent-calendar-2021-12-04)      | ![Day 5](/images/blog/2021-12-05-thumbnail.jpg)<br>[**`5`**](/blog/advent-calendar-2021-12-05)      |
 | | | | | | | |
-| <br>**13**<br><br>       | **14**             | **15**             | **16**                   | **17**                 | **18**                   | **19**                 |
+| ![Day 6](/images/blog/2021-12-06-thumbnail.jpg)<br>[**`6`**](/blog/advent-calendar-2021-12-06)<br>       | ![Day 7](/images/blog/2021-12-07-thumbnail.jpg)<br>[**`7`**](/blog/advent-calendar-2021-12-07)        | ![Day 8](/images/blog/2021-12-08-thumbnail.jpg)<br>[**`8`**](/blog/advent-calendar-2021-12-08)      | ![Day 9](/images/blog/2021-12-09-thumbnail.jpg)<br>[**`9`**](/blog/advent-calendar-2021-12-09)   | **10**  | **11**                   | **12**                 |
 | | | | | | | |
-| <br>**20**<br><br>       | **21**             | **22**             | **23**                   | **24**                 | **25**                   | **26**                 |
+| <br><br>**13**<br>       | <br><br>**14**<br>             | <br><br>**15**<br>             |<br><br>**16**<br>                   | <br><br>**17**<br>                 | <br><br>**18**<br>                   | <br><br>**19**<br>                 |
 | | | | | | | |
-| <br>**27**<br><br>       | **28**             | **29**             | **30**                   | **31**                   |                    |                    |
+| <br><br>**20**<br>       | <br><br>**21**<br>             | <br><br>**22**<br>             | <br><br>**23**<br>                   | <br><br>**24**<br>                 | <br><br>**25**<br>                   | <br><br>**26**<br>                 |
+| | | | | | | |
+| <br><br>**27**<br>       | <br><br>**28**<br>             | <br><br>**29**<br>             | <br><br>**30**<br>                   | <br><br>**31**<br>                   |                    |                    |
 | | | | | | | |
 
 ***
