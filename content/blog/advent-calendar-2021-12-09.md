@@ -5,7 +5,7 @@ description: "Advent Calendar - December 9, 2021."
 type: post
 image: images/blog/2021-12-09.jpg
 author: Laurent Rosenfeld
-tags: ["Perl"]
+tags: ["Perl","Raku"]
 ---
 
 [**Advent Calendar 2021**](/blog/advent-calendar-2021)
