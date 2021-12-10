@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2021-12-09T00:00:00+00:00
+date: 2021-12-10T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -4949,6 +4949,32 @@ Please find below guest contributions.
 ----
 ## [The Weekly Challenge - 024](/blog/perl-weekly-challenge-024) {#024}
 <br>
+
+##### **Paulo Custodio** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-024/paulo-custodio/ada/ch_1.adb) in **Ada**.
+
+##### **Paulo Custodio** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-024/paulo-custodio/awk/ch-1.awk) in **Awk**.
+
+##### **Paulo Custodio** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-024/paulo-custodio/basic/ch-1.bas) in **Basic**.
+
+##### **Paulo Custodio** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-024/paulo-custodio/bc/ch-1.bc) in **Bc**.
+
+##### **Paulo Custodio** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-024/paulo-custodio/brainfuck/ch-1.bf) in **Brainfuck**.
+
+##### **Paulo Custodio** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-024/paulo-custodio/c/ch-1.c) in **C**.
+
+##### **Paulo Custodio** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-024/paulo-custodio/cpp/ch-1.cpp) in **C++**.
+
+##### **Paulo Custodio** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-024/paulo-custodio/d/ch_1.d) in **D**.
+
+##### **Paulo Custodio** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-024/paulo-custodio/forth/ch-1.fs) in **Forth**.
+
+##### **Paulo Custodio** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-024/paulo-custodio/fortran/ch-1.f90) in **Fortran**.
+
+##### **Paulo Custodio** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-024/paulo-custodio/lua/ch-1.lua) in **Lua**.
+
+##### **Paulo Custodio** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-024/paulo-custodio/pascal/ch-1.pas) in **Pascal**.
+
+##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-024/paulo-custodio/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-024/paulo-custodio/python/ch-2.py) in **Python**.
 
 ##### **Stuart Little** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-024/stuart-little/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-024/stuart-little/haskell/ch-2.hs) in **Haskell**.
 
