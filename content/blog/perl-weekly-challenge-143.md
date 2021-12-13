@@ -64,7 +64,7 @@ I have slightly changed the look and feel of the `Advent Calendar`. I hope you l
 Let us share some interesting stats from the [**GitHub repository**](https://github.com/manwar/perlweeklychallenge-club).
 
 #### 1. Commits: 21,957 (+143)
-#### 2. Pull Requests: 5,359 (+32)
+#### 2. Pull Requests: 5,360 (+33)
 #### 3. Contributors: 183
 #### 4. Fork: 234 (+1)
 #### 5. Stars: 116 (+2)
