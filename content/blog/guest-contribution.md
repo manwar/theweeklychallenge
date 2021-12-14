@@ -34,6 +34,8 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 143](/blog/perl-weekly-challenge-143) {#143}
 <br>
 
+##### **Conor Hoekstra** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-143/conor-hoekstra/apl/ch-1.apl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-143/conor-hoekstra/apl/ch-2.apl) in **APL**.
+
 ##### **Eric Cheung** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-143/eric-cheung/excel-vba/ch-2.bas) in **Excel VBA**.
 
 ##### **Eric Cheung** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-143/eric-cheung/python/ch-1.py) in **Python**.
