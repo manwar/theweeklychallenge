@@ -13,7 +13,7 @@ tags: ["Perl", "Raku"]
 
 ***
 
-### We are back, third time in a row with **Advent Calendar 2021**. I promise to present interesting topic every day contributed by esteemed members of **Team PWC**.
+### We are back, third time in a row with **Advent Calendar**. I promise to present interesting topic every day contributed by esteemed members of **Team PWC**.
 
 ***
 
