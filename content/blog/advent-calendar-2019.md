@@ -13,7 +13,7 @@ tags: ["Perl", "Raku"]
 
 ***
 
-### With great pleasure, we announce our first **Advent Calendar**. Through out the festive season, you can expect interesting challenges with complete analytic solutions.
+### With great pleasure, we announce our first **Advent Calendar**. In this festive season, you can expect interesting challenges with complete analytic solutions.
 
 ***
 
