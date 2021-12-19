@@ -1,14 +1,14 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2021-12-17T00:00:00+00:00
+date: 2021-12-19T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
 author: Mohammad S Anwar
-tags: ["Ada", "APL", "Awk", "Basic", "Bash", "Bc", "Befunge", "Bourne Shell", "BQN", "Brainfuck", "C3", "C", "CESIL", "Chef", "COBOL", "Coconut", "C Shell", "C++", "Clojure", "Crystal", "D", "Dart", "Elm", "Erlang", "Excel VBA", "Fish", "Forth", "Fortran", "Gembase", "GNAT", "Go", "Haskell", "Haxe", "HTML", "Idris", "IO", "J", "Janet", "Java", "JavaScript", "Kotlin", "Lisp", "Logo", "Lua", "M4", "Macro Processor", "Miranda", "MMIX", "Mumps", "Myrddin", "Nim", "Nix", "Node.js", "Nuweb", "OCaml", "Odin", "Ook", "Pascal", "PHP", "Python", "PostgreSQL", "Postscript", "Prolog", "R", "Rexx", "Ruby", "Rust", "Scala", "Scheme", "Sed", "Smalltalk", "SQL", "SVG", "Swift", "Tcl", "Visual Basic", "XSLT", "Zig"]
+tags: ["Ada", "APL", "Awk", "Basic", "Bash", "Bc", "Befunge", "Bourne Shell", "BQN", "Brainfuck", "C3", "C", "CESIL", "Chef", "COBOL", "Coconut", "C Shell", "C++", "Clojure", "Crystal", "D", "Dart", "Elm", "Erlang", "Excel VBA", "Fish", "Forth", "Fortran", "Gembase", "GNAT", "Go", "Haskell", "Haxe", "HTML", "Idris", "IO", "J", "Janet", "Java", "JavaScript", "Kotlin", "Lisp", "Logo", "Lua", "M4", "Macro Processor", "Miranda", "MMIX", "Mumps", "Myrddin", "Nim", "Nix", "Node.js", "Nuweb", "OCaml", "Odin", "Ook", "Pascal", "PHP", "Python", "PostgreSQL", "Postscript", "Prolog", "R", "Rexx", "Ruby", "Rust", "Scala", "Scheme", "Sed", "Smalltalk", "SQL", "SVG", "Swift", "Tcl", "Visual Basic", "Wolfram", "XSLT", "Zig"]
 ---
 
-As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. During the **Week #018**, we received solutions to **["The Weekly Challenge - 018"](/blog/perl-weekly-challenge-018)** by `Orestis Zekai` in **Python**. It was pleasant surprise to receive solutions in something other than **Perl** and **Raku**. Ever since regular team members also started contributing in other languages like **Ada**, **APL**, **Awk**, **Basic**, **Bash**, **Bc**, **Befunge**, **Bourne Shell**, **BQN**, **Brainfuck**, **C3**, **C**, **CESIL**, **Chef**, **COBOL**, **Coconut**, **C Shell**, **C++**, **Clojure**, **Crystal**, **D**, **Dart**, **Elm**, **Erlang**, **Excel VBA**, **Fish**, **Forth**, **Fortran**, **Gembase**, **GNAT**, **Go**, **Haskell**, **Haxe**, **HTML**, **Idris**, **IO**, **J**, **Janet**, **Java**, **JavaScript**, **Kotlin**, **Lisp**, **Logo**, **Lua**, **M4**, **Macro Processor**, **Miranda**, **MMIX**, **Mumps**, **Myrddin**, **Nim**, **Nix**, **Node.js**, **Nuweb**, **OCaml**, **Odin**, **Ook**, **Pascal**, **PHP**, **Python**, **PostgreSQL**, **Postscript**, **Prolog**, **R**, **Rexx**, **Ruby**, **Rust**, **Scala**, **Scheme**, **Sed**, **Smalltalk**, **SQL**, **SVG**, **Swift**, **Tcl**, **Visual Basic**, **XSLT** and **Zig**.
+As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. During the **Week #018**, we received solutions to **["The Weekly Challenge - 018"](/blog/perl-weekly-challenge-018)** by `Orestis Zekai` in **Python**. It was pleasant surprise to receive solutions in something other than **Perl** and **Raku**. Ever since regular team members also started contributing in other languages like **Ada**, **APL**, **Awk**, **Basic**, **Bash**, **Bc**, **Befunge**, **Bourne Shell**, **BQN**, **Brainfuck**, **C3**, **C**, **CESIL**, **Chef**, **COBOL**, **Coconut**, **C Shell**, **C++**, **Clojure**, **Crystal**, **D**, **Dart**, **Elm**, **Erlang**, **Excel VBA**, **Fish**, **Forth**, **Fortran**, **Gembase**, **GNAT**, **Go**, **Haskell**, **Haxe**, **HTML**, **Idris**, **IO**, **J**, **Janet**, **Java**, **JavaScript**, **Kotlin**, **Lisp**, **Logo**, **Lua**, **M4**, **Macro Processor**, **Miranda**, **MMIX**, **Mumps**, **Myrddin**, **Nim**, **Nix**, **Node.js**, **Nuweb**, **OCaml**, **Odin**, **Ook**, **Pascal**, **PHP**, **Python**, **PostgreSQL**, **Postscript**, **Prolog**, **R**, **Rexx**, **Ruby**, **Rust**, **Scala**, **Scheme**, **Sed**, **Smalltalk**, **SQL**, **SVG**, **Swift**, **Tcl**, **Visual Basic**, **Wolfram**, **XSLT** and **Zig**.
 
 Please find below guest contributions.
 
@@ -57,6 +57,8 @@ Please find below guest contributions.
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-143/roger-bell-west/rust/ch-1.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-143/roger-bell-west/rust/ch-2.rs) in **Rust**.
 
 ##### **Ulrich Rieke** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-143/ulrich-rieke/haskell/ch-2.hs) in **Haskell**.
+
+##### **Mark Senn** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-143/mark-senn/wolfram/ch-2.wl) in **Wolfram**.
 
 ----
 ## [The Weekly Challenge - 142](/blog/perl-weekly-challenge-142) {#142}
