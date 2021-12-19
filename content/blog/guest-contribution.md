@@ -42,6 +42,8 @@ Please find below guest contributions.
 
 ##### **Luca Ferrari** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-143/luca-ferrari/postgresql/ch-2.sql) in **PostgreSQL**.
 
+##### **Mark Senn** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-143/mark-senn/wolfram/ch-2.wl) in **Wolfram**.
+
 ##### **Mohammad S Anwar** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-143/mohammad-anwar/python/ch-1.py) in **Python**.
 
 ##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-143/paulo-custodio/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-143/paulo-custodio/python/ch-2.py) in **Python**.
@@ -56,9 +58,9 @@ Please find below guest contributions.
 
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-143/roger-bell-west/rust/ch-1.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-143/roger-bell-west/rust/ch-2.rs) in **Rust**.
 
-##### **Ulrich Rieke** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-143/ulrich-rieke/haskell/ch-2.hs) in **Haskell**.
+##### **Simon Green** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-143/sgreen/python/ch-2.py) in **Python**.
 
-##### **Mark Senn** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-143/mark-senn/wolfram/ch-2.wl) in **Wolfram**.
+##### **Ulrich Rieke** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-143/ulrich-rieke/haskell/ch-2.hs) in **Haskell**.
 
 ----
 ## [The Weekly Challenge - 142](/blog/perl-weekly-challenge-142) {#142}
