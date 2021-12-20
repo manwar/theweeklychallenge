@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="The Weekly Challenge - Perl & Raku"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="You do not have to be an expert."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Colin Crain › Perl Weekly Review #138">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Colin Crain › Perl Weekly Review #138</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navgation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Colin Crain › Perl Weekly Review #138</h2>
+                    <div class="portfolio-meta">
+                        <span>Monday, Dec 20, 2021</span>|
+                        <span> Tags:
+                            perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/p5-review-challenge-138.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <p>( <em>&hellip;continues from <a href="/blog/review-challenge-137/">previous week</a>.</em> )</p>
+<p>Welcome to the Perl review pages for <strong>Week 138</strong> of The Weekly Challenge! Here we will take the time to discuss the  submissions offered up by the team, factor out some common methodologies that came up in those solutions, and highlight some of the unique approaches and unusual code created.</p>
+<hr>
+<h3 id="why-do-we-do-these-challenges">Why do we do these challenges?</h3>
+<p>I suppose any reasonable answers to that question would be as wide ranging and varied as the people who choose to join the team. One thing, though, is clear: it&rsquo;s not a competition, and there are no judges, even if there is a &ldquo;prize&rdquo; of sorts. About that &ndash; I think of it more as an honorarium periodically awarded to acknowledge the efforts we make towards this strange goal. So there&rsquo;s no determination to find the <em>fastest</em>, or the <em>shortest</em>, or even, in some abstract way, the <em>best</em> way to go about things, although I&rsquo;m certain the participants have their own aspirations and personal drives. As Perl is such a wonderfully expressive language, this provides quite a bit of fodder to the core idea of TMTOWTDI, producing a gamut of varied techniques and solutions.</p>
+<p>Even the tasks themselves are often open to a certain amount of discretionary interpretation. What we end up with is a situation where each participant is producing something in the manner they find the most interesting or satisfying. Some team members focus on carefully crafted complete applications, thoroughly vetting input data and handling every use case they can think up. Others choose to apply themselves to the logic of the underlying puzzle and making it work in the most elegant way they can. Some eschew modules they would ordinarily reach for, others embrace them, bringing to light wheels perhaps invented years ago that happen to exactly solve the problem in front of them today.</p>
+<p>I&rsquo;ve been considering this question for some time and have found one binding commonality between all of us out solving these challenges each week, in that however we normally live our lives, the task in front of us more than likely has nothing to do with any of that. And I think this has great value. We all do what we do, in the real world, and hopefully we do it well. The Weekly Challenge provides us with an opportunity to do something germane to that life yet distinctly different; if we only do the things we already know how to do then we will only do the same things over and over. This is where the &ldquo;challenge&rdquo; aspect comes into play.</p>
+<p>So we can consider The Weekly Challenge as providing a problem space outside of our comfort zone, as far out from that comfort as we wish to take things. From those reaches we can gather and learn things, pick and choose and bring what we want back into our lives. Personally, I think that&rsquo;s its greatest value of all.</p>
+<hr>
+<p>Every week there is an enormous global collective effort made by the team, analyzing and creatively coding the submissions, and that effort deserves credit due.</p>
+<p>And that&rsquo;s why I&rsquo;m here, to try and figure out how to do that.</p>
+<p>Let&rsquo;s get on with it then, have a look and see what we find.</p>
+<hr>
+<p><strong><big>For context</big></strong>  before we begin, you may wish to revisit either of the pages for the <a href="/blog/perl-weekly-challenge-138/"><strong>original tasks</strong></a> or the summary <a href="/blog/recap-challenge-138/"><strong>recap</strong></a> of the challenge. But don&rsquo;t worry, the challenges themselves are repeated and presented below as we progress from task by task. Oh, and one more thing before we get started:</p>
+<h3 id="getting-in-touch-with-us">Getting in Touch with Us</h3>
+<p><a href="mailto:pwc.perfectwave@gmail.com"><img src="/images/blog/Email.svg" height="50" width="50"> Email</a> › Please feel free to email me (Colin) with any feedback, notes, clarifications or whatnot about this review.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge"><img src="/images/blog/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request to us for any issues you may find with this page.</p>
+<p><a href="https://twitter.com/perlwchallenge"><img src="/images/blog/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!</p>
+<p>I&rsquo;m always curious as to what the people think of these efforts. Everyone here at the PWC would like to hear any feedback you&rsquo;d like to give.</p>
+<p><strong>So finally, without further ado&hellip;</strong></p>
+<hr>
+<h2 id="---nbsp--nbsp--nbsp---task-1pwc138task1-------nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---task-2pwc138task2---nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---blogspwc138blogs----nbsp--nbsp--nbsp---">•             <a href="#PWC138TASK1">Task 1</a>                 •             <a href="#PWC138TASK2">Task 2</a>             	•             <a href="#PWC138BLOGS">BLOGS</a>              	•</h2>
+<hr>
+<h1 id="PWC138TASK1">TASK 1</h1>
+<h1 id="workdays">Workdays</h1>
+<p><em>Submitted by: Mohammad S Anwar</em></p>
+<p>You are given a year, $year in 4-digits form.</p>
+<p>Write a script to calculate the total number of workdays in the given year.</p>
+<p>For the task, we consider, Monday - Friday as workdays.</p>
+<p><strong>Example 1</strong></p>
+<pre><code>    Input: $year = 2021
+    Output: 261
+</code></pre><p><strong>Example 2</strong></p>
+<pre><code>    Input: $year = 2020
+    Output: 262
+</code></pre><h2 id="about-the-solutions">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/abigail/perl/ch-1.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/arne-sommer/perl/ch-1.pl"><strong>Arne Sommer</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/bob-lied/perl/ch-1.pl"><strong>Bob Lied</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/bruce-gray/perl/ch-1.pl"><strong>Bruce Gray</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/jaldhar-h-vyas/perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/lubos-kolouch/perl/ch-1.pl"><strong>Lubos Kolouch</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/mattneleigh/perl/ch-1.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/paulo-custodio/perl/ch-1.pl"><strong>Paulo Custodio</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/pete-houston/perl/ch-1.pl"><strong>Pete Houston</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/peter-campbell-smith/perl/ch-1.pl"><strong>Peter Campbell Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/robert-dicicco/perl/ch-1.pl"><strong>Robert DiCicco</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/steven-wilson/perl/ch-1.pl"><strong>Steven Wilson</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/wanderdoc/perl/ch-1.pl"><strong>Wanderdoc</strong></a></p>
+<p>The number of workdays in a given year varies. These are commonly considered the days Monday through Friday in each week, for those whose work schedule aligns with the norm — hardly a sure thing in this modern world. But here we are, and many still find the classification useful.</p>
+<p>Closely related to, yet distinct from, the number of ISO weeks in a year problem that we just dealt with in <a href="/blog/perl-weekly-challenge-137/#TASK1">PWC137</a>, the number of workdays depends on the starting day of the year on January 1st, which will start a possibly incomplete week, and the ending day of the last day of the year, December 31st, which will end another possibly incomplete week. Between these bumpers will be a number of weeks comprising of 5 work days out of 7.</p>
+<p>Additionally, to get the calculation right we we will also need to accomodate the possibility of an extra leap-day on February 29th.</p>
+<p>It&rsquo;s all a bit of a mess, and this is why the Titans, a race of God-like beings came from beyond the stars and bestowed on humanity modules to help us mortals keep the math straight. Or something like that. The details are unclear. In any case however their provenance, mystical or material, we have the modules now to guide us through the darkness, and this was commonly accepted as the way to proceed.</p>
+<p>There were 29 submissions for the first task this past week.</p>
+<h2 id="a-look-at-the-vitals-a-feel-for-the-pulse">A LOOK at the VITALS, a FEEL for the PULSE</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/wanderdoc/perl/ch-1.pl"><strong>Wanderdoc</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/robert-dicicco/perl/ch-1.pl"><strong>Robert DiCicco</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/peter-campbell-smith/perl/ch-1.pl"><strong>Peter Campbell Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/steven-wilson/perl/ch-1.pl"><strong>Steven Wilson</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/mattneleigh/perl/ch-1.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a></p>
+<p>A very common method was to reach for a module with a <code>day_of_week()</code> function of some sort and examine each day in the year, counting the workdays as they arrive. The operation is bounded by the 366 maximum days in the year, so will never blow up on us and will always finish quickly.</p>
+<p>With some modules it is possible to keep things abstract and add a day unit to a preexisting object or create an new object for each day of the year. However some members chose to go at the math themselves, keeping the year in relative epoch-seconds and translating to and from that format. There were even strategies that did the work manually and summed the day counts of the first and final  partial weeks with those of the intermediate period to come to a conclusion.</p>
+<p>Finally, some members noted that there are only 7 days a year can start on and the year will either be a leap year or not. This means there are only 14 possible states for the system, with a precomputable result for each state. We need only discern the correct state for a given year and we will immediately know the answer.</p>
+<p>So for a fairly straightforward task we saw quite a range of approaches.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/ulrich-rieke/cpp/ch-1.cpp">C++</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/ulrich-rieke/haskell/ch-1.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/ulrich-rieke/java/Challenge138.java">Java</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/ulrich-rieke/raku/ch-1.raku">Raku</a></p>
+<p>Ulrich will start us off with a solution using the <code>DateTime</code> module. As we can make no offhand assumptions on the day of the week of either January 1st or December 31st of the input year, we can similarly make no assumptions about the number of weekends that will fall, either completely or incompletely, within that year. This is where the <code>DateTime</code> module comes into play, as it knows all about this sort of thing — specifically which dates in a given years fall on which days of the week. So a very natural way to proceed is to count them, or at least the dates which fall on Monday through Friday.</p>
+<p>To do this we initialize a new <code>DateTime</code> object for January 1st of the year and place it in a loop: if the day of the week is not a Saturday or Sunday, a counter is incremented, and then a span of a day is added. If we are still in the same year we loop around again. When the loop is done we&rsquo;ve counted every weekday.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> DateTime ;
+
+    <span style="color:#66d9ef">my</span> $year <span style="color:#f92672">=</span> $ARGV[ <span style="color:#ae81ff">0</span> ] <span style="color:#e6db74">//</span> <span style="color:#ae81ff">2020</span>; <span style="color:#75715e">##</span>
+
+
+    <span style="color:#66d9ef">while</span> ( $year <span style="color:#f92672">!~</span> <span style="color:#e6db74">/\A\d{4}\z/</span> ) {
+      say <span style="color:#e6db74">&#34;Please enter a year with 4 digits!&#34;</span> ;
+      $year <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;STDIN&gt;</span> ;
+      chomp $year ;
+    }
+    <span style="color:#66d9ef">my</span> $weekdays <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> ;
+    <span style="color:#66d9ef">my</span> $dt <span style="color:#f92672">=</span> DateTime<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(
+          year <span style="color:#f92672">=&gt;</span> $year ,
+          month <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> ,
+          day <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>
+          ) ;
+    <span style="color:#66d9ef">while</span> ( $dt<span style="color:#f92672">-&gt;</span>year <span style="color:#f92672">==</span> $year ) {
+      <span style="color:#66d9ef">unless</span> ( $dt<span style="color:#f92672">-&gt;</span>day_of_week <span style="color:#f92672">==</span> <span style="color:#ae81ff">6</span> <span style="color:#f92672">||</span> $dt<span style="color:#f92672">-&gt;</span>day_of_week <span style="color:#f92672">==</span> <span style="color:#ae81ff">7</span> ) {
+          $weekdays<span style="color:#f92672">++</span> ;
+      }
+      $dt<span style="color:#f92672">-&gt;</span>add( days <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> ) ;
+    }
+    say $weekdays ;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/wanderdoc/perl/ch-1.pl"><strong>Wanderdoc</strong></a></p>
+<p>The doctor, on the other hand, brings in <code>Time::Piece</code> for their desired date-to-day lookup requirements. A new object id defined using a module-specific implementation of the C-library <code>strptime</code> function, parsing a string using a given YYYYMMDD format template. From there, though, the process  continures similarly to the method above: while the object&rsquo;s <code>year()</code> attribute remains unchanged, the object is checked for its day of the week and unless that day is a weekend a counter is ticked to count the business days. Note that in this module weeks start on Sundays, so the weekends are days 1 and 7.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Time::Piece;
+    <span style="color:#66d9ef">use</span> Time::Seconds;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">workdays</span>
+    {
+         <span style="color:#66d9ef">my</span> $year <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>];
+         <span style="color:#66d9ef">my</span> $workdays;
+         <span style="color:#66d9ef">my</span> $day <span style="color:#f92672">=</span> Time::Piece<span style="color:#f92672">-&gt;</span>strptime(<span style="color:#e6db74">&#34;${year}0101&#34;</span>, <span style="color:#e6db74">&#34;%Y%m%D&#34;</span>);
+         <span style="color:#66d9ef">while</span> ( $day<span style="color:#f92672">-&gt;</span>year <span style="color:#f92672">==</span> $year )
+         {
+              $workdays<span style="color:#f92672">++</span> <span style="color:#66d9ef">unless</span> ( $day<span style="color:#f92672">-&gt;</span>wday <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">or</span> $day<span style="color:#f92672">-&gt;</span>wday <span style="color:#f92672">==</span> <span style="color:#ae81ff">7</span> );
+              $day <span style="color:#f92672">+=</span> ONE_DAY;
+         }
+         <span style="color:#66d9ef">return</span> $workdays;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a></p>
+<p>A third option for the procedure, presented here by Duncan, is to use the <code>Date::Simple</code> module. A C-style <code>for</code> loop holds the initializer, the conditional and incrementing steps all together in one place for a nice, clean process. Again here weeks start on Sunday, as is common in North America.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Date::Simple (<span style="color:#e6db74">&#39;:all&#39;</span>);
+
+    <span style="color:#66d9ef">my</span> $year <span style="color:#f92672">=</span> shift;
+
+    <span style="color:#66d9ef">my</span> $weekdays <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">for</span>( <span style="color:#66d9ef">my</span> $day <span style="color:#f92672">=</span> date(<span style="color:#e6db74">&#34;$year-01-01&#34;</span>); $day<span style="color:#f92672">-&gt;</span>year <span style="color:#f92672">==</span> $year; $day<span style="color:#f92672">++</span> )
+    {
+        <span style="color:#66d9ef">my</span> $dow <span style="color:#f92672">=</span> $day<span style="color:#f92672">-&gt;</span>day_of_week;
+        $weekdays<span style="color:#f92672">++</span> <span style="color:#66d9ef">if</span> $dow <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;&amp;</span> $dow <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">5</span>;
+    }
+    say $weekdays;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/robert-dicicco/perl/ch-1.pl"><strong>Robert DiCicco</strong></a></p>
+<p>Right out of the gate we&rsquo;re cutting a broad swath through the field of available date manipulation libraries — now Robert brings us <code>Date::Calc</code>. A fully-featured API is implemented, accommodating all manner of transformations among formats and intervals, and arithmetic operations without requiring the construction of a specific mutable object. As seems to be the common theme here we obtain the day count by counting the days, in this case first aquiring the length of the year to establish the correct range starting at January 1 and going forward from there.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Date::Calc <span style="color:#e6db74">qw(:all)</span>;
+    <span style="color:#66d9ef">use</span> IO::Prompter;
+
+    <span style="color:#66d9ef">my</span> $input_yr <span style="color:#f92672">=</span> prompt <span style="color:#e6db74">&#39;Input year = &#39;</span>, <span style="color:#f92672">-</span>num;
+    <span style="color:#66d9ef">my</span> $numyr <span style="color:#f92672">=</span> Days_in_Year($input_yr,<span style="color:#ae81ff">12</span>);
+
+    <span style="color:#66d9ef">my</span> ($count, $dow) <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $offset (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $numyr){
+        <span style="color:#75715e">#Starting with last day of previous year</span>
+        <span style="color:#75715e"># add 1, then calculate date</span>
+        <span style="color:#66d9ef">my</span> ($year,$month,$day) <span style="color:#f92672">=</span> Add_Delta_Days(($input_yr <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>),<span style="color:#ae81ff">12</span>,<span style="color:#ae81ff">31</span>,$offset);
+        $dow <span style="color:#f92672">=</span> Day_of_Week($year,$month,$day);  <span style="color:#75715e"># then, get its day of week</span>
+        <span style="color:#66d9ef">if</span>(($dow <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> ) <span style="color:#f92672">&amp;&amp;</span> ($dow <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">6</span>)){   <span style="color:#75715e">## 0 = Sunday,  6 = Saturday</span>
+            $count<span style="color:#f92672">++</span>;
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/peter-campbell-smith/perl/ch-1.pl"><strong>Peter Campbell Smith</strong></a></p>
+<p>In a welcome divergence from the norm, we now have Peter, who starts with an analysis that concludes that any year will, according to a set of conditionals, have either 260, 261 or 262 working days. According to his logic, he needs only to figure out the location of the end of the scale, the day for December 31, and whether or not the year is a leap year.</p>
+<p>The <code>Time::Local</code> module proivides a function <code>timelocal()</code> and a reverse for the built-in <code>localtime()</code>, allowing him to initialize a moment in elapsed seconds from the epoch for December 31, and then translate that back into a complete 7-element array containing a day-of-week value.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Time::Local;
+
+    @years <span style="color:#f92672">=</span> (<span style="color:#ae81ff">2010</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">2030</span>);
+
+    <span style="color:#66d9ef">for</span> $year (@years) {
+        $working_days <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">52</span>;
+        $working_days<span style="color:#f92672">++</span> <span style="color:#66d9ef">if</span> is_working_day($year, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">31</span>);
+        $working_days<span style="color:#f92672">++</span> <span style="color:#66d9ef">if</span> (is_leap($year) <span style="color:#f92672">and</span> is_working_day($year, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">30</span>));
+        say <span style="color:#e6db74">qq[Input: \$year = $year\nOutput: $working_days\n]</span>;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_working_day</span> {  <span style="color:#75715e"># ($year, $month, $day)</span>
+
+        <span style="color:#75715e"># returns 1 if date is a working day, else returns 0</span>
+        <span style="color:#75715e">#                           s  m  h   d      m         y</span>
+        <span style="color:#66d9ef">my</span> @t <span style="color:#f92672">=</span> localtime(timelocal(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">12</span>, $_[<span style="color:#ae81ff">2</span>], $_[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, $_[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">-</span> <span style="color:#ae81ff">1900</span>));
+        <span style="color:#66d9ef">return</span> ($t[<span style="color:#ae81ff">6</span>] <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">and</span> $t[<span style="color:#ae81ff">6</span>] <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">5</span>) ? <span style="color:#ae81ff">1</span> : <span style="color:#ae81ff">0</span>;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_leap</span> {
+
+        <span style="color:#75715e"># returns 1 if given year is leap or 0 if not</span>
+        <span style="color:#66d9ef">my</span> ($test);
+
+        $test <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>];
+        $test <span style="color:#f92672">=</span> $test <span style="color:#f92672">/</span> <span style="color:#ae81ff">100</span> <span style="color:#66d9ef">if</span> $test % 100 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;  <span style="color:#75715e"># xx00 years</span>
+        <span style="color:#66d9ef">return</span> $test % 4 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> ? <span style="color:#ae81ff">1</span> : <span style="color:#ae81ff">0</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/steven-wilson/perl/ch-1.pl"><strong>Steven Wilson</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/steven-wilson/python/ch-1.py">Python</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://tilde.town/~wlsn/pwc138.html">Perl Weekly Challenge Week 138 - Workdays</a></p>
+<p>Extending the previous analysis, it stands to reason that if we know the start day of the year, we know the end day if we also know whether it&rsquo;s a leap year or not. So that&rsquo;s the same two pieces of information Peter had concluded we needed, just looked at through the mirror.</p>
+<p>Taken to the next level, though, we only have 7 possible days and a boolean condition, leading to only 14 possible states. So a lookup table can answer for any year.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> DateTime;
+
+    <span style="color:#66d9ef">my</span> $year              <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">0</span>];
+    <span style="color:#66d9ef">my</span> $dt                <span style="color:#f92672">=</span> DateTime<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>( year <span style="color:#f92672">=&gt;</span> $year, month <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>, day <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> );
+    <span style="color:#66d9ef">my</span> $start_day_of_week <span style="color:#f92672">=</span> $dt<span style="color:#f92672">-&gt;</span>day_of_week();
+    <span style="color:#66d9ef">my</span> $is_leap_year      <span style="color:#f92672">=</span> $dt<span style="color:#f92672">-&gt;</span>is_leap_year();
+    <span style="color:#66d9ef">my</span> %workdays          <span style="color:#f92672">=</span> (
+        <span style="color:#ae81ff">10</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">261</span>,
+        <span style="color:#ae81ff">11</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">262</span>,
+        <span style="color:#ae81ff">20</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">261</span>,
+        <span style="color:#ae81ff">21</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">262</span>,
+        <span style="color:#ae81ff">30</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">261</span>,
+        <span style="color:#ae81ff">31</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">262</span>,
+        <span style="color:#ae81ff">40</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">261</span>,
+        <span style="color:#ae81ff">41</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">262</span>,
+        <span style="color:#ae81ff">50</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">261</span>,
+        <span style="color:#ae81ff">51</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">261</span>,
+        <span style="color:#ae81ff">60</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">260</span>,
+        <span style="color:#ae81ff">61</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">260</span>,
+        <span style="color:#ae81ff">70</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">260</span>,
+        <span style="color:#ae81ff">71</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">261</span>,
+    );
+
+    say $workdays{<span style="color:#e6db74">&#34;$start_day_of_week$is_leap_year&#34;</span>};
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/roger-bell-west/postscript/ch-1.ps">Postscript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/roger-bell-west/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/roger-bell-west/raku/ch-1.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/roger-bell-west/ruby/ch-1.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/roger-bell-west/rust/ch-1.rs">Rust</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://blog.firedrake.org/archive/2021/11/Perl_Weekly_Challenge_138__Split_Work.html">RogerBW&rsquo;s Blog: Perl Weekly Challenge 138: Split Work</a></p>
+<p>I quite like how our random selection is following such a natural progression between techniques. Here Roger extends the previous logic with two hand-built implementations of formulae to calculate first the day-of-week for December 31, and then for the presence of a leap year condition. As both of these can be computed from a single year parameter, there&rsquo;s no real need to bring in a module for the calculation. Note the anonymous array lookup, which is certainly an interesting device. Perl hashes are already ridiculously fast so I question the necessity of this trick, but it&rsquo;s cool, no doubt about that.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">p</span> {
+      <span style="color:#66d9ef">my</span> $y<span style="color:#f92672">=</span>shift;
+      <span style="color:#66d9ef">return</span> ($y<span style="color:#f92672">+</span>int($y<span style="color:#e6db74">/4)-int($y/</span><span style="color:#ae81ff">100</span>)<span style="color:#f92672">+</span>int($y<span style="color:#f92672">/</span><span style="color:#ae81ff">400</span>))%7;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">leapyear</span> {
+      <span style="color:#66d9ef">my</span> $y<span style="color:#f92672">=</span>shift;
+      <span style="color:#66d9ef">return</span> ($y%4<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> ($y%100 <span style="color:#f92672">!=</span><span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> $y%400<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>));
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">workdays</span> {
+      <span style="color:#66d9ef">my</span> $y<span style="color:#f92672">=</span>shift;
+      <span style="color:#66d9ef">my</span> $i<span style="color:#f92672">=</span>p($y);
+      <span style="color:#66d9ef">if</span> (leapyear($y)) {
+        $i<span style="color:#f92672">+=</span><span style="color:#ae81ff">7</span>;
+      }
+      <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">260</span><span style="color:#f92672">+</span>[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>]<span style="color:#f92672">-&gt;</span>[$i];
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/mattneleigh/perl/ch-1.pl"><strong>Matthew Neleigh</strong></a></p>
+<p>Matthew breaks down his process in an extremely well-defined, precise manner. Nothin&rsquo; wrong with that, especially as he annotates everything with comments along the way. Although one might not get the impression from my rather freewheeling review style, I am a firm believer in the importance of precision in language — when required, of course. In other places — well life is a crap shoot, isn&rsquo;t it? So let&rsquo;s use language in a way that properly reflects that. It&rsquo;s certainly more colorful that way.</p>
+<p>Matthew starts from a single data point, the given year. From there he implements the commonly available formula for calculating the day of December 31 we&rsquo;ve seen before, which in turn gives him the ability to compute the number of ISO weeks, as we saw in last week&rsquo;s challenge. This number will be either 52 or 53, and from this we can count 5 days for every complete week, plus those working days for the first week, and then those for the last. Piece of cake.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">workdays_per_year</span>{
+        <span style="color:#66d9ef">my</span> $year <span style="color:#f92672">=</span> shift();
+
+        <span style="color:#75715e"># Shamelessly borrow from a solution</span>
+        <span style="color:#75715e"># to a previous PWC problem, with a</span>
+        <span style="color:#75715e"># few modifications...</span>
+        <span style="color:#66d9ef">my</span> $nye_curr <span style="color:#f92672">=</span> new_years_eve_weekday($year);
+        <span style="color:#66d9ef">my</span> $nye_prev <span style="color:#f92672">=</span> new_years_eve_weekday($year <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>);
+        <span style="color:#66d9ef">my</span> $weeks <span style="color:#f92672">=</span> weeks_in_year($year, $nye_curr, $nye_prev);
+
+
+        <span style="color:#66d9ef">return</span>(
+            <span style="color:#75715e"># Number of workdays in the first</span>
+            <span style="color:#75715e"># partial week of the year</span>
+            (<span style="color:#ae81ff">5</span> <span style="color:#f92672">-</span> ($nye_prev <span style="color:#f92672">==</span> <span style="color:#ae81ff">6</span> ? <span style="color:#ae81ff">5</span> : $nye_prev))
+            <span style="color:#f92672">+</span>
+            <span style="color:#75715e"># Number of workdays in the full</span>
+            <span style="color:#75715e"># weeks ofthe year</span>
+            (($weeks <span style="color:#f92672">-</span> ($weeks <span style="color:#f92672">==</span> <span style="color:#ae81ff">53</span> ? <span style="color:#ae81ff">2</span>: <span style="color:#ae81ff">1</span>)) <span style="color:#f92672">*</span> <span style="color:#ae81ff">5</span>)
+            <span style="color:#f92672">+</span>
+            <span style="color:#75715e"># Number of workdays in the last</span>
+            <span style="color:#75715e"># partial week of the year</span>
+            ($nye_curr <span style="color:#f92672">==</span> <span style="color:#ae81ff">6</span> ? <span style="color:#ae81ff">5</span> : $nye_curr)
+        );
+
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">weeks_in_year</span>{
+        <span style="color:#66d9ef">my</span> $year <span style="color:#f92672">=</span> shift();
+        <span style="color:#66d9ef">my</span> $nye_curr <span style="color:#f92672">=</span> shift();
+        <span style="color:#66d9ef">my</span> $nye_prev <span style="color:#f92672">=</span> shift();
+
+        <span style="color:#75715e"># Did this year end on Thursday or the</span>
+        <span style="color:#75715e"># previous year end on Wednesday?</span>
+        <span style="color:#66d9ef">if</span>(
+            ($nye_curr <span style="color:#f92672">==</span> <span style="color:#ae81ff">4</span>)
+            <span style="color:#f92672">||</span>
+            ($nye_prev <span style="color:#f92672">==</span> <span style="color:#ae81ff">3</span>)
+        ){
+            <span style="color:#75715e"># Yes...</span>
+            <span style="color:#66d9ef">return</span>(<span style="color:#ae81ff">53</span>);
+        } <span style="color:#66d9ef">else</span>{
+            <span style="color:#75715e"># No...</span>
+            <span style="color:#66d9ef">return</span>(<span style="color:#ae81ff">52</span>);
+        }
+
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/polettix/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.polettix.it/ETOOBUSY/2021/11/10/pwc138-workdays/">PWC138 - Workdays - ETOOBUSY</a></p>
+<p>Flavio also breaks his final computation into three parts, the first week, the last week and then those complete weeks in the middle that fill out the year. Defining weeks to start on Monday, then, the first week will always contain one Sunday, a non-working day. He expands on this logic to create maxima and minima for those weeks. From this premise manages to showhorn all the good bits into a creative conditional to perform the sum in one action, creating an impressively compact package.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">dow</span> ($y, $m, $d) { (gmtime(timegm(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, $d, <span style="color:#f92672">--</span>$m, $y)))[<span style="color:#ae81ff">6</span>] }
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">workdays</span> ($y) {
+       <span style="color:#66d9ef">my</span> $bdow <span style="color:#f92672">=</span> dow($y, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>);
+       <span style="color:#66d9ef">my</span> $edow <span style="color:#f92672">=</span> dow($y, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">31</span>);
+       <span style="color:#66d9ef">my</span> $bdays <span style="color:#f92672">=</span> <span style="color:#ae81ff">8</span> <span style="color:#f92672">-</span> $bdow; <span style="color:#75715e"># 1 - 7</span>
+       <span style="color:#66d9ef">my</span> $ydays <span style="color:#f92672">=</span> <span style="color:#ae81ff">365</span> <span style="color:#f92672">+</span> ($bdow <span style="color:#f92672">==</span> $edow ? <span style="color:#ae81ff">0</span> : <span style="color:#ae81ff">1</span>) <span style="color:#f92672">-</span> $bdays <span style="color:#f92672">-</span> $edow;
+       <span style="color:#66d9ef">return</span> max($bdays <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">0</span>) <span style="color:#f92672">+</span> ($ydays <span style="color:#f92672">/</span> <span style="color:#ae81ff">7</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">5</span>) <span style="color:#f92672">+</span> min($edow, <span style="color:#ae81ff">5</span>);
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://dev.to/simongreennet/weekly-challenge-138-dh1">Weekly Challenge 138</a></p>
+<p>Simon is back from the wilds of <em>computing his own date manipulation code</em>, having apparently survived the ordeal to code another day. Perhaps the experience changed him, as this time he reaches for <code>Date::Calc</code> to calc his dates. Some say they make them out of tougher stuff down in Australia, and Simon&rsquo;s speedy return certainly adds credence to that conjecture. I hope he is well in mind as well as body. I&rsquo;m sure he&rsquo;s seen things, out beyond the wall. Terrible things.</p>
+<p>I, um, don&rsquo;t like it out there.</p>
+<p>(<em>fixes thousand yard stare and says nothing for an unsettling period of time</em>)</p>
+<p>Huh? Oh, right:</p>
+<p>Here is his solution, methodically laid out and explained step-by-step:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Date::Calc ( <span style="color:#e6db74">&#39;Day_of_Week&#39;</span>, <span style="color:#e6db74">&#39;leap_year&#39;</span> );
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">main</span> {
+        <span style="color:#66d9ef">my</span> $year <span style="color:#f92672">=</span> shift;
+
+        <span style="color:#75715e"># Sanity check</span>
+        die <span style="color:#e6db74">&#34;You must specify the year&#34;</span>       <span style="color:#66d9ef">unless</span> defined $year;
+        die <span style="color:#e6db74">&#34;Year must be four digits &gt; 1752&#34;</span> <span style="color:#66d9ef">unless</span> $year <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^[0-9]{4}$/</span> <span style="color:#f92672">and</span> $year <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1752</span>;
+
+        <span style="color:#75715e"># Get the day of week of January 1st, and leap year flag</span>
+        <span style="color:#66d9ef">my</span> $day_of_week <span style="color:#f92672">=</span> Day_of_Week( $year, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span> );    <span style="color:#75715e"># 1 - Monday, 7 - Sunday</span>
+        <span style="color:#66d9ef">my</span> $leap        <span style="color:#f92672">=</span> leap_year($year);
+
+        <span style="color:#75715e"># If the 1st of January is Saturday or Sunday, then the Dec 31st (or</span>
+        <span style="color:#75715e"># Dec 30th in a leap year) isn&#39;t a work day.</span>
+        <span style="color:#66d9ef">my</span> $workdays <span style="color:#f92672">=</span> ( $day_of_week <span style="color:#f92672">!=</span> <span style="color:#ae81ff">6</span> <span style="color:#f92672">and</span> $day_of_week <span style="color:#f92672">!=</span> <span style="color:#ae81ff">7</span> ) ? <span style="color:#ae81ff">261</span> : <span style="color:#ae81ff">260</span>;
+
+        <span style="color:#75715e"># In a leap year, the Dec 31st is two days later than Jan 1st.</span>
+        <span style="color:#f92672">++</span>$workdays <span style="color:#66d9ef">if</span> $leap <span style="color:#f92672">and</span> $day_of_week <span style="color:#f92672">!=</span> <span style="color:#ae81ff">5</span> <span style="color:#f92672">and</span> $day_of_week <span style="color:#f92672">!=</span> <span style="color:#ae81ff">6</span>;
+
+        say $workdays;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/cheok-yin-fung/julia/ch-1.jl">Julia</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://e7-87-83.github.io/coding/challenge_138t1.html">CY&rsquo;s Taken The Weekly Challenge #138 Task 1 and Some Previous Tasks on Calendar Date</a></p>
+<p>CYdelivers us two solutions, using one to check the results of the other. In one, she counts the days in the manner we have commonly seen, using <code>localtime</code> to extract the day of the week. In the second, novel approach however, she develops a method of constructing the entire year in epoch-seconds. From there she ascertains the number of complete weeks in the span; each of these contribute 5 days to the total. Then additional bumpers are calculated for the span up until the first complete week and the span after the last, and these are added to the sum from the complete weeks. The result is the number of workdays throughout the year span.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">count_work_days</span> {
+        <span style="color:#66d9ef">my</span> $y <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>];
+
+        <span style="color:#66d9ef">my</span> $_01Jan <span style="color:#f92672">=</span> localtime timelocal_nocheck <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, $y;
+        <span style="color:#66d9ef">my</span> $d_01Jan <span style="color:#f92672">=</span> $_01Jan<span style="color:#f92672">-&gt;</span>wday();
+        <span style="color:#66d9ef">my</span> $diff <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> $d_01Jan) % 7;
+
+        <span style="color:#66d9ef">my</span> $firstMonday <span style="color:#f92672">=</span> timelocal_nocheck <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span><span style="color:#f92672">+</span>$diff, <span style="color:#ae81ff">0</span>, $y;
+
+        <span style="color:#66d9ef">my</span> $_31Dec <span style="color:#f92672">=</span> localtime timelocal_nocheck <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">31</span>, <span style="color:#ae81ff">11</span>, $y;
+
+        <span style="color:#66d9ef">my</span> $d_31Dec <span style="color:#f92672">=</span> $_31Dec<span style="color:#f92672">-&gt;</span>wday();
+
+        <span style="color:#66d9ef">my</span> $back_diff <span style="color:#f92672">=</span> ($d_31Dec <span style="color:#f92672">-</span> <span style="color:#ae81ff">5</span>) % 7;
+
+
+        <span style="color:#66d9ef">my</span> $MondayAfterLastFriday
+            <span style="color:#f92672">=</span> timelocal_nocheck <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">3</span><span style="color:#f92672">-</span>$back_diff, <span style="color:#ae81ff">0</span>, $y<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>;
+
+        <span style="color:#66d9ef">my</span> $ans
+            <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span> <span style="color:#f92672">*</span> int (
+                ($MondayAfterLastFriday
+                <span style="color:#f92672">-</span>$firstMonday)
+                    <span style="color:#e6db74">/86400/</span><span style="color:#ae81ff">7</span>
+              );
+
+
+        $ans <span style="color:#f92672">+=</span> <span style="color:#ae81ff">6</span><span style="color:#f92672">-</span>$d_01Jan <span style="color:#66d9ef">if</span> $d_01Jan <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>;
+        $ans <span style="color:#f92672">+=</span> $d_31Dec <span style="color:#66d9ef">if</span> $d_31Dec <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">5</span>;
+
+        <span style="color:#66d9ef">return</span> $ans;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://jacoby.github.io/2021/11/08/i-thank-you-for-the-days-the-weekly-challenge-138.html">I Thank You For The Days: The Weekly Challenge #138 | Committed to Memory</a></p>
+<p>Finally, Dave presents us with two solutions as well, again using one to validate the other, with the first one counting through the days and examining each to see where it falls in the week, building an aggregate total.</p>
+<p>In the second, though, he has come to the conclusion that there are only so many combinations of start days and leap years, and a lookup table can be constructed and hardcoded to produce an answer for every case. I&rsquo;ll leave you with hs own words:</p>
+<blockquote>
+<p>But there are ONLY 14 years. Leap year or not = 2. Days of week = 7.
+2 * 7 == 14. So it&rsquo;s perfectly reasonable to know that, if the year
+is a leapyear and starts on a Saturday, or starts on a Sunday, leap year
+or no, that&rsquo;s going to be a 260-workday year, and if it&rsquo;s a leap year
+and starts on Monday, Tuesday, Wednesday or Thurday, there will be
+262, and otherwise, there will be 261.</p>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">workdays2</span>( $year ) {
+        <span style="color:#66d9ef">my</span> $table <span style="color:#f92672">=</span> {};
+        $table<span style="color:#f92672">-&gt;</span>{<span style="color:#ae81ff">0</span>}{<span style="color:#ae81ff">1</span>} <span style="color:#f92672">=</span> <span style="color:#ae81ff">261</span>;
+        $table<span style="color:#f92672">-&gt;</span>{<span style="color:#ae81ff">0</span>}{<span style="color:#ae81ff">2</span>} <span style="color:#f92672">=</span> <span style="color:#ae81ff">261</span>;
+        $table<span style="color:#f92672">-&gt;</span>{<span style="color:#ae81ff">0</span>}{<span style="color:#ae81ff">3</span>} <span style="color:#f92672">=</span> <span style="color:#ae81ff">261</span>;
+        $table<span style="color:#f92672">-&gt;</span>{<span style="color:#ae81ff">0</span>}{<span style="color:#ae81ff">4</span>} <span style="color:#f92672">=</span> <span style="color:#ae81ff">261</span>;
+        $table<span style="color:#f92672">-&gt;</span>{<span style="color:#ae81ff">0</span>}{<span style="color:#ae81ff">5</span>} <span style="color:#f92672">=</span> <span style="color:#ae81ff">261</span>;
+        $table<span style="color:#f92672">-&gt;</span>{<span style="color:#ae81ff">0</span>}{<span style="color:#ae81ff">6</span>} <span style="color:#f92672">=</span> <span style="color:#ae81ff">260</span>;
+        $table<span style="color:#f92672">-&gt;</span>{<span style="color:#ae81ff">0</span>}{<span style="color:#ae81ff">7</span>} <span style="color:#f92672">=</span> <span style="color:#ae81ff">260</span>;
+        $table<span style="color:#f92672">-&gt;</span>{<span style="color:#ae81ff">1</span>}{<span style="color:#ae81ff">1</span>} <span style="color:#f92672">=</span> <span style="color:#ae81ff">262</span>;
+        $table<span style="color:#f92672">-&gt;</span>{<span style="color:#ae81ff">1</span>}{<span style="color:#ae81ff">2</span>} <span style="color:#f92672">=</span> <span style="color:#ae81ff">262</span>;
+        $table<span style="color:#f92672">-&gt;</span>{<span style="color:#ae81ff">1</span>}{<span style="color:#ae81ff">3</span>} <span style="color:#f92672">=</span> <span style="color:#ae81ff">262</span>;
+        $table<span style="color:#f92672">-&gt;</span>{<span style="color:#ae81ff">1</span>}{<span style="color:#ae81ff">4</span>} <span style="color:#f92672">=</span> <span style="color:#ae81ff">262</span>;
+        $table<span style="color:#f92672">-&gt;</span>{<span style="color:#ae81ff">1</span>}{<span style="color:#ae81ff">5</span>} <span style="color:#f92672">=</span> <span style="color:#ae81ff">261</span>;
+        $table<span style="color:#f92672">-&gt;</span>{<span style="color:#ae81ff">1</span>}{<span style="color:#ae81ff">6</span>} <span style="color:#f92672">=</span> <span style="color:#ae81ff">260</span>;
+        $table<span style="color:#f92672">-&gt;</span>{<span style="color:#ae81ff">1</span>}{<span style="color:#ae81ff">7</span>} <span style="color:#f92672">=</span> <span style="color:#ae81ff">261</span>;
+        <span style="color:#66d9ef">my</span> $day <span style="color:#f92672">=</span> DateTime<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(
+            day       <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>,
+            month     <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>,
+            year      <span style="color:#f92672">=&gt;</span> $year,
+            time_zone <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;floating&#39;</span>
+        );
+        <span style="color:#66d9ef">return</span> $table<span style="color:#f92672">-&gt;</span>{ $day<span style="color:#f92672">-&gt;</span>is_leap_year }{ $day<span style="color:#f92672">-&gt;</span>dow };
+    }
+</code></pre></div><h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-1">Blogs and Additional Submissions in Guest Languages for Task 1:</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/abigail/perl/ch-1.pl"><strong>Abigail</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/abigail/awk/ch-1.awk">Awk</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/abigail/bash/ch-1.sh">Bash</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/abigail/bc/ch-1.bc">Bc</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/abigail/c/ch-1.c">C</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/abigail/go/ch-1.go">Go</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/abigail/java/ch-1.java">Java</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/abigail/lua/ch-1.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/abigail/node/ch-1.js">Node</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/abigail/pascal/ch-1.p">Pascal</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/abigail/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/abigail/r/ch-1.r">R</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/abigail/ruby/ch-1.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/abigail/scheme/ch-1.scm">Scheme</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/abigail/tcl/ch-1.tcl">Tcl</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-138-1.html">Perl Weekly Challenge 138: Workdays</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/arne-sommer/perl/ch-1.pl"><strong>Arne Sommer</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/arne-sommer/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://raku-musings.com/workdays-numbered.html">The Workdays are Numbered with Raku (and Perl)</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/athanasius/raku/ch-1.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/jaldhar-h-vyas/perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/jaldhar-h-vyas/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://www.braincells.com/perl/2021/11/perl_weekly_challenge_week_138.html">Perl Weekly Challenge: Week 138</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.com/drbaggy/perlweeklychallenge-club/blob/master/challenge-138/james-smith/README.md">Perl Weekly Challenge #138</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/laurent-rosenfeld/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://blogs.perl.org/users/laurent_r/2021/11/perl-weekly-challenge-138-workdays-and-split-number.html">Perl Weekly Challenge 138: Workdays and Split Number |aurent_r</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/lubos-kolouch/perl/ch-1.pl"><strong>Lubos Kolouch</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/lubos-kolouch/python/ch-1.py">Python</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/mohammad-anwar/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/mohammad-anwar/raku/ch-1.raku">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/mohammad-anwar/swift/ch-1.swift">Swift</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/paulo-custodio/perl/ch-1.pl"><strong>Paulo Custodio</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/paulo-custodio/python/ch-1.py">Python</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://wlmb.github.io/2021/11/09/PWC138/">Perl Weekly Challenge 138 – W. Luis Mochán</a></p>
+<hr>
+<hr>
+<h1 id="PWC138BLOGS">BLOGS</h1>
+<hr>
+<p><strong>That’s it for me this week, people! Warped by the rain, driven by the snow, resolute and unbroken by the torrential influx, by some miracle I somehow continue to maintain my bearings.</strong></p>
+<p><strong>Looking forward to next wave, the perfect wave, I am: <em>your humble servant</em>.</strong></p>
+<h1 id="PWC136BLOGS">But if Your Unquenchable <em>THIRST</em> for <em>KNOWLEDGE</em> is not <em>SLAKED</em>,</h1>
+<h1 id="then-run-dont-walk-to-the-watering-hole">then <em>RUN</em> <em>(dont walk!)</em> to the <em>WATERING HOLE</em></h1>
+<h1 id="and-follow-these-blog-links">and <em>FOLLOW</em> these <em>BLOG</em> <em>LINKS</em>:</h1>
+<p><strong>( &hellip;<em>don&rsquo;t think, trust your training, you&rsquo;re in the zone, just do it &hellip;</em> )</strong></p>
+<p><strong>Abigail</strong></p>
+<ul>
+<li><a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-138-1.html">Perl Weekly Challenge 138: Workdays</a> ( <em>Perl</em> )</li>
+<li><a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-138-2.html">Perl Weekly Challenge 138: Split Number</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Arne Sommer</strong></p>
+<ul>
+<li><a href="https://raku-musings.com/workdays-numbered.html">The Workdays are Numbered with Raku (and Perl)</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Cheok-Yin Fung</strong></p>
+<ul>
+<li><a href="https://e7-87-83.github.io/coding/challenge_138t1.html">CY&rsquo;s Taken The Weekly Challenge #138 Task 1 and Some Previous Tasks on Calendar Date</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Dave Jacoby</strong></p>
+<ul>
+<li><a href="https://jacoby.github.io/2021/11/08/i-thank-you-for-the-days-the-weekly-challenge-138.html">I Thank You For The Days: The Weekly Challenge #138 | Committed to Memory</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Flavio Poletti</strong></p>
+<ul>
+<li><a href="https://github.polettix.it/ETOOBUSY/2021/11/10/pwc138-workdays/">PWC138 - Workdays - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+<li><a href="https://github.polettix.it/ETOOBUSY/2021/11/11/pwc138-split-number/">PWC138 - Split Number - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Jaldhar H. Vyas</strong></p>
+<ul>
+<li><a href="https://www.braincells.com/perl/2021/11/perl_weekly_challenge_week_138.html">Perl Weekly Challenge: Week 138</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>James Smith</strong></p>
+<ul>
+<li><a href="https://github.com/drbaggy/perlweeklychallenge-club/blob/master/challenge-138/james-smith/README.md">Perl Weekly Challenge #138</a>
+( <em>Perl</em> )</li>
+</ul>
+<p><strong>Laurent Rosenfeld</strong></p>
+<ul>
+<li><a href="http://blogs.perl.org/users/laurent_r/2021/11/perl-weekly-challenge-138-workdays-and-split-number.html">Perl Weekly Challenge 138: Workdays and Split Number |aurent_r</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Luca Ferrari</strong></p>
+<ul>
+<li><a href="https://fluca1978.github.io/2021/11/08/PerlWeeklyChallenge138.html#task1">Perl Weekly Challenge 138: split working days – Luca Ferrari – Open Source advocate, human being</a> ( <em>Raku</em> )</li>
+</ul>
+<p><strong>Roger Bell_West</strong></p>
+<ul>
+<li><a href="https://blog.firedrake.org/archive/2021/11/Perl_Weekly_Challenge_138__Split_Work.html">RogerBW&rsquo;s Blog: Perl Weekly Challenge 138: Split Work</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Simon Green</strong></p>
+<ul>
+<li><a href="https://dev.to/simongreennet/weekly-challenge-138-dh1">Weekly Challenge 138</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Steven Wilson</strong></p>
+<ul>
+<li><a href="https://tilde.town/~wlsn/pwc138.html">Perl Weekly Challenge Week 138 - Workdays</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>W. Luis Mochan</strong></p>
+<ul>
+<li><a href="https://wlmb.github.io/2021/11/09/PWC138/">Perl Weekly Challenge 138 – W. Luis Mochán</a> ( <em>Perl</em> )</li>
+</ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="/contact" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2021
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.nomtimes.co.uk/site/shop.do?cref=PerlBooks" title="Free Perl Books" rel="noreferrer" target="_blank">
+                            <img src="/images/NomTimes.jpg" style="width:22px; height: 18px;" alt=""/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jQurey/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-136524905-1', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+
+</html>
+
