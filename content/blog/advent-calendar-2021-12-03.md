@@ -8,7 +8,8 @@ author: Arne Sommer
 tags: ["Perl","Raku"]
 ---
 
-[**Advent Calendar 2021**](/blog/advent-calendar-2021)
+## [**Advent Calendar 2021**](/blog/advent-calendar-2021)
+### | [**Day 2**](/blog/advent-calendar-2021-12-02) | **Day 3** | [**Day 4**](/blog/advent-calendar-2021-12-04) |
 ***
 
 The gift is presented by [**Arne Sommer**](/blog/meet-the-champion-019). Today he is talking about his solution to [**"The Weekly Challenge - 097"**](/blog/perl-weekly-challenge-097). This is re-produced for **Advent Calendar 2021** from the original [**post**](https://raku-musings.com/caesarean-substrings.html) by `Arne Sommer`.

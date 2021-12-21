@@ -8,7 +8,8 @@ author: Roger Bell_West
 tags: ["Raku"]
 ---
 
-[**Advent Calendar 2021**](/blog/advent-calendar-2021)
+## [**Advent Calendar 2021**](/blog/advent-calendar-2021)
+### | [**Day 9**](/blog/advent-calendar-2021-12-09) | **Day 10** | [**Day 11**](/blog/advent-calendar-2021-12-11) |
 ***
 
 The gift is presented by [**Roger Bell_West**](/blog/meet-the-champion-026). Today he is talking about his solution to [**"The Weekly Challenge - 120"**](/blog/perl-weekly-challenge-120). This is re-produced for **Advent Calendar 2021** from the original [**post**](https://blog.firedrake.org/archive/2021/07/Perl_Weekly_Challenge_120__Swap_Clock.html) by `Roger Bell_West`.

@@ -8,7 +8,8 @@ author: Lubos Kolouch
 tags: ["Perl","Python"]
 ---
 
-[**Advent Calendar 2021**](/blog/advent-calendar-2021)
+## [**Advent Calendar 2021**](/blog/advent-calendar-2021)
+### | [**Day 14**](/blog/advent-calendar-2021-12-14) | **Day 15** | [**Day 16**](/blog/advent-calendar-2021-12-16) |
 ***
 
 The gift is presented by [**Lubos Kolouch**](/blog/meet-the-champion-024). Today he is talking about his solution to [**"The Weekly Challenge - 088"**](/blog/perl-weekly-challenge-088). This is re-produced for **Advent Calendar 2021** from the original [**post**](https://v.kolouch.org/nextcloud/index.php/apps/cms_pico/pico/lubos/20201128_perl_weekly_088) by `Lubos Kolouch`.

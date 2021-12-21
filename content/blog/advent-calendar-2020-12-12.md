@@ -1,6 +1,6 @@
 ---
 title: "Advent Calendar - December 12, 2020"
-date: 2020-12-20T00:00:00+00:00
+date: 2020-12-12T00:00:00+00:00
 description: "Advent Calendar - December 12, 2020."
 type: post
 image: images/blog/2020-12-12.jpg
@@ -8,7 +8,8 @@ author: Cheok-Yin Fung
 tags: ["Perl"]
 ---
 
-[**Advent Calendar 2020**](/blog/advent-calendar-2020)
+## [**Advent Calendar 2020**](/blog/advent-calendar-2020)
+### | [**Day 11**](/blog/advent-calendar-2020-12-11) | **Day 12** | [**Day 13**](/blog/advent-calendar-2020-12-13) |
 ***
 
 The gift is presented by [**Cheok-Yin Fung**](/blog/meet-the-champion-2020-08). Today she is talking about her solution to the task `Smallest Multiple` of **["The Weekly Challenge - 049"](/blog/perl-weekly-challenge-049)**.

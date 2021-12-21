@@ -8,7 +8,8 @@ author: Simon Green
 tags: ["Perl"]
 ---
 
-[**Advent Calendar 2021**](/blog/advent-calendar-2021)
+## [**Advent Calendar 2021**](/blog/advent-calendar-2021)
+### | [**Day 4**](/blog/advent-calendar-2021-12-04) | **Day 5** | [**Day 6**](/blog/advent-calendar-2021-12-06) |
 ***
 
 The gift is presented by [**Simon Green**](/blog/meet-the-champion-2020-11). Today he is talking about his solution to [**"The Weekly Challenge - 101"**](/blog/perl-weekly-challenge-101). This is re-produced for **Advent Calendar 2021** from the original [**post**](https://dev.to/simongreennet/weekly-challenge-101-jeo) by `Simon Green`.

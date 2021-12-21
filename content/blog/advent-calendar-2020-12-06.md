@@ -1,6 +1,6 @@
 ---
 title: "Advent Calendar - December 6, 2020"
-date: 2020-12-07T00:00:00+00:00
+date: 2020-12-06T00:00:00+00:00
 description: "Advent Calendar - December 6, 2020."
 type: post
 image: images/blog/2020-12-06.jpg
@@ -8,7 +8,8 @@ author: Luca Ferrari
 tags: ["Raku"]
 ---
 
-[**Advent Calendar 2020**](/blog/advent-calendar-2020)
+## [**Advent Calendar 2020**](/blog/advent-calendar-2020)
+### | [**Day 5**](/blog/advent-calendar-2020-12-05) | **Day 6** | [**Day 7**](/blog/advent-calendar-2020-12-07) |
 ***
 
 The gift is presented by [**Luca Ferrari**](/blog/meet-the-champion-2020-04). Today he is talking about his solution to the task `Bit Sum` of **["The Weekly Challenge - 059"](/blog/perl-weekly-challenge-059)**. This is re-produced for **Advent Calendar 2020** from the original [**post**](https://fluca1978.github.io/2020/05/04/PerlWeeklyChallenge59.html#task2) by **Luca Ferarri**.

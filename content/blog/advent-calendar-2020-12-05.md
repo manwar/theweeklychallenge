@@ -1,6 +1,6 @@
 ---
 title: "Advent Calendar - December 5, 2020"
-date: 2020-12-07T00:00:00+00:00
+date: 2020-12-05T00:00:00+00:00
 description: "Advent Calendar - December 5, 2020."
 type: post
 image: images/blog/2020-12-05.jpg
@@ -8,7 +8,8 @@ author: Dave Jacoby
 tags: ["Perl"]
 ---
 
-[**Advent Calendar 2020**](/blog/advent-calendar-2020)
+## [**Advent Calendar 2020**](/blog/advent-calendar-2020)
+### | [**Day 4**](/blog/advent-calendar-2020-12-04) | **Day 5** | [**Day 6**](/blog/advent-calendar-2020-12-06) |
 ***
 
 The gift is presented by [**Dave Jacoby**](/blog/meet-the-champion-029). Today he is talking about his solution to the task `Invert Tree` of **["The Weekly Challenge - 057"](/blog/perl-weekly-challenge-057)**. This is re-produced for **Advent Calendar 2020** from the original [**post**](https://jacoby.github.io/2020/04/20/challenge-57-mostly-binary-trees.html) by **Dave Jacoby**.

@@ -1,6 +1,6 @@
 ---
 title: "Advent Calendar - December 18, 2020"
-date: 2020-12-23T00:00:00+00:00
+date: 2020-12-18T00:00:00+00:00
 description: "Advent Calendar - December 18, 2020."
 type: post
 image: images/blog/2020-12-18.jpg
@@ -8,7 +8,8 @@ author: Kevin Colyer
 tags: ["Raku"]
 ---
 
-[**Advent Calendar 2020**](/blog/advent-calendar-2020)
+## [**Advent Calendar 2020**](/blog/advent-calendar-2020)
+### | [**Day 17**](/blog/advent-calendar-2020-12-17) | **Day 18** | [**Day 19**](/blog/advent-calendar-2020-12-19) |
 ***
 
 The gift is presented by [**Kevin Colyer**](/blog/meet-the-champion-030). Today he is talking about his solution to the task `Collatz Conjecture` of **["The Weekly Challenge - 054"](/blog/perl-weekly-challenge-054)**. This is re-produced for **Advent Calendar 2020** from the original [**post**](https://kevincolyer.wordpress.com/2020/04/05/perl-weekly-challenge-week-54/) by **Kevin Colyer**.

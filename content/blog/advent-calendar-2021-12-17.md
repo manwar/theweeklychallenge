@@ -8,7 +8,8 @@ author: Walt Mankowski
 tags: ["Perl"]
 ---
 
-[**Advent Calendar 2021**](/blog/advent-calendar-2021)
+## [**Advent Calendar 2021**](/blog/advent-calendar-2021)
+### | [**Day 16**](/blog/advent-calendar-2021-12-16) | **Day 17** | [**Day 18**](/blog/advent-calendar-2021-12-18) |
 ***
 
 The gift is presented by [**Walt Mankowski**](/blog/meet-the-champion-2020-07). Today he is talking about his solution to [**"The Weekly Challenge - 089"**](/blog/perl-weekly-challenge-089). This is re-produced for **Advent Calendar 2021** from the original [**post**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-089/walt-mankowski/README.md) by `Walt Mankoswki`.

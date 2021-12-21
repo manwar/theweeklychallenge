@@ -1,6 +1,6 @@
 ---
 title: "Advent Calendar - December 20, 2020"
-date: 2020-12-23T00:00:00+00:00
+date: 2020-12-20T00:00:00+00:00
 description: "Advent Calendar - December 20, 2020."
 type: post
 image: images/blog/2020-12-20.jpg
@@ -8,7 +8,8 @@ author: Yozen Hernandez
 tags: ["Perl"]
 ---
 
-[**Advent Calendar 2020**](/blog/advent-calendar-2020)
+## [**Advent Calendar 2020**](/blog/advent-calendar-2020)
+### | [**Day 19**](/blog/advent-calendar-2020-12-19) | **Day 20** | [**Day 21**](/blog/advent-calendar-2020-12-21) |
 ***
 
 The gift is presented by [**Yozen Hernandez**](/blog/meet-the-champion-017). Today he is talking about his solution to the task `Ackermann function` of **["The Weekly Challenge - 017"](/blog/perl-weekly-challenge-017)**. This is re-produced for **Advent Calendar 2020** from the original [**post**](https://yzhernand.github.io/posts/perl-weekly-challenge-17-1/) by **Yozen Hernandez**.

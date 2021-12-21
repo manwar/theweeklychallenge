@@ -8,7 +8,8 @@ author: Jaldhar H. Vyas
 tags: ["Perl","Raku"]
 ---
 
-[**Advent Calendar 2021**](/blog/advent-calendar-2021)
+## [**Advent Calendar 2021**](/blog/advent-calendar-2021)
+### | [**Day 15**](/blog/advent-calendar-2021-12-15) | **Day 16** | [**Day 17**](/blog/advent-calendar-2021-12-17) |
 ***
 
 The gift is presented by [**Jaldhar H. Vyas**](/blog/meet-the-champion-014). Today he is talking about his solution to [**"The Weekly Challenge - 108"**](/blog/perl-weekly-challenge-108). This is re-produced for **Advent Calendar 2021** from the original [**post**](https://www.braincells.com/perl/2021/04/perl_weekly_challenge_week_108.html) by `Jaldhar H. Vyas`.

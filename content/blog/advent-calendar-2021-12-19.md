@@ -8,7 +8,8 @@ author: Jorg Sommrey
 tags: ["Perl"]
 ---
 
-[**Advent Calendar 2021**](/blog/advent-calendar-2021)
+## [**Advent Calendar 2021**](/blog/advent-calendar-2021)
+### | [**Day 18**](/blog/advent-calendar-2021-12-18) | **Day 19** | [**Day 20**](/blog/advent-calendar-2021-12-20) |
 ***
 
 The gift is presented by [**Jorg Sommrey**](/blog/meet-the-champion-2021-08). Today he is talking about his solution to [**"The Weekly Challenge - 085"**](/blog/perl-weekly-challenge-085). This is re-produced for **Advent Calendar 2021** from the original [**post**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/jo-37/perl/ch-1.md) by `Jorg Sommrey`.

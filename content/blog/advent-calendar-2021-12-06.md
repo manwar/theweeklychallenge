@@ -8,7 +8,8 @@ author: Aaron Smith
 tags: ["Raku"]
 ---
 
-[**Advent Calendar 2021**](/blog/advent-calendar-2021)
+## [**Advent Calendar 2021**](/blog/advent-calendar-2021)
+### | [**Day 5**](/blog/advent-calendar-2021-12-05) | **Day 6** | [**Day 7**](/blog/advent-calendar-2021-12-07) |
 ***
 
 The gift is presented by [**Aaron Smith**](/blog/meet-the-champion-2021-04). Today he is talking about his solution to [**"The Weekly Challenge - 102"**](/blog/perl-weekly-challenge-102). This is re-produced for **Advent Calendar 2021** from the original [**post**](https://aaronreidsmith.github.io/blog/perl-weekly-challenge-102) by `Aaron Smith`.

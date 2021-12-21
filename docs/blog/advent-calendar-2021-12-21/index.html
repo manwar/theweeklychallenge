@@ -14,14 +14,14 @@
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-    <meta name="description" content="Advent Calendar - December 18, 2021.">
+    <meta name="description" content="Advent Calendar - December 21, 2021.">
     <meta name="author" content="The Weekly Challenge Team">
     <meta name="generator" content="Hugo 0.67.0-DEV" />
 
     <!-- Mobile Specific Metas -->
     <meta name="format-detection" content="telephone=no">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Advent Calendar - December 18, 2021</title>
+    <title>Advent Calendar - December 21, 2021</title>
     <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
 
     
@@ -177,11 +177,11 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="block">
-                    <h2>Advent Calendar - December 18, 2021</h2>
+                    <h2>Advent Calendar - December 21, 2021</h2>
                     <div class="portfolio-meta">
-                        <span>Saturday, Dec 18, 2021</span>|
+                        <span>Tuesday, Dec 21, 2021</span>|
                         <span> Tags:
-                            Raku
+                            Perl
                         </span>
                     </div>
                 </div>
@@ -196,51 +196,59 @@
             <div class="col-md-12">
                 
                 <div style="text-align: center" class="post-img">
-                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/2021-12-18.jpg">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/2021-12-21.jpg">
                 </div>
                 
                 <div style="text-align: justify" class="post-content">
                     <h2 id="advent-calendar-2021blogadvent-calendar-2021"><a href="/blog/advent-calendar-2021"><strong>Advent Calendar 2021</strong></a></h2>
-<h3 id="-day-17blogadvent-calendar-2021-12-17--day-18--day-19blogadvent-calendar-2021-12-19-">| <a href="/blog/advent-calendar-2021-12-17"><strong>Day 17</strong></a> | <strong>Day 18</strong> | <a href="/blog/advent-calendar-2021-12-19"><strong>Day 19</strong></a> |</h3>
+<h3 id="-day-20blogadvent-calendar-2021-12-20--day-21-">| <a href="/blog/advent-calendar-2021-12-20"><strong>Day 20</strong></a> | <strong>Day 21</strong> |</h3>
 <hr>
-<p>The gift is presented by <a href="/blog/meet-the-champion-2020-10"><strong>Andrew Shitov</strong></a>. Today he is talking about his solution to <a href="/blog/perl-weekly-challenge-092"><strong>&ldquo;The Weekly Challenge - 092&rdquo;</strong></a>. This is re-produced for <strong>Advent Calendar 2021</strong> from the original <a href="https://andrewshitov.com/2020/12/22/raku-challenge-week-92-issue-1"><strong>post</strong></a> by <code>Andrew Shitov</code>.</p>
-<hr>
-<br>
-<h2 id="task-1-isomorphic-strings">Task #1: Isomorphic Strings</h2>
-<br>
-<p>You are given two strings <code>$A</code> and <code>$B</code>.</p>
-<p>Write a script to check if the given strings are <code>Isomorphic</code>. Print <code>1</code> if they are otherwise <code>0</code>.</p>
-<br>
+<p>The gift is presented by <a href="/blog/meet-the-champion-018"><strong>E. Choroba</strong></a>. Today he is talking about his solution to <a href="/blog/perl-weekly-challenge-061"><strong>&ldquo;The Weekly Challenge - 061&rdquo;</strong></a>. This is re-produced for <strong>Advent Calendar 2021</strong> from the original <a href="http://blogs.perl.org/users/e_choroba/2020/05/perl-weekly-challenge-061-product-subarray-and-ipv4-partition.html"><strong>post</strong></a> by <code>E. Choroba</code>.</p>
 <hr>
 <br>
-<p>OK, so if the two strings are isomorphic, their characters are mapped: for each character from the first string, the character at the same position in the second string is always the same.</p>
-<p>In the stings <code>abc</code> and <code>def</code>, <code>a</code> always corresponds to <code>d</code>, <code>b</code> to <code>e</code>, and <code>c</code> to <code>f</code>. That’s a trivial case. But then for the string <code>abca</code>, the corresponding string must be <code>defd</code>.</p>
-<p>The letters do not need to go sequentially, so the strings <code>aeiou</code> and <code>bcdfg</code> are isomorphic too, as well as <code>aeiou</code> and <code>gxypq</code>. But also <code>aaeeiioouu</code> and <code>bbccddffgg</code>, or the pair <code>aeaieoiuo</code> and <code>gxgyxpyqp</code>.</p>
-<p>The definition also means that the number of different characters is equal in both strings. But it also means that if we make the pairs of corresponding letters, the number of unique pairs is also the same, right? If <code>a</code> matches <code>x</code>, there cannot be any other pair with the first letter <code>a</code>.</p>
-<p>Let’s exploit these observation:</p>
+<h2 id="task-1-product-subarray">Task #1: Product SubArray</h2>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is</span>-isomorphic($a, $b) {
-    <span style="color:#f92672">+</span>(([<span style="color:#f92672">==</span>] ($a, $b)<span style="color:#f92672">&gt;&gt;.</span>chars) <span style="color:#f92672">&amp;&amp;</span>
-      ([<span style="color:#f92672">==</span>] ($a<span style="color:#f92672">.</span>comb, $b<span style="color:#f92672">.</span>comb, ($a<span style="color:#f92672">.</span>comb Z<span style="color:#f92672">~</span> $b<span style="color:#f92672">.</span>comb))<span style="color:#f92672">&gt;&gt;.</span>unique));
+<p>Given a list of <code>4 or more</code> numbers, write a script to find the contiguous sublist that has the maximum product. The length of the sublist is irrelevant; your job is to maximize the product.</p>
+<br>
+<hr>
+<br>
+<p>The easiest (but probably not the fastest) method would be to start from each position and compute the products of all the possible sublists starting at the position, remembering the positions where the product is maximal.</p>
+<p>I automatically reached for <a href="https://p3rl.org/List::Util"><strong>List::Util</strong></a>’s product to get the products easily, but alas! Running</p>
+<br>
+<pre><code>product(-1, 3)
+</code></pre>
+<br>
+<p>caused a <code>Floating point exception</code> (bug <a href="https://rt.cpan.org/Public/Bug/Display.html?id=132653"><strong>reported</strong></a>). So, I had to implement product myself:</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#! /usr/bin/perl</span>
+<span style="color:#66d9ef">use</span> warnings;
+<span style="color:#66d9ef">use</span> strict;
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">product</span> {
+    <span style="color:#66d9ef">my</span> @list <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">my</span> $p <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+    $p <span style="color:#f92672">*=</span> $_ <span style="color:#66d9ef">for</span> @list;
+    <span style="color:#66d9ef">return</span> $p
 }
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">max_prod</span> {
+    <span style="color:#66d9ef">my</span> ($list) <span style="color:#f92672">=</span> @_;
+    <span style="color:#66d9ef">my</span> $max <span style="color:#f92672">=</span> [$list<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]];
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#$list) {
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $j ($i <span style="color:#f92672">..</span> $#$list) {
+            <span style="color:#66d9ef">my</span> $p <span style="color:#f92672">=</span> product(@$list[$i <span style="color:#f92672">..</span> $j]);
+            $max <span style="color:#f92672">=</span> [$p, @$list[$i <span style="color:#f92672">..</span> $j]] <span style="color:#66d9ef">if</span> $p <span style="color:#f92672">&gt;</span> $max<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>];
+        }
+    }
+    <span style="color:#66d9ef">return</span> $max
+}
+
+<span style="color:#66d9ef">use</span> Test::More tests <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>;
+is_deeply max_prod([<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">5</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>]), [<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">5</span>];
 </code></pre></div><br>
-<p>First of all, the strings must have the same length.</p>
-<p>Then, the strings are split into characters, and the number of unique characters should also be equal. But the collection of the unique pairs from the corresponding letters from both strings should also be of the same size.</p>
-<p>Test it:</p>
+<p>The <code>max_prod</code> subroutine returns the product and the list in this order.</p>
+<p><code>Note</code>: Don’t confuse <code>max_prod</code> with <a href="https://en.wikipedia.org/wiki/Max_Brod"><strong>Max Brod</strong></a>.</p>
 <br>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl6" data-lang="perl6"><span style="color:#66d9ef">use</span> Test;
-
-<span style="color:#75715e"># . . .</span>
-
-is(is<span style="color:#f92672">-</span>isomorphic(<span style="color:#e6db74">&#39;abc&#39;</span>, <span style="color:#e6db74">&#39;def&#39;</span>), <span style="color:#ae81ff">1</span>);
-is(is<span style="color:#f92672">-</span>isomorphic(<span style="color:#e6db74">&#39;abb&#39;</span>, <span style="color:#e6db74">&#39;xyy&#39;</span>), <span style="color:#ae81ff">1</span>);
-is(is<span style="color:#f92672">-</span>isomorphic(<span style="color:#e6db74">&#39;sum&#39;</span>, <span style="color:#e6db74">&#39;add&#39;</span>), <span style="color:#ae81ff">0</span>);
-is(is<span style="color:#f92672">-</span>isomorphic(<span style="color:#e6db74">&#39;ACAB&#39;</span>, <span style="color:#e6db74">&#39;XCXY&#39;</span>), <span style="color:#ae81ff">1</span>);
-is(is<span style="color:#f92672">-</span>isomorphic(<span style="color:#e6db74">&#39;AAB&#39;</span>, <span style="color:#e6db74">&#39;XYZ&#39;</span>), <span style="color:#ae81ff">0</span>);
-is(is<span style="color:#f92672">-</span>isomorphic(<span style="color:#e6db74">&#39;AAB&#39;</span>, <span style="color:#e6db74">&#39;XXZ&#39;</span>), <span style="color:#ae81ff">1</span>);
-is(is<span style="color:#f92672">-</span>isomorphic(<span style="color:#e6db74">&#39;abc&#39;</span>, <span style="color:#e6db74">&#39;abc&#39;</span>), <span style="color:#ae81ff">1</span>);
-is(is<span style="color:#f92672">-</span>isomorphic(<span style="color:#e6db74">&#39;abc&#39;</span>, <span style="color:#e6db74">&#39;ab&#39;</span>), <span style="color:#ae81ff">0</span>);
-</code></pre></div><br>
 <hr>
 <p>If you have any suggestion then please do share with us <a href="mailto:perlweeklychallenge@yahoo.com">perlweeklychallenge@yahoo.com</a>.</p>
 <p><a href="/blog/advent-calendar-2021"><strong>Advent Calendar 2021</strong></a></p>

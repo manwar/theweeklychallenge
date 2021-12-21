@@ -8,7 +8,8 @@ author: Cheok-Yin Fung
 tags: ["Perl"]
 ---
 
-[**Advent Calendar 2021**](/blog/advent-calendar-2021)
+## [**Advent Calendar 2021**](/blog/advent-calendar-2021)
+### | [**Day 11**](/blog/advent-calendar-2021-12-11) | **Day 12** | [**Day 13**](/blog/advent-calendar-2021-12-13) |
 ***
 
 The gift is presented by [**Cheok-Yin Fung**](/blog/meet-the-champion-2020-08). Today he is talking about his solution to [**"The Weekly Challenge - 123"**](/blog/perl-weekly-challenge-123). This is re-produced for **Advent Calendar 2021** from the original [**post**](https://e7-87-83.github.io/coding/challenge_123.html) by `Cheok-Yin Fung`.

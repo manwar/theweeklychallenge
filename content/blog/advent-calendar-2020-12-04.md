@@ -1,6 +1,6 @@
 ---
 title: "Advent Calendar - December 4, 2020"
-date: 2020-12-06T00:00:00+00:00
+date: 2020-12-04T00:00:00+00:00
 description: "Advent Calendar - December 4, 2020."
 type: post
 image: images/blog/2020-12-04.jpg
@@ -8,7 +8,8 @@ author: Andrew Shitov
 tags: ["Perl","Raku"]
 ---
 
-[**Advent Calendar 2020**](/blog/advent-calendar-2020)
+## [**Advent Calendar 2020**](/blog/advent-calendar-2020)
+### | [**Day 3**](/blog/advent-calendar-2020-12-03) | **Day 4** | [**Day 5**](/blog/advent-calendar-2020-12-05) |
 ***
 
 The gift is presented by [**Andrew Shitov**](/blog/meet-the-champion-2020-10). Today he is talking about his solution to **["The Weekly Challenge - 089"](/blog/perl-weekly-challenge-089)**.

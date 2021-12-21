@@ -8,7 +8,8 @@ author: Adam Russell
 tags: ["Perl"]
 ---
 
-[**Advent Calendar 2021**](/blog/advent-calendar-2021)
+## [**Advent Calendar 2021**](/blog/advent-calendar-2021)
+### | [**Day 10**](/blog/advent-calendar-2021-12-10) | **Day 11** | [**Day 12**](/blog/advent-calendar-2021-12-12) |
 ***
 
 The gift is presented by [**Adam Russell**](/blog/meet-the-champion-016). Today he is talking about his solution to [**"The Weekly Challenge - 122"**](/blog/perl-weekly-challenge-122). This is re-produced for **Advent Calendar 2021** from the original [**post**](http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2021/07/25) by `Adam Russell`.

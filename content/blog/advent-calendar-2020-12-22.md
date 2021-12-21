@@ -1,6 +1,6 @@
 ---
 title: "Advent Calendar - December 22, 2020"
-date: 2020-12-23T00:00:00+00:00
+date: 2020-12-22T00:00:00+00:00
 description: "Advent Calendar - December 22, 2020."
 type: post
 image: images/blog/2020-12-22.jpg
@@ -8,7 +8,8 @@ author: Noud Aldenhoven
 tags: ["Raku"]
 ---
 
-[**Advent Calendar 2020**](/blog/advent-calendar-2020)
+## [**Advent Calendar 2020**](/blog/advent-calendar-2020)
+### | [**Day 21**](/blog/advent-calendar-2020-12-21) | **Day 22** | [**Day 23**](/blog/advent-calendar-2020-12-23) |
 ***
 
 The gift is presented by [**Noud Aldenhoven**](/blog/meet-the-champion-040). Today he is talking about his solution to the task `Is the room open?` of **["The Weekly Challenge - 046"](/blog/perl-weekly-challenge-046)**. This is re-produced for **Advent Calendar 2020** from the original [**post**](https://www.noudaldenhoven.nl/wordpress/?p=288) by **Noud Aldenhoven**.

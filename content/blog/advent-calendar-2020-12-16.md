@@ -1,6 +1,6 @@
 ---
 title: "Advent Calendar - December 16, 2020"
-date: 2020-12-22T00:00:00+00:00
+date: 2020-12-16T00:00:00+00:00
 description: "Advent Calendar - December 16, 2020."
 type: post
 image: images/blog/2020-12-16.jpg
@@ -8,7 +8,8 @@ author: Yet Ebreo
 tags: ["Perl", "C"]
 ---
 
-[**Advent Calendar 2020**](/blog/advent-calendar-2020)
+## [**Advent Calendar 2020**](/blog/advent-calendar-2020)
+### | [**Day 15**](/blog/advent-calendar-2020-12-15) | **Day 16** | [**Day 17**](/blog/advent-calendar-2020-12-17) |
 ***
 
 The gift is presented by [**Yet Ebreo**](/blog/meet-the-champion-025). Today he is talking about his solution to the task `Calling C function` of **["The Weekly Challenge - 029"](/blog/perl-weekly-challenge-029)**. This is re-produced for **Advent Calendar 2020** from the original [**post**](https://doomtrain14.github.io/pwc/2019/10/13/pwc_calling_c.html) by **Yet Ebreo**.

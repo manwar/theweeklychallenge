@@ -8,7 +8,8 @@ author: Colin Crain
 tags: ["Perl"]
 ---
 
-[**Advent Calendar 2021**](/blog/advent-calendar-2021)
+## [**Advent Calendar 2021**](/blog/advent-calendar-2021)
+### | [**Day 7**](/blog/advent-calendar-2021-12-07) | **Day 8** | [**Day 9**](/blog/advent-calendar-2021-12-09) |
 ***
 
 The gift is presented by `Colin Crain`. Today he is talking about his solution to [**"The Weekly Challenge - 112"**](/blog/perl-weekly-challenge-112). This is re-produced for **Advent Calendar 2021** from the original [**post**](https://colincrain.com/2021/05/15/after-finding-our-bearings-one-two-and-up-we-go/) by `Colin Crain`.

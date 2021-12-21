@@ -8,7 +8,8 @@ author: W. Luis Mochan
 tags: ["Perl"]
 ---
 
-[**Advent Calendar 2021**](/blog/advent-calendar-2021)
+## [**Advent Calendar 2021**](/blog/advent-calendar-2021)
+### | [**Day 12**](/blog/advent-calendar-2021-12-12) | **Day 13** | [**Day 14**](/blog/advent-calendar-2021-12-14) |
 ***
 
 The gift is presented by [**W. Luis Mochan**](/blog/meet-the-champion-2021-11). Today he is talking about his solution to [**"The Weekly Challenge - 125"**](/blog/perl-weekly-challenge-125). This is re-produced for **Advent Calendar 2021** from the original [**post**](https://wlmb.github.io/2021/08/10/PWC125) by `W. Luis Mochan`.

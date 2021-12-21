@@ -1,6 +1,6 @@
 ---
 title: "Advent Calendar - December 19, 2020"
-date: 2020-12-23T00:00:00+00:00
+date: 2020-12-19T00:00:00+00:00
 description: "Advent Calendar - December 19, 2020."
 type: post
 image: images/blog/2020-12-19.jpg
@@ -8,7 +8,8 @@ author: Duncan C. White
 tags: ["Perl"]
 ---
 
-[**Advent Calendar 2020**](/blog/advent-calendar-2020)
+## [**Advent Calendar 2020**](/blog/advent-calendar-2020)
+### | [**Day 18**](/blog/advent-calendar-2020-12-18) | **Day 19** | [**Day 20**](/blog/advent-calendar-2020-12-20) |
 ***
 
 The gift is presented by [**Duncan C. White**](/blog/meet-the-champion-020). Today he is talking about his solution to the task `Head to Tail Pokémon names` of **["The Weekly Challenge - 025"](/blog/perl-weekly-challenge-025)**. This is re-produced for **Advent Calendar 2020** from the original [**post**](https://www.doc.ic.ac.uk/~dcw/PSD/article13/) by **Duncan C. White**.

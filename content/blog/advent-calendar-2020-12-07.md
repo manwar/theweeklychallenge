@@ -8,7 +8,8 @@ author: Javier Luque
 tags: ["Perl","Raku"]
 ---
 
-[**Advent Calendar 2020**](/blog/advent-calendar-2020)
+## [**Advent Calendar 2020**](/blog/advent-calendar-2020)
+### | [**Day 6**](/blog/advent-calendar-2020-12-06) | **Day 7** | [**Day 8**](/blog/advent-calendar-2020-12-08) |
 ***
 
 The gift is presented by [**Javier Luque**](/blog/meet-the-champion-037). Today he is talking about his solution to the task `IPv4 Partition` of **["The Weekly Challenge - 061"](/blog/perl-weekly-challenge-061)**. This is re-produced for **Advent Calendar 2020** from the original [**post**](https://perlchallenges.wordpress.com/2020/05/18/perl-weekly-challenge-061/) by **Javier Luque**.
@@ -86,21 +87,21 @@ sub partition_ip_string {
         my $offset = 0;
 
         for my $dot_position (@$combos) {
-        	my $position =
-        		($dot_position + $offset) + 1;
+            my $position =
+            	($dot_position + $offset) + 1;
 
-        	# Append to the test string;
-        	$to_test =
-        		(substr $to_test, 0, $position)
-        		. '.' .
-        		(substr $to_test, $position);
+            # Append to the test string;
+            $to_test =
+            	(substr $to_test, 0, $position)
+            	. '.' .
+            	(substr $to_test, $position);
 
-        	# Offset the string
-        	$offset++;
+            # Offset the string
+            $offset++;
         }
 
         say $to_test
-        	if (validate_ip_string($to_test));
+            if (validate_ip_string($to_test));
     }
 }
 
@@ -148,21 +149,21 @@ sub partition-ip-string (Str $str) {
         my $offset = 0;
 
         for (@combo) -> $dot_position {
-        	my $position =
-        		($dot_position + $offset) + 1;
+            my $position =
+            	($dot_position + $offset) + 1;
 
-        	# Append to the test string;
-        	$to_test =
-        		$to_test.substr(0, $position)
-        		~ '.' ~
-        		$to_test.substr($position);
+            # Append to the test string;
+            $to_test =
+            	$to_test.substr(0, $position)
+            	~ '.' ~
+            	$to_test.substr($position);
 
-        	# Offset the string
-        	$offset++;
+            # Offset the string
+            $offset++;
         }
 
         say $to_test
-        	if (validate-ip-string($to_test));
+            if (validate-ip-string($to_test));
     }
 }
 

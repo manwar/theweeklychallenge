@@ -1,6 +1,6 @@
 ---
 title: "Advent Calendar - December 13, 2020"
-date: 2020-12-20T00:00:00+00:00
+date: 2020-12-13T00:00:00+00:00
 description: "Advent Calendar - December 13, 2020."
 type: post
 image: images/blog/2020-12-13.jpg
@@ -8,7 +8,8 @@ author: Bartosz Jarzyna
 tags: ["Perl"]
 ---
 
-[**Advent Calendar 2020**](/blog/advent-calendar-2020)
+## [**Advent Calendar 2020**](/blog/advent-calendar-2020)
+### | [**Day 12**](/blog/advent-calendar-2020-12-12) | **Day 13** | [**Day 14**](/blog/advent-calendar-2020-12-14) |
 ***
 
 The gift is presented by **Bartosz Jarzyna**. Today he is talking about his solution to the task `Majority Element` of **["The Weekly Challenge - 074"](/blog/perl-weekly-challenge-074)**. This is re-produced for **Advent Calendar 2020** from the original [**post**](https://brtastic.xyz/blog/article/perl-weekly-74) by **Bartosz Jarzyna**.

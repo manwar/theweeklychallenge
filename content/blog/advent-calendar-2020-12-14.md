@@ -1,6 +1,6 @@
 ---
 title: "Advent Calendar - December 14, 2020"
-date: 2020-12-20T00:00:00+00:00
+date: 2020-12-14T00:00:00+00:00
 description: "Advent Calendar - December 14, 2020."
 type: post
 image: images/blog/2020-12-14.jpg
@@ -8,7 +8,8 @@ author: Myoungjin Jeon
 tags: ["Perl"]
 ---
 
-[**Advent Calendar 2020**](/blog/advent-calendar-2020)
+## [**Advent Calendar 2020**](/blog/advent-calendar-2020)
+### | [**Day 13**](/blog/advent-calendar-2020-12-13) | **Day 14** | [**Day 15**](/blog/advent-calendar-2020-12-15) |
 ***
 
 The gift is presented by [**Myoungjin Jeon**](/blog/meet-the-champion-2020-09). Today he is talking about his solution to the task `Trapped Rain Water` of **["The Weekly Challenge - 079"](/blog/perl-weekly-challenge-079)**. This is re-produced for **Advent Calendar 2020** from the original [**post**](https://dev.to/jeongoon/the-perl-weekly-challenge-079-9ij) by **Myoungjin Jeon**.

@@ -8,7 +8,8 @@ author: Andrew Shitov
 tags: ["Raku"]
 ---
 
-[**Advent Calendar 2021**](/blog/advent-calendar-2021)
+## [**Advent Calendar 2021**](/blog/advent-calendar-2021)
+### | [**Day 17**](/blog/advent-calendar-2021-12-17) | **Day 18** | [**Day 19**](/blog/advent-calendar-2021-12-19) |
 ***
 
 The gift is presented by [**Andrew Shitov**](/blog/meet-the-champion-2020-10). Today he is talking about his solution to [**"The Weekly Challenge - 092"**](/blog/perl-weekly-challenge-092). This is re-produced for **Advent Calendar 2021** from the original [**post**](https://andrewshitov.com/2020/12/22/raku-challenge-week-92-issue-1) by `Andrew Shitov`.

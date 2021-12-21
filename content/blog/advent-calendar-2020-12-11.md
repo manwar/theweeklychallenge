@@ -1,6 +1,6 @@
 ---
 title: "Advent Calendar - December 11, 2020"
-date: 2020-12-18T00:00:00+00:00
+date: 2020-12-11T00:00:00+00:00
 description: "Advent Calendar - December 11, 2020."
 type: post
 image: images/blog/2020-12-11.jpg
@@ -8,7 +8,8 @@ author: Adam Russell
 tags: ["Perl"]
 ---
 
-[**Advent Calendar 2020**](/blog/advent-calendar-2020)
+## [**Advent Calendar 2020**](/blog/advent-calendar-2020)
+### | [**Day 10**](/blog/advent-calendar-2020-12-10) | **Day 11** | [**Day 12**](/blog/advent-calendar-2020-12-12) |
 ***
 
 The gift is presented by [**Adam Russell**](/blog/meet-the-champion-016). Today he is talking about his solution to the task `Lines Range` of **["The Weekly Challenge - 072"](/blog/perl-weekly-challenge-072)**. This is re-produced for **Advent Calendar 2020** from the original [**post**](https://adamcrussell.livejournal.com/16759.html) by **Adam Russell**.

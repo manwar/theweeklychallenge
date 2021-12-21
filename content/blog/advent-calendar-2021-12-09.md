@@ -8,7 +8,8 @@ author: Laurent Rosenfeld
 tags: ["Perl","Raku"]
 ---
 
-[**Advent Calendar 2021**](/blog/advent-calendar-2021)
+## [**Advent Calendar 2021**](/blog/advent-calendar-2021)
+### | [**Day 8**](/blog/advent-calendar-2021-12-08) | **Day 9** | [**Day 10**](/blog/advent-calendar-2021-12-10) |
 ***
 
 The gift is presented by [**Laurent Rosenfeld**](/blog/meet-the-champion-013). Today he is talking about his solution to [**"The Weekly Challenge - 114"**](/blog/perl-weekly-challenge-114). This is re-produced for **Advent Calendar 2021** from the original [**post**](http://blogs.perl.org/users/laurent_r/2021/05/perl-weekly-challenge-114-next-palindrome-number-and-higher-integer-set-bits.html) by `Laurent Rosenfeld`.

@@ -8,7 +8,8 @@ author: James Smith
 tags: ["Perl"]
 ---
 
-[**Advent Calendar 2021**](/blog/advent-calendar-2021)
+## [**Advent Calendar 2021**](/blog/advent-calendar-2021)
+### | [**Day 6**](/blog/advent-calendar-2021-12-06) | **Day 7** | [**Day 8**](/blog/advent-calendar-2021-12-08) |
 ***
 
 The gift is presented by [**James Smith**](/blog/meet-the-champion-2021-02). Today he is talking about his solution to [**"The Weekly Challenge - 107"**](/blog/perl-weekly-challenge-107). This is re-produced for **Advent Calendar 2021** from the original [**post**](https://github.com/drbaggy/perlweeklychallenge-club/blob/master/challenge-107/james-smith/README.md) by `James Smith`.

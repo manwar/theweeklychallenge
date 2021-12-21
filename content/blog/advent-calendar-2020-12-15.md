@@ -1,6 +1,6 @@
 ---
 title: "Advent Calendar - December 15, 2020"
-date: 2020-12-22T00:00:00+00:00
+date: 2020-12-15T00:00:00+00:00
 description: "Advent Calendar - December 15, 2020."
 type: post
 image: images/blog/2020-12-15.jpg
@@ -8,7 +8,8 @@ author: Laurent Rosenfeld
 tags: ["Perl","Raku"]
 ---
 
-[**Advent Calendar 2020**](/blog/advent-calendar-2020)
+## [**Advent Calendar 2020**](/blog/advent-calendar-2020)
+### | [**Day 14**](/blog/advent-calendar-2020-12-14) | **Day 15** | [**Day 16**](/blog/advent-calendar-2020-12-16) |
 ***
 
 The gift is presented by [**Laurent Rosenfeld**](/blog/meet-the-champion-013), the first champion of the weekly challenge. Today he is talking about his solution to the task `Left Rotation` of **["The Weekly Challenge - 078"](/blog/perl-weekly-challenge-078)**. This is re-produced for **Advent Calendar 2020** from the original [**post**](http://blogs.perl.org/users/laurent_r/2020/09/perl-weekly-challenge-leader-element-and-left-rotation.html) by **Laurent Rosenfeld**.

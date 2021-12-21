@@ -1,6 +1,6 @@
 ---
 title: "Advent Calendar - December 10, 2020"
-date: 2020-12-18T00:00:00+00:00
+date: 2020-12-10T00:00:00+00:00
 description: "Advent Calendar - December 10, 2020."
 type: post
 image: images/blog/2020-12-10.jpg
@@ -8,7 +8,8 @@ author: Walt Mankowski
 tags: ["Perl"]
 ---
 
-[**Advent Calendar 2020**](/blog/advent-calendar-2020)
+## [**Advent Calendar 2020**](/blog/advent-calendar-2020)
+### | [**Day 9**](/blog/advent-calendar-2020-12-09) | **Day 10** | [**Day 11**](/blog/advent-calendar-2020-12-11) |
 ***
 
 The gift is presented by [**Walt Mankowski**](/blog/meet-the-champion-2020-07). Today he is talking about his solution to the task `Trim Linked List` of **["The Weekly Challenge - 071"](/blog/perl-weekly-challenge-071)**. This is re-produced for **Advent Calendar 2020** from the original [**post**](http://www.mawode.com/blog/blog/2020/07/31/perl-weekly-challenge-71/) by **Walt Mankowski**.

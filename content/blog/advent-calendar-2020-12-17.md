@@ -1,6 +1,6 @@
 ---
 title: "Advent Calendar - December 17, 2020"
-date: 2020-12-23T00:00:00+00:00
+date: 2020-12-17T00:00:00+00:00
 description: "Advent Calendar - December 17, 2020."
 type: post
 image: images/blog/2020-12-17.jpg
@@ -8,7 +8,8 @@ author: Scimon Proctor
 tags: ["Raku"]
 ---
 
-[**Advent Calendar 2020**](/blog/advent-calendar-2020)
+## [**Advent Calendar 2020**](/blog/advent-calendar-2020)
+### | [**Day 16**](/blog/advent-calendar-2020-12-16) | **Day 17** | [**Day 18**](/blog/advent-calendar-2020-12-18) |
 ***
 
 The gift is presented by [**Scimon Proctor**](/blog/meet-the-champion-027). Today he is talking about his solution to the task `Trailing Zeros` of **["The Weekly Challenge - 072"](/blog/perl-weekly-challenge-072)**. This is re-produced for **Advent Calendar 2020** from the original [**post**](https://dev.to/scimon/the-weekly-challenge-in-raku-week-72-part-1-2i0g) by **Scimon Proctor**.

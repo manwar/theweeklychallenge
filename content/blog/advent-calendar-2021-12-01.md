@@ -8,7 +8,8 @@ author: Abigail
 tags: ["Perl"]
 ---
 
-[**Advent Calendar 2021**](/blog/advent-calendar-2021)
+## [**Advent Calendar 2021**](/blog/advent-calendar-2021)
+### | **Day 1** | [**Day 2**](/blog/advent-calendar-2021-12-02) |
 ***
 
 The gift is presented by `Abigail`. Today he is talking about his solution to [**"The Weekly Challenge - 095"**](/blog/perl-weekly-challenge-095). This is re-produced for **Advent Calendar 2021** from the original [**post**](https://programmingblog702692439.wordpress.com/2021/01/14/perl-weekly-challenge-95-part-1/) by `Abigail`.

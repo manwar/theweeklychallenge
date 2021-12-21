@@ -8,7 +8,8 @@ author: Luca Ferrari
 tags: ["Raku"]
 ---
 
-[**Advent Calendar 2021**](/blog/advent-calendar-2021)
+## [**Advent Calendar 2021**](/blog/advent-calendar-2021)
+### | [**Day 13**](/blog/advent-calendar-2021-12-13) | **Day 14** | [**Day 15**](/blog/advent-calendar-2021-12-15) |
 ***
 
 The gift is presented by [**Luca Ferrari**](/blog/meet-the-champion-2020-04). Today he is talking about his solution to [**"The Weekly Challenge - 126"**](/blog/perl-weekly-challenge-126). This is re-produced for **Advent Calendar 2021** from the original [**post**](https://fluca1978.github.io/2021/08/16/PerlWeeklyChallenge126.html) by `Luca Ferrari`.

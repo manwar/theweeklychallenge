@@ -8,7 +8,8 @@ author: Flavio Poletti
 tags: ["Perl"]
 ---
 
-[**Advent Calendar 2021**](/blog/advent-calendar-2021)
+## [**Advent Calendar 2021**](/blog/advent-calendar-2021)
+### | [**Day 3**](/blog/advent-calendar-2021-12-03) | **Day 4** | [**Day 5**](/blog/advent-calendar-2021-12-05) |
 ***
 
 The gift is presented by [**Flavio Poletti**](/blog/meet-the-champion-2021-07). Today he is talking about his solution to [**"The Weekly Challenge - 100"**](/blog/perl-weekly-challenge-100). This is re-produced for **Advent Calendar 2021** from the original [**post**](https://github.polettix.it/ETOOBUSY/2021/02/18/pwc100-triangle-sum/) by `Flavio Poletti`.

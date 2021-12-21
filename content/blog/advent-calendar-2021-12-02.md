@@ -8,7 +8,8 @@ author: Dave Jacoby
 tags: ["Perl"]
 ---
 
-[**Advent Calendar 2021**](/blog/advent-calendar-2021)
+## [**Advent Calendar 2021**](/blog/advent-calendar-2021)
+### | [**Day 1**](/blog/advent-calendar-2021-12-01) | **Day 2** | [**Day 3**](/blog/advent-calendar-2021-12-03) |
 ***
 
 The gift is presented by [**Dave Jacoby**](/blog/meet-the-champion-029). Today he is talking about his solution to [**"The Weekly Challenge - 096"**](/blog/perl-weekly-challenge-096). This is re-produced for **Advent Calendar 2021** from the original [**post**](https://jacoby.github.io/2021/01/19/going-the-distance-perl-weekly-challenge-96.html) by `Dave Jacoby`.

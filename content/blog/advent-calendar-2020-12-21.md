@@ -1,6 +1,6 @@
 ---
 title: "Advent Calendar - December 21, 2020"
-date: 2020-12-23T00:00:00+00:00
+date: 2020-12-21T00:00:00+00:00
 description: "Advent Calendar - December 21, 2020."
 type: post
 image: images/blog/2020-12-21.jpg
@@ -8,7 +8,8 @@ author: Saif Ahmed
 tags: ["Perl"]
 ---
 
-[**Advent Calendar 2020**](/blog/advent-calendar-2020)
+## [**Advent Calendar 2020**](/blog/advent-calendar-2020)
+### | [**Day 20**](/blog/advent-calendar-2020-12-20) | **Day 21** | [**Day 22**](/blog/advent-calendar-2020-12-22) |
 ***
 
 The gift is presented by [**Saif Ahmed**](/blog/meet-the-champion-2020-02). Today he is talking about his solution to the task `Guest house lights` of **["The Weekly Challenge - 039"](/blog/perl-weekly-challenge-039)**. This is re-produced for **Advent Calendar 2020** from the original [**post**](http://blogs.perl.org/users/saif/2019/12/the-times-you-want-to-avoid-the-short-cuts.html) by **Saif Ahmed**.
