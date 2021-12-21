@@ -8,10 +8,11 @@ author: Arne Sommer
 tags: ["Raku"]
 ---
 
-[**Advent Calendar 2019**](/blog/advent-calendar-2019)
+## [**Advent Calendar 2019**](/blog/advent-calendar-2019)
+### | [**Day 5**](/blog/advent-calendar-2019-12-05) | **Day 6** | [**Day 7**](/blog/advent-calendar-2019-12-07) |
 ***
 
-The gift is presented by [**Arne Sommer**](/blog/meet-the-champion-019). Today he is talking about his solutions to **Task #1: Pythagoras Pie Puzzle** of [**"The Weekly Challenge - 016"**](/blog/perl-weekly-challenge-016).
+The gift is presented by [**Arne Sommer**](/blog/meet-the-champion-019). Today he is talking about his solutions to **Task #1: Pythagoras Pie Puzzle** of **["The Weekly Challenge - 016"](/blog/perl-weekly-challenge-016)**.
 
 #### At a party a pie is to be shared by 100 guest. The first guest gets 1% of the pie, the second guest gets 2% of the remaining pie, the third gets 3% of the remaining pie, the fourth gets 4% and so on. Write a script that figures out which guest gets the largest piece of pie.
 

@@ -8,10 +8,11 @@ author: JJ Merelo
 tags: ["Raku"]
 ---
 
-[**Advent Calendar 2019**](/blog/advent-calendar-2019)
+## [**Advent Calendar 2019**](/blog/advent-calendar-2019)
+### | [**Day 21**](/blog/advent-calendar-2019-12-21) | **Day 22** | [**Day 23**](/blog/advent-calendar-2019-12-23) |
 ***
 
-The gift is presented by **JJ Merelo**. Today he is talking about his solutions to **Task #1: Replace character and count** of [**"The Weekly Challenge - 001"**](/blog/perl-weekly-challenge-001).
+The gift is presented by **JJ Merelo**. Today he is talking about his solutions to **Task #1: Replace character and count** of **["The Weekly Challenge - 001"](/blog/perl-weekly-challenge-001)**.
 
 #### Write a script to replace the character ‘e’ with ‘E’ in the string ‘Perl Weekly Challenge’. Also print the number of times the character ‘e’ is found in the string.
 

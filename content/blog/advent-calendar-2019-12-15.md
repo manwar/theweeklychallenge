@@ -8,10 +8,11 @@ author: Javier Luque
 tags: ["Perl", "Raku"]
 ---
 
-[**Advent Calendar 2019**](/blog/advent-calendar-2019)
+## [**Advent Calendar 2019**](/blog/advent-calendar-2019)
+### | [**Day 14**](/blog/advent-calendar-2019-12-14) | **Day 15** | [**Day 16**](/blog/advent-calendar-2019-12-16) |
 ***
 
-The gift is presented by [**Javier Luque**](/blog/meet-the-champion-037). Today he is talking about his solutions to **Task #2: Dynamic Variable** of [**"The Weekly Challenge - 031"**](/blog/perl-weekly-challenge-031).
+The gift is presented by [**Javier Luque**](/blog/meet-the-champion-037). Today he is talking about his solutions to **Task #2: Dynamic Variable** of **["The Weekly Challenge - 031"](/blog/perl-weekly-challenge-031)**.
 
 #### Create a script to demonstrate creating dynamic variable name, assign a value to the variable and finally print the variable. The variable name would be passed as command line argument.
 

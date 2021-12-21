@@ -8,17 +8,17 @@ author: Burkhard Nickels
 tags: ["Perl"]
 ---
 
-[**Advent Calendar 2019**](/blog/advent-calendar-2019)
+## [**Advent Calendar 2019**](/blog/advent-calendar-2019)
+### | [**Day 12**](/blog/advent-calendar-2019-12-12) | **Day 13** | [**Day 14**](/blog/advent-calendar-2019-12-14) |
 ***
 
-The gift is presented by [**Burkhard Nickels**](/blog/meet-the-champion-034). Today he is talking about his solutions to **Task #1: Demonstrate Array/Hash Slices** of [**"The Weekly Challenge - 034"**](/blog/perl-weekly-challenge-034).
+The gift is presented by [**Burkhard Nickels**](/blog/meet-the-champion-034). Today he is talking about his solutions to **Task #1: Demonstrate Array/Hash Slices** of **["The Weekly Challenge - 034"](/blog/perl-weekly-challenge-034)**.
 
 ***
 
 #### Demonstrate Array Slices or Hash slices.
 
 ***
-\
 
 To demonstate some different Array and Hash slicing features I do some image processing. An image is "data" that can be stored in 2- or 3-dimensional Arrays. To separate the data I will store the data in Hashes (Named Lists). For example a coloured image can be separated in its 'red', 'green' and 'blue' parts.
 

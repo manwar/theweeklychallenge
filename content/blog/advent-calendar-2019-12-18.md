@@ -8,10 +8,11 @@ author: Philippe Bruhat
 tags: ["Perl"]
 ---
 
-[**Advent Calendar 2019**](/blog/advent-calendar-2019)
+## [**Advent Calendar 2019**](/blog/advent-calendar-2019)
+### | [**Day 17**](/blog/advent-calendar-2019-12-17) | **Day 18** | [**Day 19**](/blog/advent-calendar-2019-12-19) |
 ***
 
-The gift is presented by **Philippe Bruhat**. Today he is talking about his solutions to **Task #2: FizzBuzz** of [**"The Weekly Challenge - 001"**](/blog/perl-weekly-challenge-001).
+The gift is presented by **Philippe Bruhat**. Today he is talking about his solutions to **Task #2: FizzBuzz** of **["The Weekly Challenge - 001"](/blog/perl-weekly-challenge-001)**.
 
 #### Write one-liner to solve FizzBuzz problem and print number 1-20. However, any number divisible by 3 should be replaced by the word fizz and any divisible by 5 by the word buzz. Numbers divisible by both become fizz buzz.
 

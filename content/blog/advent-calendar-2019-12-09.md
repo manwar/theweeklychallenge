@@ -8,10 +8,11 @@ author: Dave Cross
 tags: ["Perl"]
 ---
 
-[**Advent Calendar 2019**](/blog/advent-calendar-2019)
+## [**Advent Calendar 2019**](/blog/advent-calendar-2019)
+### | [**Day 8**](/blog/advent-calendar-2019-12-08) | **Day 9** | [**Day 10**](/blog/advent-calendar-2019-12-10) |
 ***
 
-The gift is presented by **Dave Cross**. Today he is talking about his solutions to **Task #1: Find 5 Weekends** of [**"The Weekly Challenge - 019"**](/blog/perl-weekly-challenge-019).
+The gift is presented by **Dave Cross**. Today he is talking about his solutions to **Task #1: Find 5 Weekends** of **["The Weekly Challenge - 019"](/blog/perl-weekly-challenge-019)**.
 
 #### Write a script to display months from the year 1900 to 2019 where you find 5 weekends i.e. 5 Friday, 5 Saturday and 5 Sunday.
 

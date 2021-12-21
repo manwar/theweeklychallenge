@@ -8,10 +8,11 @@ author: Joelle Maslak
 tags: ["Raku"]
 ---
 
-[**Advent Calendar 2019**](/blog/advent-calendar-2019)
+## [**Advent Calendar 2019**](/blog/advent-calendar-2019)
+### | [**Day 2**](/blog/advent-calendar-2019-12-02) | **Day 3** | [**Day 4**](/blog/advent-calendar-2019-12-04) |
 ***
 
-The gift is presented by [**Joelle Maslak**](/blog/meet-the-champion-015). Today she is talking about her solutions to **Task #1: Decimal to Roman** of [**"The Weekly Challenge - 010"**](/blog/perl-weekly-challenge-010).
+The gift is presented by [**Joelle Maslak**](/blog/meet-the-champion-015). Today she is talking about her solutions to **Task #1: Decimal to Roman** of **["The Weekly Challenge - 010"](/blog/perl-weekly-challenge-010)**.
 
 #### Write a script to encode/decode Roman numerals. For example, given Roman numeral CCXLVI, it should return 246. Similarly, for decimal number 39, it should return XXXIX. Checkout [wikipedia](https://en.wikipedia.org/wiki/Roman_numerals) page for more informaiton.
 

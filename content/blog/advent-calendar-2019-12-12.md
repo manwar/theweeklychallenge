@@ -8,10 +8,11 @@ author: Laurent Rosenfeld
 tags: ["Perl", "Raku"]
 ---
 
-[**Advent Calendar 2019**](/blog/advent-calendar-2019)
+## [**Advent Calendar 2019**](/blog/advent-calendar-2019)
+### | [**Day 11**](/blog/advent-calendar-2019-12-11) | **Day 12** | [**Day 13**](/blog/advent-calendar-2019-12-13) |
 ***
 
-The gift is presented by [**Laurent Rosenfeld**](/blog/meet-the-champion-013). Today he is talking about his solutions to **Task #1: nth Order Difference Series** of [**"The Weekly Challenge - 023"**](/blog/perl-weekly-challenge-023).
+The gift is presented by [**Laurent Rosenfeld**](/blog/meet-the-champion-013). Today he is talking about his solutions to **Task #1: nth Order Difference Series** of **["The Weekly Challenge - 023"](/blog/perl-weekly-challenge-023)**.
 
 #### Create a script that prints nth order forward difference series. You should be a able to pass the list of numbers and order number as command line parameters. Let me show you with an example.
 

@@ -8,10 +8,11 @@ author: Scimon Proctor
 tags: ["Raku"]
 ---
 
-[**Advent Calendar 2019**](/blog/advent-calendar-2019)
+## [**Advent Calendar 2019**](/blog/advent-calendar-2019)
+### | [**Day 13**](/blog/advent-calendar-2019-12-13) | **Day 14** | [**Day 15**](/blog/advent-calendar-2019-12-15) |
 ***
 
-The gift is presented by [**Scimon Proctor**](/blog/meet-the-champion-027). Today he is talking about his solutions to **Task #2: Pascal Triangle** of [**"The Weekly Challenge - 003"**](/blog/perl-weekly-challenge-003).
+The gift is presented by [**Scimon Proctor**](/blog/meet-the-champion-027). Today he is talking about his solutions to **Task #2: Pascal Triangle** of **["The Weekly Challenge - 003"](/blog/perl-weekly-challenge-003)**.
 
 #### Create a script that generates Pascal Triangle. Accept number of rows from the command line. The Pascal Triangle should have at least 3 rows. For more information about Pascal Triangle, check this [**wikipedia page**](https://en.wikipedia.org/wiki/Pascal%27s_triangle).
 

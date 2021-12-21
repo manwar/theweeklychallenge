@@ -8,10 +8,11 @@ author: Jaldhar H. Vyas
 tags: ["Perl", "Raku"]
 ---
 
-[**Advent Calendar 2019**](/blog/advent-calendar-2019)
+## [**Advent Calendar 2019**](/blog/advent-calendar-2019)
+### | [**Day 6**](/blog/advent-calendar-2019-12-06) | **Day 7** | [**Day 8**](/blog/advent-calendar-2019-12-08) |
 ***
 
-The gift is presented by [**Jaldhar H. Vyas**](/blog/meet-the-champion-014). Today he is talking about his solutions to **Task #1: Ackermann Function** of [**"The Weekly Challenge - 017"**](/blog/perl-weekly-challenge-017).
+The gift is presented by [**Jaldhar H. Vyas**](/blog/meet-the-champion-014). Today he is talking about his solutions to **Task #1: Ackermann Function** of **["The Weekly Challenge - 017"](/blog/perl-weekly-challenge-017)**.
 
 #### Create a script to demonstrate Ackermann function as defined in [wikipedia](https://en.wikipedia.org/wiki/Ackermann_function).
 \

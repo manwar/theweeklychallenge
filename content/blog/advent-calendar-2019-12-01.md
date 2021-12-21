@@ -8,10 +8,11 @@ author: Laurent Rosenfeld
 tags: ["Perl", "Raku"]
 ---
 
-[**Advent Calendar 2019**](/blog/advent-calendar-2019)
+## [**Advent Calendar 2019**](/blog/advent-calendar-2019)
+### | **Day 1** | [**Day 2**](/blog/advent-calendar-2019-12-02) |
 ***
 
-The gift is presented by [**Laurent Rosenfeld**](/blog/meet-the-champion-013). Today he is talking about his solutions to **Task #2: Word Ladder** of [**"The Weekly Challenge - 007"**](/blog/perl-weekly-challenge-007).
+The gift is presented by [**Laurent Rosenfeld**](/blog/meet-the-champion-013). Today he is talking about his solutions to **Task #2: Word Ladder** of **["The Weekly Challenge - 007"](/blog/perl-weekly-challenge-007)**.
 
 > Given two input words and a file that contains an ordered word list, implement a routine that finds the shortest ladder between the two input words. For example, for the words cold and warm, the routine might return:
 > ("cold", "cord", "core", "care", "card", "ward", "warm")

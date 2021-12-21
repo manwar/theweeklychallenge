@@ -8,10 +8,11 @@ author: Francis J Whittle
 tags: ["Raku"]
 ---
 
-[**Advent Calendar 2019**](/blog/advent-calendar-2019)
+## [**Advent Calendar 2019**](/blog/advent-calendar-2019)
+### | [**Day 22**](/blog/advent-calendar-2019-12-22) | **Day 23** | [**Day 24**](/blog/advent-calendar-2019-12-24) |
 ***
 
-The gift is presented by **Francis J Whittle**. Today he is talking about his solutions to **Task #1: Perfect Numbers** of [**"The Weekly Challenge - 008"**](/blog/perl-weekly-challenge-008).
+The gift is presented by **Francis J Whittle**. Today he is talking about his solutions to **Task #1: Perfect Numbers** of **["The Weekly Challenge - 008"](/blog/perl-weekly-challenge-008)**.
 
 #### Write a script that computes the first five perfect numbers. A perfect number is an integer that is the sum of its positive proper divisors (all divisors except itself). Please check [Wiki](https://en.wikipedia.org/wiki/Perfect_number) for more information. This challenge was proposed by Laurent Rosenfeld.
 

@@ -8,10 +8,11 @@ author: Neil Bowers
 tags: ["Perl"]
 ---
 
-[**Advent Calendar 2019**](/blog/advent-calendar-2019)
+## [**Advent Calendar 2019**](/blog/advent-calendar-2019)
+### | [**Day 4**](/blog/advent-calendar-2019-12-04) | **Day 5** | [**Day 6**](/blog/advent-calendar-2019-12-06) |
 ***
 
-The gift is presented by **Neil Bowers**. Today he is talking about his solutions to **Task #2: Longest English word using US state postal abbreviation** of [**"The Weekly Challenge - 014"**](/blog/perl-weekly-challenge-014).
+The gift is presented by **Neil Bowers**. Today he is talking about his solutions to **Task #2: Longest English word using US state postal abbreviation** of **["The Weekly Challenge - 014"](/blog/perl-weekly-challenge-014)**.
 
 #### Using only the official postal (2-letter) abbreviations for the 50 U.S. states, write a script to find the longest English word you can spell? Here is the list of U.S. states abbreviations as per [wikipedia](https://en.wikipedia.org/wiki/List_of_U.S._state_abbreviations) page.
 

@@ -8,10 +8,11 @@ author: Mark Senn
 tags: ["Raku"]
 ---
 
-[**Advent Calendar 2019**](/blog/advent-calendar-2019)
+## [**Advent Calendar 2019**](/blog/advent-calendar-2019)
+### | [**Day 9**](/blog/advent-calendar-2019-12-09) | **Day 10** | [**Day 11**](/blog/advent-calendar-2019-12-11) |
 ***
 
-The gift is presented by [**Mark Senn**](/blog/meet-the-champion-031). Today he is talking about his solutions to **Task #1: Split word on change of character** of [**"The Weekly Challenge - 020"**](/blog/perl-weekly-challenge-020).
+The gift is presented by [**Mark Senn**](/blog/meet-the-champion-031). Today he is talking about his solutions to **Task #1: Split word on change of character** of **["The Weekly Challenge - 020"](/blog/perl-weekly-challenge-020)**.
 
 ***
 

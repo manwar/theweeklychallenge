@@ -8,10 +8,11 @@ author: Khalid
 tags: ["Raku"]
 ---
 
-[**Advent Calendar 2019**](/blog/advent-calendar-2019)
+## [**Advent Calendar 2019**](/blog/advent-calendar-2019)
+### | [**Day 18**](/blog/advent-calendar-2019-12-18) | **Day 19** | [**Day 20**](/blog/advent-calendar-2019-12-20) |
 ***
 
-The gift is presented by **Khalid**. Today he is talking about his solutions to **Task #1: Strip leading zeros** of [**"The Weekly Challenge - 002"**](/blog/perl-weekly-challenge-002).
+The gift is presented by **Khalid**. Today he is talking about his solutions to **Task #1: Strip leading zeros** of **["The Weekly Challenge - 002"](/blog/perl-weekly-challenge-002)**.
 
 #### Write a script or one-liner to remove leading zeros from positive numbers.
 

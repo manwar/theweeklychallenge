@@ -8,10 +8,11 @@ author: Yet Ebreo
 tags: ["Perl"]
 ---
 
-[**Advent Calendar 2019**](/blog/advent-calendar-2019)
+## [**Advent Calendar 2019**](/blog/advent-calendar-2019)
+### | [**Day 10**](/blog/advent-calendar-2019-12-10) | **Day 11** | [**Day 12**](/blog/advent-calendar-2019-12-12) |
 ***
 
-The gift is presented by [**Yet Ebreo**](/blog/meet-the-champion-025). Today he is talking about his solutions to **Task #1: Sexy Primes** of [**"The Weekly Challenge - 022"**](/blog/perl-weekly-challenge-022).
+The gift is presented by [**Yet Ebreo**](/blog/meet-the-champion-025). Today he is talking about his solutions to **Task #1: Sexy Primes** of **["The Weekly Challenge - 022"](/blog/perl-weekly-challenge-022)**.
 
 #### Write a script to print first 10 Sexy Prime Pairs. Sexy primes are prime numbers that differ from each other by 6. For example, the numbers 5 and 11 are both sexy primes, because 11 - 5 = 6. The term “sexy prime” is a pun stemming from the Latin word for six: sex. For more information, please checkout wiki [page](https://en.wikipedia.org/wiki/Sexy_prime).
 

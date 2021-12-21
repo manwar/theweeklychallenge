@@ -8,10 +8,11 @@ author: E. Choroba
 tags: ["Perl"]
 ---
 
-[**Advent Calendar 2019**](/blog/advent-calendar-2019)
+## [**Advent Calendar 2019**](/blog/advent-calendar-2019)
+### | [**Day 3**](/blog/advent-calendar-2019-12-03) | **Day 4** | [**Day 5**](/blog/advent-calendar-2019-12-05) |
 ***
 
-The gift is presented by [**E. Choroba**](/blog/meet-the-champion-018). Today he is talking about his solutions to **Task #2: Hofstadter Female and Male Sequences** of [**"The Weekly Challenge - 013"**](/blog/perl-weekly-challenge-013).
+The gift is presented by [**E. Choroba**](/blog/meet-the-champion-018). Today he is talking about his solutions to **Task #2: Hofstadter Female and Male Sequences** of **["The Weekly Challenge - 013"](/blog/perl-weekly-challenge-013)**.
 
 #### Write a script to demonstrate Mutually Recursive methods. Two methods are mutually recursive if the first method calls the second and the second calls first in turn. Using the mutually recursive methods, generate [Hofstadter Female and Male sequences](https://en.wikipedia.org/wiki/Hofstadter_sequence#Hofstadter_Female_and_Male_sequences).
 

@@ -8,10 +8,11 @@ author: Roger Bell_West
 tags: ["Perl", "Raku"]
 ---
 
-[**Advent Calendar 2019**](/blog/advent-calendar-2019)
+## [**Advent Calendar 2019**](/blog/advent-calendar-2019)
+### | [**Day 19**](/blog/advent-calendar-2019-12-19) | **Day 20** | [**Day 21**](/blog/advent-calendar-2019-12-21) |
 ***
 
-The gift is presented by [**Roger Bell_West**](/blog/meet-the-champion-026). Today he is talking about his solutions to **Task #2: Word Game** of [**"The Weekly Challenge - 038"**](/blog/perl-weekly-challenge-038).
+The gift is presented by [**Roger Bell_West**](/blog/meet-the-champion-026). Today he is talking about his solutions to **Task #2: Word Game** of **["The Weekly Challenge - 038"](/blog/perl-weekly-challenge-038)**.
 
 #### Lets assume we have tiles as listed below, with an alphabet (A..Z) printed on them. Each tile has a value, e.g. A (1 point), B (4 points) etc. You are allowed to draw 7 tiles from the lot randomly. Then try to form a word using the 7 tiles with maximum points altogether. You don’t have to use all the 7 tiles to make a word. You should try to use as many tiles as possible to get the maximum points.
 

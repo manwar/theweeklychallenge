@@ -8,10 +8,11 @@ author: Adam Russell
 tags: ["Perl"]
 ---
 
-[**Advent Calendar 2019**](/blog/advent-calendar-2019)
+## [**Advent Calendar 2019**](/blog/advent-calendar-2019)
+### | [**Day 7**](/blog/advent-calendar-2019-12-07) | **Day 8** | [**Day 9**](/blog/advent-calendar-2019-12-09) |
 ***
 
-The gift is presented by [**Adam Russell**](/blog/meet-the-champion-016). Today he is talking about his solutions to **Task #2: Priority Queue** of [**"The Weekly Challenge - 018"**](/blog/perl-weekly-challenge-018).
+The gift is presented by [**Adam Russell**](/blog/meet-the-champion-016). Today he is talking about his solutions to **Task #2: Priority Queue** of **["The Weekly Challenge - 018"](/blog/perl-weekly-challenge-018)**.
 
 #### Write a script to implement Priority Queue. It is like regular queue except each element has a priority associated with it. In a priority queue, an element with high priority is served before an element with low priority. Please check this [wiki page](https://en.wikipedia.org/wiki/Priority_queue) for more informations. It should serve the following operations:
 \

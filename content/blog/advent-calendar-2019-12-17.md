@@ -8,10 +8,11 @@ author: Yozen Hernandez
 tags: ["Perl", "Raku"]
 ---
 
-[**Advent Calendar 2019**](/blog/advent-calendar-2019)
+## [**Advent Calendar 2019**](/blog/advent-calendar-2019)
+### | [**Day 16**](/blog/advent-calendar-2019-12-16) | **Day 17** | [**Day 18**](/blog/advent-calendar-2019-12-18) |
 ***
 
-The gift is presented by [**Athanasius**](/blog/meet-the-champion-023). Today he is talking about his solutions to **Task #2: Bitcoin Validation** of [**"The Weekly Challenge - 016"**](/blog/perl-weekly-challenge-016).
+The gift is presented by [**Athanasius**](/blog/meet-the-champion-023). Today he is talking about his solutions to **Task #2: Bitcoin Validation** of **["The Weekly Challenge - 016"](/blog/perl-weekly-challenge-016)**.
 
 #### Write a script to validate a given bitcoin address. Most Bitcoin addresses are 34 characters. They consist of random digits and uppercase and lowercase letters, with the exception that the uppercase letter “O”, uppercase letter “I”, lowercase letter “l”, and the number “0” are never used to prevent visual ambiguity. A bitcoin address encodes 25 bytes. The last four bytes are a checksum check. They are the first four bytes of a double SHA-256 digest of the previous 21 bytes. For more information, please refer [wiki page](https://en.bitcoin.it/wiki/Address).
 

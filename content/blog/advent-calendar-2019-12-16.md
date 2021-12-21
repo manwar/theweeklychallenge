@@ -8,10 +8,11 @@ author: Yozen Hernandez
 tags: ["Perl"]
 ---
 
-[**Advent Calendar 2019**](/blog/advent-calendar-2019)
+## [**Advent Calendar 2019**](/blog/advent-calendar-2019)
+### | [**Day 15**](/blog/advent-calendar-2019-12-15) | **Day 16** | [**Day 17**](/blog/advent-calendar-2019-12-17) |
 ***
 
-The gift is presented by [**Yozen Hernandez**](/blog/meet-the-champion-017). Today he is talking about his solutions to **Task #2: Vigenère Cipher** of [**"The Weekly Challenge - 015"**](/blog/perl-weekly-challenge-015).
+The gift is presented by [**Yozen Hernandez**](/blog/meet-the-champion-017). Today he is talking about his solutions to **Task #2: Vigenère Cipher** of **["The Weekly Challenge - 015"](/blog/perl-weekly-challenge-015)**.
 
 #### Write a script to implement Vigenère cipher. The script should be able encode and decode. Checkout [**wiki page**](https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher) for more information.
 

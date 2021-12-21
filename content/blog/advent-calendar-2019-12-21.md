@@ -8,10 +8,11 @@ author: Khalid
 tags: ["Perl"]
 ---
 
-[**Advent Calendar 2019**](/blog/advent-calendar-2019)
+## [**Advent Calendar 2019**](/blog/advent-calendar-2019)
+### | [**Day 20**](/blog/advent-calendar-2019-12-20) | **Day 21** | [**Day 22**](/blog/advent-calendar-2019-12-22) |
 ***
 
-The gift is presented by **Gustavo Chaves**. Today he is talking about his solutions to **Task #1: Base35 Representation** of [**"The Weekly Challenge - 002"**](/blog/perl-weekly-challenge-002).
+The gift is presented by **Gustavo Chaves**. Today he is talking about his solutions to **Task #1: Base35 Representation** of **["The Weekly Challenge - 002"](/blog/perl-weekly-challenge-002)**.
 
 #### Write a script that can convert numbers to and from a base35 representation, using the characters 0-9 and A-Y.
 

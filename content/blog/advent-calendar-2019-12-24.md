@@ -8,10 +8,11 @@ author: Jo Christian Oterhals
 tags: ["Raku"]
 ---
 
-[**Advent Calendar 2019**](/blog/advent-calendar-2019)
+## [**Advent Calendar 2019**](/blog/advent-calendar-2019)
+### | [**Day 23**](/blog/advent-calendar-2019-12-23) | **Day 24** |
 ***
 
-The gift is presented by **Jo Christian Oterhals**. Today he is talking about his solutions to **Task #1: Niven Numbers** of [**"The Weekly Challenge - 007"**](/blog/perl-weekly-challenge-007).
+The gift is presented by **Jo Christian Oterhals**. Today he is talking about his solutions to **Task #1: Niven Numbers** of **["The Weekly Challenge - 007"](/blog/perl-weekly-challenge-007)**.
 
 #### Print all the niven numbers from 0 to 50 inclusive, each on their own line. A niven number is a non-negative number that is divisible by the sum of its digits.
 
