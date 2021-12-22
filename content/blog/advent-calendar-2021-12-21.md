@@ -9,7 +9,7 @@ tags: ["Perl"]
 ---
 
 ## [**Advent Calendar 2021**](/blog/advent-calendar-2021)
-### | [**Day 20**](/blog/advent-calendar-2021-12-20) | **Day 21** |
+### | [**Day 20**](/blog/advent-calendar-2021-12-20) | **Day 21** | [**Day 22**](/blog/advent-calendar-2021-12-22) |
 ***
 
 The gift is presented by [**E. Choroba**](/blog/meet-the-champion-018). Today he is talking about his solution to [**"The Weekly Challenge - 061"**](/blog/perl-weekly-challenge-061). This is re-produced for **Advent Calendar 2021** from the original [**post**](http://blogs.perl.org/users/e_choroba/2020/05/perl-weekly-challenge-061-product-subarray-and-ipv4-partition.html) by `E. Choroba`.
