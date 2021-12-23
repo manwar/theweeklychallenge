@@ -1,6 +1,6 @@
 ---
 title: "Advent Calendar 2021"
-date: 2021-12-22T00:00:00+00:00
+date: 2021-12-23T00:00:00+00:00
 description: "Advent Calendar 2021."
 type: post
 image: images/blog/advent-calendar-2021.jpg
@@ -28,7 +28,7 @@ tags: ["Perl", "Raku"]
 | | | | | | | |
 | [![Day 13](/images/blog/2021-12-13-thumbnail.jpg "Pythagorean Triples by W. Luis Mochan")](/blog/advent-calendar-2021-12-13)<br>[**`13`**](/blog/advent-calendar-2021-12-13)<br>   | [![Day 14](/images/blog/2021-12-14-thumbnail.jpg "Minesweeper Game by Luca Ferrari")](/blog/advent-calendar-2021-12-14)<br>[**`14`**](/blog/advent-calendar-2021-12-14)  | [![Day 15](/images/blog/2021-12-15-thumbnail.jpg "Spiral Matrix by Lubos Kolouch")](/blog/advent-calendar-2021-12-15)<br>[**`15`**](/blog/advent-calendar-2021-12-15)    | [![Day 16](/images/blog/2021-12-16-thumbnail.jpg "Bell Numbers by Jaldhar H. Vyas")](/blog/advent-calendar-2021-12-16)<br>[**`16`**](/blog/advent-calendar-2021-12-16)  |  [![Day 17](/images/blog/2021-12-17-thumbnail.jpg "Magical Matrix by Walt Mankowski")](/blog/advent-calendar-2021-12-17)<br>[**`17`**](/blog/advent-calendar-2021-12-17) | [![Day 18](/images/blog/2021-12-18-thumbnail.jpg "Isomorphic Strings by Andrew Shitov")](/blog/advent-calendar-2021-12-18)<br>[**`18`**](/blog/advent-calendar-2021-12-18)  | [![Day 19](/images/blog/2021-12-19-thumbnail.jpg "Triplet Sum by Jorg Sommrey")](/blog/advent-calendar-2021-12-19)<br>[**`19`**](/blog/advent-calendar-2021-12-19) |
 | | | | | | | |
-| [![Day 20](/images/blog/2021-12-20-thumbnail.jpg "Workdays by Steven Wilson")](/blog/advent-calendar-2021-12-20)<br>[**`20`**](/blog/advent-calendar-2021-12-20)<br>   | [![Day 21](/images/blog/2021-12-21-thumbnail.jpg "Product SubArray by E. Choroba")](/blog/advent-calendar-2021-12-21)<br>[**`21`**](/blog/advent-calendar-2021-12-21)<br>   | [![Day 22](/images/blog/2021-12-22-thumbnail.jpg "Word Search by Javier Luque")](/blog/advent-calendar-2021-12-22)<br>[**`22`**](/blog/advent-calendar-2021-12-22)<br>  | <br><br>**23**<br>                   | <br><br>**24**<br>                 | <br><br>**25**<br>                   | <br><br>**26**<br>                 |
+| [![Day 20](/images/blog/2021-12-20-thumbnail.jpg "Workdays by Steven Wilson")](/blog/advent-calendar-2021-12-20)<br>[**`20`**](/blog/advent-calendar-2021-12-20)<br>   | [![Day 21](/images/blog/2021-12-21-thumbnail.jpg "Product SubArray by E. Choroba")](/blog/advent-calendar-2021-12-21)<br>[**`21`**](/blog/advent-calendar-2021-12-21)<br>   | [![Day 22](/images/blog/2021-12-22-thumbnail.jpg "Word Search by Javier Luque")](/blog/advent-calendar-2021-12-22)<br>[**`22`**](/blog/advent-calendar-2021-12-22)<br>  | [![Day 23](/images/blog/2021-12-23-thumbnail.jpg "Transpose CSV File by Ryan Thompson")](/blog/advent-calendar-2021-12-23)<br>[**`23`**](/blog/advent-calendar-2021-12-23)<br>   | <br><br>**24**<br>                 | <br><br>**25**<br>                   | <br><br>**26**<br>                 |
 | | | | | | | |
 | <br><br>**27**<br>       | <br><br>**28**<br>             | <br><br>**29**<br>             | <br><br>**30**<br>                   | <br><br>**31**<br>                   |                    |                    |
 | | | | | | | |
