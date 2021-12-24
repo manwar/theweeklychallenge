@@ -9,7 +9,7 @@ tags: ["Perl","Raku"]
 ---
 
 ## [**Advent Calendar 2021**](/blog/advent-calendar-2021)
-### | [**Day 22**](/blog/advent-calendar-2021-12-22) | **Day 23** |
+### | [**Day 22**](/blog/advent-calendar-2021-12-22) | **Day 23** | [**Day 24**](/blog/advent-calendar-2021-12-24) |
 ***
 
 The gift is presented by [**Ryan Thompson**](/blog/meet-the-champion-038). Today he is talking about his solution to [**"The Weekly Challenge - 110"**](/blog/perl-weekly-challenge-110). This is re-produced for **Advent Calendar 2021** from the original [**post**](https://ry.ca/2021/04/transpose-csv-file/) by `Ryan Thompson`.
