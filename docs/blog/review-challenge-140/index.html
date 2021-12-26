@@ -1,0 +1,1331 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="The Weekly Challenge - Perl & Raku"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="You do not have to be an expert."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Colin Crain › Perl Weekly Review #140">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Colin Crain › Perl Weekly Review #140</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navgation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Colin Crain › Perl Weekly Review #140</h2>
+                    <div class="portfolio-meta">
+                        <span>Sunday, Dec 26, 2021</span>|
+                        <span> Tags:
+                            perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/p5-review-challenge-140.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <p>( <em>&hellip;continues from <a href="/blog/review-challenge-139/">previous week</a>.</em> )</p>
+<p>Welcome to the Perl review pages for <strong>Week 140</strong> of The Weekly Challenge! Here we will take the time to discuss the  submissions offered up by the team, factor out some common methodologies that came up in those solutions, and highlight some of the unique approaches and unusual code created.</p>
+<hr>
+<h3 id="why-do-we-do-these-challenges">Why do we do these challenges?</h3>
+<p>I suppose any reasonable answers to that question would be as wide ranging and varied as the people who choose to join the team. One thing, though, is clear: it&rsquo;s not a competition, and there are no judges, even if there is a &ldquo;prize&rdquo; of sorts. About that &ndash; I think of it more as an honorarium periodically awarded to acknowledge the efforts we make towards this strange goal. So there&rsquo;s no determination to find the <em>fastest</em>, or the <em>shortest</em>, or even, in some abstract way, the <em>best</em> way to go about things, although I&rsquo;m certain the participants have their own aspirations and personal drives. As Perl is such a wonderfully expressive language, this provides quite a bit of fodder to the core idea of TMTOWTDI, producing a gamut of varied techniques and solutions.</p>
+<p>Even the tasks themselves are often open to a certain amount of discretionary interpretation. What we end up with is a situation where each participant is producing something in the manner they find the most interesting or satisfying. Some team members focus on carefully crafted complete applications, thoroughly vetting input data and handling every use case they can think up. Others choose to apply themselves to the logic of the underlying puzzle and making it work in the most elegant way they can. Some eschew modules they would ordinarily reach for, others embrace them, bringing to light wheels perhaps invented years ago that happen to exactly solve the problem in front of them today.</p>
+<p>I&rsquo;ve been considering this question for some time and have found one binding commonality between all of us out solving these challenges each week, in that however we normally live our lives, the task in front of us more than likely has nothing to do with any of that. And I think this has great value. We all do what we do, in the real world, and hopefully we do it well. The Weekly Challenge provides us with an opportunity to do something germane to that life yet distinctly different; if we only do the things we already know how to do then we will only do the same things over and over. This is where the &ldquo;challenge&rdquo; aspect comes into play.</p>
+<p>So we can consider The Weekly Challenge as providing a problem space outside of our comfort zone, as far out from that comfort as we wish to take things. From those reaches we can gather and learn things, pick and choose and bring what we want back into our lives. Personally, I think that&rsquo;s its greatest value of all.</p>
+<hr>
+<p>Every week there is an enormous global collective effort made by the team, analyzing and creatively coding the submissions, and that effort deserves credit due.</p>
+<p>And that&rsquo;s why I&rsquo;m here, to try and figure out how to do that.</p>
+<p>Let&rsquo;s get on with it then, have a look and see what we find.</p>
+<hr>
+<p><strong><big>For context</big></strong>  before we begin, you may wish to revisit either of the pages for the <a href="/blog/perl-weekly-challenge-140/"><strong>original tasks</strong></a> or the summary <a href="/blog/recap-challenge-140/"><strong>recap</strong></a> of the challenge. But don&rsquo;t worry, the challenges themselves are repeated and presented below as we progress from task by task. Oh, and one more thing before we get started:</p>
+<h3 id="getting-in-touch-with-us">Getting in Touch with Us</h3>
+<p><a href="mailto:pwc.perfectwave@gmail.com"><img src="/images/blog/Email.svg" height="50" width="50"> Email</a> › Please feel free to email me (Colin) with any feedback, notes, clarifications or whatnot about this review.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge"><img src="/images/blog/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request to us for any issues you may find with this page.</p>
+<p><a href="https://twitter.com/perlwchallenge"><img src="/images/blog/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!</p>
+<p>I&rsquo;m always curious as to what the people think of these efforts. Everyone here at the PWC would like to hear any feedback you&rsquo;d like to give.</p>
+<p><strong>So finally, without further ado&hellip;</strong></p>
+<hr>
+<h2 id="---nbsp--nbsp--nbsp---task-1pwc140task1-------nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---task-2pwc140task2---nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---blogspwc140blogs----nbsp--nbsp--nbsp---">•             <a href="#PWC140TASK1">Task 1</a>                 •             <a href="#PWC140TASK2">Task 2</a>             	•             <a href="#PWC140BLOGS">BLOGS</a>              	•</h2>
+<hr>
+<h1 id="PWC140TASK1">TASK 1</h1>
+<h1 id="add-binary">Add Binary</h1>
+<p><em>Submitted by: Mohammad S Anwar</em></p>
+<p>You are given two decimal-coded binary numbers, $a and $b.</p>
+<p>Write a script to simulate the addition of the given binary numbers.</p>
+<p>The script should simulate something like $a + $b. (operator overloading)</p>
+<p><strong>Example 1</strong></p>
+<pre><code>    Input: $a = 11; $b = 1;
+    Output: 100
+</code></pre><p><strong>Example 2</strong></p>
+<pre><code>    Input: $a = 101; $b = 1;
+    Output: 110
+</code></pre><p><strong>Example 3</strong></p>
+<pre><code>    Input: $a = 100; $b = 11;
+    Output: 111
+</code></pre><h2 id="about-the-solutions">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/abigail/perl/ch-1.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/alexander-pankoff/perl/ch-1.pl"><strong>Alexander Pankoff</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/cristian-heredia/perl/ch-1.pl"><strong>Cristina Heredia</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/jake/perl/ch-1.pl"><strong>Jake</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/jaldhar-h-vyas/perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/lubos-kolouch/perl/ch-1.pl"><strong>Lubos Kolouch</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/mano-chandar/perl/ch-1.pl"><strong>Mano Chandar</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/mattneleigh/perl/ch-1.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/olivier-delouya/perl/ch-1.sh"><strong>Olivier Delouya</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/paul-fajman/perl/ch-1.pl"><strong>Paul Fajman</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/paulo-custodio/perl/ch-1.pl"><strong>Paulo Custodio</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/pete-houston/perl/ch-1.pl"><strong>Pete Houston</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/peter-campbell-smith/perl/ch-1.pl"><strong>Peter Campbell Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/robert-dicicco/perl/ch-1.pl"><strong>Robert DiCicco</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/wanderdoc/perl/ch-1.pl"><strong>Wanderdoc</strong></a></p>
+<p>I would say the description for this first challenge is more broadly sketched than usual, more of a concept than a specification.
+The use of the word &ldquo;like&rdquo; in the description introduces a certain ambiguity into what exactly is being requested here: Are we being asked to overload the &ldquo;+&rdquo; addition operator to make it seamlessly work on binary strings? Or just something <em>like</em> this, and perhaps we can create our own new operator that accomplishes the goal? And isn&rsquo;t an operator just another function? (<em>narrator&rsquo;s voice: It is, you know, logically&hellip;</em>)</p>
+<p>For example, in Reverse Polish Notation we would write the example as &ldquo;<strong>a b +</strong>&quot;. The placement of the plus sign infix is merely convention and implemented in the specific design on the language — we could reasonably argue that all addition operations are self-similar and hence <em>like</em> each other. Coupling in the word <em>simulate</em> only adds to the ambiguity, as what exactly is the difference between simulating a thing and just doing the thing itself? I once saw Jean Baudrillard speak at the Guggenheim Museum in NYC on, amongst other things, that very subject: <a href="https://en.wikipedia.org/wiki/Simulacra_and_Simulation">the object and its simulation</a>. But I digress.</p>
+<p>The upshot is that although we did see quite a few examples of &ldquo;proper&rdquo; operator overloading, using the <code>overload</code> pragma, we also saw other, similar yet different interpretations of the directive, leading to a fair bit of variation amongst the solutions.</p>
+<p>There were 30 submissions for the first task this past week.</p>
+<h2 id="an-abundance-of-riches-a-cornucopia-of-code">an ABUNDANCE of RICHES, a CORNUCOPIA of CODE</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/pete-houston/perl/ch-1.pl"><strong>Pete Houston</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/paulo-custodio/perl/ch-1.pl"><strong>Paulo Custodio</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/jake/perl/ch-1.pl"><strong>Jake</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/paul-fajman/perl/ch-1.pl"><strong>Paul Fajman</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/peter-campbell-smith/perl/ch-1.pl"><strong>Peter Campbell Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/mano-chandar/perl/ch-1.pl"><strong>Mano Chandar</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a></p>
+<p>As mentioned, we saw examples of objects redefining their own addition functions using the infix <code>+</code> operator, but this was not strictly speaking required for a solution. The core functionality, of taking two binary strings and returning a new string expressing the sum value, was implemented in a variety of ways, reflecting a range of possible interpretations to the directives.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/pete-houston/perl/ch-1.pl"><strong>Pete Houston</strong></a></p>
+<p>Pete will start us off today with a straightforward example of operator overloading. He creates a binary string object package <code>Bin</code>, representing a single number in binary string notation. Internally, the object holds the number data in two attribute slots, <code>bin</code> and <code>dec</code>, as hash keys. The object is instantiated with a value in the <code>bin</code> slot, and the <code>dec</code> slot is filled simultaneously using a <code>bin2dec()</code> method, giving us parallel binary and decimal representations. Addition using the <code>+</code> sign is overloaded to call the object&rsquo;s own <code>add()</code> method, which when called by the object on another adds the internal decimal versions of the two, returning a new <code>Bin</code> object, stringified for the constructor using <code>sprintf &quot;%b&quot;</code>.</p>
+<p>The object itself is minimal and demonstrative, a blessed hash in basic Perl, with the attributes accessed directly using hash notation.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">package</span> Bin;
+
+    <span style="color:#66d9ef">use</span> overload (
+        <span style="color:#e6db74">&#39;+&#39;</span>  <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;add&#39;</span>,
+        <span style="color:#e6db74">&#39;&#34;&#34;&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;bin&#39;</span>
+    );
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">new</span> {
+        <span style="color:#66d9ef">my</span> ($class, $str) <span style="color:#f92672">=</span> @_;
+        <span style="color:#75715e"># $str is a string of bits, eg: &#34;10010&#34;;</span>
+        <span style="color:#66d9ef">my</span> $self <span style="color:#f92672">=</span> {
+        	bin <span style="color:#f92672">=&gt;</span> $str,
+        	dec <span style="color:#f92672">=&gt;</span> defined ($str) ? bin2dec ($str) : $str
+        };
+        bless $self, $class;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">dec</span> { $_[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-&gt;</span>{dec} };
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">bin</span> { $_[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-&gt;</span>{bin} };
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">bin2dec</span> {
+        <span style="color:#66d9ef">my</span> @bits <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, shift;
+        <span style="color:#66d9ef">my</span> $dec <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">my</span> $fac <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">while</span> (@bits) {
+        	$_ <span style="color:#f92672">=</span> pop @bits;
+        	$dec <span style="color:#f92672">+=</span> $fac <span style="color:#f92672">*</span> $_;
+        	$fac <span style="color:#f92672">*=</span> <span style="color:#ae81ff">2</span>;
+        }
+        <span style="color:#66d9ef">return</span> $dec;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">add</span> {
+        <span style="color:#66d9ef">my</span> ($x, $y) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> $dsum <span style="color:#f92672">=</span> $x<span style="color:#f92672">-&gt;</span>{dec} <span style="color:#f92672">+</span> $y<span style="color:#f92672">-&gt;</span>{dec};
+        <span style="color:#66d9ef">return</span> Bin<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span> (sprintf <span style="color:#e6db74">&#34;%b&#34;</span>, $dsum);
+    }
+
+    <span style="color:#66d9ef">package</span> main;
+    <span style="color:#66d9ef">print</span> Bin<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span> ($ARGV[<span style="color:#ae81ff">0</span>]) <span style="color:#f92672">+</span> Bin<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span> ($ARGV[<span style="color:#ae81ff">1</span>]) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/paulo-custodio/perl/ch-1.pl"><strong>Paulo Custodio</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/paulo-custodio/python/ch-1.py">Python</a></p>
+<p>Paulo strips down the demonstration even further, declaring his object as a blessed <em>scalar</em>, holding only the instantiated value, a binary string. When &ldquo;+&rdquo; is applied to this object, the infix operator is overridden with its own addition method, which on-the-fly converts the string parameters into (nominally decimal) numbers and sums them, returning a new <code>Binary</code> object using <code>sprintf &quot;%b&quot;</code> to translate the sum back into a binary string.</p>
+<p>I say nominally decimal because of course internally the numbers are stored as the hardware sees fit, and probably only the I/O layer is interacting with us, the users, using decimal. But it&rsquo;s not really accurate to say the numbers <em>are</em> decimal. Numbers exist outside of their representations, and it is best to think of them as such. When we convert the internally binary numbers into what we are <em>calling</em> &ldquo;binary&rdquo;, what we are really doing is creating a <em>string</em> of the binary number as we would write it on paper, copying the physical representation of the written form. The string is a sequence of 1 and 0 ASCII (or Unicode) characters. The <a href="https://en.wikipedia.org/wiki/Map%E2%80%93territory_relation">map is not the territory</a>, et <a href="https://en.wikipedia.org/wiki/The_Treachery_of_Images">ceci n&rsquo;est pas une pipe</a>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Modern::Perl;
+
+    {
+        <span style="color:#66d9ef">package</span> Binary;
+
+        <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">new</span> {
+            <span style="color:#66d9ef">my</span>($class, $n) <span style="color:#f92672">=</span> @_;
+            $n <span style="color:#e6db74">//</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+            <span style="color:#66d9ef">return</span> bless <span style="color:#f92672">\</span>$n, $class;
+        }
+
+        <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">add</span> {
+            <span style="color:#66d9ef">my</span>($self, $other) <span style="color:#f92672">=</span> @_;
+            <span style="color:#66d9ef">my</span> $a <span style="color:#f92672">=</span> oct(<span style="color:#e6db74">&#34;0b&#34;</span><span style="color:#f92672">.</span>$$self);
+            <span style="color:#66d9ef">my</span> $b <span style="color:#f92672">=</span> oct(<span style="color:#e6db74">&#34;0b&#34;</span><span style="color:#f92672">.</span>$$other);
+            <span style="color:#66d9ef">return</span> ref($self)<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(sprintf(<span style="color:#e6db74">&#34;%b&#34;</span>, $a<span style="color:#f92672">+</span>$b));
+        }
+
+        <span style="color:#66d9ef">use</span> overload <span style="color:#e6db74">&#39;+&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\&amp;</span>add;
+        <span style="color:#66d9ef">use</span> overload <span style="color:#e6db74">&#39;&#34;&#34;&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { <span style="color:#66d9ef">my</span>($self) <span style="color:#f92672">=</span> @_; <span style="color:#66d9ef">return</span> $$self; }
+    }
+
+    <span style="color:#66d9ef">my</span> $a <span style="color:#f92672">=</span> Binary<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(shift);
+    <span style="color:#66d9ef">my</span> $b <span style="color:#f92672">=</span> Binary<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(shift);
+    <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> $a<span style="color:#f92672">+</span>$b;
+    say $c;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a></p>
+<p>Choroba refines and abstracts the process, adding a layer of indirection between the imput strings and the object with its overloaded operators. Instead of constructing a new object directly with a string, <code>Tie::Scalar</code> is used to attach the object class to the value after the fact. It&rsquo;s a roundabout way of going about things, but after the scalars are tied to the class we can perform the operation <code>$a + $b</code> on them transparently. It&rsquo;s a very cool and quite different way to think about the problem.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    {   <span style="color:#66d9ef">package</span> Binary;
+        <span style="color:#66d9ef">use</span> Tie::Scalar;
+        <span style="color:#66d9ef">use</span> parent <span style="color:#f92672">-</span>norequire <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Tie::StdScalar&#39;</span>;
+
+        <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">TIESCALAR</span> {
+            <span style="color:#66d9ef">my</span> ($class, $value) <span style="color:#f92672">=</span> @_;
+            die <span style="color:#e6db74">&#39;Too many arguments&#39;</span> <span style="color:#66d9ef">if</span> @_ <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">2</span>;
+            die <span style="color:#e6db74">&#39;Invalid format&#39;</span> <span style="color:#66d9ef">if</span> $value <span style="color:#f92672">=~</span><span style="color:#e6db74"> /[^01]/</span>;
+            bless <span style="color:#f92672">\</span>$value, $class
+        }
+
+        <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">FETCH</span> { $_[<span style="color:#ae81ff">0</span>] }
+
+        <span style="color:#66d9ef">use</span> overload
+            <span style="color:#e6db74">&#39;+&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> {
+                sprintf <span style="color:#e6db74">&#39;%b&#39;</span>, oct(<span style="color:#e6db74">&#34;0b${ $_[0] }&#34;</span>) <span style="color:#f92672">+</span> oct(<span style="color:#e6db74">&#34;0b${ $_[1] }&#34;</span>)
+            },
+            <span style="color:#e6db74">&#39;&#34;&#34;&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { ${ $_[<span style="color:#ae81ff">0</span>] } },
+    }
+
+    <span style="color:#f92672">...</span> test boilerplate <span style="color:#f92672">...</span>
+
+    {   tie <span style="color:#66d9ef">my</span> $A, <span style="color:#e6db74">&#39;Binary&#39;</span>, <span style="color:#ae81ff">11</span>;
+        tie <span style="color:#66d9ef">my</span> $B, <span style="color:#e6db74">&#39;Binary&#39;</span>, <span style="color:#ae81ff">1</span>;
+        is $A <span style="color:#f92672">+</span> $B, <span style="color:#ae81ff">100</span>, <span style="color:#e6db74">&#34;Example 1 ($A + $B)&#34;</span>;
+    }
+</code></pre></div><p>As you can see we need to specify the package we wish to tie <em>to</em> when we tie, which ends up being very much like instantiating an object with <code>new()</code>, but different. In the above example, the two scalars <code>$A</code> and <code>$B</code> do end up returning <code>Binary</code> object references.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/jake/perl/ch-1.pl"><strong>Jake</strong></a></p>
+<p>Getting away from the <code>overload</code> pragma for a bit, we have Jake&rsquo;s submission in basic Perl. The objective here is to translate each argument into decimal, sum them, then convert the result back into binary. To accomplish this he constructs a pair of routines,
+<code>decimal_to_binary()</code> and <code>binary_to_decimal()</code>, both really wrappers for private helpers, to do the conversions back and forth.</p>
+<p>After soliciting the input values the application sums them and returns the result as a binary string.</p>
+<p>The essence of the technique lies in these two conversion routines, which are well documented. Here&rsquo;s the decimal to binary half:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e">###</span>
+    <span style="color:#75715e"># convert decimals to binaries</span>
+    <span style="color:#75715e">#</span>
+    <span style="color:#75715e"># each n-th power of 2 in decimal translates to the n-th power of 10 in binary:</span>
+    <span style="color:#75715e"># n=0: 1&gt;1 | n=1: 2&gt;10 | n=2: 4&gt;100 and so on, we know the drill.</span>
+    <span style="color:#75715e"># For conversion, we first determine the largest power contained in the decimal number.</span>
+    <span style="color:#75715e"># Next, we subtract this power from our decimal and determine the largest power in this &#39;remainder&#39;.</span>
+    <span style="color:#75715e"># This is repeated until there is no remainder left.</span>
+    <span style="color:#75715e"># For each n-th power of 2 we add a binary quantum to an accumulator.</span>
+    <span style="color:#75715e"># At the end of our &#39;run for power&#39; this accumulator is our binary equivalent to our decimal.</span>
+    <span style="color:#75715e">###</span>
+
+    <span style="color:#75715e"># container sub so main needs to pass only 1 argument</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">decimal_to_binary</span> {
+        <span style="color:#66d9ef">my</span> ( $decimal ) <span style="color:#f92672">=</span> @_;
+
+        <span style="color:#66d9ef">return</span> _decimal_to_binary ( <span style="color:#ae81ff">0</span>, $decimal );
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_decimal_to_binary</span> {
+        <span style="color:#66d9ef">my</span> ( $power, $decimal_number, $binary_quantum ) <span style="color:#f92672">=</span> @_;
+
+        <span style="color:#75715e"># special case of 0</span>
+        <span style="color:#66d9ef">if</span> ( $decimal_number <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> ) {
+            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+        }
+
+        <span style="color:#75715e"># any decimal or remainder hitting exactly an n-th power of 2 will eventually finish the run here</span>
+        <span style="color:#66d9ef">if</span> ( $decimal_number <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">**</span>$power ) {
+            $binary_quantum <span style="color:#f92672">+=</span> <span style="color:#ae81ff">10</span><span style="color:#f92672">**</span>$power;
+            <span style="color:#66d9ef">return</span> $binary_quantum;
+        }
+
+        <span style="color:#75715e"># if a number will not finish at the previous step, we check if the number is between the current power or the next one.</span>
+        <span style="color:#75715e"># if it is, we know the largest power to 2 in this number is the current power, so we have to add this power to 10 to our binary quantum accumulator.</span>
+        <span style="color:#75715e"># we then take the remainder (what comes on top of the current power to 2) and investigate its powers.</span>
+        <span style="color:#75715e"># p.e. our decimal is 9.</span>
+        <span style="color:#75715e"># since 2^3 &lt; 9 &lt; 2^4, we add 10^3 to our binary quant.</span>
+        <span style="color:#75715e"># then we perform 9-2^3 = 1 to get the remainder which needs to be quantized itself.</span>
+        <span style="color:#75715e"># 1 is our remaining decimal, which we re-investigate starting again with power = 0.</span>
+        <span style="color:#66d9ef">if</span> ( $decimal_number <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">**</span>$power <span style="color:#f92672">&amp;&amp;</span> $decimal_number <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">**</span>( $power <span style="color:#f92672">+</span><span style="color:#ae81ff">1</span> ) ) {
+            $binary_quantum <span style="color:#f92672">+=</span> <span style="color:#ae81ff">10</span><span style="color:#f92672">**</span>$power;
+            $decimal_number <span style="color:#f92672">-=</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">**</span>$power;
+            $power <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+            <span style="color:#66d9ef">return</span> _decimal_to_binary ( $power, $decimal_number, $binary_quantum );
+        }
+
+        <span style="color:#75715e"># this operation is needed whenever our decimal is larger than our current power to 2 and the next one.</span>
+        $power<span style="color:#f92672">++</span>;
+        <span style="color:#66d9ef">return</span> _decimal_to_binary ( $power, $decimal_number, $binary_quantum );
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/paul-fajman/perl/ch-1.pl"><strong>Paul Fajman</strong></a></p>
+<p>Paul takes the addition simulation more literally, creating a means to add the two binary numbers digit-by-digit, carrying over values as required, as though we were using pencil and paper. Or, you know, inside an adder. Which is almost assuredly what the computer is doing behind the scenes. But then again, it could be an army of monkeys (or Monkees, RIP Mike Nesmith) with abaci. We&rsquo;ll never know for sure, as the hardware layer is in theory opaque and abstracted away from us.</p>
+<p>But to the task at hand, he first breaks each string down into an array of characters. To facilitate the carries he always adds the smaller number to larger, zero-padding the left of the smaller to the length of the larger.</p>
+<p>Walking the positions from right to left with an iterator, at each he takes the input  from the two arrays and a floating carry place and sums them, and from this state assigns the position in a new array and the carry variable. If after traversing the length of the larger of the two inputs any value is still in the carry slot it is prepended to the front of the string.</p>
+<p>Through concatenation we have constructed the binary sum string place-wise.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># Split numbers into pieces</span>
+      @arr1<span style="color:#f92672">=</span>split(<span style="color:#e6db74">//</span>,$x);
+      @arr2<span style="color:#f92672">=</span>split(<span style="color:#e6db74">//</span>,$y);
+      <span style="color:#66d9ef">for</span> ($i<span style="color:#f92672">=</span>$#arr1; $i<span style="color:#f92672">&gt;-</span><span style="color:#ae81ff">1</span>;$i<span style="color:#f92672">--</span>) {
+        $sum<span style="color:#f92672">=</span>$arr1[$i]<span style="color:#f92672">+</span>$arr2[$i]<span style="color:#f92672">+</span>$carry;
+
+    <span style="color:#75715e"># If/elses to ensure no values greater than 1.</span>
+        <span style="color:#66d9ef">if</span> ($sum <span style="color:#f92672">eq</span> <span style="color:#ae81ff">2</span>) {
+          $sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+          $carry <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+        }
+        <span style="color:#66d9ef">elsif</span> ($sum <span style="color:#f92672">eq</span> <span style="color:#ae81ff">3</span>) {
+          $sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+          $carry <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+        }
+        <span style="color:#66d9ef">else</span> {
+          $carry <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        }
+        $num<span style="color:#f92672">=</span>$sum<span style="color:#f92672">.</span>$num
+      }
+
+    <span style="color:#75715e"># One last check for a carry.</span>
+      $num<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;1&#34;</span><span style="color:#f92672">.</span>$num <span style="color:#66d9ef">if</span> $carry <span style="color:#f92672">eq</span> <span style="color:#ae81ff">1</span>;
+      <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;$num&#34;</span>;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://wlmb.github.io/2021/11/23/PWC140/">Perl Weekly Challenge 140 – W. Luis Mochán</a></p>
+<p>Luis also gives us a positional addition procedure, albeit rathermoretightlycompressed.</p>
+<p>Onthatsubject:The ancient ones speak of a time, during the big iron war, when spaces were first rationed, and then for all practical purposes used up completely, so that for an interminable period any form of whitespace at all — not merely a simple space but also a linefeed, a tab, even space-like characters like an underscore — were worth more than gold. Dark days indeed.</p>
+<p>Even I remember communicating through the dumbest of terminals as a child, and how each character used prompted a significant time-lag as it was transmitted down the line bucket-brigade-style by a roster of enfeebled monkeys (or perhaps Monkees, rip Mike Nesmith&hellip; wait, have we been here before? I&rsquo;m getting the stangest feeling of déjà vu&hellip;)</p>
+<p>But I digress.</p>
+<p>Luis provides us with a marvelous <code>full_adder()</code> routine that itself is worth the price of admission. The fact that his method is expanded to include 2s-complement negative numbers is all the more impressive.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw(all max)</span>;
+
+    <span style="color:#66d9ef">my</span> $word_size<span style="color:#f92672">=</span><span style="color:#ae81ff">8</span>; <span style="color:#75715e"># finite number of bits, to allow for negative 2s-complement numbers.</span>
+    say(<span style="color:#e6db74">&#34;Usage: ch-1.pl a b [wordsize], to add two binary numbers&#34;</span>), exit <span style="color:#66d9ef">unless</span> @ARGV<span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">2</span>;
+    say(<span style="color:#e6db74">&#34;Only &#39;0&#39; and &#39;1&#39; allowed for binary numbers&#34;</span>), exit <span style="color:#66d9ef">unless</span> all {$_<span style="color:#f92672">=~</span><span style="color:#e6db74">m/^[01]+$/</span>} @ARGV[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>];
+    say(<span style="color:#e6db74">&#34;Word size should be positive&#34;</span>), exit <span style="color:#66d9ef">unless</span> <span style="color:#f92672">!</span>defined $ARGV[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">||</span> $ARGV[<span style="color:#ae81ff">2</span>]<span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">my</span> ($x, $y)<span style="color:#f92672">=</span>map {[reverse (<span style="color:#ae81ff">0</span>,split <span style="color:#e6db74">&#34;&#34;</span>,$_)]} @ARGV; <span style="color:#75715e"># bit arrays, least significant first</span>
+    $word_size<span style="color:#f92672">=</span>$ARGV[<span style="color:#ae81ff">2</span>] <span style="color:#66d9ef">if</span> $ARGV[<span style="color:#ae81ff">2</span>];
+    <span style="color:#66d9ef">my</span> $length<span style="color:#f92672">=</span>max scalar @$x, scalar @$y;
+    <span style="color:#66d9ef">my</span> $carry<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">my</span> $r;
+    <span style="color:#66d9ef">my</span> @result<span style="color:#f92672">=</span>map {($r,$carry)<span style="color:#f92672">=</span>full_adder($x<span style="color:#f92672">-&gt;</span>[$_],$y<span style="color:#f92672">-&gt;</span>[$_],$carry);$r} <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$length<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+    splice @result, $word_size; <span style="color:#75715e"># truncate to maximum number of bits</span>
+    <span style="color:#66d9ef">my</span> $result<span style="color:#f92672">=</span>join <span style="color:#e6db74">&#34;&#34;</span>, reverse @result;
+    say sprintf <span style="color:#e6db74">&#34;Input: \$a=%d, \$b=%d, Output: %d&#34;</span>, @ARGV[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>], $result;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">full_adder</span>{ <span style="color:#75715e"># add two bits and a carry, produce result and carry</span>
+        <span style="color:#66d9ef">my</span> ($a, $b, $c)<span style="color:#f92672">=</span>@_;
+        <span style="color:#66d9ef">return</span>(($a<span style="color:#f92672">+</span>$b<span style="color:#f92672">+</span>$c)%2,($a<span style="color:#f92672">+</span>$b<span style="color:#f92672">+</span>$c)<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>);
+    }
+</code></pre></div><p>I will thank him though, as at least he broke things down a bit from his original version, which even he acknowledges is illegible:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    perl <span style="color:#f92672">-</span>Minteger <span style="color:#f92672">-</span>MList::MoreUtils<span style="color:#f92672">=</span>pairwise <span style="color:#f92672">-</span>E <span style="color:#e6db74">&#39;($x,$y)=map [reverse split &#34;&#34;,&#34;0$_&#34;],
+</span><span style="color:#e6db74">       @ARGV; @x=@$x;@y=@$y; say sprintf &#34;Input: \$a=%d, \$b=%d, Output: %d&#34;, @ARGV,
+</span><span style="color:#e6db74">       join &#34;&#34;,reverse pairwise {$c=($s=$a+$b+$c)/2;$r=$s%2} @x,@y;&#39;</span> <span style="color:#ae81ff">11</span> <span style="color:#ae81ff">1</span>
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/peter-campbell-smith/perl/ch-1.pl"><strong>Peter Campbell Smith</strong></a></p>
+<p>The open-endedness of phrase &ldquo;simulate something like&hellip;&rdquo; in the directive allows quite a lot of leeway in interpretation, and here Peter produces the simulation cleanly in the output:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#ae81ff">11</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>
+    <span style="color:#ae81ff">101</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">110</span>
+    <span style="color:#ae81ff">100</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">11</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">111</span>
+    <span style="color:#ae81ff">10101</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1010</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">11111</span>
+    <span style="color:#ae81ff">0</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">111</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">111</span>
+    <span style="color:#ae81ff">1111111111</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1111111111</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">11111111110</span>
+</code></pre></div><p>The addition is correct and configurable, and done by two internal routines converting the  binary string input into numbers, then summing them, then converting the result back before formatting.</p>
+<p>To be clear, I am given no special insight into Mohammad&rsquo;s reasoning when he assigns the tasks, and solely base my commentary around what I find presented, combined with my own previous analysis. Personally I think all of these readings are correct in their way, weighted truths yet unquantifiable. I live in a very simultaneous world, where things can be many things at once.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/mano-chandar/perl/ch-1.pl"><strong>Mano Chandar</strong></a></p>
+<p>Mano delivers us a remarkable approach to structuring his input validation:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    L1 : <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Enter the First Binary Number [0&#39;s and 1&#39;s only]\n&#34;</span>;
+         $input1 <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;&gt;</span>;
+         chomp($input1);
+         goto L1 <span style="color:#66d9ef">if</span> ($input1 <span style="color:#f92672">!~</span> <span style="color:#e6db74">m/^[0-1]+$/s</span>);
+    L2 : <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Enter the Second Binary Number [0&#39;s and 1&#39;s only]\n&#34;</span>;
+         $input2 <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;&gt;</span>;
+         chomp($input2);
+         goto L2 <span style="color:#66d9ef">if</span> ($input2 <span style="color:#f92672">!~</span> <span style="color:#e6db74">m/^[0-1]+$/s</span>);
+</code></pre></div><p>I have to give him that in this style it is immediately obvious what is going on, and furthermore each block discretely processes one user input, which in general is a wise approach to dealing with the unpredictable outside world as it allows each iteraction to be fine-tuned as required.</p>
+<p>It&rsquo;s interesting to me, as someone always looking for more clarity in expression. But, you know, <code>goto</code>. You don&rsquo;t see that very often, not in its LABEL form.</p>
+<p>For the addition, we work over the strings place-by-place, this time from the right-hand side, building our string result by concatenating new digit characters as they are derived. Working this way requires us to perform a scalar reverse on our result to flip the digits around to their proper order.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    $i <span style="color:#f92672">=</span> length($input1);
+    $j <span style="color:#f92672">=</span> length($input2);
+
+    <span style="color:#66d9ef">while</span>( $i<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> $j<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span>)
+    {
+        $sum <span style="color:#f92672">=</span> $carry;
+        $sum <span style="color:#f92672">+=</span> (substr($input1, $i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>)) <span style="color:#66d9ef">if</span> ($i <span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span>); <span style="color:#75715e"># operator overloading</span>
+        $sum <span style="color:#f92672">+=</span> (substr($input2, $j<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>)) <span style="color:#66d9ef">if</span> ($j <span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span>); <span style="color:#75715e"># operator overloading</span>
+        $carry <span style="color:#f92672">=</span> $sum <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> ? <span style="color:#ae81ff">1</span> : <span style="color:#ae81ff">0</span> ;
+        $result <span style="color:#f92672">.=</span> $sum%2;	<span style="color:#75715e"># operator overloading</span>
+        $i<span style="color:#f92672">--</span>; $j<span style="color:#f92672">--</span>;
+    }
+    $result <span style="color:#f92672">.=</span> $carry <span style="color:#66d9ef">if</span> ($carry);
+
+    <span style="color:#66d9ef">print</span> (scalar reverse($result));
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a></p>
+<p>Niels takes things one step further, using both the <code>overload</code> pragma and performing his addition using a simulated adder, processing the individual digit positions in the two binary strings using <code>pairwise()</code> from <code>List::MoreUtils</code>. We&rsquo;ve seen this function in passing previously, in Luis&rsquo; one-liner, and now that it&rsquo;s appeared again perhaps we should take a moment to discuss it.</p>
+<p><code>pairwise()</code> processes two arrays of nominally the same length, taking one element for each and applying it within a given block, like <code>map</code> over two lists simultaneously. Inside the block the values are attached to the variables <code>$a</code> and <code>$b</code> and the result of the block returned to form a new list. The arrays are processed until all elements are used, so in theory the arrays should be the same length or a warning will be thrown when one is exhausted and the other continues to be assigned. Adding <code>no warnings &quot;uninitialized&quot;</code> will suppress this behavior, though, so it can be worked around and is not expressly forbidden.</p>
+<p>After breaking apart the input strings into arrays of digits, this pairwise processing allows us, with a little careful positional bookkeeping, to add each binary digit to its corresponding mate, computing an output sum and carrying over place values when appropriate.</p>
+<p>Here&rsquo;s the whole <code>MyBin</code> package:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">package</span> myBin;
+
+    <span style="color:#66d9ef">use</span> List::MoreUtils <span style="color:#e6db74">qw(pairwise)</span>;
+
+    <span style="color:#66d9ef">use</span> overload
+      <span style="color:#e6db74">&#39;&#34;&#34;&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> { <span style="color:#e6db74">&#39;0b&#39;</span><span style="color:#f92672">.</span>join <span style="color:#e6db74">&#39;&#39;</span>,reverse @{$_[<span style="color:#ae81ff">0</span>]} },
+      <span style="color:#e6db74">&#39;+&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\&amp;</span>_plus;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">new</span> {
+      <span style="color:#66d9ef">my</span> ($self,$arg) <span style="color:#f92672">=</span> @_;
+
+      <span style="color:#75715e"># Accept a myBin object to initialize</span>
+      <span style="color:#75715e"># or an integer number</span>
+      <span style="color:#66d9ef">my</span> @data <span style="color:#f92672">=</span> ();
+      <span style="color:#66d9ef">if</span> (defined $arg) {
+        <span style="color:#66d9ef">if</span> (ref $arg) {
+          @data <span style="color:#f92672">=</span> @$arg;
+        } <span style="color:#66d9ef">else</span> {
+          @data <span style="color:#f92672">=</span> reverse split <span style="color:#e6db74">//</span>,sprintf <span style="color:#e6db74">&#39;%b&#39;</span>, $arg;
+        }
+      }
+
+      bless <span style="color:#f92672">\</span>@data,$self;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_plus</span> {
+      <span style="color:#66d9ef">my</span> ($self, $other) <span style="color:#f92672">=</span> @_;
+
+      $other <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> myBin($other) <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>ref $other);
+
+      <span style="color:#66d9ef">my</span> ($carry,$res) <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>);
+      <span style="color:#66d9ef">my</span> @result <span style="color:#f92672">=</span> pairwise {
+        <span style="color:#66d9ef">no</span> warnings <span style="color:#e6db74">&#39;once&#39;</span>;
+        $res <span style="color:#f92672">=</span> ($a<span style="color:#e6db74">//</span><span style="color:#ae81ff">0</span>) <span style="color:#f92672">+</span> ($b<span style="color:#e6db74">//</span><span style="color:#ae81ff">0</span>) <span style="color:#f92672">+</span> $carry;
+        $carry <span style="color:#f92672">=</span> ($res <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">1</span>);
+        $res <span style="color:#f92672">&amp;=</span> <span style="color:#ae81ff">1</span>;
+      } @$self, @$other;
+      push(@result,<span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">if</span> $carry;
+
+      bless <span style="color:#f92672">\</span>@result;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/polettix/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.polettix.it/ETOOBUSY/2021/11/24/pwc140-add-binary/">PWC140 - Add Binary - ETOOBUSY</a></p>
+<p>Flavio too takes this combined, complex interpretation, giving us an object that performs its operator-overloaded addition place-wise directly on the 1 and 0 digits as written.</p>
+<p>Of note there&rsquo;s a little syntactic sugar added with the addition of a <code>Bin()</code> function that&rsquo;s only purpose is to instantiate a new object, removing that constructor code from the main body flow. I like little details like this that improve clarity at little cost.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">package</span> Bin;
+    <span style="color:#66d9ef">use</span> overload
+       <span style="color:#e6db74">&#39;+&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> ($A, $B, @whatever) {
+          <span style="color:#66d9ef">my</span> @A <span style="color:#f92672">=</span> split <span style="color:#e6db74">m{}mxs</span>, $$A;
+          <span style="color:#66d9ef">my</span> @B <span style="color:#f92672">=</span> split <span style="color:#e6db74">m{}mxs</span>, $$B;
+          <span style="color:#66d9ef">my</span> @result;
+          <span style="color:#66d9ef">my</span> $carry <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+          <span style="color:#66d9ef">while</span> (@A <span style="color:#f92672">||</span> @B) {
+             <span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> $carry <span style="color:#f92672">+</span> (pop(@A) <span style="color:#e6db74">//</span> <span style="color:#ae81ff">0</span>) <span style="color:#f92672">+</span> (pop(@B) <span style="color:#e6db74">//</span> <span style="color:#ae81ff">0</span>);
+             unshift @result, $sum <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0x01</span>;
+             $carry <span style="color:#f92672">=</span> $sum <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">1</span>;
+          }
+          unshift @result, $carry <span style="color:#66d9ef">if</span> $carry;
+          @result <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>) <span style="color:#66d9ef">unless</span> @result;
+          <span style="color:#66d9ef">return</span> Bin<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(join <span style="color:#e6db74">&#39;&#39;</span>, @result);
+       },
+       <span style="color:#e6db74">&#39;&#34;&#34;&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> ($x, @whatever) { <span style="color:#e6db74">&#39;&#39;</span> <span style="color:#f92672">.</span> $$x };
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">new</span> ($p, $x) { <span style="color:#66d9ef">return</span> bless <span style="color:#f92672">\</span>$x, $p }
+
+    <span style="color:#66d9ef">package</span> main;
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">Bin</span> ($x) { <span style="color:#66d9ef">return</span> Bin<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>($x) }
+
+    say Bin($ARGV[<span style="color:#ae81ff">0</span>] <span style="color:#e6db74">//</span> <span style="color:#ae81ff">11</span>) <span style="color:#f92672">+</span> Bin($ARGV[<span style="color:#ae81ff">1</span>] <span style="color:#e6db74">//</span> <span style="color:#ae81ff">1</span>);
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://jacoby.github.io/2021/11/22/table-it-yes-or-no-the-weekly-challenge-140.html">Table it? Yesr No?: The Weekly Challenge #140 | Committed to Memory</a></p>
+<p>Dave has it both ways too, but not at the same time. He builds us an adder to process his bits sequentially, and also provides a routine that converts to proper numbers, adds them,  and thens converts back to a binary representation, which in turn is used to verify the results from the adder.</p>
+<p>Needless to say, it works. We know because we checked.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $example (@examples) {
+        <span style="color:#66d9ef">my</span> ( $a, $b, $solution ) <span style="color:#f92672">=</span> $example<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+        my $c <span style="color:#f92672">=</span> add_binary( $a, $b );
+        <span style="color:#66d9ef">my</span> $d <span style="color:#f92672">=</span> real_add_binary( $a, $b );
+        say <span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;END&#34;</span>;
+        Input: <span style="color:#f92672">\</span>$a <span style="color:#f92672">=</span> $a; <span style="color:#f92672">\</span>$b <span style="color:#f92672">=</span> $b
+        Output: $c
+        We know by:  $d
+        And also by: $solution
+    <span style="color:#66d9ef">END</span>
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">add_binary</span> ( $a, $b ) {
+        <span style="color:#66d9ef">my</span> @output;
+        <span style="color:#66d9ef">my</span> $r <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">my</span> @a <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, $a;
+        <span style="color:#66d9ef">my</span> @b <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, $b;
+
+        <span style="color:#66d9ef">while</span> ( @a <span style="color:#f92672">||</span> @b ) {
+            <span style="color:#66d9ef">my</span> $wa <span style="color:#f92672">=</span> pop @a;
+            <span style="color:#66d9ef">my</span> $wb <span style="color:#f92672">=</span> pop @b;
+            $wa <span style="color:#e6db74">//</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+            $wb <span style="color:#e6db74">//</span><span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+            <span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> $wa <span style="color:#f92672">+</span> $wb <span style="color:#f92672">+</span> $r;
+            $r <span style="color:#f92672">=</span> $sum <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> ? <span style="color:#ae81ff">1</span> : <span style="color:#ae81ff">0</span> ;
+            unshift @output, $sum % 2? <span style="color:#ae81ff">0</span> : <span style="color:#ae81ff">1</span>;
+        }
+        unshift @output, <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> $r;
+        <span style="color:#66d9ef">return</span> join <span style="color:#e6db74">&#39;&#39;</span>, @output;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">real_add_binary</span> ( $a, $b ) {
+
+        <span style="color:#75715e"># convert from binary to decimal</span>
+        <span style="color:#66d9ef">my</span> $ra <span style="color:#f92672">=</span> oct( <span style="color:#e6db74">&#39;0b&#39;</span> <span style="color:#f92672">.</span> $a );
+        <span style="color:#66d9ef">my</span> $rb <span style="color:#f92672">=</span> oct( <span style="color:#e6db74">&#39;0b&#39;</span> <span style="color:#f92672">.</span> $b );
+
+        <span style="color:#75715e"># decimal addition?</span>
+        <span style="color:#66d9ef">my</span> $rc <span style="color:#f92672">=</span> $ra <span style="color:#f92672">+</span> $rb;
+
+        <span style="color:#75715e"># reconversion and return</span>
+        <span style="color:#66d9ef">return</span> sprintf <span style="color:#e6db74">&#39;%b&#39;</span>, $rc;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a></p>
+<p>I like how as we&rsquo;ve progressed we&rsquo;ve worked around the problem and, interpreting the directive in different ways, come to different conclusions on exactly what to do to satisfy the task specification. All the while whilst consistently adding two binary strings to create a new binary output.</p>
+<p>Now finally we&rsquo;ll have a look at Mohammad&rsquo;s own solution to glean what he may have had in mind initially. Or perhaps this too is only his solution as looked at this week; he may brainstorm questions weeks in advance. I honestly have no idea how he does it.</p>
+<p>What we are presented with here, though, is an object, <code>Binary</code>, with two overloaded functions: <code>+</code>, which calls the <code>add()</code> method, and <code>&quot;&quot;</code> (double quotes), which in turn calls <code>stringify()</code>.</p>
+<p>Each object is initialized with a binary string, and has two data attributes: that aforementioned binary string and a decimally converted version, done immediately using <code>oct(&quot;0b&quot; . $value)</code> to parse the string.</p>
+<p>Calling the overloaded <code>+</code> on the object with another passed in will sum the two <code>{decimal}</code> attributes and return the result as a binary representation using <code>sprintf &quot;%b&quot;.</code></p>
+<p>It&rsquo;s a simple demonstration, without getter/setter methods, or any triggers to make sure the two <code>binary</code> and <code>decimal</code> attributes are always synchronized or any of that. It does what it does and demonstrates operator overloading, which I suppose was the point.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">package</span> Binary;
+
+    <span style="color:#66d9ef">use</span> strict;
+    <span style="color:#66d9ef">use</span> warnings;
+
+    <span style="color:#66d9ef">use</span> overload <span style="color:#e6db74">&#39;+&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;add&#39;</span>, <span style="color:#e6db74">&#39;&#34;&#34;&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;stringify&#39;</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">new</span> {
+        <span style="color:#66d9ef">my</span> ($class, $value) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> $self <span style="color:#f92672">=</span> {
+            binary  <span style="color:#f92672">=&gt;</span> $value,
+            decimal <span style="color:#f92672">=&gt;</span> oct(<span style="color:#e6db74">&#34;0b&#34;</span> <span style="color:#f92672">.</span> $value),
+        };
+
+        bless $self, $class;
+
+        <span style="color:#66d9ef">return</span> $self;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">add</span> {
+        <span style="color:#66d9ef">my</span> ($self, $other) <span style="color:#f92672">=</span> @_;
+
+        <span style="color:#66d9ef">return</span> Binary<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>( sprintf(<span style="color:#e6db74">&#34;%b&#34;</span>, $self<span style="color:#f92672">-&gt;</span>{decimal} <span style="color:#f92672">+</span> $other<span style="color:#f92672">-&gt;</span>{decimal}) );
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">stringify</span> {
+        <span style="color:#66d9ef">my</span> ($self) <span style="color:#f92672">=</span> @_;
+
+        <span style="color:#66d9ef">return</span> $self<span style="color:#f92672">-&gt;</span>{binary};
+    }
+</code></pre></div><h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-1">Blogs and Additional Submissions in Guest Languages for Task 1:</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/abigail/perl/ch-1.pl"><strong>Abigail</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/abigail/awk/ch-1.awk">Awk</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/abigail/bash/ch-1.sh">Bash</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/abigail/bc/ch-1.bc">Bc</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/abigail/c/ch-1.c">C</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/abigail/go/ch-1.go">Go</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/abigail/java/ch-1.java">Java</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/abigail/lua/ch-1.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/abigail/node/ch-1.js">Node</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/abigail/pascal/ch-1.p">Pascal</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/abigail/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/abigail/r/ch-1.r">R</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/abigail/ruby/ch-1.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/abigail/scheme/ch-1.scm">Scheme</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/abigail/tcl/ch-1.tcl">Tcl</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-140-1.html">Perl Weekly Challenge 140: Add Binary</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/adam-russell/cxx/ch-1.cxx">Cxx</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/adam-russell/prolog/ch-1.p">Prolog</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://www.rabbitfarm.com/cgi-bin/blosxom/2021/11/28/perl">A Binary Addition Simulation / Nth from a Sorted Multiplication: Table The Weekly Challenge 140 - Perl - RabbitFarm</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://www.rabbitfarm.com/cgi-bin/blosxom/2021/11/28/prolog">A Binary Addition Simulation / Nth from a Sorted Multiplication: Table The Weekly Challenge 140 - Prolog - RabbitFarm</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/athanasius/raku/ch-1.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/colin-crain/raku/ch-1.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/cristian-heredia/perl/ch-1.pl"><strong>Cristina Heredia</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/cristian-heredia/python/ch-1.py">Python</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/jaldhar-h-vyas/perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/jaldhar-h-vyas/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://www.braincells.com/perl/2021/11/perl_weekly_challenge_week_140.html">Perl Weekly Challenge: Week 140</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-140/james-smith">Perl Weekly Challenge #140</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/laurent-rosenfeld/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://blogs.perl.org/users/laurent_r/2021/11/perl-weekly-challenge-140-add-binary.html">Perl Weekly Challenge 140: Add Binary |aurent_r</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/roger-bell-west/postscript/ch-1.ps">Postscript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/roger-bell-west/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/roger-bell-west/raku/ch-1.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/roger-bell-west/ruby/ch-1.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/roger-bell-west/rust/ch-1.rs">Rust</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://blog.firedrake.org/archive/2021/11/Perl_Weekly_Challenge_140__Binary_and_Tabular.html">RogerBW&rsquo;s Blog: Perl Weekly Challenge 140: Binary and Tabular</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/sgreen/python/ch-1.py">Python</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://dev.to/simongreennet/weekly-challenge-140-a50">Weekly Challenge 140</a></p>
+<hr>
+<hr>
+<h1 id="PWC140TASK2">TASK 2</h1>
+<h1 id="multiplication-table">Multiplication Table</h1>
+<p><em>Submitted by: Mohammad S Anwar</em></p>
+<p>You are given 3 positive integers, $i, $j and $k.</p>
+<p>Write a script to print the $kth element in the sorted multiplication table of $i and $j.</p>
+<p><strong>Example 1</strong></p>
+<pre><code>    Input: $i = 2; $j = 3; $k = 4
+    Output: 3
+</code></pre><p>Since the multiplication of 2 x 3 is as below:</p>
+<pre><code>    1 2 3
+    2 4 6
+</code></pre><p>The sorted multiplication table:</p>
+<pre><code>    1 2 2 3 4 6
+</code></pre><p>Now the 4th element in the table is &ldquo;3&rdquo;.</p>
+<p><strong>Example 2</strong></p>
+<pre><code>    Input: $i = 3; $j = 3; $k = 6
+    Output: 4
+</code></pre><p>Since the multiplication of 3 x 3 is as below:</p>
+<pre><code>    1 2 3
+    2 4 6
+    3 6 9
+</code></pre><p>The sorted multiplication table:</p>
+<pre><code>    1 2 2 3 3 4 6 6 9
+</code></pre><p>Now the 6th element in the table is &ldquo;4&rdquo;.</p>
+<h2 id="about-the-solutions-1">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/abigail/perl/ch-2b.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/alexander-pankoff/perl/ch-2.pl"><strong>Alexander Pankoff</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/jake/perl/ch-2.pl"><strong>Jake</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/jaldhar-h-vyas/perl/ch-2.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/lubos-kolouch/perl/ch-2.pl"><strong>Lubos Kolouch</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/mattneleigh/perl/ch-2.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/mohammad-anwar/perl/ch-2.pl"><strong>Mohammad S Anwar</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/perlboy1967/perl/ch-2.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/paul-fajman/perl/ch-2.pl"><strong>Paul Fajman</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/paulo-custodio/perl/ch-2.pl"><strong>Paulo Custodio</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/pete-houston/perl/ch-2.pl"><strong>Pete Houston</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/peter-campbell-smith/perl/ch-2.pl"><strong>Peter Campbell Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/steven-wilson/perl/ch-2.pl"><strong>Steven Wilson</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/wanderdoc/perl/ch-2.pl"><strong>Wanderdoc</strong></a></p>
+<p>Unlike the previous challenge, task number 2 offered a straightforward and unambiguous solution: to flatten the specified multiplication table into a single-dimensional array, sort it and return the <em>n</em>th element. As this can be accomplished in a couple of nested loops, a <code>sort</code> operation and a positional index, we saw that procedure quite a number of times, and the request left little room for variation.</p>
+<p>Or so it seemed at first. On a more thorough investigation we did find some things to talk about, and will make an effort to highlight those differences we did come across. In fact, once the PDL got involved, things got a little wild.</p>
+<p>There were 29 submissions for the second task this past week.</p>
+<h2 id="a-pearl-in-an-oyster-a-pleasure-to-the-taste">a PEARL in an OYSTER, a PLEASURE to the TASTE</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/wanderdoc/perl/ch-2.pl"><strong>Wanderdoc</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/mattneleigh/perl/ch-2.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/perlboy1967/perl/ch-2.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/jake/perl/ch-2.pl"><strong>Jake</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/abigail/perl/ch-2b.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/steven-wilson/perl/ch-2.pl"><strong>Steven Wilson</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a></p>
+<p>As stated, there was a lot of repetition found among the submissions for this task. We&rsquo;ll start with the core logic and see what we can find from there, working along until we arrive at some spectacular divergences.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/wanderdoc/perl/ch-2.pl"><strong>Wanderdoc</strong></a></p>
+<p>The doctor will start us off with a demonstration of the fundamental procedure. Given two loops over the axes of the requested table, we calculate the cross-indexed values one-by-one and add them to an output array, which is then numerically sorted. Noting that the position requested is a 1-based cardinal number, the left-most position is filled with a null value, so as to make indexing the resultant list as simple as adding a positional postscript. In Perl there is no significant cost to unshift an array by a single place, as all that is required is changing a single pointer to the first element; the original memory allocation for the data structure will always have extra room to grow at each end.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> @output;
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $digit_2 ( <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $j )
+    {
+         <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $digit_1 ( <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $i )
+         {
+              push @output, $digit_1 <span style="color:#f92672">*</span> $digit_2;
+         }
+    }
+
+    @output <span style="color:#f92672">=</span> sort {$a <span style="color:#e6db74">&lt;=&gt;</span> $b} @output;
+    unshift @output, <span style="color:#e6db74">&#39;&#39;</span>; <span style="color:#75715e"># $k is 1-based.</span>
+    <span style="color:#66d9ef">print</span> $output[$k], $/;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/mattneleigh/perl/ch-2.pl"><strong>Matthew Neleigh</strong></a></p>
+<p>Matthew chooses a pair of <code>while</code> loops for his control structures, but otherwise the procedure is functionally equivalent: he iterates through the values along one axis of the table, multiplying them each by the values of the other axis. For the internal loop the counter needs to be reset at each pass.</p>
+<p>To settle the indexing adjustment at the end he merely subtracts 1 from the requested position.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">kth_element_multiplication_table</span>{
+        <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> shift();
+        <span style="color:#66d9ef">my</span> $j <span style="color:#f92672">=</span> shift();
+        <span style="color:#66d9ef">my</span> $k <span style="color:#f92672">=</span> shift();
+
+        <span style="color:#66d9ef">my</span> @products;
+        <span style="color:#66d9ef">my</span> $j_orig <span style="color:#f92672">=</span> $j;
+
+        <span style="color:#75715e"># Generate a list of products</span>
+        <span style="color:#66d9ef">while</span>($i<span style="color:#f92672">--</span>){
+            $j <span style="color:#f92672">=</span> $j_orig;
+            <span style="color:#66d9ef">while</span>($j<span style="color:#f92672">--</span>){
+                push(@products, ($i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">*</span> ($j <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>));
+            }
+        }
+
+        <span style="color:#75715e"># Sort the products in ascending order</span>
+        <span style="color:#75715e"># and return the Kth element of the list</span>
+        @products <span style="color:#f92672">=</span> sort({$a <span style="color:#e6db74">&lt;=&gt;</span> $b} @products);
+
+        <span style="color:#66d9ef">return</span>($products[$k <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]);
+
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-140/james-smith">Perl Weekly Challenge #140</a></p>
+<p>James takes the same method and presents it two ways: in an expanded version you can see he uses a <code>foreach</code> loop enclosing a <code>map</code> statement to generate his table values.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get_num_exp</span> {
+      <span style="color:#66d9ef">my</span>($i,$j,$k,@A) <span style="color:#f92672">=</span> @_;
+      <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $t (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$j) {
+        push @A,map{$t<span style="color:#f92672">*</span>$_} <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$i;
+      }
+      @A <span style="color:#f92672">=</span> sort @A;
+      <span style="color:#66d9ef">return</span> $A[ $k<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> ];
+    }
+</code></pre></div><p>In his compressed version things get a little <em>noisy</em>, you might say, using two nested <code>map</code> statements to loop.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get_num</span> {
+      <span style="color:#66d9ef">my</span>$t;
+      (sort{$a<span style="color:#e6db74">&lt;=&gt;</span>$b}map{<span style="color:#f92672">++</span>$t;map{$t<span style="color:#f92672">*</span>$_}<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$_[<span style="color:#ae81ff">0</span>]}<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$_[<span style="color:#ae81ff">1</span>])[$_[<span style="color:#ae81ff">2</span>]<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/perlboy1967/perl/ch-2.pl"><strong>Niels van Dijke</strong></a></p>
+<p>Niels arrives at a very similar level of compactness to James&rsquo; one-liner, using <code>List::MoreUtils qw(arrayify)</code>, which serves to flatten nested arrays into a one-dimensional list of values.</p>
+<p>This is what happens when a simple solution immediately presents itself. People get creative. Something something devil&rsquo;s workshop.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> List::MoreUtils <span style="color:#e6db74">qw(arrayify)</span>;
+    <span style="color:#66d9ef">my</span>($i,$j,$k)<span style="color:#f92672">=</span>@ARGV;
+    printf<span style="color:#e6db74">&#34;%s\n&#34;</span>,(sort{$a<span style="color:#e6db74">&lt;=&gt;</span>$b}arrayify map{<span style="color:#66d9ef">my</span>$n<span style="color:#f92672">=</span>$_;$_<span style="color:#f92672">=</span>[map{$n<span style="color:#f92672">*</span>$_}<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$j]}<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$i)[$k<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://jacoby.github.io/2021/11/22/table-it-yes-or-no-the-weekly-challenge-140.html">Table it? Yesr No?: The Weekly Challenge #140 | Committed to Memory</a></p>
+<p>Dave also, and more explicitly, builds a multi-dimensional multiplication table to work on, which he then flattens using his own routine. We have introduced a trade-off between computational performance and modeling clarity, I will note, with these methods.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">solve_task_2</span> ( $i, $j, $k ) {
+        <span style="color:#66d9ef">my</span> @table;
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $x ( <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $i ) {
+            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $y ( <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $j ) {
+                $table[ $x <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ][ $y <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ] <span style="color:#f92672">=</span> $x <span style="color:#f92672">*</span> $y;
+            }
+        }
+        <span style="color:#66d9ef">my</span> @array <span style="color:#f92672">=</span> sort { $a <span style="color:#e6db74">&lt;=&gt;</span> $b } flatten(@table);
+        <span style="color:#66d9ef">return</span> $array[ $k <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ] <span style="color:#f92672">||</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">flatten</span> ( @two_d_array ) {
+        <span style="color:#66d9ef">return</span> map { $_<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">}</span> <span style="color:#960050;background-color:#1e0010">@</span>two_d_array;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/jake/perl/ch-2.pl"><strong>Jake</strong></a></p>
+<p>Continuing on the subject of creative looping, Jake replaces one of his with a function recursion, with <code>_aggregate_multiplication_table()</code> calling itself for each row of his multiplication table. It&rsquo;s an interesting choice, and function calls are not particularly expensive in Perl so I would consider this a viable approach.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_aggregate_multiplication_table</span> {
+        <span style="color:#66d9ef">my</span> ( $vertical_range, $horizontal_range, $height_increment, $horizontal_values, $all_values ) <span style="color:#f92672">=</span> @_;
+
+        <span style="color:#75715e"># once all lines of the table have been written we can return @all_values</span>
+        <span style="color:#75715e">#push @$all_values,;</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@$all_values <span style="color:#66d9ef">if</span> $height_increment <span style="color:#f92672">&gt;</span> $vertical_range;
+
+        <span style="color:#75715e"># we &#39;write&#39; the first line of the multiplication table.</span>
+        <span style="color:#75715e"># after that we run over each value in this first adding each new value to the accumulator @all_values.</span>
+        <span style="color:#75715e"># we will repeat this for every line that needs to be added to the table.</span>
+        @$horizontal_values <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">...</span> $horizontal_range;
+        <span style="color:#66d9ef">foreach</span> ( @$horizontal_values ) {
+            push @$all_values, $_ <span style="color:#f92672">*</span> $height_increment;
+        }
+
+        <span style="color:#75715e"># we need to increase our line counter upon iteration.</span>
+        <span style="color:#75715e"># this is necessary for our foreach loop to add the next line in the following iteration.</span>
+        <span style="color:#66d9ef">return</span> _aggregate_multiplication_table ( $vertical_range, $horizontal_range, $height_increment <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, <span style="color:#f92672">\</span>@$horizontal_values, <span style="color:#f92672">\</span>@$all_values );
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/sgreen/python/ch-2.py">Python</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://dev.to/simongreennet/weekly-challenge-140-a50">Weekly Challenge 140</a></p>
+<p>I think we&rsquo;ve seen a solid overview of ways to nest looping structures at this point, but note that that calculating the entire multiplication table and sorting it is not a particularly efficient way to produce a result, especially with large numbers involved. To invoke a trivial example: if we are looking for the fifth sorted number, calculating all 2500 elements of a 50 by 50 table seems both exhausting and unnecessary. A little casual thought suggests that the result probably is going to be 3, and that calculating the value of 43 × 47 really doesn&rsquo;t affect that outcome in any way.</p>
+<p>Simon addresses this by realizing that once we have computed <em>k</em> elements in the table, then the value at position <em>k</em> will never increase. When more elements are added, some of these will perhaps become sorted in before it, altering its value, but that alteration will always be a reduction. As such, when calculating a row of the multiplication table, we only need to calculate as high as whatever value is held at the requested position. Furthermore, if we sort the list of values at each new row added, we can continuously update that maximum value, possibly lowering it, all the while maintaining the final sorted array to length <em>k</em>, to optimize and lessen the burden of all that repeated sorting.</p>
+<p>In this way, for the above example, 43 × 47 will never be computed. There <em>will</em> be more sorting involved, sure, but that sorting, except in the worst-case scenarios, will be simpler.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">&#39;min&#39;</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">main</span> {
+        <span style="color:#66d9ef">my</span> ( $i, $j, $k ) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> @numbers <span style="color:#f92672">=</span> ();
+
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $m ( <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $i ) {
+            <span style="color:#75715e"># Calculate the number of products required. If we already have</span>
+            <span style="color:#75715e">#  $k values, then we only need to calculate values whose product</span>
+            <span style="color:#75715e">#  is smaller, otherwise the lesser of $j or $k</span>
+            <span style="color:#66d9ef">my</span> $max <span style="color:#f92672">=</span> @numbers <span style="color:#f92672">&gt;=</span> $k ? int( $numbers[ $k <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ] <span style="color:#f92672">/</span> $m ) : min( $j, $k );
+
+            <span style="color:#75715e"># Hack if the $i &gt; $k[-1]</span>
+            <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $max <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+
+            <span style="color:#75715e"># Add to the array, sort it, trim it</span>
+            push @numbers, map { $_ <span style="color:#f92672">*</span> $m } ( <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $max );
+            @numbers <span style="color:#f92672">=</span> sort { $a <span style="color:#e6db74">&lt;=&gt;</span> $b } @numbers;
+            splice( @numbers, $k );
+                say <span style="color:#e6db74">&#34;$m     @numbers&#34;</span>;
+
+        }
+        say $numbers[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/abigail/perl/ch-2b.pl"><strong>Abigail</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/abigail/awk/ch-2.awk">Awk</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/abigail/bash/ch-2.sh">Bash</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/abigail/bc/ch-2.bc">Bc</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/abigail/c/ch-2.c">C</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/abigail/go/ch-2.go">Go</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/abigail/java/ch-2.java">Java</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/abigail/lua/ch-2.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/abigail/node/ch-2.js">Node</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/abigail/pascal/ch-2.p">Pascal</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/abigail/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/abigail/r/ch-2.r">R</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/abigail/ruby/ch-2.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/abigail/scheme/ch-2.scm">Scheme</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/abigail/tcl/ch-2.tcl">Tcl</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-140-2.html">Perl Weekly Challenge 140: Multiplication Table</a></p>
+<p>Abigail applies a thorough, systematic analysis to the problem, ultimately resulting in a very  different approach. After <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/abigail/perl/ch-2b.pl">acknowledging the existence of the basic, forward solution</a>
+, they note that the memory requirements of producing the entire multiplication table will, after the input values are in 4 to 5 digit range, become unwieldy.</p>
+<p>To address this a <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/abigail/perl/ch-2a.pl">heap-based solution is first produced</a>, which will, in the worst case, not reduce the exponential computational requirements but will help quite a bit in the memory used to get there.</p>
+<p>In a third and final method, they derive a mathematical method to count the occurrences of each entry in the table, allowing us to count from 1 upwards until we arrive at the <em>k</em>-th value.</p>
+<p>Both the heap and divisor solutions are detailed in their excellent <a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-140-2.html">writeup</a>, but to summarize the divisor method, they first notice that</p>
+<ol>
+<li>the <em>k</em>-th value in the final list will always be less than or equal to <em>k</em>, and</li>
+<li>we can count the occurrences of each value up to <em>k</em> using the following means:</li>
+</ol>
+<blockquote>
+<p>For each divisor <em>d</em> of <em>n</em> , <br>
+such that <em>d</em> ≤ <em>i</em> and <em>n</em>/<em>d</em> ≤ <em>j</em> , <br>
+<em>n</em> appears exactly once in the multiplication table of <em>i</em> and <em>j</em> .</p>
+</blockquote>
+<p>So if we can get the divisors for each value, we can compute the count. Drawing on the impressive capabilities of the <code>Math::Prime::Util</code> module, we have the <code>fordivisors()</code> function, which does exactly what it says and forms a loop construct over the list of divisors for a number. Which is exactly what we need.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">qw [fordivisors];
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"> </span>   <span style="color:#66d9ef">while</span> (<span style="color:#f92672">&lt;&gt;</span>) {
+        <span style="color:#66d9ef">my</span> ($n, $i, $j, $k) <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>, split);
+        fordivisors {$_ <span style="color:#f92672">&lt;=</span> $i <span style="color:#f92672">&amp;&amp;</span> $n <span style="color:#f92672">/</span> $_ <span style="color:#f92672">&lt;=</span> $j <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!--</span> $k <span style="color:#f92672">&amp;&amp;</span> say $n} <span style="color:#f92672">++</span> $n
+               <span style="color:#66d9ef">while</span> $k <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">1</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/athanasius/raku/ch-2.raku">Raku</a></p>
+<p>Several members took it upon themselves to make the task more challenging by directly replicating the output as given in the examples, explanations and all. Here the monk details the input and output values, but also provides the relevant multiplication table in both 2-dimensional and 1-dimensional sorted forms. To prepare the final statement pthey construct an <code>ordinal()</code> routine to provide the proper English suffix to the given cardinal value.</p>
+<p>The actual computation of the output follows the familiar, basic form, using two nested <code>for</code> loops. As we&rsquo;ve seen that before, let&rsquo;s present the explanation code instead. Notice ow the <code>explain()</code> routine finds the width of the largest number required and scales the spacing of the table accordingly.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">explain</span>
+    {
+        <span style="color:#66d9ef">my</span> ($i, $j, $k, $table, $sorted, $element) <span style="color:#f92672">=</span> @_;
+
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\nSince the multiplication of $i x $j is as below:\n&#34;</span>;
+
+        <span style="color:#75715e"># (1) Pre-compute table column widths</span>
+        <span style="color:#66d9ef">my</span> @widths;
+
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $idx (($i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">*</span> $j <span style="color:#f92672">..</span> $i <span style="color:#f92672">*</span> $j <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)
+        {
+            push @widths, length $table<span style="color:#f92672">-&gt;</span>[ $idx ];
+        }
+
+        <span style="color:#75715e"># (2) Print the table</span>
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $row (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)
+        {
+            <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39;   &#39;</span>;
+
+            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $idx ($row <span style="color:#f92672">*</span> $j <span style="color:#f92672">..</span> ($row <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">*</span> $j <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)
+            {
+                printf <span style="color:#e6db74">&#39; %*d&#39;</span>, $widths[ $idx % <span style="color:#960050;background-color:#1e0010">$</span>j ], $table<span style="color:#f92672">-&gt;</span>[ $idx ];
+            }
+
+            <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
+        }
+
+        <span style="color:#75715e"># (3) Print the contents of the sorted table</span>
+        printf <span style="color:#e6db74">&#34;\nThe sorted multiplication table:\n\n    %s\n&#34;</span>,
+                join <span style="color:#e6db74">&#39; &#39;</span>, @$sorted;
+
+        <span style="color:#75715e"># (4) Explain the output</span>
+        printf <span style="color:#e6db74">qq[\nNow the %s element in the table is &#34;%d&#34;.\n]</span>,
+               ordinal( $k ), $element;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">ordinal</span>
+    {
+        <span style="color:#66d9ef">my</span> ($n)     <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span>  $suffix <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;th&#39;</span>;
+        <span style="color:#66d9ef">my</span>  $digit0 <span style="color:#f92672">=</span> substr $n, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>;
+
+        <span style="color:#66d9ef">if</span> (length $n <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">||</span> substr( $n, <span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span> ) <span style="color:#f92672">ne</span> <span style="color:#e6db74">&#39;1&#39;</span>)
+        {
+            $suffix <span style="color:#f92672">=</span> $digit0 <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;1&#39;</span> ? <span style="color:#e6db74">&#39;st&#39;</span> :
+                      $digit0 <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;2&#39;</span> ? <span style="color:#e6db74">&#39;nd&#39;</span> :
+                      $digit0 <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;3&#39;</span> ? <span style="color:#e6db74">&#39;rd&#39;</span> : <span style="color:#e6db74">&#39;th&#39;</span>;
+        }
+
+        <span style="color:#66d9ef">return</span> $n <span style="color:#f92672">.</span> $suffix;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/steven-wilson/perl/ch-2.pl"><strong>Steven Wilson</strong></a></p>
+<p>Steven also chose to replicate the example text, modified to fit the input parameters provided. His solution involves bringing in the Natural Language Processing module <code>Lingua::EN::Numbers::Ordinate</code> to provide an ordinal string for discussing the requested position. I am quite fond of the <code>Lingua::EN:: ... </code> family of modules myself, and consider them a nice go-to for tasks like this.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    say <span style="color:#e6db74">&#34;Input: \$i = $i, \$j = $j, \$k = $k&#34;</span>;
+    say <span style="color:#e6db74">&#34;Output: $sorted_multiples[$k-1]\n&#34;</span>;
+    say <span style="color:#e6db74">&#34;Since the multiplication of $i x $j is as below:\n&#34;</span>;
+    map { say <span style="color:#e6db74">&#34;\t&#34;</span> <span style="color:#f92672">.</span> join <span style="color:#e6db74">&#34; &#34;</span>, @{$_} } @rows;
+    say <span style="color:#e6db74">&#34;\nThe sorted multiplication table:\n&#34;</span>;
+    say <span style="color:#e6db74">&#34;\t&#34;</span> <span style="color:#f92672">.</span> join <span style="color:#e6db74">&#34; &#34;</span>, @sorted_multiples;
+    say <span style="color:#e6db74">&#34;\nNow the &#34;</span>
+        <span style="color:#f92672">.</span> ordinate($k)
+        <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34; element in the table is \&#34;$sorted_multiples[$k-1]\&#34;.&#34;</span>;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://wlmb.github.io/2021/11/23/PWC140/">Perl Weekly Challenge 140 – W. Luis Mochán</a></p>
+<p>Finally we have several solutions that make short work of the problem by bringing to bear the immense power of the Perl Data Language, which quite frankly seems perfectly suited to it. Being no expert in the PDL myself, only an interested party to the proceedings, I will defer to Luis:</p>
+<blockquote>
+<p>This job is very simple using the Perl Data Language (PDL), as it has functions and methods like</p>
+</blockquote>
+<ul>
+<li><strong>zeroes($j,$i)</strong> to make a table with $i rows and $j columns,</li>
+<li><strong>ndcoords</strong> to produce a vector whose components are the coordinates of each entry in the table, i.e., making a 3D array whose $a,$n,$m-th entry is the $a-th coordinate of the $n,$m-th entry, i.e., either $n or $m — pretty useful although confusing at first,</li>
+<li><strong>prodover</strong> to multiply the elements of a vector, and</li>
+<li><strong>flat</strong> to convert a table into a vector, and</li>
+<li><strong>qsort</strong> to perform a quick-sort a vector.</li>
+</ul>
+<p>Which allows the following code to solve the problem:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> integer;
+    <span style="color:#66d9ef">use</span> PDL;
+    <span style="color:#66d9ef">use</span> PDL::NiceSlice;
+
+    say(<span style="color:#e6db74">&#34;Usage: ./ch-2.pl i j k to get the k-th element of an iXj multiplication table&#34;</span>),
+        exit <span style="color:#66d9ef">unless</span> @ARGV<span style="color:#f92672">==</span><span style="color:#ae81ff">3</span>;
+    <span style="color:#66d9ef">my</span>($i, $j, $k)<span style="color:#f92672">=</span>@ARGV;
+    say(<span style="color:#e6db74">&#34;i and j should be positive&#34;</span>), exit <span style="color:#66d9ef">unless</span> $i<span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;&amp;</span> $j<span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">1</span>;
+    say(<span style="color:#e6db74">&#34;k should be positive and not greater than iXj&#34;</span>), exit <span style="color:#66d9ef">unless</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;=</span>$k<span style="color:#f92672">&lt;=</span>$i<span style="color:#f92672">*</span>$j;
+
+    <span style="color:#66d9ef">my</span> $result<span style="color:#f92672">=</span>(
+        <span style="color:#66d9ef">my</span> $sorted<span style="color:#f92672">=</span>(
+            <span style="color:#66d9ef">my</span> $table<span style="color:#f92672">=</span>(zeroes($j,$i)<span style="color:#f92672">-&gt;</span>ndcoords<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">-&gt;</span>prodover
+        )<span style="color:#f92672">-&gt;</span>flat<span style="color:#f92672">-&gt;</span>qsort
+    )<span style="color:#f92672">-&gt;</span>(($k<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>));
+    say <span style="color:#e6db74">&#34;Input: i=$i, j=$j, k=$k,\nOutput=$result&#34;</span>,
+            <span style="color:#e6db74">&#34;\nsince the ${i}X$j multiplication table is&#34;</span>,
+        $table, <span style="color:#e6db74">&#34;which sorted becomes\n$sorted,\nwhose $k-th element is $result\n&#34;</span>;
+</code></pre></div><p>This can even be reduced to a single, daunting one-liner:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    perl <span style="color:#f92672">-</span>MPDL <span style="color:#f92672">-</span>MPDL::NiceSlice <span style="color:#f92672">-</span>E <span style="color:#e6db74">&#39;($i,$j,$k)=@ARGV; say &#34;i=$i, j=$j, k=$k, out=&#34;,
+</span><span style="color:#e6db74">         (zeroes($j,$i)-&gt;ndcoords+1)-&gt;prodover-&gt;flat-&gt;qsort-&gt;(($k-1))&#39;</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span>
+</code></pre></div><p>I enjoy dissecting these PDL solutions and appreciate Luis&rsquo; commentary. You will notice this solution even presents the verbose output from the examples:</p>
+<pre><code>    Input: i=2, j=3, k=5,
+    Output=4
+    since the 2X3 multiplication table is
+    [
+     [1 2 3]
+     [2 4 6]
+    ]
+    which sorted becomes
+    [1 2 2 3 4 6],
+    whose 5-th element is 4
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a></p>
+<p>Jorg, on the other hand, eschews the complexity of the verbose output, as this was never really asked for anyways. However he does bring us a solution using the PDL, and within that framework incorporating a different toolset to boot.</p>
+<p>It&rsquo;s quite impressive how compact these solutions can be. So for your pleasure:</p>
+<p><em>Pick Element From Sorted Multiplication Table</em></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">pefsmt</span> ($i, $j, $k) {
+        outer(sequence(long, $i) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, sequence(long, $j) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)
+            <span style="color:#f92672">-&gt;</span>flat<span style="color:#f92672">-&gt;</span>qsort<span style="color:#f92672">-&gt;</span>at($k <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>);
+    }
+</code></pre></div><p>Let&rsquo;s see if we can break this down:</p>
+<ul>
+<li><strong>outer</strong> — compute the outer product of an array over one additional dimension, producing a 2-dimensional matrix</li>
+<li><strong>sequence</strong> — construct a sequence in the range from 0 to the given value</li>
+<li><strong>long</strong> — an optional <code>long</code> data type for the sequence</li>
+<li><strong>flat</strong> — flatten a matrix into a single dimension</li>
+<li><strong>qsort</strong> — perform a quicksort operation on a vector of values</li>
+<li><strong>at</strong> — extract the value at a given index</li>
+</ul>
+<p>So to produce the multiplication table we compute a matrix of <strong>outer</strong> products from two <strong>sequence</strong>s in the ranges up to <em>i</em> and <em>j</em>, with 1 added to each value in both sequences. The type of all elements is set to <strong>long</strong>. This matrix is then <strong>flat</strong>tened and <strong>q</strong>uick<strong>sort</strong>ed, and the element <strong>at</strong> the <em>k</em>-th index is reported. Cool. When you put it like that is all makes perfect sense.</p>
+<p>I really must play with the PDL more often — for this I found workshopping in the built-in runtime environment tremendously enlightening. Interested parties should just go for it and give it a try; to get you started <code>p</code> prints a value:</p>
+<pre><code>    pdl&gt; p outer( sequence(long, 5) + 1, sequence(long, 5) + 1 ) -&gt; flat -&gt; qsort -&gt; at(5)
+    4
+</code></pre><h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-2">Blogs and Additional Submissions in Guest Languages for Task 2:</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/adam-russell/cxx/ch-2.cxx">Cxx</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/adam-russell/prolog/ch-2.p">Prolog</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://www.rabbitfarm.com/cgi-bin/blosxom/2021/11/28/perl">A Binary Addition Simulation / Nth from a Sorted Multiplication: Table The Weekly Challenge 140 - Perl - RabbitFarm</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://www.rabbitfarm.com/cgi-bin/blosxom/2021/11/28/prolog">A Binary Addition Simulation / Nth from a Sorted Multiplication: Table The Weekly Challenge 140 - Prolog - RabbitFarm</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/cheok-yin-fung/befunge-93/ch-2.bf">Befunge-93</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/cheok-yin-fung/javascript/ch-2.js">Javascript</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/colin-crain/raku/ch-2.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/polettix/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.polettix.it/ETOOBUSY/2021/11/25/pwc140-multiplication-table/">PWC140 - Multiplication Table - ETOOBUSY</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/jaldhar-h-vyas/perl/ch-2.pl"><strong>Jaldhar H. Vyas</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/jaldhar-h-vyas/raku/ch-2.sh">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://www.braincells.com/perl/2021/11/perl_weekly_challenge_week_140.html">Perl Weekly Challenge: Week 140</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/laurent-rosenfeld/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://blogs.perl.org/users/laurent_r/2021/11/perl-weekly-challenge-140-multiplication-tables.html">Perl Weekly Challenge 140: Multiplication Tables |aurent_r</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/paulo-custodio/perl/ch-2.pl"><strong>Paulo Custodio</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/paulo-custodio/python/ch-2.py">Python</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/pete-houston/perl/ch-2.pl"><strong>Pete Houston</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/pete-houston/awk/ch-2.awk">Awk</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/roger-bell-west/postscript/ch-2.ps">Postscript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/roger-bell-west/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/roger-bell-west/raku/ch-2.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/roger-bell-west/ruby/ch-2.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/roger-bell-west/rust/ch-2.rs">Rust</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://blog.firedrake.org/archive/2021/11/Perl_Weekly_Challenge_140__Binary_and_Tabular.html">RogerBW&rsquo;s Blog: Perl Weekly Challenge 140: Binary and Tabular</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/ulrich-rieke/cpp/ch-2.cpp">C++</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/ulrich-rieke/haskell/ch-2.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/ulrich-rieke/raku/ch-2.raku">Raku</a></p>
+<hr>
+<hr>
+<h1 id="PWC140BLOGS">BLOGS</h1>
+<hr>
+<p><strong>That’s it for me this week, people! Warped by the rain, driven by the snow, resolute and unbroken by the torrential influx, by some miracle I somehow continue to maintain my bearings.</strong></p>
+<p><strong>Looking forward to next wave, the perfect wave, I am: <em>your humble servant</em>.</strong></p>
+<h1 id="PWC136BLOGS">But if Your Unquenchable <em>THIRST</em> for <em>KNOWLEDGE</em> is not <em>SLAKED</em>,</h1>
+<h1 id="then-run-dont-walk-to-the-watering-hole">then <em>RUN</em> <em>(dont walk!)</em> to the <em>WATERING HOLE</em></h1>
+<h1 id="and-follow-these-blog-links">and <em>FOLLOW</em> these <em>BLOG</em> <em>LINKS</em>:</h1>
+<p><strong>( &hellip;<em>don&rsquo;t think, trust your training, you&rsquo;re in the zone, just do it &hellip;</em> )</strong></p>
+<p><strong>Abigail</strong></p>
+<ul>
+<li><a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-140-1.html">Perl Weekly Challenge 140: Add Binary</a> ( <em>Perl</em> )</li>
+<li><a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-140-2.html">Perl Weekly Challenge 140: Multiplication Table</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Adam Russell</strong></p>
+<ul>
+<li><a href="http://www.rabbitfarm.com/cgi-bin/blosxom/2021/11/28/perl">A Binary Addition Simulation / Nth from a Sorted Multiplication: Table The Weekly Challenge 140 - Perl - RabbitFarm</a> ( <em>Perl</em> )</li>
+<li><a href="http://www.rabbitfarm.com/cgi-bin/blosxom/2021/11/28/prolog">A Binary Addition Simulation / Nth from a Sorted Multiplication: Table The Weekly Challenge 140 - Prolog - RabbitFarm</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Arne Sommer</strong></p>
+<ul>
+<li><a href="https://raku-musings.com/add-table.html">Add the Table (or not) with Raku</a> ( <em>Raku</em> )</li>
+</ul>
+<p><strong>Dave Jacoby</strong></p>
+<ul>
+<li><a href="https://jacoby.github.io/2021/11/22/table-it-yes-or-no-the-weekly-challenge-140.html">Table it? Yesr No?: The Weekly Challenge #140 | Committed to Memory</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Flavio Poletti</strong></p>
+<ul>
+<li><a href="https://github.polettix.it/ETOOBUSY/2021/11/24/pwc140-add-binary/">PWC140 - Add Binary - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+<li><a href="https://github.polettix.it/ETOOBUSY/2021/11/25/pwc140-multiplication-table/">PWC140 - Multiplication Table - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Jaldhar H. Vyas</strong></p>
+<ul>
+<li><a href="https://www.braincells.com/perl/2021/11/perl_weekly_challenge_week_140.html">Perl Weekly Challenge: Week 140</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>James Smith</strong></p>
+<ul>
+<li><a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-140/james-smith">Perl Weekly Challenge #140</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Laurent Rosenfeld</strong></p>
+<ul>
+<li><a href="http://blogs.perl.org/users/laurent_r/2021/11/perl-weekly-challenge-140-add-binary.html">Perl Weekly Challenge 140: Add Binary |aurent_r</a> ( <em>Perl &amp; Raku</em> )</li>
+<li><a href="http://blogs.perl.org/users/laurent_r/2021/11/perl-weekly-challenge-140-multiplication-tables.html">Perl Weekly Challenge 140: Multiplication Tables |aurent_r</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Luca Ferrari</strong></p>
+<ul>
+<li><a href="https://fluca1978.github.io/2021/11/22/PerlWeeklyChallenge140.html#task1">Perl Weekly Challenge 140:it table multiplication – Luca Ferrari – Open Source advocate, human being</a> ( <em>Raku</em> )</li>
+<li><a href="https://fluca1978.github.io/2021/11/22/PerlWeeklyChallenge140.html#task1pg">Perl Weekly Challenge 140:it table multiplication – Luca Ferrari – Open Source advocate, human being</a> ( <em>PostgreSQL</em> )</li>
+</ul>
+<p><strong>Roger Bell_West</strong></p>
+<ul>
+<li><a href="https://blog.firedrake.org/archive/2021/11/Perl_Weekly_Challenge_140__Binary_and_Tabular.html">RogerBW&rsquo;s Blog: Perl Weekly Challenge 140: Binary and Tabular</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Simon Green</strong></p>
+<ul>
+<li><a href="https://dev.to/simongreennet/weekly-challenge-140-a50">Weekly Challenge 140</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>W. Luis Mochan</strong></p>
+<ul>
+<li><a href="https://wlmb.github.io/2021/11/23/PWC140/">Perl Weekly Challenge 140 – W. Luis Mochán</a> ( <em>Perl</em> )</li>
+</ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="/contact" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2021
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.nomtimes.co.uk/site/shop.do?cref=PerlBooks" title="Free Perl Books" rel="noreferrer" target="_blank">
+                            <img src="/images/NomTimes.jpg" style="width:22px; height: 18px;" alt=""/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jQurey/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-136524905-1', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+
+</html>
+
