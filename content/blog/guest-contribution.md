@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2021-12-27T00:00:00+00:00
+date: 2021-12-28T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -33,6 +33,8 @@ Please find below guest contributions.
 ----
 ## [The Weekly Challenge - 145](/blog/perl-weekly-challenge-145) {#145}
 <br>
+
+##### **Mohammad Meraj Zia** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-145/ziameraj16/java/DotProduct.java) in **Java**.
 
 ##### **Mohammad S Anwar** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-145/mohammad-anwar/python/ch-1.py) in **Python**.
 
