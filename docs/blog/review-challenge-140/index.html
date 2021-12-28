@@ -179,7 +179,7 @@
                 <div class="block">
                     <h2>Colin Crain › Perl Weekly Review #140</h2>
                     <div class="portfolio-meta">
-                        <span>Sunday, Dec 26, 2021</span>|
+                        <span>Tuesday, Dec 28, 2021</span>|
                         <span> Tags:
                             perl
                         </span>
@@ -221,7 +221,7 @@
 <p>I&rsquo;m always curious as to what the people think of these efforts. Everyone here at the PWC would like to hear any feedback you&rsquo;d like to give.</p>
 <p><strong>So finally, without further ado&hellip;</strong></p>
 <hr>
-<h2 id="---nbsp--nbsp--nbsp---task-1pwc140task1-------nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---task-2pwc140task2---nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---blogspwc140blogs----nbsp--nbsp--nbsp---">•             <a href="#PWC140TASK1">Task 1</a>                 •             <a href="#PWC140TASK2">Task 2</a>             	•             <a href="#PWC140BLOGS">BLOGS</a>              	•</h2>
+<h2 id="---nbsp--nbsp--nbsp---task-1pwc140task1-------nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---task-2pwc140task2---nbsp--nbsp--nbsp----------nbsp--nbsp--nbsp---blogspwc140blogs----nbsp--nbsp--nbsp-------">•             <a href="#PWC140TASK1">Task 1</a>                 •             <a href="#PWC140TASK2">Task 2</a>                 •             <a href="#PWC140BLOGS">BLOGS</a>                  •</h2>
 <hr>
 <h1 id="PWC140TASK1">TASK 1</h1>
 <h1 id="add-binary">Add Binary</h1>
@@ -302,8 +302,8 @@ The use of the word &ldquo;like&rdquo; in the description introduces a certain a
         <span style="color:#66d9ef">my</span> ($class, $str) <span style="color:#f92672">=</span> @_;
         <span style="color:#75715e"># $str is a string of bits, eg: &#34;10010&#34;;</span>
         <span style="color:#66d9ef">my</span> $self <span style="color:#f92672">=</span> {
-        	bin <span style="color:#f92672">=&gt;</span> $str,
-        	dec <span style="color:#f92672">=&gt;</span> defined ($str) ? bin2dec ($str) : $str
+            bin <span style="color:#f92672">=&gt;</span> $str,
+            dec <span style="color:#f92672">=&gt;</span> defined ($str) ? bin2dec ($str) : $str
         };
         bless $self, $class;
     }
@@ -316,9 +316,9 @@ The use of the word &ldquo;like&rdquo; in the description introduces a certain a
         <span style="color:#66d9ef">my</span> $dec <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
         <span style="color:#66d9ef">my</span> $fac <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
         <span style="color:#66d9ef">while</span> (@bits) {
-        	$_ <span style="color:#f92672">=</span> pop @bits;
-        	$dec <span style="color:#f92672">+=</span> $fac <span style="color:#f92672">*</span> $_;
-        	$fac <span style="color:#f92672">*=</span> <span style="color:#ae81ff">2</span>;
+            $_ <span style="color:#f92672">=</span> pop @bits;
+            $dec <span style="color:#f92672">+=</span> $fac <span style="color:#f92672">*</span> $_;
+            $fac <span style="color:#f92672">*=</span> <span style="color:#ae81ff">2</span>;
         }
         <span style="color:#66d9ef">return</span> $dec;
     }
@@ -363,7 +363,9 @@ The use of the word &ldquo;like&rdquo; in the description introduces a certain a
     <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> $a<span style="color:#f92672">+</span>$b;
     say $c;
 </code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a></p>
-<p>Choroba refines and abstracts the process, adding a layer of indirection between the imput strings and the object with its overloaded operators. Instead of constructing a new object directly with a string, <code>Tie::Scalar</code> is used to attach the object class to the value after the fact. It&rsquo;s a roundabout way of going about things, but after the scalars are tied to the class we can perform the operation <code>$a + $b</code> on them transparently. It&rsquo;s a very cool and quite different way to think about the problem.</p>
+<p>Choroba refines and abstracts the process, adding a layer of indirection between the imput strings and the object with its overloaded operators. Instead of constructing a new object directly with a string, <code>Tie::Scalar</code> is used to attach the object class to the value after the fact. It&rsquo;s a roundabout way of going about things, but after the scalars are tied to the class we can perform the operation <code>$a + $b</code> on them transparently.</p>
+<p>We can also <em>reassign</em> them, as they are still, in their way, still scalers, rather than objects with attributes. You could think of them the other way, as scalars with object classes. We don&rsquo;t need a setter/getter method, as the attribute is the scalar itself.</p>
+<p>However the <code>Binary</code> class can be overloaded as any other object.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    {   <span style="color:#66d9ef">package</span> Binary;
         <span style="color:#66d9ef">use</span> Tie::Scalar;
         <span style="color:#66d9ef">use</span> parent <span style="color:#f92672">-</span>norequire <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Tie::StdScalar&#39;</span>;
@@ -390,7 +392,8 @@ The use of the word &ldquo;like&rdquo; in the description introduces a certain a
         tie <span style="color:#66d9ef">my</span> $B, <span style="color:#e6db74">&#39;Binary&#39;</span>, <span style="color:#ae81ff">1</span>;
         is $A <span style="color:#f92672">+</span> $B, <span style="color:#ae81ff">100</span>, <span style="color:#e6db74">&#34;Example 1 ($A + $B)&#34;</span>;
     }
-</code></pre></div><p>As you can see we need to specify the package we wish to tie <em>to</em> when we tie, which ends up being very much like instantiating an object with <code>new()</code>, but different. In the above example, the two scalars <code>$A</code> and <code>$B</code> do end up returning <code>Binary</code> object references.</p>
+</code></pre></div><p>As you can see we need to specify the package we wish to tie <em>to</em> when we tie, which ends up being very much like instantiating an object with <code>new()</code>, but different. What we end up with after we do this, however, is a special scalar variable with additional behavior attached to it. It holds a binary string, can be assigned and reassigned with differing, new binary strings, and when we add two of these together using the <code>+</code> operator, we return a new binary string representing the sum of the represented values without any additional effort.</p>
+<p>In my eyes I&rsquo;m no longer seeing the tasked simulation of overloading behavior, but rather we seem to have produced the effects of quietly making a new datatype for Perl, with its own <code>+</code> operator that just works like you think it should. And since Perl doesn&rsquo;t actually do this, it&rsquo;s no longer <em>like</em> the thing, or a simulation of something, but rather it becomes the thing itself. Take that Magritte.</p>
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/jake/perl/ch-1.pl"><strong>Jake</strong></a></p>
 <p>Getting away from the <code>overload</code> pragma for a bit, we have Jake&rsquo;s submission in basic Perl. The objective here is to translate each argument into decimal, sum them, then convert the result back into binary. To accomplish this he constructs a pair of routines,
 <code>decimal_to_binary()</code> and <code>binary_to_decimal()</code>, both really wrappers for private helpers, to do the conversions back and forth.</p>
@@ -540,7 +543,7 @@ The use of the word &ldquo;like&rdquo; in the description introduces a certain a
         $sum <span style="color:#f92672">+=</span> (substr($input1, $i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>)) <span style="color:#66d9ef">if</span> ($i <span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span>); <span style="color:#75715e"># operator overloading</span>
         $sum <span style="color:#f92672">+=</span> (substr($input2, $j<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>)) <span style="color:#66d9ef">if</span> ($j <span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span>); <span style="color:#75715e"># operator overloading</span>
         $carry <span style="color:#f92672">=</span> $sum <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> ? <span style="color:#ae81ff">1</span> : <span style="color:#ae81ff">0</span> ;
-        $result <span style="color:#f92672">.=</span> $sum%2;	<span style="color:#75715e"># operator overloading</span>
+        $result <span style="color:#f92672">.=</span> $sum%2;    <span style="color:#75715e"># operator overloading</span>
         $i<span style="color:#f92672">--</span>; $j<span style="color:#f92672">--</span>;
     }
     $result <span style="color:#f92672">.=</span> $carry <span style="color:#66d9ef">if</span> ($carry);
@@ -1164,7 +1167,6 @@ such that <em>d</em> ≤ <em>i</em> and <em>n</em>/<em>d</em> ≤ <em>j</em> , <
 <p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a></p>
 <p>  <strong>additional languages:</strong>
 <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/ulrich-rieke/cpp/ch-2.cpp">C++</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/ulrich-rieke/haskell/ch-2.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/ulrich-rieke/raku/ch-2.raku">Raku</a></p>
-<hr>
 <hr>
 <h1 id="PWC140BLOGS">BLOGS</h1>
 <hr>

@@ -1,6 +1,6 @@
 ---
 author:       Colin Crain
-date:         2021-12-26T00:00:00
+date:         2021-12-28T00:00:00
 description:  "Colin Crain › Perl Weekly Review #140"
 tags:         ["perl"]
 title:        "Colin Crain › Perl Weekly Review #140"
@@ -50,7 +50,7 @@ I'm always curious as to what the people think of these efforts. Everyone here a
 
 ---
 
-## •   &nbsp;  &nbsp;  &nbsp;   [Task 1](#PWC140TASK1)       &nbsp;  &nbsp;  &nbsp;   •   &nbsp;  &nbsp;  &nbsp;   [Task 2](#PWC140TASK2)   &nbsp;  &nbsp;  &nbsp;   	•   &nbsp;  &nbsp;  &nbsp;   [BLOGS](#PWC140BLOGS)    &nbsp;  &nbsp;  &nbsp;   	•
+## •   &nbsp;  &nbsp;  &nbsp;   [Task 1](#PWC140TASK1)       &nbsp;  &nbsp;  &nbsp;   •   &nbsp;  &nbsp;  &nbsp;   [Task 2](#PWC140TASK2)   &nbsp;  &nbsp;  &nbsp;       •   &nbsp;  &nbsp;  &nbsp;   [BLOGS](#PWC140BLOGS)    &nbsp;  &nbsp;  &nbsp;       •
 
 ---
 
@@ -156,8 +156,8 @@ The object itself is minimal and demonstrative, a blessed hash in basic Perl, wi
         my ($class, $str) = @_;
         # $str is a string of bits, eg: "10010";
         my $self = {
-        	bin => $str,
-        	dec => defined ($str) ? bin2dec ($str) : $str
+            bin => $str,
+            dec => defined ($str) ? bin2dec ($str) : $str
         };
         bless $self, $class;
     }
@@ -170,9 +170,9 @@ The object itself is minimal and demonstrative, a blessed hash in basic Perl, wi
         my $dec = 0;
         my $fac = 1;
         while (@bits) {
-        	$_ = pop @bits;
-        	$dec += $fac * $_;
-        	$fac *= 2;
+            $_ = pop @bits;
+            $dec += $fac * $_;
+            $fac *= 2;
         }
         return $dec;
     }
@@ -227,7 +227,11 @@ I say nominally decimal because of course internally the numbers are stored as t
 
 [**E. Choroba**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/e-choroba/perl/ch-1.pl)
 
-Choroba refines and abstracts the process, adding a layer of indirection between the imput strings and the object with its overloaded operators. Instead of constructing a new object directly with a string, `Tie::Scalar` is used to attach the object class to the value after the fact. It's a roundabout way of going about things, but after the scalars are tied to the class we can perform the operation `$a + $b` on them transparently. It's a very cool and quite different way to think about the problem.
+Choroba refines and abstracts the process, adding a layer of indirection between the imput strings and the object with its overloaded operators. Instead of constructing a new object directly with a string, `Tie::Scalar` is used to attach the object class to the value after the fact. It's a roundabout way of going about things, but after the scalars are tied to the class we can perform the operation `$a + $b` on them transparently.
+
+We can also *reassign* them, as they are still, in their way, still scalers, rather than objects with attributes. You could think of them the other way, as scalars with object classes. We don't need a setter/getter method, as the attribute is the scalar itself.
+
+However the `Binary` class can be overloaded as any other object.
 
 ```perl
     {   package Binary;
@@ -258,7 +262,10 @@ Choroba refines and abstracts the process, adding a layer of indirection between
     }
 ```
 
-As you can see we need to specify the package we wish to tie *to* when we tie, which ends up being very much like instantiating an object with `new()`, but different. In the above example, the two scalars `$A` and `$B` do end up returning `Binary` object references.
+As you can see we need to specify the package we wish to tie *to* when we tie, which ends up being very much like instantiating an object with `new()`, but different. What we end up with after we do this, however, is a special scalar variable with additional behavior attached to it. It holds a binary string, can be assigned and reassigned with differing, new binary strings, and when we add two of these together using the `+` operator, we return a new binary string representing the sum of the represented values without any additional effort.
+
+In my eyes I'm no longer seeing the tasked simulation of overloading behavior, but rather we seem to have produced the effects of quietly making a new datatype for Perl, with its own `+` operator that just works like you think it should. And since Perl doesn't actually do this, it's no longer *like* the thing, or a simulation of something, but rather it becomes the thing itself. Take that Magritte.
+
 
 [**Jake**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/jake/perl/ch-1.pl)
 
@@ -456,7 +463,7 @@ For the addition, we work over the strings place-by-place, this time from the ri
         $sum += (substr($input1, $i-1, 1)) if ($i >0); # operator overloading
         $sum += (substr($input2, $j-1, 1)) if ($j >0); # operator overloading
         $carry = $sum > 1 ? 1 : 0 ;
-        $result .= $sum%2;	# operator overloading
+        $result .= $sum%2;    # operator overloading
         $i--; $j--;
     }
     $result .= $carry if ($carry);
@@ -1336,7 +1343,6 @@ I really must play with the PDL more often — for this I found workshopping in
 &nbsp;&nbsp;**additional languages:**
 [C++](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/ulrich-rieke/cpp/ch-2.cpp), [Haskell](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/ulrich-rieke/haskell/ch-2.hs), [Raku](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-140/ulrich-rieke/raku/ch-2.raku)
 
-------------------------------------------
 
 ---
 
