@@ -34,6 +34,10 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 145](/blog/perl-weekly-challenge-145) {#145}
 <br>
 
+##### **Conor Hoekstra** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-145/conor-hoekstra/apl/ch-1.apl) in **APL**.
+
+##### **Conor Hoekstra** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-145/conor-hoekstra/bqn/ch-2.bqn) in **BQN**.
+
 ##### **Eric Cheung** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-145/eric-cheung/excel-vba/ch-1.bas) in **Excel VBA**.
 
 ##### **Eric Cheung** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-145/eric-cheung/python/ch-2.py) in **Python**.
@@ -123,6 +127,8 @@ Please find below guest contributions.
 ##### **Abigail** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-144/abigail/sql/ch-1.sql) in **SQL**.
 
 ##### **Abigail** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-144/abigail/tcl/ch-1.tcl) in **Tcl**.
+
+##### **Conor Hoekstra** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-144/conor-hoekstra/apl/ch-1.apl) in **APL**.
 
 ##### **Cristina Heredia** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-144/cristian-heredia/python/ch-1.py) in **Python**.
 
