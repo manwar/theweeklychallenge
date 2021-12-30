@@ -515,6 +515,7 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/mohammad-anwar/perl/ch-1.pl)]
 [[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-138/mohammad-anwar/raku/ch-1.raku)]
+[[**BLOG #1**](https://youtu.be/yntQpjmS4ho)]
 
 ***
 

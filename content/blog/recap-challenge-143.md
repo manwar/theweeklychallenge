@@ -320,6 +320,7 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 ![Mohammad S Anwar](/images/team/mohammad_anwar.jpg)
 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-143/mohammad-anwar/perl/ch-1.pl)]
+[[**BLOG #1**](https://youtu.be/Ch1C1HYytdU)]
 
 ***
 

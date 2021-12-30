@@ -40,18 +40,19 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 #### 1. Flavio Poletti
 #### 2. Jaldhar H. Vyas
 #### 3. Laurent Rosenfeld
-#### 4. Roger Bell_West
+#### 4. Mohammad S Anwar
+#### 5. Roger Bell_West
 
 <br>
 
 ## CONTRIBUTION STATS {#CONTRIBUTIONSTATS}
 ***
 
-The total contributions in the week is `98`. Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
+The total contributions in the week is `99`. Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
 
 #### 1. Perl: 54
 #### 2. Raku: 26
-#### 3. Blog: 18
+#### 3. Blog: 19
 
 <br>
 
@@ -61,7 +62,7 @@ The total contributions in the week is `98`. Well done **Team PWC**. I would als
 
 #### 1. Perl: 6808 (62%)
 #### 2. Raku: 4127 (38%)
-#### 3. Blog: 2071
+#### 3. Blog: 2072
 
 <br>
 
@@ -523,6 +524,7 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-141/mohammad-anwar/perl/ch-2.pl)]
 [[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-141/mohammad-anwar/raku/ch-1.raku)]
 [[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-141/mohammad-anwar/raku/ch-2.raku)]
+[[**BLOG #1**](https://youtu.be/tevgYBpKk7M)]
 
 ***
 
