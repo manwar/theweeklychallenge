@@ -102,6 +102,8 @@ Please find below guest contributions.
 
 ##### **Luca Ferrari** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-145/luca-ferrari/postgresql/ch-1.sql) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-145/luca-ferrari/postgresql/ch-2.sql) in **PostgreSQL**.
 
+##### **Mark Senn** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-145/mark-senn/wolfram/ch-1.wl) in **Wolfram**.
+
 ##### **Mohammad Meraj Zia** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-145/ziameraj16/java/DotProduct.java) in **Java**.
 
 ##### **Mohammad S Anwar** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-145/mohammad-anwar/java/theweeklychallenge/DotProduct.java) in **Java**.
