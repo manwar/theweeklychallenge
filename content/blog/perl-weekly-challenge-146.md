@@ -64,7 +64,7 @@ Another interesting event happened last week. For the first in the history of **
 ## Guest Contributors
 ***
 
-Top 3 guest languages as of today are `Python (783)`, `Haskell (411)` and `Lua (265)`.
+Top 3 guest languages as of today are `Python (783)`, `Haskell (411)` and `Lua (265)`. We have one more language added to the list, `Ring`, introduced by `Laurent Rosenfeld`.
 
 <br>
 
