@@ -57,7 +57,7 @@ Let us welcome new year `2022` with the happy note as we declare the next champi
 
 Start of the year, we have two new members joining the **Team PWC**. First is `Moray Jones` and the second is `Mohammad Khalid Anwar`. Did you notice the similarity between my name and `Khalid`? Well he is my younger brother from `Pune, India`. It took me so long to convince him to join the weekly challenge. I am glad he finally did join us. `Moray` shared solution in [**Raku**](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-145/morayj) whereas `Khalid` shared solutions in [**Perl**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-145/khalid-anwar/perl/ch-1.pl) and [**C++**](://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-145/khalid-anwar/cpp/ch-2.cpp) in the first week.
 
-Another interesting event happened last week. For the first in the history of **The Weekly Challenge**, we received more guest contributions (`89`) than the **Perl** and **Raku** combined contributions (`84`). It is the also the best week for guest contributions beating the previous best figure of `86 contributions` in the `Week #109`. The biggest contributors are `Abigail`, `Laurent Rosenfeld` and `Roger Bell_West`.
+Another interesting event happened last week. For the first time in the history of **The Weekly Challenge**, we received same guest contributions (`89`) as the **Perl** and **Raku** combined contributions (`89`). It is also the best week for guest contributions beating the previous best figure of `86 contributions` in the `Week #109`. The biggest contributors are `Abigail`, `Laurent Rosenfeld` and `Roger Bell_West`.
 
 <br>
 
@@ -75,7 +75,7 @@ Top 3 guest languages as of today are `Python (783)`, `Haskell (411)` and `Lua (
 ## Regular Contributors
 ***
 
-As of today, we have received contributions in `Perl (7004)`, `Raku (4210)` and `Blogs (2147)`.
+As of today, we have received contributions in `Perl (7006)`, `Raku (4212)` and `Blogs (2148)`.
 
 <br>
 
