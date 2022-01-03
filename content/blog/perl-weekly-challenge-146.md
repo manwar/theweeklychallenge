@@ -98,7 +98,7 @@ As of today, we have received contributions in `Perl (7006)`, `Raku (4212)` and 
 ***
 
 #### 1. Commits: 22,360 (+135)
-#### 2. Pull Requests:5,449 (+33)
+#### 2. Pull Requests:5,450 (+34)
 #### 3. Contributors: 185 (+2)
 #### 4. Fork: 236 (+2)
 #### 5. Stars: 118
