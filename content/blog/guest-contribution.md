@@ -116,6 +116,8 @@ Please find below guest contributions.
 
 ##### **Mark Senn** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-145/mark-senn/wolfram/ch-1.wl) in **Wolfram**.
 
+##### **Mohammad Khalid Anwar** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-145/khalid-anwar/cpp/ch-2.cpp) in **C++**.
+
 ##### **Mohammad Meraj Zia** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-145/ziameraj16/java/DotProduct.java) in **Java**.
 
 ##### **Mohammad S Anwar** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-145/mohammad-anwar/java/theweeklychallenge/DotProduct.java) in **Java**.
