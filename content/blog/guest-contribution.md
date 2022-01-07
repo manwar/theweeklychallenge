@@ -92,6 +92,8 @@ Please find below guest contributions.
 
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/eric-cheung/excel-vba/ch-1.bas) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/eric-cheung/excel-vba/ch-2.bas) in **Excel VBA**.
 
+##### **Laurent Rosenfeld** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/laurent-rosenfeld/julia/ch-2.jl) in **Julia**.
+
 ##### **Laurent Rosenfeld** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/laurent-rosenfeld/python/ch-2.py) in **Python**.
 
 ##### **Laurent Rosenfeld** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/laurent-rosenfeld/ring/ch-1.ring) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/laurent-rosenfeld/ring/ch-2.ring) in **Ring**.
