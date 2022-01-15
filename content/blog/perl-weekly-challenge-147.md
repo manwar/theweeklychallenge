@@ -143,7 +143,7 @@ Write a script to generate first 20 left-truncatable prime numbers in base 10.
 ##### **Submitted by:** [Mohammad S Anwar](http://www.manwar.org)
 ***
 
-Write a sript to find the first pair of `Pentagon Numbers` whose sum and difference are also a `Pentagon Number`.
+Write a script to find the first pair of `Pentagon Numbers` whose sum and difference are also a `Pentagon Number`.
 
 > Pentagon numbers can be defined as P(n) = n(3n - 1)/2.
 
