@@ -34,7 +34,19 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 147](/blog/perl-weekly-challenge-147) {#147}
 <br>
 
+##### **Cheok-Yin Fung** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-147/cheok-yin-fung/awk/ch-1.awk) in **Awk**.
+
+##### **Cheok-Yin Fung** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-147/cheok-yin-fung/bash/ch-1.sh) in **Bash**.
+
+##### **Cheok-Yin Fung** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-147/cheok-yin-fung/cpp/ch-1.cpp) in **C++**.
+
+##### **Cheok-Yin Fung** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-147/cheok-yin-fung/java/LeftTruncatablePrime.java) in **Java**.
+
 ##### **Cheok-Yin Fung** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-147/cheok-yin-fung/julia/ch-1.jl) in **Julia**.
+
+##### **Cheok-Yin Fung** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-147/cheok-yin-fung/node/ch-1.js) in **Node.js**.
+
+##### **Cheok-Yin Fung** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-147/cheok-yin-fung/smalltalk/ch-1.st) in **Smalltalk**.
 
 ##### **Conor Hoekstra** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-147/conor-hoekstra/apl/ch-1.apl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-147/conor-hoekstra/apl/ch-2.apl) in **APL**.
 
