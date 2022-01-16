@@ -34,6 +34,8 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 147](/blog/perl-weekly-challenge-147) {#147}
 <br>
 
+##### **Adam Russell** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-147/adam-russell/prolog/ch-1.p) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-147/adam-russell/prolog/ch-2.p) in **Prolog**.
+
 ##### **Cheok-Yin Fung** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-147/cheok-yin-fung/awk/ch-1.awk) in **Awk**.
 
 ##### **Cheok-Yin Fung** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-147/cheok-yin-fung/bash/ch-1.sh) in **Bash**.
