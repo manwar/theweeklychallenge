@@ -1,6 +1,6 @@
 ---
 author:       Colin Crain
-date:         2022-01-16T00:00:00
+date:         2022-01-17T00:00:00
 description:  "Colin Crain › Perl Weekly Review #143"
 tags:         ["perl"]
 title:        "Colin Crain › Perl Weekly Review #143"
@@ -324,7 +324,7 @@ The comment says it all.
 &nbsp;&nbsp;**additional languages:**
 [Bash](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-143/abigail/bash/ch-1.sh), [Bc](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-143/abigail/bc/ch-1.bc), [Lua](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-143/abigail/lua/ch-1.lua), [Node](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-143/abigail/node/ch-1.js), [Python](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-143/abigail/python/ch-1.py), [R](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-143/abigail/r/ch-1.r), [Ruby](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-143/abigail/ruby/ch-1.rb), [Tcl](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-143/abigail/tcl/ch-1.tcl)
 
-Abigail may well have the shortest solution submission this week. As `use 5.01` "restricts" us to absolutely any version of Perl 5, I can only ascribe it's inclusion to snark. Fair enough.
+Abigail may well have the shortest solution submission this week. All that is required for support here is `use 5.01`, which gives us `say`. It's a tiny thing, but I'm really happy to be able to use `say`.
 
 ```perl
     use 5.01;say eval for <>
