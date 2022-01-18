@@ -253,6 +253,8 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 [[**BLOG #1**](https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-147-1.html)]
 [[**BLOG #2**](https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-147-2.html)]
 
+***
+
 ### Adam Russell
 ![Adam Russell](/images/team/adam_russell.jpg)
 
