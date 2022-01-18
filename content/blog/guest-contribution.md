@@ -46,7 +46,7 @@ Please find below guest contributions.
 
 ##### **Abigail** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-147/abigail/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-147/abigail/c/ch-2.c) in **C**.
 
-##### **Abigail** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-147/abigail/cobol/ch-1.cb) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-147/abigail/cobol/ch-2.cb) in **Cobol**.
+##### **Abigail** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-147/abigail/cobol/ch-1.cb) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-147/abigail/cobol/ch-2.cb) in **COBOL**.
 
 ##### **Abigail** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-147/abigail/csh/ch-1.csh) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-147/abigail/csh/ch-2.csh) in **C Shell**.
 
@@ -164,7 +164,7 @@ Please find below guest contributions.
 
 ##### **Abigail** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/abigail/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/abigail/c/ch-2.c) in **C**.
 
-##### **Abigail** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/abigail/cobol/ch-1.cb) in **Cobol**.
+##### **Abigail** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/abigail/cobol/ch-1.cb) in **COBOL**.
 
 ##### **Abigail** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/abigail/csh/ch-1.csh) in **C Shell**.
 
@@ -404,7 +404,7 @@ Please find below guest contributions.
 
 ##### **Abigail** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-144/abigail/c/ch-1.c) in **C**.
 
-##### **Abigail** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-144/abigail/cobol/ch-1.cb) in **Cobol**.
+##### **Abigail** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-144/abigail/cobol/ch-1.cb) in **COBOL**.
 
 ##### **Abigail** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-144/abigail/csh/ch-1.csh) in **C Shell**.
 
