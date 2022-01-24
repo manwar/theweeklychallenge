@@ -126,7 +126,7 @@ Given an input `$N`, generate the first `$N` numbers for which the sum of their 
 
 <br>
 
-## TASK #2 › Cardano Triplets {#TASK2}
+## TASK #2 › Largest Square {#TASK2}
 ##### **Submitted by:** [Roger Bell_West](https://blog.firedrake.org/)
 ***
 
