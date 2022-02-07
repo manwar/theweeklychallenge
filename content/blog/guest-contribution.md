@@ -92,6 +92,8 @@ Please find below guest contributions.
 
 ##### **Adam Russell** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/adam-russell/prolog/ch-1.p) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/adam-russell/prolog/ch-2.p) in **Prolog**.
 
+##### **Bruce Gray** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/bruce-gray/dart/ch-1.dart) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/bruce-gray/dart/ch-2.dart) in **Dart**.
+
 ##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/lubos-kolouch/python/ch-2.py) in **Python**.
 
 ##### **Mohammad S Anwar** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/mohammad-anwar/python/ch-1.py) in **Python**.
@@ -156,7 +158,7 @@ Please find below guest contributions.
 
 ##### **Abigail** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-149/abigail/tcl/ch-1.tcl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-149/abigail/tcl/ch-2.tcl) in **Tcl**.
 
-##### **Bruce Gray** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-149/bruce-gray/c/ch-2.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-149/bruce-gray/c/ch-2.c) in **C**.
+##### **Bruce Gray** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-149/bruce-gray/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-149/bruce-gray/c/ch-2.c) in **C**.
 
 ##### **Conor Hoekstra** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-149/conor-hoekstra/apl/ch-1.apl) in **APL**.
 
