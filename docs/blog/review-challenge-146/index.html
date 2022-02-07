@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="The Weekly Challenge - Perl & Raku"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="You do not have to be an expert."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Colin Crain › Perl Weekly Review #146">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Colin Crain › Perl Weekly Review #146</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navgation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Colin Crain › Perl Weekly Review #146</h2>
+                    <div class="portfolio-meta">
+                        <span>Sunday, Feb 6, 2022</span>|
+                        <span> Tags:
+                            perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/p5-review-challenge-146.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <p>( <em>&hellip;continues from <a href="/blog/review-challenge-145/">previous week</a>.</em> )</p>
+<p>Welcome to the Perl review pages for <strong>Week 146</strong> of The Weekly Challenge! Here we will take the time to discuss the  submissions offered up by the team, factor out some common methodologies that came up in those solutions, and highlight some of the unique approaches and unusual code created.</p>
+<hr>
+<h3 id="-why-do-we-do-these-challenges">●︎ Why do we do these challenges?</h3>
+<p>I suppose any reasonable answer to that question would be from a field as wide ranging and varied as the people who choose to join the team. One thing, though, is clear: it&rsquo;s not a competition, and there are no judges, even if there is a &ldquo;prize&rdquo; of sorts. About that &ndash; I think of it more as an honorarium periodically awarded to acknowledge the efforts we make towards this strange goal. So there&rsquo;s no determination to find the <em>fastest</em>, or the <em>shortest</em>, or even, in some abstract way, the <em>best</em> way to go about things, although I&rsquo;m certain the participants have their own aspirations and personal drives. As Perl is such a wonderfully expressive language, this provides quite a bit of fodder to the core idea of TMTOWTDI, producing a gamut of varied techniques and solutions.</p>
+<p>Even the tasks themselves are often open to a certain amount of discretionary interpretation. What we end up with is a situation where each participant is producing something in the manner they find the most interesting or satisfying. Some team members focus on carefully crafted complete applications, thoroughly vetting input data and handling every use case they can think up. Others choose to apply themselves to the logic of the underlying puzzle and making it work in the most elegant way they can. Some eschew modules they would ordinarily reach for, others embrace them, bringing to light wheels perhaps invented years ago that happen to exactly solve the problem in front of them today.</p>
+<p>I&rsquo;ve been considering this question for some time and have found one binding commonality between all of us out solving these challenges each week, in that however we normally live our lives, the task in front of us more than likely has nothing to do with any of that. And I think this has great value. We all do what we do, in the real world, and hopefully we do it well. The Weekly Challenge provides us with an opportunity to do something germane to that life yet distinctly different; if we only do the things we already know how to do then we will only do the same things over and over. This is where the &ldquo;challenge&rdquo; aspect comes into play.</p>
+<p>So we can consider The Weekly Challenge as providing a problem space outside of our comfort zone, as far out from that comfort as we wish to take things. From those reaches we can gather and learn things, pick and choose and bring what we want back into our lives. Personally, I think that&rsquo;s what this whole thing is about. YMMV.</p>
+<hr>
+<p><em>Every week there is an enormous global collective effort made by the team, analyzing and creatively coding the submissions, and that effort deserves credit due.</em></p>
+<p>And that&rsquo;s why I&rsquo;m here, to try and figure out ways to do that.</p>
+<p>So, here we are then — let&rsquo;s ge to it and see what we can find.</p>
+<hr>
+<h3 id="for-additional-context">For Additional Context&hellip;</h3>
+<p>Before we begin, you may wish to revisit either the pages for the <a href="/blog/perl-weekly-challenge-146/"><strong>original tasks</strong></a> or the summary <a href="/blog/recap-challenge-146/"><strong>recap</strong></a> of the challenge. But don&rsquo;t worry about it, the challenge text will be repeated and presented as we progress from task to task.</p>
+<p>Oh, and one more thing before we get started:</p>
+<h3 id="getting-in-touch-with-us">Getting in Touch with Us</h3>
+<p><a href="mailto:pwc.perfectwave@gmail.com"><img src="/images/blog/Email.svg" height="50" width="50"> Email</a> › Please feel free to email me (Colin) with any feedback, notes, clarifications or whatnot about this review.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge"><img src="/images/blog/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request to us for any issues you may find with this page.</p>
+<p><a href="https://twitter.com/perlwchallenge"><img src="/images/blog/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!</p>
+<p>I&rsquo;m always curious as to what the people think of these efforts. Everyone here at the PWC would like to hear any feedback you&rsquo;d like to give.</p>
+<div align= center><strong>... So finally, without further ado...</strong></div>
+<hr>
+<h2 id="---nbsp--nbsp--nbsp---task-1pwc146task1-------nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---task-2pwc146task2---nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---blogspwc146blogs----nbsp--nbsp--nbsp---">•             <a href="#PWC146TASK1">Task 1</a>                 •             <a href="#PWC146TASK2">Task 2</a>             	•             <a href="#PWC146BLOGS">BLOGS</a>              	•</h2>
+<hr>
+<h1 id="PWC146TASK1">TASK 1</h1>
+<h1 id="10001st-prime-number">10001st Prime Number</h1>
+<p><em>Submitted by: Mohammad S Anwar</em></p>
+<p>Write a script to generate the 10001st prime number.</p>
+<h2 id="about-the-solutions">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/abigail/perl/ch-1.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/andrezgz/perl/ch-1.pl"><strong>Andrezgz</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/arne-sommer/perl/ch-1.pl"><strong>Arne Sommer</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/bruce-gray/perl/ch-1.pl"><strong>Bruce Gray</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/iangoodnight/perl/ch-1.pl"><strong>Ian Goodnight</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/jaldhar-h-vyas/perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/jo-37/perl/ch-1.sh"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/mattneleigh/perl/ch-1.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/pete-houston/perl/ch-1.pl"><strong>Pete Houston</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/peter-campbell-smith/perl/ch-1.pl"><strong>Peter Campbell Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/robert-dicicco/perl/ch-1.pl"><strong>Robert DiCicco</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>Sounds simple enough, right? There are no instructions on <em>how</em> to go about producing this value, only to do so. The first task is, by unwritten convention, the easier of the two offerings, and so should be able to be solvable by beginner and expert alike, perhaps paralleled in matching easy and complex manners. A good task should be scalable you might say, with regards to how much effort a member is able to expend.</p>
+<p>For whatever reasons, really. We&rsquo;re not here to micromanage. You do you, as they say.</p>
+<p>I&rsquo;ve noticed people here, when given an easy out, don&rsquo;t usually take it. Considering participation in the challenges are purely voluntary to begin with — we could save <em>all</em> the time by not playing at all — the answers end up a function of whatever level, or angle, a member has been working on lately. Different folks have different priorities, and different amounts of free time.</p>
+<p>That said, no one actually submitted <code>say 104743</code>, although some threatened to.</p>
+<p>However that would have worked, of course. It is the right answer.</p>
+<p>There were 26 submissions for the first task this past week.</p>
+<h2 id="a-selection-of-submissions">A SELECTION of SUBMISSIONS</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/jo-37/perl/ch-1.sh"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/iangoodnight/perl/ch-1.pl"><strong>Ian Goodnight</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/andrezgz/perl/ch-1.pl"><strong>Andrezgz</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/robert-dicicco/perl/ch-1.pl"><strong>Robert DiCicco</strong></a></p>
+<p>If we ever needed the value of the 10,001th prime, specifically, for some unfathomable reason, we&rsquo;d surely just look it up if we wanted to include it in a script. If we were being conscientious to good form we might abstract it from the logic by saying</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> constant { P<span style="color:#f92672">-</span>TEN<span style="color:#f92672">-</span>THOUSAND<span style="color:#f92672">-</span>ONE <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">104743</span> };
+</code></pre></div><p>or similar. One thing we would be extremely unlikely to do would be to derive it. But, you know, in order for us to be able to look it up in a reference work <em>now</em> someone had to do the work <em>then</em>, for some value of <em>then</em>.</p>
+<p>So, of course, we&rsquo;re going to do just that. Or, you know, something.</p>
+<p>I feel a far more likely use-case would be to need some large prime numbers, perhaps identified by index, that were large enough that their values were not commonly known. In these cases, then, &ldquo;ten-thousand&rdquo; becomes shorthand for &ldquo;some arbitrarily big number&rdquo;. This is appropriate terminology, as the phrase is often used in this context. When a stressed-out individual says &ldquo;I have ten-thousand things to do today!&rdquo; they are not likely to mean that literally. And Lao Tzu writes of &ldquo;the ten-thousand things&rdquo; in the <em>Tao Te Ching</em> to mean the whole of everything. Some innumerable quantity. Or put another way, some arbitrarily big number.</p>
+<p>At this point, after having done many challenges involving prime numbers, experienced team members will already have a go-to method for acquiring primes, either as lists or iterators supplying the next in the sequence. Consequently we saw a variety of means to either make primes outright or fetch them on demand from some black-box that delivers.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/mohammad-anwar/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/mohammad-anwar/raku/ch-1.raku">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/mohammad-anwar/swift/ch-1.swift">Swift</a></p>
+<p>Well start the show with Mohammad, who offers up a pair of routines: one that checks a value for primeness and a wrapper function that tries out and delivers a specific quantity of successful candidates.</p>
+<p>To check primality, we try possible factors from 2 to the square root of the candidate. Any factor greater than the square root will have a compliment factor less than it as well, so searching up to that point will cover all possibilities.</p>
+<p>To create a list of primes we start counting up and adding the next one found until we&rsquo;ve gathered enough.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">find_prime</span> {
+        <span style="color:#66d9ef">my</span> ($count) <span style="color:#f92672">=</span> @_;
+
+        <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;
+        <span style="color:#66d9ef">while</span> ($c <span style="color:#f92672">&lt;=</span> $count) {
+            <span style="color:#66d9ef">if</span> (is_prime($n)) {
+                <span style="color:#66d9ef">return</span> $n <span style="color:#66d9ef">if</span> (<span style="color:#f92672">++</span>$c <span style="color:#f92672">==</span> $count);
+            }
+            $n<span style="color:#f92672">++</span>;
+        }
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_prime</span> {
+        <span style="color:#66d9ef">my</span> ($n) <span style="color:#f92672">=</span> @_;
+
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> sqrt $n) {
+            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">unless</span> $n % <span style="color:#960050;background-color:#1e0010">$</span>i
+        }
+
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/laurent-rosenfeld/julia/ch-1.jl">Julia</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/laurent-rosenfeld/raku/ch-1.raku">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/laurent-rosenfeld/ring/ch-1.ring">Ring</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://blogs.perl.org/users/laurent_r/2022/01/perl-weekly-challenge-146-prime-numbers-and-fraction-tree.html">Perl Weekly Challenge 146: Prime Numbers and Fraction Tree</a></p>
+<p>Laurent starts his long list of primes with the first three values, and then counts by twos from there, only considering odd numbers for candidates. A second optimization he brings in to prune the search space is to only use the growing list of primes as possible factors. We don&rsquo;t, after all, need to know specifically whether 4 is a factor; it will suffice to know that 2 is a factor first and stop there. We continue to divide against the list of primes until we exceed the square root, and if we get that far the candidate has passed the test  and is added to the prime list, to be considered from that point as a factor for later candidates down the line.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> constant MAX <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">10_001</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">primes</span> {
+        <span style="color:#66d9ef">my</span> $max <span style="color:#f92672">=</span> shift;
+        <span style="color:#66d9ef">my</span> @primes <span style="color:#f92672">=</span> (<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">5</span>);
+        <span style="color:#66d9ef">my</span> $count <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>;
+        <span style="color:#66d9ef">my</span> $candidate <span style="color:#f92672">=</span> $primes[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+        <span style="color:#66d9ef">while</span> ($count <span style="color:#f92672">&lt;=</span> $max) {
+            $candidate <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span>;
+            <span style="color:#66d9ef">my</span> $not_prime <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+            <span style="color:#66d9ef">my</span> $sq_cand <span style="color:#f92672">=</span> sqrt $candidate;
+            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (@primes) {
+                $not_prime <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">unless</span> $candidate % <span style="color:#960050;background-color:#1e0010">$</span>i;
+                <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $i <span style="color:#f92672">&gt;</span> $sq_cand;
+            }
+            <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $not_prime;
+            push @primes, $candidate;
+            $count <span style="color:#f92672">++</span>;
+        }
+        <span style="color:#66d9ef">return</span> $primes[$max<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+    }
+    <span style="color:#66d9ef">my</span> $p <span style="color:#f92672">=</span> primes(MAX);
+    say <span style="color:#e6db74">&#34;$p&#34;</span>;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-146/james-smith">Perl Weekly Challenge #146</a></p>
+<p>James adds the interesting choice in optimizing to avoid the square root operator, instead squaring each prime to see whether the product is larger than the candidate. This practically serves the same purpose — that we stop when a possible factor&rsquo;s multiplicative complement will have already been checked — but makes the trade-off of swapping many small simple calculations for one big complex one.</p>
+<p>I have no inside information how the exchange fares in the end, but I do trust James to have done the homework for us, as that is kind of his thing.</p>
+<p>He has also, again as is his wont, made it crushingly compact. As in: &ldquo;getting all hydraulic-press&rdquo; on it.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span>($c,@p)<span style="color:#f92672">=</span>(<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">3</span>);
+    <span style="color:#66d9ef">for</span>(;@p<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">10000</span>;$c<span style="color:#f92672">+=</span><span style="color:#ae81ff">2</span>){
+      ($_<span style="color:#f92672">*</span>$_<span style="color:#f92672">&gt;</span>$c)?((push@p,$c),<span style="color:#66d9ef">last</span>):$c%$_<span style="color:#f92672">||</span><span style="color:#66d9ef">last</span> <span style="color:#66d9ef">for</span>@p;
+    }
+    say$p[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+</code></pre></div><p>He offers an <a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-146/james-smith">expanded version on his blog writeup</a>, for the confused and abused among us:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> @primes <span style="color:#f92672">=</span> (<span style="color:#ae81ff">3</span>);
+    <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>;
+    <span style="color:#66d9ef">while</span>( @primes <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">10000</span> ) {
+      $c <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span>;
+      <span style="color:#66d9ef">foreach</span> ( @primes ) {
+        <span style="color:#66d9ef">if</span>( $_<span style="color:#f92672">*</span>$_ <span style="color:#f92672">&gt;</span> $c ) {
+          push @primes, $c;
+          <span style="color:#66d9ef">last</span>;
+        }
+        <span style="color:#66d9ef">unless</span>( $c % <span style="color:#960050;background-color:#1e0010">$</span>_ ) {
+          <span style="color:#66d9ef">last</span>;
+        }
+      }
+    }
+    say $primes[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+</code></pre></div><p>That&rsquo;s definitely going to be easier to follow, by anybody&rsquo;s reckoning.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/jo-37/perl/ch-1.sh"><strong>Jorg Sommrey</strong></a></p>
+<p>To complete our stylistic introduction to the field of submissions we will jump now to Jorg, who demonstrates a good plan should we ever require the use of a variety of arbitrarily-yet-specifically selected large primes in a real project.</p>
+<p>This is of course is to let some highly-tuned piece of code perform the calculations for us. The number-theory toolkit <code>Math::Prime::Util</code> has a routine that will deliver us the <em>n</em>-th prime on demand. There are 53 functions directly pertaining to processing prime numbers in <code>Math::Prime::Util</code>, and that&rsquo;s not counting factoring, semiprimes or pseudoprimes. This one is aptly named <code>nth_prime()</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    perl <span style="color:#f92672">-</span>MMath::Prime::Util<span style="color:#f92672">=</span>:all <span style="color:#f92672">-</span>E <span style="color:#e6db74">&#39;say nth_prime(10001)&#39;</span>
+</code></pre></div><p><code>Math::Prime::Util</code>, a.k.a. <code>ntheory</code>, provides a treasure trove of functions for all things prime. You want anything to do with primes around here, well, as they say in New York: &ldquo;Hold on, I gotta guy.&rdquo;</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/roger-bell-west/javascript/ch-1.js">Javascript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/roger-bell-west/kotlin/ch-1.kt">Kotlin</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/roger-bell-west/lua/ch-1.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/roger-bell-west/postscript/ch-1.ps">Postscript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/roger-bell-west/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/roger-bell-west/raku/ch-1.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/roger-bell-west/ruby/ch-1.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/roger-bell-west/rust/ch-1.rs">Rust</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://blog.firedrake.org/archive/2022/01/The_Weekly_Challenge_146__Curious_Prime.html">RogerBW&rsquo;s Blog: The Weekly Challenge 146: Curious Prime</a></p>
+<p>There&rsquo;s more that one way to build a list of primes. A popular option in approaching the problem is instead of <em>adding</em> newly proven values with a lot of testing, we <em>remove</em> values that are easily proven to be <em>not</em> prime.</p>
+<p>This works well. We start with a known field of sequential candidates (starting from 2), and we pick the lowest number and cross out multiples of it: times 2; times 3; times 4; et cetera until we reach our upper bound. We then pick the next number that hasn&rsquo;t been crossed out and remove all multiples for that one. In each pass we leave the originals alone, and when we are done we have a list of primes.</p>
+<p>There&rsquo;s one more part of the trick, in that we only need to start with numbers up to the square root of the maximum; a convenient way to present this graphically is to arrange the field itself in a square:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">     <span style="color:#75715e">#  2  3  4  5               #  2  3  #  5   &lt;-- we only need to work the top row</span>
+     <span style="color:#ae81ff">6</span>  <span style="color:#ae81ff">7</span>  <span style="color:#ae81ff">8</span>  <span style="color:#ae81ff">9</span> <span style="color:#ae81ff">10</span>               <span style="color:#75715e">#  7  #  #  #</span>
+    <span style="color:#ae81ff">11</span> <span style="color:#ae81ff">12</span> <span style="color:#ae81ff">13</span> <span style="color:#ae81ff">14</span> <span style="color:#ae81ff">15</span>      <span style="color:#f92672">---&gt;</span>    <span style="color:#ae81ff">11</span>  <span style="color:#75715e"># 13  #  #</span>
+    <span style="color:#ae81ff">16</span> <span style="color:#ae81ff">17</span> <span style="color:#ae81ff">18</span> <span style="color:#ae81ff">19</span> <span style="color:#ae81ff">20</span>               <span style="color:#75715e"># 17  # 19  #</span>
+    <span style="color:#ae81ff">21</span> <span style="color:#ae81ff">22</span> <span style="color:#ae81ff">23</span> <span style="color:#ae81ff">24</span> <span style="color:#ae81ff">25</span>               <span style="color:#75715e">#  # 23  #  #</span>
+</code></pre></div><p>Neat, right? The only problem (that you might have picked up on already) is that to know when to stop searching we need an upper bound, whether we take the square root mathematically or graphically. And that&rsquo;s a problem, because although using this method it&rsquo;s easy to find, say, the primes under 10,000, we have no easy way to know how many numbers we need to sieve to produce 10,000 primes.</p>
+<p>Roger gets around this by establishing some boundaries, which is always a healthy thing to do. In this case we cannot know exactly how many numbers to process, but we can apply an inequality attributed to Barkley Rosser:</p>
+<p>P<sub><em>n</em></sub> &lt; <em>n</em> log (<em>n</em> log <em>n</em>) : <em>n</em> ≥ 6</p>
+<p>to know when we will have more than enough. This says the <em>n</em>-th prime will be less than the formula value for indices over 6, until&hellip; at least some ridiculously large number. It&rsquo;s not exactly proven, but is proven within the range we&rsquo;re looking into.</p>
+<p>To well beyond the number of protons in the universe. So we&rsquo;re pretty well covered there.</p>
+<p>The method is known as the <a href="https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes">Sieve of Eratosthenes</a>, and Roger&rsquo;s version implements a variety of optimizations worthy of a look, so I&rsquo;ll include the whole thing:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">nthprime</span> {
+      <span style="color:#66d9ef">my</span> $n<span style="color:#f92672">=</span>shift;
+      <span style="color:#66d9ef">my</span> $m<span style="color:#f92672">=</span><span style="color:#ae81ff">15</span>;
+      <span style="color:#66d9ef">if</span> ($n <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">6</span>) {
+        $m<span style="color:#f92672">=</span>int(<span style="color:#ae81ff">1</span><span style="color:#f92672">+</span>$n<span style="color:#f92672">*</span>log($n<span style="color:#f92672">*</span>log($n)));
+      }
+      <span style="color:#66d9ef">my</span> $primes<span style="color:#f92672">=</span>genprimes($m);
+      <span style="color:#66d9ef">return</span> $primes<span style="color:#f92672">-&gt;</span>[$n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">genprimes</span> {
+      <span style="color:#66d9ef">my</span> $mx<span style="color:#f92672">=</span>shift;
+      <span style="color:#66d9ef">my</span> @primes;
+      {
+        <span style="color:#66d9ef">my</span> %primesh<span style="color:#f92672">=</span>map {$_ <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>} (<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>);
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $i<span style="color:#f92672">=</span><span style="color:#ae81ff">6</span>;$i <span style="color:#f92672">&lt;=</span> $mx; $i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">6</span>) {
+          <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $j ($i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,$i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>) {
+            <span style="color:#66d9ef">if</span> ($j <span style="color:#f92672">&lt;=</span> $mx) {
+              $primesh{$j}<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
+            }
+          }
+        }
+        <span style="color:#66d9ef">my</span> @q<span style="color:#f92672">=</span>(<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>);
+        <span style="color:#66d9ef">my</span> $p<span style="color:#f92672">=</span>shift @q;
+        <span style="color:#66d9ef">my</span> $mr<span style="color:#f92672">=</span>int(sqrt($mx));
+        <span style="color:#66d9ef">while</span> ($p <span style="color:#f92672">&lt;=</span> $mr) {
+          <span style="color:#66d9ef">if</span> ($primesh{$p}) {
+            <span style="color:#66d9ef">my</span> $i<span style="color:#f92672">=</span>$p<span style="color:#f92672">*</span>$p;
+            <span style="color:#66d9ef">while</span> ($i <span style="color:#f92672">&lt;=</span> $mx) {
+              delete $primesh{$i};
+              $i <span style="color:#f92672">+=</span> $p;
+            }
+          }
+          <span style="color:#66d9ef">if</span> (scalar @q <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">2</span>) {
+            push @q,$q[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">+</span><span style="color:#ae81ff">4</span>;
+            push @q,$q[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>;
+          }
+          $p<span style="color:#f92672">=</span>shift @q;
+        }
+        @primes<span style="color:#f92672">=</span>sort {$a <span style="color:#e6db74">&lt;=&gt;</span> $b} keys %primesh;
+      }
+      <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@primes;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/polettix/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.polettix.it/ETOOBUSY/2022/01/05/pwc146-10001st-prime-number/">PWC146 - 10001st Prime Number - ETOOBUSY</a></p>
+<p>I want to start out with an assertion to Flavio that I have, at this time, nothing whatsoever to do with the selection and framing of the tasks here at TWC. I&rsquo;ve often thought to offer, but frankly I have way too much on my plate already. On the other hand I&rsquo;m blushing to think he&rsquo;s ascribe such <em>diabolical</em> motives to me as to purposely want to trip people up by requesting the ten-thousand-and-FIRST prime, versus, say, the ten-thousandth or some other simple, round index.</p>
+<p>That does sound like me, I have to say.</p>
+<p>Then again I have noticed I&rsquo;ve been seemingly kinder and more forgiving lately. Selecting fewer reviews at random has allowed me the option to pretend some scripts simply don&rsquo;t exist. I don&rsquo;t enjoy dwelling on failure. I think of my role here as to boost people up, you know? It&rsquo;s a happy job, right? Right?</p>
+<p>Right? (<em>Looks around, sees only turtles. The fish is asleep.</em>)</p>
+<p>The dark side only pops up in the humor, which I have no idea whether anyone even gets.</p>
+<p>Ah, well. Such is life.</p>
+<p>Flavio&rsquo;s primal hunt involves keeping both a list of primes and a second, parallel list of squares of those values. After priming the pump (the hits just keep on coming, don&rsquo;t they?) he selects a candidate as the last prime gathered plus two. Then he tries dividing against the accumulating prime list using an incremental index until the <em>square</em> exceeds the candidate, by using the index on the parallel list. On failing out and finding a divisor he adds two to the candidate and tries again. Maintaining the second list is a pretty clever way to avoid computing the squares of the primes more than once. I like it.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">prime_at</span> ($n) {
+       state $primes  <span style="color:#f92672">=</span> [ undef, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span> ];
+       state $squares <span style="color:#f92672">=</span> [ undef, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">9</span> ];
+       FIND_NEW:
+       <span style="color:#66d9ef">while</span> ($primes<span style="color:#f92672">-&gt;</span>$#<span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">&lt;</span> <span style="color:#960050;background-color:#1e0010">$</span>n) {
+          <span style="color:#66d9ef">my</span> $candidate <span style="color:#f92672">=</span> $primes<span style="color:#f92672">-&gt;</span>[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>;
+          <span style="color:#66d9ef">while</span> (<span style="color:#e6db74">&#39;necessary&#39;</span>) {
+             <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> $primes<span style="color:#f92672">-&gt;</span>$#<span style="color:#960050;background-color:#1e0010">*</span>) {
+                <span style="color:#66d9ef">if</span> ($squares<span style="color:#f92672">-&gt;</span>[$i] <span style="color:#f92672">&gt;</span> $candidate) {
+                   push $primes<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, $candidate;
+                   push $squares<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, $candidate <span style="color:#f92672">*</span> $candidate;
+                   <span style="color:#66d9ef">next</span> FIND_NEW;
+                }
+                <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">unless</span> $candidate % <span style="color:#960050;background-color:#1e0010">$</span>primes<span style="color:#f92672">-&gt;</span>[$i];
+             }
+             $candidate <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span>;
+          }
+       }
+       <span style="color:#66d9ef">return</span> $primes<span style="color:#f92672">-&gt;</span>[$n];
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/iangoodnight/perl/ch-1.pl"><strong>Ian Goodnight</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/iangoodnight/javascript/ch-1.js">Javascript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/iangoodnight/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/iangoodnight/ruby/ch-1.rb">Ruby</a></p>
+<p>I had to venture out of my editor to properly regard Ian&rsquo;s efforts, because he includes some fancy formatting, adding ANSI escape codes to jazz things up. A little color is always nice to brighten up your day. I approve.</p>
+<p>Unwilling or unable to stop there, Ian goes on to include a small routine to form a proper ordinal construction for the requested value: 10,001 goes to 10001st for &ldquo;first&rdquo;. Again, a nice touch, interfacing to the humans in the manner to which they are accustomed.</p>
+<p>The rules here, like everything in Natural Language Programming, have evolved over centuries in a steady, continuous fashion. The linguistic necessity has has never slaked, and the notion of correctness always descriptive; people have always had to speak in quantities and there is no discreet break where Old English speakers suddenly became cosmopolitan Middle English sophisticates.</p>
+<p>So it&rsquo;s a bit of a thicket, to say the least, geting this right. I might suggest a superseding rule on the tens&rsquo; place, that if there is a 1 there, the suffix becomes &ldquo;th&rdquo; no matter the contents of the ones, as in &ldquo;three-hundred and eleventh&rdquo;. That&rsquo;s the only one I can think of offhand; there may be others. Thicket, I say.</p>
+<p>I admit I kind of love that stuff. I almost tripped-up above writing out &ldquo;ten-thousand and first&rdquo;. It&rsquo;s such a mess. It must drive the more  literal-minded programmers mad.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get_suffix</span> {
+      <span style="color:#66d9ef">my</span> $last_digit <span style="color:#f92672">=</span> substr shift, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+
+      <span style="color:#66d9ef">if</span> ( $last_digit <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> $last_digit <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">4</span> ) {
+        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;th&#39;</span>;
+      }
+      <span style="color:#66d9ef">if</span> ( $last_digit <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> ) {
+        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;st&#39;</span>;
+      }
+      <span style="color:#66d9ef">if</span> ( $last_digit <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span> ) {
+        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;nd&#39;</span>;
+      }
+      <span style="color:#66d9ef">if</span> ( $last_digit <span style="color:#f92672">==</span> <span style="color:#ae81ff">3</span> ) {
+        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;rd&#39;</span>;
+      }
+      <span style="color:#66d9ef">return</span> <span style="color:#e6db74">q{ }</span>;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">color_string</span> {
+      <span style="color:#66d9ef">my</span> $str    <span style="color:#f92672">=</span> shift;
+      <span style="color:#66d9ef">my</span> $color  <span style="color:#f92672">=</span> shift;
+      <span style="color:#66d9ef">my</span> %colors <span style="color:#f92672">=</span> (
+        yellow <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;\e[33m&#34;</span>,
+        green  <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;\e[32m&#34;</span>,
+      );
+      <span style="color:#66d9ef">my</span> $reset <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;\e[0m&#34;</span>;
+
+      <span style="color:#66d9ef">return</span> $colors{$color} <span style="color:#f92672">.</span> $str <span style="color:#f92672">.</span> $reset;
+    }
+
+    <span style="color:#75715e">################################################################################</span>
+    <span style="color:#75715e"># Main #########################################################################</span>
+    <span style="color:#75715e">################################################################################</span>
+
+    <span style="color:#66d9ef">my</span> $nth          <span style="color:#f92672">=</span> shift @ARGV <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#39;10001&#39;</span>;
+    <span style="color:#66d9ef">my</span> $prime        <span style="color:#f92672">=</span> get_prime $nth;
+    <span style="color:#66d9ef">my</span> $suffix       <span style="color:#f92672">=</span> get_suffix $nth;
+    <span style="color:#66d9ef">my</span> $num_string   <span style="color:#f92672">=</span> color_string( $nth <span style="color:#f92672">.</span> $suffix, <span style="color:#e6db74">&#39;yellow&#39;</span> );
+    <span style="color:#66d9ef">my</span> $prime_string <span style="color:#f92672">=</span> color_string( $prime, <span style="color:#e6db74">&#39;green&#39;</span> );
+
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;The $num_string prime number is $prime_string\n&#34;</span>;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/colin-crain/raku/ch-1.raku">Raku</a></p>
+<p>For my own solution I offer up my prime generator, by this point tightly crafted and refined. The early assignment sets the candidate to 1 and the prime list to the single element 2, and the stacked conditions of the <code>while</code> loop immediately increment the candidate to 3 and we&rsquo;re off and running. I take the square root once per candidate and store it to avoid repeating this relatively expensive operation.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">make_primes_quantity</span> ( $quantity ) {
+    <span style="color:#75715e">## creates a list of the first $quantity primes</span>
+        <span style="color:#66d9ef">my</span> ($candidate, @primes) <span style="color:#f92672">=</span> ( <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span> );
+
+        CANDIDATE: <span style="color:#66d9ef">while</span> ( $candidate <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">and</span> @primes <span style="color:#f92672">&lt;</span> $quantity ) {
+            <span style="color:#66d9ef">my</span> $sqrt_candidate <span style="color:#f92672">=</span> sqrt( $candidate );
+            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $test ( @primes ) {
+                <span style="color:#66d9ef">next</span> CANDIDATE <span style="color:#66d9ef">if</span> $candidate % <span style="color:#960050;background-color:#1e0010">$</span>test <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+                <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $test <span style="color:#f92672">&gt;</span> $sqrt_candidate;
+            }
+            push @primes, $candidate;
+        }
+        <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@primes;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/athanasius/raku/ch-1.raku">Raku</a></p>
+<p>The monk, like Roger, uses a sieve for their prime filtration, and so is also required to grapple with the problem of determining how large a pool they need to sift through. Using a different inequality from J. Barkley Rosser this time<sup>1</sup>, we determine a lower bound with</p>
+<p><em>n</em>/log <em>n</em> &lt; P<sub><em>n</em></sub></p>
+<p>which sets the required sieve size to 116,700. This is externally calculated and included along with the target index as constants. I note Rosser&rsquo;s name seems to pop up a lot around primes. Good for him.</p>
+<p>The sieve itself is a straightforward study. Of note, with a nod over to Ian, I&rsquo;ll also include the monk&rsquo;s <code>commify()</code> routine for inserting commas into the output numbers according to convention, so we write &ldquo;10,001&rdquo; properly. The ordinal suffix, on the other hand, is wired in.</p>
+<p>Since we seem to be on the subject, I&rsquo;ll make a sensible suggestion to all who care about such things to have a look at Neil Bowers&rsquo; excellent module <a href="https://metacpan.org/pod/Lingua::EN::Numbers">Lingua::EN::Numbers</a>, designed to facilitate properly creating ordinal numbers, and additionally Damian Conway&rsquo;s
+<a href="https://metacpan.org/pod/Lingua::EN::Inflexion">Lingua::EN::Inflexion</a> which may well find use in following up, to get the various tenses right. These two are gold.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    const <span style="color:#66d9ef">my</span> $TARGET   <span style="color:#f92672">=&gt;</span>  <span style="color:#ae81ff">10_001</span>;
+    const <span style="color:#66d9ef">my</span> $SIEVE_SZ <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">116_700</span>;                           <span style="color:#75715e"># See discussion above</span>
+
+    <span style="color:#66d9ef">my</span> $count <span style="color:#f92672">=</span>  <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">my</span> @sieve <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>) x $SIEVE_SZ;
+    <span style="color:#66d9ef">my</span> $latest_prime;
+
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> $#sieve)
+    {
+        <span style="color:#66d9ef">if</span> ($sieve[ $i ] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)
+        {
+            $latest_prime <span style="color:#f92672">=</span> $i;
+
+            <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> <span style="color:#f92672">++</span>$count <span style="color:#f92672">&gt;=</span> $TARGET;
+
+            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $j <span style="color:#f92672">=</span> $i <span style="color:#f92672">*</span> $i; $j <span style="color:#f92672">&lt;=</span> $#sieve; $j <span style="color:#f92672">+=</span> $i)
+            {
+                $sieve[ $j ] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+            }
+        }
+    }
+
+    printf <span style="color:#e6db74">&#34;The %sst prime number is %s\n&#34;</span>,
+            commify( $count ), commify( $latest_prime );
+
+    <span style="color:#75715e">#------------------------------------------------------------------------------</span>
+    <span style="color:#75715e"># Adapted from: https://perldoc.perl.org/perlfaq5#</span>
+    <span style="color:#75715e">#               How-can-I-output-my-numbers-with-commas-added%3F</span>
+    <span style="color:#75715e">#</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">commify</span>
+    #------------------------------------------------------------------------------
+    {
+        <span style="color:#66d9ef">my</span> ($n) <span style="color:#f92672">=</span> @_;
+
+        <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">while</span> $n <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/ ^ ([-+]? \d+) (\d{3}) /$1,$2/x</span>;
+
+        <span style="color:#66d9ef">return</span> $n;
+    }
+</code></pre></div><hr>
+<p><sup>1</sup>  Rosser, J. Barkley; Schoenfeld, Lowell (1962). &ldquo;Approximate formulas for some functions of prime numbers&rdquo;. Illinois J. Math. 6: 64–94.</p>
+<hr>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/andrezgz/perl/ch-1.pl"><strong>Andrezgz</strong></a></p>
+<p>Premature optimization is, in the real world, a cardinal sin. So if the programs here finish in realistic — for some definitions of realistic — spans of time, well, then who are we to say what&rsquo;s right and wrong?</p>
+<p>Ok, I mean, <em>I am</em>, I suppose, if they don&rsquo;t actually produce the correct results. But let&rsquo;s not nit-pick.</p>
+<p>Andrezgz looks at successive values and tries dividing them out by everything up to the square root until he finds enough of them. End of story. The result is 104743.</p>
+<p>I like the condensed style. The primes aren&rsquo;t gathered, only counted. When the count is right the cascading conditional is finally allowed to complete and the current prime is printed. It&rsquo;s elegant in its stripped-down simplicity.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">do</span> {} <span style="color:#66d9ef">until</span> (is_prime(<span style="color:#f92672">++</span>$n) <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">++</span>$count <span style="color:#f92672">==</span> <span style="color:#ae81ff">10001</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#66d9ef">print</span> $n);
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_prime</span> {
+        <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> shift;
+        <span style="color:#75715e">#every composite number has a prime factor less than or equal to its square root.</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">==</span> grep {$n % <span style="color:#960050;background-color:#1e0010">$</span>_ <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>} (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> sqrt $n);
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/robert-dicicco/perl/ch-1.pl"><strong>Robert DiCicco</strong></a></p>
+<p>We&rsquo;ll close with Robert, who uses a similar logical flow: to keep getting the next prime until we have counted enough. However this time we draw again on the venerable <code>ntheory</code>, a synonym for <code>Math::Prime::Util</code>, which among its myriad options contains a function <code>next_prime()</code>. Given a prime it returns the next one. Would you look at that.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> ntheory <span style="color:#e6db74">qw/ next_prime /</span>;
+
+    <span style="color:#75715e">### AUTHOR: Robert DiCicco</span>
+    <span style="color:#75715e">### DATE:   04-JAN-2022</span>
+    <span style="color:#75715e">### Challenge #145 10001st Prime</span>
+
+    <span style="color:#66d9ef">my</span> $cnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+
+    <span style="color:#66d9ef">my</span> $TARGET <span style="color:#f92672">=</span> <span style="color:#ae81ff">10001</span>;
+
+    <span style="color:#66d9ef">while</span>($cnt <span style="color:#f92672">&lt;=</span> $TARGET){
+        <span style="color:#66d9ef">if</span>($cnt <span style="color:#f92672">==</span> $TARGET ){
+            <span style="color:#66d9ef">last</span>;
+         }
+
+         $cnt<span style="color:#f92672">++</span>;
+         $i <span style="color:#f92672">=</span> next_prime($i);
+    }
+
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;Count = $cnt : prime = $i\n&#34;</span>);
+</code></pre></div><h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-1">Blogs and Additional Submissions in Guest Languages for Task 1:</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/abigail/perl/ch-1.pl"><strong>Abigail</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/abigail/awk/ch-1.awk">Awk</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/abigail/bash/ch-1.sh">Bash</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/abigail/basic/ch-1.bas">Basic</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/abigail/bc/ch-1.bc">Bc</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/abigail/befunge-93/ch-1.bf93">Befunge-93</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/abigail/c/ch-1.c">C</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/abigail/cobol/ch-1.cb">Cobol</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/abigail/csh/ch-1.csh">Csh</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/abigail/erlang/ch-1.erl">Erlang</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/abigail/forth/ch-1.fs">Forth</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/abigail/fortran/ch-1.f90">Fortran</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/abigail/go/ch-1.go">Go</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/abigail/java/ch-1.java">Java</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/abigail/lua/ch-1.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/abigail/m4/ch-1.m4">M4</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/abigail/mmix/ch-1.mms">Mmix</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/abigail/node/ch-1.js">Node</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/abigail/ocaml/ch-1.ml">Ocaml</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/abigail/pascal/ch-1.p">Pascal</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/abigail/php/ch-1.php">Php</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/abigail/postscript/ch-1.ps">Postscript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/abigail/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/abigail/r/ch-1.r">R</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/abigail/rexx/ch-1.rexx">Rexx</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/abigail/ruby/ch-1.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/abigail/scheme/ch-1.scm">Scheme</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/abigail/sed/ch-1.sed">Sed</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/abigail/sql/ch-1.sql">Sql</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/abigail/tcl/ch-1.tcl">Tcl</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-146-1.html">Perl Weekly Challenge 146: 10001st Prime Number</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://www.rabbitfarm.com/cgi-bin/blosxom/2022/01/09/perl">Sieve of Atkin / Curious Fraction Tree — RabbitFarm</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/arne-sommer/perl/ch-1.pl"><strong>Arne Sommer</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/arne-sommer/raku/10001st">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://raku-musings.com/fractionally-prime.html">Fractionally Prime with Raku and Perl</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/bruce-gray/perl/ch-1.pl"><strong>Bruce Gray</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/bruce-gray/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://blogs.perl.org/users/bruce_gray/2022/01/twc-146-10k-prime-and-cw-trees.html">TWC 146: 10K Prime and CW Trees</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://jacoby.github.io/2022/01/03/fractions-trees-and-primes-weekly-challenge-146.html">Fractions, Trees and Primes: Weekly Challenge 146 | Committed to Memory</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/jaldhar-h-vyas/perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/jaldhar-h-vyas/raku/ch-1.sh">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://www.braincells.com/perl/2022/01/perl_weekly_challenge_week_146.html">Perl Weekly Challenge: Week 146</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/peter-campbell-smith/perl/ch-1.pl"><strong>Peter Campbell Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://pjcs-pwc.blogspot.com/2022/01/large-primes-and-curious-fractions.html">Large primes and curious fractions</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/sgreen/python/ch-1.py">Python</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://dev.to/simongreennet/2-fractions-and-a-prime-4fik">2 Fractions and a Prime</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/ulrich-rieke/cpp/ch-1.cpp">C++</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/ulrich-rieke/haskell/ch-1.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/ulrich-rieke/raku/ch-1.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://wlmb.github.io/2022/01/03/PWC146/">Perl Weekly Challenge 146 – W. Luis Mochán</a></p>
+<hr>
+<hr>
+<h1 id="PWC146TASK2">TASK 2</h1>
+<h1 id="curious-fraction-tree">Curious Fraction Tree</h1>
+<p><em>Submitted by: Mohammad S Anwar</em></p>
+<p>Consider the following Curious Fraction Tree:</p>
+<img alt="the curious fraction tree" src="https://theweeklychallenge.org/images/blog/wk-146.png">
+<p>You are given a fraction, member of the tree created similar to the above sample.</p>
+<p>Write a script to find out the parent and grandparent of the given member.</p>
+<p><strong>Example 1:</strong></p>
+<pre><code>    Input: $member = '3/5';
+    Output: parent = '3/2' and grandparent = '1/2'
+</code></pre><p><strong>Example 2:</strong></p>
+<pre><code>    Input: $member = '4/3';
+    Output: parent = '1/3' and grandparent = '1/2'
+</code></pre><h2 id="about-the-solutions-1">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/abigail/perl/ch-2.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/andrezgz/perl/ch-2.pl"><strong>Andrezgz</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/arne-sommer/perl/ch-2.pl"><strong>Arne Sommer</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/bruce-gray/perl/ch-2_via_module.pl"><strong>Bruce Gray</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/iangoodnight/perl/ch-2.pl"><strong>Ian Goodnight</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/jaldhar-h-vyas/perl/ch-2.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/mattneleigh/perl/ch-2.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/perlboy1967/perl/ch-2.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/pete-houston/perl/ch-2.pl"><strong>Pete Houston</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/peter-campbell-smith/perl/ch-2.pl"><strong>Peter Campbell Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/robert-dicicco/perl/ch-2.pl"><strong>Robert DiCicco</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>What, may I ask, is this &ldquo;Curious Fraction Tree&rdquo;?</p>
+<p>I like this challenge, as it presents, in high relief, the fundimental differences members take in approaching these problems — and how these conceptual differences correspond in turn to the relationship these challenges have to the real world.</p>
+<p>As a programmer, one is often exposed to novel confluences of known data and required results, forming puzzles that need to be solved to proceed. This is in fact the very stuff of programming, that we are continually beset with problems that both resemble yet are importantly differentiated from situations we&rsquo;ve dealt with before. Just the other day I wanted to sort numerically — sure, done that — but sort according to numbers grabbed in a regex. Oh, that&rsquo;s weird and unusual and doesn&rsquo;t just work.</p>
+<p>So the correct form here is to use the second invaluable programming skill and research the solution. Don&rsquo;t reinvent the wheel. You may not need to do this often but somebody probably does, so use your time efectively and learn from them. I ended up with a variant on a <a href="https://en.wikipedia.org/wiki/Schwartzian_transform">Schwartzian transform</a>, named after legendary Perl guru Randal Schwartz. I didn&rsquo;t make up that method myself, Randall did, although the final product I installed it in is my own unique assemblage of bits and pieces I&rsquo;ve learned along the way. That part — the big picture part — that&rsquo;s mine.</p>
+<p>There&rsquo;s a direct analogy to the human condition sitting right there, you know.</p>
+<p>On the other hand I like puzzles, and personally do these challenges to solve puzzles. And part of a really good puzzle is figuring out what the puzzle is. As a programmer the sensible thing would be to google some keywords and find the solution. Researching is a skill that requires honing same as any other so I cannot and will not  deride this strategy.</p>
+<ul>
+<li>
+<p>So I looked at the data and figured out what was happening and its properties.</p>
+</li>
+<li>
+<p>Others seemingly recognized it as a Calkin-Wilf tree and went from there.</p>
+</li>
+<li>
+<p>Still others googled the term &ldquo;Curious Fraction Tree&rdquo; and researched the <em>puzzle</em>, versus the <em>tree</em>.</p>
+</li>
+</ul>
+<p>Thus depending on the scope of one&rsquo;s initial focus — The numbers, the tree, or the puzzle about the tree — we find at least three equally-valid ideas on how to proceed. I find this meta-analysis in problem-solving fascinating. As the real-world is invariably messy and poorly-defined, this sort of thing pops up <em>all the time</em>.</p>
+<p>There were 24 submissions for the second task this past week.</p>
+<h2 id="wheels-within-wheels-jumping-through-hoops">WHEELS within WHEELS, JUMPING through HOOPS</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/arne-sommer/perl/ch-2.pl"><strong>Arne Sommer</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/abigail/perl/ch-2.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/peter-campbell-smith/perl/ch-2.pl"><strong>Peter Campbell Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/mattneleigh/perl/ch-2.pl"><strong>Matthew Neleigh</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/bruce-gray/perl/ch-2_via_module.pl"><strong>Bruce Gray</strong></a></p>
+<p>As previously mentioned, there were a number of fundamental positions taken in approaching this problem. Largely though, however they started, members ultimately landed in the fact that given a child node a set of procedural rules could be determined to produce a parent, and these rules could then be applied again recursively to find the parents of the parents, as far up the tree as desired. This became the essence of a generalized solution. For a specific solution involving just one tree, they built the tree as described.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://jacoby.github.io/2022/01/03/fractions-trees-and-primes-weekly-challenge-146.html">Fractions, Trees and Primes: Weekly Challenge 146 | Committed to Memory</a></p>
+<p>For Dave, he says he saw the task, saw the tree, and his respones was to build the tree and take it from there. This sounds like a perfectly reasonable reading of the requirements. So he whipped out a tree-building <code>Node</code> class and made sure it had a <code>parent()</code> method. Then he constructs the tree as written.</p>
+<p>There is ambiguity from the word &ldquo;similar&rdquo; is the description. Are we talking about this specific tree as written, or a generalized tree that follows the same rules of construction? He chooses the former interpretation.</p>
+<p>Once the tree is populated, he can traverse the entire structure and query every node as to its genealogical makeup. Then for each node a report is made up listing the node, its parent, and its parent&rsquo;s parent. As every node ends up reported on, we have an answer to every given fraction in this particular tree.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> %node;
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (
+        <span style="color:#e6db74">qw{
+</span><span style="color:#e6db74">        1/1 1/2 2/1
+</span><span style="color:#e6db74">        1/3 3/2 2/3
+</span><span style="color:#e6db74">        3/1 1/4 4/3
+</span><span style="color:#e6db74">        3/5 5/2 2/5
+</span><span style="color:#e6db74">        5/3 3/4 4/1
+</span><span style="color:#e6db74">        }</span>
+        )
+    {
+        $node{$i} <span style="color:#f92672">=</span> Node<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>($i);
+    }
+
+    $node{<span style="color:#e6db74">&#39;1/1&#39;</span>}<span style="color:#f92672">-&gt;</span>left( $node{<span style="color:#e6db74">&#39;1/2&#39;</span>} );    <span style="color:#75715e"># 1</span>
+    $node{<span style="color:#e6db74">&#39;1/1&#39;</span>}<span style="color:#f92672">-&gt;</span>right( $node{<span style="color:#e6db74">&#39;2/1&#39;</span>} );   <span style="color:#75715e"># 1</span>
+
+    $node{<span style="color:#e6db74">&#39;1/2&#39;</span>}<span style="color:#f92672">-&gt;</span>left( $node{<span style="color:#e6db74">&#39;1/3&#39;</span>} );    <span style="color:#75715e"># 2</span>
+    $node{<span style="color:#e6db74">&#39;1/2&#39;</span>}<span style="color:#f92672">-&gt;</span>right( $node{<span style="color:#e6db74">&#39;3/2&#39;</span>} );   <span style="color:#75715e"># 2</span>
+
+        <span style="color:#f92672">...</span> snip
+
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $n ( sort keys %node ) {
+        <span style="color:#66d9ef">my</span> $node        <span style="color:#f92672">=</span> $node{$n};
+        <span style="color:#66d9ef">my</span> $parent      <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
+        <span style="color:#66d9ef">my</span> $grandparent <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
+        <span style="color:#66d9ef">if</span> ( defined $node<span style="color:#f92672">-&gt;</span>parent ) {
+            $parent <span style="color:#f92672">=</span> $node<span style="color:#f92672">-&gt;</span>parent<span style="color:#f92672">-&gt;</span>value;
+            <span style="color:#66d9ef">if</span> ( defined $node<span style="color:#f92672">-&gt;</span>parent<span style="color:#f92672">-&gt;</span>parent ) {
+                $grandparent <span style="color:#f92672">=</span> $node<span style="color:#f92672">-&gt;</span>parent<span style="color:#f92672">-&gt;</span>parent<span style="color:#f92672">-&gt;</span>value;
+            }
+        }
+        say <span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;END&#34;</span>;
+        INPUT: <span style="color:#f92672">\</span>$member <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;$n&#34;</span>
+        OUTPUT: parent <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;$parent&#34;</span> <span style="color:#f92672">and</span> grandparent <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;$grandparent&#34;</span>
+    <span style="color:#66d9ef">END</span>
+    }
+
+    <span style="color:#66d9ef">package</span> Node;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">new</span> ( $class, $value = 0 ) {
+        <span style="color:#66d9ef">my</span> $self <span style="color:#f92672">=</span> {};
+        $self<span style="color:#f92672">-&gt;</span>{value}      <span style="color:#f92672">=</span> $value;
+        $self<span style="color:#f92672">-&gt;</span>{left}       <span style="color:#f92672">=</span> undef;
+        $self<span style="color:#f92672">-&gt;</span>{right}      <span style="color:#f92672">=</span> undef;
+        $self<span style="color:#f92672">-&gt;</span>{horizontal} <span style="color:#f92672">=</span> undef;
+        $self<span style="color:#f92672">-&gt;</span>{parent}     <span style="color:#f92672">=</span> undef;
+        <span style="color:#66d9ef">return</span> bless $self, $class;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">value</span> ( $self, $value = undef ) {
+        <span style="color:#66d9ef">if</span> ( defined $value ) {
+            $self<span style="color:#f92672">-&gt;</span>{value} <span style="color:#f92672">=</span> $value;
+        }
+        <span style="color:#66d9ef">else</span> {
+            <span style="color:#66d9ef">return</span> $self<span style="color:#f92672">-&gt;</span>{value};
+        }
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">left</span> ( $self, $node = undef ) {
+        <span style="color:#66d9ef">if</span> ( defined $node ) {
+            $self<span style="color:#f92672">-&gt;</span>{left}   <span style="color:#f92672">=</span> $node;
+            $node<span style="color:#f92672">-&gt;</span>{parent} <span style="color:#f92672">=</span> $self;
+        }
+        <span style="color:#66d9ef">else</span> {
+            <span style="color:#66d9ef">return</span> $self<span style="color:#f92672">-&gt;</span>{left};
+        }
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">right</span> ( $self, $node = undef ) {
+        <span style="color:#66d9ef">if</span> ( defined $node ) {
+            $self<span style="color:#f92672">-&gt;</span>{right}  <span style="color:#f92672">=</span> $node;
+            $node<span style="color:#f92672">-&gt;</span>{parent} <span style="color:#f92672">=</span> $self;
+        }
+        <span style="color:#66d9ef">else</span> {
+            <span style="color:#66d9ef">return</span> $self<span style="color:#f92672">-&gt;</span>{right};
+        }
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">parent</span> ($self ) {
+        <span style="color:#66d9ef">return</span> $self<span style="color:#f92672">-&gt;</span>{parent};
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/sgreen/python/ch-2.py">Python</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://dev.to/simongreennet/2-fractions-and-a-prime-4fik">2 Fractions and a Prime</a></p>
+<p>Simon looked at the tree and said something like: &ldquo;You know, what we need here are some fractions&rdquo;. Perl, unlike some languages like Raku, does not have the notion of a fraction built-in. So he decided to go get one.</p>
+<p>Enter Neil Bower&rsquo;s <code>Number::Fraction</code> module, which provides, essentially, a rational number datatype, with numerator and denominator components. He then goes on to note that those same fractional component values can be directly manipulated to produce the parent fraction without really needing a fraction tree at all. He can just break up his <code>Number::Fraction</code> object into its <code>num</code> and <code>den</code> hash values and work on them directly. New numerator and demoninator values are calculated and the results used to create a new <code>Number::Fraction</code>.</p>
+<p>A custom stringification routine <code>f()</code> is used to produce the final parent and grandparent fractions.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get_parent</span> {
+        <span style="color:#66d9ef">my</span> $f <span style="color:#f92672">=</span> shift;
+
+        <span style="color:#75715e"># 1/1 and -1/1 are orphened fractions.</span>
+        <span style="color:#66d9ef">return</span> undef <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> defined $f <span style="color:#f92672">or</span> abs($f) <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>;
+
+        <span style="color:#75715e"># Deal with postive fractions for now</span>
+        <span style="color:#66d9ef">my</span> $new_n <span style="color:#f92672">=</span> abs( $f<span style="color:#f92672">-&gt;</span>{num} );
+        <span style="color:#66d9ef">my</span> $new_d <span style="color:#f92672">=</span> $f<span style="color:#f92672">-&gt;</span>{den};
+
+        <span style="color:#66d9ef">if</span> ( $new_n <span style="color:#f92672">&gt;</span> $new_d ) {    <span style="color:#75715e"># f &gt; 1</span>
+            $new_n <span style="color:#f92672">=</span> $new_n <span style="color:#f92672">-</span> $new_d;
+        }
+        <span style="color:#66d9ef">else</span> {
+            $new_d <span style="color:#f92672">=</span> $new_d <span style="color:#f92672">-</span> $new_n;
+        }
+
+        <span style="color:#75715e"># Turn the fraction back to negative if needed</span>
+        $new_n <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">-</span> $new_n <span style="color:#66d9ef">if</span> $f <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>;
+
+        <span style="color:#66d9ef">return</span> Number::Fraction<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>( $new_n, $new_d );
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/arne-sommer/perl/ch-2.pl"><strong>Arne Sommer</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/arne-sommer/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://raku-musings.com/fractionally-prime.html">Fractionally Prime with Raku and Perl</a></p>
+<p>The fractions, you could say here, are inconsequential. Which is to say the actual value expressed, although ultimately interesting, does not enter into the question of how to determine the numbers representing the parent.</p>
+<p>What we have here as far as the problem is concerned is a two-digit ordered tuple at each node, and based on these values alone we can compute the surrounding node data.</p>
+<p>Arne has figured out there are two cases: when the numerator is larger than the denominator, and vice-versa. If larger, the top, first value is changed to the numerator minus the denominator. Otherwise, the bottom, second value becomes the denominator minus the numerator.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">parent</span> ($fraction)
+    {
+      <span style="color:#66d9ef">my</span> ($numerator, $denominator) <span style="color:#f92672">=</span> split(<span style="color:#e6db74">&#34;/&#34;</span>, $fraction);
+
+      <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;0/0&#34;</span> <span style="color:#66d9ef">if</span> $numerator <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;&amp;</span> $denominator <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>;
+
+      $numerator <span style="color:#f92672">&lt;</span> $denominator
+        ? <span style="color:#66d9ef">return</span> $numerator <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;/&#34;</span> <span style="color:#f92672">.</span> ( $denominator <span style="color:#f92672">-</span> $numerator )
+        : <span style="color:#66d9ef">return</span> ($numerator <span style="color:#f92672">-</span> $denominator ) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;/&#34;</span> <span style="color:#f92672">.</span> $denominator;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/abigail/perl/ch-2.pl"><strong>Abigail</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/abigail/awk/ch-2.awk">Awk</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/abigail/bash/ch-2.sh">Bash</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/abigail/bc/ch-2.bc">Bc</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/abigail/c/ch-2.c">C</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/abigail/go/ch-2.go">Go</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/abigail/java/ch-2.java">Java</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/abigail/lua/ch-2.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/abigail/node/ch-2.js">Node</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/abigail/pascal/ch-2.p">Pascal</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/abigail/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/abigail/r/ch-2.r">R</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/abigail/ruby/ch-2.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/abigail/scheme/ch-2.scm">Scheme</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/abigail/tcl/ch-2.tcl">Tcl</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-146-2.html">Perl Weekly Challenge 146: Curious Fraction Tree</a></p>
+<p>Abigail hones this action down to a simple ternary switch with two outcomes, each operating directly on the two values.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">while</span> (<span style="color:#f92672">&lt;&gt;</span>) {
+        <span style="color:#66d9ef">my</span> ($a, $b) <span style="color:#f92672">=</span> <span style="color:#e6db74">/[0-9]+/g</span>;
+        <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>) {
+            $a <span style="color:#f92672">&lt;</span> $b ? ($b <span style="color:#f92672">-=</span> $a) : ($a <span style="color:#f92672">-=</span> $b);
+            <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">unless</span> $a <span style="color:#f92672">&amp;&amp;</span> $b;
+            <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$a/$b &#34;</span>;
+        }
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/peter-campbell-smith/perl/ch-2.pl"><strong>Peter Campbell Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://pjcs-pwc.blogspot.com/2022/01/large-primes-and-curious-fractions.html">Large primes and curious fractions</a></p>
+<p>By copying the altered fraction components into new variables instead of overwriting the original values, Peter is able to report the parent and grandparents in a verbose manner:</p>
+<pre><code>    The      parent of 13/20 is 13/7
+    The grandparent of 13/20 is 6/7
+
+    The      parent of 1/2 is 1/1
+    The grandparent of 1/2 does not exist
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">parents</span> {
+
+        <span style="color:#66d9ef">my</span> ($a, $b, $pa, $pb);
+
+        <span style="color:#75715e"># as described above</span>
+        ($a, $b) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">if</span> ($a <span style="color:#f92672">/</span> $b <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">1</span>) {   <span style="color:#75715e"># a left child</span>
+        	$pa <span style="color:#f92672">=</span> $a;
+        	$pb <span style="color:#f92672">=</span> $b <span style="color:#f92672">-</span> $a;
+        } <span style="color:#66d9ef">else</span> {             <span style="color:#75715e"># a right child</span>
+        	$pa <span style="color:#f92672">=</span> $a <span style="color:#f92672">-</span> $b;
+        	$pb <span style="color:#f92672">=</span> $b;
+        }
+
+        <span style="color:#75715e"># not a member if pa or pb calculates as 0 or if a == b and a != 1</span>
+        <span style="color:#66d9ef">return</span> (<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">if</span> ($pa <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">or</span> $pb <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">or</span> ($pa <span style="color:#f92672">==</span> $pb <span style="color:#f92672">and</span> $pa <span style="color:#f92672">!=</span> <span style="color:#ae81ff">1</span>));
+        <span style="color:#66d9ef">return</span> ($pa, $pb);
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a></p>
+<p>Remarkably, Choroba is able to reduce the code footprint even further.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">parent</span> {
+        <span style="color:#66d9ef">my</span> ($x, $y) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">return</span> $x <span style="color:#f92672">&lt;</span> $y ? ($x, $y <span style="color:#f92672">-</span> $x) : ($x <span style="color:#f92672">-</span> $y, $y)
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">grandparent</span> {
+        <span style="color:#66d9ef">return</span> parent(parent(@_))
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://www.rabbitfarm.com/cgi-bin/blosxom/2022/01/09/perl">Sieve of Atkin / Curious Fraction Tree — RabbitFarm</a></p>
+<p>Adam&rsquo;s approach was to build the  tree using the <code>Graph</code> module framework, and then call <code>predecessors()</code> on the node found.</p>
+<p>It turns out building the tree in <code>Graph</code> requires a bit of effort, but as with all good models, once we have the tree in place querying it to a node&rsquo;s parent, or the parent&rsquo;s parent, is analogous to simply looking at a drawing. We simply ask the object.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">initialize</span>{
+        <span style="color:#66d9ef">my</span>($member) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> $graph <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Graph();
+        $graph<span style="color:#f92672">-&gt;</span>add_vertex(ROOT);
+        <span style="color:#66d9ef">my</span> @next <span style="color:#f92672">=</span> (ROOT);
+        <span style="color:#66d9ef">my</span> @changes <span style="color:#f92672">=</span> ([<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>], [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>]);
+        <span style="color:#66d9ef">my</span> $level <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        {
+            <span style="color:#66d9ef">my</span> @temp_next;
+            <span style="color:#66d9ef">my</span> @temp_changes;
+            <span style="color:#66d9ef">do</span>{
+                $level<span style="color:#f92672">++</span>;
+                <span style="color:#66d9ef">my</span> $next <span style="color:#f92672">=</span> shift @next;
+                <span style="color:#66d9ef">my</span>($top, $bottom) <span style="color:#f92672">=</span> split(<span style="color:#e6db74">/\//</span>, $next);
+                <span style="color:#66d9ef">my</span> $change_left <span style="color:#f92672">=</span> shift @changes;
+                <span style="color:#66d9ef">my</span> $change_right <span style="color:#f92672">=</span> shift @changes;
+                <span style="color:#66d9ef">my</span> $v_left <span style="color:#f92672">=</span> ($top <span style="color:#f92672">+</span> $change_left<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]) <span style="color:#f92672">.</span> SEPARATOR <span style="color:#f92672">.</span> ($bottom <span style="color:#f92672">+</span> $change_left<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]);
+                <span style="color:#66d9ef">my</span> $v_right <span style="color:#f92672">=</span> ($top <span style="color:#f92672">+</span> $change_right<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]) <span style="color:#f92672">.</span> SEPARATOR <span style="color:#f92672">.</span> ($bottom <span style="color:#f92672">+</span> $change_right<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]);
+                $graph<span style="color:#f92672">-&gt;</span>add_edge($next, $v_left);
+                $graph<span style="color:#f92672">-&gt;</span>add_edge($next, $v_right);
+                push @temp_next, $v_left, $v_right;
+                push @temp_changes, $change_left;
+                push @temp_changes, [$level <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>], [<span style="color:#ae81ff">0</span>, $level <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>];
+                push @temp_changes, $change_right;
+            }<span style="color:#66d9ef">while</span>(@next <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span>$graph<span style="color:#f92672">-&gt;</span>has_vertex($member));
+            @next <span style="color:#f92672">=</span> @temp_next;
+            @changes <span style="color:#f92672">=</span> @temp_changes;
+            <span style="color:#66d9ef">redo</span> <span style="color:#66d9ef">if</span> <span style="color:#f92672">!</span>$graph<span style="color:#f92672">-&gt;</span>has_vertex($member);
+        }
+        <span style="color:#66d9ef">return</span> $graph;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">curious_fraction_tree</span>{
+        <span style="color:#66d9ef">my</span>($member) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> $graph <span style="color:#f92672">=</span> initialize($member);
+        <span style="color:#66d9ef">my</span>($parent) <span style="color:#f92672">=</span> $graph<span style="color:#f92672">-&gt;</span>predecessors($member);
+        <span style="color:#66d9ef">my</span>($grandparent) <span style="color:#f92672">=</span> $graph<span style="color:#f92672">-&gt;</span>predecessors($parent);
+        <span style="color:#66d9ef">return</span> ($parent, $grandparent);
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/mattneleigh/perl/ch-2.pl"><strong>Matthew Neleigh</strong></a></p>
+<p>Matthew gets points for creativity and obvious, clear formatting with his cascading OR cases, and more points for a pop-culture reference to make my job more interesting.</p>
+<p>So good on him for that. I like this one.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">curious_fraction_parent</span>{
+        <span style="color:#66d9ef">my</span> $a <span style="color:#f92672">=</span> int(shift());
+        <span style="color:#66d9ef">my</span> $b <span style="color:#f92672">=</span> int(shift());
+
+        <span style="color:#66d9ef">if</span>(
+            (($a <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">&amp;&amp;</span> ($b <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>))
+            <span style="color:#f92672">||</span>
+            ($a <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">1</span>)
+            <span style="color:#f92672">||</span>
+            ($b <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">1</span>)
+        ){
+            <span style="color:#75715e"># This is the root node or an</span>
+            <span style="color:#75715e"># invalid node- there is no</span>
+            <span style="color:#75715e"># parent (only Zuul...)</span>
+            <span style="color:#66d9ef">return</span>(undef, undef);
+        }
+
+        <span style="color:#66d9ef">if</span>($a <span style="color:#f92672">&lt;</span> $b){
+            <span style="color:#75715e"># We&#39;re a Left Node</span>
+            <span style="color:#66d9ef">return</span>($a, $b <span style="color:#f92672">-</span> $a);
+        } <span style="color:#66d9ef">else</span>{
+            <span style="color:#75715e"># We&#39;re a Right Node</span>
+            <span style="color:#66d9ef">return</span>($a <span style="color:#f92672">-</span> $b, $b);
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/bruce-gray/perl/ch-2_via_module.pl"><strong>Bruce Gray</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/bruce-gray/Test_data/ch-2_test_generator.raku">Test_data</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/bruce-gray/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://blogs.perl.org/users/bruce_gray/2022/01/twc-146-10k-prime-and-cw-trees.html">TWC 146: 10K Prime and CW Trees</a></p>
+<p>When figuring out my own solution to the challenge, I looked at the tree and surmised that there must be some relationship between the nodes to derive the pattern, so I set about figuring out what that would be. This was succesful in short order (<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/colin-crain/perl/ch-2.pl">I wrote a blow-by-blow as I figured it out</a>), but once I had it, this got me thinking about why someone would make such a construction and what properties it would have. I started modifying my script, as I sometimes do, to explore the data and see what came up, working various fractions upwards to their degenerate root.</p>
+<p>As it had sparked my own curiosity, the tree had certainly lived up to its name. I didn&rsquo;t, however have time to go very far with it. I had solved the task, or by the time I was done
+with it solved my own idea of what the task should be, and eventually moved on. But the questions remained, and I was hoping someone else might have the time and inclination to shed some light on the matter. It is, after all, a very curious fraction tree. Inquiring minds want to know.</p>
+<p>Bruce Gray, I&rsquo;m very pleased to report, has stepped in to provide the detail I could only touch on.</p>
+<p>And I&rsquo;m not even going to attempt to summarize it here. Interested parties <a href="http://blogs.perl.org/users/bruce_gray/2022/01/twc-146-10k-prime-and-cw-trees.html">should go immediately to his writeup</a> — an extensive collection of notes he has gathered — on the subject of the <a href="https://en.wikipedia.org/wiki/Calkin%E2%80%93Wilf_tree">Calkin–Wilf tree</a>. Down the rabbit hole he maps out there are some very, very cool graphical depictions, some unexpected relationships, notes on drum patterns and a solid <em>Blues Brothers</em> quote.</p>
+<p>I played around with various fractions. Bruce went and wrote some 200 test cases. My hat is off. He wrote utility routines to generate the test data, and <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/bruce-gray/Test_data/ch-2_test_generator.raku#L16">extra routines to navigate the trees in unexpected ways</a>.</p>
+<p>To solve the task he presents two solutions. One provides the switch pattern we have seen before, with a twist on the reversal that highlights the symmetry in the construction:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">Calkin_Wilf_tree_parent</span> ( $aref ) {
+        die <span style="color:#66d9ef">if</span> @{$aref} <span style="color:#f92672">!=</span> <span style="color:#ae81ff">2</span>;
+        <span style="color:#66d9ef">my</span> ( $numer, $denom ) <span style="color:#f92672">=</span> @{$aref};
+
+        <span style="color:#66d9ef">my</span> $diff <span style="color:#f92672">=</span> $numer <span style="color:#f92672">-</span> $denom;
+
+        <span style="color:#66d9ef">return</span> $diff <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> ? [ $diff  ,  $denom ]
+                         : [ $numer , <span style="color:#f92672">-</span>$diff  ];
+    }
+</code></pre></div><p>In a <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/bruce-gray/perl/ch-2_via_module.pl">second submission</a>, Bruce has hunted down a module called <code>Math::PlanePath::RationalsTree</code>, which will construct a Calkin-Wilf tree to work on and navigate:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Math::PlanePath::RationalsTree;
+    <span style="color:#66d9ef">use</span> constant CW <span style="color:#f92672">=&gt;</span> Math::PlanePath::RationalsTree<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>( tree_type <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;CW&#39;</span> );
+    <span style="color:#75715e"># Note: Due to the use of `n` in the ::RationalsTree module (position vs navigation),</span>
+    <span style="color:#75715e"># this version of the code is only reliable below level 64 of the tree on 64-bit Perl.</span>
+    <span style="color:#75715e"># On my machine, this code fails 36 of the 202 tests.</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">task2</span> ( $s ) {
+        $s <span style="color:#f92672">=~</span> <span style="color:#e6db74">m{ \A (\d+) / (\d+) \z }msx</span>
+            <span style="color:#f92672">or</span> die;
+
+        <span style="color:#66d9ef">my</span> $parent <span style="color:#f92672">=</span> CW<span style="color:#f92672">-&gt;</span>tree_n_parent( CW<span style="color:#f92672">-&gt;</span>xy_to_n($1, $2) );
+        <span style="color:#66d9ef">my</span> $grand  <span style="color:#f92672">=</span> CW<span style="color:#f92672">-&gt;</span>tree_n_parent( $parent );
+
+        <span style="color:#66d9ef">return</span> map { join <span style="color:#e6db74">&#34;/&#34;</span>, CW<span style="color:#f92672">-&gt;</span>n_to_xy($_) } $parent, $grand;
+    }
+</code></pre></div><p>As noted his version seems to work better.</p>
+<h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-2">Blogs and Additional Submissions in Guest Languages for Task 2:</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/athanasius/raku/ch-2.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/colin-crain/raku/ch-2.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/polettix/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.polettix.it/ETOOBUSY/2022/01/06/pwc146-curious-fraction-tree/">PWC146 - Curious Fraction Tree - ETOOBUSY</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/iangoodnight/perl/ch-2.pl"><strong>Ian Goodnight</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/iangoodnight/javascript/ch-2.js">Javascript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/iangoodnight/ruby/ch-2.rb">Ruby</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/jaldhar-h-vyas/perl/ch-2.pl"><strong>Jaldhar H. Vyas</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/jaldhar-h-vyas/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://www.braincells.com/perl/2022/01/perl_weekly_challenge_week_146.html">Perl Weekly Challenge: Week 146</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-146/james-smith">Perl Weekly Challenge #146</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/laurent-rosenfeld/awk/ch-2.awk">Awk</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/laurent-rosenfeld/c/ch-2.c">C</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/laurent-rosenfeld/julia/ch-2.jl">Julia</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/laurent-rosenfeld/kotlin/ch-2.kt">Kotlin</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/laurent-rosenfeld/lua/ch-2.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/laurent-rosenfeld/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/laurent-rosenfeld/raku/ch-2.raku">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/laurent-rosenfeld/ring/ch-2.ring">Ring</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/laurent-rosenfeld/ruby/ch-2.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/laurent-rosenfeld/scala/ch-2.scala">Scala</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://blogs.perl.org/users/laurent_r/2022/01/perl-weekly-challenge-146-prime-numbers-and-fraction-tree.html">Perl Weekly Challenge 146: Prime Numbers and Fraction Tree</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/roger-bell-west/javascript/ch-2.js">Javascript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/roger-bell-west/kotlin/ch-2.kt">Kotlin</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/roger-bell-west/lua/ch-2.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/roger-bell-west/postscript/ch-2.ps">Postscript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/roger-bell-west/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/roger-bell-west/raku/ch-2.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/roger-bell-west/ruby/ch-2.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/roger-bell-west/rust/ch-2.rs">Rust</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://blog.firedrake.org/archive/2022/01/The_Weekly_Challenge_146__Curious_Prime.html">RogerBW&rsquo;s Blog: The Weekly Challenge 146: Curious Prime</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/ulrich-rieke/cpp/ch-2.cpp">C++</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/ulrich-rieke/haskell/ch-2.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/ulrich-rieke/raku/ch-2.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-146/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://wlmb.github.io/2022/01/03/PWC146/">Perl Weekly Challenge 146 – W. Luis Mochán</a></p>
+<hr>
+<h1 id="PWC146BLOGS">BLOGS</h1>
+<hr>
+<p><strong>That’s it for me this week, people! Warped by the rain, driven by the snow, resolute and unbroken by the torrential influx, by some miracle I somehow continue to maintain my bearings.</strong></p>
+<p><strong>Looking forward to next wave, the perfect wave, I am: <em>your humble servant</em>.</strong></p>
+<h1 id="PWC136BLOGS">But if Your Unquenchable <em>THIRST</em> for <em>KNOWLEDGE</em> is not <em>SLAKED</em>,</h1>
+<h1 id="then-run-dont-walk-to-the-watering-hole">then <em>RUN</em> <em>(dont walk!)</em> to the <em>WATERING HOLE</em></h1>
+<h1 id="and-follow-these-blog-links">and <em>FOLLOW</em> these <em>BLOG</em> <em>LINKS</em>:</h1>
+<p><strong>( &hellip;<em>don&rsquo;t think, trust your training, you&rsquo;re in the zone, just do it &hellip;</em> )</strong></p>
+<p><strong>Abigail</strong></p>
+<ul>
+<li><a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-146-1.html">Perl Weekly Challenge 146: 10001st Prime Number</a> ( <em>Perl</em> )</li>
+<li><a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-146-2.html">Perl Weekly Challenge 146: Curious Fraction Tree</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Adam Russell</strong></p>
+<ul>
+<li><a href="http://www.rabbitfarm.com/cgi-bin/blosxom/2022/01/09/perl">Sieve of Atkin / Curious Fraction Tree — RabbitFarm</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Arne Sommer</strong></p>
+<ul>
+<li><a href="https://raku-musings.com/fractionally-prime.html">Fractionally Prime with Raku and Perl</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Bruce Gray</strong></p>
+<ul>
+<li><a href="http://blogs.perl.org/users/bruce_gray/2022/01/twc-146-10k-prime-and-cw-trees.html">TWC 146: 10K Prime and CW Trees</a>
+( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Dave Jacoby</strong></p>
+<ul>
+<li><a href="https://jacoby.github.io/2022/01/03/fractions-trees-and-primes-weekly-challenge-146.html">Fractions, Trees and Primes: Weekly Challenge 146 | Committed to Memory</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Flavio Poletti</strong></p>
+<ul>
+<li><a href="https://github.polettix.it/ETOOBUSY/2022/01/05/pwc146-10001st-prime-number/">PWC146 - 10001st Prime Number - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+<li><a href="https://github.polettix.it/ETOOBUSY/2022/01/06/pwc146-curious-fraction-tree/">PWC146 - Curious Fraction Tree - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Jaldhar H. Vyas</strong></p>
+<ul>
+<li><a href="https://www.braincells.com/perl/2022/01/perl_weekly_challenge_week_146.html">Perl Weekly Challenge: Week 146</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>James Smith</strong></p>
+<ul>
+<li><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-146/james-smith">Perl Weekly Challenge #146</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Laurent Rosenfeld</strong></p>
+<ul>
+<li><a href="http://blogs.perl.org/users/laurent_r/2022/01/perl-weekly-challenge-146-prime-numbers-and-fraction-tree.html">Perl Weekly Challenge 146: Prime Numbers and Fraction Tree | laurent_r</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Luca Ferrari</strong></p>
+<ul>
+<li><a href="https://fluca1978.github.io/2022/01/04/PerlWeeklyChallenge146.html#task1">Perl Weekly Challenge 146: the first challenge of the year! – Luca Ferrari – Open Source advocate, human being</a> ( <em>Raku</em> )</li>
+<li><a href="https://fluca1978.github.io/2022/01/04/PerlWeeklyChallenge146.html#task1pg">Perl Weekly Challenge 146: the first challenge of the year! – Luca Ferrari – Open Source advocate, human being</a> ( <em>PostgreSQL</em> )</li>
+</ul>
+<p><strong>Mark Senn</strong></p>
+<ul>
+<li><a href="https://engineering.purdue.edu/~mark/twc-146-1.pdf">10001st Prime Number</a> ( <em>Raku</em> )</li>
+<li><a href="https://engineering.purdue.edu/~mark/twc-146-2.pdf">Curious Fraction Tree</a> ( <em>Raku</em> )</li>
+</ul>
+<p><strong>Peter Campbell Smith</strong></p>
+<ul>
+<li><a href="https://pjcs-pwc.blogspot.com/2022/01/large-primes-and-curious-fractions.html">Large primes and curious fractions</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Roger Bell_West</strong></p>
+<ul>
+<li><a href="https://blog.firedrake.org/archive/2022/01/The_Weekly_Challenge_146__Curious_Prime.html">RogerBW&rsquo;s Blog: The Weekly Challenge 146: Curious Prime</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Simon Green</strong></p>
+<ul>
+<li><a href="https://dev.to/simongreennet/2-fractions-and-a-prime-4fik">2 Fractions and a Prime</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>W. Luis Mochan</strong></p>
+<ul>
+<li><a href="https://wlmb.github.io/2022/01/03/PWC146/">Perl Weekly Challenge 146 – W. Luis Mochán</a> ( <em>Perl</em> )</li>
+</ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="/contact" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2021
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.nomtimes.co.uk/site/shop.do?cref=PerlBooks" title="Free Perl Books" rel="noreferrer" target="_blank">
+                            <img src="/images/NomTimes.jpg" style="width:22px; height: 18px;" alt=""/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jQurey/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-136524905-1', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+
+</html>
+
