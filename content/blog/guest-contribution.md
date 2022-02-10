@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2022-02-08T00:00:00+00:00
+date: 2022-02-10T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -53,6 +53,10 @@ Please find below guest contributions.
 ##### **Abigail** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/abigail/r/ch-2.r) in **R**.
 
 ##### **Abigail** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/abigail/ruby/ch-1.rb) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/abigail/ruby/ch-2.rb) in **Ruby**.
+
+##### **Eric Cheung** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/eric-cheung/excel-vba/ch-2.bas) in **Excel VBA**.
+
+##### **Eric Cheung** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/eric-cheung/python/ch-1.py) in **Python**.
 
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/roger-bell-west/javascript/ch-1.js) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/roger-bell-west/javascript/ch-2.js) in **JavaScript**.
 
