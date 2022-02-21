@@ -141,7 +141,7 @@ Write a script to compute `Left Factorials` of `1 to 10`. Please refer [OEIS A00
 
 You are given an integer, `$n`.
 
-Write a script to figure out if the given integer is factorian.
+Write a script to figure out if the given integer is factorion.
 
 > A factorion is a natural number that equals the sum of the factorials of its digits.
 
