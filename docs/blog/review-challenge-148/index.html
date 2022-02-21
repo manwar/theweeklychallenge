@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="The Weekly Challenge - Perl & Raku"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="You do not have to be an expert."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Colin Crain › Perl Weekly Review #148">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Colin Crain › Perl Weekly Review #148</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navgation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Colin Crain › Perl Weekly Review #148</h2>
+                    <div class="portfolio-meta">
+                        <span>Monday, Feb 21, 2022</span>|
+                        <span> Tags:
+                            perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/p5-review-challenge-148.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <p>( <em>&hellip;continues from <a href="/blog/review-challenge-147/">previous week</a>.</em> )</p>
+<p>Welcome to the Perl review pages for <strong>Week 148</strong> of The Weekly Challenge! Here we will take the time to discuss the  submissions offered up by the team, factor out some common methodologies that came up in those solutions, and highlight some of the unique approaches and unusual code created.</p>
+<hr>
+<h3 id="-why-do-we-do-these-challenges">●︎ Why do we do these challenges?</h3>
+<p>I suppose any reasonable answer to that question would be from a field as wide ranging and varied as the people who choose to join the team. One thing, though, is clear: it&rsquo;s not a competition, and there are no judges, even if there is a &ldquo;prize&rdquo; of sorts. About that &ndash; I think of it more as an honorarium periodically awarded to acknowledge the efforts we make towards this strange goal. So there&rsquo;s no determination to find the <em>fastest</em>, or the <em>shortest</em>, or even, in some abstract way, the <em>best</em> way to go about things, although I&rsquo;m certain the participants have their own aspirations and personal drives. As Perl is such a wonderfully expressive language, this provides quite a bit of fodder to the core idea of TMTOWTDI, producing a gamut of varied techniques and solutions.</p>
+<p>Even the tasks themselves are often open to a certain amount of discretionary interpretation. What we end up with is a situation where each participant is producing something in the manner they find the most interesting or satisfying. Some team members focus on carefully crafted complete applications, thoroughly vetting input data and handling every use case they can think up. Others choose to apply themselves to the logic of the underlying puzzle and making it work in the most elegant way they can. Some eschew modules they would ordinarily reach for, others embrace them, bringing to light wheels perhaps invented years ago that happen to exactly solve the problem in front of them today.</p>
+<p>I&rsquo;ve been considering this question for some time and have found one binding commonality between all of us out solving these challenges each week, in that however we normally live our lives, the task in front of us more than likely has nothing to do with any of that. And I think this has great value. We all do what we do, in the real world, and hopefully we do it well. The Weekly Challenge provides us with an opportunity to do something germane to that life yet distinctly different; if we only do the things we already know how to do then we will only do the same things over and over. This is where the &ldquo;challenge&rdquo; aspect comes into play.</p>
+<p>So we can consider The Weekly Challenge as providing a problem space outside of our comfort zone, as far out from that comfort as we wish to take things. From those reaches we can gather and learn things, pick and choose and bring what we want back into our lives. Personally, I think that&rsquo;s what this whole thing is about. YMMV.</p>
+<hr>
+<p><i>Every week there is an enormous global collective effort made by the team, analyzing and creatively coding the submissions, and that effort deserves credit due.</i></p>
+<p>And that&rsquo;s why I&rsquo;m here, to try and figure out ways to do that.</p>
+<p>So, here we are then — let’s get to it and see what we can find.</p>
+<hr>
+<h3 id="for-additional-context">For Additional Context…</h3>
+<p>before we begin, you may wish to revisit either the pages for the <a href="/blog/perl-weekly-challenge-148/"><strong>original tasks</strong></a> or the summary <a href="/blog/recap-challenge-148/"><strong>recap</strong></a> of the challenge. But don&rsquo;t worry about it, the challenge text will be repeated and presented as we progress from task to task.</p>
+<p>Oh, and one more thing before we get started:</p>
+<h3 id="getting-in-touch-with-us">Getting in Touch with Us</h3>
+<p><a href="mailto:pwc.perfectwave@gmail.com"><img src="/images/blog/Email.svg" height="50" width="50"> Email</a> › Please feel free to email me (Colin) with any feedback, notes, clarifications or whatnot about this review.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge"><img src="/images/blog/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request to us for any issues you may find with this page.</p>
+<p><a href="https://twitter.com/perlwchallenge"><img src="/images/blog/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!</p>
+<p>I&rsquo;m always curious as to what the people think of these efforts. Everyone here at the PWC would like to hear any feedback you&rsquo;d like to give.</p>
+<div align= center><strong>...So finally, without further ado...</strong></div>
+<hr>
+<h2 id="---nbsp--nbsp--nbsp---task-1pwc148task1-------nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---task-2pwc148task2---nbsp--nbsp--nbsp----------nbsp--nbsp--nbsp---blogspwc148blogs----nbsp--nbsp--nbsp---">•             <a href="#PWC148TASK1">Task 1</a>                 •             <a href="#PWC148TASK2">Task 2</a>                 •             <a href="#PWC148BLOGS">BLOGS</a>              	•</h2>
+<hr>
+<h1 id="PWC148TASK1">TASK 1</h1>
+<h1 id="eban-numbers">Eban Numbers</h1>
+<p><em>Submitted by: Mohammad S Anwar</em><br></p>
+<p>Write a script to generate all Eban Numbers &lt;= 100.</p>
+<p>An Eban number is a number that has no letter ‘e’ in it when the number is spelled in English (American or British).</p>
+<p><strong>Example</strong></p>
+<pre><code>        2, 4, 6, 30, 32 are the first 5 Eban numbers.
+</code></pre><h2 id="about-the-solutions">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/abigail/perl/ch-1.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/arne-sommer/perl/ch-1.pl"><strong>Arne Sommer</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/bruce-gray/perl/ch-1.pl"><strong>Bruce Gray</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/jaldhar-h-vyas/perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/mattneleigh/perl/ch-1.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/pete-houston/perl/ch-1.pl"><strong>Pete Houston</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/peter-campbell-smith/perl/ch-1.pl"><strong>Peter Campbell Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/robert-dicicco/perl/ch-1.pl"><strong>Robert DiCicco</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/steven-wilson/perl/ch-1.pl"><strong>Steven Wilson</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/walt-mankowski/perl/ch-1.pl"><strong>Walt Mankowski</strong></a></p>
+<p>Whenever I get the chance (which admittedly isn&rsquo;t very often), I bring up the existence of a book by a gentleman named Ernest Vincent Wright titled <a href="https://en.wikipedia.org/wiki/Gadsby_(novel)"><em>Gadsby</em></a>, and that is a work written in the English language without using the letter &ldquo;e&rdquo;. Such efforts are known as <a href="https://en.wikipedia.org/wiki/Lipogram">lipograms</a> and represent the idea of using artificial constraints in creativity; that by willfully limiting one&rsquo;s palette one must therefore work more creatively with the materials available.</p>
+<p>Programming is in my eyes ultimately a creative art, and although willingly choosing to exclude easy solutions in search of difficulty is a poor use of resources in general, in specific circumstances forcing oneself to solve problems using unfamiliar techniques is good training for the inevitable unexpected circumstance.</p>
+<p>To paraphrase: it&rsquo;s good training to think outside the box, because you never know when the need may arise. Even ridiculous tasks such as these still have value in problem solving and encouraging plasticity in one&rsquo;s thought processes, and so working out solutions can have great value in that regard.</p>
+<p>On the other hand, I can think of no <em>mathematical</em> reason whatsoever as to why this sequence is listed in the Online Encyclopedia of Integer Sequences:</p>
+<p><a href="https://oeis.org/A006933">A006933</a>          &lsquo;Eban&rsquo; numbers (the letter &lsquo;e&rsquo; is banned!)</p>
+<p>&hellip; and with a fairly low number as well! For reference there are currently more than 350,000 entries in the database, so just under 7000 was&hellip; let&rsquo;s say some time ago. I think this shows an admirable curatorial restraint on the part of the caretakers, not to exclude a sequence simply because the only theorem one can posit from it is &ldquo;in English every odd number contains an &lsquo;e&rsquo;&quot;. Either that or whimsy. We can&rsquo;t really exclude that possibility.</p>
+<p>But there it remains: recreational mathematicians have explored it; therefore it&rsquo;s in. It does appear to be as simple as that. As I use a similar philosophy to guide me in these review pages, I can find no fault with that logic.</p>
+<p>There were 23 submissions for the first task this past week.</p>
+<h2 id="a-means-to-a-e-less-end">A MEANS to a E-LESS END</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/abigail/perl/ch-1.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/peter-campbell-smith/perl/ch-1.pl"><strong>Peter Campbell Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/jaldhar-h-vyas/perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/bruce-gray/perl/ch-1.pl"><strong>Bruce Gray</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/mattneleigh/perl/ch-1.pl"><strong>Matthew Neleigh</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>The challenge requests us to generate all the e-banned numbers less than 100, so overwhelmingly the output consisted as a list of numerals. Because of the rather unique linguistic aspect of the constraint applied, there were efforts made as well to <em>write out</em> the numbers, with the associated complications that Natural Language Programming inevitably carries along with it. One would think this would be a necessary preparation to calculating the presence of the excluded letter, but that was not always the case. We&rsquo;ll get to that.</p>
+<p>Whether actually written or not the vagaries of language needed to be addressed at some point in the game, by some mechanism or another. We saw examples of various ways to discern the presence of the offending character, both using explicit searches for it in  written text or otherwise by inference, excluding cases known to contain it among their values.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/abigail/perl/ch-1.pl"><strong>Abigail</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/abigail/awk/ch-1.awk">Awk</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/abigail/bash/ch-1.sh">Bash</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/abigail/basic/ch-1.bas">Basic</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/abigail/bc/ch-1.bc">Bc</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/abigail/befunge-93/ch-1.bf93">Befunge-93</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/abigail/c/ch-1.c">C</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/abigail/cobol/ch-1.cb">Cobol</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/abigail/csh/ch-1.csh">Csh</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/abigail/erlang/ch-1.erl">Erlang</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/abigail/forth/ch-1.fs">Forth</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/abigail/fortran/ch-1.f90">Fortran</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/abigail/go/ch-1.go">Go</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/abigail/java/ch-1.java">Java</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/abigail/lua/ch-1.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/abigail/m4/ch-1.m4">M4</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/abigail/mmix/ch-1.mms">Mmix</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/abigail/node/ch-1.js">Node</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/abigail/ocaml/ch-1.ml">Ocaml</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/abigail/pascal/ch-1.p">Pascal</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/abigail/php/ch-1.php">Php</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/abigail/postscript/ch-1.ps">Postscript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/abigail/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/abigail/r/ch-1.r">R</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/abigail/rexx/ch-1.rexx">Rexx</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/abigail/ruby/ch-1.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/abigail/scheme/ch-1.scm">Scheme</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/abigail/sed/ch-1.sed">Sed</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/abigail/sql/ch-1.sql">Sql</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/abigail/tcl/ch-1.tcl">Tcl</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-148-1.html">Perl Weekly Challenge 148: Eban Numbers</a></p>
+<p>Abigail starts by listing all of the words required to spell out every word up to one hundred. If we group all of the teen words together for convenience, as they&rsquo;re excluded whatever their prefix, then we have only 23 terms. These are separated into groups containing the letter or not, and a regular expression is devised to match any that do.</p>
+<p>A filter is then constructed to only pass those values that do not match and we have our eban numbers.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># So, in short, numbers &lt;= 100 containing an E when written in English</span>
+    <span style="color:#75715e"># are:  - 0</span>
+    <span style="color:#75715e">#       - contains a 1, 7, 8 or 9</span>
+    <span style="color:#75715e">#       - ends with a 3, or 5</span>
+    <span style="color:#75715e">#       - starts with a 2, and is followed by another digit</span>
+    <span style="color:#75715e">#</span>
+    <span style="color:#75715e"># Any other numbers are eban.</span>
+    <span style="color:#75715e">#</span>
+
+    say join <span style="color:#e6db74">&#34; &#34;</span> <span style="color:#f92672">=&gt;</span> grep {<span style="color:#f92672">!</span><span style="color:#e6db74">/^0$ | [1789] | ^2. | [35]$/x</span>} <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">100</span>;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/peter-campbell-smith/perl/ch-1.pl"><strong>Peter Campbell Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://pjcs-pwc.blogspot.com/2022/01/numbers-in-words-and-cardano-triplets.html">Numbers in words and Cardano triplets</a></p>
+<p>Representing the other approach, the bulk of Peter&rsquo;s efforts seem to be focused on constructing a number-to-text translator that works for values less than one million. With such muscle under the hood I couldn&rsquo;t help but making a few changes and taking it out for a spin, and report that it worked flawlessly.</p>
+<p>Obviously constructing the phrase &ldquo;54062 - fifty-four thousand and sixty-two&rdquo; is considerably more complicated than any found limiting our numbers to less than one hundred. Peter breaks up the process along the phrase grouping, with an outer routine to handle the thousands component and a second to take over the possibly-nested hundreds and tens. Not that &ldquo;seven hundred and seventy-one thousand two hundred and eighty-three&rdquo; would ever come up as an eban number, but it will, under the right circumstances, be considered.</p>
+<p>The largest eban number less than one million, by the way, is &ldquo;66066 - sixty-six thousand and sixty-six&rdquo;.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># convert an integer to words (works up to 999,999)</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">words</span> {
+
+        <span style="color:#66d9ef">my</span> ($number, $thousands, $words);
+        $number <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>];
+
+        <span style="color:#75715e"># deal with thousands</span>
+        $thousands <span style="color:#f92672">=</span> int($number <span style="color:#f92672">/</span> <span style="color:#ae81ff">1000</span>);
+        $words <span style="color:#f92672">=</span> $thousands <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span> ? words3($thousands) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39; thousand&#39;</span> : <span style="color:#e6db74">&#39;&#39;</span>;
+
+        <span style="color:#75715e"># and the rest</span>
+        $number <span style="color:#f92672">-=</span> $thousands <span style="color:#f92672">*</span> <span style="color:#ae81ff">1000</span>;
+        $words <span style="color:#f92672">=</span> $words <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39; and&#39;</span> <span style="color:#66d9ef">if</span> ($thousands <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">and</span> $number <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">100</span> <span style="color:#f92672">and</span> $number <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>);
+        $words <span style="color:#f92672">=</span> $words <span style="color:#f92672">.</span> words3($number);
+        $words <span style="color:#f92672">=~</span> s<span style="color:#f92672">|.||</span>; <span style="color:#75715e"># remove initial blank</span>
+        <span style="color:#66d9ef">return</span> $words;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">words3</span> {
+
+        <span style="color:#75715e"># convert 1-999 into words</span>
+        <span style="color:#66d9ef">my</span> ($number, $hundreds, $words3, $tens, $units, $hyphen);
+        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;zero&#39;</span> <span style="color:#66d9ef">unless</span> $number <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>];
+        $words3 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
+
+        <span style="color:#75715e"># hundreds</span>
+        $hundreds <span style="color:#f92672">=</span> int($number <span style="color:#f92672">/</span> <span style="color:#ae81ff">100</span>);
+        $words3 <span style="color:#f92672">=</span> $words3 <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39; &#39;</span> <span style="color:#f92672">.</span> $digits[$hundreds] <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39; hundred&#39;</span> <span style="color:#66d9ef">if</span> $hundreds <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>;
+        $number <span style="color:#f92672">-=</span> $hundreds <span style="color:#f92672">*</span> <span style="color:#ae81ff">100</span>;
+        <span style="color:#66d9ef">if</span> ($number) {
+            $words3 <span style="color:#f92672">=</span> $words3 <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39; and&#39;</span> <span style="color:#66d9ef">if</span> $hundreds <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>;
+
+            <span style="color:#75715e"># tens and units</span>
+            $tens <span style="color:#f92672">=</span> int($number <span style="color:#f92672">/</span> <span style="color:#ae81ff">10</span>);
+            $units <span style="color:#f92672">=</span> $number <span style="color:#f92672">-</span> <span style="color:#ae81ff">10</span> <span style="color:#f92672">*</span> $tens;
+            <span style="color:#66d9ef">if</span> ($tens <span style="color:#f92672">!=</span> <span style="color:#ae81ff">1</span>) {
+            	$hyphen <span style="color:#f92672">=</span> ($units <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">and</span> $tens <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>) ? <span style="color:#e6db74">&#39;-&#39;</span> : <span style="color:#e6db74">&#39;&#39;</span>;
+            	$words3 <span style="color:#f92672">=</span> $words3 <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39; &#39;</span> <span style="color:#f92672">.</span> $tenties[$tens] <span style="color:#f92672">.</span> $hyphen <span style="color:#f92672">.</span> $digits[$units];
+            } <span style="color:#66d9ef">else</span> {
+            	$words3 <span style="color:#f92672">=</span> $words3 <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39; &#39;</span> <span style="color:#f92672">.</span> $teens[$units];
+            }
+        }
+
+        <span style="color:#66d9ef">return</span> $words3;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/colin-crain/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://colincrain.com/2022/01/19/numrs-without-th-lttr/">Numrs Without Th Lttr - Programming Excursions in Perl and Raku</a></p>
+<p>For my own solution I produced the list two ways. And by list, I mean the list of written numbers. Somehow it never occurred to me to produce a sequence of digital numbers to a task involving scanning for the presence of a letter. Because numbers exist in a space outside of any method we choose to represent them, I think this satisfies the conditions, but note although some people wrote out their results, I was the only one to <em>only</em> write out the results and not also provide a list of numbers.</p>
+<p>Different drummer indeed.</p>
+<p>In any case I consider there to be a hands-down correct way to accomplish this, which to employ the services of <code>Lingua::EN::Numbers</code> to handle all the fiddly edge-cases correctly.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e">## this is the right way to do this</span>
+    <span style="color:#66d9ef">use</span> Lingua::EN::Numbers <span style="color:#e6db74">qw( num2en )</span>;
+    <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">99</span>) {
+        <span style="color:#66d9ef">my</span> $word <span style="color:#f92672">=</span> num2en( $_ );
+        <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $word <span style="color:#f92672">=~</span><span style="color:#e6db74"> /e/</span>;
+        say $word;
+    }
+</code></pre></div><p>However I did find myself returning to the underlying puzzle of making a set of rules to convert the digits correctly. This of course is highly irregular and weird, as numbers and numbering are some of the oldest linguistic concepts around and have had plenty of time to drift in many ways of practical convenience. Like, for instance, creating a whole separate set of words for numbers more than ten but still not very large. And even those constructs have a noticeable divergence after that presumably Babylonian base-12 &ldquo;twelve&rdquo; into relatively consistent &ldquo;teens&rdquo;, although the prefixes before the &ldquo;-teen&rdquo; part follow their own unique expression.</p>
+<p>In the end I chose to construct an internally-consistent, regular set of phrases and alter those to fit the exceptions. This took the form of using two lists for the digits 0 through 9 is each position, and two regular expressions to adapt the output.</p>
+<p>Of note here is that I needed to include 0 in the lists, as it&rsquo;s a valid digit, but is not commonly spoken as &ldquo;zero&rdquo;: it&rsquo;s implicit in the tens words: we just say &ldquo;twenty&rdquo;, not &ldquo;twenty-zero&rdquo;. To highlight this I chose to replace it with the unicode null as it makes the regular expression removing it easier to read. In that regex, you will notice, we also need to remove the hyphen. So many cases! But in the end I think I did distill it down to a quite simple method by doing it this way.</p>
+<p>In another note I don&rsquo;t recall ever building a hash using the <code>qw()</code> construct and two columns like this before, but find it quite readable. Think I&rsquo;ll be doing that again. The fat comma is nice, but laid out as a table the relationship is made quite obvious.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e">## constructing written words for numbers less than 100 is a irregular and non-obvious.</span>
+    <span style="color:#66d9ef">my</span> @ones  <span style="color:#f92672">=</span> <span style="color:#e6db74">qw( ∅ one two three four five six seven eight nine )</span>;
+    <span style="color:#66d9ef">my</span> @tens  <span style="color:#f92672">=</span> <span style="color:#e6db74">qw( ∅ ten twenty thirty forty fifty sixty seventy eighty ninety)</span>;
+    <span style="color:#66d9ef">my</span> %teens <span style="color:#f92672">=</span> <span style="color:#e6db74">qw( ten-one     eleven
+</span><span style="color:#e6db74">                    ten-two     twelve
+</span><span style="color:#e6db74">                    ten-three   thirteen
+</span><span style="color:#e6db74">                    ten-four    fourteen
+</span><span style="color:#e6db74">                    ten-five    fifteen
+</span><span style="color:#e6db74">                    ten-six     sixteen
+</span><span style="color:#e6db74">                    ten-seven   seventeen
+</span><span style="color:#e6db74">                    ten-eight   eighteen
+</span><span style="color:#e6db74">                    ten-nine    nineteen )</span>;
+
+    <span style="color:#66d9ef">my</span> @out;
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $t ( @tens ) {
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $o ( @ones ) {
+            push @out, <span style="color:#e6db74">&#34;$t-$o&#34;</span>;
+        }
+    }
+
+    <span style="color:#66d9ef">for</span> (@out) {
+        <span style="color:#e6db74">s/^∅-|-?∅$//g</span>;
+        <span style="color:#e6db74">s/$_/$teens{$_}/</span> <span style="color:#66d9ef">if</span> $teens{$_};
+    }
+
+    shift @out;
+    say $_ <span style="color:#66d9ef">for</span> grep { <span style="color:#f92672">!</span> <span style="color:#e6db74">/e/</span> } @out;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/roger-bell-west/javascript/ch-1.js">Javascript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/roger-bell-west/kotlin/ch-1.kt">Kotlin</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/roger-bell-west/lua/ch-1.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/roger-bell-west/postscript/ch-1.ps">Postscript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/roger-bell-west/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/roger-bell-west/raku/ch-1.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/roger-bell-west/ruby/ch-1.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/roger-bell-west/rust/ch-1.rs">Rust</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://blog.firedrake.org/archive/2022/01/The_Weekly_Challenge_148__Eban__Cardano.html">RogerBW&rsquo;s Blog: The Weekly Challenge 148: Eban, Cardano</a></p>
+<p>Roger relies on two hard-coded patterns of yes/no flags for each digit in each position. This of course relies on first examining the written words to construct each key, which is an array with the corresponding index values given a 1/0 indicator.</p>
+<p>This method in general neatly avoids much of the irregularity of the written number phrases, because, for instance, all of the numbers from 10 to 19 are excluded anyway, so mis-labeling them as &ldquo;ten-two&rdquo; makes no difference to the outcome. The result is an exercise in focus: what we want is the eban numbers, not necessarily a proper way to translate numbers in general from one representation to another.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">eban</span> {
+      <span style="color:#66d9ef">my</span> $mx<span style="color:#f92672">=</span>shift;
+      <span style="color:#66d9ef">my</span> @units<span style="color:#f92672">=</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>);
+      <span style="color:#66d9ef">my</span> @tens<span style="color:#f92672">=</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>);
+      <span style="color:#66d9ef">my</span> @out;
+      <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$mx) {
+        <span style="color:#66d9ef">if</span> ($tens[int($i<span style="color:#f92672">/</span><span style="color:#ae81ff">10</span>)] <span style="color:#f92672">&amp;&amp;</span> $units[$i%10] <span style="color:#f92672">&amp;&amp;</span> $i <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>) {
+          push @out,$i;
+        }
+      }
+      <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@out;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/athanasius/raku/ch-1.raku">Raku</a></p>
+<p>The monk opts to do their own translation from digits to numbers, with a list of the first twenty words and rules for compounding the rest. It&rsquo;s a good solution avoiding much of the inherent messiness of translation.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    const <span style="color:#66d9ef">my</span> $MAX_EBAN     <span style="color:#f92672">=&gt;</span>     <span style="color:#ae81ff">100</span>;
+    const <span style="color:#66d9ef">my</span> @SINGLE_NAMES <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">qw( &#39;&#39; one two three four five six seven eight nine
+</span><span style="color:#e6db74">                                  ten eleven twelve thirteen fourteen fifteen
+</span><span style="color:#e6db74">                                  sixteen seventeen eighteen nineteen )</span>;
+    const <span style="color:#66d9ef">my</span> @PREFIX_NAMES <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">qw( &#39;&#39; &#39;&#39; twenty thirty forty fifty sixty seventy
+</span><span style="color:#e6db74">                                  eighty ninety )</span>;
+    const <span style="color:#66d9ef">my</span> $ONE_HUNDRED  <span style="color:#f92672">=&gt;</span>     <span style="color:#e6db74">&#39;one hundred&#39;</span>;
+
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $n (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">19</span>)
+    {
+        push @eban_nums, $n <span style="color:#66d9ef">unless</span> $SINGLE_NAMES[ $n ] <span style="color:#f92672">=~</span><span style="color:#e6db74"> /e/</span>;
+    }
+
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $p (<span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">9</span>)
+    {
+        <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $PREFIX_NAMES[ $p ] <span style="color:#f92672">=~</span><span style="color:#e6db74"> /e/</span>;
+
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $n (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">9</span>)
+        {
+            push @eban_nums, $p <span style="color:#f92672">*</span> <span style="color:#ae81ff">10</span> <span style="color:#f92672">+</span> $n <span style="color:#66d9ef">unless</span> $SINGLE_NAMES[ $n ] <span style="color:#f92672">=~</span><span style="color:#e6db74"> /e/</span>;
+        }
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get_name</span>
+    {
+        <span style="color:#66d9ef">my</span> ($n) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span>  $name;
+
+        <span style="color:#66d9ef">if</span> ($n <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">20</span>)
+        {
+            $name  <span style="color:#f92672">=</span> $SINGLE_NAMES[ $n ];
+        }
+        <span style="color:#66d9ef">elsif</span> ($n <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">100</span>)
+        {
+            $name  <span style="color:#f92672">=</span> $PREFIX_NAMES[ $n <span style="color:#f92672">/</span> <span style="color:#ae81ff">10</span> ];
+            $name <span style="color:#f92672">.=</span> <span style="color:#e6db74">&#39;-&#39;</span> <span style="color:#f92672">.</span>
+                     $SINGLE_NAMES[ $n % 10 ] <span style="color:#66d9ef">if</span> $n % 10 <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>;
+        }
+        <span style="color:#66d9ef">else</span>
+        {
+            $name  <span style="color:#f92672">=</span> $ONE_HUNDRED;
+        }
+
+        <span style="color:#66d9ef">return</span> $name;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/jaldhar-h-vyas/perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/jaldhar-h-vyas/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://www.braincells.com/perl/2022/01/perl_weekly_challenge_week_148.html">Perl Weekly Challenge: Week 148</a></p>
+<p>This &ldquo;hybrid&rdquo; method of construction — the first twenty values written out and a rule system to create the rest — allows for a very compact core logic. Jaldhar demonstrates just how small, accomplishing the task in just a few lines. The hash <code>%spelling</code> has the bulk of the terms, 1 through 19 plus 100, with the tens a carefully constructed array with the 0 and 1 indices placed yet left undefined.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $n (<span style="color:#ae81ff">20</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">99</span>) {
+        <span style="color:#66d9ef">my</span> ($ten, $unit) <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, $n;
+        $spelling{$n} <span style="color:#f92672">=</span> $tens[$ten] <span style="color:#f92672">.</span> ($unit <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> ? <span style="color:#e6db74">q{}</span> : <span style="color:#e6db74">&#34;-$spelling{$unit}&#34;</span>);
+    }
+
+    say join <span style="color:#e6db74">q{, }</span>, sort { $a <span style="color:#e6db74">&lt;=&gt;</span> $b } grep { $spelling{$_} <span style="color:#f92672">!~</span> <span style="color:#e6db74">/e/</span>; } keys %spelling;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/ulrich-rieke/cpp/ch-1.cpp">C++</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/ulrich-rieke/raku/ch-1.raku">Raku</a></p>
+<p>Ulrich makes a variation on this approach, but extending it into the tens as well: constructing all numbers as though the irregularities don&rsquo;t exist, and then filtering them on presence of the letter. Again this works fine because both &ldquo;ten-one&rdquo; and &ldquo;eleven&rdquo; are excluded anyway, so who, in the end, cares exactly how they are to be written? All of the allowed values follow the regular rules of construction, so we focus on them.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> @less_than_ten <span style="color:#f92672">=</span> ( <span style="color:#e6db74">&#34;one&#34;</span> , <span style="color:#e6db74">&#34;two&#34;</span> , <span style="color:#e6db74">&#34;three&#34;</span> , <span style="color:#e6db74">&#34;four&#34;</span> , <span style="color:#e6db74">&#34;five&#34;</span> , <span style="color:#e6db74">&#34;six&#34;</span> , <span style="color:#e6db74">&#34;seven&#34;</span> ,
+          <span style="color:#e6db74">&#34;eight&#34;</span> , <span style="color:#e6db74">&#34;nine&#34;</span> ) ;
+    <span style="color:#66d9ef">my</span> @teens <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#34;ten&#34;</span> , <span style="color:#e6db74">&#34;twenty&#34;</span> , <span style="color:#e6db74">&#34;thirty&#34;</span> , <span style="color:#e6db74">&#34;forty&#34;</span> , <span style="color:#e6db74">&#34;fifty&#34;</span> , <span style="color:#e6db74">&#34;sixty&#34;</span> , <span style="color:#e6db74">&#34;seventy&#34;</span> ,
+          <span style="color:#e6db74">&#34;eighty&#34;</span> , <span style="color:#e6db74">&#34;ninety&#34;</span> , <span style="color:#e6db74">&#34;hundred&#34;</span> ) ;
+    <span style="color:#66d9ef">my</span> @ebanNumbers ;
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> scalar( @less_than_ten ) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ) {
+      <span style="color:#66d9ef">if</span> ( $less_than_ten[ $i ] <span style="color:#f92672">!~</span> <span style="color:#e6db74">/e/</span> ) {
+          push @ebanNumbers , $i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> ;
+      }
+    }
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> scalar( @teens ) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ) {
+      <span style="color:#66d9ef">if</span> ( $teens[ $i ] <span style="color:#f92672">=~</span><span style="color:#e6db74"> /e/</span> ) {
+          <span style="color:#66d9ef">next</span> ;
+      }
+      <span style="color:#66d9ef">else</span> {
+          push @ebanNumbers , ( $i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> ) <span style="color:#f92672">*</span> <span style="color:#ae81ff">10</span> ;
+          <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $j (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> scalar( @less_than_ten ) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ) {
+        <span style="color:#66d9ef">if</span> ( $less_than_ten[ $j ] <span style="color:#f92672">!~</span> <span style="color:#e6db74">/e/</span> ) {
+            push @ebanNumbers , ( $i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> ) <span style="color:#f92672">*</span> <span style="color:#ae81ff">10</span> <span style="color:#f92672">+</span> ( $j <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> ) ;
+        }
+          }
+      }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/bruce-gray/perl/ch-1.pl"><strong>Bruce Gray</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/bruce-gray/raku/ch-1.raku">Raku</a></p>
+<p>Bruce takes this avoiding the complexities of translation to its logical extreme. Remember, even though it has to <em>do</em> with the written words, it&rsquo;s not actually <em>about</em> the written words. After all, we have stuff to do. Important stuff. Stuff you wouldn&rsquo;t know anything about.</p>
+<p>Stuff.</p>
+<p>Nice compact filter, though. Kudos.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Modern::Perl;
+    <span style="color:#66d9ef">use</span> Lingua::EN::Numbers <span style="color:#e6db74">qw&lt;num2en&gt;</span>;
+
+    say join <span style="color:#e6db74">&#39; &#39;</span>, grep { <span style="color:#f92672">!</span>(num2en($_) <span style="color:#f92672">=~</span><span style="color:#e6db74"> /e/</span>) } <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">100</span>;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/mattneleigh/perl/ch-1.pl"><strong>Matthew Neleigh</strong></a></p>
+<p>In considering the puzzle, its hard not to adopt a strategy of looking at the numbers involved and just crossing off excluded digits. After all, there&rsquo;s no mathematical basis behind which numbers are in or out. Ultimately, we are left with the choice to either create and search the textual representations, using something like a regular expression, or to do that part ourselves by hand and hard-wire the results into the code we write.</p>
+<p>Hard-wiring a specific use-case is generally frowned upon as a bad practice, as it&rsquo;s a mess to alter and not well disposed to re-use. This criticism is fair and quite applicable here, but then again there&rsquo;s nothing about this relationship between numbers and the letter &ldquo;e&rdquo; that <em>isn&rsquo;t</em> capricious:</p>
+<p>&ldquo;The first number that would appear in the British Eban list but not the American list is 2*10^21.&rdquo; - Douglas Boffey, Jun 21 2012</p>
+<p>Oh come on! Capricious is too kind.</p>
+<p>Matthew takes a constructive approach, then: first manually extracting all of the non-eban digits from consideration before using two loops to create every combination from whats left. Again this only works because the irregular exceptions to proper construction just happen to align with the method in producing the correct results, but then of course all of the relationships &ldquo;just happen&rdquo; to work the way they do, so why not? YOLO, right? Hold my beer, I&rsquo;m going in!</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># Tens-place and ones-place numbers that do</span>
+    <span style="color:#75715e"># not have an &#39;e&#39; in them; numbers from</span>
+    <span style="color:#75715e"># sixty six to one hundred all have an &#39;e&#39;</span>
+    <span style="color:#75715e"># so just use a limited subset of digits</span>
+    <span style="color:#66d9ef">my</span> @tens <span style="color:#f92672">=</span> ( <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span> );
+    <span style="color:#66d9ef">my</span> @ones <span style="color:#f92672">=</span> ( <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">6</span> );
+    <span style="color:#66d9ef">my</span> @ebans;
+    <span style="color:#66d9ef">my</span> $tens_digit;
+    <span style="color:#66d9ef">my</span> $ones_digit;
+
+    <span style="color:#75715e"># Loop over the tens place digits</span>
+    <span style="color:#66d9ef">foreach</span> $tens_digit (@tens){
+        <span style="color:#75715e"># Loop over the ones place digits</span>
+        <span style="color:#66d9ef">foreach</span> $ones_digit (@ones){
+            <span style="color:#66d9ef">if</span>($tens_digit){
+                <span style="color:#75715e"># Tens digit is not zero...</span>
+                push(@ebans, $tens_digit <span style="color:#f92672">.</span> $ones_digit);
+            } <span style="color:#66d9ef">else</span>{
+                <span style="color:#75715e"># Tens digit is zero...</span>
+                push(@ebans, $ones_digit) <span style="color:#66d9ef">if</span>($ones_digit);
+            }
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://wlmb.github.io/2022/01/17/PWC148/">Perl Weekly Challenge 148 – W. Luis Mochán</a></p>
+<p>Luis presents us with an amazing, compact solution using the Perl Data Language extensions&hellip; oh wait, that&rsquo;s madness. No, he most certainly doe <em>not</em> do that. Instead he employs the services of a much more pertinent module, <code>Lingua::EN::Numbers</code>, and its function <code>num2en()</code>. Make &lsquo;em, filter &lsquo;em, and call it a day.</p>
+<p>This is the way.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Lingua::EN::Numbers <span style="color:#e6db74">qw(num2en)</span>;
+    <span style="color:#75715e"># Usage: ./ch-1.pl [upper_bound]&#34;</span>
+    <span style="color:#66d9ef">my</span> $upper_bound<span style="color:#f92672">=</span>$ARGV[<span style="color:#ae81ff">0</span>]<span style="color:#e6db74">//</span><span style="color:#ae81ff">100</span>;
+    say <span style="color:#e6db74">&#34;The Eban numbers up to $upper_bound are&#34;</span>;
+    <span style="color:#66d9ef">for</span>(<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$upper_bound){
+        say <span style="color:#e6db74">&#34;$_ &#34;</span>,num2en($_)  <span style="color:#66d9ef">unless</span> (<span style="color:#66d9ef">my</span> $n<span style="color:#f92672">=</span>num2en($_))<span style="color:#f92672">=~</span><span style="color:#e6db74">/e/</span>
+    }
+</code></pre></div><h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-1">Blogs and Additional Submissions in Guest Languages for Task 1:</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/arne-sommer/perl/ch-1.pl"><strong>Arne Sommer</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/arne-sommer/raku/cardano-triplets-1">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://raku-musings.com/eban-cardano.html">Eban Cardano the Third with Raku and Perl</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://jacoby.github.io/2022/01/19/its-triplets-weekly-challenge-148.html">It’s Triplets!: Weekly Challenge #148 | Committed to Memory</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/polettix/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.polettix.it/ETOOBUSY/2022/01/19/pwc148-eban-numbers/">PWC148 - Eban Numbers - ETOOBUSY</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-148/james-smith">Perl Weekly Challenge #148</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/laurent-rosenfeld/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://blogs.perl.org/users/laurent_r/2022/01/perl-weekly-challenge-148-eban-numbers-and-cardano-triplets.html">Perl Weekly Challenge 148: Eban Numbers and Cardano Triplets | laurent_r</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/robert-dicicco/perl/ch-1.pl"><strong>Robert DiCicco</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/robert-dicicco/ruby/ch-1.rb">Ruby</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/walt-mankowski/perl/ch-1.pl"><strong>Walt Mankowski</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-148/walt-mankowski#readme">perlweeklychallenge-club/challenge-148/walt-mankowski at master · manwar/perlweeklychallenge-club · GitHub</a></p>
+<hr>
+<hr>
+<h1 id="PWC148TASK2">TASK 2</h1>
+<h1 id="cardano-triplets">Cardano Triplets</h1>
+<p><em>Submitted by: Mohammad S Anwar</em></p>
+<p>Write a script to generate first 5 Cardano Triplets.</p>
+<p>A triplet of positive integers (a,b,c) is called a Cardano Triplet if it satisfies the below condition.</p>
+<p>∛(a + b√c) + ∛(a - b√c) = 1</p>
+<p><strong>Example</strong></p>
+<pre><code>     (2,1,5) is the first Cardano Triplets.
+</code></pre><h2 id="about-the-solutions-1">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/abigail/perl/ch-2.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/arne-sommer/perl/ch-2.pl"><strong>Arne Sommer</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/bruce-gray/perl/ch-2.pl"><strong>Bruce Gray</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/duncan-c-white/perl/ch-2FAST.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/jaldhar-h-vyas/perl/ch-2.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/mattneleigh/perl/ch-2.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/perlboy1967/perl/ch-2.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/peter-campbell-smith/perl/ch-2.pl"><strong>Peter Campbell Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/robert-dicicco/perl/ch-2.pl"><strong>Robert DiCicco</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/steven-wilson/perl/ch-2.pl"><strong>Steven Wilson</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/walt-mankowski/perl/ch-2.pl"><strong>Walt Mankowski</strong></a></p>
+<p>Gerolamo Cardano was a 16th century Italian mathematician, who amongst his many achievements was the publishing of one of the fundamental Renaissance works on algebra, <em>Ars Magna</em>. The publication of this work revealed some of the earliest work in solving  cubic equations, both through Cardano&rsquo;s efforts and those of others. As a result, his name is linked with cubic and quatric polynomials to this day.</p>
+<p>One such link is what is known as the Cardano triplets, being parameter solutions to the equation given, which in turn bears relation to what is known as &ldquo;the Cardano method&rdquo; for solving cubic equations.</p>
+<p>There were 20 submissions for the second task this past week.</p>
+<h2 id="analysis-of-a-triple-threat">ANALYSIS of a TRIPLE THREAT</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/jaldhar-h-vyas/perl/ch-2.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/robert-dicicco/perl/ch-2.pl"><strong>Robert DiCicco</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/steven-wilson/perl/ch-2.pl"><strong>Steven Wilson</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/perlboy1967/perl/ch-2.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/abigail/perl/ch-2.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a></p>
+<p>Solving cubic equations is non-trivial, and producing solutions to the task at hand is subject to several complications involving the cube roots of negative numbers, which seems to have an uncanny ability to foul up algorithms for solving them. Needless to say, non-mathematicians were at a distinct disadvantage to solving this challenge, although ultimately nothing more than arithmetic was required for a brute-force assult on the problem. Assuming, of course, they could figure a way around aquiring the cube root.</p>
+<p>To speak to that, the first difficulty encountered in solving this equation with Perl is the lack of a dedicated cube root operator, and we ended up seeing various ways of working around this, which we will have a look at. In Perl raising a value to the 1/3 power had its own unique problems for reasons hard to explain. But we&rsquo;ll get to that.</p>
+<p>Another comment that arose often was the inherent lack of definition to the idea of &ldquo;first&rdquo; when requesting a tuple of three values. Such a classification isn&rsquo;t really possible, or is, but only based on what amounts to arbitrary and context-specific rules to produce an order. Rules, I might add, that remain undefined for the challenge. In the end though people managed to come up with something that made sense to them, usually the first five results from whatever algorithm they arrived at.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://jacoby.github.io/2022/01/19/its-triplets-weekly-challenge-148.html">It’s Triplets!: Weekly Challenge #148 | Committed to Memory</a></p>
+<p>In Perl, much to many people&rsquo;s consternation, raising a negative number to the 1/3 power results in <code>NaN</code>, or Not a Number. Treating this as a restriction to be circumvented, he gets around it by explicitly negating the cube root of the absolute value should it be required in the second part of the equation.</p>
+<p>Using three nested slightly-overlapping lists Dave selects unique sets of triplets, then uses <code>Algorith::Permute</code> to try each value in each position in the equation. Or in his words, to &ldquo;go through a lot of numbers and test them&rdquo;. Fair enough. It chews trough values and produces the requested 5 results in a small fraction of a second.</p>
+<p>The search pattern grows incrementally until 5 solutions are found, but does have a safety value at <code>$i &gt; 1000</code> should the process run away. But don&rsquo;t worry, it doesn&rsquo;t even get close.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Algorithm::Permute;
+
+    <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">while</span> ( scalar @triplets <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">5</span> ) {
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $j ( <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $i ) {
+            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $k ( <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $j ) {
+                <span style="color:#66d9ef">my</span> $p <span style="color:#f92672">=</span> Algorithm::Permute<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>( [ $i, $j, $k ] );
+                <span style="color:#66d9ef">while</span> ( <span style="color:#66d9ef">my</span> @res <span style="color:#f92672">=</span> $p<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">next</span> ) {
+                    <span style="color:#66d9ef">my</span> $t <span style="color:#f92672">=</span> test_cardano(@res);
+                    <span style="color:#66d9ef">if</span> ( $t <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> ) {
+                        push @triplets, <span style="color:#f92672">\</span>@res;
+                    }
+                }
+            }
+        }
+        $i<span style="color:#f92672">++</span>;
+        <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $i <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1000</span>;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">test_cardano</span> ( $a, $b, $c ) {
+        <span style="color:#66d9ef">my</span> $sqrtc <span style="color:#f92672">=</span> sqrt $c;
+
+        <span style="color:#75715e"># not necessary for the first five</span>
+        <span style="color:#66d9ef">if</span> ( $a <span style="color:#f92672">&gt;</span> $b <span style="color:#f92672">*</span> $sqrtc ) {
+            <span style="color:#66d9ef">return</span> cuberoot( $a <span style="color:#f92672">+</span> $b <span style="color:#f92672">*</span> $sqrtc ) <span style="color:#f92672">+</span> cuberoot( $a <span style="color:#f92672">-</span> $b <span style="color:#f92672">*</span> $sqrtc );
+        }
+
+        <span style="color:#66d9ef">return</span> cuberoot( $a <span style="color:#f92672">+</span> $b <span style="color:#f92672">*</span> $sqrtc ) <span style="color:#f92672">+</span>
+            <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">*</span> cuberoot( abs( $a <span style="color:#f92672">-</span> $b <span style="color:#f92672">*</span> $sqrtc ) );
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/jaldhar-h-vyas/perl/ch-2.pl"><strong>Jaldhar H. Vyas</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/jaldhar-h-vyas/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://www.braincells.com/perl/2022/01/perl_weekly_challenge_week_148.html">Perl Weekly Challenge: Week 148</a></p>
+<p>Jaldhar chooses, in his words, &ldquo;the absolute slowest way of slowing this&rdquo; which is in my mind a perfect typo and downright poetic.</p>
+<p>Which is to say he constructs three nested loops from one to 100 and tries fitting in the values. Remarkably for all his reservations this frontal assult takes very little time to find his solutions:</p>
+<pre><code>    2, 1, 5
+    5, 1, 52
+    5, 2, 13
+    8, 3, 21
+    11, 4, 29
+</code></pre><p>There is one little problem remaining, though, and that is the question of testing the sum of the cube roots, obviously floats, against an integer. There are a large number of very small ways this can go wrong. To help he brings out <code>Math::Round</code>, should the result be very close to but not quite exactly right due to a floating-point error. In this case he rounds to the nearest one-thousandth place.</p>
+<p>Floating-point epsilon factors always bother me, because I can&rsquo;t help but immediately try and figure out the equations going the other way, to find the first error the assumption could cause, which invariably makes my brain hurt. The actual error in the 53-bit mantissa of a Perl float should fall around 1e-13. Is 1/1000 too high? Not within the range we&rsquo;re looking at. Eventually? Sure.</p>
+<p>I&rsquo;ll pass on figuring out exactly when an invalid triplet gets close enough to get swallowed and allowed in. It is plenty small enough to produce five correct answers, so we&rsquo;re good here.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Math::Round <span style="color:#e6db74">qw/ nearest /</span>;
+
+    <span style="color:#66d9ef">my</span> $count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $a (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">100</span>) {
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $b (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">100</span>) {
+            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $c (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">100</span>) {
+                <span style="color:#66d9ef">my</span> $bc <span style="color:#f92672">=</span> $b <span style="color:#f92672">*</span> sqrt($c);
+                <span style="color:#66d9ef">my</span> $left <span style="color:#f92672">=</span> ($a <span style="color:#f92672">+</span> $bc) <span style="color:#f92672">**</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">/</span><span style="color:#ae81ff">3</span>);
+                <span style="color:#66d9ef">my</span> $x <span style="color:#f92672">=</span> $a <span style="color:#f92672">-</span> $bc;
+                <span style="color:#66d9ef">my</span> $right <span style="color:#f92672">=</span> ($x <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>) ? $x <span style="color:#f92672">**</span> (<span style="color:#ae81ff">1</span><span style="color:#e6db74">/3) : -abs($x) ** (1/</span><span style="color:#ae81ff">3</span>);
+                <span style="color:#66d9ef">if</span> (nearest(<span style="color:#ae81ff">0.001</span>, $left <span style="color:#f92672">+</span> $right) <span style="color:#f92672">==</span> <span style="color:#ae81ff">1.0</span>) {
+                    $count<span style="color:#f92672">++</span>;
+                    say join <span style="color:#e6db74">q{, }</span>, ($a, $b, $c);
+                    <span style="color:#66d9ef">if</span> ($count <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">4</span>) {
+                        exit;
+                    }
+                }
+            }
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/laurent-rosenfeld/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://blogs.perl.org/users/laurent_r/2022/01/perl-weekly-challenge-148-eban-numbers-and-cardano-triplets.html">Perl Weekly Challenge 148: Eban Numbers and Cardano Triplets | laurent_r</a></p>
+<p>Laurent also chooses to take a nested loop approach to produce multi-sets of three digits, allowing duplication by iterating over the full range for each position. This will produce tuples of one of each value in each positions and is slightly faster than premuting due to the lack of additional overhead.</p>
+<p>To do the final comparison with 1 he choses an epsilon of one one-millionth.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> constant MAX <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_cardano_triplet</span> {
+        <span style="color:#66d9ef">my</span> ($a, $b, $c) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $a <span style="color:#f92672">-</span> $b <span style="color:#f92672">*</span> sqrt($c) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">my</span> $val <span style="color:#f92672">=</span> (($a <span style="color:#f92672">+</span> $b <span style="color:#f92672">*</span> sqrt($c)) <span style="color:#f92672">**</span> (<span style="color:#ae81ff">1</span><span style="color:#e6db74">/3)) - ((- $a + $b * sqrt($c)) ** (1/</span><span style="color:#ae81ff">3</span>));
+        <span style="color:#75715e"># say $val;</span>
+        <span style="color:#66d9ef">return</span> abs($val <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0.000001</span>;
+    }
+
+    <span style="color:#66d9ef">my</span> @values <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">100</span>;
+    <span style="color:#66d9ef">my</span> $count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    OUT: <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (@values) {
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $j (@values) {
+            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $k (@values) {
+                <span style="color:#66d9ef">if</span> (is_cardano_triplet $i, $j, $k) {
+                    say <span style="color:#e6db74">&#34;$i $j $k&#34;</span>;
+                    $count<span style="color:#f92672">++</span>;
+                    <span style="color:#66d9ef">last</span> OUT <span style="color:#66d9ef">if</span> $count <span style="color:#f92672">&gt;=</span> MAX;
+                }
+            }
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/robert-dicicco/perl/ch-2.pl"><strong>Robert DiCicco</strong></a></p>
+<p>Robert breaks the equation into parts to make the negative cube root problem go away, placing the final difference between the additive and subtractive portions in a conditional. As the <em>b</em>√<em>c</em> term of the equation remains unchanged in both halves, it gets its own intermediate variable for clarity.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $aval ( <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>MAX ){
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $bval ( <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>MAX ){
+            <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $cval ( <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>MAX ){
+                <span style="color:#66d9ef">my</span> $ret <span style="color:#f92672">=</span> isCardano( $aval, $bval, $cval );
+                <span style="color:#66d9ef">if</span>( $ret <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> ){
+                    $count<span style="color:#f92672">++</span>;
+                    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;Count: $count\t\( $aval,$bval,$cval \)\n&#34;</span>);
+                }
+                <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span>( $count <span style="color:#f92672">==</span> <span style="color:#ae81ff">10</span> );
+            }
+        }
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">isCardano</span> {
+        <span style="color:#66d9ef">my</span> $a <span style="color:#f92672">=</span> int(shift);
+        <span style="color:#66d9ef">my</span> $b <span style="color:#f92672">=</span> int(shift);
+        <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> int(shift);
+
+        $bc <span style="color:#f92672">=</span> $b <span style="color:#f92672">*</span> ( $c <span style="color:#f92672">**</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>) );
+
+        <span style="color:#66d9ef">my</span> $val1 <span style="color:#f92672">=</span> ($a <span style="color:#f92672">+</span> $bc) <span style="color:#f92672">**</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">/</span><span style="color:#ae81ff">3</span>);
+        <span style="color:#66d9ef">my</span> $val2 <span style="color:#f92672">=</span> abs(($a <span style="color:#f92672">-</span> $bc)) <span style="color:#f92672">**</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">/</span><span style="color:#ae81ff">3</span>);
+        <span style="color:#66d9ef">my</span> $val3 <span style="color:#f92672">=</span> $val1 <span style="color:#f92672">-</span> $val2;
+
+        <span style="color:#66d9ef">if</span>( $val3 <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">1.000001</span> <span style="color:#f92672">and</span> $val3 <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0.999999</span> ){
+            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+        } <span style="color:#66d9ef">else</span> {
+            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/steven-wilson/perl/ch-2.pl"><strong>Steven Wilson</strong></a></p>
+<p>Steven imports a proper cube root function from the core <code>POSIX</code> module, along with that library&rsquo;s version of the square root as well. In for a penny, in for a pound.</p>
+<p>He also sets his upper limit to 117, suggesting he&rsquo;s played around with this looking at a larger set of results before pulling back to the five requested.</p>
+<p>Of note in this solution is the absence of any sort of epsilon value or rounding hedge against floating-point errors. As we have not specified the criteria for the ordering of &ldquo;first 5 Cardano Triplets&rdquo;, and that could well be taken as the first five produced by whatever method was used, we have a valid result.</p>
+<p>But&hellip; of note as well, the result set doesn&rsquo;t quite match any of the others produced, although all triples are valid. Across the field there was an extraordinary variance in the solutions offered, and in a quick survey I count at least 11 different collections of just the first five tuples. So are we missing some groupings by a slight amount and throwing that answer out unnecessarily? Sure, probably, but again: Why not?</p>
+<p>Because I can&rsquo;t seem to let stuff go sometimes, substituting the line:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">if</span> ( <span style="color:#ae81ff">0.999999</span> <span style="color:#f92672">&lt;</span> ( cbrt( $a <span style="color:#f92672">+</span> $b <span style="color:#f92672">*</span> sqrt($c) ) <span style="color:#f92672">+</span> cbrt( $a <span style="color:#f92672">-</span> $b <span style="color:#f92672">*</span> sqrt($c) ) ) <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">1.000001</span> )
+</code></pre></div><p>yields different results matching some of the others. But what we have can&rsquo;t be considered wrong.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> POSIX <span style="color:#e6db74">qw/ cbrt sqrt /</span>;
+
+    <span style="color:#66d9ef">my</span> $max     <span style="color:#f92672">=</span> <span style="color:#ae81ff">117</span>;
+    <span style="color:#66d9ef">my</span> $counter <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+    FIRST_FIVE: <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $a ( <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $max ) {
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $b ( <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $max ) {
+            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $c ( <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $max ) {
+                <span style="color:#66d9ef">if</span> ( ( cbrt( $a <span style="color:#f92672">+</span> $b <span style="color:#f92672">*</span> sqrt($c) ) <span style="color:#f92672">+</span> cbrt( $a <span style="color:#f92672">-</span> $b <span style="color:#f92672">*</span> sqrt($c) ) )
+                    <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> )
+                {
+                    say <span style="color:#e6db74">&#34;($a, $b, $c)&#34;</span>;
+                    $counter<span style="color:#f92672">++</span>;
+                    <span style="color:#66d9ef">if</span> ( $counter <span style="color:#f92672">==</span> <span style="color:#ae81ff">5</span> ) {
+                        <span style="color:#66d9ef">last</span> FIRST_FIVE;
+                    }
+                }
+            }
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a></p>
+<p>We can avoid the cube root entirely, however, using some algebraic transformations. By judicious application of cubing, rephrasing and cancelling out terms, the expression:</p>
+<p>∛(<em>a</em> + <em>b</em>√<em>c</em>) + ∛(<em>a</em> - <em>b</em>√<em>c</em>) = 1</p>
+<p>can be rearranged into:</p>
+<p>8<em>a</em>³ + 15<em>a</em>² + 6 - 27<em>b</em>²<em>c</em> = 1</p>
+<p>which is considerably easier to work with. Adam imports two modules to aid him, <code>Algorithm::Combinatorics</code> for its <code>tuples()</code> function, and <code>POSIX</code> for its exponentiation function <code>pow()</code>. The function <code>tuples</code> is an alias for <code>variations</code>, itself a term for permutations into a subset, <em>n</em><strong>P</strong><em>k</em>. It is noted in the documentation that when <em>n</em> = <em>k</em>, <em>k</em>-sized variations over the set of <em>n</em> elements is the same as permutations of the set of <em>n</em> elements. Which, you know, makes sense.</p>
+<p>Anywho, picking 3-tuples from the list 0 to 100 (an arbitrary upper bound) is a compact (and XS-driven) way to produce the triple loop form we saw quite a bit of just now. These coefficients are then placed into the cubic polynomial to be evaluated, completely sidestepping any expensive floating-point cube root calculations.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> POSIX;
+    <span style="color:#66d9ef">use</span> Algorithm::Combinatorics <span style="color:#e6db74">q/tuples/</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">first_five_cardano_triplets</span>{
+        <span style="color:#66d9ef">my</span> @triplets;
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $tuple (tuples([<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">100</span>], <span style="color:#ae81ff">3</span>)){
+            <span style="color:#66d9ef">my</span>($s, $t, $u) <span style="color:#f92672">=</span> @{$tuple};
+            <span style="color:#66d9ef">if</span>(<span style="color:#ae81ff">8</span> <span style="color:#f92672">*</span> pow($s, <span style="color:#ae81ff">3</span>) <span style="color:#f92672">+</span> <span style="color:#ae81ff">15</span> <span style="color:#f92672">*</span> pow($s, <span style="color:#ae81ff">2</span>) <span style="color:#f92672">+</span> <span style="color:#ae81ff">6</span> <span style="color:#f92672">*</span> $s <span style="color:#f92672">-</span> <span style="color:#ae81ff">27</span> <span style="color:#f92672">*</span> pow($t, <span style="color:#ae81ff">2</span>) <span style="color:#f92672">*</span> $u <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>){
+            	push @triplets, [$s, $t, $u];
+            }
+            <span style="color:#66d9ef">return</span> @triplets <span style="color:#66d9ef">if</span> @triplets <span style="color:#f92672">==</span> <span style="color:#ae81ff">5</span>;
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/perlboy1967/perl/ch-2.pl"><strong>Niels van Dijke</strong></a></p>
+<p>Niels crafts his own take on a faster reworking of the algorithm by both restructuring the fundamental equation and compiling it, inline, from C source. Take <em>that</em> XS! All made possible by the <code>Inline</code> module, which many of us visited way back in <a href="https://theweeklychallenge.org/blog/review-challenge-029/">PWC 029</a>. Ahh, good times!</p>
+<p>Although there is an upfront cost for firing up the compiler on the first run, the compiled subroutine is stored by <code>Inline</code> and can then be linked in quite quickly when the script is called again. Oh, and you do need access to a compiler, of course.</p>
+<p><code>Inline</code> also provides a handy and easy-to-manipulate test-bed for dealing directly with the Perl internal variable types, which come into play when performing more complex data hand-offs to inlined C code. If you want to get intimately acquainted with calls like:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C">    Inline_Stack_Push( sv_2mortal(newSViv( <span style="color:#ae81ff">2</span> )) );
+</code></pre></div><p>then <code>Inline</code> provides a convenient environment for working both sides of the puzzle to see exactly how the types interact. Learning <code>Inline</code> procedures wasn&rsquo;t my first reading of perlguts, but certainly helped make a lot of it make sense. And it&rsquo;s <em>way</em> easier than writing XS or SWIG code.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Inline <span style="color:#e6db74">&#39;C&#39;</span>;
+
+    <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">my</span> $num <span style="color:#f92672">=</span> shift <span style="color:#e6db74">//</span> <span style="color:#ae81ff">5</span>;
+
+    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $a (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">100</span>) {
+      <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $b (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">100</span>) {
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $c (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">100</span>) {
+          <span style="color:#66d9ef">if</span> (isCardano($a,$b,$c)) {
+            say <span style="color:#e6db74">&#34;($a,$b,$c)&#34;</span>;
+            $i<span style="color:#f92672">++</span>;
+            exit <span style="color:#66d9ef">if</span> ($i <span style="color:#f92672">&gt;=</span> $num);
+          }
+        }
+      }
+    }
+
+
+    <span style="color:#75715e">__END__
+</span><span style="color:#75715e">    __C__
+</span><span style="color:#75715e">    int isCardano(int a, int b, int c) {
+</span><span style="color:#75715e">      return 8*a*a*a + 15*a*a + 6*a - 27*b*b*c == 1;
+</span><span style="color:#75715e">    }
+</span></code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/abigail/perl/ch-2.pl"><strong>Abigail</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/abigail/awk/ch-2.awk">Awk</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/abigail/bash/ch-2.sh">Bash</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/abigail/basic/ch-2.bas">Basic</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/abigail/bc/ch-2.bc">Bc</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/abigail/befunge-93/ch-2.bf93">Befunge-93</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/abigail/c/ch-2.c">C</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/abigail/cobol/ch-2.cb">Cobol</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/abigail/csh/ch-2.csh">Csh</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/abigail/erlang/ch-2.erl">Erlang</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/abigail/forth/ch-2.fs">Forth</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/abigail/fortran/ch-2.f90">Fortran</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/abigail/go/ch-2.go">Go</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/abigail/java/ch-2.java">Java</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/abigail/lua/ch-2.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/abigail/m4/ch-2.m4">M4</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/abigail/mmix/ch-2.mms">Mmix</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/abigail/node/ch-2.js">Node</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/abigail/ocaml/ch-2.ml">Ocaml</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/abigail/pascal/ch-2.p">Pascal</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/abigail/php/ch-2.php">Php</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/abigail/postscript/ch-2.ps">Postscript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/abigail/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/abigail/r/ch-2.r">R</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/abigail/rexx/ch-2.rexx">Rexx</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/abigail/ruby/ch-2.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/abigail/scheme/ch-2.scm">Scheme</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/abigail/sed/ch-2.sed">Sed</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/abigail/sql/ch-2.sql">Sql</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/abigail/tcl/ch-2.tcl">Tcl</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-148-2.html">Perl Weekly Challenge 148: Cardano Triplets</a></p>
+<p>We don&rsquo;t need to stop there though. After reconfiguring the equation as an integer polynomial, we can go further to parameterize it according to its variables.</p>
+<p>This is a type of challenge that really allows Abigail to show their ample abilities in mathematical problems. As demonstrated in <a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-148-2.html">their excellent writeup</a> we can take the equation and perform a <em>mod</em> 3 to both sides. The three coefficients 15, 6, and 27 are all evenly divisible by 3, so those terms go away, and 8 <em>mod</em> 3 = 2, so the equation transforms to</p>
+<p>2<em>a</em>³ ≡ 1 <em>mod</em> 3</p>
+<p>⟹ <em>a</em>³ ≡ 2 <em>mod</em> 3</p>
+<p>which in turn has the one solution</p>
+<p><em>a</em> = 2 + 3<em>k</em> for some <em>k</em> ∈ ℤ</p>
+<p>When inserted back into the original polynomial this yields</p>
+<p><em>b</em>²<em>c</em> = (<em>k</em> + 1)² (8<em>k</em> + 5)</p>
+<p>But wait! There&rsquo;s more! Abigail then goes on to make a real effort to produce the &ldquo;first&rdquo; five triples, by declaring an ordering by the sum of <em>a</em>, <em>b</em>, and <em>c</em>. Further steps are taken to explore whether alternate solutions that satisfy <em>b</em> and <em>c</em> for a given <em>k</em> may produce a solution &ldquo;better&rdquo; than one of the best five already gathered in an accumulating pile.</p>
+<p>The whole thing is really satisfying. I&rsquo;m glad they took the effort to do this and write it up.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">qw [divisors];
+</span><span style="color:#e6db74"> </span>   <span style="color:#66d9ef">use</span> List::Util        <span style="color:#e6db74">qw [sum </span>max];
+
+    <span style="color:#66d9ef">my</span> $COUNT <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>;
+    <span style="color:#66d9ef">my</span> $A     <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">my</span> $B     <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">my</span> $C     <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;
+    <span style="color:#66d9ef">my</span> $SUM   <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>;
+    <span style="color:#66d9ef">my</span> @out;
+    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $COUNT <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) {
+        $out [$i]        <span style="color:#f92672">=</span> [(<span style="color:#ae81ff">999999</span>) x <span style="color:#ae81ff">3</span>];
+        $out [$i] [$SUM] <span style="color:#f92672">=</span> sum @{$out [$i]};
+    }
+
+    <span style="color:#66d9ef">my</span> $max_index <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $k <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#ae81ff">3</span> <span style="color:#f92672">*</span> $k <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">&lt;=</span> $out [$max_index] [$SUM]; $k <span style="color:#f92672">++</span>) {
+        <span style="color:#66d9ef">my</span> $a  <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">*</span> $k <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>;
+        <span style="color:#66d9ef">my</span> $f1 <span style="color:#f92672">=</span>     $k <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">my</span> $f2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">8</span> <span style="color:#f92672">*</span> $k <span style="color:#f92672">+</span> <span style="color:#ae81ff">5</span>;
+
+        <span style="color:#75715e">#</span>
+        <span style="color:#75715e"># Divisors of (k + 1)</span>
+        <span style="color:#75715e">#</span>
+        <span style="color:#66d9ef">my</span> @d1 <span style="color:#f92672">=</span> divisors ($f1);
+
+        <span style="color:#75715e">#</span>
+        <span style="color:#75715e"># Squares of divisors of (8k + 5), which are integers.</span>
+        <span style="color:#75715e">#</span>
+        <span style="color:#66d9ef">my</span> @d2 <span style="color:#f92672">=</span> grep {$_ <span style="color:#f92672">==</span> int ($_)} map {sqrt $_} divisors ($f2);
+
+        <span style="color:#75715e">#</span>
+        <span style="color:#75715e"># Calculate all the solutions for b and c (for this k)</span>
+        <span style="color:#75715e">#</span>
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $d1 (@d1) {
+          D2:
+            <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $d2 (@d2) {
+                <span style="color:#66d9ef">my</span> $b <span style="color:#f92672">=</span> $d1 <span style="color:#f92672">*</span> $d2;
+                <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> $f1 <span style="color:#f92672">*</span> $f1 <span style="color:#f92672">*</span> $f2 <span style="color:#f92672">/</span> ($b <span style="color:#f92672">*</span> $b);
+                <span style="color:#66d9ef">if</span> ($a <span style="color:#f92672">+</span> $b <span style="color:#f92672">+</span> $c <span style="color:#f92672">&lt;</span> $out [$max_index] [$SUM]) {
+                    <span style="color:#75715e">#</span>
+                    <span style="color:#75715e"># Avoid duplicate entries</span>
+                    <span style="color:#75715e">#</span>
+                    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $info (@out) {
+                        <span style="color:#66d9ef">next</span> D2 <span style="color:#66d9ef">if</span> $$info [$A] <span style="color:#f92672">==</span> $a <span style="color:#f92672">&amp;&amp;</span> $$info [$B] <span style="color:#f92672">==</span> $b;
+                    }
+
+                    <span style="color:#75715e">#</span>
+                    <span style="color:#75715e"># Put triple in the output structure</span>
+                    <span style="color:#75715e">#</span>
+                    $out [$max_index] <span style="color:#f92672">=</span> [$a, $b, $c, $a <span style="color:#f92672">+</span> $b <span style="color:#f92672">+</span> $c];
+
+                    <span style="color:#75715e">#</span>
+                    <span style="color:#75715e"># Find the index of the new highest value</span>
+                    <span style="color:#75715e">#</span>
+                    $max_index <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+                    <span style="color:#66d9ef">my</span> $max_sum <span style="color:#f92672">=</span> $out [$max_index] [$SUM];
+                    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; $i <span style="color:#f92672">&lt;</span> $COUNT; $i <span style="color:#f92672">++</span>) {
+                        <span style="color:#66d9ef">if</span> ($out [$i] [$SUM] <span style="color:#f92672">&gt;</span> $max_sum) {
+                            $max_index <span style="color:#f92672">=</span> $i;
+                            $max_sum   <span style="color:#f92672">=</span> $out [$i] [$SUM];
+                        }
+                    }
+                }
+            }
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-148/james-smith">Perl Weekly Challenge #148</a></p>
+<p>James blasts through the processing to gather all triplets for <em>a</em> &lt; 1000, iterating over possible values for <em>b</em> for a given <em>k</em> up until the value for <em>c</em> goes out-of-bounds, which is the same criteria used by Abigail, above.</p>
+<p>James also has an <a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-148/james-smith">excellent writeup</a> to guide us through his reasoning.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e">## We loop over $k from 1 .. ($N+1)/3 ## We then loop of $b until such</span>
+    <span style="color:#75715e">## time as the calculated value of $c &lt; 1</span>
+    <span style="color:#75715e">##</span>
+    <span style="color:#75715e">## In this case it is (8*$k-3)*$k*$k / $b*b</span>
+    <span style="color:#75715e">##</span>
+    <span style="color:#75715e">## Trying to avoid issues with rounding due to division we can change</span>
+    <span style="color:#75715e">## this to just</span>
+    <span style="color:#75715e">##   (8*$k-3).$k*$k &lt; $b*$b</span>
+    <span style="color:#75715e">##</span>
+    <span style="color:#75715e">## Check to see if the value of $c is an integer and if so display it.</span>
+    <span style="color:#75715e">##</span>
+    <span style="color:#75715e">## It is an integer if $n%$d is zero. Again saves rounding error issues</span>
+
+
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $k (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">333</span>) {
+      <span style="color:#66d9ef">for</span>( <span style="color:#66d9ef">my</span> ($b, $n) <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>, $k<span style="color:#f92672">*</span>$k<span style="color:#f92672">*</span>(<span style="color:#ae81ff">8</span><span style="color:#f92672">*</span>$k<span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>) ); $n <span style="color:#f92672">&gt;</span> $b<span style="color:#f92672">*</span>$b; $b<span style="color:#f92672">++</span> ) {
+        say join <span style="color:#e6db74">&#34;\t&#34;</span>, <span style="color:#ae81ff">3</span><span style="color:#f92672">*</span>$k<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,$b,$n<span style="color:#e6db74">/$b/</span>$b <span style="color:#66d9ef">unless</span> $n%<span style="color:#960050;background-color:#1e0010">($</span>b<span style="color:#f92672">*</span>$b);
+      }
+    }
+
+    <span style="color:#75715e">## To check the values are truly a Cardano triplet I wrote this</span>
+    <span style="color:#75715e">## function.</span>
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_card</span> {
+      <span style="color:#66d9ef">my</span>($a,$b,$c) <span style="color:#f92672">=</span> @_;
+      <span style="color:#66d9ef">return</span> abs( cr($a<span style="color:#f92672">+</span>$b<span style="color:#f92672">*</span>sqrt$c) <span style="color:#f92672">+</span> cr($a<span style="color:#f92672">-</span>$b<span style="color:#f92672">*</span>sqrt$c) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ) <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0.000001</span>;
+    }
+
+    <span style="color:#75715e">## To get the cube route - the code would fail if the value</span>
+    <span style="color:#75715e">## was negative. The following works by finding the cube</span>
+    <span style="color:#75715e">## root of the absolute value. And multiplying by -1 if negative</span>
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">cr</span> {
+      <span style="color:#66d9ef">return</span> $_[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> ? <span style="color:#f92672">-</span>(<span style="color:#f92672">-</span>$_[<span style="color:#ae81ff">0</span>])<span style="color:#f92672">**</span>(<span style="color:#ae81ff">1</span><span style="color:#e6db74">/3) : $_[0]**(1/</span><span style="color:#ae81ff">3</span>);
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/polettix/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.polettix.it/ETOOBUSY/2022/01/20/pwc148-cardano-triplets/">PWC148 - Cardano Triplets - ETOOBUSY</a></p>
+<p>If we remove the search for additional candidates for <em>b</em>, then the construction becomes quite compact:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> shift <span style="color:#e6db74">//</span> <span style="color:#ae81ff">5</span>;
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $b (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $n) {
+       <span style="color:#66d9ef">my</span> $a <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">*</span> $b <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+       <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> <span style="color:#ae81ff">8</span> <span style="color:#f92672">*</span> $b <span style="color:#f92672">-</span> <span style="color:#ae81ff">3</span>;
+
+       <span style="color:#66d9ef">my</span> $sqrt <span style="color:#f92672">=</span> $b <span style="color:#f92672">*</span> sqrt($c);
+       <span style="color:#66d9ef">my</span> $first <span style="color:#f92672">=</span> ($a <span style="color:#f92672">+</span> $sqrt) <span style="color:#f92672">**</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">/</span><span style="color:#ae81ff">3</span>);
+       <span style="color:#66d9ef">my</span> $second <span style="color:#f92672">=</span> ($sqrt <span style="color:#f92672">-</span> $a) <span style="color:#f92672">**</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">/</span><span style="color:#ae81ff">3</span>);
+       <span style="color:#66d9ef">my</span> $result <span style="color:#f92672">=</span> $first <span style="color:#f92672">-</span> $second;
+
+       say <span style="color:#e6db74">&#34;($a, $b, $c) -&gt; $result&#34;</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a></p>
+<p>Paraphrasing a technique <a href="https://stackoverflow.com/a/70414782/1030675">sourced to Stack Overflow</a>, Choroba takes a different approach, derived from the fact that the equation given directly maps to a certain cubic polynomial. The root of this polynomial is an equation quite similar to the one presented, and with some substitution the two can be equated.</p>
+<p>This in turn, as we alluded to previously, directly relates to <a href="https://en.wikipedia.org/wiki/Cubic_equation#Cardano%27s_formula">Cardino&rsquo;s method for taking cube roots</a>.</p>
+<p>The upshot of all this is that for the equation</p>
+<p><em>x</em>³ + <em>px</em> - <em>q</em> = 0</p>
+<p>the root is</p>
+<p>∛( <em>q</em>/2 + √( (<em>q</em>/2)²+(<em>p</em>/3)³) )  +  ∛( <em>q</em>/2 - √( (<em>q</em>/2)²+(<em>p</em>/3)³ )</p>
+<p>which you might find looks oddly familiar. From this we get</p>
+<p><em>a</em> = <em>q</em>/2</p>
+<p>and</p>
+<p><em>b</em>²<em>c</em> = (<em>q</em>/2)²+(<em>p</em>/3)³</p>
+<p>From here I might as well quote the original source:</p>
+<blockquote>
+<p>Since <em>a</em> is an integer, <em>q</em> must be even, and since <em>b</em>, <em>c</em> are also integers, <em>p</em> must be divisible by 3. Therefore we are interested in the equations
+<em>x</em>³ + 3<em>ux</em> - 2<em>a</em> = 0
+having 1 as a root. That narrows the problem down to searching <em>u</em>, <em>v</em> such that 1 + 3<em>u</em> - 2<em>a</em> = 0. Here <em>u</em>³ + <em>a</em>² = <em>b</em>²<em>c</em>. Notice that <em>u</em> must be odd.</p>
+</blockquote>
+<p>Here&rsquo;s Choroba&rsquo;s solution:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">cardano_triplets</span> {
+        <span style="color:#66d9ef">my</span> ($count) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $u <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; $count<span style="color:#f92672">--</span>; $u <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span>) {
+            <span style="color:#66d9ef">my</span> $A <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">*</span> $u) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>;
+            <span style="color:#66d9ef">my</span> $t <span style="color:#f92672">=</span> $u <span style="color:#f92672">*</span> $u <span style="color:#f92672">*</span> $u <span style="color:#f92672">+</span> $A <span style="color:#f92672">*</span> $A;
+
+            <span style="color:#66d9ef">my</span> $B <span style="color:#f92672">=</span> int sqrt $t;
+            <span style="color:#f92672">--</span>$B <span style="color:#66d9ef">while</span> $t % <span style="color:#960050;background-color:#1e0010">($</span>B <span style="color:#f92672">*</span> $B);
+
+            <span style="color:#66d9ef">my</span> $C <span style="color:#f92672">=</span> $t <span style="color:#f92672">/</span> ($B <span style="color:#f92672">*</span> $B);
+
+            say <span style="color:#e6db74">&#34;$A $B $C&#34;</span>;
+        }
+    }
+</code></pre></div><p>and implemented another way:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">cardano_triplets_all</span> {
+        <span style="color:#66d9ef">my</span> ($count) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $u <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;; $u <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span>) {
+            <span style="color:#66d9ef">my</span> $A <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">*</span> $u) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>;
+            <span style="color:#66d9ef">my</span> $t <span style="color:#f92672">=</span> $u <span style="color:#f92672">*</span> $u <span style="color:#f92672">*</span> $u <span style="color:#f92672">+</span> $A <span style="color:#f92672">*</span> $A;
+
+            <span style="color:#66d9ef">my</span> $B <span style="color:#f92672">=</span> int sqrt $t;
+            <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
+                <span style="color:#f92672">--</span>$B <span style="color:#66d9ef">while</span> $B <span style="color:#f92672">&amp;&amp;</span> $t % <span style="color:#960050;background-color:#1e0010">($</span>B <span style="color:#f92672">*</span> $B);
+                <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">unless</span> $B;
+
+                <span style="color:#66d9ef">my</span> $C <span style="color:#f92672">=</span> $t <span style="color:#f92672">/</span> ($B <span style="color:#f92672">*</span> $B);
+                say <span style="color:#e6db74">&#34;$A $B $C&#34;</span>;
+                <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">unless</span> <span style="color:#f92672">--</span>$count;
+
+                <span style="color:#f92672">--</span>$B;
+            }
+        }
+    }
+</code></pre></div><p>The methods presented, even <em>executed and timed together</em>, are rather ridiculously faster than any others put up for consideration.</p>
+<h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-2">Blogs and Additional Submissions in Guest Languages for Task 2:</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/arne-sommer/perl/ch-2.pl"><strong>Arne Sommer</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/arne-sommer/raku/cardano-triplets-2">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://raku-musings.com/eban-cardano.html">Eban Cardano the Third with Raku and Perl</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/athanasius/raku/ch-2.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/bruce-gray/perl/ch-2.pl"><strong>Bruce Gray</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/bruce-gray/raku/ch-2.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/peter-campbell-smith/perl/ch-2.pl"><strong>Peter Campbell Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://pjcs-pwc.blogspot.com/2022/01/numbers-in-words-and-cardano-triplets.html">Numbers in words and Cardano triplets</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/roger-bell-west/javascript/ch-2.js">Javascript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/roger-bell-west/kotlin/ch-2.kt">Kotlin</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/roger-bell-west/lua/ch-2.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/roger-bell-west/postscript/ch-2.ps">Postscript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/roger-bell-west/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/roger-bell-west/raku/ch-2.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/roger-bell-west/ruby/ch-2.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/roger-bell-west/rust/ch-2.rs">Rust</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://blog.firedrake.org/archive/2022/01/The_Weekly_Challenge_148__Eban__Cardano.html">RogerBW&rsquo;s Blog: The Weekly Challenge 148: Eban, Cardano</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://wlmb.github.io/2022/01/17/PWC148/">Perl Weekly Challenge 148 – W. Luis Mochán</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-148/walt-mankowski/perl/ch-2.pl"><strong>Walt Mankowski</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-148/walt-mankowski#readme">perlweeklychallenge-club/challenge-148/walt-mankowski at master · manwar/perlweeklychallenge-club · GitHub</a></p>
+<hr>
+<h1 id="PWC148BLOGS">BLOGS</h1>
+<hr>
+<p><strong>That’s it for me this week, people! Warped by the rain, driven by the snow, resolute and unbroken by the torrential influx, by some miracle I somehow continue to maintain my bearings.</strong></p>
+<p><strong>Looking forward to next wave, the perfect wave, I am: <em>your humble servant</em>.</strong></p>
+<h1 id="PWC148BLOGS">But if Your Unquenchable <em>THIRST</em> for <em>KNOWLEDGE</em> is not <em>SLAKED</em>,</h1>
+<h1 id="then-run-dont-walk-to-the-watering-hole">then <em>RUN</em> <em>(dont walk!)</em> to the <em>WATERING HOLE</em></h1>
+<h1 id="and-follow-these-blog-links">and <em>FOLLOW</em> these <em>BLOG</em> <em>LINKS</em>:</h1>
+<p><strong>( &hellip;<em>don&rsquo;t think, trust your training, you&rsquo;re in the zone, just do it &hellip;</em> )</strong></p>
+<p><strong>Abigail</strong></p>
+<ul>
+<li><a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-148-1.html">Perl Weekly Challenge 148: Eban Numbers</a> ( <em>Perl</em> )</li>
+<li><a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-148-2.html">Perl Weekly Challenge 148: Cardano Triplets</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Arne Sommer</strong></p>
+<ul>
+<li><a href="https://raku-musings.com/eban-cardano.html">Eban Cardano the Third with Raku and Perl</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Colin Crain</strong></p>
+<ul>
+<li><a href="https://colincrain.com/2022/01/19/numrs-without-th-lttr/">Numrs Without Th Lttr - Programming Excursions in Perl and Raku</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Dave Jacoby</strong></p>
+<ul>
+<li><a href="https://jacoby.github.io/2022/01/19/its-triplets-weekly-challenge-148.html">It’s Triplets!: Weekly Challenge #148 | Committed to Memory</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Flavio Poletti</strong></p>
+<ul>
+<li><a href="https://github.polettix.it/ETOOBUSY/2022/01/19/pwc148-eban-numbers/">PWC148 - Eban Numbers - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+<li><a href="https://github.polettix.it/ETOOBUSY/2022/01/20/pwc148-cardano-triplets/">PWC148 - Cardano Triplets - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Jaldhar H. Vyas</strong></p>
+<ul>
+<li><a href="https://www.braincells.com/perl/2022/01/perl_weekly_challenge_week_148.html">Perl Weekly Challenge: Week 148</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>James Smith</strong></p>
+<ul>
+<li><a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-148/james-smith">Perl Weekly Challenge #148</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Laurent Rosenfeld</strong></p>
+<ul>
+<li><a href="http://blogs.perl.org/users/laurent_r/2022/01/perl-weekly-challenge-148-eban-numbers-and-cardano-triplets.html">Perl Weekly Challenge 148: Eban Numbers and Cardano Triplets | laurent_r</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Luca Ferrari</strong></p>
+<ul>
+<li><a href="https://fluca1978.github.io/2022/01/19/PerlWeeklyChallenge148.html#task1">Perl Weekly Challenge 148: eban vs cardano – Luca Ferrari – Open Source advocate, human being</a> ( <em>Raku</em> )</li>
+<li><a href="https://fluca1978.github.io/2022/01/19/PerlWeeklyChallenge148.html#task1pg">Perl Weekly Challenge 148: eban vs cardano – Luca Ferrari – Open Source advocate, human being</a> ( <em>PostgreSQL</em> )</li>
+</ul>
+<p><strong>Mark Senn</strong></p>
+<ul>
+<li><a href="https://engineering.purdue.edu/~mark/twc-148-1.pdf">Eban Numbers</a> ( <em>Raku</em> )</li>
+<li><a href="https://engineering.purdue.edu/~mark/twc-148-2.pdf">Cardano Triplets</a> ( <em>Raku</em> )</li>
+</ul>
+<p><strong>Peter Campbell Smith</strong></p>
+<ul>
+<li><a href="https://pjcs-pwc.blogspot.com/2022/01/numbers-in-words-and-cardano-triplets.html">Numbers in words and Cardano triplets</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Roger Bell_West</strong></p>
+<ul>
+<li><a href="https://blog.firedrake.org/archive/2022/01/The_Weekly_Challenge_148__Eban__Cardano.html">RogerBW&rsquo;s Blog: The Weekly Challenge 148: Eban, Cardano</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>W. Luis Mochan</strong></p>
+<ul>
+<li><a href="https://wlmb.github.io/2022/01/17/PWC148/">Perl Weekly Challenge 148 – W. Luis Mochán</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Walt Mankowski</strong></p>
+<ul>
+<li><a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-148/walt-mankowski#readme">Eban Numbers, Cardano Triplets</a> ( <em>Perl</em> )</li>
+</ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="/contact" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2022
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.nomtimes.co.uk/site/shop.do?cref=PerlBooks" title="Free Perl Books" rel="noreferrer" target="_blank">
+                            <img src="/images/NomTimes.jpg" style="width:22px; height: 18px;" alt=""/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jQurey/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-136524905-1', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+
+</html>
+
