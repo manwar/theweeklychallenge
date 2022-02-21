@@ -154,7 +154,7 @@ Write a script to figure out if the given integer is factorion.
 
 ### Example 2:
 
-    Input: $n = 125
+    Input: $n = 123
     Output: 0
 
         Since 1! + 2! + 3! => 1 + 2 + 6 <> 123
