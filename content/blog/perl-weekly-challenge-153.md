@@ -30,7 +30,7 @@ Welcome [**PokGoPun**](https://github.com/pokgopun) to the `Team PWC`. We now ha
 
 Last week, we had the opportunity to interview the latest champion, [**Alexander Pankoff**](https://theweeklychallenge.org/blog/meet-the-champion-2022-01). It was pleasure knowing him. Please do checkout to find out more about him.
 
-`Lubos Kolouch` shared solution in [**Java**](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-152/lubos-kolouch/java) for the first time. He has also shared in **Python** and **PHP** in the past. While talking about guest contributors, I would like to mention one more name, `Eric Cheung`. He was introduced to the weekly challenge by fellow member, `Cheok-Yin Fung`. He is currently `ranked #12` and recently overtook `Cheok-Yin Fun`.
+`Lubos Kolouch` shared solution in [**Java**](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-152/lubos-kolouch/java) for the first time. He has also shared in **Python** and **PHP** in the past. While talking about guest contributors, I would like to mention one more name, `Eric Cheung`. He was introduced to the weekly challenge by fellow member, `Cheok-Yin Fung`. He is currently `ranked #12` and recently overtook `Cheok-Yin Fung`.
 
 Enjoy the week with the another set of tasks. Good luck team.
 
