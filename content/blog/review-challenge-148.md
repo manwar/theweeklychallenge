@@ -1107,7 +1107,7 @@ If we remove the search for additional candidates for *b*, then the construction
 
 Paraphrasing a technique [sourced to Stack Overflow](https://stackoverflow.com/a/70414782/1030675), Choroba takes a different approach, derived from the fact that the equation given directly maps to a certain cubic polynomial. The root of this polynomial is an equation quite similar to the one presented, and with some substitution the two can be equated.
 
-This in turn, as we alluded to previously, directly relates to [Cardino's method for taking cube roots](https://en.wikipedia.org/wiki/Cubic_equation#Cardano%27s_formula).
+This in turn, as we alluded to previously, directly relates to [Cardano's method for taking cube roots](https://en.wikipedia.org/wiki/Cubic_equation#Cardano%27s_formula).
 
 The upshot of all this is that for the equation
 
