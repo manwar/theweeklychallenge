@@ -97,7 +97,7 @@ Please find below guest contributions.
 
 ##### **Alexander Pankoff** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/alexander-pankoff/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/alexander-pankoff/haskell/ch-2.hs) in **Haskell**.
 
-##### **Bruce Gray** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/bruce-gray/webassembly/ch-1.wat) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/bruce-gray/webassembly/ch-2.wat) in **WebAssembly**.
+##### **Bruce Gray** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/bruce-gray/webassembly/ch-1.wat) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/bruce-gray/webassembly/ch-2.wat) in **WebAssembly**.
 
 ##### **Cheok-Yin Fung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/cheok-yin-fung/dart/ch-1.dart) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/cheok-yin-fung/dart/ch-2.dart) in **Dart**.
 
