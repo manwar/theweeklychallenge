@@ -101,7 +101,17 @@ Please find below guest contributions.
 
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/eric-cheung/excel-vba/ch-1.bas) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/eric-cheung/excel-vba/ch-2.bas) in **Excel VBA**.
 
-##### **Laurent Rosenfeld** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/laurent-rosenfeld/julia/ch-1.jl) in **Julia**.
+##### **Laurent Rosenfeld** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/laurent-rosenfeld/awk/ch-1.awk) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/laurent-rosenfeld/awk/ch-2.awk) in **Awk**.
+
+##### **Laurent Rosenfeld** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/laurent-rosenfeld/bc/ch-1.bc) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/laurent-rosenfeld/gc/ch-2.bc) in **Bc**.
+
+##### **Laurent Rosenfeld** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/laurent-rosenfeld/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/laurent-rosenfeld/c/ch-2.c) in **C**.
+
+##### **Laurent Rosenfeld** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/laurent-rosenfeld/julia/ch-1.jl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/laurent-rosenfeld/julia/ch-2.jl) in **Julia**.
+
+##### **Laurent Rosenfeld** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/laurent-rosenfeld/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-085/laurent-rosenfeld/python/ch-2.py) in **Python**.
+
+##### **Laurent Rosenfeld** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/laurent-rosenfeld/ring/ch-1.ring) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/laurent-rosenfeld/ring/ch-2.ring) in **Ring**.
 
 ##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/lubos-kolouch/php/ch-1.php) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/lubos-kolouch/php/ch-2.php) in **PHP**.
 
