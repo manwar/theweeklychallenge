@@ -49,9 +49,8 @@ All the best for the weekly challenge, I hope you like it. Please do share your 
 #### 6. [Factory People in a Factory World](https://colincrain.com/2022/02/25/factory-people-in-a-factory-world/) by Colin Crain.
 #### 7. [Luck is not a Factor!: Weekly Challenge #153](https://jacoby.github.io/2022/02/21/luck-is-not-a-factor-weekly-challenge-153.html) by Dave Jacoby
 #### 8. [Perl Weekly Challenge 153: take it easy](https://fluca1978.github.io/2022/02/21/PerlWeeklyChallenge153.html) by Luca Ferrari.
-#### 9. [Luck is not a Factor!: Weekly Challenge #153](https://jacoby.github.io/2022/02/21/luck-is-not-a-factor-weekly-challenge-153.html) by Dave Jacoby.
-#### 10. [!Task one is quite easy. Factorions are quite rare.](https://fluca1978.github.io/2022/02/21/PerlWeeklyChallenge153.html) by Peter Campbell Smith.
-#### 11. [The Weekly Challenge 153: Factoriality](https://blog.firedrake.org/archive/2022/02/The_Weekly_Challenge_153__Factoriality.html) by Roger Bell_West.
+#### 9. [!Task one is quite easy. Factorions are quite rare.](https://fluca1978.github.io/2022/02/21/PerlWeeklyChallenge153.html) by Peter Campbell Smith.
+#### 10. [The Weekly Challenge 153: Factoriality](https://blog.firedrake.org/archive/2022/02/The_Weekly_Challenge_153__Factoriality.html) by Roger Bell_West.
 
 <br>
 
