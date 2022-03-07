@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="The Weekly Challenge - Perl & Raku"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="You do not have to be an expert."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Colin Crain › Perl Weekly Review #150">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Colin Crain › Perl Weekly Review #150</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navgation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Colin Crain › Perl Weekly Review #150</h2>
+                    <div class="portfolio-meta">
+                        <span>Sunday, Mar 6, 2022</span>|
+                        <span> Tags:
+                            perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/p5-review-challenge-150.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <p>( <em>&hellip;continues from <a href="/blog/review-challenge-149/">previous week</a>.</em> )</p>
+<p>Welcome to the Perl review pages for <strong>Week 150</strong> of The Weekly Challenge! Here we will take the time to discuss the  submissions offered up by the team, factor out some common methodologies that came up in those solutions, and highlight some of the unique approaches and unusual code created.</p>
+<hr>
+<h3 id="-why-do-we-do-these-challenges">●︎ Why do we do these challenges?</h3>
+<p>I suppose any reasonable answer to that question would be from a field as wide ranging and varied as the people who choose to join the team. One thing, though, is clear: it&rsquo;s not a competition, and there are no judges, even if there is a &ldquo;prize&rdquo; of sorts. About that &ndash; I think of it more as an honorarium periodically awarded to acknowledge the efforts we make towards this strange goal. So there&rsquo;s no determination to find the <em>fastest</em>, or the <em>shortest</em>, or even, in some abstract way, the <em>best</em> way to go about things, although I&rsquo;m certain the participants have their own aspirations and personal drives. As Perl is such a wonderfully expressive language, this provides quite a bit of fodder to the core idea of TMTOWTDI, producing a gamut of varied techniques and solutions.</p>
+<p>Even the tasks themselves are often open to a certain amount of discretionary interpretation. What we end up with is a situation where each participant is producing something in the manner they find the most interesting or satisfying. Some team members focus on carefully crafted complete applications, thoroughly vetting input data and handling every use case they can think up. Others choose to apply themselves to the logic of the underlying puzzle and making it work in the most elegant way they can. Some eschew modules they would ordinarily reach for, others embrace them, bringing to light wheels perhaps invented years ago that happen to exactly solve the problem in front of them today.</p>
+<p>I&rsquo;ve been considering this question for some time and have found one binding commonality between all of us out solving these challenges each week, in that however we normally live our lives, the task in front of us more than likely has nothing to do with any of that. And I think this has great value. We all do what we do, in the real world, and hopefully we do it well. The Weekly Challenge provides us with an opportunity to do something germane to that life yet distinctly different; if we only do the things we already know how to do then we will only do the same things over and over. This is where the &ldquo;challenge&rdquo; aspect comes into play.</p>
+<p>So we can consider The Weekly Challenge as providing a problem space outside of our comfort zone, as far out from that comfort as we wish to take things. From those reaches we can gather and learn things, pick and choose and bring what we want back into our lives. Personally, I think that&rsquo;s what this whole thing is about. YMMV.</p>
+<hr>
+<p><strong><emp>Every week there is an enormous global collective effort made by the team, analyzing and creatively coding the submissions, and that effort deserves credit due.</emp></strong></p>
+<p>And that, my friends, is why I&rsquo;m here, to try and figure out ways to do just that.</p>
+<p>So, here we are then. I&rsquo;m ready — let’s get to it and see what we can find.</p>
+<hr>
+<h3 id="for-additional-context">For Additional Context…</h3>
+<p>before we begin, you may wish to revisit either the pages for the <a href="/blog/perl-weekly-challenge-150/"><strong>original tasks</strong></a> or the summary <a href="/blog/recap-challenge-150/"><strong>recap</strong></a> of the challenge. But don&rsquo;t worry about it, the challenge text will be repeated and presented as we progress from task to task.</p>
+<p>Oh, and one more thing before we get started:</p>
+<h3 id="getting-in-touch-with-us">Getting in Touch with Us</h3>
+<p><a href="mailto:pwc.perfectwave@gmail.com"><img src="/images/blog/Email.svg" height="50" width="50"> Email</a> › Please feel free to email me (Colin) with any feedback, notes, clarifications or whatnot about this review.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge"><img src="/images/blog/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request to us for any issues you may find with this page.</p>
+<p><a href="https://twitter.com/perlwchallenge"><img src="/images/blog/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!</p>
+<p>I&rsquo;m always curious as to what the people think of these efforts. Everyone here at the PWC would like to hear any feedback you&rsquo;d like to give.</p>
+<div align= center><strong>...So finally, without further ado...</strong></div>
+<hr>
+<h2 id="---nbsp--nbsp--nbsp---task-1pwc150task1-------nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---task-2pwc150task2---nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---blogspwc150blogs----nbsp--nbsp--nbsp---">•             <a href="#PWC150TASK1">Task 1</a>                 •             <a href="#PWC150TASK2">Task 2</a>             	•             <a href="#PWC150BLOGS">BLOGS</a>              	•</h2>
+<hr>
+<hr>
+<h1 id="PWC150TASK1">TASK 1</h1>
+<h1 id="fibonacci-words">Fibonacci Words</h1>
+<p><em>Submitted by: Mohammad S Anwar</em>
+You are given two strings having same number of digits, $a and $b.</p>
+<p>Write a script to generate Fibonacci Words by concatenation of the previous two strings. Finally print 51st digit of the first term having at least 51 digits.</p>
+<p><strong>Example:</strong></p>
+<pre><code>    Input: $a = '1234' $b = '5678'
+    Output: 7
+
+    Fibonacci Words:
+
+        '1234'
+        '5678'
+        '12345678'
+        '567812345678'
+        '12345678567812345678'
+        '56781234567812345678567812345678'
+        '1234567856781234567856781234567812345678567812345678'
+
+    The 51st digit in the first term having at least 51 digits:
+
+        '1234567856781234567856781234567812345678567812345678'
+
+    is 7.
+</code></pre><h2 id="about-the-solutions">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/abigail/perl/ch-1.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/alexander-pankoff/perl/ch-1.pl"><strong>Alexander Pankoff</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/deadmarshal/perl/ch-1.pl"><strong>Ali Moradi</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/arne-sommer/perl/ch-1.pl"><strong>Arne Sommer</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/bruce-gray/perl/ch-1.pl"><strong>Bruce Gray</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/lubos-kolouch/perl/ch-1.pl"><strong>Lubos Kolouch</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/mattneleigh/perl/ch-1.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/pete-houston/perl/ch-1.pl"><strong>Pete Houston</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/peter-campbell-smith/perl/ch-1.pl"><strong>Peter Campbell Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/robert-dicicco/perl/ch-1.pl"><strong>Robert DiCicco</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/wlmb/perl/ch-1a.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>As all numbers exist in a realm outside of our specific representation of them — math performed in base-2 produces the same results as that done in base-10 — likewise in most cases an analogous statement can be made for the mathematical operations we perform on them. When working in binary, addition works the same way as it does in decimal — albeit the result remains, as to be expected, in binary notation.</p>
+<p>The fact is, at the level most removed from mathematics and most grounded in reality, if I have two piles of sticks and I move two sticks from that pile to this then I am performing addition in unary, using sticks for digits. The operation doesn&rsquo;t care; the outcome remains the same.</p>
+<p>Which brings us to this week&rsquo;s first task. The Fibonacci sequence is defined by a fundamental recurring relationship of addition: that <em>this</em> new number is the sum of <em>those</em> two  numbers <em>there</em>. The selected numbers to add are precisely specified, and this defined relationship determines the properties of the sequence produced.</p>
+<p>And that relationship is consistent, completely indepedant from the representation of the numbers involved. The relationship, strictly speaking, doesn&rsquo;t even require numbers at all: if I take that pile of sticks and push it over next to this pile of sticks, and repeat this process according to the rules, then the quality of sticks in a given pile will follow the progression of the Fibonacci sequence.</p>
+<p>The sticks I&rsquo;ve just used in this examples are unary digits, and of course don&rsquo;t need to be sticks. They could be strings, and by pushing them together we could be talking about the operation of concatenation. In unary notation, we can see, concatenation and addition are very nearly the same. The strings for the initial conditions can even be different. This is the base definition of what are known as Fibonacci Words.</p>
+<p>There is one slight difference though, in that using strings the order now matters: AB is not the same as BA, even though both have one A and one B in them. If we count the number of letters in the results we will still find the Fibonacci numbers appearing, but we have added a new property on top of those already present in the unary foundation of the recurrence relation, and in doing so removed the commutative property of the addition. Or more accurately <em>disguised</em> it, as the character counts of our string units still retain all of the properties of addition, and selectively, only the ordering of those strings in the concatenated results is not a commutative property. It&rsquo;s an interesting connection, that addition, unmodified, still lives on inside and as part of the operation of concatenation. as though concatenation is a shell encapsulating addition and carrying it along with it.</p>
+<p>I do believe we started off talking about the Fibonacci sequence and ended up talking about category theory. Well then. Did not see that one coming. To explain, briefly: there is a larger sub-field of abstract algebra known as category theory that sets off to concretely analyse the concepts we&rsquo;ve only begun to sketch out here, and specifically within that framework there are things called monads and functors that are conceptualizations of coupled actions and data, somewhat like a vector being a scalar magnitude coupled to a direction. If we consider these functors as themselves being data, we get a model for functions as first-class citizens — functions operating on functions —  and then things get really interesting. These ideas provide the robust theoretical framework supporting many of the ideas behind functional programming.</p>
+<p>That&rsquo;s a little outside the immediate scope of today&rsquo;s task, though.</p>
+<p>Fibonacci words are often defined as using the two digit characters &ldquo;1&rdquo; and &ldquo;0&rdquo; for the initializers, examining the results of the progression as either distinct character sequences or representations of binary numbers. Here though a wider interpretation is taken, allowing any two strings constructed from an equal number digits. Neither the constraint to digits nor the symmetrical quality of the string lengths are a fixed requirement in general, only applying to this specific task.</p>
+<p>There were 26 submissions for the first task this past week.</p>
+<h2 id="if-words-were-legos-this-would-be-finnish">if WORDS were LEGOS this would be FINNISH</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/mattneleigh/perl/ch-1.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/abigail/perl/ch-1.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/alexander-pankoff/perl/ch-1.pl"><strong>Alexander Pankoff</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/wlmb/perl/ch-1a.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>In the challenge we are asked to concatenate equal-length strings that happen to be composed of digits. The fact that they resemble numbers is only coincidental, as they are not used as such, only pushed together to form larger strings. Because of this, the order of the operations become important, and we need to explicitly define that</p>
+<p>F(n) = F(n-2) • F(n-1)</p>
+<p>with the earlier term prefixed to the later. The middle-dot here is used for the concatenation operation.</p>
+<p>Because positional representations can be precisely defined using series expansion:</p>
+<p>125 = 1 × 10<sup>2</sup> + 2 × 10<sup>1</sup> + 5 × 10<sup>0</sup></p>
+<p>some unhinged person could have taken upon themselves to perform the concatenation mathematically, by summing after multiplying the left-hand value by the 10 raised to the power of the largest positional place in the right. This would have been bizarre and hilarious but it does not appear that anyone took it upon themselves to do it. As the length of the numbers involved would grow at the rate of the Fibonacci numbers the <code>bigint</code> pragma would come into play quite quickly, as the strings considered as numbers would become absurdly large quite quickly. Raku, with its built-in arbitrary integer precision scaling would really shine.</p>
+<p>But we&rsquo;re talking about Perl 5 here. You know, the string-thing bling that saved the Human Genome Project, with the unique ability to seamlessly blend numbers and words. Concatenation is a simple dot operator and that is what people sensibly used.</p>
+<p>The concatenation operation was repeated to make progressively longer words until one of these exceeded 51 characters in length, at which point the position was examined.</p>
+<p>Ok right, except for Luis. But we&rsquo;ll get to him.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/mohammad-anwar/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/mohammad-anwar/raku/ch-1.raku">Raku</a></p>
+<p>We&rsquo;ll start the discussion with Mohammad&rsquo;s submission. It&rsquo;s straightforward and to-the-point and so makes a fine entry.</p>
+<p>The action is straightforward: while monitoring the word length in a loop conditional, we construct new words using a list assignment. In each assignment a list is replaced by a new version composed of the previous second element and an new concatenation of the previous first to the second. A tight little queue moves the words along, constructing longer and longer versions untile one has at least 51 characters. At that point the position is examined and the result returned.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">fibonacci_words</span> {
+        <span style="color:#66d9ef">my</span> ($term_1, $term_2, $index) <span style="color:#f92672">=</span> @_;
+
+        <span style="color:#66d9ef">while</span> (length($term_1 <span style="color:#f92672">.</span> $term_2) <span style="color:#f92672">&lt;=</span> $index) {
+            ($term_1, $term_2) <span style="color:#f92672">=</span> ($term_2, $term_1 <span style="color:#f92672">.</span> $term_2);
+        }
+
+        <span style="color:#66d9ef">return</span> substr($term_1 <span style="color:#f92672">.</span> $term_2, <span style="color:#f92672">--</span>$index, <span style="color:#ae81ff">1</span>);
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/mattneleigh/perl/ch-1.pl"><strong>Matthew Neleigh</strong></a></p>
+<p>It may be difficult to improve on the elegant grace in Mohammad&rsquo;s distillation of the  problem, but the funny thing about superlatives is just because one thing is the best, it doesn&rsquo;t mean that some other, different thing cannot also be the best.</p>
+<p>Think about that long and hard for a moment.</p>
+<p>Now that you have either reached enlightenment or are thoroughly confused (or even perhaps a bit of both), we&rsquo;ll move on.</p>
+<p>Matthew&rsquo;s solution closely tracks with what we just saw, and mostly only decompresses the steps slightly to facilitate scanning the action. To do this a third temporary variable is introduced to hold the newly merged word before swapping the values around, without the use of any list structures.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">fibonacci_words</span>{
+        <span style="color:#66d9ef">my</span> $a <span style="color:#f92672">=</span> shift();
+        <span style="color:#66d9ef">my</span> $b <span style="color:#f92672">=</span> shift();
+        <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> int(shift());
+        <span style="color:#66d9ef">return</span>(undef)
+            <span style="color:#66d9ef">unless</span>($n <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>);
+        <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
+
+        <span style="color:#75715e"># Loop until the string is long enough</span>
+        <span style="color:#66d9ef">while</span>(length($b) <span style="color:#f92672">&lt;</span> $n){
+            $c <span style="color:#f92672">=</span> $a <span style="color:#f92672">.</span> $b;
+            $a <span style="color:#f92672">=</span> $b;
+            $b <span style="color:#f92672">=</span> $c;
+        }
+
+        <span style="color:#75715e"># String is zero-indexed so subtract</span>
+        <span style="color:#75715e"># from $n</span>
+        <span style="color:#66d9ef">return</span>(substr($b, $n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>));
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/polettix/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.polettix.it/ETOOBUSY/2022/02/02/pwc150-fibonacci-words/">PWC150 - Fibonacci Words - ETOOBUSY</a></p>
+<p>Not to be intimidated by the Zen-like simplicity of these methods, Flavio brings a gun to a knife-fight. I believe the term he used was &ldquo;overkill&rdquo;.</p>
+<p>Anyway, to obtain his Fibonacci words, he builds a routine that when called with a pair of initial conditions, returns an iterator coderef closed around its scope. The iterator maintains the scope, and calling it returns a newly-created Fibonacci word composed from the two previous stored values.</p>
+<p>The <code>$backlog</code> variable is a neat trick to deliver the initial conditions on the first two calls to the iterators.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    say <span style="color:#e6db74">&#34;Fibonacci Words:\n&#34;</span>;
+    <span style="color:#66d9ef">my</span> $it <span style="color:#f92672">=</span> fibonacci_words_iterator(@ARGV);
+    <span style="color:#66d9ef">while</span> (<span style="color:#e6db74">&#39;necessary&#39;</span>) {
+       <span style="color:#66d9ef">my</span> $item <span style="color:#f92672">=</span> $it<span style="color:#f92672">-&gt;</span>();
+       say <span style="color:#e6db74">&#34;&#39;$item&#39;&#34;</span>;
+       <span style="color:#66d9ef">if</span> (length $item <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">51</span>) {
+          <span style="color:#66d9ef">my</span> $digit <span style="color:#f92672">=</span> substr $item, <span style="color:#ae81ff">50</span>, <span style="color:#ae81ff">1</span>;
+          say <span style="color:#e6db74">&#34;\nThe 51st digit in the first term having at least 51 digits &#39;$item&#39; is $digit.&#34;</span>;
+          <span style="color:#66d9ef">last</span>;
+       }
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">fibonacci_words_iterator</span> ($f0, $f1) {
+       <span style="color:#66d9ef">my</span> @cache <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#39;&#39;</span>, <span style="color:#e6db74">&#39;&#39;</span>, $f0, $f1);
+       <span style="color:#66d9ef">my</span> $backlog <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;
+       <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">sub</span> {
+          <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span> $backlog) {
+             ($f0, $f1) <span style="color:#f92672">=</span> ($f1, $f0 <span style="color:#f92672">.</span> $f1);
+             <span style="color:#66d9ef">return</span> $f1;
+          }
+          <span style="color:#f92672">--</span>$backlog;
+          <span style="color:#66d9ef">return</span> $backlog ? $f0 : $f1;
+       };
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a></p>
+<p>It does appear we will have quite a bit of consistency today among the solutions. In a toothy, infinite, Escher-esque <code>for</code> loop, Duncan implements a scheme with three cascading variables that continuously flow into themselves.</p>
+<p>The <code>@out</code> array stores a running commentary of the action that is optionally reported depending on a flag.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">for</span>(;;)
+    {
+        <span style="color:#75715e"># form next Fibonacci word</span>
+        <span style="color:#66d9ef">my</span> $next <span style="color:#f92672">=</span> $a<span style="color:#f92672">.</span>$b;
+    <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> length($b) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">50</span>;
+        push @out, <span style="color:#e6db74">&#34;&#39;$next&#39;&#34;</span>;
+        $a <span style="color:#f92672">=</span> $b;
+        $b <span style="color:#f92672">=</span> $next;
+    }
+
+    <span style="color:#66d9ef">my</span> $digit51 <span style="color:#f92672">=</span> substr($b,<span style="color:#ae81ff">50</span>,<span style="color:#ae81ff">1</span>);
+    push @out, <span style="color:#e6db74">&#34;\nThe 51st digit in the first term having at least 51 digits&#34;</span>;
+    push @out, <span style="color:#e6db74">&#34;&#39;$b&#39;, is $digit51&#34;</span>;
+
+    say <span style="color:#e6db74">&#34;Output: $digit51&#34;</span>;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/laurent-rosenfeld/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://blogs.perl.org/users/laurent_r/2022/02/perl-weekly-challenge-150-fibonacci-words-and-square-free-integers.html">Perl Weekly Challenge 150: Fibonacci Words and Square Free Integers | laurent_r</a></p>
+<p>With 4-character strings the Fibonacci words grow fast, quickly becoming longer at an accelerating pace. Those 51 characters go by in a blink of an eye it seems.</p>
+<p>So it really doesn&rsquo;t save much to prune our list as is grows, as we&rsquo;ve constructed our final word after only a few cycles.</p>
+<p>Laurent doesn&rsquo;t bother with only keeping the last two elements, and just builds a loop to make words until on is long enough.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">fibonacci</span> {
+        <span style="color:#66d9ef">my</span> ($a, $b) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> @fib <span style="color:#f92672">=</span> $a <span style="color:#f92672">&lt;</span> $b ? ($a, $b) : ($b, $a);
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">20</span>) {
+            push @fib, $fib[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>] <span style="color:#f92672">.</span> $fib[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+            <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> length $fib[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">51</span>;
+            say $fib[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+            <span style="color:#66d9ef">return</span> $fib[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+        }
+    }
+    say substr fibonacci(<span style="color:#ae81ff">1234</span>, <span style="color:#ae81ff">5678</span>), <span style="color:#ae81ff">50</span>, <span style="color:#ae81ff">1</span>;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-150/james-smith">Perl Weekly Challenge #150</a></p>
+<p>At the other end of the spectrum we have James, who seems to live and breathe optimizing away milliseconds. I imagine working with huge genetic datasets will do that to you. You either embrace the tuning or go mad.</p>
+<p>Here James presents three ways of saying the exact same thing:</p>
+<ul>
+<li>In the &ldquo;nasty&rdquo; version we get the two assignments nested, which makes it harder to parse, as the subexpression <code>$r = $s</code> returns <code>$s</code>, the thing assigned, not <code>$r</code>, the thing assigned to. But we do get two separete assignments on one line.</li>
+<li>So in the &ldquo;messy&rdquo; version we continue and cram everything into that a single line, by adding in the use of the predeclared special variables <code>$a</code> and <code>$b</code>.</li>
+<li>In what we will call the Goldlocks version, or sane version if you want to get judgemental, we&rsquo;ve cast off these shenannegans and kindly added whitespace to make things human readable. We are human, after all. At least many, or, probably most of us I suppose.</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">fibnum_nasty</span> {
+      <span style="color:#66d9ef">my</span> ($r,$s) <span style="color:#f92672">=</span> @_;
+      $s<span style="color:#f92672">=</span>$r<span style="color:#f92672">.</span>($r<span style="color:#f92672">=</span>$s) <span style="color:#66d9ef">while</span> <span style="color:#ae81ff">51</span><span style="color:#f92672">&gt;</span>length $s;
+      substr $s,<span style="color:#ae81ff">50</span>,<span style="color:#ae81ff">1</span>;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">fibnum_messy</span> {
+      ($a,$b)<span style="color:#f92672">=</span>@_;$b<span style="color:#f92672">=</span>$a<span style="color:#f92672">.</span>($a<span style="color:#f92672">=</span>$b)<span style="color:#66d9ef">while</span> <span style="color:#ae81ff">51</span><span style="color:#f92672">&gt;</span>length$b;substr$b,<span style="color:#ae81ff">50</span>,<span style="color:#ae81ff">1</span>;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">fibnum</span> {
+      <span style="color:#66d9ef">my</span> ( $r, $s ) <span style="color:#f92672">=</span> @_;
+      ( $r, $s ) <span style="color:#f92672">=</span> ( $s, $r<span style="color:#f92672">.</span>$s ) <span style="color:#66d9ef">while</span> <span style="color:#ae81ff">51</span> <span style="color:#f92672">&gt;</span> length $s;
+      substr $s, <span style="color:#ae81ff">50</span>, <span style="color:#ae81ff">1</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a></p>
+<p>Jorg is back with <code>Coro::Generator</code> again, assigning the construction of the words to a <em>co</em>-routine rather than a <em>sub</em>-routine. This distiction is not terribly important to the code at hand, which operates in pretty-much the same way at the others we&rsquo;ve seen so far, but does organize the procedure in a novel way.</p>
+<p>I suppose you could say the endgame here is compartmentalization of code, and the result shares many similarities with Flavio&rsquo;s iterator solution. The closure and the coroutine each maintain their own scope beteween calls, and even share some syntactic similarities.</p>
+<p>Which is pretty neat, really. And outside of this toy implementaion both of these are great techniques to have available.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Coro::Generator;
+
+    <span style="color:#75715e"># Generate Fibonacci words from W1 and W2 until the length I is reached</span>
+    <span style="color:#75715e"># and pick the Ith character.</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">pick_from_fib_word</span> ($w1, $w2, $i) {
+        <span style="color:#66d9ef">my</span> $gen <span style="color:#f92672">=</span> gen_fibonacci_words($w1, $w2);
+        <span style="color:#66d9ef">my</span> $f <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
+        <span style="color:#75715e"># Generate the needed word and print it in verbose mode.</span>
+        ($f <span style="color:#f92672">=</span> $gen<span style="color:#f92672">-&gt;</span>(), $verbose) <span style="color:#f92672">&amp;&amp;</span> say $f <span style="color:#66d9ef">while</span> $i <span style="color:#f92672">&gt;</span> length $f;
+
+        substr($f, $i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>);
+    }
+
+    <span style="color:#75715e"># Build a generator for the Fibonacci word sequence starting with W1 and</span>
+    <span style="color:#75715e"># W2.</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">gen_fibonacci_words</span> ($w1, $w2) {
+        generator {
+            yield $w1;
+            yield $w2;
+            <span style="color:#66d9ef">while</span> () {
+                ($w1, $w2) <span style="color:#f92672">=</span> ($w2, $w1 <span style="color:#f92672">.</span> $w2);
+                yield $w2;
+            }
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/abigail/perl/ch-1.pl"><strong>Abigail</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/abigail/awk/ch-1.awk">Awk</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/abigail/bash/ch-1.sh">Bash</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/abigail/bc/ch-1.bc">Bc</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/abigail/c/ch-1.c">C</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/abigail/go/ch-1.go">Go</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/abigail/java/ch-1.java">Java</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/abigail/lua/ch-1.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/abigail/node/ch-1.js">Node</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/abigail/pascal/ch-1.p">Pascal</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/abigail/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/abigail/r/ch-1.r">R</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/abigail/ruby/ch-1.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/abigail/scheme/ch-1.scm">Scheme</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/abigail/tcl/ch-1.tcl">Tcl</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-150-1.html">Perl Weekly Challenge 150: Fibonacci Words</a></p>
+<p>One quality this challenge has it that it could be regarded as a poster child for off-by-one errors — although, I should add, people seem to have managed all right so far as I&rsquo;ve seen.</p>
+<p>In any case Abigail&rsquo;s tight example keeps this distinction between position and index quite clear by installing <code>$LENGTH</code> within the internal logic and making the adjustment there. Needless to say this is good practice.</p>
+<p>I&rsquo;ll make another comment on Perl&rsquo;s ability to make assignments in-place, using the things being assigned to, which allows the this elegant Fibonacci constructor. It&rsquo;s just great.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $LENGTH <span style="color:#f92672">=</span> <span style="color:#ae81ff">51</span>;
+
+    <span style="color:#66d9ef">while</span> (<span style="color:#f92672">&lt;&gt;</span>) {
+        <span style="color:#66d9ef">my</span> ($fib_prev, $fib_last) <span style="color:#f92672">=</span> <span style="color:#e6db74">/[0-9]+/g</span>;
+        <span style="color:#66d9ef">while</span> (length ($fib_last) <span style="color:#f92672">&lt;</span> $LENGTH) {
+            ($fib_prev, $fib_last) <span style="color:#f92672">=</span> ($fib_last, $fib_prev <span style="color:#f92672">.</span> $fib_last);
+        }
+        say substr $fib_last, $LENGTH <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/alexander-pankoff/perl/ch-1.pl"><strong>Alexander Pankoff</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://pankoff.net/pages/perl-weekly-challenge/challenge-150-task-1.html">Challenge 150 Task #1 - Fibonacci words | pankoff.net</a></p>
+<p>In another unusual twist on a familiar theme, Alexander states in his <a href="https://pankoff.net/pages/perl-weekly-challenge/challenge-150-task-1.html">extensive notes</a> that a Fibonacci sequence &ldquo;cries for a recursive solution&rdquo;. Fair enough, if that&rsquo;s the way you want to play this. He constructs his sequence then by repeatedly re-calling the construction routine until a minimum character limit has been surpassed. When the recursion collapses the final result is returned and the 51st position is examined using <code>substr</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">fibonacci_word</span> ( $a, $b, $length ) {
+
+        <span style="color:#75715e"># The actual fibonacci_word routine cries for a recursive solution. As</span>
+        <span style="color:#75715e"># always with a recursive solution we start with defining the exit</span>
+        <span style="color:#75715e"># condition, which is fullfilled as soon as the $a string reaches at least</span>
+        <span style="color:#75715e"># the requested length $length. In that case $a is the final fibonacci word</span>
+        <span style="color:#75715e"># and we return it to the caller</span>
+        <span style="color:#66d9ef">return</span> $a <span style="color:#66d9ef">if</span> length($a) <span style="color:#f92672">&gt;=</span> $length;
+
+        <span style="color:#75715e"># Otherwise we continue the process, by passing $b as the new $a to the</span>
+        <span style="color:#75715e"># fibonacci_word routine and accumulating the next fibonacci word (the</span>
+        <span style="color:#75715e"># concatenation of $a and $b) into $b</span>
+        <span style="color:#66d9ef">return</span> fibonacci_word( $b, $a <span style="color:#f92672">.</span> $b, $length );
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/wlmb/perl/ch-1a.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://wlmb.github.io/2022/01/31/PWC150/">Perl Weekly Challenge 150 – W. Luis Mochán</a></p>
+<p>alternate method: <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/wlmb/perl/ch-1a.pl">bookkeeping the offset</a></p>
+<p>Finally we reach Luis who brings us two solutions today. The first follows the same basic pattern we&rsquo;ve see quite a lot of, simply building a large enough word and examining the proper character. It the second, however, he does something really interesting and doesn&rsquo;t bother to even construct the word.</p>
+<p>As noted in the opening analysis, the label of &ldquo;Fibonacci&rdquo; is appropriate to the strings produced because if the characters are viewed as unary digits, the resultant lengths of the strings are not just <em>like</em> the Fibonacci numbers, but <em>are</em> the Fibonacci numbers. So they act the same way, and because of this we can carefully track the <em>offset</em> in front of what will eventually become the 51st position.</p>
+<p>From his <a href="https://wlmb.github.io/2022/01/31/PWC150/">blog writeup</a>:</p>
+<blockquote>
+<p>Actually, I don’t have to build the Fibonacci string to get the letter, I just have to calculate the sequence of string lengths l(n)=l(n-2)+l(n-1). Thus, the N-th letter of the n-th string is the M=N-l(n-2)-th letter of the n-1-th string. If M&lt;=0 it means it is in the n-2-th string instead. I don’t even have to store the lengths of the strings as they can be reconstructed from the last two.</p>
+</blockquote>
+<p>And that, my friends, is a really unusual and very cool take on the situation.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> ($x, $y, $N)<span style="color:#f92672">=</span>@ARGV;
+    $N<span style="color:#e6db74">//</span><span style="color:#f92672">=</span><span style="color:#ae81ff">51</span>; <span style="color:#75715e"># default</span>
+    <span style="color:#66d9ef">my</span> ($l,$m)<span style="color:#f92672">=</span>map {length $_} ($x, $y); <span style="color:#75715e"># last two lengths</span>
+    die <span style="color:#e6db74">&#34;Words should not be empty&#34;</span> <span style="color:#66d9ef">unless</span> $l <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> $m <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>;
+    die <span style="color:#e6db74">&#34;N should be &gt;=1&#34;</span> <span style="color:#66d9ef">unless</span> $N<span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">1</span>;
+    say <span style="color:#e6db74">&#34;Input: x=$x, y=$y, N=$N&#34;</span>;
+    say(<span style="color:#e6db74">&#34;Output: &#34;</span>, substr $x, $N<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>), exit <span style="color:#66d9ef">if</span> $N<span style="color:#f92672">&lt;=</span>$l; <span style="color:#75715e"># character in first word</span>
+    say(<span style="color:#e6db74">&#34;Output: &#34;</span>, substr $y, $N<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>), exit <span style="color:#66d9ef">if</span> $N<span style="color:#f92672">&lt;=</span>$m; <span style="color:#75715e"># character in second word</span>
+    <span style="color:#66d9ef">do</span> {($l,$m)<span style="color:#f92672">=</span>($m,$m<span style="color:#f92672">+</span>$l)} <span style="color:#66d9ef">until</span> $N<span style="color:#f92672">&lt;=</span>$m; <span style="color:#75715e"># get lengths of concatenated strings</span>
+    <span style="color:#75715e"># get back to the initial two strings</span>
+    <span style="color:#75715e"># while updating $N</span>
+    <span style="color:#75715e"># Negative $N corresponds to a char not in the current string, but in the following,</span>
+    <span style="color:#75715e"># so we make it positive in the following step</span>
+    ($l,$m,$N)<span style="color:#f92672">=</span>($m<span style="color:#f92672">-</span>$l, $l, $N<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span>?$N<span style="color:#f92672">+</span>$l<span style="color:#f92672">-</span>$m:$N<span style="color:#f92672">+</span>$l)  <span style="color:#66d9ef">while</span>($m<span style="color:#f92672">&gt;</span>length($y));
+    <span style="color:#75715e"># A final negative $N corresponds to the first word</span>
+    <span style="color:#75715e"># a final positive $N corresponds to the second word</span>
+    say <span style="color:#e6db74">&#34;Output: &#34;</span>, $N<span style="color:#f92672">&lt;=</span><span style="color:#ae81ff">0</span>? substr($x,$N<span style="color:#f92672">+</span>length($x)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>):substr($y,$N<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>);
+</code></pre></div><h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-1">Blogs and Additional Submissions in Guest Languages for Task 1:</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/adam-russell/prolog/ch-1.p">Prolog</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2022/02/06">Fibonacci Words That Yearn to Be Squarefree — Perl — Rabbitfarm</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://www.rabbitfarm.com/cgi-bin/blosxom/prolog/2022/02/06">Fibonacci Words That Yearn to Be Squarefree — Prolog — Rabbitfarm</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/arne-sommer/perl/ch-1.pl"><strong>Arne Sommer</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/arne-sommer/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://raku-musings.com/fibonacci-squared-again.html">Fibonacci Squared Again with Raku and Perl</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/athanasius/raku/ch-1.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/bruce-gray/perl/ch-1.pl"><strong>Bruce Gray</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/bruce-gray/dart/ch-1.dart">Dart</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/bruce-gray/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://blogs.perl.org/users/bruce_gray/2022/02/twc-150-bababbab-and-a-few-composites.html">TWC 150: bAbAbbAb and a few Composites | Bruce Gray</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/colin-crain/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://colincrain.com/2022/02/03/the-51st-little-piece-of-string/">The 51st Little Piece of String - Programming Excursions in Perl and Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://jacoby.github.io/2022/02/02/free-the-squares-the-weekly-challenge-150.html">Free The Squares!: The Weekly Challenge #150 | Committed to Memory</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/lubos-kolouch/perl/ch-1.pl"><strong>Lubos Kolouch</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/lubos-kolouch/python/ch-1.py">Python</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/pete-houston/perl/ch-1.pl"><strong>Pete Houston</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/pete-houston/awk/ch-1.awk">Awk</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/peter-campbell-smith/perl/ch-1.pl"><strong>Peter Campbell Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://pjcs-pwc.blogspot.com/2022/02/fibo-nacci-fibonacci-naccifibonacci.html">Fibo, nacci, Fibonacci, nacciFibonacci, FibonaccinacciFibonacci &hellip;</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/robert-dicicco/perl/ch-1.pl"><strong>Robert DiCicco</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/robert-dicicco/raku/ch-1.raku">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/robert-dicicco/ruby/ch-1.rb">Ruby</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/roger-bell-west/javascript/ch-1.js">Javascript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/roger-bell-west/kotlin/ch-1.kt">Kotlin</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/roger-bell-west/lua/ch-1.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/roger-bell-west/postscript/ch-1.ps">Postscript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/roger-bell-west/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/roger-bell-west/raku/ch-1.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/roger-bell-west/ruby/ch-1.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/roger-bell-west/rust/ch-1.rs">Rust</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://blog.firedrake.org/archive/2022/02/The_Weekly_Challenge_150__Square_Free_Words.html">RogerBW&rsquo;s Blog: The Weekly Challenge 150: Square-Free Words</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/sgreen/python/ch-1.py">Python</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://dev.to/simongreennet/weekly-challenge-150-4fmn">Weekly Challenge 150</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/ulrich-rieke/cpp/ch-1.cpp">C++</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/ulrich-rieke/haskell/ch-1.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/ulrich-rieke/raku/ch-1.raku">Raku</a></p>
+<hr>
+<hr>
+<h1 id="PWC150TASK2">TASK 2</h1>
+<h1 id="square-free-integer">Square-free Integer</h1>
+<p><em>Submitted by: Mohammad S Anwar</em>
+Write a script to generate all square-free integers &lt;= 500.</p>
+<p>In mathematics, a square-free integer (or squarefree integer) is an integer which is divisible by no perfect square other than 1. That is, its prime factorization has exactly one factor for each prime that appears in it. For example, 10 = 2 ⋅ 5 is square-free, but 18 = 2 ⋅ 3 ⋅ 3 is not, because 18 is divisible by 9 = 3**2.</p>
+<p><strong>Example</strong></p>
+<pre><code>    The smallest positive square-free integers are
+
+    1, 2, 3, 5, 6, 7, 10, 11, 13, 14, 15, 17, 19, 21, 22, 23, 26, 29, 30, ...
+</code></pre><h2 id="about-the-solutions-1">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/abigail/perl/ch-2.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/alexander-pankoff/perl/ch-2.pl"><strong>Alexander Pankoff</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/deadmarshal/perl/ch-2.pl"><strong>Ali Moradi</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/arne-sommer/perl/ch-2.pl"><strong>Arne Sommer</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/bruce-gray/perl/ch-2.pl"><strong>Bruce Gray</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/lubos-kolouch/perl/ch-2.pl"><strong>Lubos Kolouch</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/mattneleigh/perl/ch-2.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/perlboy1967/perl/ch-2.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/pete-houston/perl/ch-2.pl"><strong>Pete Houston</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/peter-campbell-smith/perl/ch-2.pl"><strong>Peter Campbell Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/robert-dicicco/perl/ch-2.pl"><strong>Robert DiCicco</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>The idea of squarefree integers directly derives from the idea of having squares amongst a number&rsquo;s factors. This in turn means that in a list of factors for a number some value is repeated, and by the fundamental theory of arithmetic this means at least one prime factor will be repeated. From this we can state then that being squarefree means that all of the prime factors of a number are distinct — that none are represented more than once.</p>
+<p>The question of whether or not  a number contains any square factors comes into play in
+many aspects throughout the field of number theory, along with the related idea of selecting out the squarefree <em>portion</em> of an integer&rsquo;s prime factorization; that is those factors without an exponent. The squarefree numbers pop up in a variety of more- and less-obvious spots, notably the Bell numbers, which we explored in <a href="https://theweeklychallenge.org/blog/review-challenge-108/">PWC108</a>, and the central binomial coefficients.</p>
+<p>The complement collection of numbers that do have a square amongst their factors are called &ldquo;squareful&rdquo;, and there is even an exclusive subgroup among <em>those</em> known as &ldquo;squarefull&rdquo; — with two &ldquo;l&quot;s — that have <em>all</em> of their factors being at least 2. As in &ldquo;Oh my God! It&rsquo;s full of squares!&rdquo;</p>
+<p>Maybe we&rsquo;ll do those next, to see what they look like.</p>
+<p>There were 26 submissions for the second task this past week.</p>
+<h2 id="a-well-rounded-sampling-from-our-finest-varietals">A WELL-ROUNDED sampling from our FINEST VARIETALS</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/deadmarshal/perl/ch-2.pl"><strong>Ali Moradi</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/lubos-kolouch/perl/ch-2.pl"><strong>Lubos Kolouch</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/pete-houston/perl/ch-2.pl"><strong>Pete Houston</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/bruce-gray/perl/ch-2.pl"><strong>Bruce Gray</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/perlboy1967/perl/ch-2.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a></p>
+<p>As it turns out, there&rsquo;s no really quick, efficient algorithm for determining squarefree numbers. Which is a pity, because number theorists would really like one. If anyone figures that out, be sure to let them know.</p>
+<p>In the meanwhile we have a wide variety of variations demonstrating ways to determine various  lists of primes, or perfect squares, or perfect squares of primes. Or even just producing lists of squarefree numbers from the spigot.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/roger-bell-west/javascript/ch-2.js">Javascript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/roger-bell-west/kotlin/ch-2.kt">Kotlin</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/roger-bell-west/lua/ch-2.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/roger-bell-west/postscript/ch-2.ps">Postscript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/roger-bell-west/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/roger-bell-west/raku/ch-2.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/roger-bell-west/ruby/ch-2.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/roger-bell-west/rust/ch-2.rs">Rust</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://blog.firedrake.org/archive/2022/02/The_Weekly_Challenge_150__Square_Free_Words.html">RogerBW&rsquo;s Blog: The Weekly Challenge 150: Square-Free Words</a></p>
+<p>I say we just take a wild leap into the freezing-cold water with Roger&rsquo;s remarkable solution. Why not? YOLO, baby. In these uncertain times we need to seize life by the horns and run with it.</p>
+<p>And to those with English as a second language desperately trying to make sense of what I just said, just go with it.</p>
+<p>Anyway, Roger starts with generating a list of prime numbers to be used throughout the script, up to the square root of 500, the largest candidate we will be considering.</p>
+<p>Primes in hand, he then starts trial division with primes from the list against the candidate values. And here&rsquo;s the clever part: when testing a prime, we immediately try dividing it out as many times as we can. If the count, being the exponent, is greater than 1 we have found a square and we immediately move to the next candidate up the line. We stop at the prearranged value of 500.</p>
+<p>So to paraphrase myself on this first go: we divide out the 2s, then the 3s, then the 5s, reducing the candidate value at each iteration until we reach a prime that, when squared, exceeds the current value of the candidate. So we constrict the search space from every direction at every opportunity we can find.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">squarefree</span> {
+      <span style="color:#66d9ef">my</span> $max<span style="color:#f92672">=</span>shift;
+      <span style="color:#66d9ef">my</span> @out;
+      <span style="color:#66d9ef">my</span> @primes<span style="color:#f92672">=</span>@{genprimes(int(sqrt($max)))};
+      <span style="color:#66d9ef">my</span> $plimit<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
+      <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $candidate (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$max) {
+        <span style="color:#66d9ef">my</span> $squarefree<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">while</span> ($plimit <span style="color:#f92672">*</span> $plimit <span style="color:#f92672">&lt;</span> $candidate) {
+          $plimit<span style="color:#f92672">++</span>;
+        }
+        <span style="color:#66d9ef">my</span> $cc<span style="color:#f92672">=</span>$candidate;
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $pr (@primes) {
+          <span style="color:#66d9ef">if</span> ($pr <span style="color:#f92672">&gt;</span> $plimit) {
+            <span style="color:#66d9ef">last</span>;
+          }
+          <span style="color:#66d9ef">my</span> $n<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+          <span style="color:#66d9ef">while</span> ($cc % <span style="color:#960050;background-color:#1e0010">$</span>pr <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+            $n<span style="color:#f92672">++</span>;
+            <span style="color:#66d9ef">if</span> ($n<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">1</span>) {
+              $squarefree<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+              <span style="color:#66d9ef">last</span>;
+            }
+            $cc<span style="color:#f92672">=</span>int($cc<span style="color:#f92672">/</span>$pr);
+          }
+          <span style="color:#66d9ef">unless</span> ($squarefree) {
+            <span style="color:#66d9ef">last</span>;
+          }
+        }
+        <span style="color:#66d9ef">if</span> ($squarefree) {
+          push @out,$candidate;
+        }
+      }
+      <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@out;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/adam-russell/prolog/ch-2.p">Prolog</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2022/02/06">Fibonacci Words That Yearn to Be Squarefree — Perl — Rabbitfarm</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://www.rabbitfarm.com/cgi-bin/blosxom/prolog/2022/02/06">Fibonacci Words That Yearn to Be Squarefree — Prolog — Rabbitfarm</a></p>
+<p>Adam sets into the task with two routines, <code>prime_factor()</code> which creates an exhaustive degeneration on an integer, and <code>squarefree()</code> as a wrapper to search the field of candidates and locate those that are squarefree.</p>
+<p>As <code>prime_factor()</code> returns a list of all factors required to produce the candidiate, we locate squares by translating the list into a frequency array, with each instance incrementing a counter at the given index corresponding to the factor. A <code>grep</code> filter is then used to find any elements that are greater than 1, and if any of these are found the candidate cannot be squarefree.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">prime_factor</span>{
+        <span style="color:#66d9ef">my</span> $x <span style="color:#f92672">=</span> shift(@_);
+        <span style="color:#66d9ef">my</span> @factors;
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $y <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>; $y <span style="color:#f92672">&lt;=</span> $x; $y<span style="color:#f92672">++</span>){
+            <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $x % <span style="color:#960050;background-color:#1e0010">$</span>y;
+            $x <span style="color:#f92672">/=</span> $y;
+            push @factors, $y;
+            <span style="color:#66d9ef">redo</span>;
+        }
+        <span style="color:#66d9ef">return</span> @factors;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">square_free</span>{
+        <span style="color:#66d9ef">my</span> @square_free;
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $x (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> LIMIT){
+            <span style="color:#66d9ef">my</span> @factors <span style="color:#f92672">=</span> prime_factor($x);
+            <span style="color:#66d9ef">my</span> @a;
+            map {$a[$_]<span style="color:#f92672">++</span>} @factors;
+            @a <span style="color:#f92672">=</span> grep {$_ <span style="color:#f92672">&amp;&amp;</span> $_ <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>} @a;
+            push @square_free, $x <span style="color:#66d9ef">if</span> <span style="color:#f92672">!</span>@a;
+        }
+        <span style="color:#66d9ef">return</span> @square_free;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/ulrich-rieke/cpp/ch-2.cpp">C++</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/ulrich-rieke/haskell/ch-2.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/ulrich-rieke/raku/ch-2.raku">Raku</a></p>
+<p>Ulrich takes a very similar course of first reducing a candidate to a list of prime factors. In his scheme, however, a number is determined to be squarefree if the count of its prime factors is equal to the count of its <em>distinct</em> prime factors. Of course this can only happen if no factor occurs more than once.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">isSquareFree</span> {
+      <span style="color:#66d9ef">my</span> $number <span style="color:#f92672">=</span> shift ;
+      <span style="color:#66d9ef">my</span> @primeFactors <span style="color:#f92672">=</span> primeFactorialize( $number ) ;
+      <span style="color:#66d9ef">my</span> %factors ;
+      <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i ( @primeFactors ) {
+          $factors{ $i }<span style="color:#f92672">++</span> ;
+      }
+    <span style="color:#75715e">#if it is square free the number of different prime factors should be equal to</span>
+    <span style="color:#75715e">#the number of prime factors</span>
+      <span style="color:#66d9ef">return</span> scalar( keys %factors ) <span style="color:#f92672">==</span> scalar( @primeFactors ) ;
+    }
+
+    <span style="color:#66d9ef">my</span> @square_frees ;
+    <span style="color:#66d9ef">my</span> $current <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> ;
+    <span style="color:#66d9ef">while</span> ( $current <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">501</span> ) {
+      <span style="color:#66d9ef">if</span> ( isSquareFree( $current ) ) {
+          push @square_frees, $current ;
+      }
+      $current<span style="color:#f92672">++</span> ;
+    }
+    say join( <span style="color:#e6db74">&#39;,&#39;</span> , @square_frees ) ;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://jacoby.github.io/2022/02/02/free-the-squares-the-weekly-challenge-150.html">Free The Squares!: The Weekly Challenge #150 | Committed to Memory</a></p>
+<p>First of all, I&rsquo;d lie to take an aside to thank Dave for <a href="https://jacoby.github.io/2022/02/02/free-the-squares-the-weekly-challenge-150.html">including commentary in his blog writeups</a> about the <em>number</em> of the challenge each week. I think this is valuable because long, long ago my father brought to my — I believe 8-year-old — attention a recursive proof that there are no uninteresting numbers because, after picking any obviously interesting number, the number next to it, even if not obviously interesting in itself, is <em>right next to</em> an interesting number, which makes it interesting. And of course the number next to that one, even if not obviously interesting, is also next to what we have now discovered to be an interesting number. Yes I am a second-generation weirdo, and that&rsquo;s only covering the male lineage.</p>
+<p>But back to work. Dave&rsquo;s factorization routine is simplicity itself: counting upwards from 2 he tries dividing out the value and if the remainder is 0 we have found a factor. The factor is then kept and divided again as long as we can.</p>
+<p>By dividing and removing the factors as we go, composite factors will never be found as their own factors will always be located and divided out before they are tested.</p>
+<p>Dave also introduces yet another way to locate any <em>recurring</em> factors, by scanning the prime factorization list for each element contained in it and manually counting them. It seems to work well enough.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    OUTER: <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i ( <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $max ) {
+            <span style="color:#66d9ef">my</span> @factors <span style="color:#f92672">=</span> factors($i);
+            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $f (@factors) {
+                <span style="color:#66d9ef">my</span> $g <span style="color:#f92672">=</span> () <span style="color:#f92672">=</span> grep { <span style="color:#e6db74">/$f/</span> } @factors;
+                <span style="color:#66d9ef">next</span> OUTER <span style="color:#66d9ef">if</span> $g <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>;
+            }
+            push @sfi, $i;
+        }
+        <span style="color:#66d9ef">return</span> @sfi;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">factors</span> ( $n ) {
+        <span style="color:#66d9ef">my</span> @factors;
+        <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;
+        <span style="color:#66d9ef">while</span> ( $i <span style="color:#f92672">&lt;</span> $n ) {
+            <span style="color:#66d9ef">while</span> ( $n % <span style="color:#960050;background-color:#1e0010">$</span>i <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> ) {
+                $n <span style="color:#f92672">/=</span> $i;
+                push @factors, $i;
+            }
+            $i<span style="color:#f92672">++</span>;
+        }
+        <span style="color:#66d9ef">return</span> @factors;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/deadmarshal/perl/ch-2.pl"><strong>Ali Moradi</strong></a></p>
+<p>With all of these ways we&rsquo;ve seen to determine whether the elements in a list of prime factors are distinct, Ali does the obvious thing and brings in <code>uniq()</code> from <code>List::MoreUtils</code> to do the job quickly and efficiently. Then if the number of unique primes equals the size of the original prime factor list we can conclude no individual prime occurs more than once. We can then say there can be no squares and the candidate is logged.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">square_free_integers</span>{
+      <span style="color:#66d9ef">my</span> @arr;
+      <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+      <span style="color:#66d9ef">do</span>{
+        <span style="color:#66d9ef">my</span> @primes <span style="color:#f92672">=</span> prime_factors($i);
+        <span style="color:#66d9ef">my</span> $prime <span style="color:#f92672">=</span> uniq @primes;
+
+        <span style="color:#66d9ef">if</span>(scalar(@primes) <span style="color:#f92672">-</span> $prime <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>){
+          push @arr, $i;
+        }
+        $i<span style="color:#f92672">++</span>;
+      }<span style="color:#66d9ef">while</span>(scalar @arr <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">500</span>);
+
+      <span style="color:#66d9ef">return</span> @arr;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/lubos-kolouch/perl/ch-2.pl"><strong>Lubos Kolouch</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/lubos-kolouch/python/ch-2.py">Python</a></p>
+<p>In a manner analogous to bringing in <code>uniq()</code> to locate duplicates, Lubos imports <code>factor()</code> from <code>Math::Prime::Util</code> to do the intensive task of factoring. He then loops over the factor list, incrementing the elements as keys in a hash, autovivifying the keys as required. If any key value reaches 2 the loop is immediately exited and the next candidate is considered.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">qw/factor/</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get_sq_free_int</span>{
+        <span style="color:#66d9ef">my</span> $limit <span style="color:#f92672">=</span> shift;
+        <span style="color:#66d9ef">my</span> @result;
+
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$limit) {
+            <span style="color:#66d9ef">my</span> @factors <span style="color:#f92672">=</span> factor($i);
+
+            <span style="color:#66d9ef">my</span> %fact_hash;
+            <span style="color:#66d9ef">my</span> $is_ok <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+
+            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $fact(@factors) {
+                $fact_hash{$fact} <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
+                <span style="color:#66d9ef">if</span> ($fact_hash{$fact}<span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span>) {
+                    $is_ok <span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+                    <span style="color:#66d9ef">last</span>;
+                }
+            }
+            push @result, $i <span style="color:#66d9ef">if</span> $is_ok;
+        }
+        <span style="color:#66d9ef">return</span> join <span style="color:#e6db74">&#39;, &#39;</span>, @result;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/pete-houston/perl/ch-2.pl"><strong>Pete Houston</strong></a></p>
+<p>Pete, on the other hand, takes importation to another level entirely.</p>
+<p>Sometimes when I see solutions like this I say to myself &ldquo;Hey! That&rsquo;s cheating!&rdquo; But on reflection, you know, it really isn&rsquo;t. A breathtakingly marvelous library has been painstakingly assembled over countless hours for the sole purpose of helping in all manner of questions pertaining to number theory, and that is <code>Math::Prime::Util</code>, a.k.a. <code>ntheory</code>. As we said before the squarefree numbers have a tendency to pop up in many unsuspecting places, which warrants them their own set of functions in this library, one of which is   <code>forsquarefree()</code>. This creates an <code>map</code>-like iteration loop over a range and applies the given block function to each squarefree number in the range from 1 to the specified value. To get a list of all squarefree numbers, then, we only need to use the block to push values onto an output list.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">qw/forsquarefree/</span>;
+
+    <span style="color:#66d9ef">my</span> @sf;
+    forsquarefree { push @sf, $_ } <span style="color:#ae81ff">500</span>;
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39;The smallest positive square-free integers are: &#39;</span> <span style="color:#f92672">.</span>
+        join (<span style="color:#e6db74">&#39;, &#39;</span>, @sf) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/bruce-gray/perl/ch-2.pl"><strong>Bruce Gray</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/bruce-gray/dart/ch-2.dart">Dart</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/bruce-gray/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://blogs.perl.org/users/bruce_gray/2022/02/twc-150-bababbab-and-a-few-composites.html">TWC 150: bAbAbbAb and a few Composites | Bruce Gray</a></p>
+<p>Likewise Bruce, notably economical in line and form.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Modern::Perl;
+    <span style="color:#66d9ef">use</span> ntheory <span style="color:#e6db74">qw&lt;is_square_free&gt;</span>;
+
+    say join <span style="color:#e6db74">&#39;, &#39;</span>, grep { is_square_free($_) } <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">500</span>;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/colin-crain/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://colincrain.com/2022/02/04/no-squares-allowed/">No Squares Allowed - Programming Excursions in Perl and Raku</a></p>
+<p>For my own solution I took a stab at avoiding prime factoring entirely. I also do my best to avoid factoring as much as possible as well, by precompiling a list of <em>squares</em> of numbers that are numbers less than the square root. As the number itself might be a perfect square, we need to consider squares all the way up, but we also don&rsquo;t need to consider the whole list of squares for every candidate. To accomodate this I kept two lists: the list of all potential squares and a sub-list to actually search. By looking at the candidate value, we gradually shift squares off of the one list and add them to the other when the candidate equals the lowest square in the remaining master list. Doing things this way not only optimizes the number of squares tested, but removes all comparisons to the size of the square being tested from the inner loop, so we don&rsquo;t find ourselves doing that over and over either. The result is remarkably quick.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $max <span style="color:#f92672">=</span> shift <span style="color:#e6db74">//</span> <span style="color:#ae81ff">500</span>;
+
+    <span style="color:#66d9ef">my</span> @all_squares <span style="color:#f92672">=</span> map { $_ <span style="color:#f92672">*</span> $_ } ( <span style="color:#ae81ff">2</span><span style="color:#f92672">..</span>sqrt $max );
+    <span style="color:#66d9ef">my</span> @squares <span style="color:#f92672">=</span> shift @all_squares;
+    <span style="color:#66d9ef">my</span> @out;
+
+    CANDIDATE: <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $candidate ( <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$max ) {
+        <span style="color:#66d9ef">if</span> ( @all_squares <span style="color:#f92672">&amp;&amp;</span> $all_squares[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">==</span> $candidate) {
+            push @squares, shift @all_squares;
+            <span style="color:#66d9ef">next</span> CANDIDATE ;
+        }
+
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $sq ( @squares ) {
+            <span style="color:#66d9ef">next</span> CANDIDATE <span style="color:#66d9ef">unless</span> $candidate % <span style="color:#960050;background-color:#1e0010">$</span>sq;
+        }
+        push @out, $candidate;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/perlboy1967/perl/ch-2.pl"><strong>Niels van Dijke</strong></a></p>
+<p>Niels also turns his focus to the perfect squares, using the <code>List::MoreUtils</code> function <code>none</code> to apply a block that tries dividing out a candidate by each square in a list to see if the result is whole. The list of squares is kept as a hash that is built up gradually, again adding a new square for consideration whenever the candidate reaches its value. Because all squares need to be checked, using <code>keys</code> on this hash will provide a perfectly good list.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> List::MoreUtils <span style="color:#e6db74">qw(none)</span>;
+
+    <span style="color:#66d9ef">my</span> @i <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>);
+
+    <span style="color:#66d9ef">my</span> %isqr <span style="color:#f92672">=</span> (<span style="color:#ae81ff">2</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">4</span>);
+    <span style="color:#66d9ef">my</span> ($i, $m) <span style="color:#f92672">=</span> (<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>);
+
+    <span style="color:#66d9ef">while</span> ($i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">500</span>) {
+      <span style="color:#66d9ef">if</span> ($i <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $isqr{$m}) {
+        $m<span style="color:#f92672">++</span>;
+        $isqr{$m} <span style="color:#f92672">=</span> $m <span style="color:#f92672">*</span> $m;
+      }
+      push(@i, $i) <span style="color:#66d9ef">if</span> none{$i % <span style="color:#960050;background-color:#1e0010">$</span>isqr{$_} <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>} keys %isqr;
+      $i<span style="color:#f92672">++</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/athanasius/raku/ch-2.raku">Raku</a></p>
+<p>With all this talk of prime factorization I was wondering whether anyone would apply a sieve approach to filtering the candidate list up to 500; if 4 contains a square, as of course it does, then every multiple of 4 will as well, and we should not bother to check them.</p>
+<p>Well my wish has been granted by the monk Athanasius, who implements an algorithm he attributes to one Vladimir Shevelev. From his notes:</p>
+<pre><code>    From Vladimir Shevelev in [1], &quot;an Eratosthenes-type sieve for squarefree num-
+    bers&quot;:
+      1. Record 1 as a square-free number
+      2. Create a sieve for numbers 2 to MAX. Each entry is either true (the number
+         is square-free) or false (the number is not square-free). Initialize all
+         numbers to true.
+      3. FOR each number i from 2 to MAX:
+             IF sieve[i] is true THEN
+                 Record i as a square-free number
+                 FOR each number j in the sequence 2i, 3i, 4i, ..., up to MAX:
+                     Toggle the value of sieve[j]: true becomes false, false
+                     becomes true
+                 ENDFOR
+             ENDIF
+         ENDFOR
+</code></pre><p>So there we have it.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> @sieve <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>) x ($MAX <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>);
+
+    printf <span style="color:#e6db74">&#34;The square-free integers between 1 and %d (inclusive) are:\n%3d&#34;</span>,
+            $MAX, <span style="color:#ae81ff">1</span>;
+
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> $MAX)
+    {
+        <span style="color:#66d9ef">if</span> ($sieve[ $i ])
+        {
+            printf <span style="color:#e6db74">&#34;, %3d&#34;</span>, $i;
+
+            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $j <span style="color:#f92672">=</span> $i <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span>; $j <span style="color:#f92672">&lt;=</span> $MAX; $j <span style="color:#f92672">+=</span> $i)
+            {
+                $sieve[ $j ] <span style="color:#f92672">=</span> <span style="color:#f92672">!</span>$sieve[ $j ];                <span style="color:#75715e"># Toggle the value</span>
+            }
+        }
+    }
+
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a></p>
+<p>Finally we&rsquo;ll finish off our dozen with Choroba, who goes straight to the logical core of the task in a remarkably efficient manner. In two steps he first gives us a sieve of Eratosthenes in a notably compact couple of lines, and then uses this list of primes up to the square root of 500 to divide out the squares, looking for the absence of a remainder.</p>
+<p>That&rsquo;s it. It has no fat left on it, and it&rsquo;s very, very fast.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">squarefree_integers</span> {
+        <span style="color:#66d9ef">my</span> ($max) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> @primes <span style="color:#f92672">=</span> (<span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> sqrt $max);
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; $i <span style="color:#f92672">&lt;=</span> $#primes; <span style="color:#f92672">++</span>$i) {
+            @primes <span style="color:#f92672">=</span> grep $_ <span style="color:#f92672">&lt;=</span> $primes[$i] <span style="color:#f92672">||</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">!=</span> $_ % <span style="color:#960050;background-color:#1e0010">$</span>primes[$i], @primes;
+        }
+        <span style="color:#66d9ef">my</span> @sfi;
+      INTEGER:
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $n (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $max) {
+            <span style="color:#ae81ff">0</span> <span style="color:#f92672">==</span> $n % <span style="color:#960050;background-color:#1e0010">($</span>_ <span style="color:#f92672">*</span> $_) <span style="color:#f92672">and</span> <span style="color:#66d9ef">next</span> INTEGER <span style="color:#66d9ef">for</span> @primes;
+            push @sfi, $n;
+        }
+        <span style="color:#66d9ef">return</span> @sfi
+    }
+</code></pre></div><h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-2">Blogs and Additional Submissions in Guest Languages for Task 2:</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/abigail/perl/ch-2.pl"><strong>Abigail</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/abigail/awk/ch-2.awk">Awk</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/abigail/bash/ch-2.sh">Bash</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/abigail/basic/ch-2.bas">Basic</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/abigail/bc/ch-2.bc">Bc</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/abigail/befunge-93/ch-2.bf93">Befunge-93</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/abigail/c/ch-2.c">C</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/abigail/cobol/ch-2.cb">Cobol</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/abigail/csh/ch-2.csh">Csh</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/abigail/erlang/ch-2.erl">Erlang</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/abigail/forth/ch-2.fs">Forth</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/abigail/fortran/ch-2.f90">Fortran</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/abigail/go/ch-2.go">Go</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/abigail/java/ch-2.java">Java</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/abigail/lua/ch-2.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/abigail/m4/ch-2.m4">M4</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/abigail/mmix/ch-2.mms">Mmix</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/abigail/node/ch-2.js">Node</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/abigail/ocaml/ch-2.ml">Ocaml</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/abigail/pascal/ch-2.p">Pascal</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/abigail/php/ch-2.php">Php</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/abigail/postscript/ch-2.ps">Postscript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/abigail/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/abigail/r/ch-2.r">R</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/abigail/rexx/ch-2.rexx">Rexx</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/abigail/ruby/ch-2.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/abigail/scheme/ch-2.scm">Scheme</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/abigail/sed/ch-2.sed">Sed</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/abigail/sql/ch-2.sql">Sql</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/abigail/tcl/ch-2.tcl">Tcl</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-150-2.html">Perl Weekly Challenge 150: Square-free Integer</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/alexander-pankoff/perl/ch-2.pl"><strong>Alexander Pankoff</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://pankoff.net/pages/perl-weekly-challenge/challenge-150-task-2.html">Challenge 150 Task #2 - Squarefree integers</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/arne-sommer/perl/ch-2.pl"><strong>Arne Sommer</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/arne-sommer/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://raku-musings.com/fibonacci-squared-again.html">Fibonacci Squared Again with Raku and Perl</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/polettix/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.polettix.it/ETOOBUSY/2022/02/03/pwc150-square-free-integer/">PWC150 - Square-free Integer - ETOOBUSY</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-150/james-smith">Perl Weekly Challenge #150</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/laurent-rosenfeld/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://blogs.perl.org/users/laurent_r/2022/02/perl-weekly-challenge-150-fibonacci-words-and-square-free-integers.html">Perl Weekly Challenge 150: Fibonacci Words and Square Free Integers</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/peter-campbell-smith/perl/ch-2.pl"><strong>Peter Campbell Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://pjcs-pwc.blogspot.com/2022/02/fibo-nacci-fibonacci-naccifibonacci.html">Fibo, nacci, Fibonacci, nacciFibonacci, FibonaccinacciFibonacci &hellip;</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/robert-dicicco/perl/ch-2.pl"><strong>Robert DiCicco</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/robert-dicicco/raku/ch-2.raku">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/robert-dicicco/ruby/ch-2.rb">Ruby</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/sgreen/python/ch-2.py">Python</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://dev.to/simongreennet/weekly-challenge-150-4fmn">Weekly Challenge 150</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-150/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://wlmb.github.io/2022/01/31/PWC150/">Perl Weekly Challenge 150 – W. Luis Mochán</a></p>
+<hr>
+<hr>
+<p> &nbsp; </p>
+<p> &nbsp; </p>
+<p> &nbsp; </p>
+<p> &nbsp; </p>
+<center>
+<h1 id="PWC150BLOGS">_________ THE BLOG PAGES _________</h1>
+</center>
+<hr>
+<p><strong>That’s it for me this week, people! Warped by the rain, driven by the snow, resolute and unbroken by the torrential influx, by some miracle I somehow continue to maintain my bearings.</strong></p>
+<p><strong>Looking forward to next wave, the perfect wave, I am: <em>your humble servant</em>.</strong></p>
+<h1 id="PWC150BLOGS">But if Your Unquenchable <em>THIRST</em> for <em>KNOWLEDGE</em> is not <em>SLAKED</em>,</h1>
+<h1 id="then-run-dont-walk-to-the-watering-hole">then <em>RUN</em> <em>(dont walk!)</em> to the <em>WATERING HOLE</em></h1>
+<h1 id="and-follow-these-blog-links">and <em>FOLLOW</em> these <em>BLOG</em> <em>LINKS</em>:</h1>
+<p><strong>( &hellip;<em>don&rsquo;t think, trust your training, you&rsquo;re in the zone, just do it &hellip;</em> )</strong></p>
+<p><strong>Abigail</strong></p>
+<ul>
+<li><a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-150-1.html">Perl Weekly Challenge 150: Fibonacci Words</a> ( <em>Perl</em> )</li>
+<li><a href="https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-150-2.html">Perl Weekly Challenge 150: Square-free Integer</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Adam Russell</strong></p>
+<ul>
+<li><a href="http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2022/02/06">Fibonacci Words That Yearn to Be Squarefree — Perl — Rabbitfarm</a> ( <em>Perl</em> )</li>
+<li><a href="http://www.rabbitfarm.com/cgi-bin/blosxom/prolog/2022/02/06">Fibonacci Words That Yearn to Be Squarefree — Prolog — Rabbitfarm</a> ( <em>Prolog</em> )</li>
+</ul>
+<p><strong>Alexander Pankoff</strong></p>
+<ul>
+<li><a href="https://pankoff.net/pages/perl-weekly-challenge/challenge-150-task-1.html">Challenge 150 Task #1 - Fibonacci words</a> ( <em>Perl</em> )</li>
+<li><a href="https://pankoff.net/pages/perl-weekly-challenge/challenge-150-task-2.html">Challenge 150 Task #2 - Squarefree integers</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Arne Sommer</strong></p>
+<ul>
+<li><a href="https://raku-musings.com/fibonacci-squared-again.html">Fibonacci Squared Again with Raku and Perl</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Bruce Gray</strong></p>
+<ul>
+<li><a href="http://blogs.perl.org/users/bruce_gray/2022/02/twc-150-bababbab-and-a-few-composites.html">TWC 150: bAbAbbAb and a few Composites | Bruce Gray</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Colin Crain</strong></p>
+<ul>
+<li><a href="https://colincrain.com/2022/02/03/the-51st-little-piece-of-string/">The 51st Little Piece of String - Programming Excursions in Perl and Raku</a> ( <em>Perl &amp; Raku</em> )</li>
+<li><a href="https://colincrain.com/2022/02/04/no-squares-allowed/">No Squares Allowed - Programming Excursions in Perl and Raku</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Dave Jacoby</strong></p>
+<ul>
+<li><a href="https://jacoby.github.io/2022/02/02/free-the-squares-the-weekly-challenge-150.html">Free The Squares!: The Weekly Challenge #150 | Committed to Memory</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Flavio Poletti</strong></p>
+<ul>
+<li><a href="https://github.polettix.it/ETOOBUSY/2022/02/02/pwc150-fibonacci-words/">PWC150 - Fibonacci Words - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+<li><a href="https://github.polettix.it/ETOOBUSY/2022/02/03/pwc150-square-free-integer/">PWC150 - Square-free Integer - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>James Smith</strong></p>
+<ul>
+<li><a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-150/james-smith">Perl Weekly Challenge #150</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Laurent Rosenfeld</strong></p>
+<ul>
+<li><a href="http://blogs.perl.org/users/laurent_r/2022/02/perl-weekly-challenge-150-fibonacci-words-and-square-free-integers.html">Perl Weekly Challenge 150: Fibonacci Words and Square Free Integers</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Luca Ferrari</strong></p>
+<ul>
+<li><a href="https://fluca1978.github.io/2022/01/31/PerlWeeklyChallenge150.html#task1">Perl Weekly Challenge 150: Fibonacci &amp; squares (again!) – Luca Ferrari – Open Source advocate, human being</a> ( <em>Raku</em> )</li>
+</ul>
+<p><strong>Peter Campbell Smith</strong></p>
+<ul>
+<li><a href="https://pjcs-pwc.blogspot.com/2022/02/fibo-nacci-fibonacci-naccifibonacci.html">Fibo, nacci, Fibonacci, nacciFibonacci, FibonaccinacciFibonacci &hellip;</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Roger Bell_West</strong></p>
+<ul>
+<li><a href="https://blog.firedrake.org/archive/2022/02/The_Weekly_Challenge_150__Square_Free_Words.html">RogerBW&rsquo;s Blog: The Weekly Challenge 150: Square-Free Words</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Simon Green</strong></p>
+<ul>
+<li><a href="https://dev.to/simongreennet/weekly-challenge-150-4fmn">Weekly Challenge 150</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>W. Luis Mochan</strong></p>
+<ul>
+<li><a href="https://wlmb.github.io/2022/01/31/PWC150/">Perl Weekly Challenge 150 – W. Luis Mochán</a> ( <em>Perl</em> )</li>
+</ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="/contact" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2022
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.nomtimes.co.uk/site/shop.do?cref=PerlBooks" title="Free Perl Books" rel="noreferrer" target="_blank">
+                            <img src="/images/NomTimes.jpg" style="width:22px; height: 18px;" alt=""/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jQurey/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-136524905-1', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+
+</html>
+
