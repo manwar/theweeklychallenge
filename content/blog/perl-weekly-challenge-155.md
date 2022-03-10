@@ -95,14 +95,14 @@ Our solo sponsor `Pete Sergeant` has been a great support to keep us motivated. 
 ## RECAP {#RECAP}
 ***
 
-Quick recap of **["The Weekly Challenge - 154"](/blog/recap-challenge-154)** by `Mohammad S Anwar`.
+Quick recap of **[The Weekly Challenge - 154](/blog/recap-challenge-154)** by `Mohammad S Anwar`.
 
 <br>
 
 ## PERL REVIEW {#PERLREVIEW}
 ***
 
-Please check out **Perl** solutions review of the **["The Weekly Challenge - 150"](/blog/review-challenge-150)** by `Colin Crain`.
+Please check out **Perl** solutions review of **[The Weekly Challenge - 150](/blog/review-challenge-150)** by `Colin Crain`.
 
 If you missed any past reviews then please check out the [**collection**](/p5-reviews).
 
@@ -127,7 +127,7 @@ I would like to `THANK` every member of the team for their valuable suggestions.
 ## NEW MEMBERS {#NEWMEMBERS}
 ***
 
-[Jeff Armstrong](https://github.com/jaguart), an expert in **Raku** and **Perl** joined the **Team PWC**.
+[**Jeff Armstrong**](https://github.com/jaguart), an expert in **Raku** and **Perl** joined the **Team PWC**.
 
 Please find out [**How to contribute?**](/blog/how-to-contribute), if you have any doubts.
 
