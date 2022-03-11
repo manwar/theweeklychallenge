@@ -516,7 +516,7 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 ***
 
 ### Robert DiCicco
-![Robert DiCicco](/images/team/user.jpg)
+![Robert DiCicco](/images/team/robert-dicicco.jpg)
 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/robert-dicicco/perl/ch-1.pl)]
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/robert-dicicco/perl/ch-2.pl)]
