@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="The Weekly Challenge - Perl & Raku"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="You do not have to be an expert."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Colin Crain › Perl Weekly Review #151">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Colin Crain › Perl Weekly Review #151</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navgation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Colin Crain › Perl Weekly Review #151</h2>
+                    <div class="portfolio-meta">
+                        <span>Monday, Mar 14, 2022</span>|
+                        <span> Tags:
+                            perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/p5-review-challenge-151.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <p>( <em>&hellip;continues from <a href="/blog/review-challenge-150/">previous week</a>.</em> )</p>
+<p>Welcome to the Perl review pages for <strong>Week 151</strong> of The Weekly Challenge! Here we will take the time to discuss the  submissions offered up by the team, factor out some common methodologies that came up in those solutions, and highlight some of the unique approaches and unusual code created.</p>
+<hr>
+<h3 id="-why-do-we-do-these-challenges">●︎ Why do we do these challenges?</h3>
+<p>I suppose any reasonable answer to that question would be from a field as wide ranging and varied as the people who choose to join the team. One thing, though, is clear: it&rsquo;s not a competition, and there are no judges, even if there is a &ldquo;prize&rdquo; of sorts. About that &ndash; I think of it more as an honorarium periodically awarded to acknowledge the efforts we make towards this strange goal. So there&rsquo;s no determination to find the <em>fastest</em>, or the <em>shortest</em>, or even, in some abstract way, the <em>best</em> way to go about things, although I&rsquo;m certain the participants have their own aspirations and personal drives. As Perl is such a wonderfully expressive language, this provides quite a bit of fodder to the core idea of TMTOWTDI, producing a gamut of varied techniques and solutions.</p>
+<p>Even the tasks themselves are often open to a certain amount of discretionary interpretation. What we end up with is a situation where each participant is producing something in the manner they find the most interesting or satisfying. Some team members focus on carefully crafted complete applications, thoroughly vetting input data and handling every use case they can think up. Others choose to apply themselves to the logic of the underlying puzzle and making it work in the most elegant way they can. Some eschew modules they would ordinarily reach for, others embrace them, bringing to light wheels perhaps invented years ago that happen to exactly solve the problem in front of them today.</p>
+<p>I&rsquo;ve been considering this question for some time and have found one binding commonality between all of us out solving these challenges each week, in that however we normally live our lives, the task in front of us more than likely has nothing to do with any of that. And I think this has great value. We all do what we do, in the real world, and hopefully we do it well. The Weekly Challenge provides us with an opportunity to do something germane to that life yet distinctly different; if we only do the things we already know how to do then we will only do the same things over and over. This is where the &ldquo;challenge&rdquo; aspect comes into play.</p>
+<p>So we can consider The Weekly Challenge as providing a problem space outside of our comfort zone, as far out from that comfort as we wish to take things. From those reaches we can gather and learn things, pick and choose and bring what we want back into our lives. Personally, I think that&rsquo;s what this whole thing is about. YMMV.</p>
+<hr>
+<p><strong><emp>Every week there is an enormous global collective effort made by the team, analyzing and creatively coding the submissions, and that effort deserves credit due.</emp></strong></p>
+<p>And that, my friends, is why I&rsquo;m here, to try and figure out ways to do just that.</p>
+<p>So, here we are then. I&rsquo;m ready — let’s get to it and see what we can find.</p>
+<hr>
+<h3 id="for-additional-context">For Additional Context…</h3>
+<p>before we begin, you may wish to revisit either the pages for the <a href="/blog/perl-weekly-challenge-151/"><strong>original tasks</strong></a> or the summary <a href="/blog/recap-challenge-151/"><strong>recap</strong></a> of the challenge. But don&rsquo;t worry about it, the challenge text will be repeated and presented as we progress from task to task.</p>
+<p>Oh, and one more thing before we get started:</p>
+<h3 id="getting-in-touch-with-us">Getting in Touch with Us</h3>
+<p><a href="mailto:pwc.perfectwave@gmail.com"><img src="/images/blog/Email.svg" height="50" width="50"> Email</a> › Please feel free to email me (Colin) with any feedback, notes, clarifications or whatnot about this review.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge"><img src="/images/blog/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request to us for any issues you may find with this page.</p>
+<p><a href="https://twitter.com/perlwchallenge"><img src="/images/blog/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!</p>
+<p>I&rsquo;m always curious as to what the people think of these efforts. Everyone here at the PWC would like to hear any feedback you&rsquo;d like to give.</p>
+<div align= center><strong>...So finally, without further ado...</strong></div>
+<hr>
+<h2 id="---nbsp--nbsp--nbsp---task-1pwc151task1-------nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---task-2pwc151task2---nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---blogspwc151blogs----nbsp--nbsp--nbsp---">•             <a href="#PWC151TASK1">Task 1</a>                 •             <a href="#PWC151TASK2">Task 2</a>             	•             <a href="#PWC151BLOGS">BLOGS</a>              	•</h2>
+<hr>
+<hr>
+<h1 id="PWC151TASK1">TASK 1</h1>
+<h1 id="binary-tree-depth">Binary Tree Depth</h1>
+<p><em>Submitted by: Mohammad S Anwar</em></p>
+<p>You are given binary tree.</p>
+<p>Write a script to find the minimum depth.</p>
+<p>The minimum depth is the number of nodes from the root to the nearest leaf node (node without any children).</p>
+<p><strong>Example 1:</strong></p>
+<pre><code>    Input: '1 | 2 3 | 4 5'
+
+
+                1
+               / \
+              2   3
+             / \
+            4   5
+
+    Output: 2
+</code></pre><p><strong>Example 2:</strong></p>
+<pre><code>    Input: '1 | 2 3 | 4 *  * 5 | * 6'
+
+
+                1
+               / \
+              2   3
+             /     \
+            4       5
+             \
+              6
+    Output: 3
+</code></pre><h2 id="about-the-solutions">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/abigail/perl/ch-1.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/alexander-pankoff/perl/ch-1.pl"><strong>Alexander Pankoff</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/lubos-kolouch/perl/ch-1.pl"><strong>Lubos Kolouch</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/mattneleigh/perl/ch-1.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/peter-campbell-smith/perl/ch-1.pl"><strong>Peter Campbell Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>In weeks past we&rsquo;ve explored a great deal around the topic of binary trees. We&rsquo;ve looked at maximum diameters, depths, and accessed various nodes, and processed them both breadth- and depth-first. At this point many long-term members of the team have developed complex libraries of tree objects and methods to draw on. And with the first task this week we return to this familiar territory with a seemingly innocent, not-too-difficult task, looking for the closest leaf node to the root.</p>
+<p>Or, to put a darker, Grimms Fairy Tales spin on it, a pair of missing children.</p>
+<p>One key difference to this particular task, generally left ambiguous in previous challenges, is that the input is specified. Or rather, that the <em>input format</em> is specified — in the examples we are given a particular stringified serial encoding.</p>
+<p>The rules for the encoding are not specified, which could be regarded as part of the puzzle for anyone who did not immediately recognise it. The tree data is recorded as a breadth-first traversal, with individual levels delineated by vertical pipes. Within each level, a symbol for a null node is required to fix placements unambiguously, and this format chooses an asterisk. Other than that, items and delimiters are separated by whitespace, apparently with multiple spaces allowed for clarity. We don&rsquo;t have enough examples to determine whether there are specific rules for multiple spaces, but it doesn&rsquo;t seem to affect our parsing in any way anyways, so I&rsquo;d say it doesn&rsquo;t really matter.</p>
+<p>Null nodes at the end of the tree can be inferred and are hence optional. What&rsquo;s not clear, however is whether the same rule would apply to interior levels, although with the vertical pipe level delimiters these too could be inferred. We don&rsquo;t have any examples of this, however.</p>
+<p>There seemed to be only about 9 properly working submissions for the first task this past week, which is weird.</p>
+<h2 id="counting-the-rings">COUNTING the RINGS</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/alexander-pankoff/perl/ch-1.pl"><strong>Alexander Pankoff</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/abigail/perl/ch-1.pl"><strong>Abigail</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a></p>
+<p>Here&rsquo;s the start of a theory:</p>
+<p>There turned out to be quite a bit of ambiguity remaining in the task definition, specifically as to what, exactly, a leaf node is in the context of a binary tree. A binary tree is nominally a tree structure where a node has at most two children, and a leaf as a node without children. However one Set Theory definition of a binary tree is a recursive structure of nodes as tuples, with each tuple containing a value and two child tuples, which may themselves be a null set. The precise meaning of the idea of a null in this definition varies, however.</p>
+<p>The question arises between whether a <em>node</em> is null, or whether the <em>value</em> of a node is null. Ultimately this leads to the question of whether a null node can logically be itself a leaf node.</p>
+<p>To which I say: &ldquo;You have to be f&rsquo;ing kidding me&rdquo;. However if you define a binary tree as a fixed structure with each node containing <em>exactly</em> two children this follows. I am, shall we say, highly disinclined to agree with this interpretation, but it seems implicit to many of the results we saw. But if a null child node is still a node, then by definition all nodes will have children, and the leaf nodes will be simply the furthest extant of whatever full structure we&rsquo;ve defined, or become meaningless altogether.</p>
+<p>Or, you know, a group of otherwise very capable people has screwed up <em>en masse</em>.</p>
+<p>To explain my point of view, consider the following tree:</p>
+<pre><code>    Input: '1 | 2 3 | 4 *  * 5 | * 6 * * * * 7 8'
+
+            ┏━━━━━━┫1┣━━━━━━┓
+            ┃               ┃
+        ┏━━┫2┃             ┃3┣━━┓
+        ┃                       ┃
+       ┃4┣┓                   ┏┫5┣┓
+          ┃                   ┃   ┃
+         ┃6┃                 ┃7┃ ┃8┃
+</code></pre><p>Many solutions return the answer 3, instead of 4. It does not appear to be an off-by-one error. I eventually had to run this test data on every single submission to see what was happening. I took this to be my shibboleth. You have draw the line somewhere.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/athanasius/raku/ch-1.raku">Raku</a></p>
+<p>We&rsquo;ll let the monk start things off today. Drawing a direct inference from the input format, they first slice the string into an array of arrays, one level each. In this form each level will have 2<sup>level</sup> nodes, 0-indexed. Traversing each level in turn, the childen for a node at a given index will always be located on the following level at postions 2 × <em>index</em> and 2 × <em>index</em> + 1. Thus we can easily look up the children and check for their existence. At the first double-miss, we have found a leaf node and we note the level we&rsquo;re on.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    L_OUTER:
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $level (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#$tree)
+    {
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $index (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#{ $tree<span style="color:#f92672">-&gt;</span>[ $level ] })
+        {
+            <span style="color:#66d9ef">my</span> $node <span style="color:#f92672">=</span> $tree<span style="color:#f92672">-&gt;</span>[ $level ][ $index ];
+
+            <span style="color:#66d9ef">if</span> (defined $node)
+            {
+                <span style="color:#66d9ef">if</span> ($level <span style="color:#f92672">==</span> $#$tree <span style="color:#f92672">||</span>
+                   (<span style="color:#f92672">!</span>defined $tree<span style="color:#f92672">-&gt;</span>[ $level <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> ][ <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $index     ] <span style="color:#f92672">&amp;&amp;</span>
+                    <span style="color:#f92672">!</span>defined $tree<span style="color:#f92672">-&gt;</span>[ $level <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> ][ <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $index <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> ]))
+                {
+                    printf <span style="color:#e6db74">qq[Output: %d\n]</span>, $level <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+                    <span style="color:#66d9ef">print</span>  <span style="color:#e6db74">qq[\nThe first leaf node is &#34;$node&#34;\n]</span> <span style="color:#66d9ef">if</span> $VERBOSE;
+
+                    <span style="color:#66d9ef">last</span> L_OUTER;
+                }
+            }
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/alexander-pankoff/perl/ch-1.pl"><strong>Alexander Pankoff</strong></a></p>
+<p>At the other end of the complexity spectrum, Alexander chooses multiple layers of abstraction to structure his parsed input. A tokenizer is defined, with a <code>TokenType</code> class and three subclasses for separators, values and placeholders. Parsed and labeled, the list of tokens is then handed to the main <code>minimum_binary_tree_depth()</code> routine.</p>
+<p>The tokens are systematically processed, ratcheting a level counter as they go, counting by powers of 2 and filling in an array of arrays with the tree data. This tree is then used to find the first leaf.</p>
+<p>As I said, lots of abstraction. Kind of like building a hovercraft because you needed to go to the corner store.</p>
+<p>And hovercrafts, as everyone knows, are very cool.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">while</span> (@tokens) {
+        push @$tree, <span style="color:#f92672">[]</span>;
+        <span style="color:#66d9ef">my</span> $num_elems <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">**</span>$depth;
+        <span style="color:#66d9ef">for</span> ( <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> ; $i <span style="color:#f92672">&lt;</span> $num_elems ; $i<span style="color:#f92672">++</span> ) {
+
+            <span style="color:#66d9ef">if</span> ( <span style="color:#f92672">!</span>@tokens <span style="color:#f92672">||</span> $tokens[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-&gt;</span>isa(<span style="color:#e6db74">&#39;SeparatorToken&#39;</span>) ) {
+                <span style="color:#75715e">## fill row with dummy placeholder tokens.</span>
+                unshift @tokens,
+                  map { PlaceHolderToken<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) }
+                  <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> ( $num_elems <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> $i );    <span style="color:#75715e"># Dummy Token</span>
+            }
+
+            <span style="color:#66d9ef">my</span> $cur <span style="color:#f92672">=</span> shift @tokens;
+            <span style="color:#66d9ef">if</span> ( $cur<span style="color:#f92672">-&gt;</span>isa(<span style="color:#e6db74">&#39;ValueToken&#39;</span>) ) {
+                <span style="color:#66d9ef">if</span> ( $depth <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span>defined( $tree<span style="color:#f92672">-&gt;</span>[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>][ int( $i <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span> ) ] ) ) {
+                    die join( <span style="color:#e6db74">&#34; &#34;</span>,
+                        <span style="color:#e6db74">&#34;Missing parent for node with value&#34;</span>,
+                        $cur<span style="color:#f92672">-&gt;</span>{lexeme},
+                        <span style="color:#e6db74">&#34;at position&#34;</span>,
+                        $cur<span style="color:#f92672">-&gt;</span>pos_human_readable(),
+                        <span style="color:#e6db74">&#34;in input\n&#34;</span> );
+                }
+                push @{ $tree<span style="color:#f92672">-&gt;</span>[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] }, $cur<span style="color:#f92672">-&gt;</span>{lexeme};
+            }
+            <span style="color:#66d9ef">elsif</span> ( $cur<span style="color:#f92672">-&gt;</span>isa(<span style="color:#e6db74">&#39;PlaceHolderToken&#39;</span>) ) {
+                <span style="color:#66d9ef">if</span> (   $i % 2
+                    <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span>defined $tree<span style="color:#f92672">-&gt;</span>[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
+                    <span style="color:#f92672">&amp;&amp;</span> ( <span style="color:#f92672">!</span>$depth <span style="color:#f92672">||</span> defined $tree<span style="color:#f92672">-&gt;</span>[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>][ int( $i <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span> ) ] ) )
+                {
+                    <span style="color:#66d9ef">return</span> $depth;
+                }
+                push @{ $tree<span style="color:#f92672">-&gt;</span>[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] }, undef;
+                <span style="color:#75715e">## do nothing</span>
+            }
+        }
+
+        $depth <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
+
+        <span style="color:#75715e"># handle optional separatortoken</span>
+        <span style="color:#66d9ef">if</span> ( @tokens <span style="color:#f92672">&amp;&amp;</span> $tokens[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-&gt;</span>isa(<span style="color:#e6db74">&#34;SeparatorToken&#34;</span>) ) {
+            shift @tokens;
+        }
+    }
+    <span style="color:#66d9ef">return</span> $depth;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a></p>
+<p>Mohammad has curiously chosen to buck his own input format suggestion, defining individual trees as nested <code>Node</code> objects, hashes with 3 keys for <code>left</code> and <code>right</code> children and a value. A recursive routine traverses the structure depth-first, returning the smallest result as the recursion collapses at whatever maximum depth is found.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">min_depth</span> {
+        <span style="color:#66d9ef">my</span> ($node) <span style="color:#f92672">=</span> @_;
+
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">unless</span> defined $node;
+
+        <span style="color:#66d9ef">my</span> $min_left  <span style="color:#f92672">=</span> min_depth($node<span style="color:#f92672">-&gt;</span>{left});
+        <span style="color:#66d9ef">my</span> $min_right <span style="color:#f92672">=</span> min_depth($node<span style="color:#f92672">-&gt;</span>{right});
+
+        <span style="color:#66d9ef">return</span> $min_right <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">unless</span> defined $node<span style="color:#f92672">-&gt;</span>{left};
+        <span style="color:#66d9ef">return</span> $min_left  <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">unless</span> defined $node<span style="color:#f92672">-&gt;</span>{right};
+
+        <span style="color:#66d9ef">return</span> ($min_left <span style="color:#f92672">&gt;</span> $min_right)
+               ?
+               ($min_right <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)
+                :
+               ($min_left  <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>);
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a></p>
+<p>Jorg imports the <code>Graph</code> module to supply a framework for his tree. After all, a tree is a directed graph, linked from top to bottom. The thing about thinking of the tree as a graph is it allows the use of graph theory techniques to find our minimum depth. An intermediate structure is created of shortest paths from the root to each node, and from this the minimum value is taken for all of these paths that travel to a &ldquo;sink vertex&rdquo;, that is to say a vertex that does not connect forward to any other vertex.</p>
+<p>A careful reading will show we&rsquo;re talking about leaf nodes, just using slightly different language.</p>
+<p>Here&rsquo;s the core logic, after we&rsquo;ve constructed our graph:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># Find the minimum depth in a tree-like graph from its root.</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">min_depth</span> ($g) {
+        <span style="color:#75715e"># Use zero as the depth of an empty tree.</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">unless</span> $g<span style="color:#f92672">-&gt;</span>has_vertices;
+        <span style="color:#75715e"># Find the (unique) root vertex.</span>
+        <span style="color:#66d9ef">my</span> $root <span style="color:#f92672">=</span> ($g<span style="color:#f92672">-&gt;</span>source_vertices)[<span style="color:#ae81ff">0</span>];
+        <span style="color:#75715e"># Use one as the depth of a root-only tree.  (An isolated vertex</span>
+        <span style="color:#75715e"># does not count as a source vertex.)</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">unless</span> defined $root;
+        <span style="color:#75715e"># Create the tree of Single-Source Shortest Paths originating at the</span>
+        <span style="color:#75715e"># root vertex.</span>
+        <span style="color:#66d9ef">my</span> $sptg <span style="color:#f92672">=</span> $g<span style="color:#f92672">-&gt;</span>SPT_Dijkstra($root);
+
+        <span style="color:#75715e"># Find the shortest path from the root to all leafs (i.e. sink</span>
+        <span style="color:#75715e"># vertices) and take the minimum thereof.  As the depth is defined</span>
+        <span style="color:#75715e"># here as the number of vertices in the path instead of the number</span>
+        <span style="color:#75715e"># of edges, we need to add one for the desired result.</span>
+        <span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> min map $sptg<span style="color:#f92672">-&gt;</span>get_vertex_attribute($_, <span style="color:#e6db74">&#39;weight&#39;</span>),
+            $sptg<span style="color:#f92672">-&gt;</span>sink_vertices;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://jacoby.github.io/2022/02/07/dr-metropolis-and-his-amazing-maniac-machine-the-weekly-challenge-151.html">Dr. Metropolis and His Amazing MANIAC Machine!: The Weekly Challenge #151 | Committed to Memory</a></p>
+<p>As way of a preface, Dave in his <a href="https://jacoby.github.io/2022/02/07/dr-metropolis-and-his-amazing-maniac-machine-the-weekly-challenge-151.html">blog writeup</a> introduces us to one Dr. Nicholas Metropolis, mathematician and inventor of the Monte Carlo method. He sounds like a fascinating character, although bearing only a passing resemblance to Rotwang, the protagonist on the 1927 Fritz Lang film bearing the same name.</p>
+<p>Incidentally, the robot Maria in <em>Metropolis</em> was referred to by Rotwang as a <em>Maschinenmensch</em>, which obviously inspired <em>Die Mensch-Maschine</em>, the 1978 classic recording by the Kraut-rock synthesizer band <em>Kraftwerk</em>.</p>
+<p>The world, as you may have noticed, is a very interconnected place.</p>
+<p>By way of his solution, Dave parses the input to construct <code>Node</code> objects into a proper tree structure. The nodes themselves contain an upwards <code>parent</code> link, allowing for a <code>node_depth()</code> method that can traverse upwards, counting until it finds the root. A similar method peeks at the children to see whether it is given node is a leaf.</p>
+<p>The nodes are kept in a hash, and the keys to the hash are filtered to find leaf nodes, blocking the root should itself be a leaf. Then each of these are mapped to their depth and the depths sorted to find the minimum.</p>
+<p>The core:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> @input <span style="color:#f92672">=</span> split <span style="color:#e6db74">m{\s*\|\s*}</span>, $input;    <span style="color:#75715e"># basis for all the rows</span>
+    <span style="color:#66d9ef">my</span> %nodes <span style="color:#f92672">=</span>
+        map { $_ <span style="color:#f92672">=&gt;</span> Node<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>($_) }
+        grep { <span style="color:#e6db74">/\d+/</span> } split <span style="color:#e6db74">m{\D}</span>, $input;    <span style="color:#75715e"># create all the nodes</span>
+
+    <span style="color:#75715e"># here&#39;s where the tree is made</span>
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $r (@input) {
+        <span style="color:#66d9ef">my</span> $w   <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">**</span>$e;
+        <span style="color:#66d9ef">my</span> @i   <span style="color:#f92672">=</span> split <span style="color:#e6db74">/\s+/</span>, $r;
+        <span style="color:#66d9ef">my</span> @row <span style="color:#f92672">=</span> map { $i[$_] <span style="color:#f92672">||</span> <span style="color:#e6db74">&#39;*&#39;</span> } <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $w;
+        push @rows, <span style="color:#f92672">\</span>@row;
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $n ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $w ) {
+            <span style="color:#66d9ef">my</span> $val  <span style="color:#f92672">=</span> $row[$n];
+            <span style="color:#66d9ef">my</span> $node <span style="color:#f92672">=</span> $nodes{$val};
+            <span style="color:#66d9ef">my</span> $lr   <span style="color:#f92672">=</span> $n % 2;
+            <span style="color:#66d9ef">my</span> $p    <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39; &#39;</span>;
+            <span style="color:#66d9ef">my</span> $u    <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39; &#39;</span>;
+            <span style="color:#66d9ef">if</span> ( $e <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> ) { $u <span style="color:#f92672">=</span> int( $n <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span> ); $p <span style="color:#f92672">=</span> $rows[ $e <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ][$u]; }
+            <span style="color:#66d9ef">my</span> $parent <span style="color:#f92672">=</span> $nodes{$p};
+            <span style="color:#66d9ef">if</span> ( defined $node <span style="color:#f92672">&amp;&amp;</span> defined $parent ) {
+                <span style="color:#66d9ef">my</span> $v <span style="color:#f92672">=</span> $node<span style="color:#f92672">-&gt;</span>value;
+                <span style="color:#66d9ef">if</span>   ($lr) { $nodes{$p}<span style="color:#f92672">-&gt;</span>left( $nodes{$v} ); }
+                <span style="color:#66d9ef">else</span>       { $nodes{$p}<span style="color:#f92672">-&gt;</span>right( $nodes{$v} ); }
+            }
+        }
+        $e<span style="color:#f92672">++</span>;
+    }
+
+    <span style="color:#66d9ef">my</span> @o <span style="color:#f92672">=</span>                         <span style="color:#75715e"># REMEMBER, READ THIS BACK TO FRONT</span>
+        sort { $a <span style="color:#e6db74">&lt;=&gt;</span> $b }          <span style="color:#75715e"># sort low to high</span>
+        map  { <span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> node_depth($_) } <span style="color:#75715e"># 1 + node_depth = number of nodes involved</span>
+        grep { <span style="color:#f92672">!</span> $_<span style="color:#f92672">-&gt;</span>is_root }      <span style="color:#75715e"># each node is not a root</span>
+        grep { $_<span style="color:#f92672">-&gt;</span>is_leaf }        <span style="color:#75715e"># each node is a leaf</span>
+        map  { $nodes{$_} }         <span style="color:#75715e"># turn it into nodes</span>
+        keys %nodes;                <span style="color:#75715e"># the keys to the nodes</span>
+    <span style="color:#66d9ef">return</span> $o[<span style="color:#ae81ff">0</span>]; <span style="color:#75715e"># and we pull the first one, which should be</span>
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/colin-crain/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://colincrain.com/2022/02/12/no-diving-in-the-shallow-end/">No Diving in the Shallow End - Programming Excursions in Perl and Raku</a></p>
+<p>For my own solution I chose simplicity, constructing a list-processing chain to split the input on whitespace and remove the pipes, mapping the asterisks to <code>undef</code> and preserving the positional data as one long structured array.</p>
+<p>Iterating through the indices of this array a second counter is maintained to ratchet through the level count, counting out 2 × <em>level</em> - 1 elements at a time. Done this way the children for a given index <em>n</em> will be found according to well-defined relationships that can be checked as we go. When we find the first element without children we return the current level count.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $input <span style="color:#f92672">=</span> shift ;
+    say mindepth( parse( $input ) ) <span style="color:#66d9ef">if</span> defined $input;;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">parse</span> ( $input ) {
+        <span style="color:#66d9ef">return</span> map { $_ <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;*&#39;</span> ? undef : $_ }
+               grep { $_ <span style="color:#f92672">ne</span> <span style="color:#e6db74">&#39;|&#39;</span> }
+               split <span style="color:#e6db74">&#39; &#39;</span>, $input;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">mindepth</span> ( @tree ) {
+        <span style="color:#66d9ef">my</span> $level <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> ;
+        <span style="color:#66d9ef">my</span> $count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> ;
+
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $idx ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#tree ) {
+            <span style="color:#66d9ef">return</span> $level <span style="color:#66d9ef">if</span> ( defined $tree[$idx]
+                                <span style="color:#f92672">and</span> <span style="color:#f92672">not</span> defined $tree[$idx <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>]
+                                <span style="color:#f92672">and</span> <span style="color:#f92672">not</span> defined $tree[$idx <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>] ) ;
+            $level<span style="color:#f92672">++</span> <span style="color:#f92672">and</span> $count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> <span style="color:#f92672">++</span>$count <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">**</span> ($level<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) ;
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/roger-bell-west/javascript/ch-1.js">Javascript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/roger-bell-west/kotlin/ch-1.kt">Kotlin</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/roger-bell-west/lua/ch-1.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/roger-bell-west/postscript/ch-1.ps">Postscript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/roger-bell-west/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/roger-bell-west/raku/ch-1.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/roger-bell-west/ruby/ch-1.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/roger-bell-west/rust/ch-1.rs">Rust</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://blog.firedrake.org/archive/2022/02/The_Weekly_Challenge_151__Robbing_Depth.html">RogerBW&rsquo;s Blog: The Weekly Challenge 151: Robbing Depth</a></p>
+<p>Roger brings us two routines: <code>str2tree()</code> to parse his input, and <code>mindepth()</code> to walk the structure produced and find the minimum depth. The tree itself is a flattened breadth-first traversal, with 0s substituted for the null nodes. This format will not allow a node value to be 0, but accepting that it does make the structure easy to visualize, and null still translates to false in comparisons. It&rsquo;s a reasonable tradeoff as long as you remember it&rsquo;s there.</p>
+<p>To find the leaf nodes we walk the indices up from 0, and we look for children by bit-shifting the index left one place. A set of sorting criteria are established: if a node is 0 it cannot be a leaf, and if its first child is over the limit of the array bounds it must be leaf. Otherwise we calculate the child positions and examine them.</p>
+<p>Proceeding this way from left-to-right we find the first leaf and count bit-shifts back rightward to get the level. I think the bit-shifting adds a pleasing elegance to the technique.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">str2tree</span> {
+      <span style="color:#66d9ef">my</span> $st<span style="color:#f92672">=</span>shift;
+      <span style="color:#66d9ef">my</span> @o;
+      <span style="color:#66d9ef">my</span> $d<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+      <span style="color:#66d9ef">my</span> $p<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+      <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $e (split <span style="color:#e6db74">&#39; &#39;</span>,$st) {
+        <span style="color:#66d9ef">if</span> ($e <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;|&#39;</span>) {
+          $d<span style="color:#f92672">++</span>;
+          $p<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+          <span style="color:#66d9ef">my</span> $m<span style="color:#f92672">=</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>($d<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>))<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+          <span style="color:#66d9ef">if</span> (scalar @o <span style="color:#f92672">&lt;</span> $m) {
+            push @o,(<span style="color:#ae81ff">0</span>) x ($m <span style="color:#f92672">-</span> scalar @o);
+          }
+        } <span style="color:#66d9ef">else</span> {
+          <span style="color:#66d9ef">my</span> $y<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+          <span style="color:#66d9ef">if</span> ($e <span style="color:#f92672">ne</span> <span style="color:#e6db74">&#39;*&#39;</span>) {
+            $y<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span><span style="color:#f92672">+</span>$e;
+          }
+          <span style="color:#66d9ef">my</span> $i<span style="color:#f92672">=</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>$d) <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span>$p;
+          $o[$i]<span style="color:#f92672">=</span>$y;
+          $p<span style="color:#f92672">++</span>;
+        }
+      }
+      <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@o;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">mindepth</span> {
+      <span style="color:#66d9ef">my</span> $tree <span style="color:#f92672">=</span> shift;
+      <span style="color:#66d9ef">my</span> $firstleaf<span style="color:#f92672">=</span>scalar @{$tree};
+      <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#{$tree}) {
+        <span style="color:#66d9ef">if</span> ($tree<span style="color:#f92672">-&gt;</span>[$i]<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>) {
+          <span style="color:#66d9ef">next</span>;
+        } <span style="color:#66d9ef">elsif</span> (($i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&gt;=</span> scalar @{$tree}) {
+          $firstleaf<span style="color:#f92672">=</span>$i;
+          <span style="color:#66d9ef">last</span>;
+        } <span style="color:#66d9ef">else</span> {
+          <span style="color:#66d9ef">my</span> $ni<span style="color:#f92672">=</span>(($i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">1</span>)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+          <span style="color:#66d9ef">if</span> ($tree<span style="color:#f92672">-&gt;</span>[$ni]<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> $tree<span style="color:#f92672">-&gt;</span>[$ni<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>) {
+            $firstleaf<span style="color:#f92672">=</span>$i;
+            <span style="color:#66d9ef">last</span>;
+          }
+        }
+      }
+      <span style="color:#66d9ef">my</span> $t<span style="color:#f92672">=</span>$firstleaf<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>;
+      <span style="color:#66d9ef">my</span> $d<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+      <span style="color:#66d9ef">while</span> ($t <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
+        $t <span style="color:#f92672">&gt;&gt;=</span> <span style="color:#ae81ff">1</span>;
+        $d<span style="color:#f92672">++</span>;
+      }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/abigail/perl/ch-1.pl"><strong>Abigail</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/abigail/awk/ch-1.awk">Awk</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/abigail/bash/ch-1.sh">Bash</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/abigail/c/ch-1.c">C</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/abigail/lua/ch-1.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/abigail/node/ch-1.js">Node</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/abigail/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/abigail/ruby/ch-1.rb">Ruby</a></p>
+<p>Abigail economically breaks the input into an array-of-arrays at the vertical pipes, and then walks each level looking ahead for the first instance of two missing children. With Hasel and Gretel locked in a hut in the woods, we have found the first leaf and the level index is adjusted and returned.</p>
+<p>It&rsquo;s a dark tale, but compact and to-the-point.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    TREE: <span style="color:#66d9ef">while</span> (<span style="color:#f92672">&lt;&gt;</span>) {
+        chomp;
+        <span style="color:#66d9ef">my</span> @tree <span style="color:#f92672">=</span> map {[map {$_ <span style="color:#f92672">ne</span> <span style="color:#e6db74">&#39;*&#39;</span>} <span style="color:#e6db74">/\S+/g</span>]} split <span style="color:#e6db74">/\|/</span>;
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $d (keys @tree) {
+            <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i (keys @{$tree [$d]}) {
+                <span style="color:#66d9ef">if</span> ($tree [$d] [$i] <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span>$tree [$d <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>] [<span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $i]
+                                    <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span>$tree [$d <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>] [<span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>]) {
+                    say $d <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+                    <span style="color:#66d9ef">next</span> TREE;
+                }
+            }
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/polettix/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.polettix.it/ETOOBUSY/2022/02/09/pwc151-binary-tree-depth/">PWC151 - Binary Tree Depth - ETOOBUSY</a></p>
+<p>Flavio has arrived at a very similarly concise solution, solving the problem in two parts: as the manipulation of a string into a multidimensional array and then checking from place-to-place to find the first answer. In one way you can consider the talk of a tree to be a deceptive red-herring, but viewed another the serialized tree is a real tree just as good as any other, merely presented in an unusually flat manner. Like a number, the representation does not alter what it is. And it is a tree. When i run the script here it is a tree grown in Brooklyn.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> @levels <span style="color:#f92672">=</span> map { [ split <span style="color:#e6db74">m{\s+}mxs</span> ] } split <span style="color:#e6db74">m{\s*\|\s*}mxs</span>, $input;
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $depth (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $#levels) {
+       <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $levels[$depth <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]<span style="color:#f92672">-&gt;</span>$#<span style="color:#960050;background-color:#1e0010">*</span>) {
+          <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $levels[$depth <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>][$i] <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;*&#39;</span>
+             <span style="color:#f92672">||</span> ($levels[$depth][$i <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span>] <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#39;*&#39;</span>) <span style="color:#f92672">ne</span> <span style="color:#e6db74">&#39;*&#39;</span>
+             <span style="color:#f92672">||</span> ($levels[$depth][$i <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>] <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#39;*&#39;</span>) <span style="color:#f92672">ne</span> <span style="color:#e6db74">&#39;*&#39;</span>;
+          say $depth;
+          exit <span style="color:#ae81ff">0</span>;
+       }
+    }
+    say scalar @levels;
+</code></pre></div><h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-1">Blogs and Additional Submissions in Guest Languages for Task 1:</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-151/james-smith">Perl Weekly Challenge #151</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/laurent-rosenfeld/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://blogs.perl.org/users/laurent_r/2022/02/perl-weekly-challenge-151-binary-tree-depth.html">Perl Weekly Challenge 151: Binary tree Depth</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/lubos-kolouch/perl/ch-1.pl"><strong>Lubos Kolouch</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/lubos-kolouch/php/ch-1.php">Php</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/lubos-kolouch/python/ch-1.py">Python</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/peter-campbell-smith/perl/ch-1.pl"><strong>Peter Campbell Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://pjcs-pwc.blogspot.com/2022/02/locate-leaf-and-rob-road.html">Locate a leaf and rob a road</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/sgreen/python/ch-1.py">Python</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://dev.to/simongreennet/weekly-challenge-151-2812">Weekly Challenge 151</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/ulrich-rieke/cpp/ch-1.cpp">C++</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/ulrich-rieke/haskell/ch-1.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/ulrich-rieke/raku/ch-1.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://wlmb.github.io/2022/02/07/PWC151/">Perl Weekly Challenge 151 – W. Luis Mochán</a></p>
+<hr>
+<hr>
+<h1 id="PWC151TASK2">TASK 2</h1>
+<h1 id="rob-the-house">Rob The House</h1>
+<p><em>Submitted by: Mohammad S Anwar</em></p>
+<p>You are planning to rob a row of houses, always starting with the
+first and moving in the same direction. However, you can’t rob
+two adjacent houses.</p>
+<p>Write a script to find the highest possible gain that can be
+achieved.</p>
+<p><strong>Example 1:</strong></p>
+<pre><code>        Input: @valuables = (2, 4, 5);
+        Output: 7
+</code></pre><p>If we rob house (index=0) we get 2 and then the only house we can
+rob is house (index=2) where we have 5. So the total valuables in
+this case is (2 + 5) = 7.</p>
+<p><strong>Example 2:</strong></p>
+<pre><code>        Input: @valuables = (4, 2, 3, 6, 5, 3);
+        Output: 13
+</code></pre><p>The best choice would be to first rob house (index=0) then rob
+house (index=3) then finally house (index=5). This would give us
+4 + 6 + 3 =13.</p>
+<h2 id="about-the-solutions-1">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/abigail/perl/ch-2.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/alexander-pankoff/perl/ch-2.pl"><strong>Alexander Pankoff</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/lubos-kolouch/perl/ch-2.pl"><strong>Lubos Kolouch</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/mattneleigh/perl/ch-2.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/peter-campbell-smith/perl/ch-2.pl"><strong>Peter Campbell Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>So I&rsquo;ve been hearing doomsayer talk for years about the decline of Perl, but have we truly sunk to the point where we&rsquo;re burgling houses now? Oh dear.</p>
+<p>Well it&rsquo;s just another example of doing what we must to survive in this challenging world. We might as well be practical about it.</p>
+<p>We are however burdened by some unusual conditions in our house-breaking: we must start at the first house, and we cannot hit two houses in a row. As Abigail correctly points out, this means we will never, under any circumstances, rob the second house. I suppose with our luck, that&rsquo;s where all the money is, too. Such is life. Oh why, why did I stay in school?</p>
+<p>I could have been someone. I could have been a contender. Now I&rsquo;m reduced to robbing houses to buy sketchy black-market electricity to keep my screen lit. Day in, day out, got to keep those electrons flowing. The monkey on the keyboard needs his fix. Don&rsquo;t listen to your parents, kids. Don&rsquo;t end up like me.</p>
+<p><em>(uncomfortable silence as your editor contemplates his life choices)</em></p>
+<p>Where was I? Oh, right.</p>
+<p>We were considering how to best select elements from an array according to a set of conditions, to optimize a sum.</p>
+<p>From the conditions, some emergent rules become apparent. Besides never visiting the second house, it&rsquo;s also true that it only makes sense to skip either one or two houses. This follows from the observation that for any longer jump than three, there exists at least one intermediate house that can also be visited before arriving at the same place. As the values are assumed to be positive or at least zero, there is no reason to ever not include the stopovers.</p>
+<p>Although negative values are not explicitly excluded, it is rather hard to justify the idea of negative loot in our imaginary scenario. Time-to-rob would be a good negative variable to counter the loot gained and make things nice and complex, but we&rsquo;re not compounding that in here today. Alternately including item weights could turn it into a variant of the <a href="https://en.wikipedia.org/wiki/Knapsack_problem">Knapsack Problem</a>.</p>
+<p>There were 18 submissions for the second task this past week.</p>
+<h2 id="a-selection-from-the-riff-raff-pickpockets-and-gentleman-thieves">a selection from the RIFF-RAFF, PICKPOCKETS and GENTLEMAN THIEVES</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/lubos-kolouch/perl/ch-2.pl"><strong>Lubos Kolouch</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/mattneleigh/perl/ch-2.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/peter-campbell-smith/perl/ch-2.pl"><strong>Peter Campbell Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a></p>
+<p>The most common technique was recursion, exploring from each landing the two possibilites of skipping ahead two or three houses. The complexity expands quadratically, but as we are tasked with robbing real imaginary houses on a real imaginary block the number of houses under consideration should not be too large. After all, the whole purpose of blocks is to break collections of lots onto managable pieces. It&rsquo;s not unreasonable to surmise that very dense blocks and apartment buildings would require a adjustments to both the conditions and the resultant strategy.</p>
+<p>A variant on this is to produce the combinations of houses combinatorically up-front, and compute the sums and find the maximal value.</p>
+<p>The recursion decisions center around the partial summing of a choice of two positions as we proceed, making the problem suitable to dynamic programming optimization, and we saw several examples of this as well. Ultimately we can remove the recursion from the algorithm completely, and produce a dynamic programming array in a single pass by deciding on partial sums based on previously computed values in same the dynamic array.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/laurent-rosenfeld/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://blogs.perl.org/users/laurent_r/2022/02/perl-weekly-challenge-151-binary-tree-depth.html">Perl Weekly Challenge 151: Binary tree Depth</a></p>
+<p>Laurent will start us off with an example of a recursive solution. At every stage a routine, <code>get_best()</code> is called with a growing partial sum and the remainder of the array, sliced off and packaged up. Internally both options of skipping ahead two or three houses are explored with another recursive call. A variable in the script scope, <code>$best_so_far</code> is kept updated with a running maximum.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get_best</span> {
+        <span style="color:#66d9ef">my</span> $sum_so_far <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>];
+        <span style="color:#66d9ef">my</span> @in <span style="color:#f92672">=</span> @{$_[<span style="color:#ae81ff">1</span>]};
+
+        <span style="color:#66d9ef">if</span> (@in <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">2</span>)  {
+            $sum_so_far <span style="color:#f92672">+=</span> $in[<span style="color:#ae81ff">0</span>] <span style="color:#66d9ef">if</span> @in <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>;
+            $sum_so_far <span style="color:#f92672">+=</span> $in[<span style="color:#ae81ff">1</span>] <span style="color:#66d9ef">if</span> @in <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span>;
+            $best_so_far <span style="color:#f92672">=</span> $sum_so_far <span style="color:#66d9ef">if</span> $sum_so_far <span style="color:#f92672">&gt;</span> $best_so_far;
+            <span style="color:#66d9ef">return</span>;
+        }
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>) {
+            get_best($sum_so_far <span style="color:#f92672">+</span> $in[$i], [@in[$i <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> $#in]]);
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/sgreen/python/ch-2.py">Python</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://dev.to/simongreennet/weekly-challenge-151-2812">Weekly Challenge 151</a></p>
+<p>Simon presents another version. In it his <code>rob()</code> routine is passed two arguments, the previous loot plus the current house, and the remaining list of houses down the street.</p>
+<p>The recursive solutions in general need to accommodate the edge-cases where there are few or no houses on the street.</p>
+<p>Here each call returns the larger of the two calls returned to it; as the recursion collapses the maximum gets propagated backwards up the stack until the first call returns the result.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># Call the function recursively skipping either one or two houses</span>
+    <span style="color:#66d9ef">my</span> @hauls <span style="color:#f92672">=</span> ();
+    push @hauls, rob( $haul <span style="color:#f92672">+</span> $valuables<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>], [ @{$valuables}[ <span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> $#$valuables ] ] );
+    <span style="color:#66d9ef">if</span> ( @{$valuables} <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">4</span> ) {
+        push @hauls, rob( $haul <span style="color:#f92672">+</span> $valuables<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>], [ @{$valuables}[ <span style="color:#ae81ff">3</span> <span style="color:#f92672">..</span> $#$valuables ] ] );
+    }
+
+    <span style="color:#75715e"># Return the largest haul</span>
+    <span style="color:#66d9ef">return</span> max(@hauls);
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/lubos-kolouch/perl/ch-2.pl"><strong>Lubos Kolouch</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/lubos-kolouch/php/ch-2.php">Php</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/lubos-kolouch/python/ch-2.py">Python</a></p>
+<p>Here&rsquo;s another by Lubos to give a nice overview of different ways to implement the technique.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get_houses_max</span> {
+        <span style="color:#66d9ef">my</span> @houses <span style="color:#f92672">=</span> @_;
+
+        <span style="color:#66d9ef">return</span> $cache{@houses} <span style="color:#66d9ef">if</span> $cache{@houses};
+
+        <span style="color:#66d9ef">my</span> $max_value <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">my</span> $house_index <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $house (@houses[<span style="color:#ae81ff">2</span><span style="color:#f92672">..</span>@houses<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]) {
+            <span style="color:#66d9ef">my</span> $next_houses_values <span style="color:#f92672">=</span> get_houses_max(@houses[<span style="color:#ae81ff">2</span><span style="color:#f92672">+</span>$house_index<span style="color:#f92672">..</span>@houses<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]);
+            $max_value <span style="color:#f92672">=</span> $next_houses_values <span style="color:#66d9ef">if</span> $next_houses_values <span style="color:#f92672">&gt;</span> $max_value;
+            $house_index<span style="color:#f92672">++</span>;
+        }
+
+        $cache{@houses} <span style="color:#f92672">=</span> $houses[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+</span> $max_value;
+        <span style="color:#66d9ef">return</span> $houses[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+</span> $max_value;
+
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/ulrich-rieke/haskell/ch-2.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/ulrich-rieke/raku/ch-2.raku">Raku</a></p>
+<p>Next we have Ulrich, who brings in the <code>Algorithm::Combinatorics</code> module to fit the combinations for him. Practically this visits all possibilities, the same as the recursive solution, offloading the work to a compiled library might improve performance.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> @robbedValues ;
+    <span style="color:#66d9ef">my</span> @combilengths ;
+    <span style="color:#66d9ef">if</span> ( $len % 2 <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> ) {
+        push @combilengths , int( $len <span style="color:#e6db74">/ 2 ) , int( $len /</span> <span style="color:#ae81ff">2</span> ) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> ;
+    }
+    <span style="color:#66d9ef">else</span> {
+        push @combilengths, int( $len <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span> ) ;
+    }
+    <span style="color:#66d9ef">my</span> @positions <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $len <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ) ;
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $combilen ( @combilengths ) {
+        <span style="color:#66d9ef">my</span> $iter <span style="color:#f92672">=</span> combinations( <span style="color:#f92672">\</span>@positions, $combilen ) ;
+        <span style="color:#66d9ef">while</span> ( <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> $iter<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">next</span> ) {
+            <span style="color:#66d9ef">if</span> ( checkCondition( $c ) ) {
+                push @robbedValues , sum (@valuables[ @$c ]) ;
+            }
+        }
+    }
+    say max( @robbedValues ) ;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/mattneleigh/perl/ch-2.pl"><strong>Matthew Neleigh</strong></a></p>
+<p>Using dynamic programming, as we process the house array from left to right we can construct a parallel array of partial sums as we go. Each new position added is decided by choosing the maximum sum from the most recent previous partial solutions, themselves chosen from earlier paths. In this way only two partial solutions are used at each decision: &ldquo;What if we jumped here from two steps back?&rdquo; and &ldquo;What if we jumped from three?&quot;. Every house after the start gets the same decision, and when we get to the end we have our maximum. Nice.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">calculate_loot_yield_on_street</span>{
+        <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw(max)</span>;
+
+        <span style="color:#75715e"># Empty list, no houses to rob</span>
+        <span style="color:#66d9ef">return</span>(<span style="color:#ae81ff">0</span>)
+            <span style="color:#66d9ef">unless</span>(@ARG);
+
+        <span style="color:#66d9ef">my</span> @loot;
+        <span style="color:#66d9ef">my</span> $loot_initial;
+        <span style="color:#66d9ef">my</span> $i;
+
+        <span style="color:#75715e"># We always start with the first house, as</span>
+        <span style="color:#75715e"># specified (though this seems limiting...)</span>
+        $loot_initial <span style="color:#f92672">=</span> $ARG[<span style="color:#ae81ff">0</span>];
+
+        <span style="color:#75715e"># Strip off the first two houses- we&#39;ve</span>
+        <span style="color:#75715e"># robbed the first and can&#39;t rob the second</span>
+        splice(@ARG, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>);
+
+        <span style="color:#75715e"># Edge cases- zero or one houses left</span>
+        <span style="color:#66d9ef">return</span>($loot_initial)
+            <span style="color:#66d9ef">unless</span>(@ARG);
+        <span style="color:#66d9ef">if</span>(scalar(@ARG) <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>){
+            <span style="color:#66d9ef">return</span>($loot_initial <span style="color:#f92672">+</span> $ARG[<span style="color:#ae81ff">0</span>]);
+        }
+
+        <span style="color:#75715e"># Proceed as normal(?)</span>
+        $loot[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> $ARG[<span style="color:#ae81ff">0</span>];
+        $loot[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> max($ARG[<span style="color:#ae81ff">0</span>], $ARG[<span style="color:#ae81ff">1</span>]);
+
+        <span style="color:#66d9ef">for</span>($i <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>; $i <span style="color:#f92672">&lt;</span> scalar(@ARG); $i<span style="color:#f92672">++</span>){
+            $loot[$i] <span style="color:#f92672">=</span> max($ARG[$i] <span style="color:#f92672">+</span> $loot[$i <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>], $loot[$i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]);
+        }
+
+        <span style="color:#66d9ef">return</span>($loot_initial <span style="color:#f92672">+</span> $loot[$#loot]);
+
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/peter-campbell-smith/perl/ch-2.pl"><strong>Peter Campbell Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://pjcs-pwc.blogspot.com/2022/02/locate-leaf-and-rob-road.html">Locate a leaf and rob a road</a></p>
+<p>Peter examines all paths forward at every cycle in his recursion, including those past the third position forward, considering all jumps to the end of the line. There&rsquo;s no harm in this and the algorithm handles a 45-house street in a few seconds.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">robberies</span> {
+
+        <span style="color:#75715e"># robberies($number, $swag) updates $best with the best result starting from house $number</span>
+        <span style="color:#75715e"># with $swag already in the bag</span>
+
+        <span style="color:#66d9ef">my</span> ($number, $swag, $next, $new_swag);
+
+        ($number, $swag) <span style="color:#f92672">=</span> @_;
+        <span style="color:#75715e"># try all the next allowable houses starting from $number</span>
+        <span style="color:#66d9ef">for</span> ($next <span style="color:#f92672">=</span> $number <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>; $next <span style="color:#f92672">&lt;=</span> $last; $next <span style="color:#f92672">++</span>) {
+        	$new_swag <span style="color:#f92672">=</span> $swag <span style="color:#f92672">+</span> $houses[$next];
+        	$best <span style="color:#f92672">=</span> $new_swag <span style="color:#66d9ef">if</span> $new_swag <span style="color:#f92672">&gt;</span> $best;   <span style="color:#75715e"># looking good!</span>
+        	robberies($next, $new_swag);
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a></p>
+<p>Duncan has devised another recursive way to search all the paths, compounding a best total value as he goes:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    fun maxrobbery( $starthouseno, @valuables )
+    {
+        <span style="color:#66d9ef">my</span> @besth;
+        <span style="color:#66d9ef">my</span> $besttotal <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $hno ($starthouseno<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span><span style="color:#f92672">..</span>$#valuables)
+        {
+        	<span style="color:#75715e"># find the best partial solution starting by robbing house $hno</span>
+        	<span style="color:#66d9ef">my</span>( $mv2, @rh2 ) <span style="color:#f92672">=</span> maxrobbery( $hno, @valuables );
+
+        	<span style="color:#75715e"># then find the best of all those partial solutions</span>
+        	<span style="color:#66d9ef">if</span>( $mv2 <span style="color:#f92672">&gt;</span> $besttotal )
+        	{
+        		$besttotal <span style="color:#f92672">=</span> $mv2;
+        		@besth <span style="color:#f92672">=</span> @rh2;
+        	}
+        }
+        <span style="color:#75715e"># then the overall best solution involves adding starthouseno</span>
+        <span style="color:#75715e"># to the best partial solution..</span>
+        <span style="color:#66d9ef">return</span> ( $valuables[$starthouseno]<span style="color:#f92672">+</span>$besttotal, $starthouseno, @besth );
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-151/james-smith">Perl Weekly Challenge #151</a></p>
+<p>James delivers a very compact solution that will probably appear quite mysterious, but is a reworking of the dynamic programming solution, working backwards from the end. Fortunately he provides notes to the action, both in the comments and <a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-151/james-smith">at his writeup</a>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">rob</span> {
+        <span style="color:#75715e">## Line 1 - Trip finishing at the first house the value is the</span>
+        <span style="color:#75715e">##          points for the first house</span>
+        <span style="color:#75715e">## Line 2 - If there is more than one house we set the value</span>
+        <span style="color:#75715e">##          for the second house to be the points for the house</span>
+        <span style="color:#75715e">##          itself, unless the first house has a better value</span>
+        <span style="color:#75715e">## Line 3 - We repeat this for the remaining houses.... It is the</span>
+        <span style="color:#75715e">##          points for this house + the value for two houses before</span>
+        <span style="color:#75715e">##          or the value for the previous house if it is greater</span>
+        <span style="color:#75715e">## Line 4 - When we get to the end the result is just the value</span>
+        <span style="color:#75715e">##          for the last house!</span>
+        <span style="color:#75715e">##</span>
+        <span style="color:#75715e">## Comments this way so they don&#39;t hide the symmetry of the code</span>
+      <span style="color:#66d9ef">my</span> @b <span style="color:#f92672">=</span> shift;
+      (push @b,shift    ), $b[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">&lt;</span>$b[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>] <span style="color:#f92672">&amp;&amp;</span> ($b[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">=</span>$b[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>]) <span style="color:#66d9ef">if</span>  @_;
+      (push @b,$_<span style="color:#f92672">+</span>$b[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>]), $b[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">&lt;</span>$b[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>] <span style="color:#f92672">&amp;&amp;</span> ($b[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">=</span>$b[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>]) <span style="color:#66d9ef">for</span> @_;
+      $b[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a></p>
+<p>All of this looking and working backwards to see which position to have traveled from produces the optimal sub-problem can be quite confusing. Choroba has reversed everything, so the algorithm is run forward. However note we&rsquo;re not picking the best option available,  skipping to it and proceeding from there however — rather we&rsquo;re systematically looking at every house and figuring instead the best way to have gotten there. When we&rsquo;re done the value at <code>$sums[0]</code> reveals the answer. Dynamic programming is such an intersting technique, currying the data processing.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">rob_the_house</span> {
+        <span style="color:#66d9ef">my</span> (@valuables) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> @sums;
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (reverse <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#valuables) {
+            $sums[$i] <span style="color:#f92672">=</span> $valuables[$i];
+            <span style="color:#66d9ef">if</span> ($i <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">&lt;=</span> $#valuables) {
+                <span style="color:#66d9ef">my</span> $add <span style="color:#f92672">=</span> $sums[$i <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>];
+                $add <span style="color:#f92672">=</span> $sums[$i <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span>] <span style="color:#66d9ef">if</span> $i <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">&lt;=</span> $#valuables
+                                     <span style="color:#f92672">&amp;&amp;</span> $sums[$i <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span>] <span style="color:#f92672">&gt;</span> $sums[$i <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>];
+                $sums[$i] <span style="color:#f92672">+=</span> $add;
+            }
+        }
+        <span style="color:#66d9ef">return</span> $sums[<span style="color:#ae81ff">0</span>]
+    }
+</code></pre></div><h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-2">Blogs and Additional Submissions in Guest Languages for Task 2:</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/abigail/perl/ch-2.pl"><strong>Abigail</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/abigail/awk/ch-2.awk">Awk</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/abigail/bash/ch-2.sh">Bash</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/abigail/bc/ch-2.bc">Bc</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/abigail/c/ch-2.c">C</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/abigail/go/ch-2.go">Go</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/abigail/java/ch-2.java">Java</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/abigail/lua/ch-2.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/abigail/node/ch-2.js">Node</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/abigail/pascal/ch-2.p">Pascal</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/abigail/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/abigail/r/ch-2.r">R</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/abigail/ruby/ch-2.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/abigail/tcl/ch-2.tcl">Tcl</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/athanasius/raku/ch-2.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/colin-crain/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://colincrain.com/2022/02/12/burglary-tools/">Burglary Tools</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://jacoby.github.io/2022/02/07/dr-metropolis-and-his-amazing-maniac-machine-the-weekly-challenge-151.html">Dr. Metropolis and His Amazing MANIAC Machine!: The Weekly Challenge #151 | Committed to Memory</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/polettix/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.polettix.it/ETOOBUSY/2022/02/10/pwc151-rob-the-house/">PWC151 - Rob The House - ETOOBUSY</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/roger-bell-west/javascript/ch-2.js">Javascript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/roger-bell-west/kotlin/ch-2.kt">Kotlin</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/roger-bell-west/lua/ch-2.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/roger-bell-west/postscript/ch-2.ps">Postscript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/roger-bell-west/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/roger-bell-west/raku/ch-2.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/roger-bell-west/ruby/ch-2.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/roger-bell-west/rust/ch-2.rs">Rust</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://blog.firedrake.org/archive/2022/02/The_Weekly_Challenge_151__Robbing_Depth.html">RogerBW&rsquo;s Blog: The Weekly Challenge 151: Robbing Depth</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://wlmb.github.io/2022/02/07/PWC151/">Perl Weekly Challenge 151 – W. Luis Mochán</a></p>
+<hr>
+<hr>
+<p> &nbsp; </p>
+<p> &nbsp; </p>
+<p> &nbsp; </p>
+<p> &nbsp; </p>
+<center>
+<h1 id="PWC151BLOGS">_________ THE BLOG PAGES _________</h1>
+</center>
+<hr>
+<p><strong>That’s it for me this week, people! Warped by the rain, driven by the snow, resolute and unbroken by the torrential influx, by some miracle I somehow continue to maintain my bearings.</strong></p>
+<p><strong>Looking forward to next wave, the perfect wave, I am: <em>your humble servant</em>.</strong></p>
+<h1 id="PWC151BLOGS">But if Your Unquenchable <em>THIRST</em> for <em>KNOWLEDGE</em> is not <em>SLAKED</em>,</h1>
+<h1 id="then-run-dont-walk-to-the-watering-hole">then <em>RUN</em> <em>(dont walk!)</em> to the <em>WATERING HOLE</em></h1>
+<h1 id="and-follow-these-blog-links">and <em>FOLLOW</em> these <em>BLOG</em> <em>LINKS</em>:</h1>
+<p><strong>( &hellip;<em>don&rsquo;t think, trust your training, you&rsquo;re in the zone, just do it &hellip;</em> )</strong></p>
+<p><strong>Arne Sommer</strong></p>
+<ul>
+<li><a href="https://raku-musings.com/tree-house.html">The Tree House with Raku</a> ( <em>Raku</em> )</li>
+</ul>
+<p><strong>Colin Crain</strong></p>
+<ul>
+<li><a href="https://colincrain.com/2022/02/12/no-diving-in-the-shallow-end/">No Diving in the Shallow End - Programming Excursions in Perl and Raku</a> ( <em>Perl &amp; Raku</em> )</li>
+<li><a href="http://colincrain.com/2022/02/12/burglary-tools/">Burglary Tools</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Dave Jacoby</strong></p>
+<ul>
+<li><a href="https://jacoby.github.io/2022/02/07/dr-metropolis-and-his-amazing-maniac-machine-the-weekly-challenge-151.html">Dr. Metropolis and His Amazing MANIAC Machine!: The Weekly Challenge #151 | Committed to Memory</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Flavio Poletti</strong></p>
+<ul>
+<li><a href="https://github.polettix.it/ETOOBUSY/2022/02/09/pwc151-binary-tree-depth/">PWC151 - Binary Tree Depth - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+<li><a href="https://github.polettix.it/ETOOBUSY/2022/02/10/pwc151-rob-the-house/">PWC151 - Rob The House - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>James Smith</strong></p>
+<ul>
+<li><a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-151/james-smith">Perl Weekly Challenge #151</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Laurent Rosenfeld</strong></p>
+<ul>
+<li><a href="http://blogs.perl.org/users/laurent_r/2022/02/perl-weekly-challenge-151-binary-tree-depth.html">Perl Weekly Challenge 151: Binary tree Depth</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Peter Campbell Smith</strong></p>
+<ul>
+<li><a href="https://pjcs-pwc.blogspot.com/2022/02/locate-leaf-and-rob-road.html">Locate a leaf and rob a road</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Roger Bell_West</strong></p>
+<ul>
+<li><a href="https://blog.firedrake.org/archive/2022/02/The_Weekly_Challenge_151__Robbing_Depth.html">RogerBW&rsquo;s Blog: The Weekly Challenge 151: Robbing Depth</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Simon Green</strong></p>
+<ul>
+<li><a href="https://dev.to/simongreennet/weekly-challenge-151-2812">Weekly Challenge 151</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>W. Luis Mochan</strong></p>
+<ul>
+<li><a href="https://wlmb.github.io/2022/02/07/PWC151/">Perl Weekly Challenge 151 – W. Luis Mochán</a> ( <em>Perl</em> )</li>
+</ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="/contact" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2022
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.nomtimes.co.uk/site/shop.do?cref=PerlBooks" title="Free Perl Books" rel="noreferrer" target="_blank">
+                            <img src="/images/NomTimes.jpg" style="width:22px; height: 18px;" alt=""/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jQurey/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-136524905-1', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+
+</html>
+
