@@ -26,7 +26,7 @@ tags: ["Perl", "Raku"]
 ## HEADLINES {#HEADLINES}
 ***
 
-Welcome [**Daniel Pfeiffer**] to the **Team PWC**. We are now strong team of `252 members`.
+Welcome `Daniel Pfeiffer` to the **Team PWC**. We are now strong team of `252 members`.
 
 The interview with our latest champion, [**Robert DiCicco**](https://theweeklychallenge.org/blog/meet-the-champion-2022-02), is live now. It was great knowing him. `Robert` is so lucky to be able to spend time coding even after retirement. Ideally I would also want to spend my time with **Perl** post retirement. Given a choice, I would retire today and spend every minute doing **Perl**. Having said, I know I have responsibilities and I have to fulfill it with utmost sincerity.
 
