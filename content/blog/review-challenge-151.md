@@ -1,6 +1,6 @@
 ---
 author:       Colin Crain
-date:         2022-03-14T00:00:00
+date:         2022-03-16T00:00:00
 description:  "Colin Crain › Perl Weekly Review #151"
 tags:         ["perl"]
 title:        "Colin Crain › Perl Weekly Review #151"
@@ -135,7 +135,7 @@ The rules for the encoding are not specified, which could be regarded as part of
 
 Null nodes at the end of the tree can be inferred and are hence optional. What's not clear, however is whether the same rule would apply to interior levels, although with the vertical pipe level delimiters these too could be inferred. We don't have any examples of this, however.
 
-There seemed to be only about 9 properly working submissions for the first task this past week, which is weird.
+There were an unusually large number of improperly working submissions this week, which was, not to put too fine a point on it, a little weird.
 
 ## COUNTING the RINGS
 [**Athanasius**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-151/athanasius/perl/ch-1.pl),
