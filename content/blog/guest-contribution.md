@@ -5,10 +5,10 @@ description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
 author: Mohammad S Anwar
-tags: ["Ada", "APL", "Awk", "BASIC", "Bash", "Bc", "Befunge-93", "Bourne Shell", "BQN", "Brainfuck", "C3", "C", "CESIL", "Chef", "COBOL", "Coconut", "C Shell", "C++", "Clojure", "Crystal", "D", "Dart", "Elm", "Erlang", "Excel VBA", "Fish", "Forth", "Fortran", "Gembase", "GNAT", "Go", "Haskell", "Haxe", "HTML", "Idris", "IO", "J", "Janet", "Java", "JavaScript", "Julia", "Kotlin", "Lisp", "Logo", "Lua", "M4", "Macro Processor", "Miranda", "MMIX", "Mumps", "Myrddin", "Nim", "Nix", "Node.js", "Nuweb", "Oberon", "OCaml", "Odin", "Ook", "Pascal", "PHP", "Python", "PostgreSQL", "Postscript", "Prolog", "R", "Rexx", "Ring", "Ruby", "Rust", "Scala", "Scheme", "Sed", "Smalltalk", "SQL", "SVG", "Swift", "Tcl", "Visual BASIC", "WebAssembly", "Wolfram", "XSLT", "Zig"]
+tags: ["Ada", "APL", "Awk", "BASIC", "Bash", "Bc", "Befunge-93", "Bourne Shell", "BQN", "Brainfuck", "C3", "C", "CESIL", "Chef", "COBOL", "Coconut", "C Shell", "C++", "Clojure", "Crystal", "D", "Dart", "Elm", "Erlang", "Excel VBA", "Fish", "Forth", "Fortran", "Gembase", "GNAT", "Go", "Haskell", "Haxe", "HTML", "Idris", "IO", "J", "Janet", "Java", "JavaScript", "Julia", "Kotlin", "Lisp", "Logo", "Lua", "M4", "Miranda", "MMIX", "Mumps", "Myrddin", "Nim", "Nix", "Node.js", "Nuweb", "Oberon", "OCaml", "Odin", "Ook", "Pascal", "PHP", "Python", "PostgreSQL", "Postscript", "Prolog", "R", "Rexx", "Ring", "Ruby", "Rust", "Scala", "Scheme", "Sed", "Smalltalk", "SQL", "SVG", "Swift", "Tcl", "Visual BASIC", "WebAssembly", "Wolfram", "XSLT", "Zig"]
 ---
 
-As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. During the **Week #018**, we received solutions to **[The Weekly Challenge - 018](/blog/perl-weekly-challenge-018)** by `Orestis Zekai` in **Python**. It was pleasant surprise to receive solutions in something other than **Perl** and **Raku**. Ever since regular team members also started contributing in other languages like **Ada**, **APL**, **Awk**, **BASIC**, **Bash**, **Bc**, **Befunge-93**, **Bourne Shell**, **BQN**, **Brainfuck**, **C3**, **C**, **CESIL**, **Chef**, **COBOL**, **Coconut**, **C Shell**, **C++**, **Clojure**, **Crystal**, **D**, **Dart**, **Elm**, **Erlang**, **Excel VBA**, **Fish**, **Forth**, **Fortran**, **Gembase**, **GNAT**, **Go**, **Haskell**, **Haxe**, **HTML**, **Idris**, **IO**, **J**, **Janet**, **Java**, **JavaScript**, **Julia**, **Kotlin**, **Lisp**, **Logo**, **Lua**, **M4**, **Macro Processor**, **Miranda**, **MMIX**, **Mumps**, **Myrddin**, **Nim**, **Nix**, **Node.js**, **Nuweb**, **Oberon**, **OCaml**, **Odin**, **Ook**, **Pascal**, **PHP**, **Python**, **PostgreSQL**, **Postscript**, **Prolog**, **R**, **Rexx**, **Ring**, **Ruby**, **Rust**, **Scala**, **Scheme**, **Sed**, **Smalltalk**, **SQL**, **SVG**, **Swift**, **Tcl**, **Visual BASIC**, **WebAssembly**, **Wolfram**, **XSLT** and **Zig**.
+As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. During the **Week #018**, we received solutions to **[The Weekly Challenge - 018](/blog/perl-weekly-challenge-018)** by `Orestis Zekai` in **Python**. It was pleasant surprise to receive solutions in something other than **Perl** and **Raku**. Ever since regular team members also started contributing in other languages like **Ada**, **APL**, **Awk**, **BASIC**, **Bash**, **Bc**, **Befunge-93**, **Bourne Shell**, **BQN**, **Brainfuck**, **C3**, **C**, **CESIL**, **Chef**, **COBOL**, **Coconut**, **C Shell**, **C++**, **Clojure**, **Crystal**, **D**, **Dart**, **Elm**, **Erlang**, **Excel VBA**, **Fish**, **Forth**, **Fortran**, **Gembase**, **GNAT**, **Go**, **Haskell**, **Haxe**, **HTML**, **Idris**, **IO**, **J**, **Janet**, **Java**, **JavaScript**, **Julia**, **Kotlin**, **Lisp**, **Logo**, **Lua**, **M4**, **Miranda**, **MMIX**, **Mumps**, **Myrddin**, **Nim**, **Nix**, **Node.js**, **Nuweb**, **Oberon**, **OCaml**, **Odin**, **Ook**, **Pascal**, **PHP**, **Python**, **PostgreSQL**, **Postscript**, **Prolog**, **R**, **Rexx**, **Ring**, **Ruby**, **Rust**, **Scala**, **Scheme**, **Sed**, **Smalltalk**, **SQL**, **SVG**, **Swift**, **Tcl**, **Visual BASIC**, **WebAssembly**, **Wolfram**, **XSLT** and **Zig**.
 
 Please find below guest contributions.
 
@@ -3426,7 +3426,7 @@ Please find below guest contributions.
 
 ##### **Abigail** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-109/abigail/lua/ch-1.lua) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-109/abigail/lua/ch-2.lua) in **Lua**.
 
-##### **Abigail** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-109/abigail/m4/ch-1.m4) in **Macro Processor**.
+##### **Abigail** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-109/abigail/m4/ch-1.m4) in **M4**.
 
 ##### **Abigail** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-109/abigail/mmix/ch-1.mms) in **MMIX**.
 
@@ -3550,7 +3550,7 @@ Please find below guest contributions.
 
 ##### **Abigail** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-108/abigail/lua/ch-2.lua) in **Lua**.
 
-##### **Abigail** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-108/abigail/m4/ch-2.m4) in **Macro Processor**.
+##### **Abigail** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-108/abigail/m4/ch-2.m4) in **M4**.
 
 ##### **Abigail** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-108/abigail/node/ch-2.js) in **Node.js**.
 
@@ -3660,7 +3660,7 @@ Please find below guest contributions.
 
 ##### **Abigail** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/abigail/lua/ch-1.lua) in **Lua**.
 
-##### **Abigail** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/abigail/m4/ch-1.m4) in **Macro Processor**.
+##### **Abigail** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/abigail/m4/ch-1.m4) in **M4**.
 
 ##### **Abigail** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-107/abigail/node/ch-1.js) in **Node.js**.
 
@@ -3910,7 +3910,7 @@ Please find below guest contributions.
 
 ##### **Abigail** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-104/abigail/lua/ch-1.lua) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-104/abigail/lua/ch-2.lua) in **Lua**.
 
-##### **Abigail** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-104/abigail/m4/ch-1.m4) in **Macro Processor**.
+##### **Abigail** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-104/abigail/m4/ch-1.m4) in **M4**.
 
 ##### **Abigail** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-104/abigail/node/ch-1.js) in **Node.js**.
 
