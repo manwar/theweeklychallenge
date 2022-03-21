@@ -211,7 +211,7 @@ Write a script to find out if the given number is a `Brazilian Number`.
     Output: 0
 
     Since 6 in base 2 is 110,
-          6 in base 3 is 30 and
+          6 in base 3 is 20 and
           6 in base 4 is 12.
 
 ### Example 3:
