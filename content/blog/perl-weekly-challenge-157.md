@@ -167,7 +167,11 @@ Write a script to compute all three `Pythagorean Means` i.e **Arithmetic Mean**,
 ### Example 1:
 
     Input: @n = (1,3,5,6,9)
-    Output: AM = 4.8, GM = 3.9, HM = 2.8
+    Output: AM = 4.8, GM = 3.8, HM = 2.8
+
+##### CORRECTION [2022-03-21 16:35] GM = 3.9 (before)
+
+<br>
 
 ### Example 2:
 
