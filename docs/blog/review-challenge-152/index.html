@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="The Weekly Challenge - Perl & Raku"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="You do not have to be an expert."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Colin Crain › Perl Weekly Review #152">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Colin Crain › Perl Weekly Review #152</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navgation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Colin Crain › Perl Weekly Review #152</h2>
+                    <div class="portfolio-meta">
+                        <span>Monday, Mar 21, 2022</span>|
+                        <span> Tags:
+                            perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/p5-review-challenge-152.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <p>( <em>&hellip;continues from <a href="/blog/review-challenge-151/">previous week</a>.</em> )</p>
+<p>Welcome to the Perl review pages for <strong>Week 152</strong> of The Weekly Challenge! Here we will take the time to discuss the  submissions offered up by the team, factor out some common methodologies that came up in those solutions, and highlight some of the unique approaches and unusual code created.</p>
+<hr>
+<h3 id="-why-do-we-do-these-challenges">●︎ Why do we do these challenges?</h3>
+<p>I suppose any reasonable answer to that question would be from a field as wide ranging and varied as the people who choose to join the team. One thing, though, is clear: it&rsquo;s not a competition, and there are no judges, even if there is a &ldquo;prize&rdquo; of sorts. About that &ndash; I think of it more as an honorarium periodically awarded to acknowledge the efforts we make towards this strange goal. So there&rsquo;s no determination to find the <em>fastest</em>, or the <em>shortest</em>, or even, in some abstract way, the <em>best</em> way to go about things, although I&rsquo;m certain the participants have their own aspirations and personal drives. As Perl is such a wonderfully expressive language, this provides quite a bit of fodder to the core idea of TMTOWTDI, producing a gamut of varied techniques and solutions.</p>
+<p>Even the tasks themselves are often open to a certain amount of discretionary interpretation. What we end up with is a situation where each participant is producing something in the manner they find the most interesting or satisfying. Some team members focus on carefully crafted complete applications, thoroughly vetting input data and handling every use case they can think up. Others choose to apply themselves to the logic of the underlying puzzle and making it work in the most elegant way they can. Some eschew modules they would ordinarily reach for, others embrace them, bringing to light wheels perhaps invented years ago that happen to exactly solve the problem in front of them today.</p>
+<p>I&rsquo;ve been considering this question for some time and have found one binding commonality between all of us out solving these challenges each week, in that however we normally live our lives, the task in front of us more than likely has nothing to do with any of that. And I think this has great value. We all do what we do, in the real world, and hopefully we do it well. The Weekly Challenge provides us with an opportunity to do something germane to that life yet distinctly different; if we only do the things we already know how to do then we will only do the same things over and over. This is where the &ldquo;challenge&rdquo; aspect comes into play.</p>
+<p>So we can consider The Weekly Challenge as providing a problem space outside of our comfort zone, as far out from that comfort as we wish to take things. From those reaches we can gather and learn things, pick and choose and bring what we want back into our lives. Personally, I think that&rsquo;s what this whole thing is about. YMMV.</p>
+<hr>
+<p><strong><emp>Every week there is an enormous global collective effort made by the team, analyzing and creatively coding the submissions, and that effort deserves credit due.</emp></strong></p>
+<p>And that, my friends, is why I&rsquo;m here, to try and figure out ways to do just that.</p>
+<p>So, here we are then. I&rsquo;m ready — let’s get to it and see what we can find.</p>
+<hr>
+<h3 id="for-additional-context">For Additional Context…</h3>
+<p>before we begin, you may wish to revisit either the pages for the <a href="/blog/perl-weekly-challenge-152/"><strong>original tasks</strong></a> or the summary <a href="/blog/recap-challenge-152/"><strong>recap</strong></a> of the challenge. But don&rsquo;t worry about it, the challenge text will be repeated and presented as we progress from task to task.</p>
+<p>Oh, and one more thing before we get started:</p>
+<h3 id="getting-in-touch-with-us">Getting in Touch with Us</h3>
+<p><a href="mailto:pwc.perfectwave@gmail.com"><img src="/images/blog/Email.svg" height="50" width="50"> Email</a> › Please feel free to email me (Colin) with any feedback, notes, clarifications or whatnot about this review.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge"><img src="/images/blog/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request to us for any issues you may find with this page.</p>
+<p><a href="https://twitter.com/perlwchallenge"><img src="/images/blog/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!</p>
+<p>I&rsquo;m always curious as to what the people think of these efforts. Everyone here at the PWC would like to hear any feedback you&rsquo;d like to give.</p>
+<div align= center><strong>...So finally, without further ado...</strong></div>
+<hr>
+<h2 id="---nbsp--nbsp--nbsp---task-1pwc152task1-------nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---task-2pwc152task2---nbsp--nbsp--nbsp----------nbsp--nbsp--nbsp---blogspwc152blogs----nbsp--nbsp--nbsp---">•             <a href="#PWC152TASK1">Task 1</a>                 •             <a href="#PWC152TASK2">Task 2</a>                 •             <a href="#PWC152BLOGS">BLOGS</a>              	•</h2>
+<hr>
+<hr>
+<h1 id="PWC152TASK1">TASK 1</h1>
+<h1 id="triangle-sum-path">Triangle Sum Path</h1>
+<p><em>Submitted by: Mohammad S Anwar</em></p>
+<p>You are given a triangle array.</p>
+<p>Write a script to find the minimum sum path from top to bottom.</p>
+<p><strong>Example 1:</strong></p>
+<pre><code>    Input: $triangle = [ [1], [5,3], [2,3,4], [7,1,0,2], [6,4,5,2,8] ]
+
+                1
+               5 3
+              2 3 4
+             7 1 0 2
+            6 4 5 2 8
+
+    Output: 8
+
+    Minimum Sum Path = 1 + 3 + 2 + 0 + 2 =&gt; 8
+</code></pre><p><strong>Example 2:</strong></p>
+<pre><code>    Input: $triangle = [ [5], [2,3], [4,1,5], [0,1,2,3], [7,2,4,1,9] ]
+
+
+                5
+               2 3
+              4 1 5
+             0 1 2 3
+            7 2 4 1 9
+
+    Output: 9
+
+    Minimum Sum Path = 5 + 2 + 1 + 0 + 1 =&gt; 9
+</code></pre><h2 id="about-the-solutions">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/abigail/perl/ch-1.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/alexander-pankoff/perl/ch-1.pl"><strong>Alexander Pankoff</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/lubos-kolouch/perl/ch-1.pl"><strong>Lubos Kolouch</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/peter-campbell-smith/perl/ch-1.pl"><strong>Peter Campbell Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/pokgopun/perl/ch-1.pl"><strong>PokGoPun</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/robert-dicicco/perl/ch-1.pl"><strong>Robert DiCicco</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>At first reading of this particular task I found myself a bit confused. I suppose I had trees on my mind, and was visualizing a path being traced downward from the peak of the triangle, passing through elements along he way like a pachinko ball bouncing from pin to pin as wends its way to the bottom.</p>
+<p>A careful examination of the example, however, does not bear out this hypothesis. It seems we skip from level to level without regard to linear position within the strata. So rather than the complicated problem of evaluating and selecting the smallest possible sum from numerous choices, we need only determine the locally-minimal element within each subarray sequence, and sum these values as we traverse the outer array.</p>
+<p>There were 20 submissions for the first task this past week.</p>
+<h2 id="triangles-triangles-we-dont-need-no-stinking-triangles">TRIANGLES, TRIANGLES, we don&rsquo;t need no stinking TRIANGLES&hellip;</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/pokgopun/perl/ch-1.pl"><strong>PokGoPun</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/alexander-pankoff/perl/ch-1.pl"><strong>Alexander Pankoff</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a></p>
+<p>There was a large degree of conformity in the steps to solve the problem stated, alongside a fairly consistant confusion as to whether the directives were understood correctly. Many members voiced concern that despite the complexity of the setup, with the triangular array-of-arrays, the actual solution had little to do with any of that and could be solved in a straightforward fashion on two-dimensional data of any shape.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/laurent-rosenfeld/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://blogs.perl.org/users/laurent_r/perl-weekly-challenge-152-triangle-sum-path.html">Perl Weekly Challenge 152: Triangle Sum Path</a></p>
+<p>We&rsquo;ll open the topic with Laurent&rsquo;s submission.</p>
+<p>To accomplish the task we need two basic pieces of functionality: a <code>minimum</code> function of some sort to find the largest element from an array, and a <code>sum</code> function to gather and accumulate a running total.</p>
+<p>For the first component Laurent constructs a subroutine to examine each element in a list and take note of the largest value found, updating a variable as required and ultimately returning it.</p>
+<p>Then, using a <code>map</code>, he processes the given list of array references, replacing each element with its maximum value along the way. This list is then looped over and the individual elements are added to a <code>$sum</code> variable for output.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">min</span> {
+        <span style="color:#66d9ef">my</span> $min <span style="color:#f92672">=</span> shift;
+        <span style="color:#66d9ef">for</span> (@_) {
+            $min <span style="color:#f92672">=</span> $_ <span style="color:#66d9ef">if</span> $_ <span style="color:#f92672">&lt;</span> $min;
+        }
+        <span style="color:#66d9ef">return</span> $min;
+    }
+
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $triangle ([ [<span style="color:#ae81ff">1</span>], [<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">3</span>], [<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>], [<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">2</span>], [<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">8</span>] ],
+        [ [<span style="color:#ae81ff">5</span>], [<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>], [<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">5</span>], [<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>], [<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">9</span>] ]) {
+            <span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+            $sum <span style="color:#f92672">+=</span> $_ <span style="color:#66d9ef">for</span> map { min(@$_) } @$triangle;
+            say join <span style="color:#e6db74">&#34; &#34;</span>, (map { <span style="color:#e6db74">&#34;[@$_]&#34;</span>} @$triangle), <span style="color:#e6db74">&#34; -&gt; $sum&#34;</span>;
+        }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a></p>
+<p>The <code>List::Util</code> module has been packaged in the Perl core distribution for quite some time — since version 5.004, in fact. In it we will find two functions, <code>min</code> and <code>sum</code>, that happen to do exactly what we need to do. So let&rsquo;s use them, no?</p>
+<p>It&rsquo;s simple, clean and straightforward. What more do we need?</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw{ min sum }</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">triangle_sum_path</span> {
+        <span style="color:#66d9ef">my</span> ($triangle) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">return</span> sum(map min(@$_), @$triangle)
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/pokgopun/perl/ch-1.pl"><strong>PokGoPun</strong></a></p>
+<p>New member PokGoPun, on the other hand, has taken it upon themself to make the problem a little more interesting by creating an elaborate verbose output, drawing the input triangles and the equation for the selected summation.</p>
+<p>Of note: to find the array minimum they employ the trick of sorting the array and selecting the first element, which then will be the smallest. This also can work as a <code>maximum</code> function by taking the last element, and a <code>minmax</code> should you need both.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> @sample;
+    <span style="color:#75715e">### If scripts&#39; arguments present, convert them to triangle array</span>
+    {
+        <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">unless</span> @ARGV;
+        push @sample, [ map{[$_<span style="color:#f92672">=~</span><span style="color:#e6db74">/(\d+)/g</span>]} @ARGV ];
+    }
+    <span style="color:#75715e">### Add sample triangle arrays if none available</span>
+    {
+        <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> @sample;
+        push @sample, [ [<span style="color:#ae81ff">1</span>], [<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">3</span>], [<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>], [<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">2</span>], [<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">8</span>] ];
+        push @sample, [ [<span style="color:#ae81ff">5</span>], [<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>], [<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">5</span>], [<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>], [<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">9</span>] ];
+    }
+    <span style="color:#75715e">#print Dumper \@sample;</span>
+    <span style="color:#75715e">### Generate array of min path</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">minPath</span> {
+        <span style="color:#66d9ef">my</span> $path <span style="color:#f92672">=</span> shift;
+        <span style="color:#66d9ef">my</span> @minPath;
+        push @minPath, [sort { $a <span style="color:#e6db74">&lt;=&gt;</span> $b } @$_]<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#66d9ef">foreach</span> @$path;
+        <span style="color:#66d9ef">return</span> @minPath
+    }
+    <span style="color:#75715e">### Generate output similar to those in examples of the challenge&#39;s task</span>
+    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $s (@sample) {
+        printf <span style="color:#e6db74">&#34;\nInput: \$triangle = [ %s ]\n\n&#34;</span>, join(<span style="color:#e6db74">&#34;, &#34;</span>, map{<span style="color:#e6db74">&#34;[&#34;</span><span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#34;,&#34;</span>,@$_)<span style="color:#f92672">.</span><span style="color:#e6db74">&#34;]&#34;</span>} @$s );
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\t&#34;</span>,<span style="color:#e6db74">&#34; &#34;</span> x scalar(@{$s<span style="color:#f92672">-&gt;</span>[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">-</span>$_]}), join(<span style="color:#e6db74">&#34; &#34;</span>,@{$s<span style="color:#f92672">-&gt;</span>[$_]}),<span style="color:#e6db74">&#34;\n&#34;</span> <span style="color:#66d9ef">foreach</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#$s;
+        <span style="color:#66d9ef">my</span> @minPath <span style="color:#f92672">=</span> minPath($s);
+        <span style="color:#66d9ef">my</span> $sumText <span style="color:#f92672">=</span> join(<span style="color:#e6db74">&#34; + &#34;</span>,@minPath);
+        <span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> eval($sumText);
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\nOutput: $sum\n\n\tMinimum Sum Path = $sumText =&gt; $sum\n&#34;</span>,
+    }
+</code></pre></div><p>Here&rsquo;s an example of the output:</p>
+<pre><code>    Input: $triangle = [ [1], [5,3], [2,3,4], [7,1,0,2], [6,4,5,2,8] ]
+
+             1
+            5 3
+           2 3 4
+          7 1 0 2
+         6 4 5 2 8
+
+    Output: 8
+
+        Minimum Sum Path = 1 + 3 + 2 + 0 + 2 =&gt; 8
+</code></pre><p>As you can see, it precisely mirrors the examples given.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://wlmb.github.io/2022/02/14/PWC152/">Perl Weekly Challenge 152 – W. Luis Mochán</a></p>
+<p>Luis breaks away from the pack in a different direction, taking triangles as imput strings in the form of a normal coded Perl array construction. He then uses <code>eval</code> to examine the string as Perl code, producing a proper multidimensional array. The services of <code>Try::Tiny</code> are brought in to provide a try/catch loop on the possibly faulty user input.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw(min sum0 all)</span>;
+    <span style="color:#66d9ef">use</span> Try::Tiny;
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $triangle_string (@ARGV){
+        try {
+            <span style="color:#66d9ef">my</span> $triangle<span style="color:#f92672">=</span>eval $triangle_string;
+            <span style="color:#66d9ef">my</span> @rows<span style="color:#f92672">=</span>@$triangle;
+            <span style="color:#75715e"># Seems unnecesary, but test shape</span>
+            die <span style="color:#e6db74">&#34;Wrong row-size in $triangle_string&#34;</span>
+                <span style="color:#66d9ef">unless</span> all{$_<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span><span style="color:#f92672">==</span>@{$rows[$_]}}(<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>@rows<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
+            <span style="color:#66d9ef">my</span> @minima<span style="color:#f92672">=</span>map {min @$_} @rows;
+            <span style="color:#66d9ef">my</span> $sum<span style="color:#f92672">=</span>sum0 @minima;
+            say <span style="color:#e6db74">&#34;Input: $triangle_string\nOutput: $sum\nPath values: &#34;</span>, join <span style="color:#e6db74">&#34;-&#34;</span>, @minima;
+        }
+        catch {
+            say $_;
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/roger-bell-west/javascript/ch-1.js">Javascript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/roger-bell-west/kotlin/ch-1.kt">Kotlin</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/roger-bell-west/lua/ch-1.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/roger-bell-west/postscript/ch-1.ps">Postscript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/roger-bell-west/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/roger-bell-west/raku/ch-1.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/roger-bell-west/ruby/ch-1.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/roger-bell-west/rust/ch-1.rs">Rust</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://blog.firedrake.org/archive/2022/02/The_Weekly_Challenge_152__Triangles__Rectangles__and_Objects.html">RogerBW&rsquo;s Blog: The Weekly Challenge 152: Triangles, Rectangles, and Objects</a></p>
+<p>I always find looking at the personal preference in choosing which, if any, module functions to include to be an interesting observation to make. Here Roger takes <code>min</code>, from <code>List::Util</code>, but chooses to inline the summing in a small <code>for</code> loop.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw(min)</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">tsp</span> {
+      <span style="color:#66d9ef">my</span> $tree <span style="color:#f92672">=</span> shift;
+      <span style="color:#66d9ef">my</span> $mp<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+      <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $r (@{$tree}) {
+        $mp<span style="color:#f92672">+=</span>min(@{$r});
+      }
+      <span style="color:#66d9ef">return</span> $mp;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/ulrich-rieke/cpp/ch-1.cpp">C++</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/ulrich-rieke/haskell/ch-1.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/ulrich-rieke/raku/ch-1.raku">Raku</a></p>
+<p>Ulrich has devised a scheme for inputting a triangle, one line per level, with individual elements separated by spaces. Careful directions are given to the user along the way, with data being drawn in through the <code>&lt;STDIN&gt;</code> filehandle. Our old friend the <code>min</code> is imported, and once a line has been split on whitespace into a list, the minimum value is selected and added to an aggregate sum.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $line <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;STDIN&gt;</span> ;
+    chomp $line ;
+    <span style="color:#66d9ef">while</span> ( $line <span style="color:#f92672">ne</span> <span style="color:#e6db74">&#34;e&#34;</span> ) {
+      <span style="color:#66d9ef">while</span> ( $line <span style="color:#f92672">!~</span> <span style="color:#e6db74">/^(\d\s*)+$/</span> ) {
+          say <span style="color:#e6db74">&#34;Enter only integers separated by spaces, one more per line!&#34;</span> ;
+          $line <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;STDIN&gt;</span> ;
+          chomp $line ;
+      }
+      <span style="color:#66d9ef">unless</span> ( $line <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#34;e&#34;</span> ) {
+          $len <span style="color:#f92672">=</span> scalar( split(<span style="color:#e6db74"> /\s+/</span> , $line ) ) ;
+          <span style="color:#66d9ef">while</span> ( $len <span style="color:#f92672">!=</span> $lastLen <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> ) {
+        say <span style="color:#e6db74">&#34;There should be one number more per line!&#34;</span> ;
+        $line <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;STDIN&gt;</span> ;
+        chomp $line ;
+        $len <span style="color:#f92672">=</span> scalar( split(<span style="color:#e6db74"> /\s+/</span> , $line ) ) ;
+          }
+      }
+      $pathSum <span style="color:#f92672">+=</span> min( split(<span style="color:#e6db74"> /\s+/</span> , $line )) ;
+      $lastLen <span style="color:#f92672">=</span> $len ;
+      $line <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;STDIN&gt;</span> ;
+      chomp $line ;
+    }
+    say $pathSum ;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/polettix/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.polettix.it/ETOOBUSY/2022/02/16/pwc152-triangle-sum-path/">PWC152 - Triangle Sum Path - ETOOBUSY</a></p>
+<p>Flavio notes that, as I did, he at first misread the directives as being far more complex than they were. However he went on to create a triangular graph with vertices at the individual elements and an A* implementation to find the minimal way across it.</p>
+<p>But that first effort was written in Raku, and although I am very fond of that particular language I feel it would be distracting to include it here. You can see it, if you like, in his <a href="https://github.polettix.it/ETOOBUSY/2022/02/16/pwc152-triangle-sum-path/">writeup on the challenge</a>.</p>
+<p>For Perl, though, he realized the error of his ways before porting over that implementation, and instead supplies us with this short and sweet version:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw&lt; sum min &gt;</span>;
+
+    <span style="color:#66d9ef">my</span> @triangle <span style="color:#f92672">=</span> map { [split <span style="color:#e6db74">m{,}mxs</span>] } @ARGV;
+    say triangle_sum_path(@triangle);
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">triangle_sum_path</span> (@triangle) { sum map { min $_<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">}</span> <span style="color:#960050;background-color:#1e0010">@</span>triangle }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a></p>
+<p>Jorg has been using The Weekly Challenge to tightly focus on a select roster of complex modules, taking them out and really working them to both explore their functionality and properly learn the extant of their capabilities.</p>
+<p>With <code>Math::Prime::Util</code> this is an ambitious project, as it provides over two hundred routines and constants relevant to number theory calculations.</p>
+<p>Here he brings in two functions from that package, <code>vecsum</code> and <code>vecmin</code>. These work similarly to the <code>List::Util</code> versions <code>sum</code> and <code>min</code> we&rsquo;ve seen already, but operate on integer types, removing the possibility of floating point errors for very large values.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">qw(vecmin vecsum)</span>;
+
+    <span style="color:#75715e"># Find the minumum sum picking one element from each row of an AoA.</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">minsum</span> {
+        vecsum map vecmin(@$_), @{<span style="color:#f92672">+</span>shift}
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/alexander-pankoff/perl/ch-1.pl"><strong>Alexander Pankoff</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://pankoff.net/pages/perl-weekly-challenge/challenge-152-task-1.html">Challenge 152 Task #1 - Summing up minimums</a></p>
+<p>There are in fact two summation functions in <code>List::Util</code>, <code>sum()</code> and <code>sum0()</code>. The difference between them is in their behavior when given an empty list. In the absence of any data whatsoever, <code>sum0</code> will produce a real 0 value, with <code>sum</code> returning undef. Selection between the two should be based on what you want to happen in this circumstance.</p>
+<p>I&rsquo;ll also note that in the case of a undefined internal element, both functions will continue to find a sum of the remaining elements but will complain with a warning.</p>
+<p>There are a variety of reasons, use-cases and preferences for choosing one function over the other. Generally it doesn&rsquo;t matter much, but occasionally it very much will. Here Alexander had decided on using <code>sum0</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">minimum_triangle_sum_path</span>($triangle) {
+        <span style="color:#66d9ef">return</span> sum0( map { min(@$_) } @$triangle );
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/athanasius/raku/ch-1.raku">Raku</a></p>
+<p>When discussing number theory, &ldquo;triangle&rdquo; has a restricted meaning, specifically defining a layered structure where each level has one more element than the one next to it, either ascending or descending. Unconventionally scaled or asymmetric triangles could surely arise, and occasionally do, but when this happens they would need to be specifically described. In the absence of this we can infer a strict, unary progression.</p>
+<p>With this observation, the monk brings us an interesting analysis, in that we can enter our triangle data on a single line of input. We know that the length of each sub-array will advance one element with each step taken, and the total length of an array with <em>n</em> levels will be the triangular number <strong>T</strong>(<em>n</em>). The first level will have 1 element, the second two, then three, et cetera, and the overall length will follow the prgression (1, 3, 6, 10 &hellip;).</p>
+<p>We can verify the input data list against the triangular numbers before we start to make sure that we can indeed form a complete structure.</p>
+<p>The triangular number test used is that 8<em>n</em> + 1 must be a perfect square.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">build_triangle</span>
+    {
+        <span style="color:#66d9ef">my</span> ($items)   <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span>  $row_idx  <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">my</span>  $index    <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">my</span>  @triangle;
+
+        <span style="color:#66d9ef">while</span> ($index <span style="color:#f92672">&lt;=</span> $#ARGV)
+        {
+            <span style="color:#66d9ef">my</span>   @row;
+            push @row, $items<span style="color:#f92672">-&gt;</span>[ $index<span style="color:#f92672">++</span> ] <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $row_idx <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+            push @triangle, [ @row ];
+
+            <span style="color:#f92672">++</span>$row_idx;
+        }
+
+        <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@triangle;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_triangular</span>
+    {
+        <span style="color:#66d9ef">my</span> ($num) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span>  $x    <span style="color:#f92672">=</span> <span style="color:#ae81ff">8</span> <span style="color:#f92672">*</span> $num <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">my</span>  $root <span style="color:#f92672">=</span> int sqrt $x;
+
+        <span style="color:#66d9ef">return</span> $root <span style="color:#f92672">*</span> $root <span style="color:#f92672">==</span> $x;
+    }
+
+    MAIN:
+    {
+        <span style="color:#66d9ef">my</span> $items    <span style="color:#f92672">=</span> parse_command_line();
+        <span style="color:#66d9ef">my</span> $triangle <span style="color:#f92672">=</span> build_triangle( $items );
+
+        printf <span style="color:#e6db74">&#34;Input:  \$triangle = %s\n&#34;</span>, sprint_triangle( $triangle );
+
+        <span style="color:#66d9ef">my</span>   @min_sum_path;
+        push @min_sum_path, min( $triangle<span style="color:#f92672">-&gt;</span>[ $_ ]<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> ) <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#$triangle;
+
+        <span style="color:#66d9ef">my</span> $min_sum  <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+           $min_sum <span style="color:#f92672">+=</span> $_ <span style="color:#66d9ef">for</span> @min_sum_path;
+
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Output: $min_sum\n&#34;</span>;
+
+        <span style="color:#66d9ef">if</span> ($VERBOSE)
+        {
+            printf <span style="color:#e6db74">&#34;\n    Minimum Sum Path: %s = %d\n&#34;</span>,
+                    join( <span style="color:#e6db74">&#39; + &#39;</span>, @min_sum_path ), $min_sum;
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://jacoby.github.io/2022/02/15/functional-paths-weekly-challenge-152.html">Functional Paths: Weekly Challenge #152 Pt. 1 | Committed to Memory</a></p>
+<p>Dave seemed outright perplexed by the first task, describing it as &ldquo;disconcertingly easy&rdquo;. All I have to add is: Weird, right? I know. Disconcerting is a very good word for it. You find yourself studying the information, going over and over it, looking for the thing you missed. Sometimes, though, it just isn&rsquo;t there. You&rsquo;ve killed the dragon, finished the quest and now you&rsquo;re left scratching your head wondering what to do next.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $path <span style="color:#f92672">=</span> join <span style="color:#e6db74">&#39; + &#39;</span>, map { min $_<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">}</span> <span style="color:#960050;background-color:#1e0010">$</span>triangle<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+    my $sum  <span style="color:#f92672">=</span> sum map { min $_<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">}</span> <span style="color:#960050;background-color:#1e0010">$</span>triangle<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+</code></pre></div><p>Perhaps to make up for it he does go out of his way to draw us some nice triangles, though. Which is pretty cool, actually.</p>
+<pre><code>        Input:  $triangle=[ [1], [5,3], [2,3,4], [7,1,0,2], [6,4,5,2,8] ]
+        Output: 8
+        Minimum Sum Path = 1 + 3 + 2 + 0 + 2 =&gt; 8
+
+          1
+         5 3
+        2 3 4
+       7 1 0 2
+      6 4 5 2 8
+</code></pre><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-152/james-smith">Perl Weekly Challenge #152</a></p>
+<p>Finally, James went as far as to provide a veritable plethora of solution options, in both the intuitive yet incorrect graph analysis and the somewhat head-scratching and yes, disconcerting pick-any-card correct interpretation.</p>
+<p>From the former choices, we have two versions that start at a null imaginary lower sub-level, working upwards selecting the best, lowest cost route to the aggregate summed layer that is moved upwards on level at a time, discarding the largest route at each level, until at the top we have only a single level remaining.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e">## For each entry - we store tuple [ total, &#34;path&#34; ].</span>
+    <span style="color:#75715e">## We create a &#34;row&#34; below the triangle with &#34;0&#34;s and empty paths...</span>
+    <span style="color:#75715e">## We work back up the tree, and for each cell in the row we</span>
+    <span style="color:#75715e">## add the left or right sub-tree depending on which has the lowest</span>
+    <span style="color:#75715e">## value...</span>
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">min_path</span> {
+      <span style="color:#66d9ef">my</span> @p <span style="color:#f92672">=</span> ( [<span style="color:#ae81ff">0</span>,<span style="color:#f92672">[]</span>] ) x (<span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> @{$_[<span style="color:#ae81ff">0</span>]});
+      @p <span style="color:#f92672">=</span> map { $p[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&lt;</span> $p[<span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">0</span>] ? [ $_<span style="color:#f92672">+</span>$p[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>], [ $_, @{$p[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">1</span>]} ] ] : [ $_<span style="color:#f92672">+</span>$p[<span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">0</span>], [ $_, @{$p[<span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">1</span>]} ] ], (shift @p) x <span style="color:#ae81ff">0</span> } @{$_} <span style="color:#66d9ef">for</span> reverse @{$_[<span style="color:#ae81ff">0</span>]};
+      say sprintf <span style="color:#e6db74">&#39;Minimum value %d: [ %s ]&#39;</span>, $p[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>], join <span style="color:#e6db74">&#39;, &#39;</span>, @{$p[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">1</span>]};
+      $p[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>];
+    }
+</code></pre></div><p>Yea I think I just had to review one solution from the misreading that solved the graph interpretation, even if that wasn&rsquo;t the question asked. It&rsquo;s a lot more interesting problem.</p>
+<p>As far as our level-wise summing minimums go, though, James also gives us options — for either collecting the values to construct the sum as we go, or only keeping the total, or optionally employing the <code>sort</code> trick we say above to obtain a minimum without the use of a separate intermediate variable.</p>
+<p>Here&rsquo;s the version that gathers the elements selected and uses <code>sort</code>, selecting the first element of the resultant list.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">min_path_anydir_sort</span> {
+      <span style="color:#66d9ef">my</span>($res,@order)<span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+      (push @order, [sort {$a<span style="color:#e6db74">&lt;=&gt;</span>$b} @{$_}]<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]), $res<span style="color:#f92672">+=</span>$order[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#66d9ef">for</span> @{$_[<span style="color:#ae81ff">0</span>]};
+      say sprintf <span style="color:#e6db74">&#39;Minimum value %d: [ %s ]&#39;</span>, $res, join <span style="color:#e6db74">&#39;, &#39;</span>, @order;
+      $res;
+   }
+</code></pre></div><h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-1">Blogs and Additional Submissions in Guest Languages for Task 1:</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/abigail/perl/ch-1.pl"><strong>Abigail</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/abigail/awk/ch-1.awk">Awk</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/abigail/bash/ch-1.sh">Bash</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/abigail/c/ch-1.c">C</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/abigail/lua/ch-1.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/abigail/node/ch-1.js">Node</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/abigail/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/abigail/ruby/ch-1.rb">Ruby</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/colin-crain/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://colincrain.com/2022/02/16/the-path-in-the-pyramid/">The Path in the Pyramid - Programming Excursions in Perl and Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/lubos-kolouch/perl/ch-1.pl"><strong>Lubos Kolouch</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/lubos-kolouch/java/ch-1.java">Java</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/lubos-kolouch/php/ch-1.php">Php</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/lubos-kolouch/python/ch-1.py">Python</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/peter-campbell-smith/perl/ch-1.pl"><strong>Peter Campbell Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://pjcs-pwc.blogspot.com/2022/02/lots-of-angles-this-week.html">Lots of angles this week</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/sgreen/python/ch-1.py">Python</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://dev.to/simongreennet/triangles-and-rectangles-45p8">Weekly Challenge 152</a></p>
+<hr>
+<hr>
+<h1 id="PWC152TASK2">TASK 2</h1>
+<h1 id="rectangle-area">Rectangle Area</h1>
+<p><em>Submitted by: Mohammad S Anwar</em></p>
+<p>You are given coordinates bottom-left and top-right corner of
+two rectangles in a 2D plane.</p>
+<p>Write a script to find the total area covered by the two rectangles.</p>
+<p><strong>Example 1:</strong></p>
+<pre><code>        Input: Rectangle 1 =&gt; (-1,0), (2,2)
+               Rectangle 2 =&gt; (0,-1), (4,4)
+
+
+    Output: 22
+</code></pre><p><strong>Example 2:</strong></p>
+<pre><code>        Input: Rectangle 1 =&gt; (-3,-1), (1,3)
+               Rectangle 2 =&gt; (-1,-3), (2,2)
+
+
+    Output: 25
+</code></pre><h2 id="about-the-solutions-1">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/abigail/perl/ch-2.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/alexander-pankoff/perl/ch-2.pl"><strong>Alexander Pankoff</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/lubos-kolouch/perl/ch-2.pl"><strong>Lubos Kolouch</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/peter-campbell-smith/perl/ch-2.pl"><strong>Peter Campbell Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/pokgopun/perl/ch-2.pl"><strong>PokGoPun</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/robert-dicicco/perl/ch-2.pl"><strong>Robert DiCicco</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>The description text for task 2 this week is delightfully terse. It sounds complete, but immediately raises questions in its brevity. However on closer reading it turns out we have all the information we need to define the challenge.</p>
+<p>To cut to the chase: the missing pieces of information are that the rectangles are orthogonally aligned and that they may overlap.</p>
+<p>The first follows from fact that the rectangles are described using only two points. For this to be enough information to uniquely identify all the vertices, we must be able to assume the locations of the others, which can only be done by restricting the edges to the horizontal and vertical axes. Another way to arrive at the same conclusion is to notice that the terms &ldquo;bottom-left&rdquo; and &ldquo;top-right&rdquo; cannot be assured to have meaning if we allow the rectangle to rotate, as for instance the topmost corner will alternate between being to the left or right of the geometric center.</p>
+<p>I&rsquo;ll also note that should we allow the rectangles to have any orientation on the 2D plane the problems becomes, while not inpossible, <em>seriously</em> more difficult. As in outright hard. I&rsquo;d probably start with a whole lot of triangles and see where that led me. It sounds really complicated, frankly.</p>
+<p>But enough about problems we <em>won&rsquo;t</em> be solving today. The second inference, that the rectangles overlap, is what amused me by it&rsquo;s absence. If we don&rsquo;t allow for this then the problem becomes trivial, so of course that&rsquo;s the real purpose of the task, left unstated for us to figure out. Which I regard as humorously sneaky.</p>
+<p>You may have noted by now that my sense of humor is&hellip; peculiar might be a good word for it.</p>
+<p>There were 20 submissions for the second task this past week.</p>
+<h2 id="dont-look-behind-the-mask-look-at-the-mask">don&rsquo;t look <em>BEHIND</em> the MASK, look <em>AT</em> the MASK</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/lubos-kolouch/perl/ch-2.pl"><strong>Lubos Kolouch</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/robert-dicicco/perl/ch-2.pl"><strong>Robert DiCicco</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/abigail/perl/ch-2.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/peter-campbell-smith/perl/ch-2.pl"><strong>Peter Campbell Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a></p>
+<p>Given two well-defined rectangles, orthogonally aligned but located anywhere on a plane, how can we calculate the total area occluded by both rectangles? We have two basic cases: the two can be separate and distict, or the two can overlap in some manner. There are two more cases that reduce to these as well, in that the two can share a common edge over some length, which is the same as the first as the shared edge has no area, and that one rectangle is completely enclosed by the other, which is just maximal overlap. It might, however, if we can detect this condition, be easier to calculate just the area of the enclosing rectangle and call it a day instead of considering the interior rectangle at all.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/lubos-kolouch/perl/ch-2.pl"><strong>Lubos Kolouch</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/lubos-kolouch/java/ch-2.java">Java</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/lubos-kolouch/php/ch-2.php">Php</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/lubos-kolouch/python/ch-2.py">Python</a></p>
+<p>Rectangles are shapes, and shapes are objects, so it makes a certain amount of sense to start this discussion off with a couple of object-oriented approaches.</p>
+<p>Lubos abstracts his data through multiple structures. He formalizes his rectangles into proper <code>Rectangle</code> objects, and then in turn defines these by two <code>Point</code> objects, which are themselves specified by the four input coordinates. The Rectangle object has an <code>get_area()</code> method, computing the height times width, and also a <code>get_total_area()</code> method that, when given two rectangles, computes the overlapped area and subtracts it from the sum of the two rectangle areas considered independantly. In this way the operlapped area is only counted once.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">package</span> Rectangle;
+    <span style="color:#66d9ef">use</span> Moose;
+    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw/min max/</span>;
+
+    has <span style="color:#e6db74">&#39;left&#39;</span>  <span style="color:#f92672">=&gt;</span> ( is <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;rw&#39;</span>, isa <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Point&#39;</span> );
+    has <span style="color:#e6db74">&#39;right&#39;</span> <span style="color:#f92672">=&gt;</span> ( is <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;rw&#39;</span>, isa <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Point&#39;</span> );
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get_area</span> {
+        <span style="color:#66d9ef">my</span> $self <span style="color:#f92672">=</span> shift;
+        <span style="color:#66d9ef">return</span> abs( $self<span style="color:#f92672">-&gt;</span>left<span style="color:#f92672">-&gt;</span>x <span style="color:#f92672">-</span> $self<span style="color:#f92672">-&gt;</span>right<span style="color:#f92672">-&gt;</span>x ) <span style="color:#f92672">*</span> abs( $self<span style="color:#f92672">-&gt;</span>left<span style="color:#f92672">-&gt;</span>y <span style="color:#f92672">-</span> $self<span style="color:#f92672">-&gt;</span>right<span style="color:#f92672">-&gt;</span>y );
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get_total_area</span> {
+
+        <span style="color:#66d9ef">my</span> ( $first, $second ) <span style="color:#f92672">=</span> @_;
+
+        <span style="color:#66d9ef">my</span> $area1 <span style="color:#f92672">=</span> $first<span style="color:#f92672">-&gt;</span>get_area;
+        <span style="color:#66d9ef">my</span> $area2 <span style="color:#f92672">=</span> $second<span style="color:#f92672">-&gt;</span>get_area;
+
+        <span style="color:#75715e"># calculate the overlapping area</span>
+        <span style="color:#66d9ef">my</span> $x_dist <span style="color:#f92672">=</span> min( $first<span style="color:#f92672">-&gt;</span>right<span style="color:#f92672">-&gt;</span>x, $second<span style="color:#f92672">-&gt;</span>right<span style="color:#f92672">-&gt;</span>x ) <span style="color:#f92672">-</span> max( $first<span style="color:#f92672">-&gt;</span>left<span style="color:#f92672">-&gt;</span>x, $second<span style="color:#f92672">-&gt;</span>left<span style="color:#f92672">-&gt;</span>x );
+        <span style="color:#66d9ef">my</span> $y_dist <span style="color:#f92672">=</span> min( $first<span style="color:#f92672">-&gt;</span>right<span style="color:#f92672">-&gt;</span>y, $second<span style="color:#f92672">-&gt;</span>right<span style="color:#f92672">-&gt;</span>y ) <span style="color:#f92672">-</span> max( $first<span style="color:#f92672">-&gt;</span>left<span style="color:#f92672">-&gt;</span>y, $second<span style="color:#f92672">-&gt;</span>left<span style="color:#f92672">-&gt;</span>y );
+        <span style="color:#66d9ef">my</span> $area_i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        $area_i <span style="color:#f92672">=</span> $x_dist <span style="color:#f92672">*</span> $y_dist <span style="color:#66d9ef">if</span> ( $x_dist <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> ) <span style="color:#f92672">and</span> ( $y_dist <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> );
+
+        <span style="color:#66d9ef">return</span> $area1 <span style="color:#f92672">+</span> $area2 <span style="color:#f92672">-</span> $area_i;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/sgreen/python/ch-2.py">Python</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://dev.to/simongreennet/triangles-and-rectangles-45p8">Weekly Challenge 152</a></p>
+<p>Simon gives us a another, slightly different object abstraction , creating his <code>Rectangle</code> directly from the four given coordinates. A <code>Rectangle</code> also carries an <code>area()</code> method to calculate the height times width.</p>
+<p>In the main package, he aquires the area of the two rectangles considered independently, and then determines the possible overlapping ranges along each of the x and y axes. If there are positive in both, then the furthest extents are then used to create a new <code>Rectangle</code>, which has an area that is subtracted from previous sum.</p>
+<p>It&rsquo;s worth noting that the two rectangles can overlap in one axis and completely miss each other in the other, for instance when two equally-sized shapes are stacked vertically one above the other without touching. In that case the x-axis overlap would be maximal, but along the y-axis this would be 0, as we stated they do not meet.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">main</span> {
+        <span style="color:#66d9ef">my</span> $s       <span style="color:#f92672">=</span> shift;
+        <span style="color:#66d9ef">my</span> @numbers <span style="color:#f92672">=</span> ( $s <span style="color:#f92672">=~</span> <span style="color:#e6db74">m/(-?\d+)/g</span> );
+
+        <span style="color:#75715e"># Find out the combined area of the two rectangles</span>
+        <span style="color:#66d9ef">my</span> $rect1 <span style="color:#f92672">=</span> Rectangle<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>( @numbers[ <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">3</span> ] );
+        <span style="color:#66d9ef">my</span> $rect2 <span style="color:#f92672">=</span> Rectangle<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>( @numbers[ <span style="color:#ae81ff">4</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">7</span> ] );
+        <span style="color:#66d9ef">my</span> $area  <span style="color:#f92672">=</span> $rect1<span style="color:#f92672">-&gt;</span>area <span style="color:#f92672">+</span> $rect2<span style="color:#f92672">-&gt;</span>area;
+
+        <span style="color:#75715e"># Calculate any overlap</span>
+        <span style="color:#66d9ef">my</span> $dx1 <span style="color:#f92672">=</span> max( $rect1<span style="color:#f92672">-&gt;</span>{x1}, $rect2<span style="color:#f92672">-&gt;</span>{x1} );
+        <span style="color:#66d9ef">my</span> $dy1 <span style="color:#f92672">=</span> max( $rect1<span style="color:#f92672">-&gt;</span>{y1}, $rect2<span style="color:#f92672">-&gt;</span>{y1} );
+        <span style="color:#66d9ef">my</span> $dx2 <span style="color:#f92672">=</span> min( $rect1<span style="color:#f92672">-&gt;</span>{x2}, $rect2<span style="color:#f92672">-&gt;</span>{x2} );
+        <span style="color:#66d9ef">my</span> $dy2 <span style="color:#f92672">=</span> min( $rect1<span style="color:#f92672">-&gt;</span>{y2}, $rect2<span style="color:#f92672">-&gt;</span>{y2} );
+
+        <span style="color:#75715e"># If there is, remove that from the calculations</span>
+        <span style="color:#66d9ef">if</span> ( $dx1 <span style="color:#f92672">&lt;</span> $dx2 <span style="color:#f92672">and</span> $dy1 <span style="color:#f92672">&lt;</span> $dy2 ) {
+            <span style="color:#66d9ef">my</span> $d <span style="color:#f92672">=</span> Rectangle<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>( $dx1, $dy1, $dx2, $dy2 );
+            $area <span style="color:#f92672">-=</span> $d<span style="color:#f92672">-&gt;</span>area();
+        }
+
+        say $area;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/robert-dicicco/perl/ch-2.pl"><strong>Robert DiCicco</strong></a></p>
+<p>In the problem we are told that we are given two rectangles defined by four coordinates, but not actually told how this gift is to be accomplished. As really the problem could be considered not to be about that detail, we can then conclude that we already have our rectangles, and not ask too many questions about how exactly they came into our possession.</p>
+<p><em>&ldquo;No officer, I&rsquo;ve never seen those rectangles before in my life. They were sitting there when I got here&rdquo;.</em></p>
+<p>That&rsquo;s the spirit.</p>
+<p>We&rsquo;ll, since they&rsquo;re mysteriously here and all, we might as well put them to use. Robert has decided to determine the area of their composite shape.</p>
+<p>Now we already know they&rsquo;re rectangles, and we also know the area of a rectangle is its height times its width. We don&rsquo;t really need a proper <code>Rectangle</code> object to work with these ideas. Robert chooses not to bother with that, instead getting straight to the task at hand. All he decides he needs are two functions: <code>area()</code> to find the area of a single rectangle thing — defined as an array of four coordinates — and <code>overlap</code> which takes two rectangle array references and finds the scalar value of the overlap, if any. Should there be no overlap this value is simply 0.</p>
+<p>As the rectangles are things, arrays of four values, they are <em>like</em> objects to some degree but are not blessed. They could well be objects but theres little no real need for them to be.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">area</span> {
+        <span style="color:#66d9ef">my</span> $box  <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>];
+        <span style="color:#66d9ef">my</span> $xval <span style="color:#f92672">=</span> abs( @$box[<span style="color:#ae81ff">0</span>] ) <span style="color:#f92672">+</span> abs( @$box[<span style="color:#ae81ff">2</span>] );
+        <span style="color:#66d9ef">my</span> $yval <span style="color:#f92672">=</span> abs( @$box[<span style="color:#ae81ff">1</span>] ) <span style="color:#f92672">+</span> abs( @$box[<span style="color:#ae81ff">3</span>] );
+        <span style="color:#66d9ef">return</span> ( $xval <span style="color:#f92672">*</span> $yval );
+    }
+
+    <span style="color:#75715e"># get area of overlapping rectangle</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">overlap</span> {
+        <span style="color:#66d9ef">my</span> $r1      <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>];
+        <span style="color:#66d9ef">my</span> $r2      <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">1</span>];
+        <span style="color:#66d9ef">my</span> $x_dist  <span style="color:#f92672">=</span> ( min( @$r1[<span style="color:#ae81ff">2</span>], @$r2[<span style="color:#ae81ff">2</span>] ) <span style="color:#f92672">-</span> max( @$r1[<span style="color:#ae81ff">0</span>], @$r2[<span style="color:#ae81ff">0</span>] ) );
+        <span style="color:#66d9ef">my</span> $y_dist  <span style="color:#f92672">=</span> ( min( @$r1[<span style="color:#ae81ff">3</span>], @$r2[<span style="color:#ae81ff">3</span>] ) <span style="color:#f92672">-</span> max( @$r1[<span style="color:#ae81ff">1</span>], @$r2[<span style="color:#ae81ff">1</span>] ) );
+        <span style="color:#66d9ef">my</span> $overlap <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+        <span style="color:#66d9ef">if</span> ( $x_dist <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">and</span> $y_dist <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> ) {
+            $overlap <span style="color:#f92672">=</span> $x_dist <span style="color:#f92672">*</span> $y_dist;
+        }
+
+        <span style="color:#66d9ef">return</span> $overlap;
+    }
+
+    <span style="color:#66d9ef">my</span> @rec1 <span style="color:#f92672">=</span> ( ( <span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> ), ( <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span> ) );
+    <span style="color:#66d9ef">my</span> @rec2 <span style="color:#f92672">=</span> ( ( <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">3</span> ), ( <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span> ) );
+
+    <span style="color:#66d9ef">my</span> $a <span style="color:#f92672">=</span> area( <span style="color:#f92672">\</span>@rec1 );
+    <span style="color:#66d9ef">my</span> $b <span style="color:#f92672">=</span> area( <span style="color:#f92672">\</span>@rec2 );
+    <span style="color:#66d9ef">my</span> $ov <span style="color:#f92672">=</span> overlap( <span style="color:#f92672">\</span>@rec1, <span style="color:#f92672">\</span>@rec2 );
+
+    <span style="color:#66d9ef">my</span> $total <span style="color:#f92672">=</span> $a <span style="color:#f92672">+</span> $b <span style="color:#f92672">-</span> $ov;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/abigail/perl/ch-2.pl"><strong>Abigail</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/abigail/awk/ch-2.awk">Awk</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/abigail/bash/ch-2.sh">Bash</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/abigail/c/ch-2.c">C</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/abigail/lua/ch-2.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/abigail/node/ch-2.js">Node</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/abigail/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/abigail/ruby/ch-2.rb">Ruby</a></p>
+<p>Abigail has found a decidedly minimal solution, doing away with all abstraction whatsoever by directly addressing the array of 8 coordinate values given on the input line. The 8 values represent, of course, four coordinate pairs, each pair of these describing one of two rectangles. They are delivered in a set order, and are accessed directly.</p>
+<p>I&rsquo;ll let them describe their logic:</p>
+<pre><code>    We calculate the total area as the sum of the areas of each
+    rectangle, minus the area of the overlap.
+    The area of a rectangle is the product of the absolute difference of the
+    x-coordinates and the absolute difference of the y-coordinates.
+    The absolute difference of two numbers can be calculated by subtracting
+    the minimum of the two from the maximum of the two.
+    To calculate the area of the overlap, we multiply the overlap in the
+    x-dimension, and the overlap in the y-dimension. To get the overlap
+    in the x-dimension, we take the minimum of the max x-values of both
+    rectangles, and subtract the maximim of the min x-values of both
+    rectangles. If this value is less than 0, the overlap is 0.
+    For the overlap in the y-dimension, we do the same with the y values.
+
+    min (@F [0, 2]):  Smallest x-value for first  rectangle
+    max (@F [0, 2]):  Largest  x-value for first  rectangle
+    min (@F [1, 3]):  Smallest y-value for first  rectangle
+    max (@F [1, 3]):  Largest  y-value for first  rectangle
+    min (@F [4, 5]):  Smallest x-value for second rectangle
+    max (@F [4, 5]):  Largest  x-value for second rectangle
+    min (@F [6, 7]):  Smallest y-value for second rectangle
+    max (@F [6, 7]):  Largest  y-value for second rectangle
+</code></pre><p>A source reference is provided in the script.</p>
+<p>Here&rsquo;s how they translated that into Perl code. It&rsquo;s delightful.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw [min </span>max];
+
+    <span style="color:#66d9ef">while</span> (<span style="color:#f92672">&lt;&gt;</span>) {<span style="color:#66d9ef">my</span> @F <span style="color:#f92672">=</span> split; <span style="color:#75715e"># Mimic -a</span>
+
+        say        <span style="color:#f92672">+</span>(max (@F [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>]) <span style="color:#f92672">-</span> min (@F [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>]))  <span style="color:#f92672">*</span>
+                    (max (@F [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>]) <span style="color:#f92672">-</span> min (@F [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>]))  <span style="color:#f92672">+</span>
+                    (max (@F [<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">6</span>]) <span style="color:#f92672">-</span> min (@F [<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">6</span>]))  <span style="color:#f92672">*</span>
+                    (max (@F [<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">7</span>]) <span style="color:#f92672">-</span> min (@F [<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">7</span>]))  <span style="color:#f92672">-</span>
+        max (<span style="color:#ae81ff">0</span>, min (max (@F [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>]),  max (@F [<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">6</span>]))  <span style="color:#f92672">-</span>
+                max (min (@F [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>]),  min (@F [<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">6</span>]))) <span style="color:#f92672">*</span>
+        max (<span style="color:#ae81ff">0</span>, min (max (@F [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>]),  max (@F [<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">7</span>]))  <span style="color:#f92672">-</span>
+                max (min (@F [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>]),  min (@F [<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">7</span>])));
+
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/colin-crain/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://colincrain.com/2022/02/19/whos-masking-the-mask/">Who&rsquo;s Masking the Mask? - Programming Excursions in Perl and Raku</a></p>
+<p>For my own solution I saw the problem in terms of Venn diagrams, or set theory. What we want is the union of the two rectangle areas. Considering the areas to be collections of square units, we wish to count each unit included exactly once and only once, even if the same unit is shared within both rectangles. The union, then, is the area occupied solely by one rectangle, plus the area occupied solely by the other, plus the area occupied by both. However without calculating the excluded areas we can also say that the overlapping area, summing the rectangles, will be counted twice. Thus if we can find out what this area is we can then subtract it from the total to find the proper result.</p>
+<p>In other words the union is the area of shape A plus the area of shape B minus the intersection of A and B.</p>
+<p>A ∪ B = A + B - ( A ∩ B )</p>
+<p>I broke the problem down into four functions: <code>area()</code> to compute an area of a rectangle, <code>union()</code> to apply the equation above, and <code>intersect()</code>, which uses its helper <code>_overlap</code> to determines the positive overlap of two intervals along a numerical axis. In <code>intersect()</code> the x- and y-axis overlaps are multiplied, and if both are positive this will return the area of the intersection.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">area</span> ( $rect ) {
+        <span style="color:#66d9ef">my</span> $x <span style="color:#f92672">=</span> abs( $rect<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">-</span> $rect<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">0</span>] );
+        <span style="color:#66d9ef">my</span> $y <span style="color:#f92672">=</span> abs( $rect<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> $rect<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">1</span>] );
+        <span style="color:#66d9ef">return</span> $x <span style="color:#f92672">*</span> $y;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">intersect</span> ( $rect1, $rect2 ) {
+        _overlap( [ map { $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] } $rect1<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">]</span>,       <span style="color:#75715e">## rect 1 x-axis</span>
+                  [ map { $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] } $rect2<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">]</span> )      <span style="color:#75715e">## rect 2 x-axis</span>
+            <span style="color:#f92672">*</span>
+        _overlap( [ map { $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] } $rect1<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">]</span>,       <span style="color:#75715e">## rect 1 y-axis</span>
+                  [ map { $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] } $rect2<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">]</span> );     <span style="color:#75715e">## rect 2 y-axis</span>
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">union</span> ( $rect1, $rect2 ) {
+          area ($rect1)
+        <span style="color:#f92672">+</span> area ($rect2)
+        <span style="color:#f92672">-</span> intersect ($rect1, $rect2) ;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_overlap</span> ( $r1, $r2 ) {
+    <span style="color:#75715e">## ranges are ordered 2-element tuples [start,end] : end &gt; start</span>
+    <span style="color:#75715e">## no order is assumed between the two ranges $r1 and $r2</span>
+    <span style="color:#75715e">## returns absolute value of overlapping range</span>
+    <span style="color:#75715e">## there are five cases total:</span>
+    <span style="color:#75715e">##  1.  no overlap</span>
+    <span style="color:#75715e">##  2.  A overlaps start of B</span>
+    <span style="color:#75715e">##  3.  B overlaps start of A</span>
+    <span style="color:#75715e">##  4.  A completely encloses B</span>
+    <span style="color:#75715e">##  5.  B completely encloses A</span>
+
+        <span style="color:#75715e">## sort the ranges by start point (merge cases 2+3 and 4+5)</span>
+        $r1<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&gt;</span> $r2<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">and</span> ( $r1, $r2 ) <span style="color:#f92672">=</span> ( $r2, $r1 );
+
+        $r2<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&gt;</span> $r1<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]
+            ? <span style="color:#ae81ff">0</span>                             <span style="color:#75715e">## no overlap (1)</span>
+            : abs( $r2<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]
+                <span style="color:#f92672">-</span> ( $r2<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">&gt;</span> $r1<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]
+                    ? $r1<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]              <span style="color:#75715e">## intersection (2+3)</span>
+                    : $r2<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] )  )         <span style="color:#75715e">## A encloses B (4+5)</span>
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a></p>
+<p>CY has taken a remarkably different approach than what we&rsquo;ve seen so far. Each dimension is occupied by four points, the limits of the two rectangles. Taking the upper and lowermost values in each of the dimensions will then describe a rectangle that circumscribes the composite shape of the two input rectangles taken together. Each face of this rectangle will contain within it two additional points along it, corresponding to the unused edges of the original shapes. Whether the rectangles overlap or not does not matter, as there will in any case be two internal points. The points may themselves lay atop each other and occupy the same coordinate but will still be considered separately.</p>
+<p>Thus the enclosing large shape can be divided into an irregular 3 x 3 grid of smaller rectangles, each one of which can be part of one rectangle, the other, no rectangle or both. Any sub-shape not included in either one rectangle or the other is not added to the sum.</p>
+<p>The only complication is really a simplification, for the case when one rectangle completely encloses the other. When this happens only the area of the outer rectangle is used.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">rect_area</span> {
+        <span style="color:#66d9ef">my</span> @A, <span style="color:#66d9ef">my</span> @B;
+        <span style="color:#75715e"># ($lA,   $bA,   $rA,   $tA,   $lB,   $bB,   $rB,   $rB)</span>
+          ($A[<span style="color:#ae81ff">0</span>], $A[<span style="color:#ae81ff">1</span>], $A[<span style="color:#ae81ff">2</span>], $A[<span style="color:#ae81ff">3</span>], $B[<span style="color:#ae81ff">0</span>], $B[<span style="color:#ae81ff">1</span>], $B[<span style="color:#ae81ff">2</span>], $B[<span style="color:#ae81ff">3</span>]) <span style="color:#f92672">=</span> @_;
+
+        <span style="color:#66d9ef">my</span> @w <span style="color:#f92672">=</span> sort {$a<span style="color:#e6db74">&lt;=&gt;</span>$b} ($A[<span style="color:#ae81ff">0</span>], $A[<span style="color:#ae81ff">2</span>], $B[<span style="color:#ae81ff">0</span>], $B[<span style="color:#ae81ff">2</span>]);
+        <span style="color:#66d9ef">my</span> @h <span style="color:#f92672">=</span> sort {$a<span style="color:#e6db74">&lt;=&gt;</span>$b} ($A[<span style="color:#ae81ff">1</span>], $A[<span style="color:#ae81ff">3</span>], $B[<span style="color:#ae81ff">1</span>], $B[<span style="color:#ae81ff">3</span>]);
+
+        <span style="color:#66d9ef">my</span> $area <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">2</span>) { <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $j (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">2</span>) {
+            <span style="color:#66d9ef">my</span> $inA <span style="color:#f92672">=</span>    ($w[$j] <span style="color:#f92672">&gt;=</span> $A[<span style="color:#ae81ff">0</span>]) <span style="color:#f92672">&amp;&amp;</span> ($A[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">&gt;=</span> $w[$j<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>])
+                      <span style="color:#f92672">&amp;&amp;</span> ($h[$i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;=</span> $A[<span style="color:#ae81ff">3</span>]) <span style="color:#f92672">&amp;&amp;</span> ($A[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;=</span> $h[$i]);
+
+            <span style="color:#66d9ef">my</span> $inB <span style="color:#f92672">=</span>    ($w[$j] <span style="color:#f92672">&gt;=</span> $B[<span style="color:#ae81ff">0</span>]) <span style="color:#f92672">&amp;&amp;</span> ($B[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">&gt;=</span> $w[$j<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>])
+                      <span style="color:#f92672">&amp;&amp;</span> ($h[$i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;=</span> $B[<span style="color:#ae81ff">3</span>]) <span style="color:#f92672">&amp;&amp;</span> ($B[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;=</span> $h[$i]);
+
+            <span style="color:#66d9ef">if</span> ($inA <span style="color:#f92672">||</span> $inB) {
+                $area <span style="color:#f92672">+=</span> ($w[$i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">-</span>$w[$i])<span style="color:#f92672">*</span>($h[$j<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">-</span>$h[$j]);
+            }
+        }}
+
+    <span style="color:#f92672">=</span>pod
+        Except the <span style="color:#66d9ef">case</span> that one rectangle is inside the other rectangle,
+        the two rectangles can be enscribed into a larger rectangle
+        Dividing the large rectangle into <span style="color:#ae81ff">9</span> small rectangular regions,
+        <span style="color:#66d9ef">then</span> check one by one <span style="color:#66d9ef">if</span> a small region is inside rect A <span style="color:#f92672">or</span> rect B<span style="color:#f92672">.</span>
+        If yes, add the area of the small region into $area<span style="color:#f92672">.</span>
+    <span style="color:#f92672">=</span>cut
+
+        <span style="color:#66d9ef">return</span> $area;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a></p>
+<p>Duncan has decided he wants his input configured as four comma-separated coordinate pairs, two for each rectangle separated by spaces. These are assigned to variables <code>$x</code> and <code>$y</code> sub-named 1 through 4. The rectangles are ordered, and their points reassigned so they read left-to-right, which makes tracking the overlap considerably less complicated.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># make sure that x1 &lt;= x2. y1 &lt;= y2, x3 &lt;= x4, y3 &lt;= y4</span>
+    ($x1,$x2) <span style="color:#f92672">=</span> ($x2,$x1) <span style="color:#66d9ef">if</span> $x1 <span style="color:#f92672">&gt;</span> $x2;
+    ($y1,$y2) <span style="color:#f92672">=</span> ($y2,$y1) <span style="color:#66d9ef">if</span> $y1 <span style="color:#f92672">&gt;</span> $y2;
+    ($x3,$x4) <span style="color:#f92672">=</span> ($x4,$x3) <span style="color:#66d9ef">if</span> $x3 <span style="color:#f92672">&gt;</span> $x4;
+    ($y3,$y4) <span style="color:#f92672">=</span> ($y4,$y3) <span style="color:#66d9ef">if</span> $y3 <span style="color:#f92672">&gt;</span> $y4;
+
+    <span style="color:#66d9ef">my</span> $r1area <span style="color:#f92672">=</span> ($x2<span style="color:#f92672">-</span>$x1)<span style="color:#f92672">*</span>($y2<span style="color:#f92672">-</span>$y1);
+    <span style="color:#66d9ef">my</span> $r2area <span style="color:#f92672">=</span> ($x4<span style="color:#f92672">-</span>$x3)<span style="color:#f92672">*</span>($y4<span style="color:#f92672">-</span>$y3);
+    say <span style="color:#e6db74">&#34;r1 area: $r1area, r2 area: $r2area&#34;</span> <span style="color:#66d9ef">if</span> $debug;
+
+    <span style="color:#75715e"># overlap:</span>
+    <span style="color:#66d9ef">my</span> $oxd <span style="color:#f92672">=</span> min($x2,$x4) <span style="color:#f92672">-</span> max($x1,$x3);
+    <span style="color:#66d9ef">my</span> $oyd <span style="color:#f92672">=</span> min($y2,$y4) <span style="color:#f92672">-</span> max($y1,$y3);
+    <span style="color:#66d9ef">my</span> $oarea <span style="color:#f92672">=</span> ($oxd<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> $oyd<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span>) ? $oxd <span style="color:#f92672">*</span> $oyd : <span style="color:#ae81ff">0</span>;
+
+    say <span style="color:#e6db74">&#34;overlapping area: $oarea&#34;</span> <span style="color:#66d9ef">if</span> $debug;
+
+    <span style="color:#66d9ef">my</span> $total <span style="color:#f92672">=</span> $r1area <span style="color:#f92672">+</span> $r2area <span style="color:#f92672">-</span> $oarea;
+
+    say $total;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/peter-campbell-smith/perl/ch-2.pl"><strong>Peter Campbell Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://pjcs-pwc.blogspot.com/2022/02/lots-of-angles-this-week.html">Lots of angles this week</a></p>
+<p>Peter stores his rectangles as nested hashes, which makes the assignment of coordinates easy to follow.</p>
+<p>Well, that and the nicely commented code, which is always welcome from my end. I think the action is well and clearly laid out so I&rsquo;ll just leave this here:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">       <span style="color:#75715e"># Assume no overlap for now</span>
+       $area <span style="color:#f92672">=</span> area(<span style="color:#e6db74">&#39;one&#39;</span>) <span style="color:#f92672">+</span> area(<span style="color:#e6db74">&#39;two&#39;</span>);
+
+       <span style="color:#75715e"># The rectangles may overlap if the bottom of rect1 is below the top of rect2</span>
+       <span style="color:#75715e"># and the top of rect1 is above the bottom of rect2</span>
+       $vert_overlap <span style="color:#f92672">=</span> $rect{one}{b} <span style="color:#f92672">&lt;</span> $rect{two}{t} <span style="color:#f92672">&amp;&amp;</span> $rect{one}{t} <span style="color:#f92672">&gt;</span> $rect{two}{b};
+
+       <span style="color:#75715e"># They may also overlap if the right of rect1 is to the right of the left of rect2</span>
+       <span style="color:#75715e"># and the left of rect1 is to the left of the right side of rect2</span>
+       $horiz_overlap <span style="color:#f92672">=</span> $rect{one}{r} <span style="color:#f92672">&gt;</span> $rect{two}{l} <span style="color:#f92672">&amp;&amp;</span> $rect{one}{l} <span style="color:#f92672">&lt;</span> $rect{two}{r};
+
+       <span style="color:#75715e"># They do overlap if both of these conditions are true</span>
+       <span style="color:#66d9ef">if</span> ($vert_overlap <span style="color:#f92672">&amp;&amp;</span> $horiz_overlap) {
+
+           <span style="color:#75715e"># ... and the overlap area is bounded by the greater of the bottoms,</span>
+           <span style="color:#75715e"># the lesser of the tops, the leftmost of the rights and the rightmost</span>
+           <span style="color:#75715e"># of the lefts</span>
+           $rect{overlap}{b} <span style="color:#f92672">=</span> $rect{one}{b} <span style="color:#f92672">&gt;</span> $rect{two}{b} ? $rect{one}{b} : $rect{two}{b};
+           $rect{overlap}{t} <span style="color:#f92672">=</span> $rect{one}{t} <span style="color:#f92672">&gt;</span> $rect{two}{t} ? $rect{two}{t} : $rect{one}{t};
+           $rect{overlap}{l} <span style="color:#f92672">=</span> $rect{one}{l} <span style="color:#f92672">&gt;</span> $rect{two}{l} ? $rect{one}{l} : $rect{two}{l};
+           $rect{overlap}{r} <span style="color:#f92672">=</span> $rect{one}{r} <span style="color:#f92672">&gt;</span> $rect{two}{r} ? $rect{two}{r} : $rect{one}{r};
+
+           $area <span style="color:#f92672">-=</span> area(<span style="color:#e6db74">&#39;overlap&#39;</span>);
+       } <span style="color:#66d9ef">else</span> {
+           say <span style="color:#e6db74">qq[   No overlap]</span>;
+       }
+
+       say <span style="color:#e6db74">qq[Output: $area]</span>;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-152/james-smith">Perl Weekly Challenge #152</a></p>
+<p>James is back with a brutally-compressed block of&hellip; symbols of some sort.</p>
+<p>Let&rsquo;s look at the lines:</p>
+<ol>
+<li>(l)eft, (b)ottom, (r)ight, and (t)op, in two flavors, lower- and UPPERCASE</li>
+<li>overlap range along the horizontal axis</li>
+<li>overlap range along the vertical axis</li>
+<li>return rectangle area sum minus overlap area, but only if both overlaps are positive.</li>
+</ol>
+<p>The conditionals coupled to the assignment in line 4 will return 0 if they fail, so in the case of a <em>negative</em> overlap — that is the rectangles are separated and do not meet by some distance, nothing is subtracted.</p>
+<p>It could be construed as a little intimidating, but dissects nicely.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">my_area</span> {
+      <span style="color:#66d9ef">my</span> ($l,$b,$r,$t,$L,$B,$R,$T) <span style="color:#f92672">=</span> map { @{$_} } @_;
+      <span style="color:#66d9ef">my</span> $w3 <span style="color:#f92672">=</span> (<span style="color:#66d9ef">my</span> $w1<span style="color:#f92672">=</span>$r<span style="color:#f92672">-</span>$l)<span style="color:#f92672">+</span>(<span style="color:#66d9ef">my</span> $w2<span style="color:#f92672">=</span>$R<span style="color:#f92672">-</span>$L)<span style="color:#f92672">+</span>($l<span style="color:#f92672">&lt;</span>$L?$l:$L)<span style="color:#f92672">-</span>($r<span style="color:#f92672">&lt;</span>$R?$R:$r);
+      <span style="color:#66d9ef">my</span> $h3 <span style="color:#f92672">=</span> (<span style="color:#66d9ef">my</span> $h1<span style="color:#f92672">=</span>$t<span style="color:#f92672">-</span>$b)<span style="color:#f92672">+</span>(<span style="color:#66d9ef">my</span> $h2<span style="color:#f92672">=</span>$T<span style="color:#f92672">-</span>$B)<span style="color:#f92672">+</span>($b<span style="color:#f92672">&lt;</span>$B?$b:$B)<span style="color:#f92672">-</span>($t<span style="color:#f92672">&lt;</span>$T?$T:$t);
+      $w1<span style="color:#f92672">*</span>$h1 <span style="color:#f92672">+</span> $w2<span style="color:#f92672">*</span>$h2 <span style="color:#f92672">-</span> ($w3<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> $h3<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> $w3<span style="color:#f92672">*</span>$h3);
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/athanasius/raku/ch-2.raku">Raku</a></p>
+<p>One quality of the monk&rsquo;s submissions is their generally extensive notes to their process. Here they have included an ASCII diagram as a visual aid, something I considered doing in the introduction but apparently never got around to. In any case it&rsquo;s welcome here, along with a detailed explanation of the logic behind selecting out the overlap based on the horizontal and vertical ranges.</p>
+<pre><code>    Consider 2 rectangles:
+
+        +------------a1
+        |             |
+        |       c-----K--------b1
+        |       |     |         |
+        a0------J-----d         |
+                |               |
+                |               |
+                b0--------------+
+
+    The overlapping area, rectangle cJdK, has corners (J, K) where:
+        the x-coordinate of J is the larger  of a0x and b0x;
+        the y-coordinate of J is the larger  of a0y and b0y;
+        the x-coordinate of K is the smaller of a1x and b1x; and
+        the y-coordinate of K is the smaller of a1y and b1y.
+
+    This holds true for all configurations of the 2 rectangles, provided that K is
+    above and to the right of J; otherwise, the rectangles do not overlap.
+
+    The combined area is the sum of the areas of the 2 rectangles less the area of
+    their overlap (if any).
+</code></pre><p>With that explanation out in front, following the steps in the implementation is quite straightforward.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    MAIN:
+    {
+        <span style="color:#66d9ef">my</span> ($a0x, $a0y, $a1x, $a1y, $b0x, $b0y, $b1x, $b1y) <span style="color:#f92672">=</span> parse_command_line();
+
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Input:  Rectangle 1 =&gt; ($a0x, $a0y), ($a1x, $a1y)\n&#34;</span>;
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;        Rectangle 2 =&gt; ($b0x, $b0y), ($b1x, $b1y)\n&#34;</span>;
+
+        <span style="color:#66d9ef">my</span> $area1 <span style="color:#f92672">=</span> ($a1x <span style="color:#f92672">-</span> $a0x) <span style="color:#f92672">*</span> ($a1y <span style="color:#f92672">-</span> $a0y);
+        <span style="color:#66d9ef">my</span> $area2 <span style="color:#f92672">=</span> ($b1x <span style="color:#f92672">-</span> $b0x) <span style="color:#f92672">*</span> ($b1y <span style="color:#f92672">-</span> $b0y);
+
+        <span style="color:#75715e"># Common/shared rectangle</span>
+        <span style="color:#66d9ef">my</span> $c0x   <span style="color:#f92672">=</span> max( $a0x, $b0x );
+        <span style="color:#66d9ef">my</span> $c0y   <span style="color:#f92672">=</span> max( $a0y, $b0y );
+        <span style="color:#66d9ef">my</span> $c1x   <span style="color:#f92672">=</span> min( $a1x, $b1x );
+        <span style="color:#66d9ef">my</span> $c1y   <span style="color:#f92672">=</span> min( $a1y, $b1y );
+        <span style="color:#66d9ef">my</span> $area3 <span style="color:#f92672">=</span> ($c1x <span style="color:#f92672">&gt;</span> $c0x <span style="color:#f92672">&amp;&amp;</span>  $c1y <span style="color:#f92672">&gt;</span> $c0y) ?
+                    ($c1x <span style="color:#f92672">-</span> $c0x) <span style="color:#f92672">*</span> ($c1y <span style="color:#f92672">-</span> $c0y) : <span style="color:#ae81ff">0</span>;
+
+        <span style="color:#66d9ef">my</span> $total <span style="color:#f92672">=</span>  $area1 <span style="color:#f92672">+</span> $area2 <span style="color:#f92672">-</span> $area3;
+
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\nOutput: $total\n&#34;</span>;
+
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\nExplanation\n-----------\n&#34;</span>,
+                <span style="color:#e6db74">&#34;The rectangles have areas of $area1 and $area2, &#34;</span>,
+                <span style="color:#e6db74">&#34;respectively,\n&#34;</span>,
+                <span style="color:#e6db74">&#34;and a shared (i.e., overlapping) area of $area3\n&#34;</span>,
+                <span style="color:#e6db74">&#34;Total area is $area1 + $area2 - $area3 = $total\n&#34;</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a></p>
+<p>Finally we&rsquo;ll end with a look at Jorg&rsquo;s submission, because, well, it&rsquo;s different. Not completley different, mind you, as it shares a basic analysis with CY&rsquo;s solution above.</p>
+<p>In CY&rsquo;s breakdown, if you recall, we circumscribed the compound shape of the two possibly-overlapping rectangles with a new outer boundary rectangle, then sliced this along the remaining interior edges to form an irregular lattice of 9 sub-spaces.</p>
+<p>For any of you finding that description hard to follow, Jorg has provided a reference using box-drawing characters:</p>
+<pre><code>    Original rectangles in bold lines within the surrounding rectangle and
+    the product of the subrectangle's area and the OR'ed characteristic
+    functions inside the subrectangle.
+
+    4 ┌───┲━━━━━━━┯━━━━━━━┓
+      │   ┃       │       ┃
+    3 │ 0 ┃   4   │   4   ┃
+      │   ┃       │       ┃
+    2 ┢━━━╋━━━━━━━╅───────┨
+      ┃   ┃       ┃       ┃
+    1 ┃ 2 ┃   4   ┃   4   ┃
+      ┃   ┃       ┃       ┃
+    0 ┡━━━╋━━━━━━━╃───────┨
+      │ 0 ┃   2   │   2   ┃
+    -1└───┺━━━━━━━┷━━━━━━━┛
+     -1   0   1   2   3   4
+</code></pre><p>See it now?</p>
+<p>What Jorg has done next is to generalize the process to an arbitrary number of rectangles.</p>
+<pre><code>    Generalizing the task to N rectangles.
+    These rectangles, given by their bottom left and upper right vertices,
+    are contained within a unique minimal rectangle. This outer rectangle
+    may be divided into (N + 1)² (possibly empty) subrectangles given by
+    all possible x and y coordinates from the original rectangles.  Each
+    of these subrectangles has a clear relation to any of the original
+    rectangles: either they are disjoint or the subrectangle is a subset
+    of the original.  In other words: the characteristic function of any
+    given rectangle never changes inside such subrectangle. For each
+    subrectangle, its center coordinates and its area is recorded.  Then
+    the sum is taken over the areas of subrectangles having their center
+    within any of the original rectangles.  See picture [ed note: above].
+    This is essentially the surface integral of the OR'ed characteristic
+    functions over the xy-plane.
+</code></pre><p>Ok that&rsquo;s getting a little hairy again, I admit. The &ldquo;characteristic function&rdquo; is coderef to an anonymous function closed around the boundary points of a specific rectangle. Handing this a different rectangle will return a 1/0 evaluation of whether it overlaps with the rectangle defined in the closure.</p>
+<p>If a rectangle overlaps with any other rectangle then it&rsquo;s part of the larger shape and its area is added to the total. Otherwise its area is kept to 0 when all the subrectangles are summed.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># Find the total area of N (possibly overlapping) rectangles.</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">rectangle_area</span> (@vertices) {
+        <span style="color:#75715e"># Find grid subrectangles: center and area.</span>
+        <span style="color:#66d9ef">my</span> $subrect <span style="color:#f92672">=</span> subrect(@vertices);
+        <span style="color:#75715e"># Create characteristic functions for all given rectangles.</span>
+        <span style="color:#66d9ef">my</span> @chi <span style="color:#f92672">=</span> pairmap {gen_chi($a, $b)} @vertices;
+    say $_ <span style="color:#66d9ef">for</span> @chi;
+    say $chi[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-&gt;</span>($b<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>);
+
+        <span style="color:#75715e"># Get the sum of subrectangle areas within original rectangles.</span>
+        reduce {$a <span style="color:#f92672">+</span> $b<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">*</span> any {$_<span style="color:#f92672">-&gt;</span>($b<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>)} @chi} <span style="color:#ae81ff">0</span>, @$subrect;
+    }
+
+    <span style="color:#75715e"># Generate the characteristic function for a rectangle with given bottom</span>
+    <span style="color:#75715e"># left and top right vertices.</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">gen_chi</span> ($bl, $tr) {
+        <span style="color:#66d9ef">sub</span> ($x, $y) {
+            $bl<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&lt;=</span> $x <span style="color:#f92672">&amp;&amp;</span>
+            $x <span style="color:#f92672">&lt;=</span> $tr<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&amp;&amp;</span>
+            $bl<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;=</span> $y <span style="color:#f92672">&amp;&amp;</span>
+            $y <span style="color:#f92672">&lt;=</span> $tr<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>];
+        }
+    }
+
+    <span style="color:#75715e"># For N given rectangles, record center coordinates and area for all</span>
+    <span style="color:#75715e"># subrectangles build from the rectangles&#39; coordinate grid.</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">subrect</span> (@vertices) {
+        <span style="color:#66d9ef">my</span> @x <span style="color:#f92672">=</span> sort {$a <span style="color:#e6db74">&lt;=&gt;</span> $b} map $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>], @vertices;
+        <span style="color:#66d9ef">my</span> @y <span style="color:#f92672">=</span> sort {$a <span style="color:#e6db74">&lt;=&gt;</span> $b} map $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>], @vertices;
+
+        gather {
+            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $ix <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; $ix <span style="color:#f92672">&lt;</span> $#x; $ix<span style="color:#f92672">++</span>) {
+                <span style="color:#66d9ef">my</span> $dx <span style="color:#f92672">=</span> $x[$ix <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> $x[$ix];
+                <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $iy <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; $iy <span style="color:#f92672">&lt;</span> $#y; $iy<span style="color:#f92672">++</span>) {
+                    <span style="color:#66d9ef">my</span> $dy <span style="color:#f92672">=</span> $y[$iy <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> $y[$iy];
+                    take [[$x[$ix] <span style="color:#f92672">+</span> $dx <span style="color:#e6db74">/ 2, $y[$iy] + $dy /</span> <span style="color:#ae81ff">2</span>],
+                        $dx <span style="color:#f92672">*</span> $dy];
+                }
+            }
+        }
+    }
+</code></pre></div><h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-2">Blogs and Additional Submissions in Guest Languages for Task 2:</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/alexander-pankoff/perl/ch-2.pl"><strong>Alexander Pankoff</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://pankoff.net/pages/perl-weekly-challenge/challenge-152-task-2.html">Challenge 152 Task #2 - Untangling the rects</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://jacoby.github.io/2022/02/16/think-inside-the-box-weekly-challenge-152-pt-2.html">Think Inside The Box: Weekly Challenge #152 Pt. 2 | Committed to Memory</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/polettix/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.polettix.it/ETOOBUSY/2022/02/17/pwc152-rectangle-area/">PWC152 - Rectangle Area - ETOOBUSY</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/laurent-rosenfeld/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://blogs.perl.org/users/laurent_r/perl-weekly-challenge-152-triangle-sum-path.html">Perl Weekly Challenge 152: Triangle Sum Path</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/roger-bell-west/javascript/ch-2.js">Javascript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/roger-bell-west/kotlin/ch-2.kt">Kotlin</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/roger-bell-west/lua/ch-2.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/roger-bell-west/postscript/ch-2.ps">Postscript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/roger-bell-west/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/roger-bell-west/raku/ch-2.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/roger-bell-west/ruby/ch-2.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/roger-bell-west/rust/ch-2.rs">Rust</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://blog.firedrake.org/archive/2022/02/The_Weekly_Challenge_152__Triangles__Rectangles__and_Objects.html">RogerBW&rsquo;s Blog: The Weekly Challenge 152: Triangles, Rectangles, and Objects</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/ulrich-rieke/cpp/ch-2.cpp">C++</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/ulrich-rieke/haskell/ch-2.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/ulrich-rieke/raku/ch-2.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://wlmb.github.io/2022/02/14/PWC152/">Perl Weekly Challenge 152 – W. Luis Mochán</a></p>
+<hr>
+<hr>
+<p> &nbsp; </p>
+<p> &nbsp; </p>
+<p> &nbsp; </p>
+<p> &nbsp; </p>
+<center>
+<h1 id="PWC152BLOGS">_________ THE BLOG PAGES _________</h1>
+</center>
+<hr>
+<p><strong>That’s it for me this week, people! Warped by the rain, driven by the snow, resolute and unbroken by the torrential influx, by some miracle I somehow continue to maintain my bearings.</strong></p>
+<p><strong>Looking forward to next wave, the perfect wave, I am: <em>your humble servant</em>.</strong></p>
+<h1 id="PWC152BLOGS">But if Your Unquenchable <em>THIRST</em> for <em>KNOWLEDGE</em> is not <em>SLAKED</em>,</h1>
+<h1 id="then-run-dont-walk-to-the-watering-hole">then <em>RUN</em> <em>(dont walk!)</em> to the <em>WATERING HOLE</em></h1>
+<h1 id="and-follow-these-blog-links">and <em>FOLLOW</em> these <em>BLOG</em> <em>LINKS</em>:</h1>
+<p><strong>( &hellip;<em>don&rsquo;t think, trust your training, you&rsquo;re in the zone, just do it &hellip;</em> )</strong></p>
+<p><strong>Alexander Pankoff</strong></p>
+<ul>
+<li><a href="https://pankoff.net/pages/perl-weekly-challenge/challenge-152-task-1.html">Challenge 152 Task #1 - Summing up minimums</a> ( <em>Perl</em> )</li>
+<li><a href="https://pankoff.net/pages/perl-weekly-challenge/challenge-152-task-2.html">Challenge 152 Task #2 - Untangling the rects</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Arne Sommer</strong></p>
+<ul>
+<li><a href="https://raku-musings.com/triangular-rectangle.html">Triangular Rectangle with Raku</a> ( <em>Raku</em> )</li>
+</ul>
+<p><strong>Colin Crain</strong></p>
+<ul>
+<li><a href="https://colincrain.com/2022/02/16/the-path-in-the-pyramid/">The Path in the Pyramid - Programming Excursions in Perl and Raku</a> ( <em>Perl &amp; Raku</em> )</li>
+<li><a href="https://colincrain.com/2022/02/19/whos-masking-the-mask/">Who&rsquo;s Masking the Mask? - Programming Excursions in Perl and Raku</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Dave Jacoby</strong></p>
+<ul>
+<li><a href="https://jacoby.github.io/2022/02/15/functional-paths-weekly-challenge-152.html">Functional Paths: Weekly Challenge #152 Pt. 1 | Committed to Memory</a> ( <em>Perl</em> )</li>
+<li><a href="https://jacoby.github.io/2022/02/16/think-inside-the-box-weekly-challenge-152-pt-2.html">Think Inside The Box: Weekly Challenge #152 Pt. 2 | Committed to Memory</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Flavio Poletti</strong></p>
+<ul>
+<li><a href="https://github.polettix.it/ETOOBUSY/2022/02/16/pwc152-triangle-sum-path/">PWC152 - Triangle Sum Path - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+<li><a href="https://github.polettix.it/ETOOBUSY/2022/02/17/pwc152-rectangle-area/">PWC152 - Rectangle Area - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>James Smith</strong></p>
+<ul>
+<li><a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-152/james-smith">Perl Weekly Challenge #152</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Laurent Rosenfeld</strong></p>
+<ul>
+<li><a href="http://blogs.perl.org/users/laurent_r/perl-weekly-challenge-152-triangle-sum-path.html">Perl Weekly Challenge 152: Triangle Sum Path</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Luca Ferrari</strong></p>
+<ul>
+<li><a href="https://fluca1978.github.io/2022/02/14/PerlWeeklyChallenge152.html#task1">Perl Weekly Challenge 152: St. Valentine&rsquo;s sums and triangles – Luca Ferrari – Open Source advocate, human being</a> ( <em>Raku</em> )</li>
+</ul>
+<p><strong>Peter Campbell Smith</strong></p>
+<ul>
+<li><a href="https://pjcs-pwc.blogspot.com/2022/02/lots-of-angles-this-week.html">Lots of angles this week</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Roger Bell_West</strong></p>
+<ul>
+<li><a href="https://blog.firedrake.org/archive/2022/02/The_Weekly_Challenge_152__Triangles__Rectangles__and_Objects.html">RogerBW&rsquo;s Blog: The Weekly Challenge 152: Triangles, Rectangles, and Objects</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Simon Green</strong></p>
+<ul>
+<li><a href="https://dev.to/simongreennet/triangles-and-rectangles-45p8">Weekly Challenge 152</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>W. Luis Mochan</strong></p>
+<ul>
+<li><a href="https://wlmb.github.io/2022/02/14/PWC152/">Perl Weekly Challenge 152 – W. Luis Mochán</a> ( <em>Perl</em> )</li>
+</ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="/contact" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2022
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.nomtimes.co.uk/site/shop.do?cref=PerlBooks" title="Free Perl Books" rel="noreferrer" target="_blank">
+                            <img src="/images/NomTimes.jpg" style="width:22px; height: 18px;" alt=""/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jQurey/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-136524905-1', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+
+</html>
+
