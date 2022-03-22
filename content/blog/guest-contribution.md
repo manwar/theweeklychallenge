@@ -38,6 +38,8 @@ Please find below guest contributions.
 
 ##### **Luca Ferrari** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-157/luca-ferrari/postgresql/ch-1.sql) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-157/luca-ferrari/postgresql/ch-2.sql) in **PostgreSQL**.
 
+##### **PokGoPun** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-157/pokgopun/go/ch-1.go) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-157/pokgopun/go/ch-2.go) in **Go**.
+
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-157/roger-bell-west/javascript/ch-1.js) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-157/roger-bell-west/javascript/ch-2.js) in **JavaScript**.
 
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-157/roger-bell-west/kotlin/ch-1.kt) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-157/roger-bell-west/kotlin/ch-2.kt) in **Kotlin**.
@@ -260,6 +262,8 @@ Please find below guest contributions.
 
 ##### **Luca Ferrari** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/luca-ferrari/postgresql/ch-1.sql) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/luca-ferrari/postgresql/ch-2.sql) in **PostgreSQL**.
 
+##### **PokGoPun** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/pokgopun/go/ch-1.go) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/pokgopun/go/ch-2.go) in **Go**.
+
 ##### **Robert DiCicco** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/robert-dicicco/tcl/ch-1.tcl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/robert-dicicco/tcl/ch-2.tcl) in **Tcl**.
 
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/roger-bell-west/javascript/ch-1.js) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/roger-bell-west/javascript/ch-2.js) in **JavaScript**.
@@ -398,6 +402,8 @@ Please find below guest contributions.
 
 ##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/lubos-kolouch/python/ch-2.py) in **Python**.
 
+##### **PokGoPun** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/pokgopun/go/ch-1.go) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/pokgopun/go/ch-2.go) in **Go**.
+
 ##### **Robert DiCicco** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/robert-dicicco/ruby/ch-1.rb) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/robert-dicicco/ruby/ch-1.rb) in **Ruby**.
 
 ##### **Robert DiCicco** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/robert-dicicco/tcl/ch-1.tcl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/robert-dicicco/tcl/ch-2.tcl) in **Tcl**.
@@ -447,6 +453,8 @@ Please find below guest contributions.
 ##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/lubos-kolouch/php/ch-1.php) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/lubos-kolouch/php/ch-2.php) in **PHP**.
 
 ##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/lubos-kolouch/python/ch-2.py) in **Python**.
+
+##### **PokGoPun** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/pokgopun/go/ch-1.go) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/pokgopun/go/ch-2.go) in **Go**.
 
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/roger-bell-west/javascript/ch-1.js) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-152/roger-bell-west/javascript/ch-2.js) in **JavaScript**.
 
