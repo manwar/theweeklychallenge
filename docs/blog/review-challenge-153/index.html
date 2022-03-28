@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="The Weekly Challenge - Perl & Raku"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="You do not have to be an expert."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Colin Crain › Perl Weekly Review #153">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Colin Crain › Perl Weekly Review #153</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navgation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Colin Crain › Perl Weekly Review #153</h2>
+                    <div class="portfolio-meta">
+                        <span>Monday, Mar 28, 2022</span>|
+                        <span> Tags:
+                            perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/p5-review-challenge-153.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <p>( <em>&hellip;continues from <a href="/blog/review-challenge-152/">previous week</a>.</em> )</p>
+<p>Welcome to the Perl review pages for <strong>Week 153</strong> of The Weekly Challenge! Here we will take the time to discuss the  submissions offered up by the team, factor out some common methodologies that came up in those solutions, and highlight some of the unique approaches and unusual code created.</p>
+<hr>
+<h3 id="-why-do-we-do-these-challenges">●︎ Why do we do these challenges?</h3>
+<p>I suppose any reasonable answer to that question would be from a field as wide ranging and varied as the people who choose to join the team. One thing, though, is clear: it&rsquo;s not a competition, and there are no judges, even if there is a &ldquo;prize&rdquo; of sorts. About that &ndash; I think of it more as an honorarium periodically awarded to acknowledge the efforts we make towards this strange goal. So there&rsquo;s no determination to find the <em>fastest</em>, or the <em>shortest</em>, or even, in some abstract way, the <em>best</em> way to go about things, although I&rsquo;m certain the participants have their own aspirations and personal drives. As Perl is such a wonderfully expressive language, this provides quite a bit of fodder to the core idea of TMTOWTDI, producing a gamut of varied techniques and solutions.</p>
+<p>Even the tasks themselves are often open to a certain amount of discretionary interpretation. What we end up with is a situation where each participant is producing something in the manner they find the most interesting or satisfying. Some team members focus on carefully crafted complete applications, thoroughly vetting input data and handling every use case they can think up. Others choose to apply themselves to the logic of the underlying puzzle and making it work in the most elegant way they can. Some eschew modules they would ordinarily reach for, others embrace them, bringing to light wheels perhaps invented years ago that happen to exactly solve the problem in front of them today.</p>
+<p>I&rsquo;ve been considering this question for some time and have found one binding commonality between all of us out solving these challenges each week, in that however we normally live our lives, the task in front of us more than likely has nothing to do with any of that. And I think this has great value. We all do what we do, in the real world, and hopefully we do it well. The Weekly Challenge provides us with an opportunity to do something germane to that life yet distinctly different; if we only do the things we already know how to do then we will only do the same things over and over. This is where the &ldquo;challenge&rdquo; aspect comes into play.</p>
+<p>So we can consider The Weekly Challenge as providing a problem space outside of our comfort zone, as far out from that comfort as we wish to take things. From those reaches we can gather and learn things, pick and choose and bring what we want back into our lives. Personally, I think that&rsquo;s what this whole thing is about. YMMV.</p>
+<hr>
+<p><strong><emp>Every week there is an enormous global collective effort made by the team, analyzing and creatively coding the submissions, and that effort deserves credit due.</emp></strong></p>
+<p>And that, my friends, is why I&rsquo;m here, to try and figure out ways to do just that.</p>
+<p>So, here we are then. I&rsquo;m ready — let’s get to it and see what we can find.</p>
+<hr>
+<h3 id="for-additional-context">For Additional Context…</h3>
+<p>before we begin, you may wish to revisit either the pages for the <a href="/blog/perl-weekly-challenge-153/"><strong>original tasks</strong></a> or the summary <a href="/blog/recap-challenge-153/"><strong>recap</strong></a> of the challenge. But don&rsquo;t worry about it, the challenge text will be repeated and presented as we progress from task to task.</p>
+<p>Oh, and one more thing before we get started:</p>
+<h3 id="getting-in-touch-with-us">Getting in Touch with Us</h3>
+<p><a href="mailto:pwc.perfectwave@gmail.com"><img src="/images/blog/Email.svg" height="50" width="50"> Email</a> › Please feel free to email me (Colin) with any feedback, notes, clarifications or whatnot about this review.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge"><img src="/images/blog/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request to us for any issues you may find with this page.</p>
+<p><a href="https://twitter.com/perlwchallenge"><img src="/images/blog/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!</p>
+<p>I&rsquo;m always curious as to what the people think of these efforts. Everyone here at the PWC would like to hear any feedback you&rsquo;d like to give.</p>
+<div align= center><strong>...So finally, without further ado...</strong></div>
+<hr>
+<h2 id="---nbsp--nbsp--nbsp---task-1pwc153task1-------nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---task-2pwc153task2---nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---blogspwc153blogs----nbsp--nbsp--nbsp---">•             <a href="#PWC153TASK1">Task 1</a>                 •             <a href="#PWC153TASK2">Task 2</a>             	•             <a href="#PWC153BLOGS">BLOGS</a>              	•</h2>
+<hr>
+<hr>
+<h1 id="PWC153TASK1">TASK 1</h1>
+<h1 id="left-factorials">Left Factorials</h1>
+<p><em>Submitted by: Mohammad S Anwar</em></p>
+<p>Write a script to compute Left Factorials of 1 to 10. Please refer OEIS A003422 for more information.</p>
+<pre><code>    Expected Output:
+    1, 2, 4, 10, 34, 154, 874, 5914, 46234, 409114
+
+</code></pre><h2 id="about-the-solutions">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/abigail/perl/ch-1.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/alexander-pankoff/perl/ch-1.pl"><strong>Alexander Pankoff</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/athanasius/perl/ch-1a.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/bruce-gray/perl/ch-1.pl"><strong>Bruce Gray</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/lubos-kolouch/perl/ch-1.pl"><strong>Lubos Kolouch</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/mattneleigh/perl/ch-1.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/pete-houston/perl/ch-1.pl"><strong>Pete Houston</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/peter-campbell-smith/perl/ch-1.pl"><strong>Peter Campbell Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/pokgopun/perl/ch-1.pl"><strong>PokGoPun</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/robert-dicicco/perl/ch-1.pl"><strong>Robert DiCicco</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>When I first approached this problem, I had a little trouble visualizing exactly what it was about. After a few missteps, and a bit of additional confusion thrown on top over a conflicting and separate definition for a different concept using identical nomenclature, I ended up with my own rephrasing of the definition:</p>
+<blockquote>
+<p><strong>Consider the factorials as an ordered sequence of values starting at 0 and incrementing by 1. The Left Factorial is the sum of all values in this sequence for indices less than, but not including, the value in question.</strong></p>
+</blockquote>
+<blockquote>
+<p><strong>So L(4) = 3! + 2! + 1! + 0!</strong></p>
+</blockquote>
+<p>The left factorial, then, for a given value is the sum of those factorials less than the given index.</p>
+<p>On one level, we can compute the solutions for each of these relevant values and then add them up. However, the factorials, taken as a list, maintain relations to each other, with each increasing index adding one additional multiplicand to the growing value of the new factorial added. So there&rsquo;s room for more clever algorithms than this naive example.</p>
+<p>There were 22 submissions for the first task this past week.</p>
+<h2 id="theres-more-than-one-factor-to-consider">there&rsquo;s MORE than ONE FACTOR to consider&hellip;</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/mattneleigh/perl/ch-1.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/bruce-gray/perl/ch-1.pl"><strong>Bruce Gray</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/abigail/perl/ch-1.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/lubos-kolouch/perl/ch-1.pl"><strong>Lubos Kolouch</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/pokgopun/perl/ch-1.pl"><strong>PokGoPun</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a></p>
+<p>There were quite a range of techniques brought to bear on the problem, however the most common, economical, approaches were to capitalize on the computation of previous elements in producing the next, as each can be developed into the following in a consistent way. Sometimes the production of values was embedded in the idea of producing the sequence, but we also saw structural separation, with the use of caches to avoid computational repetition. Of course the repetion itself is hardly the end of the world, amounting to hundred of operations rather than millions of billions, so the shortest solutions just recomputed whatever was required.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/colin-crain/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://colincrain.com/2022/02/24/facts-left-on-the-table-by-the-front-door/">Facts Left on the Table by the Front Door - Programming Excursions in Perl and Raku</a></p>
+<p>We&rsquo;ll start us off today with my own submission. I make a random selection and it stands to reason that my number will come up sometimes.</p>
+<p>I do my best not to play favorites. I do retain editorial discretion, but I also try to restrict my power to the service of the narrative. Keeping you engaged is, after all, the tricky bit.</p>
+<p>So what did I do? As touched on in the introduction, each new element of the sequence adds one more factorial than the previous, and each new factorial added is the product of the previous factorial and the next higher number. So to compute the next element in the sequence, we need to keep track of only three numbers:</p>
+<ul>
+<li>the last value in our growing left factorial sequence</li>
+<li>the value of last factorial we calculated, and</li>
+<li>the base of the last factorial we calculated</li>
+</ul>
+<p>At each step, working backwards up this list, we:</p>
+<ul>
+<li>increment the base by one</li>
+<li>multiply the factorial by that to make the next factorial</li>
+<li>add this new factorial to the last list value to create the new element</li>
+</ul>
+<p>By keeping these values properly updated we can keep cranking out as many left factorials as we want. It&rsquo;s fun, for some definitions of fun, so I kept on going. The advantage of doing things this way is that each new element requires just a couple of additions and a product; we don&rsquo;t keep recomputing the individual factorials over and over.</p>
+<p>One last note is because the factorials grow rapidly, we run out of integer at</p>
+<p>! 22 = 2,561,327,494,111,820,314</p>
+<p>However because we keep our step-wise computational footprint small, applying the <code>bigint</code> pragma to allow ourselves arbitrarily-sized integers has no great impact on the processing resources. We can effectively go as far as we want:</p>
+<p>! 1000 =
+402,790,454,
+129,684,136,968,124,369,179,059,211,066,230,340,
+814,333,875,534,732,490,137,389,971,453,530,257,
+834,729,524,153,470,039,842,675,785,530,571,260,
+496,816,973,897,917,840,067,466,731,231,090,427,
+980,441,039,328,369,617,046,320,988,822,321,806,
+331,297,934,459,170,543,661,198,500,120,585,035,
+795,085,833,286,238,420,519,712,073,583,879,282,
+425,846,829,094,851,665,019,998,848,816,833,714,
+219,704,581,783,936,354,401,378,148,203,630,105,
+398,875,606,581,189,836,855,161,843,667,260,953,
+503,142,584,307,135,040,357,121,277,200,535,303,
+489,725,839,621,761,048,442,907,072,978,722,502,
+368,306,412,562,875,842,972,049,339,112,885,444,
+775,909,503,613,257,263,083,390,264,455,593,922,
+422,529,369,431,118,032,631,742,558,720,263,660,
+260,357,267,951,709,605,570,340,190,346,083,442,
+302,480,141,979,187,310,960,364,916,499,234,307,
+663,742,207,632,736,413,034,131,830,360,882,630,
+789,606,151,000,253,995,702,701,472,413,540,755,
+707,390,554,304,190,944,220,951,290,300,194,050,
+675,762,996,631,830,911,183,977,312,364,968,063,
+270,503,097,427,155,877,640,454,977,001,850,018,
+498,051,740,860,804,843,264,282,030,032,906,924,
+527,877,925,200,098,028,474,723,686,264,644,145,
+999,968,150,928,496,710,489,938,749,063,992,449,
+766,833,677,942,475,821,619,414,972,298,916,924,
+755,307,573,879,667,860,841,873,351,869,436,978,
+785,662,395,165,750,834,518,536,598,933,216,551,
+301,901,613,701,145,508,439,007,793,653,521,743,
+174,685,254,160,699,597,470,819,070,584,174,650,
+419,573,045,629,293,641,455,300,174,518,442,106,
+252,839,984,409,630,689,586,721,196,818,371,427,
+766,601,460,561,794,428,078,429,673,965,172,051,
+532,376,738,477,699,052,199,414,493,694,104,140,
+984,140,780,001,899,010,983,640,712,852,791,596,
+815,502,175,604,362,639,462,613,053,790,808,551,
+489,499,619,991,171,417,679,593,843,139,520,499,
+236,340,414,154,312,436,880,445,631,367,852,091,
+082,350,869,211,432,218,341,643,661,879,013,695,
+558,309,745,157,747,990,568,149,431,396,636,644,
+196,097,386,573,880,427,460,775,937,151,813,397,
+945,493,074,474,467,361,685,630,041,394,331,320,
+075,100,891,309,427,960,687,594,226,934,752,166,
+115,243,023,149,507,421,484,619,854,636,959,105,
+831,992,796,845,068,625,788,389,433,894,561,761,
+146,077,133,713,010,208,565,214,943,081,088,637,
+001,250,239,177,758,196,947,672,518,770,799,530,
+274,826,787,510,343,915,001,221,410,554,763,665,
+639,196,205,421,250,142,581,238,453,883,141,625,
+528,016,903,824,365,818,537,640,384,724,208,223,
+295,526,314,020,589,045,966,038,090,575,553,724,
+635,424,608,550,152,158,398,375,634,012,908,507,
+702,136,635,597,449,455,843,933,079,728,415,267,
+858,875,601,801,690,397,170,990,588,719,648,531,
+409,285,603,238,091,779,379,999,615,606,611,107,
+074,183,840,614,496,825,002,697,607,509,211,067,
+748,675,665,301,202,497,846,647,311,580,285,573,
+814,429,018,177,249,160,844,484,259,841,012,592,
+312,754,189,406,241,246,434,924,328,621,494,682,
+022,198,137,725,427,915,769,382,167,943,955,038,
+243,392,710,404,246,305,525,277,498,873,440,262,
+772,727,601,626,407,542,504,985,981,593,086,850,
+310,175,052,532,805,418,564,448,235,764,619,186,
+683,198,802,218,861,893,243,574,080,688,558,756,
+417,455,613,570,273,121,541,638,995,145,894,561,
+079,999,213,500,076,101,248,781,500,642,979,091,
+198,044,736,325,729,107,144,579,768,273,776,743,
+716,439,557,581,557,253,878,204,647,391,176,582,
+851,167,312,182,026,188,795,156,620,056,856,503,
+340,092,247,479,478,684,738,621,107,994,804,323,
+593,105,039,052,556,442,336,528,920,420,940,314</p>
+<p>You know, if we wanted to know that.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> bigint;
+
+    <span style="color:#66d9ef">my</span> $num   <span style="color:#f92672">=</span> shift <span style="color:#e6db74">//</span> <span style="color:#ae81ff">50</span>;
+
+    <span style="color:#66d9ef">my</span> @left  <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>);
+    <span style="color:#66d9ef">my</span> $fact  <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">my</span> $count <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+
+    <span style="color:#66d9ef">while</span> ($count <span style="color:#f92672">&lt;</span> $num) {
+        $fact <span style="color:#f92672">*=</span> $count;
+        push @left, $left[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> $fact;
+        $count<span style="color:#f92672">++</span>;
+    }
+
+    say <span style="color:#66d9ef">for</span> @left;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/mattneleigh/perl/ch-1.pl"><strong>Matthew Neleigh</strong></a></p>
+<p>Because the sum for an element in the sequence is those factorials less than but not equal to the value, at any given moment we&rsquo;re computing the factorial one <em>behind</em> the current index, constructed out of the factorial <em>two</em> behind and a counter <em>one</em> behind. The bookkeeping is not hard but can be a little confusing before you get it right. So in Matthew&rsquo;s code the counter <code>$i</code> is not the index for the left factorial, but rather that of the new factorial being added, one behind.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">n_left_factorials</span>{
+        <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> int(shift());
+
+        <span style="color:#66d9ef">return</span>(undef)
+            <span style="color:#66d9ef">unless</span>($n <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>);
+
+        <span style="color:#66d9ef">my</span> $i;
+        <span style="color:#66d9ef">my</span> $factorial;
+        <span style="color:#66d9ef">my</span> @left_factorials;
+
+        <span style="color:#75715e"># Initial setup</span>
+        push(@left_factorials, <span style="color:#ae81ff">1</span>);
+        $factorial <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+
+        <span style="color:#66d9ef">for</span> $i (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> ($n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)){
+            <span style="color:#75715e"># Multiply our running product by $i, then</span>
+            <span style="color:#75715e"># store its sum with the previous sum</span>
+            $factorial <span style="color:#f92672">*=</span> $i;
+            push(
+                @left_factorials,
+                $left_factorials[$#left_factorials] <span style="color:#f92672">+</span> $factorial
+            );
+        }
+
+        <span style="color:#66d9ef">return</span>(@left_factorials);
+
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/roger-bell-west/javascript/ch-1.js">Javascript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/roger-bell-west/kotlin/ch-1.kt">Kotlin</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/roger-bell-west/lua/ch-1.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/roger-bell-west/postscript/ch-1.ps">Postscript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/roger-bell-west/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/roger-bell-west/raku/ch-1.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/roger-bell-west/ruby/ch-1.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/roger-bell-west/rust/ch-1.rs">Rust</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://blog.firedrake.org/archive/2022/02/The_Weekly_Challenge_153__Factoriality.html">RogerBW&rsquo;s Blog: The Weekly Challenge 153: Factoriality</a></p>
+<p>Roger is a much more one-action-per-line kind of guy, and I respect that. The drama progreses downward in an unhurried style that also carries little fat to slow it down. Again we see the three variables: an iterator, the latest factorial, and a compounding sum which is the last value added to the left factorial list.</p>
+<p>New values are simply pushed onto the list when constructed.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">leftfactorial</span> {
+      <span style="color:#66d9ef">my</span> $mx <span style="color:#f92672">=</span> shift;
+      <span style="color:#66d9ef">my</span> @out;
+      <span style="color:#66d9ef">my</span> $fact<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
+      <span style="color:#66d9ef">my</span> $sum<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+      <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$mx<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
+        <span style="color:#66d9ef">if</span> ($i<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span>) {
+          $fact <span style="color:#f92672">*=</span> $i;
+        }
+        $sum <span style="color:#f92672">+=</span> $fact;
+        push @out,$sum;
+      }
+      <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@out;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/bruce-gray/perl/ch-1.pl"><strong>Bruce Gray</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/bruce-gray/raku/ch-1.raku">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/bruce-gray/webassembly/ch-1.wat">Webassembly</a></p>
+<p>Bruce has done something here that quite frankly I didn&rsquo;t know was even possible from a core module.</p>
+<p>In functional programming, there is a basic operation on a list called reduction. In it, much like <code>map</code>, we take a function and a list and apply the function one-by-one to the list elements. In <code>reduce</code>, however, the process is structured in such a way that each newly processed element is incorporated by the function into a common aggregate total, which is returned at the end as a single value. The familiar function <code>sum</code> is like this, for instance, where we can view the process as taking the first list element and then adding each remaining element to it, one-by-one, until when we arrive at the end of the list we end up with a summation of all the values within it.</p>
+<p>The <code>reduce</code> function, sometimes called <code>fold</code> or some variant, can be considered an archetype for that sort of stepwise list processing, turning a list into a single value. By careful selection of the applied function, one can, as we just described, construct a perfectly-good <code>sum</code> — or <code>product</code>, <code>minimum</code> or <code>concatenation</code> for that matter. The sky is the limit.</p>
+<p>There is a large collection of such functions in the <code>List::Util</code> module, starting with the prototype <code>reduce</code>.</p>
+<p>However there is a slight variation on this processing available as well, the function <code>reductions</code> which acts in the same way, but instead of returning a single value, returns a list of the the accumulating values at intermediate steps along the way. This <code>reductions</code> function, which in Raku is known as the &ldquo;triangle reduction operator&rdquo;, is what I didn&rsquo;t realize we had available.</p>
+<p>So in our <code>sum</code> example, for a list (1, 2, 3, 4) we would return the list (1, 3, 6, 10), which is composed piecemeal as ((1), ((1) + 2), ((1+2) + 3), ((1+2+3) + 4)). Now you can start to see where I&rsquo;m going with all this backstory. If we use multiplication instead of addition, then that list of partial products looks a whole lot like a list of factorials. And if we take <em>that</em> list and make a similar list of partial sums on that, we&rsquo;re summing those factorials, adding one more value at each step.</p>
+<p>Which is exactly what we want to do.</p>
+<p>Check this out:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw&lt;reductions&gt;</span>;
+
+    say join <span style="color:#e6db74">&#39;, &#39;</span>, reductions { $a <span style="color:#f92672">+</span> $b }
+                <span style="color:#ae81ff">1</span>, reductions { $a <span style="color:#f92672">*</span> $b } <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">9</span>;
+</code></pre></div><p>And that, my friends, is a piece of elegant functional programming.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/abigail/perl/ch-1.pl"><strong>Abigail</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/abigail/awk/ch-1.awk">Awk</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/abigail/bash/ch-1.sh">Bash</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/abigail/basic/ch-1.bas">Basic</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/abigail/bc/ch-1.bc">Bc</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/abigail/befunge-93/ch-1.bf93">Befunge-93</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/abigail/c/ch-1.c">C</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/abigail/cobol/ch-1.cb">Cobol</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/abigail/csh/ch-1.csh">Csh</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/abigail/erlang/ch-1.erl">Erlang</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/abigail/forth/ch-1.fs">Forth</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/abigail/fortran/ch-1.f90">Fortran</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/abigail/go/ch-1.go">Go</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/abigail/java/ch-1.java">Java</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/abigail/lua/ch-1.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/abigail/m4/ch-1.m4">M4</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/abigail/mmix/ch-1.mms">Mmix</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/abigail/node/ch-1.js">Node</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/abigail/ocaml/ch-1.ml">Ocaml</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/abigail/pascal/ch-1.p">Pascal</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/abigail/php/ch-1.php">Php</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/abigail/postscript/ch-1.ps">Postscript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/abigail/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/abigail/r/ch-1.r">R</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/abigail/rexx/ch-1.rexx">Rexx</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/abigail/ruby/ch-1.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/abigail/scheme/ch-1.scm">Scheme</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/abigail/sed/ch-1.sed">Sed</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/abigail/sql/ch-1.sql">Sql</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/abigail/tcl/ch-1.tcl">Tcl</a></p>
+<p>We&rsquo;ll follow that hit with a piece of astonishing brevity from Abigail.</p>
+<p>Abigail has an uncanny ability to strip away artifice to reveal the essential logical core required to implement a solution. Here they use the fact that assignments return the thing being assigned to chain several operations.</p>
+<p>A factorial is multiplied by an iterator value, which is returned to be added to a compounding sum which is the current left factorial to be printed. Progressing through a <code>for</code> loop produces the required number of values, with a trailing newline to finish the report.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">print</span>   <span style="color:#66d9ef">my</span> $sum  <span style="color:#f92672">=</span> <span style="color:#66d9ef">my</span> $fac  <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39; &#39;</span>, $sum <span style="color:#f92672">+=</span>    $fac <span style="color:#f92672">*=</span> $_ <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">9</span>;
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a></p>
+<p>As clever as these acts of technical virtuosity are, there is a competing force, a drive to return to Earth and clearly present well-grounded logic in a clear framework. Two loops and a linear data flow do the job quite well.</p>
+<p>Here&rsquo;s Mohammad&rsquo;s no-frills method:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">left_factorials</span> {
+        <span style="color:#66d9ef">my</span> ($i, $j) <span style="color:#f92672">=</span> @_;
+
+        <span style="color:#66d9ef">my</span> $lf <span style="color:#f92672">=</span> [foo];
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $n ($i <span style="color:#f92672">..</span> $j) {
+            <span style="color:#66d9ef">my</span> $s <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+            <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $n (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $n) {
+                <span style="color:#66d9ef">my</span> $f <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+                $f <span style="color:#f92672">=</span> $f <span style="color:#f92672">*</span> $_ <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$n;
+                $s <span style="color:#f92672">=</span> $s <span style="color:#f92672">+</span> $f;
+            }
+
+            push @$lf, $s;
+        }
+
+        <span style="color:#66d9ef">return</span> $lf;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/lubos-kolouch/perl/ch-1.pl"><strong>Lubos Kolouch</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/lubos-kolouch/php/ch-1.php">Php</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/lubos-kolouch/python/ch-1.py">Python</a></p>
+<p>Lubos assembles each left factorial independently, but employs a cache of hashed factorial values to avoid repeating the computations.</p>
+<p>Practically there is little difference in the processing, with only a variation in how exactly and where the intermediate data steps are stored.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">calculate_factorial</span> {
+        <span style="color:#66d9ef">my</span> $what <span style="color:#f92672">=</span> shift;
+
+        <span style="color:#66d9ef">return</span> $fact_cache{$what} <span style="color:#66d9ef">if</span> $fact_cache{$what};
+
+        <span style="color:#75715e"># let&#39;s utilize the fact that we are processing the numbers in sequence</span>
+        $fact_cache{$what} <span style="color:#f92672">=</span> $what <span style="color:#f92672">*</span> $fact_cache{$what<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>};
+
+        <span style="color:#66d9ef">return</span> $fact_cache{$what};
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">calculate_left_fact</span> {
+        <span style="color:#66d9ef">my</span> $what <span style="color:#f92672">=</span> shift;
+
+        <span style="color:#66d9ef">return</span> $left_fact_cache{$what} <span style="color:#66d9ef">if</span> $left_fact_cache{$what};
+
+        <span style="color:#75715e"># let&#39;s utilize the fact that we are processing the numbers in sequence</span>
+        $left_fact_cache{$what} <span style="color:#f92672">=</span> calculate_factorial($what<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span> $left_fact_cache{$what<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>};
+
+        <span style="color:#66d9ef">return</span> $left_fact_cache{$what};
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get_left_factorials</span> {
+        <span style="color:#66d9ef">my</span> $what <span style="color:#f92672">=</span> shift;
+
+        <span style="color:#66d9ef">my</span> @output;
+
+        <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$what) {
+           push @output, calculate_left_fact($_);
+        }
+
+        <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@output;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://wlmb.github.io/2022/02/21/PWC153/">Perl Weekly Challenge 153 – W. Luis Mochán</a></p>
+<p>Luis employs a similar organizational technique, constructing the next left factorial from the previous, and using the <code>Memoize</code> module to cache the return values from the two subroutines to avoid recalculating values when possible.</p>
+<p><code>Memoize</code> will remember the parameters in a subroutine call, and if it is called a second time with the same will simply return the same value without re-executing the code.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Memoize;
+    <span style="color:#66d9ef">use</span> bigint;
+    <span style="color:#66d9ef">use</span> Text::Wrap <span style="color:#e6db74">qw(wrap $columns $break)</span>;
+
+    memoize <span style="color:#e6db74">qw(left_factorial factorial)</span>;
+    die <span style="color:#e6db74">&#34;Usage: ./ch-1.pl N\nto get the first N left factorials&#34;</span> <span style="color:#66d9ef">unless</span> @ARGV;
+    <span style="color:#66d9ef">my</span> $N<span style="color:#f92672">=</span>shift;
+    $columns<span style="color:#f92672">=</span><span style="color:#ae81ff">62</span>; $break<span style="color:#f92672">=</span><span style="color:#e6db74">qr/\s/</span>;
+    say wrap(<span style="color:#e6db74">&#34;&#34;</span>, <span style="color:#e6db74">&#34;    &#34;</span>, <span style="color:#e6db74">&#34;The first $N left factorials are: &#34;</span>,
+        join <span style="color:#e6db74">&#34;, &#34;</span>, map {left_factorial($_)} (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$N<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>));
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">left_factorial</span>{
+        <span style="color:#66d9ef">my</span> $n<span style="color:#f92672">=</span>shift;
+        <span style="color:#66d9ef">return</span> factorial(<span style="color:#ae81ff">0</span>) <span style="color:#66d9ef">if</span> $n<span style="color:#f92672">&lt;=</span><span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">return</span> factorial($n)<span style="color:#f92672">+</span>left_factorial($n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
+    }
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">factorial</span>{
+        <span style="color:#66d9ef">my</span> $k<span style="color:#f92672">=</span>shift;
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> $k<span style="color:#f92672">&lt;=</span><span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">return</span> $k<span style="color:#f92672">*</span>factorial($k<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2022/02/27">Finding the Factorials and Factorions That Are Left</a></p>
+<p>Adam has dredged up a <a href="https://oeis.org/A003422">very interesting <em>sieve</em> technique</a> to produce the left factorials which is&hellip; different. The upper bound, he notes, is arbitrary and large enough to get the job done.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> POSIX;
+    <span style="color:#66d9ef">use</span> constant UPPER_BOUND <span style="color:#f92672">=&gt;</span> INT_MAX<span style="color:#f92672">/</span><span style="color:#ae81ff">1000</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">left_factorials_sieve</span>{
+        <span style="color:#66d9ef">my</span>($n) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> @sieve <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> UPPER_BOUND);
+        <span style="color:#66d9ef">my</span> $x <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;
+        {
+            <span style="color:#66d9ef">my</span> @sieve_indices <span style="color:#f92672">=</span> grep { $_ <span style="color:#f92672">&lt;=</span> $x <span style="color:#f92672">||</span> $_ % <span style="color:#960050;background-color:#1e0010">$</span>x <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> } <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> @sieve <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+            @sieve <span style="color:#f92672">=</span> map{ $sieve[$_] } @sieve_indices;
+            $x<span style="color:#f92672">++</span>;
+            <span style="color:#66d9ef">redo</span> <span style="color:#66d9ef">if</span> $x <span style="color:#f92672">&lt;=</span> $n;
+        }
+        <span style="color:#66d9ef">return</span> @sieve[<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> @sieve <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>];
+    }
+
+    MAIN:{
+        <span style="color:#66d9ef">print</span> join(<span style="color:#e6db74">&#34;, &#34;</span>, left_factorials_sieve(<span style="color:#ae81ff">10</span>)) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/pokgopun/perl/ch-1.pl"><strong>PokGoPun</strong></a></p>
+<p>PokeGoPun wisely points out the confusing status of having competing definitions in the real-world namespace for &ldquo;left factorial&rdquo; — the other being for an unrelated idea also known as the <a href="https://en.wikipedia.org/wiki/Derangement">subfactorial, or derangement</a>. But having cleared that up presents a quite unusual method for creating a <em>string</em> for the multiple products to manufacture a given factorial and then applying <code>eval</code> to treat the string as code. There truly is more than one way to do it, and this certainly is one of them.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $n (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">10</span>) {
+        <span style="color:#75715e">### Left factorial which is known by the other name as subfactorial but it does not produce output similar to the example</span>
+        <span style="color:#75715e">#$res .= sprintf &#34;%s, &#34;, eval(join(&#34; + &#34;, map{ &amp;factorial($n) / &amp;factorial($_) * (-1)**$_ } 0..$n ));</span>
+        <span style="color:#75715e">### The below seems to produce output similar to the example</span>
+        $res <span style="color:#f92672">.=</span> sprintf <span style="color:#e6db74">&#34;%s, &#34;</span>, eval( join( <span style="color:#e6db74">&#34; + &#34;</span>, map{<span style="color:#f92672">&amp;</span>factorial($_)} <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> ) );
+    }
+    $res <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/\D+$//</span>;
+    printf <span style="color:#e6db74">&#34;%s\n&#34;</span>, $res;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">factorial</span> {
+        <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> shift;
+        <span style="color:#66d9ef">return</span> $n<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span> ? <span style="color:#ae81ff">1</span> : eval(join(<span style="color:#e6db74">&#34; * &#34;</span>, <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$n));
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a></p>
+<p>Finally, we&rsquo;ll wrap up with a strange little companion courtesy of Jorg.</p>
+<p>Coroutines are a bit like subroutines you can step in an out of, preserving their own independant state whilst they patiently wait for you to require the next thing from them. In this code the generator coderef is returned like a closed iterator and on first calling execution travels to the first <code>yield</code> statement, where the preloaded first value for <code>$left-factorial</code> is returned, along with passing execution back to the main script. On the second and subsequent calls the coroutine picks up where it left off before, inside the <code>while</code> loop. Because we <code>yield</code> from inside the loop, when we return the next time it&rsquo;s called we&rsquo;re still in the loop, and will remain there on all subsequent calls. Each time we come back a new left factorial is assembled and returned.</p>
+<p>These coroutines seem terribly interesting, but require thinking about processing in a very different way. They do not, for instance, run in on different processors, merely handing off processing from one execution space to another and back. Ultimately it might  be nice to be able to park them over in a separate processor, sure, but again the that isn&rsquo;t the central idea: execution is linear, but multiple states of separate processes maintain themselves independently and simultaneously.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> bigint;
+    <span style="color:#66d9ef">use</span> Coro::Generator;
+
+    main: {
+        <span style="color:#66d9ef">my</span> $left_factorial <span style="color:#f92672">=</span> gen_left_factorial();
+        say $left_factorial<span style="color:#f92672">-&gt;</span>() <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $ARGV[<span style="color:#ae81ff">0</span>];
+    }
+
+    <span style="color:#75715e"># Build a generator for left factorials</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">gen_left_factorial</span> {
+        <span style="color:#66d9ef">my</span> ($index, $factorial, $left_factorial) <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>);
+
+        generator {
+            yield $left_factorial;
+            yield $left_factorial <span style="color:#f92672">+=</span> ($factorial <span style="color:#f92672">*=</span> <span style="color:#f92672">++</span>$index) <span style="color:#66d9ef">while</span> <span style="color:#ae81ff">1</span>;
+        }
+    }
+</code></pre></div><h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-1">Blogs and Additional Submissions in Guest Languages for Task 1:</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/alexander-pankoff/perl/ch-1.pl"><strong>Alexander Pankoff</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/alexander-pankoff/haskell/ch-1.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/alexander-pankoff/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://pankoff.net/pages/perl-weekly-challenge/challenge-153-task-1.html">Challenge 153 Task #1 - Factorials left, factorials right, factorials everywhere!</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/athanasius/perl/ch-1a.pl"><strong>Athanasius</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/athanasius/raku/ch-1.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://jacoby.github.io/2022/02/21/luck-is-not-a-factor-weekly-challenge-153.html">Luck is not a Factor!: Weekly Challenge #153 | Committed to Memory</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/polettix/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.polettix.it/ETOOBUSY/2022/02/23/pwc153-left-factorials/">PWC153 - Left Factorials - ETOOBUSY</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/laurent-rosenfeld/awk/ch-1.awk">Awk</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/laurent-rosenfeld/bc/ch-1.bc">Bc</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/laurent-rosenfeld/c/ch-1.c">C</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/laurent-rosenfeld/go/ch-1.go">Go</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/laurent-rosenfeld/julia/ch-1.jl">Julia</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/laurent-rosenfeld/kotlin/ch-1.kt">Kotlin</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/laurent-rosenfeld/lua/ch-1.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/laurent-rosenfeld/pascal/ch-1.p">Pascal</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/laurent-rosenfeld/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/laurent-rosenfeld/r/ch-1.r">R</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/laurent-rosenfeld/raku/ch-1.raku">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/laurent-rosenfeld/ring/ch-1.ring">Ring</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/laurent-rosenfeld/ruby/ch-1.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/laurent-rosenfeld/rust/ch-1.rs">Rust</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/laurent-rosenfeld/scala/ch-1.scala">Scala</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/laurent-rosenfeld/tcl/ch-1.tcl">Tcl</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://blogs.perl.org/users/laurent_r/2022/02/perl-weekly-challenge-153-left-factorials-and-factorions.html">Perl Weekly Challenge 153: Left Factorials and Factorions</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/peter-campbell-smith/perl/ch-1.pl"><strong>Peter Campbell Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://pjcs-pwc.blogspot.com/2022/02/task-one-is-quite-easy-factorions-are.html">!Task one is quite easy. Factorions are quite rare.</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/robert-dicicco/perl/ch-1.pl"><strong>Robert DiCicco</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/robert-dicicco/raku/ch-1.raku">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/robert-dicicco/ruby/ch-1.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/robert-dicicco/tcl/ch-1.tcl">Tcl</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/ulrich-rieke/cpp/ch-1.cpp">C++</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/ulrich-rieke/haskell/ch-1.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/ulrich-rieke/raku/ch-1.raku">Raku</a></p>
+<hr>
+<hr>
+<h1 id="PWC153TASK2">TASK 2</h1>
+<h1 id="factorions">Factorions</h1>
+<p>Submitted by: Mohammad S Anwar
+You are given an integer, $n.</p>
+<p>Write a script to figure out if the given integer is factorion.</p>
+<p>A factorion is a natural number that equals the sum of the
+factorials of its digits.</p>
+<p><strong>Example 1:</strong></p>
+<pre><code>    Input: $n = 145
+    Output: 1
+    Since 1! + 4! + 5! =&gt; 1 + 24 + 120 = 145
+</code></pre><p><strong>Example 2:</strong></p>
+<pre><code>    Input: $n = 123
+    Output: 0
+    Since 1! + 2! + 3! =&gt; 1 + 2 + 6 &lt;&gt; 123
+</code></pre><h2 id="about-the-solutions-1">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/abigail/perl/ch-2.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/alexander-pankoff/perl/ch-2.pl"><strong>Alexander Pankoff</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/bruce-gray/perl/ch-2.pl"><strong>Bruce Gray</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/lubos-kolouch/perl/ch-2.pl"><strong>Lubos Kolouch</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/mattneleigh/perl/ch-2.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/mohammad-anwar/perl/ch-2.pl"><strong>Mohammad S Anwar</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/olivier-delouya/perl/ch-2.pl"><strong>Olivier Delouya</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/pete-houston/perl/ch-2.pl"><strong>Pete Houston</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/peter-campbell-smith/perl/ch-2.pl"><strong>Peter Campbell Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/pokgopun/perl/ch-2.pl"><strong>PokGoPun</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/robert-dicicco/perl/ch-2.pl"><strong>Robert DiCicco</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>The factorions are defined as the numbers equal to the sum of the factorials of their individual digits. As we&rsquo;re talking about base-10 here — Wait, we are talking about base-10 here, aren&rsquo;t we? We could extend the concept in other bases, but there is no suggestion that we do so in the task description — then the largest factorial we will be dealing with is for the digit 9.</p>
+<p>9! = 362,880</p>
+<p>This suggests there is an upper limit on the possible values for a factorion in base-10:
+there can be no factorials above 7 digits because the smallest 8-digit number — 10,000,000 — is larger than the factorial-digit-sum of the largest 8-digit number, 99,999,999.</p>
+<p>9! + 9! + 9! + 9! + 9! + 9! + 9! + 9! = 2,903,040</p>
+<p>So we can definitively say above 10 million we can stop looking, and in fact we can further modify this bound downward, as we shall see.</p>
+<p>There were a total of 23 submissions for the second task this past week.</p>
+<h2 id="searching-haystacks-for-needles">SEARCHING HAYSTACKS for NEEDLES</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/robert-dicicco/perl/ch-2.pl"><strong>Robert DiCicco</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/alexander-pankoff/perl/ch-2.pl"><strong>Alexander Pankoff</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/pete-houston/perl/ch-2.pl"><strong>Pete Houston</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/peter-campbell-smith/perl/ch-2.pl"><strong>Peter Campbell Smith</strong></a></p>
+<p>There does not seem to be any way to predict the locations of the factorions, so it appears the only thing to do is break apart the candidate and sum up the parts as specified to see what happens. Call it experimental math. There was a large degree of self-similarity in the techniques.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/robert-dicicco/perl/ch-2.pl"><strong>Robert DiCicco</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/robert-dicicco/raku/ch-2.raku">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/robert-dicicco/ruby/ch-2.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/robert-dicicco/tcl/ch-2.tcl">Tcl</a></p>
+<p>Robert will start us off today with a verbose solution of the the task as given. A number is input, broken into its digital components, the factorials taken with the help of the <code>factorial</code> function from <code>ntheory</code>, and summed. A comparison is made to the input and reported. Along the way, the various components of the process are collected to make a proper explanation of the reasoning, analogous to the examples given in the description.</p>
+<pre><code>    Input $n = 145
+    1! + 4! + 5!  = 145
+    Output: 1
+</code></pre><p>Robert&rsquo;s solution:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $ret <span style="color:#f92672">=</span> is_factorion($num);
+    chop $outstr <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">2</span>;
+
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$outstr = $sumdigits\n&#34;</span>;
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Output: $ret\n&#34;</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_factorion</span> {
+      <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> shift;
+      <span style="color:#66d9ef">my</span> @digits <span style="color:#f92672">=</span> split(<span style="color:#e6db74">//</span>,$n);
+      <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $x (@digits){
+
+          $outstr <span style="color:#f92672">.=</span> <span style="color:#e6db74">&#34;$x\! + &#34;</span>;
+          $sumdigits <span style="color:#f92672">+=</span> factorial($x);
+
+      }
+
+      ($sumdigits <span style="color:#f92672">==</span> $n) ?  <span style="color:#ae81ff">1</span> :  <span style="color:#ae81ff">0</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/polettix/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.polettix.it/ETOOBUSY/2022/02/24/pwc153-factorions/">PWC153 - Factorions - ETOOBUSY</a></p>
+<p>Flavio provides two solutions to the task. Or rather, he provides a perfectly good solution to the task at hand — a simple query — and then goes on to expand this technique to search for all of the factorions.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    say is_factorion(shift <span style="color:#e6db74">//</span> <span style="color:#ae81ff">145</span>) ? <span style="color:#ae81ff">1</span> : <span style="color:#ae81ff">0</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_factorion</span> ($n) {
+       state $f <span style="color:#f92672">=</span> [ <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">24</span>, <span style="color:#ae81ff">120</span>, <span style="color:#ae81ff">720</span>, <span style="color:#ae81ff">5040</span>, <span style="color:#ae81ff">40320</span>, <span style="color:#ae81ff">362880</span> ];
+       $n <span style="color:#f92672">==</span> sum map { $f<span style="color:#f92672">-&gt;</span>[$_] } split <span style="color:#e6db74">m{}mxs</span>, $n;
+    }
+</code></pre></div><p>This will satisfy the conditions of the challenge. Because there are only 10 factorials in play, he hard codes them into a list, and can access them by index. Reading from the right leftward, the number is split, mapped to its factorial, summed with the rest of the digit results, and finally compared to the original value, with the result of the comparison returned.</p>
+<p>Neat.</p>
+<p>But unsatisfied he goes on the find the rest. In his <a href="https://github.polettix.it/ETOOBUSY/2022/02/24/pwc153-factorions/">analysis in the writeup</a>, he comes to the same conclusions I did above, narrowed down even more: that if the largest 7-digit value is 2540160 then no number larger need ever be considered. So he sets up a loop and tries them all. Computationally a few million values is peanuts in this modern world.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/athanasius/raku/ch-2.raku">Raku</a></p>
+<p>The monk also chooses a lookup for their 10 factorials, this time as a hash of constants, courtesy of <code>Const::Fast</code>. The values along the way are also, governed by a <code>$VERBOSE</code> switch, gathered and reported as in the examples given.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    printf <span style="color:#e6db74">&#34;Input:  \$n = %d\n&#34;</span>, $n_abs <span style="color:#f92672">*</span> $sign;
+
+    <span style="color:#66d9ef">my</span> @digits   <span style="color:#f92672">=</span> split <span style="color:#e6db74">&#39;&#39;</span>, $n_abs;
+    <span style="color:#66d9ef">my</span> $sum      <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+       $sum     <span style="color:#f92672">+=</span> $_ <span style="color:#66d9ef">for</span> map { $FACTORIAL{ $_ } } @digits;
+    <span style="color:#66d9ef">my</span> $is_factn <span style="color:#f92672">=</span> $sum <span style="color:#f92672">==</span> $n;
+
+    printf <span style="color:#e6db74">&#34;Output: %d\n&#34;</span>, $is_factn ? <span style="color:#ae81ff">1</span> : <span style="color:#ae81ff">0</span>;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/laurent-rosenfeld/awk/ch-2.awk">Awk</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/laurent-rosenfeld/bc/ch-2.bc">Bc</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/laurent-rosenfeld/c/ch-2.c">C</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/laurent-rosenfeld/julia/ch-2.jl">Julia</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/laurent-rosenfeld/kotlin/ch-2.kt">Kotlin</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/laurent-rosenfeld/lua/ch-2.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/laurent-rosenfeld/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/laurent-rosenfeld/raku/ch-2.raku">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/laurent-rosenfeld/ring/ch-2.ring">Ring</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/laurent-rosenfeld/ruby/ch-2.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/laurent-rosenfeld/scala/ch-2.scala">Scala</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://blogs.perl.org/users/laurent_r/2022/02/perl-weekly-challenge-153-left-factorials-and-factorions.html">Perl Weekly Challenge 153: Left Factorials and Factorions</a></p>
+<p>I like that Laurent went through the trouble of actually computing the factorials from 0 to 9 before caching the results in a lookup array. From a programing point of view this is not a best practice, but then from a programming point of view neither is recomputing the search for the factorions in the first place. Here at the challenge we live in a strange world not-quite grounded in everyday reality. Sometimes the constructs matter more than the particulars, as is the case here. We will choose to pretend, just for the moment, that we don&rsquo;t just know the values for the factorials or have them easily available. However once computed we will make it so we don&rsquo;t have to calculate them twice.</p>
+<p>I like that people chose certain constraints to self-impose, according to their own purposes and preferences. It gives variety and allows us to explore different aspects to the challenge.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">fact</span> {
+        <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> shift;
+        <span style="color:#66d9ef">my</span> $prod <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+        $prod <span style="color:#f92672">*=</span> $_ <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">..</span>$i;
+        <span style="color:#66d9ef">return</span> $prod;
+    }
+
+    <span style="color:#66d9ef">my</span> @digit_fact <span style="color:#f92672">=</span> map {fact $_} <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">9</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_factorion</span> {
+        <span style="color:#66d9ef">my</span> $in <span style="color:#f92672">=</span> shift;
+        <span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        $sum <span style="color:#f92672">+=</span> $_ <span style="color:#66d9ef">for</span> map { $digit_fact[$_] } split <span style="color:#e6db74">//</span>, $in;
+        <span style="color:#66d9ef">return</span> $sum <span style="color:#f92672">==</span> $in;
+        <span style="color:#75715e">#say $sum;</span>
+    }
+    <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">50000</span>) {
+        say $_ <span style="color:#66d9ef">if</span> is_factorion($_)
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/alexander-pankoff/perl/ch-2.pl"><strong>Alexander Pankoff</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/alexander-pankoff/haskell/ch-2.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/alexander-pankoff/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://pankoff.net/pages/perl-weekly-challenge/challenge-153-task-2.html">Challenge 153 Task #2 - Even more factorials and what the fuck are factorions?</a></p>
+<p>Speaking of structure, Alexander takes things somewhat to the next level, as he builds two routines, one to manually check a number and the other to check whether it&rsquo;s within the list of all factorions. I mean, there are only four, after all, and there can never be any other. Having solved the problem two ways he tests all candidate values from 1 to 100,000 using one of the two methods, selected at random.</p>
+<p>It&rsquo;s kind of  a ridiculous Rube-Goldberg machine in the end, but I feel that technical sensibility wasn&rsquo;t exactly Alexander&rsquo;s highest priority.</p>
+<p>It is, importantly, logically sound beneath the surface.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">run</span>() {
+        <span style="color:#66d9ef">my</span> $max <span style="color:#f92672">=</span> <span style="color:#ae81ff">100000</span>;
+        say <span style="color:#e6db74">&#34;Factorions &lt;= $max:&#34;</span>;
+        <span style="color:#66d9ef">for</span> ( <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $max ) {
+            <span style="color:#66d9ef">my</span> $fn <span style="color:#f92672">=</span> ( <span style="color:#f92672">\&amp;</span>is_factorion, <span style="color:#f92672">\&amp;</span>is_factorion_a014080 )[ int( rand(<span style="color:#ae81ff">2</span>) ) ];
+            say $_ <span style="color:#66d9ef">if</span> $fn<span style="color:#f92672">-&gt;</span>($_);
+        }
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_factorion</span>($n) {
+        <span style="color:#66d9ef">my</span> @digits                      <span style="color:#f92672">=</span> split( <span style="color:#e6db74">m//</span>, $n );
+        <span style="color:#66d9ef">my</span> $sum_of_factorials_of_digits <span style="color:#f92672">=</span> sum0( map { fac($_) } @digits );
+
+        <span style="color:#66d9ef">return</span> $n <span style="color:#f92672">==</span> $sum_of_factorials_of_digits;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">fac</span>($n) {
+        product( <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $n );
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_factorion_a014080</span>($n) {
+        <span style="color:#75715e">## complete list of all factorians - see https://oeis.org/A014080</span>
+        state @A014080 <span style="color:#f92672">=</span> ( <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">145</span>, <span style="color:#ae81ff">40585</span> );
+        first { $n <span style="color:#f92672">==</span> $_ } @A014080;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://jacoby.github.io/2022/02/21/luck-is-not-a-factor-weekly-challenge-153.html">Luck is not a Factor!: Weekly Challenge #153 | Committed to Memory</a></p>
+<p>In a side note, I&rsquo;m always pleased to read the notes whenever we so these factorial problems, because everyone always seems to be super-excited about the numbers. Then I end up inevitably deflated a bit because it&rsquo;s just the notation pulling the old switcharoo.</p>
+<p>On the other hand Dave does seem genuinely excited by numbers, and this week brings to our attention that for challenge number 153 we have 5! + 4! + 3! + 2! + 1! = 153 and blastoff!</p>
+<p>Now that&rsquo;s the spirit!</p>
+<p>Ok, fine, I added that blastoff stuff myself but I don&rsquo;t think he&rsquo;ll mind.</p>
+<p>With helpers <code>sum0()</code> and <code>product()</code> from <code>List::Util</code> the logic flow is straighforward — the heavy lifting, if you want to call it that, is done for computing the factorial sum in <code>factorion()</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (@ARGV) {
+        <span style="color:#66d9ef">my</span> $f <span style="color:#f92672">=</span> is_factorion($i);
+        say join <span style="color:#e6db74">&#34;\t&#34;</span>, <span style="color:#e6db74">&#39;&#39;</span>, $i, $f;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_factorion</span> ( $n ) {
+        <span style="color:#66d9ef">my</span> $f <span style="color:#f92672">=</span> factorion($n);
+        <span style="color:#66d9ef">return</span> $f <span style="color:#f92672">==</span> $n ? <span style="color:#ae81ff">1</span> : <span style="color:#ae81ff">0</span>;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">factorion</span> ( $n ) {
+        <span style="color:#66d9ef">return</span> sum0 map { factorial($_) } split <span style="color:#e6db74">//</span>, $n;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">factorial</span> ( $n ) {
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> $n <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+        state $factorials ;
+        <span style="color:#66d9ef">if</span> ( <span style="color:#f92672">!</span>$factorials<span style="color:#f92672">-&gt;</span>{$n} ) {
+            $factorials<span style="color:#f92672">-&gt;</span>{$n} <span style="color:#f92672">=</span> product <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $n;
+        }
+        <span style="color:#66d9ef">return</span> $factorials<span style="color:#f92672">-&gt;</span>{$n};
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/pete-houston/perl/ch-2.pl"><strong>Pete Houston</strong></a></p>
+<p>Pete makes a point of noting the module functions he <em>isn&rsquo;t</em> using, preferring to write his own: <code>List::Util::sum()</code> and <code>Math::Prime::Util::factorial()</code>. That said the solutions we&rsquo;re seeing to this task all have a quite a bit of self-similarity, and one of the larger variances we have is in the methods for aquiring and accessing the required factorials. Here Pete creates a <code>state</code> hash within the <code>fac()</code> function to either quickly return precomputed factorials or create new ones as required. To <em>produce</em> the factorials the definition is recursive, calling <code>fac()</code> for the previous value and multiplying it by the new factor. Which is novel, and neat.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_factorion</span> {
+        <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> shift;
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">unless</span> defined ($n) <span style="color:#f92672">&amp;&amp;</span> $n <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^[1-9][0-9]*$/</span>;
+        <span style="color:#66d9ef">return</span> $n <span style="color:#f92672">==</span> sum map { fac ($_) } split <span style="color:#e6db74">//</span>, $n;
+    }
+
+    <span style="color:#75715e"># Instead of List::Util::sum</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">sum</span> (@) {
+        <span style="color:#66d9ef">my</span> $tot <span style="color:#f92672">=</span> shift;
+        $tot <span style="color:#f92672">+=</span> $_ <span style="color:#66d9ef">for</span> @_;
+        <span style="color:#66d9ef">return</span> $tot;
+    }
+
+    <span style="color:#75715e"># Instead of Math::Prime::Util::factorial</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">fac</span> {
+        state $have <span style="color:#f92672">=</span> { <span style="color:#ae81ff">0</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> };
+        <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> shift;
+        <span style="color:#66d9ef">return</span> $have<span style="color:#f92672">-&gt;</span>{$i} <span style="color:#66d9ef">if</span> $have<span style="color:#f92672">-&gt;</span>{$i};
+        <span style="color:#66d9ef">my</span> $fac <span style="color:#f92672">=</span> $i <span style="color:#f92672">*</span> fac ($i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>);
+        $have<span style="color:#f92672">-&gt;</span>{$i} <span style="color:#f92672">=</span> $fac;
+        <span style="color:#66d9ef">return</span> $fac;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a></p>
+<p>Choroba uses a similar recurrence relation to generate his factorials, here placing the operation within a <code>for</code> loop. Starting with a kernal, each factorial created is then used as a base product to calculate the next. The products are hashed for constant-time access to the values. Slightly rearranged this time, again we see the actual factorion validation massaged into a single chained sequence of operations.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw{ sum }</span>;
+
+    {   <span style="color:#66d9ef">my</span> %factorial <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>);
+        $factorial{$_} <span style="color:#f92672">=</span> $factorial{ $_ <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> } <span style="color:#f92672">*</span> $_ <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">10</span>;
+
+        <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_factorion</span> ($n) {
+            sum(@factorial{ split <span style="color:#e6db74">//</span>, $n }) <span style="color:#f92672">==</span> $n
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a></p>
+<p>Jorg returns again this week to the sweet embrace, the seductive snare, of <a href="https://metacpan.org/pod/Math::Prime::Util"><code>Math::Prime::Util</code></a>, this time bringing in four functions: <code>vecsum()</code>, <code>factorial()</code>, <code>vecnone()</code> and <code>todigits()</code>. These are all somewhat familiar operations with unfamiliar names, specially tuned for number theory problems.</p>
+<ul>
+<li><code>vecsum()</code> is like <code>sum0()</code> for an an array of integers. Because a signed <code>Int</code> type is used under the hood larger values can be stored without a floating-point error</li>
+<li><code>factorial()</code> does what you think</li>
+<li><code>vecnone {BLOCK}</code> returns true if the BLOCK expression never evaluates to true for any of the list values, which again are required to be integers.</li>
+<li><code>todigits()</code> breaks a number up into an array of digits, much as <code>split //</code> has been used here elsewhere today.</li>
+</ul>
+<p>The functions may change, but the essential processing remains the same.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    say <span style="color:#ae81ff">0</span> <span style="color:#f92672">+</span> factorion($ARGV[<span style="color:#ae81ff">0</span>], $base);
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">factorion</span>($n, $base=10) {
+        $n <span style="color:#f92672">==</span> vecsum map factorial($_), todigits $n, $base;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/peter-campbell-smith/perl/ch-2.pl"><strong>Peter Campbell Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://pjcs-pwc.blogspot.com/2022/02/task-one-is-quite-easy-factorions-are.html">!Task one is quite easy. Factorions are quite rare.</a></p>
+<p>I was musing earlier today about the scarcity of the factorions, and that for a script that spot-checks individual values how unlikely it would be to find one. Even taking into account the upper boundary and clearly stating that it was pointless to inquire about values over 2,540,160,  a guess within that range would have only a 0.00016% chance of success. Those aren&rsquo;t big-lottery prize odds, but certainly are well into the range of the smaller ones.</p>
+<p>Apparently the same idea occured to Peter, as he notes:</p>
+<blockquote>
+<p>I was tempted to submit</p>
+</blockquote>
+<blockquote>
+<p>    <code>say 'no';</code></p>
+</blockquote>
+<blockquote>
+<p>which is nearly always correct</p>
+</blockquote>
+<p>However he does go on to not only compute the factorions but to reproduce the formatting of the examples. The operations are all lovingly hand-made and inlined into the control flow. Of note his production of a lookup array of factorials computes only exactly what needs to be done, only making a single further multiplication from the previous value.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">for</span> $n (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">9</span>) {
+        $fac[$n] <span style="color:#f92672">=</span> $n <span style="color:#f92672">*</span> $fac[$n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>];
+    }
+</code></pre></div><p>No waste, no fuss.</p>
+<p>Here&rsquo;s the remainder of his process:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">       $sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+       $string1 <span style="color:#f92672">=</span> $string2 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
+
+       <span style="color:#75715e"># test for being a factorion</span>
+       <span style="color:#66d9ef">while</span> ($test <span style="color:#f92672">=~</span> m<span style="color:#f92672">|</span>(<span style="color:#f92672">\</span>d)<span style="color:#f92672">|</span>g) {
+       	$sum <span style="color:#f92672">+=</span> $fac[$1];
+       	$string1 <span style="color:#f92672">.=</span> <span style="color:#e6db74">qq[$1! + ]</span>;
+       	$string2 <span style="color:#f92672">.=</span> <span style="color:#e6db74">qq[$fac[$1] + ]</span>;
+       }
+
+       <span style="color:#75715e"># format output</span>
+       say <span style="color:#e6db74">qq[\nInput:  $test]</span>;
+       $string1 <span style="color:#f92672">=~</span> s<span style="color:#f92672">|...</span>$|<span style="color:#f92672">|</span>;
+       $string2 <span style="color:#f92672">=~</span> s<span style="color:#f92672">|...</span>$|<span style="color:#f92672">|</span>;
+       <span style="color:#66d9ef">if</span> ($sum <span style="color:#f92672">==</span> $test) {
+       	say <span style="color:#e6db74">qq[Output: 1 since $string1 =&gt; $string2 = $test]</span>;
+       } <span style="color:#66d9ef">else</span> {
+       	say <span style="color:#e6db74">qq[Output: 0 since $string1 =&gt; $string2 = $sum &lt;&gt; $test]</span>;
+       }
+</code></pre></div><h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-2">Blogs and Additional Submissions in Guest Languages for Task 2:</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/abigail/perl/ch-2.pl"><strong>Abigail</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/abigail/awk/ch-2.awk">Awk</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/abigail/bash/ch-2.sh">Bash</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/abigail/bc/ch-2.bc">Bc</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/abigail/c/ch-2.c">C</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/abigail/go/ch-2.go">Go</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/abigail/java/ch-2.java">Java</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/abigail/lua/ch-2.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/abigail/node/ch-2.js">Node</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/abigail/pascal/ch-2.p">Pascal</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/abigail/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/abigail/r/ch-2.r">R</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/abigail/ruby/ch-2.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/abigail/scheme/ch-2.scm">Scheme</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/abigail/tcl/ch-2.tcl">Tcl</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2022/02/27">Finding the Factorials and Factorions That Are Left</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/bruce-gray/perl/ch-2.pl"><strong>Bruce Gray</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/bruce-gray/raku/ch-2.raku">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/bruce-gray/webassembly/ch-2.wat">Webassembly</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/colin-crain/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://colincrain.com/2022/02/25/factory-people-in-a-factory-world/">Factory People in a Factory World - Programming Excursions in Perl and Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/polettix/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.polettix.it/ETOOBUSY/2022/02/24/pwc153-factorions/">PWC153 - Factorions - ETOOBUSY</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/lubos-kolouch/perl/ch-2.pl"><strong>Lubos Kolouch</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/lubos-kolouch/php/ch-2.php">Php</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/lubos-kolouch/python/ch-2.py">Python</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/roger-bell-west/javascript/ch-2.js">Javascript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/roger-bell-west/kotlin/ch-2.kt">Kotlin</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/roger-bell-west/lua/ch-2.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/roger-bell-west/postscript/ch-2.ps">Postscript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/roger-bell-west/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/roger-bell-west/raku/ch-2.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/roger-bell-west/ruby/ch-2.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/roger-bell-west/rust/ch-2.rs">Rust</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://blog.firedrake.org/archive/2022/02/The_Weekly_Challenge_153__Factoriality.html">RogerBW&rsquo;s Blog: The Weekly Challenge 153: Factoriality</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/ulrich-rieke/cpp/ch-2.cpp">C++</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/ulrich-rieke/haskell/ch-2.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/ulrich-rieke/raku/ch-2.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-153/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://wlmb.github.io/2022/02/21/PWC153/">Perl Weekly Challenge 153 – W. Luis Mochán</a></p>
+<hr>
+<hr>
+<p> &nbsp; </p>
+<p> &nbsp; </p>
+<p> &nbsp; </p>
+<p> &nbsp; </p>
+<center>
+<h1 id="PWC153BLOGS">_________ THE BLOG PAGES _________</h1>
+</center>
+<hr>
+<p><strong>That’s it for me this week, people! Warped by the rain, driven by the snow, resolute and unbroken by the torrential influx, by some miracle I somehow continue to maintain my bearings.</strong></p>
+<p><strong>Looking forward to next wave, the perfect wave, I am: <em>your humble servant</em>.</strong></p>
+<h1 id="PWC153BLOGS">But if Your Unquenchable <em>THIRST</em> for <em>KNOWLEDGE</em> is not <em>SLAKED</em>,</h1>
+<h1 id="then-run-dont-walk-to-the-watering-hole">then <em>RUN</em> <em>(dont walk!)</em> to the <em>WATERING HOLE</em></h1>
+<h1 id="and-follow-these-blog-links">and <em>FOLLOW</em> these <em>BLOG</em> <em>LINKS</em>:</h1>
+<p><strong>( &hellip;<em>don&rsquo;t think, trust your training, you&rsquo;re in the zone, just do it &hellip;</em> )</strong></p>
+<p><strong>Adam Russell</strong></p>
+<ul>
+<li><a href="http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2022/02/27">Finding the Factorials and Factorions That Are Left</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Alexander Pankoff</strong></p>
+<ul>
+<li><a href="https://pankoff.net/pages/perl-weekly-challenge/challenge-153-task-1.html">Challenge 153 Task #1 - Factorials left, factorials right, factorials everywhere!</a> ( <em>Perl &amp; Raku</em> )</li>
+<li><a href="https://pankoff.net/pages/perl-weekly-challenge/challenge-153-task-2.html">Challenge 153 Task #2 - Even more factorials and what the fuck are factorions?</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Arne Sommer</strong></p>
+<ul>
+<li><a href="https://raku-musings.com/just-the-fact.html">Just the Fact with Raku</a> ( <em>Raku</em> )</li>
+</ul>
+<p><strong>Colin Crain</strong></p>
+<ul>
+<li><a href="https://colincrain.com/2022/02/24/facts-left-on-the-table-by-the-front-door/">Facts Left on the Table by the Front Door - Programming Excursions in Perl and Raku</a> ( <em>Perl &amp; Raku</em> )</li>
+<li><a href="https://colincrain.com/2022/02/25/factory-people-in-a-factory-world/">Factory People in a Factory World - Programming Excursions in Perl and Raku</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Dave Jacoby</strong></p>
+<ul>
+<li><a href="https://jacoby.github.io/2022/02/21/luck-is-not-a-factor-weekly-challenge-153.html">Luck is not a Factor!: Weekly Challenge #153 | Committed to Memory</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Flavio Poletti</strong></p>
+<ul>
+<li><a href="https://github.polettix.it/ETOOBUSY/2022/02/23/pwc153-left-factorials/">PWC153 - Left Factorials - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+<li><a href="https://github.polettix.it/ETOOBUSY/2022/02/24/pwc153-factorions/">PWC153 - Factorions - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Laurent Rosenfeld</strong></p>
+<ul>
+<li><a href="http://blogs.perl.org/users/laurent_r/2022/02/perl-weekly-challenge-153-left-factorials-and-factorions.html">Perl Weekly Challenge 153: Left Factorials and Factorions</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Luca Ferrari</strong></p>
+<ul>
+<li><a href="https://fluca1978.github.io/2022/02/21/PerlWeeklyChallenge153.html#task1">Perl Weekly Challenge 153: take it easy – Luca Ferrari – Open Source advocate, human being</a> ( <em>Raku</em> )</li>
+</ul>
+<p><strong>Peter Campbell Smith</strong></p>
+<ul>
+<li><a href="https://pjcs-pwc.blogspot.com/2022/02/task-one-is-quite-easy-factorions-are.html">!Task one is quite easy. Factorions are quite rare.</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Roger Bell_West</strong></p>
+<ul>
+<li><a href="https://blog.firedrake.org/archive/2022/02/The_Weekly_Challenge_153__Factoriality.html">RogerBW&rsquo;s Blog: The Weekly Challenge 153: Factoriality</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>W. Luis Mochan</strong></p>
+<ul>
+<li><a href="https://wlmb.github.io/2022/02/21/PWC153/">Perl Weekly Challenge 153 – W. Luis Mochán</a> ( <em>Perl</em> )</li>
+</ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="/contact" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2022
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.nomtimes.co.uk/site/shop.do?cref=PerlBooks" title="Free Perl Books" rel="noreferrer" target="_blank">
+                            <img src="/images/NomTimes.jpg" style="width:22px; height: 18px;" alt=""/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jQurey/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-136524905-1', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+
+</html>
+
