@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="The Weekly Challenge - Perl & Raku"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="You do not have to be an expert."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Colin Crain › Perl Weekly Review #154">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Colin Crain › Perl Weekly Review #154</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navgation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Colin Crain › Perl Weekly Review #154</h2>
+                    <div class="portfolio-meta">
+                        <span>Sunday, Apr 3, 2022</span>|
+                        <span> Tags:
+                            perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/p5-review-challenge-154.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <p>( <em>&hellip;continues from <a href="/blog/review-challenge-153/">previous week</a>.</em> )</p>
+<p>Welcome to the Perl review pages for <strong>Week 154</strong> of The Weekly Challenge! Here we will take the time to discuss the  submissions offered up by the team, factor out some common methodologies that came up in those solutions, and highlight some of the unique approaches and unusual code created.</p>
+<hr>
+<h3 id="-why-do-we-do-these-challenges">●︎ Why do we do these challenges?</h3>
+<p>I suppose any reasonable answer to that question would be from a field as wide ranging and varied as the people who choose to join the team. One thing, though, is clear: it&rsquo;s not a competition, and there are no judges, even if there is a &ldquo;prize&rdquo; of sorts. About that &ndash; I think of it more as an honorarium periodically awarded to acknowledge the efforts we make towards this strange goal. So there&rsquo;s no determination to find the <em>fastest</em>, or the <em>shortest</em>, or even, in some abstract way, the <em>best</em> way to go about things, although I&rsquo;m certain the participants have their own aspirations and personal drives. As Perl is such a wonderfully expressive language, this provides quite a bit of fodder to the core idea of TMTOWTDI, producing a gamut of varied techniques and solutions.</p>
+<p>Even the tasks themselves are often open to a certain amount of discretionary interpretation. What we end up with is a situation where each participant is producing something in the manner they find the most interesting or satisfying. Some team members focus on carefully crafted complete applications, thoroughly vetting input data and handling every use case they can think up. Others choose to apply themselves to the logic of the underlying puzzle and making it work in the most elegant way they can. Some eschew modules they would ordinarily reach for, others embrace them, bringing to light wheels perhaps invented years ago that happen to exactly solve the problem in front of them today.</p>
+<p>I&rsquo;ve been considering this question for some time and have found one binding commonality between all of us out solving these challenges each week, in that however we normally live our lives, the task in front of us more than likely has nothing to do with any of that. And I think this has great value. We all do what we do, in the real world, and hopefully we do it well. The Weekly Challenge provides us with an opportunity to do something germane to that life yet distinctly different; if we only do the things we already know how to do then we will only do the same things over and over. This is where the &ldquo;challenge&rdquo; aspect comes into play.</p>
+<p>So we can consider The Weekly Challenge as providing a problem space outside of our comfort zone, as far out from that comfort as we wish to take things. From those reaches we can gather and learn things, pick and choose and bring what we want back into our lives. Personally, I think that&rsquo;s what this whole thing is about. YMMV.</p>
+<hr>
+<p><strong><i>Every week there is an enormous global collective effort made by the team, analyzing and creatively coding the submissions, and that effort deserves credit due.</i></strong></p>
+<p>And that, my friends, is why I&rsquo;m here, to try and figure out ways to do just that.</p>
+<p>So, here we are then. I&rsquo;m ready — let’s get to it and see what we can find.</p>
+<hr>
+<h3 id="for-additional-context">For Additional Context…</h3>
+<p>before we begin, you may wish to revisit either the pages for the <a href="/blog/perl-weekly-challenge-154/"><strong>original tasks</strong></a> or the summary <a href="/blog/recap-challenge-154/"><strong>recap</strong></a> of the challenge. But don&rsquo;t worry about it, the challenge text will be repeated and presented as we progress from task to task.</p>
+<p>Oh, and one more thing before we get started:</p>
+<h3 id="getting-in-touch-with-us">Getting in Touch with Us</h3>
+<p><a href="mailto:pwc.perfectwave@gmail.com"><img src="/images/blog/Email.svg" height="50" width="50"> Email</a> › Please feel free to email me (Colin) with any feedback, notes, clarifications or whatnot about this review.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge"><img src="/images/blog/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request to us for any issues you may find with this page.</p>
+<p><a href="https://twitter.com/perlwchallenge"><img src="/images/blog/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!</p>
+<p>I&rsquo;m always curious as to what the people think of these efforts. Everyone here at the PWC would like to hear any feedback you&rsquo;d like to give.</p>
+<div align= center><strong>...So finally, without further ado...</strong></div>
+<hr>
+<h2 id="---nbsp--nbsp--nbsp---task-1pwc154task1-------nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---task-2pwc154task2---nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---blogspwc154blogs----nbsp--nbsp--nbsp---">•             <a href="#PWC154TASK1">Task 1</a>                 •             <a href="#PWC154TASK2">Task 2</a>             	•             <a href="#PWC154BLOGS">BLOGS</a>              	•</h2>
+<hr>
+<hr>
+<h1 id="PWC154TASK1">TASK 1</h1>
+<h1 id="missing-permutation">Missing Permutation</h1>
+<p><em>Submitted by: Mohammad S Anwar</em>
+You are given possible permutations of the string &lsquo;PERL&rsquo;.</p>
+<pre><code>    PELR, PREL, PERL, PRLE, PLER, PLRE, EPRL, EPLR, ERPL,
+    ERLP, ELPR, ELRP, RPEL, RPLE, REPL, RELP, RLPE, RLEP,
+    LPER, LPRE, LEPR, LRPE, LREP
+</code></pre><p>Write a script to find any permutations missing from the list.</p>
+<h2 id="about-the-solutions">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/abigail/perl/ch-1.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/arne-sommer/perl/ch-1.pl"><strong>Arne Sommer</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/bruce-gray/perl/ch-1.pl"><strong>Bruce Gray</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/jaldhar-h-vyas/perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/lubos-kolouch/perl/ch-1.pl"><strong>Lubos Kolouch</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/mattneleigh/perl/ch-1.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/peter-campbell-smith/perl/ch-1.pl"><strong>Peter Campbell Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/pokgopun/perl/ch-1.pl"><strong>PokGoPun</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/robert-dicicco/perl/ch-1.pl"><strong>Robert DiCicco</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>Sometimes, you know, when gathering real-world data there&rsquo;s a blip in the system and something gets lost. Actually, in the real world this is more the norm than the exception when interfacing with humans, or relying on assumptions for guidance, both of which are commonly unavoidable if we want to get anything done at all.</p>
+<p>When something gets lost, where does it go? Doesn&rsquo;t it get awfully crowded behind the dryer with the stray socks? Or is this Land of Nod seemingly infinite, as they say of the cat dimension, that elusive space that allows a house cat to completely disappear for hours at a time inside a sealed room and then reappear suddenly, out of apparently thin air?</p>
+<p>In any case data errors are a part of life, and this challenge models an all-too familiar scenario, that one single piece of the puzzle is missing, and it&rsquo;s suddenly on us to figure out which one of many nearly identical items is <em>not</em> present. You can&rsquo;t, after all, look for something if you don&rsquo;t know what it is.</p>
+<p>Or at bare minimum, the task of searching becomes exponentially more difficult.</p>
+<p>There were 24 submissions for the first task this past week.</p>
+<h2 id="a-selection-of-submissions">A SELECTION of SUBMISSIONS</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/arne-sommer/perl/ch-1.pl"><strong>Arne Sommer</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/jaldhar-h-vyas/perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/lubos-kolouch/perl/ch-1.pl"><strong>Lubos Kolouch</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a></p>
+<p>To find the missing permutation, generally the plans fell to figuring out <em>all</em> the permutations and comparing the data sets piece-by-piece. However that was not the only way to proceed. There were alternate, unexpected approaches that made the results of this challenge more unpredictable than one might immediately think. How&rsquo;s that for a teaser? Let&rsquo;s take a survey of the field. I think it likely everyone will be surprised at least once.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-154/james-smith">Perl Weekly Challenge #154</a></p>
+<p>Diving right into it, James delivers us solutions three different ways, based on increasing levels of restrictions applied particular to the task as given. These ways will also serve as general categories for the types of approaches we saw: either by focusing on the words or the letters composing them.</p>
+<p>In the opening — the broadest sense for the conditions — he takes the input set of words and keys a hash from them. He then gives us an implementation of Knuth&rsquo;s Algorithm L to create a set of all permutations, and iterating through it checks each for existence as a hash key. Any that remain unfound are those missing from the original set. This, expressed in set theory, is creating the set difference of items contained in one set and not the other:</p>
+<p><em>A</em>\<em>B</em> = ( <em>x</em> : <em>x</em> ∈ <em>A</em> and <em>x</em> ∉ <em>B</em> )</p>
+<p>Here&rsquo;s James&rsquo; code for this solution:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">next_perm</span> {
+      <span style="color:#66d9ef">my</span>( $i, $j );
+      ( $s[$_] <span style="color:#f92672">lt</span> $s[$_<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] ) <span style="color:#f92672">&amp;&amp;</span> ( $i <span style="color:#f92672">=</span> $_ ) <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span>    <span style="color:#f92672">..</span> @s<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>;
+      <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">unless</span> defined $i;
+      ( $s[$i] <span style="color:#f92672">lt</span> $s[$_  ] ) <span style="color:#f92672">&amp;&amp;</span> ( $j <span style="color:#f92672">=</span> $_ ) <span style="color:#66d9ef">for</span> $i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> @s<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+      @s[ $i, $j       ] <span style="color:#f92672">=</span> @s[ $j, $i               ];
+      @s[ $i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> @s<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> ] <span style="color:#f92672">=</span> @s[ reverse $i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> @s<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> ];
+      <span style="color:#66d9ef">return</span> join <span style="color:#e6db74">&#39;&#39;</span>,@s;
+    }
+
+    <span style="color:#66d9ef">my</span> $w <span style="color:#f92672">=</span> join <span style="color:#e6db74">&#39;&#39;</span>, @s <span style="color:#f92672">=</span> sort split <span style="color:#e6db74">//</span>, <span style="color:#e6db74">&#39;PERL&#39;</span>;
+    <span style="color:#66d9ef">my</span> %check <span style="color:#f92672">=</span> map { $_<span style="color:#f92672">=&gt;</span><span style="color:#ae81ff">1</span> } @words;
+    <span style="color:#66d9ef">do</span> { exists $check{ $w } <span style="color:#f92672">||</span> say <span style="color:#e6db74">&#34;  * $w&#34;</span>; } <span style="color:#66d9ef">while</span> $w <span style="color:#f92672">=</span> next_perm;
+</code></pre></div><p>However if we allow that we know there is only a single missing value, we can <em>sort</em> both the input word list and the letters composing the target word. Algorithm L produces lexicographically sorted output, so when the permuted letter sequences are joined back into words, the two sorted lists should align. When they <em>don&rsquo;t</em> match up, however, then we have discovered an element in one list and not in the other.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    $w <span style="color:#f92672">=</span> join <span style="color:#e6db74">&#39;&#39;</span>, @s <span style="color:#f92672">=</span> sort split <span style="color:#e6db74">//</span>, <span style="color:#e6db74">&#39;PERL&#39;</span>;
+    <span style="color:#66d9ef">my</span> @sorted <span style="color:#f92672">=</span> sort @words;
+
+    <span style="color:#66d9ef">do</span> { $w <span style="color:#f92672">lt</span> $sorted[<span style="color:#ae81ff">0</span>] ? say <span style="color:#e6db74">&#34;  * $w&#34;</span> : shift @sorted } <span style="color:#66d9ef">while</span> $w <span style="color:#f92672">=</span> next_perm;
+</code></pre></div><p>In the third, &ldquo;hack&rdquo; solution, which I find <em>amazing</em> we XOR the null bits of an empty string once with each word in the input list. Each initial XOR will hence produce the letter, or if the letter has already been seen reverse the operation back to a null string. If there is in fact only one single missing permutation, then the letter correspondances for that arrangement will never get flipped back and when all is said and done that arrangement will remain. It&rsquo;s interesting that the order of the bit flipping does not matter, only that each flip to a new letter is accompanied by a second flip somewhere to the same latter again to flip the translation back.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $r <span style="color:#f92672">=</span><span style="color:#e6db74">&#39;&#39;</span>;
+    $r<span style="color:#f92672">^=</span>$_ <span style="color:#66d9ef">for</span> @words;
+    say <span style="color:#e6db74">&#34;  * $r&#34;</span>;
+</code></pre></div><p>Cool, right? Three lines after input. This will work in as a general case because the number of incidences of each letter amongst the permutations will always be even. However it does require there to be only a single missing word.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/arne-sommer/perl/ch-1.pl"><strong>Arne Sommer</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/arne-sommer/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://raku-musings.com/padovan-missing.html">Padovan is Missing with Raku and Perl</a></p>
+<p>Another set-wise solution comes to us from Arne: again the input strings are treated as a set, modeled by a hash, with the keys as items. Then, using <code>permutations()</code>, this time from <code>Algorithm::Combinatorics</code>, permutation arrays of the letters of the target word are generated, joined together again, and checked for a positive value in the hash. Values not found indicate missing permutations.</p>
+<p>As duplicate letters in the input word could produce multiple hits on the same missing permutation a <code>unique()</code> filter is applied to the output. For example with the input word &ldquo;EVER&rdquo;, the permutation &ldquo;VEER&rdquo; would appear twice, once for each arrangement of the two &ldquo;E&quot;s.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Algorithm::Combinatorics <span style="color:#e6db74">&#39;permutations&#39;</span>;
+    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">&#39;uniq&#39;</span>;
+
+    <span style="color:#66d9ef">my</span> $string       <span style="color:#f92672">=</span> shift(@ARGV) <span style="color:#f92672">||</span> <span style="color:#e6db74">&#39;PERL&#39;</span>;
+    <span style="color:#66d9ef">my</span> $permutations <span style="color:#f92672">=</span> shift(@ARGV) <span style="color:#f92672">||</span> <span style="color:#e6db74">&#34;PELR PREL PERL PRLE PLER PLRE EPRL EPLR ERPL
+</span><span style="color:#e6db74">                                        ERLP ELPR ELRP RPEL RPLE REPL RELP RLPE RLEP
+</span><span style="color:#e6db74">                                        LPER LPRE LEPR LRPE LREP&#34;</span>;
+
+    <span style="color:#66d9ef">my</span> @letters      <span style="color:#f92672">=</span> split(<span style="color:#e6db74">&#34;&#34;</span>, $string);
+    <span style="color:#66d9ef">my</span> %permuations  <span style="color:#f92672">=</span> map { $_ <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>} split(<span style="color:#e6db74">/\s+/</span>, $permutations);
+    <span style="color:#66d9ef">my</span> @missing;
+
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $candidate (permutations(<span style="color:#f92672">\</span>@letters))
+    {
+      <span style="color:#66d9ef">my</span> $as_string <span style="color:#f92672">=</span> join(<span style="color:#e6db74">&#34;&#34;</span>, @$candidate);
+      say <span style="color:#e6db74">&#34;: Checking candidate: $as_string&#34;</span> <span style="color:#66d9ef">if</span> $verbose;
+      push(@missing, $as_string) <span style="color:#66d9ef">unless</span> $permuations{$as_string};
+    }
+
+    say join(<span style="color:#e6db74">&#34;, &#34;</span>, uniq @missing) <span style="color:#66d9ef">if</span> @missing;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/jaldhar-h-vyas/perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/jaldhar-h-vyas/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://www.braincells.com/perl/2022/03/perl_weekly_challenge_week_154.html">Perl Weekly Challenge: Week 154</a></p>
+<p>Jaldhar takes a subtractive approach: starting with all the permutations he figuratively scratches off off all those he finds, checking them as found, in the input list by incrementing their value in the hash.</p>
+<p>To accomplish this he brings forward his <a href="https://www.braincells.com/perl/2022/03/perl_weekly_challenge_week_154.html">&ldquo;trusty permute() routine pinched from perlfaq4&rdquo;</a> to produce all permutations, then structures the results as keys in a hash with the value undef. Going through the list each item is looked up and the value incremented. After iterating through the whole list the key whose value is still undef is the missing string.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">permute</span> (&amp;@) {
+        <span style="color:#66d9ef">my</span> $code <span style="color:#f92672">=</span> shift;
+        <span style="color:#66d9ef">my</span> @idx <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#_;
+        <span style="color:#66d9ef">while</span> ( $code<span style="color:#f92672">-&gt;</span>(@_[@idx]) ) {
+            <span style="color:#66d9ef">my</span> $p <span style="color:#f92672">=</span> $#idx;
+            <span style="color:#f92672">--</span>$p <span style="color:#66d9ef">while</span> $idx[$p<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&gt;</span> $idx[$p];
+            <span style="color:#66d9ef">my</span> $q <span style="color:#f92672">=</span> $p <span style="color:#f92672">or</span> <span style="color:#66d9ef">return</span>;
+            push @idx, reverse splice @idx, $p;
+            <span style="color:#f92672">++</span>$q <span style="color:#66d9ef">while</span> $idx[$p<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&gt;</span> $idx[$q];
+            @idx[$p<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,$q]<span style="color:#f92672">=</span>@idx[$q,$p<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+        }
+    }
+
+    <span style="color:#66d9ef">my</span> @partial <span style="color:#f92672">=</span> <span style="color:#e6db74">qw/ PELR PREL PERL PRLE PLER PLRE EPRL EPLR ERPL ERLP ELPR ELRP
+</span><span style="color:#e6db74">    RPEL RPLE REPL RELP RLPE RLEP LPER LPRE LEPR LRPE LREP /</span>;
+
+    <span style="color:#66d9ef">my</span> @permutations;
+
+    permute { push @permutations, <span style="color:#f92672">\</span>@_; } split <span style="color:#e6db74">//</span>, <span style="color:#e6db74">&#34;PERL&#34;</span>;
+    <span style="color:#66d9ef">my</span> %full <span style="color:#f92672">=</span> map { $_ <span style="color:#f92672">=&gt;</span> undef } map { join <span style="color:#e6db74">q{}</span>, @{$_}; } @permutations;
+
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $part (@partial) {
+        $full{$part}<span style="color:#f92672">++</span>;
+    }
+
+    say join <span style="color:#e6db74">q{ }</span>, grep { $_ <span style="color:#66d9ef">if</span> <span style="color:#f92672">!</span>defined $full{$_} } keys %full;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/laurent-rosenfeld/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://blogs.perl.org/users/laurent_r/2022/03/perl-weekly-challenge-154-missing-permutations-and-padovan-primes.html">Perl Weekly Challenge 154: Missing Permutations and Padovan Primes</a></p>
+<p>Laurent gives us another variation on a set-wise approach, with each item in the input list is entered as a key in a hash. The fundamentally unordered nature of hash keys makes this a pretty good model for a set, al-in-all. There is no real meaning of &ldquo;where&rdquo; a hash key is located, only whether it is in or not in the hash.</p>
+<p>Then, using his own recursive <code>permute()</code> function, he generates all arrangements of the starting word &ldquo;PERL&rdquo; as strings. The result list is then passed over, looking up each item in turn by determining whether a hash key exists. A generated permutation without a corresponding hash key is, as we&rsquo;ve seen before, the missing item we&rsquo;ve been looking for.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> %given_perm <span style="color:#f92672">=</span> map { $_ <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> } <span style="color:#e6db74">qw/
+</span><span style="color:#e6db74">        PELR PREL PERL PRLE PLER PLRE EPRL EPLR ERPL
+</span><span style="color:#e6db74">        ERLP ELPR ELRP RPEL RPLE REPL RELP RLPE RLEP
+</span><span style="color:#e6db74">        LPER LPRE LEPR LRPE LREP /</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">permute</span> {
+        <span style="color:#66d9ef">my</span> ($str, @vals) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">if</span> (scalar @vals <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+            push @permutations, $str;
+            <span style="color:#66d9ef">return</span>;
+        }
+        permute(<span style="color:#e6db74">&#34;$str&#34;</span> <span style="color:#f92672">.</span> $vals[$_], @vals[<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$_<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>],
+            @vals[$_<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$#vals]) <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#vals;
+    }
+    permute <span style="color:#e6db74">&#34;&#34;</span>, split <span style="color:#e6db74">//</span>, (keys %given_perm)[<span style="color:#ae81ff">0</span>];
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $perm (@permutations) {
+        say <span style="color:#e6db74">&#34;$perm is missing&#34;</span> <span style="color:#66d9ef">unless</span> exists $given_perm{$perm};
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/adam-russell/prolog/ch-1.p">Prolog</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2022/03/06">Padovan Prime Directive: Find the Missing Permutations — Perl — RabbitFarm</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://www.rabbitfarm.com/cgi-bin/blosxom/prolog/2022/03/06">Padovan Prime Directive: Find the Missing Permutations — Prolog — RabbitFarm</a></p>
+<p>Breaking from the pack, Adam starts with the premise that, when looking over the input list of arrangements, each letter in each position across the permutation set will be expressed a certain number of times. For each position, if a letter doesn&rsquo;t show up enough times, then that instance of the latter is catalogued as &ldquo;missing&rdquo; from the position. Evaluating each position in the target word PERL, he finds the the missing list to be (L, E, R, P), which when rejoined yields LERP.</p>
+<p>More code is placed on top of this central method to allow the possibility of multiple missing letters, which would result in multiple combinations of those letters represented in each position, in turn necessitating a check against the input list for each permutation from the &ldquo;missing letter&rdquo; lists.</p>
+<p>Note his use of the <code>Algorithm::Loops</code> module to facilitate the last check. That module really stands out in its own unique place, providing some very interesting looping constructs that really don&rsquo;t exist elsewhere.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Algorithm::Loops <span style="color:#e6db74">q/NestedLoops/</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">missing_permutations</span>{
+        <span style="color:#66d9ef">my</span>($permutations, $s) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> @missing;
+        <span style="color:#75715e">##</span>
+        <span style="color:#75715e"># remove any duplicates</span>
+        <span style="color:#75715e">##</span>
+        <span style="color:#66d9ef">my</span> %permutations;
+        map {$permutations{$_}<span style="color:#f92672">=</span>undef} @{$permutations};
+        $permutations <span style="color:#f92672">=</span> [keys %permutations];
+        <span style="color:#75715e">##</span>
+        <span style="color:#75715e"># get the letters missing in each slot</span>
+        <span style="color:#75715e">##</span>
+        <span style="color:#66d9ef">my</span> @missing_letters;
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> length($s) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>){
+            <span style="color:#66d9ef">my</span> %slot_counts;
+            <span style="color:#66d9ef">my</span> @ith_letters <span style="color:#f92672">=</span> map {<span style="color:#66d9ef">my</span> @a <span style="color:#f92672">=</span> split(<span style="color:#e6db74">//</span>, $_); $a[$i]} @{$permutations};
+            map{$slot_counts{$_}<span style="color:#f92672">++</span>} @ith_letters;
+            $missing_letters[$i] <span style="color:#f92672">=</span> [grep {$slot_counts{$_} <span style="color:#f92672">!=</span> factorial(length($s) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)} keys %slot_counts];
+        }
+        <span style="color:#75715e">##</span>
+        <span style="color:#75715e"># determine which missing letters form missing permutations</span>
+        <span style="color:#75715e">##</span>
+        <span style="color:#66d9ef">my</span> $nested <span style="color:#f92672">=</span> NestedLoops(<span style="color:#f92672">\</span>@missing_letters);
+        <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">my</span> @set <span style="color:#f92672">=</span> $nested<span style="color:#f92672">-&gt;</span>()){
+            <span style="color:#66d9ef">my</span> $candidate <span style="color:#f92672">=</span> join(<span style="color:#e6db74">&#34;&#34;</span>, @set);
+            <span style="color:#66d9ef">my</span> @matched <span style="color:#f92672">=</span> grep {$candidate <span style="color:#f92672">eq</span> $_} @{$permutations};
+            push @missing, $candidate <span style="color:#66d9ef">if</span> <span style="color:#f92672">!</span>@matched;
+        }
+        <span style="color:#66d9ef">return</span> @missing;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/athanasius/raku/ch-1.raku">Raku</a></p>
+<p>The monk brings us a tasty offering from the cornucopia that is <code>Math::Prime::Util</code>: the function <code>formultiperm {BLOCK} ARRAY REF</code>. This is a complex function that works as an iterator, applying the BLOCK function to each multiset permutation produced by processing the elements in the referenced array. Because we&rsquo;re doing multiset permutations, the results are produced uniquely, even if letters are duplicated in the input. Here the block rejoins the permuted letters into words and pushed the result on a list for later checking.</p>
+<p>To find whether a permuted word is missing from the input list, the <code>List::Util</code> function <code>none</code> is used to compare it to all elements in the array.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> List::Util        <span style="color:#e6db74">qw( none )</span>;
+    <span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">qw( formultiperm )</span>;
+
+    formultiperm { push @perms, join <span style="color:#e6db74">&#39;&#39;</span>, @_ } [ sort split <span style="color:#e6db74">//</span>, $STRING ];
+
+    check_given_perms( <span style="color:#f92672">\</span>@perms ) <span style="color:#66d9ef">if</span> $CHECK;
+
+    <span style="color:#66d9ef">my</span> @missing;
+
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $s (@perms)
+    {
+        push @missing, $s <span style="color:#66d9ef">if</span> none { $s <span style="color:#f92672">eq</span> $_ } @GIVEN;
+    }
+
+    <span style="color:#66d9ef">my</span> $missing <span style="color:#f92672">=</span> scalar @missing;
+
+    printf <span style="color:#e6db74">&#34;Output: There %s %d missing permutation%s %s\n&#34;</span>,
+        $missing <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> ? <span style="color:#e6db74">&#39;is&#39;</span> : <span style="color:#e6db74">&#39;are&#39;</span>,
+        $missing,
+        $missing <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> ? <span style="color:#e6db74">&#39;s&#39;</span>  : $missing <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> ? <span style="color:#e6db74">&#39;:&#39;</span> : <span style="color:#e6db74">&#39;s:&#39;</span>,
+        join <span style="color:#e6db74">&#39;, &#39;</span>, @missing;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a></p>
+<p>You know, I can&rsquo;t say for sure whether I&rsquo;ve observed a significant uptick in the use of <code>Math::Prime::Util</code> since we&rsquo;re started to do so much number theory, or if so, whether Jorg&rsquo;s methodical exploration of this elaborate package has had anything to do with it.</p>
+<p>But yea, I&rsquo;ll say &ldquo;probably&rdquo; to both. And well done. Because it really is a brilliant, deserving package.</p>
+<p>Here Jorg uses the standard-set version of the permutations iteration function from that module, <code>forperm</code>. This combines a <code>for</code> loop with a permutations iterator in one handy place. The input list is converted to a hash and inside the iterator function block we check the value for existence among the hash keys.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">&#39;forperm&#39;</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">missing_perms</span> ($orig, @given) {
+        <span style="color:#66d9ef">my</span> @orig <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, $orig;
+        <span style="color:#75715e"># Convert array to hash.</span>
+        (<span style="color:#f92672">\</span><span style="color:#66d9ef">my</span> %given)<span style="color:#f92672">-&gt;</span>@{@given} <span style="color:#f92672">=</span> ();
+        local $&#34; <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
+        <span style="color:#66d9ef">my</span> %missing;
+        <span style="color:#75715e"># @_ holds the index set, not the values.</span>
+        forperm {
+            $missing{<span style="color:#e6db74">&#34;@orig[@_]&#34;</span>} <span style="color:#f92672">=</span> undef <span style="color:#66d9ef">unless</span> exists $given{<span style="color:#e6db74">&#34;@orig[@_]&#34;</span>};
+        } @orig;
+
+        keys %missing;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/lubos-kolouch/perl/ch-1.pl"><strong>Lubos Kolouch</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/lubos-kolouch/python/ch-1.py">Python</a></p>
+<p>Lubos offers us a different module of choice for his permutation needs, <code>Algortihm::Permute</code>. An iterator is generated to produce a new permutation on demand, which are then searched for in the input list using a <code>grep</code> filter. Missing values are pushed to an output array. As the task given is small this solution doesn&rsquo;t overthink it and just finds the missing data.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Algorithm::Permute;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">find_missing</span> {
+        <span style="color:#66d9ef">my</span> $what <span style="color:#f92672">=</span> shift;
+
+        <span style="color:#66d9ef">my</span> $all_perms <span style="color:#f92672">=</span> Algorithm::Permute<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>( [ split <span style="color:#e6db74">//</span>, <span style="color:#e6db74">&#39;PERL&#39;</span> ] );
+
+        <span style="color:#66d9ef">my</span> @output;
+
+        <span style="color:#66d9ef">while</span> ( <span style="color:#66d9ef">my</span> @perm <span style="color:#f92672">=</span> $all_perms<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">next</span> ) {
+            <span style="color:#66d9ef">my</span> $look_str <span style="color:#f92672">=</span> join <span style="color:#e6db74">&#39;&#39;</span>, @perm;
+            push @output, $look_str <span style="color:#66d9ef">unless</span> grep { <span style="color:#e6db74">/$look_str/</span> } @$what;
+        }
+
+        <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@output;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://wlmb.github.io/2022/02/28/PWC154/">Perl Weekly Challenge 154 – W. Luis Mochán</a></p>
+<p>And here, after creating a hash lookup from the input list with each key pointing to a positive value, Luis filters a second list of hash keys for <em>all</em> permutations using a <code>grep</code> statement, by looking for those keys that do not return a true value. Sometimes you look for the positive, sometimes the negative.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Algorithm::Combinatorics <span style="color:#e6db74">qw(permutations)</span>;
+
+    <span style="color:#66d9ef">my</span> @seen<span style="color:#f92672">=</span>@ARGV;
+    <span style="color:#66d9ef">my</span> $first<span style="color:#f92672">=</span>$seen[<span style="color:#ae81ff">0</span>];
+    <span style="color:#66d9ef">my</span> @letters<span style="color:#f92672">=</span>split <span style="color:#e6db74">&#34;&#34;</span>, $first;
+    <span style="color:#66d9ef">my</span> %seen;
+    map {$seen{$_}<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>} @seen;
+    <span style="color:#66d9ef">my</span> %permutations; <span style="color:#75715e"># all permutations</span>
+    $permutations{$_}<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> <span style="color:#66d9ef">for</span> map {join <span style="color:#e6db74">&#34;&#34;</span>, @$_} permutations(<span style="color:#f92672">\</span>@letters);
+    <span style="color:#75715e"># Check the input</span>
+    map {die <span style="color:#e6db74">&#34;$_ is not a permutation of $first&#34;</span> <span style="color:#66d9ef">unless</span> $permutations{$_}} keys %seen;
+    $columns<span style="color:#f92672">=</span><span style="color:#ae81ff">62</span>; $break<span style="color:#f92672">=</span><span style="color:#e6db74">qr/\s/</span>;
+    say wrap(<span style="color:#e6db74">&#34;&#34;</span>, <span style="color:#e6db74">&#34;    &#34;</span>, <span style="color:#e6db74">&#34;Input: &#34;</span>, join <span style="color:#e6db74">&#34;, &#34;</span>, @seen);
+    say wrap(<span style="color:#e6db74">&#34;&#34;</span>, <span style="color:#e6db74">&#34;    &#34;</span>, <span style="color:#e6db74">&#34;Missing permutations: &#34;</span>, join <span style="color:#e6db74">&#34;, &#34;</span>,
+                         grep {<span style="color:#f92672">!</span>$seen{$_}} keys %permutations);
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a></p>
+<p>The expansion of Perl&rsquo;s basic list processing tools: <code>map</code>, <code>sort</code> and <code>grep</code>, using the numerous aftermarket modules available, really opens up the idea of using the list as the fundamental data-processing unit for programming, a central idea to the functional programming paradigm. Here Niels gives us a remarkable and novel solution based on the <code>List::MoreUtils</code> function <code>singleton</code>. This is a filter somewhat similar to <code>unique</code> in that it keeps track of the frequencies that individual items occur in a list of data, but this function cannot work piecemeal, as it only passes data that occurs exactly once. Thus by creating a list of all permutations using <code>Algorithm::Combinatorics</code> and then merging that list with the original input data, every permutation will be duplicated except the missing item, which is allowed to pass.</p>
+<p>Marvelous.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Algorithm::Combinatorics <span style="color:#e6db74">qw(permutations)</span>;
+    <span style="color:#66d9ef">use</span> List::MoreUtils <span style="color:#e6db74">qw(singleton)</span>;
+
+    <span style="color:#66d9ef">my</span> @s <span style="color:#f92672">=</span> singleton(
+      <span style="color:#e6db74">qw(
+</span><span style="color:#e6db74">        PELR PREL PERL PRLE PLER PLRE EPRL EPLR
+</span><span style="color:#e6db74">        ERPL ERLP ELPR ELRP RPEL RPLE REPL RELP
+</span><span style="color:#e6db74">        RLPE RLEP LPER LPRE LEPR LRPE LREP
+</span><span style="color:#e6db74">      )</span>,
+      map{join <span style="color:#e6db74">&#39;&#39;</span>,@$_} permutations([split(<span style="color:#e6db74">//</span>,<span style="color:#e6db74">&#39;PERL&#39;</span>)])
+    );
+
+    say <span style="color:#e6db74">&#34;Missing permutation(s): (&#34;</span>,join(<span style="color:#e6db74">&#39;,&#39;</span>,@s),<span style="color:#e6db74">&#34;)&#34;</span>;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a></p>
+<p>Finally, CY brings us a function similar to Luis&rsquo;, in as much as it hinges on a final <code>grep</code> filter to find items that are not present in the hashed representation of the input data. She provides an interesting variation in allowing for duplicate letters in the input word by filtering the created permutation list using <code>uniqstr</code> from <code>List::Util</code> to remove those duplicates a multiset of letters would naturally produce.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw/uniqstr/</span>;
+
+    <span style="color:#66d9ef">my</span> @sw <span style="color:#f92672">=</span> split <span style="color:#e6db74">&#34;&#34;</span>, $word;
+
+    <span style="color:#75715e"># all permutations</span>
+    <span style="color:#66d9ef">my</span> $iter <span style="color:#f92672">=</span> Algorithm::Permute<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(<span style="color:#f92672">\</span>@sw, length($word));
+    <span style="color:#66d9ef">my</span> @words;
+    <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">my</span> @res <span style="color:#f92672">=</span> $iter<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">next</span>) {
+        push @words, join <span style="color:#e6db74">&#34;&#34;</span>, @res;
+    }
+    @words <span style="color:#f92672">=</span> uniqstr @words;
+
+    <span style="color:#75715e"># use a hash to determine whether a permutation has appeared</span>
+    <span style="color:#66d9ef">my</span> %bucket <span style="color:#f92672">=</span> map {$_ <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">0</span>} @words;
+
+    <span style="color:#66d9ef">for</span> (@collection) {
+        <span style="color:#66d9ef">if</span> (defined($bucket{$_})) {
+            $bucket{$_}<span style="color:#f92672">++</span>;
+        }
+        <span style="color:#66d9ef">else</span> {
+            die <span style="color:#e6db74">&#34;Inconsistency: \&#34;$_\&#34; is not a permutation of \&#34;$word\&#34;.\n&#34;</span>;
+        }
+    }
+
+    <span style="color:#66d9ef">return</span> [ grep {<span style="color:#f92672">!</span>$bucket{$_}} @words ];
+</code></pre></div><h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-1">Blogs and Additional Submissions in Guest Languages for Task 1:</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/abigail/perl/ch-1.pl"><strong>Abigail</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/abigail/awk/ch-1.awk">Awk</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/abigail/bash/ch-1.sh">Bash</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/abigail/c/ch-1.c">C</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/abigail/go/ch-1.go">Go</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/abigail/java/ch-1.java">Java</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/abigail/lua/ch-1.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/abigail/node/ch-1.js">Node</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/abigail/pascal/ch-1.p">Pascal</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/abigail/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/abigail/r/ch-1.r">R</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/abigail/ruby/ch-1.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/abigail/tcl/ch-1.tcl">Tcl</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/bruce-gray/perl/ch-1.pl"><strong>Bruce Gray</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/bruce-gray/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/bruce-gray/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://blogs.perl.org/users/bruce_gray/2022/03/twc-episode-154---padawan-missing.html">TWC Episode 154 - Padawan Missing | Bruce Gray</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/colin-crain/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://colincrain.com/2022/03/05/who-took-my-cheese/">Who Took My Cheese? - Programming Excursions in Perl and Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://jacoby.github.io/2022/02/28/a-quick-one-while-i-do-other-things-weekly-challenge-154.html">A Quick One While I Do Other Things: Weekly Challenge #154 | Committed to Memory</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/e-choroba/perl5/ch-1.pl">Perl5</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/polettix/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.polettix.it/ETOOBUSY/2022/03/02/pwc-154-missing-permutation/">PWC154 - Missing Permutation - ETOOBUSY</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/peter-campbell-smith/perl/ch-1.pl"><strong>Peter Campbell Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://pjcs-pwc.blogspot.com/2022/02/perming-perl-plus-padovan-primes.html">Perming Perl plus Padovan primes</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/pokgopun/perl/ch-1.pl"><strong>PokGoPun</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/pokgopun/go/ch-1.go">Go</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/robert-dicicco/perl/ch-1.pl"><strong>Robert DiCicco</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/robert-dicicco/raku/ch-1.raku">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/robert-dicicco/tcl/ch-1.tcl">Tcl</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/roger-bell-west/javascript/ch-1.js">Javascript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/roger-bell-west/kotlin/ch-1.kt">Kotlin</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/roger-bell-west/lua/ch-1.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/roger-bell-west/postscript/ch-1.ps">Postscript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/roger-bell-west/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/roger-bell-west/raku/ch-1.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/roger-bell-west/ruby/ch-1.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/roger-bell-west/rust/ch-1.rs">Rust</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://blog.firedrake.org/archive/2022/03/The_Weekly_Challenge_154__Missing_Padovan.html">RogerBW&rsquo;s Blog: The Weekly Challenge 154: Missing Padovan</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/ulrich-rieke/cpp/ch-1.cpp">C++</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/ulrich-rieke/haskell/ch-1.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/ulrich-rieke/raku/ch-1.raku">Raku</a></p>
+<hr>
+<hr>
+<h1 id="PWC154TASK2">TASK 2</h1>
+<h1 id="padovan-prime">Padovan Prime</h1>
+<p><em>Submitted by: Mohammad S Anwar</em></p>
+<p>A Padovan Prime is a Padovan Number that’s also prime.</p>
+<p>In number theory, the Padovan sequence is the sequence of integers P(n) defined by the initial values.</p>
+<pre><code>    P(0) = P(1) = P(2) = 1
+</code></pre><p>and then followed by</p>
+<pre><code>    P(n) = P(n-2) + P(n-3)
+</code></pre><p>First few Padovan Numbers are as below:</p>
+<pre><code>    1, 1, 1, 2, 2, 3, 4, 5, 7, 9, 12, 16, 21, 28, 37, ...
+</code></pre><p>Write a script to compute first 10 distinct Padovan Primes.</p>
+<p><strong>Expected Output</strong></p>
+<pre><code>    2, 3, 5, 7, 37, 151, 3329, 23833, 13091204281, 3093215881333057
+</code></pre><h2 id="about-the-solutions-1">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/abigail/perl/ch-2.pl"><strong>Abigail</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/arne-sommer/perl/ch-2.pl"><strong>Arne Sommer</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/bruce-gray/perl/ch-2.pl"><strong>Bruce Gray</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/jaldhar-h-vyas/perl/ch-2.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/lubos-kolouch/perl/ch-2.pl"><strong>Lubos Kolouch</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/mattneleigh/perl/ch-2.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/perlboy1967/perl/ch-2.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/peter-campbell-smith/perl/ch-2.pl"><strong>Peter Campbell Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/pokgopun/perl/ch-2.pl"><strong>PokGoPun</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/robert-dicicco/perl/ch-2.pl"><strong>Robert DiCicco</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>The <a href="https://en.wikipedia.org/wiki/Padovan_sequence">Padovan numbers</a> are defined by a recurrence relation similar to that of the Fibonacci numbers, only in this case we do not sum the previous two values but rather skip the immediately previous value and sum the two values previous to that. As such we need three statring conditions, to compute</p>
+<p>P(<em>n</em>) = P(<em>n</em>-2) + P(<em>n</em>-3)</p>
+<p>The interesting thing about the Padovan numbers is in the choice of initial conditions. Notably the (1,1,1) selection allows one to construct a geometric approximation of a spiral analogous to a <a href="https://en.wikipedia.org/wiki/Golden_spiral">Fibonacci spiral</a>, but instead of φ, the spiral converges to another value, referred to as the &ldquo;plastic number&rdquo; and commonly notated as p.</p>
+<p>p is irrational and approximately equal to 1.32471, corresponding to the real solution to the equation</p>
+<p><em>x</em><sup>3</sup> = <em>x</em> + 1</p>
+<p>This parallels φ being the solution to the expression</p>
+<p><em>x</em><sup>2</sup> = <em>x</em> + 1</p>
+<p>To cut to the chase, what the plastic number is trying to do here, then, is to provide a three dimensional analog to the <a href="https://en.wikipedia.org/wiki/Golden_ratio">Golden Ratio</a>, as some sort of &ldquo;perfect&rdquo; design relationship. For a further exploration on this topic, I refer interested parties to my <a href="https://colincrain.com/2022/03/06/padovans-dog/">writeup on the subject</a>, specifically the &ldquo;Observations and Commentary&rdquo; section. As a lead in, I&rsquo;ll mention the Texas sharpshooter comes to visit our argument.</p>
+<p>What, if anything, the Padovans have to do with <em>prime numbers</em> is an elusive concept, but the idea that there might be a relationship is not completely without merit, as the identical recurrence relation with different starting conditions produces what is known as the <a href="https://en.wikipedia.org/wiki/Perrin_number">Perrin numbers</a>, which, also governed by the plastic number, have many remarkable connections to the primes.</p>
+<p>For the impatient though, the Padovan numbers do not seem to hold the same mystery with respect to guessing prime values. They can produce some very interesting and pleasing architecture, but I feel they aren&rsquo;t about to change our ideas on the nature of perfection in any meaningful way.</p>
+<p>There were 24 submissions for the second task this past week.</p>
+<h2 id="a-dance-of-space-filling-triangles">A DANCE of SPACE-FILLING TRIANGLES</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/mattneleigh/perl/ch-2.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/robert-dicicco/perl/ch-2.pl"><strong>Robert DiCicco</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/peter-campbell-smith/perl/ch-2.pl"><strong>Peter Campbell Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/bruce-gray/perl/ch-2.pl"><strong>Bruce Gray</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/pokgopun/perl/ch-2.pl"><strong>PokGoPun</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a></p>
+<p>To solve this challenge we need at least two parts: a part to compute really big integers and a part to determine whether or not a given number is prime. The big integer part is for our numbers: the Padovan sequence is fairly straightforward but like the Fibonacci numbers they expand exponentially, albeit converging to the smaller plastic base instead of φ.</p>
+<p>In a manner analogous to Binet&rsquo;s formula, there exists a closed-form equation to produce the Padovan numbers, which can be briefly reduced to the true statement:</p>
+<p>∀ <em>n</em> ≥ 0, <strong>P</strong>(<em>n</em>) is the integer closest to
+(<em>p</em><sup>5</sup>/2<em>p</em>+3)<em>p</em><sup><em>n</em></sup> where <em>p</em> is the plastic number.</p>
+<p>Although it would have been wild, no one actually used this.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/mattneleigh/perl/ch-2.pl"><strong>Matthew Neleigh</strong></a></p>
+<p>Matthew is going to start us off today with a pair of well-documented functions, <code>next_padovan()</code> which predictably delivers the next padovan number in an ever-expanding sequence, and <code>is_prime()</code> which tests for primality. A outer control structure loops through new padovan values and tests them, and primes are added to a hash as keys. This last step works to create a unique set, which by calling <code>keys</code> and sorting will produce the requested list.</p>
+<p><code>next_padovan()</code> is well-explained:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e">################################################################################</span>
+    <span style="color:#75715e"># Calculate the next number in the Padovan sequence- starting with P(0) (or 1)</span>
+    <span style="color:#75715e"># when the function is first called.  There is no way to reset the sequence</span>
+    <span style="color:#75715e"># once it has begun.</span>
+    <span style="color:#75715e"># Takes no arguments.</span>
+    <span style="color:#75715e"># Returns:</span>
+    <span style="color:#75715e"># * The next number in the Padovan sequence, after the one returned in the</span>
+    <span style="color:#75715e">#   previous call to this function, if any; P(0), which has a value of 1, is</span>
+    <span style="color:#75715e">#   returned upon the first call to this function</span>
+    <span style="color:#75715e">################################################################################</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">next_padovan</span>{
+        <span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.10</span>;
+
+        state @sequence;
+        state $calls <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+        <span style="color:#66d9ef">unless</span>(@sequence){
+            <span style="color:#75715e"># This only happens the first time this</span>
+            <span style="color:#75715e"># function is called</span>
+            @sequence <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>);
+        }
+
+        <span style="color:#66d9ef">if</span>($calls <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">3</span>){
+            $calls<span style="color:#f92672">++</span>;
+            <span style="color:#66d9ef">return</span>(<span style="color:#ae81ff">1</span>);
+        }
+
+        <span style="color:#75715e"># Calculate a new number in the sequence,</span>
+        <span style="color:#75715e"># and delete an old one</span>
+        push(@sequence, $sequence[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> $sequence[<span style="color:#ae81ff">0</span>]);
+        shift(@sequence);
+
+        <span style="color:#66d9ef">return</span>($sequence[<span style="color:#ae81ff">2</span>]);
+
+    }
+</code></pre></div><p>The complement, <code>is_prime()</code> uses a less-common method of dividing out to rapidly check for primality, based on the fact that all primes greater than 3 are of the form</p>
+<p><em>p</em> = 6<em>k</em> ± 1 : <em>k</em> &gt; 0</p>
+<p>Here the loop variable provides the lower bound ( -1 ) and this is checked for divisibility along with adding 2 to the iterator to obtain the upper option ( +1 ).</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_prime</span>{
+        <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> int(shift());
+
+        <span style="color:#66d9ef">my</span> $i;
+
+        <span style="color:#75715e"># Take care of a few easy cases</span>
+        <span style="color:#66d9ef">return</span>(<span style="color:#ae81ff">1</span>)
+            <span style="color:#66d9ef">if</span>(($n <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span>) <span style="color:#f92672">||</span> ($n <span style="color:#f92672">==</span> <span style="color:#ae81ff">3</span>));
+        <span style="color:#66d9ef">return</span>(<span style="color:#ae81ff">0</span>)
+            <span style="color:#66d9ef">if</span>(($n <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">||</span> <span style="color:#f92672">!</span>($n % 2) <span style="color:#f92672">||</span> <span style="color:#f92672">!</span>($n % 3));
+
+        <span style="color:#75715e"># See if certain factors divide evenly</span>
+        <span style="color:#66d9ef">for</span>($i <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>; $i <span style="color:#f92672">*</span> $i <span style="color:#f92672">&lt;=</span> $n; $i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">6</span>){
+            <span style="color:#66d9ef">if</span>(<span style="color:#f92672">!</span>($n % <span style="color:#960050;background-color:#1e0010">$</span>i) <span style="color:#f92672">||</span> <span style="color:#f92672">!</span>($n % <span style="color:#960050;background-color:#1e0010">($</span>i <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>))){
+                <span style="color:#66d9ef">return</span>(<span style="color:#ae81ff">0</span>);
+            }
+        }
+
+        <span style="color:#66d9ef">return</span>(<span style="color:#ae81ff">1</span>);
+
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/robert-dicicco/perl/ch-2.pl"><strong>Robert DiCicco</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/robert-dicicco/raku/ch-2.raku">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/robert-dicicco/tcl/ch-2.tcl">Tcl</a></p>
+<p>By substituting some module functions to serve the same roles this method can be streamlined. The same basic idea remains, though, that we produce a list of Padovan numbers and validate them for primality until we have collected 10.</p>
+<p>The primality test in <code>ntheory</code>, a pseudonym for <code>Math::Prime::Util</code>, is a complex assortment of methods that had been exhaustively tested for every value up to 2<sup>64</sup>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> ntheory <span style="color:#e6db74">qw/is_prime/</span>;
+    <span style="color:#66d9ef">use</span> List::MoreUtils <span style="color:#e6db74">qw/uniq/</span>;
+
+    <span style="color:#66d9ef">my</span> @nums <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>);
+    <span style="color:#66d9ef">my</span> @out <span style="color:#f92672">=</span> ();
+    <span style="color:#66d9ef">my</span> $count <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>;
+
+    <span style="color:#66d9ef">while</span> ( $count <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> ) {
+      <span style="color:#66d9ef">my</span> $len <span style="color:#f92672">=</span> scalar @nums;
+      <span style="color:#66d9ef">my</span> $padnum <span style="color:#f92672">=</span> $nums[$len<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>] <span style="color:#f92672">+</span> $nums[$len<span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>];
+      push @nums, $padnum;
+
+      <span style="color:#66d9ef">if</span>(is_prime($padnum)){
+        push @out, $padnum;
+        $count<span style="color:#f92672">--</span>;
+      }
+    }
+
+    @out <span style="color:#f92672">=</span> uniq(@out);
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/peter-campbell-smith/perl/ch-2.pl"><strong>Peter Campbell Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://pjcs-pwc.blogspot.com/2022/02/perming-perl-plus-padovan-primes.html">Perming Perl plus Padovan primes</a></p>
+<p>This basic technique is all well and good to provide the first 10 Padovan primes, satisfying the criteria, but after that things get rather out-of-hand. The problem is that the tenth value, 3093215881333057 is not far within the 64-bit Perl integer limit, and from there the 11th value is nowhere to be seen.</p>
+<p>To get around this Peter uses the <code>BigInt</code> pragma, allowing us arbitrary sized integers within special object containers. Accommodating it&rsquo;s peculiarities takes a bit of getting used to, but allows us to go a to stellar heights. Which is good to know because as it turns out the next prime is located at</p>
+<p>1363005552434666078217421284621279933627102780881053358473</p>
+<p>and te one after that at</p>
+<p>1558877695141608507751098941899265975115403618621811951868598809164180630185566719</p>
+<p>Well, you get the idea.</p>
+<p>Of note by using <code>Math::Prime::Util::GMP</code> on top of all this we can further improve the <code>is-prime()</code> function should one desire to, say if you were tinkering in the cryptographic realm.</p>
+<p>Also, it does seem a bit of a waste to filter the results through a whole extra <code>unique()</code> function of some sort just to get rid of what turns out to be a single duplicated 2. Peter provides a handy alternative method, compiling his output into a single string for printing and then trimming off the extra value. As no matter how many values are requested this front section remains the same this is an efficient, consistent solution to what is essentially a cosmetic problem.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">&#39;is_prime&#39;</span>;
+    <span style="color:#66d9ef">use</span> Math::BigInt lib <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;GMP&#39;</span>;
+
+    <span style="color:#75715e"># as in challenge text</span>
+    $p[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> $p[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> $p[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;1&#39;</span>;
+
+    <span style="color:#75715e"># make successive Padovan numbers</span>
+    <span style="color:#66d9ef">for</span> ($n <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>; $count <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">11</span>; $n <span style="color:#f92672">++</span>) {
+        $p[$n] <span style="color:#f92672">=</span> Math::BigInt<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>($p[$n <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>]);
+        $p[$n]<span style="color:#f92672">-&gt;</span>badd($p[$n <span style="color:#f92672">-</span> <span style="color:#ae81ff">3</span>]);
+
+        <span style="color:#75715e"># but is it prime?</span>
+        <span style="color:#66d9ef">if</span> (is_prime($p[$n])) {
+        	$string <span style="color:#f92672">.=</span> <span style="color:#e6db74">qq[$p[$n], ]</span>;
+        	$count <span style="color:#f92672">++</span>;
+        }
+    }
+
+    <span style="color:#75715e"># eliminate the repeated &#39;2&#39; and the final &#39;, &#39;</span>
+    say substr($string, <span style="color:#ae81ff">3</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>);
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/polettix/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.polettix.it/ETOOBUSY/2022/03/03/pwc154-padovan-prime/">PWC154 - Padovan Prime - ETOOBUSY</a></p>
+<p>  <strong>alternative solution:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/polettix/perl/ch-2-alt.pl">ch-2-alternate</a></p>
+<p>Ok then. Now that we&rsquo;ve homed in on the result directly, let&rsquo;s take the scenic route and mix it up a bit.</p>
+<p>Flavio proudly returns with a veritable <em>handful</em> of iterators to solve the problem: one to produce the Padovans, which is handed to a <code>uniq</code> filter iterator, which in turn gets joined up with an <code>is_prime()</code> subroutine coderef and handed to a <code>grep</code>-like iterator generator. In the end each call to the final coderef returned drops the next Padovan prime on us.</p>
+<p>So much nesting of first-class function references! So much composing! Ain&rsquo;t life grand?</p>
+<p>There&rsquo;s no way to clip this one down and have it still have a prayer of making any sense, to here&rsquo;s the whole shebang:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> shift <span style="color:#f92672">||</span> <span style="color:#ae81ff">10</span>;
+    <span style="color:#66d9ef">my</span> $it <span style="color:#f92672">=</span> grep_it(<span style="color:#f92672">\&amp;</span>is_prime, uniq(padovan_number_iterator()));
+    say join <span style="color:#e6db74">&#39;, &#39;</span>, map { $it<span style="color:#f92672">-&gt;</span>() } <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $n;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">padovan_number_iterator</span> {
+       <span style="color:#66d9ef">my</span> ($Pa, $Pb, $Pc) <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>) x <span style="color:#ae81ff">3</span>;
+       <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">sub</span> {
+          (<span style="color:#66d9ef">my</span> $retval, $Pa, $Pb, $Pc) <span style="color:#f92672">=</span> ($Pa, $Pb, $Pc, $Pa <span style="color:#f92672">+</span> $Pb);
+          <span style="color:#66d9ef">return</span> $retval;
+       };
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">uniq</span> ($it) {
+       <span style="color:#66d9ef">my</span> $previous <span style="color:#f92672">=</span> $it<span style="color:#f92672">-&gt;</span>();
+       <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">sub</span> {
+          <span style="color:#66d9ef">while</span> (<span style="color:#e6db74">&#39;necessary&#39;</span>) {
+             <span style="color:#66d9ef">my</span> $current <span style="color:#f92672">=</span> $it<span style="color:#f92672">-&gt;</span>();
+             <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $current <span style="color:#f92672">==</span> $previous;
+             (<span style="color:#66d9ef">my</span> $retval, $previous) <span style="color:#f92672">=</span> ($previous, $current);
+             <span style="color:#66d9ef">return</span> $retval;
+          }
+       }
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">grep_it</span> ($condition, $it) {
+       <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">sub</span> {
+          <span style="color:#66d9ef">while</span> (<span style="color:#e6db74">&#39;necessary&#39;</span>) {
+             <span style="color:#66d9ef">my</span> $x <span style="color:#f92672">=</span> $it<span style="color:#f92672">-&gt;</span>();
+             <span style="color:#66d9ef">return</span> $x <span style="color:#66d9ef">if</span> $condition<span style="color:#f92672">-&gt;</span>($x);
+          }
+       }
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_prime</span> { <span style="color:#75715e"># https://en.wikipedia.org/wiki/Primality_test</span>
+       <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">if</span> $_[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">2</span>;
+       <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> $_[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">3</span>;
+       <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">unless</span> ($_[<span style="color:#ae81ff">0</span>] % 2) <span style="color:#f92672">&amp;&amp;</span> ($_[<span style="color:#ae81ff">0</span>] % 3);
+       <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">6</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>; $i <span style="color:#f92672">*</span> $i <span style="color:#f92672">&lt;=</span> $_[<span style="color:#ae81ff">0</span>]; $i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">6</span>) {
+          <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">unless</span> ($_[<span style="color:#ae81ff">0</span>] % <span style="color:#960050;background-color:#1e0010">$</span>i) <span style="color:#f92672">&amp;&amp;</span> ($_[<span style="color:#ae81ff">0</span>] % <span style="color:#960050;background-color:#1e0010">($</span>i <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>));
+       }
+       <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/bruce-gray/perl/ch-2.pl"><strong>Bruce Gray</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/bruce-gray/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/bruce-gray/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://blogs.perl.org/users/bruce_gray/2022/03/twc-episode-154---padawan-missing.html">TWC Episode 154 - Padawan Missing | Bruce Gray</a></p>
+<p>Bruce clearly demonstrates that using all available resources this task can be quicky dispatched — with the caveat granted that the lazy-list generator here might not be familiar to&hellip; well, I&rsquo;m going to hazard, nearly <em>all</em> of you. That said, we still make Padovans, filter them first for primality, and then again as unique values to create the requested data.</p>
+<p>This is the whole beautifully compact thing:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Modern::Perl;
+    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw&lt;uniq head&gt;</span>;
+    <span style="color:#66d9ef">use</span> List::Lazy <span style="color:#e6db74">qw&lt;lazy_list&gt;</span>;
+    <span style="color:#66d9ef">use</span> ntheory    <span style="color:#e6db74">qw&lt;is_prime&gt;</span>;
+
+    <span style="color:#66d9ef">my</span> $Padovan <span style="color:#f92672">=</span> lazy_list {
+        push  @$_, $_<span style="color:#f92672">-&gt;</span>[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>] <span style="color:#f92672">+</span> $_<span style="color:#f92672">-&gt;</span>[<span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>];
+        shift @$_;
+    } [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>];
+
+    <span style="color:#66d9ef">my</span> $prime_pad <span style="color:#f92672">=</span> $Padovan<span style="color:#f92672">-&gt;</span>grep( <span style="color:#66d9ef">sub</span> { is_prime($_) } );
+
+    say join <span style="color:#e6db74">&#39;, &#39;</span>, uniq $prime_pad<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">next</span>(<span style="color:#ae81ff">11</span>);
+</code></pre></div><p>The <code>Lazy::List</code> module produces list objects whose values get created on demand as they are needed, but also retained and never recomputed. This is ideal for a recurrence relation where whenever we need the next value we simply compute it from the block provided. The object comes with its own <code>grep</code> method, which returns a new now-filtered lazy list object-thingy, and <code>next</code> which delivers the next <em>n</em> items.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/ulrich-rieke/cpp/ch-2.cpp">C++</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/ulrich-rieke/haskell/ch-2.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/ulrich-rieke/raku/ch-2.raku">Raku</a></p>
+<p>There was quite a bit of variety among the solutions to the parts of the puzzle as well, even among the solutions that fit the same basic pattern. Lets take a moment to look at some of the alternatives in constructing the components.</p>
+<p>Ulrich presents us with another version of the control flow, this time using a hash to keep track of values taken by the output list to make sure no duplicates are presented.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> @padovans <span style="color:#f92672">=</span> ( <span style="color:#ae81ff">1</span> , <span style="color:#ae81ff">1</span> , <span style="color:#ae81ff">1</span> ) ;
+    <span style="color:#66d9ef">my</span> @padovanPrimes ;
+    <span style="color:#66d9ef">my</span> %inserted ;
+    <span style="color:#66d9ef">while</span> ( scalar( @padovanPrimes <span style="color:#f92672">!=</span> <span style="color:#ae81ff">10</span> ) ) {
+      push @padovans , $padovans[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+</span> $padovans[<span style="color:#ae81ff">1</span>] ;
+      <span style="color:#66d9ef">my</span> $last <span style="color:#f92672">=</span> $padovans[ <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> ] ;
+      <span style="color:#66d9ef">if</span> ( isPrime( $last )) {
+          <span style="color:#66d9ef">if</span> ( <span style="color:#f92672">not</span> exists( $inserted{ $last } )) {
+        push @padovanPrimes , $last ;
+          }
+          $inserted{$last}<span style="color:#f92672">++</span> ;
+      }
+      shift @padovans ;
+    }
+    map {<span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$_ &#34;</span>} @padovanPrimes ;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/pokgopun/perl/ch-2.pl"><strong>PokGoPun</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/pokgopun/go/ch-2.go">Go</a></p>
+<p>PokGoPun seems to have wandered in the forest of primality checking, trying a few approaches before landing on an alternative implementation of the 6<em>k</em> ± 1 test. As all primes fit this pattern we only need to check factors of this form up to the square root, which for large numbers runs about 6 times faster than checking all possible factors in the range.</p>
+<p>Of several <code>isPrime()</code> functions included, <code>isPrimeX()</code> seems the most sophisticated version.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">isPrimeX</span>{
+        <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> shift;
+        <span style="color:#66d9ef">return</span> $n <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> $n <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">3</span>;
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $n % 2 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> $n % 3 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>;
+        <span style="color:#66d9ef">while</span> ( $i<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">&lt;=</span> $n){
+        	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $n % <span style="color:#960050;background-color:#1e0010">$</span>i <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> $n % <span style="color:#960050;background-color:#1e0010">($</span>i <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+        	$i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">6</span>;
+        }
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/roger-bell-west/javascript/ch-2.js">Javascript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/roger-bell-west/kotlin/ch-2.kt">Kotlin</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/roger-bell-west/lua/ch-2.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/roger-bell-west/postscript/ch-2.ps">Postscript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/roger-bell-west/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/roger-bell-west/raku/ch-2.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/roger-bell-west/ruby/ch-2.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/roger-bell-west/rust/ch-2.rs">Rust</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://blog.firedrake.org/archive/2022/03/The_Weekly_Challenge_154__Missing_Padovan.html">RogerBW&rsquo;s Blog: The Weekly Challenge 154: Missing Padovan</a></p>
+<p>As an alternative, Roger provides us with another implementation of the 6<em>k</em> ± 1 primality test to look at.</p>
+<p>As a simple up/down test for primality is asking for much less data than a full factorization, there are a large number of techniques that have been developed that will determine <em>whether</em> a factor exists without actually wasting resources determining its value.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">isprime</span> {
+      <span style="color:#66d9ef">my</span> $candidate<span style="color:#f92672">=</span>shift;
+      <span style="color:#66d9ef">if</span> ($candidate<span style="color:#f92672">==</span><span style="color:#ae81ff">2</span>) {
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+      } <span style="color:#66d9ef">elsif</span> ($candidate<span style="color:#f92672">==</span><span style="color:#ae81ff">3</span>) {
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+      } <span style="color:#66d9ef">elsif</span> ($candidate % 2 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+      } <span style="color:#66d9ef">elsif</span> ($candidate % 3 <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+      }
+      <span style="color:#66d9ef">my</span> $anchor<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+      <span style="color:#66d9ef">my</span> $limit<span style="color:#f92672">=</span>int(sqrt($candidate));
+      <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
+        $anchor<span style="color:#f92672">+=</span><span style="color:#ae81ff">6</span>;
+        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $t ($anchor<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,$anchor<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>) {
+          <span style="color:#66d9ef">if</span> ($t <span style="color:#f92672">&gt;</span> $limit) {
+            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+          }
+          <span style="color:#66d9ef">if</span> ($candidate % <span style="color:#960050;background-color:#1e0010">$</span>t <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+          }
+        }
+      }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/colin-crain/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://colincrain.com/2022/03/06/padovans-dog/">Padovans Dog - Programming Excursions in Perl and Raku</a></p>
+<p>From my own solution I present a novel manner of computing the Padovans, by just maintaining a queue of three ascending values in a short array. By careful manipulation of Perl&rsquo;s rules of assignment, we take the second value and add it to the value returned by shifting the first element off the array. Now the array has only two elements in indices 0 and 1,  and the summed new computation is pushed into the third position. As we only ever care about the last element at any one time this is all the data we need to keep.</p>
+<p>I was pleased at the way this turned out. The order of the operations in the second line  is very important.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">next_pad</span> {
+        state @p <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>);
+        push @p, $p[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> shift @p;
+        <span style="color:#66d9ef">return</span> $p[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+    }
+</code></pre></div><p>To test primality I used one step above the most basic form, using trial division for 2 followed by the odd numbers.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_prime</span> ($n) {
+        <span style="color:#66d9ef">my</span> $sqrt <span style="color:#f92672">=</span> int sqrt $n;
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">unless</span> $n % 2 <span style="color:#f92672">or</span> $n <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span>;
+
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $x <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>; $x <span style="color:#f92672">&lt;=</span> $sqrt; $x <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span>) {
+            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">unless</span> $n % <span style="color:#960050;background-color:#1e0010">$</span>x;
+        }
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+    }
+</code></pre></div><p>And as for the pesky extra value, it was clear to me that any duplicate would have to be a direct side-effect of the triplet of 1s at the beginning, so I installed a check to skip adding a value it was the same as the last value in the output list.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">while</span> ( @out <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">10</span>) {
+        <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> next_pad();
+        <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> (defined $out[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">and</span> $out[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">==</span> $c);
+        push @out, $c <span style="color:#66d9ef">if</span> is_prime( $c ) ;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://jacoby.github.io/2022/02/28/a-quick-one-while-i-do-other-things-weekly-challenge-154.html">A Quick One While I Do Other Things: Weekly Challenge #154 | Committed to Memory</a></p>
+<p>Finally we&rsquo;ll end with Dave, who provides us with a compact solution that finds the solution in short order. In all practicality this is all that we really need for this problem. For the ten items requested none of this fascinating optimization were seen represented is actually necessary, you know. As written this serves its goal, and it&rsquo;s important to keep your eye on the prize.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw{ uniq }</span>;
+
+    push @padovan, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">while</span> ( scalar @primes <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">10</span> ) {
+        <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> $padovan[<span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>] <span style="color:#f92672">+</span> $padovan[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>];
+        push @padovan, $n;
+        push @primes,  $n <span style="color:#66d9ef">if</span> is_prime($n);
+        @primes <span style="color:#f92672">=</span> uniq @primes;
+    }
+
+    say join <span style="color:#e6db74">&#39; &#39;</span>, @primes;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_prime</span> ($n) {
+        <span style="color:#66d9ef">for</span> ( <span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> sqrt $n ) { <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">unless</span> $n % <span style="color:#960050;background-color:#1e0010">$</span>_ }
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+    }
+</code></pre></div><h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-2">Blogs and Additional Submissions in Guest Languages for Task 2:</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/abigail/perl/ch-2.pl"><strong>Abigail</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/abigail/awk/ch-2.awk">Awk</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/abigail/bash/ch-2.sh">Bash</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/abigail/basic/ch-2.bas">Basic</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/abigail/bc/ch-2.bc">Bc</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/abigail/befunge-93/ch-2.bf93">Befunge-93</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/abigail/c/ch-2.c">C</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/abigail/cobol/ch-2.cb">Cobol</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/abigail/csh/ch-2.csh">Csh</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/abigail/erlang/ch-2.erl">Erlang</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/abigail/forth/ch-2.fs">Forth</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/abigail/fortran/ch-2.f90">Fortran</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/abigail/go/ch-2.go">Go</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/abigail/java/ch-2.java">Java</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/abigail/lua/ch-2.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/abigail/m4/ch-2.m4">M4</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/abigail/mmix/ch-2.mms">Mmix</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/abigail/node/ch-2.js">Node</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/abigail/ocaml/ch-2.ml">Ocaml</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/abigail/pascal/ch-2.p">Pascal</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/abigail/php/ch-2.php">Php</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/abigail/postscript/ch-2.ps">Postscript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/abigail/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/abigail/r/ch-2.r">R</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/abigail/rexx/ch-2.rexx">Rexx</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/abigail/ruby/ch-2.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/abigail/scheme/ch-2.scm">Scheme</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/abigail/sed/ch-2.sed">Sed</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/abigail/sql/ch-2.sql">Sql</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/abigail/tcl/ch-2.tcl">Tcl</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/adam-russell/prolog/ch-2.p">Prolog</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2022/03/06">Padovan Prime Directive: Find the Missing Permutations — Perl — RabbitFarm</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://www.rabbitfarm.com/cgi-bin/blosxom/prolog/2022/03/06">Padovan Prime Directive: Find the Missing Permutations — Prolog — RabbitFarm</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/arne-sommer/perl/ch-2.pl"><strong>Arne Sommer</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/arne-sommer/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://raku-musings.com/padovan-missing.html">Padovan is Missing with Raku and Perl</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/athanasius/raku/ch-2.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung:</strong></a></p>
+<p>  <strong>alternative solution:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/cheok-yin-fung/perl/ch-2-test-pre_calc.pl">pre-calculated prime list</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/e-choroba/perl5/ch-2.pl">Perl5</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/jaldhar-h-vyas/perl/ch-2.pl"><strong>Jaldhar H. Vyas</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/jaldhar-h-vyas/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://www.braincells.com/perl/2022/03/perl_weekly_challenge_week_154.html">Perl Weekly Challenge: Week 154</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-154/james-smith">Perl Weekly Challenge #154</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/laurent-rosenfeld/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://blogs.perl.org/users/laurent_r/2022/03/perl-weekly-challenge-154-missing-permutations-and-padovan-primes.html">Perl Weekly Challenge 154: Missing Permutations and Padovan Primes</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/lubos-kolouch/perl/ch-2.pl"><strong>Lubos Kolouch</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/lubos-kolouch/python/ch-2.py">Python</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-154/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://wlmb.github.io/2022/02/28/PWC154/">Perl Weekly Challenge 154 – W. Luis Mochán</a></p>
+<hr>
+<hr>
+<p> &nbsp; </p>
+<p> &nbsp; </p>
+<p> &nbsp; </p>
+<p> &nbsp; </p>
+<center>
+<h1 id="PWC154BLOGS">_________ THE BLOG PAGES _________</h1>
+</center>
+<hr>
+<p><strong>That’s it for me this week, people! Warped by the rain, driven by the snow, resolute and unbroken by the torrential influx, by some miracle I somehow continue to maintain my bearings.</strong></p>
+<p><strong>Looking forward to next wave, the perfect wave, I am: <em>your humble servant</em>.</strong></p>
+<h1 id="PWC154BLOGS">But if Your Unquenchable <em>THIRST</em> for <em>KNOWLEDGE</em> is not <em>SLAKED</em>,</h1>
+<h1 id="then-run-dont-walk-to-the-watering-hole">then <em>RUN</em> <em>(dont walk!)</em> to the <em>WATERING HOLE</em></h1>
+<h1 id="and-follow-these-blog-links">and <em>FOLLOW</em> these <em>BLOG</em> <em>LINKS</em>:</h1>
+<p><strong>( &hellip;<em>don&rsquo;t think, trust your training, you&rsquo;re in the zone, just do it &hellip;</em> )</strong></p>
+<p><strong>Adam Russell</strong></p>
+<ul>
+<li><a href="http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2022/03/06">Padovan Prime Directive: Find the Missing Permutations — Perl — RabbitFarm</a> ( <em>Perl</em> )</li>
+<li><a href="http://www.rabbitfarm.com/cgi-bin/blosxom/prolog/2022/03/06">Padovan Prime Directive: Find the Missing Permutations — Prolog — RabbitFarm</a> ( <em>Prolog</em> )</li>
+</ul>
+<p><strong>Arne Sommer</strong></p>
+<ul>
+<li><a href="https://raku-musings.com/padovan-missing.html">Padovan is Missing with Raku and Perl</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Bruce Gray</strong></p>
+<ul>
+<li><a href="http://blogs.perl.org/users/bruce_gray/2022/03/twc-episode-154---padawan-missing.html">TWC Episode 154 - Padawan Missing | Bruce Gray</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Colin Crain</strong></p>
+<ul>
+<li><a href="https://colincrain.com/2022/03/05/who-took-my-cheese/">Who Took My Cheese? - Programming Excursions in Perl and Raku</a> ( <em>Perl &amp; Raku</em> )</li>
+<li><a href="https://colincrain.com/2022/03/06/padovans-dog/">Padovans Dog - Programming Excursions in Perl and Raku</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Dave Jacoby</strong></p>
+<ul>
+<li><a href="https://jacoby.github.io/2022/02/28/a-quick-one-while-i-do-other-things-weekly-challenge-154.html">A Quick One While I Do Other Things: Weekly Challenge #154 | Committed to Memory</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Flavio Poletti</strong></p>
+<ul>
+<li><a href="https://github.polettix.it/ETOOBUSY/2022/03/02/pwc-154-missing-permutation/">PWC154 - Missing Permutation - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+<li><a href="https://github.polettix.it/ETOOBUSY/2022/03/03/pwc154-padovan-prime/">PWC154 - Padovan Prime - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Jaldhar H. Vyas</strong></p>
+<ul>
+<li><a href="https://www.braincells.com/perl/2022/03/perl_weekly_challenge_week_154.html">Perl Weekly Challenge: Week 154</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>James Smith</strong></p>
+<ul>
+<li><a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-154/james-smith">Perl Weekly Challenge #154</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Laurent Rosenfeld</strong></p>
+<ul>
+<li><a href="http://blogs.perl.org/users/laurent_r/2022/03/perl-weekly-challenge-154-missing-permutations-and-padovan-primes.html">Perl Weekly Challenge 154: Missing Permutations and Padovan Primes</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Luca Ferrari</strong></p>
+<ul>
+<li>
+<p><a href="https://fluca1978.github.io/2022/02/28/PerlWeeklyChallenge154.html#task1">Perl Weekly Challenge 154: lazyness and recursion – Luca Ferrari – Open Source advocate, human being</a> ( <em>Raku</em> )</p>
+</li>
+<li>
+<p><a href="https://fluca1978.github.io/2022/02/28/PerlWeeklyChallenge154.html#task1pg">Perl Weekly Challenge 154: lazyness and recursion – Luca Ferrari – Open Source advocate, human being</a> ( <em>PostgreSQL</em> )</p>
+</li>
+<li>
+<p><a href="https://fluca1978.github.io/2022/02/28/PerlWeeklyChallenge154.html#task1plperl">Perl Weekly Challenge 154: lazyness and recursion – Luca Ferrari – Open Source advocate, human being</a> ( <em>PL/Perl</em> )</p>
+</li>
+</ul>
+<p><strong>Mark Senn</strong></p>
+<ul>
+<li><a href="https://engineering.purdue.edu/~mark/twc-154-1.pdf">Missing Permutation</a> ( <em>Raku</em> )</li>
+<li><a href="https://engineering.purdue.edu/~mark/twc-154-2.pdf">Padovan Prime</a> ( <em>Raku</em> )</li>
+</ul>
+<p><strong>Peter Campbell Smith</strong></p>
+<ul>
+<li><a href="https://pjcs-pwc.blogspot.com/2022/02/perming-perl-plus-padovan-primes.html">Perming Perl plus Padovan primes</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Roger Bell_West</strong></p>
+<ul>
+<li><a href="https://blog.firedrake.org/archive/2022/03/The_Weekly_Challenge_154__Missing_Padovan.html">RogerBW&rsquo;s Blog: The Weekly Challenge 154: Missing Padovan</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>W. Luis Mochan</strong></p>
+<ul>
+<li><a href="https://wlmb.github.io/2022/02/28/PWC154/">Perl Weekly Challenge 154 – W. Luis Mochán</a> ( <em>Perl</em> )</li>
+</ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="/contact" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2022
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.nomtimes.co.uk/site/shop.do?cref=PerlBooks" title="Free Perl Books" rel="noreferrer" target="_blank">
+                            <img src="/images/NomTimes.jpg" style="width:22px; height: 18px;" alt=""/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jQurey/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-136524905-1', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+
+</html>
+
