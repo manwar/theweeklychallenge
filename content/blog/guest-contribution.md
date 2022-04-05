@@ -33,7 +33,7 @@ Please find below guest contributions.
 #### &nbsp; * &nbsp; [[007](#007)] &nbsp; * &nbsp; [[006](#006)] &nbsp; * &nbsp; [[005](#005)] &nbsp; * &nbsp; [[004](#004)] &nbsp; * &nbsp; [[003](#003)] &nbsp; * &nbsp; [[002](#002)] &nbsp; * &nbsp; [[001](#001)] &nbsp; *
 
 ----
-## [The Weekly Challenge - 158](/blog/perl-weekly-challenge-158) {#158}
+## [The Weekly Challenge - 159](/blog/perl-weekly-challenge-159) {#159}
 <br>
 
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-159/roger-bell-west/javascript/ch-1.js) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-159/roger-bell-west/javascript/ch-2.js) in **JavaScript**.
