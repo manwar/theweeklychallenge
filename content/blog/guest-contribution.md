@@ -36,6 +36,8 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 160](/blog/perl-weekly-challenge-160) {#160}
 <br>
 
+##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/eric-cheung/python/ch-2.py) in **Python**.
+
 ##### **Luca Ferrari** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/luca-ferrari/postgresql/ch-1.sql) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/luca-ferrari/postgresql/ch-2.sql) in **PostgreSQL**.
 
 ##### **Maxim Kolodyazhny** shared solution to [**Task #1**](https://github.com/perlweeklychallenge-club/master/challenge-160/maxim-kolodyazhny/elixir/four_is_magic.ex) in **Elixir**,
