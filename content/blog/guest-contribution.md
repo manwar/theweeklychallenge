@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2022-04-11T00:00:00+00:00
+date: 2022-04-12T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -41,6 +41,8 @@ Please find below guest contributions.
 ##### **Luca Ferrari** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/luca-ferrari/postgresql/ch-1.sql) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/luca-ferrari/postgresql/ch-2.sql) in **PostgreSQL**.
 
 ##### **Maxim Kolodyazhny** shared solution to [**Task #1**](https://github.com/perlweeklychallenge-club/master/challenge-160/maxim-kolodyazhny/elixir/four_is_magic.ex) in **Elixir**,
+
+##### **Mohammad Meraj Zia** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/ziameraj16/java/EquilibriumIndex.java) in **Java**.
 
 ##### **PokGoPun** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/pokgopun/go/ch-1.go) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/pokgopun/go/ch-2.go) in **Go**.
 
