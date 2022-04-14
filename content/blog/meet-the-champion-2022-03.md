@@ -42,6 +42,8 @@ Today we are talking to `Eric Cheung`, the winner of **March 2022** of `The Week
 
 **Eric:** Actually my friend `Cheok-Yin Fung` invited me to join The Weekly Challenge
 
+---
+
 <br>
 
 **Mohammad:** What do you like the most about `The Weekly Challenge`?
