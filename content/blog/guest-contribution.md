@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2022-04-14T00:00:00+00:00
+date: 2022-04-15T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -41,6 +41,8 @@ Please find below guest contributions.
 ##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/deadmarshal/lua/ch-1.lua) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/deadmarshal/lua/ch-2.lua) in **Lua**.
 
 ##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/deadmarshal/pascal/ch1.pas) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/deadmarshal/pascal/ch2.pas) in **Pascal**.
+
+##### **Conor Hoekstra** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/conor-hoekstra/bqn/ch-2.bqn) in **BQN**.
 
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/eric-cheung/python/ch-2.py) in **Python**.
 
