@@ -138,7 +138,7 @@ Please find [**past solutions**](/blog/guest-contribution) by respected **guests
 
 <br>
 
-## Task 1: Abecedarian Words
+## Task 1: Abecedarian Words {#TASK1}
 ##### **Submitted by:** [Ryan J Thompson](https://ry.ca)
 ***
 
@@ -148,7 +148,7 @@ Optionally, using only abecedarian words, leave a short comment in your code to 
 
 <br>
 
-## Task 2: Pangrams
+## Task 2: Pangrams {#TASK2}
 ##### **Submitted by:** [Ryan J Thompson](https://ry.ca)
 ***
 
