@@ -166,7 +166,7 @@ Your pangram does not have to be a syntactically valid English sentence (doing s
     Pangram which contains only abecedarian words (see challenge 1)
     Pangram such that each word "solves" exactly one new letter. For example, such a pangram might begin with (newly solved letters in bold):
         a ah hi hid die ice tea ...
-        What is the longest possible anagram generated with this method? (All solutions will contain 26 words, so focus on the letter count.)
+        What is the longest possible pangram generated with this method? (All solutions will contain 26 words, so focus on the letter count.)
     Pangrams that have the weirdest (PG-13) Google image search results
     Anything interesting goes!
 
