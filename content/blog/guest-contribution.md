@@ -56,7 +56,7 @@ Please find below guest contributions.
 
 ##### **Luca Ferrari** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/luca-ferrari/postgresql/ch-1.sql) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/luca-ferrari/postgresql/ch-2.sql) in **PostgreSQL**.
 
-##### **Maxim Kolodyazhny** shared solution to [**Task #1**](https://github.com/perlweeklychallenge-club/master/challenge-160/maxim-kolodyazhny/elixir/four_is_magic.ex) in **Elixir**,
+##### **Maxim Kolodyazhny** shared solution to [**Task #1**](https://github.com/perlweeklychallenge-club/master/challenge-160/maxim-kolodyazhny/elixir/four_is_magic.ex) in **Elixir**.
 
 ##### **Mohammad Meraj Zia** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-160/ziameraj16/java/EquilibriumIndex.java) in **Java**.
 
