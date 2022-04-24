@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2022-04-23T00:00:00+00:00
+date: 2022-04-24T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -35,6 +35,10 @@ Please find below guest contributions.
 ----
 ## [The Weekly Challenge - 161](/blog/perl-weekly-challenge-161) {#161}
 <br>
+
+##### **Adam Russell** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/adam-russell/java/ch-1.java) in **Java**.
+
+##### **Adam Russell** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/adam-russell/prolog/ch-1.p) in **Prolog**.
 
 ##### **Conor Hoekstra** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/conor-hoekstra/apl/ch-1.apl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/conor-hoekstra/apl/ch-2.apl) in **APL**.
 
