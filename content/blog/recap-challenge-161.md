@@ -441,15 +441,6 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 
 ***
 
-### Jaldhar H. Vyas
-![Jaldhar H. Vyas](/images/team/jaldhar_vyas.jpg)
-
-[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/jaldhar-h-vyas/perl/ch-1.pl)]
-[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/jaldhar-h-vyas/raku/ch-1.raku)]
-[[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/jaldhar-h-vyas/raku/ch-2.raku)]
-
-***
-
 ### Jan Krnavek
 ![Jan Krnavek](/images/team/user.jpg)
 
@@ -526,6 +517,15 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 [[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/polettix/raku/ch-2.raku)]
 [[**BLOG #1**](https://github.polettix.it/ETOOBUSY/2022/04/19/pwc161-abecedarian-words/)]
 [[**BLOG #2**](https://github.polettix.it/ETOOBUSY/2022/04/20/pwc161-pangrams/)]
+
+***
+
+### Jaldhar H. Vyas
+![Jaldhar H. Vyas](/images/team/jaldhar_vyas.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/jaldhar-h-vyas/perl/ch-1.pl)]
+[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/jaldhar-h-vyas/raku/ch-1.raku)]
+[[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/jaldhar-h-vyas/raku/ch-2.raku)]
 
 ***
 
