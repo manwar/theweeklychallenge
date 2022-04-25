@@ -48,7 +48,7 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 
 <br>
 
-#### 1. Perl: 7875 (62%)
+#### 1. Perl: 7876 (62%)
 #### 2. Raku: 4671 (38%)
 #### 3. Blog: 2469
 
@@ -57,9 +57,9 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 ## CONTRIBUTION STATS {#CONTRIBUTIONSTATS}
 ***
 
-The total contributions in the week is `97`. Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
+The total contributions in the week is `98`. Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
 
-#### 1. Perl: 51
+#### 1. Perl: 52
 #### 2. Raku: 26
 #### 3. Blog: 20
 
@@ -313,6 +313,13 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/e-choroba/perl/ch-1.pl)]
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/e-choroba/perl/ch-2.pl)]
+
+***
+
+### Ildar Shaimordanov
+![Ildar Shaimordanovn](/images/team/user.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/ildar-shaimordanov/perl/ch-1.pl)]
 
 ***
 
