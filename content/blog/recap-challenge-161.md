@@ -48,8 +48,8 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 
 <br>
 
-#### 1. Perl: 7874 (62%)
-#### 2. Raku: 4669 (38%)
+#### 1. Perl: 7875 (62%)
+#### 2. Raku: 4671 (38%)
 #### 3. Blog: 2469
 
 <br>
@@ -57,10 +57,10 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 ## CONTRIBUTION STATS {#CONTRIBUTIONSTATS}
 ***
 
-The total contributions in the week is `94`. Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
+The total contributions in the week is `97`. Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
 
-#### 1. Perl: 50
-#### 2. Raku: 24
+#### 1. Perl: 51
+#### 2. Raku: 26
 #### 3. Blog: 20
 
 <br>
@@ -229,7 +229,7 @@ The total contributions in the week is `94`. Well done **Team PWC**. I would als
 ## CENTURION CLUB {#CENTURIONCLUB}
 ***
 
-    Laurent Rosenfeld (1640), Roger Bell_West (1366), Jaldhar H. Vyas (1328), Arne Sommer (1228), Colin Crain (1096), Athanasius (962), Flavio Poletti (874), Luca Ferrari (870), Adam Russell (820), Ulrich Rieke (808), Abigail (794), Dave Jacoby (784), E. Choroba (734), Paulo Custodio (646), Stuart Little (644), Duncan C. White (582), Mohammad S Anwar (582), James Smith (526), Cheok-Yin Fung (498), Simon Proctor (490), Simon Green (464), Javier Luque (460), Mark Anderson (452), Ruben Westerberg (452), W. Luis Mochan (426), Jorg Sommrey (388), Lubos Kolouch (366), Wanderdoc (354), Pete Houston (350), Feng Chang (342), Joelle Maslak (334), Niels van Dijke (332), Jan Krnavek (308), Ryan Thompson (298), Andrezgz (260), Yet Ebreo (226), Steven Wilson (206), Markus Holzer (198), Bruce Gray (192), Myoungjin Jeon (192), Noud Aldenhoven (188), Andrew Shitov (182), Kevin Colyer (176), Aaron Smith (174), Alexander Pankoff (172), Walt Mankowski (168), Duane Powell (164), Kian-Meng Ang (162), Peter Campbell Smith (162), Matthew Neleigh (144), Shahed Nooshmand (140), Mark Senn (136), Cristina Heredia (124), Dave Cross (120), Joan Mimosinnet (120), Robert DiCicco (120), Kang-min Liu (118), Julio de Castro (116), Andinus (112), Gustavo Chaves (112), Saif Ahmed (110), Bob Lied (108), Burkhard Nickels (108), Alicia Bielsa (106), Nuno Vieira (104).
+    Laurent Rosenfeld (1640), Roger Bell_West (1366), Jaldhar H. Vyas (1334), Arne Sommer (1228), Colin Crain (1096), Athanasius (962), Flavio Poletti (874), Luca Ferrari (870), Adam Russell (820), Ulrich Rieke (808), Abigail (794), Dave Jacoby (784), E. Choroba (734), Paulo Custodio (646), Stuart Little (644), Duncan C. White (582), Mohammad S Anwar (582), James Smith (526), Cheok-Yin Fung (498), Simon Proctor (490), Simon Green (464), Javier Luque (460), Mark Anderson (452), Ruben Westerberg (452), W. Luis Mochan (426), Jorg Sommrey (388), Lubos Kolouch (366), Wanderdoc (354), Pete Houston (350), Feng Chang (342), Joelle Maslak (334), Niels van Dijke (332), Jan Krnavek (308), Ryan Thompson (298), Andrezgz (260), Yet Ebreo (226), Steven Wilson (206), Markus Holzer (198), Bruce Gray (192), Myoungjin Jeon (192), Noud Aldenhoven (188), Andrew Shitov (182), Kevin Colyer (176), Aaron Smith (174), Alexander Pankoff (172), Walt Mankowski (168), Duane Powell (164), Kian-Meng Ang (162), Peter Campbell Smith (162), Matthew Neleigh (144), Shahed Nooshmand (140), Mark Senn (136), Cristina Heredia (124), Dave Cross (120), Joan Mimosinnet (120), Robert DiCicco (120), Kang-min Liu (118), Julio de Castro (116), Andinus (112), Gustavo Chaves (112), Saif Ahmed (110), Bob Lied (108), Burkhard Nickels (108), Alicia Bielsa (106), Nuno Vieira (104).
 
 <br>
 
@@ -438,6 +438,15 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 [[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/arne-sommer/raku/ch-1.raku)]
 [[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/arne-sommer/raku/ch-2.raku)]
 [[**BLOG #1**](https://raku-musings.com/panabecedarian-grams.html)]
+
+***
+
+### Jaldhar H. Vyas
+![Jaldhar H. Vyas](/images/team/jaldhar_vyas.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/jaldhar-h-vyas/perl/ch-1.pl)]
+[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/jaldhar-h-vyas/raku/ch-1.raku)]
+[[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/jaldhar-h-vyas/raku/ch-2.raku)]
 
 ***
 
