@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2022-04-25T00:00:00+00:00
+date: 2022-04-27T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -6316,7 +6316,9 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 038](/blog/perl-weekly-challenge-038) {#038}
 <br>
 
-##### **Cheok-Yin Fung** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-109/cheok-yin-fung/java/DateFinder.java) in **Java**.
+##### **Cheok-Yin Fung** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/cheok-yin-fung/java/DateFinder.java) in **Java**.
+
+##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/paulo-custodio/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/paulo-custodio/python/ch-2.py) in **Python**.
 
 ##### **Stuart Little** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/stuart-little/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-038/stuart-little/haskell/ch-2.hs) in **Haskell**.
 
@@ -6329,6 +6331,8 @@ Please find below guest contributions.
 ##### **Daniel Mita** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/daniel-mita/js/ch-1.js) in **JavaScript**.
 
 ##### **Duncan C. White** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/duncan-c-white/postscript/ch-1.ps) in **Postscript**.
+
+##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/paulo-custodio/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/paulo-custodio/python/ch-2.py) in **Python**.
 
 ##### **Stuart Little** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/stuart-little/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-037/stuart-little/haskell/ch-2.hs) in **Haskell**.
 
