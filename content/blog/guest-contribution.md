@@ -36,6 +36,10 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 162](/blog/perl-weekly-challenge-162) {#162}
 <br>
 
+##### **Adam Russell** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/adam-russell/java/ch-1.java) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/adam-russell/java/ch-2.java) in **Java**.
+
+##### **Adam Russell** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/adam-russell/prolog/ch-1.p) in **Prolog**.
+
 ##### **Alexander Pankoff** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/alexander-pankoff/haskell/ch-1.hs) in **Haskell**.
 
 ##### **Cheok-Yin Fung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/cheok-yin-fung/julia/ch-1.jl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/cheok-yin-fung/julia/ch-2.jl) in **Julia**.
