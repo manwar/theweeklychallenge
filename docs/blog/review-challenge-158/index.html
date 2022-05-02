@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="The Weekly Challenge - Perl & Raku"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="You do not have to be an expert."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Colin Crain › Perl Weekly Review #158">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Colin Crain › Perl Weekly Review #158</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navgation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Colin Crain › Perl Weekly Review #158</h2>
+                    <div class="portfolio-meta">
+                        <span>Monday, May 2, 2022</span>|
+                        <span> Tags:
+                            perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/p5-review-challenge-158.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <p>( <em>&hellip;continues from <a href="/blog/review-challenge-157/">previous week</a>.</em> )</p>
+<p>Welcome to the Perl review pages for <strong>Week 158</strong> of The Weekly Challenge! Here we will take the time to discuss the  submissions offered up by the team, factor out some common methodologies that came up in those solutions, and highlight some of the unique approaches and unusual code created.</p>
+<hr>
+<h3 id="-why-do-we-do-these-challenges">●︎ Why do we do these challenges?</h3>
+<p>I suppose any reasonable answer to that question would be from a field as wide ranging and varied as the people who choose to join the team. One thing, though, is clear: it&rsquo;s not a competition, and there are no judges, even if there is a &ldquo;prize&rdquo; of sorts. About that &ndash; I think of it more as an honorarium periodically awarded to acknowledge the efforts we make towards this strange goal. So there&rsquo;s no determination to find the <em>fastest</em>, or the <em>shortest</em>, or even, in some abstract way, the <em>best</em> way to go about things, although I&rsquo;m certain the participants have their own aspirations and personal drives. As Perl is such a wonderfully expressive language, this provides quite a bit of fodder to the core idea of TMTOWTDI, producing a gamut of varied techniques and solutions.</p>
+<p>Even the tasks themselves are often open to a certain amount of discretionary interpretation. What we end up with is a situation where each participant is producing something in the manner they find the most interesting or satisfying. Some team members focus on carefully crafted complete applications, thoroughly vetting input data and handling every use case they can think up. Others choose to apply themselves to the logic of the underlying puzzle and making it work in the most elegant way they can. Some eschew modules they would ordinarily reach for, others embrace them, bringing to light wheels perhaps invented years ago that happen to exactly solve the problem in front of them today.</p>
+<p>I&rsquo;ve been considering this question for some time and have found one binding commonality between all of us out solving these challenges each week, in that however we normally live our lives, the task in front of us more than likely has nothing to do with any of that. And I think this has great value. We all do what we do, in the real world, and hopefully we do it well. The Weekly Challenge provides us with an opportunity to do something germane to that life yet distinctly different; if we only do the things we already know how to do then we will only do the same things over and over. This is where the &ldquo;challenge&rdquo; aspect comes into play.</p>
+<p>So we can consider The Weekly Challenge as providing a problem space outside of our comfort zone, as far out from that comfort as we wish to take things. From those reaches we can gather and learn things, pick and choose and bring what we want back into our lives. Personally, I think that&rsquo;s what this whole thing is about. YMMV.</p>
+<hr>
+<p><strong><emp>Every week there is an enormous global collective effort made by the team, analyzing and creatively coding the submissions, and that effort deserves credit due.</emp></strong></p>
+<p>And that, my friends, is why I&rsquo;m here, to try and figure out ways to do just that.</p>
+<p>So, here we are then. I&rsquo;m ready — let’s get to it and see what we can find.</p>
+<hr>
+<h3 id="for-additional-context">For Additional Context…</h3>
+<p>before we begin, you may wish to revisit either the pages for the <a href="/blog/perl-weekly-challenge-158/"><strong>original tasks</strong></a> or the summary <a href="/blog/recap-challenge-158/"><strong>recap</strong></a> of the challenge. But don&rsquo;t worry about it, the challenge text will be repeated and presented as we progress from task to task.</p>
+<p>Oh, and one more thing before we get started:</p>
+<h3 id="getting-in-touch-with-us">Getting in Touch with Us</h3>
+<p><a href="mailto:pwc.perfectwave@gmail.com"><img src="/images/blog/Email.svg" height="50" width="50"> Email</a> › Please feel free to email me (Colin) with any feedback, notes, clarifications or whatnot about this review.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge"><img src="/images/blog/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request to us for any issues you may find with this page.</p>
+<p><a href="https://twitter.com/perlwchallenge"><img src="/images/blog/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!</p>
+<p>I&rsquo;m always curious as to what the people think of these efforts. Everyone here at the PWC would like to hear any feedback you&rsquo;d like to give.</p>
+<div align= center><strong>...So finally, without further ado...</strong></div>
+<hr>
+<h2 id="---nbsp--nbsp--nbsp---task-1pwc158task1-------nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---task-2pwc158task2---nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---blogspwc158blogs----nbsp--nbsp--nbsp---">•             <a href="#PWC158TASK1">Task 1</a>                 •             <a href="#PWC158TASK2">Task 2</a>             	•             <a href="#PWC158BLOGS">BLOGS</a>              	•</h2>
+<hr>
+<hr>
+<h1 id="PWC158TASK1">TASK 1</h1>
+<h1 id="additive-primes">Additive Primes</h1>
+<p><em>Submitted by: Mohammad S Anwar</em></p>
+<p>Write a script to find out all Additive Primes &lt;= 100.</p>
+<p>Additive primes are prime numbers for which the sum of their decimal digits are also primes.</p>
+<p><strong>Output</strong></p>
+<pre><code>        2, 3, 5, 7, 11, 23, 29, 41, 43, 47, 61, 67, 83, 89
+</code></pre><h2 id="about-the-solutions">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/alexander-pankoff/perl/ch-1.pl"><strong>Alexander Pankoff</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/deadmarshal/perl/ch-1.pl"><strong>Ali Moradi</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/andrezgz/perl/ch-1.pl"><strong>Andrezgz</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/arne-sommer/perl/ch-1.pl"><strong>Arne Sommer</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/bruce-gray/perl/ch-1a.sh"><strong>Bruce Gray</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/jaldhar-h-vyas/perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/lubos-kolouch/perl/ch-1.pl"><strong>Lubos Kolouch</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/mattneleigh/perl/ch-1.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/paulo-custodio/perl/ch-1.pl"><strong>Paulo Custodio</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/pete-houston/perl/ch-1.pl"><strong>Pete Houston</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/peter-campbell-smith/perl/ch-1.pl"><strong>Peter Campbell Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/pokgopun/perl/ch-1.pl"><strong>PokGoPun</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/robert-dicicco/perl/ch-1.pl"><strong>Robert DiCicco</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>In number theory there seems to be a recurring theme of digit summation; this is where you break a multi-positional representation of a number into a collection of individual digits and then add them up. As a number representation is really a shorthand of sorts for an arithmetic expansion — each digit providing the coefficient for a term multiplied by the base raised to the power of the position (counting from right starting at zero) — the idea of summing the coefficients does eventually relate back to a rigorous mathematical framework.</p>
+<p>That framework is set in the modulus of the base being used, and I can see the how this can raise all kinds of interesting patterns in the cycles across the powers. On the other hand, the ultimately arbitrary decision to structure our common mathematics around base-10 does make me question much of the ultimate utility of the procedure. It&rsquo;s a process not exclusively constrained to decimal math, but is certainly most commonly found there. In a broader sense I can see how looking at the epicycles in pan-modulus math across bases could lead to valuable insights as to the underlying structures in the numeric realm. In just base-10, maybe not so much.</p>
+<p>Which is course is not a condemnation of working in base-10 at all, as it provides a fine example of a base that people are used to contemplating. But there&rsquo;s no mystical secret to that particular value either. I sometimes consider how much easier many things would be if we evolved with 12 fingers. But who knows? Perhaps we would have ignored the thumb and found base-10 again. Duodecimal math seems to have had a shot once and been largely passed over, only remaining on in our time systems. You can count to twelve in groups of three bones across four fingers, for example. Between that and the moon duodecimal seems to have had its day and lost out.</p>
+<p>With all that said, in a final defense of the task, however, I&rsquo;ll append that one of the driving forces behind number theory is recreational, where the pursuit is open-ended exploration. As such any technique&rsquo;s limited obvious utility is no reason whatsoever not to do it. The patterns in math are pervasive and find themselves repeated across disciplines, resurfacing in the most curious places. Finding a truth is one realm allows that pattern, often, to be generalized and pursued elsewhere, and thus knowledge has utility irrespective of its immediate practicality.</p>
+<p>There were 28 submissions for the first task this past week.</p>
+<h2 id="add-it-up-any-way-you-like-it-comes-out-the-same">add it up ANY WAY YOU LIKE, it COMES OUT THE SAME</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/mattneleigh/perl/ch-1.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/paulo-custodio/perl/ch-1.pl"><strong>Paulo Custodio</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/robert-dicicco/perl/ch-1.pl"><strong>Robert DiCicco</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/pete-houston/perl/ch-1.pl"><strong>Pete Houston</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/bruce-gray/perl/ch-1a.sh"><strong>Bruce Gray</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/peter-campbell-smith/perl/ch-1.pl"><strong>Peter Campbell Smith</strong></a></p>
+<p>In this task we have two components, one to create or otherwise acquire prime numbers and a secondary process to produce a digit sum. This, then is the story on how two seemingly disparate functions came together, found love and formed a list of additive primes.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/laurent-rosenfeld/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://blogs.perl.org/users/laurent_r/2022/03/perl-weekly-challenge-158-additive-primes-and-cuban-primes.html">Perl Weekly Challenge 158: Additive Primes and Cuban Primes</a></p>
+<p>We&rsquo;ll begin with Laurent&rsquo;s submission. His basic analysis of the situation starts with the known fact that we are looking at the numbers up to 100, so the maximal prime factor we need to look for to prove composite status would be the square root of 100, or 10. The possible primes then are limited to only 2, 3, 5 and 7. He choses to hard-code these in.</p>
+<p>For a primality test, then, we&rsquo;re working with a much smaller playing field, and a short loop over these four values provides all the checking we need.</p>
+<p>At that point the range from 2 to 100 is filtered using <code>grep</code> to only pass prime values, using the <code>is_prime()</code> function. The resulting list are then the candidate values.</p>
+<p>Each of these are then broken apart into individual digits that are then summed. The limited prime-test function can them be used again to check the sum, and if it is found to not be divisible by any of the small primes it is thus declared an additive prime.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> @small_primes <span style="color:#f92672">=</span> (<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">7</span>);
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_prime</span> {
+        <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> shift;
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $p (@small_primes) {
+            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> $p <span style="color:#f92672">==</span> $n;
+            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $n % <span style="color:#960050;background-color:#1e0010">$</span>p <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+        }
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+    }
+
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $n (grep {is_prime $_} <span style="color:#ae81ff">2</span><span style="color:#f92672">..</span><span style="color:#ae81ff">100</span>) {
+        <span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        $sum <span style="color:#f92672">+=</span> $_ <span style="color:#66d9ef">for</span> split <span style="color:#e6db74">&#39;&#39;</span>, $n;
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$n &#34;</span> <span style="color:#66d9ef">if</span> is_prime $sum;
+    }
+    say <span style="color:#e6db74">&#34;&#34;</span>;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/mattneleigh/perl/ch-1.pl"><strong>Matthew Neleigh</strong></a></p>
+<p>Matthew gives us a much more loquacious account, although most of the words in his demonstration are part of his extensive systematic commentary. For someone in my position — of presenting the various ways of approaching a task to a general audience — this is always welcome, and serves to put Matthew&rsquo;s personal stylings on display.</p>
+<p>As for that, the code is broken down into two broad sections: a <a href="https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes">Sieve of Eratosthenes</a> to find primes less than a certain value, and a <code>calculate_additive_primes()</code> section to hold the core logic.</p>
+<p>Of note his sieve is worth an extra look, as he internally uses a vector string composed of 1s and 0s for his tally, which he manipulates using <code>substr</code> statements with substitution. The goal is a reduced memory footprint, but without verifying I also expect this technique to be extremely fast, as <code>substr</code>, perhaps counter-intuitively, is quite efficient and generally quicker than manipulating a Perl array. As internally both are ultimately kept in memory as C-arrays of pointers anyway, the string datatype is a bit simpler and requires less overhead than the more sophisticated Perl array type. The difference is exacerbated if the added step is required to first <code>split</code> a string into an array of characters, in which case direct access with <code>substr</code> is nearly always faster.</p>
+<p>But I digress.</p>
+<p>Matthew also <em>returns</em> this binary string, which can then serve as a lookup table by positional index: the presence of a 1 or 0 at a given character position indicates whether or not the index value is prime. That&rsquo;s the important part.</p>
+<p>After he has gone to great lengths to obtain his encoded list of primes less than the given upper bound, he then examines the range from 2 up to the limit. The numbers are looked up in the prime string using <code>substr</code>, and composite candidates are rejected. Those that pass, are broken apart and summed using <code>split</code> and a <code>foreach</code> loop, and the result looked up again in the master prime string.</p>
+<p>I like this use of a binary string to hold a lookup table. It&rsquo;s remarkable.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">calculate_additive_primes</span>{
+        <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> int(shift());
+
+        <span style="color:#66d9ef">return</span>(undef)
+            <span style="color:#66d9ef">unless</span>($n <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>);
+
+        <span style="color:#75715e"># Generate a table of primes sufficient</span>
+        <span style="color:#75715e"># for our purposes</span>
+        <span style="color:#66d9ef">my</span> $prime_table <span style="color:#f92672">=</span> ${sieve_of_eratosthenes($n, <span style="color:#ae81ff">1</span>)};
+        <span style="color:#66d9ef">my</span> @additives;
+
+        <span style="color:#75715e"># Loop over the range from 2 to $n</span>
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> $n){
+            <span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+            <span style="color:#75715e"># Skip numbers that aren&#39;t prime</span>
+            <span style="color:#66d9ef">next</span>
+                <span style="color:#66d9ef">unless</span>(substr($prime_table, $i, <span style="color:#ae81ff">1</span>));
+
+            <span style="color:#75715e"># Loop over each digit of $i and</span>
+            <span style="color:#75715e"># sum them</span>
+            <span style="color:#66d9ef">foreach</span>(split(<span style="color:#e6db74">&#39;&#39;</span>, $i)){
+                $sum <span style="color:#f92672">+=</span> $_;
+            }
+
+            <span style="color:#75715e"># If the sum is prime, add $i to</span>
+            <span style="color:#75715e"># the list</span>
+            push(@additives, $i)
+                <span style="color:#66d9ef">if</span>(substr($prime_table, $sum, <span style="color:#ae81ff">1</span>));
+
+        }
+
+        <span style="color:#75715e"># Return the list of additive primes</span>
+        <span style="color:#66d9ef">return</span>(@additives);
+
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a></p>
+<p>In contrast to Matthew&rsquo;s piec-by-piece construction from base materials, Jorg assembles a hero&rsquo;s collection of high-level components to craft a tight and elegant machine for the task.</p>
+<p>From the number theory module <code>Math::Prime:Util</code> Jorg selects four functions: <code>prime_iterator</code>, <code>is_prime</code>, <code>vecsum</code>, and <code>todigits</code>. Working backwards from the end of that list:</p>
+<ul>
+<li><code>todigits</code> is a generalized function to split a number into an array of digits, with the added property of being able to convert that number into any requested base before the split. Because of this Jorg&rsquo;s approach will also be able to find additive primes in any base.</li>
+<li>The <code>vecsum</code> function works my like <code>sum0</code> from <code>List::Util</code>, but assumes the input array is integers and avoids any floating-point math.</li>
+<li><code>is_prime</code> does what it says, returning an up/down boolean condition as 1 and 0</li>
+<li><code>prime_iterator</code> returns a coderef closed around a prime number generator, and is initialized to a given number, defaulting to 2. When this coderef is called, the next sequential prime number is returned, and cannot be reset.</li>
+</ul>
+<p>The additive prime logic is run as a coroutine, using <code>Coro::Generator</code>. A coroutine is comparable to a subroutine that preserves state, that one can step in and out of as directed. The <code>gather</code> and <code>take</code> control structure borrowed from Raku completes the machine, collecting values returned from the coroutine into an anonymous array until the conditions have been fulfilled, and then returning the list.</p>
+<p>Because the base for the digit-summation in this implementation can be varied, setting it to binary produces the <a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-156/#TASK1">pernicious primes</a>. Ain&rsquo;t number theory grand?</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">qw(prime_iterator is_prime vecsum todigits)</span>;
+    <span style="color:#66d9ef">use</span> Coro::Generator;
+    <span style="color:#66d9ef">use</span> Syntax::Keyword::Gather;
+
+    <span style="color:#75715e">### Input and Output</span>
+    say <span style="color:#66d9ef">for</span> additive_primes_below(shift, $base);
+
+    <span style="color:#75715e">### Implementation</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">additive_primes_below</span> ($limit, $base = 10) {
+        <span style="color:#66d9ef">my</span> $p_i <span style="color:#f92672">=</span> prime_iterator();
+
+        <span style="color:#75715e"># Build a generator for additive primes in the given base.</span>
+        <span style="color:#66d9ef">my</span> $ap_i <span style="color:#f92672">=</span> generator {
+            <span style="color:#66d9ef">my</span> $p;
+            <span style="color:#66d9ef">while</span> () {
+                yield $p <span style="color:#66d9ef">if</span> is_prime vecsum todigits $p <span style="color:#f92672">=</span> $p_i<span style="color:#f92672">-&gt;</span>(), $base;
+            }
+        };
+
+        <span style="color:#75715e"># Collect all additive primes below the given limit.</span>
+        gather {
+            <span style="color:#66d9ef">my</span> $ap;
+            take $ap <span style="color:#66d9ef">while</span> ($ap <span style="color:#f92672">=</span> $ap_i<span style="color:#f92672">-&gt;</span>()) <span style="color:#f92672">&lt;</span> $limit;
+        };
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-158/james-smith">Perl Weekly Challenge #158</a></p>
+<p>Wrapping up our initial quad of submissions is James, who fittingly enough brings four variations on his solution to the table. The techniques used serve to analyse the best means to divide and sum the digits in a number.</p>
+<p>The fastest way was to divide the number down using modulo 10 arithmetic, isolating and summing the remainders. This technique is nearly 140% faster than the slowest, using <code>split</code> and <code>sum0</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">additive_primes_div</span> {
+      <span style="color:#66d9ef">my</span> @res;
+      <span style="color:#66d9ef">for</span>( <span style="color:#66d9ef">my</span> $p <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>; <span style="color:#66d9ef">my</span> $s <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, ( <span style="color:#66d9ef">my</span> $q <span style="color:#f92672">=</span> $p ) <span style="color:#f92672">&lt;=</span> $N; (is_prime $s) <span style="color:#f92672">&amp;&amp;</span> (push @res, $p), $p <span style="color:#f92672">=</span> next_prime $p ) {
+        <span style="color:#66d9ef">do</span> { $s <span style="color:#f92672">+=</span> $q % 10 } <span style="color:#66d9ef">while</span> $q <span style="color:#f92672">=</span> int $q <span style="color:#f92672">/</span> <span style="color:#ae81ff">10</span>;
+      }
+      @res;
+    }
+</code></pre></div><p>The other methods explored are a slight expansion of the dividing-out technique above, followed by using <code>split</code> to construct and intermediate anonymous array and lastly <code>split</code> with the <code>List::Util</code> function <code>sum0</code> to perform the summation.</p>
+<p>I&rsquo;m surprised about the last result, as <code>sum0</code> is a compiled XS function; apparently the overhead of switching to an external code library outweighs the performance benefit.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">additive_primes_div_expanded</span> {
+      <span style="color:#66d9ef">my</span> @res;
+      <span style="color:#66d9ef">for</span>(
+        <span style="color:#66d9ef">my</span> $p <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>                                             ;
+        <span style="color:#66d9ef">my</span> $s <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>,                        ( <span style="color:#66d9ef">my</span> $q <span style="color:#f92672">=</span> $p ) <span style="color:#f92672">&lt;=</span> $N;
+        (is_prime $s) <span style="color:#f92672">&amp;&amp;</span> (push @res, $p), $p <span style="color:#f92672">=</span> next_prime $p
+          ) {
+            <span style="color:#66d9ef">do</span> { $s <span style="color:#f92672">+=</span> $q % 10 } <span style="color:#66d9ef">while</span> $q <span style="color:#f92672">=</span> int $q <span style="color:#f92672">/</span> <span style="color:#ae81ff">10</span>;
+          }
+      @res;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">additive_primes_split</span> {
+      <span style="color:#66d9ef">my</span> @res;
+      <span style="color:#66d9ef">for</span>( <span style="color:#66d9ef">my</span> $p <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>; <span style="color:#66d9ef">my</span> $s <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, $p <span style="color:#f92672">&lt;=</span> $N ; $p <span style="color:#f92672">=</span> next_prime $p ) {
+        $s<span style="color:#f92672">+=</span>$_ <span style="color:#66d9ef">for</span> split <span style="color:#e6db74">//</span>, $p;
+        push @res, $p <span style="color:#66d9ef">if</span> is_prime $s;
+      }
+      @res;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">additive_primes_split_sum0</span> {
+      <span style="color:#66d9ef">my</span> @res;
+      <span style="color:#66d9ef">for</span>( <span style="color:#66d9ef">my</span> $p <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>; $p <span style="color:#f92672">&lt;=</span> $N ; $p <span style="color:#f92672">=</span> next_prime $p ) {
+        push @res, $p <span style="color:#66d9ef">if</span> is_prime sum0 split <span style="color:#e6db74">//</span>, $p;
+      }
+      @res;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/paulo-custodio/perl/ch-1.pl"><strong>Paulo Custodio</strong></a></p>
+<p>For our next set of examples, we&rsquo;ll circle around and revisit the basic steps again: from a list of prime numbers, sum the digits and determine whether the sum is also prime.</p>
+<p>Paulo engages the assistance of <code>ntheory</code>, an alias for <code>Math::Prime::Util</code>, for the functions <code>is_prime</code> and <code>next_prime</code>. Starting with the prime value 2, he splits the candidate on character boundaries into an array and sums them using <code>sum</code> from <code>List::Util</code>. The <code>is_prime</code> check then determines whether the candidate is additive. Then a new candidate is selected using <code>next_prime</code>, whose name is self-explanatory.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Modern::Perl;
+    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw( sum )</span>;
+    <span style="color:#66d9ef">use</span> ntheory <span style="color:#e6db74">qw( is_prime next_prime )</span>;
+
+    say join(<span style="color:#e6db74">&#34;, &#34;</span>, additive_primes(<span style="color:#ae81ff">100</span>));
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">additive_primes</span> {
+        <span style="color:#66d9ef">my</span>($limit) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> @out;
+        <span style="color:#66d9ef">my</span> $prime <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;
+        <span style="color:#66d9ef">while</span> ($prime <span style="color:#f92672">&lt;</span> $limit) {
+            <span style="color:#66d9ef">if</span> (is_prime(sum(split(<span style="color:#e6db74">//</span>, $prime)))) {
+                push @out, $prime;
+            }
+            $prime <span style="color:#f92672">=</span> next_prime($prime);
+        }
+        <span style="color:#66d9ef">return</span> @out;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/robert-dicicco/perl/ch-1.pl"><strong>Robert DiCicco</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/robert-dicicco/julia/ch-1.jl">Julia</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/robert-dicicco/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/robert-dicicco/raku/ch-1.raku">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/robert-dicicco/ruby/ch-1.rb">Ruby</a></p>
+<p>Robert also brings in <code>is_prime</code> from <code>ntheory</code>, and uses is to check the numbers 1 to 100 for primality. Candidates that pass this test are then passed to a <code>sum_of_digits</code> function, where they are split and the individual digits added to an accumulator.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> ntheory <span style="color:#e6db74">qw/is_prime/</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">sum_of_digits</span> {
+      <span style="color:#66d9ef">my</span> $num <span style="color:#f92672">=</span> shift;
+
+      <span style="color:#66d9ef">my</span> $digsum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+      <span style="color:#66d9ef">my</span> @digarr <span style="color:#f92672">=</span> split(<span style="color:#e6db74">//</span>,$num);
+
+      <span style="color:#66d9ef">foreach</span>( @digarr ) {
+        $digsum <span style="color:#f92672">+=</span> $_;
+      }
+
+      <span style="color:#66d9ef">if</span> (is_prime($digsum)) {
+        <span style="color:#66d9ef">return</span> $digsum;
+      } <span style="color:#66d9ef">else</span> {
+        <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+      }
+    }
+
+    <span style="color:#66d9ef">my</span> $TARGET <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>;
+    <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">my</span> $cnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+    <span style="color:#66d9ef">my</span> @outarr;
+
+    <span style="color:#66d9ef">while</span> ( $i <span style="color:#f92672">&lt;</span> $TARGET ) {
+
+      <span style="color:#66d9ef">if</span>(<span style="color:#f92672">!</span> is_prime($i)){
+        $i<span style="color:#f92672">++</span>;
+        <span style="color:#66d9ef">next</span>;
+      }
+
+      <span style="color:#66d9ef">my</span> ($dsum) <span style="color:#f92672">=</span> sum_of_digits($i);
+
+      <span style="color:#66d9ef">if</span> ($dsum <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> ) {
+        push(@outarr, $i);
+      }
+
+      $i<span style="color:#f92672">++</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/pete-houston/perl/ch-1.pl"><strong>Pete Houston</strong></a></p>
+<p>Using external module functions the process can be remarkably compact. Here Pete demonstrates just how compact that can be.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw/sum/</span>;
+    <span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">qw/is_prime primes/</span>;
+
+    say join <span style="color:#e6db74">&#39;, &#39;</span>, grep { is_prime (sum split <span style="color:#e6db74">//</span>) } @{primes (<span style="color:#ae81ff">100</span>)};
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/bruce-gray/perl/ch-1a.sh"><strong>Bruce Gray</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/bruce-gray/go/ch-1.go">Go</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/bruce-gray/raku/ch-1.raku">Raku</a></p>
+<p>Bruce gives him a run for the money with his equally concise solution. I&rsquo;m not going to count characters. You get the idea.</p>
+<p>In a side note, of course <code>Math::Prime::Util</code> has a <code>sumdigits</code> function. What self-respecting number theory package would not? With a little over 200 functions and constants available, its easy to lose one or two, and there always seems to be another way of doing something.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> ntheory <span style="color:#e6db74">qw&lt;is_prime sumdigits         primes&gt;</span>;
+    <span style="color:#66d9ef">my</span> @r <span style="color:#f92672">=</span> grep { is_prime sumdigits $_ } @{ primes(<span style="color:#ae81ff">100</span>) };
+
+    say join <span style="color:#e6db74">&#39;, &#39;</span>, @r;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/roger-bell-west/javascript/ch-1.js">Javascript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/roger-bell-west/kotlin/ch-1.kt">Kotlin</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/roger-bell-west/lua/ch-1.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/roger-bell-west/postscript/ch-1.ps">Postscript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/roger-bell-west/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/roger-bell-west/raku/ch-1.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/roger-bell-west/ruby/ch-1.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/roger-bell-west/rust/ch-1.rs">Rust</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://blog.firedrake.org/archive/2022/03/The_Weekly_Challenge_158__Prime_Cuban_Additives.html">RogerBW&rsquo;s Blog: The Weekly Challenge 158: Prime Cuban Additives</a></p>
+<p>Roger dusts off his <code>genprimes</code> routine, which finds all primes up to a given value using the <a href="https://en.wikipedia.org/wiki/Primality_test#Simple_methods">6<em>k</em>±1 scheme</a>, which reduces trial division by a factor of three. Primes in hand, the digits are summed by dividing down modulo 10, which as we learned from James&rsquo; experiments is perhaps the fastest way to do this. So good on Roger there.</p>
+<p>As any positive number&rsquo;s digit sum will be less than the value itself, when the primes are examined as candidates they are then placed into a hash to lookup the compounded value.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">genprimes</span> {
+      <span style="color:#66d9ef">my</span> $mx<span style="color:#f92672">=</span>shift;
+      <span style="color:#66d9ef">my</span> @primes;
+      {
+        <span style="color:#66d9ef">my</span> %primesh<span style="color:#f92672">=</span>map {$_ <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>} (<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>);
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $i<span style="color:#f92672">=</span><span style="color:#ae81ff">6</span>;$i <span style="color:#f92672">&lt;=</span> $mx<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>; $i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">6</span>) {
+          <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $j ($i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,$i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>) {
+            <span style="color:#66d9ef">if</span> ($j <span style="color:#f92672">&lt;=</span> $mx) {
+              $primesh{$j}<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
+            }
+          }
+        }
+        <span style="color:#66d9ef">my</span> @q<span style="color:#f92672">=</span>(<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>);
+        <span style="color:#66d9ef">my</span> $p<span style="color:#f92672">=</span>shift @q;
+        <span style="color:#66d9ef">my</span> $mr<span style="color:#f92672">=</span>int(sqrt($mx));
+        <span style="color:#66d9ef">while</span> ($p <span style="color:#f92672">&lt;=</span> $mr) {
+          <span style="color:#66d9ef">if</span> ($primesh{$p}) {
+            <span style="color:#66d9ef">my</span> $i<span style="color:#f92672">=</span>$p<span style="color:#f92672">*</span>$p;
+            <span style="color:#66d9ef">while</span> ($i <span style="color:#f92672">&lt;=</span> $mx) {
+              delete $primesh{$i};
+              $i <span style="color:#f92672">+=</span> $p;
+            }
+          }
+          <span style="color:#66d9ef">if</span> (scalar @q <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">2</span>) {
+            push @q,$q[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">+</span><span style="color:#ae81ff">4</span>;
+            push @q,$q[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>;
+          }
+          $p<span style="color:#f92672">=</span>shift @q;
+        }
+        @primes<span style="color:#f92672">=</span>sort {$a <span style="color:#e6db74">&lt;=&gt;</span> $b} keys %primesh;
+      }
+      <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@primes;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">digitsum</span> {
+      <span style="color:#66d9ef">my</span> $s<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+      <span style="color:#66d9ef">my</span> $x<span style="color:#f92672">=</span>shift;
+      <span style="color:#66d9ef">while</span> ($x <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
+        $s <span style="color:#f92672">+=</span> $x % 10;
+        $x <span style="color:#f92672">=</span> int($x<span style="color:#f92672">/</span><span style="color:#ae81ff">10</span>);
+      }
+      <span style="color:#66d9ef">return</span> $s;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">additiveprimes</span> {
+      <span style="color:#66d9ef">my</span> $mx<span style="color:#f92672">=</span>shift;
+      <span style="color:#66d9ef">my</span> @o;
+      <span style="color:#66d9ef">my</span> %ps;
+      <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $q (@{genprimes($mx)}) {
+        $ps{$q}<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">if</span> (exists $ps{digitsum($q)}) {
+          push @o,$q;
+        }
+      }
+      <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@o;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/peter-campbell-smith/perl/ch-1.pl"><strong>Peter Campbell Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://pjcs-pwc.blogspot.com/2022/03/all-about-primes.html">All about primes</a></p>
+<p>And finally, here&rsquo;s something new: because we know the range required for the calculations, Peter unrolls the digit summing into a one-line formula adding up the number mod 10, the number over 10 mod 10, and the number over 100 mod 10. This expansion of the loop will actually work  for all numbers up to 999 of course; 991 is the largest additive prime in that range, summing to 19.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">&#39;is_prime&#39;</span>;
+    <span style="color:#66d9ef">my</span> ($j, $s);
+
+    <span style="color:#66d9ef">for</span> $j (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">100</span>) {
+        <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> is_prime($j);
+        $s <span style="color:#f92672">=</span> $j % 10 <span style="color:#f92672">+</span> int($j <span style="color:#e6db74">/ 10) % 10 + int($j /</span> <span style="color:#ae81ff">100</span>) % 10;
+        say <span style="color:#e6db74">qq[$j is an additive prime whose digits sum to $s]</span> <span style="color:#66d9ef">if</span> is_prime($s);
+    }
+</code></pre></div><h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-1">Blogs and Additional Submissions in Guest Languages for Task 1:</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/deadmarshal/perl/ch-1.pl"><strong>Ali Moradi</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/deadmarshal/lua/ch-1.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/deadmarshal/pascal/ch1.pas">Pascal</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/arne-sommer/perl/ch-1.pl"><strong>Arne Sommer</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/arne-sommer/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://raku-musings.com/cuban-addition.html">Cuban Addition, Primarily with Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/athanasius/raku/ch-1.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/colin-crain/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://colincrain.com/2022/04/03/add-another-prime-to-the-pile">Add Another Prime to the Pile - Programming Excursions in Perl and Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://jacoby.github.io/2022/03/28/in-our-primes-weekly-challenge-158.html">In Our Primes: Weekly Challenge #158 | Committed to Memory</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/polettix/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.polettix.it/ETOOBUSY/2022/03/29/pwc158-additive-primes/">PWC158 - Additive Primes - ETOOBUSY</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/jaldhar-h-vyas/perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/jaldhar-h-vyas/raku/ch-1.sh">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://www.braincells.com/perl/2022/04/perl_weekly_challenge_week_158.html">Perl Weekly Challenge: Week 158</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/lubos-kolouch/perl/ch-1.pl"><strong>Lubos Kolouch</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/lubos-kolouch/python/ch-1.py">Python</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/mohammad-anwar/raku/ch-1.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/pokgopun/perl/ch-1.pl"><strong>PokGoPun</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/pokgopun/go/ch-1.go">Go</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/sgreen/perl/ch-1.pl"><strong>Simon Green</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/sgreen/python/ch-1.py">Python</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://dev.to/simongreennet/its-a-primathon-5aki">It&rsquo;s a primathon!</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/ulrich-rieke/cpp/ch-1.cpp">C++</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/ulrich-rieke/haskell/ch-1.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/ulrich-rieke/raku/ch-1.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://wlmb.github.io/2022/03/28/PWC158/">Perl Weekly Challenge 158 – W. Luis Mochán</a></p>
+<hr>
+<hr>
+<h1 id="PWC158TASK2">TASK 2</h1>
+<h1 id="first-series-cuban-primes">First Series Cuban Primes</h1>
+<p><em>Submitted by: Mohammad S Anwar</em></p>
+<p>Write a script to compute first series Cuban Primes &lt;= 1000. Please refer wikipedia page for more informations.</p>
+<p><strong>Output</strong></p>
+<pre><code>    7, 19, 37, 61, 127, 271, 331, 397, 547, 631, 919.
+
+</code></pre><h2 id="about-the-solutions-1">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/alexander-pankoff/perl/ch-2.pl"><strong>Alexander Pankoff</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/deadmarshal/perl/ch-2.pl"><strong>Ali Moradi</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/andrezgz/perl/ch-2.pl"><strong>Andrezgz</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/arne-sommer/perl/ch-2.pl"><strong>Arne Sommer</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/bruce-gray/perl/ch-2a.sh"><strong>Bruce Gray</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/jaldhar-h-vyas/perl/ch-2.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/lubos-kolouch/perl/ch-2.pl"><strong>Lubos Kolouch</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/mattneleigh/perl/ch-2.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/perlboy1967/perl/ch-2.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/paulo-custodio/perl/ch-2.pl"><strong>Paulo Custodio</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/pete-houston/perl/ch-2.pl"><strong>Pete Houston</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/peter-campbell-smith/perl/ch-2.pl"><strong>Peter Campbell Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/pokgopun/perl/ch-2.pl"><strong>PokGoPun</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/robert-dicicco/perl/ch-2.pl"><strong>Robert DiCicco</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>Unlike the Brazilian Primes we looked at last week, which actually have a tenuous physical connection to their eponymous place-name, the Cuban primes are not Cuban, and have never danced a Rhumba in Havana. Rather they are built on a simple play on words around powers of three: cubic powers.</p>
+<p>The Cuban primes are those primes that fit the pattern of being the difference between two cubes, specifically the pattern</p>
+<p>(<em>x</em><sup>3</sup> - <em>y</em><sup>3</sup>) / (<em>x</em> - <em>y</em>)</p>
+<p>where <em>x</em> = <em>y</em> + <em>k</em> for some <em>k</em>.</p>
+<p>Not all cubic differences in a given pattern will be primes, mind you, but those that do make up a given <em>series</em> of Cubam primes, with the label of the series the difference between the root values. Successive primes, 2<sup>3</sup>, 3<sup>3</sup>, 4<sup>3</sup>, for example, have a difference of 1 and are hence called the first series Cuban primes. The divisor in the root equation, <em>x</em> - <em>y</em>, is thus 1.</p>
+<p>What we are looking for is thus simplified: prime numbers that can be expressed as the difference between two successive cubes.</p>
+<p>In the second and later series, the sequence values are renormalized by dividing by the difference between the root values.</p>
+<p>There were 27 submissions for the second task this past week.</p>
+<h2 id="the-son-and-the-rhumba--timtowtdi">The <em>Son</em> and the <em>Rhumba</em> — TIMTOWTDI</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/pokgopun/perl/ch-2.pl"><strong>PokGoPun</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/lubos-kolouch/perl/ch-2.pl"><strong>Lubos Kolouch</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/deadmarshal/perl/ch-2.pl"><strong>Ali Moradi</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/alexander-pankoff/perl/ch-2.pl"><strong>Alexander Pankoff</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a></p>
+<p>The search for Cuban primes revolves around the collection and detection of primes and, perhaps inexplicably, the centered hexagonal figurate numbers. This connection, of course, it through the cubes that make up the definition. We ended up with quite a lot of self-similarity in the solution pool, with common method centered on creating candidate values from the defining equation — or some transformation —  and then testing them in some manner for primality.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/pokgopun/perl/ch-2.pl"><strong>PokGoPun</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/pokgopun/go/ch-2.go">Go</a></p>
+<p>We&rsquo;ll start the survey with the example from noted Go enthusiast PokGoPun. A block is created around an incrementing counter, and the difference is found between the cubes of the counter and an adjacent value. Once we have this, then the result is checked for primality using <code>is_prime()</code> from <code>Math::Prime::Util</code>.</p>
+<p>Of note the defining equation is a polynomial with two variables, <em>x</em> and <em>y</em>, yet <em>y</em> is then further defined by a relationship to <em>x</em>. Consequently the initial expression can be rewritten in terms of <em>x</em>:</p>
+<p><em>x</em><sup>3</sup> - (<em>x</em>-1)<sup>3</sup> = 3<em>x</em><sup>2</sup> + 3<em>x</em> + 1</p>
+<p>Candidates that are found to be prime are added to a stringified output list and a <code>redo</code> statement turns the block into an infinite loop.</p>
+<p>I so much prefer this loop construct over an <code>while (1) {...}</code> or similar formation, employing a conditional that can never fail. But that&rsquo;s just me. It just seems more direct and to the point, instead of using what amounts to a side-effect.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">qw/is_prime/</span>;
+
+    <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> shift;
+    $n <span style="color:#f92672">=</span> <span style="color:#ae81ff">1000</span> <span style="color:#66d9ef">unless</span> $n <span style="color:#f92672">&amp;&amp;</span> $n <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^\d+$/</span>;
+    <span style="color:#66d9ef">my</span> $o <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
+    <span style="color:#75715e">#my $i = 2;</span>
+    <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+    {
+        <span style="color:#75715e">#my $cp = $i**3 - ($i-1)**3;</span>
+        <span style="color:#66d9ef">my</span> $cp <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span><span style="color:#f92672">*</span>$i<span style="color:#f92672">*</span>$i <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span><span style="color:#f92672">*</span>$i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $cp <span style="color:#f92672">&gt;</span> $n;
+        $o <span style="color:#f92672">.=</span> <span style="color:#e6db74">&#34;, $cp&#34;</span> <span style="color:#66d9ef">if</span> is_prime($cp);
+        $i<span style="color:#f92672">++</span>;
+        <span style="color:#66d9ef">redo</span>;
+    }
+    $o <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/^\D+//</span>;
+    printf <span style="color:#e6db74">&#34;%s\n&#34;</span>, $o;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/athanasius/raku/ch-2.raku">Raku</a></p>
+<p>The monk brings to light that the reworked equation we saw above:</p>
+<p>H(n) = 3n² - 3n + 1</p>
+<p>defines the form of the centered hexagonal number <em>n</em>. So they proceed to produce those values and then check them for primality. Only the names have been changed, to draw attention to the interesting congruence.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> ($n, $hex_number) <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>); $hex_number <span style="color:#f92672">&lt;=</span> $MAX; <span style="color:#f92672">++</span>$n)
+    {
+        <span style="color:#66d9ef">my</span> $triple  <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">*</span> $n;
+        $hex_number <span style="color:#f92672">=</span> $triple <span style="color:#f92672">*</span> $n <span style="color:#f92672">-</span> $triple <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+
+        push @cuban_primes, $hex_number <span style="color:#66d9ef">if</span> is_prime( $hex_number );
+    }
+</code></pre></div><p>Another aspect of their solution is that since the range of solutions is known from the beginning, a sieve of Eratosthenes can be used to efficiently calculate all the primes less than 1000 to create a cross-check validation lookup for their <code>is_prime()</code> function.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_prime</span>
+    {
+        <span style="color:#75715e"># On first call, create a Sieve of Eratosthenes in the range 0 .. $MAX</span>
+        state @is_prime <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, (<span style="color:#ae81ff">1</span>) x ($MAX <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>));             <span style="color:#75715e"># 0, 1, (2 .. $MAX)</span>
+
+        <span style="color:#66d9ef">if</span> (state $first_call <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>)
+        {
+            $first_call <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $n (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $MAX)
+            {
+                <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> $is_prime[ $n ];                    <span style="color:#75715e"># Skip non-primes</span>
+                <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $n; $i <span style="color:#f92672">&lt;=</span> $MAX; $i <span style="color:#f92672">+=</span> $n)
+                {
+                    $is_prime[ $i ] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+                }
+            }
+        }
+        <span style="color:#66d9ef">my</span> ($n) <span style="color:#f92672">=</span> @_;
+
+        <span style="color:#66d9ef">return</span> $is_prime[ $n ];                                 <span style="color:#75715e"># Sieve look-up</span>
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/lubos-kolouch/perl/ch-2.pl"><strong>Lubos Kolouch</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/lubos-kolouch/python/ch-2.py">Python</a></p>
+<p>Lubos generalizes a function that applies the basic definition equation with <em>x</em> variably offset from <em>y</em>. I personally do not feel the apology is warranted, as being good number theorists we of course should remain unsatisfied with just calculating the first series Cubans, and may well wish to move on and analyse the second or continuing series as well. Hard-coding the offset requires a code modification for this, whereas this only needs to be given a new parameter.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get_eq</span> {
+
+    <span style="color:#75715e"># warning - waste here, it is ready also for the second series, even though we were not asked for it</span>
+    <span style="color:#75715e"># this is a bad practice and one of the 7 wastes, but I just accept that I am aware of it and leave it.</span>
+        <span style="color:#66d9ef">my</span> ( $y, $incr ) <span style="color:#f92672">=</span> @_;
+
+        <span style="color:#66d9ef">my</span> $x <span style="color:#f92672">=</span> $y <span style="color:#f92672">+</span> $incr;
+
+        <span style="color:#66d9ef">return</span> ( $x<span style="color:#f92672">**</span><span style="color:#ae81ff">3</span> <span style="color:#f92672">-</span> $y<span style="color:#f92672">**</span><span style="color:#ae81ff">3</span> ) <span style="color:#f92672">/</span> ( $x <span style="color:#f92672">-</span> $y );
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/colin-crain/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://colincrain.com/2022/04/03/add-another-prime-to-the-pile">Add Another Prime to the Pile - Programming Excursions in Perl and Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://colincrain.com/2022/04/03/cubans-in-their-prime">Cubans In Their Prime - Programming Excursions in Perl and Raku</a></p>
+<p>Ok, perhaps I was a bit biased in my assessment above, although I do stand by my reasoning — because that is exactly what I did. I started by making myself both a generalized equation routine and a prime validator, producing the requested values, but curious, I quickly got to work looking around at the other related series. It&rsquo;s notable that an intersting property of the defining equation is that it is cyclical mod 3, and as such  for an offset of 3 no values can ever be prime. A survey of the first ten series demonstrates this phenomenon:</p>
+<pre><code>    series | sequence
+    -------+------------------------------------------
+        1  | 7 19 37 61 127 271 331 397 547 631 919
+        2  | 13 109 193 433 769
+        3  |
+        4  | 31 79 151 367
+        5  | 43 67 97 223 277 337 727 823
+        6  |
+        7  | 73 103 139 181 229 283 409 643 733 829
+        8  | 163 379 523 691 883
+        9  |
+       10  | 457 613 997
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">nth_series_cubic</span> ( $dif ) {
+        <span style="color:#66d9ef">my</span> @c;
+        <span style="color:#66d9ef">my</span> $x;
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $y ( <span style="color:#ae81ff">1</span><span style="color:#f92672">..</span><span style="color:#ae81ff">100</span> ) {
+            $x <span style="color:#f92672">=</span> $y <span style="color:#f92672">+</span> $dif;
+            push @c, ($x<span style="color:#f92672">**</span><span style="color:#ae81ff">3</span> <span style="color:#f92672">-</span> $y<span style="color:#f92672">**</span><span style="color:#ae81ff">3</span>) <span style="color:#f92672">/</span> ($x <span style="color:#f92672">-</span> $y) ;
+        }
+        <span style="color:#66d9ef">return</span> @c;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/deadmarshal/perl/ch-2.pl"><strong>Ali Moradi</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/deadmarshal/lua/ch-2.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/deadmarshal/pascal/ch2.pas">Pascal</a></p>
+<p>Of course such self-induced complexity is not required. Ali keeps his eye on the ball:  focusing on the task as requested, incrementally slotting values into the equation until the maximum value of 1000 is exceeded.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">qw(is_prime)</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">cuban_primes</span> {
+      <span style="color:#66d9ef">my</span> ($n) <span style="color:#f92672">=</span> @_;
+      <span style="color:#66d9ef">my</span> @primes;
+      <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; ; <span style="color:#f92672">++</span>$i) {
+        <span style="color:#66d9ef">my</span> $p <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">*</span> $i <span style="color:#f92672">*</span> ($i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">if</span> (is_prime($p)) {
+          <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> $p <span style="color:#f92672">&gt;</span> $n;
+          push @primes, $p;
+        }
+      }
+      <span style="color:#66d9ef">return</span> @primes;
+    }
+
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$_ &#34;</span> <span style="color:#66d9ef">foreach</span> cuban_primes(<span style="color:#ae81ff">1000</span>);
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/polettix/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.polettix.it/ETOOBUSY/2022/03/30/pwc158-first-series-cuban-primes/">PWC158 - First Series Cuban Primes - ETOOBUSY</a></p>
+<p>Flavio, using the same approach some how seems  to manage to make it even more compact.</p>
+<p>Again, I&rsquo;m not counting characters and this isn&rsquo;t a competition.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> ntheory <span style="color:#e6db74">&#39;is_prime&#39;</span>;
+
+    <span style="color:#66d9ef">my</span> $M <span style="color:#f92672">=</span> shift <span style="color:#e6db74">//</span> <span style="color:#ae81ff">1000</span>;
+    <span style="color:#66d9ef">my</span> @cubans;
+    <span style="color:#66d9ef">my</span> $y <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">while</span> ((<span style="color:#66d9ef">my</span> $p <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">*</span> $y <span style="color:#f92672">*</span> ($y <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">&lt;=</span> $M) {
+       push @cubans, $p <span style="color:#66d9ef">if</span> is_prime($p);
+       <span style="color:#f92672">++</span>$y;
+    }
+    say join(<span style="color:#e6db74">&#39;, &#39;</span>, @cubans), <span style="color:#e6db74">&#39;.&#39;</span>;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/alexander-pankoff/perl/ch-2.pl"><strong>Alexander Pankoff</strong></a></p>
+<p>There are multiple interesting connections between the <a href="https://en.wikipedia.org/wiki/Centered_hexagonal_number">centered hexagonal numbers</a> and cubes, notably that the sum of the first <em>n</em> values for these numbers sum to <em>n</em><sup>3</sup>. This follows from the fact that if a given  centered hexagonal number is the difference between two sequential cubes, adding the value to the smaller cube will yield this larger. This difference, among the figurate numbers, is known as the <a href="https://en.wikipedia.org/wiki/Figurate_number#Gnomon">gnomon</a>. The process of reduction can then be repeated down to 1 to demonstrate the complete pattern.</p>
+<p>Alexander also chooses the centered hexagonal phrasing for the central equation.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">cuban_primes</span>($max = 1000) {
+
+        <span style="color:#66d9ef">my</span> @cubans    <span style="color:#f92672">=</span> ();
+        <span style="color:#66d9ef">my</span> $i         <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">my</span> $candidate <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">while</span> ( $candidate <span style="color:#f92672">&lt;=</span> $max ) {
+            $candidate <span style="color:#f92672">=</span> centered_hexagonal_number($i);
+            push @cubans, $candidate <span style="color:#66d9ef">if</span> is_prime($candidate);
+            $i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
+        }
+        <span style="color:#66d9ef">return</span> @cubans;
+
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">centered_hexagonal_number</span>($y) {
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">*</span> $y <span style="color:#f92672">*</span> $y <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">*</span> $y <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://wlmb.github.io/2022/03/28/PWC158/">Perl Weekly Challenge 158 – W. Luis Mochán</a></p>
+<p>Luis uses a different equation tranformation, that the Cuban numbers are primes of the form</p>
+<p><em>p</em> = 1 + 3<em>k</em>(<em>k</em> + 1) for some <em>k</em></p>
+<p>He then solves</p>
+<p>(<em>x</em> + 1)<sup>3</sup> - <em>x</em><sup>3</sup> = N</p>
+<p>to yield an maximum result value within an upper boundary <em>N</em> of</p>
+<p>max <em>k</em> = (-3 + √3 √(4<em>N</em> - 1)) / 6</p>
+<p>Putting these together using the range 1 to the maximum <em>k</em> produces the 17 possible values for the Cubans, 11 of which are prime.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">qw(is_prime)</span>;
+    die <span style="color:#e6db74">&#34;Usage: ./ch-2.pl N\n\tto find cuban primes up to N&#34;</span> <span style="color:#66d9ef">unless</span> @ARGV;
+    <span style="color:#66d9ef">my</span> $N<span style="color:#f92672">=</span>shift;
+    die <span style="color:#e6db74">&#34;N should be positive&#34;</span> <span style="color:#66d9ef">unless</span> $N<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">my</span> $bound<span style="color:#f92672">=</span>(<span style="color:#f92672">-</span><span style="color:#ae81ff">3</span><span style="color:#f92672">+</span>sqrt(<span style="color:#ae81ff">3</span>)<span style="color:#f92672">*</span>sqrt(<span style="color:#ae81ff">4</span><span style="color:#f92672">*</span>$N<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>))<span style="color:#f92672">/</span><span style="color:#ae81ff">6</span>; <span style="color:#75715e"># Solve (x+1)^3-x^3=N</span>
+    say <span style="color:#e6db74">&#34;The cuban primes up to $N are &#34;</span>,
+        join <span style="color:#e6db74">&#34;, &#34;</span>, grep {is_prime $_} map {<span style="color:#ae81ff">1</span><span style="color:#f92672">+</span><span style="color:#ae81ff">3</span><span style="color:#f92672">*</span>$_<span style="color:#f92672">*</span>($_<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)} (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$bound);
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a></p>
+<p>Finally, we&rsquo;ll return to Jorg, who brings us another coroutine machine to study. This one makes generalized Cuban primes in any specified series that is not a multiple of 3 (as we have previously stated that these do not exist). Here the coroutine state keeps an iterator that is appied to the the equation</p>
+<p><em>p</em> = 3<em>y</em><sup>2</sup> + 3<em>ny</em> + <em>n</em><sup>2</sup></p>
+<p>which can then be used to find what ends up being the gnomon between the centered hexagonal numbers:</p>
+<p><strong>P</strong><sub><em>y</em> + 1</sub> = <strong>P</strong><sub><em>y</em></sub> + 3 (2<em>y</em> + <em>n</em> + 1)</p>
+<p>The coroutine keeps track of the previous centered hexagonal and the index and adds the gnomon. If the result is prime, <em>¡Viva la Cuba!</em></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Coro::Generator;
+    <span style="color:#66d9ef">use</span> Math::Prime::Util <span style="color:#e6db74">&#39;is_prime&#39;</span>;
+    <span style="color:#66d9ef">use</span> Syntax::Keyword::Gather;
+    <span style="color:#66d9ef">use</span> experimental <span style="color:#e6db74">&#39;signatures&#39;</span>;
+
+    <span style="color:#75715e">### Input and Output</span>
+    say <span style="color:#66d9ef">for</span> cuban_primes_below($series, shift);
+
+
+    <span style="color:#75715e">### Implementation</span>
+    <span style="color:#75715e"># Calculating generalized series of cuban primes, controlled by</span>
+    <span style="color:#75715e"># parameter n.  The first and second series are produced by values 1 and</span>
+    <span style="color:#75715e"># 2 respectively.  Restricting to y &gt; 0.</span>
+    <span style="color:#75715e"># The relation p = (x³ - y³) / (x - y), x = y + n can easily be</span>
+    <span style="color:#75715e"># transformed into</span>
+    <span style="color:#75715e"># p = 3 y² + 3 n y + n².</span>
+    <span style="color:#75715e"># A simple calculation reveals</span>
+    <span style="color:#75715e"># p(y + 1) = p(y) + 3 (2 y + n + 1)</span>
+    <span style="color:#75715e"># which gives a nice iterative formula for p starting with y = 0</span>
+    <span style="color:#75715e"># and p = n².</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">cuban_primes_below</span> ($n, $limit) {
+        <span style="color:#75715e"># There is no n-th series if n is a multiple of 3.</span>
+        die <span style="color:#e6db74">&#39;no such series&#39;</span> <span style="color:#66d9ef">unless</span> $n % 3;
+
+        <span style="color:#75715e"># Build a generator for cuban primes by checking if p is prime.</span>
+        <span style="color:#66d9ef">my</span> $cp_i <span style="color:#f92672">=</span> generator {
+            <span style="color:#66d9ef">my</span> ($y, $p) <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>, $n <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span>);
+            <span style="color:#66d9ef">while</span> () {
+                $p <span style="color:#f92672">+=</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">*</span> (<span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> $y<span style="color:#f92672">++</span> <span style="color:#f92672">+</span> $n <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>);
+                yield $p <span style="color:#66d9ef">if</span> is_prime $p;
+            }
+        };
+
+        <span style="color:#75715e"># Collect cuban primes below the given limit.</span>
+        gather {
+            <span style="color:#66d9ef">my</span> $cp;
+            take $cp <span style="color:#66d9ef">while</span> ($cp <span style="color:#f92672">=</span> $cp_i<span style="color:#f92672">-&gt;</span>()) <span style="color:#f92672">&lt;</span> $limit
+        };
+        <span style="color:#75715e"># Déjà vu?</span>
+        <span style="color:#75715e"># Déjà vu!</span>
+    }
+</code></pre></div><h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-2">Blogs and Additional Submissions in Guest Languages for Task 2:</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/arne-sommer/perl/ch-2.pl"><strong>Arne Sommer</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/arne-sommer/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://raku-musings.com/cuban-addition.html">Cuban Addition, Primarily with Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/bruce-gray/perl/ch-2a.sh"><strong>Bruce Gray</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/bruce-gray/go/ch-2.go">Go</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/bruce-gray/raku/ch-2.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://jacoby.github.io/2022/03/28/in-our-primes-weekly-challenge-158.html">In Our Primes: Weekly Challenge #158 | Committed to Memory</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/jaldhar-h-vyas/perl/ch-2.pl"><strong>Jaldhar H. Vyas</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/jaldhar-h-vyas/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://www.braincells.com/perl/2022/04/perl_weekly_challenge_week_158.html">Perl Weekly Challenge: Week 158</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-158/james-smith">Perl Weekly Challenge #158</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/laurent-rosenfeld/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://blogs.perl.org/users/laurent_r/2022/03/perl-weekly-challenge-158-additive-primes-and-cuban-primes.html">Perl Weekly Challenge 158: Additive Primes and Cuban Primes</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/peter-campbell-smith/perl/ch-2.pl"><strong>Peter Campbell Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://pjcs-pwc.blogspot.com/2022/03/all-about-primes.html">All about primes</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/robert-dicicco/perl/ch-2.pl"><strong>Robert DiCicco</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/robert-dicicco/julia/ch-2.jl">Julia</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/robert-dicicco/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/robert-dicicco/raku/ch-2.raku">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/robert-dicicco/ruby/ch-2.rb">Ruby</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/roger-bell-west/javascript/ch-2.js">Javascript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/roger-bell-west/kotlin/ch-2.kt">Kotlin</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/roger-bell-west/lua/ch-2.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/roger-bell-west/postscript/ch-2.ps">Postscript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/roger-bell-west/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/roger-bell-west/raku/ch-2.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/roger-bell-west/ruby/ch-2.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/roger-bell-west/rust/ch-2.rs">Rust</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://blog.firedrake.org/archive/2022/03/The_Weekly_Challenge_158__Prime_Cuban_Additives.html">RogerBW&rsquo;s Blog: The Weekly Challenge 158: Prime Cuban Additives</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/sgreen/perl/ch-2.pl"><strong>Simon Green</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/sgreen/python/ch-2.py">Python</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://dev.to/simongreennet/its-a-primathon-5aki">It&rsquo;s a primathon!</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/ulrich-rieke/cpp/ch-2.cpp">C++</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/ulrich-rieke/haskell/ch-2.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-158/ulrich-rieke/raku/ch-2.raku">Raku</a></p>
+<hr>
+<hr>
+<p> &nbsp; </p>
+<p> &nbsp; </p>
+<p> &nbsp; </p>
+<p> &nbsp; </p>
+<center>
+<h1 id="PWC158BLOGS">_________ THE BLOG PAGES _________</h1>
+</center>
+<hr>
+<p><strong>That’s it for me this week, people! Warped by the rain, driven by the snow, resolute and unbroken by the torrential influx, by some miracle I somehow continue to maintain my bearings.</strong></p>
+<p><strong>Looking forward to next wave, the perfect wave, I am: <em>your humble servant</em>.</strong></p>
+<h1 id="PWC158BLOGS">But if Your Unquenchable <em>THIRST</em> for <em>KNOWLEDGE</em> is not <em>SLAKED</em>,</h1>
+<h1 id="then-run-dont-walk-to-the-watering-hole">then <em>RUN</em> <em>(dont walk!)</em> to the <em>WATERING HOLE</em></h1>
+<h1 id="and-follow-these-blog-links">and <em>FOLLOW</em> these <em>BLOG</em> <em>LINKS</em>:</h1>
+<p><strong>( &hellip;<em>don&rsquo;t think, trust your training, you&rsquo;re in the zone, just do it &hellip;</em> )</strong></p>
+<p><strong>Arne Sommer</strong></p>
+<ul>
+<li><a href="https://raku-musings.com/cuban-addition.html">Cuban Addition, Primarily with Raku</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Colin Crain</strong></p>
+<ul>
+<li><a href="https://colincrain.com/2022/04/03/add-another-prime-to-the-pile">Add Another Prime to the Pile - Programming Excursions in Perl and Raku</a> ( <em>Perl &amp; Raku</em> )</li>
+<li><a href="https://colincrain.com/2022/04/03/cubans-in-their-prime">Cubans In Their Prime - Programming Excursions in Perl and Raku</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Dave Jacoby</strong></p>
+<ul>
+<li><a href="https://jacoby.github.io/2022/03/28/in-our-primes-weekly-challenge-158.html">In Our Primes: Weekly Challenge #158 | Committed to Memory</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Flavio Poletti</strong></p>
+<ul>
+<li><a href="https://github.polettix.it/ETOOBUSY/2022/03/29/pwc158-additive-primes/">PWC158 - Additive Primes - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+<li><a href="https://github.polettix.it/ETOOBUSY/2022/03/30/pwc158-first-series-cuban-primes/">PWC158 - First Series Cuban Primes - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Jaldhar H. Vyas</strong></p>
+<ul>
+<li><a href="https://www.braincells.com/perl/2022/04/perl_weekly_challenge_week_158.html">Perl Weekly Challenge: Week 158</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>James Smith</strong></p>
+<ul>
+<li><a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-158/james-smith">Perl Weekly Challenge #158</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Laurent Rosenfeld</strong></p>
+<ul>
+<li><a href="http://blogs.perl.org/users/laurent_r/2022/03/perl-weekly-challenge-158-additive-primes-and-cuban-primes.html">Perl Weekly Challenge 158: Additive Primes and Cuban Primes</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Luca Ferrari</strong></p>
+<ul>
+<li><a href="https://fluca1978.github.io/2022/03/28/PerlWeeklyChallenge158.html#task1">Perl Weekly Challenge 158: to be prime or not to be prime – Luca Ferrari – Open Source advocate, human being</a> ( <em>Raku</em> )</li>
+<li><a href="https://fluca1978.github.io/2022/03/28/PerlWeeklyChallenge158.html#task1plperl">Perl Weekly Challenge 158: to be prime or not to be prime – Luca Ferrari – Open Source advocate, human being</a> ( <em>PL/PERL</em> )</li>
+<li><a href="https://fluca1978.github.io/2022/03/28/PerlWeeklyChallenge158.html#task1plpgsql">Perl Weekly Challenge 158: to be prime or not to be prime – Luca Ferrari – Open Source advocate, human being</a> ( <em>PL/PgSQL</em> )</li>
+</ul>
+<p><strong>Peter Campbell Smith</strong></p>
+<ul>
+<li><a href="https://pjcs-pwc.blogspot.com/2022/03/all-about-primes.html">All about primes</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Roger Bell_West</strong></p>
+<ul>
+<li><a href="https://blog.firedrake.org/archive/2022/03/The_Weekly_Challenge_158__Prime_Cuban_Additives.html">RogerBW&rsquo;s Blog: The Weekly Challenge 158: Prime Cuban Additives</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Simon Green</strong></p>
+<ul>
+<li><a href="https://dev.to/simongreennet/its-a-primathon-5aki">It&rsquo;s a primathon!</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>W. Luis Mochan</strong></p>
+<ul>
+<li><a href="https://wlmb.github.io/2022/03/28/PWC158/">Perl Weekly Challenge 158 – W. Luis Mochán</a> ( <em>Perl</em> )</li>
+</ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="/contact" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2022
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.nomtimes.co.uk/site/shop.do?cref=PerlBooks" title="Free Perl Books" rel="noreferrer" target="_blank">
+                            <img src="/images/NomTimes.jpg" style="width:22px; height: 18px;" alt=""/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jQurey/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-136524905-1', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+
+</html>
+
