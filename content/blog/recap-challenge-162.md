@@ -47,20 +47,20 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 
 <br>
 
-#### 1. Perl: 7924 (62%)
-#### 2. Raku: 4695 (38%)
-#### 3. Blog: 2487
+#### 1. Perl: 7925 (62%)
+#### 2. Raku: 4696 (38%)
+#### 3. Blog: 2488
 
 <br>
 
 ## CONTRIBUTION STATS {#CONTRIBUTIONSTATS}
 ***
 
-The total contributions in the week is `87`. Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
+The total contributions in the week is `90`. Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
 
-#### 1. Perl: 47
-#### 2. Raku: 24
-#### 3. Blog: 16
+#### 1. Perl: 48
+#### 2. Raku: 25
+#### 3. Blog: 17
 
 <br>
 
@@ -501,6 +501,15 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 [[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/polettix/raku/ch-2.raku)]
 [[**BLOG #1**](https://github.polettix.it/ETOOBUSY/2022/04/26/pwc162-isbn-13/)]
 [[**BLOG #2**](https://github.polettix.it/ETOOBUSY/2022/04/27/pwc162-wheatstone-playfair/)]
+
+***
+
+### Jaldhar H. Vyas
+![Jaldhar H. Vyas](/images/team/jaldhar_vyas.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/jaldhar-h-vyas/perl/ch-1.pl)]
+[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/jaldhar-h-vyas/raku/ch-1.raku)]
+[[**BLOG #1**](https://www.braincells.com/perl/2022/05/perl_weekly_challenge_week_162.html)]
 
 ***
 
