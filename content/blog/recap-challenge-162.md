@@ -47,7 +47,7 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 
 <br>
 
-#### 1. Perl: 7922 (62%)
+#### 1. Perl: 7924 (62%)
 #### 2. Raku: 4695 (38%)
 #### 3. Blog: 2487
 
@@ -56,9 +56,9 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 ## CONTRIBUTION STATS {#CONTRIBUTIONSTATS}
 ***
 
-The total contributions in the week is `85`. Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
+The total contributions in the week is `87`. Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
 
-#### 1. Perl: 45
+#### 1. Perl: 47
 #### 2. Raku: 24
 #### 3. Blog: 16
 
@@ -335,6 +335,14 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/julien-fiegehenn/perl/ch-1.pl)]
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/julien-fiegehenn/perl/ch-2.pl)]
+
+***
+
+### Kueppo Wesley
+![Kueppo Wesley](/images/team/kueppo-wesley.jpg)
+
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/kueppo-wesley/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/kueppo-wesley/perl/ch-2.pl)]
 
 ***
 
