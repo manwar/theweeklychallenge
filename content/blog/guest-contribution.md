@@ -36,6 +36,10 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 163](/blog/perl-weekly-challenge-163) {#163}
 <br>
 
+##### **Adam Russell** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/adam-russell/java/ch-1.java) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/adam-russell/java/ch-2.java) in **Java**.
+
+##### **Adam Russell** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/adam-russell/prolog/ch-1.p) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/adam-russell/prolog/ch-2.p) in **Prolog**.
+
 ##### **Alexander Pankoff** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/alexander-pankoff/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/alexander-pankoff/haskell/ch-2.hs) in **Haskell**.
 
 ##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/deadmarshal/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/deadmarshal/c/ch-2.c) in **C**.
