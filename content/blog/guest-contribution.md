@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2022-05-07T00:00:00+00:00
+date: 2022-05-08T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -45,6 +45,10 @@ Please find below guest contributions.
 ##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/deadmarshal/lua/ch-1.lua) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/deadmarshal/lua/ch-2.lua) in **Lua**.
 
 ##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/deadmarshal/pascal/ch1.pas) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/deadmarshal/pascal/ch2.pas) in **Pascal**.
+
+##### **Cheok-Yin Fung** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/cheok-yin-fung/julia/ch-2.jl) in **Julia**.
+
+##### **Cheok-Yin Fung** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/cheok-yin-fung/python/ch-2.py) in **Python**.
 
 ##### **Conor Hoekstra** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/conor-hoekstra/apl/ch-2.apl) in **APL**.
 
