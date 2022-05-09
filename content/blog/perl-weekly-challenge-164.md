@@ -85,7 +85,7 @@ Talking about stats, I would also like to share some stats with you.
 <br>
 
 #### [**Week #163**](/blog/recap-challenge-163)
-     Perl/Raku Contributors: 37 (113 contributions)
+     Perl/Raku Contributors: 37 (114 contributions)
      Guest Contributors: 12 (47 contributions in 18 languages)
 
 <br>
