@@ -42,6 +42,8 @@ Please find below guest contributions.
 
 ##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/deadmarshal/pascal/ch1.pas) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/deadmarshal/pascal/ch2.pas) in **Pascal**.
 
+##### **Alexander Pankoff** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/alexander-pankoff/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/alexander-pankoff/haskell/ch-2.hs) in **Haskell**.
+
 ##### **Conor Hoekstra** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/conor-hoekstra/apl/ch-1.apl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/conor-hoekstra/apl/ch-2.apl) in **APL**.
 
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-164/eric-cheung/python/ch-2.py) in **Python**.
@@ -6919,6 +6921,8 @@ Please find below guest contributions.
 ##### **Abigail** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-003/abigail/scheme/ch-1.scm) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-003/abigail/scheme/ch-2.scm) in **Scheme**.
 
 ##### **Abigail** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-003/abigail/tcl/ch-1.tcl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-003/abigail/tcl/ch-2.tcl) in **Tcl**.
+
+##### **Alexander Pankoff** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-003/alexander-pankoff/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-003/alexander-pankoff/haskell/ch-2.hs) in **Haskell**.
 
 ##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-003/paulo-custodio/awk/ch-1.awk) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-003/paulo-custodio/awk/ch-2.awk) in **Awk**.
 
