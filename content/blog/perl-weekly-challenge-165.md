@@ -61,7 +61,7 @@ Good luck for the next challenge.
 #### 1. Commits: 25,232 (+153)
 #### 2. Pull Requests: 6,107 (+37)
 #### 3. Contributors: 193 (+1)
-#### 4. Fork: 248  (+1)
+#### 4. Fork: 248 (+1)
 #### 5. Stars: 132 (+2)
 
 <br>
