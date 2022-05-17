@@ -143,7 +143,7 @@ Your task is to accept a series of points and lines in the following format, one
     53,10,23,30
     23,30
 
-    Then, generate an SVG file plotting all points, and all lines. If done correctly, you can view the output `.svg` file in your browser.
+Then, generate an SVG file plotting all points, and all lines. If done correctly, you can view the output `.svg` file in your browser.
 
 <br>
 
