@@ -28,7 +28,7 @@ tags: ["Perl", "Raku"]
 
 Welcome to the `Week #165`.
 
-Let us all welcome 2 new members, `James Marquiz` and `Humberto Massa` to the `Team PWC`.
+Let us all welcome 2 new members, `James Marquis` and `Humberto Massa` to the `Team PWC`.
 
 We had the pleasure to interview latest champion, [**Matthew Neleigh**](/blog/meet-the-champion-2022-04). It was great knowing him.
 
@@ -106,7 +106,7 @@ I would like to `THANK` every member of the team for their valuable suggestions.
 ## NEW MEMBERS {#NEWMEMBERS}
 ***
 
-**James Marquiz**, an expert `Perl` hacker and [**Humberto Massa**](https://github.com/massa), an expert `Raku` hacker joined the `Team PWC`.
+`James Marquis`, an expert `Perl` hacker and [**Humberto Massa**](https://github.com/massa), an expert `Raku` hacker joined the `Team PWC`.
 
 Please find out [**How to contribute?**](/blog/how-to-contribute), if you have any doubts.
 
