@@ -432,7 +432,7 @@ Here's another variation of the technique from Adam. I'll make mention that thes
 
 Finally, for my own solution I spent my time creating a `Rat` object type for a rational number, that when instantiated automatically creates a reduced internal form and a decimal approximation for sorting. Using a pair of loops, all of the fraction values are calculated as new `Rat` objects and placed in a list. The list is filtered for unique fractions by constructing a hash keyed on the stringified form of the reduced fraction. The keys for this hash can then be sorted on the decimal approximations and output.
 
-Most of the fun stuff is automatically done when the object is created. I like triggers, and the BUILD method is automatically run on instantiation, with the data provided by te BUILDARGS method that proceeds it.
+Most of the fun stuff is automatically done when the object is created. I like triggers, and the BUILD method is automatically run on instantiation, with the data provided by the BUILDARGS method that proceeds it.
 
 ```perl
     package Rat;
