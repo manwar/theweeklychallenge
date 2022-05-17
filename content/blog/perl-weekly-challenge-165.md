@@ -30,7 +30,7 @@ Welcome to the `Week #165`.
 
 Let us all welcome 2 new members, `James Marquiz` and `Humberto Massa` to the `Team PWC`.
 
-We had the pleasure to interview latest champion, [**Alexander Pankoff**](/blog/meet-the-champion-2022-04). It was great knowing him.
+We had the pleasure to interview latest champion, [**Matthew Neleigh**](/blog/meet-the-champion-2022-04). It was great knowing him.
 
 I would like to thank `Ryan Thompson` for suggesting cool tasks for the weekly challenge. Thanks `Early Bird Club` members for helping with task reviews.
 
