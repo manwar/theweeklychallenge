@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2022-05-25T00:00:00+00:00
+date: 2022-05-28T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -225,6 +225,8 @@ Please find below guest contributions.
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/eric-cheung/python/ch-2.py) in **Python**.
 
 ##### **Mohammad Meraj Zia** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/ziameraj16/java/Isbn13.java) in **Java**.
+
+##### **PokGoPun** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/pokgopun/go/ch-1.go) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/pokgopun/go/ch-2.go) in **Go**.
 
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/roger-bell-west/javascript/ch-1.js) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/roger-bell-west/javascript/ch-2.js) in **JavaScript**.
 
@@ -6622,6 +6624,8 @@ Please find below guest contributions.
 
 ##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/paulo-custodio/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/paulo-custodio/python/ch-2.py) in **Python**.
 
+##### **PokGoPun** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/pokgopun/go/ch-1.go) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/pokgopun/go/ch-2.go) in **Go**.
+
 ##### **Stuart Little** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/stuart-little/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-030/stuart-little/haskell/ch-2.hs) in **Haskell**.
 
 ----
@@ -6744,6 +6748,8 @@ Please find below guest contributions.
 
 ##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-019/paulo-custodio/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-019/paulo-custodio/python/ch-2.py) in **Python**.
 
+##### **PokGoPun** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-019/pokgopun/go/ch-1.go) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-019/pokgopun/go/ch-2.go) in **Go**.
+
 ##### **Stuart Little** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-019/stuart-little/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-019/stuart-little/haskell/ch-2.hs) in **Haskell**.
 
 ----
@@ -6795,6 +6801,8 @@ Please find below guest contributions.
 ##### **Cheok-Yin Fung** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-013/cheok-yin-fung/java/LastFriday.java) in **Java**.
 
 ##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-013/paulo-custodio/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-013/paulo-custodio/python/ch-2.py) in **Python**.
+
+##### **PokGoPun** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-013/pokgopun/go/ch-1.go) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-013/pokgopun/go/ch-2.go) in **Go**.
 
 ##### **Stuart Little** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-013/stuart-little/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-013/stuart-little/haskell/ch-2.hs) in **Haskell**.
 
@@ -7061,6 +7069,8 @@ Please find below guest contributions.
 ##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-002/paulo-custodio/lua/ch-1.lua) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-002/paulo-custodio/lua/ch-2.lua) in **Lua**.
 
 ##### **Paulo Custodio** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-002/paulo-custodio/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-002/paulo-custodio/python/ch-2.py) in **Python**.
+
+##### **PokGoPun** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-002/pokgopun/go/ch-1.go) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-002/pokgopun/go/ch-2.go) in **Go**.
 
 ##### **Stuart Little** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-002/stuart-little/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-002/stuart-little/haskell/ch-2.hs) in **Haskell**.
 
