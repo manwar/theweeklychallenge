@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="The Weekly Challenge - Perl & Raku"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="You do not have to be an expert."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Colin Crain › Perl Weekly Review #161">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Colin Crain › Perl Weekly Review #161</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navgation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Colin Crain › Perl Weekly Review #161</h2>
+                    <div class="portfolio-meta">
+                        <span>Monday, May 30, 2022</span>|
+                        <span> Tags:
+                            perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/p5-review-challenge-161.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <p>( <em>&hellip;continues from <a href="/blog/review-challenge-160/">previous week</a>.</em> )</p>
+<p>Welcome to the Perl review pages for <strong>Week 161</strong> of The Weekly Challenge! Here we will take the time to discuss the  submissions offered up by the team, factor out some common methodologies that came up in those solutions, and highlight some of the unique approaches and unusual code created.</p>
+<hr>
+<h3 id="-why-do-we-do-these-challenges">●︎ Why do we do these challenges?</h3>
+<p>I suppose any reasonable answer to that question would be from a field as wide ranging and varied as the people who choose to join the team. One thing, though, is clear: it&rsquo;s not a competition, and there are no judges, even if there is a &ldquo;prize&rdquo; of sorts. About that &ndash; I think of it more as an honorarium periodically awarded to acknowledge the efforts we make towards this strange goal. So there&rsquo;s no determination to find the <em>fastest</em>, or the <em>shortest</em>, or even, in some abstract way, the <em>best</em> way to go about things, although I&rsquo;m certain the participants have their own aspirations and personal drives. As Perl is such a wonderfully expressive language, this provides quite a bit of fodder to the core idea of TMTOWTDI, producing a gamut of varied techniques and solutions.</p>
+<p>Even the tasks themselves are often open to a certain amount of discretionary interpretation. What we end up with is a situation where each participant is producing something in the manner they find the most interesting or satisfying. Some team members focus on carefully crafted complete applications, thoroughly vetting input data and handling every use case they can think up. Others choose to apply themselves to the logic of the underlying puzzle and making it work in the most elegant way they can. Some eschew modules they would ordinarily reach for, others embrace them, bringing to light wheels perhaps invented years ago that happen to exactly solve the problem in front of them today.</p>
+<p>I&rsquo;ve been considering this question for some time and have found one binding commonality between all of us out solving these challenges each week, in that however we normally live our lives, the task in front of us more than likely has nothing to do with any of that. And I think this has great value. We all do what we do, in the real world, and hopefully we do it well. The Weekly Challenge provides us with an opportunity to do something germane to that life yet distinctly different; if we only do the things we already know how to do then we will only do the same things over and over. This is where the &ldquo;challenge&rdquo; aspect comes into play.</p>
+<p>So we can consider The Weekly Challenge as providing a problem space outside of our comfort zone, as far out from that comfort as we wish to take things. From those reaches we can gather and learn things, pick and choose and bring what we want back into our lives. Personally, I think that&rsquo;s what this whole thing is about. YMMV.</p>
+<hr>
+<p><strong><emp>Every week there is an enormous global collective effort made by the team, analyzing and creatively coding the submissions, and that effort deserves credit due.</emp></strong></p>
+<p>And that, my friends, is why I&rsquo;m here, to try and figure out ways to do just that.</p>
+<p>So, here we are then. I&rsquo;m ready — let’s get to it and see what we can find.</p>
+<hr>
+<h3 id="for-additional-context">For Additional Context…</h3>
+<p>before we begin, you may wish to revisit either the pages for the <a href="/blog/perl-weekly-challenge-161/"><strong>original tasks</strong></a> or the summary <a href="/blog/recap-challenge-161/"><strong>recap</strong></a> of the challenge. But don&rsquo;t worry about it, the challenge text will be repeated and presented as we progress from task to task.</p>
+<p>Oh, and one more thing before we get started:</p>
+<h3 id="getting-in-touch-with-us">Getting in Touch with Us</h3>
+<p><a href="mailto:pwc.perfectwave@gmail.com"><img src="/images/blog/Email.svg" height="50" width="50"> Email</a> › Please feel free to email me (Colin) with any feedback, notes, clarifications or whatnot about this review.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge"><img src="/images/blog/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request to us for any issues you may find with this page.</p>
+<p><a href="https://twitter.com/perlwchallenge"><img src="/images/blog/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!</p>
+<p>I&rsquo;m always curious as to what the people think of these efforts. Everyone here at the PWC would like to hear any feedback you&rsquo;d like to give.</p>
+<div align= center><strong>...So finally, without further ado...</strong></div>
+<hr>
+<h2 id="---nbsp--nbsp--nbsp---task-1pwc161task1-------nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---task-2pwc161task2---nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---blogspwc161blogs----nbsp--nbsp--nbsp---">•             <a href="#PWC161TASK1">Task 1</a>                 •             <a href="#PWC161TASK2">Task 2</a>             	•             <a href="#PWC161BLOGS">BLOGS</a>              	•</h2>
+<hr>
+<h1 id="PWC161TASK1">TASK 1</h1>
+<h1 id="abecedarian-words">Abecedarian Words</h1>
+<p><em>Submitted by: Ryan J Thompson</em></p>
+<p>An abecedarian word is a word whose letters are arranged in alphabetical order. For example, “knotty” is an abecedarian word, but “knots” is not. Output or return a list of all abecedarian words in the dictionary, sorted in decreasing order of length.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club">https://github.com/manwar/perlweeklychallenge-club</a>
+/blob/master/data/dictionary.txt</p>
+<p>Optionally, using only abecedarian words, leave a short comment in your code to make your reviewer smile.</p>
+<h2 id="about-the-solutions">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/alexander-pankoff/perl/ch-1.pl"><strong>Alexander Pankoff</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/andrezgz/perl/ch-1.pl"><strong>Andrezgz</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/ildar-shaimordanov/perl/ch-1.pl"><strong>Ildar Shaimordanov</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/jaldhar-h-vyas/perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/julien-fiegehenn/perl/ch-1.pl"><strong>Julien Fiegehenn</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/kueppo-wesley/perl/ch-1.pl"><strong>Kueppo Wesley</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/lubos-kolouch/perl/ch-1.pl"><strong>Lubos Kolouch</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/mattneleigh/perl/ch-1.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/paulo-custodio/perl/ch-1.pl"><strong>Paulo Custodio</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/pete-houston/perl/ch-1.pl"><strong>Pete Houston</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/peter-campbell-smith/perl/ch-1.pl"><strong>Peter Campbell Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/pokgopun/perl/ch-1.pl"><strong>PokGoPun</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/robert-dicicco/perl/ch-1.pl"><strong>Robert DiCicco</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/ryan-thompson/perl/ch-1.pl"><strong>Ryan Thompson</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>This opening task from the fertile mind of Ryan Thompson has all the makings of a top-notch thriller — intrigue, suspense, a twist and even a bumper nod to the producers  in the closing credits.</p>
+<p>The core logic is to decide whether the letters in a word are ordered lexicographically — that is to say they are in ascending alphabetic order.</p>
+<p>But wait! There&rsquo;s more! Thing is, there&rsquo;s a specific word list used to search. Which is all well and good, but the word list is on the web! Another obstacle in the path of our intrepid heroes.</p>
+<p>After the denouement, resulting in a list of select words, there is a suggestion in passing to assemble them in a manner pleasing to yours truly. Considering my unusual sense of humor and deep love of wordplay I doubt this would be a particularly difficult task, should one wish to follow this tortuous scheme to its inevitable, logical end.</p>
+<p>As usual, there was variable compliance with requirements of the task as written. Such is life. If there&rsquo;s one thing I have learned, it&rsquo;s that you can&rsquo;t control people. Guide them, bribe then, scold them or beat them with a koan stick — they will do what they do, and it&rsquo;s best to let that happen and hope it works out for you. If you stay flexible and  adaptable you can probably find a way out.</p>
+<p>There were 30 submissions for the first task this past week.</p>
+<h2 id="an-afflux-of-loops">an AFFLUX of LOOPS</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/alexander-pankoff/perl/ch-1.pl"><strong>Alexander Pankoff</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/lubos-kolouch/perl/ch-1.pl"><strong>Lubos Kolouch</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/ildar-shaimordanov/perl/ch-1.pl"><strong>Ildar Shaimordanov</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/ryan-thompson/perl/ch-1.pl"><strong>Ryan Thompson</strong></a></p>
+<p>The varieties of solutions we saw were wide-ranging. As it turns out there are quite a few ways to compare adjacent characters in a string. But that remained the central action no matter the specific method — iterating across the word in some manner examining pairs and looking for any that are out-of-order.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/alexander-pankoff/perl/ch-1.pl"><strong>Alexander Pankoff</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/alexander-pankoff/haskell/ch-1.hs">Haskell</a></p>
+<p>It is a time-tested theatrical tradition to take complex real-world aspects of the story that in themselves don&rsquo;t relate directly to the plot and have that action occur off-camera. It&rsquo;s not super important <em>how</em> it happens, just that it <em>does</em>, and once we know that we can move on and stay focused on the drama of the moment.</p>
+<p>Alexander parks his <code>real_dict()</code> routine off in a module of its own, returning an array of dictionary words. Which is the important part here.</p>
+<p>The plot, if you will, is to filter this list for only the abecedarian words. To accomplish this he splits each word into a list of characters and sorts them before rejoining them. If the sorted word is identical to the original, it was ordered to begin with and hence abecedarian.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">run</span>() {
+        <span style="color:#66d9ef">my</span> @dict <span style="color:#f92672">=</span> read_dict();
+
+        <span style="color:#75715e"># filter abecedarian words and group them by length.</span>
+        <span style="color:#66d9ef">my</span> $abecedarian_by_length <span style="color:#f92672">=</span> group_by( sub($a) { <span style="color:#66d9ef">return</span> length $a },
+            grep( is_abecedarian($_), @dict ) );
+
+        <span style="color:#75715e"># output them sorted by length (shortest first). Since the input dict is</span>
+        <span style="color:#75715e"># sorted lexically, all words of them same length will be output in lexical</span>
+        <span style="color:#75715e"># order as well.</span>
+        say
+          <span style="color:#66d9ef">for</span> map { @{ $abecedarian_by_length<span style="color:#f92672">-&gt;</span>{$_} } }
+          sort    { $a <span style="color:#e6db74">&lt;=&gt;</span> $b } keys %{$abecedarian_by_length};
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_abecedarian</span>($word) {
+
+        <span style="color:#75715e"># To find out if a word is abecedarian we sort it lexically and compare to</span>
+        <span style="color:#75715e"># the input words.</span>
+        <span style="color:#66d9ef">return</span> join( <span style="color:#e6db74">&#39;&#39;</span>, sort ( split(<span style="color:#e6db74"> //</span>, $word ) ) ) <span style="color:#f92672">eq</span> $word;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/lubos-kolouch/perl/ch-1.pl"><strong>Lubos Kolouch</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/lubos-kolouch/python/ch-1.py">Python</a></p>
+<p>Splitting and sorting proved to be a common choice for constructing a filter.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_abcd</span> {
+        <span style="color:#66d9ef">my</span> $what <span style="color:#f92672">=</span> shift;
+
+        <span style="color:#66d9ef">return</span> $what <span style="color:#f92672">eq</span> join( <span style="color:#e6db74">&#39;&#39;</span>, sort( split <span style="color:#e6db74">//</span>, $what ) );
+    }
+
+    open <span style="color:#66d9ef">my</span> $file, <span style="color:#e6db74">&#39;&lt;&#39;</span>, <span style="color:#e6db74">&#39;dictionary.txt&#39;</span>;
+
+    <span style="color:#66d9ef">while</span> (<span style="color:#e6db74">&lt;$file&gt;</span>) {
+        chomp;
+
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$_ is abcdrian \n&#34;</span> <span style="color:#66d9ef">if</span> is_abcd($_);
+    }
+    close $file;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/adam-russell/java/ch-1.java">Java</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/adam-russell/prolog/ch-1.p">Prolog</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2022/04/24/">RabbitFarm</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://www.rabbitfarm.com/cgi-bin/blosxom/prolog/2022/04/24/">RabbitFarm</a></p>
+<p>Lubos&rsquo; code, above, gets the abecedarian part done, but seems to have blazed right past the requirement to present the results in decreasing order of length. Oh well. I <em>should</em> fail this, but&hellip;</p>
+<p>On the other hand he brought me a present, so I&rsquo;ll look the other way on the matter and move on.</p>
+<p>Adam, rigorous logician that he is, satisfies this requirement by creating an anonymous array for each entry that passes the sorting <code>grep</code> stage, of the word and its length. This is then used for a second sorting by size. Although string length is a a simple lookup of a known parameter in the Perl string data structure, doing things this way avoids repeated function calls during the sorting process which is <em>in general</em> a good thing. Here it certainly can&rsquo;t hurt, right</p>
+<p>Ok, maybe a little bit. A teensy-tiny bit.</p>
+<p>Some may noice the way word &ldquo;logician&rdquo; rhymes with &ldquo;magician&rdquo;. I conject that this is not coincidence.</p>
+<p>Here&rsquo;s the code — I added a few linefeeds for clarity:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">abecedarian</span>{
+        sort {$b<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#e6db74">&lt;=&gt;</span> $a<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]}
+        map {[$_, length($_)]}
+        grep{chomp; $_ <span style="color:#f92672">eq</span> join(<span style="color:#e6db74">&#34;&#34;</span>, sort {$a <span style="color:#f92672">cmp</span> $b} split(<span style="color:#e6db74">//</span>, $_))} @_;
+    }
+
+    MAIN:{
+        open(DICTIONARY, <span style="color:#e6db74">&#34;./dictionary.txt&#34;</span>);
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $abc (abecedarian(<span style="color:#e6db74">&lt;DICTIONARY&gt;</span>)){
+            <span style="color:#66d9ef">print</span> $abc<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34; length: &#34;</span> <span style="color:#f92672">.</span> $abc<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
+        }
+        close(DICTIONARY);
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a></p>
+<p>After breaking his word up into characters, Jorg processes is in a single pass with a clever <code>reduce</code> block, using the list-wise primitive function borrowed from <code>Lst::Util</code>.</p>
+<p>The way it works is works is after assigning <code>$a</code> to the first value, successive list elements are slotted into <code>$b</code>, and the result of the block used to update <code>$a</code> for the next iteration. The ternary conditional is composed itself of two parts, the first that <code>a</code> is true, then that <code>$a</code> is less than or equal to <code>$b</code> using string comparison. The results are the new character <code>$b</code> if true, or a null string if false.</p>
+<p>Thus on the first false result the null string becomes <code>$a</code> and no further result can ever be true. So we end up looking at pairs of successive characters, and the result goes to null if any are out-of-place.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    say <span style="color:#66d9ef">for</span> sort {length($b) <span style="color:#e6db74">&lt;=&gt;</span> length($a) <span style="color:#f92672">||</span> $a <span style="color:#f92672">cmp</span> $b} gather {
+        <span style="color:#66d9ef">while</span> (<span style="color:#f92672">&lt;&gt;</span>) {
+            chomp;
+            take $_ <span style="color:#66d9ef">if</span> reduce {$a <span style="color:#f92672">&amp;&amp;</span> $a <span style="color:#f92672">le</span> $b ? $b : <span style="color:#e6db74">&#39;&#39;</span>} split <span style="color:#e6db74">//</span>;
+        }
+    };
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a></p>
+<p>Choroba, apparently not wishing to repeat his solution for PWC111-2, has come up with a new elaborate method using a carefully constructed regex to perform his filtering.</p>
+<p>The regex in question matches any letter followed by any letter that alphabetically precedes it. How is this done? By having the code write the code, of course. The final regex is, shall we say, <em>non trivial</em>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    (?:b[a])<span style="color:#f92672">|</span>(?:c[ab])<span style="color:#f92672">|</span>(?:d[abc])<span style="color:#f92672">|</span>(?:e[abcd])<span style="color:#f92672">|</span>(?:f[abcde])<span style="color:#f92672">|</span>(?:g[abcdef])<span style="color:#f92672">|</span>(?:h[abcdefg])<span style="color:#f92672">|</span>(?:i[abcdefgh])<span style="color:#f92672">|</span>(?:j[abcdefghi])<span style="color:#f92672">|</span>(?:k[abcdefghij])<span style="color:#f92672">|</span>(?:l[abcdefghijk])<span style="color:#f92672">|</span>(?:<span style="color:#e6db74">m[abcdefghijkl]</span>)<span style="color:#f92672">|</span>(?:n[abcdefghijklm])<span style="color:#f92672">|</span>(?:o[abcdefghijklmn])<span style="color:#f92672">|</span>(?:p[abcdefghijklmno])<span style="color:#f92672">|</span>(?:<span style="color:#e6db74">q[abcdefghijklmnop]</span>)<span style="color:#f92672">|</span>(?:r[abcdefghijklmnopq])<span style="color:#f92672">|</span>(?:<span style="color:#e6db74">s[abcdefghijklmnopqr]</span><span style="color:#960050;background-color:#1e0010">)|</span><span style="color:#e6db74">(?:t[abcdefghijklmnopqrs])</span><span style="color:#f92672">|</span>(?:u[abcdefghijklmnopqrst])<span style="color:#f92672">|</span>(?:v[abcdefghijklmnopqrstu])<span style="color:#f92672">|</span>(?:w[abcdefghijklmnopqrstuv])<span style="color:#f92672">|</span>(?:x[abcdefghijklmnopqrstuvw])<span style="color:#f92672">|</span>(?:y[abcdefghijklmnopqrstuvwx])<span style="color:#f92672">|</span>(?:z[abcdefghijklmnopqrstuvwxy])
+</code></pre></div><p>And how is that made? Let&rsquo;s consult the first lines of the script:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> @disordered;
+    <span style="color:#66d9ef">my</span> $previous <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;a&#39;</span>;
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $char (<span style="color:#e6db74">&#39;b&#39;</span> <span style="color:#f92672">..</span> <span style="color:#e6db74">&#39;z&#39;</span>) {
+        push @disordered, <span style="color:#e6db74">&#34;$char&#34;</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;[&#39;</span> <span style="color:#f92672">.</span> join(<span style="color:#e6db74">&#34;&#34;</span>, <span style="color:#e6db74">&#39;a&#39;</span> <span style="color:#f92672">..</span> $previous) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;]&#39;</span>;
+        $previous <span style="color:#f92672">=</span> $char;
+    }
+
+    <span style="color:#66d9ef">my</span> $disordered <span style="color:#f92672">=</span> join <span style="color:#e6db74">&#39;|&#39;</span>, map <span style="color:#e6db74">&#34;(?:$_)&#34;</span>, @disordered;
+</code></pre></div><p>So an abecedarian word is one that does <em>not</em> match the regex. Simple, as long as we don&rsquo;t directly need to write the code.</p>
+<p>Here&rsquo;s the subroutine that does the procedural work, which is pretty straightforward.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">abecedarian_words</span> {
+        <span style="color:#66d9ef">my</span> ($dictionary) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span> @abcd;
+        open <span style="color:#66d9ef">my</span> $in, <span style="color:#e6db74">&#39;&lt;&#39;</span>, $dictionary <span style="color:#f92672">or</span> die $!;
+        <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">my</span> $word <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;$in&gt;</span>) {
+            chomp $word;
+            push @abcd, $word <span style="color:#66d9ef">if</span> $word <span style="color:#f92672">!~</span> <span style="color:#e6db74">/$disordered/</span>;
+        }
+        @abcd <span style="color:#f92672">=</span> sort { length $b <span style="color:#e6db74">&lt;=&gt;</span> length $a } @abcd;
+        <span style="color:#66d9ef">return</span> @abcd
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/ildar-shaimordanov/perl/ch-1.pl"><strong>Ildar Shaimordanov</strong></a></p>
+<p>I feel regular expressions have been under-represented so far, so here&rsquo;s a different version of a regex from Ildar. Its operation is a little more cryptic, but soon reveals itself after a bit of study.</p>
+<p>First of all, it&rsquo;s really two substitution regexes, with first an outer working left-to-right across letters (possibly repeated) of a copy of the original word. The second works on a copy of an ordered alphabet string.</p>
+<p>In the outer regex, a character from the word copy is matched and captured. Duplicates are matched as well, moving the position counter forward over them. But what we&rsquo;re interested in is the capture. This is a substitution, now, using the <code>/e</code> switch, so the second part is evaluated as an expression and the result used for a replacement.</p>
+<p>So, in the second half — the expression — we try and perform a second substitution on out alphabet, removing all characters to the left of, up to and including the letter in question. If this succeeds we return an empty string, but if it fails we return the thing matched in the first place.</p>
+<p>What this means is that if we can truncate the alphabet string we then replace the letter in the word copy with a null string, but if it fails we don&rsquo;t. In this way the word copy is whittled away, but only if successive letters still allow more deletions from the alphabet string. If that action ever fail a letter will be skipped and not removed from the word copy.</p>
+<p>In the end we look to see whether the word copy still exists, and it becomes clear why I&rsquo;ve been carefully repeating that the word under study is a <em>copy</em> of the original. If the word exists the statement is true and the <code>or</code> short-circuits, but if it fails we <code>print</code>, which defaults to <code>$_</code>, the original match from the dictionary, which still includes the original linefeed.</p>
+<p>Clever, clever, clever.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> $A <span style="color:#f92672">=</span> join <span style="color:#e6db74">&#34;&#34;</span>, <span style="color:#e6db74">&#34;a&#34;</span><span style="color:#f92672">..</span><span style="color:#e6db74">&#34;z&#34;</span>;
+
+    <span style="color:#66d9ef">while</span> ( <span style="color:#f92672">&lt;&gt;</span> ) {
+        <span style="color:#66d9ef">my</span> $a <span style="color:#f92672">=</span> $A;
+
+        chomp( <span style="color:#66d9ef">my</span> $word <span style="color:#f92672">=</span> $_ );
+
+        $word <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/(.)\1*/ $a =~ s|.*$1|| ? &#34;&#34; : $&amp; /eg</span>;
+
+        $word <span style="color:#f92672">or</span> <span style="color:#66d9ef">print</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-161/james-smith">The Weekly Challenge 161</a></p>
+<p>You know, whenever I see a big &ldquo;O&rdquo; (for Outer, presumably) used as a block label, it always seems so surprised. Something to ponder, that.</p>
+<p>James is a master at compressing code into tight blocks, and this presentation is no exception. The validator, in the second line, works in a loop controlled by a statement modifier: <code>for split //, $w</code>. Perhaps parentheses around the ternary conditional would help parsing, but that adds its own noise to the party.</p>
+<p>So for each new letter in the word, we check to see its ordered above the previous, and either skip to the next word or set the previous letter to the current and check the next letter. It we survive the ordeal we write the word being tested to a hash keyed on word-length, with a array to hold the individual words under each key.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    O:while( <span style="color:#66d9ef">my</span> $f <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>, chomp( <span style="color:#66d9ef">my</span> $w <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;$d&gt;</span> <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#39;&#39;</span> ) ) {
+      $f <span style="color:#f92672">gt</span> $_ ? <span style="color:#66d9ef">next</span> O : ( $f <span style="color:#f92672">=</span> $_ ) <span style="color:#66d9ef">for</span> split <span style="color:#e6db74">//</span>, $w;
+      push @{$a{ length $w }}, $w;
+    }
+
+    say <span style="color:#e6db74">&#34;$_: &#34;</span>, join <span style="color:#e6db74">&#39;, &#39;</span>, @{$a{$_}} <span style="color:#66d9ef">for</span> sort { $a<span style="color:#e6db74">&lt;=&gt;</span>$b } keys %a;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a></p>
+<p>Sorting the <em>whole</em> word, you know, can be quite wasteful. I mean, if it starts with &ldquo;z&rdquo; there is literally no way with this dictionary for it to be abecedarian. Once we hit the first two letters of &ldquo;zymurgy&rdquo; we should just be out, right?</p>
+<p>I do a couple of things here. One is I leave the dictionary where it is, using <code>LWP</code> to create the lightest of lightweight web browsers to <code>get</code> the data from the related raw data file at GitHub.</p>
+<p>Parsing the returned file with a regular expression we pull out the word and apply a subroutine filter, adding it to an results array if it qualifies. And to qualify? In the <code>abc()</code> routine we create a maximum index within the word, then use <code>substr</code> to examine adjacent pairs of letters inside the word, working backwards from the end. By hiding the index decrement inside the statement conditional, we lower the value on <code>$i</code> by 1 at every iteration until it reaches 0, at which point the statement modifier fails.</p>
+<p>The <code>substr</code> function is a very fast and efficient way to examine the interior components of a string, and the search short-circuits on failure, just the way we said it should.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> LWP::Simple <span style="color:#e6db74">qw( get )</span> ;
+
+    <span style="color:#66d9ef">my</span> $url <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;https://raw.githubusercontent.com/manwar/perlweeklychallenge-club/master/data/dictionary.txt&#39;</span>;
+    <span style="color:#66d9ef">my</span> $dict <span style="color:#f92672">=</span> get($url);
+
+    <span style="color:#66d9ef">my</span> @abcs;
+    <span style="color:#66d9ef">while</span> ( $dict <span style="color:#f92672">=~</span><span style="color:#e6db74"> /(.*)\n/g</span> ) {
+            push @abcs, $1 <span style="color:#66d9ef">if</span> abc( $1 );
+    }
+
+    say <span style="color:#66d9ef">for</span> sort {  length $b <span style="color:#e6db74">&lt;=&gt;</span> length $a
+                        <span style="color:#f92672">||</span>
+                    $a <span style="color:#f92672">cmp</span> $b } @abcs;
+
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">abc</span> ($word, $i = 0) {
+        $i <span style="color:#f92672">=</span> (length $word) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+        substr ($word, $i, <span style="color:#ae81ff">1</span>) <span style="color:#f92672">lt</span> substr ($word, <span style="color:#f92672">--</span>$i, <span style="color:#ae81ff">1</span>) <span style="color:#f92672">and</span> <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">while</span> $i;
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/ryan-thompson/perl/ch-1.pl"><strong>Ryan Thompson</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://ry.ca/2022/04/abecedarian-words/">PWC 161 › Abecedarian Words - Ryan J Thompson</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://ry.ca/2022/04/pangrams/">PWC 161 › Pangrams - Ryan J Thompson</a></p>
+<p>As this challenge was designed by Ryan, one might expect a quality effort from his camp, and it does not disappoint, providing no less than six versions of the winnowing for comparison.</p>
+<p>Here they are ordered by increasing speed. The four pure-Perl functions all remained within about 35% of each other from slowest to fastest, but the inline-C code, once compiled, gained first one and then a second order of magnitude over the fastest Perl function, <code>is_abcd_loop()</code>.</p>
+<p>Notice his regex is a pretty straightforward third way to do this.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_abcd_sort</span>   { $_ <span style="color:#f92672">eq</span> join <span style="color:#e6db74">&#39;&#39;</span>, sort split <span style="color:#e6db74">//</span> }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_abcd_reduce</span> { <span style="color:#e6db74">&#39;~&#39;</span> <span style="color:#f92672">ne</span> reduce { $a <span style="color:#f92672">gt</span> $b ? <span style="color:#e6db74">&#39;~&#39;</span> : $b } split <span style="color:#e6db74">//</span> }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_abcd_regex</span>  { <span style="color:#f92672">/^</span>a<span style="color:#f92672">*</span>b<span style="color:#f92672">*</span>c<span style="color:#f92672">*</span>d<span style="color:#f92672">*</span>e<span style="color:#f92672">*</span>f<span style="color:#f92672">*</span>g<span style="color:#f92672">*</span>h<span style="color:#f92672">*</span>i<span style="color:#f92672">*</span>j<span style="color:#f92672">*</span>k<span style="color:#f92672">*</span>l<span style="color:#f92672">*</span>m<span style="color:#f92672">*</span>n<span style="color:#f92672">*</span>
+                           o<span style="color:#f92672">*</span>p<span style="color:#f92672">*</span><span style="color:#e6db74">q*r*</span>s<span style="color:#f92672">*</span>t<span style="color:#f92672">*</span>u<span style="color:#f92672">*</span>v<span style="color:#f92672">*</span>w<span style="color:#f92672">*</span>x<span style="color:#f92672">*</span>y<span style="color:#f92672">*</span>z<span style="color:#f92672">*</span>$<span style="color:#960050;background-color:#1e0010">/</span>x }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_abcd_loop</span>   {
+        <span style="color:#66d9ef">my</span> $last;
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $ch (split <span style="color:#e6db74">//</span>) {
+            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">if</span> $last <span style="color:#f92672">gt</span> $ch;
+            $last <span style="color:#f92672">=</span> $ch;
+        }
+        $_;
+    }
+
+    <span style="color:#75715e"># Two different C versions, for fun</span>
+
+    <span style="color:#66d9ef">use</span> Inline <span style="color:#e6db74">&#39;C&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#39;END&#39;</span>
+    <span style="color:#e6db74">/* This does the actual checking, used by the next two functions */</span>
+    int __is_abcd(unsigned char <span style="color:#f92672">*</span>s) {
+        unsigned char <span style="color:#66d9ef">last</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">for</span> (unsigned char <span style="color:#f92672">*</span>p <span style="color:#f92672">=</span> s; <span style="color:#f92672">*</span>p; <span style="color:#66d9ef">last</span> <span style="color:#f92672">=</span> <span style="color:#f92672">*</span>p, p<span style="color:#f92672">++</span> )
+            <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">last</span> <span style="color:#f92672">&gt;</span> <span style="color:#f92672">*</span>p)
+                <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+    }
+
+    <span style="color:#e6db74">/* Boolean, works on $_ */</span>
+    int is_abcd_inline() {
+        SV <span style="color:#f92672">*</span>var <span style="color:#f92672">=</span> get_sv(<span style="color:#e6db74">&#34;_&#34;</span>, GV_ADD);
+        unsigned char <span style="color:#f92672">*</span>s <span style="color:#f92672">=</span> SvPVutf8_nolen(var);
+
+        <span style="color:#66d9ef">return</span> __is_abcd(s);
+    }
+
+    <span style="color:#e6db74">/* Process the entire list */</span>
+    void abcd_words(SV <span style="color:#f92672">*</span>word, <span style="color:#f92672">...</span>) {
+        Inline_Stack_Vars;
+
+        Inline_Stack_Reset;
+        <span style="color:#66d9ef">for</span> (int i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> Inline_Stack_Items; i<span style="color:#f92672">++</span>) {
+            <span style="color:#66d9ef">if</span> (__is_abcd(SvPV(Inline_Stack_Item(i), PL_na)))
+                Inline_Stack_Push(Inline_Stack_Item(i));
+        }
+        Inline_Stack_Done;
+    }
+    <span style="color:#66d9ef">END</span>
+    ;
+
+</code></pre></div><h2 id="linty-flossy-airs">LINTY FLOSSY AIRS</h2>
+<p>Being a collection of snippets members collected for my amusement, in no particular order. I may have missed some, and for that I will apologize and thank all the creators in advance.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>   Lost chimp, deer in hill, forty chilly beers below. Mossy empty box in first floor, beg him for best gin, add a berry, cry&hellip;</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/lubos-kolouch/perl/ch-1.pl"><strong>Lubos Kolouch</strong></a></p>
+<p>   Glory for best belly boy!</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a></p>
+<p>   Accept it - best film is &ldquo;Hot Fuzz&rdquo;.</p>
+<p>   Glory begins for forty deft aces!</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/ryan-thompson/perl/ch-1.pl"><strong>Ryan Thompson</strong></a></p>
+<p>   Most DOS floppy bit errs abort boot.</p>
+<p>   Best bet for a fix now is to beg for a copy of my floppy!</p>
+<p>   Or, go for almost any beer or gin. Any buzz, not choosy.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a></p>
+<p>   I do not pry: a chin hit is not a dirty blow, bell or not.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/peter-campbell-smith/perl/ch-1.pl"><strong>Peter Campbell Smith</strong></a></p>
+<p>   Oh no, a bent hoop, a gory bus, a dirty floor, all beg for deep effort.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/robert-dicicco/perl/ch-1.pl"><strong>Robert DiCicco</strong></a></p>
+<p>   Bees bellow in bop cellos!</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a></p>
+<p>   A hot dirty messy hippy chills at empty glossy films.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/jaldhar-h-vyas/perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a></p>
+<p>   Boy abhors forty cent eggs; cost is crux. Cops chip in, buy a box for him.</p>
+<p>   Hippy most ably aces dirty cello ditty.  Accept or boo?</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a></p>
+<p>(a pun on a lyric from Roxy Music, <em>Jealous Guy</em>)</p>
+<p>   &ldquo;I am not a cellos guy&rdquo;</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a></p>
+<p>   Accept chintz effort.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a></p>
+<p>   An abbot in an abbey abhors a bossy boor.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/andrezgz/perl/ch-1.pl"><strong>Andrezgz</strong></a></p>
+<p>   As loops allow flow, it aims no glory at all, fizz-buzz is my joy.</p>
+<h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-1">Blogs and Additional Submissions in Guest Languages for Task 1:</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/athanasius/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://www.perlmonks.com/index.pl?node_id=11143246">Pangram challenge: greed and Scrabble</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://jacoby.github.io/2022/04/18/the-lazy-dog-had-it-coming-weekly-challege-161.html">The Lazy Dog Had It Coming: Weekly Challege #161 | Committed to Memory</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/duncan-c-white/C/ch-1.c">C</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/polettix/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.polettix.it/ETOOBUSY/2022/04/19/pwc161-abecedarian-words/">PWC161 - Abecedarian Words - ETOOBUSY</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.polettix.it/ETOOBUSY/2022/04/20/pwc161-pangrams/">PWC161 - Pangrams - ETOOBUSY</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/jaldhar-h-vyas/perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/jaldhar-h-vyas/raku/ch-1.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/laurent-rosenfeld/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://blogs.perl.org/users/laurent_r/2022/04/perl-weekly-challenge-161-abecedarian-words-and-pangrams.html">Perl Weekly Challenge 161: Abecedarian Words and Pangrams</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/paulo-custodio/perl/ch-1.pl"><strong>Paulo Custodio</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/paulo-custodio/python/ch-1.py">Python</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/peter-campbell-smith/perl/ch-1.pl"><strong>Peter Campbell Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://pjcs-pwc.blogspot.com/2022/04/abecedarian-words-and-pangrams.html">Abecedarian words and pangrams</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/pokgopun/perl/ch-1.pl"><strong>PokGoPun</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/pokgopun/go/ch-1.go">Go</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/roger-bell-west/javascript/ch-1.js">Javascript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/roger-bell-west/kotlin/ch-1.kt">Kotlin</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/roger-bell-west/lua/ch-1.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/roger-bell-west/postscript/ch-1.ps">Postscript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/roger-bell-west/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/roger-bell-west/raku/ch-1.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/roger-bell-west/ruby/ch-1.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/roger-bell-west/rust/ch-1.rs">Rust</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://blog.firedrake.org/archive/2022/04/The_Weekly_Challenge_161__Words_and_More_Words.html">RogerBW&rsquo;s Blog: The Weekly Challenge 161: Words and More Words</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/ulrich-rieke/cpp/ch-1.cpp">C++</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/ulrich-rieke/haskell/ch-1.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/ulrich-rieke/raku/ch-1.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://wlmb.github.io/2022/04/18/PWC161/">Perl Weekly Challenge 161 – W. Luis Mochán</a></p>
+<hr>
+<hr>
+<h1 id="PWC161TASK2">TASK 2</h1>
+<h1 id="pangrams">Pangrams</h1>
+<p><em>Submitted by: Ryan J Thompson</em></p>
+<p>A pangram is a sentence or phrase that uses every letter in the English alphabet at least once. For example, perhaps the most well known pangram is:</p>
+<p>the quick brown fox jumps over the lazy dog Using the provided dictionary, so that you don’t need to include individual copy, generate at least one pangram.</p>
+<p>Your pangram does not have to be a syntactically valid English sentence (doing so would require far more work, and a dictionary of nouns, verbs, adjectives, adverbs, and conjunctions). Also note that repeated letters, and even repeated words, are permitted.</p>
+<p>BONUS: Constrain or optimize for something interesting (completely up to you), such as: Shortest possible pangram (difficult) Pangram which contains only abecedarian words (see challenge 1) Pangram such that each word &ldquo;solves&rdquo; exactly one new letter. For example, such a pangram might begin with (newly solved letters in bold):</p>
+<pre><code>a ah hi hid die ice tea ...
+</code></pre>
+<p>What is the longest possible pangram generated with this method? (All solutions will contain 26 words, so focus on the letter count.)</p>
+<p>Pangrams that have the weirdest (PG-13) Google image search results Anything interesting goes!</p>
+<h2 id="about-the-solutions-1">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/alexander-pankoff/perl/ch-2.pl"><strong>Alexander Pankoff</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/julien-fiegehenn/perl/ch-2.pl"><strong>Julien Fiegehenn</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/kueppo-wesley/perl/ch-2.pl"><strong>Kueppo Wesley</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/lubos-kolouch/perl/ch-2.pl"><strong>Lubos Kolouch</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/paulo-custodio/perl/ch-2.pl"><strong>Paulo Custodio</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/peter-campbell-smith/perl/ch-2.pl"><strong>Peter Campbell Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/pokgopun/perl/ch-2.pl"><strong>PokGoPun</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/robert-dicicco/perl/ch-2.pl"><strong>Robert DiCicco</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/ryan-thompson/perl/ch-2.pl"><strong>Ryan Thompson</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>In the first challenge we had a very linear, direct validation: that each successive letter should be further along in the alphabet than the previous. The actual ways to produce this validation varied, but at the root of all was comparing letters one against another.</p>
+<p>In the pangram challenge things are much less well defined. We need a collection of words that include at least one instance of every letter in the alphabet. That&rsquo;s it, no rules on how many words are required to get there, but A to Z we need them all accounted for. How we get there is anyone&rsquo;s guess.</p>
+<p>Oh, and we&rsquo;re supposed to use the limited dictionary again. It has only about one-tenth of the English language in it so does that make the challenge easier or harder? Easier, presumably as the requirements do not include coherency. Sounds like some people I&rsquo;ve known along the way, you know?</p>
+<p>Although the base challenge is limited in its requirements to the one, members were also encouraged to add their own ideas to spice things up, so from the opening gambit the solutions spread out quickly and wildly.</p>
+<p>There were 22 submissions for the second task this past week.</p>
+<h2 id="a-dorky-project-is-maybe-a-vexing-quiz-well-fought">A DORKY PROJECT IS MAYBE A VEXING QUIZ WELL FOUGHT</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/robert-dicicco/perl/ch-2.pl"><strong>Robert DiCicco</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/paulo-custodio/perl/ch-2.pl"><strong>Paulo Custodio</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/julien-fiegehenn/perl/ch-2.pl"><strong>Julien Fiegehenn</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a></p>
+<p>The open-ended, almost sandbox definition of this challenge led to again a wide range of strategies to complete the mission. Many searched for the shortest pangram they could generate, but the challenge could also be theoretically completed by printing the dictionary — a method no one pursued, thankfully. I always enjoy these reviews more when people put some effort into it. Unless the lack of effort is artful in itself, of course.</p>
+<p>There really aren&rsquo;t any fixed rules, you know. Especially so in a task such as this.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://wlmb.github.io/2022/04/18/PWC161/">Perl Weekly Challenge 161 – W. Luis Mochán</a></p>
+<p>Luis will start us off with a particularly scattershot approach. Once fed a dictionary through STDIN, the program takes the word-list and prepares a master lookup hash of letters associated with every word containing the letter. A separate array is constructed of all the letters in the alphabet and and hash is readied to hold the letters found in the pargram under construction.</p>
+<p>Now the randomness is injected. The alphabet is shuffled and the first letter found that isn&rsquo;t already accounted for in the pangram is selected. The shuffling is the first randomization. Then from the associated list of words containing the missing letter one word is chosen by luck of the draw. That&rsquo;s the second random act. The word is added to the pangram string and each letter is added to the hash of letters in the pangram.</p>
+<p>By continuously updating the pool of letters not-yet found (the alphabet minus those letters already used), the resulting pangram is not optimal length but is nonetheless fairly efficient.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> @dictionary<span style="color:#f92672">=</span>map {chomp; $_} <span style="color:#f92672">&lt;&gt;</span>; <span style="color:#75715e"># read the dictionary</span>
+    <span style="color:#66d9ef">my</span> @abecedarian<span style="color:#f92672">=</span>grep {$_ <span style="color:#f92672">eq</span> join <span style="color:#e6db74">&#34;&#34;</span>, sort {$a <span style="color:#f92672">cmp</span> $b} split <span style="color:#e6db74">&#34;&#34;</span>, $_} @dictionary;
+    <span style="color:#66d9ef">my</span> %words_with; <span style="color:#75715e"># maps letters to words containing them</span>
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $word(@abecedarian){
+        push @{$words_with{$_}},$word <span style="color:#66d9ef">for</span> uniq split <span style="color:#e6db74">&#34;&#34;</span>, $word;
+    }
+    <span style="color:#66d9ef">my</span> %letters;
+    <span style="color:#66d9ef">my</span> $pangram;
+    <span style="color:#66d9ef">my</span> @all_letters<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;a&#39;</span><span style="color:#f92672">..</span><span style="color:#e6db74">&#39;z&#39;</span>;
+    <span style="color:#66d9ef">while</span>(notall {$letters{$_}} @all_letters){
+        <span style="color:#66d9ef">my</span> $letter<span style="color:#f92672">=</span>first {<span style="color:#f92672">!</span>$letters{$_}} shuffle @all_letters; <span style="color:#75715e"># random missing letter</span>
+        <span style="color:#66d9ef">my</span> @possible_words<span style="color:#f92672">=</span>@{$words_with{$letter}}; <span style="color:#75715e"># words containing letter</span>
+        <span style="color:#66d9ef">my</span> $word<span style="color:#f92672">=</span>$possible_words[rand @possible_words]; <span style="color:#75715e"># choose a random one</span>
+        $pangram<span style="color:#f92672">.=</span><span style="color:#e6db74">&#34; &#34;</span><span style="color:#f92672">.</span>$word; <span style="color:#75715e"># add to output phrase</span>
+        <span style="color:#f92672">++</span>$letters{$_} <span style="color:#66d9ef">for</span> split <span style="color:#e6db74">&#34;&#34;</span>, $word; <span style="color:#75715e"># update used letters</span>
+    }
+    say $pangram;
+</code></pre></div><p>Note that because the algorithm works on a given word list, Luis has, in his final version here, further filtered that list to only abecedarian words, producing an abecedarian pangram. Fortunately all the letters in the alphabet are contained in this subset.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/robert-dicicco/perl/ch-2.pl"><strong>Robert DiCicco</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/robert-dicicco/raku/ch-2.raku">Raku</a></p>
+<p>Robert takes the randomness further, reading random lines from the input file and hashing the letters found until all 26 letters have been found.</p>
+<p>An interesting twist is Robest&rsquo;s scheme for noting when to add a selected word to the pangram. Words, as we said, are selected at random and their letters noted, but with the use of a second hash of letter-count sizes he can keep track of those words that increase the number of letters found. Only if this increase happens do we add the word to the pangram. It&rsquo;s a slick trick.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">ReadRandomLine</span> {
+
+      open(FH ,<span style="color:#e6db74">&#39;&lt;&#39;</span>, $file)  <span style="color:#f92672">or</span> die $!;
+
+      <span style="color:#66d9ef">my</span> $size <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>s FH;
+      seek FH, rand($size) , <span style="color:#ae81ff">0</span>;
+      <span style="color:#e6db74">&lt;FH&gt;</span>; <span style="color:#75715e"># throw away current line;</span>
+
+      <span style="color:#66d9ef">my</span> $randomline <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;FH&gt;</span>;
+
+      <span style="color:#66d9ef">if</span>($randomline){
+        $randomline <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/^\s+|\s+$//g</span>;   <span style="color:#75715e"># trim left and right</span>
+        <span style="color:#66d9ef">return</span>($randomline);
+        close FH;
+      }
+
+      close FH;
+    }
+
+    <span style="color:#66d9ef">while</span>(<span style="color:#ae81ff">1</span>) {
+
+      <span style="color:#66d9ef">my</span> $new <span style="color:#f92672">=</span> ReadRandomLine();
+      <span style="color:#66d9ef">if</span>($new){
+        analyze($new);
+      }
+
+      <span style="color:#66d9ef">my</span> $size <span style="color:#f92672">=</span> keys %alphabet;          <span style="color:#75715e"># how many letters we have used</span>
+
+      <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span> exists($lettercnt{$size})) {
+        $lettercnt{$size} <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;$new &#34;</span>;
+      }
+
+      <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span>( $size <span style="color:#f92672">==</span> <span style="color:#ae81ff">26</span> );      <span style="color:#75715e"># we have them all</span>
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/paulo-custodio/perl/ch-2.pl"><strong>Paulo Custodio</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/paulo-custodio/python/ch-2.py">Python</a></p>
+<p>Paulo wants to make every word count, and so adopts a strategy of scanning the entire input word list with each new word added to the pangram, to find the next word composed of the maximum number of unused letters.</p>
+<p>Instead of building a letter list he choses a subtractive approach, where a hash is populated by the entire alphabet as keys, and letters are deleted from hash as they are used. When the letter hash is empty we are done.</p>
+<p>This technique produces spectacular results when fed from <code>/usr/share/dict/words</code>:</p>
+<pre><code>    blepharoconjunctivitis semioxygenized afterknowledge absquatulate
+</code></pre><p>Of these I am not familiar with what is obviously an eye disease, and as for &ldquo;absquatulate&rdquo; it seems it&rsquo;s a portmanteau of &ldquo;squattle&rdquo; and &ldquo;perambulate&rdquo; that means &ldquo;to leave abruptly&rdquo;. But four words is nice!</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">while</span> (keys %pending) {
+        <span style="color:#66d9ef">my</span> $word <span style="color:#f92672">=</span> next_word(<span style="color:#f92672">\</span>%pending);
+        push @words, $word;
+        <span style="color:#66d9ef">for</span> (split <span style="color:#e6db74">//</span>, $word) { delete $pending{$_}; }
+    }
+    say <span style="color:#e6db74">&#34;@words&#34;</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">next_word</span> {
+        <span style="color:#66d9ef">my</span>($pending) <span style="color:#f92672">=</span> @_;
+
+        <span style="color:#66d9ef">my</span> $max_word;
+        <span style="color:#66d9ef">my</span> $max_letters <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $word (@dict) {
+            <span style="color:#75715e"># get new letters</span>
+            <span style="color:#66d9ef">my</span> %letters;
+            <span style="color:#66d9ef">for</span> (split <span style="color:#e6db74">//</span>, $word) {
+                <span style="color:#66d9ef">if</span> ($pending<span style="color:#f92672">-&gt;</span>{$_}) {
+                    $letters{$_}<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
+                }
+            }
+            <span style="color:#75715e"># save max letters</span>
+            <span style="color:#66d9ef">my</span> $letters <span style="color:#f92672">=</span> scalar(keys %letters);
+            <span style="color:#66d9ef">if</span> ($letters <span style="color:#f92672">&gt;</span> $max_letters) {
+                ($max_word, $max_letters) <span style="color:#f92672">=</span> ($word, $letters);
+            }
+        }
+
+        <span style="color:#66d9ef">return</span> $max_word;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a></p>
+<p>Duncan refines this minimal approach further in his second stab at a solution, not just finding the next word utilizing the most unused letters but also finding the shortest such word available. Given several otherwise equal options the final selection is random.</p>
+<p>This strategy, I might add, is considerably more computationally intensive, doing quite a bit of sorting and resorting.</p>
+<p>It is also sometimes quite effective, producing the following 43-letter pangram from <code>usr/share/dict/words</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    blepharoconjunctivitis demark frowzy quag x
+</code></pre></div><p>I do question whether the single letter &ldquo;x&rdquo; counts as a proper word, but I do notice it&rsquo;s in Ryan&rsquo;s dictionary as well. Why is another question.</p>
+<p>Let&rsquo;s say I remain skeptical.</p>
+<p>If single letters without proper definitions — this is excepting &ldquo;I&rdquo; and &ldquo;a&rdquo; — can be words, can&rsquo;t we just cheat and make a 26-letter pangram out of the individual letters of the alphabet? Scrabble does not accept x as a word, but that&rsquo;s a sophisticated game with its own requirements of gameplay.</p>
+<p>I reject the premise that everything in the dictionary is a word, using a variant of Gödel&rsquo;s reasoning: you need letters to construct words, and so they require definition and belong in the dictionary, but they themselves are not words (unless they happen to be, of course). They exist as true statements yet outside of the system.</p>
+<p>Bertrand Russell might physically attack me for that logic, I don&rsquo;t know, but let&rsquo;s move on.</p>
+<p>Duncan is using <code>Function::Parameters</code> which gives him <code>fun</code> statements with signatures replacing <code>sub</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    fun pick_random_word2( $ustr )
+    {
+        <span style="color:#66d9ef">my</span> @lp <span style="color:#f92672">=</span> map { [ nunused($_,$ustr), $_ ] } @dict;
+        <span style="color:#75715e">#die Dumper \@lp;</span>
+
+        <span style="color:#75715e"># find max(number_unused_letters) in list of pairs</span>
+        <span style="color:#66d9ef">my</span> $maxul <span style="color:#f92672">=</span> max( map { $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] } @lp );
+
+        <span style="color:#75715e">#die &#34;maxul = $maxul&#34;;</span>
+
+        <span style="color:#75715e"># now select all words with $maxul unused letters in them</span>
+        <span style="color:#66d9ef">my</span> @wm <span style="color:#f92672">=</span> map { $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] } grep { $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">==</span> $maxul } @lp;
+
+        <span style="color:#75715e">#die Dumper \@wm;</span>
+
+        <span style="color:#75715e"># now select the shortest of those</span>
+        <span style="color:#66d9ef">my</span> $minlen <span style="color:#f92672">=</span> min( map { length($_) } @wm );
+        @wm <span style="color:#f92672">=</span> grep { length($_) <span style="color:#f92672">==</span> $minlen } @wm;
+
+        <span style="color:#75715e">#die Dumper \@wm;</span>
+
+        <span style="color:#75715e"># pick a random one of those words</span>
+        <span style="color:#66d9ef">my</span> $randomword <span style="color:#f92672">=</span> $wm[int rand @wm];
+        say <span style="color:#e6db74">&#34;picked random word $randomword with $maxul unused letters&#34;</span> <span style="color:#66d9ef">if</span> $debug;
+        <span style="color:#66d9ef">return</span> $randomword;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/ulrich-rieke/cpp/ch-2.cpp">C++</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/ulrich-rieke/haskell/ch-2.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/ulrich-rieke/raku/ch-2.raku">Raku</a></p>
+<p>Ulrich brings us a less-random, system approach to filling out the alphabet: work from letter-to-letter and choose the shortest word available. Using words from 1 to 2 letters in length, he completes a pangram in 55 characters:</p>
+<pre><code>    If each word solves one letter and contains every letter only once ,
+     a possible short solution is:
+    a,be,cs,do,eh,fad,go,ha,id,jab,keg,lab,m,no,of,pa,qt,re,so,to,up,vi,we,x,yak,zip
+    the total length of this pangram would be 55!
+</code></pre><p>Here&rsquo;s his method:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">isOneLetterWord</span> {
+      <span style="color:#66d9ef">my</span> $word <span style="color:#f92672">=</span> shift ;
+      <span style="color:#66d9ef">my</span> %letters ;
+      <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $letter( split (<span style="color:#e6db74"> //</span> , $word ) ) {
+          $letters{$letter}<span style="color:#f92672">++</span> ;
+      }
+      <span style="color:#66d9ef">return</span> all { $_ <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> } values %letters ;
+    }
+
+    <span style="color:#66d9ef">my</span> $file <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;dictionary.txt&#34;</span> ;
+    <span style="color:#66d9ef">my</span> @oneLetterWords ;
+    open( FH , <span style="color:#e6db74">&#34;&lt; $file&#34;</span>) <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;Can&#39;t open $file!\n&#34;</span> ;
+    <span style="color:#66d9ef">while</span> ( <span style="color:#66d9ef">my</span> $line <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;FH&gt;</span> ) {
+      chomp $line ;
+      <span style="color:#66d9ef">if</span> ( isOneLetterWord( $line ) ) {
+          push @oneLetterWords, $line ;
+      }
+    }
+    close( FH ) ;
+    <span style="color:#66d9ef">my</span> %letterFrequencies ;
+    <span style="color:#66d9ef">my</span> @possibleSolutionShort ;
+    <span style="color:#66d9ef">my</span> @possibleSolutionLong ;
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $letter( <span style="color:#e6db74">&#39;a&#39;</span> <span style="color:#f92672">..</span> <span style="color:#e6db74">&#39;z&#39;</span>) {
+      <span style="color:#66d9ef">my</span> @sorted <span style="color:#f92672">=</span> sort { length $a <span style="color:#e6db74">&lt;=&gt;</span> length $b } grep { $_ <span style="color:#f92672">=~</span><span style="color:#e6db74"> /\A$letter/</span> }
+        @oneLetterWords ;
+        push @possibleSolutionShort , $sorted[<span style="color:#ae81ff">0</span>] ;
+        push @possibleSolutionLong , $sorted[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] ;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/athanasius/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://www.perlmonks.com/index.pl?node_id=11143246">Pangram challenge: greed and Scrabble</a></p>
+<p>The monk Athanasius delivers first a version of what they refer to as &ldquo;the greedy algorithm&rdquo;, which is to successively select words to maximize the use of remaining letters in the alphabet pool, and minimizing the length of the word given equivalent choices. We&rsquo;ve seen versions of this approach before but not yet by name.</p>
+<p>The process gives good results, in the 40-50 character range, but this reasonable success left them unsatisfied.</p>
+<p>The monk, deft at the wheel, pressed on.</p>
+<p>One so-far overlooked quality in these algorithms is letter frequency, where words with xs and zs are much less common, so any word sought out to utilize them will likely contain duplicate letters to those already seen. To mitigate this inefficiency, they create a scheme to draw on Scrabble game tile values, assigning increasing values to infrequent letters. This allows the computation of a weighted comparative total. When this value is used first in word selection, the phrase length decreases dramatically.</p>
+<pre><code>    Challenge 161, Task #2: Pangrams (Perl)
+
+    (1) sympathized: a d e h i m p s t y z
+    (2) unblock:     b c k l n o u
+    (3) xv:          v x
+    (4) jaw:         j w
+    (5) qt:          q
+    (6) frog:        f g r
+
+    Pangram of 29 letters using words drawn from dictionary.txt:
+
+      sympathized unblock xv jaw qt frog
+
+    1.89 seconds
+</code></pre><p>The whole structure is quite well thought out; a real piece of art. You should consult <a href="https://www.perlmonks.com/index.pl?node_id=11143246">their blog writeup</a> for a proper walkthrough.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get_next_word</span>
+    {
+        state  $word_count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>                                          <span style="color:#66d9ef">if</span> VERBOSE;
+        <span style="color:#66d9ef">my</span>     @sorted     <span style="color:#f92672">=</span> sort by_size keys %Word2letters;
+        scalar @sorted         <span style="color:#f92672">or</span>  die <span style="color:#e6db74">&#39;No words left, stopped&#39;</span>;
+
+        <span style="color:#66d9ef">my</span>     $best_word  <span style="color:#f92672">=</span> $sorted[ <span style="color:#ae81ff">0</span> ];
+
+        $Word2letters{ $best_word }[ <span style="color:#ae81ff">0</span> ]<span style="color:#f92672">-&gt;</span>is_empty
+                               <span style="color:#f92672">and</span> die <span style="color:#e6db74">&#39;The best word has no new letters, stopped&#39;</span>;
+
+        <span style="color:#66d9ef">my</span>     $best_letters <span style="color:#f92672">=</span> $Word2letters{ $best_word }[ <span style="color:#ae81ff">0</span> ];
+        state  $width        <span style="color:#f92672">=</span> length( $best_word ) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>                 <span style="color:#66d9ef">if</span> VERBOSE;
+
+        printf <span style="color:#e6db74">&#34;(%d) %-*s&#34;</span>, <span style="color:#f92672">++</span>$word_count, $width, <span style="color:#e6db74">&#34;$best_word:&#34;</span>        <span style="color:#66d9ef">if</span> VERBOSE;
+
+        delete $Word2letters{ $best_word };
+
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $word (keys %Word2letters)
+        {
+            <span style="color:#66d9ef">my</span> $letters <span style="color:#f92672">=</span> $Word2letters{ $word }[ <span style="color:#ae81ff">0</span> ]<span style="color:#f92672">-&gt;</span>difference( $best_letters );
+            <span style="color:#66d9ef">my</span> $weight  <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+               $weight <span style="color:#f92672">+=</span> $ALPHABET{ $_ } <span style="color:#66d9ef">for</span> $letters<span style="color:#f92672">-&gt;</span>elements;
+
+            <span style="color:#66d9ef">for</span> (split <span style="color:#e6db74">&#39;&#39;</span>, $word)
+            {
+               $weight <span style="color:#f92672">-=</span> $DUP_WEIGHT <span style="color:#66d9ef">unless</span> $letters<span style="color:#f92672">-&gt;</span>contains( $_ );
+            }
+
+            $Word2letters{ $word } <span style="color:#f92672">=</span> [ $letters, $weight ];
+        }
+
+        <span style="color:#66d9ef">return</span> ($best_word, $best_letters);
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">by_size</span>
+    {
+        <span style="color:#75715e"># - First, prefer words with the greatest weight;</span>
+        <span style="color:#75715e"># - then prefer words with the greatest number of unused letters;</span>
+        <span style="color:#75715e"># - then prefer shorter words;</span>
+        <span style="color:#75715e"># - then sort alphabetically (ascending)</span>
+
+        <span style="color:#66d9ef">return</span> $Word2letters{ $b }[ <span style="color:#ae81ff">1</span> ] <span style="color:#e6db74">&lt;=&gt;</span> $Word2letters{ $a }[ <span style="color:#ae81ff">1</span> ]
+                                        <span style="color:#f92672">||</span>
+         $Word2letters{ $b }[ <span style="color:#ae81ff">0</span> ]<span style="color:#f92672">-&gt;</span>size <span style="color:#e6db74">&lt;=&gt;</span> $Word2letters{ $a }[ <span style="color:#ae81ff">0</span> ]<span style="color:#f92672">-&gt;</span>size
+                                        <span style="color:#f92672">||</span>
+                              length $a <span style="color:#e6db74">&lt;=&gt;</span> length $b
+                                        <span style="color:#f92672">||</span>
+                                     $a <span style="color:#f92672">cmp</span> $b;
+    }
+
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a></p>
+<p>CY took it upon herself to solve the optional problem of adding exactly one new letter per word, which is an interesting task. We are now looking for a list of 26 words, each successively selected from a growing pool of candidate characters.</p>
+<p>As the pool of letter choices available increases with each word added, and there being no penalty for length, the word length will generally grow as more words are added.</p>
+<p>To start, without a letter pool at all, the first selection is limited to single-letter words: &ldquo;a&rdquo; or &ldquo;I&rdquo;. On the other hand, we&rsquo;re dealing with Ryan&rsquo;s freaky word list here so the real choices are &ldquo;a&rdquo;, &ldquo;m&rdquo; and &ldquo;x&rdquo;, and individual self-direction seems to be off the table if one subscribes to the <a href="https://en.wikipedia.org/wiki/Linguistic_relativity">Sapir–Whorf hypothesis</a> in some form. (to wit: there is no &ldquo;I&rdquo;).</p>
+<p>In any case she simplifies initial selection by using the starting 4-word pattern &ldquo;a ah hi hid&rdquo; from the example text. As you can see we are adding the letters &ldquo;a&rdquo;, &ldquo;h&rdquo;, &ldquo;i&rdquo; and &ldquo;d&rdquo; to the pool with each new word.</p>
+<p>From here a random element is introduced, shuffling the wordlist and selecting the first candidate that satisfies the condition that exactly one new letter is used. The progress continues until we have all 26 letters.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">next_pan</span> {
+        <span style="color:#66d9ef">my</span> $new_word;
+        <span style="color:#66d9ef">my</span> $fine <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $w (shuffle (@words)) {
+            <span style="color:#66d9ef">if</span> ((scalar grep { <span style="color:#f92672">!</span>$found_alphabet{$_} } split <span style="color:#e6db74">&#34;&#34;</span>, $w) <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>) {
+                $new_word <span style="color:#f92672">=</span> $w;
+                $fine <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+                <span style="color:#66d9ef">last</span>;
+            }
+        }
+        warn <span style="color:#e6db74">&#34;Cannot find new words\n&#34;</span> <span style="color:#66d9ef">if</span> <span style="color:#f92672">!</span>$fine;
+        <span style="color:#66d9ef">return</span> $new_word <span style="color:#66d9ef">if</span> $fine;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/polettix/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.polettix.it/ETOOBUSY/2022/04/19/pwc161-abecedarian-words/">PWC161 - Abecedarian Words - ETOOBUSY</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.polettix.it/ETOOBUSY/2022/04/20/pwc161-pangrams/">PWC161 - Pangrams - ETOOBUSY</a></p>
+<p>As previously mentioned, there are no constraints required on making out pangram short, or really in any way efficient at all in collecting letters. They just need to be there in the end. With this knowledge in hand Flavio lets his mind wander and as a result chooses his words not randomly but through the actions of a Markov chain generator, this in turn based off the conncetions in the comedic literary classic &ldquo;Three Men in a Boat (To Say Nothing of the Dog)&rdquo; by English author Jerome K. Jerome.</p>
+<p>Ok, <em>less</em> random is more accurate, as the Markov chain generator is a probabilistic decision tree in the end, weighted towards some results over others, as learned from the model text. Words are noted to be followed by other words, and these connections once learned are used as a model for new sentence constructions.</p>
+<p>It makes for a delicious and opaque wordly mess.</p>
+<pre><code>    the steady torrent and that way there softly and while he first feel as
+    a little place but the feeble old wall paper yes it to go no
+    restrictions whatsoever you roar wishing to fidget very bad as they
+    were rats and the bridge with merely peep at the fields talking about
+    pretty clear that it back of he said he said do with fishing and it he
+    said he was an unusual thing in law pressing the other but we had kept
+    my head or incidental damages costs and epitaphs not nearly nine tenths
+    us to tell them it with all the roman walls they started back at last
+    fifteen years before how many workmen the girls it far from them away
+    from boyhood there none of five on to one day with laughter were going
+    with forty seven of water he wished he likes to sweet smile and left
+    the pink shepherds and by the very melancholy work how we settled down
+    the boys that that we discovered an evident pride of hers and they had
+    been looking for its chief one and prayer and crockery and black in the
+    lawyers and gentlemen good two idiots a minute and said he said it
+    nervous about a can sleep with the lot of compliance for the excitement
+    than they answered not to die of being on about in a minute ago when
+    his feet of a relation or bright light and always the sun had about it
+    will not to laugh his head outside he went to get into the face was it
+    was a week caused the man a good thought or as she said he not expect
+    that of brandy neat nor anything had just when we hand that there was
+    certainly had weighed twenty minutes wants knowledge of strong stream
+    on the sight of water over on the shop twice where you bring it live
+    for the work electronically the river and death to fall back into one
+    night at when thinking of how to do most extraordinary fits of us if he
+    should be all except of a particularly gloomy gates creak and the
+    exertion of the ground beneath you come and returned and took
+    everything and reading the boat there we were going over the proprietor
+    of that do a patent liver that comes to have said what had been done
+    without breaking them and talking about it and they were not creak and
+    you keep pace by the young men and rugs and the evening to live here
+    sir replied beginning and played himself with the boat by people used
+    these parts you have his head ached so that person with him quite
+    nervous state of them to wake seven he would slip off with toothache
+    and hindering it well and we therefore in the nearest wax works may
+    well again until we were fighting as a dream of the project innocents
+    authority kenneling crispy gladdened impresses pills does not quite
+    absorbed in the gates of the appearance after breakfast to bring them
+    and that is not a jerk out of squires around us then handed over and a
+    chance of those three other by a lot of that it to feel that day summer
+    morning then they got the engine driver and after supper we could not
+    try when they are able to those new guinea where we could not had
+    directed they do come come and as we had a fashionable and noble
+    resolve our then virtue and brought them a huge wave comes down to pity
+    said he is passed and he had heard such like a nice quiet moonlight
+    hour the difference and tries to show for supper we prize
+</code></pre><p>Note the presence of uncommon character &ldquo;z&rdquo; in the last word, filling the pangram. It just took that long to get there.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">random_word_draw</span> ($weighted_candidates) {
+       <span style="color:#66d9ef">my</span> $total <span style="color:#f92672">=</span> sum values $weighted_candidates<span style="color:#f92672">-&gt;</span>%<span style="color:#960050;background-color:#1e0010">*;</span>
+       my $draw <span style="color:#f92672">=</span> rand $total; <span style="color:#75715e"># definitely space for improvement...</span>
+       <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $word (keys $weighted_candidates<span style="color:#f92672">-&gt;</span>%<span style="color:#960050;background-color:#1e0010">*</span>) {
+          $draw <span style="color:#f92672">-=</span> $weighted_candidates<span style="color:#f92672">-&gt;</span>{$word};
+          <span style="color:#66d9ef">return</span> $word <span style="color:#66d9ef">if</span> $draw <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>;
+       }
+       die <span style="color:#e6db74">&#34;unreached, hopefully\n&#34;</span>;
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">read_dictionary</span> ($filename) {
+       open <span style="color:#66d9ef">my</span> $fh, <span style="color:#e6db74">&#39;&lt;:encoding(utf-8)&#39;</span>, $filename <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;open(): $!\n&#34;</span>;
+       <span style="color:#66d9ef">return</span> { map {chomp; $_ <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>} readline $fh };
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get_stuff</span> ($url) {
+       <span style="color:#66d9ef">my</span> $response <span style="color:#f92672">=</span> HTTP::Tiny<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span><span style="color:#f92672">-&gt;</span>get($url);
+       die <span style="color:#e6db74">&#34;$response-&gt;{status} $response-&gt;{reason}\n&#34;</span>
+          <span style="color:#66d9ef">unless</span> $response<span style="color:#f92672">-&gt;</span>{success};
+       <span style="color:#66d9ef">return</span> $response<span style="color:#f92672">-&gt;</span>{content};
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">markov_model</span> ($text, $dictionary) {
+       <span style="color:#66d9ef">my</span> $previous <span style="color:#f92672">=</span> undef;
+       <span style="color:#66d9ef">my</span> %successors_for;
+       <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $word (split <span style="color:#e6db74">m{[^a-z]+}mxs</span>, lc $text) {
+          <span style="color:#66d9ef">if</span> ($dictionary<span style="color:#f92672">-&gt;</span>{$word}) {
+             $successors_for{$previous}{$word}<span style="color:#f92672">++</span> <span style="color:#66d9ef">if</span> defined $previous;
+             $previous <span style="color:#f92672">=</span> $word;
+          }
+          <span style="color:#66d9ef">else</span> {
+             $previous <span style="color:#f92672">=</span> undef; <span style="color:#75715e"># restart</span>
+          }
+       }
+       <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>%successors_for;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2022/04/24/">Are Abecedarians from Abecedaria? - Perl - RabbitFarm</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://www.rabbitfarm.com/cgi-bin/blosxom/prolog/2022/04/24/">Are Abecedarians from Abecedaria? - Prolog - RabbitFarm</a></p>
+<p>This venturing into the territory of not so much focusing on the words selected but rather how they relate to each other opens up a new area of complexity to the problem, as open-ended as language itself.</p>
+<p>Such is the inherent nature of natural language programming. As soon as we start letting the computer decide what to say things get weird quickly.</p>
+<p>Flavio&rsquo;s Markov chain generator relates words on how they have been previously used and matches them in similar ways. An alternate path is to somehow identify words as parts of sentences: nouns, verbs, adjectives or adverbs, or any of a number of connectives and declaritives. Then we could assemble sentences based on a subject-verb-object structure. Or to get a pangram, perhaps something more complicated, with some adjectives, to get some more words in.</p>
+<p>This is where the module <code>Lingua::EN::Tagger</code> comes into play, indentifying and slotting words into their correct categories, or at least that&rsquo;s how it&rsquo;s supposed to work.</p>
+<p>Constructing actual grammatical sentences is complex. It involves matching quantities to verb conjugation and adjective forms, with many other fittings and rules to abide by to get everything just right. But word-tagging is a good start.</p>
+<p>Natural Language Programming code becomes basically as complex as you can make it, chasing down these endless hairy edges, but the results can be impresive. Adam has constructed a pangram sentence machine built around these principles, using the aforementioned module for tagging. Here is one such result, only editorially modified by the addition of a single &ldquo;s&rdquo;, a capital letter and a period.</p>
+<pre><code>    Some unjust narrowness modernizes every audible expenditure or half conflicting quirk.
+</code></pre><p>Neat, huh?</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Lingua::EN::Tagger;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">pangram</span>{
+        <span style="color:#66d9ef">my</span> %tagged_words;
+        <span style="color:#66d9ef">my</span> $tagger <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Lingua::EN::Tagger;
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $word (@_){
+            chomp($word);
+            <span style="color:#66d9ef">my</span> $tagged_text <span style="color:#f92672">=</span> $tagger<span style="color:#f92672">-&gt;</span>add_tags($word);
+            $tagged_text <span style="color:#f92672">=~</span> <span style="color:#e6db74">m/&lt;([a-z]*)&gt;([a-z]*&lt;)/</span>;
+            <span style="color:#66d9ef">my</span> $tag <span style="color:#f92672">=</span> $1;
+            <span style="color:#66d9ef">if</span>($tagged_words{$tag}){
+                push @{$tagged_words{$tag}}, $word;
+            }
+            <span style="color:#66d9ef">else</span>{
+                $tagged_words{$tag} <span style="color:#f92672">=</span> [$word];
+            }
+        }
+        <span style="color:#75715e">##</span>
+        <span style="color:#75715e"># generate sentences from random words in a (somewhat) grammatical way</span>
+        <span style="color:#75715e">##</span>
+        <span style="color:#66d9ef">my</span> $sentence;
+        <span style="color:#66d9ef">my</span> @dets <span style="color:#f92672">=</span> @{$tagged_words{det}};
+        <span style="color:#66d9ef">my</span> @adjs <span style="color:#f92672">=</span> @{$tagged_words{jj}};
+        <span style="color:#66d9ef">my</span> @nouns <span style="color:#f92672">=</span> @{$tagged_words{nn}};
+        <span style="color:#66d9ef">my</span> @verbs <span style="color:#f92672">=</span> @{$tagged_words{vb}};
+        <span style="color:#66d9ef">my</span> @cons <span style="color:#f92672">=</span> @{$tagged_words{cc}};
+        <span style="color:#66d9ef">my</span> @adverbs <span style="color:#f92672">=</span> @{$tagged_words{vb}};
+        <span style="color:#66d9ef">do</span>{
+            <span style="color:#66d9ef">my</span> $det0 <span style="color:#f92672">=</span> $dets[rand @dets];
+            <span style="color:#66d9ef">my</span> $adj0 <span style="color:#f92672">=</span> $adjs[rand @adjs];
+            <span style="color:#66d9ef">my</span> $noun <span style="color:#f92672">=</span> $nouns[rand @nouns];
+            <span style="color:#66d9ef">my</span> $verb <span style="color:#f92672">=</span> $verbs[rand @verbs];
+            <span style="color:#66d9ef">my</span> $det1 <span style="color:#f92672">=</span> $dets[rand @dets];
+            <span style="color:#66d9ef">my</span> $adj1 <span style="color:#f92672">=</span> $adjs[rand @adjs];
+            <span style="color:#66d9ef">my</span> $object0 <span style="color:#f92672">=</span> $nouns[rand @nouns];
+            <span style="color:#66d9ef">my</span> $conj <span style="color:#f92672">=</span> $cons[rand @cons];
+            <span style="color:#66d9ef">my</span> $det2 <span style="color:#f92672">=</span> $dets[rand @dets];
+            <span style="color:#66d9ef">my</span> $adj2 <span style="color:#f92672">=</span> $adjs[rand @adjs];
+            <span style="color:#66d9ef">my</span> $object1 <span style="color:#f92672">=</span> $nouns[rand @nouns];
+            <span style="color:#66d9ef">my</span> $adverb <span style="color:#f92672">=</span> $adverbs[rand @adverbs];
+            <span style="color:#66d9ef">my</span> %h;
+            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $c (split(<span style="color:#e6db74">//</span>, <span style="color:#e6db74">&#34;$det0$adj0$noun$verb$det1$adj1$object0$conj$det2$adj2$object1&#34;</span>)){
+                $h{$c} <span style="color:#f92672">=</span> undef;
+            }
+            $sentence <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;$det0 $adj0 $noun $verb $det1 $adj1 $object0 $conj $det2 $adj2 $object1&#34;</span> <span style="color:#66d9ef">if</span> keys %h <span style="color:#f92672">==</span> <span style="color:#ae81ff">26</span>;
+        }<span style="color:#66d9ef">while</span>(<span style="color:#f92672">!</span>$sentence);
+        <span style="color:#66d9ef">return</span> $sentence;
+    }
+
+    MAIN:{
+        open(DICTIONARY, <span style="color:#e6db74">&#34;./dictionary.txt&#34;</span>);
+        <span style="color:#66d9ef">print</span> pangram(<span style="color:#e6db74">&lt;DICTIONARY&gt;</span>) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
+        close(DICTIONARY);
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/julien-fiegehenn/perl/ch-2.pl"><strong>Julien Fiegehenn</strong></a></p>
+<p>Finally, Julien gives us two submissions today — and I almost missed the second one, but it&rsquo;s a doozy.</p>
+<p>The first is pretty basic: with the deft use of <code>notall</code> from <code>List::Util</code>, Julien picks words at random from the dictionary, skipping over any that don&rsquo;t add to a growing pool of letters already used.</p>
+<p>This really cuts to the core of the problem of identifying words that grow the pangram effectively. It&rsquo;s not very optimized, true, but that was not a requirement, and <code>List::Util</code> can always be assumed to be there waiting for us in the core distribution.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> List::Util <span style="color:#ae81ff">1.33</span> <span style="color:#e6db74">qw/shuffle notall/</span>;
+
+    <span style="color:#66d9ef">my</span> @dictionary
+      <span style="color:#f92672">=</span> <span style="color:#66d9ef">do</span> { open <span style="color:#66d9ef">my</span> $fh, <span style="color:#e6db74">&#39;&lt;&#39;</span>, <span style="color:#e6db74">&#39;./dictionary.txt&#39;</span> <span style="color:#f92672">or</span> die $!; <span style="color:#e6db74">&lt;$fh&gt;</span>; };
+    chomp @dictionary;
+
+    <span style="color:#66d9ef">my</span> %letters_seen;
+    <span style="color:#66d9ef">my</span> @sentence;
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $word (shuffle @dictionary) {
+      <span style="color:#66d9ef">my</span> @letters <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, $word;
+      <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> notall { exists $letters_seen{$_} } @letters;
+      push @sentence, $word;
+      $letters_seen{$_}<span style="color:#f92672">++</span> <span style="color:#66d9ef">for</span> @letters;
+      <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> keys %letters_seen <span style="color:#f92672">==</span> <span style="color:#ae81ff">26</span>;
+    }
+
+    say join <span style="color:#e6db74">&#39; &#39;</span>, @sentence;
+</code></pre></div><p>The second method, on the other hand, searches for word collections that are pangrams in English, and when translated into German remain pangrams in that alphabet.</p>
+<p>Ok. We&rsquo;re just going to go with this.</p>
+<p>It uses a deep-learning translation module, first finding English pangrams and then translating them, and repeating this process until a set of conditions for the German pangram have been met.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> List::Util <span style="color:#ae81ff">1.33</span> <span style="color:#e6db74">qw/shuffle notall/</span>;
+
+    <span style="color:#66d9ef">use</span> lib <span style="color:#e6db74">&#34;$FindBin::Bin/lib&#34;</span>;
+    <span style="color:#66d9ef">use</span> DeepL ();
+
+    <span style="color:#75715e"># This script attempts to produce an English pangram</span>
+    <span style="color:#75715e"># that when translated to German is still a pangram.</span>
+    <span style="color:#75715e"># It uses DeepL to do the translation.</span>
+
+    <span style="color:#75715e"># You need to make an account for the free DeepL API to</span>
+    <span style="color:#75715e"># use it.</span>
+
+    <span style="color:#75715e"># See https://www.deepl.com/docs-api/translating-text/.</span>
+
+    <span style="color:#66d9ef">my</span> @dictionary
+      <span style="color:#f92672">=</span> <span style="color:#66d9ef">do</span> { open <span style="color:#66d9ef">my</span> $fh, <span style="color:#e6db74">&#39;&lt;&#39;</span>, <span style="color:#e6db74">&#39;data/dictionary.txt&#39;</span> <span style="color:#f92672">or</span> die $!; <span style="color:#e6db74">&lt;$fh&gt;</span>; };
+    chomp @dictionary;
+
+    <span style="color:#66d9ef">my</span> $translator
+      <span style="color:#f92672">=</span> DeepL<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(auth_key <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;«--REDACTED--»&#39;</span>);
+
+    <span style="color:#66d9ef">while</span> () {
+      <span style="color:#66d9ef">my</span> @sentence   <span style="color:#f92672">=</span> get_pangram();
+      <span style="color:#66d9ef">my</span> $english    <span style="color:#f92672">=</span> join <span style="color:#e6db74">&#39; &#39;</span>, @sentence;
+      <span style="color:#66d9ef">my</span> $translated <span style="color:#f92672">=</span> $translator<span style="color:#f92672">-&gt;</span>translate($english);
+
+      <span style="color:#66d9ef">if</span> (is_german_pangram($translated)) {
+        say <span style="color:#e6db74">&#34;English: &#34;</span> <span style="color:#f92672">.</span> $english;
+        say <span style="color:#e6db74">&#34;German:  &#34;</span> <span style="color:#f92672">.</span> $translated;
+        <span style="color:#66d9ef">last</span>;
+      }
+    }
+
+    <span style="color:#75715e"># For the German pangram we are bending the rules a little. Very few words</span>
+    <span style="color:#75715e"># in German have Q, X or Y, so we allow umlauts instead. To make this stricter,</span>
+    <span style="color:#75715e"># increase the 26 to 29.</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">is_german_pangram</span> {
+      <span style="color:#ae81ff">26</span> <span style="color:#f92672">&lt;=</span> length(lc(join(<span style="color:#e6db74">&#39;&#39;</span>, @_)) <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/[^a-zäöü]//g</span>r <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/(.)(?=.*\1)//g</span>r);
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">get_pangram</span> {
+      <span style="color:#66d9ef">my</span> %letters_seen;
+      <span style="color:#66d9ef">my</span> @sentence;
+      <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $word (shuffle @dictionary) {
+        <span style="color:#66d9ef">my</span> @letters <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, $word;
+        <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> notall { exists $letters_seen{$_} } @letters;
+        push @sentence, $word;
+        $letters_seen{$_}<span style="color:#f92672">++</span> <span style="color:#66d9ef">for</span> @letters;
+        <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">if</span> keys %letters_seen <span style="color:#f92672">==</span> <span style="color:#ae81ff">26</span>;
+      }
+
+      <span style="color:#66d9ef">return</span> @sentence;
+    }
+
+</code></pre></div><p>And here&rsquo;s an example of the result:</p>
+<pre><code>    English: emission sedans proclaimed duskier choppering phobia
+    familiarity newborn convulsion sympathize jetted quells appendixes
+
+    German:  Emission Limousinen verkündet düsterer Zerhackungsphobie
+    Vertrautheit neugeborener Krampf Sympathie gejettet quellt Anhängsel
+</code></pre><p>Told you things get weird, didn&rsquo;t I?</p>
+<h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-2">Blogs and Additional Submissions in Guest Languages for Task 2:</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://jacoby.github.io/2022/04/18/the-lazy-dog-had-it-coming-weekly-challege-161.html">The Lazy Dog Had It Coming: Weekly Challege #161 | Committed to Memory</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-161/james-smith">The Weekly Challenge 161</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/laurent-rosenfeld/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://blogs.perl.org/users/laurent_r/2022/04/perl-weekly-challenge-161-abecedarian-words-and-pangrams.html">Perl Weekly Challenge 161: Abecedarian Words and Pangrams</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/lubos-kolouch/perl/ch-2.pl"><strong>Lubos Kolouch</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/lubos-kolouch/python/ch-2.py">Python</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/peter-campbell-smith/perl/ch-2.pl"><strong>Peter Campbell Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://pjcs-pwc.blogspot.com/2022/04/abecedarian-words-and-pangrams.html">Abecedarian words and pangrams</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/pokgopun/perl/ch-2.pl"><strong>PokGoPun</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/pokgopun/go/ch-2.go">Go</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/roger-bell-west/javascript/ch-2.js">Javascript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/roger-bell-west/kotlin/ch-2.kt">Kotlin</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/roger-bell-west/lua/ch-2.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/roger-bell-west/postscript/ch-2.ps">Postscript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/roger-bell-west/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/roger-bell-west/raku/ch-2.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/roger-bell-west/ruby/ch-2.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/roger-bell-west/rust/ch-2.rs">Rust</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://blog.firedrake.org/archive/2022/04/The_Weekly_Challenge_161__Words_and_More_Words.html">RogerBW&rsquo;s Blog: The Weekly Challenge 161: Words and More Words</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-161/ryan-thompson/perl/ch-2.pl"><strong>Ryan Thompson</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://ry.ca/2022/04/abecedarian-words/">PWC 161 › Abecedarian Words - Ryan J Thompson</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://ry.ca/2022/04/pangrams/">PWC 161 › Pangrams - Ryan J Thompson</a></p>
+<hr>
+<hr>
+<p> &nbsp; </p>
+<p> &nbsp; </p>
+<p> &nbsp; </p>
+<p> &nbsp; </p>
+<center>
+<h1 id="PWC161BLOGS">_________ THE BLOG PAGES _________</h1>
+</center>
+<hr>
+<p><strong>That’s it for me this week, people! Warped by the rain, driven by the snow, resolute and unbroken by the torrential influx, by some miracle I somehow continue to maintain my bearings.</strong></p>
+<p><strong>Looking forward to next wave, the perfect wave, I am: <em>your humble servant</em>.</strong></p>
+<h1 id="PWC161BLOGS">But if Your Unquenchable <em>THIRST</em> for <em>KNOWLEDGE</em> is not <em>SLAKED</em>,</h1>
+<h1 id="then-run-dont-walk-to-the-watering-hole">then <em>RUN</em> <em>(dont walk!)</em> to the <em>WATERING HOLE</em></h1>
+<h1 id="and-follow-these-blog-links">and <em>FOLLOW</em> these <em>BLOG</em> <em>LINKS</em>:</h1>
+<p><strong>( &hellip;<em>don&rsquo;t think, trust your training, you&rsquo;re in the zone, just do it &hellip;</em> )</strong></p>
+<p><strong>Adam Russell</strong></p>
+<ul>
+<li><a href="http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2022/04/24/">Are Abecedarians from Abecedaria? - Perl - RabbitFarm</a> ( <em>Perl</em> )</li>
+<li><a href="http://www.rabbitfarm.com/cgi-bin/blosxom/prolog/2022/04/24/">Are Abecedarians from Abecedaria? - Prolog - RabbitFarm</a> ( <em>Prolog</em> )</li>
+</ul>
+<p><strong>Arne Sommer</strong></p>
+<ul>
+<li><a href="https://raku-musings.com/panabecedarian-grams.html">Panabecedarian Grams with Raku - Arne Sommer</a> ( <em>Raku</em> )</li>
+</ul>
+<p><strong>Athanasius</strong></p>
+<ul>
+<li><a href="https://www.perlmonks.com/index.pl?node_id=11143246">Pangram challenge: greed and Scrabble</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Dave Jacoby</strong></p>
+<ul>
+<li><a href="https://jacoby.github.io/2022/04/18/the-lazy-dog-had-it-coming-weekly-challege-161.html">The Lazy Dog Had It Coming: Weekly Challege #161 | Committed to Memory</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Flavio Poletti</strong></p>
+<ul>
+<li><a href="https://github.polettix.it/ETOOBUSY/2022/04/19/pwc161-abecedarian-words/">PWC161 - Abecedarian Words - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+<li><a href="https://github.polettix.it/ETOOBUSY/2022/04/20/pwc161-pangrams/">PWC161 - Pangrams - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>James Smith</strong></p>
+<ul>
+<li><a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-161/james-smith">The Weekly Challenge 161</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Laurent Rosenfeld</strong></p>
+<ul>
+<li><a href="http://blogs.perl.org/users/laurent_r/2022/04/perl-weekly-challenge-161-abecedarian-words-and-pangrams.html">Perl Weekly Challenge 161: Abecedarian Words and Pangrams</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Luca Ferrari</strong></p>
+<ul>
+<li><a href="https://fluca1978.github.io/2022/04/20/PerlWeeklyChallenge161.html#task1">Perl Weekly Challenge 161: words – Luca Ferrari – Open Source advocate, human being</a> ( <em>Raku</em> )</li>
+<li><a href="https://fluca1978.github.io/2022/04/20/PerlWeeklyChallenge161.html#task1plperl">Perl Weekly Challenge 161: words – Luca Ferrari – Open Source advocate, human being</a> ( <em>Pl/Perl</em> )</li>
+<li><a href="https://fluca1978.github.io/2022/04/20/PerlWeeklyChallenge161.html#task1plpgsql">Perl Weekly Challenge 161: words – Luca Ferrari – Open Source advocate, human being</a> ( <em>Pl/PgSQL</em> )</li>
+</ul>
+<p><strong>Peter Campbell Smith</strong></p>
+<ul>
+<li><a href="https://pjcs-pwc.blogspot.com/2022/04/abecedarian-words-and-pangrams.html">Abecedarian words and pangrams</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Roger Bell_West</strong></p>
+<ul>
+<li><a href="https://blog.firedrake.org/archive/2022/04/The_Weekly_Challenge_161__Words_and_More_Words.html">RogerBW&rsquo;s Blog: The Weekly Challenge 161: Words and More Words</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Ryan Thompson</strong></p>
+<ul>
+<li><a href="https://ry.ca/2022/04/abecedarian-words/">PWC 161 › Abecedarian Words - Ryan J Thompson</a> ( <em>Perl</em> )</li>
+<li><a href="https://ry.ca/2022/04/pangrams/">PWC 161 › Pangrams - Ryan J Thompson</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>W. Luis Mochan</strong></p>
+<ul>
+<li><a href="https://wlmb.github.io/2022/04/18/PWC161/">Perl Weekly Challenge 161 – W. Luis Mochán</a> ( <em>Perl</em> )</li>
+</ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="/contact" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2022
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.nomtimes.co.uk/site/shop.do?cref=PerlBooks" title="Free Perl Books" rel="noreferrer" target="_blank">
+                            <img src="/images/NomTimes.jpg" style="width:22px; height: 18px;" alt=""/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jQurey/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-136524905-1', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+
+</html>
+
