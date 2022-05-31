@@ -152,6 +152,12 @@ Implement subroutine `gamma()` using the [**Lanczos approximation**](https://en.
 
 <br>
 
+##### **[2022-05-31]**
+
+`Ryan Thompson` wrote an interesting blog explaining the subject in details. Highly recommended if you are looking for more information. [**BLOG**](https://ry.ca/2022/05/lanczos-approximation).
+
+<br>
+
 ##### Example
 
     print gamma(3); # 1.99
