@@ -38,6 +38,8 @@ Please find below guest contributions.
 
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-167/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-167/eric-cheung/python/ch-2.py) in **Python**.
 
+##### **Lubos Kolouch** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-167/lubos-kolouch/python/ch-1.py) in **Python**.
+
 ##### **Michael DiCicco** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-167/michael-dicicco/java/challenge167/circularprime.java) in **Java**.
 
 ##### **Michael DiCicco** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-167/michael-dicicco/python/task1.py) in **Python**.
