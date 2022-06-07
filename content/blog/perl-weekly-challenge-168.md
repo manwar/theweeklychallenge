@@ -28,7 +28,7 @@ tags: ["Perl", "Raku"]
 
 Welcome to the `Week #168`.
 
-Let us all welcome guest `Matthew DiCicco` from `Little Rock, AR` sharing his first contributions in [**Java**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-167/michael-dicicco/java/challenge167/circularprime.java) and [**Python**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-167/michael-dicicco/python/task1.py).
+Let us all welcome guest `Michael DiCicco` from `Little Rock, AR` sharing his first contributions in [**Java**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-167/michael-dicicco/java/challenge167/circularprime.java) and [**Python**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-167/michael-dicicco/python/task1.py).
 
 What a coincidence, we have two members sharing the same surname `DiCicco` and he is none other than our very own champion [**Robert DiCicco**](https://theweeklychallenge.org/blog/meet-the-champion-2022-02).
 
