@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="The Weekly Challenge - Perl & Raku"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="You do not have to be an expert."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Discussion on memory leak in Perl.">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Memory Leak in Perl</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navgation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Memory Leak in Perl</h2>
+                    <div class="portfolio-meta">
+                        <span>Wednesday, Jun 8, 2022</span>|
+                        <span> Tags:
+                            Perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/memory-leak.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <br>
+<p>I always find the topic <code>Memory Management</code> very fascinating. <code>Perl</code> being the <strong>Perl</strong>, there is nothing you need to worry about. All memory management is done for us for <code>FREE</code>.</p>
+<br>
+<h3 id="still-there-was-something-i-always-wanted-to-find-out-about-memory-management-in-perl">Still, there was something, I always wanted to find out about memory management in Perl.</h3>
+<br>
+<p>All along, I knew that there is an easy way I can force my script to leak memory.</p>
+<br>
+<h3 id="how">How?</h3>
+<br>
+<p>Just create a data structure with circular reference.</p>
+<br>
+<h3 id="easy">Easy?</h3>
+<br>
+<p>But the question is how do I demonstrate the memory leak?</p>
+<br>
+<p>Let me take you back in the memory, in the year 2015, <code>Gabor Szabo</code> handed over the maintenance of <a href="https://metacpan.org/dist/PDF-Create"><strong>PDF::Create</strong></a>. At that time I had no clue about the internals of the module. I was hoping to keep it alive by fixing/patching bugs as and when time permits. During my peak, I had the opportunity to look into some of the core functions of the module. At that time I noticed the use of <code>weaken</code> for the first time. After little research, I found out more about it.</p>
+<br>
+<p>So now, I had two very important informations: <code>circular reference</code> can create memory leak and <code>weaken</code> can fix the leak.</p>
+<br>
+<p>Even, then I am back to my original question, <code>how can I easily demonstrate the behaviour?</code></p>
+<br>
+<p>So, I decided to ask for help on my <a href="https://twitter.com/cpan_author"><strong>Twitter handle</strong></a>.</p>
+<br>
+<p><img src="/images/blog/ml-1.png" alt="Image-1"></p>
+<br>
+<p>To my request, I got this <a href="https://perlmaven.com/eliminate-circular-reference-memory-leak-using-weaken"><strong>post</strong></a> by <code>Gabor Szabo</code>. I tried to replicate the behaviour on my box but without any luck.</p>
+<br>
+<h3 id="so-what-next">So what next?</h3>
+<br>
+<p>I didn&rsquo;t give up this time, I wanted to get to the bottom of it, no matter what.</p>
+<br>
+<p>After couple of evenings doing research, I found this very handy <strong>CPAN</strong> module <a href="https://metacpan.org/dist/Devel-Leak-Object"><strong>Devel::Leak::Object</strong></a> by <code>Karen Etheridge</code>, famously known as <code>ETHER</code>.</p>
+<br>
+<p>At this point, I felt little better.</p>
+<br>
+<h3 id="so-time-to-demonstrate-the-memory-leak">So time to demonstrate the memory leak?</h3>
+<br>
+<p>Just for fun, I am using <code>Perl v5.36</code>.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"> <span style="color:#ae81ff">1</span> <span style="color:#75715e">#!/usr/bin/perl</span>
+ <span style="color:#ae81ff">2</span>
+ <span style="color:#ae81ff">3</span> <span style="color:#66d9ef">package</span> L {
+ <span style="color:#ae81ff">4</span>     <span style="color:#66d9ef">use</span> Devel::Leak::Object <span style="color:#e6db74">qw{ GLOBAL_bless }</span>;
+ <span style="color:#ae81ff">5</span>     $Devel::Leak::Object::TRACKSOURCELINES <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+ <span style="color:#ae81ff">6</span>     <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">new</span> { bless { self_ref <span style="color:#f92672">=&gt;</span> undef }, $_[<span style="color:#ae81ff">0</span>] }
+ <span style="color:#ae81ff">7</span> }
+ <span style="color:#ae81ff">8</span>
+ <span style="color:#ae81ff">9</span> <span style="color:#66d9ef">package</span> main;
+<span style="color:#ae81ff">10</span>
+<span style="color:#ae81ff">11</span> <span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.36</span>;
+<span style="color:#ae81ff">12</span>
+<span style="color:#ae81ff">13</span> <span style="color:#66d9ef">my</span> $l <span style="color:#f92672">=</span> L<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
+<span style="color:#ae81ff">14</span>
+<span style="color:#ae81ff">15</span> <span style="color:#75715e"># This would leak memory.</span>
+<span style="color:#ae81ff">16</span> $l<span style="color:#f92672">-&gt;</span>{self_ref} <span style="color:#f92672">=</span> $l;
+</code></pre></div><br>
+<h3 id="time-to-see-the-memory-leak">Time to see the memory leak</h3>
+<br>
+<p><img src="/images/blog/ml-2.png" alt="Image-2"></p>
+<br>
+<p>Thanks to the module <code>Devel::Leak::Object</code>, I can clearly see the source of leak <code>i.e. line 13</code>.</p>
+<br>
+<p>Well, it is good to know that we have memory leak.</p>
+<br>
+<h3 id="how-to-fix-the-memory-leak">How to fix the memory leak?</h3>
+<br>
+<p>Before <code>Perl v5.36</code>, you would take the help of <strong>CPAN</strong> module <a href="https://metacpan.org/pod/Scalar::Util"><strong>Scalar::Util</strong></a> which gives us the handy function <code>weaken</code>. Since I am playing with the latest toy, I would take the luxury and use the <code>experimental builtin</code> by the same name.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"> <span style="color:#ae81ff">1</span> <span style="color:#75715e">#!/usr/bin/perl</span>
+ <span style="color:#ae81ff">2</span>
+ <span style="color:#ae81ff">3</span> <span style="color:#66d9ef">package</span> L {
+ <span style="color:#ae81ff">4</span>     <span style="color:#66d9ef">use</span> Devel::Leak::Object <span style="color:#e6db74">qw{ GLOBAL_bless }</span>;
+ <span style="color:#ae81ff">5</span>     $Devel::Leak::Object::TRACKSOURCELINES <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+ <span style="color:#ae81ff">6</span>     <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">new</span> { bless { self_ref <span style="color:#f92672">=&gt;</span> undef }, $_[<span style="color:#ae81ff">0</span>] }
+ <span style="color:#ae81ff">7</span> }
+ <span style="color:#ae81ff">8</span>
+ <span style="color:#ae81ff">9</span> <span style="color:#66d9ef">package</span> main;
+<span style="color:#ae81ff">10</span>
+<span style="color:#ae81ff">11</span> <span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.36</span>;
+<span style="color:#ae81ff">12</span> <span style="color:#66d9ef">use</span> experimental <span style="color:#e6db74">qw(builtin)</span>;
+<span style="color:#ae81ff">13</span> <span style="color:#66d9ef">use</span> builtin <span style="color:#e6db74">qw(weaken)</span>;
+<span style="color:#ae81ff">14</span>
+<span style="color:#ae81ff">15</span> <span style="color:#66d9ef">my</span> $l <span style="color:#f92672">=</span> L<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
+<span style="color:#ae81ff">16</span>
+<span style="color:#ae81ff">17</span> <span style="color:#75715e"># Fix the memory leak.</span>
+<span style="color:#ae81ff">18</span> $l<span style="color:#f92672">-&gt;</span>{self_ref} <span style="color:#f92672">=</span> weaken $l;
+</code></pre></div><br>
+<h3 id="let-us-check-if-the-script-still-leak-memory">Let us check, if the script still leak memory?</h3>
+<br>
+<p><img src="/images/blog/ml-3.png" alt="Image-3"></p>
+<br>
+<h3 id="wow-no-more-memory-leak">Wow, no more memory leak.</h3>
+<br>
+<p>Finally I have script that demonstrates the memory leak and then fix to the leak as well.</p>
+<br>
+<h3 id="i-am-very-happy-now">I am very happy now.</h3>
+<br>
+<p>As you know, most of my <strong>CPAN</strong> <a href="https://metacpan.org/author/MANWAR"><strong>distributions</strong></a> use <a href="https://metacpan.org/dist/Moo"><strong>Moo</strong></a> for OO purpose. Can I use <code>Moo</code> object to demo the memory leak and fix as well?</p>
+<br>
+<h3 id="why-not-i-sound-more-confident-now--">Why not? I sound more confident now. :-)</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"> <span style="color:#ae81ff">1</span> <span style="color:#75715e">#!/usr/bin/perl</span>
+ <span style="color:#ae81ff">2</span>
+ <span style="color:#ae81ff">3</span> <span style="color:#66d9ef">package</span> M {
+ <span style="color:#ae81ff">4</span>     <span style="color:#66d9ef">use</span> Moo;
+ <span style="color:#ae81ff">5</span>     <span style="color:#66d9ef">use</span> Devel::Leak::Object <span style="color:#e6db74">qw{ GLOBAL_bless }</span>;
+ <span style="color:#ae81ff">6</span>     $Devel::Leak::Object::TRACKSOURCELINES <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+ <span style="color:#ae81ff">7</span>     has self_ref <span style="color:#f92672">=&gt;</span> (is <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;rw&#39;</span>);
+ <span style="color:#ae81ff">8</span> }
+ <span style="color:#ae81ff">9</span>
+<span style="color:#ae81ff">10</span> <span style="color:#66d9ef">package</span> main;
+<span style="color:#ae81ff">11</span>
+<span style="color:#ae81ff">12</span> <span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.36</span>;
+<span style="color:#ae81ff">13</span>
+<span style="color:#ae81ff">14</span> <span style="color:#66d9ef">my</span> $m <span style="color:#f92672">=</span> M<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
+<span style="color:#ae81ff">15</span>
+<span style="color:#ae81ff">16</span> <span style="color:#75715e"># This would leak memory.</span>
+<span style="color:#ae81ff">17</span> $m<span style="color:#f92672">-&gt;</span>self_ref($m);
+</code></pre></div><br>
+<h3 id="lets-run-the-script-and-see-the-memory-leak">Lets run the script and see the memory leak.</h3>
+<br>
+<p><img src="/images/blog/ml-4.png" alt="Image-4"></p>
+<br>
+<p>So we have seen the memory leak, time to fix the leak. To fix the leak, we can use <code>weak_ref</code> attribute supported by <code>Moo</code>.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"> <span style="color:#ae81ff">1</span> <span style="color:#75715e">#!/usr/bin/perl</span>
+ <span style="color:#ae81ff">2</span>
+ <span style="color:#ae81ff">3</span> <span style="color:#66d9ef">package</span> M {
+ <span style="color:#ae81ff">4</span>     <span style="color:#66d9ef">use</span> Moo;
+ <span style="color:#ae81ff">5</span>     <span style="color:#66d9ef">use</span> Devel::Leak::Object <span style="color:#e6db74">qw{ GLOBAL_bless }</span>;
+ <span style="color:#ae81ff">6</span>     $Devel::Leak::Object::TRACKSOURCELINES <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+ <span style="color:#ae81ff">7</span>     has self_ref <span style="color:#f92672">=&gt;</span> (is <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;rw&#39;</span>, weak_ref <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>);
+ <span style="color:#ae81ff">8</span> }
+ <span style="color:#ae81ff">9</span>
+<span style="color:#ae81ff">10</span> <span style="color:#66d9ef">package</span> main;
+<span style="color:#ae81ff">11</span>
+<span style="color:#ae81ff">12</span> <span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.36</span>;
+<span style="color:#ae81ff">13</span>
+<span style="color:#ae81ff">14</span> <span style="color:#66d9ef">my</span> $m <span style="color:#f92672">=</span> M<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
+<span style="color:#ae81ff">15</span>
+<span style="color:#ae81ff">16</span> <span style="color:#75715e"># Fix the memory leak.</span>
+<span style="color:#ae81ff">17</span> $m<span style="color:#f92672">-&gt;</span>self_ref($m);
+</code></pre></div><br>
+<h3 id="time-to-check-if-memory-leak-is-fixed-now">Time to check if memory leak is fixed now.</h3>
+<br>
+<p><img src="/images/blog/ml-5.png" alt="Image-5"></p>
+<br>
+<h3 id="all-good-so-far">All good, so far.</h3>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="/contact" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2022
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.nomtimes.co.uk/site/shop.do?cref=PerlBooks" title="Free Perl Books" rel="noreferrer" target="_blank">
+                            <img src="/images/NomTimes.jpg" style="width:22px; height: 18px;" alt=""/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jQurey/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-136524905-1', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+
+</html>
+
