@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="The Weekly Challenge - Perl & Raku"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="You do not have to be an expert."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Discussion on taint in Perl.">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Taint in Perl</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navgation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Taint in Perl</h2>
+                    <div class="portfolio-meta">
+                        <span>Thursday, Jun 9, 2022</span>|
+                        <span> Tags:
+                            Perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/taint.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <br>
+<p>The <code>&quot;taint&quot;</code> always bothered me. I thought I knew it well but no. The obvious question, can I show a working example?</p>
+<br>
+<p>Before I do that, let me share an incident with you. In the year 2019, I attended <code>The Perl Conference in Riga</code>.
+During the 3 days event, I gave couple of talks and one of them was <code>&quot;Protect your Perl script from common security issues&quot;</code>.</p>
+<br>
+<p>You can checkout my <a href="http://blogs.perl.org/users/mohammad_s_anwar/2019/08/the-perlcon-2019-riga---report.html"><strong>event report</strong></a>, if you are interested.</p>
+<br>
+<p>In that talk, I mentioned about one of my <code>CPAN</code> module <a href="https://metacpan.org/dist/Map-Tube"><strong>Map::Tube</strong></a> and how taint bitten me.</p>
+<br>
+<p>I also mentioned the fix to the taint issue in the module. A friend of mine was in the audience and he correctly pointed out my fix is insufficient. It was embarassing to be honest but I am old enough to take it and correct myself.</p>
+<p>Just for record, I haven&rsquo;t had time to re-visit the <code>&quot;issue&quot;</code> and fix it once for all. <code>Pull Requests</code> are most welcome.</p>
+<br>
+<h3 id="coming-back-to-my-original-question-how-to-show-taint-behaviour">Coming back to my original question, <code>how to show taint behaviour?</code></h3>
+<br>
+<p>The official <a href="https://perldoc.perl.org/perlsec"><strong>documentation</strong></a> says this with some exceptions:</p>
+<br>
+<blockquote>
+<p>You may not use data derived from outside your program to affect something else outside your program&ndash;at least, not by accident. All command line arguments, environment variables, locale information (see perllocale), results of certain system calls (readdir(), readlink(), the variable of shmread(), the messages returned by msgrcv(), the password, gcos and shell fields returned by the getpwxxx() calls), and all file input are marked as &ldquo;tainted&rdquo;. Tainted data may not be used directly or indirectly in any command that invokes a sub-shell, nor in any command that modifies files, directories, or processes</p>
+</blockquote>
+<br>
+<p>The general idea is all user data is marked as <code>&quot;taint&quot;</code> and should throw error if <code>&quot;taint&quot;</code> is turned on.</p>
+<br>
+<p>Lets create sample <code>data.txt</code>.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">manwar@VAIO:<span style="color:#f92672">~</span>$ cat data<span style="color:#f92672">.</span>txt
+Line <span style="color:#ae81ff">1</span>
+Line <span style="color:#ae81ff">2</span>
+Line <span style="color:#ae81ff">3</span>
+manwar@VAIO:<span style="color:#f92672">~</span>$
+</code></pre></div><br>
+<h3 id="so-i-thought-this-would-give-me-error-right">So I thought this would give me error, right?</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"> <span style="color:#ae81ff">1</span> <span style="color:#75715e">#!/usr/bin/perl -T</span>
+ <span style="color:#ae81ff">2</span>
+ <span style="color:#ae81ff">3</span> <span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.36</span>;
+ <span style="color:#ae81ff">4</span>
+ <span style="color:#ae81ff">5</span> <span style="color:#66d9ef">my</span> $input <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">0</span>];
+ <span style="color:#ae81ff">6</span>
+ <span style="color:#ae81ff">7</span> open (<span style="color:#66d9ef">my</span> $INPUT, <span style="color:#e6db74">&#34;&lt;&#34;</span>, $input) <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;$input: $!\n&#34;</span>;
+ <span style="color:#ae81ff">8</span> <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">my</span> $row <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;$INPUT&gt;</span>) {
+ <span style="color:#ae81ff">9</span>     <span style="color:#66d9ef">print</span> $row;
+<span style="color:#ae81ff">10</span> }
+<span style="color:#ae81ff">11</span> close ($INPUT);
+</code></pre></div><br>
+<h3 id="i-was-pleasantly-surprised-to-see-no-error">I was pleasantly surprised to see no error.</h3>
+<br>
+<p><img src="/images/blog/taint-1.png" alt="Image-1"></p>
+<br>
+<p>Seems <code>&quot;reading&quot;</code> is acceptable. I was talking to the same friend from the conference on <code>Telegram</code> when he was about to go to bed. Yes it was very late in night. He was kind enough to engage with me so late. By the way, we both work for the same company. He recommended me to join him. I am glad I listened to his advise.</p>
+<br>
+<p>He suggested I should try <code>&quot;read&quot;</code> from one file and <code>&quot;write&quot;</code> to another. It would likely trigger <code>&quot;taint&quot;</code> error.</p>
+<br>
+<p>He was correct, <code>it did</code>.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"> <span style="color:#ae81ff">1</span> <span style="color:#75715e">#!/usr/bin/perl -T</span>
+ <span style="color:#ae81ff">2</span>
+ <span style="color:#ae81ff">3</span> <span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.36</span>;
+ <span style="color:#ae81ff">4</span>
+ <span style="color:#ae81ff">5</span> <span style="color:#66d9ef">my</span> $input  <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">0</span>];
+ <span style="color:#ae81ff">6</span> <span style="color:#66d9ef">my</span> $output <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">1</span>];
+ <span style="color:#ae81ff">7</span>
+ <span style="color:#ae81ff">8</span> open (<span style="color:#66d9ef">my</span> $INPUT,  <span style="color:#e6db74">&#34;&lt;&#34;</span>, $input)  <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;$input : $!\n&#34;</span>;
+ <span style="color:#ae81ff">9</span> open (<span style="color:#66d9ef">my</span> $OUTPUT, <span style="color:#e6db74">&#34;&gt;&#34;</span>, $output) <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;$output: $!\n&#34;</span>;
+<span style="color:#ae81ff">10</span>
+<span style="color:#ae81ff">11</span> <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">my</span> $row <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;$INPUT&gt;</span>) {
+<span style="color:#ae81ff">12</span>     <span style="color:#66d9ef">print</span> $OUTPUT $row;
+<span style="color:#ae81ff">13</span> }
+<span style="color:#ae81ff">14</span>
+<span style="color:#ae81ff">15</span> close ($INPUT);
+<span style="color:#ae81ff">16</span> close ($OUTPUT);
+</code></pre></div><br>
+<p><img src="/images/blog/taint-2.png" alt="Image-2"></p>
+<br>
+<p>So now I have an example that triggers &ldquo;taint&rdquo; error.</p>
+<br>
+<h3 id="how-about-fixing-it">How about fixing it?</h3>
+<br>
+<p>There is no generic solution to be honest. It all depends what is acceptable to you.</p>
+<p>In the example above, we want to make sure, filename don&rsquo;t have any <code>&quot;unwanted character&quot;</code>.</p>
+<br>
+<h3 id="so-here-is-my-solution">So here is my solution:</h3>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"> <span style="color:#ae81ff">1</span> <span style="color:#75715e">#!/usr/bin/perl -T</span>
+ <span style="color:#ae81ff">2</span>
+ <span style="color:#ae81ff">3</span> <span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.36</span>;
+ <span style="color:#ae81ff">4</span>
+ <span style="color:#ae81ff">5</span> <span style="color:#66d9ef">my</span> $input  <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">0</span>];
+ <span style="color:#ae81ff">6</span> <span style="color:#66d9ef">my</span> $output <span style="color:#f92672">=</span> $ARGV[<span style="color:#ae81ff">1</span>];
+ <span style="color:#ae81ff">7</span>
+ <span style="color:#ae81ff">8</span> <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">untaint</span> { ($_[<span style="color:#ae81ff">0</span>]) <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=~</span><span style="color:#e6db74"> /([A-Za-z0-9_-]+\.[A-Za-z0-9_-]+)/</span>; }
+ <span style="color:#ae81ff">9</span> untaint $input;
+<span style="color:#ae81ff">10</span> untaint $output;
+<span style="color:#ae81ff">11</span>
+<span style="color:#ae81ff">12</span> open (<span style="color:#66d9ef">my</span> $INPUT,  <span style="color:#e6db74">&#34;&lt;&#34;</span>, $input)  <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;$input : $!\n&#34;</span>;
+<span style="color:#ae81ff">13</span> open (<span style="color:#66d9ef">my</span> $OUTPUT, <span style="color:#e6db74">&#34;&gt;&#34;</span>, $output) <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;$output: $!\n&#34;</span>;
+<span style="color:#ae81ff">14</span>
+<span style="color:#ae81ff">15</span> <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">my</span> $row <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;$INPUT&gt;</span>) {
+<span style="color:#ae81ff">16</span>     <span style="color:#66d9ef">print</span> $OUTPUT $row;
+<span style="color:#ae81ff">17</span> }
+<span style="color:#ae81ff">18</span>
+<span style="color:#ae81ff">19</span> close ($INPUT);
+<span style="color:#ae81ff">20</span> close ($OUTPUT);
+</code></pre></div><br>
+<h3 id="time-to-test">Time to test</h3>
+<br>
+<p><img src="/images/blog/taint-3.png" alt="Image-3"></p>
+<br>
+<h3 id="no-taint-error">No taint error.</h3>
+<br>
+<p>I know, I have only scratched the surface. But it is enough to clear my doubts for now. I will continue to explore and share my findings with you.</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="/contact" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2022
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.nomtimes.co.uk/site/shop.do?cref=PerlBooks" title="Free Perl Books" rel="noreferrer" target="_blank">
+                            <img src="/images/NomTimes.jpg" style="width:22px; height: 18px;" alt=""/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jQurey/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-136524905-1', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+
+</html>
+
