@@ -36,6 +36,10 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 168](/blog/perl-weekly-challenge-168) {#168}
 <br>
 
+##### **Adam Russell** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/adam-russell/java/ch-1.java) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/adam-russell/java/ch-2.java) in **Java**.
+
+##### **Adam Russell** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/adam-russell/prolog/ch-1.p) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/adam-russell/prolog/ch-2.p) in **Prolog**.
+
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/eric-cheung/python/ch-2.py) in **Python**.
 
 ##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-168/lubos-kolouch/python/ch-2.py) in **Python**.
