@@ -48,7 +48,7 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 <br>
 
 #### 1. Perl: 8154 (62%)
-#### 2. Raku: 4827 (38%)
+#### 2. Raku: 4829 (38%)
 #### 3. Blog: 2590
 
 <br>
@@ -56,10 +56,10 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 ## CONTRIBUTION STATS {#CONTRIBUTIONSTATS}
 ***
 
-The total contributions in the week is `71`. Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
+The total contributions in the week is `73`. Well done **Team PWC**. I would also like to thanks `Raku` contributors for catching up.
 
 #### 1. Perl: 34
-#### 2. Raku: 20
+#### 2. Raku: 22
 #### 3. Blog: 17
 
 <br>
@@ -423,6 +423,14 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 
 [[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-167/0rir/raku/ch-1.raku)]
 [[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-167/0rir/raku/ch-2.raku)]
+
+***
+
+### Rick Bychowski
+![Rick Bychowski](/images/team/user.jpg)
+
+[[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-167/rick-bychowski/raku/ch-1.raku)]
+[[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-167/rick-bychowski/raku/ch-2.raku)]
 
 <br>
 
