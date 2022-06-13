@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="The Weekly Challenge - Perl & Raku"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="You do not have to be an expert."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Colin Crain › Perl Weekly Review #162">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Colin Crain › Perl Weekly Review #162</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navgation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Colin Crain › Perl Weekly Review #162</h2>
+                    <div class="portfolio-meta">
+                        <span>Monday, Jun 13, 2022</span>|
+                        <span> Tags:
+                            perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/p5-review-challenge-162.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <p>( <em>&hellip;continues from <a href="/blog/review-challenge-161/">previous week</a>.</em> )</p>
+<p>Welcome to the Perl review pages for <strong>Week 162</strong> of The Weekly Challenge! Here we will take the time to discuss the  submissions offered up by the team, factor out some common methodologies that came up in those solutions, and highlight some of the unique approaches and unusual code created.</p>
+<hr>
+<h3 id="-why-do-we-do-these-challenges">●︎ Why do we do these challenges?</h3>
+<p>I suppose any reasonable answer to that question would be from a field as wide ranging and varied as the people who choose to join the team. One thing, though, is clear: it&rsquo;s not a competition, and there are no judges, even if there is a &ldquo;prize&rdquo; of sorts. About that &ndash; I think of it more as an honorarium periodically awarded to acknowledge the efforts we make towards this strange goal. So there&rsquo;s no determination to find the <em>fastest</em>, or the <em>shortest</em>, or even, in some abstract way, the <em>best</em> way to go about things, although I&rsquo;m certain the participants have their own aspirations and personal drives. As Perl is such a wonderfully expressive language, this provides quite a bit of fodder to the core idea of TMTOWTDI, producing a gamut of varied techniques and solutions.</p>
+<p>Even the tasks themselves are often open to a certain amount of discretionary interpretation. What we end up with is a situation where each participant is producing something in the manner they find the most interesting or satisfying. Some team members focus on carefully crafted complete applications, thoroughly vetting input data and handling every use case they can think up. Others choose to apply themselves to the logic of the underlying puzzle and making it work in the most elegant way they can. Some eschew modules they would ordinarily reach for, others embrace them, bringing to light wheels perhaps invented years ago that happen to exactly solve the problem in front of them today.</p>
+<p>I&rsquo;ve been considering this question for some time and have found one binding commonality between all of us out solving these challenges each week, in that however we normally live our lives, the task in front of us more than likely has nothing to do with any of that. And I think this has great value. We all do what we do, in the real world, and hopefully we do it well. The Weekly Challenge provides us with an opportunity to do something germane to that life yet distinctly different; if we only do the things we already know how to do then we will only do the same things over and over. This is where the &ldquo;challenge&rdquo; aspect comes into play.</p>
+<p>So we can consider The Weekly Challenge as providing a problem space outside of our comfort zone, as far out from that comfort as we wish to take things. From those reaches we can gather and learn things, pick and choose and bring what we want back into our lives. Personally, I think that&rsquo;s what this whole thing is about. YMMV.</p>
+<hr>
+<p><strong><emp>Every week there is an enormous global collective effort made by the team, analyzing and creatively coding the submissions, and that effort deserves credit due.</emp></strong></p>
+<p>And that, my friends, is why I&rsquo;m here, to try and figure out ways to do just that.</p>
+<p>So, here we are then. I&rsquo;m ready — let’s get to it and see what we can find.</p>
+<hr>
+<h3 id="for-additional-context">For Additional Context…</h3>
+<p>before we begin, you may wish to revisit either the pages for the <a href="/blog/perl-weekly-challenge-162/"><strong>original tasks</strong></a> or the summary <a href="/blog/recap-challenge-162/"><strong>recap</strong></a> of the challenge. But don&rsquo;t worry about it, the challenge text will be repeated and presented as we progress from task to task.</p>
+<p>Oh, and one more thing before we get started:</p>
+<h3 id="getting-in-touch-with-us">Getting in Touch with Us</h3>
+<p><a href="mailto:pwc.perfectwave@gmail.com"><img src="/images/blog/Email.svg" height="50" width="50"> Email</a> › Please feel free to email me (Colin) with any feedback, notes, clarifications or whatnot about this review.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge"><img src="/images/blog/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request to us for any issues you may find with this page.</p>
+<p><a href="https://twitter.com/perlwchallenge"><img src="/images/blog/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!</p>
+<p>I&rsquo;m always curious as to what the people think of these efforts. Everyone here at the PWC would like to hear any feedback you&rsquo;d like to give.</p>
+<div align= center><strong>...So finally, without further ado...</strong></div>
+<hr>
+<h2 id="---nbsp--nbsp--nbsp---task-1pwc162task1-------nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---task-2pwc162task2---nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---blogspwc162blogs----nbsp--nbsp--nbsp---">•             <a href="#PWC162TASK1">Task 1</a>                 •             <a href="#PWC162TASK2">Task 2</a>             	•             <a href="#PWC162BLOGS">BLOGS</a>              	•</h2>
+<hr>
+<h1 id="PWC162TASK1">TASK 1</h1>
+<h1 id="isbn-13">ISBN-13</h1>
+<p><em>Submitted by: Mohammad S Anwar</em></p>
+<p>Write a script to generate the check digit of given ISBN-13 code.</p>
+<p>Please refer <a href="https://en.wikipedia.org/wiki/ISBN#ISBN-13_check_digit_calculation">wikipedia</a> for more information.</p>
+<p><strong>Example</strong></p>
+<pre><code>    ISBN-13 check digit for '978-0-306-40615-7' is 7.
+</code></pre><h2 id="about-the-solutions">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/alexander-pankoff/perl/ch-1.pl"><strong>Alexander Pankoff</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/jaldhar-h-vyas/perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/julien-fiegehenn/perl/ch-1.pl"><strong>Julien Fiegehenn</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/kueppo-wesley/perl/ch-1.pl"><strong>Kueppo Wesley</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/lubos-kolouch/perl/ch-1.pl"><strong>Lubos Kolouch</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/mattneleigh/perl/ch-1.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/paulo-custodio/perl/ch-1.pl"><strong>Paulo Custodio</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/pete-houston/perl/ch-1.pl"><strong>Pete Houston</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/peter-campbell-smith/perl/ch-1.pl"><strong>Peter Campbell Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/pokgopun/perl/ch-1.pl"><strong>PokGoPun</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/robert-dicicco/perl/ch-1.pl"><strong>Robert DiCicco</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/ryan-thompson/perl/ch-1.pl"><strong>Ryan Thompson</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>The International Standard Book Number, ISBN, is labeling system designed to assign every book published a unique identifier, with separate assignments for alternate or updated editions and formats. The idea is that each distinct version of a text has its own number;  subsequent reprints of a unaltered publication retain the same label until substantial changes warrant the reclassification as a new edition, which is then given a new assignment.</p>
+<p>The most modern version of this label, the ISBN-13, is a 13-digit classification system that when parsed descends in specificity as we travel from left to right: first we have broad language groups; then geographic areas like countries; next publishing houses within those locales; and then finally ending in a selection from serial block assignments for publishers to give to individual works. The actual digit positions within the various sections is not absolutely fixed, so parsing can be complicated, but at the end of the sequence a <a href="https://en.wikipedia.org/wiki/Check_digit">check digit</a> is used to verify no step within the multi-stage process was mishandled, resulting in an incorrect ISBN.</p>
+<p>The check digit occupies the 13th position of the ISBN, and can be calculated as an algorithmic product of the other digits and their position values.</p>
+<p>There were 28 submissions for the first task this past week.</p>
+<h2 id="a-number-of-books">a NUMBER of BOOKS</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/ryan-thompson/perl/ch-1.pl"><strong>Ryan Thompson</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/robert-dicicco/perl/ch-1.pl"><strong>Robert DiCicco</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/peter-campbell-smith/perl/ch-1.pl"><strong>Peter Campbell Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/julien-fiegehenn/perl/ch-1.pl"><strong>Julien Fiegehenn</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/kueppo-wesley/perl/ch-1.pl"><strong>Kueppo Wesley</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a></p>
+<p>The precise definition of the check digit in an ISBN is the value a<sub>12</sub> such that, with the individual digits of the number indexed 0 through 12 for the 13 positions:</p>
+<p>a<sub>0</sub> + 3a<sub>1</sub> + a<sub>2</sub> + 3a<sub>3</sub> + a<sub>4</sub> + 3a<sub>5</sub> + a<sub>6</sub> + 3a<sub>7</sub> + a<sub>8</sub> + 3a<sub>9</sub> + a<sub>10</sub> + 3a<sub>11</sub> + a<sub>12</sub> ≡ 0 (mod 10)</p>
+<p>We saw validation techniques that either applied this equation directly, to see the result, or mathematically rearranged it, calculating a new check digit based on the first twelve digits and comparing the result to the existing thirteenth.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/ryan-thompson/perl/ch-1.pl"><strong>Ryan Thompson</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://ry.ca/2022/04/isbn-13/">PWC 162 › ISBN-13 - Ryan J Thompson</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://ry.ca/2022/04/playfair-cipher/">PWC 162 › Wheatstone–Playfair Cipher - Ryan J Thompson</a></p>
+<p>Ryan will start us off today applying a rearrangement of the definition equation, that the checksum is that value that when added to the result of the equation on the first twelve values in turn results in 0 (mod 10). That is to say, 10 minus the application of the expansion of the first 12 digits mod 10 equals the check digit.</p>
+<p>To get going he starts with a rephrasing of the expression, as the &ldquo;sum of every odd number plus 3 x every even number&rdquo;.  He accomplishes this eloquently using the function <code>pairmap</code> imported from <code>List::Util</code>. This grabs <em>pairs</em> of values from a split array of digits composing the original number and applies a mapping function to both of them, assigning to the special variables <code>$a</code> and <code>$b</code>, to produce a single value that is returned. The <code>map</code> array is then summed.</p>
+<p>Note that <code>pairmap</code> removes two values from <code>@digits</code> at every iteration, making it fundamentally different than <code>reduce</code>. Perl, it may be noted, is bringing this n-at-a-time interation into the interpreter directly — on an experimental basis — starting in Perl 5.36. This new functionality is currently implemented  for <code>for</code> loops, not <code>map</code>, but you get te idea. It&rsquo;s all very exciting.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw&lt; sum pairmap &gt;</span>;
+
+    <span style="color:#75715e"># We use a relaxed interpretation of an ISBN 13 here, because the parts are</span>
+    <span style="color:#75715e"># not fixed lengths, so as long as we have 13 digits, we don&#39;t care where (or</span>
+    <span style="color:#75715e"># if) the dashes are placed.</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">valid_isbn13</span> {
+        local $_ <span style="color:#f92672">=</span> shift;
+        croak <span style="color:#e6db74">&#34;Invalid ISBN&#34;</span> <span style="color:#66d9ef">unless</span> <span style="color:#e6db74">/^[0-9-]+$/</span>;
+        <span style="color:#66d9ef">my</span> @digits <span style="color:#f92672">=</span> grep { <span style="color:#e6db74">/\d/</span> } split <span style="color:#e6db74">//</span>;
+        croak <span style="color:#e6db74">&#34;Only 13 digit ISBNs are supported&#34;</span> <span style="color:#66d9ef">if</span> @digits <span style="color:#f92672">!=</span> <span style="color:#ae81ff">13</span>;
+        <span style="color:#66d9ef">my</span> $check <span style="color:#f92672">=</span> pop @digits;
+
+        <span style="color:#75715e"># Sum of every odd number plus 3 x every even number</span>
+        <span style="color:#ae81ff">10</span> <span style="color:#f92672">-</span> (sum pairmap { $a <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span><span style="color:#f92672">*</span>$b } @digits) % 10 <span style="color:#f92672">==</span> $check;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/robert-dicicco/perl/ch-1.pl"><strong>Robert DiCicco</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/robert-dicicco/raku/ch-1.raku">Raku</a></p>
+<p>Robert demonstrates unrolling the algorithm to act on specific digits in specific places. He first uses a substitution regex to strip out non-numeric characters and then employs <code>split</code> to turn the ISBN string into an array of digits.</p>
+<p>This calculates the checksum digit, which is then compared to the given value.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">makeCheckDigit</span> {
+      <span style="color:#66d9ef">my</span> $n <span style="color:#f92672">=</span> shift;
+
+      <span style="color:#66d9ef">my</span> @arr <span style="color:#f92672">=</span> split(<span style="color:#e6db74">//</span>,$n);
+      <span style="color:#66d9ef">my</span> $evensum <span style="color:#f92672">=</span> $arr[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+</span> $arr[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">+</span> $arr[<span style="color:#ae81ff">4</span>] <span style="color:#f92672">+</span> $arr[<span style="color:#ae81ff">6</span>] <span style="color:#f92672">+</span> $arr[<span style="color:#ae81ff">8</span>] <span style="color:#f92672">+</span> $arr[<span style="color:#ae81ff">10</span>];
+      <span style="color:#66d9ef">my</span> $oddsum <span style="color:#f92672">=</span> ($arr[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> $arr[<span style="color:#ae81ff">3</span>] <span style="color:#f92672">+</span> $arr[<span style="color:#ae81ff">5</span>] <span style="color:#f92672">+</span> $arr[<span style="color:#ae81ff">7</span>] <span style="color:#f92672">+</span> $arr[<span style="color:#ae81ff">9</span>] <span style="color:#f92672">+</span> $arr[<span style="color:#ae81ff">11</span>]) <span style="color:#f92672">*</span> <span style="color:#ae81ff">3</span>;
+      <span style="color:#66d9ef">my</span> $presum <span style="color:#f92672">=</span> ($evensum <span style="color:#f92672">+</span> $oddsum) % 10;
+      <span style="color:#66d9ef">my</span> $checkdigit <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span> <span style="color:#f92672">-</span> $presum;
+
+      <span style="color:#66d9ef">return</span> $checkdigit;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a></p>
+<p>Alternately, Choroba takes the evaluation to the other extreme, where by using an incrementing variable within a <code>map</code> block, by careful construction of a modulo formula he makes a cyclic pattern, alternately multiplying by 1 or 3. After clipping the last element off the string using <code>substr</code>, the head is processed with <code>split</code> and the resulting list has our oscillating block applied across it. This is then summed modulo 10.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">isbn_13_check_digit</span> {
+        <span style="color:#66d9ef">my</span> ($isbn) <span style="color:#f92672">=</span> @_;
+        $isbn <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/-//g</span>;
+        substr $isbn, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#34;&#34;</span> <span style="color:#66d9ef">if</span> <span style="color:#ae81ff">13</span> <span style="color:#f92672">==</span> length $isbn;
+        <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">10</span> <span style="color:#f92672">-</span> ((sum(map $_ <span style="color:#f92672">*</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> ($i<span style="color:#f92672">++</span> % 2)),
+                          split <span style="color:#e6db74">//</span>, $isbn)
+                      % 10) <span style="color:#f92672">||</span> <span style="color:#ae81ff">10</span>);
+    }
+</code></pre></div><p>The only thing remaining is to subtract the result from 10 or subtract 10 if the result is 0, to return a single digit in all cases. This should match our check digit.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://colincrain.com/2022/05/01/fair-play-with-your-nose-to-the-grindstone/">Fair Play with Your Nose to the Grindstone - Programming Excursions in Perl and Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://colincrain.com/2022/04/29/magic-spell-books-or-13-revisited/">Magic Spell Books, or 13 Revisited - Programming Excursions in Perl and Raku</a></p>
+<p>For my own solution I came up with a very similar bistable function to jump between coefficients, this one modulo 4. Instead of using two operations to clean and then split, I just use a singular affirmative global match and capture on a single digit to produce an array of results to work with. A statement modifier crates the loop and an array slice excludes the last digits, grabbing only the first 12.</p>
+<p>Array slices are just such wonderfully powerful tools.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> @arr <span style="color:#f92672">=</span> $isbn <span style="color:#f92672">=~</span><span style="color:#e6db74"> /(\d)/g</span>;
+    <span style="color:#66d9ef">my</span> $c   <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+    $sum <span style="color:#f92672">+=</span> $_ <span style="color:#f92672">*</span> (<span style="color:#f92672">++</span>$c <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span> % 4 <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">for</span> @arr[<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">11</span>];
+    <span style="color:#66d9ef">my</span> $ck <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span> <span style="color:#f92672">-</span> $sum % 10;
+    $ck <span style="color:#f92672">==</span> <span style="color:#ae81ff">10</span> <span style="color:#f92672">and</span> $ck <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;          <span style="color:#75715e">## correct 10 -&gt; 0</span>
+
+    say <span style="color:#f92672">&lt;&lt;~</span><span style="color:#e6db74">&#34;END&#34;</span>;
+        input      $isbn
+        checksum   $ck
+    <span style="color:#66d9ef">END</span>
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a></p>
+<p>The function <code>pairwise</code>, from <code>List::MoreUtils</code>, fundamentally differs in its selection process from the <code>pairmap</code> function we saw earlier, in that it incrementally takes the <em>next</em> single element from two lists; these two elements are then assigned to <code>$a</code> and <code>$b</code> inside a block and evaluated, to return a list of single result values. The second list contains the multiplier coefficients.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw(sum0)</span>;
+    <span style="color:#66d9ef">use</span> List::MoreUtils <span style="color:#e6db74">qw(pairwise)</span>;
+
+    <span style="color:#66d9ef">my</span> @isbnDigits <span style="color:#f92672">=</span> (grep<span style="color:#e6db74">/\d/</span>,split<span style="color:#e6db74">//</span>,shift <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#39;978-0-306-40615-7&#39;</span>)[<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">11</span>];
+    <span style="color:#66d9ef">my</span> @factors <span style="color:#f92672">=</span> split<span style="color:#e6db74">//</span>,<span style="color:#ae81ff">1313131313131</span>;
+    say <span style="color:#f92672">-</span>(sum0 pairwise {$a<span style="color:#f92672">*</span>$b} @isbnDigits,@factors) % 10;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/cheok-yin-fung/julia/ch-1.jl">Julia</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://e7-87-83.github.io/coding/challenge_162.html">CY&rsquo;s Take on The Weekly Challenge #162 </a></p>
+<p>The <code>pairmap</code> solution we saw earlier is also quite compact and elegant in its simplicity. Looking at these solutions side-by-side nicely illustrates the choices available in designing a function for iterating through multiple pieces of list data at once: do we take successive elements one list or the same index from multiple lists? Or even some combination of the two? It turns out the closer you look, the less obvious the &ldquo;correct&rdquo; answer is, and in fact there is, simply put, more than one way to do it.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">valid</span> {
+        <span style="color:#66d9ef">my</span> $code <span style="color:#f92672">=</span> $_[<span style="color:#ae81ff">0</span>];
+        <span style="color:#66d9ef">my</span> @d <span style="color:#f92672">=</span> grep { <span style="color:#e6db74">/\d/</span> } split <span style="color:#e6db74">&#34;&#34;</span>, $code;
+        die <span style="color:#e6db74">&#34;Invalid ISBN-13 code!\n&#34;</span> <span style="color:#66d9ef">if</span> scalar @d <span style="color:#f92672">!=</span> <span style="color:#ae81ff">13</span>;
+        <span style="color:#66d9ef">return</span> <span style="color:#f92672">!</span>( ($d[<span style="color:#ae81ff">12</span>] <span style="color:#f92672">+</span> sum pairmap {$a <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span><span style="color:#f92672">*</span>$b} @d[<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">11</span>]) % 10);
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/peter-campbell-smith/perl/ch-1.pl"><strong>Peter Campbell Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://pjcs-pwc.blogspot.com/2022/04/checksums-and-early-encryption.html">Checksums and early encryption</a></p>
+<p>Peter starts with a parallel hardcoded list of multiplier coefficients indexed to the first 12 positions in the ISBN. The digits themselves he grabs incrementally using a global pattern match and capture. Using a capture, we need to go through the assigned special variable <code>$1</code>, which we then repeatedly gather from to create the digit array. In doing this this way non-word spacer and delineator characters are quietly skipped over wituout needing to be explicitly removed.</p>
+<p>To create his sum he iterates through one common set of indices for both lists.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    @multipliers <span style="color:#f92672">=</span> <span style="color:#e6db74">qw(1 3 1 3 1 3 1 3 1 3 1 3)</span>;
+
+    <span style="color:#66d9ef">for</span> $test (@tests) {
+
+        <span style="color:#75715e"># eliminate non-digits</span>
+        @digits <span style="color:#f92672">=</span> ();
+        push @digits, $1 <span style="color:#66d9ef">while</span> $test <span style="color:#f92672">=~</span> m<span style="color:#f92672">|</span>(<span style="color:#f92672">\</span>d)<span style="color:#f92672">|</span>g;
+
+        <span style="color:#75715e"># create weighted sum of first 12 digits</span>
+        $sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        $sum <span style="color:#f92672">+=</span> $digits[$_] <span style="color:#f92672">*</span> $multipliers[$_] <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">11</span>);
+
+        <span style="color:#75715e"># and the 13th digit is 10 minus the sum, mod 10</span>
+        say <span style="color:#e6db74">qq[ISBN-13 check digit for &#39;$test&#39; is ]</span> <span style="color:#f92672">.</span> (<span style="color:#ae81ff">10</span> <span style="color:#f92672">-</span> $sum % 10) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;.&#39;</span>;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a></p>
+<p>Jorg makes an interesting assumption in his solution, that the code as written will have 17 characters: 13 digits demarked into groups with 4 separators. I know calculating the check digit should not require us to suddenly each become experts in publishing logistics, but my careful reading of the literature does not find the division to be an actual requirement, only a quite sensible convention.</p>
+<p>The groups composing a number are: one of two standardized barcode prefixes; a language/country group element; a publishing house code; a published item code; and finally a check digit for all of these. To complicate things the number of digits is fixed but the divisions are not: large imprints get large blocks of codes for their items and short identifiers, and small houses the opposite, so decoding a number is decidedly complicated.</p>
+<p>But then again, decoding a number is largely unnecessary. The code uniquely identifies an edition of a product for tracking and then sale. The details are generally not important to that role.</p>
+<p>As such sometimes there are dashes, or spaces, and sometimes not. The encoding defines the 13 ordered digits, and not how they are displayed. Delimiting the groups only makes it easier for a human to read and not make errors when copying.</p>
+<p>So again I&rsquo;ll say I don&rsquo;t think that specific knowledge should be required to complete the challenge in good faith, so I&rsquo;m going to look the other way and focus instead on Jorg&rsquo;s impressive use of <code>reduce_0</code> from <code>List::MoreUtils</code> to a perform the entire coeficient assignment cycle and summation in a single regex match.</p>
+<p>It&rsquo;s kind of amazing.</p>
+<p>The regex computes the check digit as part of the evaluation of the expression; if the nested evaluation does not match the expression fails and the subroutine returns false.</p>
+<p>Sometimes I wonder whether Jorg says to himself &ldquo;how can I do this as weirdly complicated as possible?&rdquo; But then again I think I already know the answer to that one. But it works and well too, which is important. This is not golf; this has its own internally consistent raison d'être.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">check_isbn13</span> ($isbn) {
+        $isbn <span style="color:#f92672">=~</span> <span style="color:#e6db74">m{
+</span><span style="color:#e6db74">            # 4 nonempty elements plus check digit separated by hyphens
+</span><span style="color:#e6db74">            ^\d+-\d+-\d+-\d+-\d\z
+</span><span style="color:#e6db74">            (?(?{
+</span><span style="color:#e6db74">                length != 17 ||     # not 13 digits and 4 separators
+</span><span style="color:#e6db74">                # weighted digit sum not a multiple of 10
+</span><span style="color:#e6db74">                (reduce_0 {$a + $b * (($_ % 2) * 2 + 1)}</span> split <span style="color:#e6db74">/-*/</span>) % 10;
+            }) (<span style="color:#f92672">*</span>FAIL))     <span style="color:#75715e"># not an ISBN code</span>
+        }x;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/julien-fiegehenn/perl/ch-1.pl"><strong>Julien Fiegehenn</strong></a></p>
+<p>Julien, in his submission, provides us with a refreshingly systematic breakdown of the steps he takes to arrive at his solution. I&rsquo;ll let the comments speak for themselves.</p>
+<p>Of note is after collecting an array of the first 12 digits, he cleverly uses a slice to modify the odd-indexed elements, multiplying those in-place by 3. Once this is done all that is needed is to compound a sum and divide it modulo 10.</p>
+<p>I like this slice trick. Again let us raise our glass to the power of array magic.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">isbn_13</span> {
+        <span style="color:#66d9ef">my</span> $number <span style="color:#f92672">=</span> shift;
+
+        die <span style="color:#e6db74">&#39;Input required&#39;</span> <span style="color:#66d9ef">unless</span> $number;
+
+        <span style="color:#75715e"># clean up the number</span>
+        $number <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/\D//g</span>;
+
+        <span style="color:#75715e"># we need to do maths on each digit</span>
+        <span style="color:#66d9ef">my</span> @digits <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, $number;
+
+        <span style="color:#75715e"># discard the check digit</span>
+        pop @digits <span style="color:#66d9ef">if</span> @digits <span style="color:#f92672">==</span> <span style="color:#ae81ff">13</span>;
+
+        <span style="color:#75715e"># do we have the right amount of digits?</span>
+        die <span style="color:#e6db74">&#39;This does not look like an ISBN-13&#39;</span> <span style="color:#66d9ef">unless</span> @digits <span style="color:#f92672">==</span> <span style="color:#ae81ff">12</span>;
+
+        <span style="color:#75715e"># triple all the even digits</span>
+        $_ <span style="color:#f92672">*=</span> <span style="color:#ae81ff">3</span> <span style="color:#66d9ef">for</span> @digits[<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">11</span>];
+
+        <span style="color:#75715e"># and do the maths</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">10</span> <span style="color:#f92672">-</span> sum(@digits) % 10;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/kueppo-wesley/perl/ch-1.pl"><strong>Kueppo Wesley</strong></a></p>
+<p>Kueppo has come up with a novel manner of producing his variable coeeficient, as a subroutine with its own state variable, toggling between either returning 1 or 3 based on the previous result. I suppose the next step would be returning a proper closure coderef, to fire up as many independant checkers as we may want.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    $ps <span style="color:#f92672">+=</span> $_ <span style="color:#f92672">*</span> <span style="color:#f92672">&amp;</span>oot <span style="color:#66d9ef">foreach</span> (split <span style="color:#e6db74">/-|/</span>, $ARGV[<span style="color:#ae81ff">0</span>]);
+    $ps %<span style="color:#960050;background-color:#1e0010">=</span> 10;
+    $ps <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/[^0]/10 - $ps/e</span>;
+
+    say <span style="color:#e6db74">&#34;$ARGV[0]-$ps&#34;</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">oot</span> { state $x <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>; $x <span style="color:#f92672">=</span> ($x <span style="color:#f92672">==</span> <span style="color:#ae81ff">3</span> ? <span style="color:#ae81ff">1</span> : <span style="color:#ae81ff">3</span>) }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-162/james-smith">perlweeklychallenge-club/challenge-162/james-smith at master · drbaggy/perlweeklychallenge-club · GitHub</a></p>
+<p>Because the code length is known to be fixed at 12 digits before the checksum, then processing these digits two at a time, multiplying one and leaving the next alone, accumulating a sum — this seems like a reasonable path to validate the last value. This is the essence of the <code>pairmap</code> solutions we saw earlier.</p>
+<p>Here James eschews bringing in outside help from a module to make the steps, preferring a pair of <code>shift</code> operations to gather first one element and then, in the same statement, the next.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">validate_isbn13</span> {
+      <span style="color:#66d9ef">my</span> @p <span style="color:#f92672">=</span> ( <span style="color:#66d9ef">my</span> $s <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, grep {<span style="color:#e6db74">/\d/</span>} split <span style="color:#e6db74">//</span>, $_[<span style="color:#ae81ff">0</span>] );
+      $s <span style="color:#f92672">+=</span> <span style="color:#ae81ff">3</span><span style="color:#f92672">*</span>shift(@p) <span style="color:#f92672">+</span> shift @p <span style="color:#66d9ef">while</span> @p;
+      <span style="color:#f92672">!</span>($s%10);
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">checksum_isbn13</span> {
+      <span style="color:#66d9ef">my</span>($s,@p) <span style="color:#f92672">=</span> ( <span style="color:#ae81ff">0</span>, @{[grep {<span style="color:#e6db74">/\d/</span>} split <span style="color:#e6db74">//</span>, $_[<span style="color:#ae81ff">0</span>]]}[<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">11</span>] );
+      $s <span style="color:#f92672">-=</span> shift(@p) <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span><span style="color:#f92672">*</span>shift @p <span style="color:#66d9ef">while</span> @p;
+      $s%10;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/roger-bell-west/javascript/ch-1.js">Javascript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/roger-bell-west/kotlin/ch-1.kt">Kotlin</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/roger-bell-west/lua/ch-1.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/roger-bell-west/postscript/ch-1.ps">Postscript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/roger-bell-west/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/roger-bell-west/raku/ch-1.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/roger-bell-west/ruby/ch-1.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/roger-bell-west/rust/ch-1.rs">Rust</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://blog.firedrake.org/archive/2022/04/The_Weekly_Challenge_162__Playing_Fair_with_ISBNs.html">RogerBW&rsquo;s Blog: The Weekly Challenge 162: Playing Fair with ISBNs</a></p>
+<p>Finally we have Roger&rsquo;s submission, which completely sidesteps the overhead of explicitly making a new array variable holding the ISBN component digits by instead directly examining them in-place. After all, beneath the surface a Perl string is a C string with a few extra pieces of data, stored away in a <code>struct</code>. And a C string is itself an array of characters in structured memory. We already need to know where everything is in order for Perl to work its magic.</p>
+<p>So why not just address the digits directly?</p>
+<p>In fact, using <code>substr</code>, this is remarkably fast. For some reason I always felt this would be more complex than it is, and be more computationally complex, but as everything we need to perform it is already precomuputed as kept in the data structure, waiting there for us to use. There&rsquo;s no need to scan the string looking for the 8th position, for example — we can just immediately go there and examine the character we find. And if it looks like a number, it is a number. That&rsquo;s Perl for you.</p>
+<p>Not to put too fine a point on it, but this is way faster than allocating a new array variable and using <code>slice</code>.</p>
+<p>As I have taken the time on many occasions to relate, <code>substr</code> is a speed demon when properly used.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">generate</span> {
+      <span style="color:#66d9ef">my</span> $in <span style="color:#f92672">=</span> shift;
+      $in <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/[^0-9]+//g</span>;
+      <span style="color:#66d9ef">if</span> (length($in) <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">12</span>) {
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">99</span>;
+      }
+      <span style="color:#66d9ef">my</span> $s<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+      <span style="color:#66d9ef">my</span> $m<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
+      <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">11</span>) {
+        $s <span style="color:#f92672">+=</span> substr($in,$i,<span style="color:#ae81ff">1</span>) <span style="color:#f92672">*</span> $m;
+        $m <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span> <span style="color:#f92672">-</span> $m;
+      }
+      <span style="color:#66d9ef">return</span> (<span style="color:#ae81ff">10</span><span style="color:#f92672">-</span>($s % 10)) % 10;
+    }
+</code></pre></div><h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-1">Blogs and Additional Submissions in Guest Languages for Task 1:</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/adam-russell/java/ch-1.java">Java</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/adam-russell/prolog/ch-1.p">Prolog</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2022/05/01">The Weekly Challenge 162 — Perl  — RabbitFarm</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://www.rabbitfarm.com/cgi-bin/blosxom/prolog/2022/05/01">The Weekly Challenge 162 — Prolog  — RabbitFarm</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/alexander-pankoff/perl/ch-1.pl"><strong>Alexander Pankoff</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/alexander-pankoff/haskell/ch-1.hs">Haskell</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/athanasius/raku/ch-1.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://jacoby.github.io/2022/04/26/play-fair-and-by-the-book-weekly-challenge-162.html">Play Fair and By The Book: Weekly Challenge #162 | Committed to Memory</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/duncan-c-white/C/ch-1.c">C</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/polettix/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.polettix.it/ETOOBUSY/2022/04/26/pwc162-isbn-13/">PWC162 - ISBN-13 - ETOOBUSY</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.polettix.it/ETOOBUSY/2022/04/27/pwc162-wheatstone-playfair/">PWC162 - Wheatstone-Playfair - ETOOBUSY</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/jaldhar-h-vyas/perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/jaldhar-h-vyas/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://www.braincells.com/perl/2022/05/perl_weekly_challenge_week_162.html">Perl Weekly Challenge: Week 162</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/laurent-rosenfeld/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://blogs.perl.org/users/laurent_r/2022/04/perl-weekly-challenge-162-isbn-13-and-wheatstone-playfair.html">Perl Weekly Challenge 162: ISBN-13 and Wheatstone-Playfair</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/pokgopun/perl/ch-1.pl"><strong>PokGoPun</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/pokgopun/go/ch-1.go">Go</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/ulrich-rieke/cpp/ch-1.cpp">C++</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/ulrich-rieke/haskell/ch-1.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/ulrich-rieke/raku/ch-1.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://wlmb.github.io/2022/04/25/PWC162/">Perl Weekly Challenge 162 – W. Luis Mochán</a></p>
+<hr>
+<hr>
+<h1 id="PWC162TASK2">TASK 2</h1>
+<h1 id="wheatstone-playfair">Wheatstone-Playfair</h1>
+<p><em>Submitted by: Roger Bell_West</em></p>
+<p>Implement encryption and decryption using the Wheatstone-Playfair cipher.</p>
+<p><strong>Examples:</strong></p>
+<pre><code>    (These combine I and J, and use X as padding.)
+
+    encrypt(&quot;playfair example&quot;, &quot;hide the gold in the tree stump&quot;) = &quot;bmodzbxdnabekudmuixmmouvif&quot;
+
+    decrypt(&quot;perl and raku&quot;, &quot;siderwrdulfipaarkcrw&quot;) = &quot;thewexeklychallengex&quot;
+</code></pre><h2 id="about-the-solutions-1">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/alexander-pankoff/perl/ch-2.pl"><strong>Alexander Pankoff</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/julien-fiegehenn/perl/ch-2.pl"><strong>Julien Fiegehenn</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/kueppo-wesley/perl/ch-2.pl"><strong>Kueppo Wesley</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/mattneleigh/perl/ch-2.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/perlboy1967/perl/ch-2.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/paulo-custodio/perl/ch-2.pl"><strong>Paulo Custodio</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/pete-houston/perl/ch-2.pl"><strong>Pete Houston</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/peter-campbell-smith/perl/ch-2.pl"><strong>Peter Campbell Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/pokgopun/perl/ch-2.pl"><strong>PokGoPun</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/ryan-thompson/perl/ch-2.pl"><strong>Ryan Thompson</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>I&rsquo;ve always been interested in codes and codebreaking, so this challenge provided a welcome respite from the usual fare of number-theoretical weirdness. Don&rsquo;t get me wrong — I have gained no small amount of pleasure and knowledge manipulating numbers and the digits that compose them in ways I would never in a million years think to pursue. I don&rsquo;t regret any of that. Implementing code to explore number theory relationships is frankly just the sort of things computers are really, really good at.</p>
+<p>But then again, so is cryptography. And the use of computational resources in the field has in the past decades dramatically upped the stakes in the game.</p>
+<p>Modern cryptography involves some impressively complex math. Combining many-to-one one-way functions and breathtaking amounts of computational churning and leveling, the aim is to provide a smooth sea of apparent randomness that defies reversal. Considering that in cryptography the computational resources available for a decryption attack are always assumed to be far greater than the resources required for the basic operation of the scheme, computational complexity cannot be equated simply to security. However much as a mountain has one top yet an infinite number of ways down we can rely on mathematical complexity of a well-defined system to provide security within known, calculable parameters. The result is an arms race testing the limits of resources, with faster computational architectures both allowing and requiring more complexity in the cryptologic techniques used, always trying to keep the time required for unauthorized decryption many orders of magnitude greater than the time available.</p>
+<p>Millions of years is a nice buffer, but hard to keep as hardware and techniques improve.</p>
+<p>There were 22 submissions for the second task this past week.</p>
+<h2 id="a-smattering-of-clues">a SMATTERING of CLUES</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/pete-houston/perl/ch-2.pl"><strong>Pete Houston</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/pokgopun/perl/ch-2.pl"><strong>PokGoPun</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/alexander-pankoff/perl/ch-2.pl"><strong>Alexander Pankoff</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/paulo-custodio/perl/ch-2.pl"><strong>Paulo Custodio</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a></p>
+<p>One of the more interesting aspects of implementing the cipher was the means to locate the paired letters in the lookup grid to determine exactly what we should do with them. This led to a variety of creative solutions. A common and very perlish method here was to build a parallel lookup hash recording the locations of each letter as it is placed in the first place, but we saw others too, based on flattening the table to a linear array.</p>
+<p>As for the transformation, there are three basic cases to deal with, with the grid coordinate information from the key-table required to determine which to use. But this, and the specific details of the cipher itself, will hopefully become clear.</p>
+<p>The decryption function, many noticed, was quite similar to the encryption, enough that almost all the code could be reused from one to the other, resulting in many submissions combining the two into a single universal translator. The exact method for this reversal also had a large number of specific implementations.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://wlmb.github.io/2022/04/25/PWC162/">Perl Weekly Challenge 162 – W. Luis Mochán</a></p>
+<p>Let&rsquo;s get the ball rolling with Luis, and a description of the cipher itself. The Playfair cipher starts with a custom rearrangement of the alphabet into a 5x5 square matrix, constructed using a specified password or passphrase. Working left to right and ratcheting downward through the rows in a raster scan-line pattern, the unique letters in the passphrase are placed first. followed by the remaining letters in the alphabet in their existing order. Because the grid we are using has 25 locations and the English alphhabet 26 letters, the common &ldquo;i&rdquo; and uncommon &ldquo;j&rdquo; are considered to be the same letter, to make 25 positions.</p>
+<p>This tablature is performed in <code>make_tables()</code>.</p>
+<p>The enciphering in done by selecting pairs of successive letters from the plaintext. Duplicate letters are not allowed, and so are separated using a predetermined dummy character, &ldquo;x&rdquo; in this case. Further, as we require an even number of letters in the plaintext, an additional dummy character is appended to the end if necessary.</p>
+<p>Once taken we locate the characters in the pair on the matrix, where have three basic cases that can arise:</p>
+<ol>
+<li>if the characters are in different rows and different columns, the column positions of the two are exchanged, with the row for each left unchanged, and the new characters read.</li>
+<li>if the two share a single row, we select the next position rightward in the row for each character, wrapping around to the left when we get to the right boundary.</li>
+<li>if the two share a single column, we select the next position downward in the column for each character, wrapping around to the top when we get to the lower boundary.</li>
+</ol>
+<p>We&rsquo;ve already separated duplicate characters, so the two cannot occupy the same position. The selected characters make up the ciphertext. These are commonly grouped into sets of four or five characters, but this is just convention.</p>
+<p>There are several loose ends in the definition, namely which letters to condense together — in this case &ldquo;i&rdquo; and &ldquo;j&rdquo; — and the selection of the dummy character, here &ldquo;x&rdquo;. These decisions need to be made between the parties by prearrangement. Sometimes other letters are chosen, such as Q or Z; uncommon letters work best.</p>
+<p>There is one other edge-case that Luis brings up though, which is what to do when the dummy character itself is duplicated in the plaintext? If we have &ldquo;xx&rdquo; in the plaintext, then inserting another &ldquo;x&rdquo; to separate them obviously won&rsquo;t work. As this letter formation never naturrally occurs in English, the behavior in this instance is not well defined, and again is left to some predetermined rule decided on by the parties involved. Here Luis just returns &ldquo;xx&rdquo;; it&rsquo;s not at all clear what to do. Perhaps the dummy letter could be selected optimally to match the data, or the data itself modified to avoid this outcome: &ldquo;xx&rdquo; would be encoded as &ldquo;ex-ex&rdquo;. The encoding-decodong process is, it should be stressed, inherently &ldquo;lossy&rdquo; — information is both both destroyed and and new spurious data is added in the process, resulting in an imperfect duplication of the plaintext.</p>
+<p>It&rsquo;s good to put these inherent translation problems forward at the beginning. The code was originally envisioned for rapid battlefield communication, not the perfect secure transmission of complex data. For another example, notice there is no cipher-space allocation to numbers, which presumably would be spelled out. Inserting the digits 0 through 9 into a 6 x 6 grid neatly solves this problem, and eliminates the need to merge i and j; sometimes this variant is known as Playfair 6.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">make_tables</span> {
+        <span style="color:#66d9ef">my</span> $key<span style="color:#f92672">=</span>shift; <span style="color:#75715e"># only letters a-z and without j&#39;s and</span>
+        <span style="color:#66d9ef">my</span> @letters<span style="color:#f92672">=</span>((split <span style="color:#e6db74">&#39;&#39;</span>, $key),(<span style="color:#e6db74">&#39;a&#39;</span><span style="color:#f92672">..</span><span style="color:#e6db74">&#39;i&#39;</span>, <span style="color:#e6db74">&#39;k&#39;</span><span style="color:#f92672">..</span><span style="color:#e6db74">&#39;z&#39;</span>)); <span style="color:#75715e"># complete alphabet</span>
+        <span style="color:#66d9ef">my</span> (@table, %table);
+        <span style="color:#66d9ef">my</span> $i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">foreach</span>(@letters){
+            <span style="color:#66d9ef">my</span> ($row, $col)<span style="color:#f92672">=</span>(floor($i<span style="color:#f92672">/</span><span style="color:#ae81ff">5</span>), $i%5);
+            $table[$row][$col]<span style="color:#f92672">=</span>$_, $table{$_}<span style="color:#f92672">=</span>[$row,$col], <span style="color:#f92672">++</span>$i <span style="color:#66d9ef">unless</span> defined $table{$_};
+        }
+        <span style="color:#66d9ef">return</span> (<span style="color:#f92672">\</span>@table, <span style="color:#f92672">\</span>%table);
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">encrypt</span> {
+        <span style="color:#66d9ef">my</span> ($key, $message)<span style="color:#f92672">=</span>@_;
+        map {<span style="color:#e6db74">s/[^a-z]//g</span>; <span style="color:#e6db74">s/j/i/g</span>;} ($key, $message); <span style="color:#75715e"># only letters, j=i</span>
+        <span style="color:#66d9ef">my</span> ($table_a, $table_h)<span style="color:#f92672">=</span>make_tables($key); <span style="color:#75715e"># map coordinates to letters and viceversa</span>
+        <span style="color:#66d9ef">my</span> @message<span style="color:#f92672">=</span>split <span style="color:#e6db74">&#39;&#39;</span>, $message;
+        <span style="color:#66d9ef">my</span> @encrypted;
+        <span style="color:#66d9ef">while</span>(@message){
+            <span style="color:#66d9ef">my</span> $first<span style="color:#f92672">=</span>shift @message;
+            <span style="color:#66d9ef">my</span> $second;
+            $second<span style="color:#f92672">=</span>@message <span style="color:#f92672">&amp;&amp;</span> $message[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">ne</span> $first <span style="color:#75715e"># check availability, repetitions</span>
+                ?shift @message
+                :<span style="color:#e6db74">&#39;x&#39;</span>; <span style="color:#75715e"># dummy x to avoid repetitions</span>
+            <span style="color:#66d9ef">my</span> ($row1, $col1)<span style="color:#f92672">=</span>@{$table_h<span style="color:#f92672">-&gt;</span>{$first}}; <span style="color:#75715e"># get coordinates</span>
+            <span style="color:#66d9ef">my</span> ($row2, $col2)<span style="color:#f92672">=</span>@{$table_h<span style="color:#f92672">-&gt;</span>{$second}};
+            push(@encrypted, $table_a<span style="color:#f92672">-&gt;</span>[$row1][$col2],
+                 $table_a<span style="color:#f92672">-&gt;</span>[$row2][$col1]), <span style="color:#66d9ef">next</span> <span style="color:#75715e"># exchange corners</span>
+                <span style="color:#66d9ef">if</span> $row1<span style="color:#f92672">!=</span>$row2 <span style="color:#f92672">&amp;&amp;</span> $col1 <span style="color:#f92672">!=</span> $col2; <span style="color:#75715e"># rectangle</span>
+            push(@encrypted, $table_a<span style="color:#f92672">-&gt;</span>[$row1][($col1<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)%5],
+                 $table_a<span style="color:#f92672">-&gt;</span>[$row2][($col2<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)%5]), <span style="color:#66d9ef">next</span> <span style="color:#75715e"># rotate right</span>
+                <span style="color:#66d9ef">if</span> $row1<span style="color:#f92672">==</span>$row2 <span style="color:#f92672">&amp;&amp;</span> $col1 <span style="color:#f92672">!=</span> $col2; <span style="color:#75715e"># single row</span>
+            push(@encrypted, $table_a<span style="color:#f92672">-&gt;</span>[($row1<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)%5][$col1],
+                 $table_a<span style="color:#f92672">-&gt;</span>[($row2<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)%5][$col2]), <span style="color:#66d9ef">next</span> <span style="color:#75715e"># rotate down</span>
+                <span style="color:#66d9ef">if</span> $row1<span style="color:#f92672">!=</span>$row2 <span style="color:#f92672">&amp;&amp;</span> $col1 <span style="color:#f92672">==</span> $col2; <span style="color:#75715e"># single column</span>
+            <span style="color:#75715e"># I can only arrive here if there are two consequtive x&#39;s. Not</span>
+            <span style="color:#75715e"># sure what to do, so I&#39;ll just return them</span>
+            push @encrypted, <span style="color:#e6db74">&#39;x&#39;</span>, <span style="color:#e6db74">&#39;x&#39;</span>; <span style="color:#75715e"># repeated x</span>
+        }
+        <span style="color:#66d9ef">return</span> join <span style="color:#e6db74">&#39;&#39;</span>, @encrypted;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://jacoby.github.io/2022/04/26/play-fair-and-by-the-book-weekly-challenge-162.html">Play Fair and By The Book: Weekly Challenge #162 | Committed to Memory</a></p>
+<p>In both a theoretical and crypto-analytical point of view a deep rigorous understanding of the limitations of the cipher is necessary, but to quickly transfer the message: &ldquo;The unit will move westward at dawn&rdquo; according to a conventional set of rules known to both parties it is not.</p>
+<p>Dave concentrates his efforts in this more practical area. For many messages it doesn&rsquo;t matter if a spurious &ldquo;x&rdquo; is inserted between two duplicate letters; in almost every case a simple direct message can be properly inferred from context. For this reason &ldquo;q&rdquo; is another common dummy letter used, as an alternative to &ldquo;x&rdquo;, as any &ldquo;q&rdquo; not followed by &ldquo;u&rdquo; is obviously inserted. The few words that this might cause a problem with are easily exempted:  &ldquo;vacuqum&rdquo; and &ldquo;continuqum&rdquo; are easily determined to not be words.</p>
+<p>Dave makes short work of the matrix construction, starting with a more easily constructed linear array and then folding it into a 2-dimensional shape.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">make_playfair_square</span>( $key ) {
+        <span style="color:#66d9ef">my</span> %h;
+        <span style="color:#66d9ef">my</span> @array <span style="color:#f92672">=</span> grep { <span style="color:#f92672">!</span>$h{$_}<span style="color:#f92672">++</span> } grep { <span style="color:#e6db74">/\w/</span> } ( split <span style="color:#e6db74">//</span>, lc $key ),
+            <span style="color:#e6db74">&#39;a&#39;</span> <span style="color:#f92672">..</span> <span style="color:#e6db74">&#39;i&#39;</span>, <span style="color:#e6db74">&#39;k&#39;</span> <span style="color:#f92672">..</span> <span style="color:#e6db74">&#39;z&#39;</span>;
+        @array <span style="color:#f92672">=</span> @array[ <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">24</span> ];
+        <span style="color:#66d9ef">my</span> @square;
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">24</span> ) {
+            <span style="color:#66d9ef">my</span> $x <span style="color:#f92672">=</span> $i % 5;
+            <span style="color:#66d9ef">my</span> $y <span style="color:#f92672">=</span> int $i <span style="color:#f92672">/</span> <span style="color:#ae81ff">5</span>;
+            $square[$y][$x] <span style="color:#f92672">=</span> uc $array[$i];
+        }
+        <span style="color:#66d9ef">return</span> @square;
+    }
+</code></pre></div><p>A separate routine divides the plaintext into digrams, and from there it&rsquo;s a matter of implementing the three basic cases.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">encrypt</span> ( $key, $plaintext ) {
+        <span style="color:#66d9ef">my</span> @square <span style="color:#f92672">=</span> make_playfair_square($key);
+        <span style="color:#66d9ef">my</span> @input  <span style="color:#f92672">=</span> make_digrams($plaintext);
+        <span style="color:#66d9ef">my</span> @output;
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $digram (@input) {
+            <span style="color:#66d9ef">my</span> ( $m,  $n )  <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, $digram;
+            <span style="color:#66d9ef">my</span> ( $mx, $my ) <span style="color:#f92672">=</span> find_position( $m, @square );
+            <span style="color:#66d9ef">my</span> ( $nx, $ny ) <span style="color:#f92672">=</span> find_position( $n, @square );
+            <span style="color:#66d9ef">if</span>    (<span style="color:#ae81ff">0</span>) { <span style="color:#e6db74">&#39;NO-OP&#39;</span> }
+            <span style="color:#66d9ef">elsif</span> ( $mx <span style="color:#f92672">==</span> $nx ) {
+                <span style="color:#66d9ef">my</span> $mm <span style="color:#f92672">=</span> $square[$mx][ ( $my <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> ) % 5 ];
+                <span style="color:#66d9ef">my</span> $nn <span style="color:#f92672">=</span> $square[$nx][ ( $ny <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> ) % 5 ];
+                push @output, $mm <span style="color:#f92672">.</span> $nn;
+            }
+            <span style="color:#66d9ef">elsif</span> ( $my <span style="color:#f92672">==</span> $ny ) {
+                <span style="color:#66d9ef">my</span> $mm <span style="color:#f92672">=</span> $square[ ( $mx <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> ) % 5 ][$my];
+                <span style="color:#66d9ef">my</span> $nn <span style="color:#f92672">=</span> $square[ ( $nx <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> ) % 5 ][$ny];
+                push @output, $mm <span style="color:#f92672">.</span> $nn;
+            }
+            <span style="color:#66d9ef">else</span> {
+                <span style="color:#66d9ef">my</span> $mm <span style="color:#f92672">=</span> $square[$mx][$ny];
+                <span style="color:#66d9ef">my</span> $nn <span style="color:#f92672">=</span> $square[$nx][$my];
+                push @output, $mm <span style="color:#f92672">.</span> $nn;
+            }
+        }
+        <span style="color:#66d9ef">my</span> $zed <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
+        <span style="color:#66d9ef">return</span> lc join <span style="color:#e6db74">&#39;&#39;</span>, @output;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/athanasius/raku/ch-2.raku">Raku</a></p>
+<p>The monk provides us with a quite systematic breakdown of the processes, to either encode or decode a text input. For each basic action a top-level function serves as a wrapper, which cleans the text and calls a routine to divide it into digrams units. Then either a <code>encode_digram()</code> or <code>decode_digram()</code> function translatees each letter pair.</p>
+<p>It&rsquo;s all very orderly and well laid-out. The <code>%l2re</code> hash being consulted is a lookup of letters to their row and column coordinates, constructed simultaniously alongside the master letter array.</p>
+<p>I found this version particularly easy to read.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">encode_digram</span>
+    {
+        <span style="color:#66d9ef">my</span> ($digram, $table, $l2rc)   <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">my</span>  $code                     <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
+        <span style="color:#66d9ef">my</span> ($first_row,  $first_col)  <span style="color:#f92672">=</span> @{ $l2rc<span style="color:#f92672">-&gt;</span>{ $digram<span style="color:#f92672">-&gt;</span>[ <span style="color:#ae81ff">0</span> ] } };
+        <span style="color:#66d9ef">my</span> ($second_row, $second_col) <span style="color:#f92672">=</span> @{ $l2rc<span style="color:#f92672">-&gt;</span>{ $digram<span style="color:#f92672">-&gt;</span>[ <span style="color:#ae81ff">1</span> ] } };
+
+        <span style="color:#66d9ef">if</span>    ($first_row <span style="color:#f92672">==</span> $second_row)
+        {
+            <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> $first_col  <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+               $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $i <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">4</span>;
+
+            <span style="color:#66d9ef">my</span> $j <span style="color:#f92672">=</span> $second_col <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+               $j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $j <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">4</span>;
+
+            $code <span style="color:#f92672">=</span> $table<span style="color:#f92672">-&gt;</span>[ $first_row  ][ $i ] <span style="color:#f92672">.</span>
+                    $table<span style="color:#f92672">-&gt;</span>[ $second_row ][ $j ];
+        }
+        <span style="color:#66d9ef">elsif</span> ($first_col <span style="color:#f92672">==</span> $second_col)
+        {
+            <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> $first_row  <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+               $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $i <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">4</span>;
+
+            <span style="color:#66d9ef">my</span> $j <span style="color:#f92672">=</span> $second_row <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+               $j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $j <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">4</span>;
+
+            $code <span style="color:#f92672">=</span> $table<span style="color:#f92672">-&gt;</span>[ $i ][ $first_col  ] <span style="color:#f92672">.</span>
+                    $table<span style="color:#f92672">-&gt;</span>[ $j ][ $second_col ];
+        }
+        <span style="color:#66d9ef">else</span>
+        {
+            $code <span style="color:#f92672">=</span> $table<span style="color:#f92672">-&gt;</span>[ $first_row  ][ $second_col ] <span style="color:#f92672">.</span>
+                    $table<span style="color:#f92672">-&gt;</span>[ $second_row ][ $first_col  ];
+        }
+
+        <span style="color:#66d9ef">return</span> $code;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/pete-houston/perl/ch-2.pl"><strong>Pete Houston</strong></a></p>
+<p>One defining quality of the Playfair cipher is its highly symmetrical nature: the encryption and decryption phases are nearly identical, with only the direction of the shifting reversed. In the rectangular pattern, we could even consider the action the same way, as a swap among only two elements is the same reversing a swap already made. There are only two relevant positions to the pattern.</p>
+<p>Pete uses this symmetry to provide one common transmutation function that is configurable to act as either an encryptor or decryptor.</p>
+<p>He also wraps the whole thing up in its own package, creating a general purpose object, instantiated with the key, that provides both methods. This is a handy way of masking the details of the individual function configurations from the end-user. After all, we don&rsquo;t need to know <em>how</em>, we only need the result.</p>
+<p>There are a lot of interesting parts to this package, but here is the logical translation core. The digram pairs are removed from the input string using <code>substr</code>, whittling down the source until no more letters remain.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">encrypt</span> {
+        <span style="color:#66d9ef">my</span> ($self, $in) <span style="color:#f92672">=</span> @_;
+        $self<span style="color:#f92672">-&gt;</span>crypto ($in, <span style="color:#ae81ff">1</span>, [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>]);
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">decrypt</span> {
+        <span style="color:#66d9ef">my</span> ($self, $in) <span style="color:#f92672">=</span> @_;
+        $self<span style="color:#f92672">-&gt;</span>crypto ($in, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>]);
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">crypto</span> {
+        <span style="color:#66d9ef">my</span> ($self, $in, $dir, $order) <span style="color:#f92672">=</span> @_;
+
+        <span style="color:#66d9ef">my</span> $out <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
+        $in <span style="color:#f92672">=</span> lc $in;
+        $in <span style="color:#f92672">=~</span> tr <span style="color:#e6db74">/a-z/</span><span style="color:#f92672">/</span>cd;
+        $in <span style="color:#f92672">=~</span> tr<span style="color:#e6db74">/j/i</span><span style="color:#f92672">/</span>;
+        <span style="color:#66d9ef">while</span> (length $in) {
+        	<span style="color:#66d9ef">my</span> $buf <span style="color:#f92672">=</span> substr $in, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>, <span style="color:#e6db74">&#39;&#39;</span>;
+        	<span style="color:#66d9ef">my</span> @bc <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, $buf;
+        	$bc[<span style="color:#ae81ff">1</span>] <span style="color:#e6db74">//</span><span style="color:#f92672">=</span> $self<span style="color:#f92672">-&gt;</span>{split_char};
+        	<span style="color:#66d9ef">if</span> ($bc[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">eq</span> $bc[<span style="color:#ae81ff">1</span>]) {
+        		$in <span style="color:#f92672">=</span> $bc[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">.</span> $in;
+        		$bc[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> $self<span style="color:#f92672">-&gt;</span>{split_char};
+        	}
+
+        	<span style="color:#66d9ef">if</span> ($self<span style="color:#f92672">-&gt;</span>{pos}{$bc[<span style="color:#ae81ff">0</span>]}[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">==</span> $self<span style="color:#f92672">-&gt;</span>{pos}{$bc[<span style="color:#ae81ff">1</span>]}[<span style="color:#ae81ff">0</span>]) {
+        		<span style="color:#75715e"># Same row</span>
+        		<span style="color:#66d9ef">my</span> $r <span style="color:#f92672">=</span> $self<span style="color:#f92672">-&gt;</span>{grid}[$self<span style="color:#f92672">-&gt;</span>{pos}{$bc[<span style="color:#ae81ff">0</span>]}[<span style="color:#ae81ff">0</span>]];
+        		$bc[$_] <span style="color:#f92672">=</span> $r<span style="color:#f92672">-&gt;</span>[($self<span style="color:#f92672">-&gt;</span>{pos}{$bc[$_]}[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> $dir) % 5] <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>;
+        	} <span style="color:#66d9ef">elsif</span> ($self<span style="color:#f92672">-&gt;</span>{pos}{$bc[<span style="color:#ae81ff">0</span>]}[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">==</span> $self<span style="color:#f92672">-&gt;</span>{pos}{$bc[<span style="color:#ae81ff">1</span>]}[<span style="color:#ae81ff">1</span>]) {
+        		<span style="color:#75715e"># Same col</span>
+        		<span style="color:#66d9ef">my</span> $cn <span style="color:#f92672">=</span> $self<span style="color:#f92672">-&gt;</span>{pos}{$bc[<span style="color:#ae81ff">0</span>]}[<span style="color:#ae81ff">1</span>];
+        		$bc[$_] <span style="color:#f92672">=</span> $self<span style="color:#f92672">-&gt;</span>{grid}[($self<span style="color:#f92672">-&gt;</span>{pos}{$bc[$_]}[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+</span> $dir) % 5][$cn]
+        			<span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>;
+        	} <span style="color:#66d9ef">else</span> {
+        		<span style="color:#75715e"># Copy the old one to avoid clobbering</span>
+        		<span style="color:#66d9ef">my</span> @obc <span style="color:#f92672">=</span> @bc;
+        		$bc[$_] <span style="color:#f92672">=</span> $self<span style="color:#f92672">-&gt;</span>{grid}[
+        			$self<span style="color:#f92672">-&gt;</span>{pos}{$obc[$_]   }[<span style="color:#ae81ff">0</span>]]
+        			[$self<span style="color:#f92672">-&gt;</span>{pos}{$obc[<span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> $_]}[<span style="color:#ae81ff">1</span>]] <span style="color:#66d9ef">for</span> @$order;
+        	}
+        	$out <span style="color:#f92672">.=</span> $bc[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">.</span> $bc[<span style="color:#ae81ff">1</span>];
+        }
+        <span style="color:#66d9ef">return</span> $out;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/polettix/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.polettix.it/ETOOBUSY/2022/04/26/pwc162-isbn-13/">PWC162 - ISBN-13 - ETOOBUSY</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.polettix.it/ETOOBUSY/2022/04/27/pwc162-wheatstone-playfair/">PWC162 - Wheatstone-Playfair - ETOOBUSY</a></p>
+<p>Many members noticed this parallel structure between the encryption and decryption cycles, and produced one main processing routine for both actions. Flavio does it this way, but also adds a new twist to the solution with his version of the cipher square.</p>
+<p>The square itself is nominally constructed linearly, filled from left to right and then shifting down a row and resetting to the left again. For a human cryptographer this makes the pattern and resulting construction much easier to follow, but computers don&rsquo;t generally care about things like that. Given a reasonable way to get there, arithmetic complexity ins&rsquo;t much of an issue to a machine. Machines are less concerned with visual cues, choosing simply to cut to the underlying mathematical chase in selecting the right bin containing the correct letter.</p>
+<p>So because of this Flavio doesn&rsquo;t bother with a multidimensional array at all, keeping the keypad lookup as linear arrays — created specifically for the en/decryption action — of letters in positions corresponding to the indices of the translated letters, or to use the technical language, a &ldquo;bijection in two arrays&rdquo;.</p>
+<p>The translation actions then become the calculation of a series of positive and negative offsets to the indices.</p>
+<p>I&rsquo;m not sure exactly how much is gained from this scheme, as the modulo math is simply shifted over to the offset calculation steps, but it&rsquo;s certainly fun and diferent, that&rsquo;s for sure, albeit more than a bit confusing for a human to scan. You can see the familiar logical center within the <code>while()</code> loop, within the chained ternary operation. Sans commentary, it is decidedly compact.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">encrypt</span> ($key, $message) { wheatstone_playfair($key, $message, <span style="color:#ae81ff">1</span>) }
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">decrypt</span> ($key, $message) { wheatstone_playfair($key, $message, <span style="color:#ae81ff">5</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) }
+
+    <span style="color:#75715e">## The main workhorse is then the following function, I hope the comments are sufficient!</span>
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">wheatstone_playfair</span> ($key, $message, $off) {
+
+       <span style="color:#75715e"># pre-massage the input, go uppercase and remove all j:s</span>
+       $_ <span style="color:#f92672">=</span> lc($_) <span style="color:#f92672">=~</span> <span style="color:#e6db74">s{j}{i}</span>rgmxs <span style="color:#66d9ef">for</span> $key, $message;
+
+       <span style="color:#75715e"># we don&#39;t need no stinkin&#39; matrix, a bijection in two arrays is OK</span>
+       <span style="color:#66d9ef">my</span> %flag;
+       <span style="color:#66d9ef">my</span> @letter_at <span style="color:#f92672">=</span> grep { $flag{$_}<span style="color:#f92672">++</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> }
+         split(<span style="color:#e6db74">m{[^a-z]?}imxs</span>, $key), <span style="color:#e6db74">&#39;a&#39;</span> <span style="color:#f92672">..</span> <span style="color:#e6db74">&#39;i&#39;</span>, <span style="color:#e6db74">&#39;k&#39;</span> <span style="color:#f92672">..</span> <span style="color:#e6db74">&#39;z&#39;</span>, <span style="color:#e6db74">&#39;j&#39;</span>;
+
+       <span style="color:#75715e"># the &#34;go back&#34; might be a hash but we are C nostalgic</span>
+       <span style="color:#66d9ef">my</span> $oA <span style="color:#f92672">=</span> ord(<span style="color:#e6db74">&#39;a&#39;</span>);          <span style="color:#75715e"># used to turn lc letters into array indexes</span>
+       <span style="color:#66d9ef">my</span> @pos_of <span style="color:#f92672">=</span> map { $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] }   <span style="color:#75715e"># get indexes</span>
+         sort { $a<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">cmp</span> $b<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] } <span style="color:#75715e"># sorted by letter position</span>
+         map { [$_, $letter_at[$_]] } <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#letter_at;
+
+       <span style="color:#75715e"># take only letters into consideration, split on everything else</span>
+       <span style="color:#66d9ef">my</span> @message <span style="color:#f92672">=</span> split <span style="color:#e6db74">m{[^a-z]?}imxs</span>, $message;
+       <span style="color:#66d9ef">my</span> @output;
+       <span style="color:#66d9ef">while</span> (@message) {
+
+          <span style="color:#75715e"># first letter is whatever, second letter might be an X</span>
+          <span style="color:#66d9ef">my</span> $A <span style="color:#f92672">=</span> shift @message;
+          <span style="color:#66d9ef">my</span> $B <span style="color:#f92672">=</span> @message <span style="color:#f92672">&amp;&amp;</span> $message[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">ne</span> $A ? shift @message : <span style="color:#e6db74">&#39;x&#39;</span>;
+
+          <span style="color:#75715e"># get positions, $A and $B are spoiled on the way but it&#39;s OK</span>
+          <span style="color:#66d9ef">my</span> ($Ax, $Ay, $Bx, $By) <span style="color:#f92672">=</span> map {
+             <span style="color:#66d9ef">my</span> $v <span style="color:#f92672">=</span> $pos_of[ord($_) <span style="color:#f92672">-</span> $oA];
+             ($v % 5, int($v <span style="color:#f92672">/</span> <span style="color:#ae81ff">5</span>))
+          } ($A, $B);
+
+          <span style="color:#75715e"># apply Wheatstone-Playfair mapping</span>
+          ($Ax, $Ay, $Bx, $By) <span style="color:#f92672">=</span>
+              $Ax <span style="color:#f92672">==</span> $Bx ? ($Ax, ($Ay <span style="color:#f92672">+</span> $off) % 5, $Bx, ($By <span style="color:#f92672">+</span> $off) % 5)
+            : $Ay <span style="color:#f92672">==</span> $By ? (($Ax <span style="color:#f92672">+</span> $off) % 5, $Ay, ($Bx <span style="color:#f92672">+</span> $off) % 5, $By)
+            :              ($Bx, $Ay, $Ax, $By);
+
+          push @output, @letter_at[$Ax <span style="color:#f92672">+</span> <span style="color:#ae81ff">5</span> <span style="color:#f92672">*</span> $Ay, $Bx <span style="color:#f92672">+</span> <span style="color:#ae81ff">5</span> <span style="color:#f92672">*</span> $By];
+       } <span style="color:#75715e">## end while (@message)</span>
+       <span style="color:#66d9ef">return</span> join <span style="color:#e6db74">&#39;&#39;</span>, @output;
+    } <span style="color:#75715e">## end sub wheatstone_playfair</span>
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/laurent-rosenfeld/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://blogs.perl.org/users/laurent_r/2022/04/perl-weekly-challenge-162-isbn-13-and-wheatstone-playfair.html">Perl Weekly Challenge 162: ISBN-13 and Wheatstone-Playfair</a></p>
+<p>Laurent returns us to the realm of using a two-dimensional matrix for his translation grid, and demonstrates how simple using one function that reverses the direction of the offset shifts can provide both ends of the coding. All we need to do for Laurent&rsquo;s versionis to pass it either 1 or -1.</p>
+<p>This is quite compact as well, I should point out.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">encrypt</span> {
+        <span style="color:#66d9ef">my</span> $msg <span style="color:#f92672">=</span> lc $_[<span style="color:#ae81ff">0</span>];
+        $msg <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/j/i/g</span>;
+        $msg <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/\W//g</span>; <span style="color:#75715e"># remove non alphanumecicals chars</span>
+        $msg <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/(.)\1/$1x$1/</span>;  <span style="color:#75715e"># adding &#39;x&#39; between two identical letters</span>
+        $msg <span style="color:#f92672">=~</span> <span style="color:#e6db74">&#34;x&#34;</span> <span style="color:#66d9ef">if</span> length($msg) % 2;  <span style="color:#75715e"># padding</span>
+        <span style="color:#66d9ef">return</span> convert(<span style="color:#ae81ff">1</span>, $msg);
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">decrypt</span> {
+        <span style="color:#66d9ef">return</span> convert(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, $_[<span style="color:#ae81ff">0</span>]);
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">convert</span> {
+        <span style="color:#66d9ef">my</span> ($d, $msg) <span style="color:#f92672">=</span> @_;
+        <span style="color:#75715e"># $d (direction) = 1 for encrypting and -1 for decrypting</span>
+        <span style="color:#66d9ef">my</span> $out <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
+        <span style="color:#66d9ef">my</span> @letters <span style="color:#f92672">=</span> split <span style="color:#e6db74">//</span>, $msg;
+        <span style="color:#66d9ef">while</span> (@letters) {
+            <span style="color:#66d9ef">my</span> ($first, $second) <span style="color:#f92672">=</span> splice @letters, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>;
+            <span style="color:#75715e"># my ($row1, $row2) = (%l2c{$first}[0], %l2c{$second}[0]);</span>
+            <span style="color:#75715e"># my ($col1, $col2) = (%l2c{$first}[1], %l2c{$second}[1]);</span>
+            <span style="color:#66d9ef">if</span> ($l2c{$first}[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">==</span> $l2c{$second}[<span style="color:#ae81ff">0</span>]) {           <span style="color:#75715e"># same row</span>
+                $out <span style="color:#f92672">.=</span> ($c2l[$l2c{$first }[<span style="color:#ae81ff">0</span>]][($l2c{$first }[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> $d)%5]) <span style="color:#f92672">.</span>
+                        ($c2l[$l2c{$second}[<span style="color:#ae81ff">0</span>]][($l2c{$second}[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> $d)%5]);
+            } <span style="color:#66d9ef">elsif</span> ($l2c{$first}[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">==</span> $l2c{$second}[<span style="color:#ae81ff">1</span>]) {        <span style="color:#75715e"># same column</span>
+                $out <span style="color:#f92672">.=</span> ($c2l[($l2c{$first }[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+</span> $d) %5][$l2c{$first}[<span style="color:#ae81ff">1</span>]]) <span style="color:#f92672">.</span>
+                        ($c2l[($l2c{$second}[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+</span> $d) %5][$l2c{$second}[<span style="color:#ae81ff">1</span>]]);
+            } <span style="color:#66d9ef">else</span> {                                             <span style="color:#75715e"># rectangle</span>
+                $out <span style="color:#f92672">.=</span> ($c2l[$l2c{$first }[<span style="color:#ae81ff">0</span>]][$l2c{$second}[<span style="color:#ae81ff">1</span>]]) <span style="color:#f92672">.</span>
+                        ($c2l[$l2c{$second}[<span style="color:#ae81ff">0</span>]][$l2c{$first }[<span style="color:#ae81ff">1</span>]]);
+            }
+        }
+        <span style="color:#66d9ef">return</span> $out;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/pokgopun/perl/ch-2.pl"><strong>PokGoPun</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/pokgopun/go/ch-2.go">Go</a></p>
+<p>Pokgopun mixes it up, giving us the novel technique of returning a common encoding/decoding <em>code reference</em> that can be called to perform whatever action required, and then reused if further desired for another. The decision of which direction to perform the translation is determined by a true value in an optional second parameter.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    $msg2encrypt    <span style="color:#f92672">=</span> lc($msg2encrypt);
+    <span style="color:#66d9ef">my</span> $converter   <span style="color:#f92672">=</span> genConverter($key);
+    <span style="color:#66d9ef">my</span> $msg2decrypt <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span>$converter($msg2encrypt);
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">genConverter</span>{
+        <span style="color:#66d9ef">my</span> $key <span style="color:#f92672">=</span> shift;
+        <span style="color:#66d9ef">my</span> %seen;
+        <span style="color:#66d9ef">my</span> @c;
+        <span style="color:#66d9ef">my</span> ($i,$j) <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>);
+        <span style="color:#66d9ef">foreach</span> ( ( $key <span style="color:#f92672">=~</span><span style="color:#e6db74"> /(\w)/g</span>, <span style="color:#e6db74">&#39;a&#39;</span><span style="color:#f92672">..</span><span style="color:#e6db74">&#39;z&#39;</span>) ) {
+        	<span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> $seen{$_};
+        	<span style="color:#66d9ef">if</span> ( $_ <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;i&#39;</span> <span style="color:#f92672">||</span> $_ <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;j&#39;</span>) {
+        		$seen{i}<span style="color:#f92672">=</span>[$i,$j];
+        		$seen{j}<span style="color:#f92672">=</span>[$i,$j];
+        	} <span style="color:#66d9ef">else</span> {
+        		$seen{$_}<span style="color:#f92672">=</span>[$i,$j];
+        	}
+        	$c[$i][$j] <span style="color:#f92672">=</span> $_;
+        	$j<span style="color:#f92672">++</span>;
+        	<span style="color:#66d9ef">unless</span> ($j <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">5</span>) {
+        		$j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        		$i<span style="color:#f92672">++</span>;
+        	}
+        	<span style="color:#66d9ef">last</span> <span style="color:#66d9ef">unless</span> $i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">5</span>;
+        }
+        <span style="color:#66d9ef">if</span> ($debug){
+        	<span style="color:#66d9ef">print</span> join(<span style="color:#e6db74">&#34; &#34;</span>, @$_)<span style="color:#f92672">.</span><span style="color:#e6db74">&#34;\n&#34;</span> <span style="color:#66d9ef">foreach</span> @c;
+        	printf(<span style="color:#e6db74">&#34;%s =&gt; (%s)\n&#34;</span>, $_, join(<span style="color:#e6db74">&#34;, &#34;</span>,@{$seen{$_}})) <span style="color:#66d9ef">foreach</span> sort{$a <span style="color:#f92672">cmp</span> $b} keys %seen;
+        	printf <span style="color:#e6db74">&#34;%d\n&#34;</span>, scalar(keys %seen);
+        }
+        <span style="color:#66d9ef">return</span> sub{
+        	<span style="color:#66d9ef">my</span> $msg <span style="color:#f92672">=</span> shift;
+        	<span style="color:#66d9ef">my</span> $o <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+        	<span style="color:#66d9ef">unless</span> (@_){
+        		$msg <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/\s//g</span>;
+        		$msg <span style="color:#f92672">=~</span> <span style="color:#e6db74">s/(\w)(\1)/$1x$2/g</span>;
+        		$msg <span style="color:#f92672">.=</span> <span style="color:#e6db74">&#39;x&#39;</span> <span style="color:#66d9ef">if</span> length($msg) % 2;
+        		$o <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+        	}
+        	<span style="color:#66d9ef">my</span> @res;
+        	<span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $pair ($msg <span style="color:#f92672">=~</span><span style="color:#e6db74"> /(\w\w)/g</span>){
+        		<span style="color:#66d9ef">my</span>($a,$b) <span style="color:#f92672">=</span> @seen{$pair <span style="color:#f92672">=~</span><span style="color:#e6db74"> /(\w)(\w)/</span>};
+        		<span style="color:#75715e">#printf &#34;$pair =&gt; (%s),(%s)\n&#34;, join(&#34;, &#34;,@$a), join(&#34;, &#34;,@$b);</span>
+        		<span style="color:#66d9ef">my</span>($w,$h) <span style="color:#f92672">=</span> ($a<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> $b<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>], $a<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">-</span> $b<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]);
+        		<span style="color:#75715e">#printf &#34;$pair =&gt; %s\n&#34;, $w==0 ? &#34;column&#34; : $h==0 ? &#34;row&#34; : &#34;rectangle&#34;;</span>
+        		<span style="color:#66d9ef">if</span> ($w<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>){
+        			push @res, $c[($a<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">+</span>$o)%5][$a<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]], $c[($b<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">+</span>$o)%5][$b<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]];
+        		} <span style="color:#66d9ef">elsif</span> ($h<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>){
+        			push @res, $c[$a<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]][($a<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">+</span>$o)%5], $c[$b<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]][($b<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">+</span>$o)%5];
+        		} <span style="color:#66d9ef">else</span> {
+        			push @res, $c[$a<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]][$a<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">-</span>$w], $c[$b<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]][$b<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">+</span>$w];
+        		}
+        		<span style="color:#75715e">#printf &#34;$pair =&gt; %s\n&#34;, join(&#34;&#34;,@res[-2,-1]);</span>
+        	}
+        	<span style="color:#66d9ef">return</span> join(<span style="color:#e6db74">&#34;&#34;</span>,@res);
+        }
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/alexander-pankoff/perl/ch-2.pl"><strong>Alexander Pankoff</strong></a></p>
+<p>Remember when we said that the encryption and decryption could be considered completely symmetrical, as the rectangular swap action is its own inverse function? Ok, sure I didn&rsquo;t exactly use that language but you have to admit that&rsquo;s a better way to say it. In any case Alexander&rsquo;s solution highlights this relationship by using the exact same code for both actions, only reversing the lookup <em>table</em> to make the switch.</p>
+<p>The table itself is an array of letter-translation pairs, themselves kept as 2-element arrays. To do the reversal we need to reverse the pairs and then reverse the array they reside in. The keytable is, like Flavio&rsquo;s submission, a single-dimensional array, and a function is used to calculate the offset to find a given character.</p>
+<p>Alexander calls on the services of quite a few library functions from his own collection. These are mostly self-evidentiary from their names and context, with the possible exception of the colorfully cast <code>implode()</code> and <code>explode()</code>: the first concatenates an array of characters into a string, like <code>join '', @list</code>, and the second tears a string apart, like <code>split //, $str</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> List::Util <span style="color:#e6db74">qw(uniq)</span>;
+    <span style="color:#66d9ef">use</span> My::String::Util <span style="color:#e6db74">qw(implode explode)</span>;
+    <span style="color:#66d9ef">use</span> My::List::Util <span style="color:#e6db74">qw(flatten zip chunks_of without)</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_transform_bigram</span> ( $bigram, $keytable ) {
+        <span style="color:#66d9ef">my</span> ( $first, $second ) <span style="color:#f92672">=</span> @$bigram;
+
+        <span style="color:#66d9ef">my</span> %positions <span style="color:#f92672">=</span>
+          flatten( zip( [ flatten( @{$keytable} ) ], [ <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> <span style="color:#ae81ff">24</span> ] ) );
+        $positions{<span style="color:#e6db74">&#39;j&#39;</span>} <span style="color:#f92672">=</span> $positions{<span style="color:#e6db74">&#39;i&#39;</span>};
+
+        <span style="color:#66d9ef">my</span> $real_pos <span style="color:#f92672">=</span> sub($x) { ( int( $x <span style="color:#f92672">/</span> <span style="color:#ae81ff">5</span> ), $x % 5 ) };
+
+        <span style="color:#66d9ef">my</span> ( $first_row,  $first_col )  <span style="color:#f92672">=</span> $real_pos<span style="color:#f92672">-&gt;</span>( $positions{$first} );
+        <span style="color:#66d9ef">my</span> ( $second_row, $second_col ) <span style="color:#f92672">=</span> $real_pos<span style="color:#f92672">-&gt;</span>( $positions{$second} );
+
+        <span style="color:#66d9ef">if</span> ( $first_row <span style="color:#f92672">==</span> $second_row ) {
+            <span style="color:#66d9ef">return</span> [
+                $keytable<span style="color:#f92672">-&gt;</span>[$first_row][  ( $first_col <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> ) % 5 ],
+                $keytable<span style="color:#f92672">-&gt;</span>[$second_row][ ( $second_col <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> ) % 5 ],
+            ];
+        }
+
+        <span style="color:#66d9ef">if</span> ( $first_col <span style="color:#f92672">==</span> $second_col ) {
+            <span style="color:#66d9ef">return</span> [
+                $keytable<span style="color:#f92672">-&gt;</span>[ ( $first_row <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> ) % 5 ][$first_col],
+                $keytable<span style="color:#f92672">-&gt;</span>[ ( $second_row <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> ) % 5 ][$second_col],
+            ];
+        }
+
+        <span style="color:#66d9ef">return</span> [
+            $keytable<span style="color:#f92672">-&gt;</span>[$first_row][$second_col],
+            $keytable<span style="color:#f92672">-&gt;</span>[$second_row][$first_col],
+        ];
+
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-162/james-smith">Perl Weekly Challenge #162</a></p>
+<p>Finally we&rsquo;ll close with James, who gives us a pair of solutions to the problem. The two  work on the same general principle: we digest pairs of characters from the input string in a loop, first adding padding xs as required before applying a ternary conditional to decide which of the three actions to take, with all this done in a direction configurable as a subroutine argument. It&rsquo;s a quite compressed version of the algorithm, undeniably.</p>
+<p>The second method is notable as it caches the lookup step for mapping letters to their coded pairings, which speeds the whole procedure up over 100%. That&rsquo;s quite an optimization.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">encrypt</span> { <span style="color:#66d9ef">return</span> _crypt  <span style="color:#ae81ff">1</span>, @_; }
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">decrypt</span> { <span style="color:#66d9ef">return</span> _crypt <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, @_; }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_crypt_cache</span> {
+      <span style="color:#66d9ef">my</span>( $o, $key, $p, $out, @r, %l ) <span style="color:#f92672">=</span> ( shift, shift, <span style="color:#ae81ff">0</span>, <span style="color:#e6db74">&#39;&#39;</span> );               <span style="color:#75715e">## Initialise variables and get mapping...</span>
+      state $cache <span style="color:#f92672">=</span> {};
+      <span style="color:#66d9ef">if</span>( exists $cache<span style="color:#f92672">-&gt;</span>{$key} ) {
+        @r <span style="color:#f92672">=</span> @{$cache<span style="color:#f92672">-&gt;</span>{$key}[<span style="color:#ae81ff">0</span>]};
+        %l <span style="color:#f92672">=</span> %{$cache<span style="color:#f92672">-&gt;</span>{$key}[<span style="color:#ae81ff">1</span>]};
+      } <span style="color:#66d9ef">else</span> {
+        exists $l{$_} <span style="color:#f92672">||</span> ( $l{$_}<span style="color:#f92672">=</span>[int $p<span style="color:#f92672">/</span><span style="color:#ae81ff">5</span>,($p<span style="color:#f92672">++</span>)%5] )                           <span style="color:#75715e">## %l maps letter to position</span>
+          <span style="color:#66d9ef">for</span> grep { <span style="color:#e6db74">/[a-z]/</span> } split (<span style="color:#e6db74"> //</span>, $key <span style="color:#f92672">=~</span><span style="color:#e6db74">s/j/i/g</span>r ), <span style="color:#e6db74">&#39;a&#39;</span><span style="color:#f92672">..</span><span style="color:#e6db74">&#39;i&#39;</span>, <span style="color:#e6db74">&#39;k&#39;</span><span style="color:#f92672">..</span><span style="color:#e6db74">&#39;z&#39;</span>; <span style="color:#75715e">## values are [&#34;row no&#34;, &#34;column no&#34;]</span>
+        $r[ $l{$_}[<span style="color:#ae81ff">0</span>] ] [$l{$_}[<span style="color:#ae81ff">1</span>] ] <span style="color:#f92672">=</span> $_ <span style="color:#66d9ef">for</span> keys %l;                            <span style="color:#75715e">## @r maps position to letter, first</span>
+        $cache<span style="color:#f92672">-&gt;</span>{$key} <span style="color:#f92672">=</span> [ <span style="color:#f92672">\</span>@r, <span style="color:#f92672">\</span>%l ]
+      }
+      <span style="color:#66d9ef">my</span> @seq <span style="color:#f92672">=</span> grep {<span style="color:#e6db74">/[a-z]/</span>} split <span style="color:#e6db74">//</span>, lc shift <span style="color:#f92672">=~</span> <span style="color:#e6db74">s{j}{i}g</span>r;                 <span style="color:#75715e">## Prep sequence, remove non-letters,</span>
+                                                                                <span style="color:#75715e">## lower case, convert &#34;j&#34; to &#34;i&#34;</span>
+      <span style="color:#66d9ef">while</span>( <span style="color:#66d9ef">my</span>($m,$n) <span style="color:#f92672">=</span> splice @seq,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">2</span> ) {                                    <span style="color:#75715e">## Loop through letter pairs</span>
+        unshift(@seq,$n), $n<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;x&#39;</span> <span style="color:#66d9ef">if</span> $n <span style="color:#f92672">&amp;&amp;</span> $n <span style="color:#f92672">eq</span> $m <span style="color:#f92672">&amp;&amp;</span> $o <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>;                  <span style="color:#75715e">## Deal with case when both letters the same</span>
+                                                                                <span style="color:#75715e">## (Only do when encrypting..)</span>
+        $n <span style="color:#f92672">||=</span> <span style="color:#e6db74">&#39;x&#39;</span>;                                                             <span style="color:#75715e">## Pad if required...</span>
+
+        $out<span style="color:#f92672">.=</span> $m <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;x&#39;</span> <span style="color:#f92672">&amp;&amp;</span> $n <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;x&#39;</span> ? <span style="color:#e6db74">&#39;xx&#39;</span>                                    <span style="color:#75715e">## Can still have a pair if first value is</span>
+                                                                                <span style="color:#75715e">## &#34;x&#34; because this is then padded by &#34;x&#34;</span>
+             : $l{$m}[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">eq</span> $l{$n}[<span style="color:#ae81ff">0</span>] ? $r[ $l{$m}[<span style="color:#ae81ff">0</span>]      ][($l{$m}[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">+</span>$o)%5]<span style="color:#f92672">.</span> <span style="color:#75715e">## Same row    - shift down  (or up)</span>
+                                        $r[ $l{$n}[<span style="color:#ae81ff">0</span>]      ][($l{$n}[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">+</span>$o)%5]
+             : $l{$m}[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">eq</span> $l{$n}[<span style="color:#ae81ff">1</span>] ? $r[($l{$m}[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">+</span>$o)%5][ $l{$m}[<span style="color:#ae81ff">1</span>]      ]<span style="color:#f92672">.</span> <span style="color:#75715e">## Same column - shift right (or left)</span>
+                                        $r[($l{$n}[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">+</span>$o)%5][ $l{$n}[<span style="color:#ae81ff">1</span>]      ]
+             :                          $r[ $l{$m}[<span style="color:#ae81ff">0</span>]      ][ $l{$n}[<span style="color:#ae81ff">1</span>]      ]<span style="color:#f92672">.</span> <span style="color:#75715e">## o/w - other corners of square</span>
+                                        $r[ $l{$n}[<span style="color:#ae81ff">0</span>]      ][ $l{$m}[<span style="color:#ae81ff">1</span>]      ]
+             ;
+      }
+      $out;
+    }
+</code></pre></div><h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-2">Blogs and Additional Submissions in Guest Languages for Task 2:</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/cheok-yin-fung/julia/ch-2.jl">Julia</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://e7-87-83.github.io/coding/challenge_162.html">CY&rsquo;s Take on The Weekly Challenge #162 </a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://colincrain.com/2022/05/01/fair-play-with-your-nose-to-the-grindstone/">Fair Play with Your Nose to the Grindstone - Programming Excursions in Perl and Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://colincrain.com/2022/04/29/magic-spell-books-or-13-revisited/">Magic Spell Books, or 13 Revisited - Programming Excursions in Perl and Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/peter-campbell-smith/perl/ch-2.pl"><strong>Peter Campbell Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://pjcs-pwc.blogspot.com/2022/04/checksums-and-early-encryption.html">Checksums and early encryption</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/roger-bell-west/javascript/ch-2.js">Javascript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/roger-bell-west/kotlin/ch-2.kt">Kotlin</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/roger-bell-west/lua/ch-2.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/roger-bell-west/postscript/ch-2.ps">Postscript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/roger-bell-west/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/roger-bell-west/raku/ch-2.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/roger-bell-west/ruby/ch-2.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/roger-bell-west/rust/ch-2.rs">Rust</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://blog.firedrake.org/archive/2022/04/The_Weekly_Challenge_162__Playing_Fair_with_ISBNs.html">RogerBW&rsquo;s Blog: The Weekly Challenge 162: Playing Fair with ISBNs</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-162/ryan-thompson/perl/ch-2.pl"><strong>Ryan Thompson</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://ry.ca/2022/04/isbn-13/">PWC 162 › ISBN-13 - Ryan J Thompson</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://ry.ca/2022/04/playfair-cipher/">PWC 162 › Wheatstone–Playfair Cipher - Ryan J Thompson</a></p>
+<hr>
+<hr>
+<p> &nbsp; </p>
+<p> &nbsp; </p>
+<p> &nbsp; </p>
+<p> &nbsp; </p>
+<center>
+<h1 id="PWC162BLOGS">_________ THE BLOG PAGES _________</h1>
+</center>
+<hr>
+<p><strong>That’s it for me this week, people! Warped by the rain, driven by the snow, resolute and unbroken by the torrential influx, by some miracle I somehow continue to maintain my bearings.</strong></p>
+<p><strong>Looking forward to next wave, the perfect wave, I am: <em>your humble servant</em>.</strong></p>
+<h1 id="PWC162BLOGS">But if Your Unquenchable <em>THIRST</em> for <em>KNOWLEDGE</em> is not <em>SLAKED</em>,</h1>
+<h1 id="then-run-dont-walk-to-the-watering-hole">then <em>RUN</em> <em>(dont walk!)</em> to the <em>WATERING HOLE</em></h1>
+<h1 id="and-follow-these-blog-links">and <em>FOLLOW</em> these <em>BLOG</em> <em>LINKS</em>:</h1>
+<p><strong>( &hellip;<em>don&rsquo;t think, trust your training, you&rsquo;re in the zone, just do it &hellip;</em> )</strong></p>
+<p><strong>Adam Russell</strong></p>
+<ul>
+<li><a href="http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2022/05/01">The Weekly Challenge 162 — Perl  — RabbitFarm</a> ( <em>Perl</em> )</li>
+<li><a href="http://www.rabbitfarm.com/cgi-bin/blosxom/prolog/2022/05/01">The Weekly Challenge 162 — Prolog  — RabbitFarm</a> ( <em>Prolog</em> )</li>
+</ul>
+<p><strong>Arne Sommer</strong></p>
+<ul>
+<li><a href="https://raku-musings.com/thirteen-wheatstones.html">Thirteen Wheatstones with Raku - Arne Sommer</a> ( <em>Raku</em> )</li>
+</ul>
+<p><strong>Cheok-Yin Fung</strong></p>
+<ul>
+<li><a href="https://e7-87-83.github.io/coding/challenge_162.html">CY&rsquo;s Take on The Weekly Challenge #162 </a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Colin Crain</strong></p>
+<ul>
+<li><a href="https://colincrain.com/2022/05/01/fair-play-with-your-nose-to-the-grindstone/">Fair Play with Your Nose to the Grindstone - Programming Excursions in Perl and Raku</a> ( <em>Perl</em> )</li>
+<li><a href="https://colincrain.com/2022/04/29/magic-spell-books-or-13-revisited/">Magic Spell Books, or 13 Revisited - Programming Excursions in Perl and Raku</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Dave Jacoby</strong></p>
+<ul>
+<li><a href="https://jacoby.github.io/2022/04/26/play-fair-and-by-the-book-weekly-challenge-162.html">Play Fair and By The Book: Weekly Challenge #162 | Committed to Memory</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Flavio Poletti</strong></p>
+<ul>
+<li><a href="https://github.polettix.it/ETOOBUSY/2022/04/26/pwc162-isbn-13/">PWC162 - ISBN-13 - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+<li><a href="https://github.polettix.it/ETOOBUSY/2022/04/27/pwc162-wheatstone-playfair/">PWC162 - Wheatstone-Playfair - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Jaldhar H. Vyas</strong></p>
+<ul>
+<li><a href="https://www.braincells.com/perl/2022/05/perl_weekly_challenge_week_162.html">Perl Weekly Challenge: Week 162</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>James Smith</strong></p>
+<ul>
+<li><a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-162/james-smith">Perl Weekly Challenge #162</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Laurent Rosenfeld</strong></p>
+<ul>
+<li><a href="http://blogs.perl.org/users/laurent_r/2022/04/perl-weekly-challenge-162-isbn-13-and-wheatstone-playfair.html">Perl Weekly Challenge 162: ISBN-13 and Wheatstone-Playfair</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Peter Campbell Smith</strong></p>
+<ul>
+<li><a href="https://pjcs-pwc.blogspot.com/2022/04/checksums-and-early-encryption.html">Checksums and early encryption</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Roger Bell_West</strong></p>
+<ul>
+<li><a href="https://blog.firedrake.org/archive/2022/04/The_Weekly_Challenge_162__Playing_Fair_with_ISBNs.html">RogerBW&rsquo;s Blog: The Weekly Challenge 162: Playing Fair with ISBNs</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Ryan Thompson</strong></p>
+<ul>
+<li><a href="https://ry.ca/2022/04/isbn-13/">PWC 162 › ISBN-13 - Ryan J Thompson</a> ( <em>Perl</em> )</li>
+<li><a href="https://ry.ca/2022/04/playfair-cipher/">PWC 162 › Wheatstone–Playfair Cipher - Ryan J Thompson</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>W. Luis Mochan</strong></p>
+<ul>
+<li><a href="https://wlmb.github.io/2022/04/25/PWC162/">Perl Weekly Challenge 162 – W. Luis Mochán</a> ( <em>Perl</em> )</li>
+</ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="/contact" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2022
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.nomtimes.co.uk/site/shop.do?cref=PerlBooks" title="Free Perl Books" rel="noreferrer" target="_blank">
+                            <img src="/images/NomTimes.jpg" style="width:22px; height: 18px;" alt=""/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jQurey/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-136524905-1', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+
+</html>
+
