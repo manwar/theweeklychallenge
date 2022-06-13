@@ -160,11 +160,16 @@ For example,
 
 Write a script to generate first `20 Achilles Numbers`. Please checkout [**wikipedia**](https://en.wikipedia.org/wiki/Achilles_number) for more information.
 
-> An Achilles number is a number that is powerful but imperfect. Named after Achilles, a hero of the Trojan war, who was also powerful but imperfect.
+> An Achilles number is a number that is powerful but imperfect (not a perfect power). Named after Achilles, a hero of the Trojan war, who was also powerful but imperfect.
 
 > A positive integer n is a powerful number if, for every prime factor p of n, p^2 is also a divisor.
 
-> A number is imperfect if it has at least two distinct prime factors.
+> A number is a perfect power if it has any integer roots (square root, cube root, etc.).
+
+For example 36 factors to (2, 2, 3, 3) - every prime factor (2, 3) also has its square as a divisor (4, 9). But 36 has an integer square
+root, 6, so the number is a perfect power.
+
+But 72 factors to (2, 2, 2, 3, 3); it similarly has 4 and 9 as divisors, but it has no integer roots. This is an Achilles number.
 
 <br>
 
