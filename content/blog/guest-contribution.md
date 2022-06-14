@@ -56,6 +56,8 @@ Please find below guest contributions.
 
 ##### **Simon Green** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-169/sgreen/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-169/sgreen/python/ch-2.py) in **Python**.
 
+##### **Stephen G Lynn** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-169/steve-g-lynn/julia/ch-1.jl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-169/steve-g-lynn/julia/ch-2.jl) in **Julia**.
+
 ----
 ## [The Weekly Challenge - 168](/blog/perl-weekly-challenge-168) {#168}
 <br>
