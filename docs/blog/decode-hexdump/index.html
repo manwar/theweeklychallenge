@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="The Weekly Challenge - Perl & Raku"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="You do not have to be an expert."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Decode Hexdump.">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Decode Hexdump</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navgation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Decode Hexdump</h2>
+                    <div class="portfolio-meta">
+                        <span>Saturday, Jun 18, 2022</span>|
+                        <span> Tags:
+                            Perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/decode-hexdump.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <br>
+<p>Those who know me personally, are aware that my background is <code>Mathematical</code> as I did <code>Degree in Mathematics Honours</code> in the year <code>1993-95</code>. During my early days with <code>COBOL</code> and <code>Pascal</code>, I never dealt with <code>Unicode</code> or played with <code>bytes</code>. Even when I moved to <code>C</code>, I was still no where near it. Those with <code>Degree in Computer Science</code> always stay ahead in the understandings of these low level key aspects of programming.</p>
+<p>Fortunately or unfortunately, I never got the opportunity to work with <code>Unicode</code>. Having said, It always was there in the back of my mind, one day I will conquer the battle. Few weeks ago, I had conversation with a senior member of <code>Perl Community</code> with regard to an issue in one of the <code>CPAN</code> module, that I currently maintain. I was pleasantly surprised to see how comfortable he was playing with <code>Unicode</code> and debugging using <code>hexdump</code>. I decided to get hold of it rather than delaying it any further.</p>
+<p>But the matter of fact is, my plate is always full, at any given point in time. So adding anything to the overloaded plate is going to tip over something already in the pipeline. As always the case, I went back to my <a href="https://twitter.com/cpan_author"><strong>Twitter handler</strong></a> and request for help. I did get some nice suggestions.</p>
+<p>In this post, I am going to share my experience with you all.</p>
+<br>
+<h3 id="so-what-exactly-is-the-problem">So what exactly is the problem?</h3>
+<br>
+<p>My initial blocker was that I am unable to decode the output of <code>hexdump</code>.</p>
+<br>
+<p>So for the purpose of this blog post, I created sample plain text file <code>sample.txt</code>.</p>
+<br>
+<p><img src="/images/blog/dh-1.png" alt="Sample File"></p>
+<br>
+<p>Now time, to get the <code>hexdump</code> dump some garbage (to me at least).</p>
+<br>
+<p><img src="/images/blog/dh-2.png" alt="Hexdump output"></p>
+<br>
+<p>Here comes the <code>trouble</code>, how the output relates to the actual text in the file?</p>
+<br>
+<p>My twitter friends again helped me with decoding.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">
+    <span style="color:#ae81ff">6548</span>  eH
+    <span style="color:#ae81ff">6</span>c6c  ll
+    <span style="color:#ae81ff">206</span>f  <span style="color:#e6db74">&lt;s&gt;</span>o
+    <span style="color:#ae81ff">6</span>f57  oW
+    <span style="color:#ae81ff">6</span>c72  lr
+    <span style="color:#ae81ff">2064</span>  <span style="color:#e6db74">&lt;s&gt;</span>d
+    <span style="color:#ae81ff">2121</span>  <span style="color:#f92672">!!</span>
+    <span style="color:#ae81ff">0</span>a21  <span style="color:#e6db74">&lt;l&gt;</span><span style="color:#f92672">!</span>
+
+</code></pre></div><br>
+<p><code>&lt;s&gt;</code> means space and <code>&lt;l&gt;</code> is linefeed. That was all, I needed.</p>
+<br>
+<h3 id="but-then-why-it-is-the-other-way-around">But then why it is the other way around?</h3>
+<br>
+<p>I am told again by my twitter friends, it is the <code>endianness</code> that is behind the order.</p>
+<p>For me, this is another blocker that I had to deal with.</p>
+<p>With little search on <code>Google</code>, I found this <a href="https://www.freecodecamp.org/news/what-is-endianness-big-endian-vs-little-endian"><strong>post</strong></a> that explains the subject in details.</p>
+<p>In summary, <code>Big Endian (BE)</code> stores data <code>MSbyte first</code> where as <code>Little Endian (LE)</code> stores data <code>MSbyte last</code>.</p>
+<br>
+<p>Now what is <code>MSbyte</code>?</p>
+<br>
+<p>The term <code>Most Significant Byte (MSbyte)</code> is the most common method of defining <code>endianness</code>.</p>
+<p>The <code>byte</code> holding the greatest position is called <code>MSbyte</code>. Similarly the <code>bit</code> holding the greatest position is called <code>MSbit</code>.</p>
+<p>The <code>byte</code> holding the smallest position is called <code>LSbyte</code>. Similarly the <code>bit</code> holding the smallest position is called <code>LSbit</code>.</p>
+<br>
+<h3 id="going-back-to-the-original-why-the-hexdump-output-is-not-in-the-correct-order">Going back to the original, why the hexdump output is not in the correct order?</h3>
+<br>
+<p>The answer is my machine is configured/built as <code>LE</code>.</p>
+<br>
+<h3 id="so-how-do-i-know-what-endian-is-my-system-build-upon">So how do I know what <code>endian</code> is my system build upon?</h3>
+<br>
+<p>I started looking for <code>Perl</code> way of figuring out.</p>
+<p>In no time, I found this <a href="https://www.perlmonks.org/?node_id=102506"><strong>solution</strong></a>. It had a typo in the original solution, I fixed it here <code>detect-endian-ness.pl</code>.</p>
+<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#!/usr/bin/perl</span>
+
+<span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.36</span>;
+
+<span style="color:#66d9ef">my</span> @b <span style="color:#f92672">=</span> unpack(<span style="color:#e6db74">&#39;C*&#39;</span>, pack(<span style="color:#e6db74">&#39;I&#39;</span>, <span style="color:#ae81ff">0</span>));
+<span style="color:#66d9ef">my</span> $sizeof_long <span style="color:#f92672">=</span> scalar(@b);
+
+<span style="color:#66d9ef">my</span> @c <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$sizeof_long);
+<span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> pack(<span style="color:#e6db74">&#39;I&#39;</span>, hex(<span style="color:#e6db74">&#39;0x0&#39;</span><span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#39;0&#39;</span>,reverse @c)));
+<span style="color:#66d9ef">my</span> $big <span style="color:#f92672">=</span> pack(<span style="color:#e6db74">&#39;C&#39;</span><span style="color:#f92672">.</span>$sizeof_long, reverse @c);
+<span style="color:#66d9ef">my</span> $lit <span style="color:#f92672">=</span> pack(<span style="color:#e6db74">&#39;C&#39;</span><span style="color:#f92672">.</span>$sizeof_long, @c);
+
+<span style="color:#66d9ef">if</span> ( substr($i, <span style="color:#ae81ff">0</span>, $sizeof_long) <span style="color:#f92672">eq</span> $big ) {
+   say <span style="color:#e6db74">&#39;big&#39;</span>;
+}
+<span style="color:#66d9ef">elsif</span> ( substr($i, <span style="color:#ae81ff">0</span>, $sizeof_long) <span style="color:#f92672">eq</span> $lit ) {
+   say <span style="color:#e6db74">&#39;little&#39;</span>;
+}
+<span style="color:#66d9ef">else</span> {
+   say <span style="color:#e6db74">&#34;strange&#34;</span>;
+}
+</code></pre></div><br>
+<p>Time to find out the <code>endian</code> of my current system.</p>
+<br>
+<p><img src="/images/blog/dh-3.png" alt="Endian"></p>
+<br>
+<p>Before I end this discussion, I would like share another post that explains <a href="https://www.ionos.co.uk/digitalguide/websites/web-development/byte-order-mark"><strong>Byte Order Mark (BOM)</strong></a>, if you are interested.</p>
+<p>Last but not the least, I would to thank everyone who helped in this.</p>
+<p>That&rsquo;s it for now.</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="/contact" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2022
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.nomtimes.co.uk/site/shop.do?cref=PerlBooks" title="Free Perl Books" rel="noreferrer" target="_blank">
+                            <img src="/images/NomTimes.jpg" style="width:22px; height: 18px;" alt=""/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jQurey/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-136524905-1', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+
+</html>
+
