@@ -107,6 +107,12 @@ I would like to `THANK` every member of the team for their valuable suggestions.
 ## NEW MEMBERS {#NEWMEMBERS}
 ***
 
+#### 1. [Stephen G Lynn](https://github.com/steve-g-lynn), an expert `Perl`/`Raku` hacker.
+
+#### 2. [habere-et-dispertire](https://github.com/habere-et-dispertire), an expert `Raku` hacker.
+
+<br>
+
 Please find out [**How to contribute?**](/blog/how-to-contribute), if you have any doubts.
 
 Please try the excellent tool [**EZPWC**](https://github.com/saiftynet/EZPWC) created by respected member `Saif Ahmed` of **Team PWC**.
@@ -115,12 +121,6 @@ Please try the excellent tool [**EZPWC**](https://github.com/saiftynet/EZPWC) cr
 
 ## GUESTS {#GUESTS}
 ***
-
-#### 1. [Stephen G Lynn](https://github.com/steve-g-lynn), an expert `Perl`/`Raku` hacker.
-
-#### 2. [habere-et-dispertire](https://github.com/habere-et-dispertire), an expert `Raku` hacker.
-
-<br>
 
 Please checkout the guest contributions for the [**Week #168**](/blog/guest-contribution/#168).
 
