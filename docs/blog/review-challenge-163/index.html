@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us">
+<head>
+    <!-- Basic Page Needs -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title"       content="The Weekly Challenge - Perl & Raku"/>
+    <meta property="og:type"        content="website"/>
+    <meta property="og:url"         content="https://theweeklychallenge.org/"/>
+    <meta property="og:image"       content="https://theweeklychallenge.org/images/about/about.jpg"/>
+    <meta property="og:description" content="You do not have to be an expert."/>
+    <meta name="twitter:card"       content="summary" />
+    <meta name="twitter:image"      content="https://theweeklychallenge.org/images/about/about.jpg"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Colin Crain › Perl Weekly Review #163">
+    <meta name="author" content="The Weekly Challenge Team">
+    <meta name="generator" content="Hugo 0.67.0-DEV" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Colin Crain › Perl Weekly Review #163</title>
+    <link rel="icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+
+    <!-- Twitter Bootstrs CSS -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.css">
+    <!-- Ionicons Fonts Css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/ionicons/ionicons.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/animate-css/animate.css">
+    <!-- Hero area slider css-->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slider/slider.css">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/slick/slick.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.css">
+    <!-- hover -->
+    <link rel="stylesheet" href="https://theweeklychallenge.org/plugins/hover/hover-min.css">
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <!-- template main css file -->
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/style.min.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/main.css">
+
+    <style>
+        #goTopButton {
+            display: none;          
+            position: fixed;        
+            bottom: 20px;           
+            right: 30px;            
+            z-index: 99;            
+            border: none;           
+            outline: none;          
+            background-color: red;  
+            color: white;           
+            cursor: pointer;        
+            padding: 15px;          
+            border-radius: 10px;    
+            font-size: 18px;        
+        }
+
+        #goTopButton:hover {
+              background-color: #555;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+<button onclick="goTop()" id="goTopButton" title="Go to top">Top</button>
+
+<script>
+
+    topButton = document.getElementById("goTopButton");
+
+    
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+            topButton.style.display = "block";
+        } else {
+            topButton.style.display = "none";
+        }
+    }
+
+    
+    function goTop() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    }
+
+</script>
+
+<section class="top-bar animated-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="https://theweeklychallenge.org/">
+                        <img src="https://theweeklychallenge.org/images/logo.svg" alt="logo">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navgation" aria-controls="navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/">Home</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/about">About</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/chart">Chart</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/champions">Champions</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/team">Team</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/challenges">Challenges</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p5-reviews">Perl/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/p6-reviews">Raku/Review</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/recaps">Recaps</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/blogs">Blogs</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/faq">FAQ</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://theweeklychallenge.org/contact">Contact</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="global-page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2>Colin Crain › Perl Weekly Review #163</h2>
+                    <div class="portfolio-meta">
+                        <span>Monday, Jun 20, 2022</span>|
+                        <span> Tags:
+                            perl
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="text-align: center" class="post-img">
+                    <img class="img-fluid" alt="" src="https://theweeklychallenge.org/images/blog/p5-review-challenge-163.jpg">
+                </div>
+                
+                <div style="text-align: justify" class="post-content">
+                    <p>( <em>&hellip;continues from <a href="/blog/review-challenge-162/">previous week</a>.</em> )</p>
+<p>Welcome to the Perl review pages for <strong>Week 163</strong> of The Weekly Challenge! Here we will take the time to discuss the  submissions offered up by the team, factor out some common methodologies that came up in those solutions, and highlight some of the unique approaches and unusual code created.</p>
+<hr>
+<h3 id="-why-do-we-do-these-challenges">●︎ Why do we do these challenges?</h3>
+<p>I suppose any reasonable answer to that question would be from a field as wide ranging and varied as the people who choose to join the team. One thing, though, is clear: it&rsquo;s not a competition, and there are no judges, even if there is a &ldquo;prize&rdquo; of sorts. About that &ndash; I think of it more as an honorarium periodically awarded to acknowledge the efforts we make towards this strange goal. So there&rsquo;s no determination to find the <em>fastest</em>, or the <em>shortest</em>, or even, in some abstract way, the <em>best</em> way to go about things, although I&rsquo;m certain the participants have their own aspirations and personal drives. As Perl is such a wonderfully expressive language, this provides quite a bit of fodder to the core idea of TMTOWTDI, producing a gamut of varied techniques and solutions.</p>
+<p>Even the tasks themselves are often open to a certain amount of discretionary interpretation. What we end up with is a situation where each participant is producing something in the manner they find the most interesting or satisfying. Some team members focus on carefully crafted complete applications, thoroughly vetting input data and handling every use case they can think up. Others choose to apply themselves to the logic of the underlying puzzle and making it work in the most elegant way they can. Some eschew modules they would ordinarily reach for, others embrace them, bringing to light wheels perhaps invented years ago that happen to exactly solve the problem in front of them today.</p>
+<p>I&rsquo;ve been considering this question for some time and have found one binding commonality between all of us out solving these challenges each week, in that however we normally live our lives, the task in front of us more than likely has nothing to do with any of that. And I think this has great value. We all do what we do, in the real world, and hopefully we do it well. The Weekly Challenge provides us with an opportunity to do something germane to that life yet distinctly different; if we only do the things we already know how to do then we will only do the same things over and over. This is where the &ldquo;challenge&rdquo; aspect comes into play.</p>
+<p>So we can consider The Weekly Challenge as providing a problem space outside of our comfort zone, as far out from that comfort as we wish to take things. From those reaches we can gather and learn things, pick and choose and bring what we want back into our lives. Personally, I think that&rsquo;s what this whole thing is about. YMMV.</p>
+<hr>
+<p><strong><emp>Every week there is an enormous global collective effort made by the team, analyzing and creatively coding the submissions, and that effort deserves credit due.</emp></strong></p>
+<p>And that, my friends, is why I&rsquo;m here, to try and figure out ways to do just that.</p>
+<p>So here we are then.</p>
+<p>I&rsquo;m ready — let’s get to it and see what we can find.</p>
+<hr>
+<h3 id="for-additional-context">For Additional Context…</h3>
+<p>Before we begin, you may wish to revisit either the pages for the <a href="/blog/perl-weekly-challenge-163/"><strong>original tasks</strong></a> or the summary <a href="/blog/recap-challenge-163/"><strong>recap</strong></a> of the challenge. But don&rsquo;t worry about it, the challenge text will be repeated and presented as we progress from task to task.</p>
+<p>Oh, and one <em><strong>more</strong></em> thing before we finally get started:</p>
+<h3 id="getting-in-touch-with-us">Getting in Touch with Us</h3>
+<p><a href="mailto:pwc.perfectwave@gmail.com"><img src="/images/blog/Email.svg" height="50" width="50"> Email</a> › Please feel free to email me (Colin) with any feedback, notes, clarifications or whatnot about this review.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge"><img src="/images/blog/Github.svg" height="50" width="50"> GitHub</a> › Submit a pull request to us for any issues you may find with this page.</p>
+<p><a href="https://twitter.com/perlwchallenge"><img src="/images/blog/Twitter.svg" height="50" width="50"> Twitter</a> › Join the discussion on Twitter!</p>
+<p>I&rsquo;m always curious as to what the people think of these efforts. Everyone here at the PWC would like to hear any feedback you&rsquo;d like to give.</p>
+<div align= center><strong>...Enough? Fine. So without even further ado...</strong></div>
+<hr>
+<h2 id="---nbsp--nbsp--nbsp---task-1pwc163task1-------nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---task-2pwc163task2---nbsp--nbsp--nbsp------nbsp--nbsp--nbsp---blogspwc163blogs----nbsp--nbsp--nbsp---">•             <a href="#PWC163TASK1">Task 1</a>                 •             <a href="#PWC163TASK2">Task 2</a>             	•             <a href="#PWC163BLOGS">BLOGS</a>              	•</h2>
+<hr>
+<h1 id="PWC163TASK1">TASK 1</h1>
+<h1 id="sum-bitwise-operator">Sum Bitwise Operator</h1>
+<p><em>Submitted by: Mohammad S Anwar</em></p>
+<p>You are given list positive numbers, @n.</p>
+<p>Write script to calculate the sum of bitwise &amp; operator for all unique pairs.</p>
+<p><strong>Example 1</strong></p>
+<pre><code>    Input: @n = (1, 2, 3)
+    Output: 3
+</code></pre><p>Since (1 &amp; 2) + (2 &amp; 3) + (1 &amp; 3) =&gt; 0 + 2 + 1 =&gt;  3.</p>
+<p><strong>Example 2</strong></p>
+<pre><code>    Input: @n = (2, 3, 4)
+    Output: 2
+</code></pre><p>Since (2 &amp; 3) + (2 &amp; 4) + (3 &amp; 4) =&gt; 2 + 0 + 0 =&gt;  2.</p>
+<h2 id="about-the-solutions">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/alexander-pankoff/perl/ch-1.pl"><strong>Alexander Pankoff</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/deadmarshal/perl/ch-1.pl"><strong>Ali Moradi</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/arne-sommer/perl/ch-1.pl"><strong>Arne Sommer</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/cheok-yin-fung/perl/ch-1.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/jaldhar-h-vyas/perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/jo-37/perl/ch-1.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/julien-fiegehenn/perl/ch-1.pl"><strong>Julien Fiegehenn</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/lubos-kolouch/perl/ch-1.pl"><strong>Lubos Kolouch</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/luiz-felipe/perl/ch-1.pl"><strong>Luiz Felipe</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/mattneleigh/perl/ch-1.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/pete-houston/perl/ch-1.pl"><strong>Pete Houston</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/peter-campbell-smith/perl/ch-1.pl"><strong>Peter Campbell Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/pokgopun/perl/ch-1.pl"><strong>PokGoPun</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/ryan-thompson/perl/ch-1.pl"><strong>Ryan Thompson</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>On perusing our member-generated literature on this first task, it seems that beyond the usual nit-picking about exactly what is being requested here, and how to interpret various alternate readings of the description text, no one can quite figure out <em>why</em> we would ever wish to perform this particular action.</p>
+<p>It remains a mystery.</p>
+<p>But then again that&rsquo;s no mind. We don&rsquo;t <em>need</em> a story to do the job. We have an assignment and simply need to assemble an algorithm to perform it.</p>
+<p>There was the usual confusion as to the details, in this case exactly what was meant by &ldquo;unique pairs&rdquo;. Does this refer to indices or actual values? Obviously a duplicated index will contain the same value, but with the second option a duplicated value in the list will also trigger the exception case. As we are left in the dark about why we&rsquo;re performing this analysis we can&rsquo;t definitively decide without context.</p>
+<p>There were 28 submissions for the first task this past week.</p>
+<h2 id="a-little-bit-of-this-and-a-little-bit-of-that">a little BIT of THIS, and a little BIT of THAT</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/deadmarshal/perl/ch-1.pl"><strong>Ali Moradi</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/mattneleigh/perl/ch-1.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/alexander-pankoff/perl/ch-1.pl"><strong>Alexander Pankoff</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/luiz-felipe/perl/ch-1.pl"><strong>Luiz Felipe</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/ryan-thompson/perl/ch-1.pl"><strong>Ryan Thompson</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/pete-houston/perl/ch-1.pl"><strong>Pete Houston</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a></p>
+<p>The unique index interpretation of the &ldquo;unique pairs&rdquo; directive was quite popular, but we did see ideas about unique values also implemented. Several in fact. Or even unique <em>pairs</em>, meaning duplicate values were ok, but only once. Hmmm. Some people explored several alternate options.</p>
+<p>Due to this ambiguity I took any reasonable interpretation to be valid. Myself, I read pairs as pairings of indices. YMMV.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/roger-bell-west/perl/ch-1.pl"><strong>Roger Bell_West</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/roger-bell-west/javascript/ch-1.js">Javascript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/roger-bell-west/kotlin/ch-1.kt">Kotlin</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/roger-bell-west/lua/ch-1.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/roger-bell-west/postscript/ch-1.ps">Postscript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/roger-bell-west/python/ch-1.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/roger-bell-west/raku/ch-1.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/roger-bell-west/ruby/ch-1.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/roger-bell-west/rust/ch-1.rs">Rust</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://blog.firedrake.org/archive/2022/05/The_Weekly_Challenge_163__Sums_and_Sums.html">RogerBW&rsquo;s Blog: The Weekly Challenge 163: Sums and Sums</a></p>
+<p>We&rsquo;ll start with Roger, with an example of interpreting the directive as unique index pairings. Viewed this way, the matching up becomes a problem of combinatorics: how many selections of 2 unique index positions can be gathered from the input?</p>
+<p>The bitwise AND operation is commutative, as A &amp; B = B &amp; A, so we are looking for combinations, which are unordered, versus permutations, which are. Assessing combinations, the pairings (1,2) and (2,1) are equivalent.</p>
+<p>A simple way to perform this basic action, known as &ldquo;<em>n</em> choose 2&rdquo; is to import a function to perform it, such as <code>combinations()</code> from <code>Algorithm::Combinatorics</code>. In common usage, this delivers an iterator function, that when <code>next</code> is called on it returns the anonymous array pairings of the various combinations. Reading through these, we can access the elements and apply the bitwise operations, accumulating a sum of the results along the way.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> Algorithm::Combinatorics <span style="color:#e6db74">qw(combinations)</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">sumbitwise</span> {
+      <span style="color:#66d9ef">my</span> $ls <span style="color:#f92672">=</span> shift;
+      <span style="color:#66d9ef">my</span> $iter <span style="color:#f92672">=</span> combinations($ls,<span style="color:#ae81ff">2</span>);
+      <span style="color:#66d9ef">my</span> $s <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+      <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> $iter<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">next</span>) {
+        $s <span style="color:#f92672">+=</span> $c<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&amp;</span> $c<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>];
+      }
+      <span style="color:#66d9ef">return</span> $s;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/mohammad-anwar/perl/ch-1.pl"><strong>Mohammad S Anwar</strong></a></p>
+<p>Here&rsquo;s a very similar demonstration from Mohammad. With <code>Algorithm::Combinatorics</code>, if we call <code>combinations</code> in a list context the complete list of combinations is returned as an array of arrays. Done this way we can create a loop using a statement modifier, putting the summation in a single line.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">bitwise_and</span> {
+        <span style="color:#66d9ef">my</span> ($numbers) <span style="color:#f92672">=</span> @_;
+
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">unless</span> @$numbers;
+
+        <span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        $sum <span style="color:#f92672">+=</span> $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&amp;</span> $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] <span style="color:#66d9ef">for</span> (combinations($numbers, <span style="color:#ae81ff">2</span>));
+
+        <span style="color:#66d9ef">return</span> $sum;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/deadmarshal/perl/ch-1.pl"><strong>Ali Moradi</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/deadmarshal/c/ch-1.c">C</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/deadmarshal/cpp/ch-1.cpp">C++</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/deadmarshal/lua/ch-1.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/deadmarshal/pascal/ch1.pas">Pascal</a></p>
+<p>Then again, the algorithm to match up combinations from a list is quite simple: take the first element, then match it to each element following to make one combination per selection. Then advance to the next element and repeat the process. Only matching to those elements further up the array removes self-pairings from the mix along with any duplicates, such as (2,1) in addition to the already-gathered (1,2).</p>
+<p>There really isn&rsquo;t a need for a module to construct the pairings, as nested loops will  do the job quite well.</p>
+<p>Here Ali uses two <code>for</code> loops.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">sum_bitwise_operator</span>{
+      <span style="color:#66d9ef">my</span> ($arr) <span style="color:#f92672">=</span> @_;
+      <span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+      <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; $i <span style="color:#f92672">&lt;</span> @$arr; <span style="color:#f92672">++</span>$i){
+        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">my</span> $j <span style="color:#f92672">=</span> $i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>; $j <span style="color:#f92672">&lt;</span> @$arr; <span style="color:#f92672">++</span>$j){
+          $sum <span style="color:#f92672">+=</span> $arr<span style="color:#f92672">-&gt;</span>[$i] <span style="color:#f92672">&amp;</span> $arr<span style="color:#f92672">-&gt;</span>[$j];
+        }
+      }
+      $sum;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/mattneleigh/perl/ch-1.pl"><strong>Matthew Neleigh</strong></a></p>
+<p>Matthew spices things up a bit with a detailed report mirroring the descriptive text from the examples. Once he has passed the input array through a pair of nested loops to create a list of individual pairings, this list is then processed to create both the output value and a report string constructed from the steps used to arrive there.</p>
+<p>I find the string assembly to be the more interesting part of the solution. Most of the submissions follow either one or the other of the two patterns we have seen so far to construct the pairings.</p>
+<p>You may notice that we are still treating &ldquo;unique&rdquo; to mean unique index pairings. This was by far the most common approach.</p>
+<pre><code>    Input: @n = (3, 4, 3, 3)
+    Output: 9
+
+    Since (3 &amp; 4) + (3 &amp; 3) + (3 &amp; 3) + (4 &amp; 3) + (4 &amp; 3) + (3 &amp; 3)  =&gt;  0 + 3 + 3 + 0 + 0 + 3  =&gt;  9
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">foreach</span> $set (@sets){
+        <span style="color:#66d9ef">my</span> @pairs <span style="color:#f92672">=</span> unique_pairs_from_list(@{$set});
+        <span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">my</span> $shown_work;
+
+        <span style="color:#75715e"># Do the math and document it; this will be</span>
+        <span style="color:#75715e"># shared later...</span>
+        $shown_work <span style="color:#f92672">=</span> sprintf(
+            <span style="color:#e6db74">&#34;Since %s  =&gt;  %s  =&gt;  %d&#34;</span>,
+            join(<span style="color:#e6db74">&#34; + &#34;</span>, map(<span style="color:#e6db74">&#34;(&#34;</span><span style="color:#f92672">.</span>$_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span><span style="color:#e6db74">&#34; &amp; &#34;</span><span style="color:#f92672">.</span>$_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span><span style="color:#e6db74">&#34;)&#34;</span>, @pairs)),
+            join(
+                <span style="color:#e6db74">&#34; + &#34;</span>,
+                map(
+                    <span style="color:#75715e"># Where the actual math happens... and also</span>
+                    <span style="color:#75715e"># some output generation</span>
+                    { <span style="color:#66d9ef">my</span> $a <span style="color:#f92672">=</span> ($_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&amp;</span> $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]); $sum <span style="color:#f92672">+=</span> $a; $a; }
+                    @pairs
+                )
+            ),
+            $sum
+        );
+
+        printf(<span style="color:#e6db74">&#34;Input: \@n = (%s)\n&#34;</span>, join(<span style="color:#e6db74">&#34;, &#34;</span>, @{$set}));
+        printf(<span style="color:#e6db74">&#34;Output: %d\n\n&#34;</span>, $sum);
+        <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;$shown_work\n\n\n&#34;</span>);
+    }
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">unique_pairs_from_list</span>{
+
+        <span style="color:#66d9ef">return</span>(undef) <span style="color:#66d9ef">unless</span>(scalar(@ARG) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>);
+
+        <span style="color:#66d9ef">my</span> @pairs <span style="color:#f92672">=</span> ();
+
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> ($#ARG <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)){
+            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $j (($i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">..</span> $#ARG){
+                push(@pairs, [$ARG[$i], $ARG[$j]]);
+            }
+        }
+
+        <span style="color:#66d9ef">return</span>(@pairs);
+    }
+
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/alexander-pankoff/perl/ch-1.pl"><strong>Alexander Pankoff</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/alexander-pankoff/haskell/ch-1.hs">Haskell</a></p>
+<p>Alexander breaks up his process along a very functional programming paradigm, with a collection of discrete processing units that each perform one specific task. We end up with a familiar process best understood if read backwards from the tail, or in this script fragment, upwards from the bottom. The general purpose <code>combinations</code> function takes a list and a group size and returns an array of arrays. This is called by <code>unique_pairs()</code> as a wrapper, supplying the request for 2-element sets. In turn this is called from <code>sum_bitwise_operator()</code> which processes the array-of-arrays returned first with a <code>map</code>, applying the bitwise operator to each of the paired elements in an individual combination to return a single value. Then finally the list of result values is itself summed.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">say sum_bitwise_operator(@n);
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">sum_bitwise_operator</span>(@n) {
+    sum0( map { $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&amp;</span> $_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>] } unique_pairs(@n) );
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">unique_pairs</span>(@xs) {
+    <span style="color:#66d9ef">return</span> combinations( <span style="color:#ae81ff">2</span>, @xs );
+}
+
+<span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">combinations</span> ( $size, @xs ) {
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">if</span> <span style="color:#f92672">!</span>@xs;
+    <span style="color:#66d9ef">return</span> map { [$_] } @xs <span style="color:#66d9ef">if</span> $size <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>;
+
+    <span style="color:#66d9ef">my</span> @out;
+    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $index ( <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $#xs ) {
+        <span style="color:#66d9ef">my</span> @rest <span style="color:#f92672">=</span> @xs[ $index <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $#xs ];
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $comb ( combinations( $size <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, @rest ) ) {
+            push @out, [ $xs[$index], @$comb ];
+        }
+    }
+
+    <span style="color:#66d9ef">return</span> @out;
+}
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/luiz-felipe/perl/ch-1.pl"><strong>Luiz Felipe</strong></a></p>
+<p>Luiz arrives at his combination pairings again using two loops, this time using a <code>for</code> loop nested in a <code>while</code>. The first items in the list is successively paired with the remaining individual elements, and afterwards <code>shift</code> is employed to discard the first element. The loop then restarts with the shortened list.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">sum_bitwise</span> {
+        <span style="color:#66d9ef">my</span> (@numbers, $sum);
+
+        @numbers <span style="color:#f92672">=</span> @_;
+
+        $sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">while</span> (scalar @numbers <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>) {
+        	<span style="color:#66d9ef">my</span> ($first);
+
+        	$first <span style="color:#f92672">=</span> $numbers[<span style="color:#ae81ff">0</span>];
+        	<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$#numbers) {
+        		$sum <span style="color:#f92672">+=</span> $first <span style="color:#f92672">&amp;</span> $numbers[$i];
+        	}
+
+        	shift @numbers;
+        }
+
+        <span style="color:#66d9ef">return</span> $sum;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/ryan-thompson/perl/ch-1.pl"><strong>Ryan Thompson</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/ryan-thompson/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://ry.ca/2022/05/a-tail-of-two-sums/">PWC 163 › A tail of two sums - Ryan J Thompson</a></p>
+<p>The esteemed Mr. Thompson has figured out a way of using two nested <code>map</code> functions, applying the bitwise operator across arrays of indices, and referencing the array directly from the argument stack. This makes for a very tight, compact solution.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    say sum_bitwise(@ARGV);
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">sum_bitwise</span> {
+        sum map {
+            <span style="color:#66d9ef">my</span> $i <span style="color:#f92672">=</span> $_;
+            map {
+                $_[$i] <span style="color:#f92672">&amp;</span> $_[$_]
+            } $i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span><span style="color:#f92672">..</span>$#_
+        } <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$#_
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/pete-houston/perl/ch-1.pl"><strong>Pete Houston</strong></a></p>
+<p>All of the examples we&rsquo;ve seen so far have taken the interpretation of &ldquo;unique pairs&rdquo; as unique indices within the array — each element is paired with every other element exactly once. One the other hand, this directive could also be taken to mean unique values, and on re-inspection there is no specific restriction on the values other than they should be positive. They don&rsquo;t even need to be integers.</p>
+<p>Here Pete filters his input list using the <code>uniqint()</code> function from the core module <code>List::Util</code>. This removes duplicate values from the list, whist coercing them to integer form at the same time. This last part isn&rsquo;t strictly necessary as this will happen anyway — bitwise operations don&rsquo;t really make sense with floats. There is no retriction that we use integers, however although the operator will accept a real number it will quietly truncate it before processing.</p>
+<p>Given the list (3,3,3), the filter will only pass the single value (3). As there is no second value to pair it to the result of the sum remains 0.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">use</span> List::Util <span style="color:#ae81ff">1.55</span> <span style="color:#e6db74">&#39;uniqint&#39;</span>;
+    <span style="color:#66d9ef">use</span> Math::Combinatorics;
+
+    <span style="color:#66d9ef">my</span> $combo <span style="color:#f92672">=</span> Math::Combinatorics<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span> (
+        count <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>,
+        data  <span style="color:#f92672">=&gt;</span> [uniqint @ARGV]
+    );
+
+    <span style="color:#66d9ef">my</span> $tot <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">while</span> (<span style="color:#66d9ef">my</span> @c <span style="color:#f92672">=</span> $combo<span style="color:#f92672">-&gt;</span>next_combination) {
+        $tot <span style="color:#f92672">+=</span> $c[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&amp;</span> $c[<span style="color:#ae81ff">1</span>];
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/e-choroba/perl/ch-1.pl"><strong>E. Choroba</strong></a></p>
+<p>Choroba, on the gripping hand, gives a <em>third</em> reading of unique: that any pair of values is allowed, but only once. Thus in evaluating the list (3,3,3), the result will be a single counting of the expression (3 &amp; 3), resulting in binary 11, or decimal 3.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">sum_bitwise_operator</span> {
+        <span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">my</span> %seen;
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $#_) {
+            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $j (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) {
+                <span style="color:#66d9ef">my</span> @pair <span style="color:#f92672">=</span> sort { $a <span style="color:#e6db74">&lt;=&gt;</span> $b } @_[$i, $j];
+                $sum <span style="color:#f92672">+=</span> $pair[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&amp;</span> $pair[<span style="color:#ae81ff">1</span>] <span style="color:#66d9ef">unless</span> $seen{<span style="color:#e6db74">&#34;@pair&#34;</span>}<span style="color:#f92672">++</span>;
+            }
+        }
+        <span style="color:#66d9ef">return</span> $sum
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/perlboy1967/perl/ch-1.pl"><strong>Niels van Dijke</strong></a></p>
+<p>And finally, as though we don&rsquo;t already have enough, Niels brings yet <em>another</em> ambiguous reading to the table in the first of his two competing interpretations, which themselves give differing results in certain cases. For the two original task examples the results, however, are the same.</p>
+<p>So what has Niels done?</p>
+<p>Here he presents (1,3) and (3,1) as completely different combinations. That&rsquo;s novel. With a different operation, say division, these would indeed produce different outcomes. One could I suppose argue that the fact that the bitwise AND <em>just happens</em> to be commutative could be viewed as circumstantial and irrelevant. It&rsquo;s an interesting take, certainly. &ldquo;Combinations&rdquo; does not need to be taken in a literal mathematical sense, either, but could be viewed more colloquially. This technique returns 3 for the input (3,3,3), allowing one single group of (3,3) to be evaluated.</p>
+<p>Niels&rsquo; second submission is in my eyes a little more justifiable in its interpretation, with the removal of duplicate values from the input list. Padding the input with a couple of 0s ensures a real result no matter what happens in the filtration. In this take, (3,3,3) returns that 0, as the expressions eventually evaluated are (0 &amp; 0), (0 &amp; 3), and (0 &amp; 3), which sum as 0 + 0 + 0.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># Assumption on andSum1:</span>
+    <span style="color:#75715e">#</span>
+    <span style="color:#75715e"># Unique combinations of (1,1,3) results in:</span>
+    <span style="color:#75715e">#</span>
+    <span style="color:#75715e">#    (1 &amp; 1) + (1 &amp; 3) + (3 &amp; 1)</span>
+    <span style="color:#75715e">#</span>
+    <span style="color:#75715e"># as left hand side and right hand side of the &#39;&amp;&#39; is three time q unique combination</span>
+    <span style="color:#75715e">#</span>
+    <span style="color:#75715e"># Note: Add (0,0) to always have two harmless values in the list</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">andSum1</span> {
+      <span style="color:#66d9ef">return</span> sum map{$_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">&amp;</span>$_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]}combinations([<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,singleton(@_),map{($_)x2}duplicates(@_)],<span style="color:#ae81ff">2</span>);
+    }
+
+    <span style="color:#75715e"># andSum2 is a more simplistic algorithm:</span>
+    <span style="color:#75715e"># Work on the unique numbers given (remove duplicates)</span>
+    <span style="color:#75715e">#</span>
+    <span style="color:#75715e"># Note: Add (0,0) to always have two harmless values in the list</span>
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">andSum2</span> {
+      <span style="color:#66d9ef">return</span> sum map{$_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">&amp;</span>$_<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>]}combinations([<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,uniq@_],<span style="color:#ae81ff">2</span>);
+    }
+</code></pre></div><h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-1">Blogs and Additional Submissions in Guest Languages for Task 1:</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/adam-russell/perl/ch-1.pl"><strong>Adam Russell</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/adam-russell/java/ch-1.java">Java</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/adam-russell/prolog/ch-1.p">Prolog</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2022/05/08">Bitwise And Sums and Skip Summations: Somewhat Complicated Uses of Map - Perl - RabbitFarm</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://www.rabbitfarm.com/cgi-bin/blosxom/prolog/2022/05/08">Bitwise And Sums and Skip Summations: Somewhat Complicated Uses of Map - Prolog - RabbitFarm</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/arne-sommer/perl/ch-1.pl"><strong>Arne Sommer</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/arne-sommer/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://raku-musings.com/sum-sum.html">Sum and Sum Again with Raku and Perl - Arne Sommer</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/athanasius/perl/ch-1.pl"><strong>Athanasius</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/athanasius/raku/ch-1.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/colin-crain/perl/ch-1.pl"><strong>Colin Crain</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/colin-crain/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://colincrain.com/2022/05/06/thats-some-operator-you-got-there/">That&rsquo;s Some Operator You Got There - Programming Excursions in Perl and Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/dave-jacoby/perl/ch-1.pl"><strong>Dave Jacoby</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://jacoby.github.io/2022/05/02/summations-the-weekly-challenge-163.html">Sum(mation)s: The Weekly Challenge #163 | Committed to Memory</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/duncan-c-white/perl/ch-1.pl"><strong>Duncan C. White</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/duncan-c-white/C/ch-1.c">C</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/duncan-c-white/pascal/ch-1.pas">Pascal</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/polettix/perl/ch-1.pl"><strong>Flavio Poletti</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/polettix/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.polettix.it/ETOOBUSY/2022/05/03/pwc163-sum-bitwise-operator/">PWC163 - Sum Bitwise Operator - ETOOBUSY</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/jaldhar-h-vyas/perl/ch-1.pl"><strong>Jaldhar H. Vyas</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/jaldhar-h-vyas/raku/ch-1.sh">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://www.braincells.com/perl/2022/05/perl_weekly_challenge_week_163.html">Perl Weekly Challenge: Week 163</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/james-smith/perl/ch-1.pl"><strong>James Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-163/james-smith">Perl Weekly Challenge #163</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/laurent-rosenfeld/perl/ch-1.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/laurent-rosenfeld/raku/ch-1.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://blogs.perl.org/users/laurent_r/2022/05/perl-weekly-challenge-163-sum-bitwise-operator-and-summations.html">Perl Weekly Challenge 163: Sum Bitwise Operator and Summations</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/peter-campbell-smith/perl/ch-1.pl"><strong>Peter Campbell Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://pjcs-pwc.blogspot.com/2022/05/lot-of-ands-and-strange-grid.html">Lot of ands and a strange grid</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/pokgopun/perl/ch-1.pl"><strong>PokGoPun</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/pokgopun/go/ch-1.go">Go</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/ulrich-rieke/perl/ch-1.pl"><strong>Ulrich Rieke</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/ulrich-rieke/cpp/ch-1.cpp">C++</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/ulrich-rieke/haskell/ch-1.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/ulrich-rieke/raku/ch-1.raku">Raku</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/wlmb/perl/ch-1.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://wlmb.github.io/2022/05/02/PWC163/">Perl Weekly Challenge 163 – W. Luis Mochán</a></p>
+<hr>
+<hr>
+<h1 id="PWC163TASK2">TASK 2</h1>
+<h1 id="summations">Summations</h1>
+<p><em>Submitted by: Mohammad S Anwar</em></p>
+<p>You are given a list of positive numbers, @n.</p>
+<p>Write a script to find out the summations as described below.</p>
+<p><strong>Example 2</strong></p>
+<pre><code>    Input: @n = (1, 2, 3, 4, 5)
+    Output: 42
+
+        1  2  3  4  5
+           2  5  9 14
+              5 14 28
+                14 42
+                   42
+</code></pre><p>The nth Row starts with the second element of the (n-1)th row. The following element is sum of all elements except first element of previous row. You stop once you have just one element in the row.</p>
+<p><strong>Example 2</strong></p>
+<pre><code>    Input: @n = (1, 3, 5, 7, 9)
+    Output: 70
+
+        1  3  5  7  9
+           3  8 15 24
+              8 23 47
+                23 70
+                   70
+</code></pre><h2 id="about-the-solutions-1">about the solutions</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/alexander-pankoff/perl/ch-2.pl"><strong>Alexander Pankoff</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/deadmarshal/perl/ch-2.pl"><strong>Ali Moradi</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/arne-sommer/perl/ch-2.pl"><strong>Arne Sommer</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/e-choroba/perl/ch-2.pl"><strong>E. Choroba</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/jaldhar-h-vyas/perl/ch-2.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/julien-fiegehenn/perl/ch-2.pl"><strong>Julien Fiegehenn</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/lubos-kolouch/perl/ch-2.pl"><strong>Lubos Kolouch</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/luiz-felipe/perl/ch-2.pl"><strong>Luiz Felipe</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/mattneleigh/perl/ch-2.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/mohammad-anwar/perl/ch-2.pl"><strong>Mohammad S Anwar</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/perlboy1967/perl/ch-2.pl"><strong>Niels van Dijke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/pete-houston/perl/ch-2.pl"><strong>Pete Houston</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/peter-campbell-smith/perl/ch-2.pl"><strong>Peter Campbell Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/pokgopun/perl/ch-2.pl"><strong>PokGoPun</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/ryan-thompson/perl/ch-2.pl"><strong>Ryan Thompson</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>For our second task this week we are again beset with a task that offers up no immediate overarching purpose. In light of this the job becomes first to figure out first what it is exactly we are being asked to do, and then to enact the process, and finally to print the results. Each of these steps provides its own set of challenges.</p>
+<p>The reduction itself is an amalgam of several steps, repeated until a single value remains. The relationship between the input list and the final value produced is not immediately obvious, nor its utility. But again, like the previous task, this is of no mind. We don&rsquo;t need to know <em>why</em> to do what we need to do. It&rsquo;s generally helpful to know, of course, especially to resolve ambiguities in the challenge description, but we can alway power through without these extra details. And, you know, hope for the best.</p>
+<p>Once we have the steps of the process figured out, we need to construct a machine to accomplish them, repeating the pattern until we arrive at the final state of having a single value in our list. As is often the case, once we have really wrapped our heads around the complexities of the process requested, the technical implementation comes almost as an afterthought, and all we need to do is install the parts in the right places to do what we need to do — the design work has already been done.</p>
+<p>I think that&rsquo;s why I liked this challenge so much, that this whole process taken as a whole models and simulates real-world problem solving so well: the real problem to be solved is figuring out what the problem is, and once that&rsquo;s done the implementation is often incidental.</p>
+<p>The third, optional aspect of the task is the graphical display of the data processing. Because the connection between the input and output is, as we have said, not obvious, checking and tuning the algorithm is complicated. Looking at the results for an arbitrary list, how do we know what the right answer even is?</p>
+<p>By constructing the triangular list reduction graphically we can look to see if we&rsquo;re summing the correct values and carrying them forward as directed. Creating strings that when printed form the right-aligned columns is a clever bonus challenge in itself. Some people took it on themselves to present the data this way, which I must say in more interesting output than a single value, as it provides valuable context on how we arrived there.</p>
+<p>There were 28 submissions for the second task this past week.</p>
+<h2 id="a-spike-a-wedge-and-a-piece-of-the-pie">a SPIKE, a WEDGE, and a PIECE of the PIE</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/mattneleigh/perl/ch-2.pl"><strong>Matthew Neleigh</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/peter-campbell-smith/perl/ch-2.pl"><strong>Peter Campbell Smith</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/jaldhar-h-vyas/perl/ch-2.pl"><strong>Jaldhar H. Vyas</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a>,
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a>, and
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/julien-fiegehenn/perl/ch-2.pl"><strong>Julien Fiegehenn</strong></a></p>
+<p>Figuring out the rules of the summation, as I said before, proved to be the most complicated part of this task. We saw a couple of approaches to the summing steps, either continuously re-summing at each position or reusing the previous sum and updating it with each new element in a row.</p>
+<p>Printing the triangular table was not required but many people chose to do it anyways, for the challenge. Getting the individual columns correctly spaced and aligned was a bit tricky, but Perl&rsquo;s extensive string-processing talents allowed several submissions to make pleasing graphical output with a moderate amount of extra efort.</p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/mattneleigh/perl/ch-2.pl"><strong>Matthew Neleigh</strong></a></p>
+<p>Matthew seems to relish the technical challenges of reproducing the exact results presented in the examples section of the task — commentary, notes and all. As such it makes sense to start big with his demonstration.</p>
+<p>The reduction itself does not easily lend itself to words. We start with a list of elements. At each iteration the very first thing we do is remove the first element from consideration, shortening the list by 1. Thus after a number of iterations the list will always eventually only contain one remaining element.</p>
+<p>The second step of the process is to create a new list, with each element replaced by the sum of all elements from the most-recently shortened list from the 0 index up to and including the element. So the first element remains unchanged, the second becomes the sum of the first and second, the third the sum of the first, second and third. This is completed for all the elements in the shortened list.</p>
+<p>For the third step we replace the previous list with the new and repeat the process. By trimming the list one element every time we go around, we will, as we said, eventually and inevitably only have one element left.</p>
+<pre><code>    Input: @n = (2, 4, 50, 83, 6, 5, 9)
+    Output: 4710
+
+            2    4   50   83    6    5    9
+                 4   54  137  143  148  157
+                     54  191  334  482  639
+                         191  525 1007 1646
+                              525 1532 3178
+                                  1532 4710
+                                       4710
+</code></pre><p>To do the summation, Matthew does a couple of things. First, he switches up the logic to avoid recomputing the same sums for each new element. As each element in the new list is the sum of the previous elements plus the element itself, and the sum of the <em>previous</em> element is the sum of all elements previous to that, then we can recursively redefine the summation step to be each element, working from the left, as the previous element sum plus  itself. We re-use the previous calculation as a partial sum for the next calculation, and in the creation of each row each element is only added once.</p>
+<p>Matthew then wraps this stepwise summation in recalculating the list into a recursive framework, with the function calling itself and trimming one element at each instance until the exit case is found, when a single value remains.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">compute_list_summation</span>{
+        <span style="color:#66d9ef">my</span> $global_listref <span style="color:#f92672">=</span> shift();
+
+        <span style="color:#66d9ef">my</span> @stage_list;
+
+        <span style="color:#75715e"># Loop over the last N-1 numbers in the list</span>
+        <span style="color:#75715e"># and add the running total to a new list</span>
+        shift();
+        push(@stage_list, $ARG[<span style="color:#ae81ff">0</span>]);
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $#ARG){
+            push(@stage_list, $stage_list[$#stage_list] <span style="color:#f92672">+</span> $ARG[$i]);
+        }
+
+        <span style="color:#75715e"># Store the list if requested to do so</span>
+        push(@{$global_listref}, <span style="color:#f92672">\</span>@stage_list)
+            <span style="color:#66d9ef">if</span>(defined($global_listref));
+
+        <span style="color:#75715e"># If there was just one sum generated, return</span>
+        <span style="color:#75715e"># it</span>
+        <span style="color:#66d9ef">return</span>($stage_list[<span style="color:#ae81ff">0</span>])
+            <span style="color:#66d9ef">if</span>(scalar(@stage_list) <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>);
+
+        <span style="color:#75715e"># Otherwise call ourselves on the sum list,</span>
+        <span style="color:#75715e"># return what the deeper call found</span>
+        <span style="color:#66d9ef">return</span>(compute_list_summation($global_listref, @stage_list));
+
+    }
+</code></pre></div><p>For output, the intermediate arrays are preserved in a global variable. Creating the triangular grid is tricky, as it needs to be padded from the left to align properly. A little math on the final result value tells us how large to make the columns.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#75715e"># See how many digits we&#39;ll need to handle...</span>
+    $digits <span style="color:#f92672">=</span> ceil(log($summation) <span style="color:#f92672">/</span> log(<span style="color:#ae81ff">10</span>));
+
+    <span style="color:#75715e"># Stick the input list at the head of the list of</span>
+    <span style="color:#75715e"># summation stages and output them in a pretty</span>
+    <span style="color:#75715e"># fashion</span>
+    unshift(@{$listref}, $list);
+    <span style="color:#66d9ef">foreach</span>(@{$listref}){
+        printf(
+            <span style="color:#e6db74">&#34;%&#34;</span><span style="color:#f92672">.</span>(<span style="color:#ae81ff">4</span> <span style="color:#f92672">+</span> scalar(@{$list}) <span style="color:#f92672">*</span> ($digits <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>))<span style="color:#f92672">.</span><span style="color:#e6db74">&#34;s\n&#34;</span>,
+            join(<span style="color:#e6db74">&#34; &#34;</span>, map(sprintf(<span style="color:#e6db74">&#34;%&#34;</span><span style="color:#f92672">.</span>$digits<span style="color:#f92672">.</span><span style="color:#e6db74">&#34;d&#34;</span>, $_), @{$_}))
+        );
+    }
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;\n&#34;</span>);
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/peter-campbell-smith/perl/ch-2.pl"><strong>Peter Campbell Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://pjcs-pwc.blogspot.com/2022/05/lot-of-ands-and-strange-grid.html">Lot of ands and a strange grid</a></p>
+<p>As we know the size of the input list, an open-ended recursion model is not required; rather a fixed loop can be substituted. Or in Peter&rsquo;s case a pair of nested loops, to loop through the list-shortening iterations and then internally across the elements in the lists. He also chooses to just construct a single multidimensional array that closely models the output. Using the same trick of using the previous calculation as a partial sum for the next, the value substitutions can be done in-place as the triangular grid is first computed.</p>
+<p>Logarithms are undeniably cool, but here Peter queries Perl as to the length of the reduced value to find his column width. Because in Perl, numbers are strings, and strings are numbers, and problem solving can often be reduced to verbally describing what you want to do. &ldquo;How long is it?&rdquo;</p>
+<p>Which is as Larry intended it to be.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">       $rows <span style="color:#f92672">=</span> scalar @n;
+
+       <span style="color:#75715e"># create a grid of the output</span>
+       <span style="color:#66d9ef">for</span> $row (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $rows <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) {
+       	<span style="color:#66d9ef">for</span> $col (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $rows <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) {
+
+       		<span style="color:#75715e"># the first row is just the input</span>
+       		<span style="color:#66d9ef">if</span> ($row <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+       			$grid[<span style="color:#ae81ff">0</span>][$col] <span style="color:#f92672">=</span> $n[$col];
+
+       		<span style="color:#75715e"># any cell where $col &lt; $row is blank - so make it 0 for now</span>
+       		} <span style="color:#66d9ef">elsif</span> ($col <span style="color:#f92672">&lt;</span> $row) {
+       			$grid[$row][$col] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+       		<span style="color:#75715e"># all the other cells are the sum of the cell to the left and the cell above</span>
+       		} <span style="color:#66d9ef">else</span> {
+       			$grid[$row][$col] <span style="color:#f92672">=</span> $grid[$row <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>][$col] <span style="color:#f92672">+</span> $grid[$row][$col <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>];
+       		}
+       	}
+       }
+
+       <span style="color:#75715e"># for a nice output the width of each column is the width of the final cell + 1</span>
+       $width <span style="color:#f92672">=</span> length($grid[$rows <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>][$rows <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+
+       <span style="color:#75715e"># output the result - padded to $width, or if zero, just $width spaces</span>
+       say <span style="color:#e6db74">&#39;&#39;</span>;
+       <span style="color:#66d9ef">for</span> $row (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $rows <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) {
+       	<span style="color:#66d9ef">for</span> $col (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $rows <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) {
+       		<span style="color:#66d9ef">print</span> $grid[$row][$col] ? sprintf(<span style="color:#e6db74">&#34;\%${width}d&#34;</span>, $grid[$row][$col]) : (<span style="color:#e6db74">&#39; &#39;</span> x $width);
+       	}
+       	say <span style="color:#e6db74">&#39;&#39;</span>;
+       }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/ulrich-rieke/perl/ch-2.pl"><strong>Ulrich Rieke</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/ulrich-rieke/cpp/ch-2.cpp">C++</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/ulrich-rieke/haskell/ch-2.hs">Haskell</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/ulrich-rieke/raku/ch-2.raku">Raku</a></p>
+<p>Not all the solutions were this complicated, not did they need to be. An output number was all that was requested, and once you wrap your head around what is required the steps are relatively straightforward. Here Ulrich uses an array slice to select only the elements he wishes to sum in building his new list, which is then substituted for the old abd reprocessed. It&rsquo;s quite elegant, really.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> @output <span style="color:#f92672">=</span> @numbers ;  <span style="color:#75715e">## processed input string</span>
+    <span style="color:#66d9ef">while</span> ( scalar( @output ) <span style="color:#f92672">!=</span> <span style="color:#ae81ff">1</span> ) {
+      @output <span style="color:#f92672">=</span> createOutputList( <span style="color:#f92672">\</span>@output ) ;
+    }
+    say $output[<span style="color:#ae81ff">0</span>] ;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">createOutputList</span> {
+      <span style="color:#66d9ef">my</span> $input <span style="color:#f92672">=</span> shift ;
+      <span style="color:#66d9ef">my</span> $len <span style="color:#f92672">=</span> scalar( @{$input} ) ;
+      <span style="color:#66d9ef">my</span> @output ;
+      <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $current( <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $len <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ) {
+          push @output , sum( @{$input}[<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $current] ) ;
+      }
+      <span style="color:#66d9ef">return</span> @output ;
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/jaldhar-h-vyas/perl/ch-2.pl"><strong>Jaldhar H. Vyas</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/jaldhar-h-vyas/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://www.braincells.com/perl/2022/05/perl_weekly_challenge_week_163.html">Perl Weekly Challenge: Week 163</a></p>
+<p>Analogous to the dynamic construction we saw before, using partial sums, we can further compress the solution to incorporate this technique.</p>
+<p>Here Jaldhar builds a new list, calculating each value by summing a running total and the previous list&rsquo;s value at the position. A swap using an array slice again and we repeat until finished.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> @previous <span style="color:#f92672">=</span> @n[<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $#n];
+    <span style="color:#66d9ef">my</span> $total;
+
+    <span style="color:#66d9ef">while</span> (scalar @previous) {
+        $total <span style="color:#f92672">=</span> $previous[<span style="color:#ae81ff">0</span>];
+        <span style="color:#66d9ef">my</span> @next <span style="color:#f92672">=</span> ( $total );
+
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> scalar @previous <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) {
+            $total <span style="color:#f92672">+=</span> $previous[$i];
+            push @next, $total;
+        }
+
+        @previous <span style="color:#f92672">=</span> @next[<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $#next];
+    }
+
+    say $total;
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/jo-37/perl/ch-2.pl"><strong>Jorg Sommrey</strong></a></p>
+<p>Several times now I have referred to our list summation as a &ldquo;reduction&rdquo; without explanation. For those unfamiliar, beyond the hopefully clear commonplace meaning I&rsquo;m using the word in a technical sense as well: a process of taking a list of elements and reducing the values to a single result is known in functional programming as reduction, and this is indeed what we are doing here. Specifically a reduction works by taking a single element from a list, and then applying some sort of function that that takes this original value and the next list element as an argument, preserving the running result to apply to the next element in the list. When we run out of elements, the result is returned.</p>
+<p>Simple list summation can be viewed as a reduction: take the first element, and add the second, storing the result, and then, using the stored result adding the third and continuing until we reach the end of the list. Similarly a <code>max</code> function would replace the stored result with the new element if it was greater, otherwise keeping it intact. In all cases it is the stored result that is returned in the end.</p>
+<p>The core <code>List::Util</code> module supplies a <code>reduce()</code> function, that when configured with various function blocks can be used as an archetype of all manner of listwise processing. However it also provides a variant form, <code>reductions()</code> which under the correct circumstances can be extremely handy. Instead of only returning the single final stored result, <code>reductions</code> returns a list of all of the stored values collected when traversing the input, with the final element the reduction total.</p>
+<p>If you visualize this you can see the list of partial reductions is the same as the list of partial sums we are creating as we work across our input. Here Jorg calls <code>reductions</code> using a <code>while</code> loop as a statement modifier. The applied block adds <code>$a</code>, the running stored value, to <code>$b</code>, the next element, selecting elements using the now-familiar array slice that only passes the list tail.</p>
+<p>Written this way the logic is extremely compact, essentially a single line of processing.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">triangular_sum</span> (@n) {
+        <span style="color:#75715e"># Calculate the running sums over the array starting with the second</span>
+        <span style="color:#75715e"># element until the array becomes a singleton.</span>
+        @n <span style="color:#f92672">=</span> reductions {$a <span style="color:#f92672">+</span> $b} @n[<span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $#n] <span style="color:#66d9ef">while</span> @n <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>;
+
+        $n[<span style="color:#ae81ff">0</span>];
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/wlmb/perl/ch-2.pl"><strong>W. Luis Mochan</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://wlmb.github.io/2022/05/02/PWC163/">Perl Weekly Challenge 163 – W. Luis Mochán</a></p>
+<p>Luis takes a unique mathematical approach to the summation. One could say that instead of repeatedly reducing the list, he sets his eyes wider, on reducing the sets of equations used to compute the result.</p>
+<p>The requested processing, Luis notes, is all an elaborate summation created from the values of the input list. At each iteration, elements from the list are substituted with partial sums already created from the list, resulting in each element being added to the final result multiple times depending on its positioning within the original list. The number of times each number is represented can be computed, and an equation built to directly compute the result from the input.</p>
+<p>Instead of performing the multiple summations, Luis creates a function <code>f()</code>, that directly calculates the coefficients for this equation.</p>
+<p>Please have a look at his <a href="https://wlmb.github.io/2022/05/02/PWC163/">writeup of the method</a>. It&rsquo;s fascinating.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">my</span> @in  <span style="color:#f92672">=</span> reverse split <span style="color:#e6db74">/\s+/</span>;
+    <span style="color:#66d9ef">my</span> $N   <span style="color:#f92672">=</span> @in<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">my</span> $sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    $sum <span style="color:#f92672">+=</span> f($N, $_) <span style="color:#f92672">*</span> $in[$_] <span style="color:#66d9ef">for</span>(<span style="color:#ae81ff">0</span><span style="color:#f92672">..</span>$N);
+    say <span style="color:#e6db74">&#34;Input: $_ Output: $sum&#34;</span>;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">f</span> {
+        <span style="color:#66d9ef">my</span> ($n,$m) <span style="color:#f92672">=</span> @_;
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> $m <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">if</span> $n <span style="color:#f92672">==</span> $m;
+        f($n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, $m) <span style="color:#f92672">+</span> f($n,$m<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/dave-jacoby/perl/ch-2.pl"><strong>Dave Jacoby</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://jacoby.github.io/2022/05/02/summations-the-weekly-challenge-163.html">Sum(mation)s: The Weekly Challenge #163 | Committed to Memory</a></p>
+<p>Dave described his submission as &ldquo;just workmanlike&rdquo;. I have included it here out of respect for all of us who make stuff for a living.</p>
+<p>Many years ago, I typified Perl programmers as &ldquo;the new quiltmakers&rdquo;. All day long I would solve puzzles, as tiny pieces of code, perfect squares that I would then stich together into sometimes vast tapestries. A CGI interface here, a DBI backend there, documents being parsed out from exotic file formats over next door — all to populate the nascent world wide web. Grey-Eyed Athena was my personal guide, Goddess of wisdom, electricity and weaving. How perfect was that? She&rsquo;s still my favorite, hands down.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">summations</span> ( @n ) {
+        <span style="color:#66d9ef">my</span> $max <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> scalar @n;
+        <span style="color:#66d9ef">my</span> @x   <span style="color:#f92672">=</span> map {
+            [ map { <span style="color:#e6db74">&#39;&#39;</span> } <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $max ]
+        } <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> $max;
+        $x[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">=</span> <span style="color:#960050;background-color:#1e0010">@</span>n;
+
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i ( <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $max ) {
+            <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $j ( $i <span style="color:#f92672">..</span> $max ) {
+                <span style="color:#66d9ef">my</span> $left  <span style="color:#f92672">=</span> $x[$i][ $j <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ] <span style="color:#f92672">||</span> <span style="color:#ae81ff">0</span>;
+                <span style="color:#66d9ef">my</span> $above <span style="color:#f92672">=</span> $x[ $i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> ][$j] <span style="color:#f92672">||</span> <span style="color:#ae81ff">0</span>;
+                $x[$i][$j] <span style="color:#f92672">=</span> $left <span style="color:#f92672">+</span> $above;
+            }
+        }
+        <span style="color:#66d9ef">return</span> $x[$max][$max];
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/polettix/perl/ch-2.pl"><strong>Flavio Poletti</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/polettix/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.polettix.it/ETOOBUSY/2022/05/04/pwc163-summations/">PWC162 - Summations - ETOOBUSY</a></p>
+<p>Flavio has produced an extremely compact version of a couple of nested loops for us. We&rsquo;ve seen this pattern before, but it has had an impressive amount of fat removed. In his own words, he fell back to this technique after exporing some more sophisticated avenues. &ldquo;My brute force beast was screaming inside.&rdquo;</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">summations</span> (@n) {
+       <span style="color:#66d9ef">for</span> (<span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> $#n) { $n[$_] <span style="color:#f92672">+=</span> $n[$_ <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] <span style="color:#66d9ef">for</span> $_ <span style="color:#f92672">..</span> $#n }
+       <span style="color:#66d9ef">return</span> $n[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/athanasius/perl/ch-2.pl"><strong>Athanasius</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/athanasius/raku/ch-2.raku">Raku</a></p>
+<p>The monk delivers us another carefully crafted solution with optional verbose output, the way it should be. Life should have choices, you know? It keeps everything from being the same: out of control. Don&rsquo;t ask me how I know that.</p>
+<p>But anyway, by necessity when we might wish to reconstruct our work after the fact we need to keep notes along the way; here the triangle is built as a multidimensional array-of-arrays, and to return the result we grab the first element of the last row.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">while</span> (scalar @last <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>)
+    {
+        push @next, $next[ $_ <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span> ] <span style="color:#f92672">+</span> $last[ $_ ] <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> $#last;
+        push @triangle,  [ @next ];
+
+        @last <span style="color:#f92672">=</span> @next;
+        @next <span style="color:#f92672">=</span> $last[ <span style="color:#ae81ff">1</span> ];
+    }
+
+    printf <span style="color:#e6db74">&#34;Output: %d\n&#34;</span>, $triangle[ <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> ][ <span style="color:#ae81ff">0</span> ];
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/colin-crain/perl/ch-2.pl"><strong>Colin Crain</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/colin-crain/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://colincrain.com/2022/05/06/and-a-little-something-more/">And a Little Something More… - Programming Excursions in Perl and Raku</a></p>
+<p>For my own solution, after figuring out the process I was left unsatisfied looking at a simple number, and so I decided to graft on a pretty-printing routine, which I made possible with the introduction of a new global variable, <code>our @stack</code>. Then inside the <code>while</code> loop, every time we compute a new array a copy is made over onto the stack. Later we can retrieve it if requested, where individual array rows are printed using a carefully constructed <code>sprintf</code>. It seems I&rsquo;ve become so addicted to the convenience of <code>say</code> that I&rsquo;d rather leave the linefeeds to that statement, instead of incorporating something into the formatting of a <code>printf</code>. It&rsquo;s much cleaner in my eyes, and presumably more portable to boot.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">our</span> @stack;
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">trisum</span> (@list) {
+        <span style="color:#66d9ef">my</span> $sum;
+        <span style="color:#66d9ef">my</span> @new;
+        @stack <span style="color:#f92672">=</span> [@list];
+
+        <span style="color:#66d9ef">while</span> (@list <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>) {
+            @new <span style="color:#f92672">=</span> ();
+            $sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+            shift @list;
+            <span style="color:#66d9ef">for</span> (keys @list) {
+                $sum <span style="color:#f92672">+=</span> $list[$_];
+                push @new, $sum;
+            }
+            push @stack, [@new];
+            @list <span style="color:#f92672">=</span> @new;
+        }
+        print_stack_and_flush() <span style="color:#66d9ef">if</span> VERBOSE;
+
+        <span style="color:#66d9ef">return</span> shift @new;
+    }
+
+
+    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">print_stack_and_flush</span> {
+        <span style="color:#66d9ef">my</span> $elements   <span style="color:#f92672">=</span> @stack;
+        <span style="color:#66d9ef">my</span> $max_digits <span style="color:#f92672">=</span> length $stack[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>];
+        <span style="color:#66d9ef">my</span> $fmt <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#39;%&#39;</span> <span style="color:#f92672">.</span> ($max_digits <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;s&#39;</span>) x $elements;
+
+        say <span style="color:#e6db74">&#34;\ntriangular reduction steps:\n&#34;</span>;
+
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $row (@stack) {
+            unshift $row<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span>, <span style="color:#e6db74">&#39;&#39;</span> <span style="color:#66d9ef">while</span> $row<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">&lt;</span> <span style="color:#960050;background-color:#1e0010">$</span>elements;
+            say sprintf $fmt, $row<span style="color:#f92672">-&gt;</span>@<span style="color:#960050;background-color:#1e0010">*;</span>
+        <span style="color:#960050;background-color:#1e0010">}</span>
+
+        say <span style="color:#e6db74">&#34;sum  $stack[-1]-&gt;[-1]\n&#34;</span>;
+
+        @stack <span style="color:#f92672">=</span> ();
+    }
+</code></pre></div><p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/julien-fiegehenn/perl/ch-2.pl"><strong>Julien Fiegehenn</strong></a></p>
+<p>Finally we&rsquo;ll end with Julien, who makes a curious little observation I don&rsquo;t recall seeing elsewhere: that if we&rsquo;re going to trim the first element in any case, we can in actuality stop when we have <em>two</em> elements, and just take the second. How about that?</p>
+<p>Yea, it&rsquo;s minor, but I find it funny. Perhaps I need more sleep.</p>
+<p>Kudos to Julien — his comments tell the story.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl">    <span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">foo</span> {
+        <span style="color:#66d9ef">my</span> @rows;
+        $rows[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> [@_];
+
+        <span style="color:#75715e"># we&#39;ll keep going as long as we have more than 2 elements left</span>
+        <span style="color:#66d9ef">while</span> ( @{ $rows[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] } <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">2</span> ) {
+            push @rows, [
+
+                <span style="color:#75715e"># we always start with the 2nd element of the previous row</span>
+                $rows[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>],
+
+                <span style="color:#75715e"># each following element is the sum of all numbers from the</span>
+                <span style="color:#75715e"># 2nd element until the position (not index, but position in</span>
+                <span style="color:#75715e"># the tabular view above) we are currently filling, of</span>
+                <span style="color:#75715e"># the previous row.</span>
+                map { sum @{ $rows[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] }[ <span style="color:#ae81ff">1</span> <span style="color:#f92672">..</span> $_ ] } <span style="color:#ae81ff">2</span> <span style="color:#f92672">..</span> $#{ $rows[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] }
+            ];
+        }
+
+        <span style="color:#75715e"># We&#39;re supposed to stop and return when we only have one element left,</span>
+        <span style="color:#75715e"># but it is actually easier to stop at two elements left. The last row</span>
+        <span style="color:#75715e"># is just the 2nd element of the row before, so we can return that directly.</span>
+        <span style="color:#66d9ef">return</span> $rows[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">-&gt;</span>[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+    }
+</code></pre></div><h2 id="blogs-and-additional-submissions-in-guest-languages-for-task-2">Blogs and Additional Submissions in Guest Languages for Task 2:</h2>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/adam-russell/perl/ch-2.pl"><strong>Adam Russell</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/adam-russell/java/ch-2.java">Java</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/adam-russell/prolog/ch-2.p">Prolog</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2022/05/08">Bitwise And Sums and Skip Summations: Somewhat Complicated Uses of Map - Perl - RabbitFarm</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://www.rabbitfarm.com/cgi-bin/blosxom/prolog/2022/05/08">Bitwise And Sums and Skip Summations: Somewhat Complicated Uses of Map - Prolog - RabbitFarm</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/alexander-pankoff/perl/ch-2.pl"><strong>Alexander Pankoff</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/alexander-pankoff/haskell/ch-2.hs">Haskell</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/deadmarshal/perl/ch-2.pl"><strong>Ali Moradi</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/deadmarshal/c/ch-2.c">C</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/deadmarshal/cpp/ch-2.cpp">C++</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/deadmarshal/lua/ch-2.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/deadmarshal/pascal/ch2.pas">Pascal</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/arne-sommer/perl/ch-2.pl"><strong>Arne Sommer</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/arne-sommer/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://raku-musings.com/sum-sum.html">Sum and Sum Again with Raku and Perl - Arne Sommer</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/cheok-yin-fung/perl/ch-2.pl"><strong>Cheok-Yin Fung</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/cheok-yin-fung/julia/ch-2.jl">Julia</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/cheok-yin-fung/python/ch-2.py">Python</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/duncan-c-white/perl/ch-2.pl"><strong>Duncan C. White</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/duncan-c-white/C/ch-2.c">C</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/duncan-c-white/pascal/ch-2.pas">Pascal</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/james-smith/perl/ch-2.pl"><strong>James Smith</strong></a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-163/james-smith">Perl Weekly Challenge #163</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/laurent-rosenfeld/perl/ch-2.pl"><strong>Laurent Rosenfeld</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/laurent-rosenfeld/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="http://blogs.perl.org/users/laurent_r/2022/05/perl-weekly-challenge-163-sum-bitwise-operator-and-summations.html">Perl Weekly Challenge 163: Sum Bitwise Operator and Summations</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/pokgopun/perl/ch-2.pl"><strong>PokGoPun</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/pokgopun/go/ch-2.go">Go</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/roger-bell-west/perl/ch-2.pl"><strong>Roger Bell_West</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/roger-bell-west/javascript/ch-2.js">Javascript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/roger-bell-west/kotlin/ch-2.kt">Kotlin</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/roger-bell-west/lua/ch-2.lua">Lua</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/roger-bell-west/postscript/ch-2.ps">Postscript</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/roger-bell-west/python/ch-2.py">Python</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/roger-bell-west/raku/ch-2.p6">Raku</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/roger-bell-west/ruby/ch-2.rb">Ruby</a>, <a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/roger-bell-west/rust/ch-2.rs">Rust</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://blog.firedrake.org/archive/2022/05/The_Weekly_Challenge_163__Sums_and_Sums.html">RogerBW&rsquo;s Blog: The Weekly Challenge 163: Sums and Sums</a></p>
+<p><a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/ryan-thompson/perl/ch-2.pl"><strong>Ryan Thompson</strong></a></p>
+<p>  <strong>additional languages:</strong>
+<a href="https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-163/ryan-thompson/raku/ch-2.raku">Raku</a></p>
+<p>  <strong>blog writeup:</strong>
+<a href="https://ry.ca/2022/05/a-tail-of-two-sums/">PWC 163 › A tail of two sums - Ryan J Thompson</a></p>
+<hr>
+<hr>
+<p> &nbsp; </p>
+<p> &nbsp; </p>
+<p> &nbsp; </p>
+<p> &nbsp; </p>
+<center>
+<h1 id="PWC163BLOGS">_________ THE BLOG PAGES _________</h1>
+</center>
+<hr>
+<p><strong>That’s it for me this week, people! Warped by the rain, driven by the snow, resolute and unbroken by the torrential influx, by some miracle I somehow continue to maintain my bearings.</strong></p>
+<p><strong>Looking forward to next wave, the perfect wave, I am: <em>your humble servant</em>.</strong></p>
+<h1 id="PWC163BLOGS">But if Your Unquenchable <em>THIRST</em> for <em>KNOWLEDGE</em> is not <em>SLAKED</em>,</h1>
+<h1 id="then-run-dont-walk-to-the-watering-hole">then <em>RUN</em> <em>(dont walk!)</em> to the <em>WATERING HOLE</em></h1>
+<h1 id="and-follow-these-blog-links">and <em>FOLLOW</em> these <em>BLOG</em> <em>LINKS</em>:</h1>
+<p><strong>( &hellip;<em>don&rsquo;t think, trust your training, you&rsquo;re in the zone, just do it &hellip;</em> )</strong></p>
+<p><strong>Adam Russell</strong></p>
+<ul>
+<li><a href="http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2022/05/08">Bitwise And Sums and Skip Summations: Somewhat Complicated Uses of Map - Perl - RabbitFarm</a> ( <em>Perl</em> )</li>
+<li><a href="http://www.rabbitfarm.com/cgi-bin/blosxom/prolog/2022/05/08">Bitwise And Sums and Skip Summations: Somewhat Complicated Uses of Map - Prolog - RabbitFarm</a> ( <em>Prolog</em> )</li>
+</ul>
+<p><strong>Arne Sommer</strong></p>
+<ul>
+<li><a href="https://raku-musings.com/sum-sum.html">Sum and Sum Again with Raku and Perl - Arne Sommer</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Colin Crain</strong></p>
+<ul>
+<li><a href="https://colincrain.com/2022/05/06/thats-some-operator-you-got-there/">That&rsquo;s Some Operator You Got There - Programming Excursions in Perl and Raku</a> ( <em>Perl &amp; Raku</em> )</li>
+<li><a href="https://colincrain.com/2022/05/06/and-a-little-something-more/">And a Little Something More… - Programming Excursions in Perl and Raku</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Dave Jacoby</strong></p>
+<ul>
+<li><a href="https://jacoby.github.io/2022/05/02/summations-the-weekly-challenge-163.html">Sum(mation)s: The Weekly Challenge #163 | Committed to Memory</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Flavio Poletti</strong></p>
+<ul>
+<li><a href="https://github.polettix.it/ETOOBUSY/2022/05/03/pwc163-sum-bitwise-operator/">PWC163 - Sum Bitwise Operator - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+<li><a href="https://github.polettix.it/ETOOBUSY/2022/05/04/pwc163-summations/">PWC162 - Summations - ETOOBUSY</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Jaldhar H. Vyas</strong></p>
+<ul>
+<li><a href="https://www.braincells.com/perl/2022/05/perl_weekly_challenge_week_163.html">Perl Weekly Challenge: Week 163</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>James Smith</strong></p>
+<ul>
+<li><a href="https://github.com/drbaggy/perlweeklychallenge-club/tree/master/challenge-163/james-smith">Perl Weekly Challenge #163</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Laurent Rosenfeld</strong></p>
+<ul>
+<li><a href="http://blogs.perl.org/users/laurent_r/2022/05/perl-weekly-challenge-163-sum-bitwise-operator-and-summations.html">Perl Weekly Challenge 163: Sum Bitwise Operator and Summations</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Luca Ferrari</strong></p>
+<ul>
+<li><a href="https://fluca1978.github.io/2022/05/02/PerlWeeklyChallenge163.html#task1">Perl Weekly Challenge 163: the infinite loop! – Luca Ferrari – Open Source advocate, human being</a> ( <em>Raku</em> )</li>
+<li><a href="https://fluca1978.github.io/2022/05/02/PerlWeeklyChallenge163.html#task1plperl">Perl Weekly Challenge 163: the infinite loop! – Luca Ferrari – Open Source advocate, human being</a> ( <em>PL/Perl</em> )</li>
+<li><a href="https://fluca1978.github.io/2022/05/02/PerlWeeklyChallenge163.html#task1plpgsql">Perl Weekly Challenge 163: the infinite loop! – Luca Ferrari – Open Source advocate, human being</a> ( <em>PL/PostgreSQL</em> )</li>
+</ul>
+<p><strong>Mark Senn</strong></p>
+<ul>
+<li><a href="https://engineering.purdue.edu/~mark/twc-163-1.pdf">Sum Bitwise Operator</a> ( <em>Raku</em> )</li>
+<li><a href="https://engineering.purdue.edu/~mark/twc-163-2.pdf">Summations</a> ( <em>Raku</em> )</li>
+</ul>
+<p><strong>Peter Campbell Smith</strong></p>
+<ul>
+<li><a href="https://pjcs-pwc.blogspot.com/2022/05/lot-of-ands-and-strange-grid.html">Lot of ands and a strange grid</a> ( <em>Perl</em> )</li>
+</ul>
+<p><strong>Roger Bell_West</strong></p>
+<ul>
+<li><a href="https://blog.firedrake.org/archive/2022/05/The_Weekly_Challenge_163__Sums_and_Sums.html">RogerBW&rsquo;s Blog: The Weekly Challenge 163: Sums and Sums</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>Ryan Thompson</strong></p>
+<ul>
+<li><a href="https://ry.ca/2022/05/a-tail-of-two-sums/">PWC 163 › A tail of two sums - Ryan J Thompson</a> ( <em>Perl &amp; Raku</em> )</li>
+</ul>
+<p><strong>W. Luis Mochan</strong></p>
+<ul>
+<li><a href="https://wlmb.github.io/2022/05/02/PWC163/">Perl Weekly Challenge 163 – W. Luis Mochán</a> ( <em>Perl</em> )</li>
+</ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call To Action Section Start -->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT DO YOU THINK ?</h2>
+                    <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">If you have any suggestions or ideas then please do share with us.</p>
+                    <a href="/contact" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact with me</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Call To Action Section End -->
+
+
+
+<!-- Footer Section Start -->
+<footer id="footer">
+    <div class="container">
+        <div class="row content-justify-between">
+            <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
+                <p class="copyright">Copyright:
+                    <span>
+                        2019 - 2022
+                    </span> The Weekly Challenge. Theme Design and Developed by
+                    <a href="http://www.Themefisher.com" rel="noreferrer" rel="noreferrer" target="_blank">Themefisher</a>.
+                </p>
+            </div>
+            <div class="col-md-4 col-12">
+                <!-- Social Media -->
+                <ul class="social text-center text-md-right text-lg-right">
+                    <li>
+                        <a href="https://twitter.com/PerlWChallenge" class="twitter" rel="noreferrer" target="_blank" title="Follow us">
+                            <i class="ion-social-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/rss.xml" class="rss" target="_blank" title="RSS Feed">
+                            <i class="ion-social-rss"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.nomtimes.co.uk/site/shop.do?cref=PerlBooks" title="Free Perl Books" rel="noreferrer" target="_blank">
+                            <img src="/images/NomTimes.jpg" style="width:22px; height: 18px;" alt=""/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+
+<!-- jquery -->
+<script src="https://theweeklychallenge.org/plugins/jQurey/jquery.min.js"></script>
+<!-- Form Validation -->
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.form.min.js"></script>
+<script src="https://theweeklychallenge.org/plugins/form-validation/jquery.validate.min.js"></script>
+<!-- slick slider -->
+<script src="https://theweeklychallenge.org/plugins/slick/slick.min.js"></script>
+<!-- bootstrap js -->
+<script src="https://theweeklychallenge.org/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- chart js -->
+<script src="https://theweeklychallenge.org/plugins/chart/highstock.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/drilldown.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/data.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/chart.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/pwc-challenge.js"></script>
+<script src="https://theweeklychallenge.org/plugins/chart/gc-challenge.js"></script>
+<!-- wow js -->
+<script src="https://theweeklychallenge.org/plugins/wow-js/wow.min.js"></script>
+<!-- slider js -->
+<script src="https://theweeklychallenge.org/plugins/slider/slider.js"></script>
+<!-- Fancybox -->
+<script src="https://theweeklychallenge.org/plugins/facncybox/jquery.fancybox.js"></script>
+<!-- template main js -->
+
+<script src="https://theweeklychallenge.org/js/script.min.js"></script>
+<!-- google analitycs -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-136524905-1', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+
+</html>
+
