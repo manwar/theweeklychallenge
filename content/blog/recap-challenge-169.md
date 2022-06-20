@@ -292,7 +292,7 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 ***
 
 ### Dario Mazzeo
-![Dario Mazzeo](/images/team/user.jpg)
+![Dario Mazzeo](/images/team/dario-mazzeo.jpg)
 
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-169/dario-mazzeo/perl/ch-1.pl)]
 
