@@ -36,6 +36,10 @@ Please find below guest contributions.
 ## [The Weekly Challenge - 170](/blog/perl-weekly-challenge-170) {#170}
 <br>
 
+##### **Adam Russell** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-170/adam-russell/java/ch-1.java) in **Java**.
+
+##### **Adam Russell** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-170/adam-russell/prolog/ch-1.p) in **Prolog**.
+
 ##### **Conor Hoekstra** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-170/conor-hoekstra/apl/ch-1.apl) in **APL**.
 
 ##### **Conor Hoekstra** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-170/conor-hoekstra/j/ch-1.ijs) in **J**.
